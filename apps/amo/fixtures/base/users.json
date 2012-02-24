@@ -1,5 +1,23 @@
 [
     {
+        "pk": 999,
+        "model": "auth.user",
+        "fields": {
+            "username": "regular@mozilla.com",
+            "first_name": "Regular",
+            "last_name": "User",
+            "is_active": 1,
+            "is_superuser": 0,
+            "is_staff": 0,
+            "last_login": "2010-04-23 10:33:53",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha1$a04e0$0512298efb3e6e7dbace3976474151d396078fdd",
+            "email": "regular@mozilla.com",
+            "date_joined": "2007-03-05 13:09:38"
+        }
+    },
+    {
         "fields": {
             "sandboxshown": 1,
             "display_collections_fav": 1,

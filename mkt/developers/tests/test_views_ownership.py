@@ -1,7 +1,4 @@
 """Tests related to the ``mkt.developers.addons.owner`` view."""
-from django.conf import settings
-
-import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -374,4 +371,36 @@ class TestEditWebappAuthors(amo.tests.TestCase):
         self.assertRedirects(r, self.url, 302)
         owners = (AddonUser.objects.filter(addon=self.webapp.id)
                   .values_list('user', flat=True))
-        eq_(list(owners), [999])
+        eq_(list(owners), [31337, 999])
+
+
+class TestDeveloperRoleAccess(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.webapp = Addon.objects.get(pk=337141)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        AddonUser.objects.create(addon=self.webapp, user=user,
+                                 role=amo.AUTHOR_ROLE_SUPPORT)
+
+    def _check_it(self, url):
+        res = self.client.get(url, follow=True)
+        eq_(res.status_code, 200)
+        # Weak sauce. But pq('body.no-edit') or
+        # pq('body').hasClass('no-edit') doesn't work.
+        assert 'no-edit' in res.content, ("%s is editable by a developer but "
+                                          "shouldn't be" % url)
+        res = self.client.post(url)
+        eq_(res.status_code, 403)
+
+    def test_urls(self):
+        urls = ['owner', 'payments', 'paypal_setup']
+        for url in urls:
+            self._check_it(self.webapp.get_dev_url(url))
+
+        waffle.models.Switch.objects.create(name='in-app-payments', active=True)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        self._check_it(self.webapp.get_dev_url('in_app_config'))

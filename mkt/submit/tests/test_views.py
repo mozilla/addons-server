@@ -688,8 +688,7 @@ class TestPayments(TestSubmit):
     def _make_upsell(self):
         free = Addon.objects.create(type=amo.ADDON_WEBAPP)
         free.update(status=amo.STATUS_PUBLIC)
-        AddonUser.objects.create(addon=free,
-                                 user=self.webapp.authors.all()[0])
+        AddonUser.objects.create(addon=free, user=self.user)
         return free
 
     def test_upsell_states(self):
@@ -728,8 +727,7 @@ class TestPayments(TestSubmit):
 
     def test_upsell_missing(self):
         free = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        AddonUser.objects.create(addon=free,
-                                 user=self.webapp.authors.all()[0])
+        AddonUser.objects.create(addon=free, user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.upsell'),
                                {'price': self.price.pk,

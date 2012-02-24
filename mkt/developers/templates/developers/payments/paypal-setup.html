@@ -3,6 +3,11 @@
 {% set title = loc('Manage PayPal') %}}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
+{% set can_edit = check_addon_ownership(request, addon) %}
+{% block bodyclass %}
+  {{ super() }}{% if not can_edit %} no-edit{% endif %}
+{% endblock %}
+
 {% block content %}
   <header>
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
