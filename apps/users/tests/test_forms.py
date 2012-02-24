@@ -443,7 +443,8 @@ class TestUserRegisterForm(UserFormBase):
                              'provider to complete your registration.')
 
     def test_invalid_homepage(self):
-        data = {'homepage': 'example.com:alert(String.fromCharCode(88,83,83)'}
+        data = {'homepage': 'example.com:alert(String.fromCharCode(88,83,83)',
+                'email': ''}
         m = 'This URL has an invalid format. '
         m += 'Valid URLs look like http://example.com/my_page.'
         r = self.client.post('/en-US/firefox/users/register', data)
@@ -454,6 +455,14 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.get('/users/register', follow=True)
         self.assertContains(r, "You are already logged in")
         self.assertNotContains(r, '<button type="submit">Register</button>')
+
+    def test_browserid_registered(self):
+        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        u.password = ''
+        u.save()
+        data = {'email': 'jbalogh@mozilla.com'}
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertContains(r, 'already have an account')
 
     def good_data(self):
         return {

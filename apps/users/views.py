@@ -638,7 +638,7 @@ def register(request):
 
         elif mkt_user.exists():
                 f = PasswordResetForm()
-                f.users_cache = [mkt_user[0].user]
+                f.users_cache = [mkt_user[0]]
                 f.save(use_https=request.is_secure(),
                        email_template_name='users/email/pwreset.ltxt',
                         request=request)
