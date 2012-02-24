@@ -81,7 +81,11 @@ class TestHome(HubTest):
     def test_legacy_login_redirect(self):
         self.client.logout()
         r = self.client.get('/en-US/firefox/users/login')
-        self.assertRedirects(r, '/en-US/login', 302)
+        got, exp = r['Location'], '/en-US/users/login'
+        assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
+        r = self.client.get('/en-US/users/login')
+        got, exp = r['Location'], '/en-US/login'
+        assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
 
     def test_login_redirect(self):
         self.client.logout()
