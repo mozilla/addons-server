@@ -603,7 +603,6 @@ class TestPayments(TestSubmit):
 
     def setUp(self):
         super(TestPayments, self).setUp()
-        AppSubmissionChecklist.objects.all().delete()  # TODO fix this.
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_NULL)
         self.url = self.get_url('payments')
