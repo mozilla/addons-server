@@ -307,6 +307,15 @@ class TestDetails(TestSubmit):
         self.assertRedirects(r, reverse('submit.app.details',
                                         args=[self.webapp.app_slug]))
 
+    def test_resume_later(self):
+        self._step()
+        self.webapp.appsubmissionchecklist.update(details=True, payments=True)
+        self.webapp.update(status=amo.STATUS_NULL, paypal_id='',
+                           premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(reverse('submit.app.resume',
+                                      args=[self.webapp.app_slug]))
+        self.assertRedirects(res, self.webapp.get_dev_url('paypal_setup'))
+
     def test_not_owner(self):
         self._step()
         assert self.client.login(username='clouserw@gmail.com',

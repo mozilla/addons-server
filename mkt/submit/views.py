@@ -242,6 +242,12 @@ def resume(request, addon_id, addon):
         step = addon.appsubmissionchecklist.get_next()
     except ObjectDoesNotExist:
         step = None
+
+    # If there is not a Free app and there's no PayPal id, they
+    # clicked "later" in the submission flow.
+    if not step and addon.premium_type != amo.ADDON_FREE:
+        return redirect(addon.get_dev_url('paypal_setup'))
+
     return _resume(addon, step)
 
 
