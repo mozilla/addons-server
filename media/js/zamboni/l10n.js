@@ -96,7 +96,7 @@ $(document).ready(function () {
         var new_locale = $tgt.attr("data-lang") || $tgt.attr("href").substring(1);
         var unsaved = $("form .trans .unsaved");
 
-        if (unsaved.length) {
+        if (unsaved.length && new_locale != currentLocale) {
             unsavedModal.children(".msg")
                 .html(format(unsavedModalMsg,[$("#change-locale").text()]));
             unsavedModal.render();
