@@ -345,7 +345,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         setattr(self, slug_field, slug)
 
     @transaction.commit_on_success
-    def delete(self, msg):
+    def delete(self, msg=''):
         id = self.id
         if self.highest_status or self.status:
             if self.guid:
