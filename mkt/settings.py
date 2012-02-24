@@ -279,5 +279,9 @@ CELERY_ROUTES.update({
     'mkt.developers.tasks.resize_preview': {'queue': 'images'},
 })
 
+# Paths.
+ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/hub')
+ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
+
 # Feature flags.
 POTCH_MARKETPLACE_EXPERIMENTS = False

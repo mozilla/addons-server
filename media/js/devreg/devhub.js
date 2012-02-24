@@ -174,11 +174,11 @@ $(document).ready(function() {
     $('.invisible-upload a').click(_pd);
 
     // when to start and stop image polling
-    if ($('#edit-addon-media').length &&
-        $('#edit-addon-media').attr('data-checkurl') !== undefined) {
-        imageStatus.start();
+    var $media = $('#edit-addon-media');
+    if ($media.length && $media.attr('data-checkurl') !== undefined) {
+        imageStatus.start(true, true);
     }
-    $('#edit-addon-media').bind('click', function() {
+    $media.bind('click', function() {
         imageStatus.cancel();
     });
 
@@ -239,7 +239,7 @@ $(document).ready(function() {
             z.refreshL10n();
         });
         if (parent_div.is('#edit-addon-media')) {
-            imageStatus.start();
+            imageStatus.start(true, true);
         }
     }));
 });
@@ -295,7 +295,7 @@ function addonFormSubmit() {
                 truncateFields();
                 annotateLocalizedErrors(parent_div);
                 if (parent_div.is('#edit-addon-media')) {
-                    imageStatus.start();
+                    imageStatus.start(true, true);
                     hideSameSizedIcons();
                 }
                 if ($form.find('#addon-categories-edit').length) {
@@ -858,17 +858,18 @@ function imagePoller() {
 };
 
 var imageStatus = {
-    start: function() {
+    start: function(do_icon, do_preview) {
         this.icon = new imagePoller();
         this.preview = new imagePoller();
         this.icon.check = function() {
             var self = imageStatus,
-                node = $('#edit-addon-media');
+                node = $('#edit-addon-media, #submit-media');
             $.getJSON(node.attr('data-checkurl'),
                 function(json) {
                     if (json !== null && json.icons) {
-                        $('#edit-addon-media').find('img').each(function() {
-                            $(this).attr('src', self.newurl($(this).attr('src')));
+                        $('#edit-addon-media, #submit-media').find('img').each(function() {
+                            var $this = $(this);
+                            $this.attr('src', self.newurl($this.attr('src')));
                         });
                         self.icon.stop();
                         self.stopping();
@@ -906,20 +907,32 @@ var imageStatus = {
                 img.src = self.newurl($this.attr('data-url'));
             }
         };
-        this.icon.start();
-        this.preview.start();
+        if (do_icon) {
+            this.icon.start();
+        }
+        if (do_preview) {
+            this.preview.start();
+        }
     },
     polling: function() {
         if (this.icon.poll || this.preview.poll) {
+            // I don't want this to show up for submission.
             var node = $('#edit-addon-media');
             if (!node.find('b.image-message').length) {
                 $(format('<b class="save-badge image-message">{0}</b>',
                   [gettext('Image changes being processed')]))
                   .appendTo(node.find('h2').first());
             }
+            var $submission = $('#submit-media');
+            if ($submission.length) {
+                $submission.find('#icon_preview_64').addClass('loading');
+            }
         }
     },
     newurl: function(orig) {
+        if (!orig) {
+            orig = '';
+        }
         var bst = new Date().getTime();
         orig += (orig.indexOf('?') > 1 ? '&' : '?') + bst;
         return orig;
@@ -931,7 +944,10 @@ var imageStatus = {
     },
     stopping: function() {
         if (!this.icon.poll && !this.preview.poll) {
-            $('#edit-addon-media').find('b.image-message').remove();
+            $('#edit-addon-media b.image-message').remove();
+        }
+        if (!this.icon.poll) {
+            $('#submit-media #icon_preview_64').removeClass('loading');
         }
     }
 };

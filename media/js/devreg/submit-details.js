@@ -41,6 +41,12 @@
 
 
 $(document).ready(function() {
+    // Icon previews.
+    imageStatus.start(true, false);
+    $('#submit-media').bind('click', function() {
+        imageStatus.cancel();
+    });
+
     submit_details.houdini();
     $('#submit-details').exists(function () {
         //submit_details.general();

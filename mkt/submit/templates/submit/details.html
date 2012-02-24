@@ -7,7 +7,6 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-  {# TODO: Someone decide what the breadcrumbs/h1 should say for a resumable step. #}
   {{ hub_breadcrumbs(addon, items=[(None, _('Submit App'))]) }}
   <div id="temp-locale-container">{{ l10n_menu(addon.default_locale) }}</div>
   <h1>{{ _('Submit an App') }}</h1>
@@ -18,7 +17,8 @@
       {{ loc("Please review your listing information below. We've pre-filled "
              "as much as we can from your manifest.") }}
     </p>
-    <form action="" enctype="multipart/form-data" method="post" class="devhub-form" id="submit-media">
+    <form enctype="multipart/form-data" method="post" class="devhub-form"
+          id="submit-media" data-checkurl="{{ url('mkt.developers.ajax.image.status', addon.slug) }}">
       {{ csrf() }}
       <header id="general-details" class="island swagger c">
         <div id="icon_preview" class="invisible-upload">
@@ -129,7 +129,8 @@
             <div class="preview">
               <span class="handle">&nbsp;</span>
               {% if form.instance.id %}
-                <div class="preview-thumb" style="background-image:url({{ form.instance.thumbnail_url }})">
+                <div class="preview-thumb"
+                     style="background-image:url({{ form.instance.thumbnail_url }})">
                 </div>
               {% else %}
                 <div class="preview-thumb"></div>
