@@ -31,10 +31,9 @@ def test_stars():
 
 def test_stars_details_page():
     doc = pq(render('{{ num|stars(large=True) }}', {'num': 2}))
+    eq_(doc('span[itemprop="aggregateRating"]').length, 1)
     eq_(doc('.stars').attr('class'), 'stars large stars-2')
-    eq_(doc('meta[itemprop="worstRating"]').attr('content'), '1')
     eq_(doc('span[itemprop="ratingValue"]').text(), '2')
-    eq_(doc('span[itemprop="bestRating"]').text(), '5')
 
 
 def test_stars_max():
