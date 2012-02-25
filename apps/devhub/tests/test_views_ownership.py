@@ -374,4 +374,4 @@ class TestEditWebappAuthors(amo.tests.TestCase):
         self.assertRedirects(r, self.url, 302)
         owners = (AddonUser.objects.filter(addon=self.webapp.id)
                   .values_list('user', flat=True))
-        eq_(list(owners), [999])
+        eq_(list(owners), [31337, 999])
