@@ -1776,6 +1776,16 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
         assert not self.addon.is_premium()
 
+    def test_does_not_need_paypal(self):
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        assert not self.addon.needs_paypal()
+
+    def test_needs_paypal(self):
+        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
+                       amo.ADDON_FREE_INAPP]:
+            self.addon.update(premium_type=status)
+            assert self.addon.needs_paypal()
+
     def test_can_be_premium_upsell(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         free = Addon.objects.create(type=amo.ADDON_EXTENSION)

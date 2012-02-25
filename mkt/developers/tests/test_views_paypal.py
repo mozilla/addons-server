@@ -70,6 +70,13 @@ class TestPayments(amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
+    def test_later_then_free(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
+                           status=amo.STATUS_NULL)
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().status, amo.STATUS_PENDING)
+
 
 # Testing the paypal page.
 class TestPaypal(amo.tests.TestCase):

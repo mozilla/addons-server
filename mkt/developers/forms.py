@@ -1093,6 +1093,12 @@ class PremiumForm(happyforms.Form):
         self.addon.support_email = self.cleaned_data['support_email']
         self.addon.save()
 
+        # If the checked later in the wizard and then decided they want
+        # to keep it free, push to pending.
+        if (not self.addon.paypal_id and self.addon.is_incomplete()
+            and self.addon.needs_paypal()):
+            self.addon.mark_done()
+
 
 def DependencyFormSet(*args, **kw):
     addon_parent = kw.pop('addon')
