@@ -12,6 +12,7 @@
 
 {% block content %}
 <div class="primary">
+  {% include "developers/timeline.html" %}
   <section class="island swagger hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
     <div class="prose">
       <h1>Developer Registration</h1>
