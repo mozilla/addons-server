@@ -347,6 +347,7 @@ def save_icon(webapp, content):
     resize_icon.delay(tmp_dst, destination, amo.ADDON_ICON_SIZES,
                       set_modified_on=[webapp])
 
+    webapp.icon_type = 'image/png'
     webapp.save()
 
 
@@ -356,6 +357,9 @@ def fetch_icon(webapp, **kw):
     Returns False if icon was not able to be retrieved
     """
     manifest = webapp.get_manifest_json()
+    if not 'icons' in manifest:
+        return
+
     log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
     biggest = max([int(size) for size in manifest['icons']])
     icon_url = manifest['icons'][str(biggest)]
