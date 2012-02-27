@@ -364,6 +364,8 @@ def fetch_icon(webapp, **kw):
 
     manifest = webapp.get_manifest_json()
     if not 'icons' in manifest:
+        # Set the icon type to empty.
+        webapp.update(icon_type='')
         return
     biggest = max([int(size) for size in manifest['icons']])
     icon_url = manifest['icons'][str(biggest)]
@@ -376,6 +378,8 @@ def fetch_icon(webapp, **kw):
         except Exception, e:
             log.error('Failed to fetch icon for webapp %s: %s'
                       % (webapp.pk, e.message))
+            # Set the icon type to empty.
+            webapp.update(icon_type='')
             return
 
         size_error_message = _('Your icon must be less than %s bytes.')

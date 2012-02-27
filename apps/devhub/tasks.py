@@ -347,11 +347,6 @@ def save_icon(webapp, content):
     resize_icon.delay(tmp_dst, destination, amo.ADDON_ICON_SIZES,
                       set_modified_on=[webapp])
 
-    # Need to set the icon type so .get_icon_url() works
-    # normally submit step 4 does it through AddonFormMedia,
-    # but we want to beat them to the punch.
-    # resize_icon outputs pngs, so we know it's 'image/png'
-    webapp.icon_type = 'image/png'
     webapp.save()
 
 
@@ -360,11 +355,8 @@ def fetch_icon(webapp, **kw):
     """Downloads a webapp icon from the location specified in the manifest.
     Returns False if icon was not able to be retrieved
     """
-    log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
-
     manifest = webapp.get_manifest_json()
-    if not 'icons' in manifest:
-        return
+    log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
     biggest = max([int(size) for size in manifest['icons']])
     icon_url = manifest['icons'][str(biggest)]
     if icon_url.startswith('data:image'):

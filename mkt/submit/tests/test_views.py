@@ -250,6 +250,10 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         rs = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(rs.status_code, 302)
 
+    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
+    def test_allow_duplicate_domains(self):
+        self.upload_webapp('http://existing-app.com/my.webapp')  # No errors.
+
 
 class TestDetails(TestSubmit):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']

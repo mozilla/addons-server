@@ -661,7 +661,7 @@ class TestEditMedia(TestEdit):
     def setup_image_status(self):
         addon = self.get_addon()
         self.icon_dest = os.path.join(addon.get_icon_dir(),
-                                      '%s-32.png' % addon.id)
+                                      '%s-64.png' % addon.id)
         os.makedirs(os.path.dirname(self.icon_dest))
         open(self.icon_dest, 'w')
 

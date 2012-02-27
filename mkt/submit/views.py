@@ -72,9 +72,15 @@ def manifest(request):
 
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         addon = Addon.from_upload(data['upload'], plats)
-        tasks.fetch_icon.delay(addon)
-        AddonUser(addon=addon, user=request.amo_user).save()
+        if addon.has_icon_in_manifest():
+            # Fetch the icon, do polling.
+            addon.update(icon_type='image/png')
+            tasks.fetch_icon.delay(addon)
+        else:
+            # In this case there is no need to do any polling.
+            addon.update(icon_type='')
 
+        AddonUser(addon=addon, user=request.amo_user).save()
         # Checking it once. Checking it twice.
         AppSubmissionChecklist.objects.create(addon=addon, terms=True,
                                               manifest=True)
