@@ -361,7 +361,6 @@ def fetch_icon(webapp, **kw):
     Returns False if icon was not able to be retrieved
     """
     log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
-    import time; time.sleep(100); # This is temp.
     manifest = webapp.get_manifest_json()
     if not 'icons' in manifest:
         # Set the icon type to empty.
