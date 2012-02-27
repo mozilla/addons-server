@@ -53,15 +53,15 @@
       #}
     </p>
     <p class="version-status-actions listing-footer">
-      {% if check_addon_ownership(request, addon) %}
+      {% if check_addon_ownership(request, addon, dev=True) %}
         {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
           <a href="{{ addon.get_dev_url('enable') }}" class="button" id="enable-addon">{{ loc('Enable App') }}</a>
         {% elif not addon.is_disabled %}
           <a href="#" class="button" id="disable-addon">{{ loc('Disable App') }}</a>
         {% endif %}
-        {% if addon.can_be_deleted() %}
-          <a href="#" class="button delete-button" id="delete-addon">{{ loc('Delete App') }}</a>
-        {% endif %}
+      {% endif %}
+      {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+        <a href="#" class="button delete-button" id="delete-addon">{{ loc('Delete App') }}</a>
       {% endif %}
     </p>
   </div>

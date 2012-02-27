@@ -384,7 +384,7 @@ class TestDeveloperRoleAccess(amo.tests.TestCase):
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonUser.objects.create(addon=self.webapp, user=user,
-                                 role=amo.AUTHOR_ROLE_SUPPORT)
+                                 role=amo.AUTHOR_ROLE_DEV)
 
     def _check_it(self, url):
         res = self.client.get(url, follow=True)
@@ -404,3 +404,16 @@ class TestDeveloperRoleAccess(amo.tests.TestCase):
         waffle.models.Switch.objects.create(name='in-app-payments', active=True)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM_INAPP)
         self._check_it(self.webapp.get_dev_url('in_app_config'))
+
+    def test_disable(self):
+        res = self.client.get(self.webapp.get_dev_url('versions'))
+        doc = pq(res.content)
+        eq_(doc('#delete-addon').length, 0)
+        eq_(doc('#disable-addon').length, 1)
+
+    def test_enable(self):
+        self.webapp.update(disabled_by_user=True)
+        res = self.client.get(self.webapp.get_dev_url('versions'))
+        doc = pq(res.content)
+        eq_(doc('#delete-addon').length, 0)
+        eq_(doc('#enable-addon').length, 1)
