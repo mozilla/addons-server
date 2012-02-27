@@ -248,10 +248,6 @@ urlpatterns = decorate(write, patterns('',
         '(?P<upload_type>persona_header|persona_footer)$',
         views.ajax_upload_image, name='devhub.personas.upload_persona'),
 
-    # Newsletter archive & signup
-    url('community/newsletter', views.newsletter,
-        name='devhub.community.newsletter'),
-
     # Add-on SDK page
     url('builder$', views.builder, name='devhub.builder'),
 

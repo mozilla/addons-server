@@ -1213,9 +1213,6 @@ PS_BIN = '/bin/ps'
 
 BLOCKLIST_COOKIE = 'BLOCKLIST_v1'
 
-# Responsys id used for newsletter subscribing
-RESPONSYS_ID = ''
-
 # The maximum file size that is shown inside the file viewer.
 FILE_VIEWER_SIZE_LIMIT = 1048576
 # The maximum file size that you can have inside a zip file.

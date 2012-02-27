@@ -423,32 +423,3 @@ def start_perf_test_for_file(file_id, os_name, app_name, **kw):
     file_ = File.objects.get(pk=file_id)
     # TODO(Kumar) store token to retrieve results later?
     perf.start_perf_test(file_, os_name, app_name)
-
-
-@task
-def subscribe_to_responsys(campaign, address, format='html', source_url='',
-                           lang='', country='', **kw):
-    """
-    Subscribe a user to a list in responsys. There should be two
-    fields within the Responsys system named by the "campaign"
-    parameter: <campaign>_FLG and <campaign>_DATE.
-    """
-
-    data = {
-        'LANG_LOCALE': lang,
-        'COUNTRY_': country,
-        'SOURCE_URL': source_url,
-        'EMAIL_ADDRESS_': address,
-        'EMAIL_FORMAT_': 'H' if format == 'html' else 'T',
-        }
-
-    data['%s_FLG' % campaign] = 'Y'
-    data['%s_DATE' % campaign] = date.today().strftime('%Y-%m-%d')
-    data['_ri_'] = settings.RESPONSYS_ID
-
-    try:
-        res = urllib2.urlopen('http://awesomeness.mozilla.org/pub/rf',
-                              data=urlencode(data))
-        return res.code == 200
-    except urllib2.URLError:
-        return False

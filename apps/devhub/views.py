@@ -1807,29 +1807,6 @@ def builder(request):
     return jingo.render(request, 'devhub/builder.html')
 
 
-@anonymous_csrf
-def newsletter(request):
-    regions = product_details.get_regions(getattr(request, 'LANG',
-                                                  settings.LANGUAGE_CODE))
-    form = forms.NewsletterForm(request.POST or None,
-                                regions=sorted(regions.iteritems(),
-                                               key=operator.itemgetter(1)))
-
-    if request.method == 'POST':
-        if form.is_valid():
-            data = form.cleaned_data
-            # Responsys expects the URL in the format example.com/foo.
-            responsys_url = request.get_host() + request.get_full_path()
-            tasks.subscribe_to_responsys.delay('ABOUT_ADDONS', data['email'],
-                                               data['format'], responsys_url,
-                                               request.LANG, data['region'])
-            messages.success(request, _('Thanks for subscribing!'))
-            return redirect('devhub.community.newsletter')
-
-    return jingo.render(request, 'devhub/newsletter.html',
-                        {'newsletter_form': form})
-
-
 @json_view
 @post_required
 def check_paypal(request):

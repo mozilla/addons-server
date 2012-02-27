@@ -746,22 +746,6 @@ class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
         return mark_safe(''.join(force_unicode(w) for w in self))
 
 
-class NewsletterForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        regions = kwargs.pop('regions')
-        super(NewsletterForm, self).__init__(*args, **kwargs)
-        self.fields['region'].choices = regions
-
-    email = forms.EmailField(
-        widget=EmailWidget(placeholder=_lazy(u'Your Email Address')))
-    region = forms.ChoiceField(initial='us')
-    format = forms.ChoiceField(
-        widget=forms.widgets.RadioSelect(renderer=InlineRadioRenderer),
-        choices=(('html', _lazy(u'HTML')),
-                 ('text', _lazy(u'Text'))))
-    policy = forms.BooleanField()
-
-
 class PackagerBasicForm(forms.Form):
     name = forms.CharField(min_length=5, max_length=50,
         help_text=_lazy(u'Give your add-on a name. The most successful '

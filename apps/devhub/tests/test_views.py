@@ -3723,28 +3723,6 @@ class TestRedirects(amo.tests.TestCase):
                                         args=['a3615']), 301)
 
 
-class TestNewsletter(amo.tests.TestCase):
-
-    def test_get(self):
-        r = self.client.get(reverse('devhub.community.newsletter'))
-        eq_(r.status_code, 200)
-
-    @mock.patch('devhub.tasks.urllib2.urlopen')
-    def test_post(self, v):
-        v.return_value = namedtuple('_', 'code')
-        v.return_value.code = 200
-        email = 'test@example.com'
-
-        url = reverse('devhub.community.newsletter')
-        r = self.client.post(url, {'email': email, 'region': 'us',
-                                   'format': 'html', 'policy': 't'})
-        eq_(r.status_code, 302)
-
-        # Test call to responsys
-        eq_(v.call_args[0], ('http://awesomeness.mozilla.org/pub/rf',))
-        assert(urlencode({'EMAIL_ADDRESS_': email}) in v.call_args[1]['data'])
-
-
 class TestDocs(amo.tests.TestCase):
 
     def test_doc_urls(self):
