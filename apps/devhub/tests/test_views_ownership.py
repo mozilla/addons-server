@@ -1,5 +1,4 @@
 """Tests related to the ``devhub.addons.owner`` view."""
-import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -7,7 +6,6 @@ import waffle
 import amo
 import amo.tests
 from amo.tests import formset
-from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from devhub.forms import LicenseForm
 from devhub.models import ActivityLog

@@ -82,10 +82,11 @@ class TestAjax(UserViewBase):
         assert '<script>' in self.user_profile.display_name, (
             'Expected <script> to be in display name')
         r = self.client.get(reverse('users.ajax'),
-                            {'q': self.user_profile.email})
+                            {'q': self.user_profile.email, 'dev': 0})
         assert '<script>' not in r.content
         assert '&lt;script&gt;' in r.content
 
+    @patch.object(settings, 'MARKETPLACE', False)
     def test_ajax_failure_incorrect_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
                             follow=True)
@@ -93,6 +94,16 @@ class TestAjax(UserViewBase):
         eq_(data,
             {'status': 0,
              'message': 'A user with that email address does not exist.'})
+
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_ajax_failure_incorrect_email_mkt(self):
+        r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
+                            follow=True)
+        data = json.loads(r.content)
+        eq_(data,
+            {'status': 0,
+             'message': 'A user with that email address does not exist, or the '
+                        'user has not yet accepted the developer agreement.'})
 
     def test_ajax_failure_no_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': ''}, follow=True)

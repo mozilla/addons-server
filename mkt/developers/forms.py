@@ -56,6 +56,15 @@ class AuthorForm(happyforms.ModelForm):
             if c != amo.AUTHOR_ROLE_SUPPORT or
             waffle.switch_is_active('allow-refund'))
 
+    def clean_user(self):
+        user = self.cleaned_data['user']
+        if not user.read_dev_agreement:
+            raise forms.ValidationError(
+                _('All authors must have read and agreed to the developer '
+                  'agreement.'))
+
+        return user
+
     class Meta:
         model = AddonUser
         exclude = ('addon')

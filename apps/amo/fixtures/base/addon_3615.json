@@ -307,7 +307,8 @@
             "created": "2007-03-05 13:09:56",
             "notes": null,
             "modified": "2010-05-19 16:41:22",
-            "notifyevents": true
+            "notifyevents": true,
+            "read_dev_agreement": 1
         }
     },
     {

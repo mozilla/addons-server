@@ -8,6 +8,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from market.models import Price, AddonPaymentData
+from users.models import UserProfile
 
 
 # Testing the payments page.
@@ -86,6 +87,9 @@ class TestPaypal(amo.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url('paypal_setup')
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        user.update(read_dev_agreement=False)
+
         self.client.login(username='admin@mozilla.com', password='password')
         self.price = Price.objects.all()[0]
 
@@ -101,8 +105,7 @@ class TestPaypal(amo.tests.TestCase):
         from mkt.submit.models import AppSubmissionChecklist
         AppSubmissionChecklist.objects.create(addon=self.webapp)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 302)
+        res = self.client.get(self.url, follow=True)
         self.assertRedirects(res, reverse('submit.app.terms'))
 
 

@@ -44,7 +44,8 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 17:01:41",
-            "notifyevents": 1
+            "notifyevents": 1,
+            "read_dev_agreement": 1
         },
         "model": "users.userprofile",
         "pk": 999
@@ -97,7 +98,8 @@
             "created": "2007-03-05 13:09:38",
             "notes": "",
             "modified": "2010-03-19 13:50:38",
-            "notifyevents": 1
+            "notifyevents": 1,
+            "read_dev_agreement": 1
         }
     },
     {
@@ -146,7 +148,8 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 17:01:41",
-            "notifyevents": 1
+            "notifyevents": 1,
+            "read_dev_agreement": 1
         },
         "model": "users.userprofile",
         "pk": 4043307
@@ -189,6 +192,7 @@
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
             "notifyevents": false,
+            "read_dev_agreement": 1,
             "user": 5497308
         }
     },
@@ -244,6 +248,7 @@
             "modified": "2011-12-01 16:20:56",
             "last_login_ip": "",
             "notifyevents": true,
+            "read_dev_agreement": 1,
             "user": 20
         }
     },

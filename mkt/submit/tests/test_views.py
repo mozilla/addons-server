@@ -73,6 +73,7 @@ class TestTerms(TestSubmit):
 
     def setUp(self):
         super(TestTerms, self).setUp()
+        self.user.update(read_dev_agreement=False)
         self.url = reverse('submit.app.terms')
 
     def test_anonymous(self):
@@ -126,6 +127,7 @@ class TestManifest(TestSubmit):
 
     def setUp(self):
         super(TestManifest, self).setUp()
+        self.user.update(read_dev_agreement=False)
         self.url = reverse('submit.app.manifest')
 
     def _step(self):

@@ -830,8 +830,13 @@ function initAuthorFields() {
                     url: tgt.attr("data-src"),
                     data: {q: tgt.val()},
                     success: function(data) {
-                        tgt.removeClass("ui-autocomplete-loading")
-                           .addClass("valid");
+                        tgt.removeClass("ui-autocomplete-loading");
+                        if (data.status == 1) {
+                            tgt.addClass("valid");
+                        } else {
+                            tgt.addClass("invalid tooltip formerror")
+                               .attr('title', data.message);
+                        }
                     },
                     error: function() {
                         tgt.removeClass("ui-autocomplete-loading")
