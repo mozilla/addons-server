@@ -18,6 +18,7 @@ from django.utils.http import urlencode
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
+import validator.constants as validator_constants
 
 import amo
 from amo.decorators import write, set_modified_on
@@ -41,8 +42,12 @@ def validator(upload_id, **kw):
         return None
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.get(pk=upload_id)
+    force_validation_type = None
+    if upload.is_webapp:
+        force_validation_type = validator_constants.PACKAGE_WEBAPP
     try:
-        result = run_validator(upload.path)
+        result = run_validator(upload.path,
+                               force_validation_type=force_validation_type)
         upload.validation = result
         upload.save()  # We want to hit the custom save().
     except:
@@ -99,7 +104,7 @@ def file_validator(file_id, **kw):
 
 
 def run_validator(file_path, for_appversions=None, test_all_tiers=False,
-                  overrides=None):
+                  overrides=None, force_validation_type=None):
     """A pre-configured wrapper around the addon validator.
 
     *file_path*
@@ -119,6 +124,11 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
         Normally the validator gets info from install.rdf but there are a
         few things we need to override. See validator for supported overrides.
         Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
+
+    *force_validation_type=None*
+        Set this to a value in validator.constants like PACKAGE_WEBAPP
+        when you need to force detection of a package. Otherwise the type
+        will be inferred from the filename extension.
 
     To validate the addon for compatibility with Firefox 5 and 6,
     you'd pass in::
@@ -141,6 +151,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     if not os.path.exists(apps):
         call_command('dump_apps')
 
+    if not force_validation_type:
+        force_validation_type = validator.constants.PACKAGE_ANY
     with statsd.timer('mkt.developers.validator'):
         return validate(file_path,
                         for_appversions=for_appversions,
@@ -151,7 +163,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                         approved_applications=apps,
                         spidermonkey=settings.SPIDERMONKEY,
                         overrides=overrides,
-                        timeout=settings.VALIDATOR_TIMEOUT)
+                        timeout=settings.VALIDATOR_TIMEOUT,
+                        expectation=force_validation_type)
 
 
 @task(rate_limit='4/m')

@@ -11,6 +11,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 from PIL import Image
+import validator.constants
 
 import amo
 import amo.tests
@@ -120,6 +121,21 @@ class TestValidator(amo.tests.TestCase):
             tasks.validator(self.upload.pk)
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
+
+    @mock.patch('validator.validate.validate')
+    def test_validate_manifest(self, _mock):
+        self.get_upload().update(is_webapp=True)
+        _mock.return_value = '{"errors": 0}'
+        tasks.validator(self.upload.pk)
+        eq_(_mock.call_args[1]['expectation'],
+            validator.constants.PACKAGE_WEBAPP)
+
+    @mock.patch('validator.validate.validate')
+    def test_validate_any_package(self, _mock):
+        _mock.return_value = '{"errors": 0}'
+        tasks.validator(self.upload.pk)
+        # Let validator determine by file extension.
+        eq_(_mock.call_args[1]['expectation'], validator.constants.PACKAGE_ANY)
 
 
 class TestFetchManifest(amo.tests.TestCase):
