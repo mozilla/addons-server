@@ -55,6 +55,14 @@ class TestSubmit(amo.tests.TestCase):
             li = completed_found.eq(idx)
             eq_(li.text(), unicode(mkt.APP_STEPS_TITLE[step]))
 
+        # Check that we link back to the Developer Agreement.
+        terms_link = progress.find('.terms a')
+        if 'terms' in completed:
+            eq_(terms_link.attr('href'),
+                reverse('mkt.developers.docs', args=['policies', 'agreement']))
+        else:
+            eq_(terms_link.length, 0)
+
         # Check the current step.
         eq_(progress.find('.current').text(),
             unicode(mkt.APP_STEPS_TITLE[current]))

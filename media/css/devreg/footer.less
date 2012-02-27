@@ -2,7 +2,7 @@
 
 #footer {
     .border-box;
-    border-top: 1px solid #eee;
+    border-top: 1px solid @faint-gray;
     color: @note-gray;
     padding-top: 2em;
     width: 100%;
@@ -16,20 +16,19 @@
         width: 100px;
     }
     p, ul {
+        .border-box;
+        border-left: 1px dotted @faint-gray;
         font-size: 12px;
         line-height: 1.3;
         margin-bottom: 1.5em;
-    }
-    ul {
-        float: right;
-        width: 20%;
-    }
-    ul, p {
-        border-left: #eee 1px dotted;
         padding-left: 1em;
     }
     p {
         float: left;
         width: 60%;
+    }
+    ul {
+        float: right;
+        width: 20%;
     }
 }

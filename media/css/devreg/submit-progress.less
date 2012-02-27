@@ -52,12 +52,12 @@
             font-weight: bold;
             &:before {
                 background: @white;
-                border: 2px solid @dark-gray;
+                border: 2px solid fadeOut(@dark-gray, 20%);
                 color: @dark-gray;
                 z-index: 20;
             }
             &:after {
-                border-color: @dark-gray;
+                border-color: fadeOut(@dark-gray, 20%);
                 margin-top: -40px;
             }
         }
@@ -65,25 +65,17 @@
     li, li.active, li.active:before {
         .transition(~'1s color ease-in-out, 1s border linear');
     }
-}
-
-/* Toggle for no more lines. */
-/*
-#submission-progress {
-    border-bottom: 1px dotted @faint-gray;
-    margin: 1em 0;
-    padding-bottom: 2em;
-    li {
-        padding-bottom: 38px;
-        &:after {
-            border-top: 0;
-        }
-        &.current b {
-            display: none;
+    .completed a {
+        color: @black;
+        display: block;
+        padding-top: 40px;
+        position: relative;
+        top: -40px;
+        &:hover {
+            color: @medium-gray;
         }
     }
 }
-*/
 
 .continue {
     float: right;
