@@ -16,20 +16,31 @@
   <section class="island swagger hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
     <div class="prose">
       <h1>Developer Registration</h1>
-      <h2>Want to make an app?</h2>
       <p>
-        Learn all about creating an HTML5 app at the
-        <a href="https://developer.mozilla.org/en-US/Apps">
-          Mozilla Developer Network</a>.
-      </p>
-      <h2>Already have an app?</h2>
-      <p>
+        <strong>Already have an app?</strong>
         Reserve your spot in our Marketplace by submitting your app today.
         Just log in or register with your
         <a href="https://browserid.org">BrowserID</a> account below.
       </p>
     </div>
     {% include "users/login_form.html" %}
+  </section>
+  <section class="info">
+  <h2>What Are Apps?</h2>
+  <p>Create rich HTML5 app experiences that run across multiple devices and form factors  (desktop, mobile, tablet, etc.) using Web standards and open
+  technologies such as HTML5, CSS and JavaScript. Combine this with a rich distributed ecosystem of HTML5 app stores, including a marketplace operated by
+  Mozilla.</p>
+
+  <p>Mozilla aims to put  the developer back in control of every aspect of the app experience —  from easy development to distribution to direct customer relationship  management.</p>
+  </p>
+    <h2>Want to make an app?</h2>
+    <p>
+    Learn all about creating an HTML5 app at the
+    <strong>
+    <a href="https://developer.mozilla.org/en-US/Apps">
+      Mozilla Developer Network</a>.
+    </strong>
+    </p>
   </section>
 </div>
 {% endblock content %}

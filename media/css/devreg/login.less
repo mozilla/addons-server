@@ -1,6 +1,9 @@
 @import 'lib';
 
 .login {
+    #page h1 {
+      color: #982A12;
+    }
     .prose h2 {
         font-size: 18px;
     }
@@ -12,8 +15,28 @@
         padding-left: 132px;
     }
     .island.hero {
-        margin: 0 auto;
-        width: 50%;
+        margin: 0;
+        width: 45%;
+        float: left;
+        .border-box;
+    }
+    #page .info {
+        margin: 0;
+        width: 55%;
+        float: left;
+        .border-box;
+        padding-left: 2em;
+        p {
+          color: #666;
+          margin-top: 0;
+          margin-bottom: 0.5em;
+        }
+
+        h2 {
+          font-weight: bold;
+          color: #982A12;
+          margin-bottom: 0;
+        }
     }
     .primary fieldset {
         margin: 0;
@@ -51,6 +74,8 @@
     }
     form.listing-footer {
         margin-top: 2em;
+        background: #eee;
+        border-top: 1px dotted #ccc;
     }
     .browserid {
         .user-message {
