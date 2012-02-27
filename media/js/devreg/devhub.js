@@ -50,9 +50,7 @@ $(document).ready(function() {
     if($('#upload-webapp-url').exists()) {
         $('#upload-webapp-url').bind("keyup change paste blur", function(e) {
             var $this = $(this),
-                $button = $('#validate_app'),
-                // Ensure it's at least "protocol://host/something.(webapp/json)"
-                match = $this.val().match(/^(.+):\/\/(.+)\/(.+)\.(webapp|json)$/);
+                $button = $('#validate_app');
 
             if($this.attr('data-input') != $this.val()) {
                 // Show warning if 8+ characters have been typed but there's no protocol.
@@ -64,8 +62,9 @@ $(document).ready(function() {
                         .parent().removeClass('show-tip');
                 }
 
-                // Show the button if valid
-                $button.toggleClass('disabled', !match);
+                if ($this.val()) {
+                    $button.removeClass('disabled');  // show validate btn
+                }
                 $this.attr('data-input', $this.val());
                 $('#upload-status-results').remove();
                 $('#upload-file button.upload-file-submit').attr('disabled', true);

@@ -142,6 +142,7 @@ class TestFetchManifest(amo.tests.TestCase):
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
         eq_(upload.name, 'http://xx.com/manifest.json')
+        eq_(upload.is_webapp, True)
         eq_(open(upload.path).read(), 'woo')
 
     @mock.patch('mkt.developers.tasks.validator')

@@ -573,6 +573,7 @@ class FileUpload(amo.models.ModelBase):
     hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
     valid = models.BooleanField(default=False)
+    is_webapp = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     compat_with_app = models.ForeignKey(Application, null=True,
                                     related_name='uploads_compat_for_app')
@@ -597,7 +598,7 @@ class FileUpload(amo.models.ModelBase):
                 log.error('Invalid validation json: %r' % self)
         super(FileUpload, self).save()
 
-    def add_file(self, chunks, filename, size):
+    def add_file(self, chunks, filename, size, is_webapp=False):
         filename = smart_str(filename)
         loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
         if not loc.dirname().exists():
@@ -614,6 +615,7 @@ class FileUpload(amo.models.ModelBase):
         self.path = loc
         self.name = filename
         self.hash = 'sha256:%s' % hash.hexdigest()
+        self.is_webapp = is_webapp
         self.save()
 
     @classmethod

@@ -189,6 +189,13 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
 
+    def test_manifest_with_any_extension(self):
+        self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',
+                                     'tests', 'addons', 'mozball.owa')
+        self.upload = self.get_upload(abspath=self.manifest, is_webapp=True)
+        addon = self.post_addon()
+        eq_(addon.type, amo.ADDON_WEBAPP)
+
     def test_version_from_uploaded_manifest(self):
         addon = self.post_addon()
         eq_(addon.current_version.version, '1.0')

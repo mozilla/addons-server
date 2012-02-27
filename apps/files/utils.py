@@ -430,12 +430,16 @@ def check_rdf(rdf, addon=None):
 
 
 def parse_addon(pkg, addon=None):
-    """pkg is a filepath or a django.core.files.UploadedFile."""
+    """
+    pkg is a filepath or a django.core.files.UploadedFile
+    or files.models.FileUpload.
+    """
     name = getattr(pkg, 'name', pkg)
-    if name.endswith('.xml'):
-        parsed = parse_search(pkg, addon)
-    elif name.endswith('.webapp') or name.endswith('.json'):
+    if (getattr(pkg, 'is_webapp', False) or
+        name.endswith('.webapp') or name.endswith('.json')):
         parsed = WebAppParser().parse(pkg, addon)
+    elif name.endswith('.xml'):
+        parsed = parse_search(pkg, addon)
     else:
         parsed = parse_xpi(pkg, addon)
 

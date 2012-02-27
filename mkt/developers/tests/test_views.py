@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from contextlib import contextmanager
 import json
 import os
 from datetime import datetime, timedelta
@@ -1099,13 +1100,22 @@ class TestUploadDetail(BaseUploadTest):
             'rejected': False,
             'metadata': {}}
 
-    def upload_file(self, file):
-        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'addons', file)
-        with open(addon, 'rb') as f:
+    def upload_file(self, name):
+        with self.file(name) as f:
             r = self.client.post(reverse('mkt.developers.upload'),
                                  {'upload': f})
         eq_(r.status_code, 302)
+
+    def file_content(self, name):
+        with self.file(name) as fp:
+            return fp.read()
+
+    @contextmanager
+    def file(self, name):
+        fn = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
+                          'addons', name)
+        with open(fn, 'rb') as fp:
+            yield fp
 
     @attr('validator')
     def test_detail_json(self):
@@ -1126,6 +1136,33 @@ class TestUploadDetail(BaseUploadTest):
         assert len(data['validation']['messages'])
         msg = data['validation']['messages'][0]
         eq_(msg['tier'], 1)
+
+    @mock.patch('mkt.developers.tasks.urllib2.urlopen')
+    @mock.patch('mkt.developers.tasks.run_validator')
+    def test_detail_for_free_extension_webapp(self, validator_mock,
+                                              urlopen_mock):
+        waffle.models.Flag.objects.create(name='form-errors-in-validation',
+                                          everyone=True)
+        rs = mock.Mock()
+        rs.read.return_value = self.file_content('mozball.owa')
+        rs.headers = {'Content-Type': 'application/x-web-app-manifest+json'}
+        urlopen_mock.return_value = rs
+        validator_mock.return_value = json.dumps(self.validation_ok())
+        self.upload_file('mozball.owa')
+        upload = FileUpload.objects.get()
+        tasks.fetch_manifest('http://xx.com/manifest.owa', upload.pk)
+
+        r = self.client.get(reverse('mkt.developers.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        data = json.loads(r.content)
+        eq_(data['validation']['messages'], [])  # no errors
+        assert_no_validation_errors(data)  # no exception
+        eq_(r.status_code, 200)
+        eq_(data['url'],
+            reverse('mkt.developers.upload_detail', args=[upload.uuid,
+                                                          'json']))
+        eq_(data['full_report_url'],
+            reverse('mkt.developers.upload_detail', args=[upload.uuid]))
 
     def test_detail_view(self):
         self.post()

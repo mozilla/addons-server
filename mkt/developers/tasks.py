@@ -410,7 +410,7 @@ def fetch_manifest(url, upload_pk=None, **kw):
         upload.update(validation=failed_validation(e.message))
         return
 
-    upload.add_file([content], url, len(content))
+    upload.add_file([content], url, len(content), is_webapp=True)
     # Send the upload to the validator.
     validator(upload.pk)
 
