@@ -1445,7 +1445,7 @@ class TestRemoveLocale(amo.tests.TestCase):
         Addon.objects.get(id=3615).update(type=amo.ADDON_WEBAPP,
                                           app_slug='ballin')
         self.addon = Addon.objects.no_cache().get(id=3615)
-        self.url = reverse('mkt.developers.remove-locale', args=['a3615'])
+        self.url = reverse('mkt.developers.apps.remove-locale', args=['ballin'])
         assert self.client.login(username='del@icio.us', password='password')
 
     def test_bad_request(self):

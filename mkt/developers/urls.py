@@ -59,6 +59,8 @@ app_detail_patterns = patterns('',
     url('^issue_refund$', views.issue_refund,
         name='mkt.developers.apps.issue_refund'),
     url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
+    url('^rmlocale$', views.remove_locale,
+        name='mkt.developers.apps.remove-locale'),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -127,7 +129,7 @@ detail_patterns = patterns('',
         % ''.join(map(str, views.REQUEST_REVIEW)),
         views.request_review, name='mkt.developers.request-review'),
     url('^rmlocale$', views.remove_locale,
-        name='mkt.developers.remove-locale'),
+        name='mkt.developers.addons.remove-locale'),
 )
 
 # These will all start with /ajax/addon/<addon_id>/
