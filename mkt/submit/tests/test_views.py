@@ -592,13 +592,31 @@ class TestDetails(TestSubmit):
         self._step()
         r = self.client.post(self.url, self.get_dict(device_types=None))
         self.assertFormError(r, 'form_devices', 'device_types',
-                          'This field is required.')
+                             'This field is required.')
 
     def test_device_types_invalid(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(device_types='999'))
         self.assertFormError(r, 'form_devices', 'device_types',
             'Select a valid choice. 999 is not one of the available choices.')
+
+    def test_device_types_default(self):
+        self._step()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        checkboxes = pq(r.content)('input[name=device_types]')
+        eq_(checkboxes.length, 1)
+        eq_(checkboxes.filter(':checked').length, 1,
+            'All device types should be checked by default.')
+
+    def test_device_types_default_on_post(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(device_types=None))
+        eq_(r.status_code, 200)
+        checkboxes = pq(r.content)('input[name=device_types]')
+        eq_(checkboxes.length, 1)
+        eq_(checkboxes.filter(':checked').length, 0,
+            'POSTed values should not get replaced by the defaults.')
 
     def test_categories_required(self):
         self._step()
