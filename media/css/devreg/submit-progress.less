@@ -47,34 +47,36 @@
         &:first-child:after {
             content: none;
         }
-        &.current, &.completed {
+        &.completed, &.current {
             color: @dark-gray;
             font-weight: bold;
             &:before {
                 background: @white;
-                border: 2px solid fadeOut(@dark-gray, 20%);
+                border: 2px solid @medium-gray;
                 color: @dark-gray;
                 z-index: 20;
             }
             &:after {
-                border-color: fadeOut(@dark-gray, 20%);
+                border-color: @medium-gray;
                 margin-top: -40px;
             }
+        }
+        &.completed, &.completed:before, &.completed a {
+            color: @medium-gray;
+        }
+        &.completed a {
+            display: block;
+            padding-top: 40px;
+            position: relative;
+            top: -40px;
+            z-index: 30;
+        }
+        &.current:before {
+            border-color: @dark-gray;
         }
     }
     li, li.active, li.active:before {
         .transition(~'1s color ease-in-out, 1s border linear');
-    }
-    .completed a {
-        color: @black;
-        display: block;
-        padding-top: 40px;
-        position: relative;
-        top: -40px;
-        z-index: 30;
-        &:hover {
-            color: @medium-gray;
-        }
     }
 }
 
