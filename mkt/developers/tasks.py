@@ -43,8 +43,9 @@ def validator(upload_id, **kw):
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.get(pk=upload_id)
     force_validation_type = None
-    if upload.is_webapp:
-        force_validation_type = validator_constants.PACKAGE_WEBAPP
+    #if upload.is_webapp:
+    # TODO: Figure out what's going on here. Assume this is always a webapp.
+    force_validation_type = validator_constants.PACKAGE_WEBAPP
     try:
         result = run_validator(upload.path,
                                force_validation_type=force_validation_type)
