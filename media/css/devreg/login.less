@@ -2,7 +2,7 @@
 
 .login {
     #page h1 {
-      color: #982A12;
+        color: darken(@red, 10%);
     }
     .prose h2 {
         font-size: 18px;
@@ -30,15 +30,14 @@
         .border-box;
         padding-left: 2em;
         p {
-          color: #666;
-          margin-top: 0;
-          margin-bottom: 0.5em;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 0.5em;
         }
-
         h2 {
-          font-weight: bold;
-          color: #982A12;
-          margin-bottom: 4px;
+            font-weight: bold;
+            color: darken(@red, 10%);
+            margin-bottom: 4px;
         }
     }
     .primary fieldset {
@@ -78,7 +77,7 @@
     form.listing-footer {
         margin-top: 2em;
         background: #eee;
-        border-top: 1px dotted #ccc;
+        border-top: 1px dotted @light-gray;
     }
     .browserid {
         .user-message {
