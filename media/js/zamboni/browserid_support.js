@@ -1,14 +1,3 @@
-function displayErrBox(errmsg) {
-    $('.loading-submit').removeClass('loading-submit');
-
-    $('section.primary').eq(0).prepend(
-        format('<div class="notification-box error">'
-               + '<ul><h2>{0}</h2></ul></div>', [errmsg]));
-}
-msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?");
-displayErrBox(msg);
-
-
 function browserIDRedirect(to, options) {
     if (!options) options = {};
     return function(data, textStatus, jqXHR) {
