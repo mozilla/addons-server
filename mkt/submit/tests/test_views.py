@@ -198,10 +198,6 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreateWebApp(BaseWebAppTest):
 
-    def test_page_title(self):
-        eq_(pq(self.client.get(self.url).content)('title').text(),
-            'App Manifest | Developer Hub | Mozilla Marketplace')
-
     def test_post_app_redirect(self):
         r = self.post()
         webapp = Webapp.objects.get()
