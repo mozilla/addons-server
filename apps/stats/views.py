@@ -13,7 +13,6 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
 
 import jingo
 from product_details import product_details
@@ -21,7 +20,6 @@ from product_details import product_details
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
-from bandwagon.models import Collection
 from zadmin.models import SiteEvent
 
 import amo
@@ -30,7 +28,8 @@ from amo.urlresolvers import reverse
 from amo.utils import memoize
 
 from .decorators import allow_cross_site_request
-from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
+from .models import DownloadCount, UpdateCount, Contribution
+
 
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
@@ -447,29 +446,6 @@ def site(request, format, group, start=None, end=None):
                           show_disclaimer=True)
 
     return render_json(request, None, series)
-
-
-def collection(request, uuid, format):
-    """
-    Collection data taken from the stats_collections and the
-    stats_addons_collections_counts table.
-    """
-    collection = get_object_or_404(Collection, uuid=uuid)
-    if (not acl.action_allowed(request, 'CollectionStats', 'View') and
-        not (request.amo_user and collection.author and
-             collection.author.id == request.amo_user.pk)):
-        return http.HttpResponseForbidden()
-
-    start = date.today() - timedelta(days=365)
-    end = date.today()
-    series = get_series(CollectionCount, id=int(collection.pk),
-                        date__range=(start, end), extra_field='data')
-
-    if format == 'csv':
-        series, fields = csv_fields(series)
-        return render_csv(request, collection, series,
-                          ['date', 'count'] + list(fields))
-    return render_json(request, collection, series)
 
 
 def fudge_headers(response, stats):

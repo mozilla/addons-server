@@ -8,11 +8,8 @@ from nose.tools import eq_
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
-from bandwagon.models import Collection
 from stats import views, tasks
-from stats.search import es_dict
-from stats.models import (CollectionCount, DownloadCount, GlobalStat,
-                          UpdateCount)
+from stats.models import DownloadCount, GlobalStat, UpdateCount
 from users.models import UserProfile
 
 
@@ -721,56 +718,3 @@ class TestSite(amo.tests.TestCase):
         content = json.loads(res.content)
         eq_(len(content), 14)
         eq_(content[0]['addons_created'], 14)
-
-
-class TestCollections(amo.tests.ESTestCase):
-    fixtures = ['bandwagon/test_models', 'base/users',
-                'base/addon_3615', 'base/addon_5369']
-
-    def setUp(self):
-        super(TestCollections, self).setUp()
-        self.today = datetime.date.today()
-        self.collection = Collection.objects.get(pk=512)
-        self.url = reverse('stats.collection',
-                           args=[self.collection.uuid, 'json'])
-
-        for x in xrange(1, 4):
-            data = {'date': self.today - datetime.timedelta(days=x - 1),
-                    'id': int(self.collection.pk), 'count': x,
-                    'data': es_dict({'subscribers': x, 'votes_up': x,
-                                     'votes_down': x, 'downloads': x})}
-            CollectionCount.index(data, id='%s-%s' % (x, self.collection.pk))
-
-        self.refresh('stats_collections_counts')
-
-    def tests_collection_anon(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 403)
-
-    def tests_collection_user(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-
-    def tests_collection_admin(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.collection.update(author=None)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-
-    def test_collection_json(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        res = self.client.get(self.url)
-        content = json.loads(res.content)
-        eq_(len(content), 3)
-        eq_(content[0]['count'], 1)
-        eq_(content[0]['data']['votes_down'], 1)
-        eq_(content[0]['data']['downloads'], 1)
-
-    def test_collection_csv(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.url = reverse('stats.collection',
-                           args=[self.collection.uuid, 'csv'])
-        res = self.client.get(self.url)
-        date = (self.today.strftime('%Y-%m-%d'))
-        assert '%s,1,1,1,1,1' % date in res.content
