@@ -1,3 +1,5 @@
+import codecs
+from contextlib import contextmanager
 from cStringIO import StringIO
 import json
 import os
@@ -148,12 +150,25 @@ class TestFetchManifest(amo.tests.TestCase):
         self.urlopen_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
+    def get_upload(self):
+        return FileUpload.objects.get(pk=self.upload.pk)
+
+    def file(self, name):
+        return os.path.join(os.path.dirname(__file__), 'addons', name)
+
+    @contextmanager
+    def patch_urlopen(self):
+        response_mock = mock.Mock()
+        response_mock.read.return_value = '<default>'
+        response_mock.headers = {'Content-Type': self.content_type}
+        yield response_mock
+        self.urlopen_mock.return_value = response_mock
+
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_add_file(self, validator_mock):
-        response_mock = mock.Mock()
-        response_mock.read.return_value = 'woo'
-        response_mock.headers = {'Content-Type': self.content_type}
-        self.urlopen_mock.return_value = response_mock
+        with self.patch_urlopen() as ur:
+            ur.read.return_value = 'woo'
+            ur.headers = {'Content-Type': self.content_type}
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
@@ -163,17 +178,15 @@ class TestFetchManifest(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_call_validator(self, validator_mock):
-        response_mock = mock.Mock()
-        response_mock.read.return_value = 'woo'
-        ct = self.content_type + '; charset=utf-8'
-        response_mock.headers = {'Content-Type': ct}
-        self.urlopen_mock.return_value = response_mock
+        with self.patch_urlopen() as ur:
+            ct = self.content_type + '; charset=utf-8'
+            ur.headers = {'Content-Type': ct}
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         assert validator_mock.called
 
     def check_validation(self, msg):
-        upload = FileUpload.objects.get(pk=self.upload.pk)
+        upload = self.get_upload()
         validation = json.loads(upload.validation)
         eq_(validation['errors'], 1)
         eq_(validation['success'], False)
@@ -199,10 +212,8 @@ class TestFetchManifest(amo.tests.TestCase):
         self.check_validation('Some other failure.')
 
     def test_no_content_type(self):
-        response_mock = mock.Mock()
-        response_mock.read.return_value = 'woo'
-        response_mock.headers = {}
-        self.urlopen_mock.return_value = response_mock
+        with self.patch_urlopen() as ur:
+            ur.headers = {}
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
@@ -210,10 +221,8 @@ class TestFetchManifest(amo.tests.TestCase):
             '"Content-Type: application/x-web-app-manifest+json".')
 
     def test_bad_content_type(self):
-        response_mock = mock.Mock()
-        response_mock.read.return_value = 'woo'
-        response_mock.headers = {'Content-Type': 'x'}
-        self.urlopen_mock.return_value = response_mock
+        with self.patch_urlopen() as ur:
+            ur.headers = {'Content-Type': 'x'}
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
@@ -221,11 +230,9 @@ class TestFetchManifest(amo.tests.TestCase):
             '"Content-Type: application/x-web-app-manifest+json". We saw "x".')
 
     def test_response_too_large(self):
-        response_mock = mock.Mock()
-        content = 'x' * (settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
-        response_mock.read.return_value = content
-        response_mock.headers = {'Content-Type': self.content_type}
-        self.urlopen_mock.return_value = response_mock
+        with self.patch_urlopen() as ur:
+            content = 'x' * (settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
+            ur.read.return_value = content
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('Your manifest must be less than 2097152 bytes.')
@@ -235,6 +242,31 @@ class TestFetchManifest(amo.tests.TestCase):
             'url', 404, 'Not Found', [], None)
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation('url responded with 404 (Not Found).')
+
+    def test_strip_utf8_bom(self):
+        with self.patch_urlopen() as ur:
+            with open(self.file('utf8bom.webapp')) as fp:
+                ur.read.return_value = fp.read()
+
+        tasks.fetch_manifest('url', self.upload.pk)
+        upload = self.get_upload()
+        with open(upload.path, 'rb') as fp:
+            manifest = fp.read()
+            json.loads(manifest)  # no parse error
+            assert not manifest.startswith(codecs.BOM_UTF8)
+
+    def test_strip_utf16_bom(self):
+        with self.patch_urlopen() as ur:
+            with open(self.file('utf8bom.webapp')) as fp:
+                # Convert to UTF16, which will add a BOM by default.
+                data = fp.read().decode('utf8').encode('utf16')
+                ur.read.return_value = data
+
+        tasks.fetch_manifest('url', self.upload.pk)
+        upload = self.get_upload()
+        with open(upload.path, 'rb') as fp:
+            manifest = fp.read().decode('utf16')
+            json.loads(manifest)  # no parse error
 
 
 class TestFetchIcon(BaseWebAppTest):

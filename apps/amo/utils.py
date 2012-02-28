@@ -1,3 +1,4 @@
+import codecs
 import contextlib
 import functools
 import hashlib
@@ -753,3 +754,20 @@ class LocalFileStorage(FileSystemStorage):
         if os.path.supports_unicode_filenames:
             return smart_unicode(string)
         return smart_str(string)
+
+
+def strip_bom(data):
+    """
+    Strip the BOM (byte order mark) from byte string `data`.
+
+    Returns a new byte string.
+    """
+    for bom in (codecs.BOM_UTF32_BE,
+                codecs.BOM_UTF32_LE,
+                codecs.BOM_UTF16_BE,
+                codecs.BOM_UTF16_LE,
+                codecs.BOM_UTF8):
+        if data.startswith(bom):
+            data = data[len(bom):]
+            break
+    return data
