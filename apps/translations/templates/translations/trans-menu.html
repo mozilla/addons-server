@@ -1,12 +1,6 @@
 <div class="transbox-new"
-  {% if webapp %}
-    data-rm-locale="{{ addon.get_dev_url('apps.remove-locale',
-                                         prefix_only=True) }}"
-  {% else %}
-    data-rm-locale="{{ addon.get_dev_url('addons.remove-locale',
-                                         prefix_only=True) }}"
-  {% endif %}
-  data-default="{{ default_locale }}" id="l10n-menu">
+     data-rm-locale="{{ addon.get_dev_url('remove-locale') }}"
+     data-default="{{ default_locale }}" id="l10n-menu">
   {% set dl = languages[default_locale] %}
   <p>
   {# l10n: {0} is a language name, like 'French' #}
