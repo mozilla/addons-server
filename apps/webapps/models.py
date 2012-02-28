@@ -142,8 +142,8 @@ class Webapp(Addon):
             with open(self.get_latest_file().file_path, 'r') as mf:
                 return json.load(mf)
         except Exception, e:
-            log.error('Failed to open the manifest for webapp %s, %s.'
-                      % (self.pk, e))
+            log.error('Failed to open saved manifest %r for webapp %s, %s.'
+                      % (self.manifest_url, self.pk, e))
             raise
 
     def share_url(self):
