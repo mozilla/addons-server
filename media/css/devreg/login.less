@@ -15,12 +15,17 @@
         padding-left: 132px;
     }
     .island.hero {
-        width: 75%;
+        .border-box;
         float: left;
         margin: 0 0 2em;
-        .border-box;
-        .prose p {
-            line-height: 1.5em;
+        width: 75%;
+        .prose {
+            h1, p {
+                text-align: center;
+            }
+            p {
+                line-height: 1.5em;
+            }
         }
     }
     #page .info {
@@ -44,6 +49,12 @@
     .primary fieldset {
         margin: 0;
         padding: 0;
+    }
+    form {
+        ul, footer div {
+            margin: 0 auto;
+            width: 60%;
+        }
     }
     .login-submit {
         float: right;
@@ -85,7 +96,7 @@
             display: block;
             text-align: center;
             color: @medium-gray;
-            margin-top: 0.5em;
+            margin-top: 10px;
             font-size: 0.9em;
             p {
                 margin: 0;
