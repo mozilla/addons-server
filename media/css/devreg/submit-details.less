@@ -266,9 +266,14 @@
     display: none;
 }
 
-#icon_preview_64 {
+#icon_preview_64, #icon_preview_readonly {
     &.loading:before {
         .background-size(75% auto);
         .border-radius(3px);
     }
+}
+
+#icon_preview_readonly.loading:before {
+    .background-size(5% auto);
+    .border-radius(3px);
 }

@@ -929,7 +929,7 @@ var imageStatus = {
                   [gettext('Image changes being processed')]))
                   .appendTo(node.find('h2').first());
             }
-            $('#submit-media #icon_preview_64').addClass('loading');
+            $('#submit-media #icon_preview_64, table #icon_preview_readonly').addClass('loading');
         }
     },
     newurl: function(orig) {
