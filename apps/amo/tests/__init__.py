@@ -321,7 +321,7 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     for key, value in kw.items():
         setattr(a, key, value)
     if type_ == amo.ADDON_PERSONA:
-        a.update(type=type_)
+        a.type = type_
         Persona.objects.create(addon_id=a.id, persona_id=a.id)
     a.save()
     return a
