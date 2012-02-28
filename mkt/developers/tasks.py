@@ -22,7 +22,7 @@ import validator.constants as validator_constants
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import guard, resize_image, remove_icons
+from amo.utils import guard, resize_image, remove_icons, strip_bom
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
@@ -426,6 +426,7 @@ def fetch_manifest(url, upload_pk=None, **kw):
         upload.update(validation=failed_validation(e.message))
         return
 
+    content = strip_bom(content)
     upload.add_file([content], url, len(content), is_webapp=True)
     # Send the upload to the validator.
     validator(upload.pk)
