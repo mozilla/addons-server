@@ -80,11 +80,13 @@ export DJANGO_SETTINGS_MODULE=settings_local
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
-run_tests=python manage.py test -v 2 --noinput --logging-clear-handlers
+run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers"
 if [[ $3 = '--with-coverage' ]]; then
-    $run_tests --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml
+    exec $run_tests --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml
 else
-    $run_tests --with-xunit
+    exec $run_tests --with-xunit
 fi
+rv=$?
 
 echo 'shazam!'
+exit $rv
