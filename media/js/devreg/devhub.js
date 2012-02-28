@@ -929,10 +929,7 @@ var imageStatus = {
                   [gettext('Image changes being processed')]))
                   .appendTo(node.find('h2').first());
             }
-            var $submission = $('#submit-media');
-            if ($submission.length) {
-                $submission.find('#icon_preview_64').addClass('loading');
-            }
+            $('#submit-media #icon_preview_64').addClass('loading');
         }
     },
     newurl: function(orig) {
