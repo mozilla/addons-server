@@ -2,9 +2,8 @@
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
-    <meta name="robots" content="none">
     {% if not settings.ENGAGE_ROBOTS %}
-      <!--<meta name="robots" content="noindex">-->
+      <meta name="robots" content="noindex">
     {% endif %}
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ loc('Mozilla Marketplace') }}{% endblock %}</title>

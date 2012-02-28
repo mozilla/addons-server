@@ -20,6 +20,9 @@ CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 LOGIN_URL = '/login'
 LOGOUT_URL = '/logout'
 
+# Let robots tear this place up.
+ENGAGE_ROBOTS = True
+
 ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)
