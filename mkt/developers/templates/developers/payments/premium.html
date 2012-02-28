@@ -23,7 +23,7 @@
           {{ loc('How your app will displayed on the marketplace.') }}
         </div>
         {{ form.premium_type.errors }}
-        <div>{{ form.premium_type }}</div>
+        <div class="choice">{{ form.premium_type }}</div>
         <p>{{ loc('Learn about <a href="{0}" target="_blank">different payment types</a>.')|f('https://developer.mozilla.org/en/Apps/Marketplace_Payments')|xssafe }}</p>
       </div>
       {% include 'developers/payments/includes/paypal.html' %}

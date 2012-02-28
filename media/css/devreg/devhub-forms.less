@@ -36,10 +36,12 @@ select {
 label, .label {
     font-weight: bold;
 }
+.choice label,
 label.choice,
 li label {
     cursor: pointer;
 }
+.choice label,
 label.choice {
     font-weight: normal;
 }
@@ -159,6 +161,12 @@ textarea {
         label {
             display: block;
             margin: 15px 0 5px;
+        }
+        div.choice {
+            margin-top: 15px;
+            label {
+                margin-top: 5px;
+            }
         }
     }
     .simple-field {
