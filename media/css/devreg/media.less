@@ -146,9 +146,11 @@
 }
 
 #icon_preview {
-    float: right;
-    margin-left: 10px;
-    width: 76px;
+    .icon_preview_box {
+        display: inline-block;
+        vertical-align: bottom;
+        margin-right: 1em;
+    }
     .icon_preview {
         border: 1px solid #6A89AC;
         text-align: center;
@@ -158,6 +160,7 @@
             vertical-align: middle;
         }
     }
+    margin-bottom: 1em;
 }
 .html-rtl #icon_preview {
     float: left;
