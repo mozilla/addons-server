@@ -1011,14 +1011,16 @@ function multipartUpload(form, onreadystatechange) {
 }
 
 function hideSameSizedIcons() {
-    icon_sizes = [];
-    $('#icon_preview_readonly img').show().each(function(){
-        size = $(this).width() + 'x' + $(this).height();
-        if($.inArray(size, icon_sizes) >= 0) {
-            $(this).hide();
-        }
-        icon_sizes.push(size);
-    });
+    // We don't need this for apps.
+    return;
+    // icon_sizes = [];
+    // $('#icon_preview_readonly img').show().each(function(){
+    //     size = $(this).width() + 'x' + $(this).height();
+    //     if($.inArray(size, icon_sizes) >= 0) {
+    //         $(this).hide();
+    //     }
+    //     icon_sizes.push(size);
+    // });
 }
 
 
