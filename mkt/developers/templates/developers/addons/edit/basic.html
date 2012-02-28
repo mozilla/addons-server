@@ -49,6 +49,28 @@
             {% endif %}
           </td>
         </tr>
+        <tr id="manifest-url">
+          <th class="label">{{ _('Manifest URL') }}</th>
+          <td>
+            {% if editable %}
+              {# TODO(cvan): Allow devs to update the manifest URL, but only
+                 when we have more time to talk about this. #}
+              <input type="text" name="manifest_url" disabled
+                     value="{{ addon.manifest_url }}">
+              <p class="note">
+                {% with email='app-reviews@mozilla.org' %}
+                  Manifest URLs cannot be changed after your app has been
+                  submitted. Please email
+                  <a href="mailto:{{ email }}">{{ email }}</a> if there is a
+                  reason you need to modify your manifest URL.
+                {% endwith %}
+              </p>
+            {% else %}
+              <a href="{{ addon.manifest_url }}" target="_blank">
+                {{ addon.manifest_url }}</a>
+            {% endif %}
+          </td>
+        </tr>
         <tr>
           <th>
             <label data-for="summary">
@@ -78,28 +100,6 @@
                    data-maxlength="{{ form.summary.field.max_length }}"></div>
             {% else %}
               {{ addon|all_locales('summary') }}
-            {% endif %}
-          </td>
-        </tr>
-        <tr id="manifest-url">
-          <th class="label">{{ _('Manifest URL') }}</th>
-          <td>
-            {% if editable %}
-              {# TODO(cvan): Allow devs to update the manifest URL, but only
-                 when we have more time to talk about this. #}
-              <input type="text" name="manifest_url" disabled
-                     value="{{ addon.manifest_url }}">
-              <p class="note">
-                {% with email='app-reviews@mozilla.org' %}
-                  Manifest URLs cannot be changed after your app has been
-                  submitted. Please email
-                  <a href="mailto:{{ email }}">{{ email }}</a> if there is a
-                  reason you need to modify your manifest URL.
-                {% endwith %}
-              </p>
-            {% else %}
-              <a href="{{ addon.manifest_url }}" target="_blank">
-                {{ addon.manifest_url }}</a>
             {% endif %}
           </td>
         </tr>
