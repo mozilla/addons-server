@@ -29,8 +29,8 @@
                    data-upload-url="{{ url('mkt.developers.addons.upload_icon', addon.slug) }}">
           </div>
         </div>
-        <div class="houdini {{ 'error' if form_basic.name.errors or
-                                          form_basic.slug.errors else 'ready' }}">
+        <div class="houdini{{ ' ready' if not (form_basic.name.errors or
+                                               form_basic.slug.errors) }}">
           <div class="before">
             <h2 class="output">{{ addon.name }}</h2>
             <b>{{ loc('Details page:') }}</b>
@@ -42,7 +42,7 @@
           </div>
           <div class="after">
             <table>
-              <tr>
+              <tr{% if form_basic.name.errors %} class="error"{% endif %}>
                 <th>
                   <label for="{{ form_basic.name.auto_id }}">
                     {{ _('Name') }}
@@ -53,9 +53,9 @@
                   {{ form_basic.name.errors }}
                 </td>
               </tr>
-              <tr>
+              <tr{% if form_basic.slug.errors %} class="error"{% endif %}>
                 <th>
-                  <label for="{{ form_basic.name.auto_id }}">
+                  <label for="{{ form_basic.slug.auto_id }}">
                     {{ _('App URL') }}
                   </label>
                 </th>
