@@ -950,7 +950,7 @@ var imageStatus = {
             $('#edit-addon-media b.image-message').remove();
         }
         if (!this.icon.poll) {
-            $('#submit-media #icon_preview_64').removeClass('loading');
+            $('#submit-media #icon_preview_64, table #icon_preview_readonly').removeClass('loading');
         }
     }
 };
