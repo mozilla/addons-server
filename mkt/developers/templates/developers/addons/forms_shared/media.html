@@ -39,41 +39,44 @@
           {% endif %}
           {% if editable %}
             <div id="icon_preview">
-              <div class="icon_preview" id="icon_preview_32">
-                <img src="{{ addon.get_icon_url(32) }}">
+              <div class="icon_preview_box">
+                <div class="icon_preview" id="icon_preview_64">
+                  <img src="{{ addon.get_icon_url(64) }}">
+                </div>
+                <div class="edit-media-details">
+                  {# L10n: The size of the icon #}
+                  {{ _('64x64px') }}
+                  {% if webapp %}
+                    {# TODO(apps): Finalize copy. #}
+                    {{ tip(None, 'Used in app detail pages.') }}
+                  {% else %}
+                    {{ tip(None, _("Used in add-on detail pages.")) }}
+                  {% endif %}
+                </div>
               </div>
-              <div class="edit-media-details">
-                {# L10n: The size of the icon #}
-                {{ _('32x32px') }}
-                {% if webapp %}
-                  {# TODO(apps): Finalize copy. #}
-                  {{ tip(None,
-                         'Used in listings of apps, like search results
-                          and featured apps.') }}
-                {% else %}
-                  {{ tip(None,
-                         _("Used in listings of add-ons, like search results
-                            and featured add-ons.")) }}
-                {% endif %}
-              </div>
-
-              <div class="icon_preview" id="icon_preview_64">
-                <img src="{{ addon.get_icon_url(64) }}">
-              </div>
-              <div class="edit-media-details">
-                {# L10n: The size of the icon #}
-                {{ _('64x64px') }}
-                {% if webapp %}
-                  {# TODO(apps): Finalize copy. #}
-                  {{ tip(None, 'Used in app detail pages.') }}
-                {% else %}
-                  {{ tip(None, _("Used in add-on detail pages.")) }}
-                {% endif %}
+              <div class="icon_preview_box">
+                <div class="icon_preview" id="icon_preview_32">
+                  <img src="{{ addon.get_icon_url(32) }}">
+                </div>
+                <div class="edit-media-details">
+                  {# L10n: The size of the icon #}
+                  {{ _('32x32px') }}
+                  {% if webapp %}
+                    {# TODO(apps): Finalize copy. #}
+                    {{ tip(None,
+                           'Used in listings of apps, like search results
+                            and featured apps.') }}
+                  {% else %}
+                    {{ tip(None,
+                           _("Used in listings of add-ons, like search results
+                              and featured add-ons.")) }}
+                  {% endif %}
+                </div>
               </div>
             </div>
-            <ul id="icons_default">
+            <div class="hidden">
               {{ form.icon_type }}
-            </ul>
+            </div>
             <div class="invisible-upload">
               <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
               <input type="file" id="id_icon_upload" name="icon_upload"
@@ -184,4 +187,3 @@
   </div>
   {% endif %}
 </div>
-

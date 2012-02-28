@@ -102,7 +102,8 @@
             "created": "2007-03-05 13:09:37",
             "notes": "",
             "modified": "2009-09-24 20:11:30",
-            "notifyevents": 1
+            "notifyevents": 1,
+            "read_dev_agreement": 1
         }
     },
     {

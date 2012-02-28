@@ -1099,7 +1099,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 @never_cache
 @dev_required(skip_submit_check=True)
 @json_view
-def image_status(request, addon_id, addon):
+def image_status(request, addon_id, addon, icon_size=64):
     # Default icon needs no checking.
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
         icons = True
@@ -1108,7 +1108,8 @@ def image_status(request, addon_id, addon):
         icons = True
     else:
         icons = os.path.exists(os.path.join(addon.get_icon_dir(),
-                                            '%s-32.png' % addon.id))
+                                            '%s-%s.png' %
+                                            (addon.id, icon_size)))
     previews = all(os.path.exists(p.thumbnail_path)
                    for p in addon.previews.all())
     return {'overall': icons and previews,

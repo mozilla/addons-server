@@ -131,7 +131,7 @@
         "fields": {
             "application": 1,
             "version": "3.6.*",
-            "created": null,
+            "created": "2007-03-05 13:09:26",
             "version_int": 3069900200100,
             "modified": null
         }

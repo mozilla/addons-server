@@ -15,6 +15,7 @@ input[type=text], input[type=password], select, textarea, #agreement-container {
     }
     &[disabled], &[readonly] {
         background-color: @faint-gray;
+        color: @note-gray;
         cursor: not-allowed;
     }
 }
@@ -35,8 +36,14 @@ select {
 label, .label {
     font-weight: bold;
 }
+.choice label,
+label.choice,
 li label {
     cursor: pointer;
+}
+.choice label,
+label.choice {
+    font-weight: normal;
 }
 
 .req,
@@ -154,6 +161,12 @@ textarea {
         label {
             display: block;
             margin: 15px 0 5px;
+        }
+        div.choice {
+            margin-top: 15px;
+            label {
+                margin-top: 5px;
+            }
         }
     }
     .simple-field {
@@ -304,8 +317,8 @@ button.loading-submit:after,
 }
 
 .browserid-login.loading-submit:after {
-    right: -24px;
-    top: 5px;
+    right: -28px;
+    top: 10px;
 }
 
 .devhub-form {

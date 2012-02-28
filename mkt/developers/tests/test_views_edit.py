@@ -116,7 +116,7 @@ class TestEditBasicWebapp(amo.tests.TestCase):
 
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
-        result = {'device_types': self.dtype, 'name': 'new name',
+        result = {'device_types': self.dtype.id, 'name': 'new name',
                   'slug': 'test_slug', 'summary': 'new summary'}
         result.update(**kw)
         result.update(fs)
@@ -146,6 +146,7 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         webapp = self.webapp
         data = self.get_dict()
         r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
         eq_(r.status_code, 200)
         eq_(self.get_webapp().app_slug, data['slug'])
         # Make sure only the app_slug changed.
@@ -161,6 +162,34 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         # Nothing changed.
         eq_(self.get_webapp().slug, webapp.slug)
         eq_(self.get_webapp().app_slug, webapp.app_slug)
+
+    def test_view_manifest_url_default(self):
+        # Should be able to see manifest URL listed.
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#manifest-url a').attr('href'),
+            self.webapp.manifest_url)
+
+        # There should be a disabled text field.
+        r = self.client.get(self.edit_url)
+        row = pq(r.content)('#manifest-url')
+        eq_(row.find('input[name=manifest_url][disabled]').length, 1)
+
+        # POST with the new manifest URL.
+        url = 'https://ballin.com/ballin4eva'
+        r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
+        self.assertNoFormErrors(r)
+
+        # The manifest should remain unchanged since this is disabled for now.
+        eq_(self.get_webapp().manifest_url, self.webapp.manifest_url)
+
+    def test_view_manifest_url_changed(self):
+        new_url = 'http://omg.com/yes.webapp'
+        self.webapp.manifest_url = new_url
+        self.webapp.save()
+
+        # If we change the `manifest_url` manually, the URL here should change.
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#manifest-url a').attr('href'), new_url)
 
     def test_categories_listed(self):
         r = self.client.post(self.url)
@@ -661,7 +690,7 @@ class TestEditMedia(TestEdit):
     def setup_image_status(self):
         addon = self.get_addon()
         self.icon_dest = os.path.join(addon.get_icon_dir(),
-                                      '%s-32.png' % addon.id)
+                                      '%s-64.png' % addon.id)
         os.makedirs(os.path.dirname(self.icon_dest))
         open(self.icon_dest, 'w')
 

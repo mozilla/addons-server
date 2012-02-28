@@ -139,7 +139,7 @@
             {% endif %}
           {% endif %}
         {% endif %}
-        {% if check_addon_ownership(request, addon) %}
+        {% if check_addon_ownership(request, addon, dev=True) %}
           {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
             <a href="{{ addon.get_dev_url('enable') }}" id="enable-addon">
               {{ loc('Enable App') if webapp else _('Enable Add-on') }}</a>
@@ -147,10 +147,10 @@
             <a href="#" id="disable-addon">
               {{ loc('Disable App') if webapp else _('Disable Add-on') }}</a>
           {% endif %}
-          {% if addon.can_be_deleted() %}
+        {% endif %}
+        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
             &middot; <a href="#" id="delete-addon">
               {{ loc('Delete App') if webapp else _('Delete Add-on') }}</a>
-          {% endif %}
         {% endif %}
         {% if not webapp %}
           {% set current = addon.current_version %}

@@ -1,5 +1,5 @@
 <div class="transbox-new"
-     data-rm-locale="{{ addon.get_dev_url('remove-locale', prefix_only=True) }}"
+     data-rm-locale="{{ addon.get_dev_url('remove-locale') }}"
      data-default="{{ default_locale }}" id="l10n-menu">
   {% set dl = languages[default_locale] %}
   <p>
@@ -57,9 +57,9 @@
       Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone.
     {% endtrans %}
     </p>
-    <div class="listing-footer modal-actions">
+    <p class="listing-footer modal-actions">
       <button id="l10n-confirm-rm" class="button">{{ _('Delete Locale') }}</button>
       {{ _('or') }} <a id="l10n-cancel-rm" href="#">{{ _('Cancel') }}</a>
-    </div>
+    </p>
   </div>
 </div>

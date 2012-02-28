@@ -1,6 +1,13 @@
 @import 'lib';
 
 .login {
+    #page .primary > .notification-box {
+        font: bold 12px/1 @open-stack;
+        margin-bottom: 2em;
+    }
+    #page h1 {
+        color: darken(@red, 10%);
+    }
     .prose h2 {
         font-size: 18px;
     }
@@ -12,12 +19,46 @@
         padding-left: 132px;
     }
     .island.hero {
-        margin: 0 auto;
-        width: 50%;
+        .border-box;
+        float: left;
+        margin: 0 0 2em;
+        width: 75%;
+        .prose {
+            h1, p {
+                text-align: center;
+            }
+            p {
+                line-height: 1.5em;
+            }
+        }
+    }
+    #page .info {
+        margin: 0;
+        width: 25%;
+        float: left;
+        .border-box;
+        padding-left: 2em;
+        opacity: 0.7;
+        p {
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 4px;
+        }
     }
     .primary fieldset {
         margin: 0;
         padding: 0;
+    }
+    form {
+        ul, footer div {
+            margin: 0 auto;
+            width: 60%;
+        }
     }
     .login-submit {
         float: right;
@@ -51,13 +92,15 @@
     }
     form.listing-footer {
         margin-top: 2em;
+        background: #eee;
+        border-top: 1px dotted @light-gray;
     }
     .browserid {
         .user-message {
             display: block;
             text-align: center;
             color: @medium-gray;
-            margin-top: 0.5em;
+            margin-top: 10px;
             font-size: 0.9em;
             p {
                 margin: 0;

@@ -17,7 +17,6 @@
         counter-increment: item;
         font: 16px @open-stack;
         text-align: center;
-        white-space: nowrap;
         width: 100%;
         &:before {
             .border-radius(30px);
@@ -47,43 +46,38 @@
         &:first-child:after {
             content: none;
         }
-        &.current, &.completed {
+        &.completed, &.current {
             color: @dark-gray;
             font-weight: bold;
             &:before {
                 background: @white;
-                border: 2px solid @dark-gray;
+                border: 2px solid @medium-gray;
                 color: @dark-gray;
                 z-index: 20;
             }
             &:after {
-                border-color: @dark-gray;
+                border-color: @medium-gray;
                 margin-top: -40px;
             }
+        }
+        &.completed, &.completed:before, &.completed a {
+            color: @medium-gray;
+        }
+        &.completed a {
+            display: block;
+            margin-top: -40px;
+            padding-top: 40px;
+            position: relative;
+            z-index: 30;
+        }
+        &.current:before {
+            border-color: @dark-gray;
         }
     }
     li, li.active, li.active:before {
         .transition(~'1s color ease-in-out, 1s border linear');
     }
 }
-
-/* Toggle for no more lines. */
-/*
-#submission-progress {
-    border-bottom: 1px dotted @faint-gray;
-    margin: 1em 0;
-    padding-bottom: 2em;
-    li {
-        padding-bottom: 38px;
-        &:after {
-            border-top: 0;
-        }
-        &.current b {
-            display: none;
-        }
-    }
-}
-*/
 
 .continue {
     float: right;

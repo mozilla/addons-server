@@ -126,7 +126,7 @@
                 width: 190px;
                 position: absolute;
                 top: 24px;
-                z-index: 1001;
+                z-index: 2002;  /* Overlap the loading-throbber areas. */
                 padding: 8px;
                 display: none;
                 background: #fff;
@@ -137,6 +137,7 @@
                 a {
                     text-decoration: none;
                     display: block;
+                    line-height: 1.2;
                     padding: 6px 8px;
                     word-wrap: break-word;
                     &:hover {

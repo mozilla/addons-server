@@ -201,7 +201,8 @@ class AppsHandler(AddonsHandler):
             # Fetch the addon, the icon and set the user.
             addon = Addon.from_upload(upload,
                         [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
-            tasks.fetch_icon(addon)
+            if addon.has_icon_in_manifest():
+                tasks.fetch_icon(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             addon.update(status=amo.STATUS_PENDING if
                          settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)

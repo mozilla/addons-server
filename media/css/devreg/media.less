@@ -5,11 +5,13 @@
 }
 
 #file-list .preview {
-    overflow: auto;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
     border-bottom: 1px dotted #ADD0DC;
     background-color: #fff;
+    margin-bottom: 15px;
+    min-height: 100px;
+    max-height: 115px;
+    overflow: auto;
+    padding-bottom: 15px;
 }
 
 #file-list > div:last-child {
@@ -64,7 +66,7 @@
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    border: 3px solid #D2EDF5;
+    border: 3px solid @taupe;
     float: left;
     height: 94px;
     margin-right: 15px;
@@ -101,15 +103,15 @@
 }
 
 #icons_default {
-    border: 1px solid #6A89AC;
+    border: 1px solid @taupe;
     max-height: 100px;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 5px;
     background-color: #fff;
 }
 
 #icon_preview_readonly img {
+    border: 1px solid @taupe;
     margin-right: 20px;
 }
 
@@ -146,18 +148,17 @@
 }
 
 #icon_preview {
-    float: right;
-    margin-left: 10px;
-    width: 76px;
-    .icon_preview {
-        border: 1px solid #6A89AC;
-        text-align: center;
-        padding: 5px;
-        background-color: #fff;
-        img {
-            vertical-align: middle;
-        }
+    .icon_preview_box {
+        display: inline-block;
+        vertical-align: bottom;
+        margin-right: 1em;
     }
+    .icon_preview {
+        border: 1px solid @taupe;
+        text-align: center;
+        background-color: #fff;
+    }
+    margin-bottom: 1em;
 }
 .html-rtl #icon_preview {
     float: left;

@@ -13,7 +13,7 @@ from stats.models import DownloadCount, GlobalStat, UpdateCount
 from users.models import UserProfile
 
 
-class StatsTest(object):
+class StatsTest(amo.tests.ESTestCase):
     fixtures = ['stats/test_views.json', 'stats/test_models.json']
 
     def setUp(self):
@@ -61,7 +61,7 @@ class StatsTest(object):
                 yield (view, args)
 
 
-class ESStatsTest(StatsTest, amo.tests.ESTestCase):
+class ESStatsTest(StatsTest):
     """Test class with some ES setup."""
 
     def setUp(self):

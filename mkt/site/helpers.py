@@ -5,10 +5,10 @@ from amo.helpers import url
 
 
 @register.function
-def form_field(field, label=None, tag='div', req=None, hint=False,
+def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
                some_html=False, cc_startswith=None, cc_maxlength=None,
                **attrs):
-    c = dict(field=field, label=label, tag=tag, req=req, hint=hint,
+    c = dict(field=field, label=label, tag=tag, req=req, opt=opt, hint=hint,
              some_html=some_html, cc_startswith=cc_startswith,
              cc_maxlength=cc_maxlength, attrs=attrs)
     t = env.get_template('site/helpers/simple_field.html').render(**c)

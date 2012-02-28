@@ -80,6 +80,18 @@ class TestWebapp(test_utils.TestCase):
         w.mark_done()
         eq_(w.status, amo.STATUS_PUBLIC)
 
+    @mock.patch('webapps.models.Webapp.get_manifest_json')
+    def test_has_icon_in_manifest(self, get_manifest_json):
+        webapp = Webapp()
+        get_manifest_json.return_value = {}
+        eq_(webapp.has_icon_in_manifest(), False)
+
+    @mock.patch('webapps.models.Webapp.get_manifest_json')
+    def test_has_icon_in_manifest(self, get_manifest_json):
+        webapp = Webapp()
+        get_manifest_json.return_value = {'icons': {}}
+        eq_(webapp.has_icon_in_manifest(), True)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']

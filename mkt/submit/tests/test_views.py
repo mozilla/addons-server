@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 
@@ -11,12 +12,14 @@ import waffle
 
 import amo
 import amo.tests
-from amo.tests import formset, initial
+from amo.tests import close_to_now, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, DeviceType)
 from addons.utils import ReverseNameLookup
+from apps.users.models import UserNotification
+from apps.users.notifications import app_surveys
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
 import mkt
@@ -52,6 +55,14 @@ class TestSubmit(amo.tests.TestCase):
             li = completed_found.eq(idx)
             eq_(li.text(), unicode(mkt.APP_STEPS_TITLE[step]))
 
+        # Check that we link back to the Developer Agreement.
+        terms_link = progress.find('.terms a')
+        if 'terms' in completed:
+            eq_(terms_link.attr('href'),
+                reverse('mkt.developers.docs', args=['policies', 'agreement']))
+        else:
+            eq_(terms_link.length, 0)
+
         # Check the current step.
         eq_(progress.find('.current').text(),
             unicode(mkt.APP_STEPS_TITLE[current]))
@@ -62,6 +73,7 @@ class TestTerms(TestSubmit):
 
     def setUp(self):
         super(TestTerms, self).setUp()
+        self.user.update(read_dev_agreement=False)
         self.url = reverse('submit.app.terms')
 
     def test_anonymous(self):
@@ -84,12 +96,30 @@ class TestTerms(TestSubmit):
     def test_agree(self):
         r = self.client.post(self.url, {'read_dev_agreement': True})
         self.assertRedirects(r, reverse('submit.app.manifest'))
+        #dt = self.get_user().read_dev_agreement
+        #assert close_to_now(dt), (
+        #    'Expected date of agreement read to be close to now. Was %s' % dt)
         eq_(self.get_user().read_dev_agreement, True)
+        eq_(UserNotification.objects.count(), 0)
+
+    def test_agree_and_sign_me_up(self):
+        r = self.client.post(self.url, {'read_dev_agreement': True,
+                                        'newsletter': True})
+        self.assertRedirects(r, reverse('submit.app.manifest'))
+        #dt = self.get_user().read_dev_agreement
+        #assert close_to_now(dt), (
+        #    'Expected date of agreement read to be close to now. Was %s' % dt)
+        eq_(self.get_user().read_dev_agreement, True)
+        eq_(UserNotification.objects.count(), 1)
+        notes = UserNotification.objects.filter(user=self.user, enabled=True,
+                                                notification_id=app_surveys.id)
+        eq_(notes.count(), 1, 'Expected to not be subscribed to newsletter')
 
     def test_disagree(self):
         r = self.client.post(self.url)
         eq_(r.status_code, 200)
         eq_(self.user.read_dev_agreement, False)
+        eq_(UserNotification.objects.count(), 0)
 
 
 class TestManifest(TestSubmit):
@@ -97,9 +127,11 @@ class TestManifest(TestSubmit):
 
     def setUp(self):
         super(TestManifest, self).setUp()
+        self.user.update(read_dev_agreement=False)
         self.url = reverse('submit.app.manifest')
 
     def _step(self):
+        #self.user.update(read_dev_agreement=datetime.datetime.now())
         self.user.update(read_dev_agreement=True)
 
     def test_anonymous(self):
@@ -168,10 +200,6 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreateWebApp(BaseWebAppTest):
 
-    def test_page_title(self):
-        eq_(pq(self.client.get(self.url).content)('title').text(),
-            'App Manifest | Developer Hub | Mozilla Marketplace')
-
     def test_post_app_redirect(self):
         r = self.post()
         webapp = Webapp.objects.get()
@@ -188,6 +216,13 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(addon.summary, u'Exciting Open Web development action!')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
+
+    def test_manifest_with_any_extension(self):
+        self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',
+                                     'tests', 'addons', 'mozball.owa')
+        self.upload = self.get_upload(abspath=self.manifest, is_webapp=True)
+        addon = self.post_addon()
+        eq_(addon.type, amo.ADDON_WEBAPP)
 
     def test_version_from_uploaded_manifest(self):
         addon = self.post_addon()
@@ -276,6 +311,7 @@ class TestDetails(TestSubmit):
         return json.loads(rp.content)['upload_hash']
 
     def _step(self):
+        #self.user.update(read_dev_agreement=datetime.datetime.now())
         self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True)
@@ -556,13 +592,31 @@ class TestDetails(TestSubmit):
         self._step()
         r = self.client.post(self.url, self.get_dict(device_types=None))
         self.assertFormError(r, 'form_devices', 'device_types',
-                          'This field is required.')
+                             'This field is required.')
 
     def test_device_types_invalid(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(device_types='999'))
         self.assertFormError(r, 'form_devices', 'device_types',
             'Select a valid choice. 999 is not one of the available choices.')
+
+    def test_device_types_default(self):
+        self._step()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        checkboxes = pq(r.content)('input[name=device_types]')
+        eq_(checkboxes.length, 1)
+        eq_(checkboxes.filter(':checked').length, 1,
+            'All device types should be checked by default.')
+
+    def test_device_types_default_on_post(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(device_types=None))
+        eq_(r.status_code, 200)
+        checkboxes = pq(r.content)('input[name=device_types]')
+        eq_(checkboxes.length, 1)
+        eq_(checkboxes.filter(':checked').length, 0,
+            'POSTed values should not get replaced by the defaults.')
 
     def test_categories_required(self):
         self._step()
@@ -625,7 +679,6 @@ class TestPayments(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def _step(self):
-        self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True, details=True)
         AddonUser.objects.create(addon=self.webapp, user=self.user)
@@ -789,7 +842,6 @@ class TestDone(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def _step(self):
-        self.user.update(read_dev_agreement=True)
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True, details=True, payments=True)
         AddonUser.objects.create(addon=self.webapp, user=self.user)

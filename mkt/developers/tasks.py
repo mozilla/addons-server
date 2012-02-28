@@ -18,6 +18,7 @@ from django.utils.http import urlencode
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
+import validator.constants as validator_constants
 
 import amo
 from amo.decorators import write, set_modified_on
@@ -41,8 +42,13 @@ def validator(upload_id, **kw):
         return None
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.get(pk=upload_id)
+    force_validation_type = None
+    #if upload.is_webapp:
+    # TODO: Figure out what's going on here. Assume this is always a webapp.
+    force_validation_type = validator_constants.PACKAGE_WEBAPP
     try:
-        result = run_validator(upload.path)
+        result = run_validator(upload.path,
+                               force_validation_type=force_validation_type)
         upload.validation = result
         upload.save()  # We want to hit the custom save().
     except:
@@ -99,7 +105,7 @@ def file_validator(file_id, **kw):
 
 
 def run_validator(file_path, for_appversions=None, test_all_tiers=False,
-                  overrides=None):
+                  overrides=None, force_validation_type=None):
     """A pre-configured wrapper around the addon validator.
 
     *file_path*
@@ -119,6 +125,11 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
         Normally the validator gets info from install.rdf but there are a
         few things we need to override. See validator for supported overrides.
         Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
+
+    *force_validation_type=None*
+        Set this to a value in validator.constants like PACKAGE_WEBAPP
+        when you need to force detection of a package. Otherwise the type
+        will be inferred from the filename extension.
 
     To validate the addon for compatibility with Firefox 5 and 6,
     you'd pass in::
@@ -141,6 +152,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     if not os.path.exists(apps):
         call_command('dump_apps')
 
+    if not force_validation_type:
+        force_validation_type = validator.constants.PACKAGE_ANY
     with statsd.timer('mkt.developers.validator'):
         return validate(file_path,
                         for_appversions=for_appversions,
@@ -151,7 +164,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                         approved_applications=apps,
                         spidermonkey=settings.SPIDERMONKEY,
                         overrides=overrides,
-                        timeout=settings.VALIDATOR_TIMEOUT)
+                        timeout=settings.VALIDATOR_TIMEOUT,
+                        expectation=force_validation_type)
 
 
 @task(rate_limit='4/m')
@@ -361,9 +375,10 @@ def fetch_icon(webapp, **kw):
     Returns False if icon was not able to be retrieved
     """
     log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
-
     manifest = webapp.get_manifest_json()
     if not 'icons' in manifest:
+        # Set the icon type to empty.
+        webapp.update(icon_type='')
         return
     biggest = max([int(size) for size in manifest['icons']])
     icon_url = manifest['icons'][str(biggest)]
@@ -376,6 +391,8 @@ def fetch_icon(webapp, **kw):
         except Exception, e:
             log.error('Failed to fetch icon for webapp %s: %s'
                       % (webapp.pk, e.message))
+            # Set the icon type to empty.
+            webapp.update(icon_type='')
             return
 
         size_error_message = _('Your icon must be less than %s bytes.')
@@ -410,7 +427,7 @@ def fetch_manifest(url, upload_pk=None, **kw):
         upload.update(validation=failed_validation(e.message))
         return
 
-    upload.add_file([content], url, len(content))
+    upload.add_file([content], url, len(content), is_webapp=True)
     # Send the upload to the validator.
     validator(upload.pk)
 

@@ -17,6 +17,9 @@ NO_EMAIL_PATTERNS = {
 #    'OperationError':
 #        re.compile(r'''OperationalError: (1205, 'Lock wait timeout '''
 #                    '''exceeded; try restarting transaction')'''),
+    'ValidationError':
+        re.compile(re.escape('Enter a valid date/time in YYYY-MM-DD '
+                    'HH:MM[:ss[.uuuuuu]] format.')),
 }
 
 import logging

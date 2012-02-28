@@ -72,3 +72,5 @@ APP_PREVIEW = False
 
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
+
+WEBAPPS_RESTRICTED = True

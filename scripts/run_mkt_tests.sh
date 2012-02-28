@@ -11,13 +11,13 @@ echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
 if [ -z $1 ]; then
     echo "Warning: You should provide a unique name for this job to prevent database collisions."
-    echo "Usage: ./run_mkt_tests.sh <name>"
+    echo "Usage: ./run_mkt_tests.sh <name> <settings> --with-coverage"
     echo "Continuing, but don't say you weren't warned."
 fi
 
 if [ -z $2 ]; then
     echo "Warning: no settings directory specified, using: ${SETTINGS}"
-    echo "Usage: ./run_mkt_tests.sh <name> <settings>"
+    echo "Usage: ./run_mkt_tests.sh <name> <settings> --with-coverage"
 else
     SETTINGS=$2
 fi
@@ -80,12 +80,13 @@ export DJANGO_SETTINGS_MODULE=settings_local
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
-# with-coverage excludes sphinx so it doesn't conflict with real builds.
-if [[ $3 = 'with-coverage' ]]; then
-    coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit -a'!sphinx'
-    coverage xml $(find apps lib -name '*.py')
+run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers"
+if [[ $3 = '--with-coverage' ]]; then
+    exec $run_tests --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml
 else
-    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
+    exec $run_tests --with-xunit
 fi
+rv=$?
 
 echo 'shazam!'
+exit $rv

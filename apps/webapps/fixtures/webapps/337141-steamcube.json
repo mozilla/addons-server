@@ -16,6 +16,7 @@
             "average_daily_downloads": 0,
             "_backup_version": null,
             "manifest_url": "http://micropipes.com/temp/steamcube.webapp",
+            "app_domain": "micropipes.com",
             "admin_review_type": 1,
             "the_future": null,
             "trusted": false,

@@ -68,6 +68,7 @@ app_detail_patterns = patterns('',
         name='devhub.apps.profile.remove'),
     url('^issue_refund$', views.issue_refund, name='devhub.apps.issue_refund'),
     url('^refunds$', views.refunds, name='devhub.apps.refunds'),
+    url('^rmlocale$', views.remove_locale, name='devhub.apps.remove-locale'),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -136,7 +137,7 @@ detail_patterns = patterns('',
     url('^request-review/(?P<status>[%s])$'
         % ''.join(map(str, views.REQUEST_REVIEW)),
         views.request_review, name='devhub.request-review'),
-    url('^rmlocale$', views.remove_locale, name='devhub.remove-locale'),
+    url('^rmlocale$', views.remove_locale, name='devhub.addons.remove-locale'),
 )
 
 # These will all start with /ajax/addon/<addon_id>/

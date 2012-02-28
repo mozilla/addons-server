@@ -5,8 +5,7 @@ from session_csrf import anonymous_csrf
 
 from . import forms, views
 from .models import UserProfile
-from addons.urls import ADDON_ID
-from amo.decorators import modal_view
+
 
 # We need Django to use our User model.
 auth_views.User = UserProfile

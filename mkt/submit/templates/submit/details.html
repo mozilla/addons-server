@@ -23,13 +23,14 @@
       <header id="general-details" class="island swagger c">
         <div id="icon_preview" class="invisible-upload">
           <div id="icon_preview_64" class="icon_preview">
-            <img src="{{ addon.get_icon_url(64) }}">
+            <img src="{{ addon.get_icon_url(64) }}"
+                 data-checkurl="{{ url('mkt.developers.ajax.image.status', addon.slug) }}">
             <input type="file" id="id_icon_upload" name="icon_upload"
                    data-upload-url="{{ url('mkt.developers.addons.upload_icon', addon.slug) }}">
           </div>
         </div>
-        <div class="houdini {{ 'error' if form_basic.name.errors or
-                                          form_basic.slug.errors else 'ready' }}">
+        <div class="houdini{{ ' ready' if not (form_basic.name.errors or
+                                               form_basic.slug.errors) }}">
           <div class="before">
             <h2 class="output">{{ addon.name }}</h2>
             <b>{{ loc('Details page:') }}</b>
@@ -41,7 +42,7 @@
           </div>
           <div class="after">
             <table>
-              <tr>
+              <tr{% if form_basic.name.errors %} class="error"{% endif %}>
                 <th>
                   <label for="{{ form_basic.name.auto_id }}">
                     {{ _('Name') }}
@@ -52,9 +53,9 @@
                   {{ form_basic.name.errors }}
                 </td>
               </tr>
-              <tr>
+              <tr{% if form_basic.slug.errors %} class="error"{% endif %}>
                 <th>
-                  <label for="{{ form_basic.name.auto_id }}">
+                  <label for="{{ form_basic.slug.auto_id }}">
                     {{ _('App URL') }}
                   </label>
                 </th>
@@ -76,6 +77,7 @@
           {{ form_icon.icon_type }}
           {{ form_icon.unsaved_icon_data }}
         </div>
+        <ul class="icon-errorlist errorlist"></ul>
       </header>
 
       {{ form_field(form_basic.summary, hint=True,

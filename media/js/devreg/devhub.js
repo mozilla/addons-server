@@ -51,8 +51,8 @@ $(document).ready(function() {
         $('#upload-webapp-url').bind("keyup change paste blur", function(e) {
             var $this = $(this),
                 $button = $('#validate_app'),
-                // Ensure it's at least "protocol://host/something.(webapp/json)"
-                match = $this.val().match(/^(.+):\/\/(.+)\/(.+)\.(webapp|json)$/);
+                // Ensure it's at least "protocol://host/something".
+                match = $this.val().match(/^(.+):\/\/(.+)/);
 
             if($this.attr('data-input') != $this.val()) {
                 // Show warning if 8+ characters have been typed but there's no protocol.
@@ -64,8 +64,9 @@ $(document).ready(function() {
                         .parent().removeClass('show-tip');
                 }
 
-                // Show the button if valid
+                // Show the button if valid.
                 $button.toggleClass('disabled', !match);
+
                 $this.attr('data-input', $this.val());
                 $('#upload-status-results').remove();
                 $('#upload-file button.upload-file-submit').attr('disabled', true);
@@ -545,13 +546,13 @@ function initUploadIcon() {
             var $error_list = $('#icon_preview').parent().find(".errorlist");
             $error_list.html("");
 
-            $('.icon_preview img', $f).addClass('loading');
+            $('.icon_preview', $f).addClass('loading');
 
             $('.edit-media-button button').attr('disabled', true);
         },
 
         upload_finished = function(e) {
-            $('.icon_preview img', $f).removeClass('loading');
+            $('.icon_preview', $f).removeClass('loading');
             $('.edit-media-button button').attr('disabled', false);
         };
 
@@ -831,8 +832,13 @@ function initAuthorFields() {
                     url: tgt.attr("data-src"),
                     data: {q: tgt.val()},
                     success: function(data) {
-                        tgt.removeClass("ui-autocomplete-loading")
-                           .addClass("valid");
+                        tgt.removeClass("ui-autocomplete-loading");
+                        if (data.status == 1) {
+                            tgt.addClass("valid");
+                        } else {
+                            tgt.addClass("invalid tooltip formerror")
+                               .attr('title', data.message);
+                        }
                     },
                     error: function() {
                         tgt.removeClass("ui-autocomplete-loading")
@@ -923,10 +929,7 @@ var imageStatus = {
                   [gettext('Image changes being processed')]))
                   .appendTo(node.find('h2').first());
             }
-            var $submission = $('#submit-media');
-            if ($submission.length) {
-                $submission.find('#icon_preview_64').addClass('loading');
-            }
+            $('#submit-media #icon_preview_64, table #icon_preview_readonly').addClass('loading');
         }
     },
     newurl: function(orig) {
@@ -947,7 +950,7 @@ var imageStatus = {
             $('#edit-addon-media b.image-message').remove();
         }
         if (!this.icon.poll) {
-            $('#submit-media #icon_preview_64').removeClass('loading');
+            $('#submit-media #icon_preview_64, table #icon_preview_readonly').removeClass('loading');
         }
     }
 };
@@ -1008,14 +1011,16 @@ function multipartUpload(form, onreadystatechange) {
 }
 
 function hideSameSizedIcons() {
-    icon_sizes = [];
-    $('#icon_preview_readonly img').show().each(function(){
-        size = $(this).width() + 'x' + $(this).height();
-        if($.inArray(size, icon_sizes) >= 0) {
-            $(this).hide();
-        }
-        icon_sizes.push(size);
-    });
+    // We don't need this for apps.
+    return;
+    // icon_sizes = [];
+    // $('#icon_preview_readonly img').show().each(function(){
+    //     size = $(this).width() + 'x' + $(this).height();
+    //     if($.inArray(size, icon_sizes) >= 0) {
+    //         $(this).hide();
+    //     }
+    //     icon_sizes.push(size);
+    // });
 }
 
 

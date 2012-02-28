@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('App Manifest') %}
+{% set title = _('Submit an App') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
@@ -37,9 +37,9 @@
             <!-- TODO: We should expose a tooltip error if the URL looks malformed. -->
           </div>
           <div class="hint">
-            {{ loc('App URLs must start with a protocol (for example, '
-                   '<code>http://</code> or <code>https://</code>) and end '
-                   'with either <code>.webapp</code> or <code>.json</code>.')|safe }}
+            {{ loc('Manifest URLs must start with a protocol (for example, '
+                   '<code>http://</code> or <code>https://</code>) and '
+                   'typically use the <code>.webapp</code> extension.')|safe }}
           </div>
         </div>
       </div>

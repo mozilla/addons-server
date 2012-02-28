@@ -2,7 +2,7 @@
 
 {% block title %}{{ mkt_page_title(loc('Developer Registration')) }}{% endblock %}
 
-{% block bodyclass %}login{% endblock %}
+{% block bodyclass %}login {{ super() }}{% endblock %}
 
 {% block js %}
   {% if form.recaptcha %}
@@ -12,23 +12,37 @@
 
 {% block content %}
 <div class="primary">
+  {% set dst = request.GET.get('to') %}
+  {% if dst and dst not in (url('mkt.developers.index'), url('mkt.developers.apps')) %}
+    <p class="notification-box error">
+      {{ _('You must log in to access that page.') }}
+    </p>
+  {% endif %}
+  {% include "developers/timeline.html" %}
   <section class="island swagger hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
     <div class="prose">
       <h1>Developer Registration</h1>
-      <h2>Want to make an app?</h2>
       <p>
-        Learn all about creating an HTML5 app at the
-        <a href="https://developer.mozilla.org/en-US/Apps">
-          Mozilla Developer Network</a>.
-      </p>
-      <h2>Already have an app?</h2>
-      <p>
-        Reserve your spot in our Marketplace by submitting your app today.
+        <strong>Already have an app?</strong>
+        Reserve your spot in our Marketplace by submitting your app today.<br>
         Just log in or register with your
         <a href="https://browserid.org">BrowserID</a> account below.
       </p>
     </div>
     {% include "users/login_form.html" %}
+  </section>
+  <section class="info">
+    <h2>What are apps?</h2>
+      <p>
+        The Mozilla Labs Apps project is an initiative to bring HTML5 app
+        experiences built using Web standards and open technologies to all
+        your devices, wherever you are.
+      </p>
+    <h2>Making an app?</h2>
+    <p>
+      Learn all about <strong><a href="https://developer.mozilla.org/en-US/Apps">creating an HTML5 app</a></strong>
+      at the Mozilla Developer Network.
+    </p>
   </section>
 </div>
 {% endblock content %}

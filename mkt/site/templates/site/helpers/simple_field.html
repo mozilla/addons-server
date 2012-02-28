@@ -4,10 +4,10 @@
   <{{ tag }} class="brform simple-field c {{ class }}{{ ' error' if field.errors }}">
 {% endif %}
 {% set choice = field|is_choice_field %}
+{% if choice %}{{ field.as_widget() }}{% endif %}
   <label class="{{ 'choice' if choice }}" for="{{ field.auto_id }}">
     {{ label or field.label }}
   </label>
-  {% if choice %}{{ field.as_widget() }}{% endif %}
   {% if field.field.required and req != False %}{{ required() -}}{% endif %}
   {% if opt %}{{ optional() -}}{% endif %}
 

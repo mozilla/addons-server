@@ -123,6 +123,17 @@ class app_individual_contact(individual_contact):
     label = loc('Mozilla needs to contact me about my individual app')
 
 
+class app_surveys(_NOTIFICATION):
+    id = 13
+    group = 'user'
+    short = 'surveys'
+    label = loc('Mozilla may email me with relevant App Developer news and '
+                'surveys')
+    mandatory = False
+    default_checked = False
+    app = True
+
+
 NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 

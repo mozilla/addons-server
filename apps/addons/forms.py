@@ -205,14 +205,17 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 class DeviceTypeForm(forms.Form):
     device_types = forms.ModelMultipleChoiceField(
         label=loc('Which device types does your app work with?'),
-        queryset=DeviceType.objects.all(), widget=forms.CheckboxSelectMultiple,
-        required=True)
+        queryset=DeviceType.objects.all(),
+        initial=DeviceType.objects.all(),
+        widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
         super(DeviceTypeForm, self).__init__(*args, **kwargs)
-        self.initial['device_types'] = AddonDeviceType.objects.filter(
+        device_types = AddonDeviceType.objects.filter(
             addon=self.addon).values_list('device_type__id', flat=True)
+        if device_types:
+            self.initial['device_types'] = device_types
 
     def save(self, addon):
         new_types = self.cleaned_data['device_types']

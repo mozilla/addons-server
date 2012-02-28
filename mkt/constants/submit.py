@@ -2,7 +2,7 @@ from tower import ugettext_lazy as _
 
 
 APP_STEPS = [
-    ('terms', _('Developer Account')),
+    ('terms', _('Developer Agreement')),
     ('manifest', _('App Manifest')),
     ('details', _('Details')),
     ('payments', _('Payments')),

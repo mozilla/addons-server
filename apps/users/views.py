@@ -73,17 +73,29 @@ def ajax(request):
     data = {'status': 0, 'message': ''}
 
     email = request.GET.get('q', '').strip()
+    dev_only = request.GET.get('dev', '1')
+    try:
+        dev_only = int(dev_only)
+    except ValueError:
+        dev_only = 1
+    dev_only = dev_only and settings.MARKETPLACE
 
     if not email:
         data.update(message=_('An email address is required.'))
         return data
 
-    u = UserProfile.objects.filter(email=email)
+    user = UserProfile.objects.filter(email=email)
+    if dev_only:
+        user = user.filter(read_dev_agreement=True)
 
-    if u:
-        data.update(status=1, id=u[0].id, name=u[0].name)
+    msg = _('A user with that email address does not exist.')
+    msg_dev = loc('A user with that email address does not exist, or the user '
+                  'has not yet accepted the developer agreement.')
+
+    if user:
+        data.update(status=1, id=user[0].id, name=user[0].name)
     else:
-        data['message'] = _('A user with that email address does not exist.')
+        data['message'] = msg_dev if dev_only else msg
 
     return escape_all(data)
 

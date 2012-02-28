@@ -11,7 +11,6 @@ from django import forms
 from django.contrib.auth.models import AnonymousUser
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -26,15 +25,16 @@ from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonRecommendation, AddonType, AddonUpsell,
-                           BlacklistedGuid, Category, Charity, CompatOverride,
-                           CompatOverrideRange, FrozenAddon,
-                           IncompatibleVersions, Preview)
+                           AddonDeviceType, AddonRecommendation, AddonType,
+                           AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
+                           Category, Charity, CompatOverride,
+                           CompatOverrideRange, DeviceType, FrozenAddon,
+                           IncompatibleVersions, Persona, Preview)
 from applications.models import Application, AppVersion
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from files.models import File, Platform
 from files.tests.test_models import TestLanguagePack, UploadTest
-from market.models import Price, AddonPremium
+from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
 from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
@@ -1216,6 +1216,41 @@ class TestAddonModels(amo.tests.TestCase):
         file = addon.current_version.files.all()[0]
         file.update(binary_components=True)
         eq_(addon.binary_components, True)
+
+
+class TestAddonDelete(amo.tests.TestCase):
+
+    def test_cascades(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+
+        AddonCategory.objects.create(addon=addon,
+            category=Category.objects.create(type=amo.ADDON_EXTENSION))
+        AddonDependency.objects.create(addon=addon,
+            dependent_addon=addon)
+        AddonDeviceType.objects.create(addon=addon,
+            device_type=DeviceType.objects.create())
+        AddonRecommendation.objects.create(addon=addon,
+            other_addon=addon, score=0)
+        AddonUpsell.objects.create(free=addon, premium=addon)
+        AddonUser.objects.create(addon=addon,
+            user=UserProfile.objects.create())
+        AppSupport.objects.create(addon=addon,
+            app=Application.objects.create())
+        CompatOverride.objects.create(addon=addon)
+        FrozenAddon.objects.create(addon=addon)
+        Persona.objects.create(addon=addon, persona_id=0)
+        Preview.objects.create(addon=addon)
+
+        AddonLog.objects.create(addon=addon,
+            activity_log=ActivityLog.objects.create(action=0))
+        RssKey.objects.create(addon=addon)
+        SubmitStep.objects.create(addon=addon, step=0)
+
+        AddonPremium.objects.create(addon=addon)
+        AddonPaymentData.objects.create(addon=addon)
+
+        # This should not throw any FK errors if all the cascades work.
+        addon.delete()
 
 
 class TestAddonGetURLPath(amo.tests.TestCase):

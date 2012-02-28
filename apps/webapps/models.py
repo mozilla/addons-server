@@ -131,6 +131,10 @@ class Webapp(Addon):
             if res:
                 return res[0]
 
+    def has_icon_in_manifest(self):
+        data = self.get_manifest_json()
+        return 'icons' in data
+
     def get_manifest_json(self):
         try:
             # The first file created for each version of the web app

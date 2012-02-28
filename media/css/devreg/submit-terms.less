@@ -28,18 +28,26 @@
         }
     }
     #agreement-extra-links {
-        a {
-            float: right;
-            font-size: 11px;
+        color: @medium-gray;
+        font-size: 11px;
+        text-align: right;
+        li {
+            display: inline-block;
+            + li:before {
+                content: "\00a0\00b7\00a0";
+            }
         }
     }
     form {
         margin-top: 1.5em;
         label {
-            cursor: pointer;
+            color: @medium-gray;
         }
-        button {
-            float: right;
-        }
+    }
+}
+
+.html-rtl #submit-terms {
+    #agreement-extra-links {
+        text-align: left;
     }
 }
