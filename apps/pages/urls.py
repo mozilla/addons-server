@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import patterns, url
+from django.http import HttpResponsePermanentRedirect
 
 from jingo.views import direct_to_template
+
+from amo.urlresolvers import reverse
 
 
 urlpatterns = patterns('',
@@ -16,4 +19,6 @@ urlpatterns = patterns('',
         {'template': 'pages/review_guide.html'}, name='pages.review_guide'),
     url('^sunbird$', direct_to_template,
         {'template': 'pages/sunbird.html'}, name='pages.sunbird'),
+    url('^sunbird/', lambda r: HttpResponsePermanentRedirect(reverse('pages.sunbird')),
+	name='pages.sunbird_redirect'),
 )
