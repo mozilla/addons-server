@@ -94,9 +94,12 @@
     padding-top: 0;
 }
 
-#trans-tags input,
-#trans-name input {
-    width: 400px;
+#trans-tags,
+#trans-name,
+#manifest-url {
+    input {
+        width: 400px;
+    }
 }
 
 .trans {
@@ -277,8 +280,18 @@ form .char-count b {
     }
 }
 
-#edit-addon-basic p {
-    margin: 0;
+#edit-addon-basic {
+    .char-count,
+    .html-support {
+        margin-bottom: 0;
+    }
+    p {
+        margin: 0;
+        &.note {
+            line-height: 1.3;
+            margin-top: 5px;
+        }
+    }
 }
 
 #edit-addon-basic .addon-app-cats {
