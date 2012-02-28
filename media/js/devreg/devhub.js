@@ -546,13 +546,13 @@ function initUploadIcon() {
             var $error_list = $('#icon_preview').parent().find(".errorlist");
             $error_list.html("");
 
-            $('.icon_preview img', $f).addClass('loading');
+            $('.icon_preview', $f).addClass('loading');
 
             $('.edit-media-button button').attr('disabled', true);
         },
 
         upload_finished = function(e) {
-            $('.icon_preview img', $f).removeClass('loading');
+            $('.icon_preview', $f).removeClass('loading');
             $('.edit-media-button button').attr('disabled', false);
         };
 

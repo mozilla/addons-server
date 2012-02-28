@@ -66,7 +66,7 @@
     #general-details {
         font-family: @open-stack;
         margin: 2em 0;
-        min-height: 64px;
+        min-height: 70px;
         padding-left: 95px;
         position: relative;
         .icon-errorlist {
@@ -200,16 +200,17 @@
         }
     }
     #icon_preview {
-        width: 64px;
+        .border-box;
+        width: 70px;
         &:hover:after {
             content: "Edit";
             position: absolute;
             top: 0;
             left: 0;
-            width: 64px;
+            width: 70px;
             color: @blue;
-            height: 64px;
-            line-height: 64px;
+            height: 70px;
+            line-height: 70px;
             background: fadeOut(@bg-gray, 50%);
             border-radius: 5px;
             font-weight: bold;
@@ -223,9 +224,10 @@
             position: static;
         }
         .icon_preview {
-            padding: 0;
+            padding: 2px;
             background: none;
-            border: 0;
+            border: 1px solid @faint-gray;
+            .border-radius(5px);
         }
     }
     #trans-summary + .hint,
@@ -267,6 +269,6 @@
 #icon_preview_64 {
     &.loading:before {
         .background-size(75% auto);
-        .border-radius(0);
+        .border-radius(3px);
     }
 }
