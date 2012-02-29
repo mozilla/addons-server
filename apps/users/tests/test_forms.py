@@ -151,6 +151,30 @@ class TestUserDeleteForm(UserFormBase):
         self.assertContains(r, 'You cannot delete your account')
 
 
+class TestUserAdminForm(UserFormBase):
+
+    def test_long_hash(self):
+        self.client.login(username='fligtar@gmail.com', password='foo')
+        data = {'password': 'sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f619',
+                'username': 'alice',
+                'last_login': '2010-07-03 23:03:11',
+                'date_joined': '2010-07-03 23:03:11'}
+        r = self.client.post(reverse('admin:auth_user_change',
+                                     args=[self.user.id]),
+                             data)
+        eq_(pq(r.content)('#user_form div.password .errorlist').text(), None)
+
+    def test_toolong_hash(self):
+        self.client.login(username='fligtar@gmail.com', password='foo')
+        data = {'password': 'sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f6190000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+                'username': 'alice'}
+        r = self.client.post(reverse('admin:auth_user_change',
+                                     args=[self.user.id]),
+                             data)
+        eq_(pq(r.content)('#user_form div.password .errorlist').text(),
+            'Ensure this value has at most 255 characters (it has 489).')
+
+
 class TestUserEditForm(UserFormBase):
 
     def setUp(self):
