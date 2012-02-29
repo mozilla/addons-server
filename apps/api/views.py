@@ -234,25 +234,6 @@ class AddonDetailView(APIView):
 
 
 def guid_search(request, api_version, guids):
-    if waffle.switch_is_active('new-guid-search'):
-        return _guid_search_caching(request, api_version, guids)
-    else:
-        return _guid_search_old(request, api_version, guids)
-
-
-def _guid_search_old(request, api_version, guids):
-    guids = [g.strip() for g in guids.split(',')] if guids else []
-    results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
-                                   status__in=SEARCHABLE_STATUSES)
-    compat = (CompatOverride.objects.filter(guid__in=guids)
-              .transform(CompatOverride.transformer))
-    return render_xml(request, 'api/search.xml',
-                      {'results': results, 'total': len(results),
-                       'compat': compat,
-                       'api_version': api_version, 'api': api})
-
-
-def _guid_search_caching(request, api_version, guids):
     lang = request.LANG
 
     def guid_search_cache_key(guid):
