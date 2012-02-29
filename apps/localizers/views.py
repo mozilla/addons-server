@@ -83,7 +83,7 @@ def locale_dashboard(request, locale_code):
     # group members
     try:
         group = Group.objects.get(
-            rules__startswith=('Localizers:%s' % locale_code))
+            rules__startswith=('Locale.%s:' % locale_code))
         members = group.users.all()
     except Group.DoesNotExist:
         members = None

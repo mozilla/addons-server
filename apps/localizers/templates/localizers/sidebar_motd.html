@@ -1,5 +1,5 @@
 <div class="motd">
-  {% if show_edit %}
+  {% if is_localizer %}
     <div class="edit_motd" style="display:none;">
       <form action="{{ url('localizers.set_motd') }}" method="post">
         {{ csrf() }}
@@ -12,7 +12,7 @@
   {% endif %}
   <div class="motd_text">
     <div class="msg">{{ motd }}</div>
-    {% if show_edit %}
+    {% if is_localizer %}
       <p class="edit"><a href="#">{{ _('(edit)') }}</a></p>
     {% endif %}
   </div>

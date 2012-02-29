@@ -6,16 +6,16 @@ from product_details import product_details
 
 from access import acl
 
-from .models import L10nSettings, L10nEventlog
+from .models import L10nSettings
 
 
 def _permission_to_edit_locale(request, locale=''):
     """If locale is empty, it checks global permissions."""
 
-    if acl.action_allowed(request, 'Admin', 'EditAnyLocale'):
+    if acl.action_allowed(request, 'Locales', 'Edit'):
         return True
 
-    if locale and acl.action_allowed(request, 'Localizers', locale):
+    if locale and acl.action_allowed(request, 'Locale.%s' % locale, 'Edit'):
         return True
 
     return False
@@ -29,7 +29,7 @@ def localizers_sidebar(context, locale_code=""):
     request = context['request']
 
     ctx.update({
-        'show_edit': _permission_to_edit_locale(request, locale_code),
+        'is_localizer': _permission_to_edit_locale(request, locale_code),
         'locale_code': locale_code,
     })
     return ctx
@@ -52,7 +52,7 @@ def localizers_sidebar_motd(context, lang=''):
     ctx.update({
         'motd_lang': lang,
         'motd': motd,
-        'show_edit': _permission_to_edit_locale(request, lang),
+        'is_localizer': _permission_to_edit_locale(request, lang),
     })
     return ctx
 

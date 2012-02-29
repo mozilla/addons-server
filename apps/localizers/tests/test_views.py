@@ -4,7 +4,6 @@ from django.utils import translation
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import trans_eq
 
 import amo
 import amo.tests
