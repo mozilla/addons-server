@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+
 import jingo
 
 import api.views
@@ -21,3 +23,9 @@ def handler500(request):
 def csrf_failure(request, reason=''):
     return jingo.render(request, 'site/403.html', {'csrf': 'CSRF' in reason},
                         status=403)
+
+
+def robots(request):
+    """Generate a robots.txt"""
+    template = jingo.render(request, 'site/robots.txt')
+    return HttpResponse(template, mimetype="text/plain")
