@@ -26,7 +26,12 @@ class Command(BaseCommand):
         versions = (AppVersion.objects.values_list('application', 'version')
                     .order_by('version_int'))
         for app, version in versions:
-            apps[app]['versions'].append(version)
+            try:
+                apps[app]['versions'].append(version)
+            except KeyError:
+                # Sunbird is still in the database but shouldn't show up here.
+                pass
+
         with open(self.JSON_PATH, 'w') as f:
             json.dump(apps, f)
             log.debug("Wrote: %s" % f.name)
