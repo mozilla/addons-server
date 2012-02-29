@@ -5,6 +5,7 @@ import time
 import uuid
 
 from django.conf import settings
+from django.contrib.auth.models import User as DjangoUser
 from django.db.models import Q
 
 import commonware.log
@@ -118,6 +119,7 @@ def autocreate_username(candidate, tries=1):
         log.info('username blocked, empty, max tries reached, or too long;'
                  ' username=%s; max=%s' % (adjusted_u, max_tries))
         return autocreate_username(uuid.uuid4().hex[0:15])
-    if UserProfile.objects.filter(username=adjusted_u).count():
+    if (UserProfile.objects.filter(username=adjusted_u).count() or
+        DjangoUser.objects.filter(username=adjusted_u).count()):
         return autocreate_username(candidate, tries=tries + 1)
     return adjusted_u
