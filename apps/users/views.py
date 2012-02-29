@@ -3,7 +3,7 @@ from functools import partial
 
 from django import http
 from django.conf import settings
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
@@ -357,6 +357,7 @@ def browserid_authenticate(request, assertion):
 @anonymous_csrf_exempt
 @post_required
 @no_login_required
+@transaction.commit_on_success
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
