@@ -2214,9 +2214,8 @@ class TestSubmitStep4(TestSubmitBase):
     def setUp(self):
         super(TestSubmitStep4, self).setUp()
         self.old_addon_icon_url = settings.ADDON_ICON_URL
-        url_string = "%s/%s/%s/images/addon_icon/%%d-%%d.png?%%s"
-        settings.ADDON_ICON_URL = url_string % (
-            settings.STATIC_URL, settings.LANGUAGE_CODE, settings.DEFAULT_APP)
+        settings.ADDON_ICON_URL = (settings.STATIC_URL +
+            '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
         SubmitStep.objects.create(addon_id=3615, step=4)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
@@ -2314,8 +2313,9 @@ class TestSubmitStep4(TestSubmitBase):
 
         addon = self.get_addon()
 
-        addon_url = addon.get_icon_url(64).split('?')[0]
-        assert addon_url.endswith('images/addon_icon/%s-64.png' % addon.id)
+        # Sad we're hardcoding /3/ here, but that's how the URLs work
+        _url = addon.get_icon_url(64).split('?')[0]
+        assert _url.endswith('img/uploads/addon_icons/3/%s-64.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
@@ -2346,8 +2346,9 @@ class TestSubmitStep4(TestSubmitBase):
         self.client.post(self.url, data_formset)
         addon = self.get_addon()
 
-        addon_url = addon.get_icon_url(64).split('?')[0]
-        assert addon_url.endswith('images/addon_icon/%s-64.png' % addon.id)
+        # Sad we're hardcoding /3/ here, but that's how the URLs work
+        _url = addon.get_icon_url(64).split('?')[0]
+        assert _url.endswith('img/uploads/addon_icons/3/%s-64.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 

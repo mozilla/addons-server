@@ -392,7 +392,7 @@ class TestAddonModels(amo.tests.TestCase):
         3. Test for default non-THEME icon.
         """
         a = Addon.objects.get(pk=3615)
-        expected = (settings.ADDON_ICON_URL % (3615, 32, 0)).rstrip('/0')
+        expected = (settings.ADDON_ICON_URL % (3, 3615, 32, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
         a = Addon.objects.get(pk=6704)
         a.icon_type = None
@@ -1457,9 +1457,8 @@ class TestFlushURLs(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
-        settings.ADDON_ICON_URL = (
-            '%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s' % (
-            settings.STATIC_URL, settings.LANGUAGE_CODE, settings.DEFAULT_APP))
+        settings.ADDON_ICON_URL = (settings.STATIC_URL +
+            '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
         settings.PREVIEW_THUMBNAIL_URL = (settings.STATIC_URL +
             '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
         settings.PREVIEW_FULL_URL = (settings.STATIC_URL +

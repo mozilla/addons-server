@@ -5,6 +5,7 @@ import hmac
 import itertools
 import json
 import os
+import re
 import time
 from datetime import datetime, timedelta
 
@@ -657,8 +658,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
                                      icon_type_split[1], size)
         else:
+            # [1] is the whole ID, [2] is the directory
+            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
             return settings.ADDON_ICON_URL % (
-                    self.id, size, int(time.mktime(self.modified.timetuple())))
+                    split_id.group(2) or 0, self.id, size,
+                    int(time.mktime(self.modified.timetuple())))
 
     def update_status(self, using=None):
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]

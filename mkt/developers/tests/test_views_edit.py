@@ -621,8 +621,9 @@ class TestEditMedia(TestEdit):
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
+        # Unfortunate hardcoding of URL
         url = addon.get_icon_url(64)
-        assert ('addon_icon/%s' % addon.id) in url, (
+        assert ('addon_icons/3/%s' % addon.id) in url, (
             'Unexpected path: %r' % url)
 
         eq_(data['icon_type'], 'image/png')
@@ -661,8 +662,9 @@ class TestEditMedia(TestEdit):
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
+        # Unfortunate hardcoding of URL
         addon_url = addon.get_icon_url(64).split('?')[0]
-        assert addon_url.endswith('images/addon_icon/%s-64.png' % addon.id), (
+        assert addon_url.endswith('addon_icons/3/%s-64.png' % addon.id), (
             'Unexpected path: %r' % addon_url)
 
         eq_(data['icon_type'], 'image/png')
