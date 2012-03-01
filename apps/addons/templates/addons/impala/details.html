@@ -18,7 +18,7 @@
 {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
 <aside class="secondary addon-vitals"
-       itemtype="http://schema.org/SoftwareApplication" itemscope>
+       itemscope itemtype="http://schema.org/SoftwareApplication">
   <div itemprop="aggregateRating" itemscope
        itemtype="http://schema.org/AggregateRating">
     {{ addon.average_rating|stars(large=True) }}
