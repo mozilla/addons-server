@@ -1085,7 +1085,7 @@ function initAuthorFields() {
         }
         if (tgt.val().length > 2) {
             if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(function () {
+            timeout = setTimeout(function() {
                 tgt.addClass("ui-autocomplete-loading")
                    .removeClass("invalid")
                    .removeClass("valid");
@@ -1093,7 +1093,8 @@ function initAuthorFields() {
                     url: tgt.attr("data-src"),
                     data: {q: tgt.val()},
                     success: function(data) {
-                        tgt.removeClass("ui-autocomplete-loading");
+                        tgt.removeClass('ui-autocomplete-loading formerror')
+                           .removeAttr('title');
                         if (data.status == 1) {
                             tgt.addClass("valid");
                         } else {
