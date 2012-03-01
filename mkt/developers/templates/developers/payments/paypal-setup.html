@@ -19,7 +19,8 @@
       <p><strong>{{ loc('PayPal email address for this app.') }}</strong></p>
       <p class="indent">{{ addon.paypal_id }}
       <footer class="listing-footer">
-        <a class="button" href="#" id="paypal-change-address">Change PayPal email</a>
+        <a class="button" href="#" id="paypal-change-address">{{ loc('Change PayPal email') }}</a>
+        <a class="button" href="{{ addon.get_dev_url('paypal_setup_details') }}">{{ loc('Manage contact details') }}</a>
       </footer>
     </div>
 

@@ -1,6 +1,5 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = loc('Confirm Details') %}}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
@@ -15,7 +14,7 @@
       {{ csrf() }}
       {{ form.as_p() }}
       <footer class="listing-footer">
-        <button type="submit">{{ _('Continue') }}</button>
+        <button type="submit">{{ button }}</button>
         {% trans cancel=addon.get_dev_url('paypal_setup') %}
           or <a href="{{ cancel }}">Cancel</a>
         {% endtrans %}

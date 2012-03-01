@@ -1,5 +1,6 @@
 from mock import patch
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 from django.conf import settings
 
@@ -137,3 +138,32 @@ class TestPaypalResponse(amo.tests.TestCase):
                                           'address_one': '123 bob st.'})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
+
+    # These next two tests test strings, which sucks, but it's pretty much
+    # the only change that occurs.
+    def test_payment_confirm(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('h1').eq(1).text(), 'Confirm Details')
+
+    def test_payment_details(self):
+        res = self.client.get(self.webapp.get_dev_url('paypal_setup_details'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('h1').eq(1).text(), 'Contact Details')
+
+    def test_payment_changes(self):
+        adp = AddonPaymentData.objects.create(addon=self.webapp, country='ca',
+                                              address_one='123 bob st.')
+        res = self.client.post(self.url, {'country': 'uk',
+                                          'address_one': '123 bob st.'})
+        eq_(res.status_code, 302)
+        eq_(AddonPaymentData.objects.get(pk=adp.pk).country, 'uk')
+
+    def test_required_fields(self):
+        res = self.client.post(self.url, {'name': 'muppet'})
+        eq_(res.status_code, 200)
+        for field in ('country', 'address_one'):
+            self.assertFormError(res, 'form', field,
+                                 [u'This field is required.'])

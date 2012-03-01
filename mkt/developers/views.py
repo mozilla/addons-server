@@ -302,24 +302,38 @@ def paypal_setup_bounce(request, addon_id, addon, webapp):
                                          'ACCESS_ADVANCED_PERSONAL_DATA'])
 
     return jingo.render(request,
-                    'developers/payments/paypal-details-request.html',
-                    {'paypal_url': paypal_url, 'addon': addon})
+                        'developers/payments/paypal-details-request.html',
+                        {'paypal_url': paypal_url, 'addon': addon})
 
 
 @dev_required(owner_for_post=True, webapp=True)
-def paypal_setup_confirm(request, addon_id, addon, webapp):
+def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
+    # If you bounce through paypal as you do permissions changes set the
+    # source to paypal.
+    if source == 'paypal':
+        msg = _('PayPal set up complete.')
+        title = _('Confirm Details')
+        button = _('Continue')
+    # If you just hit this page from the Manage Paypal, show some less
+    # wizardy stuff.
+    else:
+        msg = _('Changes saved.')
+        title = loc('Contact Details')
+        button = _('Save')
+
     adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
     form = forms.PaypalPaymentData(request.POST or None, instance=adp)
     if request.method == 'POST' and form.is_valid():
         adp.update(**form.cleaned_data)
-        messages.success(request, 'PayPal set up complete.')
-        if addon.is_incomplete() and addon.paypal_id:
+        messages.success(request, msg)
+        if source == 'paypal' and addon.is_incomplete() and addon.paypal_id:
             addon.mark_done()
         return redirect(addon.get_dev_url('paypal_setup'))
 
     return jingo.render(request,
-                    'developers/payments/paypal-details-confirm.html',
-                    {'form': form, 'addon': addon})
+                        'developers/payments/paypal-details-confirm.html',
+                        {'addon': addon, 'button': button, 'form': form,
+                         'title': title})
 
 
 @write
