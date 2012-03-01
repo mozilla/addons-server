@@ -1113,6 +1113,7 @@ class TestProfileSections(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
     def test_my_reviews_delete_link(self):
+
         review = Review.objects.filter(reply_to=None)[0]
         review.user_id = 999
         review.save()
@@ -1120,27 +1121,29 @@ class TestProfileSections(amo.tests.TestCase):
         slug = Addon.objects.get(id=review.addon_id).slug
         delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
 
+        def _get_reviews(username, password):
+            self.client.login(username=username, password=password)
+            r = self.client.get(reverse('users.profile', args=[999]))
+            doc = pq(r.content)('#reviews')
+            return doc('#review-218207 .item-actions a.delete-review')
+
         # Admins get the Delete Review link.
-        self.client.login(username='admin@mozilla.com', password='password')
-        r = self.client.get(reverse('users.profile', args=[999]))
-        doc = pq(r.content)('#reviews')
-        r = doc('#review-218207 .item-actions a.delete-review')
+        r = _get_reviews(username='admin@mozilla.com', password='password')
         eq_(r.length, 1)
         eq_(r.attr('href'), delete_url)
 
         # Editors get the Delete Review link.
-        self.client.login(username='editor@mozilla.com')
-        r = self.client.get(reverse('users.profile', args=[999]))
-        doc = pq(r.content)('#reviews')
-        r = doc('#review-218207 .item-actions a.delete-review')
+        r = _get_reviews(username='editor@mozilla.com', password='password')
         eq_(r.length, 1)
         eq_(r.attr('href'), delete_url)
 
-        # Author does not get Delete Review link.
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(self.url)
-        doc = pq(r.content)('#reviews')
-        r = doc('#review-218207 .item-actions a.delete-review')
+        # Author gets the Delete Review link.
+        r = _get_reviews(username='regular@mozilla.com', password='password')
+        eq_(r.length, 1)
+        eq_(r.attr('href'), delete_url)
+
+        # Other user does not get the Delete Review link.
+        r = _get_reviews(username='clouserw@gmail.com', password='password')
         eq_(r.length, 0)
 
     def test_my_reviews_no_pagination(self):

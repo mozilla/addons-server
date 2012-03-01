@@ -110,11 +110,13 @@ def flag(request, addon, review_id):
 @post_required
 @login_required(redirect=False)
 def delete(request, addon, review_id):
-    if not acl.action_allowed(request, 'Editors', 'DeleteReview'):
-        return http.HttpResponseForbidden()
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
+    if not (acl.action_allowed(request, 'Editors', 'DeleteReview')
+            or acl.check_reviewer(request)
+            or review.user_id == request.amo_user.id):
+        return http.HttpResponseForbidden()
     review.delete()
-    log.info('DELETE: %s deleted %s by %s ("%s": "%s")' %
+    log.info('Review deleted: %s deleted id:%s by %s ("%s": "%s")' %
              (request.amo_user.name, review_id,
               review.user.name, review.title, review.body))
     return http.HttpResponse()
