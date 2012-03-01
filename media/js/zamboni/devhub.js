@@ -1093,8 +1093,11 @@ function initAuthorFields() {
                     url: tgt.attr("data-src"),
                     data: {q: tgt.val()},
                     success: function(data) {
-                        tgt.removeClass('ui-autocomplete-loading formerror')
-                           .removeAttr('title');
+                        tgt.removeClass('ui-autocomplete-loading tooltip')
+                           .removeClass('formerror')
+                           .removeAttr('title')
+                           .removeAttr('data-oldtitle');
+                        $('#tooltip').hide();
                         if (data.status == 1) {
                             tgt.addClass("valid");
                         } else {
