@@ -45,6 +45,9 @@ def test_match_rules():
         'Addons:Review',
         'Apps:Review',
         'Personas:Review',
+        'Locales:Edit',
+        'Locale.de:Edit',
+        'Reviews:Edit',
         )
 
     for rule in rules:

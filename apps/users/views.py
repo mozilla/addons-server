@@ -576,7 +576,7 @@ def profile(request, user_id):
 
     data['review_perms'] = {}  # See reviews.views.review_list for more
     if (own_profile
-        or acl.check_reviewer(request)
+        or acl.action_allowed(request, 'Reviews', 'Edit')
         or acl.action_allowed(request, 'Admin', 'EditAnyUser')):
             data['review_perms'] = dict(can_delete=True)
 

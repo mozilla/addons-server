@@ -67,8 +67,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
             'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
             'is_editor': acl.check_reviewer(request),
             'is_author': acl.check_addon_ownership(request, addon, dev=True),
-            'can_delete': acl.action_allowed(request, 'Editors',
-                                             'DeleteReview'),
+            'can_delete': acl.action_allowed(request, 'Reviews', 'Edit'),
         }
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
@@ -111,8 +110,7 @@ def flag(request, addon, review_id):
 @login_required(redirect=False)
 def delete(request, addon, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
-    if not (acl.action_allowed(request, 'Editors', 'DeleteReview')
-            or acl.check_reviewer(request)
+    if not (acl.action_allowed(request, 'Reviews', 'Edit')
             or review.user_id == request.amo_user.id):
         return http.HttpResponseForbidden()
     review.delete()
