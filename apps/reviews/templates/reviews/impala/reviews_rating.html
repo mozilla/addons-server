@@ -1,12 +1,9 @@
 {% set title = _('Rated {0} out of 5 stars')|f(rating) %}
 {% if detailpage %}
   <span class="stars large stars-{{ rating }}" title="{{ title }}">
-    <span itemprop="aggregateRating" itemscope
-          itemtype="http://schema.org/AggregateRating">
       {% trans %}
         Rated <span itemprop="ratingValue">{{ rating }}</span> out of 5 stars
       {% endtrans %}
-    </span>
   </span>
 {% else %}
   <span class="stars stars-{{ rating }}" title="{{ title }}">{{ title }}</span>

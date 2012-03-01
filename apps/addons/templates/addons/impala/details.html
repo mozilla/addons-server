@@ -17,16 +17,21 @@
 {% block content %}
 {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
-<aside class="secondary addon-vitals">
-  {{ addon.average_rating|stars(large=True) }}
-  <div><a id="reviews-link" href="{{ addon.reviews_url }}">
-    {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
-      {{ num }} user review
-    {% pluralize %}
-      {{ num }} user reviews
-    {% endtrans %}
-  </a></div>
-
+<aside class="secondary addon-vitals"
+       itemtype="http://schema.org/SoftwareApplication" itemscope>
+  <div itemprop="aggregateRating" itemscope
+       itemtype="http://schema.org/AggregateRating">
+    {{ addon.average_rating|stars(large=True) }}
+    <div>
+      <a id="reviews-link" href="{{ addon.reviews_url }}">
+      {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
+        <span itemprop="ratingCount">{{ num }}</span> user review
+      {% pluralize %}
+        <span itemprop="ratingCount">{{ num }}</span> user reviews
+      {% endtrans %}
+      </a>
+    </div>
+  </div>
   {% if addon.show_adu() %}
     {% set cnt = addon.average_daily_users %}
     {% if cnt %}
