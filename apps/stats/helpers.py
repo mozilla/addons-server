@@ -1,80 +1,29 @@
 import jinja2
 
-from jingo import register
+from jingo import env, register
 from tower import ugettext as _
 from access import acl
+from addons.models import Addon
 from amo.urlresolvers import reverse
 
 
-@register.inclusion_tag('stats/report_menu.html')
+@register.function
 @jinja2.contextfunction
-def report_menu(context, request, addon, report):
-
-    report_tree = [
-        {
-            'name': 'overview',
-            'url': '',
-            'title': _('Overview'),
-        },
-        {
-            'name': 'downloads',
-            'url': 'downloads/',
-            'title': _('Downloads'),
-            'children': [
-                {
-                    'name': 'sources',
-                    'url': 'downloads/sources/',
-                    'title': _('by Source'),
-                },
-            ]
-        },
-        {
-            'name': 'usage',
-            'url': 'usage/',
-            'title': _('Daily Users'),
-            'children': [
-                {
-                    'name': 'versions',
-                    'url': 'usage/versions/',
-                    'title': _('by Add-on Version')
-                },
-                {
-                    'name': 'apps',
-                    'url': 'usage/applications/',
-                    'title': _('by Application')
-                },
-                {
-                    'name': 'locales',
-                    'url': 'usage/languages/',
-                    'title': _('by Language')
-                },
-                {
-                    'name': 'os',
-                    'url': 'usage/os/',
-                    'title': _('by Platform')
-                },
-                {
-                    'name': 'statuses',
-                    'url': 'usage/status/',
-                    'title': _('by Add-on Status')
-                },
-            ]
-        },
-    ]
-
-    if (request.user.is_authenticated() and (
-            acl.action_allowed(request, 'Stats', 'View') or
-            addon.has_author(request.amo_user))):
-        report_tree.append({
-            'name': 'contributions',
-            'url': 'contributions/',
-            'title': _('Contributions')
-        })
-
-    base_url = reverse('stats.overview', args=[addon.slug])
-
+def report_menu(context, request, report, obj=None):
     """Reports Menu. navigation for the various statistic reports."""
-    c = {'report': report,
-        'base_url': base_url,
-        'report_tree': report_tree}
-    return c
+    if obj:
+        if isinstance(obj, Addon):
+            has_privs = False
+            if (request.user.is_authenticated() and (
+                acl.action_allowed(request, 'Stats', 'View') or
+                addon.has_author(request.amo_user))):
+                has_privs = True
+            t = env.get_template('stats/addon_report_menu.html')
+            c = {
+                'addon': obj,
+                'has_privs': has_privs
+            }
+            return jinja2.Markup(t.render(c))
+
+    t = env.get_template('stats/global_report_menu.html')
+    return jinja2.Markup(t.render())
