@@ -9,7 +9,6 @@ LANGS = sorted(list(
 
 
 def run():
-    return  # To do a no-op migration on -dev.
     Group.objects.create(pk=50006, name='Senior Localizers',
                          rules='Locales:Edit')
 
