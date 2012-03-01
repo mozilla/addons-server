@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import sys
 import urlparse
 
 from django.conf import settings
@@ -8,6 +7,7 @@ from django.http import QueryDict
 from django.test import client
 
 from mock import Mock, patch
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -20,6 +20,7 @@ from addons.models import Addon, AddonCategory, Category, Persona
 from search import views
 from search.tests import SphinxTestCase
 from search.utils import floor_version
+from search.views import DEFAULT_NUM_PERSONAS
 from tags.models import Tag
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
@@ -163,17 +164,37 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
                    reverse('apps.search'))
 
 
-class TestESSearch(amo.tests.ESTestCase):
-    fixtures = ['base/apps', 'base/category', 'tags/tags']
+class SearchBase(amo.tests.ESTestCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestESSearch, cls).setUpClass()
+        super(SearchBase, cls).setUpClass()
         cls.setUpIndex()
+
+    def check_sort_links(self, key, title=None, sort_by=None, reverse=True):
+        r = self.client.get(self.url, dict(sort=key))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        if title:
+            if hasattr(self, 'MOBILE'):
+                menu = doc('#sort-menu')
+                eq_(menu.find('span').text(), title)
+                eq_(menu.find('.selected').text(), title)
+            else:
+                eq_(doc('#sorter .selected').text(), title)
+        if sort_by:
+            a = r.context['pager'].object_list
+            eq_(list(a), sorted(a, key=lambda x: getattr(x, sort_by),
+                                reverse=reverse))
+
+
+class TestESSearch(SearchBase):
+    fixtures = ['base/apps', 'base/category', 'tags/tags']
 
     def setUp(self):
         self.url = reverse('search.search')
         self.search_views = ('search.search', 'apps.search')
+
         self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                            disabled_by_user=False)
         for addon in self.addons:
@@ -211,21 +232,6 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(sorter.length, 1)
         assert 'sort=users' not in sorter.text(), (
             'Sort by "Most Users" should not appear for search tools.')
-
-    def check_sort_links(self, key, title, sort_by=None, reverse=True):
-        r = self.client.get(self.url, dict(sort=key))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        if hasattr(self, 'MOBILE'):
-            menu = doc('#sort-menu')
-            eq_(menu.find('span').text(), title)
-            eq_(menu.find('.selected').text(), title)
-        else:
-            eq_(doc('#sorter .selected').text(), title)
-        if sort_by:
-            a = r.context['pager'].object_list
-            eq_(list(a), sorted(a, key=lambda x: getattr(x, sort_by),
-                                reverse=reverse))
 
     def test_results_sort_default(self):
         self.check_sort_links(None, 'Relevance', 'weekly_downloads')
@@ -613,6 +619,139 @@ class TestESSearch(amo.tests.ESTestCase):
         eq_(self.get_results(r), themes)
 
 
+class TestPersonaSearch(SearchBase):
+    fixtures = ['base/apps']
+
+    def setUp(self):
+        waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
+        self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
+
+        # Add some public personas.
+        self.personas = []
+        for status in amo.REVIEWED_STATUSES:
+            self.personas.append(
+                amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status))
+
+        # Add some unreviewed personas.
+        for status in set(amo.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
+            amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status)
+
+        # Add a disabled persona.
+        amo.tests.addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
+
+        # NOTE: There are also some add-ons in `setUpIndex` for good measure.
+        self.refresh()
+
+    def test_sort_order_default(self):
+        self.check_sort_links(None, sort_by='weekly_downloads')
+
+    def test_sort_order_unknown(self):
+        self.check_sort_links('xxx')
+
+    def test_sort_order_users(self):
+        self.check_sort_links('users', sort_by='average_daily_users')
+
+    def test_sort_order_rating(self):
+        self.check_sort_links('rating', sort_by='bayesian_rating')
+
+    def test_sort_order_newest(self):
+        self.check_sort_links('created', sort_by='created')
+
+    def get_results(self, r):
+        """Return pks of personas shown on search results page."""
+        return sorted(a.id for a in r.context['pager'].object_list)
+
+    def test_heading(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.results-count strong').text(), None)
+
+        r = self.client.get(self.url + '&q=ballin')
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.results-count strong').text(), 'ballin')
+
+    def test_results_blank_query(self):
+        # Not to be confused with PersonaID.
+        personas_ids = sorted(p.id for p in self.personas)
+
+        # Personas should show only personas.
+        r = self.client.get(self.url, follow=True)
+        eq_(r.status_code, 200)
+        eq_(self.get_results(r), personas_ids)
+        eq_(pq(r.content)('.personas-grid li').length, len(personas_ids))
+
+    def check_name_results(self, params, expected):
+        r = self.client.get(urlparams(self.url, **params), follow=True)
+        eq_(r.status_code, 200)
+        got = self.get_results(r)
+        eq_(got, expected,
+            'Got %s. Expected these for %s: %s' % (got, params, expected))
+
+    def test_results_name_query(self):
+        p1 = self.personas[0]
+        p1.name = 'Harry Potter'
+        p1.save()
+
+        p2 = self.personas[1]
+        p2.name = 'The Life Aquatic with SeaVan'
+        p2.save()
+        self.refresh()
+
+        # Empty search term should return everything.
+        self.check_name_results({'q': ''}, sorted(p.id for p in self.personas))
+
+        # Garbage search terms should return nothing.
+        for term in ('xxx', 'garbage', '£'):
+            self.check_name_results({'q': term}, [])
+
+        # Try to match 'Harry Potter'.
+        for term in ('harry', 'potter', 'har', 'pot', 'harry pooper'):
+            self.check_name_results({'q': term}, [p1.pk])
+
+        # Try to match 'The Life Aquatic with SeaVan'.
+        for term in ('life', 'aquatic', 'seavan', 'sea van'):
+            self.check_name_results({'q': term}, [p2.pk])
+
+    def test_results_applications(self):
+        expected = sorted(p.id for p in self.personas)
+
+        # Persona results should not filter on `appver` nor `platform`.
+        permutations = [
+            {},
+            {'appver': amo.FIREFOX.id},
+            {'appver': amo.THUNDERBIRD.id},
+            {'platform': amo.PLATFORM_MAC.id},
+            {'appver': amo.SEAMONKEY.id, 'platform': amo.PLATFORM_WIN.id},
+        ]
+        for p in permutations:
+            self.check_name_results(p, expected)
+
+        # Now ensure we get the same results for Firefox as for Thunderbird.
+        self.url = self.url.replace('firefox', 'thunderbird')
+        self.check_name_results({}, expected)
+
+    def test_pagination(self):
+        # TODO: Figure out why ES wonks out when we index a plethora of junk.
+        raise SkipTest
+
+        # Generate some (22) personas to get us to two pages.
+        left_to_add = DEFAULT_NUM_PERSONAS - len(self.personas) + 1
+        for x in xrange(left_to_add):
+            self.personas.append(
+                amo.tests.addon_factory(type=amo.ADDON_PERSONA))
+        self.refresh()
+
+        # Page one should show 21 personas.
+        r = self.client.get(self.url, follow=True)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.personas-grid li').length, DEFAULT_NUM_PERSONAS)
+
+        # Page two should show 1 persona.
+        r = self.client.get(self.url + '&page=2', follow=True)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.personas-grid li').length, 1)
+
+
 def test_search_redirects():
     changes = (
         ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
@@ -759,7 +898,6 @@ class TestWebappSearch(PaidAppMixin, amo.tests.ESTestCase):
 
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_tags(self):
-        from nose import SkipTest
         raise SkipTest
         # TODO(apps): Kill this test when we deal with app tags.
         for url in (urlparams(self.url, tag='sky'),

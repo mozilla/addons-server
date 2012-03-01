@@ -302,6 +302,7 @@ def assert_no_validation_errors(validation):
 
 def addon_factory(version_kw={}, file_kw={}, **kw):
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
+    # Save 1.
     if type_ == amo.ADDON_PERSONA:
         # Personas need to start life as an extension for versioning
         a = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -315,15 +316,15 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.weekly_downloads = random.randint(200, 2000)
     a.created = a.last_updated = datetime(2011, 6, 6, random.randint(0, 23),
                                           random.randint(0, 59))
-    version_factory(file_kw, addon=a, **version_kw)
+    version_factory(file_kw, addon=a, **version_kw)  # Save 2.
     a.update_version()
     a.status = amo.STATUS_PUBLIC
     for key, value in kw.items():
         setattr(a, key, value)
     if type_ == amo.ADDON_PERSONA:
-        a.update(type=type_)
-        Persona.objects.create(addon_id=a.id, persona_id=a.id)
-    a.save()
+        a.type = type_
+        Persona.objects.create(addon_id=a.id, persona_id=a.id)  # Save 3.
+    a.save()  # Save 4.
     return a
 
 
