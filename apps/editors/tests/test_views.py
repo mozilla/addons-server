@@ -1747,7 +1747,6 @@ class TestReview(ReviewBase):
         eq_(validation.find('a').eq(2).text(), "Contents")
 
         eq_(validation.find('a').length, 3)
->>>>>>> a027a2f... Implementation of bug 699043
 
     def test_public_search(self):
         self.version.files.update(status=amo.STATUS_PUBLIC)
