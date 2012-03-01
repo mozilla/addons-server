@@ -113,6 +113,7 @@ def SearchForm(request):
 
         # This gets replaced by a <select> with js.
         lver = forms.ChoiceField(
+                # L10n: {0} is the name of an app. Ex: Firefox
                 label=_(u'{0} Version').format(unicode(current_app.pretty)),
                 choices=get_app_versions(current_app), required=False)
         appver = forms.CharField(required=False)

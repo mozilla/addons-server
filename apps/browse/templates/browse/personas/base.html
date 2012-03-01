@@ -2,6 +2,7 @@
 {% from "browse/macros.html" import secondary_categories %}
 
 {% set name = category.name if category else filter.title %}
+{# L10n: {0} is a category name. Ex: "Sports" #}
 {% set title = _('Personas') if is_homepage else _('{0} Personas')|f(name) %}
 {% set url_base = url('browse.personas', category.slug) %}
 

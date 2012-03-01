@@ -4,6 +4,7 @@
 
 {% block title %}
   {% if query %}
+    {# L10n: {0} is the string the user was searching for #}
     {{ page_title(_('Collection Search Results for {0}')|f(query)) }}
   {% else %}
     {{ page_title(_('Collection Search Results')) }}

@@ -48,7 +48,7 @@
         <input type="radio" name="type" value="suggested"
                id="contrib-suggested" checked="checked"/>
         <label for="contrib-suggested">
-          {# L10n: {1} is a currency amount (e.g., $5.00) #}
+          {# L10n: {0} is a currency amount (e.g., $5.00) #}
           {{ _('A one-time suggested contribution of {0}')|f(
             addon.suggested_amount|currencyfmt('USD')) }}
         </label>

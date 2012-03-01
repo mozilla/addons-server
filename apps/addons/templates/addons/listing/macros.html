@@ -40,6 +40,7 @@
     {% if show_date in ['created', 'new', 'newest'] %}
     {{ _('Added {0}')|f(addon.created|datetime) }}
     {% elif show_date == 'updated' %}
+    {# L10n: {0} is a date #}
     {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
     {% endif %}
   </p>

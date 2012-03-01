@@ -1,6 +1,7 @@
 {% extends "browse/base_listing.html" %}
 
 {% block title %}
+  {# L10n: {0} is the category name. Ex: Sports #}
   {{ page_title(_('{0}: Featured Add-ons')|f(category.name)) }}
 {% endblock %}
 
@@ -16,6 +17,7 @@
     {% if addons %}
       {{ addon_listing_items(addons, src='creatured') }}
     {% else %}
+      {# L10n: {0} is a category name. Ex: Sports #}
       <p class="no-results">{{ _('No featured add-ons in {0}.')|f(category.name) }}</p>
     {% endif %}
   </div>
