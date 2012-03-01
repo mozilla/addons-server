@@ -547,7 +547,13 @@
 
             // Make sure it's images only.
             if(file.type != 'image/jpeg' && file.type != 'image/png') {
-                var errors = [gettext("Icons must be either PNG or JPG.")];
+                var errors;
+                if (typeof $upload_field.attr('multiple') !== 'undefined') {
+                    // If we have a `multiple` attribute, assume not an icon.
+                    errors = [gettext("Images must be either PNG or JPG.")];
+                } else {
+                    errors = [gettext("Icons must be either PNG or JPG.")];
+                }
                 $upload_field.trigger("upload_start", [file]);
                 $upload_field.trigger("upload_errors", [file, errors]);
                 finished();

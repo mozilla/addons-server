@@ -33,8 +33,8 @@ from amo.tests import (formset, initial, close_to_now,
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons import cron
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUpsell, AddonUser,
-                           Category, Charity, DeviceType)
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUpsell,
+                           AddonUser, Category, Charity, DeviceType)
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from browse.tests import test_listing_sort, test_default_sort
@@ -1333,7 +1333,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
             "Unexpected: Addon should exist")
 
 
-
 class TestIssueRefund(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
@@ -2369,7 +2368,7 @@ class TestSubmitStep4(TestSubmitBase):
         res = self.client.post(self.preview_upload, data)
         response_json = json.loads(res.content)
 
-        eq_(response_json['errors'][0], u'Icons must be either PNG or JPG.')
+        eq_(response_json['errors'][0], u'Images must be either PNG or JPG.')
 
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
@@ -2378,7 +2377,7 @@ class TestSubmitStep4(TestSubmitBase):
         res = self.client.post(self.preview_upload, data)
         response_json = json.loads(res.content)
 
-        eq_(response_json['errors'][0], u'Icons cannot be animated.')
+        eq_(response_json['errors'][0], u'Images cannot be animated.')
 
     def test_icon_non_animated(self):
         filehandle = open(get_image_path('non-animated.png'), 'rb')

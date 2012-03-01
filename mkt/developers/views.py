@@ -1132,8 +1132,7 @@ def ajax_upload_image(request, upload_type):
         with storage.open(loc, 'wb') as fd:
             for chunk in upload_preview:
                 fd.write(chunk)
-
-        is_icon = upload_type in ('icon', 'preview')
+        is_icon = upload_type == 'icon'
 
         check = amo.utils.ImageCheck(upload_preview)
         if (not check.is_image() or

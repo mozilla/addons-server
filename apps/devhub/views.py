@@ -1173,7 +1173,7 @@ def ajax_upload_image(request, upload_type):
             for chunk in upload_preview:
                 fd.write(chunk)
 
-        is_icon = upload_type in ('icon', 'preview')
+        is_icon = upload_type == 'icon'
         is_persona = upload_type.startswith('persona_')
 
         check = amo.utils.ImageCheck(upload_preview)

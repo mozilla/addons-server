@@ -789,16 +789,21 @@ class TestEditMedia(TestEdit):
 
         eq_(Image.open(dest).size, (48, 48))
 
-    def test_edit_media_uploadedicon_wrongtype(self):
-        img = "%s/js/zamboni/devhub.js" % settings.MEDIA_ROOT
+    def check_image_type(self, url, msg):
+        img = '%s/js/zamboni/devhub.js' % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
-        data = {'upload_image': src_image}
-
-        res = self.client.post(self.preview_upload, data)
+        res = self.client.post(url, {'upload_image': src_image})
         response_json = json.loads(res.content)
+        eq_(response_json['errors'][0], msg)
 
-        eq_(response_json['errors'][0], u'Icons must be either PNG or JPG.')
+    def test_edit_media_icon_wrong_type(self):
+        self.check_image_type(self.icon_upload,
+                              'Icons must be either PNG or JPG.')
+
+    def test_edit_media_screenshot_wrong_type(self):
+        self.check_image_type(self.preview_upload,
+                              'Images must be either PNG or JPG.')
 
     def setup_image_status(self):
         addon = self.get_addon()
@@ -862,14 +867,20 @@ class TestEditMedia(TestEdit):
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']
 
-    def test_icon_animated(self):
+    def check_image_animated(self, url, msg):
         filehandle = open(get_image_path('animated.png'), 'rb')
-        data = {'upload_image': filehandle}
 
-        res = self.client.post(self.preview_upload, data)
+        res = self.client.post(url, {'upload_image': filehandle})
         response_json = json.loads(res.content)
+        eq_(response_json['errors'][0], msg)
 
-        eq_(response_json['errors'][0], u'Icons cannot be animated.')
+    def test_icon_animated(self):
+        self.check_image_animated(self.icon_upload,
+                                  'Icons cannot be animated.')
+
+    def test_screenshot_animated(self):
+        self.check_image_animated(self.preview_upload,
+                                  'Images cannot be animated.')
 
     def preview_add(self, amount=1):
         img = get_image_path('mozilla.png')
