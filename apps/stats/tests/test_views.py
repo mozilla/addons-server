@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import csv
 import datetime
+from datetime import date, timedelta
+from decimal import Decimal
 import json
 
+import mock
 from nose.tools import eq_
 
 import amo.tests
@@ -672,49 +675,72 @@ class TestResponses(ESStatsTest):
                           2009-06-01,1,5.0,5.0""")
 
 
-class TestSite(amo.tests.TestCase):
+# Test the SQL query by using known dates, for weeks and months etc.
+class TestSiteQuery(amo.tests.TestCase):
 
     def setUp(self):
-        self.today = datetime.datetime.today()
-        for k in xrange(1, 15):
+        self.start = datetime.date(2012, 1, 1)
+        self.end = datetime.date(2012, 1, 31)
+        for k in xrange(0, 15):
             for name in ['addon_count_new', 'version_count_new']:
-                date = datetime.date(self.today.year, self.today.month, k)
-                GlobalStat.objects.create(date=date, name=name, count=k)
+                date_ = self.start + datetime.timedelta(days=k)
+                GlobalStat.objects.create(date=date_, name=name, count=k)
 
-    def tests_week(self):
-        res = self.client.get(reverse('stats.site', args=['json', 'week']))
-        eq_(res.status_code, 200)
-        content = json.loads(res.content)
-        assert len(content) < 14
+    def test_day_grouping(self):
+        res = views._site_query('date', self.start, self.end)[0]
+        eq_(len(res), 14)
+        eq_(res[0]['addons_created'], Decimal(14))
+        eq_(res[0]['date'], '2012-01-15')
 
-    def tests_month(self):
-        res = self.client.get(reverse('stats.site', args=['json', 'month']))
-        content = json.loads(res.content)
-        eq_(len(content), 1)
-        # Magic number alert: 1+2+3... == 105.
-        eq_(content[0]['addons_created'], (14 * (14 + 1)) / 2)
+    def test_week_grouping(self):
+        res = views._site_query('week', self.start, self.end)[0]
+        eq_(len(res), 3)
+        eq_(res[1]['addons_created'], Decimal(70))
+        eq_(res[1]['date'], '2012-01-08')
 
-    def tests_date(self):
+    def test_month_grouping(self):
+        res = views._site_query('month', self.start, self.end)[0]
+        eq_(len(res), 1)
+        eq_(res[0]['addons_created'], Decimal((14 * (14 + 1)) / 2))
+        eq_(res[0]['date'], '2012-01-02')
+
+    def test_period(self):
+        self.assertRaises(AssertionError, views._site_query, 'not_period',
+                          self.start, self.end)
+
+
+@mock.patch('stats.views._site_query')
+class TestSite(amo.tests.TestCase):
+
+    def tests_period(self, _site_query):
+        _site_query.return_value = ['.', '.']
+        for period in ['date', 'week', 'month']:
+            self.client.get(reverse('stats.site', args=['json', period]))
+            eq_(_site_query.call_args[0][0], period)
+
+    def tests_period_day(self, _site_query):
+        _site_query.return_value = ['.', '.']
+        start = (date.today() - timedelta(days=3))
+        end = date.today()
+        self.client.get(reverse('stats.site.new',
+                        args=['day', start.strftime('%Y%m%d'),
+                              end.strftime('%Y%m%d'), 'json']))
+        eq_(_site_query.call_args[0][0], 'date')
+        eq_(_site_query.call_args[0][1], start)
+        eq_(_site_query.call_args[0][2], end)
+
+    def test_csv(self, _site_query):
+        _site_query.return_value = [[], []]
+        res = self.client.get(reverse('stats.site', args=['csv', 'date']))
+        assert res._headers['content-type'][1].startswith('text/csv')
+
+    def test_json(self, _site_query):
+        _site_query.return_value = [[], []]
         res = self.client.get(reverse('stats.site', args=['json', 'date']))
-        content = json.loads(res.content)
-        eq_(len(content), 14)
-        eq_(content[0]['addons_created'], 14)
+        assert res._headers['content-type'][1].startswith('text/json')
 
-    def test_site_query(self):
-        self.assertRaises(AssertionError, views._site_query, "DELETE ...",
-                          None, None)
-
-    def tests_week_csv(self):
-        res = self.client.get(reverse('stats.site', args=['csv', 'week']))
-        eq_(res.status_code, 200)
-        date = '%s-%02d-%02d' % (self.today.year, self.today.month, 1)
-        assert '%s,10,0,0,10,0,0,0' % date in res.content
-
-    def test_date_range(self):
-        end = self.today.strftime('%Y%m%d')
-        start = (self.today - datetime.timedelta(days=365)).strftime('%Y%m%d')
-        res = self.client.get(reverse('stats.site.new',
-                                      args=['day', start, end, 'json']))
-        content = json.loads(res.content)
-        eq_(len(content), 14)
-        eq_(content[0]['addons_created'], 14)
+    def tests_no_date(self, _site_query):
+        _site_query.return_value = ['.', '.']
+        self.client.get(reverse('stats.site', args=['json', 'date']))
+        eq_(_site_query.call_args[0][1], date.today() - timedelta(days=365))
+        eq_(_site_query.call_args[0][2], date.today())
