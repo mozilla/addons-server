@@ -41,12 +41,16 @@
       ] %}
       {% if addon.is_premium() and waffle.switch('allow-refund') %}
         {% do manage_urls.insert(1,
-          (addon.get_dev_url('refunds'), loc('Manage Refunds'))
+          (addon.get_dev_url('refunds'), _('Manage Refunds'))
         ) %}
+      {% endif %}
+      {% if addon.is_premium() or addon.premium_type == amo.ADDON_FREE_INAPP %}
+        {% do manage_urls.insert(1,
+          (addon.get_dev_url('paypal_setup'), loc('Manage PayPal'))) %}
       {% endif %}
       {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
             and waffle.switch('in-app-payments') %}
-        {% do manage_urls.insert(0,
+        {% do manage_urls.insert(1,
           (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
         ) %}
       {% endif %}

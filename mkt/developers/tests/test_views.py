@@ -15,8 +15,6 @@ from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
-# Unused, but needed so that we can patch jingo.
-from waffle import helpers
 
 import amo
 import amo.tests
@@ -150,24 +148,47 @@ class TestAppDashboard(AppHubTest):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#dashboard .item').length, 0)
 
+    def make_mine(self):
+        AddonUser.objects.create(addon_id=337141, user=self.user_profile)
+
     def test_public_app(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
         app = self.get_app()
-        AddonUser.objects.create(addon=app, user=self.user_profile)
+        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid=%s]' % app.id)
         assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
+        expected = [
+            ('Manage Developer Profile', app.get_dev_url('profile')),
+            ('Manage Status', app.get_dev_url('versions')),
+        ]
+        amo.tests.check_links(expected, doc('.more-actions-popup a'))
 
     def test_incomplete_app(self):
-        AddonUser.objects.create(addon_id=337141, user_id=self.user_profile.id)
         app = self.get_app()
+        self.make_mine()
         app.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
+        eq_(doc('.more-actions-popup').length, 0)
+
+    def test_action_links_with_payments(self):
+        waffle.models.Switch.objects.create(name='allow-refund', active=True)
+        app = self.get_app()
+        self.make_mine()
+        app.update(premium_type=amo.ADDON_PREMIUM)
+        doc = pq(self.client.get(self.url).content)
+        expected = [
+            ('Manage Developer Profile', app.get_dev_url('profile')),
+            ('Manage PayPal', app.get_dev_url('paypal_setup')),
+            ('Manage Refunds', app.get_dev_url('refunds')),
+            ('Manage Status', app.get_dev_url('versions')),
+        ]
+        amo.tests.check_links(expected, doc('.more-actions-popup a'))
 
 
 class TestAppDashboardSorting(AppHubTest):
@@ -1445,7 +1466,8 @@ class TestRemoveLocale(amo.tests.TestCase):
         Addon.objects.get(id=3615).update(type=amo.ADDON_WEBAPP,
                                           app_slug='ballin')
         self.addon = Addon.objects.no_cache().get(id=3615)
-        self.url = reverse('mkt.developers.apps.remove-locale', args=['ballin'])
+        self.url = reverse('mkt.developers.apps.remove-locale',
+                           args=['ballin'])
         assert self.client.login(username='del@icio.us', password='password')
 
     def test_bad_request(self):

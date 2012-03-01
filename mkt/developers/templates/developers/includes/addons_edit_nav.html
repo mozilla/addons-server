@@ -6,7 +6,7 @@
   (addon.get_dev_url('versions'), loc('Manage Status')),
 ] %}
 {% if addon.is_premium() and waffle.switch('allow-refund') %}
-  {% do urls.insert(4, (addon.get_dev_url('refunds'), loc('Manage Refunds'))) %}
+  {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
 {% endif %}
 {% if addon.is_premium() or addon.premium_type == amo.ADDON_FREE_INAPP %}
   {% do urls.insert(4, (addon.get_dev_url('paypal_setup'), loc('Manage PayPal'))) %}
