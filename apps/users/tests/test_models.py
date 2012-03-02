@@ -88,11 +88,11 @@ class TestUserProfile(amo.tests.TestCase):
         assert not u.user.is_staff
         assert not u.user.is_superuser
 
-    def test_empty_username(self):
+    def test_create_django_user(self):
         u = UserProfile.objects.create(email='yoyoyo@yo.yo', username='yoyo')
         assert u.user is None
         u.create_django_user()
-        eq_(u.user.username, 'yoyoyo@yo.yo')
+        eq_(u.user.username, 'yoyo')
 
     def test_resetcode_expires(self):
         """

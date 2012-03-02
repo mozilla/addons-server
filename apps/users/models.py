@@ -324,7 +324,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.user = DjangoUser(id=self.pk)
         self.user.first_name = ''
         self.user.last_name = ''
-        self.user.username = self.email  # f
+        self.user.username = self.username
         self.user.email = self.email
         self.user.password = self.password
         self.user.date_joined = self.created
