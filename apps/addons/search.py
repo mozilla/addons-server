@@ -49,9 +49,12 @@ def extract(addon):
     if addon.type == amo.ADDON_PERSONA:
         # This would otherwise get attached when by the transformer.
         d['weekly_downloads'] = addon.persona.popularity
-    # Boost by the number of users on a logarithmic scale. The maximum boost
-    # (11,000,000 users for adblock) is about 5x.
-    d['_boost'] = addon.average_daily_users ** .2
+        # Boost on popularity.
+        d['_boost'] = addon.persona.popularity ** .2
+    else:
+        # Boost by the number of users on a logarithmic scale. The maximum
+        # boost (11,000,000 users for adblock) is about 5x.
+        d['_boost'] = addon.average_daily_users ** .2
     # Double the boost if the add-on is public.
     if addon.status == amo.STATUS_PUBLIC:
         d['_boost'] = max(d['_boost'], 1) * 4
