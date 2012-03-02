@@ -24,6 +24,7 @@ from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
 from addons.models import Addon, Category, Persona
 import addons.search
 from applications.models import Application, AppVersion
+from bandwagon.models import Collection
 from files.models import File, Platform
 from translations.models import Translation
 from versions.models import Version, ApplicationsVersions
@@ -350,6 +351,25 @@ def file_factory(**kw):
     return f
 
 
+def collection_factory(**kw):
+    data = {
+        'type': amo.COLLECTION_NORMAL,
+        'name': 'Collection %s' % abs(hash(datetime.now())),
+        'addon_count': random.randint(200, 2000),
+        'subscribers': random.randint(1000, 5000),
+        'monthly_subscribers': random.randint(100, 500),
+        'weekly_subscribers': random.randint(10, 50),
+        'listed': True,
+    }
+    data.update(kw)
+    c = Collection(**data)
+    c.slug = data['name'].replace(' ', '-').lower()
+    c.created = c.modified = datetime(2011, 11, 11, random.randint(0, 23),
+                                      random.randint(0, 59))
+    c.save()
+    return c
+
+
 class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
@@ -393,7 +413,7 @@ class ESTestCase(TestCase):
     def tearDownClass(cls):
         # Delete everything in reverse-order of the foreign key dependencies.
         models = (Platform, Category, File, ApplicationsVersions, Version,
-                  Translation, Addon, AppVersion, Application)
+                  Translation, Addon, Collection, AppVersion, Application)
         for model in models:
             model.objects.all().delete()
         super(ESTestCase, cls).tearDownClass()

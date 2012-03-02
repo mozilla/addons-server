@@ -22,15 +22,17 @@
     {% if pager.object_list %}
       <div class="featured-inner">
         <div class="listing-header">
-          <form class="item-sort go" action="">
+          <form class="item-sort go">
             <div>
-              {{ form['q'] }}
-              {{ form['cat'] }}
-              {{ form['pp'] }}
-              <label for="id_sortby">
-                {{ form['sortby'].label }}
-              </label>
-              {{ form['sortby'] }}
+              {{ form.cat }}
+              {% if request.GET.get('q') %}
+                {{ form.q }}
+              {% endif %}
+              {% if request.GET.get('pp') %}
+                {{ form.pp }}
+              {% endif %}
+              {{ form.sort.label_tag() }}
+              {{ form.sort }}
             </div>
           </form>
         </div>

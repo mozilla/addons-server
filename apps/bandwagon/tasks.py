@@ -10,9 +10,9 @@ from celeryutils import task
 
 import amo
 from amo.decorators import set_modified_on
-from amo.utils import resize_image
+from amo.utils import attach_trans_dict, resize_image
 from tags.models import Tag
-from . import cron, search  # Pull in tasks run through cron.
+from . import search
 from .models import (Collection, CollectionAddon, CollectionVote,
                      CollectionWatcher)
 
@@ -110,9 +110,15 @@ def cron_collection_meta(*addons, **kw):
 def index_collections(ids, **kw):
     es = elasticutils.get_es()
     log.debug('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
-    for c in Collection.objects.filter(id__in=ids):
+    qs = Collection.uncached.filter(id__in=ids).transform(attach_translations)
+    for c in qs:
         Collection.index(search.extract(c), bulk=True, id=c.id)
     es.flush_bulk(forced=True)
+
+
+def attach_translations(collections):
+    """Put all translations into a translations dict."""
+    attach_trans_dict(Collection, collections)
 
 
 @task

@@ -166,13 +166,12 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
 
 class SearchBase(amo.tests.ESTestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        super(SearchBase, cls).setUpClass()
-        cls.setUpIndex()
+    def get_results(self, r):
+        """Return pks of add-ons shown on search results page."""
+        return sorted(a.id for a in r.context['pager'].object_list)
 
     def check_sort_links(self, key, title=None, sort_by=None, reverse=True):
-        r = self.client.get(self.url, dict(sort=key))
+        r = self.client.get(urlparams(self.url, sort=key))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         if title:
@@ -183,13 +182,54 @@ class SearchBase(amo.tests.ESTestCase):
             else:
                 eq_(doc('#sorter .selected').text(), title)
         if sort_by:
-            a = r.context['pager'].object_list
-            eq_(list(a), sorted(a, key=lambda x: getattr(x, sort_by),
-                                reverse=reverse))
+            results = r.context['pager'].object_list
+            if sort_by == 'name':
+                expected = sorted(results, key=lambda x: unicode(x.name))
+            else:
+                expected = sorted(results, key=lambda x: getattr(x, sort_by),
+                                  reverse=reverse)
+            eq_(list(results), expected)
+
+    def check_name_results(self, params, expected):
+        r = self.client.get(urlparams(self.url, **params), follow=True)
+        eq_(r.status_code, 200)
+        got = self.get_results(r)
+        eq_(got, expected,
+            'Got: %s. Expected: %s. Parameters: %s' % (got, expected, params))
+
+    def check_appver_platform_ignored(self, expected):
+        # Collection results should not filter on `appver` nor `platform`.
+        permutations = [
+            {},
+            {'appver': amo.FIREFOX.id},
+            {'appver': amo.THUNDERBIRD.id},
+            {'platform': amo.PLATFORM_MAC.id},
+            {'appver': amo.SEAMONKEY.id, 'platform': amo.PLATFORM_WIN.id},
+        ]
+        for p in permutations:
+            self.check_name_results(p, expected)
+
+        # Now ensure we get the same results for Firefox as for Thunderbird.
+        self.url = self.url.replace('firefox', 'thunderbird')
+        self.check_name_results({}, expected)
+
+    def check_heading(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.results-count strong').text(), None)
+
+        r = self.client.get(self.url + '&q=ballin')
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.results-count strong').text(), 'ballin')
 
 
 class TestESSearch(SearchBase):
     fixtures = ['base/apps', 'base/category', 'tags/tags']
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestESSearch, cls).setUpClass()
+        cls.setUpIndex()
 
     def setUp(self):
         self.url = reverse('search.search')
@@ -622,6 +662,11 @@ class TestESSearch(SearchBase):
 class TestPersonaSearch(SearchBase):
     fixtures = ['base/apps']
 
+    @classmethod
+    def setUpClass(cls):
+        super(TestPersonaSearch, cls).setUpClass()
+        cls.setUpIndex()
+
     def setUp(self):
         waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
@@ -664,18 +709,8 @@ class TestPersonaSearch(SearchBase):
         self._generate_personas()
         self.check_sort_links('created', sort_by='created')
 
-    def get_results(self, r):
-        """Return pks of personas shown on search results page."""
-        return sorted(a.id for a in r.context['pager'].object_list)
-
     def test_heading(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.results-count strong').text(), None)
-
-        r = self.client.get(self.url + '&q=ballin')
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.results-count strong').text(), 'ballin')
+        self.check_heading()
 
     def test_results_blank_query(self):
         self._generate_personas()
@@ -684,13 +719,6 @@ class TestPersonaSearch(SearchBase):
         eq_(r.status_code, 200)
         eq_(self.get_results(r), personas_ids)
         eq_(pq(r.content)('.personas-grid li').length, len(personas_ids))
-
-    def check_name_results(self, params, expected):
-        r = self.client.get(urlparams(self.url, **params), follow=True)
-        eq_(r.status_code, 200)
-        got = self.get_results(r)
-        eq_(got, expected,
-            'Got %s. Expected these for %s: %s' % (got, params, expected))
 
     def test_results_name_query(self):
         self._generate_personas()
@@ -755,22 +783,7 @@ class TestPersonaSearch(SearchBase):
 
     def test_results_applications(self):
         self._generate_personas()
-        expected = sorted(p.id for p in self.personas)
-
-        # Persona results should not filter on `appver` nor `platform`.
-        permutations = [
-            {},
-            {'appver': amo.FIREFOX.id},
-            {'appver': amo.THUNDERBIRD.id},
-            {'platform': amo.PLATFORM_MAC.id},
-            {'appver': amo.SEAMONKEY.id, 'platform': amo.PLATFORM_WIN.id},
-        ]
-        for p in permutations:
-            self.check_name_results(p, expected)
-
-        # Now ensure we get the same results for Firefox as for Thunderbird.
-        self.url = self.url.replace('firefox', 'thunderbird')
-        self.check_name_results({}, expected)
+        self.check_appver_platform_ignored(sorted(p.id for p in self.personas))
 
     def test_pagination(self):
         # TODO: Figure out why ES wonks out when we index a plethora of junk.
@@ -792,6 +805,152 @@ class TestPersonaSearch(SearchBase):
         r = self.client.get(self.url + '&page=2', follow=True)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.personas-grid li').length, 1)
+
+
+class TestCollectionSearch(SearchBase):
+
+    @classmethod
+    def setUpClass(cls):
+        # Set up the mapping.
+        super(TestCollectionSearch, cls).setUpClass()
+
+    def setUp(self):
+        waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
+        self.url = urlparams(reverse('search.search'), cat='collections')
+
+    def _generate(self):
+        # Add some public collections.
+        self.collections = []
+        for x in xrange(3):
+            self.collections.append(
+                amo.tests.collection_factory(name='Collection %s' % x))
+
+        # Synchronized, favorites, and unlisted collections should be excluded.
+        for type_ in (amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES):
+            amo.tests.collection_factory(type=type_)
+        amo.tests.collection_factory(listed=False)
+
+        self.refresh()
+
+    def test_legacy_redirect(self):
+        # Ensure `sort=newest` redirects to `sort=created`.
+        r = self.client.get(urlparams(self.url, sort='newest'))
+        self.assertRedirects(r, urlparams(self.url, sort='created'), 301)
+
+    def test_sort_order_default(self):
+        self._generate()
+        self.check_sort_links(None, sort_by='weekly_subscribers')
+
+    def test_sort_order_weekly(self):
+        self._generate()
+        self.check_sort_links('weekly', sort_by='weekly_subscribers')
+
+    def test_sort_order_monthly(self):
+        self._generate()
+        self.check_sort_links('monthly', sort_by='monthly_subscribers')
+
+    def test_sort_order_all(self):
+        self._generate()
+        self.check_sort_links('all', sort_by='subscribers')
+
+    def test_sort_order_rating(self):
+        self._generate()
+        self.check_sort_links('rating', sort_by='rating')
+
+    def test_sort_order_name(self):
+        self._generate()
+        self.check_sort_links('name', sort_by='name', reverse=False)
+
+    def test_sort_order_created(self):
+        self._generate()
+        self.check_sort_links('created', sort_by='created')
+
+    def test_sort_order_updated(self):
+        self._generate()
+        self.check_sort_links('updated', sort_by='modified')
+
+    def test_sort_order_unknown(self):
+        self._generate()
+        self.check_sort_links('xxx')
+
+    def test_heading(self):
+        # One is a lonely number. But that's all we need.
+        amo.tests.collection_factory()
+        self.check_heading()
+
+    def test_results_blank_query(self):
+        self._generate()
+        collection_ids = sorted(p.id for p in self.collections)
+        r = self.client.get(self.url, follow=True)
+        eq_(r.status_code, 200)
+        eq_(self.get_results(r), collection_ids)
+        eq_(pq(r.content)('.primary .item').length, len(collection_ids))
+
+    def test_results_name_query(self):
+        self._generate()
+
+        c1 = self.collections[0]
+        c1.name = 'SeaVans: A Collection of Cars at the Beach'
+        c1.save()
+
+        c2 = self.collections[1]
+        c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
+        c2.save()
+
+        self.refresh()
+
+        # These contain terms that are in every result - so return everything.
+        for term in ('', 'collection',
+                     'seavan: a collection of cars at the beach'):
+            self.check_name_results({}, sorted(p.id for p in self.collections))
+
+        # Garbage search terms should return nothing.
+        for term in ('xxx', 'garbage', '£'):
+            self.check_name_results({'q': term}, [])
+
+        # Try to match 'SeaVans: A Collection of Cars at the Beach'.
+        for term in ('cars', 'beach'):
+            self.check_name_results({'q': term}, [c1.pk])
+
+        # Match 'The Life Aquatic with SeaVan: An Underwater Collection'.
+        for term in ('life aquatic', 'life', 'aquatic', 'underwater', 'under'):
+            self.check_name_results({'q': term}, [c2.pk])
+
+        # Match both results above.
+        for term in ('seavan', 'seavans', 'sea van'):
+            self.check_name_results({'q': term}, sorted([c1.pk, c2.pk]))
+
+    def test_results_popularity(self):
+        collections = [
+            ('Traveler Pack', 2000),
+            ('Tools for Developer', 67),
+            ('Web Developer', 250),
+            ('Web Developer Necessities', 50),
+            ('Web Pro', 200),
+            ('Web Developer Pack', 242),
+        ]
+        for name, subscribers in collections:
+            amo.tests.collection_factory(name=name, subscribers=subscribers)
+        self.refresh()
+
+        # "Web Developer Collection" should be the #1 most relevant result.
+        expected_name, expected_subscribers = collections[2]
+        for sort in ('', 'all'):
+            r = self.client.get(urlparams(self.url, q='web developer',
+                                          sort=sort), follow=True)
+            eq_(r.status_code, 200)
+            results = list(r.context['pager'].object_list)
+            first = results[0]
+            eq_(unicode(first.name), expected_name,
+                'Was not first result for %r. Results: %s' % (sort, results))
+            eq_(first.subscribers, expected_subscribers,
+                'Incorrect subscribers for %r. Got %r. Expected %r.' % (
+                sort, first.subscribers, results))
+
+    def test_results_applications(self):
+        self._generate()
+        self.check_appver_platform_ignored(
+            sorted(c.id for c in self.collections))
 
 
 def test_search_redirects():

@@ -19,6 +19,7 @@ from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import loc, locale_url, urlparams
 from amo.utils import MenuItem, sorted_groupby
+from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_int, version_dict
 from webapps.models import Webapp
 
@@ -205,11 +206,6 @@ def _get_sorts(request, sort):
 def _personas(request):
     """Handle the request for persona searches."""
 
-    if waffle.switch_is_active('replace-sphinx'):
-        fixed = fix_search_query(request.GET)
-        if fixed is not request.GET:
-            return redirect(urlparams(request.path, **fixed), permanent=True)
-
     initial = dict(request.GET.items())
 
     if waffle.switch_is_active('replace-sphinx'):
@@ -231,7 +227,7 @@ def _personas(request):
                    'updated': '-last_updated',
                    'hotness': '-hotness'}
         results = _filter_search(request, qs, form.cleaned_data, filters,
-                                 mapping, [amo.ADDON_PERSONA])
+                                 sorting=mapping, types=[amo.ADDON_PERSONA])
     else:
         # Set the default number of personas per page.
         initial.update(pp=DEFAULT_NUM_PERSONAS)
@@ -260,8 +256,27 @@ def _personas(request):
 
 def _collections(request):
     """Handle the request for collections."""
-    form = SecondarySearchForm(request.GET)
+
+    initial = dict(request.GET.items())
+    # Ignore appver/platform and set default number of collections per page.
+    initial.update(appver=None, platform=None, pp=DEFAULT_NUM_COLLECTIONS)
+    form = SecondarySearchForm(initial)
     form.is_valid()
+
+    if waffle.switch_is_active('replace-sphinx'):
+        qs = Collection.search().filter(listed=True)
+        filters = ['sort']
+        mapping = {'weekly': '-weekly_subscribers',
+                   'monthly': '-monthly_subscribers',
+                   'all': '-subscribers',
+                   'rating': '-rating',
+                   'created': '-created',
+                   'name': 'name_sort',
+                   'updated': '-modified'}
+        results = _filter_search(request, qs, form.cleaned_data, filters,
+                                 sorting=mapping,
+                                 sorting_default='-weekly_subscribers',
+                                 types=amo.COLLECTION_SEARCH_CHOICES)
 
     query = form.cleaned_data.get('q', '')
 
@@ -269,14 +284,18 @@ def _collections(request):
     search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_COLLECTIONS)
     page = form.cleaned_data.get('page') or 1
     search_opts['offset'] = (page - 1) * search_opts['limit']
-    search_opts['sort'] = form.cleaned_data.get('sortby')
+    search_opts['sort'] = form.cleaned_data.get('sort')
 
-    try:
-        results = CollectionsClient().query(query, **search_opts)
-    except SearchError:
-        return jingo.render(request, 'search/down.html', {}, status=503)
+    if not waffle.switch_is_active('replace-sphinx'):
+        # The new hotness calls this `created`. Sphinx still calls it `newest`.
+        if search_opts['sort'] == 'created':
+            search_opts['sort'] = 'newest'
+        try:
+            results = CollectionsClient().query(query, **search_opts)
+        except SearchError:
+            return jingo.render(request, 'search/down.html', {}, status=503)
 
-    pager = amo.utils.paginate(request, results, search_opts['limit'])
+    pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
     c = dict(pager=pager, form=form, query=query, opts=search_opts,
              filter=bandwagon.views.get_filter(request),
              search_placeholder='collections')
@@ -488,7 +507,8 @@ def name_query(q):
     return dict(more, **name_only_query(q))
 
 
-def _filter_search(request, qs, query, filters, sorting, types):
+def _filter_search(request, qs, query, filters, sorting,
+                   sorting_default='-weekly_downloads', types=[]):
     """Filter an ES queryset based on a list of filters."""
     APP = request.APP
     # Intersection of the form fields present and the filters we want to apply.
@@ -530,7 +550,7 @@ def _filter_search(request, qs, query, filters, sorting, types):
     elif not query.get('q'):
         # Sort by weekly downloads if there was no query so we get predictable
         # results.
-        qs = qs.order_by('-weekly_downloads')
+        qs = qs.order_by(sorting_default)
     return qs
 
 
@@ -558,7 +578,7 @@ def app_search(request, tag_name=None, template=None):
                'hotness': '-hotness',
                'price': 'price'}
     qs = _filter_search(request, qs, query, filters, mapping,
-                        [amo.ADDON_WEBAPP])
+                        types=[amo.ADDON_WEBAPP])
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
@@ -592,14 +612,19 @@ def search(request, tag_name=None, template=None):
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
              amo.ADDON_SEARCH, amo.ADDON_LPAPP)
 
-    fixed = fix_search_query(request.GET)
+    category = request.GET.get('cat')
+
+    if category == 'collections':
+        extra_params = {'sort': {'newest': 'created'}}
+    else:
+        extra_params = None
+    fixed = fix_search_query(request.GET, extra_params=extra_params)
     if fixed is not request.GET:
         return redirect(urlparams(request.path, **fixed), permanent=True)
 
     form = ESSearchForm(request.GET or {})
     form.is_valid()  # Let the form try to clean data.
 
-    category = request.GET.get('cat')
     query = form.cleaned_data
     if tag_name:
         query['tag'] = tag_name
@@ -635,7 +660,7 @@ def search(request, tag_name=None, template=None):
                'updated': '-last_updated',
                'hotness': '-hotness',
                'price': 'price'}
-    qs = _filter_search(request, qs, query, filters, mapping, types)
+    qs = _filter_search(request, qs, query, filters, mapping, types=types)
 
     pager = amo.utils.paginate(request, qs)
 
@@ -792,7 +817,7 @@ def tag_sidebar(request, query, facets):
     return rv
 
 
-def fix_search_query(query):
+def fix_search_query(query, extra_params=None):
     rv = dict((smart_str(k), v) for k, v in query.items())
     changed = False
     # Change old keys to new names.
@@ -812,10 +837,13 @@ def fix_search_query(query):
             'popularity': 'downloads',
             'weeklydownloads': 'users',
             'averagerating': 'rating',
+            'sortby': 'sort',
         },
         'platform': dict((str(p.id), p.shortname)
                          for p in amo.PLATFORMS.values())
     }
+    if extra_params:
+        params.update(extra_params)
     for key, fixes in params.items():
         if key in rv and rv[key] in fixes:
             rv[key] = fixes[rv[key]]

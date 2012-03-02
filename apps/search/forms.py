@@ -5,6 +5,7 @@ from django.conf import settings
 from django.forms.util import ErrorDict
 
 from tower import ugettext as _, ugettext_lazy as _lazy
+import waffle
 
 import amo
 from amo import helpers
@@ -25,8 +26,9 @@ collection_sort_by = (
     ('monthly', _lazy(u'Most popular this month')),
     ('all', _lazy(u'Most popular all time')),
     ('rating', _lazy(u'Highest Rated')),
-    ('newest', _lazy(u'Newest')),
+    ('created', _lazy(u'Newest')),
 )
+es_collection_sort_by = collection_sort_by + (('name', _lazy(u'Name')),)
 
 per_page = (20, 50, )
 
@@ -199,10 +201,16 @@ class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
     pp = forms.CharField(widget=forms.HiddenInput, required=False)
-    sortby = forms.ChoiceField(label=_lazy(u'Sort By'),
-                               choices=collection_sort_by,
-                               initial='weekly', required=False)
+    sort = forms.ChoiceField(label=_lazy(u'Sort By'),
+                             choices=collection_sort_by,
+                             initial='weekly', required=False)
     page = forms.IntegerField(widget=forms.HiddenInput, required=False)
+
+    def __init__(self, *args, **kw):
+        super(SecondarySearchForm, self).__init__(*args, **kw)
+        if waffle.switch_is_active('replace-sphinx'):
+            # This adds the "Name" sort option for ES results.
+            self.fields['sort'].choices = es_collection_sort_by
 
     def clean_pp(self):
         d = self.cleaned_data['pp']

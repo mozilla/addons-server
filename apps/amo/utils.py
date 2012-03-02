@@ -1,4 +1,5 @@
 import codecs
+import collections
 import contextlib
 import functools
 import hashlib
@@ -771,3 +772,20 @@ def strip_bom(data):
             data = data[len(bom):]
             break
     return data
+
+
+def attach_trans_dict(model, addons):
+    """Put all translations into a translations dict."""
+    fields = model._meta.translated_fields
+    ids = {}
+    for addon in addons:
+        addon.translations = collections.defaultdict(list)
+        ids.update((getattr(addon, field.attname, None), addon)
+                   for field in fields)
+    ids.pop(None, None)
+    qs = (Translation.objects
+          .filter(id__in=ids, localized_string__isnull=False)
+          .values_list('id', 'locale', 'localized_string'))
+    for id, translations in sorted_groupby(qs, lambda x: x[0]):
+        ids[id].translations[id] = [(locale, string)
+                                    for id, locale, string in translations]

@@ -11,10 +11,9 @@ from PIL import Image
 
 import amo
 from amo.decorators import set_modified_on, write
-from amo.utils import sorted_groupby
+from amo.utils import attach_trans_dict, sorted_groupby
 from market.models import AddonPremium
 from tags.models import Tag
-from translations.models import Translation
 from versions.models import Version
 from . import cron, search  # Pull in tasks from cron.
 from .forms import get_satisfaction
@@ -128,19 +127,7 @@ def attach_categories(addons):
 
 def attach_translations(addons):
     """Put all translations into a translations dict."""
-    fields = Addon._meta.translated_fields
-    ids = {}
-    for addon in addons:
-        addon.translations = collections.defaultdict(list)
-        ids.update((getattr(addon, field.attname, None), addon)
-                   for field in fields)
-    ids.pop(None, None)
-    qs = (Translation.objects
-          .filter(id__in=ids, localized_string__isnull=False)
-          .values_list('id', 'locale', 'localized_string'))
-    for id, translations in sorted_groupby(qs, lambda x: x[0]):
-        ids[id].translations[id] = [(locale, string)
-                                    for id, locale, string in translations]
+    attach_trans_dict(Addon, addons)
 
 
 def attach_tags(addons):
