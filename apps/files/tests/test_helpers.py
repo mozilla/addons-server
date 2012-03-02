@@ -141,6 +141,8 @@ class TestFileHelper(amo.tests.TestCase):
     def test_syntax(self):
         for filename, syntax in [('foo.rdf', 'xml'),
                                  ('foo.xul', 'xml'),
+                                 ('foo.json', 'js'),
+                                 ('foo.jsm', 'js'),
                                  ('foo.bar', 'plain')]:
             eq_(self.viewer.get_syntax(filename), syntax)
 
