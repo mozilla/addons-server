@@ -50,7 +50,10 @@ if not setting:
 
 # Django runserver does that double reload of installed settings, settings
 # setting to zamboni.settings. We don't want to have zamboni on the path.
-if setting.startswith(('zamboni', 'workspace', 'freddo')):
+if setting.startswith(('zamboni',  # typical git clone destination
+                       'workspace',  # Jenkins
+                       'project',  # vagrant VM
+                       'freddo')):
     setting = setting.split('.', 1)[1]
 
 # The average Django user will have DJANGO_SETTINGS_MODULE set to settings
