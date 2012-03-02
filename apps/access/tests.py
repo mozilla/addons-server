@@ -48,6 +48,7 @@ def test_match_rules():
         'Locales:Edit',
         'Locale.de:Edit',
         'Reviews:Edit',
+        'None:None',
         )
 
     for rule in rules:
