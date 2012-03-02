@@ -12,7 +12,14 @@
       <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>
       #}
       {% if request.check_ownership(c, require_owner=False) and condensed %}
-        <a title="{{ _('Edit this Collection') }}" class="widget edit tooltip" href="{{ c.edit_url() }}"></a>
+        <a title="{{ _('Edit this Collection') }}"
+           class="widget edit tooltip condensed" href="{{ c.edit_url() }}"></a>
+      {% endif %}
+      {% if waffle.switch('collection-stats') %}
+        <a href="{{ c.stats_url() }}" title="{{ _('Statistics') }}"
+          class="widget stats{{ ' tooltip' if condensed }}">
+          {{ _('Statistics') if not condensed }}
+        </a>
       {% endif %}
 {% endif %}
 </div>

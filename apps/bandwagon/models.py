@@ -233,6 +233,10 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return reverse('collections.detail.rss',
                        args=[self.author_username, self.slug])
 
+    def stats_url(self):
+        return reverse('collections.stats',
+                       args=[self.author_username, self.slug])
+
     @property
     def author_username(self):
         return self.author.username if self.author else 'anonymous'

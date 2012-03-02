@@ -1,0 +1,9 @@
+{% extends "stats/stats.html" %}
+{# extends "impala/base_shared.html" #}
+{% set page_name = _('Statistics for {0}')|f(collection.name) %}
+{% block title %}
+      {{ page_name }}
+{% endblock %}
+{% block content %}
+  <h1>{{ page_name }}</h1>
+{% endblock %}

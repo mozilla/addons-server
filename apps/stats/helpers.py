@@ -4,6 +4,7 @@ from jingo import env, register
 from tower import ugettext as _
 from access import acl
 from addons.models import Addon
+from bandwagon.models import Collection
 from amo.urlresolvers import reverse
 
 
@@ -22,6 +23,12 @@ def report_menu(context, request, report, obj=None):
             c = {
                 'addon': obj,
                 'has_privs': has_privs
+            }
+            return jinja2.Markup(t.render(c))
+        if isinstance(obj, Collection):
+            t = env.get_template('stats/collection_report_menu.html')
+            c = {
+                'collection': obj,
             }
             return jinja2.Markup(t.render(c))
 

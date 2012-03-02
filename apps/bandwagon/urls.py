@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, url, include
 
 from . import views, feeds
+from stats.views import collection_stats
 
 edit_urls = patterns('',
     url('^$', views.edit, name='collections.edit'),
@@ -25,6 +26,7 @@ detail_urls = patterns('',
     url('^share$', views.share, name='collections.share'),
     url('^format:rss$', feeds.CollectionDetailFeed(),
         name='collections.detail.rss'),
+    url('^statistics', collection_stats, name='collections.stats'),
 )
 
 ajax_urls = patterns('',

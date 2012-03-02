@@ -460,27 +460,13 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
-def collection(request, uuid, format):
-    """
-    Collection data taken from the stats_collections and the
-    stats_addons_collections_counts table.
-    """
-    collection = get_object_or_404(Collection, uuid=uuid)
-    if (not acl.action_allowed(request, 'Admin', 'ViewAnyCollectionStats') and
-        not (request.amo_user and collection.author and
-             collection.author.id == request.amo_user.pk)):
-        return http.HttpResponseForbidden()
-
-    start = date.today() - timedelta(days=365)
-    end = date.today()
-    series = get_series(CollectionCount, id=int(collection.pk),
-                        date__range=(start, end), extra_field='data')
-
-    if format == 'csv':
-        series, fields = csv_fields(series)
-        return render_csv(request, collection, series,
-                          ['date', 'count'] + list(fields))
-    return render_json(request, collection, series)
+def collection_stats(request, username, slug):
+    c = {'name': 'Sample Collection'}
+    view = get_report_view(request)
+    return jingo.render(request, 'stats/collections.html',
+                        {'collection': c,
+                         'view': view,
+                        })
 
 
 def fudge_headers(response, stats):
