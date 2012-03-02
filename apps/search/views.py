@@ -204,6 +204,12 @@ def _get_sorts(request, sort):
 
 def _personas(request):
     """Handle the request for persona searches."""
+
+    if waffle.switch_is_active('replace-sphinx'):
+        fixed = fix_search_query(request.GET)
+        if fixed is not request.GET:
+            return redirect(urlparams(request.path, **fixed), permanent=True)
+
     initial = dict(request.GET.items())
 
     if waffle.switch_is_active('replace-sphinx'):
@@ -217,7 +223,8 @@ def _personas(request):
         qs = Addon.search().filter(status__in=amo.REVIEWED_STATUSES,
                                    is_disabled=False)
         filters = ['sort']
-        mapping = {'users': '-average_daily_users',
+        mapping = {'downloads': '-weekly_downloads',
+                   'users': '-average_daily_users',
                    'rating': '-bayesian_rating',
                    'created': '-created',
                    'name': 'name_sort',
@@ -802,6 +809,7 @@ def fix_search_query(query):
     params = {
         'sort': {
             'newest': 'updated',
+            'popularity': 'downloads',
             'weeklydownloads': 'users',
             'averagerating': 'rating',
         },

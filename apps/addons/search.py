@@ -46,6 +46,9 @@ def extract(addon):
         d['appversion'][app.id] = dict(min=min_, max=max_)
     d['has_version'] = addon._current_version != None
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
+    if addon.type == amo.ADDON_PERSONA:
+        # This would otherwise get attached when by the transformer.
+        d['weekly_downloads'] = addon.persona.popularity
     # Boost by the number of users on a logarithmic scale. The maximum boost
     # (11,000,000 users for adblock) is about 5x.
     d['_boost'] = addon.average_daily_users ** .2

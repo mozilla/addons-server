@@ -626,6 +626,7 @@ class TestPersonaSearch(SearchBase):
         waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
 
+    def _generate_personas(self):
         # Add some public personas.
         self.personas = []
         for status in amo.REVIEWED_STATUSES:
@@ -640,21 +641,27 @@ class TestPersonaSearch(SearchBase):
         amo.tests.addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
 
         # NOTE: There are also some add-ons in `setUpIndex` for good measure.
+
         self.refresh()
 
     def test_sort_order_default(self):
+        self._generate_personas()
         self.check_sort_links(None, sort_by='weekly_downloads')
 
     def test_sort_order_unknown(self):
+        self._generate_personas()
         self.check_sort_links('xxx')
 
     def test_sort_order_users(self):
+        self._generate_personas()
         self.check_sort_links('users', sort_by='average_daily_users')
 
     def test_sort_order_rating(self):
+        self._generate_personas()
         self.check_sort_links('rating', sort_by='bayesian_rating')
 
     def test_sort_order_newest(self):
+        self._generate_personas()
         self.check_sort_links('created', sort_by='created')
 
     def get_results(self, r):
@@ -671,10 +678,8 @@ class TestPersonaSearch(SearchBase):
         eq_(pq(r.content)('.results-count strong').text(), 'ballin')
 
     def test_results_blank_query(self):
-        # Not to be confused with PersonaID.
-        personas_ids = sorted(p.id for p in self.personas)
-
-        # Personas should show only personas.
+        self._generate_personas()
+        personas_ids = sorted(p.id for p in self.personas)  # Not PersonaID ;)
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(self.get_results(r), personas_ids)
@@ -688,6 +693,8 @@ class TestPersonaSearch(SearchBase):
             'Got %s. Expected these for %s: %s' % (got, params, expected))
 
     def test_results_name_query(self):
+        self._generate_personas()
+
         p1 = self.personas[0]
         p1.name = 'Harry Potter'
         p1.save()
@@ -711,6 +718,40 @@ class TestPersonaSearch(SearchBase):
         # Try to match 'The Life Aquatic with SeaVan'.
         for term in ('life', 'aquatic', 'seavan', 'sea van'):
             self.check_name_results({'q': term}, [p2.pk])
+
+    def test_results_popularity(self):
+        personas = [
+            ('Harry Potter', 2000),
+            ('Japanese Koi Tattoo', 67),
+            ('Japanese Tattoo', 250),
+            ('Japanese Tattoo boop', 50),
+            ('Japanese Tattoo ballin', 200),
+            ('The Japanese Tattooed Girl', 242),
+        ]
+        for name, popularity in personas:
+            amo.tests.addon_factory(name=name, type=amo.ADDON_PERSONA,
+                                    popularity=popularity)
+        self.refresh()
+
+        # Japanese Tattoo should be the #1 most relevant result. Obviously.
+        expected_name, expected_popularity = personas[2]
+        for sort in ('downloads', 'popularity', 'users'):
+            r = self.client.get(urlparams(self.url, q='japanese tattoo',
+                                          sort=sort), follow=True)
+            eq_(r.status_code, 200)
+            results = list(r.context['pager'].object_list)
+            first = results[0]
+            eq_(unicode(first.name), expected_name,
+                'Was not first result for %r. Results: %s' % (sort, results))
+            eq_(first.persona.popularity, expected_popularity,
+                'Incorrect popularity for %r. Got %r. Expected %r.' % (
+                sort, first.persona.popularity, results))
+            eq_(first.average_daily_users, expected_popularity,
+                'Incorrect users for %r. Got %r. Expected %r.' % (
+                sort, first.average_daily_users, results))
+            eq_(first.weekly_downloads, expected_popularity,
+                'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
+                sort, first.weekly_downloads, results))
 
     def test_results_applications(self):
         expected = sorted(p.id for p in self.personas)
