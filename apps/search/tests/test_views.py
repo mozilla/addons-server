@@ -754,6 +754,7 @@ class TestPersonaSearch(SearchBase):
                 sort, first.weekly_downloads, results))
 
     def test_results_applications(self):
+        self._generate_personas()
         expected = sorted(p.id for p in self.personas)
 
         # Persona results should not filter on `appver` nor `platform`.
