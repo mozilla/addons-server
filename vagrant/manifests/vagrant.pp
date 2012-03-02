@@ -31,9 +31,11 @@ class dev {
         # redis: before => Class[zamboni];
         # elasticsearch: before => Class[zamboni];
         # zamboni: before => Class[migrate];
-        zamboni_plus: ;
         # migrate: before => Class[custom];
+        init: before => Class[zamboni_plus];
+        zamboni_plus: before => Class[custom];
         custom: ;
+        # On startup, bin/start.sh runs which does the db migrations
     }
 }
 
