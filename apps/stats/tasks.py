@@ -14,7 +14,9 @@ from stats.models import Contribution
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
-from .models import UpdateCount, DownloadCount, AddonCollectionCount
+from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
+                     DownloadCount, UpdateCount)
+
 from . import search
 
 log = commonware.log.getLogger('z.task')
@@ -219,4 +221,26 @@ def index_download_counts(ids, **kw):
         es.flush_bulk(forced=True)
     except Exception, exc:
         index_download_counts.retry(args=[ids], exc=exc)
+        raise
+
+
+def index_collection_counts(ids, **kw):
+    es = elasticutils.get_es()
+    qs = CollectionCount.objects.filter(id__in=ids)
+    if qs:
+        log.info('Indexing %s addon collection counts: %s'
+                 % (len(qs), qs[0].date))
+    try:
+        for collection_count in qs:
+            collection = collection_count.collection_id
+            key = '%s-%s' % (collection, collection_count.date)
+            filters = dict(collection=collection,
+                           date=collection_count.date)
+            data = search.extract_addon_collection(collection_count,
+                            AddonCollectionCount.objects.filter(**filters),
+                            CollectionStats.objects.filter(**filters))
+            CollectionCount.index(data, bulk=True, id=key)
+        es.flush_bulk(forced=True)
+    except Exception, exc:
+        index_collection_counts.retry(args=[ids], exc=exc)
         raise

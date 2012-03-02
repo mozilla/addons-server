@@ -1,0 +1,210 @@
+diff --git a/apps/stats/management/commands/index_stats.py b/apps/stats/management/commands/index_stats.py
+index dd79d17..f63c879 100644
+--- a/apps/stats/management/commands/index_stats.py
++++ b/apps/stats/management/commands/index_stats.py
+@@ -8,8 +8,9 @@
+ from celery.task.sets import TaskSet
+
+ from amo.utils import chunked
+-from stats.models import UpdateCount, DownloadCount
+-from stats.tasks import index_update_counts, index_download_counts
++from stats.models import CollectionCount, UpdateCount, DownloadCount
++from stats.tasks import (index_collection_counts, index_download_counts,
++                         index_update_counts)
+
+ log = logging.getLogger('z.stats')
+
+@@ -54,6 +55,11 @@ def handle(self, *args, **kw):
+         queries = [(UpdateCount.objects, index_update_counts),
+                    (DownloadCount.objects, index_download_counts)]
+
++        if not addons:
++            # We can't filter this by addons, so if that is specified,
++            # we'll skip that.
++            queries.append((CollectionCount.objects, index_collection_counts))
++
+         for qs, task in queries:
+             qs = qs.order_by('-date').values_list('id', flat=True)
+             if addons:
+@@ -72,6 +78,10 @@ def handle(self, *args, **kw):
+                 limits = (qs.model.objects.filter(date__isnull=False)
+                           .extra(where=['date <> "0000-00-00"'])
+                           .aggregate(min=Min('date'), max=Max('date')))
++                # If there isn't any data at all, skip over.
++                if not (limits['max'] or limits['min']):
++                    continue
++
+                 num_days = (limits['max'] - limits['min']).days
+                 today = date.today()
+                 for start in range(0, num_days, STEP):
+diff --git a/apps/stats/models.py b/apps/stats/models.py
+index c023046..15b6e9a 100644
+--- a/apps/stats/models.py
++++ b/apps/stats/models.py
+@@ -31,7 +31,7 @@ class Meta:
+         db_table = 'stats_addons_collections_counts'
+
+
+-class CollectionCount(models.Model):
++class CollectionCount(SearchMixin, models.Model):
+     collection = models.ForeignKey('bandwagon.Collection')
+     count = models.PositiveIntegerField()
+     date = models.DateField()
+diff --git a/apps/stats/search.py b/apps/stats/search.py
+index 44f5d82..a94cfe9 100644
+--- a/apps/stats/search.py
++++ b/apps/stats/search.py
+@@ -81,6 +81,20 @@ def extract_download_count(dl):
+             'id': dl.id}
+
+
++def extract_addon_collection(collection_count, addon_collections,
++                             collection_stats):
++    addon_collection_count = sum([c.count for c in addon_collections])
++    collection_stats = dict([[c.name, c.count] for c in collection_stats])
++    return {'date': collection_count.date,
++            'count': collection_count.count,
++            'data': {
++                'downloads': addon_collection_count,
++                'votes_up': collection_stats.get('new_votes_up', 0),
++                'votes_down': collection_stats.get('new_votes_down', 0),
++                'subscribers': collection_stats.get('new_subscribers', 0),
++            }}
++
++
+ def get_all_app_versions():
+     vals = AppVersion.objects.values_list('application', 'version')
+     rv = collections.defaultdict(list)
+diff --git a/apps/stats/tasks.py b/apps/stats/tasks.py
+index 7614c3c..5cd9a27 100644
+--- a/apps/stats/tasks.py
++++ b/apps/stats/tasks.py
+@@ -14,7 +14,9 @@
+ from reviews.models import Review
+ from users.models import UserProfile
+ from versions.models import Version
+-from .models import UpdateCount, DownloadCount, AddonCollectionCount
++from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
++                     DownloadCount, UpdateCount)
++
+ from . import search
+
+ log = commonware.log.getLogger('z.task')
+@@ -220,3 +222,25 @@ def index_download_counts(ids, **kw):
+     except Exception, exc:
+         index_download_counts.retry(args=[ids], exc=exc)
+         raise
++
++
++def index_collection_counts(ids, **kw):
++    es = elasticutils.get_es()
++    qs = CollectionCount.objects.filter(id__in=ids)
++    if qs:
++        log.info('Indexing %s addon collection counts: %s'
++                 % (len(qs), qs[0].date))
++    try:
++        for collection_count in qs:
++            collection = collection_count.collection_id
++            key = '%s-%s' % (collection, collection_count.date)
++            filters = dict(collection=collection,
++                           date=collection_count.date)
++            data = search.extract_addon_collection(collection_count,
++                            AddonCollectionCount.objects.filter(**filters),
++                            CollectionStats.objects.filter(**filters))
++            CollectionCount.index(data, bulk=True, id=key)
++        es.flush_bulk(forced=True)
++    except Exception, exc:
++        index_collection_counts.retry(args=[ids], exc=exc)
++        raise
+diff --git a/apps/stats/urls.py b/apps/stats/urls.py
+index 88c0dd9..d11a4a2 100644
+--- a/apps/stats/urls.py
++++ b/apps/stats/urls.py
+@@ -13,7 +13,9 @@
+ urlpatterns = patterns('',
+     url('^site%s/%s$' % (format_re, group_date_re),
+         views.site, name='stats.site'),
+-    url('^site-%s' % series_re, views.site, name='stats.site.new')
++    url('^site-%s' % series_re, views.site, name='stats.site.new'),
++    url('^collection/(?P<uuid>[\w-]+).%s$' % (format_re),
++        views.collection, name='stats.collection')
+ )
+
+ # Addon specific stats.
+diff --git a/apps/stats/views.py b/apps/stats/views.py
+index 4f3978f..782569c 100644
+--- a/apps/stats/views.py
++++ b/apps/stats/views.py
+@@ -13,6 +13,7 @@
+ from django.utils.datastructures import SortedDict
+ from django.core.serializers.json import DjangoJSONEncoder
+ from django.core.exceptions import PermissionDenied
++from django.shortcuts import get_object_or_404
+
+ import jingo
+ from product_details import product_details
+@@ -20,6 +21,7 @@
+ from access import acl
+ from addons.decorators import addon_view, addon_view_factory
+ from addons.models import Addon
++from bandwagon.models import Collection
+ from zadmin.models import SiteEvent
+
+ import amo
+@@ -28,8 +30,7 @@
+ from amo.utils import memoize
+
+ from .decorators import allow_cross_site_request
+-from .models import DownloadCount, UpdateCount, Contribution
+-
++from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
+
+ SERIES_GROUPS = ('day', 'week', 'month')
+ SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
+@@ -448,6 +449,29 @@ def site(request, format, group, start=None, end=None):
+     return render_json(request, None, series)
+
+
++def collection(request, uuid, format):
++    """
++    Collection data taken from the stats_collections and the
++    stats_addons_collections_counts table.
++    """
++    collection = get_object_or_404(Collection, uuid=uuid)
++    if (not acl.action_allowed(request, 'Admin', 'ViewAnyCollectionStats') and
++        not (request.amo_user and collection.author and
++             collection.author.id == request.amo_user.pk)):
++        return http.HttpResponseForbidden()
++
++    start = date.today() - timedelta(days=365)
++    end = date.today()
++    series = get_series(CollectionCount, id=int(collection.pk),
++                        date__range=(start, end), extra_field='data')
++
++    if format == 'csv':
++        series, fields = csv_fields(series)
++        return render_csv(request, collection, series,
++                          ['date', 'count'] + list(fields))
++    return render_json(request, collection, series)
++
++
+ def fudge_headers(response, stats):
+     """Alter cache headers. Don't cache content where data could be missing."""
+     if not stats:
+diff --git a/lib/settings_base.py b/lib/settings_base.py
+index 402873c..49c293a 100644
+--- a/lib/settings_base.py
++++ b/lib/settings_base.py
+@@ -1281,7 +1281,8 @@ def read_only_mode(env):
+ ES_HOSTS = ['127.0.0.1:9200']
+ ES_INDEXES = {'default': 'amo',
+               'update_counts': 'amo_stats',
+-              'download_counts': 'amo_stats'}
++              'download_counts': 'amo_stats',
++              'stats_collections_counts': 'amo_stats'}
+ ES_TIMEOUT = 5
+
+ # Default AMO user id to use for tasks.
+--
+1.7.5.4
+

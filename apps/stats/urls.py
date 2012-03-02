@@ -12,7 +12,9 @@ series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 urlpatterns = patterns('',
     url('^site%s/%s$' % (format_re, group_date_re),
         views.site, name='stats.site'),
-    url('^site-%s' % series_re, views.site, name='stats.site.new')
+    url('^site-%s' % series_re, views.site, name='stats.site.new'),
+    url('^collection/(?P<uuid>[\w-]+).%s$' % (format_re),
+        views.collection, name='stats.collection')
 )
 
 # Addon specific stats.
