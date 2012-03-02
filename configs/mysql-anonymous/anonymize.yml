@@ -107,3 +107,19 @@ database:
             random_email: email
         users_preapproval:
             nullify: paypal_key
+        addon_payment_data:
+            random_email: email
+            nullify:
+                - first_name
+                - last_name
+                - full_name
+                - business_name
+                - country
+                - payerID
+                - date_of_birth
+                - address_one
+                - address_two
+                - post_code
+                - city
+                - state
+                - phone
