@@ -15,7 +15,11 @@
 
 {% block title %}
       {# L10n: {0} is an add-on name, {1} is an app name (like Firefox) #}
-      {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|f(addon.name, request.APP.pretty) }}
+      {% if addon %}
+        {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|f(addon.name, request.APP.pretty) }}
+      {% else %}
+        {{ _('Statistics Dashboard :: Add-ons for {0}')|f(request.APP.pretty) }}
+      {% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -60,15 +64,25 @@
           <a id="custom-date-range" href="#">{{ _('Custom...') }}</a></li>
     </ul>
   </div>
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (addon.get_url_path(), addon.name),
-                         (link, _('Statistics'))]) }}
+  {% if addon %}
+    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                           (addon.get_url_path(), addon.name),
+                           (link, _('Statistics'))]) }}
+  {% else %}
+    {{ impala_breadcrumbs([(link, _('Statistics'))]) }}
+  {% endif %}
   {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
   <hgroup>
-    <h1 class="addon"{{ addon.name|locale_html }}>
-      {# L10n: {0} is an add-on name #}
-      {{ _('Statistics for {0}')|f(addon.name) }}
-    </h1>
+    {% if addon %}
+      <h1 class="addon"{{ addon.name|locale_html }}>
+        {# L10n: {0} is an add-on name #}
+        {{ _('Statistics for {0}')|f(addon.name) }}
+      </h1>
+    {% else %}
+      <h1>
+        {{ _('Statistics Dashboard') }}
+      </h1>
+    {% endif %}
   </hgroup>
 </header>
 {% endblock %}
@@ -82,9 +96,11 @@
     <pre id="dbgout"></pre>
   </div>
   <div class="primary statistics"
-    data-min-date="{{ addon.created|isotime }}"
+    {% if addon %}
+      data-min-date="{{ addon.created|isotime }}"
+      data-addon_id="{{ addon.id }}"
+    {% endif %}
     data-report="{{ report }}"
-    data-addon_id="{{ addon.id }}"
     {% if view.last %}
     data-range="{{ view.last }}"
     {% endif %}
@@ -130,19 +146,21 @@
         </div>
       </div>
     {% endblock %}
-    <div id="stats-permissions">
-      {% if addon.public_stats %}
-        <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
-        {% if request.check_ownership(addon) %}
-          <p>{{ _('Contribution stats are currently <b>private</b>.') }}</p>
+    {% if addon %}
+      <div id="stats-permissions">
+        {% if addon.public_stats %}
+          <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
+          {% if request.check_ownership(addon) %}
+            <p>{{ _('Contribution stats are currently <b>private</b>.') }}</p>
+          {% endif %}
+        {% else %}
+          <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
         {% endif %}
-      {% else %}
-        <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
-      {% endif %}
-      {% if request.check_ownership(addon) %}
-        <p><a href="{{ addon.get_dev_url() }}#edit-addon-technical">{{ _('Change settings.') }}</a></p>
-      {% endif %}
-    </div>
+        {% if request.check_ownership(addon) %}
+          <p><a href="{{ addon.get_dev_url() }}#edit-addon-technical">{{ _('Change settings.') }}</a></p>
+        {% endif %}
+      </div>
+    {% endif %}
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">
         <form id="fieldMenu">
