@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+import datetime
 
 from django.core.management import call_command
 
@@ -105,12 +105,12 @@ class TestIndexLatest(amo.tests.ESTestCase):
     es = True
 
     def test_index_latest(self):
-        latest = date.today() - timedelta(days=5)
+        latest = datetime.date.today() - datetime.timedelta(days=5)
         UpdateCount.index({'date': latest})
         self.refresh('update_counts')
 
         start = latest.strftime('%Y-%m-%d')
-        finish = date.today().strftime('%Y-%m-%d')
+        finish = datetime.date.today().strftime('%Y-%m-%d')
         with mock.patch('stats.cron.call_command') as call:
             cron.index_latest_stats()
             call.assert_called_with('index_stats', addons=None,

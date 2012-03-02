@@ -249,15 +249,26 @@ def check_stats_permission(request, addon, for_contributions=False):
 
     Raises PermissionDenied if user is not allowed.
     """
-    if for_contributions or not addon.public_stats:
-        # only authenticated admins and authors
-        if (request.user.is_authenticated() and (
-            acl.action_allowed(request, 'Stats', 'View') or
-            addon.has_author(request.amo_user))):
-            return
-    elif addon.public_stats:
-        # non-contributions, public: everybody can view
+    # If public, non-contributions: everybody can view.
+    if addon.public_stats and not for_contributions:
         return
+
+    # Everything else requires an authenticated user.
+    if not request.user.is_authenticated():
+        raise PermissionDenied
+
+    if not for_contributions:
+        # Only authors and Stats Viewers allowed.
+        if (addon.has_author(request.amo_user) or
+            acl.action_allowed(request, 'Stats', 'View')):
+            return
+
+    else:  # For contribution stats.
+        # Only authors and Contribution Stats Viewers.
+        if (addon.has_author(request.amo_user) or
+            acl.action_allowed(request, 'ContributionStats', 'View')):
+            return
+
     raise PermissionDenied
 
 

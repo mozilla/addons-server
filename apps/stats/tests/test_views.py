@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
 import datetime
-from datetime import date, timedelta
 from decimal import Decimal
 import json
 
@@ -38,8 +37,11 @@ class StatsTest(amo.tests.ESTestCase):
 
     def get_view_response(self, view, **kwargs):
         view_args = self.url_args.copy()
+        head = kwargs.pop('head', False)
         view_args.update(kwargs)
         url = reverse(view, kwargs=view_args)
+        if head:
+            return self.client.head(url, follow=True)
         return self.client.get(url, follow=True)
 
     def views_gen(self, **kwargs):
@@ -54,13 +56,13 @@ class StatsTest(amo.tests.ESTestCase):
     def public_views_gen(self, **kwargs):
         # all views are potentially public, except for contributions
         for view, args in self.views_gen(**kwargs):
-            if view.find('stats.contributions') != 0:
+            if not view.startswith('stats.contributions'):
                 yield (view, args)
 
     def private_views_gen(self, **kwargs):
         # only contributions views are always private
         for view, args in self.views_gen(**kwargs):
-            if view.find('stats.contributions') == 0:
+            if view.startswith('stats.contributions'):
                 yield (view, args)
 
 
@@ -82,46 +84,80 @@ class ESStatsTest(StatsTest):
 class TestSeriesSecurity(ESStatsTest):
     """Tests to make sure all restricted data remains restricted."""
 
-    def test_private_addon(self):
-        """Ensure 403 for all series of an addon with private stats."""
-        # First as a logged in user with no special permissions
-        self.login_as_visitor()
-        for view, kwargs in self.views_gen(format='json'):
-            response = self.get_view_response(view, **kwargs)
-            eq_(response.status_code, 403,
-                'unexpected http status for %s' % view)
+    def _check_it(self, views, status):
+        for view, kwargs in views:
+            response = self.get_view_response(view, head=True, **kwargs)
+            eq_(response.status_code, status,
+                'unexpected http status for %s. got %s. expected %s' % (
+                    view, response.status_code, status))
 
-        # Test view when user added to appropriate group.
+    def test_private_addon_no_groups(self):
+        # Logged in but no groups
+        self.login_as_visitor()
+        self._check_it(self.views_gen(format='json'), 403)
+
+    def test_private_addon_stats_group(self):
+        # Logged in with stats group.
         user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
         group = Group.objects.create(name='Stats', rules='Stats:View')
         GroupUser.objects.create(user=user, group=group)
-        for view, kwargs in self.views_gen(format='json'):
-            response = self.get_view_response(view, **kwargs)
-            eq_(response.status_code, 200,
-                'unexpected http status for %s' % view)
-
-        # Again as an unauthenticated user
-        self.client.logout()
-        for view, kwargs in self.views_gen(format='json'):
-            response = self.get_view_response(view, **kwargs)
-            eq_(response.status_code, 403,
-                'unexpected http status for %s' % view)
-
-    def test_public_addon(self):
-        """Ensure 403 for sensitive series of an addon with public stats."""
-        # First as a logged in user with no special permissions
         self.login_as_visitor()
-        for view, kwargs in self.private_views_gen(addon_id=5, format='json'):
-            response = self.get_view_response(view, **kwargs)
-            eq_(response.status_code, 403,
-                'unexpected http status for %s' % view)
 
-        # Again as an unauthenticated user
+        self._check_it(self.public_views_gen(format='json'), 200)
+        self._check_it(self.private_views_gen(format='json'), 403)
+
+    def test_private_addon_contrib_stats_group(self):
+        # Logged in with stats and contrib stats group.
+        user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
+        group1 = Group.objects.create(name='Stats', rules='Stats:View')
+        GroupUser.objects.create(user=user, group=group1)
+        group2 = Group.objects.create(name='Contribution Stats',
+                                      rules='ContributionStats:View')
+        GroupUser.objects.create(user=user, group=group2)
+        self.login_as_visitor()
+
+        self._check_it(self.public_views_gen(format='json'), 200)
+        self._check_it(self.private_views_gen(format='json'), 200)
+
+    def test_private_addon_anonymous(self):
+        # Not logged in
         self.client.logout()
-        for view, kwargs in self.private_views_gen(addon_id=5, format='json'):
-            response = self.get_view_response(view, **kwargs)
-            eq_(response.status_code, 403,
-                'unexpected http status for %s' % view)
+        self._check_it(self.views_gen(format='json'), 403)
+
+    def test_public_addon_no_groups(self):
+        # Logged in but no groups
+        self.login_as_visitor()
+        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
+        self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
+
+    def test_public_addon_stats_group(self):
+        # Logged in with stats group.
+        user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
+        group = Group.objects.create(name='Stats', rules='Stats:View')
+        GroupUser.objects.create(user=user, group=group)
+        self.login_as_visitor()
+
+        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
+        self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
+
+    def test_public_addon_contrib_stats_group(self):
+        # Logged in with stats and contrib stats group.
+        user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
+        group1 = Group.objects.create(name='Stats', rules='Stats:View')
+        GroupUser.objects.create(user=user, group=group1)
+        group2 = Group.objects.create(name='Contribution Stats',
+                                      rules='ContributionStats:View')
+        GroupUser.objects.create(user=user, group=group2)
+        self.login_as_visitor()
+
+        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
+        self._check_it(self.private_views_gen(addon_id=5, format='json'), 200)
+
+    def test_public_addon_anonymous(self):
+        # Not logged in
+        self.client.logout()
+        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
+        self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
 
 
 class _TestCSVs(StatsTest, amo.tests.TestCase):
@@ -253,12 +289,12 @@ class _TestCSVs(StatsTest, amo.tests.TestCase):
     def test_no_cache(self):
         """Test that the csv or json is not caching, due to lack of data."""
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
-        response = self.get_view_response('stats.versions_series',
+        response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='csv')
         eq_(response["cache-control"], 'max-age=0')
 
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
-        response = self.get_view_response('stats.versions_series',
+        response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='json')
         eq_(response["cache-control"], 'max-age=0')
 
@@ -278,7 +314,7 @@ class TestCacheControl(StatsTest, amo.tests.TestCase):
     """Tests we set cache control headers"""
 
     def _test_cache_control(self):
-        response = self.get_view_response('stats.downloads_series',
+        response = self.get_view_response('stats.downloads_series', head=True,
                                           group='month', format='json')
         assert response.get('cache-control', '').startswith('max-age='), (
             'Bad or no cache-control: %r' % response.get('cache-control', ''))
@@ -402,7 +438,7 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_usage_by_os_csv(self):
-        r = self.get_view_response('stats.os_series', group='day',
+        r = self.get_view_response('stats.os_series', head=True, group='day',
                                    format='csv')
         eq_(r.status_code, 200)
 
@@ -720,8 +756,8 @@ class TestSite(amo.tests.TestCase):
 
     def tests_period_day(self, _site_query):
         _site_query.return_value = ['.', '.']
-        start = (date.today() - timedelta(days=3))
-        end = date.today()
+        start = (datetime.date.today() - datetime.timedelta(days=3))
+        end = datetime.date.today()
         self.client.get(reverse('stats.site.new',
                         args=['day', start.strftime('%Y%m%d'),
                               end.strftime('%Y%m%d'), 'json']))
@@ -742,5 +778,6 @@ class TestSite(amo.tests.TestCase):
     def tests_no_date(self, _site_query):
         _site_query.return_value = ['.', '.']
         self.client.get(reverse('stats.site', args=['json', 'date']))
-        eq_(_site_query.call_args[0][1], date.today() - timedelta(days=365))
-        eq_(_site_query.call_args[0][2], date.today())
+        eq_(_site_query.call_args[0][1],
+            datetime.date.today() - datetime.timedelta(days=365))
+        eq_(_site_query.call_args[0][2], datetime.date.today())
