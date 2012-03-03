@@ -10,7 +10,7 @@ series_re = '%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 
 urlpatterns = patterns('',
-    url('^$', views.dashboard, name='stats.dashboard'),
+    # url('^$', views.dashboard, name='stats.dashboard'),
     url('^site%s/%s$' % (format_re, group_date_re),
         views.site, name='stats.site'),
     url('^site-%s' % series_re, views.site, name='stats.site.new'),
