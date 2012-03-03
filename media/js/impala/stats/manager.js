@@ -34,7 +34,9 @@ z.StatsManager = (function() {
         "sources": true,
         "versions": true,
         "statuses": true,
-        "overview": true
+        "overview": true,
+        "site": true,
+        "fake": true
     };
 
     // is a metric an average or a sum?

@@ -402,6 +402,33 @@ def contributions_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
+@json_view
+def fake_collection_stats(request, group, start, end, format):
+    from time import strftime
+    from math import sin, floor
+    start, end = check_series_params_or_404(group, start, end, format)
+    faked = []
+    val = 0
+    for single_date in daterange(start, end):
+        isodate = strftime("%Y-%m-%d", single_date.timetuple())
+        faked.append({
+         'date': isodate,
+         'count': floor(200+50*sin(val+1)),
+         'data': {
+            'downloads': floor(200+50*sin(2*val+2)),
+            'votes_up': floor(200+50*sin(3*val+3)),
+            'votes_down': floor(200+50*sin(4*val+4)),
+            'subscribers': floor(200+50*sin(5*val+5)),
+        }})
+        val += .01
+    return faked
+
+
+def daterange(start_date, end_date):
+    for n in range((end_date - start_date).days):
+        yield start_date + timedelta(n)
+
+
 @memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end):
     # Cached lookup of the keys and the SQL.

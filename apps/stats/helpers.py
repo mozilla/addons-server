@@ -17,7 +17,7 @@ def report_menu(context, request, report, obj=None):
             has_privs = False
             if (request.user.is_authenticated() and (
                 acl.action_allowed(request, 'Stats', 'View') or
-                addon.has_author(request.amo_user))):
+                obj.has_author(request.amo_user))):
                 has_privs = True
             t = env.get_template('stats/addon_report_menu.html')
             c = {
