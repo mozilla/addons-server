@@ -1779,13 +1779,17 @@ class TestEmailDevs(amo.tests.TestCase):
         ad = Addon.objects.get(pk=3615)
         ad.eula = 'Accept this license'
         ad.save()
+        self.addon = ad
 
-    def post(self, **data):
-        return self.client.post(reverse('zadmin.email_devs'), data)
+    def post(self, recipients='eula', subject='subject', message='msg',
+             preview_only=False):
+        return self.client.post(reverse('zadmin.email_devs'),
+                                dict(recipients=recipients, subject=subject,
+                                     message=message,
+                                     preview_only=preview_only))
 
     def test_preview(self):
-        res = self.post(recipients='eula', subject='about eulas',
-                        message='message about eulas', preview_only=True)
+        res = self.post(preview_only=True)
         self.assertNoFormErrors(res)
         preview = EmailPreviewTopic(topic='email-devs')
         eq_([e.recipient_list for e in preview.filter()], ['del@icio.us'])
@@ -1794,8 +1798,7 @@ class TestEmailDevs(amo.tests.TestCase):
     def test_actual(self):
         subject = 'about eulas'
         message = 'message about eulas'
-        res = self.post(recipients='eula', subject=subject, message=message,
-                        preview_only=False)
+        res = self.post(subject=subject, message=message)
         self.assertNoFormErrors(res)
         self.assertRedirects(res, reverse('zadmin.email_devs'))
         eq_(len(mail.outbox), 1)
@@ -1805,8 +1808,13 @@ class TestEmailDevs(amo.tests.TestCase):
         eq_(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
 
     def test_only_eulas(self):
-        Addon.objects.get(pk=3615).update(eula=None)
-        res = self.post(recipients='eula', subject='subject', message='msg',
-                        preview_only=False)
+        self.addon.update(eula=None)
+        res = self.post()
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+
+    def test_ignore_deleted(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        res = self.post()
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)

@@ -585,8 +585,10 @@ def email_devs(request):
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
         if data['recipients'] == 'eula':
+            listed = amo.LISTED_STATUSES
             qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
-                                                     amo.AUTHOR_ROLE_OWNER))
+                                                     amo.AUTHOR_ROLE_OWNER),
+                                           addon__status__in=listed)
                                    .exclude(addon__eula=None)
                                    .exclude(user__email=None)
                                    .distinct(['user__email']))
