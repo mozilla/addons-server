@@ -81,20 +81,6 @@ def extract_download_count(dl):
             'id': dl.id}
 
 
-def extract_addon_collection(collection_count, addon_collections,
-                             collection_stats):
-    addon_collection_count = sum([c.count for c in addon_collections])
-    collection_stats = dict([[c.name, c.count] for c in collection_stats])
-    return {'date': collection_count.date,
-            'count': collection_count.count,
-            'data': {
-                'downloads': addon_collection_count,
-                'votes_up': collection_stats.get('new_votes_up', 0),
-                'votes_down': collection_stats.get('new_votes_down', 0),
-                'subscribers': collection_stats.get('new_subscribers', 0),
-            }}
-
-
 def get_all_app_versions():
     vals = AppVersion.objects.values_list('application', 'version')
     rv = collections.defaultdict(list)

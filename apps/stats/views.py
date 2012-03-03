@@ -13,7 +13,6 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
 
 import jingo
 from product_details import product_details
@@ -21,7 +20,6 @@ from product_details import product_details
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
-from bandwagon.models import Collection
 from zadmin.models import SiteEvent
 
 import amo
@@ -30,7 +28,8 @@ from amo.urlresolvers import reverse
 from amo.utils import memoize
 
 from .decorators import allow_cross_site_request
-from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
+from .models import DownloadCount, UpdateCount, Contribution
+
 
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
