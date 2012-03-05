@@ -31,7 +31,7 @@ class AddonCollectionCount(models.Model):
         db_table = 'stats_addons_collections_counts'
 
 
-class CollectionCount(models.Model):
+class CollectionCount(SearchMixin, models.Model):
     collection = models.ForeignKey('bandwagon.Collection')
     count = models.PositiveIntegerField()
     date = models.DateField()

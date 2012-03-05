@@ -1,7 +1,11 @@
 import collections
 
+import elasticutils
+import pyes.exceptions as pyes
+
 import amo
 from applications.models import AppVersion
+from stats.models import CollectionCount, DownloadCount, UpdateCount
 
 
 def es_dict(items):
@@ -24,6 +28,8 @@ def es_dict(items):
  'apps': {amo.APP.guid: [{'k': app version, 'v': count}}]
  'status': [{'k': status, 'v': count}
 """
+
+
 def extract_update_count(update, all_apps=None):
     doc = {'addon': update.addon_id,
            'date': update.date,
@@ -81,9 +87,33 @@ def extract_download_count(dl):
             'id': dl.id}
 
 
+def extract_addon_collection(collection_count, addon_collections,
+                             collection_stats):
+    addon_collection_count = sum([c.count for c in addon_collections])
+    collection_stats = dict([[c.name, c.count] for c in collection_stats])
+    return {'date': collection_count.date,
+            'count': collection_count.count,
+            'data': es_dict({
+                'downloads': addon_collection_count,
+                'votes_up': collection_stats.get('new_votes_up', 0),
+                'votes_down': collection_stats.get('new_votes_down', 0),
+                'subscribers': collection_stats.get('new_subscribers', 0),
+            })}
+
+
 def get_all_app_versions():
     vals = AppVersion.objects.values_list('application', 'version')
     rv = collections.defaultdict(list)
     for app, version in vals:
         rv[app].append(version)
     return dict(rv)
+
+
+def setup_indexes():
+    es = elasticutils.get_es()
+    for model in CollectionCount, DownloadCount, UpdateCount:
+        index = model._get_index()
+        try:
+            es.create_index_if_missing(index)
+        except pyes.ElasticSearchException:
+            pass

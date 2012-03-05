@@ -26,6 +26,7 @@ import addons.search
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
+import stats
 from translations.models import Translation
 from versions.models import Version, ApplicationsVersions
 
@@ -403,6 +404,7 @@ class ESTestCase(TestCase):
 
         super(ESTestCase, cls).setUpClass()
         addons.search.setup_mapping()
+        stats.search.setup_indexes()
 
     @classmethod
     def setUpIndex(cls):

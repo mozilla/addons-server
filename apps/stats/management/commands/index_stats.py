@@ -8,8 +8,9 @@ from django.db.models import Max, Min
 from celery.task.sets import TaskSet
 
 from amo.utils import chunked
-from stats.models import UpdateCount, DownloadCount
-from stats.tasks import index_update_counts, index_download_counts
+from stats.models import CollectionCount, DownloadCount, UpdateCount
+from stats.tasks import (index_collection_counts, index_download_counts,
+                         index_update_counts)
 
 log = logging.getLogger('z.stats')
 
@@ -54,6 +55,11 @@ class Command(BaseCommand):
         queries = [(UpdateCount.objects, index_update_counts),
                    (DownloadCount.objects, index_download_counts)]
 
+        if not addons:
+            # We can't filter this by addons, so if that is specified,
+            # we'll skip that.
+            queries.append((CollectionCount.objects, index_collection_counts))
+
         for qs, task in queries:
             qs = qs.order_by('-date').values_list('id', flat=True)
             if addons:
@@ -72,6 +78,10 @@ class Command(BaseCommand):
                 limits = (qs.model.objects.filter(date__isnull=False)
                           .extra(where=['date <> "0000-00-00"'])
                           .aggregate(min=Min('date'), max=Max('date')))
+                # If there isn't any data at all, skip over.
+                if not (limits['max'] or limits['min']):
+                    continue
+
                 num_days = (limits['max'] - limits['min']).days
                 today = date.today()
                 for start in range(0, num_days, STEP):

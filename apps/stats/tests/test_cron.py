@@ -7,7 +7,8 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
-from stats.models import DownloadCount, UpdateCount, GlobalStat, Contribution
+from stats.models import (CollectionCount, DownloadCount, UpdateCount,
+                          GlobalStat, Contribution)
 from stats import tasks, cron
 
 
@@ -63,13 +64,25 @@ class TestIndexStats(amo.tests.TestCase):
     def test_by_date(self, tasks_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
         qs = self.downloads.filter(date='2009-06-01')
-        tasks_mock.assert_called_with(tasks.index_download_counts, list(qs))
+        download = tasks_mock.call_args_list[1][0]
+        eq_(download[0], tasks.index_download_counts)
+        eq_(download[1], list(qs))
+
+    def test_called_three(self, tasks_mock):
+        call_command('index_stats', addons=None, date='2009-06-01')
+        eq_(tasks_mock.call_count, 3)
+
+    def test_called_two(self, tasks_mock):
+        call_command('index_stats', addons='5', date='2009-06-01')
+        eq_(tasks_mock.call_count, 2)
 
     def test_by_date_range(self, tasks_mock):
         call_command('index_stats', addons=None,
                      date='2009-06-01:2009-06-07')
         qs = self.downloads.filter(date__range=('2009-06-01', '2009-06-07'))
-        tasks_mock.assert_called_with(tasks.index_download_counts, list(qs))
+        download = tasks_mock.call_args_list[1][0]
+        eq_(download[0], tasks.index_download_counts)
+        eq_(download[1], list(qs))
 
     def test_by_addon(self, tasks_mock):
         call_command('index_stats', addons='5', date=None)
