@@ -65,10 +65,10 @@
     </div>
   </div>
   <h2>{{ _('More Add-ons') }}</h2>
-  <ul class="listview">
-    <li><a href="{{ url('browse.extensions')|urlparams(sort='rating') }}">
+  <ul id="more-addons" class="listview">
+    <li class="rating"><a href="{{ url('browse.extensions')|urlparams(sort='rating') }}">
       {{ _('Highest Rated') }}</a></li>
-    <li><a href="{{ url('browse.extensions')|urlparams(sort='created') }}">
+    <li class="created"><a href="{{ url('browse.extensions')|urlparams(sort='created') }}">
       {{ _('Newest') }}</a></li>
     {# <li><a href="{{ url('collections.list') }}">
       {{ _('Collections') }}</a></li> #}
