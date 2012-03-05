@@ -133,21 +133,28 @@ def update_addon_average_daily_users():
     cursor.close()
 
     ts = [_update_addon_average_daily_users.subtask(args=[chunk])
-          for chunk in chunked(d, 1000)]
+          for chunk in chunked(d, 250)]
     TaskSet(ts).apply_async()
 
 
-@task(rate_limit='15/m')
+@task
 def _update_addon_average_daily_users(data, **kw):
-    task_log.info("[%s@%s] Updating add-ons ADU totals." %
-                   (len(data), _update_addon_average_daily_users.rate_limit))
+    task_log.info("[%s] Updating add-ons ADU totals." % (len(data)))
 
     for pk, count in data:
-        addon = Addon.objects.get(pk=pk)
+        try:
+            addon = Addon.objects.get(pk=pk)
+        except Addon.DoesNotExist:
+            # The processing input comes from metrics which might be out of
+            # date in regards to currently existing add-ons
+            m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
+            task_log.debug(m % (count, pk))
+            continue
+
         if (count - addon.total_downloads) > 10000:
-            # Adjust ADU to equal total downloads so bundled add-ons don't skew
-            # the results when sorting by users.
-            task_log.info('Readjusted ADU counts for addon %s' % addon.slug)
+            # Adjust ADU to equal total downloads so bundled add-ons don't
+            # skew the results when sorting by users.
+            task_log.info('Readjusted ADU count for addon %s' % addon.slug)
             addon.update(average_daily_users=addon.total_downloads)
         else:
             task_log.debug('[bug 726569] Updating "%s" :: ADU %s -> %s' %
@@ -175,18 +182,25 @@ def update_addon_download_totals():
     cursor.close()
 
     ts = [_update_addon_download_totals.subtask(args=[chunk])
-          for chunk in chunked(d, 1000)]
+          for chunk in chunked(d, 250)]
     TaskSet(ts).apply_async()
 
 
-@task(rate_limit='15/m')
+@task
 def _update_addon_download_totals(data, **kw):
-    task_log.info("[%s@%s] Updating add-ons download+average totals." %
-                   (len(data), _update_addon_download_totals.rate_limit))
+    task_log.info("[%s] Updating add-ons download+average totals." %
+                   (len(data)))
 
     for pk, avg, sum in data:
-        Addon.objects.filter(pk=pk).update(average_daily_downloads=avg,
-                                           total_downloads=sum)
+        try:
+            Addon.objects.get(pk=pk).update(average_daily_downloads=avg,
+                                            total_downloads=sum)
+        except Addon.DoesNotExist:
+            # The processing input comes from metrics which might be out of
+            # date in regards to currently existing add-ons
+            m = ("Got new download totals (total=%s,avg=%s) but the add-on"
+                 "doesn't exist (%s)" % (sum, avg, pk))
+            task_log.debug(m)
 
 
 def _change_last_updated(next):
@@ -254,7 +268,7 @@ def update_all_appsupport():
         update_appsupport(chunk)
 
 
-@task(rate_limit='30/m')
+@task
 @transaction.commit_manually
 def _update_appsupport(ids, **kw):
     from .tasks import update_appsupport
