@@ -144,10 +144,6 @@ var csv_keys = {
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Site Metrics from {0} to {1}")
         ],
-        "fake"  : [
-            "Fake data last {0} days",
-            "Fake data from {0} to {1}"
-        ],
         "addons_in_use" : [
             // L10n: {0} is an integer.
             gettext("Add-ons in Use, last {0} days"),
@@ -189,6 +185,17 @@ var csv_keys = {
             gettext("Collections Created, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Collections Created from {0} to {1}")
+        "subscribers"  : [
+            // L10n: {0} is an integer.
+            gettext("Subscribers, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Subscribers from {0} to {1}")
+        ],
+        "ratings"  : [
+            // L10n: {0} is an integer.
+            gettext("Ratings, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Ratings from {0} to {1}")
         ]
     },
     aggregateLabel: {

@@ -2,6 +2,9 @@ from django.conf.urls.defaults import patterns, url, include
 
 from . import views, feeds
 
+from stats.views import collection_report, collection_stats
+from stats.urls import series
+
 edit_urls = patterns('',
     url('^$', views.edit, name='collections.edit'),
     url('^addons$', views.edit_addons, name='collections.edit_addons'),
@@ -25,6 +28,26 @@ detail_urls = patterns('',
     url('^share$', views.share, name='collections.share'),
     url('^format:rss$', feeds.CollectionDetailFeed(),
         name='collections.detail.rss'),
+)
+
+stats_urls = patterns('',
+    url('^$', collection_report, name='collections.stats',
+        kwargs={'report': 'subscribers'}),
+    url('^subscribers/$', collection_report,
+        name='collections.stats.subscribers',
+        kwargs={'report': 'subscribers'}),
+    url(series['subscribers'], collection_stats,
+        name='collections.stats.subscribers_series'),
+    url('^ratings/$', collection_report,
+        name='collections.stats.ratings',
+        kwargs={'report': 'ratings'}),
+    url(series['ratings'], collection_stats,
+        name='collections.stats.ratings_series'),
+    url('^downloads/$', collection_report,
+        name='collections.stats.downloads',
+        kwargs={'report': 'downloads'}),
+    url(series['downloads'], collection_stats,
+        name='collections.stats.downloads_series'),
 )
 
 ajax_urls = patterns('',
@@ -55,6 +78,8 @@ urlpatterns = patterns('',
         name='collections.user'),
     url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/',
         include(detail_urls)),
+    url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/statistics/',
+        include(stats_urls)),
     url('^collections/add$', views.add, name='collections.add'),
     url('^collections/ajax/', include(ajax_urls)),
 

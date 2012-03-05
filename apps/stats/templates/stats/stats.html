@@ -17,6 +17,8 @@
       {# L10n: {0} is an add-on name, {1} is an app name (like Firefox) #}
       {% if addon %}
         {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|f(addon.name, request.APP.pretty) }}
+      {% elif collection %}
+        {{ _('{0} :: Statistics Dashboard')|f(collection.name) }}
       {% else %}
         {{ _('Statistics Dashboard :: Add-ons for {0}')|f(request.APP.pretty) }}
       {% endif %}
@@ -69,7 +71,7 @@
                            (addon.get_url_path(), addon.name),
                            (link, _('Statistics'))]) }}
   {% else %}
-    {{ impala_breadcrumbs([(link, _('Statistics'))]) }}
+    {{ impala_breadcrumbs([(link, _('Statistics'))]) if not collection }}
   {% endif %}
   {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
   <hgroup>
@@ -78,6 +80,8 @@
         {# L10n: {0} is an add-on name #}
         {{ _('Statistics for {0}')|f(addon.name) }}
       </h1>
+    {% elif collection %}
+      <h1>{{ _('Statistics for {0}')|f(collection.name) }}</h1>
     {% else %}
       <h1>
         {{ _('Statistics Dashboard') }}
@@ -90,7 +94,11 @@
 {% block content %}
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
-    {{ report_menu(request, report, obj=addon) }}
+    {% if addon %}
+      {{ report_menu(request, report, obj=addon) }}
+    {% elif collection %}
+      {{ report_menu(request, report, obj=collection) }}
+    {% endif %}
     {% block stats_note_link %}
     {% endblock %}
     <pre id="dbgout"></pre>

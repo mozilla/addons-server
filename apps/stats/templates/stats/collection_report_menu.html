@@ -1,15 +1,20 @@
 <nav id="side-nav" class="report-menu">
   <ul>
-    <li data-report="overview" data-layout="overview">
-      <a href="#">
+    <li>
+      <a href="{{ url('collections.stats.subscribers',
+                      collection.author_username, collection.slug) }}">
         {{ _('Subscribers') }}
       </a>
     </li>
-    <li data-report="downloads">
-      <a href="#">{{ _('Ratings') }}</a>
+    <li>
+      <a href="{{ url('collections.stats.ratings', collection.author_username,
+                      collection.slug) }}">
+        {{ _('Ratings') }}
+      </a>
     </li>
-    <li data-report="sources">
-      <a href="#">
+    <li data-report="downloads">
+      <a href="{{ url('collections.stats.downloads',
+                      collection.author_username, collection.slug) }}">
         {{ _('Downloads') }}
       </a>
     </li>

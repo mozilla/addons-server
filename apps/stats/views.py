@@ -22,6 +22,7 @@ from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
 from bandwagon.models import Collection
+from bandwagon.views import get_collection
 from zadmin.models import SiteEvent
 
 import amo
@@ -36,7 +37,8 @@ SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'contributions', 'overview',
-          'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
+          'sources', 'os', 'locales', 'statuses', 'versions', 'apps',
+          'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'collections_created', 'reviews_created', 'addons_created',
                  'users_created')
@@ -424,8 +426,9 @@ def contributions_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
+# TODO: (dspasovski) - remove this once we know the indexed stats return JSON
 @json_view
-def fake_collection_stats(request, group, start, end, format):
+def fake_collection_stats(request, username, slug, group, start, end, format):
     from time import strftime
     from math import sin, floor
     start, end = check_series_params_or_404(group, start, end, format)
@@ -509,13 +512,18 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
-def collection_stats(request, username, slug):
-    c = {'name': 'Sample Collection'}
+def collection_report(request, username, slug, report):
+    c = get_collection(request, username, slug)
+    stats_base_url = c.stats_url()
     view = get_report_view(request)
-    return jingo.render(request, 'stats/collections.html',
+
+    return jingo.render(request, 'stats/%s.html' % report,
                         {'collection': c,
+                         'report': report,
                          'view': view,
-                        })
+                         'username': username,
+                         'slug': slug,
+                         'stats_base_url': stats_base_url})
 
 
 def site_series(request, format, group, start, end, field):
@@ -532,6 +540,10 @@ def site_series(request, format, group, start, end, field):
             })
     return render_json(request, None, series)
 
+
+def collection_stats(request, username, slug, group, start, end, format):
+    c = get_collection(request, username, slug)
+    return collection(request, c.uuid, format)
 
 def collection(request, uuid, format):
     """

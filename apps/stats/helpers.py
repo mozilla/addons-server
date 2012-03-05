@@ -10,7 +10,7 @@ from amo.urlresolvers import reverse
 
 @register.function
 @jinja2.contextfunction
-def report_menu(context, request, report, obj=None):
+def report_menu(context, request, report, obj=None, username='', slug=''):
     """Reports Menu. navigation for the various statistic reports."""
     if obj:
         if isinstance(obj, Addon):
