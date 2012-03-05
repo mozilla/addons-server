@@ -16,6 +16,7 @@ import elasticutils
 import nose
 import mock
 from nose.tools import eq_, nottest
+import pyes.exceptions as pyes
 from redisutils import mock_redis, reset_redis
 import test_utils
 
@@ -399,8 +400,10 @@ class ESTestCase(TestCase):
         for index in settings.ES_INDEXES.values():
             try:
                 cls.es.delete_index(index)
-            except Exception, e:
+            except pyes.IndexMissingException:
                 pass
+            except:
+                raise
 
         super(ESTestCase, cls).setUpClass()
         addons.search.setup_mapping()
