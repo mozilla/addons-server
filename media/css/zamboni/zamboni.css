@@ -1849,14 +1849,6 @@ form .error .note.error {
     overflow: visible;
 }
 
-.listing .item h3 {
-    float: left;
-}
-
-.html-rtl .listing .item h3 {
-    float: right;
-}
-
 .item .install,
 .results .item .install {
     float: left;
