@@ -1,6 +1,8 @@
 import logging
 import logging.handlers
 
+import celery.conf
+import celery.log
 from django.conf import settings
 
 import commonware.log
@@ -116,3 +118,9 @@ def log_configure():
             logger['propagate'] = False
 
     dictconfig.dictConfig(cfg)
+
+    if not settings.DEBUG:
+        task_log = logging.getLogger('z.celery')
+        task_proxy = celery.log.LoggingProxy(task_log)
+        celery.conf.CELERYD_LOG_FILE = task_proxy
+        celery.conf.CELERYD_LOG_COLOR = False

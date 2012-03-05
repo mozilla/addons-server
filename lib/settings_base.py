@@ -1005,6 +1005,8 @@ BROKER_VHOST = 'zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
+CELERY_SEND_TASK_ERROR_EMAILS = True
+CELERYD_LOG_LEVEL = logging.INFO
 CELERY_IMPORTS = ('django_arecibo.tasks',)
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
