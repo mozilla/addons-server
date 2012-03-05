@@ -170,8 +170,9 @@ class SearchBase(amo.tests.ESTestCase):
         """Return pks of add-ons shown on search results page."""
         return sorted(a.id for a in r.context['pager'].object_list)
 
-    def check_sort_links(self, key, title=None, sort_by=None, reverse=True):
-        r = self.client.get(urlparams(self.url, sort=key))
+    def check_sort_links(self, key, title=None, sort_by=None, reverse=True,
+                         params={}):
+        r = self.client.get(urlparams(self.url, sort=key, **params))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         if title:
@@ -845,6 +846,16 @@ class TestCollectionSearch(SearchBase):
         self._generate()
         self.check_sort_links('weekly', sort_by='weekly_subscribers')
 
+    def test_sort_order_default_with_term(self):
+        self._generate()
+        self.check_sort_links(None, sort_by='weekly_subscribers',
+                              params={'q': 'collection'})
+
+    def test_sort_order_weekly_with_term(self):
+        self._generate()
+        self.check_sort_links('weekly', sort_by='weekly_subscribers',
+                              params={'q': 'collection'})
+
     def test_sort_order_monthly(self):
         self._generate()
         self.check_sort_links('monthly', sort_by='monthly_subscribers')
@@ -930,7 +941,8 @@ class TestCollectionSearch(SearchBase):
             ('Web Developer Pack', 242),
         ]
         for name, subscribers in collections:
-            amo.tests.collection_factory(name=name, subscribers=subscribers)
+            amo.tests.collection_factory(name=name, subscribers=subscribers,
+                                         weekly_subscribers=subscribers)
         self.refresh()
 
         # "Web Developer Collection" should be the #1 most relevant result.

@@ -257,9 +257,13 @@ def _personas(request):
 def _collections(request):
     """Handle the request for collections."""
 
-    initial = dict(request.GET.items())
+    # Sorting by relevance isn't an option. Instead the default is `weekly`.
+    initial = dict(sort='weekly')
+    # Update with GET variables.
+    initial.update(request.GET.items())
     # Ignore appver/platform and set default number of collections per page.
     initial.update(appver=None, platform=None, pp=DEFAULT_NUM_COLLECTIONS)
+
     form = SecondarySearchForm(initial)
     form.is_valid()
 
@@ -548,9 +552,9 @@ def _filter_search(request, qs, query, filters, sorting,
     if 'sort' in show:
         qs = qs.order_by(sorting[query['sort']])
     elif not query.get('q'):
-        # Sort by weekly downloads if there was no query so we get predictable
-        # results.
+        # Sort by a default if there was no query so results are predictable.
         qs = qs.order_by(sorting_default)
+
     return qs
 
 
