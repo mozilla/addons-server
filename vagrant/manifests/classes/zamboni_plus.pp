@@ -8,6 +8,15 @@ class zamboni_plus {
         replace => false;
     }
 
+    file { "/etc/sudoers":
+        ensure => file,
+        source => "$PROJ_DIR/vagrant/files/etc/sudoers",
+        owner => 0,
+        group => 0,
+        mode => 440,
+        replace => true;
+    }
+
     # Zamboni needs to allow for long-running commands.
     # This disables the SSH timeout.
     file { "/etc/ssh/ssh_config":
@@ -20,7 +29,8 @@ class zamboni_plus {
 
     exec { "restart-ssh":
         command => "sudo /etc/init.d/ssh restart",
-        require => File["/etc/ssh/ssh_config"]
+        logoutput => true,
+        require => [File["/etc/ssh/ssh_config"], File["/etc/sudoers"]]
     }
 
     package { ["screen", "subversion"]:
