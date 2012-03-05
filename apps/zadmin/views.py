@@ -45,6 +45,7 @@ from bandwagon.models import Collection
 from compat.models import AppCompat
 from devhub.models import ActivityLog
 from files.models import Approval, File
+import stats
 from versions.compare import version_int as vint
 from versions.models import Version
 from zadmin.forms import SiteEventForm
@@ -541,6 +542,7 @@ def elastic(request):
             es.delete_index_if_exists(INDEX)
             # We must set up the mappings before we create the index again.
             addons.search.setup_mapping()
+            stats.search.setup_indexes()
             es.create_index_if_missing(INDEX)
             messages.info(request, 'Deleting %s index.' % INDEX)
         if request.POST.get('reindex') in mappings:

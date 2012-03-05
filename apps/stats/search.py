@@ -117,3 +117,20 @@ def setup_indexes():
             es.create_index_if_missing(index)
         except pyes.ElasticSearchException:
             pass
+
+    mapping = {
+            'properties': {
+                'id': {'type': 'long'},
+                'count': {'type': 'long'},
+                'data': {'dynamic': 'true',
+                         'properties': {
+                            'v': {'type': 'long'},
+                            'k': {'type': 'string'}
+                        }
+                },
+                'date': {'format':'dateOptionalTime',
+                         'type':'date'}
+            }
+    }
+    es.put_mapping(CollectionCount._meta.db_table, mapping,
+                   CollectionCount._get_index())
