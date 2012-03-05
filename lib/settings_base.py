@@ -1007,6 +1007,7 @@ CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_LOG_LEVEL = logging.INFO
+CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = ('django_arecibo.tasks',)
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
