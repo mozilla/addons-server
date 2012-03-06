@@ -147,6 +147,48 @@ var csv_keys = {
         "fake"  : [
             "Fake data last {0} days",
             "Fake data from {0} to {1}"
+        ],
+        "addons_in_use" : [
+            // L10n: {0} is an integer.
+            gettext("Add-ons in Use, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Add-ons in Use from {0} to {1}")
+        ],
+        "addons_downloaded" : [
+            // L10n: {0} is an integer.
+            gettext("Add-ons Downloaded, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Add-ons Downloaded from {0} to {1}")
+        ],
+        "addons_created" : [
+            // L10n: {0} is an integer.
+            gettext("Add-ons Created, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Add-ons Created from {0} to {1}")
+        ],
+        "addons_updated" : [
+            // L10n: {0} is an integer.
+            gettext("Add-ons Updated, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Add-ons Updated from {0} to {1}")
+        ],
+        "reviews_created" : [
+            // L10n: {0} is an integer.
+            gettext("Reviews Written, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Reviews Written from {0} to {1}")
+        ],
+        "users_created" : [
+            // L10n: {0} is an integer.
+            gettext("User Signups, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("User Signups from {0} to {1}")
+        ],
+        "collections_created" : [
+            // L10n: {0} is an integer.
+            gettext("Collections Created, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Collections Created from {0} to {1}")
         ]
     },
     aggregateLabel: {

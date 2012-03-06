@@ -10,13 +10,45 @@ series_re = '%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 
 urlpatterns = patterns('',
-    # url('^$', views.dashboard, name='stats.dashboard'),
+    url('^$', views.dashboard, name='stats.dashboard'),
     url('^site%s/%s$' % (format_re, group_date_re),
         views.site, name='stats.site'),
     url('^site-%s' % series_re, views.site, name='stats.site.new'),
     url('^fake-%s' % series_re, views.fake_collection_stats),
     url('^collection/(?P<uuid>[\w-]+).%s$' % (format_re),
-        views.collection, name='stats.collection')
+        views.collection, name='stats.collection'),
+
+    # global series urls.
+    url(series['addons_in_use'], views.site_series,
+        kwargs={'field': 'addons_in_use'}),
+    url(series['addons_updated'], views.site_series,
+        kwargs={'field': 'addons_updated'}),
+    url(series['addons_downloaded'], views.site_series,
+        kwargs={'field': 'addons_downloaded'}),
+    url(series['addons_created'], views.site_series,
+        kwargs={'field': 'addons_created'}),
+    url(series['reviews_created'], views.site_series,
+        kwargs={'field': 'reviews_created'}),
+    url(series['collections_created'], views.site_series,
+        kwargs={'field': 'collections_created'}),
+    url(series['users_created'], views.site_series,
+        kwargs={'field': 'users_created'}),
+
+    # global series urls.
+    url('^addons_in_use/$', views.site_stats_report,
+        kwargs={'report': 'addons_in_use'}, name='stats.addons_in_use'),
+    url('^addons_updated/$', views.site_stats_report,
+        kwargs={'report': 'addons_updated'}, name='stats.addons_updated'),
+    url('^addons_downloaded/$', views.site_stats_report,
+        kwargs={'report': 'addons_downloaded'}, name='stats.addons_downloaded'),
+    url('^addons_created/$', views.site_stats_report,
+        kwargs={'report': 'addons_created'}, name='stats.addons_created'),
+    url('^reviews_created/$', views.site_stats_report,
+        kwargs={'report': 'reviews_created'}, name='stats.reviews_created'),
+    url('^collections_created/$', views.site_stats_report,
+        kwargs={'report': 'collections_created'}, name='stats.collections_created'),
+    url('^users_created/$', views.site_stats_report,
+        kwargs={'report': 'users_created'}, name='stats.users_created'),
 )
 
 # Addon specific stats.

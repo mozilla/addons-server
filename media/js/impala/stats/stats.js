@@ -72,9 +72,10 @@
             $exceptionModal.render();
         });
 
+        $('.csv-table').csvTable();
+
         // Trigger the initial data load.
         $(window).trigger('changeview', initView);
     });
 
-    $('.csv-table').csvTable();
 })();

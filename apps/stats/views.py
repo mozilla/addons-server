@@ -35,8 +35,20 @@ from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'contributions', 'overview',
-          'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
+SERIES = ('downloads', 'usage', 'contributions', 'overview', 'global',
+          'sources', 'os', 'locales', 'statuses', 'versions', 'apps',
+          'addons_in_use', 'addons_updated', 'addons_downloaded',
+          'collections_created', 'reviews_created', 'addons_created',
+          'users_created')
+
+
+def dashboard(request):
+    stats_base_url = reverse('stats.dashboard')
+    view = get_report_view(request)
+    return jingo.render(request, 'stats/dashboard.html',
+                        {'report': 'site',
+                         'view': view,
+                         'stats_base_url': stats_base_url})
 
 
 def get_series(model, extra_field=None, **filters):
@@ -279,11 +291,20 @@ def stats_report(request, addon, report):
                            for_contributions=(report == 'contributions'))
     stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
-    return jingo.render(request, 'stats/%s.html' % report,
+    return jingo.render(request, 'stats/reports/%s.html' % report,
                         {'addon': addon,
-                        'report': report,
-                        'view': view,
-                        'stats_base_url': stats_base_url})
+                         'report': report,
+                         'view': view,
+                         'stats_base_url': stats_base_url})
+
+
+def site_stats_report(request, report):
+    stats_base_url = reverse('stats.dashboard')
+    view = get_report_view(request)
+    return jingo.render(request, 'stats/reports/%s.html' % report,
+                        {'report': report, 'view': view,
+                         'stats_base_url': stats_base_url})
+
 
 
 def get_report_view(request):
@@ -449,7 +470,7 @@ def _site_query(period, start, end):
     assert period in SERIES_GROUPS_DATE, '%s period is not valid.'
     sql = ("SELECT name, MIN(date), SUM(count) "
            "FROM global_stats "
-           "WHERE date > %%s AND date < %%s "
+           "WHERE date >= %%s AND date <= %%s "
            "AND name IN (%s) "
            "GROUP BY %s(date), name "
            "ORDER BY %s(date) DESC;"
@@ -464,7 +485,8 @@ def _site_query(period, start, end):
         if date not in result:
             result[date] = default.copy()
             result[date]['date'] = date
-        result[date][keys[name]] = count
+            result[date]['data'] = {}
+        result[date]['data'][keys[name]] = count
 
     return result.values(), sorted(keys.values())
 
@@ -487,13 +509,21 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
-def collection_stats(request, username, slug):
-    c = {'name': 'Sample Collection'}
-    view = get_report_view(request)
-    return jingo.render(request, 'stats/collections.html',
-                        {'collection': c,
-                         'view': view,
-                        })
+def site_series(request, format, group, start, end, field):
+    """Pull a single field from the site_query data"""
+    start, end = get_daterange_or_404(start, end)
+    group = 'date' if group == 'day' else group
+    print format, group, start, end, field
+    series = []
+    full_series, keys = _site_query(group, start, end)
+    for row in full_series:
+        if field in row['data']:
+            series.append({
+                'date': row['date'],
+                'count': row['data'][field],
+            })
+    print series
+    return render_json(request, None, series)
 
 
 def collection(request, uuid, format):
