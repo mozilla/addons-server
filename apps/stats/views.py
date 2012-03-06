@@ -35,11 +35,11 @@ from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'contributions', 'overview', 'global',
-          'sources', 'os', 'locales', 'statuses', 'versions', 'apps',
-          'addons_in_use', 'addons_updated', 'addons_downloaded',
-          'collections_created', 'reviews_created', 'addons_created',
-          'users_created')
+SERIES = ('downloads', 'usage', 'contributions', 'overview',
+          'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
+GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
+                 'collections_created', 'reviews_created', 'addons_created',
+                 'users_created')
 
 
 def dashboard(request):
@@ -470,7 +470,7 @@ def _site_query(period, start, end):
     assert period in SERIES_GROUPS_DATE, '%s period is not valid.'
     sql = ("SELECT name, MIN(date), SUM(count) "
            "FROM global_stats "
-           "WHERE date >= %%s AND date <= %%s "
+           "WHERE date > %%s AND date < %%s "
            "AND name IN (%s) "
            "GROUP BY %s(date), name "
            "ORDER BY %s(date) DESC;"

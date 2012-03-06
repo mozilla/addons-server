@@ -8,6 +8,8 @@ range_re = '(?P<start>\d{8})-(?P<end>\d{8})'
 format_re = '(?P<format>' + '|'.join(views.SERIES_FORMATS) + ')'
 series_re = '%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
+global_series = dict((type, '%s-%s' % (type, series_re))
+                     for type in views.GLOBAL_SERIES)
 
 urlpatterns = patterns('',
     url('^$', views.dashboard, name='stats.dashboard'),
@@ -19,19 +21,19 @@ urlpatterns = patterns('',
         views.collection, name='stats.collection'),
 
     # global series urls.
-    url(series['addons_in_use'], views.site_series,
+    url(global_series['addons_in_use'], views.site_series,
         kwargs={'field': 'addons_in_use'}),
-    url(series['addons_updated'], views.site_series,
+    url(global_series['addons_updated'], views.site_series,
         kwargs={'field': 'addons_updated'}),
-    url(series['addons_downloaded'], views.site_series,
+    url(global_series['addons_downloaded'], views.site_series,
         kwargs={'field': 'addons_downloaded'}),
-    url(series['addons_created'], views.site_series,
+    url(global_series['addons_created'], views.site_series,
         kwargs={'field': 'addons_created'}),
-    url(series['reviews_created'], views.site_series,
+    url(global_series['reviews_created'], views.site_series,
         kwargs={'field': 'reviews_created'}),
-    url(series['collections_created'], views.site_series,
+    url(global_series['collections_created'], views.site_series,
         kwargs={'field': 'collections_created'}),
-    url(series['users_created'], views.site_series,
+    url(global_series['users_created'], views.site_series,
         kwargs={'field': 'users_created'}),
 
     # global series urls.
