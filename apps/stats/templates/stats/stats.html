@@ -98,6 +98,8 @@
       {{ report_menu(request, report, obj=addon) }}
     {% elif collection %}
       {{ report_menu(request, report, obj=collection) }}
+    {% else %}
+      {{ report_menu(request, report) }}
     {% endif %}
     {% block stats_note_link %}
     {% endblock %}
