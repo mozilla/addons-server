@@ -215,10 +215,6 @@ class SearchBase(amo.tests.ESTestCase):
         for p in permutations:
             self.check_name_results(p, expected)
 
-        # Now ensure we get the same results for Firefox as for Thunderbird.
-        self.url = self.url.replace('firefox', 'thunderbird')
-        self.check_name_results({}, expected)
-
     def check_heading(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -787,9 +783,15 @@ class TestPersonaSearch(SearchBase):
                 'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
                 sort, first.weekly_downloads, results))
 
-    def test_results_applications(self):
+    def test_results_appver_platform(self):
         self._generate_personas()
         self.check_appver_platform_ignored(sorted(p.id for p in self.personas))
+
+    def test_results_other_applications(self):
+        self._generate_personas()
+        # Now ensure we get the same results for Firefox as for Thunderbird.
+        self.url = self.url.replace('firefox', 'thunderbird')
+        self.check_name_results({}, sorted(p.id for p in self.personas))
 
     def test_pagination(self):
         # TODO: Figure out why ES wonks out when we index a plethora of junk.
@@ -814,6 +816,7 @@ class TestPersonaSearch(SearchBase):
 
 
 class TestCollectionSearch(SearchBase):
+    fixtures = ['base/apps']
 
     @classmethod
     def setUpClass(cls):
@@ -1001,10 +1004,26 @@ class TestCollectionSearch(SearchBase):
                 'Incorrect subscribers for %r. Got %r. Expected %r.' % (
                 sort, first.subscribers, results))
 
-    def test_results_applications(self):
+    def test_results_appver_platform(self):
         self._generate()
         self.check_appver_platform_ignored(
             sorted(c.id for c in self.collections))
+
+    def test_results_other_applications(self):
+        tb_collection = amo.tests.collection_factory(
+            application_id=amo.THUNDERBIRD.id)
+        sm_collection = amo.tests.collection_factory(
+            application_id=amo.SEAMONKEY.id)
+        self.refresh()
+
+        r = self.client.get(self.url)
+        eq_(self.get_results(r), [])
+
+        r = self.client.get(self.url.replace('firefox', 'thunderbird'))
+        eq_(self.get_results(r), [tb_collection.id])
+
+        r = self.client.get(self.url.replace('firefox', 'seamonkey'))
+        eq_(self.get_results(r), [sm_collection.id])
 
 
 def test_search_redirects():

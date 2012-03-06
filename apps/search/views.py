@@ -268,7 +268,7 @@ def _collections(request):
     form.is_valid()
 
     if waffle.switch_is_active('replace-sphinx'):
-        qs = Collection.search().filter(listed=True)
+        qs = Collection.search().filter(listed=True, app=request.APP.id)
         filters = ['sort']
         mapping = {'weekly': '-weekly_subscribers',
                    'monthly': '-monthly_subscribers',

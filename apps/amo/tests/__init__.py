@@ -357,6 +357,7 @@ def file_factory(**kw):
 def collection_factory(**kw):
     data = {
         'type': amo.COLLECTION_NORMAL,
+        'application_id': amo.FIREFOX.id,
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'addon_count': random.randint(200, 2000),
         'subscribers': random.randint(1000, 5000),
