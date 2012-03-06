@@ -280,17 +280,12 @@ def addons_add_slugs():
     """Give slugs to any slugless addons."""
     Addon._meta.get_field('modified').auto_now = False
     q = Addon.objects.filter(slug=None).order_by('id')
-    ids = q.values_list('id', flat=True)
 
-    cnt = 0
-    total = len(ids)
-    task_log.info('%s addons without slugs' % total)
     # Chunk it so we don't do huge queries.
-    for chunk in chunked(ids, 300):
-        # Slugs are set in Addon.__init__.
-        list(q.no_cache().filter(id__in=chunk))
-        cnt += 300
-        task_log.info('Slugs added to %s/%s add-ons.' % (cnt, total))
+    for chunk in chunked(q, 300):
+        task_log.info('Giving slugs to %s slugless addons' % len(chunk))
+        for addon in chunk:
+            addon.save()
 
 
 @cronjobs.register
