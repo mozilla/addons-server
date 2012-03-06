@@ -28,7 +28,10 @@ collection_sort_by = (
     ('rating', _lazy(u'Highest Rated')),
     ('created', _lazy(u'Newest')),
 )
-es_collection_sort_by = collection_sort_by + (('name', _lazy(u'Name')),)
+es_collection_sort_by = collection_sort_by + (
+    ('updated', _lazy(u'Recently Updated')),
+    ('name', _lazy(u'Name')),
+)
 
 per_page = (20, 50, )
 

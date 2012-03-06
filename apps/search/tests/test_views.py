@@ -6,10 +6,12 @@ from django.conf import settings
 from django.http import QueryDict
 from django.test import client
 
+from jingo.helpers import datetime as datetime_filter
 from mock import Mock, patch
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+from tower import strip_whitespace
 import waffle
 
 import amo
@@ -166,9 +168,12 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
 
 class SearchBase(amo.tests.ESTestCase):
 
-    def get_results(self, r):
+    def get_results(self, r, sort=True):
         """Return pks of add-ons shown on search results page."""
-        return sorted(a.id for a in r.context['pager'].object_list)
+        results = [a.id for a in r.context['pager'].object_list]
+        if sort:
+            results = sorted(results)
+        return results
 
     def check_sort_links(self, key, title=None, sort_by=None, reverse=True,
                          params={}):
@@ -838,6 +843,10 @@ class TestCollectionSearch(SearchBase):
         r = self.client.get(urlparams(self.url, sort='newest'))
         self.assertRedirects(r, urlparams(self.url, sort='created'), 301)
 
+    def test_sort_order_unknown(self):
+        self._generate()
+        self.check_sort_links('xxx')
+
     def test_sort_order_default(self):
         self._generate()
         self.check_sort_links(None, sort_by='weekly_subscribers')
@@ -880,9 +889,42 @@ class TestCollectionSearch(SearchBase):
         self._generate()
         self.check_sort_links('updated', sort_by='modified')
 
-    def test_sort_order_unknown(self):
+    def test_created_timestamp(self):
         self._generate()
-        self.check_sort_links('xxx')
+        r = self.client.get(urlparams(self.url, sort='created'))
+        items = pq(r.content)('.primary .item')
+        for idx, c in enumerate(r.context['pager'].object_list):
+            eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
+                'Added %s' % strip_whitespace(datetime_filter(c.created)))
+
+    def test_updated_timestamp(self):
+        self._generate()
+        r = self.client.get(urlparams(self.url, sort='updated'))
+        items = pq(r.content)('.primary .item')
+        for idx, c in enumerate(r.context['pager'].object_list):
+            eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
+                'Updated %s' % strip_whitespace(datetime_filter(c.modified)))
+
+    def check_followers_count(self, sort, column):
+        # Checks that we show the correct type/number of followers.
+        r = self.client.get(urlparams(self.url, sort=sort))
+        items = pq(r.content)('.primary .item')
+        for idx, c in enumerate(r.context['pager'].object_list):
+            eq_(items.eq(idx).find('.followers').text().split()[0],
+                numberfmt(getattr(c, column)))
+
+    def test_followers_all(self):
+        self._generate()
+        for sort in ('', 'all', 'rating', 'created', 'modified', 'name'):
+            self.check_followers_count(sort, column='subscribers')
+
+    def test_followers_monthly(self):
+        self._generate()
+        self.check_followers_count('monthly', column='monthly_subscribers')
+
+    def test_followers_weekly(self):
+        self._generate()
+        self.check_followers_count('weekly', column='weekly_subscribers')
 
     def test_heading(self):
         # One is a lonely number. But that's all we need.

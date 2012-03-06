@@ -36,8 +36,7 @@
             </div>
           </form>
         </div>
-        {{ collection_listing_items(pager.object_list,
-                                    show_date=opts.sort) }}
+        {{ collection_listing_items(pager.object_list, field=opts.sort) }}
       </div>
       <div class="listing-footer">{{ pager|paginator }}</div>
     {% else %}
