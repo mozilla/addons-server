@@ -2,6 +2,7 @@ import collections
 from datetime import datetime
 import hashlib
 import os
+import re
 import time
 import uuid
 
@@ -254,7 +255,10 @@ class Collection(CollectionBase, amo.models.ModelBase):
     def icon_url(self):
         modified = int(time.mktime(self.modified.timetuple()))
         if self.icontype:
-            return settings.COLLECTION_ICON_URL % (self.id, modified)
+            # [1] is the whole ID, [2] is the directory
+            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
+            return settings.COLLECTION_ICON_URL % (
+                    split_id.group(2) or 0, self.id, modified)
         elif self.type == amo.COLLECTION_FAVORITES:
             return settings.MEDIA_URL + 'img/icons/heart.png'
         else:

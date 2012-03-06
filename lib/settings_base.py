@@ -919,8 +919,7 @@ PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
 USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
-COLLECTION_ICON_URL = ('%s/images/collection_icon/%%s.png?modified=%%s' %
-                       STATIC_URL)
+COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
 NEW_PERSONAS_IMAGE_URL = (STATIC_URL +
                           '/img/uploads/personas/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'

@@ -43,6 +43,15 @@ class TestCollections(amo.tests.TestCase):
         c = Collection.objects.get(pk=512)
         assert c.icon_url.endswith('img/icons/collection.png')
 
+        c.icontype = "image/png"
+        url = c.icon_url.split('?')[0]
+        assert url.endswith('0/512.png')
+
+        c.id = 12341234
+        url = c.icon_url.split('?')[0]
+        assert url.endswith('12341/12341234.png')
+
+        c.icontype = None
         c.type = amo.COLLECTION_FAVORITES
         assert c.icon_url.endswith('img/icons/heart.png')
 
