@@ -407,7 +407,7 @@ def patched_load(self):
 Image.Image.load = patched_load
 
 
-def resize_image(src, dst, size, remove_src=True):
+def resize_image(src, dst, size=None, remove_src=True):
     """Resizes and image from src, to dst. Returns width and height."""
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
@@ -415,7 +415,8 @@ def resize_image(src, dst, size, remove_src=True):
     with storage.open(src, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
-        im = processors.scale_and_crop(im, size)
+        if size:
+            im = processors.scale_and_crop(im, size)
     with storage.open(dst, 'wb') as fp:
         im.save(fp, 'png')
 
