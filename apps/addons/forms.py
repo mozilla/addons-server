@@ -104,6 +104,10 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         self.request = kw.pop('request')
         super(AddonFormBase, self).__init__(*args, **kw)
 
+    class Meta:
+        models = Addon
+        fields = ('name', 'slug', 'summary', 'tags')
+
 
 class AddonFormBasic(AddonFormBase):
     name = TransField(max_length=50)

@@ -199,6 +199,7 @@ class MonthlyPickForm(happyforms.ModelForm):
         widgets = {
             'addon': forms.TextInput(),
         }
+        fields = ('addon', 'image', 'blurb', 'locale')
 
 
 MonthlyPickFormSet = modelformset_factory(MonthlyPick, form=MonthlyPickForm,
@@ -253,6 +254,8 @@ class JetpackUpgradeForm(happyforms.Form):
 class SiteEventForm(ModelForm):
     class Meta:
         model = SiteEvent
+        fields = ('start', 'end', 'event_type', 'description',
+                  'more_info_url')
 
 
 class YesImSure(happyforms.Form):

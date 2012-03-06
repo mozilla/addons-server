@@ -322,6 +322,7 @@ class CharityForm(happyforms.ModelForm):
 
     class Meta:
         model = Charity
+        fields = ('name', 'url', 'paypal')
 
     def clean_paypal(self):
         check_paypal_id(self.cleaned_data['paypal'])

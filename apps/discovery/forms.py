@@ -8,6 +8,7 @@ class DiscoveryModuleForm(forms.ModelForm):
 
     class Meta:
         model = DiscoveryModule
+        fields = ('app', 'module', 'ordering', 'locales')
 
     def clean_locales(self):
         # Make sure we know about the locale and remove dupes.

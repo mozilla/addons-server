@@ -24,6 +24,7 @@ class ReviewFlagForm(forms.ModelForm):
 
     class Meta:
         model = ReviewFlag
+        fields = ('flag', 'note', 'review', 'user')
 
     def clean(self):
         data = super(ReviewFlagForm, self).clean()
