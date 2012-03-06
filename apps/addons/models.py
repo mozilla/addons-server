@@ -996,16 +996,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         status_change = Max('versions__files__datestatuschanged')
         public = (Addon.uncached.filter(status=amo.STATUS_PUBLIC,
             versions__files__status=amo.STATUS_PUBLIC)
-            .exclude(type=amo.ADDON_PERSONA).values('id')
-            .annotate(last_updated=status_change))
+            .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
+            .values('id').annotate(last_updated=status_change))
 
         lite = (Addon.uncached.filter(status__in=amo.LISTED_STATUSES,
                                       versions__files__status=amo.STATUS_LITE)
+                .exclude(type=amo.ADDON_WEBAPP)
                 .values('id').annotate(last_updated=status_change))
 
         stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
         exp = (Addon.uncached.exclude(status__in=stati)
                .filter(versions__files__status__in=amo.VALID_STATUSES)
+               .exclude(type=amo.ADDON_WEBAPP)
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
