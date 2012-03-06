@@ -185,6 +185,7 @@ var csv_keys = {
             gettext("Collections Created, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Collections Created from {0} to {1}")
+        ],
         "subscribers"  : [
             // L10n: {0} is an integer.
             gettext("Subscribers, last {0} days"),
