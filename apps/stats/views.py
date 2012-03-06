@@ -509,11 +509,19 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
+def collection_stats(request, username, slug):
+    c = {'name': 'Sample Collection'}
+    view = get_report_view(request)
+    return jingo.render(request, 'stats/collections.html',
+                        {'collection': c,
+                         'view': view,
+                        })
+
+
 def site_series(request, format, group, start, end, field):
     """Pull a single field from the site_query data"""
     start, end = get_daterange_or_404(start, end)
     group = 'date' if group == 'day' else group
-    print format, group, start, end, field
     series = []
     full_series, keys = _site_query(group, start, end)
     for row in full_series:
@@ -522,7 +530,6 @@ def site_series(request, format, group, start, end, field):
                 'date': row['date'],
                 'count': row['data'][field],
             })
-    print series
     return render_json(request, None, series)
 
 
