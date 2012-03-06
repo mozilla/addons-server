@@ -27,7 +27,7 @@ import addons.search
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
-import stats
+import stats.search
 from translations.models import Translation
 from versions.models import Version, ApplicationsVersions
 

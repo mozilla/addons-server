@@ -45,7 +45,7 @@ from bandwagon.models import Collection
 from compat.models import AppCompat
 from devhub.models import ActivityLog
 from files.models import Approval, File
-import stats
+import stats.search
 from versions.compare import version_int as vint
 from versions.models import Version
 from zadmin.forms import SiteEventForm
