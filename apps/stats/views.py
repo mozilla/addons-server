@@ -509,8 +509,15 @@ def collection(request, uuid, format):
 
     start = date.today() - timedelta(days=365)
     end = date.today()
-    series = get_series(CollectionCount, id=int(collection.pk),
-                        date__range=(start, end), extra_field='data')
+    qs = (CollectionCount.search().order_by('-date')
+                         .filter(id=int(collection.pk),
+                                 date__range=(start, end))
+                         .values_dict())[:365]
+    series = []
+    for val in qs:
+        date_ = date(*val['date'].timetuple()[:3])
+        series.append(dict(count=val['count'], date=date_, end=date_,
+                           data=extract(val['data'])))
 
     if format == 'csv':
         series, fields = csv_fields(series)
