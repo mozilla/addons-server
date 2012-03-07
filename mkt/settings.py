@@ -35,7 +35,6 @@ INSTALLED_APPS = tuple(INSTALLED_APPS)
 INSTALLED_APPS += (
     'mkt.site',
     'mkt.developers',
-    'mkt.hub',
     'mkt.submit',
     'mkt.experiments',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
