@@ -42,7 +42,6 @@ INSTALLED_APPS += (
 )
 SUPPORTED_NONAPPS += (
     'dev',
-    'hub',
     'submit',
     'login',
     'privacy-policy',
@@ -175,14 +174,6 @@ MINIFY_BUNDLES['css'].update({
     'mkt/devreg-legacy': (
         'css/devreg-legacy/developers.less',  # Legacy galore.
     ),
-    'hub': (
-        'css/impala/base.css',
-        'css/hub/base.less',
-        'css/hub/header.less',
-        'css/hub/forms.less',
-        'css/submit/flow.less',
-        'css/submit/terms.less',
-    ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',
         'marketplace-experiments/css/site.less',
@@ -247,22 +238,6 @@ MINIFY_BUNDLES['js'].update({
         # Specific stuff for making payments nicer.
         'js/devreg/paypal.js',
         'js/zamboni/validator.js',
-    ),
-    'hub': (
-        'js/lib/underscore.js',
-        'js/marketplace-experiments/jquery-1.7.1.min.js',
-        'js/zamboni/browser.js',
-        'js/hub/init.js',
-        'js/impala/capabilities.js',
-        # PJAX is not ready.
-        #'js/lib/jquery.pjax.js',
-        'js/lib/jquery.cookie.js',
-        'js/zamboni/storage.js',
-        'js/impala/serializers.js',
-
-        # Developer Hub-specific stuff.
-        #'js/submit/flow-pjax.js',
-        'js/submit/flow.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
