@@ -326,10 +326,8 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
     """This is the callback from Paypal."""
     # Set up our redirects.
     if request.GET.get('dest', '') == 'submission':
-        on_good = reverse('submit.app.payments.confirm',
-                          args=[addon.app_slug])
-        on_error = reverse('submit.app.payments.paypal',
-                           args=[addon.app_slug])
+        on_good = reverse('submit.app.payments.confirm', args=[addon.app_slug])
+        on_error = reverse('submit.app.payments.paypal', args=[addon.app_slug])
         show_good_msgs = False
     else:
         # The management pages are the default.
@@ -364,7 +362,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
     apd, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
 
     # A sanity check, I'm not sure if this should be fatal and will
-    # occur on the prod server or it's just sandbox wierdness.
+    # occur on the prod server or it's just sandbox weirdness.
     data = paypal.get_personal_data(token)
     email = data.get('email')
     if email != addon.paypal_id:
@@ -1279,13 +1277,6 @@ def marketplace_confirm(request, addon_id, addon, webapp=False):
     return jingo.render(request, 'developers/payments/second-confirm.html',
                         {'addon': addon, 'webapp': webapp,
                          'upsell': addon.upsold, 'premium': addon.premium})
-
-
-def _step_url(step, is_webapp):
-    url_base = 'mkt.developers.submit%s' % ('_apps' if is_webapp else '')
-    if is_webapp and str(step).isdigit() and step > 5:
-        step = 5
-    return '%s.%s' % (url_base, step)
 
 
 @dev_required

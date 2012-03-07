@@ -1,1 +1,1 @@
-from devhub.models import ActivityLog, SubmitStep
+from devhub.models import ActivityLog
