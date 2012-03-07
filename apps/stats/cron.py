@@ -28,7 +28,7 @@ def update_addons_collections_downloads():
          .annotate(sum=Sum('count')))
 
     ts = [tasks.update_addons_collections_downloads.subtask(args=[chunk])
-          for chunk in chunked(d, 600)]
+          for chunk in chunked(d, 250)]
     TaskSet(ts).apply_async()
 
 
@@ -40,7 +40,7 @@ def update_collections_total():
                                 .annotate(sum=Sum('count')))
 
     ts = [tasks.update_collections_total.subtask(args=[chunk])
-          for chunk in chunked(d, 1000)]
+          for chunk in chunked(d, 250)]
     TaskSet(ts).apply_async()
 
 
@@ -66,7 +66,7 @@ def update_global_totals(date=None):
 @cronjobs.register
 def addon_total_contributions():
     addons = Addon.objects.values_list('id', flat=True)
-    ts = [tasks.cron_total_contributions.subtask(args=chunk)
+    ts = [tasks.addon_total_contributions.subtask(args=chunk)
           for chunk in chunked(addons, 100)]
     TaskSet(ts).apply_async()
 

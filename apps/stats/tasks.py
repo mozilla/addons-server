@@ -36,35 +36,29 @@ def addon_total_contributions(*addons, **kw):
         Addon.objects.filter(id=addon).update(total_contributions=total)
 
 
-@task(rate_limit='2/s')
-def cron_total_contributions(*addons, **kw):
-    "Rate limited version of `addon_total_contributions` suitable for cron."
-    addon_total_contributions(*addons)
-
-
-@task(rate_limit='2/s')
+@task
 def update_addons_collections_downloads(data, **kw):
-    log.info("[%s@%s] Updating addons+collections download totals." %
-                  (len(data), update_addons_collections_downloads.rate_limit))
+    log.info("[%s] Updating addons+collections download totals." %
+                  (len(data)))
     for var in data:
         (CollectionAddon.objects.filter(addon=var['addon'],
                                         collection=var['collection'])
                                 .update(downloads=var['sum']))
 
 
-@task(rate_limit='2/s')
+@task
 def update_collections_total(data, **kw):
-    log.info("[%s@%s] Updating collections' download totals." %
-                   (len(data), update_collections_total.rate_limit))
+    log.info("[%s] Updating collections' download totals." %
+                   (len(data)))
     for var in data:
         (Collection.objects.filter(pk=var['collection_id'])
          .update(downloads=var['sum']))
 
 
-@task(rate_limit='20/h')
+@task
 def update_global_totals(job, date, **kw):
-    log.info("[%s] Updating global statistics totals (%s) for (%s)" %
-                   (update_global_totals.rate_limit, job, date))
+    log.info("Updating global statistics totals (%s) for (%s)" %
+                   (job, date))
 
     jobs = _get_daily_jobs(date)
     jobs.update(_get_metrics_jobs(date))
