@@ -16,6 +16,7 @@
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('.install', $promos).installButton();
         $('#monthly .blurb > p').lineclamp(4);
+        $('.ryff .desc').lineclamp(6);
         $('h2', $promos).linefit();
     });
 })();
