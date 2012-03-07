@@ -6,7 +6,6 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory
-from django.utils.safestring import mark_safe
 
 import commonware
 import happyforms
@@ -21,7 +20,6 @@ import paypal
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            BlacklistedSlug, Charity, Preview)
 from amo.helpers import loc
-from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import raise_required
 
@@ -31,12 +29,11 @@ from files.utils import parse_addon
 from market.models import AddonPremium, Price, AddonPaymentData
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from payments.models import InappConfig
-from translations.widgets import (TransInput, TransTextarea,
-                                  TranslationTextarea, TranslationTextInput)
+from translations.widgets import TransInput, TransTextarea, TranslationTextarea
 from translations.fields import TransField
-from translations.models import delete_translation, Translation
+from translations.models import Translation
 from translations.forms import TranslationFormMixin
-from versions.models import License, Version, ApplicationsVersions
+from versions.models import Version, ApplicationsVersions
 from webapps.models import Webapp
 from . import tasks
 
@@ -115,114 +112,6 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(_('Password incorrect.'))
 
 
-class LicenseChoiceRadio(forms.widgets.RadioFieldRenderer):
-
-    def __iter__(self):
-        for i, choice in enumerate(self.choices):
-            yield LicenseRadioInput(self.name, self.value, self.attrs.copy(),
-                                    choice, i)
-
-
-class LicenseRadioInput(forms.widgets.RadioInput):
-
-    def __init__(self, name, value, attrs, choice, index):
-        super(LicenseRadioInput, self).__init__(name, value, attrs, choice,
-                                                index)
-        license = choice[1]  # Choice is a tuple (object.id, object).
-        link = u'<a class="xx extra" href="%s" target="_blank">%s</a>'
-        if hasattr(license, 'url'):
-            details = link % (license.url, _('Details'))
-            self.choice_label = mark_safe(self.choice_label + details)
-
-
-class LicenseForm(AMOModelForm):
-    builtin = forms.TypedChoiceField(choices=[], coerce=int,
-                        widget=forms.RadioSelect(attrs={'class': 'license'},
-                                                 renderer=LicenseChoiceRadio))
-    name = forms.CharField(widget=TranslationTextInput(),
-                           label=_("What is your license's name?"),
-                           required=False, initial=_('Custom License'))
-    text = forms.CharField(widget=TranslationTextarea(), required=False,
-                           label=_('Provide the text of your license.'))
-
-    def __init__(self, *args, **kw):
-        addon = kw.pop('addon', None)
-        self.version = None
-        if addon:
-            qs = addon.versions.order_by('-version')[:1]
-            self.version = qs[0] if qs else None
-            if self.version:
-                kw['instance'], kw['initial'] = self.version.license, None
-                # Clear out initial data if it's a builtin license.
-                if getattr(kw['instance'], 'builtin', None):
-                    kw['initial'] = {'builtin': kw['instance'].builtin}
-                    kw['instance'] = None
-
-        super(LicenseForm, self).__init__(*args, **kw)
-
-        cs = [(x.builtin, x)
-              for x in License.objects.builtins().filter(on_form=True)]
-        cs.append((License.OTHER, _('Other')))
-        self.fields['builtin'].choices = cs
-
-    class Meta:
-        model = License
-        fields = ('builtin', 'name', 'text')
-
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        return name.strip() or _('Custom License')
-
-    def clean(self):
-        data = self.cleaned_data
-        if self.errors:
-            return data
-        elif data['builtin'] == License.OTHER and not data['text']:
-            raise forms.ValidationError(
-                _('License text is required when choosing Other.'))
-        return data
-
-    def get_context(self):
-        """Returns a view context dict having keys license_urls, license_form,
-        and license_other_val.
-        """
-        license_urls = dict(License.objects.builtins()
-                            .values_list('builtin', 'url'))
-        return dict(license_urls=license_urls, version=self.version,
-                    license_form=self.version and self,
-                    license_other_val=License.OTHER)
-
-    def save(self, *args, **kw):
-        """Save all form data.
-
-        This will only create a new license if it's not one of the builtin
-        ones.
-
-        Keyword arguments
-
-        **log=True**
-            Set to False if you do not want to log this action for display
-            on the developer dashboard.
-        """
-        log = kw.pop('log', True)
-        changed = self.changed_data
-
-        builtin = self.cleaned_data['builtin']
-        if builtin != License.OTHER:
-            license = License.objects.get(builtin=builtin)
-        else:
-            # Save the custom license:
-            license = super(LicenseForm, self).save(*args, **kw)
-
-        if self.version:
-            if changed or license != self.version.license:
-                self.version.update(license=license)
-                if log:
-                    amo.log(amo.LOG.CHANGE_LICENSE, license,
-                            self.version.addon)
-        return license
-
-
 class InappConfigForm(happyforms.ModelForm):
 
     def clean_postback_url(self):
@@ -242,49 +131,6 @@ class InappConfigForm(happyforms.ModelForm):
     class Meta:
         model = InappConfig
         fields = ('postback_url', 'chargeback_url')
-
-
-class PolicyForm(TranslationFormMixin, AMOModelForm):
-    """Form for editing the add-ons EULA and privacy policy."""
-    has_eula = forms.BooleanField(required=False,
-        label=_lazy(u'This add-on has an End User License Agreement'))
-    eula = TransField(widget=TransTextarea(), required=False,
-        label=_lazy(u"Please specify your add-on's "
-                    "End User License Agreement:"))
-    has_priv = forms.BooleanField(
-        required=False, label=_lazy(u"This add-on has a Privacy Policy"))
-    privacy_policy = TransField(widget=TransTextarea(), required=False,
-        label=_lazy(u"Please specify your add-on's Privacy Policy:"))
-
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon', None)
-        if not self.addon:
-            raise ValueError('addon keyword arg cannot be None')
-        kw['instance'] = self.addon
-        kw['initial'] = dict(has_priv=self._has_field('privacy_policy'),
-                             has_eula=self._has_field('eula'))
-        super(PolicyForm, self).__init__(*args, **kw)
-
-    def _has_field(self, name):
-        # If there's a eula in any language, this addon has a eula.
-        n = getattr(self.addon, u'%s_id' % name)
-        return any(map(bool, Translation.objects.filter(id=n)))
-
-    class Meta:
-        model = Addon
-        fields = ('eula', 'privacy_policy')
-
-    def save(self, commit=True):
-        ob = super(PolicyForm, self).save(commit)
-        for k, field in (('has_eula', 'eula'),
-                         ('has_priv', 'privacy_policy')):
-            if not self.cleaned_data[k]:
-                delete_translation(self.instance, field)
-
-        if 'privacy_policy' in self.changed_data:
-            amo.log(amo.LOG.CHANGE_POLICY, self.addon, self.instance)
-
-        return ob
 
 
 def ProfileForm(*args, **kw):

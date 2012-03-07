@@ -7,7 +7,6 @@ import amo
 import amo.tests
 from amo.tests import formset
 from addons.models import Addon, AddonUser
-from mkt.developers.forms import LicenseForm
 from mkt.developers.models import ActivityLog
 from users.models import UserProfile
 from versions.models import License, Version
@@ -32,156 +31,6 @@ class TestOwnership(amo.tests.TestCase):
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=self.addon.id)
-
-
-class TestEditPolicy(TestOwnership):
-
-    def formset(self, *args, **kw):
-        init = self.client.get(self.url).context['user_form'].initial_forms
-        args = args + tuple(f.initial for f in init)
-        return super(TestEditPolicy, self).formset(*args, **kw)
-
-    def test_edit_eula(self):
-        old_eula = self.addon.eula
-        data = self.formset(eula='new eula', has_eula=True)
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        addon = self.get_addon()
-        eq_(unicode(addon.eula), 'new eula')
-        eq_(addon.eula.id, old_eula.id)
-
-    def test_delete_eula(self):
-        assert self.addon.eula
-        r = self.client.post(self.url, self.formset(has_eula=False))
-        eq_(r.status_code, 302)
-        eq_(self.get_addon().eula, None)
-
-    def test_edit_eula_locale(self):
-        self.addon.eula = {'de': 'some eula', 'en-US': ''}
-        self.addon.save()
-        res = self.client.get(self.url.replace('en-US', 'it'), follow=True)
-        eq_(pq(res.content)('#id_has_eula').attr('checked'), 'checked')
-
-
-class TestEditLicense(TestOwnership):
-
-    def setUp(self):
-        super(TestEditLicense, self).setUp()
-        self.version.license = None
-        self.version.save()
-        self.license = License.objects.create(builtin=1, name='bsd',
-                                              url='license.url', on_form=True)
-
-    def formset(self, *args, **kw):
-        init = self.client.get(self.url).context['user_form'].initial_forms
-        args = args + tuple(f.initial for f in init)
-        kw['initial_count'] = len(init)
-        data = super(TestEditLicense, self).formset(*args, **kw)
-        if 'text' not in kw:
-            del data['text']
-        return data
-
-    def test_success_add_builtin(self):
-        data = self.formset(builtin=1)
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        eq_(self.license, self.get_version().license)
-        eq_(ActivityLog.objects.filter(
-            action=amo.LOG.CHANGE_LICENSE.id).count(), 1)
-
-    def test_success_add_custom(self):
-        data = self.formset(builtin=License.OTHER, text='text', name='name')
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        license = self.get_version().license
-        eq_(unicode(license.text), 'text')
-        eq_(unicode(license.name), 'name')
-        eq_(license.builtin, License.OTHER)
-
-    def test_success_edit_custom(self):
-        data = self.formset(builtin=License.OTHER, text='text', name='name')
-        r = self.client.post(self.url, data)
-        license_one = self.get_version().license
-
-        data = self.formset(builtin=License.OTHER, text='woo', name='name')
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        license_two = self.get_version().license
-        eq_(unicode(license_two.text), 'woo')
-        eq_(unicode(license_two.name), 'name')
-        eq_(license_two.builtin, License.OTHER)
-        eq_(license_two.id, license_one.id)
-
-    def test_success_switch_license(self):
-        data = self.formset(builtin=1)
-        r = self.client.post(self.url, data)
-        license_one = self.get_version().license
-
-        data = self.formset(builtin=License.OTHER, text='text', name='name')
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        license_two = self.get_version().license
-        eq_(unicode(license_two.text), 'text')
-        eq_(unicode(license_two.name), 'name')
-        eq_(license_two.builtin, License.OTHER)
-        assert license_one != license_two
-
-        # Make sure the old license wasn't edited.
-        license = License.objects.get(builtin=1)
-        eq_(unicode(license.name), 'bsd')
-
-        data = self.formset(builtin=1)
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        license_three = self.get_version().license
-        eq_(license_three, license_one)
-
-    def test_custom_has_text(self):
-        data = self.formset(builtin=License.OTHER, name='name')
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'license_form', None,
-                             'License text is required when choosing Other.')
-
-    def test_custom_has_name(self):
-        data = self.formset(builtin=License.OTHER, text='text')
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-        license = self.get_version().license
-        eq_(unicode(license.text), 'text')
-        eq_(unicode(license.name), 'Custom License')
-        eq_(license.builtin, License.OTHER)
-
-    def test_no_version(self):
-        # Make sure nothing bad happens if there's no version.
-        self.addon.update(_current_version=None)
-        Version.objects.all().delete()
-        data = self.formset(builtin=License.OTHER, text='text')
-        r = self.client.post(self.url, data)
-        eq_(r.status_code, 302)
-
-    def test_license_details_links(self):
-        # Check that builtin licenses get details links.
-        doc = pq(unicode(LicenseForm(addon=self.version.addon)))
-        for license in License.objects.builtins():
-            radio = 'input.license[value=%s]' % license.builtin
-            eq_(doc(radio).parent().text(), unicode(license.name) + ' Details')
-            eq_(doc(radio + '+ a').attr('href'), license.url)
-        eq_(doc('input[name=builtin]:last-child').parent().text(), 'Other')
-
-    def test_license_logs(self):
-        data = self.formset(builtin=License.OTHER, text='text')
-        self.version.files.all().delete()
-        self.version.addon.update(status=amo.STATUS_PUBLIC)
-        self.client.post(self.url, data)
-        eq_(ActivityLog.objects.all().count(), 2)
-
-        self.version.license = License.objects.all()[1]
-        self.version.save()
-
-        data = self.formset(builtin=License.OTHER, text='text')
-        self.client.post(self.url, data)
-        eq_(ActivityLog.objects.all().count(), 3)
 
 
 class TestEditAuthor(TestOwnership):
@@ -401,7 +250,8 @@ class TestDeveloperRoleAccess(amo.tests.TestCase):
         for url in urls:
             self._check_it(self.webapp.get_dev_url(url))
 
-        waffle.models.Switch.objects.create(name='in-app-payments', active=True)
+        waffle.models.Switch.objects.create(name='in-app-payments',
+                                            active=True)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM_INAPP)
         self._check_it(self.webapp.get_dev_url('in_app_config'))
 

@@ -199,17 +199,6 @@ def ownership(request, addon_id, addon, webapp=False):
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
     user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
     fs.append(user_form)
-    # Versions.
-    license_form = forms.LicenseForm(request.POST or None, addon=addon)
-    if not addon.is_webapp():
-        ctx.update(license_form.get_context())
-        if ctx['license_form']:  # if addon has a version
-            fs.append(ctx['license_form'])
-    # Policy.
-    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
-    if not addon.is_webapp():
-        ctx.update(policy_form=policy_form)
-        fs.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
@@ -235,10 +224,6 @@ def ownership(request, addon_id, addon, webapp=False):
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
 
-        if license_form in fs:
-            license_form.save()
-        if policy_form in fs:
-            policy_form.save()
         messages.success(request, _('Changes successfully saved.'))
 
         return redirect(addon.get_dev_url('owner'))
