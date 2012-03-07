@@ -9,8 +9,6 @@ from mkt.developers.decorators import use_apps
 from webapps.urls import APP_SLUG
 from . import views
 
-PACKAGE_NAME = '(?P<package_name>[_\w]+)'
-
 
 def paypal_patterns(prefix):
     return patterns('',
@@ -149,16 +147,6 @@ ajax_patterns = patterns('',
         name='mkt.developers.file_perf_tests_start'),
 )
 
-packager_patterns = patterns('',
-    url('^$', views.package_addon, name='mkt.developers.package_addon'),
-    url('^download/%s.zip$' % PACKAGE_NAME, views.package_addon_download,
-        name='mkt.developers.package_addon_download'),
-    url('^json/%s$' % PACKAGE_NAME, views.package_addon_json,
-        name='mkt.developers.package_addon_json'),
-    url('^success/%s$' % PACKAGE_NAME, views.package_addon_success,
-        name='mkt.developers.package_addon_success'),
-)
-
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='mkt.developers.index'),
 
@@ -176,9 +164,6 @@ urlpatterns = decorate(write, patterns('',
     url(r'^addon/check-compatibility/application_versions\.json$',
         views.compat_application_versions,
         name='mkt.developers.compat_application_versions'),
-
-    # Add-on packager
-    url('^tools/package/', include(packager_patterns)),
 
     # Redirect to /addons/ at the base.
     url('^addon$',

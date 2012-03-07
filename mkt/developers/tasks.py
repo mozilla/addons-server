@@ -22,7 +22,7 @@ import validator.constants as validator_constants
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import guard, resize_image, remove_icons, strip_bom
+from amo.utils import resize_image, remove_icons, strip_bom
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
@@ -278,32 +278,6 @@ def convert_purified(ids, **kw):
         if flag:
             log.info('Saving addon: %s to purify fields' % addon.pk)
             addon.save()
-
-
-@task
-def packager(data, feature_set, **kw):
-    """Build an add-on based on input data."""
-    log.info('[1@None] Packaging add-on')
-
-    from mkt.developers.views import packager_path
-    dest = packager_path(data['slug'])
-
-    with guard(u'mkt.developers.packager.%s' % dest) as locked:
-        if locked:
-            log.error(u'Packaging in progress: %s' % dest)
-            return
-
-        with statsd.timer('mkt.developers.packager'):
-            from packager.main import packager
-            log.info('Starting packaging: %s' % dest)
-            features = set([k for k, v in feature_set.items() if v])
-            try:
-                packager(data, dest, features)
-            except Exception, err:
-                log.error(u'Failed to package add-on: %s' % err)
-                raise
-            if os.path.exists(dest):
-                log.info(u'Package saved: %s' % dest)
 
 
 def failed_validation(*messages):

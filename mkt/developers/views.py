@@ -30,7 +30,7 @@ from amo import messages
 from amo.decorators import (json_view, login_required, no_login_required,
                             post_required, write)
 from amo.helpers import loc
-from amo.utils import escape_all, HttpResponseSendFile
+from amo.utils import escape_all
 from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
@@ -601,68 +601,6 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
         for plat in plats:
             tasks.start_perf_test_for_file.delay(file_.id, plat, app)
     return {'success': True}
-
-
-def packager_path(name):
-    return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
-
-
-@anonymous_csrf
-def package_addon(request):
-    basic_form = forms.PackagerBasicForm(request.POST or None)
-    features_form = forms.PackagerFeaturesForm(request.POST or None)
-    compat_forms = forms.PackagerCompatFormSet(request.POST or None)
-
-    # Process requests, but also avoid short circuiting by using all().
-    if (request.method == 'POST' and
-        all([basic_form.is_valid(),
-             features_form.is_valid(),
-             compat_forms.is_valid()])):
-
-        basic_data = basic_form.cleaned_data
-        compat_data = compat_forms.cleaned_data
-
-        data = {'id': basic_data['id'],
-                'version': basic_data['version'],
-                'name': basic_data['name'],
-                'slug': basic_data['package_name'],
-                'description': basic_data['description'],
-                'author_name': basic_data['author_name'],
-                'contributors': basic_data['contributors'],
-                'targetapplications': [c for c in compat_data if c['enabled']]}
-        tasks.packager.delay(data, features_form.cleaned_data)
-        return redirect('mkt.developers.package_addon_success',
-                        basic_data['package_name'])
-
-    return jingo.render(request, 'developers/package_addon.html',
-                        {'basic_form': basic_form,
-                         'compat_forms': compat_forms,
-                         'features_form': features_form})
-
-
-def package_addon_success(request, package_name):
-    """Return the success page for the add-on packager."""
-    return jingo.render(request, 'developers/package_addon_success.html',
-                        {'package_name': package_name})
-
-
-@json_view
-def package_addon_json(request, package_name):
-    """Return the URL of the packaged add-on."""
-    path_ = packager_path(package_name)
-    if os.path.isfile(path_):
-        url = reverse('mkt.developers.package_addon_download',
-                      args=[package_name])
-        return {'download_url': url, 'filename': os.path.basename(path_),
-                'size': round(os.path.getsize(path_) / 1024, 1)}
-
-
-def package_addon_download(request, package_name):
-    """Serve a packaged add-on."""
-    path_ = packager_path(package_name)
-    if not os.path.isfile(path_):
-        raise http.Http404()
-    return HttpResponseSendFile(request, path_, content_type='application/zip')
 
 
 @login_required
