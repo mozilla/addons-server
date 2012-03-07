@@ -210,8 +210,11 @@ def _change_last_updated(next):
     changes = {}
 
     for addon, last_updated in next.items():
-        if current[addon] != last_updated:
-            changes[addon] = last_updated
+        try:
+            if current[addon] != last_updated:
+                changes[addon] = last_updated
+        except KeyError:
+            pass
 
     if not changes:
         return
