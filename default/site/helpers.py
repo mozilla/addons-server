@@ -38,5 +38,6 @@ def admin_site_links():
              url('zadmin.oauth-consumer-create')),
             ('View event log', url('admin:editors_eventlog_changelist')),
             ('View addon log', url('admin:devhub_activitylog_changelist')),
+            ('Generate error', url('zadmin.generate-error')),
         ],
         }

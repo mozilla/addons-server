@@ -269,3 +269,18 @@ class CompatForm(BaseCompatForm):
     _ratio_choices = [('%.1f' % (x / 10.0), '%.0f%%' % (x * 10))
                       for x in xrange(9, -1, -1)]
     ratio = forms.ChoiceField(choices=_ratio_choices, required=False)
+
+
+class GenerateErrorForm(happyforms.Form):
+    error = forms.ChoiceField(choices=(
+                    ['zerodivisionerror', 'Zero Division Error'],
+                    ['iorequesterror', 'IORequest Error']))
+
+    def explode(self):
+        error = self.cleaned_data.get('error')
+        if error == 'zerodivisionerror':
+            1/0
+        elif error == 'iorequesterror':
+            class IOError(Exception):
+                pass
+            raise IOError('request data read error')

@@ -44,5 +44,6 @@ def admin_site_links():
             ('View graphite trends', url('amo.graphite', 'addons')),
             ('Create a new OAuth Consumer',
              url('zadmin.oauth-consumer-create')),
+            ('Generate error', url('zadmin.generate-error')),
         ],
     }

@@ -48,7 +48,7 @@ from files.models import Approval, File
 import stats.search
 from versions.compare import version_int as vint
 from versions.models import Version
-from zadmin.forms import SiteEventForm
+from zadmin.forms import GenerateErrorForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 
@@ -812,3 +812,11 @@ def delete_site_event(request, event_id):
     event = get_object_or_404(SiteEvent, pk=event_id)
     event.delete()
     return redirect('zadmin.site_events')
+
+
+@admin.site.admin_view
+def generate_error(request):
+    form = GenerateErrorForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.explode()
+    return jingo.render(request, 'zadmin/generate-error.html', {'form': form})

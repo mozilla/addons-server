@@ -63,6 +63,8 @@ urlpatterns = patterns('',
     url('^addon-search$', views.addon_search, name='zadmin.addon-search'),
     url('^oauth-consumer-create$', views.oauth_consumer_create,
         name='zadmin.oauth-consumer-create'),
+    url('^generate-error$', views.generate_error,
+        name='zadmin.generate-error'),
 
     # Site Event admin.
     url('^events/(?P<event_id>\d+)?$', views.site_events,
