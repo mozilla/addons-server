@@ -74,7 +74,7 @@ handlers = {
     },
 }
 
-loggers =   {
+loggers = {
     'z': {},
     'django.request': {
         # Note these handlers will choose what they want to emit and when.
@@ -101,7 +101,6 @@ def log_configure():
         cfg[key].update(value)
 
     USE_SYSLOG = settings.HAS_SYSLOG and not settings.DEBUG
-
 
     if USE_SYSLOG:
         cfg['loggers']['z.timer'] = {'handlers': ['syslog2']}

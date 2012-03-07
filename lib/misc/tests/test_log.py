@@ -94,7 +94,8 @@ class TestErrorLog(amo.tests.TestCase):
                        exc_info=self.division_error(),
                        extra={'request': self.request})
         eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['adminemailhandler', 'statsdhandler', 'arecibohandler']))
+            set(['adminemailhandler', 'errorsysloghandler',
+                 'statsdhandler', 'arecibohandler']))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
     @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')

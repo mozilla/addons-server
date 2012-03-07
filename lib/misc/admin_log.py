@@ -58,18 +58,14 @@ class ErrorTypeHandler(logging.Handler):
 
         # If this has no exc_info or request, fail fast.
         if not record.exc_info or not record.request:
-            record.should_email = False
-            return record.should_email
+            return False
 
-        if getattr(record, 'should_email', None) is None:
-            tb = '\n'.join(traceback.format_exception(*record.exc_info))
-            record.should_email = True
-            for name, pattern in NO_EMAIL_PATTERNS.iteritems():
-                if re.search(pattern, tb):
-                    record.should_email = False
-                    break
+        tb = '\n'.join(traceback.format_exception(*record.exc_info))
+        for name, pattern in NO_EMAIL_PATTERNS.iteritems():
+            if re.search(pattern, tb):
+                return False
 
-        return record.should_email
+        return True
 
     def emitted(self, name):
         # This is currently in place for the tests. Patches welcome.
@@ -102,14 +98,13 @@ class AreciboHandler(ErrorTypeHandler):
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
     """
     Send error to syslog, only if we aren't mailing it. This should only
-    be used for errors that a request attached, for example django.request.
+    be used for errors that have a request attached.
     """
 
     def emit(self, record):
-        if self.should_email(record) or not getattr(record, 'request', None):
-           return
+        if not getattr(record, 'request', None):
+            return
 
-        # Make the path available.
         record.request_path = record.request.path
         UnicodeHandler.emit(self, record)
         self.emitted(self.__class__.__name__.lower())
