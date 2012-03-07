@@ -9,13 +9,17 @@ from django.core import mail
 
 from mock import patch, Mock
 from nose.tools import eq_
+from pyquery import PyQuery as pq
+from test_utils import RequestFactory
 
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from stats.models import SubscriptionEvent, Contribution
 from users.models import UserProfile
-from paypal import views
+from paypal import views, PaypalError
+from paypal.decorators import handle_paypal_error
+
 
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
@@ -344,3 +348,36 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     def test_email(self, urlopen):
         self.reversal(urlopen)
         eq_(len(mail.outbox), 1)
+
+
+class TestDecorators(amo.tests.TestCase):
+
+    def setUp(self):
+        self.func = Mock()
+        self.get_request('/')
+
+    def get_request(self, url):
+        self.request = RequestFactory().get(url)
+
+    @patch('jingo.render')
+    def test_caught(self, render):
+        self.func.side_effect = PaypalError
+        view = handle_paypal_error(self.func)
+        view(self.request)
+        eq_(render.call_args[1]['status'], 500)
+        eq_(render.call_args[0][1], 'site/500_paypal.html')
+
+    def test_not_caught(self):
+        self.func.side_effect = ZeroDivisionError
+        view = handle_paypal_error(self.func)
+        self.assertRaises(ZeroDivisionError, view, self.request)
+
+    @patch('jingo.render')
+    def test_submission(self, render):
+        self.get_request('/?dest=submission')
+        self.func.side_effect = PaypalError
+        view = handle_paypal_error(self.func)
+        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        view(self.request, addon=addon)
+        eq_(render.call_args[0][2]['submission'], True)
+        eq_(render.call_args[0][2]['addon'], addon)

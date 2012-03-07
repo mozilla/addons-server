@@ -47,6 +47,7 @@ from files.utils import parse_addon
 from market.models import AddonPremium, Refund, AddonPaymentData
 from payments.models import InappConfig
 from paypal.check import Check
+from paypal.decorators import handle_paypal_error
 import paypal
 from search.views import BaseAjaxSearch
 from stats.models import Contribution
@@ -317,6 +318,7 @@ def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
 
 @write
 @dev_required(webapp=True, skip_submit_check=True)
+@handle_paypal_error
 def acquire_refund_permission(request, addon_id, addon, webapp=False):
     """This is the callback from Paypal."""
     # Set up our redirects.

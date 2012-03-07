@@ -10,6 +10,7 @@ from pyquery import PyQuery as pq
 import waffle
 
 import amo
+from amo.helpers import urlparams
 import amo.tests
 from amo.tests import close_to_now, formset, initial
 from amo.tests.test_helpers import get_image_path
@@ -23,6 +24,7 @@ from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
+import paypal
 from translations.models import Translation
 from users.models import UserProfile
 from webapps.models import Webapp
@@ -815,6 +817,36 @@ class TestPayments(TestSubmit):
                                {'business_account': 'later'})
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('done'))
+
+    def get_acquire_url(self):
+        url = self.webapp.get_dev_url('acquire_refund_permission')
+        return urlparams(url, dest='submission', request_token='foo',
+                         verification_code='foo')
+
+    @mock.patch('paypal.get_permissions_token')
+    @mock.patch('paypal.get_personal_data')
+    def test_bounce_result_works(self, get_personal_data,
+                                 get_permissions_token):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        get_permissions_token.return_value = 'foo'
+        get_personal_data.return_value = {}
+        res = self.client.get(self.get_acquire_url())
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('payments.confirm'))
+
+    @mock.patch('paypal.get_permissions_token')
+    def test_bounce_result_fails(self, get_permissions_token):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        get_permissions_token.side_effect = paypal.PaypalError
+        res = self.client.get(self.get_acquire_url())
+        eq_(res.status_code, 500)
+        self.assertTemplateUsed(res, 'site/500_paypal.html')
+
+        doc = pq(res.content)
+        eq_(doc('div.prose form a').attr('href'),
+            self.get_url('payments.bounce'))
+        eq_(doc('div.prose form').attr('action'),
+            self.get_url('payments.paypal'))
 
     def test_bad_paypal(self):
         # some tests for when it goes wrong
