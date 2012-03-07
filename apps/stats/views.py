@@ -37,8 +37,8 @@ SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'contributions', 'overview',
-          'sources', 'os', 'locales', 'statuses', 'versions', 'apps',
-          'subscribers', 'ratings')
+          'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
+COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'collections_created', 'reviews_created', 'addons_created',
                  'users_created')
@@ -517,7 +517,7 @@ def collection_report(request, username, slug, report):
     stats_base_url = c.stats_url()
     view = get_report_view(request)
 
-    return jingo.render(request, 'stats/%s.html' % report,
+    return jingo.render(request, 'stats/reports/%s.html' % report,
                         {'collection': c,
                          'report': report,
                          'view': view,

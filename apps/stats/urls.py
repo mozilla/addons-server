@@ -10,6 +10,8 @@ series_re = '%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 global_series = dict((type, '%s-%s' % (type, series_re))
                      for type in views.GLOBAL_SERIES)
+collection_series = dict((type, '%s-%s' % (type, series_re))
+                         for type in views.COLLECTION_SERIES)
 
 urlpatterns = patterns('',
     url('^$', views.dashboard, name='stats.dashboard'),
@@ -51,6 +53,26 @@ urlpatterns = patterns('',
         kwargs={'report': 'collections_created'}, name='stats.collections_created'),
     url('^users_created/$', views.site_stats_report,
         kwargs={'report': 'users_created'}, name='stats.users_created'),
+)
+
+collection_stats_urls = patterns('',
+    url('^$', views.collection_report, name='collections.stats',
+        kwargs={'report': 'subscribers'}),
+    url('^subscribers/$', views.collection_report,
+        name='collections.stats.subscribers',
+        kwargs={'report': 'subscribers'}),
+    url(collection_series['subscribers'], views.collection_stats,
+        name='collections.stats.subscribers_series'),
+    url('^ratings/$', views.collection_report,
+        name='collections.stats.ratings',
+        kwargs={'report': 'ratings'}),
+    url(collection_series['ratings'], views.collection_stats,
+        name='collections.stats.ratings_series'),
+    url('^downloads/$', views.collection_report,
+        name='collections.stats.downloads',
+        kwargs={'report': 'downloads'}),
+    url(collection_series['downloads'], views.collection_stats,
+        name='collections.stats.downloads_series'),
 )
 
 # Addon specific stats.
