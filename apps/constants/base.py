@@ -57,6 +57,9 @@ MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
 # An add-on in one of these statuses can become premium.
 PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
 
+# Newly submitted apps begin life at this status.
+WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
+
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2

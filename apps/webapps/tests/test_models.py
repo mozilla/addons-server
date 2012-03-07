@@ -71,17 +71,10 @@ class TestWebapp(test_utils.TestCase):
         w = Webapp()
         eq_(w.status, amo.STATUS_NULL)
         w.mark_done()
-        eq_(w.status, amo.STATUS_PENDING)
-
-    @mock.patch.object(settings, 'WEBAPPS_RESTRICTED', False)
-    def test_mark_done_public(self):
-        w = Webapp()
-        eq_(w.status, amo.STATUS_NULL)
-        w.mark_done()
-        eq_(w.status, amo.STATUS_PUBLIC)
+        eq_(w.status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
     @mock.patch('webapps.models.Webapp.get_manifest_json')
-    def test_has_icon_in_manifest(self, get_manifest_json):
+    def test_no_icon_in_manifest(self, get_manifest_json):
         webapp = Webapp()
         get_manifest_json.return_value = {}
         eq_(webapp.has_icon_in_manifest(), False)

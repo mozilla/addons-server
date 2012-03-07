@@ -899,29 +899,17 @@ class TestAppQueue(EditorTest):
 
     def setUp(self):
         self.login_as_editor()
-        self.apps = [addon_factory(name='XXX', type=amo.ADDON_WEBAPP),
-                     addon_factory(name='YYY', type=amo.ADDON_WEBAPP)]
+        self.apps = [addon_factory(name='XXX', type=amo.ADDON_WEBAPP,
+                                   status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                     addon_factory(name='YYY', type=amo.ADDON_WEBAPP,
+                                   status=amo.WEBAPPS_UNREVIEWED_STATUS)]
         self.url = reverse('editors.queue_apps')
 
     def review_url(self, app, num):
         return urlparams(reverse('editors.app_review', args=[app.slug]),
                          num=num)
 
-    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
-    def test_results(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
-        apps = Webapp.objects.pending().order_by('created')
-        expected = [
-            (unicode(apps[0].name), self.review_url(apps[0], '1')),
-            (unicode(apps[1].name), self.review_url(apps[1], '2')),
-        ]
-        check_links(expected, links, verify=False)
-
-    @patch.object(settings, 'WEBAPPS_RESTRICTED', True)
     def test_restricted_results(self):
-        Webapp.objects.update(status=amo.STATUS_PENDING)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
@@ -932,7 +920,6 @@ class TestAppQueue(EditorTest):
         ]
         check_links(expected, links, verify=False)
 
-    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     @patch('waffle.flag_is_active')
     def test_queue_count(self, flag):
         flag.return_value = True
@@ -940,14 +927,12 @@ class TestAppQueue(EditorTest):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.tabnav li a:eq(5)').text(), u'Apps (2)')
 
-    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     def test_sort(self):
         r = self.client.get(self.url, {'sort': '-name'})
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
             str(self.apps[1].id))
 
-    @patch.object(settings, 'WEBAPPS_RESTRICTED', False)
     def test_redirect_to_review(self):
         r = self.client.get(self.url, {'num': 2})
         self.assertRedirects(r, self.review_url(self.apps[1], num=2))

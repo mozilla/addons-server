@@ -912,14 +912,16 @@ PREVIEW_FULL_PATH = (PREVIEWS_PATH + '/full/%s/%d.png')
 STATIC_URL = SITE_URL
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-ADDON_ICON_URL = STATIC_URL + '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+ADDON_ICON_URL = (STATIC_URL +
+        '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
 USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
+COLLECTION_ICON_URL = (STATIC_URL +
+        '/img/uploads/collection_icons/%s/%s.png?m=%s')
 NEW_PERSONAS_IMAGE_URL = (STATIC_URL +
                           '/img/uploads/personas/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
@@ -1320,9 +1322,6 @@ DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
 
-# If this is true all new webapps go into an approval queue. If it's false then
-# they go public immediately.
-WEBAPPS_RESTRICTED = True
 # The verification URL, the addon id will be appended to this. This will
 # have to be altered to the right domain for each server, eg:
 # https://receiptcheck.addons.mozilla.org/verify/

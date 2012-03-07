@@ -57,7 +57,8 @@ MEDIA_URL = '/media/'
 # Reset these URLs to the defaults so your settings_local doesn't clobber them:
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-ADDON_ICON_URL = STATIC_URL + '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+ADDON_ICON_URL = (STATIC_URL +
+        '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
@@ -71,5 +72,3 @@ APP_PREVIEW = False
 
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
-
-WEBAPPS_RESTRICTED = True

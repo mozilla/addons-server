@@ -6,7 +6,6 @@ import sys
 import time
 import traceback
 import uuid
-import operator
 
 from django import http
 from django.core.files.storage import default_storage as storage
@@ -51,7 +50,6 @@ from market.models import AddonPremium, Refund
 from payments.models import InappConfig
 from paypal.check import Check
 import paypal
-from product_details import product_details
 from search.views import BaseAjaxSearch
 from stats.models import Contribution
 from translations.models import delete_translation
@@ -1593,8 +1591,7 @@ def submit_media(request, addon_id, addon, step, webapp=False):
 
         # Special handling for webapps, where this is jumping to the done step
         if addon.is_webapp():
-            addon.update(status=amo.STATUS_PENDING if
-                         settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)
+            addon.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
             SubmitStep.objects.filter(addon=addon).delete()
             signals.submission_done.send(sender=addon)
 

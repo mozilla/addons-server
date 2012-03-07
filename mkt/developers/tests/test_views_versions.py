@@ -54,14 +54,12 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#version-list').length, 0)
 
     def test_pending(self):
-        # If settings.WEBAPPS_RESTRICTED = True, apps begin life as pending.
         self.webapp.update(status=amo.STATUS_PENDING)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#version-status .status-none').length, 1)
 
     def test_public(self):
-        # If settings.WEBAPPS_RESTRICTED = False, apps begin life as public.
         eq_(self.webapp.status, amo.STATUS_PUBLIC)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)

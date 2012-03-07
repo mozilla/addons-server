@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import logging
 
-from django.conf import settings
 from django.db.models import Count
 
 import cronjobs
@@ -20,28 +19,14 @@ task_log = logging.getLogger('z.task')
 
 @cronjobs.register
 def release_webapps():
-    """
-    Turn webapps from PENDING to LITE so they show up on the site.
-
-    This should be run when WEBAPPS_RESTRICTED is flipped.
-    """
-    if settings.WEBAPPS_RESTRICTED:
-        print 'You should set `WEBAPPS_RESTRICTED = False` first.'
-        return
-    flip_webapp_status(amo.STATUS_PENDING, amo.STATUS_PUBLIC)
+    """Turn apps from PENDING to PUBLIC so they show up on the site."""
+    flip_webapp_status(amo.WEBAPPS_UNREVIEWED_STATUS, amo.STATUS_PUBLIC)
 
 
 @cronjobs.register
 def restrict_webapps():
-    """
-    Turn webapps from LITE to PENDING so they don't show up on the site.
-
-    This should be run if WEBAPPS_RESTRICTED gets rolled back.
-    """
-    if not settings.WEBAPPS_RESTRICTED:
-        print 'You should set `WEBAPPS_RESTRICTED = True` first.'
-        return
-    flip_webapp_status(amo.STATUS_PUBLIC, amo.STATUS_PENDING)
+    """Turn apps from PUBLIC to PENDING so they don't show up on the site."""
+    flip_webapp_status(amo.STATUS_PUBLIC, amo.WEBAPPS_UNREVIEWED_STATUS)
 
 
 def flip_webapp_status(from_, to):

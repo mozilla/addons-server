@@ -1,4 +1,3 @@
-import datetime
 import json
 import os
 
@@ -711,11 +710,11 @@ class TestPayments(TestSubmit):
         eq_(self.get_webapp().status, expected_status)
 
     def test_valid_pending(self):
-        self._test_valid(amo.STATUS_PENDING)
-
-    @mock.patch.object(settings, 'WEBAPPS_RESTRICTED', False)
-    def test_valid_public(self):
-        self._test_valid(amo.STATUS_PUBLIC)
+        res = self.client.post(self.get_url('payments'),
+                               {'premium_type': amo.ADDON_FREE})
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('done'))
+        eq_(self.get_webapp().status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def test_premium(self):
         for type_ in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP]:

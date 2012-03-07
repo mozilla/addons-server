@@ -64,9 +64,7 @@ class WebappManager(amo.models.ManagerBase):
         # ** Reviewed   -- PUBLIC
         # ** Unreviewed -- LITE
         # ** Rejected   -- REJECTED
-        status = (amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-                  else amo.STATUS_PUBLIC)
-        return self.filter(status=status)
+        return self.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that
@@ -173,8 +171,7 @@ class Webapp(Addon):
 
     def mark_done(self):
         """When the submission process is done, update status accordingly."""
-        self.update(status=amo.STATUS_PENDING if settings.WEBAPPS_RESTRICTED
-                           else amo.STATUS_PUBLIC)
+        self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
 
 # Pull all translated_fields from Addon over to Webapp.

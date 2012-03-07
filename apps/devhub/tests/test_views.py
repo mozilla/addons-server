@@ -4,7 +4,6 @@ import os
 import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
-from collections import namedtuple
 
 from django.conf import settings
 from django.core import mail
@@ -33,8 +32,8 @@ from amo.tests import (formset, initial, close_to_now,
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons import cron
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUpsell,
-                           AddonUser, Category, Charity, DeviceType)
+from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
+                           Category, Charity)
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from browse.tests import test_listing_sort, test_default_sort
@@ -2250,8 +2249,7 @@ class TestSubmitStep4(TestSubmitBase):
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
         self.assertRedirects(r, reverse('devhub.submit_apps.5',
                                         args=[self.get_addon().slug]))
-        eq_(self.get_addon().status, amo.STATUS_PENDING if
-            settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)
+        eq_(self.get_addon().status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.url).context

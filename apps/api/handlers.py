@@ -204,8 +204,7 @@ class AppsHandler(AddonsHandler):
             if addon.has_icon_in_manifest():
                 tasks.fetch_icon(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
-            addon.update(status=amo.STATUS_PENDING if
-                         settings.WEBAPPS_RESTRICTED else amo.STATUS_PUBLIC)
+            addon.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
         else:
             return _form_error(form)

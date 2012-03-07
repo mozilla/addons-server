@@ -1,8 +1,5 @@
-from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-
-from django.conf import settings
 
 from addons.models import Addon
 import amo
@@ -110,7 +107,6 @@ class TestPaypal(amo.tests.TestCase):
         self.assertRedirects(res, reverse('submit.app.terms'))
 
 
-@patch.object(settings, 'WEBAPPS_RESTRICTED', True)
 class TestPaypalResponse(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
@@ -129,7 +125,7 @@ class TestPaypalResponse(amo.tests.TestCase):
         res = self.client.post(self.url, {'country': 'bob',
                                           'address_one': '123 bob st.'})
         eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_PENDING)
+        eq_(self.get_webapp().status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def test_not_paypal_updates(self):
         self.webapp.update(status=amo.STATUS_PUBLIC, paypal_id='bob@dog.com')
