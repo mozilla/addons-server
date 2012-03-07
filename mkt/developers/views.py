@@ -42,7 +42,6 @@ from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
                                   AppFormBasic, AppFormDetails,
                                   PaypalSetupForm)
 from mkt.developers.models import ActivityLog
-from mkt.developers import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -581,26 +580,6 @@ def check_addon_compatibility(request):
         'title': _('Check Add-on Compatibility'),
         'upload_url': reverse('mkt.developers.standalone_upload'),
     })
-
-
-@dev_required
-@json_view
-def file_perf_tests_start(request, addon_id, addon, file_id):
-    if not waffle.flag_is_active(request, 'perf-tests'):
-        return http.HttpResponseForbidden()
-    file_ = get_object_or_404(File, pk=file_id)
-
-    plats = perf.PLATFORM_MAP.get(file_.platform.id, None)
-    if plats is None:
-        log.info('Unsupported performance platform %s for file %s'
-                 % (file_.platform.id, file_))
-        # TODO(Kumar) provide a message about this
-        return {'success': False}
-
-    for app in perf.ALL_APPS:
-        for plat in plats:
-            tasks.start_perf_test_for_file.delay(file_.id, plat, app)
-    return {'success': True}
 
 
 @login_required

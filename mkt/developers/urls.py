@@ -140,11 +140,6 @@ ajax_patterns = patterns('',
         name='mkt.developers.ajax.dependencies'),
     url('^image/status$', views.image_status,
         name='mkt.developers.ajax.image.status'),
-
-    # Performance testing
-    url(r'^performance/file/(?P<file_id>\d+)/start-tests.json$',
-        views.file_perf_tests_start,
-        name='mkt.developers.file_perf_tests_start'),
 )
 
 urlpatterns = decorate(write, patterns('',
