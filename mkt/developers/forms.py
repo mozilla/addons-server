@@ -576,22 +576,6 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       extra=1)
 
 
-class AdminForm(happyforms.ModelForm):
-    type = forms.ChoiceField(choices=amo.ADDON_TYPE.items())
-
-    # Request is needed in other ajax forms so we're stuck here.
-    def __init__(self, request=None, *args, **kw):
-        super(AdminForm, self).__init__(*args, **kw)
-
-    class Meta:
-        model = Addon
-        fields = ('trusted', 'type', 'guid',
-                  'target_locale', 'locale_disambiguation')
-        widgets = {
-            'guid': forms.TextInput(attrs={'size': '50'})
-        }
-
-
 class CheckCompatibilityForm(happyforms.Form):
     application = forms.ChoiceField(
                 label=_lazy(u'Application'),

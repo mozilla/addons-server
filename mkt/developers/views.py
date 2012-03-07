@@ -32,9 +32,8 @@ from amo.decorators import (json_view, login_required, no_login_required,
 from amo.helpers import loc
 from amo.utils import escape_all
 from amo.urlresolvers import reverse
-from access import acl
 from addons import forms as addon_forms
-from addons.decorators import addon_view, can_become_premium
+from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
@@ -136,10 +135,6 @@ def edit(request, addon_id, addon, webapp=False):
     if webapp and waffle.switch_is_active('marketplace'):
         data['device_type_form'] = addon_forms.DeviceTypeForm(
             request.POST or None, addon=addon)
-
-    if (not webapp and
-        acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon')):
-        data['admin_form'] = forms.AdminForm(instance=addon)
 
     return jingo.render(request, 'developers/addons/edit.html', data)
 
@@ -878,8 +873,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
               'media': addon_forms.AddonFormMedia,
               'details': AppFormDetails,
               'support': addon_forms.AddonFormSupport,
-              'technical': addon_forms.AddonFormTechnical,
-              'admin': forms.AdminForm}
+              'technical': addon_forms.AddonFormTechnical}
 
     if section not in models:
         raise http.Http404()
@@ -1316,18 +1310,6 @@ def request_review(request, addon_id, addon, status):
     messages.success(request, msg[status_req])
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
-
-
-@post_required
-@addon_view
-def admin(request, addon):
-    if not acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon'):
-        return http.HttpResponseForbidden()
-    form = forms.AdminForm(request, request.POST or None, instance=addon)
-    if form.is_valid():
-        form.save()
-    return jingo.render(request, 'developers/addons/edit/admin.html',
-                        {'addon': addon, 'admin_form': form})
 
 
 def docs(request, doc_name=None, doc_page=None):
