@@ -49,9 +49,11 @@ class Command(BaseCommand):
         print """All done.  Now you should run this SQL:
 
                     UPDATE collections
-                        SET icontype = "image/png" WHERE icontype !='';
+                        SET modified=NOW(),
+                            icontype = "image/png" WHERE icontype !='';
 
                     UPDATE previews
-                        SET filetype = "image/png" WHERE filetype !='';
+                        SET modified=NOW(),
+                            filetype = "image/png" WHERE filetype !='';
 
               """
