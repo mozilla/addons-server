@@ -551,9 +551,7 @@ def collection(request, uuid, format):
     stats_addons_collections_counts table.
     """
     collection = get_object_or_404(Collection, uuid=uuid)
-    if (not acl.action_allowed(request, 'CollectionStats', 'View') and
-        not (request.amo_user and collection.author and
-             collection.author.id == request.amo_user.pk)):
+    if not collection.can_view_stats(request):
         return http.HttpResponseForbidden()
 
     start = date.today() - timedelta(days=365)

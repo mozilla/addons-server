@@ -159,6 +159,20 @@ class TestCollections(amo.tests.TestCase):
         CollectionWatcher.objects.create(collection_id=512, user=self.user)
         check(1)
 
+    def test_can_view_stats(self):
+        c = Collection.objects.create(author=self.user, slug='boom')
+
+        fake_request = mock.Mock()
+        fake_request.groups = ()
+        fake_request.user.is_authenticated.return_value = True
+
+        fake_request.amo_user = self.user
+        eq_(c.can_view_stats(fake_request), True)
+
+        fake_request.amo_user = UserProfile.objects.create(
+                                    username='scrub', email='ez@dee')
+        eq_(c.can_view_stats(fake_request), False)
+
 
 class TestRecommendations(amo.tests.TestCase):
     fixtures = ['base/addon-recs']

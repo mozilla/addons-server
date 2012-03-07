@@ -333,6 +333,13 @@ class Collection(CollectionBase, amo.models.ModelBase):
     def owned_by(self, user):
         return (user.id == self.author_id)
 
+    def can_view_stats(self, request):
+        from access import acl
+        if (request and request.amo_user):
+            return (request.amo_user.id == self.author_id or
+                    acl.action_allowed(request, 'CollectionStats', 'View'))
+        return False
+
     @caching.cached_method
     def publishable_by(self, user):
         return bool(self.owned_by(user) or self.users.filter(pk=user.id))
