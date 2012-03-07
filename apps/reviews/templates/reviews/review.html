@@ -73,7 +73,7 @@
     {% endif %}
     {% if not (is_reply or has_reply) and (perms.is_author or perms.is_admin) %}
       <li>
-        <a class="review-delete" href="{{ shared_url('reviews.reply', addon, review.id) }}">
+        <a class="review-reply" href="{{ shared_url('reviews.reply', addon, review.id) }}">
           {{ _('Reply to review') }}</a>
       </li>
     {% endif %}
@@ -83,7 +83,7 @@
           {{ _('Edit review') }}</a>
       </li>
     {% endif %}
-    {% if perms.can_delete or edit_any_user %}
+    {% if check_review_delete(review) %}
       <li>
         <a class="delete-review" href="{{ shared_url('reviews.delete', addon, review.id) }}">
           {{ _('Delete review') }}</a>

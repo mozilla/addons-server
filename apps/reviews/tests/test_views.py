@@ -4,10 +4,9 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
-from amo.urlresolvers import reverse
 from amo.helpers import shared_url
-from access.models import GroupUser
-from addons.models import Addon
+from access.models import Group, GroupUser
+from addons.models import Addon, AddonUser
 from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -107,14 +106,14 @@ class TestViews(ReviewTest):
         item = reviews.filter('#review-218207')
         actions = item.find('.item-actions')
         eq_(actions.length, 1)
-        classes = sorted([c.get('class') for c in actions.find('li a')])
+        classes = sorted(c.get('class') for c in actions.find('li a'))
         eq_(classes, ['delete-review', 'flag-review'])
 
         r = Review.objects.get(id=218468)
         item = reviews.filter('#review-218468')
         actions = item.find('.item-actions')
         eq_(actions.length, 1)
-        classes = sorted([c.get('class') for c in actions.find('li a')])
+        classes = sorted(c.get('class') for c in actions.find('li a'))
         eq_(classes, ['delete-review', 'review-edit'])
 
 
@@ -206,6 +205,51 @@ class TestDelete(ReviewTest):
         response = self.client.post(self.url)
         eq_(response.status_code, 200)
         eq_(Review.objects.count(), cnt - 1)
+
+    def test_delete_own_review(self):
+        self.client.logout()
+        self.login_dev()
+        url = shared_url('reviews.delete', self.addon, 218468)
+        cnt = Review.objects.count()
+        response = self.client.post(url)
+        eq_(response.status_code, 200)
+        eq_(Review.objects.count(), cnt - 1)
+        eq_(Review.objects.filter(pk=218468).exists(), False)
+
+    def test_reviewer_can_delete(self):
+        # Test an editor can delete a review if they aren't listed as an author.
+        user = UserProfile.objects.get(email='trev@adblockplus.org')
+        # Remove user from authors.
+        AddonUser.objects.filter(addon=self.addon).delete()
+        # Make user an add-on reviewer.
+        group = Group.objects.create(name='Reviewer', rules='Addons:Review')
+        GroupUser.objects.create(group=group, user=user)
+
+        self.client.logout()
+        self.login_dev()
+
+        cnt = Review.objects.count()
+        response = self.client.post(self.url)
+        eq_(response.status_code, 200)
+        # Two are gone since we deleted a review with a reply.
+        eq_(Review.objects.count(), cnt - 2)
+        eq_(Review.objects.filter(pk=218207).exists(), False)
+
+    def test_editor_own_addon_cannot_delete(self):
+        # Test an editor cannot delete a review if they are listed as an author.
+        user = UserProfile.objects.get(email='trev@adblockplus.org')
+        # Make user an add-on reviewer.
+        group = Group.objects.create(name='Reviewer', rules='Addons:Review')
+        GroupUser.objects.create(group=group, user=user)
+
+        self.client.logout()
+        self.login_dev()
+
+        cnt = Review.objects.count()
+        response = self.client.post(self.url)
+        eq_(response.status_code, 403)
+        eq_(Review.objects.count(), cnt)
+        eq_(Review.objects.filter(pk=218207).exists(), True)
 
 
 class TestCreate(ReviewTest):

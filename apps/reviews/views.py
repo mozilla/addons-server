@@ -16,6 +16,7 @@ from access import acl
 from addons.decorators import addon_view_factory, has_purchased
 from addons.models import Addon
 
+from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
 from . import forms
 
@@ -66,8 +67,8 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
             'is_editor': acl.check_reviewer(request),
-            'is_author': acl.check_addon_ownership(request, addon, dev=True),
-            'can_delete': acl.action_allowed(request, 'Reviews', 'Edit'),
+            'is_author': acl.check_addon_ownership(request, addon, viewer=True,
+                                                   dev=True, support=True),
         }
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
@@ -110,8 +111,7 @@ def flag(request, addon, review_id):
 @login_required(redirect=False)
 def delete(request, addon, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
-    if not (acl.action_allowed(request, 'Reviews', 'Edit')
-            or review.user_id == request.amo_user.id):
+    if not user_can_delete_review(request, review):
         return http.HttpResponseForbidden()
     review.delete()
     log.info('Review deleted: %s deleted id:%s by %s ("%s": "%s")' %

@@ -3,6 +3,7 @@ import jinja2
 import jingo
 from tower import ugettext as _
 
+from access import acl
 from reviews.models import ReviewFlag
 from . import forms
 
@@ -56,3 +57,31 @@ def edit_review_form(context):
     c = dict(context.items())
     c.update(form=forms.ReviewForm())
     return c
+
+
+def user_can_delete_review(request, review):
+    """Return whether or not the request.user can delete reviews.
+
+    People who can delete reviews:
+      * The original review author.
+      * Editors, but only if they aren't listed as an author of the add-on.
+      * Users in a group with "Admin:EditAnyUser" privileges.
+      * Users in a group with "Admin:EditAnyAddon" privileges.
+
+    TODO: Make this more granular when we have multiple reviewer types, e.g.
+    persona reviewers shouldn't be able to delete add-on reviews.
+    """
+    is_editor = acl.check_reviewer(request)
+    is_author = acl.check_addon_ownership(request, review.addon, viewer=True,
+                                          dev=True, support=True)
+    return (
+        review.user_id == request.user.id or
+        (is_editor and not is_author) or
+        acl.action_allowed(request, 'Admin', 'EditAnyUser') or
+        acl.action_allowed(request, 'Admin', 'EditAnyAddon'))
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def check_review_delete(context, review):
+    return user_can_delete_review(context['request'], review)
