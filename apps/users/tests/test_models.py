@@ -1,3 +1,4 @@
+from base64 import encodestring
 import datetime
 import hashlib
 from urlparse import urlparse
@@ -201,6 +202,7 @@ class TestUserProfile(amo.tests.TestCase):
 
 class TestPasswords(amo.tests.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
+    bytes_ = '\xb1\x98og\x88\x87\x08q'
 
     def test_invalid_old_password(self):
         u = UserProfile(password=self.utf)
@@ -224,6 +226,26 @@ class TestPasswords(amo.tests.TestCase):
         u = UserProfile()
         u.set_password(self.utf)
         assert u.check_password(self.utf) is True
+
+    def test_persona_sha512_md5(self):
+        md5 = hashlib.md5('password').hexdigest()
+        hsh = hashlib.sha512(self.bytes_ + md5).hexdigest()
+        u = UserProfile(password='sha512+MD5$%s$%s' %
+                        (self.bytes_, hsh))
+        assert u.check_password('password') is True
+
+    def test_persona_sha512_base64(self):
+        hsh = hashlib.sha512(self.bytes_ + 'password').hexdigest()
+        u = UserProfile(password='sha512+base64$%s$%s' %
+                        (encodestring(self.bytes_), hsh))
+        assert u.check_password('password') is True
+
+    def test_persona_sha512_md5_base64(self):
+        md5 = hashlib.md5('password').hexdigest()
+        hsh = hashlib.sha512(self.bytes_ + md5).hexdigest()
+        u = UserProfile(password='sha512+MD5+base64$%s$%s' %
+                        (encodestring(self.bytes_), hsh))
+        assert u.check_password('password') is True
 
 
 class TestBlacklistedUsername(amo.tests.TestCase):

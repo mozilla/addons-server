@@ -1,3 +1,4 @@
+from base64 import decodestring
 from datetime import datetime
 import hashlib
 import os
@@ -30,6 +31,18 @@ log = commonware.log.getLogger('z.users')
 
 
 def get_hexdigest(algorithm, salt, raw_password):
+    if 'base64' in algorithm:
+        # These are getpersonas passwords with base64 encoded salts.
+        salt = decodestring(salt)
+        algorithm = algorithm.replace('+base64', '')
+
+    if algorithm.startswith('sha512+MD5'):
+        # These are persona specific passwords when we imported
+        # users from getpersonas.com. The password is md5 hashed
+        # and then sha512'd.
+        md5 = hashlib.new('md5', raw_password).hexdigest()
+        return hashlib.new('sha512', smart_str(salt + md5)).hexdigest()
+
     return hashlib.new(algorithm, smart_str(salt + raw_password)).hexdigest()
 
 
