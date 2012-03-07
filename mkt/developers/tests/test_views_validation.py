@@ -98,10 +98,6 @@ class TestFileValidation(amo.tests.TestCase):
         self.json_url = reverse('mkt.developers.json_file_validation',
                                 args=args)
 
-    def test_version_list(self):
-        r = self.client.get(self.addon.get_dev_url('versions'))
-        eq_(r.status_code, 200)
-
     @mock.patch.object(settings, 'APP_PREVIEW', True)
     def test_app_results_page(self):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)

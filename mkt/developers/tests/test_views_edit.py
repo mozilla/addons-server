@@ -1,13 +1,10 @@
 import json
 import os
-import re
 import tempfile
 
 from django.conf import settings
-from django.core.cache import cache
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
@@ -21,44 +18,31 @@ from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory,
                            AddonDeviceType, AddonUser, Category, DeviceType)
-from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from mkt.developers.models import ActivityLog
 from users.models import UserProfile
 
 
 def get_section_url(addon, section, edit=False):
-    args = [addon.slug, section]
+    args = [addon.app_slug, section]
     if edit:
         args.append('edit')
-    return reverse('mkt.developers.addons.section', args=args)
+    return reverse('mkt.developers.apps.section', args=args)
 
 
 class TestEdit(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_5579', 'base/addon_3615_categories']
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        super(TestEdit, self).setUp()
-        addon = self.get_addon()
-        assert self.client.login(username='del@icio.us', password='password')
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url()
+        self.user = UserProfile.objects.get(username='31337')
+        assert self.client.login(username=self.user.email, password='password')
 
-        a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
-        a.feature = False
-        a.save()
-        AddonCategory.objects.filter(addon=addon,
-            category__id__in=[23, 24]).delete()
-        cache.clear()
-
-        self.url = addon.get_dev_url()
-        self.user = UserProfile.objects.get(pk=55021)
-
-        self.addon = self.get_addon()
-
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+    def get_webapp(self):
+        return Addon.objects.no_cache().get(id=337141)
 
     def get_url(self, section, edit=False):
-        return get_section_url(self.addon, section, edit)
+        return get_section_url(self.webapp, section, edit)
 
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
@@ -68,14 +52,15 @@ class TestEdit(amo.tests.TestCase):
         result.update(fs)
         return result
 
+    def compare(self, data):
+        """Compare an app against a `dict` of expected values."""
+        webapp = self.get_webapp()
+        for k, v in data.iteritems():
+            eq_(unicode(getattr(webapp, k)), unicode(v))
 
-class TestEditListingWebapp(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
-    def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(id=337141)
-        self.url = self.webapp.get_dev_url()
+class TestEditListingWebapp(TestEdit):
+    fixtures = TestEdit.fixtures
 
     @mock.patch.object(settings, 'APP_PREVIEW', False)
     def test_apps_context(self):
@@ -91,22 +76,20 @@ class TestEditListingWebapp(amo.tests.TestCase):
         eq_(doc('.view-stats').length, 0)
 
 
-class TestEditBasicWebapp(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+class TestEditBasic(TestEdit):
+    fixtures = TestEdit.fixtures
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        super(TestEditBasic, self).setUp()
         Switch.objects.create(name='marketplace', active=True)
-        self.webapp = self.get_webapp()
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
         self.dtype = DeviceType.objects.create(name='fligphone',
                                                class_name='phone')
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype)
-        self.url = get_section_url(self.webapp, 'basic')
-        self.edit_url = get_section_url(self.webapp, 'basic', edit=True)
+        self.url = self.get_url('basic')
+        self.edit_url = self.get_url('basic', edit=True)
         ctx = self.client.get(self.edit_url).context
         self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
         del self.cat_initial['application']
@@ -123,8 +106,7 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         return result
 
     def test_apps_context(self):
-        r = self.client.get(self.url)
-        eq_(r.context['webapp'], True)
+        eq_(self.client.get(self.url).context['webapp'], True)
 
     def test_appslug_visible(self):
         r = self.client.get(self.url)
@@ -136,32 +118,39 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         r = self.client.post(self.edit_url, self.get_dict(name=''))
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
+    def test_edit_name_required_for_all_whitespace(self):
+        r = self.client.post(self.edit_url, self.get_dict(name='  \t  \n  '))
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
     def test_edit_name_max_length(self):
         r = self.client.post(self.edit_url, self.get_dict(name='x' * 129))
-        self.assertFormError(r, 'form', 'name',
-                             'Ensure this value has at most 128 characters '
-                             '(it has 129).')
+        eq_(list(r.context['form'].errors['name']),
+            [('en-us',
+              'Ensure this value has at most 128 characters (it has 129).')])
 
     def test_edit_slug_success(self):
-        webapp = self.webapp
         data = self.get_dict()
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
         eq_(r.status_code, 200)
-        eq_(self.get_webapp().app_slug, data['slug'])
+        webapp = self.get_webapp()
+        eq_(webapp.app_slug, data['slug'])
         # Make sure only the app_slug changed.
-        eq_(self.get_webapp().slug, webapp.slug)
+        eq_(webapp.slug, self.webapp.slug)
+
+    def test_edit_slug_max_length(self):
+        r = self.client.post(self.edit_url, self.get_dict(slug='x' * 31))
+        self.assertFormError(r, 'form', 'slug',
+            'Ensure this value has at most 30 characters (it has 31).')
 
     def test_edit_slug_dupe(self):
-        webapp = self.webapp
         Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='dupe')
-        data = self.get_dict(slug='dupe')
-        r = self.client.post(self.edit_url, data)
-        self.assertFormError(r, 'form', 'slug',
-                             'This slug is already in use.')
+        r = self.client.post(self.edit_url, self.get_dict(slug='dupe'))
+        self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
+        webapp = self.get_webapp()
         # Nothing changed.
-        eq_(self.get_webapp().slug, webapp.slug)
-        eq_(self.get_webapp().app_slug, webapp.app_slug)
+        eq_(webapp.slug, self.webapp.slug)
+        eq_(webapp.app_slug, self.webapp.app_slug)
 
     def test_view_manifest_url_default(self):
         # Should be able to see manifest URL listed.
@@ -183,7 +172,7 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         eq_(self.get_webapp().manifest_url, self.webapp.manifest_url)
 
     def test_view_manifest_url_changed(self):
-        new_url = 'http://omg.com/yes.webapp'
+        new_url = 'http://omg.org/yes'
         self.webapp.manifest_url = new_url
         self.webapp.save()
 
@@ -217,6 +206,33 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         r = self.client.post(self.edit_url, formset(self.cat_initial,
                                                     initial_count=1))
         assert_required(r.context['cat_form'].errors[0]['categories'][0])
+
+    def test_edit_categories_xss(self):
+        new = Category.objects.create(name='<script>alert("xss");</script>',
+                                      type=amo.ADDON_WEBAPP)
+        self.cat_initial['categories'] = [self.cat.id, new.id]
+        r = self.client.post(self.edit_url, formset(self.cat_initial,
+                                                          initial_count=1))
+
+        assert '<script>alert' not in r.content
+        assert '&lt;script&gt;alert' in r.content
+
+    def test_edit_categories_other_failure(self):
+        new = Category.objects.create(type=amo.ADDON_WEBAPP, misc=True)
+        self.cat_initial['categories'] = [self.cat.id, new.id]
+        r = self.client.post(self.edit_url, formset(self.cat_initial,
+                                                    initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['The miscellaneous category cannot be combined with additional '
+             'categories.'])
+
+    def test_edit_categories_nonexistent(self):
+        self.cat_initial['categories'] = [100]
+        r = self.client.post(self.edit_url, formset(self.cat_initial,
+                                                    initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['Select a valid choice. 100 is not one of the available '
+             'choices.'])
 
     def test_edit_categories_max(self):
         new1 = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
@@ -254,288 +270,96 @@ class TestEditBasicWebapp(amo.tests.TestCase):
         self.assertFormError(r, 'device_type_form', 'device_types',
                              'This field is required.')
 
-
-class TestEditBasic(TestEdit):
-
-    def setUp(self):
-        super(TestEditBasic, self).setUp()
-        self.basic_edit_url = self.get_url('basic', edit=True)
-        ctx = self.client.get(self.basic_edit_url).context
-        self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
-
-    def test_redirect(self):
-        # /addon/:id => /addon/:id/edit
-        r = self.client.get('/en-US/developers/addon/3615/', follow=True)
-        self.assertRedirects(r, self.url, 301)
-
-    def test_addons_context(self):
-        for url in (self.url, self.basic_edit_url):
-            eq_(self.client.get(url).context['webapp'], False)
+    def test_edit_summary_max_length(self):
+        r = self.client.post(self.edit_url, self.get_dict(summary='x' * 251))
+        eq_(list(r.context['form'].errors['summary']),
+            [('en-us',
+              'Ensure this value has at most 250 characters (it has 251).')])
 
     def test_edit(self):
-        old_name = self.addon.name
+        old_name = self.webapp.name
         data = self.get_dict()
 
-        r = self.client.post(self.basic_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
-        eq_(unicode(addon.name), data['name'])
-        eq_(addon.name.id, old_name.id)
-
-        eq_(unicode(addon.slug), data['slug'])
-        eq_(unicode(addon.summary), data['summary'])
+        eq_(unicode(webapp.name), data['name'])
+        eq_(webapp.name.id, old_name.id)
+        eq_(unicode(webapp.app_slug), data['slug'])
+        eq_(unicode(webapp.summary), data['summary'])
 
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
-        old_desc = self.addon.description
-        data = self.get_dict()
-
-        r = self.client.post(self.basic_edit_url, data)
+        r = self.client.post(self.edit_url, self.get_dict())
         eq_(r.status_code, 200)
-        addon = self.get_addon()
 
-        eq_(addon.description, old_desc)
+        eq_(self.get_webapp().description, self.webapp.description)
 
     def test_edit_slug_invalid(self):
-        old_edit = self.basic_edit_url
-        data = self.get_dict(name='', slug='invalid')
-        r = self.client.post(self.basic_edit_url, data)
-        doc = pq(r.content)
-        eq_(doc('form').attr('action'), old_edit)
+        r = self.client.post(self.edit_url,
+                             self.get_dict(name='', slug='invalid'))
+        eq_(pq(r.content)('form').attr('action'), self.edit_url)
 
     def test_edit_slug_valid(self):
-        old_edit = self.basic_edit_url
+        old_edit = self.edit_url
         data = self.get_dict(slug='valid')
-        r = self.client.post(self.basic_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         doc = pq(r.content)
         assert doc('form').attr('action') != old_edit
 
     def test_edit_summary_escaping(self):
-        data = self.get_dict()
-        data['summary'] = '<b>oh my</b>'
-        r = self.client.post(self.basic_edit_url, data)
+        data = self.get_dict(summary='<b>oh my</b>')
+        r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
 
         # Fetch the page so the LinkifiedTranslation gets in cache.
-        r = self.client.get(reverse('mkt.developers.addons.edit',
-                                    args=[data['slug']]))
+        webapp = self.get_webapp()
+        r = self.client.get(webapp.get_dev_url('edit'))
         eq_(pq(r.content)('[data-name=summary]').html().strip(),
             '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
 
         # Now make sure we don't have escaped content in the rendered form.
-        form = AddonFormBasic(instance=self.get_addon(), request=object())
+        form = AddonFormBasic(instance=webapp, request=object())
         eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html(),
-            '<b>oh my</b>')
+            data['summary'])
 
     def test_edit_as_developer(self):
         self.client.login(username='regular@mozilla.com', password='password')
         data = self.get_dict()
-        r = self.client.post(self.basic_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         # Make sure we get errors when they are just regular users.
         eq_(r.status_code, 403)
 
-        devuser = UserProfile.objects.get(pk=999)
-        AddonUser.objects.create(addon=self.get_addon(), user=devuser,
+        AddonUser.objects.create(addon=self.webapp, user_id=999,
                                  role=amo.AUTHOR_ROLE_DEV)
-        r = self.client.post(self.basic_edit_url, data)
-
+        r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
-        eq_(unicode(addon.name), data['name'])
-
-        eq_(unicode(addon.slug), data['slug'])
-        eq_(unicode(addon.summary), data['summary'])
-
-    def test_edit_name_required(self):
-        data = self.get_dict(name='', slug='test_addon')
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_edit_name_spaces(self):
-        data = self.get_dict(name='    ', slug='test_addon')
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_edit_slugs_unique(self):
-        Addon.objects.get(id=5579).update(slug='test_slug')
-        data = self.get_dict()
-        r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
-
-    def test_edit_categories_add(self):
-        eq_([c.id for c in self.get_addon().all_categories], [22])
-        self.cat_initial['categories'] = [22, 23]
-
-        self.client.post(self.basic_edit_url, self.get_dict())
-
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_(sorted(addon_cats), [22, 23])
-
-    def _feature_addon(self, addon_id=3615):
-        c = CollectionAddon.objects.create(addon_id=addon_id,
-            collection=Collection.objects.create())
-        FeaturedCollection.objects.create(collection=c.collection,
-                                          application_id=amo.FIREFOX.id)
-
-    def test_edit_categories_add_creatured(self):
-        raise SkipTest()
-        """Ensure that categories cannot be changed for creatured add-ons."""
-        self._feature_addon()
-
-        self.cat_initial['categories'] = [22, 23]
-        r = self.client.post(self.basic_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['Categories cannot be changed while your add-on is featured for '
-             'this application.'])
-        # This add-on's categories should not change.
-        eq_(sorted(addon_cats), [22])
-
-    def test_edit_categories_add_new_creatured_admin(self):
-        """Ensure that admins can change categories for creatured add-ons."""
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        self._feature_addon()
-        from addons.cron import reset_featured_addons
-        reset_featured_addons()
-        r = self.client.get(self.basic_edit_url)
-        doc = pq(r.content)
-        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
-        eq_(doc('#addon-categories-edit > p').length, 0)
-        self.cat_initial['categories'] = [22, 23]
-        r = self.client.post(self.basic_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_('categories' in r.context['cat_form'].errors[0], False)
-        # This add-on's categories should change.
-        eq_(sorted(addon_cats), [22, 23])
-
-    def test_edit_categories_disable_creatured(self):
-        """Ensure that other forms are okay when disabling category changes."""
-        self._feature_addon()
-        self.cat_initial['categories'] = [22, 23]
-        data = self.get_dict()
-        self.client.post(self.basic_edit_url, data)
-        eq_(unicode(self.get_addon().name), data['name'])
-
-    def test_edit_categories_no_disclaimer(self):
-        """Ensure that there is a not disclaimer for non-creatured add-ons."""
-        r = self.client.get(self.basic_edit_url)
-        doc = pq(r.content)
-        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
-        eq_(doc('#addon-categories-edit > p').length, 0)
-
-    def test_edit_categories_addandremove(self):
-        AddonCategory(addon=self.addon, category_id=23).save()
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
-
-        self.cat_initial['categories'] = [22, 24]
-        self.client.post(self.basic_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_(sorted(addon_cats), [22, 24])
-
-    def test_edit_categories_xss(self):
-        c = Category.objects.get(id=22)
-        c.name = '<script>alert("test");</script>'
-        c.save()
-
-        self.cat_initial['categories'] = [22, 24]
-        r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
-
-        assert '<script>alert' not in r.content
-        assert '&lt;script&gt;alert' in r.content
-
-    def test_edit_categories_remove(self):
-        c = Category.objects.get(id=23)
-        AddonCategory(addon=self.addon, category=c).save()
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
-
-        self.cat_initial['categories'] = [22]
-        self.client.post(self.basic_edit_url, self.get_dict())
-
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_(sorted(addon_cats), [22])
-
-    def test_edit_categories_required(self):
-        del self.cat_initial['categories']
-        r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['This field is required.'])
-
-    def test_edit_categories_max(self):
-        eq_(amo.MAX_CATEGORIES, 2)
-        self.cat_initial['categories'] = [22, 23, 24]
-        r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['You can have only 2 categories.'])
-
-    def test_edit_categories_other_failure(self):
-        Category.objects.get(id=22).update(misc=True)
-        self.cat_initial['categories'] = [22, 23]
-        r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['The miscellaneous category cannot be combined with additional '
-             'categories.'])
-
-    def test_edit_categories_nonexistent(self):
-        self.cat_initial['categories'] = [100]
-        r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['Select a valid choice. 100 is not one of the available '
-             'choices.'])
-
-    def test_edit_name_not_empty(self):
-        data = self.get_dict(name='', slug=self.addon.slug,
-                             summary=self.addon.summary)
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_edit_name_max_length(self):
-        data = self.get_dict(name='xx' * 70, slug=self.addon.slug,
-                             summary=self.addon.summary)
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'name',
-                             'Ensure this value has at most 50 '
-                             'characters (it has 140).')
-
-    def test_edit_summary_max_length(self):
-        data = self.get_dict(name=self.addon.name, slug=self.addon.slug,
-                             summary='x' * 251)
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'summary',
-                             'Ensure this value has at most 250 '
-                             'characters (it has 251).')
+        eq_(unicode(webapp.name), data['name'])
+        eq_(unicode(webapp.app_slug), data['slug'])
+        eq_(unicode(webapp.summary), data['summary'])
 
     def get_l10n_urls(self):
-        paths = ('mkt.developers.addons.edit', 'mkt.developers.addons.profile')
-        return [reverse(p, args=['a3615']) for p in paths]
+        return [self.webapp.get_dev_url(p) for p in ('edit', 'profile')]
 
     def test_l10n(self):
-        Addon.objects.get(id=3615).update(default_locale='en-US')
+        self.webapp.update(default_locale='en-US')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
             eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us',
                 'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us(self):
-        Addon.objects.get(id=3615).update(default_locale='fr')
+        self.webapp.update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
             eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
                 'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us_id_url(self):
-        Addon.objects.get(id=3615).update(default_locale='fr')
+        self.webapp.update(default_locale='fr')
         for url in self.get_l10n_urls():
             url = '/id' + url[6:]
             r = self.client.get(url, follow=True)
@@ -548,19 +372,16 @@ class TestEditMedia(TestEdit):
     def setUp(self):
         super(TestEditMedia, self).setUp()
         self.media_edit_url = self.get_url('media', True)
-        self.icon_upload = reverse('mkt.developers.addons.upload_icon',
-                                   args=[self.addon.slug])
-        self.preview_upload = reverse('mkt.developers.addons.upload_preview',
-                                      args=[self.addon.slug])
-        self.old_settings = {'preview': settings.PREVIEW_THUMBNAIL_PATH,
-                             'icons': settings.ADDON_ICONS_PATH}
-        settings.PREVIEW_THUMBNAIL_PATH = tempfile.mkstemp()[1] + '%s/%d.png'
-        settings.ADDON_ICONS_PATH = tempfile.mkdtemp()
-
-    def tearDown(self):
-        super(TestEditMedia, self).tearDown()
-        settings.PREVIEW_THUMBNAIL_PATH = self.old_settings['preview']
-        settings.ADDON_ICONS_PATH = self.old_settings['icons']
+        self.icon_upload = self.webapp.get_dev_url('upload_icon')
+        self.preview_upload = self.webapp.get_dev_url('upload_preview')
+        patches = {
+            'ADDON_ICONS_PATH': tempfile.mkdtemp(),
+            'PREVIEW_THUMBNAIL_PATH': tempfile.mkstemp()[1] + '%s/%d.png',
+        }
+        for k, v in patches.iteritems():
+            patcher = mock.patch.object(settings, k, v)
+            patcher.start()
+            self.addCleanup(patcher.stop)
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.media_edit_url).context
@@ -576,41 +397,40 @@ class TestEditMedia(TestEdit):
         fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
         return dict([(k, '' if v is None else v) for k, v in fs.items()])
 
-    def test_edit_media_defaulticon(self):
+    def test_edit_defaulticon(self):
         data = dict(icon_type='')
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.media_edit_url, data_formset)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
-        assert addon.get_icon_url(64).endswith('icons/default-64.png')
+        assert webapp.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            eq_(unicode(getattr(webapp, k)), data[k])
 
-    def test_edit_media_preuploadedicon(self):
+    def test_edit_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.media_edit_url, data_formset)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
-        assert addon.get_icon_url(64).endswith('icons/appearance-64.png')
+        assert webapp.get_icon_url(64).endswith('icons/appearance-64.png')
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            eq_(unicode(getattr(webapp, k)), data[k])
 
-    def test_edit_media_uploadedicon(self):
+    def test_edit_uploadedicon(self):
         img = get_image_path('mozilla.png')
         src_image = open(img, 'rb')
 
-        data = dict(upload_image=src_image)
-
-        response = self.client.post(self.icon_upload, data)
+        response = self.client.post(self.icon_upload,
+                                    dict(upload_image=src_image))
         response_json = json.loads(response.content)
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
         # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
@@ -619,39 +439,39 @@ class TestEditMedia(TestEdit):
 
         r = self.client.post(self.media_edit_url, data_formset)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
         # Unfortunate hardcoding of URL
-        url = addon.get_icon_url(64)
-        assert ('addon_icons/3/%s' % addon.id) in url, (
+        url = webapp.get_icon_url(64)
+        assert ('addon_icons/%s/%s' % (webapp.id / 1000, webapp.id)) in url, (
             'Unexpected path: %r' % url)
 
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
         dirname = os.path.join(settings.ADDON_ICONS_PATH,
-                               '%s' % (addon.id / 1000))
-        dest = os.path.join(dirname, '%s-32.png' % addon.id)
+                               '%s' % (webapp.id / 1000))
+        dest = os.path.join(dirname, '%s-32.png' % webapp.id)
 
-        assert os.path.exists(dest)
+        eq_(os.path.exists(dest), True)
 
         eq_(Image.open(dest).size, (32, 12))
 
-    def test_edit_media_icon_log(self):
-        self.test_edit_media_uploadedicon()
+    def test_edit_icon_log(self):
+        self.test_edit_uploadedicon()
         log = ActivityLog.objects.all()
         eq_(log.count(), 1)
         eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
 
-    def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.MEDIA_ROOT
+    def test_edit_uploadedicon_noresize(self):
+        img = '%s/img/notifications/error.png' % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
 
         response = self.client.post(self.icon_upload, data)
         response_json = json.loads(response.content)
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
         # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
@@ -660,19 +480,19 @@ class TestEditMedia(TestEdit):
 
         r = self.client.post(self.media_edit_url, data_formset)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
+        webapp = self.get_webapp()
 
         # Unfortunate hardcoding of URL
-        addon_url = addon.get_icon_url(64).split('?')[0]
-        assert addon_url.endswith('addon_icons/3/%s-64.png' % addon.id), (
-            'Unexpected path: %r' % addon_url)
+        addon_url = webapp.get_icon_url(64).split('?')[0]
+        end = 'addon_icons/%s/%s-64.png' % (webapp.id / 1000, webapp.id)
+        assert addon_url.endswith(end), 'Unexpected path: %r' % addon_url
 
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
         dirname = os.path.join(settings.ADDON_ICONS_PATH,
-                               '%s' % (addon.id / 1000))
-        dest = os.path.join(dirname, '%s-64.png' % addon.id)
+                               '%s' % (webapp.id / 1000))
+        dest = os.path.join(dirname, '%s-64.png' % webapp.id)
 
         assert os.path.exists(dest)
 
@@ -686,42 +506,41 @@ class TestEditMedia(TestEdit):
         response_json = json.loads(res.content)
         eq_(response_json['errors'][0], msg)
 
-    def test_edit_media_icon_wrong_type(self):
+    def test_edit_icon_wrong_type(self):
         self.check_image_type(self.icon_upload,
                               'Icons must be either PNG or JPG.')
 
-    def test_edit_media_screenshot_wrong_type(self):
+    def test_edit_screenshot_wrong_type(self):
         self.check_image_type(self.preview_upload,
                               'Images must be either PNG or JPG.')
 
     def setup_image_status(self):
-        addon = self.get_addon()
-        self.icon_dest = os.path.join(addon.get_icon_dir(),
-                                      '%s-64.png' % addon.id)
+        self.icon_dest = os.path.join(self.webapp.get_icon_dir(),
+                                      '%s-64.png' % self.webapp.id)
         os.makedirs(os.path.dirname(self.icon_dest))
         open(self.icon_dest, 'w')
 
-        self.preview = addon.previews.create()
+        self.preview = self.webapp.previews.create()
         self.preview.save()
         os.makedirs(os.path.dirname(self.preview.thumbnail_path))
         open(self.preview.thumbnail_path, 'w')
 
         self.url = reverse('mkt.developers.ajax.image.status',
-                           args=[addon.slug])
+                           args=[self.webapp.slug])
 
-    def test_image_status_no_choice(self):
-        addon = self.get_addon()
-        addon.update(icon_type='')
-        url = reverse('mkt.developers.ajax.image.status', args=[addon.slug])
+    def test_icon_status_no_choice(self):
+        self.webapp.update(icon_type='')
+        url = reverse('mkt.developers.ajax.image.status',
+                      args=[self.webapp.slug])
         result = json.loads(self.client.get(url).content)
         assert result['icons']
 
-    def test_image_status_works(self):
+    def test_icon_status_works(self):
         self.setup_image_status()
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']
 
-    def test_image_status_fails(self):
+    def test_icon_status_fails(self):
         self.setup_image_status()
         os.remove(self.icon_dest)
         result = json.loads(self.client.get(self.url).content)
@@ -733,7 +552,7 @@ class TestEditMedia(TestEdit):
         assert result['previews']
 
         # No previews means that all the images are done.
-        self.addon.previews.all().delete()
+        self.webapp.previews.all().delete()
         result = json.loads(self.client.get(self.url).content)
         assert result['previews']
 
@@ -746,14 +565,14 @@ class TestEditMedia(TestEdit):
     def test_image_status_persona(self):
         self.setup_image_status()
         os.remove(self.icon_dest)
-        self.get_addon().update(type=amo.ADDON_PERSONA)
+        self.webapp.update(type=amo.ADDON_PERSONA)
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']
 
     def test_image_status_default(self):
         self.setup_image_status()
         os.remove(self.icon_dest)
-        self.get_addon().update(icon_type='icon/photos')
+        self.webapp.update(icon_type='icon/photos')
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']
 
@@ -776,8 +595,7 @@ class TestEditMedia(TestEdit):
         img = get_image_path('mozilla.png')
         src_image = open(img, 'rb')
 
-        data = dict(upload_image=src_image)
-        data_formset = self.formset_media(**data)
+        data_formset = self.formset_media(upload_image=src_image)
         url = self.preview_upload
 
         r = self.client.post(url, data_formset)
@@ -787,7 +605,7 @@ class TestEditMedia(TestEdit):
 
         # Create and post with the formset.
         fields = []
-        for i in range(amount):
+        for i in xrange(amount):
             fields.append(self.formset_new_form(caption='hi',
                                                 upload_hash=upload_hash,
                                                 position=i))
@@ -797,14 +615,13 @@ class TestEditMedia(TestEdit):
 
         r = self.client.post(self.media_edit_url, data_formset)
 
-    def test_edit_media_preview_add(self):
+    def test_edit_preview_add(self):
         self.preview_add()
+        eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
 
-        eq_(str(self.get_addon().previews.all()[0].caption), 'hi')
-
-    def test_edit_media_preview_edit(self):
+    def test_edit_preview_edit(self):
         self.preview_add()
-        preview = self.get_addon().previews.all()[0]
+        preview = self.get_webapp().previews.all()[0]
         edited = {'caption': 'bye',
                   'upload_hash': '',
                   'id': preview.id,
@@ -815,20 +632,21 @@ class TestEditMedia(TestEdit):
 
         self.client.post(self.media_edit_url, data_formset)
 
-        eq_(str(self.get_addon().previews.all()[0].caption), 'bye')
-        eq_(len(self.get_addon().previews.all()), 1)
+        previews = self.get_webapp().previews
+        eq_(str(previews.all()[0].caption), 'bye')
+        eq_(previews.count(), 1)
 
-    def test_edit_media_preview_reorder(self):
+    def test_edit_preview_reorder(self):
         self.preview_add(3)
 
-        previews = self.get_addon().previews.all()
+        previews = self.get_webapp().previews.all()
 
         base = dict(upload_hash='', file_upload=None)
 
         # Three preview forms were generated; mix them up here.
-        a = dict(caption="first", position=1, id=previews[2].id)
-        b = dict(caption="second", position=2, id=previews[0].id)
-        c = dict(caption="third", position=3, id=previews[1].id)
+        a = dict(caption='first', position=1, id=previews[2].id)
+        b = dict(caption='second', position=2, id=previews[0].id)
+        c = dict(caption='third', position=3, id=previews[1].id)
         a.update(base)
         b.update(base)
         c.update(base)
@@ -841,14 +659,14 @@ class TestEditMedia(TestEdit):
 
         self.client.post(self.media_edit_url, data_formset)
 
-        # They should come out "first", "second", "third"
-        eq_(self.get_addon().previews.all()[0].caption, 'first')
-        eq_(self.get_addon().previews.all()[1].caption, 'second')
-        eq_(self.get_addon().previews.all()[2].caption, 'third')
+        # They should come out "first", "second", "third".
+        eq_(self.get_webapp().previews.all()[0].caption, 'first')
+        eq_(self.get_webapp().previews.all()[1].caption, 'second')
+        eq_(self.get_webapp().previews.all()[2].caption, 'third')
 
-    def test_edit_media_preview_delete(self):
+    def test_edit_preview_delete(self):
         self.preview_add()
-        preview = self.get_addon().previews.get()
+        preview = self.get_webapp().previews.get()
         edited = {'DELETE': 'checked',
                   'upload_hash': '',
                   'id': preview.id,
@@ -859,18 +677,16 @@ class TestEditMedia(TestEdit):
 
         self.client.post(self.media_edit_url, data_formset)
 
-        eq_(len(self.get_addon().previews.all()), 0)
+        eq_(self.get_webapp().previews.count(), 0)
 
-    def test_edit_media_preview_add_another(self):
+    def test_edit_preview_add_another(self):
         self.preview_add()
         self.preview_add()
+        eq_(self.get_webapp().previews.count(), 2)
 
-        eq_(len(self.get_addon().previews.all()), 2)
-
-    def test_edit_media_preview_add_two(self):
+    def test_edit_preview_add_two(self):
         self.preview_add(2)
-
-        eq_(len(self.get_addon().previews.all()), 2)
+        eq_(self.get_webapp().previews.count(), 2)
 
 
 class TestEditDetails(TestEdit):
@@ -893,34 +709,29 @@ class TestEditDetails(TestEdit):
         data = self.get_dict()
         r = self.client.post(self.details_edit_url, data)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
-
-        for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+        self.compare(data)
 
     def test_edit_xss(self):
         """
         Let's try to put xss in our description, and safe html, and verify
         that we are playing safe.
         """
-        self.addon.description = ("This\n<b>IS</b>"
-                                  "<script>alert('awesome')</script>")
-        self.addon.save()
+        self.webapp.description = ("This\n<b>IS</b>"
+                                   "<script>alert('awesome')</script>")
+        self.webapp.save()
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#edit-addon-details span[lang]').html(),
-                "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
-                '&lt;/script&gt;')
+        eq_(pq(r.content)('#edit-addon-details span[lang]').html(),
+            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
+            '&lt;/script&gt;')
 
     def test_privacy_policy_xss(self):
-        self.addon.privacy_policy = ("We\n<b>own</b>your"
-                                     "<script>alert('soul')</script>")
-        self.addon.save()
+        self.webapp.privacy_policy = ("We\n<b>own</b>your"
+                                      "<script>alert('soul')</script>")
+        self.webapp.save()
         r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#addon-privacy-policy span[lang]').html(),
-                "We<br/><b>own</b>your&lt;script&gt;"
-                "alert('soul')&lt;/script&gt;")
+        eq_(pq(r.content)('#addon-privacy-policy span[lang]').html(),
+            "We<br/><b>own</b>your&lt;script&gt;"
+            "alert('soul')&lt;/script&gt;")
 
     def test_edit_exclude_optional_fields(self):
         data = dict(description='New description with <em>html</em>!',
@@ -929,16 +740,13 @@ class TestEditDetails(TestEdit):
 
         r = self.client.post(self.details_edit_url, data)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
-
-        for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+        self.compare(data)
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
-        da = dict(description=unicode(self.addon.description),
-                  homepage=unicode(self.addon.homepage),
-                  privacy_policy='your data is delicious')
+        data = dict(description='bullocks',
+                    homepage='http://omg.org/yes',
+                    privacy_policy='your data is delicious')
         # TODO: description should get fixed up with the form.
         fields = ['description', 'name', 'summary']
         error = ('Before changing your default locale you must have a name, '
@@ -946,27 +754,27 @@ class TestEditDetails(TestEdit):
                  'You are missing %s.')
         missing = lambda f: error % ', '.join(map(repr, f))
 
-        da.update(default_locale='fr')
-        r = self.client.post(self.details_edit_url, da)
+        data.update(default_locale='fr')
+        r = self.client.post(self.details_edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a name.
-        self.addon.name = {'fr': 'fr name'}
-        self.addon.save()
+        self.webapp.name = {'fr': 'fr name'}
+        self.webapp.save()
         fields.remove('name')
-        r = self.client.post(self.details_edit_url, da)
+        r = self.client.post(self.details_edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a summary.
-        self.addon.summary = {'fr': 'fr summary'}
-        self.addon.save()
+        self.webapp.summary = {'fr': 'fr summary'}
+        self.webapp.save()
         fields.remove('summary')
-        r = self.client.post(self.details_edit_url, da)
+        r = self.client.post(self.details_edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we're sending an fr description with the form.
-        da['description_fr'] = 'fr description'
-        r = self.client.post(self.details_edit_url, da)
+        data['description_fr'] = 'fr description'
+        r = self.client.post(self.details_edit_url, data)
         eq_(r.context['form'].errors, {})
 
     def test_edit_default_locale_frontend_error(self):
@@ -976,8 +784,7 @@ class TestEditDetails(TestEdit):
         self.assertContains(rp, 'Before changing your default locale you must')
 
     def test_edit_locale(self):
-        addon = self.get_addon()
-        addon.update(default_locale='en-US')
+        self.webapp.update(default_locale='en-US')
         r = self.client.get(self.details_url)
         eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), 'English (US)')
 
@@ -1004,126 +811,84 @@ class TestEditSupport(TestEdit):
 
         r = self.client.post(self.support_edit_url, data)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
-
-        for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
-
-    def test_edit_support_premium(self):
-        self.get_addon().update(premium_type=amo.ADDON_PREMIUM)
-        data = dict(support_email='sjobs@apple.com',
-                    support_url='')
-        r = self.client.post(self.support_edit_url, data)
-        eq_(r.context['form'].errors, {})
-        eq_(self.get_addon().support_email, data['support_email'])
+        self.compare(data)
 
     def test_edit_support_premium_required(self):
-        self.get_addon().update(premium_type=amo.ADDON_PREMIUM)
-        data = dict(support_url='')
-        r = self.client.post(self.support_edit_url, data)
-        assert 'support_email' in r.context['form'].errors
+        self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.post(self.support_edit_url, dict(support_url=''))
+        self.assertFormError(r, 'form', 'support_email',
+                             'This field is required.')
 
-    def test_edit_support_getsatisfaction(self):
-        urls = [("http://getsatisfaction.com/abc/products/def", 'abcdef'),
-                ("http://getsatisfaction.com/abc/", 'abc'),  # No company
-                ("http://google.com", None)]  # Delete GS
-
-        for (url, val) in urls:
-            data = dict(support_email='abc@def.com', support_url=url)
-
-            r = self.client.post(self.support_edit_url, data)
-            eq_(r.context['form'].errors, {})
-
-            result = pq(r.content)('.addon_edit_gs').eq(0).text()
-            doc = pq(r.content)
-            result = doc('.addon_edit_gs').eq(0).text()
-
-            result = re.sub('\W', '', result) if result else None
-
-            eq_(result, val)
-
-    def test_edit_support_optional_url(self):
+    def test_edit_support_premium(self):
+        self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
         data = dict(support_email='sjobs@apple.com',
                     support_url='')
-
         r = self.client.post(self.support_edit_url, data)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
+        eq_(self.get_webapp().support_email, data['support_email'])
 
-        for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
-
-    def test_edit_support_optional_email(self):
-        data = dict(support_email='',
-                    support_url='http://apple.com/')
-
+    def test_edit_support_url_optional(self):
+        data = dict(support_email='sjobs@apple.com', support_url='')
         r = self.client.post(self.support_edit_url, data)
         eq_(r.context['form'].errors, {})
-        addon = self.get_addon()
+        self.compare(data)
 
-        for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+    def test_edit_support_email_optional(self):
+        data = dict(support_email='', support_url='http://apple.com/')
+        r = self.client.post(self.support_edit_url, data)
+        eq_(r.context['form'].errors, {})
+        self.compare(data)
 
 
 class TestEditTechnical(TestEdit):
-    fixtures = TestEdit.fixtures + ['addons/persona', 'base/addon_40',
-                                    'base/addon_1833_yoono',
-                                    'base/addon_4664_twitterbar.json',
-                                    'base/addon_5299_gcal', 'base/addon_6113']
+    fixtures = TestEdit.fixtures
 
     def setUp(self):
         super(TestEditTechnical, self).setUp()
         self.technical_url = self.get_url('technical')
         self.technical_edit_url = self.get_url('technical', edit=True)
 
-    def formset(self, data):
-        return formset(**data)
-
     def test_log(self):
-        data = self.formset({'developer_comments': 'This is a test'})
+        data = formset(developer_comments='This is a test')
         o = ActivityLog.objects
         eq_(o.count(), 0)
         r = self.client.post(self.technical_edit_url, data)
         eq_(r.context['form'].errors, {})
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
-    def test_technical_on(self):
-        # Turn everything on
+    def test_toggles(self):
+        # Turn everything on.
         data = dict(developer_comments='Test comment!',
                     external_software='on',
                     site_specific='on',
                     view_source='on')
 
-        r = self.client.post(self.technical_edit_url, self.formset(data))
+        r = self.client.post(self.technical_edit_url, formset(**data))
         eq_(r.context['form'].errors, {})
+        expected = dict(developer_comments='Test comment!',
+                        external_software=True,
+                        site_specific=True,
+                        view_source=True)
+        self.compare(expected)
 
-        addon = self.get_addon()
-        for k in data:
-            if k == 'developer_comments':
-                eq_(unicode(getattr(addon, k)), unicode(data[k]))
-            else:
-                eq_(getattr(addon, k), True if data[k] == 'on' else False)
+        # And off.
+        r = self.client.post(self.technical_edit_url,
+                             formset(developer_comments='Test comment!'))
+        expected.update(external_software=False,
+                        site_specific=False,
+                        view_source=False)
+        self.compare(expected)
 
-        # Andddd offf
-        data = dict(developer_comments='Test comment!')
-        r = self.client.post(self.technical_edit_url, self.formset(data))
-        addon = self.get_addon()
-
-        eq_(addon.external_software, False)
-        eq_(addon.site_specific, False)
-        eq_(addon.view_source, False)
-
-    def test_technical_devcomment_notrequired(self):
+    def test_devcomment_optional(self):
         data = dict(developer_comments='',
                     external_software='on',
                     site_specific='on',
                     view_source='on')
-        r = self.client.post(self.technical_edit_url, self.formset(data))
+        r = self.client.post(self.technical_edit_url, formset(**data))
         eq_(r.context['form'].errors, {})
 
-        addon = self.get_addon()
-        for k in data:
-            if k == 'developer_comments':
-                eq_(unicode(getattr(addon, k)), unicode(data[k]))
-            else:
-                eq_(getattr(addon, k), True if data[k] == 'on' else False)
+        expected = dict(developer_comments='',
+                        external_software=True,
+                        site_specific=True,
+                        view_source=True)
+        self.compare(expected)

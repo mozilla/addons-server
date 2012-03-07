@@ -1,12 +1,12 @@
 {% from "developers/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
-<form method="post" action="{{ url('mkt.developers.addons.section', valid_slug, 'basic', 'edit') }}"
+<form method="post" action="{{ url('mkt.developers.apps.section', valid_slug, 'basic', 'edit') }}"
       id="addon-edit-basic"
       data-baseurl="{{ url('mkt.developers.%s.edit' % ('apps' if addon.is_webapp() else 'addons'),
                            valid_slug) }}">
   <h2>
     {{ _('Basic Information') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('mkt.developers.addons.section', valid_slug, 'basic', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('mkt.developers.apps.section', valid_slug, 'basic', 'edit') }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h2>

@@ -1,0 +1,88 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = loc('Manage Status') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% macro status(msg) %}
+  <strong class="status {{ status_class(addon) }}">{{ msg }}</strong>
+{% endmacro %}
+
+{% block content %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section id="edit-addon" class="primary devhub-form manage">
+    <h2>{{ _('Current Status') }}</h2>
+    <div class="island" id="version-status">
+      <p>
+        {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+          {{ status(_('You have <b>disabled</b> this app.')|safe) }}
+          {{ loc("Your app's listing is disabled and will not appear in the
+                  Mozilla Marketplace. You may re-enable it at any time below.") }}
+        {% elif addon.status == amo.STATUS_NULL %}
+          {{ status(loc('This app is <b>incomplete</b>.')|safe) }}
+          <a href="{{ url('submit.app.resume', addon.app_slug) }}">
+            {{ _('Please complete your app.') -}}
+          </a>
+        {% elif addon.status == amo.STATUS_PENDING %}
+          {{ status(_('This app is <b>awaiting review</b>.')|safe) }}
+          {{ loc('You will receive an email when the review is complete.') }}
+        {% elif addon.status == amo.STATUS_PUBLIC %}
+          {{ status(_('This app is <b>public</b>.')|safe) }}
+        {% elif addon.status == amo.STATUS_DISABLED %}
+          {{ status(_('This app has been <b>disabled by Mozilla</b>.')|safe) }}
+          {{ loc("Your app was disabled by a site administrator. If you have any
+                  questions, please email app-reviews@mozilla.org.") }}
+        {% endif %}
+        {% if not (addon.is_disabled or addon.is_incomplete()) %}
+          <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review">
+            {{ _('Learn more') }}</a>
+        {% endif %}
+      </p>
+      <p class="version-status-actions listing-footer">
+        {% if check_addon_ownership(request, addon, dev=True) %}
+          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+            <a href="{{ addon.get_dev_url('enable') }}" class="button" id="enable-addon">
+              {{ _('Enable App') }}</a>
+          {% elif not addon.is_disabled %}
+            <a href="#" class="button" id="disable-addon">
+              {{ _('Disable App') }}</a>
+          {% endif %}
+        {% endif %}
+        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+          <a href="#" class="button delete-button" id="delete-addon">
+            {{ _('Delete App') }}</a>
+        {% endif %}
+      </p>
+    </div>
+  </section>
+  <div id="modals">
+    {% if addon.can_be_deleted() %}
+      <div id="modal-delete" class="modal modal-delete">
+        {% include "developers/addons/listing/delete_form.html" %}
+      </div>
+    {% endif %}
+    {% if not addon.disabled_by_user and not addon.is_disabled %}
+      <div id="modal-disable" class="modal">
+        <form method="post" action="{{ addon.get_dev_url('disable') }}">
+          {{ csrf() }}
+          <h3>{{ _('Disable App') }}</h3>
+          <p>
+            {{ _('Disabling your app will prevent it from appearing anywhere
+                  in the Mozilla Marketplace.') }}
+          </p>
+          <p>
+            <label>{{ _('Are you sure you wish to disable your app?') }}</label>
+          </p>
+          <p class="listing-footer">
+            <button type="submit">{{ _('Disable App') }}</button>
+            {{ _('or') }} <a href="#" class="cancel close">{{ _('Cancel') }}</a>
+          </p>
+        </form>
+        <a href="#" class="close">{{ _('Cancel') }}</a>
+      </div>
+    {% endif %}
+  </div>
+  {% include 'developers/includes/addons_edit_nav.html' %}
+{% endblock %}

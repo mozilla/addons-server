@@ -1,9 +1,9 @@
 {% from "developers/includes/macros.html" import tip, empty_unless %}
-<form method="post" action="{{ url('mkt.developers.addons.section', addon.slug, 'support', 'edit') }}">
+<form method="post" action="{{ addon.get_dev_url('section', args=['support', 'edit']) }}">
   <h2>
     {{ _('Support Information') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('mkt.developers.addons.section', addon.slug, 'support', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['support', 'edit']) }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h2>

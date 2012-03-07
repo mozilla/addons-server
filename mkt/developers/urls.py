@@ -36,10 +36,10 @@ app_detail_patterns = patterns('',
     url('^enable$', views.enable, name='mkt.developers.apps.enable'),
     url('^delete$', views.delete, name='mkt.developers.apps.delete'),
     url('^disable$', views.disable, name='mkt.developers.apps.disable'),
-    url('^status$', views.version_list, name='mkt.developers.apps.versions'),
+    url('^status$', views.status, name='mkt.developers.apps.versions'),
 
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
-    # PayPal specific stuff.
+    # PayPal-specific stuff.
     url('^paypal/', include(paypal_patterns('apps'))),
     url('^paypal/', include(paypal_patterns('addons'))),
 
@@ -54,6 +54,11 @@ app_detail_patterns = patterns('',
     url('^payments/permission/refund$', views.acquire_refund_permission,
         name='mkt.developers.apps.acquire_refund_permission'),
     # Old stuff.
+
+    url('^upload_preview$', views.upload_image, {'upload_type': 'preview'},
+        name='mkt.developers.apps.upload_preview'),
+    url('^upload_icon$', views.upload_image, {'upload_type': 'icon'},
+        name='mkt.developers.apps.upload_icon'),
 
     url('^profile$', views.profile, name='mkt.developers.apps.profile'),
     url('^profile/remove$', views.remove_profile,
@@ -98,20 +103,6 @@ detail_patterns = patterns('',
         name='mkt.developers.upload_for_addon'),
     url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
         name='mkt.developers.upload_detail_for_addon'),
-
-    url('^versions$', views.version_list,
-        name='mkt.developers.addons.versions'),
-    url('^versions/delete$', views.version_delete,
-        name='mkt.developers.versions.delete'),
-    url('^versions/add$', views.version_add,
-        name='mkt.developers.versions.add'),
-    url('^versions/stats$', views.version_stats,
-        name='mkt.developers.versions.stats'),
-    url('^versions/(?P<version_id>\d+)$', views.version_edit,
-        name='mkt.developers.versions.edit'),
-    url('^versions/(?P<version_id>\d+)/add$', views.version_add_file,
-        name='mkt.developers.versions.add_file'),
-    url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='mkt.developers.file_validation'),

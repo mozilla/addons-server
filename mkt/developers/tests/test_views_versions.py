@@ -39,10 +39,7 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#modal-disable').length, 1)
 
     def test_delete_link(self):
-        # When we can reauth with Persona, unskip this.
-        raise SkipTest
-
-        # Delete link is visible for only incomplete apps.
+        # Hard "Delete App" link should be visible for only incomplete apps.
         self.webapp.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#delete-addon').length, 1)

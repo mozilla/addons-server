@@ -29,14 +29,12 @@ from browse.tests import test_listing_sort, test_default_sort
 from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.developers import tasks
-from files.models import File, FileUpload
+from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
-from reviews.models import Review
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
-from versions.models import Version
 from webapps.models import Webapp
 
 
@@ -268,29 +266,6 @@ class TestDevRequired(amo.tests.TestCase):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
-
-
-class TestVersionStats(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
-
-    def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-
-    def test_counts(self):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        user = UserProfile.objects.get(email='admin@mozilla.com')
-        for _ in range(10):
-            Review.objects.create(addon=addon, user=user,
-                                  version=addon.current_version)
-
-        url = reverse('mkt.developers.versions.stats', args=[addon.slug])
-        r = json.loads(self.client.get(url).content)
-        exp = {str(version.id):
-               {'reviews': 10, 'files': 1, 'version': version.version,
-                'id': version.id}}
-        self.assertDictEqual(r, exp)
 
 
 class TestEditPayments(amo.tests.TestCase):
@@ -1319,9 +1294,9 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_file_from_uploaded_manifest(self):
         addon = self.post_addon()
-        files = addon.current_version.files.all()
-        eq_(len(files), 1)
-        eq_(files[0].status, amo.STATUS_PUBLIC)
+        files = addon.current_version.files
+        eq_(files.count(), 1)
+        eq_(files.all()[0].status, amo.STATUS_PUBLIC)
 
 
 class TestDeleteApp(amo.tests.TestCase):
@@ -1354,109 +1329,6 @@ class TestDeleteApp(amo.tests.TestCase):
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],
             'App should have been deleted.')
-
-
-class TestRequestReview(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/platforms']
-
-    def setUp(self):
-        self.addon = Addon.objects.create(type=1, name='xxx')
-        self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(version=self.version,
-                                        platform_id=amo.PLATFORM_ALL.id)
-        self.redirect_url = self.addon.get_dev_url('versions')
-        self.lite_url = reverse('mkt.developers.request-review',
-                                args=[self.addon.slug, amo.STATUS_LITE])
-        self.public_url = reverse('mkt.developers.request-review',
-                                  args=[self.addon.slug, amo.STATUS_PUBLIC])
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-
-    def get_addon(self):
-        return Addon.objects.get(id=self.addon.id)
-
-    def get_version(self):
-        return Version.objects.get(pk=self.version.id)
-
-    def check(self, old_status, url, new_status):
-        self.addon.update(status=old_status)
-        r = self.client.post(url)
-        self.assertRedirects(r, self.redirect_url)
-        eq_(self.get_addon().status, new_status)
-
-    def check_400(self, url):
-        r = self.client.post(url)
-        eq_(r.status_code, 400)
-
-    def test_404(self):
-        bad_url = self.public_url.replace(str(amo.STATUS_PUBLIC), '0')
-        eq_(self.client.post(bad_url).status_code, 404)
-
-    def test_public(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        self.check_400(self.lite_url)
-        self.check_400(self.public_url)
-
-    def test_disabled_by_user_to_lite(self):
-        self.addon.update(disabled_by_user=True)
-        self.check_400(self.lite_url)
-
-    def test_disabled_by_admin(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
-        self.check_400(self.lite_url)
-
-    def test_lite_to_lite(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        self.check_400(self.lite_url)
-
-    def test_lite_to_public(self):
-        eq_(self.version.nomination, None)
-        self.check(amo.STATUS_LITE, self.public_url,
-                   amo.STATUS_LITE_AND_NOMINATED)
-        assert close_to_now(self.get_version().nomination)
-
-    def test_purgatory_to_lite(self):
-        self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
-
-    def test_purgatory_to_public(self):
-        eq_(self.version.nomination, None)
-        self.check(amo.STATUS_PURGATORY, self.public_url,
-                   amo.STATUS_NOMINATED)
-        assert close_to_now(self.get_version().nomination)
-
-    def test_lite_and_nominated_to_public(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.check_400(self.public_url)
-
-    def test_lite_and_nominated(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.check_400(self.lite_url)
-        self.check_400(self.public_url)
-
-    def test_renominate_for_full_review(self):
-        # When a version is rejected, the addon is disabled.
-        # The author must upload a new version and re-nominate.
-        # However, renominating the *same* version does not adjust the
-        # nomination date.
-        orig_date = datetime.now() - timedelta(days=30)
-        # Pretend it was nominated in the past:
-        self.version.update(nomination=orig_date)
-        self.check(amo.STATUS_NULL, self.public_url, amo.STATUS_NOMINATED)
-        eq_(self.get_version().nomination.timetuple()[0:5],
-            orig_date.timetuple()[0:5])
-
-    def test_renomination_doesnt_reset_nomination_date(self):
-        # Nominate:
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        # Pretend it was nominated in the past:
-        orig_date = datetime.now() - timedelta(days=30)
-        self.version.update(nomination=orig_date, _signal=False)
-        # Reject it:
-        self.addon.update(status=amo.STATUS_NULL)
-        # Re-nominate:
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        eq_(self.get_version().nomination.timetuple()[0:5],
-            orig_date.timetuple()[0:5])
 
 
 class TestRemoveLocale(amo.tests.TestCase):

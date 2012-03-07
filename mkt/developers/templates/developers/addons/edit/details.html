@@ -1,18 +1,15 @@
 {% from "developers/includes/macros.html" import tip, some_html_tip, empty_unless %}
-<form method="post" action="{{ url('mkt.developers.addons.section', addon.slug, 'details', 'edit') }}">
+<form method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
   <h2>
     {{ loc('App Details') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('mkt.developers.addons.section', addon.slug, 'details', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['details', 'edit']) }}" class="button">
       {{ _('Edit') }}</a>
     {% endif %}
   </h2>
   <div class="item island">
     {% if editable %}{{ form.non_field_errors() }}{% endif %}
     <table>
-      {% if not webapp %}
-        <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
-      {% endif %}
       <tbody>
         <tr>
           <th>

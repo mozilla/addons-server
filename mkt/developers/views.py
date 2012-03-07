@@ -54,7 +54,6 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
-from versions.models import Version
 from webapps.models import Webapp
 from zadmin.models import ValidationResult
 
@@ -128,7 +127,7 @@ def edit(request, addon_id, addon, webapp=False):
        'page': 'edit',
        'addon': addon,
        'webapp': webapp,
-       'valid_slug': addon.slug,
+       'valid_slug': addon.app_slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all(),
     }
@@ -186,6 +185,12 @@ def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
+
+
+@dev_required(webapp=True)
+def status(request, addon_id, addon, webapp=False):
+    return jingo.render(request, 'developers/addons/status.html',
+                        {'addon': addon, 'webapp': webapp})
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -903,7 +908,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
                 prefix='dependencies')
 
     # Get the slug before the form alters it to the form data.
-    valid_slug = addon.slug
+    valid_slug = addon.app_slug
     if editable:
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
@@ -921,7 +926,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
                 else:
                     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
-                valid_slug = addon.slug
+                valid_slug = addon.app_slug
             if cat_form:
                 if cat_form.is_valid():
                     cat_form.save()
@@ -1032,164 +1037,6 @@ def ajax_upload_image(request, upload_type):
 @dev_required
 def upload_image(request, addon_id, addon, upload_type):
     return ajax_upload_image(request, upload_type)
-
-
-@dev_required
-def version_edit(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
-    version_form = forms.VersionForm(request.POST or None, instance=version)
-
-    new_file_form = forms.NewFileForm(request.POST or None,
-                                      addon=addon, version=version)
-
-    file_form = forms.FileFormSet(request.POST or None, prefix='files',
-                                  queryset=version.files.all())
-    file_history = _get_file_history(version)
-
-    data = {'version_form': version_form, 'file_form': file_form}
-
-    if addon.accepts_compatible_apps():
-        # We should be in no-caching land but this one stays cached for some
-        # reason.
-        qs = version.apps.all().no_cache()
-        compat_form = forms.CompatFormSet(request.POST or None, queryset=qs)
-        data['compat_form'] = compat_form
-
-    if (request.method == 'POST' and
-        all([form.is_valid() for form in data.values()])):
-        data['version_form'].save()
-        data['file_form'].save()
-
-        for deleted in data['file_form'].deleted_forms:
-            file = deleted.cleaned_data['id']
-            amo.log(amo.LOG.DELETE_FILE_FROM_VERSION,
-                    file.filename, file.version, addon)
-
-        if 'compat_form' in data:
-            for compat in data['compat_form'].save(commit=False):
-                compat.version = version
-                compat.save()
-            for form in data['compat_form'].forms:
-                if (isinstance(form, forms.CompatForm) and
-                    'max' in form.changed_data):
-                    _log_max_version_change(addon, version, form.instance)
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect('mkt.developers.versions.edit', addon.slug, version_id)
-
-    data.update(addon=addon, version=version, new_file_form=new_file_form,
-                file_history=file_history)
-    return jingo.render(request, 'developers/versions/edit.html', data)
-
-
-def _log_max_version_change(addon, version, appversion):
-    details = {'version': version.version,
-               'target': appversion.version.version,
-               'application': appversion.application.pk}
-    amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
-            addon, version, details=details)
-
-
-def _get_file_history(version):
-    file_ids = [f.id for f in version.all_files]
-    addon = version.addon
-    file_history = (ActivityLog.objects.for_addons(addon)
-                               .filter(action__in=amo.LOG_REVIEW_QUEUE))
-    files = dict([(fid, []) for fid in file_ids])
-    for log in file_history:
-        details = log.details
-        current_file_ids = details["files"] if 'files' in details else []
-        for fid in current_file_ids:
-            if fid in file_ids:
-                files[fid].append(log)
-
-    return files
-
-
-@dev_required
-@post_required
-def version_delete(request, addon_id, addon):
-    version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
-    messages.success(request, _('Version %s deleted.') % version.version)
-    version.delete()
-    return redirect(addon.get_dev_url('versions'))
-
-
-@json_view
-@dev_required
-@post_required
-def version_add(request, addon_id, addon):
-    form = forms.NewVersionForm(request.POST, addon=addon)
-    if form.is_valid():
-        pl = (list(form.cleaned_data['desktop_platforms']) +
-              list(form.cleaned_data['mobile_platforms']))
-        v = Version.from_upload(form.cleaned_data['upload'], addon, pl)
-        log.info('Version created: %s for: %s' %
-                 (v.pk, form.cleaned_data['upload']))
-        url = reverse('mkt.developers.versions.edit',
-                      args=[addon.slug, str(v.id)])
-        return dict(url=url)
-    else:
-        return json_view.error(form.errors)
-
-
-@json_view
-@dev_required
-@post_required
-def version_add_file(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = forms.NewFileForm(request.POST, addon=addon, version=version)
-    if not form.is_valid():
-        return json_view.error(form.errors)
-    upload = form.cleaned_data['upload']
-    new_file = File.from_upload(upload, version, form.cleaned_data['platform'])
-    upload.path.unlink()
-    file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
-    form = [f for f in file_form.forms if f.instance == new_file]
-    return jingo.render(request, 'developers/includes/version_file.html',
-                        {'form': form[0], 'addon': addon})
-
-
-@dev_required(webapp=True)
-def version_list(request, addon_id, addon, webapp=False):
-    qs = addon.versions.order_by('-created').transform(Version.transformer)
-    versions = amo.utils.paginate(request, qs)
-    new_file_form = forms.NewVersionForm(None, addon=addon)
-
-    data = {'addon': addon,
-            'webapp': webapp,
-            'versions': versions,
-            'new_file_form': new_file_form,
-            'position': get_position(addon),
-            'timestamp': int(time.time())}
-    return jingo.render(request, 'developers/versions/list.html', data)
-
-
-@dev_required
-def version_bounce(request, addon_id, addon, version):
-    # Use filter since there could be dupes.
-    vs = (Version.objects.filter(version=version, addon=addon)
-          .order_by('-created'))
-    if vs:
-        return redirect('mkt.developers.versions.edit', addon.slug, vs[0].id)
-    else:
-        raise http.Http404()
-
-
-@json_view
-@dev_required
-def version_stats(request, addon_id, addon):
-    qs = Version.objects.filter(addon=addon)
-    reviews = (qs.annotate(reviews=Count('reviews'))
-               .values('id', 'version', 'reviews'))
-    d = dict((v['id'], v) for v in reviews)
-    files = qs.annotate(files=Count('files')).values_list('id', 'files')
-    for id, files in files:
-        d[id]['files'] = files
-    return d
-
-
-Step = collections.namedtuple('Step', 'current max')
 
 
 @dev_required(webapp=True)

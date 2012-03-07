@@ -24,7 +24,7 @@ from amo.urlresolvers import reverse
 from amo.utils import raise_required
 
 from applications.models import Application, AppVersion
-from files.models import File, FileUpload, Platform
+from files.models import FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium, Price, AddonPaymentData
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
@@ -381,131 +381,6 @@ class NewAddonForm(happyforms.Form):
         if (not self.cleaned_data['desktop_platforms']
             and not self.cleaned_data['mobile_platforms']):
             raise forms.ValidationError(_('Need at least one platform.'))
-
-
-class NewVersionForm(NewAddonForm):
-
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
-        super(NewVersionForm, self).__init__(*args, **kw)
-
-    def clean(self):
-        if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'], self.addon)
-            if self.addon.versions.filter(version=xpi['version']):
-                raise forms.ValidationError(
-                    _(u'Version %s already exists') % xpi['version'])
-            self._clean_all_platforms()
-        return self.cleaned_data
-
-
-class NewFileForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
-    platform = File._meta.get_field('platform').formfield(empty_label=None,
-                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
-    platform.choices = sorted((p.id, p.name)
-                              for p in amo.SUPPORTED_PLATFORMS.values())
-
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
-        self.version = kw.pop('version')
-        super(NewFileForm, self).__init__(*args, **kw)
-        # Reset platform choices to just those compatible with target app.
-        field = self.fields['platform']
-        field.choices = sorted((k, v.name) for k, v in
-                               self.version.compatible_platforms().items())
-        # Don't allow platforms we already have.
-        to_exclude = set(File.objects.filter(version=self.version)
-                                     .values_list('platform', flat=True))
-        # Don't allow platform=ALL if we already have platform files.
-        if len(to_exclude):
-            to_exclude.add(amo.PLATFORM_ALL.id)
-
-        # Always exclude PLATFORM_ALL_MOBILE because it's not supported for
-        # downloads yet. The developer can choose Android + Maemo for now.
-        # TODO(Kumar) Allow this option when it's supported everywhere.
-        # See bug 646268.
-        to_exclude.add(amo.PLATFORM_ALL_MOBILE.id)
-
-        field.choices = [p for p in field.choices if p[0] not in to_exclude]
-        field.queryset = Platform.objects.filter(id__in=dict(field.choices))
-
-    def clean(self):
-        if not self.version.is_allowed_upload():
-            raise forms.ValidationError(
-                _('You cannot upload any more files for this version.'))
-
-        # Check for errors in the xpi.
-        if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'], self.addon)
-            if xpi['version'] != self.version.version:
-                raise forms.ValidationError(_("Version doesn't match"))
-        return self.cleaned_data
-
-
-class FileForm(happyforms.ModelForm):
-    platform = File._meta.get_field('platform').formfield(empty_label=None)
-
-    class Meta:
-        model = File
-        fields = ('platform',)
-
-    def __init__(self, *args, **kw):
-        super(FileForm, self).__init__(*args, **kw)
-        if kw['instance'].version.addon.type in (amo.ADDON_SEARCH,
-                                                 amo.ADDON_WEBAPP):
-            del self.fields['platform']
-        else:
-            compat = kw['instance'].version.compatible_platforms()
-            # TODO(Kumar) Allow PLATFORM_ALL_MOBILE when it's supported.
-            # See bug 646268.
-            if amo.PLATFORM_ALL_MOBILE.id in compat:
-                del compat[amo.PLATFORM_ALL_MOBILE.id]
-            pid = int(kw['instance'].platform_id)
-            plats = [(p.id, p.name) for p in compat.values()]
-            if pid not in compat:
-                plats.append([pid, amo.PLATFORMS[pid].name])
-            self.fields['platform'].choices = plats
-
-    def clean_DELETE(self):
-        if any(self.errors):
-            return
-        delete = self.cleaned_data['DELETE']
-
-        if (delete and not self.instance.version.is_all_unreviewed):
-            error = _('You cannot delete a file once the review process has '
-                      'started.  You must delete the whole version.')
-            raise forms.ValidationError(error)
-
-        return delete
-
-
-class BaseFileFormSet(BaseModelFormSet):
-
-    def clean(self):
-        if any(self.errors):
-            return
-        files = [f.cleaned_data for f in self.forms
-                 if not f.cleaned_data.get('DELETE', False)]
-
-        if self.forms and 'platform' in self.forms[0].fields:
-            platforms = [f['platform'].id for f in files]
-
-            if amo.PLATFORM_ALL.id in platforms and len(files) > 1:
-                raise forms.ValidationError(
-                    _('The platform All cannot be combined '
-                      'with specific platforms.'))
-
-            if sorted(platforms) != sorted(set(platforms)):
-                raise forms.ValidationError(
-                    _('A platform can only be chosen once.'))
-
-
-FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
-                                   form=FileForm, can_delete=True, extra=0)
 
 
 class ReviewTypeForm(forms.Form):
@@ -875,11 +750,11 @@ class AppFormDetails(addons.forms.AddonFormBase):
         help_text=_(u'This description will appear on the details page.'),
         widget=TransTextarea)
     default_locale = forms.TypedChoiceField(required=False,
-        choices=Addon.LOCALES)
-    privacy_policy = TransField(widget=TransTextarea(), required=True,
-        label=_lazy(u"Please specify your app's Privacy Policy"))
+                                            choices=Addon.LOCALES)
     homepage = TransField.adapt(forms.URLField)(required=False,
                                                 verify_exists=False)
+    privacy_policy = TransField(widget=TransTextarea(), required=True,
+        label=_lazy(u"Please specify your app's Privacy Policy"))
 
     class Meta:
         model = Addon

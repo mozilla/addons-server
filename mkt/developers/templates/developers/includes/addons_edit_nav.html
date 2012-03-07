@@ -3,8 +3,11 @@
   (addon.get_dev_url('owner'), loc('Manage Authors')),
   (addon.get_dev_url('profile'), _('Manage Developer Profile')),
   (addon.get_dev_url('payments'), _('Manage Payments')),
-  (addon.get_dev_url('versions'), loc('Manage Status')),
 ] %}
+{# TODO(cvan): Remove this when we fix/remove all the add-ons tests. #}
+{% if addon.is_webapp() %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Manage Status'))) %}
+{% endif %}
 {% if addon.is_premium() and waffle.switch('allow-refund') %}
   {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
 {% endif %}
