@@ -218,6 +218,7 @@ def index_download_counts(ids, **kw):
         raise
 
 
+@task
 def index_collection_counts(ids, **kw):
     es = elasticutils.get_es()
     qs = CollectionCount.objects.filter(collection__in=ids)
