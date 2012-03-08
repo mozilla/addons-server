@@ -1371,10 +1371,6 @@ REGISTER_USER_LIMIT = 0
 # bypass the limit by adding ?ro=mozillians to the URL.
 REGISTER_OVERRIDE_TOKEN = None
 
-# Cron jobs that aren't critical will check this flag and not run if this
-# is True.
-IGNORE_NON_CRITICAL_CRONS = False
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 

@@ -118,9 +118,6 @@ def _update_addons_current_version(data, **kw):
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
-    if settings.IGNORE_NON_CRITICAL_CRONS:
-        return
-
     cursor = connections[multidb.get_slave()].cursor()
     q = """SELECT
                addon_id, AVG(`count`)
@@ -165,9 +162,6 @@ def _update_addon_average_daily_users(data, **kw):
 @cronjobs.register
 def update_addon_download_totals():
     """Update add-on total and average downloads."""
-    if settings.IGNORE_NON_CRITICAL_CRONS:
-        return
-
     cursor = connections[multidb.get_slave()].cursor()
     # We need to use SQL for this until
     # http://code.djangoproject.com/ticket/11003 is resolved
