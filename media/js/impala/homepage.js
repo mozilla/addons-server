@@ -15,6 +15,10 @@
         $('.addons h3', $promos).truncate({dir: 'h'});
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('.install', $promos).installButton();
+        var $disabled = $('.disabled, .concealed', $promos);
+        if ($disabled.length) {
+            $disabled.closest('.wrap').addClass('hide-install');
+        }
         $('#monthly .blurb > p').lineclamp(4);
         $('.ryff .desc').lineclamp(6);
         $('h2', $promos).linefit();

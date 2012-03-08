@@ -18,6 +18,8 @@
           <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
           <p>{{ pick.blurb }}</p>
           {{ install_button(addon, impala=not is_disco) }}
+          <a href="{{ addon_url }}" target="_self" class="button details-link">
+            {{ _('Learn More') }}</a>
         </div>
         {% if pick.image or addon.all_previews[0] %}
           <a href="{{ addon_url }}" target="_self" class="thumb">

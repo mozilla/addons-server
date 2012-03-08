@@ -41,6 +41,10 @@ $(document).ready(function(){
         initTrunc();
         // Initialize install button.
         $('.install', $promos).installButton();
+        var $disabled = $('.disabled, .concealed', $promos);
+        if ($disabled.length) {
+            $disabled.closest('.wrap').addClass('hide-install');
+        }
     });
 });
 
