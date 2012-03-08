@@ -27,6 +27,7 @@ from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
                            Charity)
+from bandwagon.models import Collection
 from files.models import File
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
                            Price, PriceCurrency)
@@ -115,6 +116,23 @@ class TestHomepageFeatures(amo.tests.TestCase):
         for key in addon_lists:
             for addon in response.context[key]:
                 assert addon.status != amo.STATUS_UNREVIEWED
+
+    def test_seeall(self):
+        Collection.objects.update(type=amo.COLLECTION_FEATURED)
+        doc = pq(self.client.get(reverse('home')).content)
+        browse_extensions = reverse('browse.extensions')
+        browse_personas = reverse('browse.personas')
+        browse_collections = reverse('collections.list')
+        sections = {
+            '#popular-extensions': browse_extensions + '?sort=users',
+            '#featured-extensions': browse_extensions + '?sort=featured',
+            '#upandcoming': browse_extensions + '?sort=hotness',
+            '#featured-personas': browse_personas,
+            '#featured-collections': browse_collections + '?sort=featured',
+        }
+        for id_, url in sections.iteritems():
+            # Check that the "See All" link points to the correct page.
+            eq_(doc.find('%s .seeall' % id_).attr('href'), url)
 
 
 class TestPromobox(amo.tests.TestCase):

@@ -38,7 +38,7 @@
 
   {# Cache everything in one block since changes in each block are rare. #}
   {% cache popular %}
-    <section class="secondary">
+    <section id="popular-extensions" class="secondary">
       <h2>{{ _('Most Popular') }}
         <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='users') }}">{{ _('All »') }}</a>
       </h2>
@@ -57,7 +57,9 @@
       {% endif %}
       {% if hotness %}
         <div id="upandcoming" class="island">
-          <h2>{{ _('Up &amp; Coming Extensions') }}</h2>
+          <h2>{{ _('Up &amp; Coming Extensions') }}
+            <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='hotness') }}">{{ _('See all »') }}</a>
+          </h2>
           {{ hotness|addon_grid(src='hp-hc-upandcoming',
                                 dl_src='hp-dl-upandcoming') }}
         </div>
