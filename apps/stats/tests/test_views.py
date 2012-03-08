@@ -837,3 +837,29 @@ class TestCollections(amo.tests.ESTestCase):
         res = self.client.get(self.url)
         date = (self.today.strftime('%Y-%m-%d'))
         assert '%s,1,1,1,1,1' % date in res.content
+
+    def get_url(self, start, end):
+        return reverse('collections.stats.subscribers_series',
+                       args=[self.collection.author.username,
+                             self.collection.slug, 'day',
+                             start.strftime('%Y%m%d'),
+                             end.strftime('%Y%m%d'), 'json'])
+
+    def test_collection_one_day(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        url = self.get_url(self.today, self.today)
+        res = self.client.get(url)
+        content = json.loads(res.content)
+        eq_(len(content), 1)
+        eq_(content[0]['date'], self.today.strftime('%Y-%m-%d'))
+
+    def test_collection_range(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        yesterday = self.today - datetime.timedelta(days=1)
+        day_before = self.today - datetime.timedelta(days=2)
+        url = self.get_url(day_before, yesterday)
+        res = self.client.get(url)
+        content = json.loads(res.content)
+        eq_(len(content), 2)
+        eq_(content[0]['date'], yesterday.strftime('%Y-%m-%d'))
+        eq_(content[1]['date'], day_before.strftime('%Y-%m-%d'))

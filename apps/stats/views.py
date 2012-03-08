@@ -542,20 +542,23 @@ def site_series(request, format, group, start, end, field):
 
 def collection_stats(request, username, slug, group, start, end, format):
     c = get_collection(request, username, slug)
-    return collection(request, c.uuid, format)
+    start, end = get_daterange_or_404(start, end)
+    return collection(request, c.uuid, format, start, end)
 
 
-def collection(request, uuid, format):
+def collection(request, uuid, format, start=None, end=None):
     """
     Collection data taken from the stats_collections and the
     stats_addons_collections_counts table.
     """
+    if not start and not end:
+        start = date.today() - timedelta(days=365)
+        end = date.today()
+
     collection = get_object_or_404(Collection, uuid=uuid)
     if not collection.can_view_stats(request):
         return http.HttpResponseForbidden()
 
-    start = date.today() - timedelta(days=365)
-    end = date.today()
     qs = (CollectionCount.search().order_by('-date')
                          .filter(id=int(collection.pk),
                                  date__range=(start, end))
