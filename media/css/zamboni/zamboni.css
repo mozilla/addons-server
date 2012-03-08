@@ -1598,13 +1598,14 @@ form .error .note.error {
     float: right;
     padding: 0;
     margin-left: 14px;
+    margin-right: 0;
 }
 
 .category-landing .addons-column.last {
     margin-right: 0;
 }
 
-.html-rtl .category-landing .addons-column:last-child {
+.html-rtl .category-landing .addons-column.last {
     margin-right: 14px;
     margin-left: 0;
 }
