@@ -171,13 +171,21 @@
                 margin: 0 0 10px;
             }
         }
+        .preview {
+            position: relative;
+        }
         .preview-thumb {
             position: absolute;
+            left: 20px;
             border: 3px solid @taupe;
             margin: 0;
         }
         .handle {
-            display: none !important;
+            float: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
         }
         .trans {
             margin-top: 10px;
@@ -188,7 +196,7 @@
         .edit-previews-text {
             .border-box;
             overflow: hidden;
-            padding-left: 145px;
+            padding-left: 165px;
             position: relative;
             width: 100%;
         }
