@@ -64,6 +64,7 @@ function initTrunc() {
     $('.htruncate').truncate({dir: 'h'});
     $('.vtruncate').truncate({dir: 'v'});
     $('#monthly .blurb > p').lineclamp(4);
+    $('.ryff .desc').lineclamp(6);
     $('#promos h2').linefit();
     $(window).resize(debounce(function() {
         $('.htruncate').truncate({dir: 'h'});
