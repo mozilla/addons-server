@@ -27,7 +27,9 @@
       <div class="featured-inner">
         {{ persona_grid(pager.object_list) }}
       </div>
-      <div class="listing-footer">{{ pager|paginator }}</div>
+      {% if pager.paginator.num_pages > 1 %}
+        <div class="listing-footer">{{ pager|paginator }}</div>
+      {% endif %}
     {% else %}
       {% include 'search/no_results.html' %}
     {% endif %}

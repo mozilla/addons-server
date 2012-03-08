@@ -720,7 +720,9 @@ class TestPersonaSearch(SearchBase):
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(self.get_results(r), personas_ids)
-        eq_(pq(r.content)('.personas-grid li').length, len(personas_ids))
+        doc = pq(r.content)
+        eq_(doc('.personas-grid li').length, len(personas_ids))
+        eq_(doc('.listing-footer').length, 0)
 
     def test_results_name_query(self):
         self._generate_personas()
@@ -940,7 +942,9 @@ class TestCollectionSearch(SearchBase):
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(self.get_results(r), collection_ids)
-        eq_(pq(r.content)('.primary .item').length, len(collection_ids))
+        doc = pq(r.content)
+        eq_(doc('.primary .item').length, len(collection_ids))
+        eq_(doc('.listing-footer').length, 0)
 
     def test_results_name_query(self):
         # TODO: Figure out why this flakes out on jenkins every so often.
