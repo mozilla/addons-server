@@ -40,7 +40,7 @@ $(function() {
             file = $(this)[0].files[0],
             file_name = file.name || file.fileName;
         $li.find('.errorlist').remove();
-        if(!file_name.match(/\.(jpg|png|jpeg)$/)) {
+        if(!file_name.match(/\.(jpg|png|jpeg)$/i)) {
             $ul = $('<ul>', {'class': 'errorlist'});
             $ul.append($('<li>', {'text': gettext('Images must be either PNG or JPG.')}));
             $li.append($ul);
