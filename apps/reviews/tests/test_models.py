@@ -5,7 +5,7 @@ import test_utils
 
 import amo.tests
 from reviews import tasks
-from reviews.models import Review, GroupedRating
+from reviews.models import Review, GroupedRating, check_spam
 
 
 class TestReviewModel(amo.tests.TestCase):
@@ -48,3 +48,11 @@ class TestGroupedRating(amo.tests.TestCase):
         eq_(GroupedRating.get(1865), None)
         tasks.addon_grouped_rating(1865)
         eq_(GroupedRating.get(1865), [[1, 0], [2, 0], [3, 0], [4, 1], [5, 0]])
+
+
+class TestSpamTest(amo.tests.TestCase):
+    # TODO: couldn't find tests covering spam, check coverage?
+
+    def test_create_not_there(self):
+        assert not Review.objects.count()
+        check_spam(1)

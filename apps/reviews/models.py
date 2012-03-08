@@ -1,5 +1,6 @@
 import json
 from datetime import datetime, timedelta
+import logging
 
 from django.db import models
 
@@ -10,9 +11,10 @@ from tower import ugettext_lazy as _
 
 import amo.models
 from amo.helpers import shared_url
-from amo.urlresolvers import reverse
 from translations.fields import TranslatedField
 from users.models import UserProfile
+
+log = logging.getLogger('z.review')
 
 
 class ReviewManager(amo.models.ManagerBase):
@@ -185,7 +187,13 @@ class Spam(object):
 @task
 def check_spam(review_id, **kw):
     spam = Spam()
-    review = Review.objects.using('default').get(id=review_id)
+    try:
+        review = Review.objects.using('default').get(id=review_id)
+    except Review.DoesNotExist:
+        log.error('Review does not exist, check spam for review_id: %s'
+                  % review_id)
+        return
+
     thirty_days = datetime.now() - timedelta(days=30)
     others = (Review.objects.no_cache().exclude(id=review.id)
               .filter(user=review.user, created__gte=thirty_days))
