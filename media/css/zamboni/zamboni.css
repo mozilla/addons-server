@@ -1588,23 +1588,25 @@ form .error .note.error {
 
 .category-landing .addons-column {
     float: left;
-    padding: 0 2% 0 0;
     width: 32%;
     border: 0;
+    padding: 0;
+    margin-right: 14px;
 }
 
 .html-rtl .category-landing .addons-column {
     float: right;
-    padding: 0 0 2% 0;
+    padding: 0;
+    margin-left: 14px;
 }
 
-.category-landing .addons-column:last-child {
-    padding-right: 0;
+.category-landing .addons-column.last {
+    margin-right: 0;
 }
 
 .html-rtl .category-landing .addons-column:last-child {
-    padding-right: 2%;
-    padding-left: 0;
+    margin-right: 14px;
+    margin-left: 0;
 }
 
 .category-landing .addons-column h3 {
@@ -1626,11 +1628,29 @@ form .error .note.error {
     text-decoration: underline;
 }
 
-.category-landing .addons-column ul {
+.category-landing .addons-column ul, .category-landing .info-message {
     border: 1px solid #E0EFFD;
     -moz-border-radius: 5px;
     padding: 0;
     margin: 0;
+}
+.category-landing .info-message {
+    clear: both;
+    padding: 1em;
+}
+
+.category-landing .info-message .view-all {
+    padding: 0;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.category-landing .info-message h3 {
+    margin: 0;
+    color: #444;
+}
+.category-landing .info-message .view-all a {
+    font-weight: bold;
 }
 
 .category-landing .addons-column ul.personas {
