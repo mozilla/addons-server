@@ -1,5 +1,8 @@
 @import 'lib';
 
+@controls-height: 70px;
+@lightbox-height: 640px;
+
 #lightbox {
     background: fadeOut(#000,90%);
     position: fixed;
@@ -21,42 +24,53 @@
         position: absolute;
         margin: 0;
         z-index: 20;
-        top: 15px;
-        right: 15px;
+        top: 5px;
+        right: 5px;
+        .box-shadow(0 0 5px #000);
     }
     &.show {
         pointer-events: auto;
         opacity: 1;
     }
     section {
-        padding: 15px;
+        .border-box();
         .border-radius(20px);
-        background: fadeOut(#000, 50%);
+        border: 15px solid rgba(0, 0, 0, 0.5);
         position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -315px 0 0 -365px;
-        width: 700px;
-        height: 600px;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        max-width: 740px;
+        height: 100%;
+        max-height: @lightbox-height;
+        overflow: hidden;
+        padding-bottom: @controls-height;
     }
     .content, .controls {
-        background: #fff;
         position: relative;
         overflow: hidden;
         text-align: center;
         display: block;
+        background: #000;
     }
     .control {
         line-height: 1em;
         width: 64px;
+        color: #fff;
     }
     .content {
-        .border-radius(10px 10px 0 0);
-        height: 525px;
+        height: @lightbox-height - @controls-height;
+        max-height: 100%;
     }
     .controls {
-        .border-radius(0 0 10px 10px);
-        height: 75px;
+        height: 70px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: #fff;
     }
     .control.disabled {
         opacity: 0;
@@ -77,7 +91,13 @@
         -moz-transition: .3s opacity ease;
         -webkit-transition: .3s opacity ease;
         opacity: 0;
-        margin: 0 auto;
+        margin: auto;
+        max-height: 95%;
+        max-width: 95%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         display: block;
         position: absolute;
     }

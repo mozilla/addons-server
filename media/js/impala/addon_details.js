@@ -54,9 +54,7 @@ $(function () {
             if ($img.length) {
                 $oldimg.css("opacity", 0);
                 $img.css({
-                    "opacity": 1,
-                    'margin-top': (525-$img.height())/2+'px',
-                    'margin-left': (700-$img.width())/2+'px'
+                    "opacity": 1
                 });
             } else {
                 $img = $(lbImage([current, $a.attr("href")]));
@@ -64,9 +62,7 @@ $(function () {
                 $img.load(function(e) {
                     $oldimg.css("opacity", 0);
                     $img.css({
-                        "opacity": 1,
-                        'margin-top': (525-$img.height())/2+'px',
-                        'margin-left': (700-$img.width())/2+'px'
+                        "opacity": 1
                     });
                     for (var i=0; i<$strip.length; i++) {
                         if (i != current) {
