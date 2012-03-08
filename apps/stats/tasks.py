@@ -220,7 +220,7 @@ def index_download_counts(ids, **kw):
 
 def index_collection_counts(ids, **kw):
     es = elasticutils.get_es()
-    qs = CollectionCount.objects.filter(id__in=ids)
+    qs = CollectionCount.objects.filter(collection__in=ids)
     if qs:
         log.info('Indexing %s addon collection counts: %s'
                  % (len(qs), qs[0].date))

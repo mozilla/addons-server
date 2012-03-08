@@ -92,6 +92,7 @@ def extract_addon_collection(collection_count, addon_collections,
     addon_collection_count = sum([c.count for c in addon_collections])
     collection_stats = dict([[c.name, c.count] for c in collection_stats])
     return {'date': collection_count.date,
+            'id': collection_count.pk,
             'count': collection_count.count,
             'data': es_dict({
                 'downloads': addon_collection_count,
