@@ -308,7 +308,6 @@ def site_stats_report(request, report):
                          'stats_base_url': stats_base_url})
 
 
-
 def get_report_view(request):
     """Parse and validate a pair of YYYMMDD date strings."""
     if ('start' in request.GET and
@@ -438,12 +437,12 @@ def fake_collection_stats(request, username, slug, group, start, end, format):
         isodate = strftime("%Y-%m-%d", single_date.timetuple())
         faked.append({
          'date': isodate,
-         'count': floor(200+50*sin(val+1)),
+         'count': floor(200 + 50 * sin(val + 1)),
          'data': {
-            'downloads': floor(200+50*sin(2*val+2)),
-            'votes_up': floor(200+50*sin(3*val+3)),
-            'votes_down': floor(200+50*sin(4*val+4)),
-            'subscribers': floor(200+50*sin(5*val+5)),
+            'downloads': floor(200 + 50 * sin(2 * val + 2)),
+            'votes_up': floor(200 + 50 * sin(3 * val + 3)),
+            'votes_down': floor(200 + 50 * sin(4 * val + 4)),
+            'subscribers': floor(200 + 50 * sin(5 * val + 5)),
         }})
         val += .01
     return faked
@@ -544,6 +543,7 @@ def site_series(request, format, group, start, end, field):
 def collection_stats(request, username, slug, group, start, end, format):
     c = get_collection(request, username, slug)
     return collection(request, c.uuid, format)
+
 
 def collection(request, uuid, format):
     """
