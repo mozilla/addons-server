@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     ('^blocked/', include('blocklist.urls')),
 
     # AMO homepage or Marketplace Developer Hub? Choose your destiny.
-    url('$^', settings.HOME, name='home'),
+    url('^$', settings.HOME, name='home'),
 
     # Add-ons.
     ('', include('addons.urls')),
