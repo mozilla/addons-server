@@ -57,8 +57,7 @@
         <div>
           <button id="login-submit" type="submit">{{ _('Log in') }}</button>
           {% if waffle.switch('browserid-login') %}
-            {{ _('or') }}
-            <a href="#" class="browserid-login browserid-login-alt"
+            <a href="#" class="browserid-login browserid-login-alt button premium"
                data-url="{{ url('users.browserid_login') }}">
               {{ loc('Use BrowserID') }}
             </a>
