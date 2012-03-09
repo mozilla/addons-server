@@ -86,7 +86,7 @@ class Translation(amo.models.ModelBase):
                 cursor.execute("""INSERT INTO translations_seq (id)
                                   VALUES(LAST_INSERT_ID(id + 1))""")
 
-            cursor.execute('SELECT LAST_INSERT_ID() FROM translations_seq')
+            cursor.execute('SELECT LAST_INSERT_ID()')
             id = cursor.fetchone()[0]
 
         # Update if one exists, otherwise create a new one.
