@@ -166,7 +166,11 @@ collections.recently_viewed = function() {
             return [key, $.trim(add_recent.attr('data-' + key))];
         }));
         var current_uuid = o.uuid;
-        recentlyViewed.add(o);
+
+        // If the collection has a visible name.
+        if (o.disp) {
+            recentlyViewed.add(o);
+        }
     } else {
         var current_uuid = '';
     }
