@@ -32,7 +32,7 @@
         <div class="houdini{{ ' ready' if not (form_basic.name.errors or
                                                form_basic.slug.errors) }}">
           <div class="before">
-            <h2 class="output">{{ addon.name }}</h2>
+            <h2 class="output">{{ addon.name|truncate(43) }}</h2>
             <b>{{ loc('Details page:') }}</b>
             {# The URL for the details page hasn't been finalized,
                so let's not reverse it just yet. #}
