@@ -1,21 +1,17 @@
 from django.core import paginator
 
+import elasticutils
 import mock
 from nose.tools import eq_
 
+import amo
 import amo.tests
-import amo.utils
 from addons.models import Addon
-import addons.tasks
 
 
 class TestESIndexing(amo.tests.ESTestCase):
+    mock_es = False
     es = True
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestESIndexing, cls).setUpClass()
-        cls.setUpIndex()
 
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
@@ -24,31 +20,29 @@ class TestESIndexing(amo.tests.ESTestCase):
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
 
-    def test_real_indexing(self):
-        def check(s):
-            assert callable(s) and not isinstance(s, mock.Mock)
-        check(addons.tasks.index_addons)
-        check(addons.tasks.unindex_addons)
-        check(amo.models.SearchMixin)
+    def test_get_es_not_mocked(self):
+        es = elasticutils.get_es()
+        assert not issubclass(es.__class__, mock.Mock)
 
 
 class TestNoESIndexing(amo.tests.TestCase):
+
+    mock_es = True
 
     def test_no_es(self):
         assert not getattr(self, 'es', False), (
             'TestCase should not have "es" attribute')
 
-    def test_mocked_indexing(self):
-        def check(s):
-            assert callable(s) and isinstance(s, mock.Mock)
-        check(addons.tasks.index_addons)
-        check(addons.tasks.unindex_addons)
-        check(amo.models.SearchMixin)
-
     def test_not_indexed(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                      status=amo.STATUS_PUBLIC)
-        eq_(Addon.search().filter(id__in=addon.id).count(), 0)
+        assert issubclass(
+            Addon.search().filter(id__in=addon.id).count().__class__,
+            mock.Mock)
+
+    def test_get_es_mocked(self):
+        es = elasticutils.get_es()
+        assert issubclass(es.__class__, mock.Mock)
 
 
 class TestES(amo.tests.ESTestCase):

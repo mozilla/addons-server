@@ -171,21 +171,29 @@ class TestClient(Client):
             raise AttributeError
 
 
+ES_patcher = mock.patch('elasticutils.get_es', spec=True)
+
+
 class TestCase(RedisTest, test_utils.TestCase):
     """Base class for all amo tests."""
     client_class = TestClient
+    mock_es = True
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestCase, cls).setUpClass()
+        if cls.mock_es:
+            ES_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        super(TestCase, cls).tearDownClass()
+        if cls.mock_es:
+            ES_patcher.stop()
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         self.reset_featured_addons()
-        # Mock out ES indexing for non-ES tests.
-        if not getattr(self, 'es', False):
-            for p in ['addons.tasks.index_addons',
-                      'addons.tasks.unindex_addons',
-                      'amo.models.SearchMixin']:
-                patcher = mock.patch(p)
-                patcher.start()
-                self.addCleanup(patcher.stop)
 
     def reset_featured_addons(self):
         from addons.cron import reset_featured_addons
@@ -383,10 +391,12 @@ class ESTestCase(TestCase):
     # outside Django transactions so be careful to clean up afterwards.
     es = True
     use_es = None
+    mock_es = False
     exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
 
     @classmethod
     def setUpClass(cls):
+        super(ESTestCase, cls).setUpClass()
         cls.es = elasticutils.get_es()
 
         if ESTestCase.use_es is None:
@@ -410,7 +420,6 @@ class ESTestCase(TestCase):
             except:
                 raise
 
-        super(ESTestCase, cls).setUpClass()
         addons.search.setup_mapping()
         stats.search.setup_indexes()
 
@@ -426,6 +435,7 @@ class ESTestCase(TestCase):
                   Translation, Addon, Collection, AppVersion, Application)
         for model in models:
             model.objects.all().delete()
+
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod

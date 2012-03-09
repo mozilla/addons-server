@@ -86,6 +86,7 @@ class ESStatsTest(StatsTest):
 
 class TestSeriesSecurity(ESStatsTest):
     """Tests to make sure all restricted data remains restricted."""
+    mock_es = True  # We're checking only headers, not content.
 
     def _check_it(self, views, status):
         for view, kwargs in views:

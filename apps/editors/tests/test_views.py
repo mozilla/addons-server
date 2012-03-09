@@ -9,9 +9,10 @@ from django.core import mail
 from django.utils.datastructures import SortedDict
 
 import jingo
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -245,10 +246,9 @@ class TestReviewLog(EditorTest):
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Add-on Review Log', None)])
 
-    @patch('devhub.models.ActivityLog.arguments')
-    def test_addon_missing(self, arguments):
+    @patch('devhub.models.ActivityLog.arguments', new=Mock)
+    def test_addon_missing(self):
         self.make_approvals()
-        arguments.return_value = []
         r = self.client.get(self.url)
         eq_(pq(r.content)('#log-listing tr td').eq(1).text(),
             'Add-on has been deleted.')
@@ -1889,9 +1889,8 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, links, verify=False)
 
-    # TODO: Remove 'marketplace' switch.
-    @patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
     def test_show_premium(self):
+        waffle.models.Switch.objects.create(name='marketplace', active=True)
         for type_ in amo.ADDON_PREMIUMS:
             self.addon.update(premium_type=type_)
             res = self.client.get(self.url)
