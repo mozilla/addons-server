@@ -65,6 +65,7 @@ def monitor(request, format=None):
                         ctx, status=status_code)
 
 
+@no_login_required
 def robots(request):
     """Generate a robots.txt"""
     _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
