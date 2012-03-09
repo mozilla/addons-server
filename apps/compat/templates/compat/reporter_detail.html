@@ -55,7 +55,16 @@
           <tr class="{{ cls }}">
             <th>{{ _('Success') if report.works_properly else _('Problem') }}</th>
             <td>{{ report.version }}</td>
-            <td>{{ amo.APP_GUIDS[report.app_guid].pretty }} {{ report.app_version }}</td>
+            <td>
+              {% with guid = amo.APP_GUIDS.get(report.app_guid) %}
+                {% if guid %}
+                  {{ guid.pretty }}
+                {% else %}
+                  {{ amo.UNKNOWN_APP.pretty }} ({{ report.app_guid }})
+                {% endif %}
+              {% endwith %}
+              {{ report.app_version }}
+            </td>
             <td>{{ report.app_build }}</td>
             <td>{{ report.client_os }}</td>
             <td>{{ report.created|datetime }}</td>

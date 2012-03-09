@@ -94,6 +94,8 @@ class TestReporterDetail(amo.tests.TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('compat.reporter_detail', args=[self.addon.guid])
         self.reports = []
+
+    def _generate(self):
         apps = [
             (amo.FIREFOX.guid, '10.0.1', True),      # 0
             (amo.FIREFOX.guid, '10.0a1', True),      # 1
@@ -139,48 +141,69 @@ class TestReporterDetail(amo.tests.TestCase):
             eq_(doc('#compat-form select[name=appver] option[selected]').val(),
                 appver)
 
+        return r
+
     def test_appver_all(self):
+        self._generate()
         self.check_table(good=3, bad=7, appver='',
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_firefox_single(self):
+        self._generate()
         appver = '%s-%s' % (amo.FIREFOX.id, '6.0')
         self.check_table(data={'appver': appver}, good=0, bad=1, appver=appver,
                          report_pks=[3])
 
     def test_firefox_multiple(self):
+        self._generate()
         appver = '%s-%s' % (amo.FIREFOX.id, '10.0')
         self.check_table(data={'appver': appver}, good=2, bad=1, appver=appver,
                          report_pks=[0, 1, 2])
 
     def test_firefox_empty(self):
+        self._generate()
         appver = '%s-%s' % (amo.FIREFOX.id,
                             settings.COMPAT[0]['main'])  # Firefox 11.
         self.check_table(data={'appver': appver}, good=0, bad=0, appver=appver,
                          report_pks=[])
 
     def test_firefox_unknown(self):
+        self._generate()
         # If we have a bad app/version combination, we don't apply any filters.
         appver = '%s-%s' % (amo.FIREFOX.id, '0.9999')
         self.check_table(data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_thunderbird_multiple(self):
+        self._generate()
         appver = '%s-%s' % (amo.THUNDERBIRD.id, '6.0')
         self.check_table(data={'appver': appver}, good=0, bad=2, appver=appver,
                          report_pks=[5, 6])
 
     def test_thunderbird_unknown(self):
+        self._generate()
         appver = '%s-%s' % (amo.THUNDERBIRD.id, '0.9999')
         self.check_table(data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_seamonkey_multiple(self):
+        self._generate()
         appver = '%s-%s' % (amo.SEAMONKEY.id, '2.3')
         self.check_table(data={'appver': appver}, good=0, bad=3, appver=appver,
                          report_pks=[7, 8, 9])
 
     def test_seamonkey_unknown(self):
+        self._generate()
         appver = '%s-%s' % (amo.SEAMONKEY.id, '0.9999')
         self.check_table(data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
+
+    def test_app_unknown(self):
+        # Testing for some unknown application such as 'Conkeror'.
+        app_guid = '{a79fe89b-6662-4ff4-8e88-09950ad4dfde}'
+        report = CompatReport.objects.create(guid=self.addon.guid,
+            app_guid=app_guid, app_version='0.9.3', works_properly=True)
+        self.reports.append(report.pk)
+        r = self.check_table(good=1, bad=0, appver='', report_pks=[0])
+        msg = 'Unknown (%s)' % app_guid
+        assert msg in r.content, 'Expected %s in body' % msg

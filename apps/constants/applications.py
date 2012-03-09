@@ -129,6 +129,12 @@ class MOZILLA(App):
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
+
+class UNKNOWN_APP(App):
+    """Placeholder for unknown applications."""
+    pretty = _(u'Unknown')
+
+
 # UAs will attempt to match in this order
 APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
