@@ -865,8 +865,8 @@ class PaypalPaymentData(happyforms.ModelForm):
     class Meta:
         model = AddonPaymentData
         fields = ['first_name', 'last_name',
-                  'country', 'address_one', 'address_two',
-                  'post_code', 'state', 'phone']
+                  'address_one', 'address_two', 'city',
+                  'state', 'post_code', 'country', 'phone']
 
 
 class AppFormDetails(addons.forms.AddonFormBase):
