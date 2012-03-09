@@ -516,13 +516,20 @@ class BlacklistedEmailDomain(amo.models.ModelBase):
                 return True
 
 
-class PersonaAuthor(amo.models.ModelBase):
-    """Link between personas and authors."""
-    persona = models.ForeignKey('addons.Persona')
-    author = models.ForeignKey(UserProfile)
+class PersonaAuthor(unicode):
+    """Stub user until the persona authors get imported."""
 
-    class Meta:
-        db_table = 'personas_users'
+    @property
+    def id(self):
+        """I don't want to change code depending on PersonaAuthor.id, so I'm
+        just hardcoding 0.  The only code using this is flush_urls."""
+        return 0
+
+    @property
+    def name(self):
+        return self
+
+    display_name = name
 
 
 class BlacklistedPassword(amo.models.ModelBase):

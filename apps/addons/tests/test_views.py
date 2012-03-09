@@ -1554,7 +1554,6 @@ class TestPersonaDetailPage(amo.tests.TestCase):
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
-        other.persona.author = self.persona.author
         other.persona.save()
         r = self.client.get(self.url)
         eq_(pq(r.content)('#more-artist .more-link').length, 1)
