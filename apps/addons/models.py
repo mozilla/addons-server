@@ -725,7 +725,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
-            addon.listed_authors = list(persona.personaauthor_set.all())
+            addon.listed_authors = [PersonaAuthor(persona.display_username)]
             addon.weekly_downloads = persona.popularity
 
         # Personas need categories for the JSON dump.
