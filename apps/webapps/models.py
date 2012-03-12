@@ -173,6 +173,14 @@ class Webapp(Addon):
         """When the submission process is done, update status accordingly."""
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
+    def authors_other_addons(self, app=None):
+        """Return other apps by the same author."""
+        return (self.__class__.objects.listed()
+                              .filter(type=amo.ADDON_WEBAPP)
+                              .exclude(id=self.id).distinct()
+                              .filter(addonuser__listed=True,
+                                      authors__in=self.listed_authors))
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

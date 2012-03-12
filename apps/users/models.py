@@ -516,22 +516,6 @@ class BlacklistedEmailDomain(amo.models.ModelBase):
                 return True
 
 
-class PersonaAuthor(unicode):
-    """Stub user until the persona authors get imported."""
-
-    @property
-    def id(self):
-        """I don't want to change code depending on PersonaAuthor.id, so I'm
-        just hardcoding 0.  The only code using this is flush_urls."""
-        return 0
-
-    @property
-    def name(self):
-        return self
-
-    display_name = name
-
-
 class BlacklistedPassword(amo.models.ModelBase):
     """Blacklisted passwords"""
     password = models.CharField(max_length=255, unique=True, blank=False)

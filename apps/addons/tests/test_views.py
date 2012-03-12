@@ -1535,11 +1535,20 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         amo.tests.check_links(expected, links)
 
 
-class TestPersonaDetailPage(amo.tests.TestCase):
+class TestPersonas(object):
+
+    def create_addon_user(self, addon, user=None):
+        if user is None:
+            user = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=addon, user=user)
+
+
+class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=15663)
+        self.create_addon_user(self.addon)
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
 
@@ -1554,15 +1563,19 @@ class TestPersonaDetailPage(amo.tests.TestCase):
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
-        other.persona.author = self.persona.author
-        other.persona.save()
+        self.create_addon_user(other)
         r = self.client.get(self.url)
         eq_(pq(r.content)('#more-artist .more-link').length, 1)
 
+    def test_more_personas_no_addon(self):
+        other = addon_factory(type=amo.ADDON_EXTENSION)
+        self.create_addon_user(other)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#more-artist .more-link').length, 0)
+
     def test_new_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
-        other.persona.author = self.persona.author
-        other.persona.save()
+        self.create_addon_user(other)
         self.persona.persona_id = 0
         self.persona.save()
         r = self.client.get(self.url)
@@ -1575,9 +1588,7 @@ class TestPersonaDetailPage(amo.tests.TestCase):
         addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
 
         other = addon_factory(type=amo.ADDON_PERSONA)
-        other.persona.author = self.persona.author
-        other.persona.save()
-        eq_(other.persona.author, self.persona.author)
+        self.create_addon_user(other)
         eq_(other.status, amo.STATUS_PUBLIC)
         eq_(other.disabled_by_user, False)
 
@@ -1966,14 +1977,15 @@ class TestMobileHome(TestMobile):
         self._test_addons()
 
 
-class TestMobileDetails(TestMobile):
-    fixtures = TestMobile.fixtures + ['base/featured']
+class TestMobileDetails(TestPersonas, TestMobile):
+    fixtures = TestMobile.fixtures + ['base/featured', 'base/users']
 
     def setUp(self):
         super(TestMobileDetails, self).setUp()
         self.ext = Addon.objects.get(id=3615)
         self.url = reverse('addons.detail', args=[self.ext.slug])
         self.persona = Addon.objects.get(id=15679)
+        self.create_addon_user(self.persona)
         self.persona_url = self.persona.get_url_path()
 
     def test_extension(self):
@@ -1991,15 +2003,13 @@ class TestMobileDetails(TestMobile):
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
-        other.persona.author = self.persona.persona.author
-        other.persona.save()
+        self.create_addon_user(other)
         r = self.client.get(self.persona_url, follow=True)
         eq_(pq(r.content)('#more-artist .more-link').length, 1)
 
     def test_new_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
-        other.persona.author = self.persona.persona.author
-        other.persona.save()
+        self.create_addon_user(other)
         self.persona.persona.persona_id = 0
         self.persona.persona.save()
         r = self.client.get(self.persona_url, follow=True)

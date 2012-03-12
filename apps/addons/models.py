@@ -38,7 +38,7 @@ from stats.models import AddonShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, Translation)
 from translations.query import order_by_translation
-from users.models import UserProfile, PersonaAuthor, UserForeignKey
+from users.models import UserProfile, UserForeignKey
 from users.utils import find_users
 from versions.compare import version_int, version_re
 from versions.models import Version
@@ -725,7 +725,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
-            addon.listed_authors = [PersonaAuthor(persona.display_username)]
             addon.weekly_downloads = persona.popularity
 
         # Personas need categories for the JSON dump.
@@ -781,14 +780,20 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def icon_url(self):
         return self.get_icon_url(32)
 
-    @property
-    def authors_other_addons(self):
+    def authors_other_addons(self, app=None):
         """
-        Return other addons by the author(s) of this addon
+        Return other addons by the author(s) of this addon,
+        optionally takes an app.
         """
-        return (Addon.objects.valid().exclude(id=self.id)
-                .filter(addonuser__listed=True,
-                        authors__in=self.listed_authors).distinct())
+        if app:
+            qs = Addon.objects.listed(app)
+        else:
+            qs = Addon.objects.valid()
+        return (qs.exclude(id=self.id)
+                  .exclude(type=amo.ADDON_WEBAPP)
+                  .filter(addonuser__listed=True,
+                          authors__in=self.listed_authors)
+                  .distinct())
 
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
@@ -1381,6 +1386,14 @@ class Persona(caching.CachingMixin, models.Model):
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
         }, separators=(',', ':'), cls=JSONEncoder)
+
+    def authors_other_addons(self, app=None):
+        return (Addon.objects.listed(app)
+                     .exclude(id=self.id)
+                     .filter(addonuser__listed=True,
+                             authors__in=self.addon.listed_authors,
+                             type=amo.ADDON_PERSONA)
+                     .distinct())
 
 
 class AddonCategory(caching.CachingMixin, models.Model):
