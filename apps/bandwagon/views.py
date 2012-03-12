@@ -380,7 +380,7 @@ def change_addon(request, collection, action):
         return http.HttpResponseBadRequest()
 
     getattr(collection, action + '_addon')(addon)
-    log.info(u'%r: %s %s to collection %s' %
+    log.info(u'%s: %s %s to collection %s' %
              (request.amo_user, action, addon.id, collection.id))
 
     if request.is_ajax():

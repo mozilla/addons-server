@@ -147,7 +147,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             self.username = smart_unicode(self.username)
 
     def __unicode__(self):
-        return '%s: %s' % (self.id, self.display_name or self.username)
+        return u'%s: %s' % (self.id, self.display_name or self.username)
 
     def get_url_path(self):
         return reverse('users.profile', args=[self.id])
