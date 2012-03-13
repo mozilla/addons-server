@@ -73,13 +73,13 @@ class TestWebapp(test_utils.TestCase):
         w.mark_done()
         eq_(w.status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
-    @mock.patch('webapps.models.Webapp.get_manifest_json')
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_no_icon_in_manifest(self, get_manifest_json):
         webapp = Webapp()
         get_manifest_json.return_value = {}
         eq_(webapp.has_icon_in_manifest(), False)
 
-    @mock.patch('webapps.models.Webapp.get_manifest_json')
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_has_icon_in_manifest(self, get_manifest_json):
         webapp = Webapp()
         get_manifest_json.return_value = {'icons': {}}

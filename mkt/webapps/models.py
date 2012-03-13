@@ -187,9 +187,9 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 
 models.signals.post_save.connect(update_search_index, sender=Webapp,
-                                 dispatch_uid='webapps.index')
+                                 dispatch_uid='mkt.webapps.index')
 models.signals.post_save.connect(update_name_table, sender=Webapp,
-                                 dispatch_uid='webapps.update.name.table')
+                                 dispatch_uid='mkt.webapps.update.name.table')
 
 
 class Installed(amo.models.ModelBase):

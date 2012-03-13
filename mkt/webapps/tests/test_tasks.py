@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-import hashlib
 import json
 
 from django.conf import settings
@@ -38,6 +36,7 @@ new = {
 ohash = 'sha256:fc11fba25f251d64343a7e8da4dfd812a57a121e61eb53c78c567536ab39b10d'
 nhash = 'sha256:912731929d8336beb88052f2fd838243d1534d3acef81796606e78312601e66b'
 
+
 class TestUpdateManifest(amo.tests.TestCase):
     fixtures = ('base/platforms',)
 
@@ -59,7 +58,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         open(filename, 'w').write(self._data)
         return self._hash
 
-    @mock.patch('webapps.tasks._get_content_hash')
+    @mock.patch('mkt.webapps.tasks._get_content_hash')
     def _run(self, _get_content_hash):
         # Will run the task and will act depending upon how you've set hash.
         _get_content_hash.side_effect = self._write
@@ -95,25 +94,25 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 1)
 
-    @mock.patch('webapps.tasks._get_content_hash')
+    @mock.patch('mkt.webapps.tasks._get_content_hash')
     def test_error(self, _get_content_hash):
         _get_content_hash.side_effect = Exception()
         update_manifests(ids=(self.addon.pk,))
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
 
-    @mock.patch('webapps.tasks.update_manifests')
+    @mock.patch('mkt.webapps.tasks.update_manifests')
     def test_ignore_not_webapp(self, update_manifests):
         self.addon.update(type=amo.ADDON_EXTENSION)
         call_command('process_addons', task='update_manifests')
         assert not update_manifests.call_args
 
-    @mock.patch('webapps.tasks.update_manifests')
+    @mock.patch('mkt.webapps.tasks.update_manifests')
     def test_ignore_disabled(self, update_manifests):
         self.addon.update(status=amo.STATUS_DISABLED)
         call_command('process_addons', task='update_manifests')
         assert not update_manifests.call_args
 
-    @mock.patch('webapps.tasks.update_manifests')
+    @mock.patch('mkt.webapps.tasks.update_manifests')
     def test_get_webapp(self, update_manifests):
         call_command('process_addons', task='update_manifests')
         assert not update_manifests.call_args

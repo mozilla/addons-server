@@ -97,7 +97,7 @@ NO_CONSUMER_MODULES = (
     'sharing.views',
     'tags.views',
     'versions.views',
-    'webapps.views',
+    'mkt.webapps.views',
 )
 
 # Specific view modules and methods that we don't want to force login on.
