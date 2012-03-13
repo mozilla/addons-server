@@ -88,8 +88,7 @@ class Webapp(Addon):
             self.update(slug='app-%s' % self.id)
 
     def get_url_path(self, more=False):
-        view = 'apps.detail_more' if more else 'apps.detail'
-        return reverse(view, args=[self.app_slug])
+        return reverse('detail', args=[self.app_slug])
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         # Either link to the "new" Marketplace Developer Hub or the old one.

@@ -8,7 +8,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from devhub.models import ActivityLog
+from mkt.developers.models import ActivityLog
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version

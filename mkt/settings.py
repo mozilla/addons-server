@@ -35,11 +35,12 @@ INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
     'mkt.site',
+    'mkt.webapps',
+    'mkt.detail',
     'mkt.developers',
     'mkt.submit',
     'mkt.experiments',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
-    'mkt.webapps',
 )
 SUPPORTED_NONAPPS += (
     # this line is here until bug 735120 is fixed.

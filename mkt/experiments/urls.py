@@ -7,5 +7,5 @@ from jingo.views import direct_to_template
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 urlpatterns = patterns('',
-    url('^$', views.detail, name='mkt.detail'),
+    url('^$', views.detail, name='mkt.experiments'),
 )

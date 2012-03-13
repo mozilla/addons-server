@@ -15,7 +15,6 @@ handler500 = 'mkt.site.views.handler500'
 
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
-# These URLs take precedence over existing ones.
 urlpatterns = patterns('',
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
@@ -55,11 +54,7 @@ urlpatterns = patterns('',
 
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
-)
 
-
-# Override old patterns.
-urlpatterns += patterns('',
     # Developer Registration Login.
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),

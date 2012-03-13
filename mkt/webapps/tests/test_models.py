@@ -10,7 +10,7 @@ from django.conf import settings
 
 import amo
 from addons.models import Addon, BlacklistedSlug
-from devhub.tests.test_views import BaseWebAppTest
+from mkt.developers.tests.test_views import BaseWebAppTest
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
@@ -49,11 +49,7 @@ class TestWebapp(test_utils.TestCase):
 
     def test_get_url_path(self):
         webapp = Webapp(app_slug='woo')
-        eq_(webapp.get_url_path(), '/en-US/apps/app/woo/')
-
-    def test_get_url_path_more(self):
-        webapp = Webapp(app_slug='woo')
-        eq_(webapp.get_url_path(more=True), '/en-US/apps/app/woo/more')
+        eq_(webapp.get_url_path(), '/en-US/app/woo/')
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
