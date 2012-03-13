@@ -77,7 +77,7 @@
         "addons_created"     : "addons",
         "addons_updated"     : "addons",
         "addons_downloaded"  : "addons",
-        "colletions_created" : "collections"
+        "collections_created" : "collections"
     };
 
     var acceptedGroups = {
@@ -167,7 +167,7 @@
             function downloadFormatter(n) { return Highcharts.numberFormat(n, 0) + ' downloads'; }
             function userFormatter(n) { return Highcharts.numberFormat(n, 0) + ' users'; }
             function addonsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' addons'; }
-            function collecitonsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' collections'; }
+            function collectionsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' collections'; }
             function reviewsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' reviews'; }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
             function addEventData(s, date) {
