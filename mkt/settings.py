@@ -59,7 +59,7 @@ MIDDLEWARE_CLASSES += (
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
 TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
 TEMPLATE_CONTEXT_PROCESSORS += [
-    'webapps.context_processors.is_webapps',
+    'mkt.webapps.context_processors.is_webapps',
     'mkt.site.context_processors.global_settings',
     'mkt.experiments.context_processors.fragment',
 ]
