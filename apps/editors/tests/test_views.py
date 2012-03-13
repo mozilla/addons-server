@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core import mail
 from django.utils.datastructures import SortedDict
 
-import jingo
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -1638,7 +1637,7 @@ class TestReview(ReviewBase):
     def test_action_links(self):
         r = self.client.get(self.url)
         expected = [
-            ('View Add-on Listing', self.addon.get_url_path()),
+            ('View Listing', self.addon.get_url_path()),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
@@ -1646,8 +1645,8 @@ class TestReview(ReviewBase):
         self.login_as_admin()
         r = self.client.get(self.url)
         expected = [
-            ('View Add-on Listing', self.addon.get_url_path()),
-            ('Edit Add-on', self.addon.get_dev_url()),
+            ('View Listing', self.addon.get_url_path()),
+            ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
              reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
