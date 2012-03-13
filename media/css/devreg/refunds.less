@@ -21,68 +21,78 @@
         white-space: nowrap;
     }
     th, td {
-        padding: 5px;
+        padding: 14px 5px;
     }
     th {
-        background: @border-blue;
-        border-bottom: 1px dotted #ADD0DC;
-        color: @medium-gray;
+        border-bottom: 1px dotted @taupe;
+        color: @dark-gray;
         font-size: 11px;
+        background-color: @taupe;
     }
     td {
         font-size: 11px;
         vertical-align: top;
     }
     .reason td {
-        background: lighten(@link, 45%);
         border: 0;
         color: @medium-gray;
         font-size: 11px;
-        padding-top: 0;
+        padding-top: 8px;
+        max-width: 600px;
+        word-wrap: break-word;
+        padding-bottom: 8px;
     }
-    /* Tables suck and can't deal with `border-radius`. So deal with this. */
-    thead tr:first-child th {
-        &:first-child {
-            -moz-border-radius-topleft: 5px;
-            -webkit-border-radius-topleft: 5px;
-            border-top-left-radius: 5px;
-        }
-        &:last-child {
-            -moz-border-radius-topright: 5px;
-            -webkit-border-radius-topright: 5px;
-            border-top-right-radius: 5px;
-        }
+    .stripe + .reason td {
+        background-color: @tab-stripe;
+    }
+    thead tr th {
+        padding-bottom: 14px;
     }
     tbody tr:last-child td {
         .border-radius(0 0 5px 5px);
     }
-    /* Styles for "Action" buttons. */
-    #queue-pending tbody {
-        tr:last-child td {
-            -moz-border-radius-bottomright: 0;
-            -webkit-border-radius-bottomright: 0;
-            border-bottom-right-radius: 0;
+    tbody tr.stripe td {
+        background-color: @tab-stripe;
+    }
+    #queue-pending {
+        thead {
+            th:last-child {
+                text-align: center;
+            }
         }
-        .action {
-            border: 1px solid @border-blue;
-            border-width: 0 0 0 1px;
+        tbody {
+            tr .action {
+                text-align: center;
+            }
+            td {
+                padding-bottom: 7px;
+            }
         }
     }
     form {
         margin: 0;
         button {
-            font-size: 11px;
-            line-height: inherit;
-            padding: 0 30px;
-            width: 100%;
-            + button {
-                margin-top: 5px;
-            }
+            background: url(../../img/developers/suite-pass.png) no-repeat 0 0;
+            background-size: 15px;
+            border: 0;
+            .box-shadow(0 0 0);
+            padding-right: 5px;
+            position: relative;
+            top: -5px;
+            left: 3px;
+        }
+        .bad {
+            background: url(../../img/developers/suite-fail.png) no-repeat 0 0;
+            background-size: 15px;
+            margin-left: 5px;
         }
     }
 }
 
 .html-rtl #refunds {
+    th, td {
+        text-align: right;
+    }
     thead tr:first-child th {
         &:first-child {
             .border-radius(0 5px 0 0);
@@ -91,12 +101,34 @@
             .border-radius(5px 0 0 0);
         }
     }
-    #queue-pending tbody {
-        tr:last-child td {
-            .border-radius(0 0 5px 0);
+}
+
+// .tabbed and .tabcontent may need to go somewhere more "global".
+.tabbed {
+    li {
+        display: inline-block;
+        a {
+            color: @dark-gray;
+            background-color: @tab-taupe;
+            border: 1px solid @taupe;
+            .border-radius(5px 5px 0 0);
+            display: block;
+            line-height: 28px;
+            padding: 0 10px;
+            &:hover {
+                text-decoration: none;
+                background-color: @tab-stripe;
+            }
         }
-        .action {
-            border-width: 0 1px 0 0;
+        &.active a {
+            background-color: @taupe;
+            border-bottom: 0;
         }
     }
+}
+
+.tabcontent {
+    border-color: @taupe;
+    .border-radius(0 5px 5px 5px);
+    margin-top: -1px;
 }

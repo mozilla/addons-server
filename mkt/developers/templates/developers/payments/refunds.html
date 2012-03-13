@@ -40,15 +40,16 @@
   <form method="post" action="{{ c.get_refund_url() }}">
     {{ csrf() }}
     <input type="hidden" name="transaction_id" value="{{ c.transaction_id }}">
-    <button type="submit" class="good" name="issue">
-      {{ _('Issue Refund') }}</button>
-    <button type="submit" class="bad" name="decline">
-      {{ _('Decline Refund') }}</button>
+    <button type="submit" class="good tooltip" name="issue"
+      title="{{ _('Issue Refund') }}"></button>
+    <button type="submit" class="bad tooltip" name="decline"
+      title="{{ _('Decline Refund') }}"></button>
   </form>
 {% endmacro %}
 
-{% macro approved_row(refund) %}
-  <tr data-refundid="{{ refund.id }}" class="refund">
+{% macro approved_row(refund, odd_row) %}
+  <tr data-refundid="{{ refund.id }}"
+    class="refund{% if odd_row %} stripe{% endif %}">
     {{ base_td(refund, amo) }}
     <td class="long approved-date">{{ refund.approved|babel_datetime }}</td>
   </tr>
@@ -77,11 +78,35 @@
         </p>
       </div>
     {% else %}
-      <h2>
-        {{ amo.REFUND_STATUSES[amo.REFUND_PENDING] }}
-        <em>({{ pending.paginator.count }})</em>
-      </h2>
-      <div class="island">
+
+      <ul id="refund-nav" class="tabbed">
+        <li class="active">
+          <a href="#">
+            {{ amo.REFUND_STATUSES[amo.REFUND_PENDING] }}
+            <em>({{ pending.paginator.count }})</em>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED] }}
+            <em>({{ approved.paginator.count }})</em>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED_INSTANT] }}
+            <em>({{ instant.paginator.count }})</em>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            {{ amo.REFUND_STATUSES[amo.REFUND_DECLINED] }}
+            <em>({{ declined.paginator.count }})</em>
+          </a>
+        </li>
+      </ul>
+
+      <div id="wrapper-pending" class="island tabcontent">
         {% if not pending.paginator.count %}
           <p id="queue-pending" class="no-results">
             {{ _('No pending refunds.') }}
@@ -96,15 +121,17 @@
             </thead>
             <tbody>
               {% for refund in pending.object_list %}
-                <tr data-refundid="{{ refund.id }}" class="refund">
+                {# Use the "cycle" tag when/if we upgrade Jinja #}
+                <tr data-refundid="{{ refund.id }}"
+                  class="refund{% if loop.index % 2 != 0 %} stripe{% endif %}">
                   {{ base_td(refund, amo) }}
-                  <td rowspan="2" class="action">
+                  <td class="action">
                     {{ action_form(refund) }}
                   </td>
                 </tr>
                 {% if refund.refund_reason %}
                   <tr data-refundid="{{ refund.id }}" class="reason">
-                    <td colspan="5">
+                    <td colspan="0">
                       <b>{{ _('Refund Reason:') }}</b>
                       {{ refund.refund_reason }}
                     </td>
@@ -114,14 +141,10 @@
             </tbody>
           </table>
         {% endif %}
+        {{ pending|paginator }}
       </div>
-      {{ pending|paginator }}
 
-      <h2>
-        {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED] }}
-        <em>({{ approved.paginator.count }})</em>
-      </h2>
-      <div class="island">
+      <div id="wrapper-approved" class="island tabcontent hidden">
         {% if not approved.paginator.count %}
           <p id="queue-approved" class="no-results">
             {{ _('No approved refunds.') }}
@@ -136,19 +159,16 @@
             </thead>
             <tbody>
               {% for refund in approved.object_list %}
-                {{ approved_row(refund) }}
+                {% set odd_row = loop.index % 2 != 0 %}
+                {{ approved_row(refund, odd_row) }}
               {% endfor %}
             </tbody>
           </table>
         {% endif %}
+        {{ approved|paginator }}
       </div>
-      {{ approved|paginator }}
 
-      <h2>
-        {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED_INSTANT] }}
-        <em>({{ instant.paginator.count }})</em>
-      </h2>
-      <div class="island">
+      <div id="wrapper-instant" class="island tabcontent hidden">
         {% if not instant.paginator.count %}
           <p id="queue-instant" class="no-results">
             {{ loc('No instantly approved refunds.') }}
@@ -163,19 +183,16 @@
             </thead>
             <tbody>
               {% for refund in instant.object_list %}
-                {{ approved_row(refund) }}
+                {% set odd_row = loop.index % 2 != 0 %}
+                {{ approved_row(refund, odd_row) }}
               {% endfor %}
             </tbody>
           </table>
         {% endif %}
+        {{ instant|paginator }}
       </div>
-      {{ instant|paginator }}
 
-      <h2>
-        {{ amo.REFUND_STATUSES[amo.REFUND_DECLINED] }}
-        <em>({{ declined.paginator.count }})</em>
-      </h2>
-      <div class="island">
+      <div id="wrapper-declined" class="island tabcontent hidden">
         {% if not declined.paginator.count %}
           <p id="queue-declined" class="no-results">
             {{ loc('No declined refunds.') }}
@@ -190,7 +207,8 @@
             </thead>
             <tbody>
               {% for refund in declined.object_list %}
-                <tr data-refundid="{{ refund.id }}" class="refund">
+                <tr data-refundid="{{ refund.id }}"
+                  class="refund{% if loop.index % 2 != 0 %} stripe{% endif %}">
                   {{ base_td(refund, amo) }}
                   <td class="long declined-date">
                     {{ refund.declined|babel_datetime }}
@@ -208,9 +226,12 @@
             </tbody>
           </table>
         {% endif %}
+        {{ declined|paginator }}
       </div>
-      {{ declined|paginator }}
     {% endif %}
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}
+{% endblock %}
+{% block js %}
+  <script async src="{{ media('js/devreg/refunds.js') }}"></script>
 {% endblock %}
