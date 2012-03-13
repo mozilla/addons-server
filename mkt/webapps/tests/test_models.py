@@ -14,7 +14,7 @@ from devhub.tests.test_views import BaseWebAppTest
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
-from webapps.models import Installed, Webapp, get_key
+from mkt.webapps.models import Installed, Webapp, get_key
 
 
 class TestWebapp(test_utils.TestCase):

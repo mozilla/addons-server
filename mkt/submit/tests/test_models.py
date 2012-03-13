@@ -3,7 +3,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from mkt.submit.models import AppSubmissionChecklist
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class TestAppSubmissionChecklist(amo.tests.TestCase):

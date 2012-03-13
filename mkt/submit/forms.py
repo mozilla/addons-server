@@ -23,7 +23,7 @@ from mkt.developers import tasks
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class DevAgreementForm(happyforms.Form):

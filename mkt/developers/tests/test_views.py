@@ -35,7 +35,7 @@ from market.models import AddonPremium, Price, Refund
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class AppHubTest(amo.tests.TestCase):

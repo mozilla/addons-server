@@ -6,8 +6,8 @@ import amo
 import amo.tests
 from addons.models import Addon
 from users.models import UserProfile
-from webapps.cron import update_weekly_downloads
-from webapps.models import Installed, Webapp
+from mkt.webapps.cron import update_weekly_downloads
+from mkt.webapps.models import Installed, Webapp
 
 
 class TestWeeklyDownloads(amo.tests.TestCase):

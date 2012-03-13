@@ -9,7 +9,7 @@ import time
 import amo
 from addons.models import Addon
 from users.models import UserProfile
-from webapps.models import Installed
+from mkt.webapps.models import Installed
 
 
 class Command(BaseCommand):

@@ -22,7 +22,7 @@ from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 from versions.models import Version
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class WebappTest(amo.tests.TestCase):

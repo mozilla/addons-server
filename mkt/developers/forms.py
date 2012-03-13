@@ -34,7 +34,7 @@ from translations.fields import TransField
 from translations.models import Translation
 from translations.forms import TranslationFormMixin
 from versions.models import Version, ApplicationsVersions
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 from . import tasks
 
 paypal_log = commonware.log.getLogger('z.paypal')

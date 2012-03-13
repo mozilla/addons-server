@@ -14,8 +14,8 @@ from devhub.models import ActivityLog
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
-from webapps.tasks import update_manifests
-from webapps.models import Webapp
+from mkt.webapps.tasks import update_manifests
+from mkt.webapps.models import Webapp
 
 original = {
         "version": "0.1",

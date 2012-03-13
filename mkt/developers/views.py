@@ -49,7 +49,7 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 from zadmin.models import ValidationResult
 
 from . import forms, tasks

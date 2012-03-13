@@ -10,7 +10,7 @@ import amo.tests
 from addons.models import Addon
 from services import verify
 from services import utils
-from webapps.models import Installed
+from mkt.webapps.models import Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution

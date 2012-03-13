@@ -9,7 +9,7 @@ from celery.task.sets import TaskSet
 import amo
 from amo.utils import chunked
 from addons.tasks import index_addons
-from webapps.models import Installed
+from mkt.webapps.models import Installed
 
 from .models import Webapp
 from .tasks import webapp_update_weekly_downloads

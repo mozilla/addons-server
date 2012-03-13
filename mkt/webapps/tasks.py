@@ -9,7 +9,7 @@ from amo import set_user
 from devhub.tasks import _fetch_content
 from files.utils import get_sha256
 from users.utils import get_task_user
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 task_log = logging.getLogger('z.task')
 

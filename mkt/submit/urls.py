@@ -3,7 +3,7 @@ from django.conf.urls.defaults import include, patterns, url
 from lib.misc.urlconf_decorator import decorate
 
 from amo.decorators import write
-from webapps.urls import APP_SLUG
+from mkt.webapps.urls import APP_SLUG
 from . import views
 
 

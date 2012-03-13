@@ -10,7 +10,7 @@ from amo.helpers import loc
 from amo.utils import paginate
 from addons.decorators import addon_view
 import addons.views
-from webapps.models import Installed
+from mkt.webapps.models import Installed
 import search.views
 
 from addons.models import Category
