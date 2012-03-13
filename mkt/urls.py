@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     ('^app/%s/' % APP_SLUG, include('mkt.detail.urls')),
 
     # Web apps.
-    ('^apps/', include('webapps.urls')),
+    #('^apps/', include('mkt.webapps.urls')),
 
     # Users.
     ('', include('users.urls')),
