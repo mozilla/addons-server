@@ -5,6 +5,27 @@ var csv_keys = {
     usage: {
         "count": gettext('Daily Users')
     },
+    collections_created: {
+        'count': gettext('Collections Created')
+    },
+    addons_in_use: {
+        'count': gettext('Add-ons in Use')
+    },
+    addons_created: {
+        'count': gettext('Add-ons Created')
+    },
+    addons_downloaded: {
+        'count': gettext('Add-ons Downloaded')
+    },
+    addons_updated: {
+        'count': gettext('Add-ons Updated')
+    },
+    reviews_created: {
+        'count': gettext('Reviews Written')
+    },
+    users_created: {
+        'count': gettext('User Signups')
+    },
     sources: {
         "null"                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
