@@ -39,6 +39,7 @@ INSTALLED_APPS += (
     'mkt.submit',
     'mkt.experiments',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
+    'webapps',
 )
 SUPPORTED_NONAPPS += (
     # this line is here until bug 735120 is fixed.
@@ -58,6 +59,7 @@ MIDDLEWARE_CLASSES += (
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
 TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
 TEMPLATE_CONTEXT_PROCESSORS += [
+    'webapps.context_processors.is_webapps',
     'mkt.site.context_processors.global_settings',
     'mkt.experiments.context_processors.fragment',
 ]

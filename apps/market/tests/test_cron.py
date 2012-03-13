@@ -36,7 +36,7 @@ class TestCronDeletes(amo.tests.TestCase):
 
 
 class TestPendingRefunds(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
+    fixtures = ['base/337141-steamcube', 'base/users']
 
     def create_refund(self, webapp=None):
         webapp = webapp if webapp else self.webapp

@@ -152,7 +152,7 @@ def create_addon_purchase(sender, instance, **kw):
         data = {'addon': instance.addon, 'user': instance.user}
         purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
         purchase.update(type=amo.CONTRIB_PURCHASE)
-        from webapps.models import Installed  # Circular import.
+        from mkt.webapps.models import Installed  # Circular import.
         Installed.objects.safer_get_or_create(user=instance.user,
                                               addon=instance.addon)
 

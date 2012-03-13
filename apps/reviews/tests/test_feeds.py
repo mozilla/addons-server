@@ -9,7 +9,7 @@ from amo.urlresolvers import reverse
 import amo.tests
 from reviews import feeds
 from translations.models import Translation
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class FeedTest(amo.tests.TestCase):
@@ -53,7 +53,7 @@ class FeedTest(amo.tests.TestCase):
 
 
 class TestAppsFeed(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = ['base/337141-steamcube']
 
     def setUp(self):
         self.app = Webapp.objects.get(id=337141)

@@ -277,7 +277,7 @@ class AMOPaths(object):
 
     @staticmethod
     def sample_key():
-        path = 'apps/webapps/tests/sample.key'
+        path = 'mkt/webapps/tests/sample.key'
         return os.path.join(settings.ROOT, path)
 
 

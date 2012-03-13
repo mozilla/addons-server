@@ -49,7 +49,6 @@ from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
-from webapps.models import Webapp
 
 
 class MetaTests(amo.tests.TestCase):
@@ -83,48 +82,12 @@ class HubTest(amo.tests.TestCase):
         return ids
 
 
-class AppHubTest(HubTest):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
-
-
 class TestHome(HubTest):
 
     def test_addons(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'devhub/index.html')
-
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
-    def test_apps(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, reverse('devhub.apps'), 302)
-        self.assertTemplateUsed(r, 'devhub/addons/dashboard.html')
-
-
-class TestAppBreadcrumbs(AppHubTest):
-
-    def setUp(self):
-        super(TestAppBreadcrumbs, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
-    def test_impala_breadcrumbs(self):
-        r = self.client.get(reverse('devhub.apps'))
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#breadcrumbs').length, 0)
-
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
-    def test_legacy_breadcrumbs(self):
-        webapp = Webapp.objects.get(id=337141)
-        AddonUser.objects.create(user=self.user_profile, addon=webapp)
-        r = self.client.get(webapp.get_dev_url('edit'))
-        eq_(r.status_code, 200)
-        expected = [
-            ('My Apps', reverse('devhub.apps')),
-            (unicode(webapp.name), None),
-        ]
-        amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
 
 
 class TestNav(HubTest):
@@ -206,15 +169,6 @@ class TestDashboard(HubTest):
         eq_(doc('#copyright').length, 1)
         eq_(doc('#footer-links .mobile-link').length, 0)
 
-    def test_apps_layout(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        doc = pq(self.client.get(self.apps_url).content)
-        eq_(doc('title').text(),
-            'Manage My Apps :: Developer Hub :: Apps Marketplace')
-        eq_(doc('#social-footer').length, 0)
-        eq_(doc('#copyright').length, 1)
-        eq_(doc('#footer-links .mobile-link').length, 0)
-
     def get_action_links(self, addon_id):
         r = self.client.get(self.url)
         doc = pq(r.content)
@@ -278,20 +232,6 @@ class TestDashboard(HubTest):
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
 
-    def test_public_app(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        app = Addon.objects.get(id=self.clone_addon(1)[0])
-        app.update(type=amo.ADDON_WEBAPP)
-        doc = pq(self.client.get(self.apps_url).content)
-        item = doc('.item[data-addonid=%s]' % app.id)
-        assert item.find('p.downloads'), 'Expected weekly downloads'
-        assert not item.find('p.users'), 'Unexpected ADU'
-        assert item.find('.price'), 'Expected price'
-        assert item.find('.item-details'), 'Expected item details'
-        assert not item.find('p.incomplete'), (
-            'Unexpected message about incomplete add-on')
-
     def test_incomplete_addon(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
         addon = Addon.objects.get(id=self.clone_addon(1)[0])
@@ -302,14 +242,6 @@ class TestDashboard(HubTest):
         assert not item.find('.item-details'), 'Unexpected item details'
         assert not item.find('.price'), 'Expected price'
         assert item.find('p.incomplete'), (
-            'Expected message about incompleted add-on')
-
-    def test_incomplete_app(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        app = Addon.objects.get(id=self.clone_addon(1)[0])
-        app.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
-        doc = pq(self.client.get(self.apps_url).content)
-        assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
 
     def test_dev_news(self):
@@ -347,70 +279,6 @@ class TestDashboard(HubTest):
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
             strip_whitespace(datetime_filter(addon.last_updated)))
-
-
-class TestAppDashboard(AppHubTest):
-
-    def setUp(self):
-        super(TestAppDashboard, self).setUp()
-        self.url = reverse('devhub.apps')
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-
-    def test_dashboard(self):
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_no_apps(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#dashboard .item').length, 0)
-
-    def test_pagination(self):
-        # Create 10 add-ons.
-        self.clone_addon(10, addon_id=337141)
-        r = self.client.get(self.url)
-        doc = pq(r.content)('#dashboard')
-        eq_(doc('.item').length, 10)
-        eq_(doc('#sorter').length, 1)
-        eq_(doc('.paginator').length, 0)
-
-
-class TestAppDashboardSorting(AppHubTest):
-
-    def setUp(self):
-        super(TestAppDashboardSorting, self).setUp()
-        self.clone_addon(3, addon_id=337141)
-        self.my_apps = self.user_profile.addons
-        self.url = reverse('devhub.apps')
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-
-    def test_pagination(self):
-        doc = pq(self.client.get(self.url).content)('#dashboard')
-        eq_(doc('.item').length, 3)
-        eq_(doc('#sorter').length, 1)
-        eq_(doc('.paginator').length, 0)
-
-        # We want more than 10 apps so that the paginator shows up.
-        self.clone_addon(8, addon_id=337141)
-        doc = pq(self.client.get(self.url).content)('#dashboard')
-        eq_(doc('.item').length, 10)
-        eq_(doc('#sorter').length, 1)
-        eq_(doc('.paginator').length, 1)
-
-        doc = pq(self.client.get(self.url, dict(page=2)).content)('#dashboard')
-        eq_(doc('.item').length, 1)
-        eq_(doc('#sorter').length, 1)
-        eq_(doc('.paginator').length, 1)
-
-    def test_default_sort(self):
-        test_default_sort(self, 'name', 'name', reverse=False)
-
-    def test_newest_sort(self):
-        test_listing_sort(self, 'created', 'created')
-
-    def test_downloads_sort(self):
-        test_listing_sort(self, 'downloads', 'weekly_downloads')
-
-    def test_rating_sort(self):
-        test_listing_sort(self, 'rating', 'bayesian_rating')
 
 
 class TestUpdateCompatibility(amo.tests.TestCase):
@@ -783,14 +651,6 @@ class TestEditPayments(amo.tests.TestCase):
         eq_(doc('.intro').length, 2)
         eq_(doc('.intro.full-intro').length, 0)
 
-    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
-    def test_voluntary_contributions_apps(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('.intro').length, 1)
-        eq_(doc('.intro.full-intro').length, 1)
-
 
 class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
@@ -1090,14 +950,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(len(self.addon._upsell_to.all()), 1)
 
-    def test_set_upsell_wrong_type(self):
-        self.setup_premium()
-        self.other_addon.update(type=amo.ADDON_WEBAPP)
-        res = self.client.post(self.url, data=self.get_data())
-        eq_(res.status_code, 200)
-        eq_(len(res.context['form'].errors['free']), 1)
-        eq_(len(self.addon._upsell_to.all()), 0)
-
     def test_set_upsell_required(self):
         self.setup_premium()
         data = self.get_data()
@@ -1300,18 +1152,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.setup_premium()
         assert 'no-edit' not in self.client.get(self.url).content
 
-    def test_webapp(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        self.setup_premium()
-        res = self.client.post(self.url, data={
-            'paypal_id': 'b@b.com',
-            'support_email': 'c@c.com',
-            'price': self.price_two.pk,
-        })
-        eq_(res.status_code, 302)
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.support_email, 'c@c.com')
-
     def test_wizard_denied(self):
         self.addon.update(status=amo.STATUS_PUBLIC)
         for x in xrange(1, 5):
@@ -1384,12 +1224,6 @@ class TestIssueRefund(amo.tests.TestCase):
     def test_addons_issue(self, refund, enqueue_refund):
         self._test_issue(refund, enqueue_refund)
 
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_issue(self, refund, enqueue_refund):
-        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='ballin')
-        self._test_issue(refund, enqueue_refund)
-
     @mock.patch('amo.messages.error')
     @mock.patch('paypal.refund')
     def test_only_one_issue(self, refund, error):
@@ -1440,12 +1274,6 @@ class TestIssueRefund(amo.tests.TestCase):
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
     def test_addons_decline(self, refund, enqueue_refund):
-        self._test_decline(refund, enqueue_refund)
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_decline(self, refund, enqueue_refund):
-        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='ballin')
         self._test_decline(refund, enqueue_refund)
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
@@ -1848,28 +1676,6 @@ class TestProfile(TestProfileBase):
         self.check(the_reason='to be hot', the_future='cold stuff')
 
 
-class TestAppProfile(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(id=337141)
-        self.url = self.webapp.get_dev_url('profile')
-
-    def test_nav_link(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
-            self.url)
-
-    def test_labels(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(r.context['webapp'], True)
-        doc = pq(r.content)
-        eq_(doc('label[for=the_reason] .optional').length, 1)
-        eq_(doc('label[for=the_future] .optional').length, 1)
-
-
 class TestSubmitBase(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
@@ -1904,15 +1710,6 @@ class TestSubmitStep1(TestSubmitBase):
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
-    def test_step1_apps_submit(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        response = self.client.get(reverse('devhub.submit_apps.1'))
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        assert doc('#site-nav').hasClass('app-nav'), 'Expected apps devhub nav'
-        eq_(doc('#breadcrumbs a').eq(0).attr('href'), reverse('devhub.apps'))
-        assert doc('h2.is_webapp'), 'Webapp submit has add-on heading'
-
 
 class TestSubmitStep2(amo.tests.TestCase):
     # More tests in TestCreateAddon.
@@ -1927,27 +1724,10 @@ class TestSubmitStep2(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_step_2_apps_with_cookie(self, fia):
-        fia.return_value = True
-
-        r = self.client.post(reverse('devhub.submit_apps.1'))
-        self.assertRedirects(r, reverse('devhub.submit_apps.2'))
-        r = self.client.get(reverse('devhub.submit_apps.2'))
-        eq_(r.status_code, 200)
-
     def test_step_2_no_cookie(self):
         # We require a cookie that gets set in step 1.
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit.1'))
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_step_2_apps_no_cookie(self, fia):
-        fia.return_value = True
-
-        # We require a cookie that gets set in step 1.
-        r = self.client.get(reverse('devhub.submit_apps.2'), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit_apps.1'))
 
 
 class TestSubmitStep3(TestSubmitBase):
@@ -1995,27 +1775,6 @@ class TestSubmitStep3(TestSubmitBase):
         assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), (
                 "Creating a description needn't be logged.")
 
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_submit_apps_success(self, fia):
-        fia.return_value = True
-
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        assert self.get_addon().is_webapp()
-
-        # Post and be redirected.
-        d = self.get_dict()
-        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']),
-                             d)
-        eq_(r.status_code, 302)
-        eq_(self.get_step().step, 4)
-        addon = self.get_addon()
-        self.assertRedirects(r, reverse('devhub.submit_apps.4',
-                                        args=[addon.slug]))
-        eq_(addon.name, 'Test name')
-        eq_(addon.app_slug, 'testname')
-        eq_(addon.description, 'desc')
-        eq_(addon.summary, 'Hello!')
-
     def test_submit_name_unique(self):
         # Make sure name is unique.
         r = self.client.post(self.url, self.get_dict(name='Cooliris'))
@@ -2034,68 +1793,12 @@ class TestSubmitStep3(TestSubmitBase):
         error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
-    def _setup_webapp(self):
-        # Used unique name tests for webapps
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Cool App')
-        self.assertTrue(app.is_webapp())
-        eq_(ReverseNameLookup(webapp=True).get(app.name), app.id)
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-
-    def test_submit_app_name_unique(self):
-        self._setup_webapp()
-        url = reverse('devhub.submit_apps.3', args=['a3615'])
-        r = self.client.post(url, self.get_dict(name='Cool App'))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form', 'name', error)
-
-    def test_submit_app_name_unique_strip(self):
-        # Make sure we can't sneak in a name by adding a space or two.
-        self._setup_webapp()
-        url = reverse('devhub.submit_apps.3', args=['a3615'])
-        r = self.client.post(url, self.get_dict(name='  Cool App  '))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form', 'name', error)
-
-    def test_submit_app_name_unique_case(self):
-        # Make sure unique names aren't case sensitive.
-        self._setup_webapp()
-        url = reverse('devhub.submit_apps.3', args=['a3615'])
-        r = self.client.post(url, self.get_dict(name='cool app'))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form', 'name', error)
-
-    def test_submit_name_required(self):
-        # Make sure name is required.
-        r = self.client.post(self.url, self.get_dict(name=''))
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_submit_app_name_required(self):
-        # Make sure name is required.
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']),
-                             self.get_dict(name=''))
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
     def test_submit_name_length(self):
         # Make sure the name isn't too long.
         d = self.get_dict(name='a' * 51)
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         error = 'Ensure this value has at most 50 characters (it has 51).'
-        self.assertFormError(r, 'form', 'name', error)
-
-    def test_submit_app_name_length(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        d = self.get_dict(name='a' * 129)
-        r = self.client.post(reverse('devhub.submit_apps.3', args=['a3615']),
-                             d)
-        eq_(r.status_code, 200)
-        error = 'Ensure this value has at most 128 characters (it has 129).'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_slug_invalid(self):
@@ -2175,37 +1878,6 @@ class TestSubmitStep3(TestSubmitBase):
 
         eq_(version, self.addon.current_version.version)
 
-    def test_homepage_url_invalid(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        d = self.get_dict(homepage='a')
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
-
-    def test_support_url_invalid(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        d = self.get_dict(support_url='a')
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'form', 'support_url', 'Enter a valid URL.')
-
-    def test_support_email_url_invalid(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        d = self.get_dict(support_email='a')
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'form', 'support_email',
-                             'Enter a valid e-mail address.')
-
-    def test_device_type_invalid(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        d = self.get_dict(device_types=666)
-        res = self.client.post(self.url, d)
-        self.assertFormError(res, 'device_form', 'device_types',
-            'Select a valid choice. 666 is not one of the available choices.')
-
 
 class TestSubmitStep4(TestSubmitBase):
 
@@ -2234,22 +1906,6 @@ class TestSubmitStep4(TestSubmitBase):
         r = self.client.post(self.url, data_formset)
         eq_(r.status_code, 302)
         eq_(self.get_step().step, 5)
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_apps_post(self, fia):
-        fia.return_value = True
-
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        assert self.get_addon().is_webapp(), "Unexpected: Addon not webapp"
-
-        data_formset = self.formset_media(icon_type='')
-        r = self.client.post(reverse('devhub.submit_apps.4', args=['a3615']),
-                             data_formset)
-        eq_(r.status_code, 302)
-        assert_raises(SubmitStep.DoesNotExist, self.get_step)
-        self.assertRedirects(r, reverse('devhub.submit_apps.5',
-                                        args=[self.get_addon().slug]))
-        eq_(self.get_addon().status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.url).context
@@ -2583,22 +2239,6 @@ class TestSubmitStep7(TestSubmitBase):
         res = self.client.get(self.url)
         eq_(pq(res.content)('#editor-pitch').length, 1)
 
-    def test_app_editor_pitch(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#editor-pitch').length, 0)
-
-    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
-    def test_marketplace(self):
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#marketplace-enroll').length, 1)
-
-    @mock.patch.dict(jingo.env.globals['waffle'], {'switch': lambda x: True})
-    def test_marketplace_not(self):
-        self.addon.update(type=amo.ADDON_SEARCH)
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#marketplace-enroll').length, 0)
-
 
 class TestResumeStep(TestSubmitBase):
 
@@ -2635,26 +2275,11 @@ class TestSubmitBump(TestSubmitBase):
         r = self.client.post(self.url, {'step': 4})
         eq_(r.status_code, 403)
 
-    def test_apps_bump_acl(self):
-        r = self.client.post(reverse('devhub.submit_apps.bump',
-                                     args=['a3615']))
-        eq_(r.status_code, 403)
-
     def test_bump_submit_and_redirect(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         r = self.client.post(self.url, {'step': 4}, follow=True)
         self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
-        eq_(self.get_step().step, 4)
-
-    def test_apps_bump_submit_and_redirect(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        self.get_addon().update(type=amo.ADDON_WEBAPP)
-        url = reverse('devhub.submit_apps.bump', args=['a3615'])
-        r = self.client.post(url, {'step': 4}, follow=True)
-        self.assertRedirects(r, reverse('devhub.submit_apps.4',
-                                        args=['a3615']))
         eq_(self.get_step().step, 4)
 
 
@@ -3433,105 +3058,6 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
 
-class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
-
-    def setUp(self):
-        super(BaseWebAppTest, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                                     'addons', 'mozball.webapp')
-        self.upload = self.get_upload(abspath=self.manifest)
-        self.url = reverse('devhub.submit_apps.2')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.client.post(reverse('devhub.submit_apps.1'))
-
-    def post_addon(self):
-        eq_(Addon.objects.count(), 0)
-        self.post()
-        return Addon.objects.get()
-
-
-class TestCreateWebApp(BaseWebAppTest):
-
-    def test_page_title(self):
-        eq_(pq(self.client.get(self.url).content)('title').text(),
-            'Step 2 :: Developer Hub :: Apps Marketplace')
-
-    def test_post_app_redirect(self):
-        r = self.post()
-        addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit_apps.3',
-                                        args=[addon.slug]))
-
-    def test_addon_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        eq_(addon.type, amo.ADDON_WEBAPP)
-        eq_(addon.guid, None)
-        eq_(unicode(addon.name), 'MozillaBall')
-        eq_(addon.slug, 'app-%s' % addon.id)
-        eq_(addon.app_slug, 'mozillaball')
-        eq_(addon.summary, u'Exciting Open Web development action!')
-        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
-            u'Azione aperta emozionante di sviluppo di fotoricettore!')
-
-    def test_version_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        eq_(addon.current_version.version, '1.0')
-
-    def test_file_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        files = addon.current_version.files.all()
-        eq_(len(files), 1)
-        eq_(files[0].status, amo.STATUS_PUBLIC)
-
-
-class TestCreateWebAppFromManifest(BaseWebAppTest):
-
-    def setUp(self):
-        super(TestCreateWebAppFromManifest, self).setUp()
-        Addon.objects.create(type=amo.ADDON_WEBAPP,
-                             app_domain='existing-app.com')
-
-    def upload_webapp(self, manifest_url, **post_kw):
-        self.upload.update(name=manifest_url)  # simulate JS upload
-        return self.post(**post_kw)
-
-    def post_manifest(self, manifest_url):
-        rs = self.client.post(reverse('devhub.upload_manifest'),
-                              dict(manifest=manifest_url))
-        if 'json' in rs['content-type']:
-            rs = json.loads(rs.content)
-        return rs
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
-    def test_duplicate_domain(self):
-        rs = self.upload_webapp('http://existing-app.com/my.webapp',
-                                expect_errors=True)
-        eq_(rs.context['new_addon_form'].errors.as_text(),
-            '* upload\n  '
-            '* An app already exists on this domain, only one '
-            'app per domain is allowed.')
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
-    def test_allow_duplicate_domains(self):
-        self.upload_webapp('http://existing-app.com/my.webapp')  # no errors
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
-    def test_duplicate_domain_from_js(self):
-        data = self.post_manifest('http://existing-app.com/my.webapp')
-        eq_(data['validation']['errors'], 1)
-        eq_(data['validation']['messages'][0]['message'],
-            'An app already exists on this domain, '
-            'only one app per domain is allowed.')
-
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
-    def test_allow_duplicate_domains_from_js(self):
-        rs = self.post_manifest('http://existing-app.com/my.webapp')
-        eq_(rs.status_code, 302)
-
-
 class TestDeleteAddon(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -3552,38 +3078,6 @@ class TestDeleteAddon(amo.tests.TestCase):
         self.assertRedirects(r, reverse('devhub.addons'))
         eq_(r.context['title'], 'Add-on deleted.')
         eq_(Addon.objects.count(), 0)
-
-
-class TestDeleteApp(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.webapp = Webapp.objects.get(id=337141)
-        self.url = self.webapp.get_dev_url('delete')
-        self.versions_url = self.webapp.get_dev_url('versions')
-        self.client.login(username='admin@mozilla.com', password='password')
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-
-    def test_delete_nonincomplete(self):
-        # When soft deletes work, this test should be killed.
-        r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, self.versions_url)
-        eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
-
-    def test_bad_password_incomplete(self):
-        self.webapp.update(status=amo.STATUS_NULL)
-        r = self.client.post(self.url, dict(password='turd'))
-        self.assertRedirects(r, self.versions_url)
-        eq_(Addon.objects.count(), 1, 'App should not have been deleted.')
-
-    def test_delete_incomplete(self):
-        # When we can reauth with Persona, incomplete apps will be deletable.
-        # (Future cvan: Pour some out for BrowserID.)
-        raise SkipTest
-        self.webapp.update(status=amo.STATUS_NULL)
-        r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, reverse('devhub.apps'))
-        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
 
 
 class TestRequestReview(amo.tests.TestCase):

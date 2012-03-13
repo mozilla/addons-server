@@ -77,4 +77,4 @@ VALIDATOR_TIMEOUT = -1
 # exists in your site.
 # TASK_USER_ID = 1
 
-WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'apps/webapps/tests/sample.key')
+WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')

@@ -345,31 +345,3 @@ class TestEditAuthor(TestOwnership):
         doc = pq(res.content)
         assert not 'Support' in doc('#id_form-0-role').text(), (
             "Hey, the Support role shouldn't be here!")
-
-
-class TestEditWebappAuthors(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(id=337141)
-        self.url = self.webapp.get_dev_url('owner')
-
-    def test_apps_context(self):
-        r = self.client.get(self.url)
-        eq_(r.context['webapp'], True)
-        assert 'license_form' not in r.context, 'Unexpected license form'
-        assert 'policy_form' not in r.context, 'Unexpected policy form'
-        doc = pq(r.content)
-        eq_(doc('#edit-addon-nav ul').eq(0).find('a').eq(1).attr('href'),
-            self.url)
-
-    def test_success_add_owner(self):
-        u = UserProfile.objects.get(id=999)
-        u = dict(user=u.email, listed=True, role=amo.AUTHOR_ROLE_OWNER,
-                 position=0)
-        r = self.client.post(self.url, formset(u, initial_count=0))
-        self.assertRedirects(r, self.url, 302)
-        owners = (AddonUser.objects.filter(addon=self.webapp.id)
-                  .values_list('user', flat=True))
-        eq_(list(owners), [31337, 999])

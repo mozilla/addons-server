@@ -6,7 +6,7 @@ from lib.misc.urlconf_decorator import decorate
 from addons.urls import ADDON_ID
 from amo.decorators import write
 from devhub.decorators import use_apps
-from webapps.urls import APP_SLUG
+from mkt.webapps.urls import APP_SLUG
 from . import views
 
 PACKAGE_NAME = '(?P<package_name>[_\w]+)'

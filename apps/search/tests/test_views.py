@@ -26,7 +26,7 @@ from search.views import DEFAULT_NUM_PERSONAS
 from tags.models import Tag
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
-from webapps.tests.test_views import PaidAppMixin
+from mkt.webapps.tests.test_views import PaidAppMixin
 
 
 def test_parse_bad_type():

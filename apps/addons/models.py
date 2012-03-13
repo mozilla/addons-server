@@ -1871,4 +1871,4 @@ models.signals.post_delete.connect(update_incompatible_versions,
 
 # webapps.models imports addons.models to get Addon, so we need to keep the
 # Webapp import down here.
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp

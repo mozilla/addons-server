@@ -8,7 +8,7 @@ from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
-from webapps.tasks import update_manifests
+from mkt.webapps.tasks import update_manifests
 
 tasks = {
     # binary-components depend on having a chrome manifest.

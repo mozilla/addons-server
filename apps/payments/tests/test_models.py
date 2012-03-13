@@ -4,7 +4,7 @@ from nose.tools import eq_, raises
 import amo
 import amo.tests
 from payments.models import InappConfig, TooManyKeyGenAttempts
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class TestInapp(amo.tests.TestCase):

@@ -18,7 +18,7 @@ import commonware.log
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
                             ViewPreliminaryQueue, ViewFastTrackQueue)
 from editors.sql_table import SQLTable
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 @register.function

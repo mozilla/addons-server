@@ -29,7 +29,7 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version, AppVersion, ApplicationsVersions
 from zadmin.models import set_config
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 from . test_models import create_addon_file
 
 

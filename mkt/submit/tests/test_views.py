@@ -12,7 +12,7 @@ import waffle
 import amo
 from amo.helpers import urlparams
 import amo.tests
-from amo.tests import close_to_now, formset, initial
+from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
@@ -27,7 +27,7 @@ from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from translations.models import Translation
 from users.models import UserProfile
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class TestSubmit(amo.tests.TestCase):

@@ -22,7 +22,7 @@ from files.models import FileUpload, Platform
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.api')
 

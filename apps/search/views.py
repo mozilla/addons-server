@@ -21,7 +21,7 @@ from amo.helpers import loc, locale_url, urlparams
 from amo.utils import MenuItem, sorted_groupby
 from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_int, version_dict
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 from . import forms
 from .client import SearchError, CollectionsClient, PersonasClient

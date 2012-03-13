@@ -35,7 +35,7 @@ from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 from zadmin.models import get_config, set_config
 
 

@@ -30,7 +30,6 @@ from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
 
-from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
@@ -41,7 +40,7 @@ from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation, Translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 from . import tasks
 
 paypal_log = commonware.log.getLogger('z.paypal')

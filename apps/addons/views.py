@@ -43,10 +43,10 @@ from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
-from webapps.models import Installed, Webapp
 from .models import Addon, Persona, FrozenAddon
 from .decorators import (addon_view_factory, can_be_purchased, has_purchased,
                          has_not_purchased)
+from mkt.webapps.models import Installed
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')

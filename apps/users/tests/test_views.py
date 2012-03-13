@@ -35,7 +35,7 @@ from stats.models import Contribution
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode, UnsubscribeCode
-from webapps.models import Installed
+from mkt.webapps.models import Installed
 
 
 def check_sidebar_links(self, expected):
@@ -102,8 +102,8 @@ class TestAjax(UserViewBase):
         data = json.loads(r.content)
         eq_(data,
             {'status': 0,
-             'message': 'A user with that email address does not exist, or the '
-                        'user has not yet accepted the developer agreement.'})
+             'message': 'A user with that email address does not exist, or the'
+                        ' user has not yet accepted the developer agreement.'})
 
     def test_ajax_failure_no_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': ''}, follow=True)
@@ -1329,15 +1329,6 @@ class TestPurchases(amo.tests.TestCase):
         ]
         check_sidebar_links(self, expected)
 
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_in_apps_sidebar(self):
-        expected = [
-            ('My Profile', self.user_profile.get_url_path()),
-            ('Account Settings', reverse('users.edit')),
-            ('My Purchases', self.url),
-        ]
-        check_sidebar_links(self, expected)
-
     def test_not_purchase(self):
         self.client.logout()
         eq_(self.client.get(self.url).status_code, 302)
@@ -1742,25 +1733,6 @@ class TestPreapproval(amo.tests.TestCase):
         doc = pq(self.client.get(self.get_url()).content)
         eq_(doc('#preapproval').attr('action'),
             reverse('users.payments.preapproval'))
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_sidebar(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        self.url = self.get_url()
-        expected = [
-            ('My Profile', self.user.get_url_path()),
-            ('Account Settings', reverse('users.edit')),
-            ('My Purchases', reverse('users.purchases')),
-            ('Payment Profile', self.url),
-        ]
-        check_sidebar_links(self, expected)
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_sidebar_complete(self):
-        r = self.client.get(self.get_url('complete'))
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#secondary-nav .selected').attr('href'),
-            self.get_url())
 
     @patch('paypal.get_preapproval_key')
     def test_fake_preapproval(self, get_preapproval_key):

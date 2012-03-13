@@ -272,7 +272,7 @@ class TestCategoryForm(amo.tests.TestCase):
 
 
 class TestDeviceTypeForm(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = ['base/337141-steamcube']
 
     def test_device_types(self):
         dtype = DeviceType.objects.create(name='fligphone', class_name='phone')

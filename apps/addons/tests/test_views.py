@@ -38,7 +38,7 @@ from translations.helpers import truncate
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
-from webapps.models import Installed
+from mkt.webapps.models import Installed
 
 
 def norm(s):
@@ -771,7 +771,7 @@ class TestPaypalStart(PaypalStart):
 
 @patch.object(waffle, 'switch_is_active', lambda x: True)
 @patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
-@patch('webapps.models.create_receipt', lambda x: 'receipt')
+@patch('mkt.webapps.models.create_receipt', lambda x: 'receipt')
 class TestPaypalStartReceipt(PaypalStart):
 
     def setUp(self):

@@ -40,7 +40,7 @@ from translations.models import TranslationSequence, Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 
 class TestAddonManager(amo.tests.TestCase):
