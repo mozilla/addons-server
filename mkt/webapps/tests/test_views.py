@@ -12,10 +12,9 @@ import amo
 from amo.helpers import absolutify, numberfmt, page_title
 import amo.tests
 from amo.urlresolvers import reverse
-from amo.utils import urlparams
 from addons.models import Addon, AddonCategory, AddonUser, Category
 from addons.tests.test_views import add_addon_author, test_hovercards
-from browse.tests import test_listing_sort, test_default_sort, TestMobileHeader
+from browse.tests import test_listing_sort, test_default_sort
 from market.models import AddonPremium, Price
 from sharing import get_service
 from tags.models import AddonTag, Tag
@@ -85,100 +84,6 @@ class TestPremium(PaidAppMixin, amo.tests.TestCase):
         self.setup_paid()
         eq_(self.free, list(Webapp.objects.top_free()))
         eq_(self.paid, list(Webapp.objects.top_paid()))
-
-
-class TestHome(TestPremium):
-
-    def test_free(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(list(r.context['free']), self.free)
-        for idx, element in enumerate(doc('#top-free .item')):
-            item = pq(element)
-            webapp = self.free[idx]
-            eq_(item.find('.price').text(), 'FREE')
-            eq_(item.find('.downloads').split()[0],
-                numberfmt(webapp.weekly_downloads))
-
-    def test_paid(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(list(r.context['paid']), self.paid)
-        for idx, element in enumerate(doc('#top-paid .item')):
-            item = pq(element)
-            webapp = self.paid[idx]
-            eq_(item.find('.price').text(), webapp.premium.get_price_locale())
-            eq_(item.find('.downloads').split()[0],
-                numberfmt(webapp.weekly_downloads))
-
-
-class TestLayout(WebappTest):
-
-    def setUp(self):
-        super(TestLayout, self).setUp()
-        self.url = reverse('apps.home')
-
-    def test_header(self):
-        for url in (self.url, reverse('apps.list')):
-            r = self.client.get(url)
-            eq_(r.status_code, 200)
-            doc = pq(r.content)
-            eq_(doc('h1.site-title').text(), 'Apps')
-            eq_(doc('#site-nav.app-nav').length, 1)
-            eq_(doc('#search-q').attr('placeholder'), 'search for apps')
-
-    def test_header_links(self):
-        browse = reverse('apps.list')
-        cat = Category.objects.create(name='Games', slug='games',
-                                      type=amo.ADDON_WEBAPP)
-        expected = [
-            ('Most Popular', urlparams(browse, sort='downloads')),
-            ('Top Free', urlparams(browse, sort='free')),
-            ('Top Paid', urlparams(browse, sort='paid')),
-            ('Highest Rated', urlparams(browse, sort='rating')),
-            ('Games', cat.get_url_path()),
-        ]
-
-        r = self.client.get(self.url)
-        doc = pq(r.content)('#site-nav')
-
-        amo.tests.check_links(expected, doc('#explore-cats li a'))
-        eq_(doc('#my-apps a').attr('href'), reverse('users.purchases'))
-        eq_(doc('#submit-app a').attr('href'), reverse('devhub.submit_apps.1'))
-
-    @patch.object(settings, 'READ_ONLY', False)
-    def test_balloons_no_readonly(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 0)
-        eq_(doc('#site-nonfx').length, 0)
-        eq_(doc('#site-welcome').length, 0)
-        eq_(doc('#site-nojs-apps').length, 1)
-        eq_(doc('#appruntime-pitch').length, 1)
-
-    @patch.object(settings, 'READ_ONLY', True)
-    def test_balloons_readonly(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 1)
-        eq_(doc('#site-nonfx').length, 0)
-        eq_(doc('#site-welcome').length, 0)
-        eq_(doc('#site-nojs-apps').length, 1)
-        eq_(doc('#appruntime-pitch').length, 1)
-
-    def test_footer(self):
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#social-footer').length, 0)
-        eq_(doc('#copyright').length, 1)
-        eq_(doc('#footer-links .mobile-link').length, 1)
-
-    def test_search_url(self):
-        for url in (self.url, self.webapp_url):
-            response = self.client.get(url)
-            doc = pq(response.content)
-            eq_(doc('#search').attr('action'), '/en-US/apps/search/')
 
 
 class TestListing(TestPremium):
@@ -361,25 +266,6 @@ class TestMobileListing(amo.tests.MobileTest, WebappTest):
         r, doc = self.get_res()
         dls = doc('.item').find('details .vital.downloads')
         eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
-
-
-class TestMobileLayout(TestMobileHeader):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.url = reverse('apps.list')
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_no_language_selector(self):
-        # When Marketplace is localized, remove this test.
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#lang_form').length, 0)
-
-    def test_language_selector(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#lang_form').length, 1)
 
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
