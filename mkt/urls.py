@@ -13,6 +13,7 @@ admin.autodiscover()
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
+APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 # These URLs take precedence over existing ones.
 urlpatterns = patterns('',
@@ -34,6 +35,8 @@ urlpatterns = patterns('',
 
     # Services.
     ('', include('apps.amo.urls')),
+
+    ('^app/%s/' % APP_SLUG, include('mkt.detail.urls')),
 
     # Web apps.
     ('^apps/', include('webapps.urls')),

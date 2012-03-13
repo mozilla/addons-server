@@ -40,6 +40,7 @@ INSTALLED_APPS += (
     'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
 SUPPORTED_NONAPPS += (
+    'app',
     'dev',
     'submit',
     'login',
@@ -173,6 +174,9 @@ MINIFY_BUNDLES['css'].update({
     'mkt/devreg-legacy': (
         'css/devreg-legacy/developers.less',  # Legacy galore.
     ),
+    'mkt': (
+        'css/mkt/reset.less',
+    ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',
         'marketplace-experiments/css/site.less',
@@ -237,6 +241,9 @@ MINIFY_BUNDLES['js'].update({
         # Specific stuff for making payments nicer.
         'js/devreg/paypal.js',
         'js/zamboni/validator.js',
+    ),
+    'mkt': (
+        'js/lib/jquery-1.7.1.js'
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
