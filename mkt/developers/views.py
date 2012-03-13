@@ -1,8 +1,6 @@
-import collections
 import json
 import os
 import sys
-import time
 import traceback
 import uuid
 
@@ -11,7 +9,6 @@ from django.core.files.storage import default_storage as storage
 from django.conf import settings
 from django import forms as django_forms
 from django.db import models, transaction
-from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
@@ -40,8 +37,6 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
                                   AppFormBasic, AppFormDetails,
                                   PaypalSetupForm)
-from mkt.developers.models import ActivityLog
-from editors.helpers import get_position
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Refund, AddonPaymentData
@@ -154,7 +149,9 @@ def delete(request, addon_id, addon, webapp=False):
     if True or form.is_valid():
         addon.delete('Removed via devhub')
         messages.success(request, loc('App deleted.'))
-        return redirect('mkt.developers.apps')
+        # Preserve query-string parameters if we were directed from Dashboard.
+        return redirect(request.GET.get('to') or
+                        reverse('mkt.developers.apps'))
     else:
         msg = _('Password was incorrect.  App was not deleted.')
         messages.error(request, msg)

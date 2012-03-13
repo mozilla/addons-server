@@ -1,4 +1,9 @@
-<form method="post" action="{{ addon.get_dev_url('delete') }}">
+{% set delete_url = addon.get_dev_url('delete') %}
+{# Preserve GET params if we're viewing Dashboard. Otherwise, redirect to Dashboard. #}
+{% if request.path == url('mkt.developers.apps') %}
+  {% set delete_url = delete_url|urlparams(to=request.get_full_path()) %}
+{% endif %}
+<form method="post" action="{{ delete_url }}">
   {{ csrf() }}
   <h3>{{ loc('Delete App') }}</h3>
   {% if addon.can_be_deleted() %}

@@ -23,6 +23,7 @@ from amo.helpers import babel_datetime, timesince
 from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from addons.models import Addon, AddonUpsell, AddonUser, Charity
 from browse.tests import test_listing_sort, test_default_sort
 from mkt.developers.models import ActivityLog
@@ -1306,6 +1307,25 @@ class TestDeleteApp(amo.tests.TestCase):
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],
             'App should have been deleted.')
+
+    def check_delete_redirect(self, src, dst):
+        r = self.client.post(urlparams(self.url, to=src))
+        self.assertRedirects(r, dst)
+        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
+
+    def test_delete_redirect_to_dashboard(self):
+        self.check_delete_redirect(self.dev_url, self.dev_url)
+
+    def test_delete_redirect_to_dashboard_with_qs(self):
+        url = self.dev_url + '?sort=created'
+        self.check_delete_redirect(url, url)
+
+    def test_form_action_on_status_page(self):
+        # If we started on app's Manage Status page, upon deletion we should
+        # be redirecte to the Dashboard.
+        r = self.client.get(self.versions_url)
+        eq_(pq(r.content)('.modal-delete form').attr('action'), self.url)
+        self.check_delete_redirect('', self.dev_url)
 
 
 class TestRemoveLocale(amo.tests.TestCase):
