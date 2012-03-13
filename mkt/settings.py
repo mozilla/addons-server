@@ -40,6 +40,7 @@ INSTALLED_APPS += (
     'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
 SUPPORTED_NONAPPS += (
+    # this line is here until bug 735120 is fixed.
     'app',
     'dev',
     'submit',
@@ -243,7 +244,7 @@ MINIFY_BUNDLES['js'].update({
         'js/zamboni/validator.js',
     ),
     'mkt': (
-        'js/lib/jquery-1.7.1.js'
+        'js/lib/jquery-1.7.1.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
