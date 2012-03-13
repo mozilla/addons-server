@@ -82,7 +82,7 @@
   {% for key, title in filter.opts if key != special %}
     {% set addons = addon_sets[key][:6] %}
     {% set link = sort_link(key) %}
-    <div class="addons-column {{ 'last' if loop.last }}">
+    <div id="personas-{{ key }}" class="addons-column {{ 'last' if loop.last }}">
       <h3><a href="{{ link }}">{{ filter.opts_dict[key] }}</a></h3>
       <ul class="personas">
         {% cache addons %}
