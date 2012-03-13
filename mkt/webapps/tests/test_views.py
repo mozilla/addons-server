@@ -14,7 +14,6 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category
 from addons.tests.test_views import add_addon_author, test_hovercards
-from browse.tests import test_listing_sort, test_default_sort
 from market.models import AddonPremium, Price
 from sharing import get_service
 from tags.models import AddonTag, Tag
@@ -84,40 +83,6 @@ class TestPremium(PaidAppMixin, amo.tests.TestCase):
         self.setup_paid()
         eq_(self.free, list(Webapp.objects.top_free()))
         eq_(self.paid, list(Webapp.objects.top_paid()))
-
-
-class TestListing(TestPremium):
-
-    def setUp(self):
-        super(TestListing, self).setUp()
-        self.url = reverse('apps.list')
-
-    def test_default_sort(self):
-        test_default_sort(self, 'downloads', 'weekly_downloads')
-
-    def test_free_sort(self):
-        for app in test_listing_sort(self, 'free', 'weekly_downloads'):
-            eq_(app.is_premium(), False)
-
-    def test_paid_sort(self):
-        for app in test_listing_sort(self, 'paid', 'weekly_downloads'):
-            eq_(app.is_premium(), True)
-
-    def test_price_sort(self):
-        apps = test_listing_sort(self, 'price', None, reverse=False,
-                                 sel_class='extra-opt')
-        eq_(apps, list(Webapp.objects.listed()
-                       .order_by('addonpremium__price__price', 'id')))
-
-    def test_rating_sort(self):
-        test_listing_sort(self, 'rating', 'bayesian_rating')
-
-    def test_newest_sort(self):
-        test_listing_sort(self, 'created', 'created', sel_class='extra-opt')
-
-    def test_name_sort(self):
-        test_listing_sort(self, 'name', 'name', reverse=False,
-                          sel_class='extra-opt')
 
 
 class TestDetail(WebappTest):
@@ -246,26 +211,6 @@ class TestDetail(WebappTest):
         links = self.get_more_pq()('#related #tagbox ul a')
         amo.tests.check_links([(t.tag_text, t.get_url_path())], links,
                               verify=False)
-
-
-class TestMobileListing(amo.tests.MobileTest, WebappTest):
-
-    def get_res(self):
-        r = self.client.get(reverse('apps.list'))
-        eq_(r.status_code, 200)
-        return r, pq(r.content)
-
-    def test_listing(self):
-        r, doc = self.get_res()
-        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        item = doc('.item')
-        eq_(item.length, 1)
-        eq_(item.find('h3').text(), 'woo')
-
-    def test_listing_downloads(self):
-        r, doc = self.get_res()
-        dls = doc('.item').find('details .vital.downloads')
-        eq_(dls.text().split()[0], numberfmt(self.webapp.weekly_downloads))
 
 
 class TestMobileDetail(amo.tests.MobileTest, WebappTest):
