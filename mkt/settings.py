@@ -39,7 +39,7 @@ INSTALLED_APPS += (
     'mkt.submit',
     'mkt.experiments',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
-    'webapps',
+    'mkt.webapps',
 )
 SUPPORTED_NONAPPS += (
     # this line is here until bug 735120 is fixed.
