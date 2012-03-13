@@ -2,7 +2,6 @@
 from contextlib import contextmanager
 import json
 import os
-from datetime import datetime, timedelta
 from decimal import Decimal
 
 from django.conf import settings
@@ -21,7 +20,7 @@ import amo.tests
 import paypal
 from paypal.check import Check
 from amo.helpers import babel_datetime, timesince
-from amo.tests import assert_no_validation_errors, close_to_now
+from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUpsell, AddonUser, Charity
@@ -38,45 +37,32 @@ from users.models import UserProfile
 from webapps.models import Webapp
 
 
-class MetaTests(amo.tests.TestCase):
-
-    def test_assert_close_to_now(dt):
-        assert close_to_now(datetime.now() - timedelta(seconds=30))
-        assert not close_to_now(datetime.now() + timedelta(days=30))
-        assert not close_to_now(datetime.now() + timedelta(minutes=3))
-        assert not close_to_now(datetime.now() + timedelta(seconds=30))
-
-
-class HubTest(amo.tests.TestCase):
-    fixtures = ['browse/nameless-addon', 'base/users']
+class AppHubTest(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube', 'base/users']
 
     def setUp(self):
         self.url = reverse('mkt.developers.apps')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        eq_(self.client.get(self.url).status_code, 200)
-        self.user_profile = UserProfile.objects.get(id=999)
+        self.user = UserProfile.objects.get(username='31337')
+        assert self.client.login(username=self.user.email, password='password')
 
-    def clone_addon(self, num, addon_id=57132):
+    def clone_addon(self, num, addon_id=337141):
         ids = []
-        for i in range(num):
+        for i in xrange(num):
             addon = Addon.objects.get(id=addon_id)
-            data = dict(type=addon.type, status=addon.status,
-                        name='cloned-addon-%s-%s' % (addon_id, i))
-            new_addon = Addon.objects.create(**data)
-            AddonUser.objects.create(user=self.user_profile, addon=new_addon)
+            new_addon = Addon.objects.create(type=addon.type,
+                status=addon.status, name='cloned-addon-%s-%s' % (addon_id, i))
+            AddonUser.objects.create(user=self.user, addon=new_addon)
             ids.append(new_addon.id)
         return ids
 
 
-class AppHubTest(HubTest):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
+class TestHome(amo.tests.TestCase):
+    fixtures = ['base/users']
 
-
-class TestHome(HubTest):
+    def setUp(self):
+        self.url = reverse('mkt.developers.apps')
 
     def test_legacy_login_redirect(self):
-        self.client.logout()
         r = self.client.get('/en-US/firefox/users/login')
         got, exp = r['Location'], '/en-US/users/login'
         assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
@@ -85,23 +71,16 @@ class TestHome(HubTest):
         assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
 
     def test_login_redirect(self):
-        self.client.logout()
         r = self.client.get(self.url)
         self.assertLoginRedirects(r, '/en-US/developers/submissions', 302)
 
     def test_home(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
         for url in [self.url, reverse('home')]:
             r = self.client.get(url, follow=True)
             eq_(r.status_code, 200)
             self.assertTemplateUsed(r, 'developers/addons/dashboard.html')
-
-
-class Test404(amo.tests.TestCase):
-
-    def test_404_devhub(self):
-        response = self.client.get('/xxx', follow=True)
-        eq_(response.status_code, 404)
-        self.assertTemplateUsed(response, 'site/404.html')
 
 
 class TestAppBreadcrumbs(AppHubTest):
@@ -121,7 +100,7 @@ class TestAppBreadcrumbs(AppHubTest):
 
     def test_webapp_management_breadcrumbs(self):
         webapp = Webapp.objects.get(id=337141)
-        AddonUser.objects.create(user=self.user_profile, addon=webapp)
+        AddonUser.objects.create(user=self.user, addon=webapp)
         r = self.client.get(webapp.get_dev_url('edit'))
         eq_(r.status_code, 200)
         expected = [
@@ -135,19 +114,19 @@ class TestAppDashboard(AppHubTest):
 
     def setUp(self):
         super(TestAppDashboard, self).setUp()
-        self.url = reverse('mkt.developers.apps')
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def get_app(self):
         return Addon.objects.get(id=337141)
 
     def test_no_apps(self):
+        Addon.objects.all().delete()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#dashboard .item').length, 0)
 
     def make_mine(self):
-        AddonUser.objects.create(addon_id=337141, user=self.user_profile)
+        AddonUser.objects.create(addon_id=337141, user=self.user)
 
     def test_public_app(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
@@ -193,19 +172,23 @@ class TestAppDashboardSorting(AppHubTest):
 
     def setUp(self):
         super(TestAppDashboardSorting, self).setUp()
-        self.clone_addon(3, addon_id=337141)
-        self.my_apps = self.user_profile.addons
+        self.my_apps = self.user.addons
         self.url = reverse('mkt.developers.apps')
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        self.clone(3)
+
+    def clone(self, num=3):
+        for x in xrange(num):
+            app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP)
+            AddonUser.objects.create(addon=app, user=self.user)
 
     def test_pagination(self):
         doc = pq(self.client.get(self.url).content)('#dashboard')
-        eq_(doc('.item').length, 3)
+        eq_(doc('.item').length, 4)
         eq_(doc('#sorter').length, 1)
         eq_(doc('.paginator').length, 0)
 
-        # We want more than 10 apps so that the paginator shows up.
-        self.clone_addon(8, addon_id=337141)
+        self.clone(7)  # 4 + 7 = 11 (paginator appears for 11+ results)
         doc = pq(self.client.get(self.url).content)('#dashboard')
         eq_(doc('.item').length, 10)
         eq_(doc('#sorter').length, 1)
@@ -223,16 +206,15 @@ class TestAppDashboardSorting(AppHubTest):
         test_listing_sort(self, 'created', 'created')
 
 
-class TestDevRequired(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+class TestDevRequired(AppHubTest):
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.get_url = self.addon.get_dev_url('payments')
-        self.post_url = self.addon.get_dev_url('payments.disable')
-        assert self.client.login(username='del@icio.us', password='password')
-        self.au = AddonUser.objects.get(user__email='del@icio.us',
-                                        addon=self.addon)
+        self.webapp = Addon.objects.get(id=337141)
+        self.get_url = self.webapp.get_dev_url('payments')
+        self.post_url = self.webapp.get_dev_url('payments.disable')
+        self.user = UserProfile.objects.get(username='31337')
+        assert self.client.login(username=self.user.email, password='password')
+        self.au = AddonUser.objects.get(user=self.user, addon=self.webapp)
         eq_(self.au.role, amo.AUTHOR_ROLE_OWNER)
 
     def test_anon(self):
@@ -258,11 +240,11 @@ class TestDevRequired(amo.tests.TestCase):
         eq_(self.client.post(self.get_url).status_code, 403)
 
     def test_disabled_post_dev(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
+        self.webapp.update(status=amo.STATUS_DISABLED)
         eq_(self.client.post(self.get_url).status_code, 403)
 
     def test_disabled_post_admin(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
+        self.webapp.update(status=amo.STATUS_DISABLED)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
@@ -680,24 +662,20 @@ class TestRefunds(amo.tests.TestCase):
     def test_anonymous(self):
         self.client.logout()
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r,
-            '%s?to=%s' % (reverse('users.login'), self.url))
+        self.assertLoginRedirects(r, self.url)
 
     def test_bad_owner(self):
         self.client.logout()
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(self.url)
-        eq_(r.status_code, 403)
+        eq_(self.client.get(self.url).status_code, 403)
 
     def test_owner(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        eq_(self.client.get(self.url).status_code, 200)
 
     def test_admin(self):
         self.client.logout()
         self.client.login(username='admin@mozilla.com', password='password')
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        eq_(self.client.get(self.url).status_code, 200)
 
     def test_not_premium(self):
         self.addon.premium_type = amo.ADDON_FREE
@@ -771,29 +749,28 @@ class TestRefunds(amo.tests.TestCase):
 
 
 class TestDelete(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ['webapps/337141-steamcube']
 
     def setUp(self):
-        self.addon = self.get_addon()
-        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='ballin')
-        assert self.client.login(username='del@icio.us', password='password')
-        self.url = self.addon.get_dev_url('delete')
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url('delete')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
 
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+    def get_webapp(self):
+        return Addon.objects.no_cache().get(id=337141)
 
     def test_post_not(self):
         # Update this test when BrowserID re-auth is available.
-        raise SkipTest()
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(),
-                          'Password was incorrect. App was not deleted.')
+            'App cannot be deleted. Disable this app instead.')
 
     def test_post(self):
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
-        self.assertRaises(Addon.DoesNotExist, self.get_addon)
+        self.assertRaises(Addon.DoesNotExist, self.get_webapp)
 
 
 class TestProfileBase(amo.tests.TestCase):
