@@ -87,6 +87,7 @@
               {% endblock aux_nav %}
             </ul>
           </nav>
+          {% block header_search %}
           <div class="header-search" role="search">
             {% block search_form %}
               {% with query_term=query_term %}
@@ -94,6 +95,7 @@
               {% endwith %}
             {% endblock %}
           </div>
+          {% endblock %}
           <div id="masthead">
             {% block site_header_title %}
             {% include "impala/header_title.html" %}

@@ -27,8 +27,7 @@ urlpatterns = patterns('',
     ('', include('mkt.site.urls')),
 
     # Editor tools.
-#   See bug 729751 as to why.
-#    ('editors/', include('editors.urls')),
+    ('editors/', include('editors.urls')),
 
     # Home.
     url('$^', settings.HOME, name='home'),

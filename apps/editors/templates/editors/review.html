@@ -27,7 +27,11 @@
 </hgroup>
 
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
-{% include "addons/details_box.html" %}
+
+{# Hide add-on specific details for apps. #}
+{% with show_actions=not addon.is_webapp() %}
+  {% include "addons/details_box.html" %}
+{% endwith %}
 
 <div id="review-files-header">
   <h3 id="history">
@@ -61,7 +65,9 @@
         <td class="files">
           <div><strong>{{ _('Files in this version:') }}</strong></div>
           <ul>
-          {% for file in version.all_files %}
+          {# Hide files until files and versions make sense for apps. #}
+          {% set version_files = [] if addon.is_webapp() else version.all_files %}
+          {% for file in version_files %}
           <li class="file-info">
             <span class="light">
               <strong><a href="{{ file.get_url_path('editor') }}" class="install"
@@ -241,11 +247,11 @@
   </div>
   {% endif %}
 
-  <strong>{{ _('Add-on Actions ') }}</strong>
+  <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
-    <li><a href="{{ addon.get_url_path() }}">{{ _('View Add-on Listing') }}</a></li>
+    <li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>
     {% if is_admin %}
-    <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit Add-on') }}</a> <em>{{ _('(admin)') }}</em></li>
+    <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
     <li><a href="{{ url('zadmin.addon_manage', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
     {% endif %}
   </ul>
