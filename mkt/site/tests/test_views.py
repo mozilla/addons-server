@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core import mail
 
 import mock
 from nose.tools import eq_
@@ -6,6 +7,9 @@ from nose.tools import eq_
 import amo
 from amo.urlresolvers import reverse
 import amo.tests
+import editors.helpers
+from addons.models import Addon
+from users.models import UserProfile
 
 
 class Test404(amo.tests.TestCase):
@@ -50,3 +54,27 @@ class TestEditorTools(amo.tests.TestCase):
 
     def test_review_public(self):
         self._test_review(amo.STATUS_PUBLIC)
+
+
+class TestEditorToolsEmailer(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        class FakeRequest:
+            user = UserProfile.objects.get(pk=10482).user
+        self.request = FakeRequest()
+        self.webapp = self.get_webapp()
+        self.version = self.webapp.versions.all()[0]
+
+    def get_webapp(self):
+        return Addon.objects.get(pk=337141)
+
+    def test_notify_email_apps(self):
+        helper = editors.helpers.ReviewHelper(request=self.request,
+                                              addon=self.webapp,
+                                              version=self.version)
+        helper.set_data({'comments': 'boop', 'action': 'full'})
+        mail.outbox = []
+        helper.handler.notify_email('pending_to_public', 'Some subject %s, %s')
+        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].body, 'Expected a message'
