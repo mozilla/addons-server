@@ -7,7 +7,7 @@ from django.conf import settings
 from addons.models import Addon
 import amo
 from amo.decorators import redis
-from amo.helpers import absolutify, loc, shared_url
+from amo.helpers import absolutify, loc
 from amo.utils import send_mail
 from paypal.check import Check
 from users.utils import get_task_user
@@ -80,7 +80,7 @@ def _notify(redis, context):
         for k in xrange(context['failed']):
             data = json.loads(redis.lindex(failures, k))
             addon = Addon.objects.get(pk=data[0])
-            failure_list.append(absolutify(shared_url('detail', addon)))
+            failure_list.append(absolutify(addon.get_url_path()))
 
         context['failure_list'] = failure_list
         log.info('Too many failed: %s%%, aborting.' % context['limit'])
@@ -97,7 +97,7 @@ def _notify(redis, context):
         for k in xrange(context['failed']):
             data = json.loads(redis.lindex(failures, k))
             addon = Addon.objects.get(pk=data[0])
-            url = absolutify(shared_url('detail', addon))
+            url = absolutify(addon.get_url_path())
             # Add this to a list so we can tell the admins who got disabled.
             failure_list.append(url)
             if not context['do_disable']:
@@ -117,7 +117,6 @@ def _notify(redis, context):
                 subject = loc('Add-on disabled on the Mozilla Market.')
 
             # Now email the developer and tell them the bad news.
-            url = absolutify(shared_url('detail', addon))
             send_mail(subject,
                       env.get_template(template).render({
                           'addon': addon,
