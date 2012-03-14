@@ -912,4 +912,6 @@ span.currently_viewing_warning {
      text-align: center;
 }
 
-
+h2.addon {
+    word-wrap: break-word;
+}
