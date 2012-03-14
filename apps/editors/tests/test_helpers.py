@@ -376,7 +376,6 @@ class TestReviewHelper(amo.tests.TestCase):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             eq_(len(mail.outbox), 1)
-            assert mail.outbox[0].body, 'Expected a message'
 
     def setup_data(self, status, delete=[]):
         mail.outbox = []
