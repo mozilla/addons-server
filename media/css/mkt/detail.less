@@ -1,7 +1,45 @@
 @import 'lib';
 
-.product-details {
+.button {
+    padding: 4px 8px;
+    .border-radius(8px);
+    display: block;
+    border: 1px solid black;
+    background: #888;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
 
+.product-details {
+    .actions {
+        float: right;
+    }
+    .icon {
+    }
+    .vitals {
+        float: left;
+    }
+    .description {
+        clear: both;
+    }
+    .visual {
+        float: left;
+        width: 96px;
+        height: 100px;
+    }
+}
+
+.compat-list {
+    padding: 0;
+    display: block;
+    li {
+        height: 16px;
+        line-height: 16px;
+        display: inline-block;
+        padding-left: 4px;
+        border-left: 16px solid black;
+    }
 }
 
 // 7 columns
@@ -21,6 +59,21 @@
 // 3 columns
 @media (max-width: @3col) {
     .product-details {
-
+        .visual {
+            .width(1);
+        }
+        .vitals {
+            .width(2);
+        }
+        .actions {
+            float: none;
+            clear: both;
+        }
+    }
+    .compat-list {
+        li {
+            width: 0;
+            overflow: hidden;
+        }
     }
 }

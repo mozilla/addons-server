@@ -1,0 +1,41 @@
+{% extends 'mkt/base.html' %}
+
+{% block content %}
+  <section class="product-details">
+    <div class="visual">
+      <img class="icon" src="{{ product.get_icon_url(64) }}" />
+    </div>
+    <div class="vitals">
+      <h2>{{ product.name }}</h2>
+      <h3 class="authors">{{ users_list(product.listed_authors) }}</h3>
+      {% if product.device_types %}
+        <ul class="compat-list">
+          {% for device in product.device_types %}
+            <li class="{{ device.class_name }}">
+              {{ device.name }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div class="actions">
+      <a id="purchase" href="#" class="button">FREE</a>
+    </div>
+    <p class="description">{{ product.description }}</p>
+  </section>
+
+  {% if product.all_previews|length > 0 %}
+    <section class="previews slider row">
+      <ul>
+        {%- for preview in product.all_previews -%}
+          <li>
+            <a class="screenshot thumbnail" rel="jquery-lightbox"
+               href="{{ preview.image_url }}" title="{{ preview.caption }}">
+              <img src="{{ preview.thumbnail_url }}">
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+  {% endif %}
+{% endblock %}

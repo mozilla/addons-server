@@ -20,9 +20,7 @@ def detail(request, addon):
     """Product details page."""
 
     ctx = {
-        'addon': addon,
-        'review_form': ReviewForm(),
-        'reviews': Review.objects.latest().filter(addon=addon),
+        'product': addon,
     }
 
     return jingo.render(request, 'mkt/detail.html', ctx)
