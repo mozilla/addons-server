@@ -6,6 +6,19 @@ import jinja2
 from amo.helpers import url
 
 
+def new_context(context, **kw):
+    c = dict(context.items())
+    c.update(kw)
+    return c
+
+
+@register.function
+def no_results():
+    # This prints a "No results found" message. That's all. Carry on.
+    t = env.get_template('site/helpers/no_results.html').render()
+    return jinja2.Markup(t)
+
+
 @jinja2.contextfunction
 @register.function
 def market_button(context, product):

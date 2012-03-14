@@ -4,8 +4,8 @@
     <nav>
     </nav>
     {% block search %}
-      {% set search_form = SimpleSearchForm(request, '') %}
-      <form action="">
+      {% set search_form = SimpleSearchForm(request) %}
+      <form action="{{ url('search.search') }}">
         <input id="search-q" type="text" name="q"
                placeholder="{{ search_form.placeholder(search_placeholder) }}"
                value="{{ search_form.q.value() }}">

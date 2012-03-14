@@ -1,0 +1,69 @@
+{% extends 'mkt/base.html' %}
+
+{% set query_term = query.q %}
+
+{% if query_term %}
+  {# L10n: {0} is a search term, such as Firebug. #}
+  {% set title = _('{0} | Search')|f(query_term) %}
+  {# L10n: {0} is a search term, such as Firebug. #}
+  {% set heading = _('Search Results for "{0}"')|f(query_term) %}
+{% else %}
+  {% set title = _('Search') %}
+  {% set heading = title %}
+{% endif %}
+
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+
+{% block extrahead %}
+  <meta name="WT.oss" content="{{ query_term }}">
+  <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
+{% endblock %}
+
+{% macro facet(title, id, links) %}
+  <li id="{{ id }}" class="facet">
+    <h3>{{ title }}</h3>
+    {{ facet_links(links) }}
+  </li>
+{% endmacro %}
+
+{% macro facet_links(links) %}
+  <ul class="facet-group">
+    {% for link in links recursive %}
+    <li{% if link.selected %} class="selected"{% endif %}>
+      <a href="{{ request.get_full_path()|urlparams(page=None, **link.urlparams) }}"
+         data-params="{{ dict(page=None, **link.urlparams)|json }}">
+        {{ link.text }}</a>
+      {% if link.children %}
+        <ul>{{ loop(link.children) }}</ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro num_results() %}
+  {% set cnt = pager.paginator.count %}
+  <p class="cnt">
+    {{ ngettext('<b>{0}</b> matching result',
+                '<b>{0}</b> matching results',
+                cnt)|f(cnt|numberfmt)|safe }}
+  </p>
+{% endmacro %}
+
+{% block content %}
+  <section class="primary">
+    <h1>{{ heading }}</h1>
+    <div id="search-results">
+      {% include 'search/results_inner.html' %}
+    </div>
+  </section>
+  <section id="search-facets" class="secondary">
+    <h2>{{ _('Filter Results') }}</h2>
+    <ul class="facets island pjax-trigger">
+      {{ facet(_('Price'), 'price-facets', prices) }}
+      {{ facet(_('Category'), 'category-facets', categories) }}
+      {{ facet(_('Works with'), 'device-facets', devices) }}
+    </ul>
+    {{ num_results() }}
+  </section>
+{% endblock %}

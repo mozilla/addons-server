@@ -16,6 +16,9 @@ handler500 = 'mkt.site.views.handler500'
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 urlpatterns = patterns('',
+    # Home.
+    url('$^', settings.HOME, name='home'),
+
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
 
@@ -25,11 +28,11 @@ urlpatterns = patterns('',
     # Misc pages.
     ('', include('mkt.site.urls')),
 
-    # Editor tools.
-    ('editors/', include('editors.urls')),
+    # Site Search.
+    ('^search/', include('mkt.search.urls')),
 
-    # Home.
-    url('$^', settings.HOME, name='home'),
+    # Editor tools.
+    ('^editors/', include('editors.urls')),
 
     # Services.
     ('', include('apps.amo.urls')),

@@ -109,7 +109,7 @@ def check_links(expected, elements, selected=None, verify=True):
                     '%r is dead' % link)
         if text is not None and selected is not None:
             e = e.filter('.selected') or e.parents('.selected')
-            eq_(e.length, text == selected)
+            eq_(bool(e.length), text == selected)
 
 
 def check_selected(expected, links, selected):
@@ -312,6 +312,10 @@ def assert_no_validation_errors(validation):
                              error.rstrip().split("\n")[-1])
 
 
+def app_factory(**kw):
+    return amo.tests.addon_factory(type=amo.ADDON_WEBAPP)
+
+
 def addon_factory(version_kw={}, file_kw={}, **kw):
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
@@ -345,12 +349,15 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
 def version_factory(file_kw={}, **kw):
     v = Version.objects.create(version='%.1f' % random.uniform(0, 2),
                                **kw)
-    a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
-    av_min, _ = AppVersion.objects.get_or_create(application=a, version='4.0')
-    av_max, _ = AppVersion.objects.get_or_create(application=a, version='5.0')
-    ApplicationsVersions.objects.create(application=a, version=v,
-                                        min=av_min, max=av_max)
-    file_factory(version=v, **file_kw)
+    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
+        a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
+        av_min, _ = AppVersion.objects.get_or_create(application=a,
+                                                     version='4.0')
+        av_max, _ = AppVersion.objects.get_or_create(application=a,
+                                                     version='5.0')
+        ApplicationsVersions.objects.create(application=a, version=v,
+                                            min=av_min, max=av_max)
+        file_factory(version=v, **file_kw)
     return v
 
 

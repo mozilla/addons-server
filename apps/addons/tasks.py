@@ -1,4 +1,3 @@
-import collections
 import os
 import logging
 
@@ -16,9 +15,8 @@ from market.models import AddonPremium
 from tags.models import Tag
 from versions.models import Version
 from . import cron, search  # Pull in tasks from cron.
-from .forms import get_satisfaction
-from .models import (Addon, Category, CompatOverride, IncompatibleVersions,
-                     Preview)
+from .models import (Addon, AddonDeviceType, Category, CompatOverride,
+                     IncompatibleVersions, Preview)
 
 log = logging.getLogger('z.task')
 
@@ -97,13 +95,21 @@ def index_addons(ids, **kw):
     es = elasticutils.get_es()
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     qs = Addon.uncached.filter(id__in=ids)
-    transforms = (attach_categories, attach_prices, attach_tags,
-                  attach_translations)
+    transforms = (attach_categories, attach_devices, attach_prices,
+                  attach_tags, attach_translations)
     for t in transforms:
         qs = qs.transform(t)
     for addon in qs:
         Addon.index(search.extract(addon), bulk=True, id=addon.id)
     es.flush_bulk(forced=True)
+
+
+def attach_devices(addons):
+    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
+    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
+              .values_list('addon', 'device_type'))
+    for addon, device_types in devices:
+        addon_dict[addon].devices = device_types
 
 
 def attach_prices(addons):
@@ -213,8 +219,8 @@ def update_incompatible_appversions(data, **kw):
         try:
             compat = CompatOverride.objects.get(addon=version.addon)
         except CompatOverride.DoesNotExist:
-            log.info('Compat override for addon with version ID [%d] not found.'
-                     ' Incompatible versions were cleared.' % version_id)
+            log.info('Compat override for addon with version ID [%d] not '
+                     'found. Incompatible versions were cleared.' % version_id)
             return
 
         app_ranges = []
@@ -228,7 +234,8 @@ def update_incompatible_appversions(data, **kw):
                 if range.min == version.version:
                     app_ranges.extend(range.apps)
             else:
-                if int(range.min_int) <= version.version_int <= int(range.max_int):
+                if (int(range.min_int) <= version.version_int <=
+                    int(range.max_int)):
                     app_ranges.extend(range.apps)
 
         for range in app_ranges:

@@ -31,6 +31,7 @@ INSTALLED_APPS.remove('api')
 INSTALLED_APPS.remove('compat')
 INSTALLED_APPS.remove('discovery')
 INSTALLED_APPS.remove('devhub')
+INSTALLED_APPS.remove('search')
 INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
@@ -38,6 +39,7 @@ INSTALLED_APPS += (
     'mkt.webapps',
     'mkt.detail',
     'mkt.developers',
+    'mkt.search',
     'mkt.submit',
     'mkt.experiments',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
@@ -46,9 +48,10 @@ SUPPORTED_NONAPPS += (
     # this line is here until bug 735120 is fixed.
     'app',
     'dev',
-    'submit',
     'login',
     'privacy-policy',
+    'search',
+    'submit',
     'terms-of-use',
     'users',
 )

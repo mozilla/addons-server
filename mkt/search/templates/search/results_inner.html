@@ -1,0 +1,13 @@
+{{ impala_addon_listing_header(request.get_full_path()|urlparams(page=None),
+                               sort_opts, query.sort or None, extra_sort_opts) }}
+{% if pager.object_list %}
+  <ol class="items" start="{{ pager.start_index() }}">
+    {{ search_results(pager.object_list, field=query.sort, src='search') }}
+  </ol>
+  {{ pager|impala_paginator }}
+{% else %}
+  {{ no_results() }}
+{% endif %}
+{% if request.is_ajax() %}
+  {{ num_results() }}
+{% endif %}
