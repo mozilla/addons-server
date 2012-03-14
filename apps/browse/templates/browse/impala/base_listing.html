@@ -45,7 +45,6 @@
 {% set base_crumb = {
     'extensions': (url('browse.extensions'), _('Extensions')),
     'themes': (url('browse.themes'), _('Themes')),
-    'apps': (url('apps.list'), _('Apps'))
 }.get(section, 'extensions') %}
 
 {% if section == 'extensions' %}

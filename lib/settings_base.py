@@ -375,6 +375,7 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
+    'mkt.webapps',
     'zadmin',
     'cake',
 

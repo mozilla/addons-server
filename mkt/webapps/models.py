@@ -5,6 +5,7 @@ from urllib import urlencode
 import urlparse
 
 from django.conf import settings
+from django.core.urlresolvers import NoReverseMatch
 from django.db import models
 from django.dispatch import receiver
 
@@ -88,7 +89,18 @@ class Webapp(Addon):
             self.update(slug='app-%s' % self.id)
 
     def get_url_path(self, more=False):
-        return reverse('detail', args=[self.app_slug])
+        # We won't have to do this when Marketplace absorbs all apps views,
+        # but for now pretend you didn't see this.
+        try:
+            return reverse('detail', args=[self.app_slug])
+        except NoReverseMatch:
+            # Fall back to old details page until the views get ported.
+            return super(Webapp, self).get_url_path(more=more)
+
+    def get_detail_url(self, action=None):
+        # Reverse URLs for 'detail', 'details.record', etc.
+        return reverse(('detail.%s' % action) if action else 'detail',
+                       args=[self.app_slug])
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         # Either link to the "new" Marketplace Developer Hub or the old one.

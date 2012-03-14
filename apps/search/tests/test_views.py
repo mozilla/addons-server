@@ -2,12 +2,11 @@
 import json
 import urlparse
 
-from django.conf import settings
 from django.http import QueryDict
 from django.test import client
 
 from jingo.helpers import datetime as datetime_filter
-from mock import Mock, patch
+from mock import Mock
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -26,7 +25,6 @@ from search.views import DEFAULT_NUM_PERSONAS
 from tags.models import Tag
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
-from mkt.webapps.tests.test_views import PaidAppMixin
 
 
 def test_parse_bad_type():
