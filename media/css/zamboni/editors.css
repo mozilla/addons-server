@@ -161,6 +161,11 @@ table.data-grid tr th a {
 table.data-grid tr td {
     border-top: 1px dotted #DDDDDD;
 }
+table.data-grid .addon-row a {
+    display: block;
+    max-width: 600px;
+    word-wrap: break-word;
+}
 table.data-grid tbody tr:nth-child(odd) {
     background-color: #FAFAFA;
 }
