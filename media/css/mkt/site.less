@@ -7,33 +7,39 @@ body {
 }
 
 #page {
-    .width(10);
-    margin: 0 auto;
-    .border-box;
-    &:after {
-        content: '';
-        display: block;
-        clear: both;
+    section {
+        .width(10);
+        margin: 0 auto;
+        .border-box;
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        &.full {
+            width: 100%;
+            padding: 0 16px;
+        }
     }
 }
 
 // 7 columns (portrait tablet)
 @media (max-width: @7col) {
-    #page {
+    #page section {
         .width(7);
     }
 }
 
 // 4 columns (landscape smartphone)
 @media (max-width: @4col) {
-    #page {
+    #page section {
         .width(4);
     }
 }
 
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
-    #page {
+    #page section {
         .width(3);
     }
 }
