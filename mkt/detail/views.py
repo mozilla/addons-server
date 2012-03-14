@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+
 import jingo
 
 from addons.models import Addon
@@ -6,6 +8,7 @@ from addons.decorators import (addon_view_factory, can_be_purchased,
 from amo.decorators import json_view, login_required, post_required, write
 from reviews.forms import ReviewForm
 from reviews.models import Review
+from sharing.views import share as share_redirect
 from mkt.webapps.models import Installed
 
 

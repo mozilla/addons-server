@@ -9,6 +9,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
@@ -51,3 +52,13 @@ class TestInstall(amo.tests.TestCase):
         res = self.client.post(self.url)
         content = json.loads(res.content)
         assert content.get('receipt'), content
+
+
+class TestReportAbuse(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def test_page(self):
+        self.webapp = Webapp.objects.get(id=337141)
+        self.url = reverse('detail.abuse', args=[self.webapp.app_slug])
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)

@@ -71,22 +71,3 @@ class TestPremium(PaidAppMixin, amo.tests.TestCase):
         self.setup_paid()
         eq_(self.free, list(Webapp.objects.top_free()))
         eq_(self.paid, list(Webapp.objects.top_paid()))
-
-
-class TestReportAbuse(WebappTest):
-
-    def setUp(self):
-        super(TestReportAbuse, self).setUp()
-        self.abuse_url = reverse('apps.abuse', args=[self.webapp.app_slug])
-
-    def test_page(self):
-        r = self.client.get(self.abuse_url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('title').text(), 'Report abuse for woo :: Apps Marketplace')
-        expected = [
-            ('Apps Marketplace', reverse('apps.home')),
-            ('Apps', reverse('apps.list')),
-            (unicode(self.webapp.name), self.url),
-        ]
-        amo.tests.check_links(expected, doc('#breadcrumbs a'))
