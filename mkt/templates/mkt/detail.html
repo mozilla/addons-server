@@ -22,12 +22,12 @@
       <a id="purchase" href="#" class="button">FREE</a>
     </div>
   </section>
-  <section class="full">
-    <p class="description">{{ product.description }}</p>
+  <section class="full description">
+    <p>{{ product.description }}</p>
   </section>
 
   {% if product.all_previews|length > 0 %}
-    <section class="previews slider row">
+    <section class="previews slider full">
       <ul>
         {%- for preview in product.all_previews -%}
           <li>

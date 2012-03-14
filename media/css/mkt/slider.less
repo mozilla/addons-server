@@ -1,0 +1,40 @@
+@import 'lib';
+
+.slider {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 16px 0;
+    max-width: 100%;
+
+    ul {
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        -webkit-transition: .5s -webkit-transform ease-out;
+        -moz-transition: .5s -moz-transform ease-out;
+        &.panning {
+            -webkit-transition: none;
+            -moz-transition: none;
+        }
+    }
+    li {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        a {
+            display: block;
+            width: 200px;
+            height: 150px;
+            background: white;
+            border: 1px solid black;
+            padding: 8px;
+            margin-right: 16px;
+            img {
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+}

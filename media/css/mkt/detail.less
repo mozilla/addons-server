@@ -1,7 +1,7 @@
 @import 'lib';
 
 .button {
-    padding: 4px 8px;
+    padding: 8px;
     .border-radius(8px);
     display: block;
     border: 1px solid black;
@@ -14,19 +14,25 @@
 .product-details {
     .actions {
         float: right;
+        margin-bottom: 16px;
     }
     .icon {
     }
     .vitals {
         float: left;
     }
-    .description {
-        clear: both;
-    }
     .visual {
         float: left;
         width: 96px;
         height: 100px;
+    }
+}
+.description {
+    clear: both;
+    padding: 16px;
+    p {
+        .max-width(10);
+        margin: 0 auto;
     }
 }
 
@@ -51,12 +57,10 @@
 
 //4 columns
 @media (max-width: @4col) {
-    .product-details {
-        .description {
-            border: 1px solid black;
-            border-width: 1px 0;
-            padding: 8px 0;
-        }
+    .description {
+        border: 1px solid black;
+        border-width: 1px 0;
+        padding: 16px;
     }
 }
 

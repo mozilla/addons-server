@@ -69,6 +69,7 @@ CSS = {
         'css/mkt/reset.less',
         'css/mkt/site.less',
         'css/mkt/detail.less',
+        'css/mkt/slider.less',
     ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',
@@ -138,6 +139,7 @@ JS = {
     ),
     'mkt': (
         'js/lib/jquery-1.7.1.js',
+        'js/mkt/slider.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
