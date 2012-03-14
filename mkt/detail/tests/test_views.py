@@ -3,6 +3,7 @@ import json
 from django.conf import settings
 
 import mock
+from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 
 import amo
@@ -57,15 +58,19 @@ class TestInstall(amo.tests.TestCase):
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
-    def test_page(self):
+    def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
         self.url = self.webapp.get_detail_url('abuse')
 
     def test_get(self):
+        # TODO: Uncomment Report Abuse gets ported to mkt.
+        raise SkipTest
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
     def test_submit(self):
+        # TODO: Uncomment Report Abuse gets ported to mkt.
+        raise SkipTest
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.post(self.url, {'text': 'this app is porn'})
+        r = self.client.post(self.url, {'text': 'this is some rauncy ish'})
         self.assertRedirects(r, self.webapp.get_detail_url())
