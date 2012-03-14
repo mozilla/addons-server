@@ -49,6 +49,9 @@
     </div>
 
     {% block sitefooter %}
+      <footer>
+        signed in as {{ request.amo_user.email }}
+      </footer>
     {% endblock %}
 
     {# js #}
