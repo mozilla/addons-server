@@ -24,11 +24,7 @@
 
 {% block aux_nav %}
   <li class="nomenu">
-  {% if webapp %}
-    <a class="return" href="{{ url('apps.home') }}">{{ _('Back to Apps') }}</a>
-  {% else %}
     <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
-  {% endif %}
   </li>
 {% endblock %}
 

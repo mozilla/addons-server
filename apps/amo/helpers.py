@@ -300,13 +300,12 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     show a list of breadcrumbs. If url is None, it won't be a link.
     Accepts: [(url, label)]
     """
-    home = 'apps.home' if context.get('WEBAPPS') else 'home'
     if add_default:
         if context.get('WEBAPPS'):
             base_title = _('Apps Marketplace')
         else:
             base_title = page_name(context['request'].APP)
-        crumbs = [(urlresolvers.reverse(home), base_title)]
+        crumbs = [(urlresolvers.reverse('home'), base_title)]
     else:
         crumbs = []
 

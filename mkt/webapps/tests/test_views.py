@@ -1,10 +1,8 @@
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 import waffle
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import Version
@@ -66,7 +64,6 @@ class TestPremium(PaidAppMixin, amo.tests.TestCase):
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
-        self.url = reverse('apps.home')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.setup_paid()
         eq_(self.free, list(Webapp.objects.top_free()))

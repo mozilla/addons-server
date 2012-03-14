@@ -4,7 +4,6 @@ import mimetypes
 import os
 
 from django.conf import settings
-from django.core import mail
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import encoding
@@ -219,17 +218,6 @@ class TestSharedURL(amo.tests.TestCase):
         self.addon.slug = 'addon'
         self.addon.is_webapp.return_value = False
 
-    def test_appurl(self):
-        expected = '/en-US/apps/app/webapp/'
-        eq_(helpers.shared_url('addons.detail', self.webapp), expected)
-        eq_(helpers.shared_url('apps.detail', self.webapp), expected)
-        eq_(helpers.shared_url('detail', self.webapp), expected)
-        eq_(helpers.shared_url('detail', self.webapp, add_prefix=False),
-            '/apps/app/webapp/')
-        eq_(helpers.shared_url('reviews.detail', self.webapp, 1,
-                               add_prefix=False),
-            '/apps/app/webapp/reviews/1/')
-
     def test_addonurl(self):
         expected = '/en-US/firefox/addon/addon/'
         eq_(helpers.shared_url('addons.detail', self.addon), expected)
@@ -439,7 +427,7 @@ class TestMessage(amo.tests.TestCase):
     def test_guard_copes(self):
         try:
             with guard('abc'):
-                1/0
+                1 / 0
         except ZeroDivisionError:
             pass
 
