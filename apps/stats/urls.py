@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, url
+from django.shortcuts import redirect
 
 from . import views
 
@@ -14,7 +15,8 @@ collection_series = dict((type, '%s-%s' % (type, series_re))
                          for type in views.COLLECTION_SERIES)
 
 urlpatterns = patterns('',
-    url('^$', views.dashboard, name='stats.dashboard'),
+    url('^$', lambda r: redirect('stats.addons_in_use', permanent=False),
+        name='stats.dashboard'),
     url('^site%s/%s$' % (format_re, group_date_re),
         views.site, name='stats.site'),
     url('^site-%s' % series_re, views.site, name='stats.site.new'),

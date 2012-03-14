@@ -1,30 +1,31 @@
 <nav id="side-nav">
   <ul>
-    <li>
+    {# Set li class="type" from 'metricTypes' in chart.js for active toggle #}
+    <li class="addons_in_use">
       <a href="{{ url('stats.addons_in_use') }}">
         {{ _('Add-ons in Use') }}</a>
     </li>
-    <li>
+    <li class="addons_created">
       <a href="{{ url('stats.addons_created') }}">
         {{ _('Add-ons Created') }}</a>
     </li>
-    <li>
+    <li class="addons_downloaded">
       <a href="{{ url('stats.addons_downloaded') }}">
         {{ _('Add-ons Downloaded') }}</a>
     </li>
-    <li>
+    <li class="addons_updated">
       <a href="{{ url('stats.addons_updated') }}">
         {{ _('Add-ons Updated') }}</a>
     </li>
-    <li>
+    <li class="collections_created">
       <a href="{{ url('stats.collections_created') }}">
         {{ _('Collections Created') }}</a>
     </li>
-    <li>
+    <li class="reviews_created">
       <a href="{{ url('stats.reviews_created') }}">
         {{ _('Reviews Written') }}</a>
     </li>
-    <li>
+    <li class="users_created">
       <a href="{{ url('stats.users_created') }}">
         {{ _('User Signups') }}</a>
     </li>

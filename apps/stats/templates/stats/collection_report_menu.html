@@ -1,12 +1,12 @@
 <nav id="side-nav" class="report-menu">
   <ul>
-    <li>
+    <li class="subscribers">
       <a href="{{ url('collections.stats.subscribers',
                       collection.author_username, collection.slug) }}">
         {{ _('Subscribers') }}
       </a>
     </li>
-    <li>
+    <li class="ratings">
       <a href="{{ url('collections.stats.ratings', collection.author_username,
                       collection.slug) }}">
         {{ _('Ratings') }}

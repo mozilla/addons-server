@@ -30,6 +30,14 @@
             group: 'day'
         };
 
+        // Set side nav active state.
+        (function() {
+            var sel = '#side-nav li.' + initView.metric;
+            sel += ', #side-nav li[data-report=' + initView.metric + ']';
+
+            $(sel).addClass('active');
+        })();
+
         // Restore any session view information from sessionStorage.
         if (z.capabilities.localStorage && sessionStorage.getItem('stats_view')) {
             var ssView = JSON.parse(sessionStorage.getItem('stats_view'));
