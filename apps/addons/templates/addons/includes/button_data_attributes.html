@@ -6,9 +6,10 @@
   data-developers="{{ addon.meet_the_dev_url() }}"
   data-name="{{ addon.name }}"
   {{ b.attrs()|xmlattr }}
-{% if waffle.switch('marketplace') and addon.can_be_purchased() and addon.premium %}
-  data-purchase="{{ shared_url('addons.purchase', addon) }}?"
-  data-start-purchase="{{ shared_url('addons.purchase.start', addon) }}"
+{# TODO: Fix this when we move purchases logic into mkt/. #}
+{% if False and waffle.switch('marketplace') and addon.can_be_purchased() and addon.premium %}
+  data-purchase="{{ addon.get_detail_url('purchase') }}?"
+  data-start-purchase="{{ addon.get_detail_url('purchase.start') }}"
   data-cost="{{ addon.premium.get_price() }}"
   data-login-url="{{ url('users.login_modal') }}"
 {% endif %}

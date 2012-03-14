@@ -4,8 +4,10 @@
 {% block bodyclass %}gutter{% endblock %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                       (None, addon.name)]) }}
+{% if not addon.is_webapp() %}
+  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                         (None, addon.name)]) }}
+{% endif %}
 
 <aside class="secondary">
   {{ addon|sidebar_listing }}
