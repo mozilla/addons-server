@@ -1939,20 +1939,6 @@ class TestReportAbuse(amo.tests.TestCase):
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=15663)
 
-    def test_report_app_abuse(self):
-        Addon.objects.get(slug='a15663').update(type=amo.ADDON_WEBAPP,
-                                                app_slug='app-a15663')
-        detail_url = reverse('apps.detail', args=['app-a15663'])
-        res = self.client.get(detail_url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('#abuse-modal form').attr('action'),
-            reverse('apps.abuse', args=['app-a15663']))
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.post(reverse('apps.abuse', args=['app-a15663']),
-                             {'text': 'this app is porn'})
-        self.assertRedirects(r, detail_url)
-
 
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',

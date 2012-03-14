@@ -55,10 +55,17 @@ class TestInstall(amo.tests.TestCase):
 
 
 class TestReportAbuse(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def test_page(self):
         self.webapp = Webapp.objects.get(id=337141)
-        self.url = reverse('detail.abuse', args=[self.webapp.app_slug])
+        self.url = self.webapp.get_detail_url('abuse')
+
+    def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
+
+    def test_submit(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.post(self.url, {'text': 'this app is porn'})
+        self.assertRedirects(r, self.webapp.get_detail_url())
