@@ -376,6 +376,7 @@ class TestReviewHelper(amo.tests.TestCase):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             eq_(len(mail.outbox), 1)
+            assert mail.outbox[0].body, 'Expected a message'
 
     def setup_data(self, status, delete=[]):
         mail.outbox = []
@@ -405,6 +406,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
         eq_(len(mail.outbox), 1)
         assert '/en-US/firefox/addon/a3615' not in mail.outbox[0].body
+        assert '/addon/a3615' in mail.outbox[0].body
 
     def test_nomination_to_public_no_files(self):
         for status in helpers.NOMINATED_STATUSES:

@@ -88,14 +88,16 @@ class Webapp(Addon):
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id)
 
-    def get_url_path(self, more=False):
+    def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
         # but for now pretend you didn't see this.
         try:
-            return reverse('detail', args=[self.app_slug])
+            return reverse('detail', args=[self.app_slug],
+                           add_prefix=add_prefix)
         except NoReverseMatch:
             # Fall back to old details page until the views get ported.
-            return super(Webapp, self).get_url_path(more=more)
+            return super(Webapp, self).get_url_path(more=more,
+                                                    add_prefix=add_prefix)
 
     def get_detail_url(self, action=None):
         # Reverse URLs for 'detail', 'details.record', etc.

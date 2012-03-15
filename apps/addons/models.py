@@ -436,11 +436,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return urls
 
-    def get_url_path(self, more=False):
+    def get_url_path(self, more=False, add_prefix=True):
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
         view = 'addons.detail_more' if more else 'addons.detail'
-        return reverse(view, args=[self.slug])
+        return reverse(view, args=[self.slug], add_prefix=add_prefix)
 
     def get_api_url(self):
         # Used by Piston in output.

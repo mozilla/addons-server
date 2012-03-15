@@ -586,7 +586,8 @@ class ReviewBase:
         return {'name': self.addon.name,
                 'number': self.version.version,
                 'reviewer': (self.request.user.get_profile().display_name),
-                'addon_url': absolutify(self.addon.get_url_path()),
+                'addon_url': absolutify(
+                    self.addon.get_url_path(add_prefix=False)),
                 'review_url': absolutify(reverse('editors.review',
                                                  args=[self.addon.pk],
                                                  add_prefix=False)),
