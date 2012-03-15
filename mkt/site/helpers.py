@@ -6,22 +6,24 @@ import jinja2
 from amo.helpers import url
 
 
+@jinja2.contextfunction
 @register.function
-def market_button(product):
+def market_button(context, product):
+    request = context['request']
     if product.is_webapp():
         classes = ['button']
         label = price_label(product)
-        if (product.is_premium):
+        if product.is_premium:
             classes.append('premium')
             data_attrs = {
                 # 'purchase': product.get_detail_url('purchase') + '?',
                 # 'start-purchase': product.get_detail_url('pruchase.start'),
                 'cost': product.premium.get_price(),
             }
-        if ((product.is_premium() and product.has_purchased(amo_user)) or
-            (not product.is_premium())):
+        if ((product.is_premium() and product.has_purchased(request.amo_user))
+            or (not product.is_premium())):
             classes.append('install')
-            label = _('Install App')
+            label = _('Install')
             data_attrs.update( {'manifest-url': product.manifest_url} )
         c = dict(product=product, label=label,
                  data_attrs=data_attrs, classes=' '.join(classes))
