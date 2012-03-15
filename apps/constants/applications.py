@@ -141,8 +141,8 @@ APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
 APPS = dict((app.short, app) for app in _apps)
 
 APPS_ALL = dict((app.id, app) for app in _apps + (MOZILLA, SUNBIRD))
-APP_IDS = APPS_ALL  # TODO we should pick one of these and use it everywhere.
-APP_GUIDS = dict((app.guid, app) for app in APPS_ALL.values())
+APP_IDS = dict((app.id, app) for app in _apps + SUNBIRD)
+APP_GUIDS = dict((app.guid, app) for app in _apps + SUNBIRD)
 APPS_RETIRED = dict([(MOZILLA.short, MOZILLA), (SUNBIRD.short, SUNBIRD)])
 
 APP_TYPE_SUPPORT = {}
