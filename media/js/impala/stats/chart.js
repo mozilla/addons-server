@@ -2,7 +2,7 @@
     // "use strict";
     var $win = $(window),
         $chart = $('#head-chart'),
-        $btnZoom = $('#chart-zoomout');
+        $btnZoom = $('#chart-zoomout'),
         baseConfig = {
             chart: {
                 renderTo: 'head-chart',

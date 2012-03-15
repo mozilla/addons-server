@@ -58,6 +58,13 @@ urlpatterns = patterns('',
 )
 
 collection_stats_urls = patterns('',
+    url(collection_series['subscribers'], views.collection_series,
+        kwargs={'field': 'subscribers'}),
+    url(collection_series['ratings'], views.collection_series,
+        kwargs={'field': 'ratings'}),
+    url(collection_series['downloads'], views.collection_series,
+        kwargs={'field': 'downloads'}),
+
     url('^$', views.collection_report, name='collections.stats',
         kwargs={'report': 'subscribers'}),
     url('^subscribers/$', views.collection_report,

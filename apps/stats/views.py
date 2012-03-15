@@ -541,17 +541,30 @@ def site_series(request, format, group, start, end, field):
     return render_json(request, None, series)
 
 
+def collection_series(request, username, slug, format, group, start, end,
+                      field):
+    """Pull a single field from the collection_query data"""
+    start, end = get_daterange_or_404(start, end)
+    group = 'date' if group == 'day' else group
+    series = []
+    c = get_collection(request, username, slug)
+    full_series = _collection_query(request, c.uuid, start, end)
+    for row in full_series:
+        if field in row['data']:
+            series.append({
+                'date': row['date'],
+                'count': row['data'][field],
+            })
+    return render_json(request, None, series)
+
+
 def collection_stats(request, username, slug, group, start, end, format):
     c = get_collection(request, username, slug)
     start, end = get_daterange_or_404(start, end)
     return collection(request, c.uuid, format, start, end)
 
 
-def collection(request, uuid, format, start=None, end=None):
-    """
-    Collection data taken from the stats_collections and the
-    stats_addons_collections_counts table.
-    """
+def _collection_query(request, uuid, start=None, end=None):
     if not start and not end:
         start = date.today() - timedelta(days=365)
         end = date.today()
@@ -569,9 +582,13 @@ def collection(request, uuid, format, start=None, end=None):
         date_ = date(*val['date'].timetuple()[:3])
         series.append(dict(count=val['count'], date=date_, end=date_,
                            data=extract(val['data'])))
+    return series
 
+
+def collection(request, uuid, format, start=None, end=None):
     if format == 'csv':
-        series, fields = csv_fields(series)
+        series, fields = csv_fields(_collection_query(request, uuid, start,
+                                                      end))
         return render_csv(request, collection, series,
                           ['date', 'count'] + list(fields))
     return render_json(request, collection, series)
