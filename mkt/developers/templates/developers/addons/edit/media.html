@@ -6,7 +6,7 @@
     {{ _('Edit') }}</a>
   {% endif %}
 </h2>
-<form method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}"
+<form method="post" action="{{ addon.get_dev_url('section', args=['media', 'edit']) }}"
       enctype="multipart/form-data">
   {% set context = 'edit' %}
   {% include "developers/addons/forms_shared/media.html" %}

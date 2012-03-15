@@ -58,6 +58,12 @@ class TestEdit(amo.tests.TestCase):
         for k, v in data.iteritems():
             eq_(unicode(getattr(webapp, k)), unicode(v))
 
+    def check_form_url(self, section):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('form').attr('action'), self.edit_url)
+        eq_(doc('h2 .button').attr('data-editurl'), self.edit_url)
+
 
 class TestEditListingWebapp(TestEdit):
     fixtures = TestEdit.fixtures
@@ -104,6 +110,9 @@ class TestEditBasic(TestEdit):
         result.update(**kw)
         result.update(fs)
         return result
+
+    def test_form_url(self):
+        self.check_form_url('basic')
 
     def test_apps_context(self):
         eq_(self.client.get(self.url).context['webapp'], True)
@@ -371,7 +380,8 @@ class TestEditMedia(TestEdit):
 
     def setUp(self):
         super(TestEditMedia, self).setUp()
-        self.media_edit_url = self.get_url('media', True)
+        self.url = self.get_url('media')
+        self.edit_url = self.get_url('media', True)
         self.icon_upload = self.webapp.get_dev_url('upload_icon')
         self.preview_upload = self.webapp.get_dev_url('upload_preview')
         patches = {
@@ -384,7 +394,7 @@ class TestEditMedia(TestEdit):
             self.addCleanup(patcher.stop)
 
     def formset_new_form(self, *args, **kw):
-        ctx = self.client.get(self.media_edit_url).context
+        ctx = self.client.get(self.edit_url).context
 
         blank = initial(ctx['preview_form'].forms[-1])
         blank.update(**kw)
@@ -397,11 +407,14 @@ class TestEditMedia(TestEdit):
         fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
         return dict([(k, '' if v is None else v) for k, v in fs.items()])
 
+    def test_form_url(self):
+        self.check_form_url('media')
+
     def test_edit_defaulticon(self):
         data = dict(icon_type='')
         data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.media_edit_url, data_formset)
+        r = self.client.post(self.edit_url, data_formset)
         eq_(r.context['form'].errors, {})
         webapp = self.get_webapp()
 
@@ -414,7 +427,7 @@ class TestEditMedia(TestEdit):
         data = dict(icon_type='icon/appearance')
         data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.media_edit_url, data_formset)
+        r = self.client.post(self.edit_url, data_formset)
         eq_(r.context['form'].errors, {})
         webapp = self.get_webapp()
 
@@ -437,7 +450,7 @@ class TestEditMedia(TestEdit):
                     icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.media_edit_url, data_formset)
+        r = self.client.post(self.edit_url, data_formset)
         eq_(r.context['form'].errors, {})
         webapp = self.get_webapp()
 
@@ -478,7 +491,7 @@ class TestEditMedia(TestEdit):
                     icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.media_edit_url, data_formset)
+        r = self.client.post(self.edit_url, data_formset)
         eq_(r.context['form'].errors, {})
         webapp = self.get_webapp()
 
@@ -611,9 +624,9 @@ class TestEditMedia(TestEdit):
                                                 position=i))
         data_formset = self.formset_media(*fields)
 
-        self.media_edit_url
+        self.edit_url
 
-        r = self.client.post(self.media_edit_url, data_formset)
+        r = self.client.post(self.edit_url, data_formset)
 
     def test_edit_preview_add(self):
         self.preview_add()
@@ -630,7 +643,7 @@ class TestEditMedia(TestEdit):
 
         data_formset = self.formset_media(edited, initial_count=1)
 
-        self.client.post(self.media_edit_url, data_formset)
+        self.client.post(self.edit_url, data_formset)
 
         previews = self.get_webapp().previews
         eq_(str(previews.all()[0].caption), 'bye')
@@ -657,7 +670,7 @@ class TestEditMedia(TestEdit):
         eq_(data_formset['files-1-caption'], 'second')
         eq_(data_formset['files-2-caption'], 'first')
 
-        self.client.post(self.media_edit_url, data_formset)
+        self.client.post(self.edit_url, data_formset)
 
         # They should come out "first", "second", "third".
         eq_(self.get_webapp().previews.all()[0].caption, 'first')
@@ -675,7 +688,7 @@ class TestEditMedia(TestEdit):
 
         data_formset = self.formset_media(edited, initial_count=1)
 
-        self.client.post(self.media_edit_url, data_formset)
+        self.client.post(self.edit_url, data_formset)
 
         eq_(self.get_webapp().previews.count(), 0)
 
@@ -693,8 +706,8 @@ class TestEditDetails(TestEdit):
 
     def setUp(self):
         super(TestEditDetails, self).setUp()
-        self.details_url = self.get_url('details')
-        self.details_edit_url = self.get_url('details', edit=True)
+        self.url = self.get_url('details')
+        self.edit_url = self.get_url('details', edit=True)
 
     def get_dict(self, **kw):
         data = dict(description='New description with <em>html</em>!',
@@ -705,9 +718,12 @@ class TestEditDetails(TestEdit):
         data.update(kw)
         return data
 
+    def test_form_url(self):
+        self.check_form_url('details')
+
     def test_edit(self):
         data = self.get_dict()
-        r = self.client.post(self.details_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         self.compare(data)
 
@@ -720,7 +736,7 @@ class TestEditDetails(TestEdit):
                                    "<script>alert('awesome')</script>")
         self.webapp.save()
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#edit-addon-details span[lang]').html(),
+        eq_(pq(r.content)('#addon-description span[lang]').html(),
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
             '&lt;/script&gt;')
 
@@ -738,7 +754,7 @@ class TestEditDetails(TestEdit):
                     default_locale='en-US', homepage='',
                     privacy_policy='we sell your data to everyone')
 
-        r = self.client.post(self.details_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         self.compare(data)
 
@@ -755,45 +771,45 @@ class TestEditDetails(TestEdit):
         missing = lambda f: error % ', '.join(map(repr, f))
 
         data.update(default_locale='fr')
-        r = self.client.post(self.details_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a name.
         self.webapp.name = {'fr': 'fr name'}
         self.webapp.save()
         fields.remove('name')
-        r = self.client.post(self.details_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a summary.
         self.webapp.summary = {'fr': 'fr summary'}
         self.webapp.save()
         fields.remove('summary')
-        r = self.client.post(self.details_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we're sending an fr description with the form.
         data['description_fr'] = 'fr description'
-        r = self.client.post(self.details_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
 
     def test_edit_default_locale_frontend_error(self):
         da = dict(description='xx', homepage='http://google.com',
                   default_locale='fr', privacy_policy='pp')
-        rp = self.client.post(self.details_edit_url, da)
+        rp = self.client.post(self.edit_url, da)
         self.assertContains(rp, 'Before changing your default locale you must')
 
     def test_edit_locale(self):
         self.webapp.update(default_locale='en-US')
-        r = self.client.get(self.details_url)
+        r = self.client.get(self.url)
         eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), 'English (US)')
 
     def test_homepage_url_optional(self):
-        r = self.client.post(self.details_edit_url, self.get_dict(homepage=''))
+        r = self.client.post(self.edit_url, self.get_dict(homepage=''))
         self.assertNoFormErrors(r)
 
     def test_homepage_url_invalid(self):
-        r = self.client.post(self.details_edit_url,
+        r = self.client.post(self.edit_url,
                              self.get_dict(homepage='xxx'))
         self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
 
@@ -802,20 +818,23 @@ class TestEditSupport(TestEdit):
 
     def setUp(self):
         super(TestEditSupport, self).setUp()
-        self.support_url = self.get_url('support')
-        self.support_edit_url = self.get_url('support', edit=True)
+        self.url = self.get_url('support')
+        self.edit_url = self.get_url('support', edit=True)
+
+    def test_form_url(self):
+        self.check_form_url('support')
 
     def test_edit_support(self):
         data = dict(support_email='sjobs@apple.com',
                     support_url='http://apple.com/')
 
-        r = self.client.post(self.support_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         self.compare(data)
 
     def test_edit_support_premium_required(self):
         self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.post(self.support_edit_url, dict(support_url=''))
+        r = self.client.post(self.edit_url, dict(support_url=''))
         self.assertFormError(r, 'form', 'support_email',
                              'This field is required.')
 
@@ -823,19 +842,19 @@ class TestEditSupport(TestEdit):
         self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
         data = dict(support_email='sjobs@apple.com',
                     support_url='')
-        r = self.client.post(self.support_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         eq_(self.get_webapp().support_email, data['support_email'])
 
     def test_edit_support_url_optional(self):
         data = dict(support_email='sjobs@apple.com', support_url='')
-        r = self.client.post(self.support_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         self.compare(data)
 
     def test_edit_support_email_optional(self):
         data = dict(support_email='', support_url='http://apple.com/')
-        r = self.client.post(self.support_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         self.compare(data)
 
@@ -845,14 +864,17 @@ class TestEditTechnical(TestEdit):
 
     def setUp(self):
         super(TestEditTechnical, self).setUp()
-        self.technical_url = self.get_url('technical')
-        self.technical_edit_url = self.get_url('technical', edit=True)
+        self.url = self.get_url('technical')
+        self.edit_url = self.get_url('technical', edit=True)
+
+    def test_form_url(self):
+        self.check_form_url('technical')
 
     def test_log(self):
         data = formset(developer_comments='This is a test')
         o = ActivityLog.objects
         eq_(o.count(), 0)
-        r = self.client.post(self.technical_edit_url, data)
+        r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
@@ -863,7 +885,7 @@ class TestEditTechnical(TestEdit):
                     site_specific='on',
                     view_source='on')
 
-        r = self.client.post(self.technical_edit_url, formset(**data))
+        r = self.client.post(self.edit_url, formset(**data))
         eq_(r.context['form'].errors, {})
         expected = dict(developer_comments='Test comment!',
                         external_software=True,
@@ -872,7 +894,7 @@ class TestEditTechnical(TestEdit):
         self.compare(expected)
 
         # And off.
-        r = self.client.post(self.technical_edit_url,
+        r = self.client.post(self.edit_url,
                              formset(developer_comments='Test comment!'))
         expected.update(external_software=False,
                         site_specific=False,
@@ -884,7 +906,7 @@ class TestEditTechnical(TestEdit):
                     external_software='on',
                     site_specific='on',
                     view_source='on')
-        r = self.client.post(self.technical_edit_url, formset(**data))
+        r = self.client.post(self.edit_url, formset(**data))
         eq_(r.context['form'].errors, {})
 
         expected = dict(developer_comments='',
