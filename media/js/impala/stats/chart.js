@@ -86,7 +86,9 @@
         "addons_created"     : "addons",
         "addons_updated"     : "addons",
         "addons_downloaded"  : "addons",
-        "collections_created" : "collections"
+        "collections_created" : "collections",
+        "subscribers"        : "collections",
+        "ratings"            : "collections"
     };
 
     var acceptedGroups = {
