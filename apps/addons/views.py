@@ -46,7 +46,7 @@ from versions.models import Version
 from .models import Addon, Persona, FrozenAddon
 from .decorators import (addon_view_factory, can_be_purchased, has_purchased,
                          has_not_purchased)
-from mkt.webapps.models import Installed
+from mkt.webapps.models import Webapp, Installed
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -145,7 +145,15 @@ def extension_detail(request, addon):
     # does a lot more queries we don't want on the initial page load.
     if request.is_ajax():
         # Other add-ons/apps from the same author(s).
-        ctx['author_addons'] = addon.authors_other_addons(app=request.APP)[:6]
+        if addon.is_webapp():
+            others = Webapp.objects.listed().filter(type=amo.ADDON_WEBAPP)
+        else:
+            others = (Addon.objects.listed(request.APP)
+                      .exclude(type=amo.ADDON_WEBAPP))
+        others = (others.exclude(id=addon.id).distinct()
+                        .filter(addonuser__listed=True,
+                                authors__in=addon.listed_authors))
+        ctx['author_addons'] = others[:6]
         return jingo.render(request, 'addons/impala/details-more.html', ctx)
     else:
         if addon.is_webapp():
@@ -181,11 +189,17 @@ def persona_detail(request, addon, template=None):
     else:
         category_personas = None
 
+    # other personas from the same author(s)
+    author_personas = Addon.objects.public().filter(
+        persona__author=persona.author,
+        type=amo.ADDON_PERSONA).exclude(
+            pk=addon.pk).select_related('persona')[:3]
+
     data = {
         'addon': addon,
         'persona': persona,
         'categories': categories,
-        'author_personas': persona.authors_other_addons(request.APP)[:3],
+        'author_personas': author_personas,
         'category_personas': category_personas,
     }
     if not persona.is_new():
