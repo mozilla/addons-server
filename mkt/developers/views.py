@@ -44,7 +44,6 @@ from payments.models import InappConfig
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
 import paypal
-from search.views import BaseAjaxSearch
 from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -849,24 +848,6 @@ def upload_detail(request, uuid, format='html'):
     return jingo.render(request, 'developers/validation.html',
                         dict(validate_url=validate_url, filename=upload.name,
                              timestamp=upload.created))
-
-
-class AddonDependencySearch(BaseAjaxSearch):
-    # No personas. No webapps.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
-
-
-class AppDependencySearch(BaseAjaxSearch):
-    # Only webapps.
-    types = [amo.ADDON_WEBAPP]
-
-
-@dev_required
-@json_view
-def ajax_dependencies(request, addon_id, addon):
-    s = AppDependencySearch if addon.is_webapp() else AddonDependencySearch
-    return s(request, excluded_ids=[addon_id]).items
 
 
 @dev_required(webapp=True)

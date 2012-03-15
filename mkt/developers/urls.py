@@ -126,8 +126,6 @@ detail_patterns = patterns('',
 
 # These will all start with /ajax/addon/<addon_id>/
 ajax_patterns = patterns('',
-    url('^dependencies$', views.ajax_dependencies,
-        name='mkt.developers.ajax.dependencies'),
     url('^image/status$', views.image_status,
         name='mkt.developers.ajax.image.status'),
 )
