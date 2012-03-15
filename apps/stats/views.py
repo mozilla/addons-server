@@ -26,7 +26,7 @@ from bandwagon.views import get_collection
 from zadmin.models import SiteEvent
 
 import amo
-from amo.decorators import json_view
+from amo.decorators import json_view, login_required
 from amo.urlresolvers import reverse
 from amo.utils import memoize
 
@@ -511,6 +511,7 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
+@login_required
 def collection_report(request, username, slug, report):
     c = get_collection(request, username, slug)
     stats_base_url = c.stats_url()

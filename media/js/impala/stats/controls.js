@@ -77,7 +77,7 @@
         }
     });
 
-    $("#chart-zoomout").click(_pd(function(e) {}));
+    $("#chart-zoomout").click(_pd);
 
     $("#date-range-form").submit(_pd(function(e) {
         var start = Date.iso($("#date-range-start").val()),

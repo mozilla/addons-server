@@ -383,7 +383,7 @@
 
         $win.bind('zoomout', function() {
             chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
-            $btnZoom.addClass('inactive').click(_pd(function(e) {}));
+            $btnZoom.addClass('inactive').click(_pd);
         });
 
         $chart.removeClass('loading');
