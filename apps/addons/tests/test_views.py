@@ -993,6 +993,12 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 15663)
 
+    def test_persona_author(self):
+        a = Addon.objects.get(id=15663)
+        r = self.client.get(a.get_url_path())
+        eq_(pq(r.content)('.author').text(),
+            'by %s' % a.persona.display_username)
+
     def test_review_microdata_personas(self):
         a = Addon.objects.get(id=15663)
         a.name = '<script>alert("fff")</script>'

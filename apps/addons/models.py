@@ -726,6 +726,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
             addon.weekly_downloads = persona.popularity
+            # TODO: This shouldn't be necessary when we import theme users.
+            author = UserProfile(display_name=persona.display_username)
+            addon.listed_authors = [author]
 
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
