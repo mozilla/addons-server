@@ -56,9 +56,6 @@ def users_list(users, size=None):
 def _user_link(user):
     if isinstance(user, basestring):
         return user
-    # If the user hasn't been saved (persona authors), just show the text.
-    if not user.id:
-        return jinja2.escape(smart_unicode(user.name))
     return u'<a href="%s">%s</a>' % (
         user.get_url_path(), jinja2.escape(smart_unicode(user.name)))
 
