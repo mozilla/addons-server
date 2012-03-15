@@ -376,11 +376,13 @@ def home(request):
     featured = Addon.featured_random(request.APP, request.LANG)[:3]
     # Get 10 popular add-ons, then pick 3 at random.
     qs = list(Addon.objects.listed(request.APP)
+                   .filter(type=amo.ADDON_EXTENSION)
                    .order_by('-average_daily_users')
                    .values_list('id', flat=True)[:10])
     popular = rand(qs)
     # Do one query and split up the add-ons.
-    addons = Addon.objects.filter(id__in=featured + popular)
+    addons = (Addon.objects.filter(id__in=featured + popular)
+              .filter(type=amo.ADDON_EXTENSION))
     featured = [a for a in addons if a.id in featured]
     popular = sorted([a for a in addons if a.id in popular],
                      key=attrgetter('average_daily_users'), reverse=True)

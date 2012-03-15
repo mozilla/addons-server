@@ -102,8 +102,7 @@ class TestHomepage(amo.tests.TestCase):
 
 
 class TestHomepageFeatures(amo.tests.TestCase):
-    fixtures = ['base/users',
-                'base/addon_3615',
+    fixtures = ['base/addon_3615',
                 'base/collections',
                 'base/global-stats',
                 'base/featured',
@@ -111,8 +110,11 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 'addons/featured',
                 'bandwagon/featured_collections']
 
+    def setUp(self):
+        self.url = reverse('home')
+
     def test_no_unreviewed(self):
-        response = self.client.get(reverse('home'))
+        response = self.client.get(self.url)
         addon_lists = 'popular featured hotness personas'.split()
         for key in addon_lists:
             for addon in response.context[key]:
@@ -120,7 +122,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
 
     def test_seeall(self):
         Collection.objects.update(type=amo.COLLECTION_FEATURED)
-        doc = pq(self.client.get(reverse('home')).content)
+        doc = pq(self.client.get(self.url).content)
         browse_extensions = reverse('browse.extensions')
         browse_personas = reverse('browse.personas')
         browse_collections = reverse('collections.list')
@@ -134,6 +136,13 @@ class TestHomepageFeatures(amo.tests.TestCase):
         for id_, url in sections.iteritems():
             # Check that the "See All" link points to the correct page.
             eq_(doc.find('%s .seeall' % id_).attr('href'), url)
+
+    @amo.tests.mobile_test
+    def test_mobile_home_extensions_only(self):
+        r = self.client.get(self.url)
+        addons = r.context['featured'] + r.context['popular']
+        assert all([a.type == amo.ADDON_EXTENSION for a in addons]), (
+            'Expected only extensions to be listed on mobile homepage')
 
 
 class TestPromobox(amo.tests.TestCase):
