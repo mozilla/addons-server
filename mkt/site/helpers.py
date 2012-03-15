@@ -11,20 +11,20 @@ from amo.helpers import url
 def market_button(context, product):
     request = context['request']
     if product.is_webapp():
+        data_attrs = {}
         classes = ['button']
         label = price_label(product)
-        if product.is_premium:
+        if product.is_premium() and product.premium:
             classes.append('premium')
-            data_attrs = {
+            data_attrs.update({
                 # 'purchase': product.get_detail_url('purchase') + '?',
-                # 'start-purchase': product.get_detail_url('pruchase.start'),
+                # 'start-purchase': product.get_detail_url('purchase.start'),
                 'cost': product.premium.get_price(),
-            }
-        if ((product.is_premium() and product.has_purchased(request.amo_user))
-            or (not product.is_premium())):
+            })
+        if not product.is_premium() or product.has_purchased(request.amo_user):
             classes.append('install')
             label = _('Install')
-            data_attrs.update( {'manifest-url': product.manifest_url} )
+            data_attrs.update({'manifest-url': product.manifest_url})
         c = dict(product=product, label=label,
                  data_attrs=data_attrs, classes=' '.join(classes))
         t = env.get_template('mkt/webapp_button.html')
@@ -32,7 +32,7 @@ def market_button(context, product):
 
 
 def price_label(product):
-    if product.is_premium:
+    if product.is_premium() and product.premium:
         return product.premium.get_price_locale()
     return _('FREE')
 
