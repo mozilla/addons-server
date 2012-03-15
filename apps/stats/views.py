@@ -228,8 +228,11 @@ def flatten_applications(series):
         if 'data' in row:
             new = {}
             for app, versions in row['data'].items():
+                app = amo.APP_GUIDS.get(app)
+                if not app:
+                    continue
                 # unicode() to decode the gettext proxy.
-                appname = unicode(amo.APP_GUIDS[app].pretty)
+                appname = unicode(app.pretty)
                 for ver, count in versions.items():
                     key = ' '.join([appname, ver])
                     new[key] = count

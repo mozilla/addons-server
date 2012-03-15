@@ -1034,8 +1034,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                                          'name'),
                                     key=lambda x: x.application_id)
         app_cats = []
-        for app, cats in categories:
-            app_cats.append((amo.APP_IDS[app] if app else None, list(cats)))
+        for app_id, cats in categories:
+            app = amo.APP_IDS.get(app_id)
+            if app_id and not app:
+                # Skip retired applications like Sunbird.
+                continue
+            app_cats.append((app, list(cats)))
         return app_cats
 
     def remove_locale(self, locale):

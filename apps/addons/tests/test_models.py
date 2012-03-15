@@ -863,6 +863,23 @@ class TestAddonModels(amo.tests.TestCase):
         app_cats += [(amo.THUNDERBIRD, [c])]
         eq_(addon().app_categories, app_cats)
 
+    def test_app_categories_sunbird(self):
+        get_addon = lambda: Addon.objects.get(pk=3615)
+        addon = get_addon()
+
+        # This add-on is already associated with three Firefox categories.
+        cats = sorted(addon.categories.all(), key=lambda x: x.name)
+        eq_(addon.app_categories, [(amo.FIREFOX, cats)])
+
+        # Associate this add-on with a Sunbird category.
+        a = Application.objects.create(id=amo.SUNBIRD.id)
+        c2 = Category.objects.create(application=a, type=amo.ADDON_EXTENSION,
+                                     name='Sunny D')
+        AddonCategory.objects.create(addon=addon, category=c2)
+
+        # Sunbird category should be excluded.
+        eq_(get_addon().app_categories, [(amo.FIREFOX, cats)])
+
     def test_review_replies(self):
         """
         Make sure that developer replies are not returned as if they were
