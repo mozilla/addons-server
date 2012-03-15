@@ -28,8 +28,12 @@
 <header>
   <div class="criteria island">
     <ul>
-      <li>Controls</li>
-      <li><a id="chart-zoomout" href="#">{{ _('zoom out') }}</a></li>
+      <li>{{ _('Controls:') }}</li>
+      <li>
+        <a id="chart-zoomout" class="inactive" href="#">
+             {{ _('reset zoom') }}
+        </a>
+      </li>
     </ul>
   </div>
   <div class="criteria group island">

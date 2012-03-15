@@ -1,11 +1,20 @@
 (function () {
     // "use strict";
     var $win = $(window),
-        $chart = $('#head-chart');
+        $chart = $('#head-chart'),
+        $btnZoom = $('#chart-zoomout');
         baseConfig = {
             chart: {
-              renderTo: 'head-chart',
-              zoomType: 'x'
+                renderTo: 'head-chart',
+                zoomType: 'x',
+                events: {
+                    selection: function() {
+                        $btnZoom.removeClass('inactive')
+                                .click(_pd(function(e) {
+                                    $(this).trigger('zoomout');
+                                }));
+                    }
+                }
             },
             credits: { enabled: false },
             title: {
@@ -374,6 +383,7 @@
 
         $win.bind('zoomout', function() {
             chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
+            $btnZoom.addClass('inactive').click(_pd(function(e) {}));
         });
 
         $chart.removeClass('loading');

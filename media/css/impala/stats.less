@@ -90,7 +90,14 @@ table tbody tr {
         }
         &.selected a {
             font-weight: bold;
-            color:@orange;
+            color: @orange;
+        }
+        a.inactive {
+            color: @light-gray;
+            cursor: default;
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }
