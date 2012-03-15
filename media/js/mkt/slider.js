@@ -38,7 +38,6 @@ function slider(el) {
         lastMove = oe.timeStamp;
     });
     $el.bind('touchend', function(e) {
-        // dbg("maxScroll: " + maxScroll);
         var oe = e.originalEvent;
         var eX = oe.changedTouches[0].pageX;
         newX = currentX + (eX - startX);
@@ -67,7 +66,6 @@ function slider(el) {
     $(window).bind('saferesize', function() {
         sliderWidth = $el.outerWidth();
         maxScroll = sliderWidth - contentWidth;
-        document.title = (new Date()).getTime();
     });
 }
 
