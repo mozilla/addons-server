@@ -54,6 +54,11 @@
       </footer>
     {% endblock %}
 
+    <div class="overlay">
+      <section>
+      </section>
+    </div>
+
     {# js #}
     {% block site_js %}
       {% if settings.APP_PREVIEW %}
@@ -66,15 +71,10 @@
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       <script>
         (function() {
-          var it = false;
-          function resizeHandler() {
-            clearTimeout(it);
-            it = setTimeout(trigger, 200);
-          }
           function trigger() {
             $(window).trigger('saferesize');
           }
-          window.addEventListener('resize', resizeHandler, false);
+          window.addEventListener('resize', _.debounce(trigger, 200), false);
         })();
       </script>
     {% endblock %}

@@ -70,6 +70,7 @@ CSS = {
         'css/mkt/site.less',
         'css/mkt/detail.less',
         'css/mkt/slider.less',
+        'css/mkt/overlay.less',
     ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',
@@ -139,7 +140,9 @@ JS = {
     ),
     'mkt': (
         'js/lib/jquery-1.7.1.js',
+        'js/lib/underscore.js',
         'js/mkt/slider.js',
+        'js/mkt/install.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',

@@ -1,7 +1,38 @@
 from jingo import register, env
+from tower import ugettext as _
+
 import jinja2
 
 from amo.helpers import url
+
+
+@register.function
+def market_button(product):
+    if product.is_webapp():
+        classes = ['button']
+        label = price_label(product)
+        if (product.is_premium):
+            classes.append('premium')
+            data_attrs = {
+                # 'purchase': product.get_detail_url('purchase') + '?',
+                # 'start-purchase': product.get_detail_url('pruchase.start'),
+                'cost': product.premium.get_price(),
+            }
+        if ((product.is_premium() and product.has_purchased(amo_user)) or
+            (not product.is_premium())):
+            classes.append('install')
+            label = _('Install App')
+            data_attrs.update( {'manifest-url': product.manifest_url} )
+        c = dict(product=product, label=label,
+                 data_attrs=data_attrs, classes=' '.join(classes))
+        t = env.get_template('mkt/webapp_button.html')
+    return jinja2.Markup(t.render(c))
+
+
+def price_label(product):
+    if product.is_premium:
+        return product.premium.get_price_locale()
+    return _('FREE')
 
 
 @register.function
