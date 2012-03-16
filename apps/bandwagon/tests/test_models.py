@@ -166,12 +166,20 @@ class TestCollections(amo.tests.TestCase):
         fake_request.groups = ()
         fake_request.user.is_authenticated.return_value = True
 
+        # Owner.
         fake_request.amo_user = self.user
         eq_(c.can_view_stats(fake_request), True)
 
+        # Bad user.
         fake_request.amo_user = UserProfile.objects.create(
                                     username='scrub', email='ez@dee')
         eq_(c.can_view_stats(fake_request), False)
+
+        # Developer.
+        user = UserProfile.objects.get(username='regularuser')
+        CollectionUser.objects.create(collection=c, user=user)
+        fake_request.amo_user = user
+        eq_(c.can_view_stats(fake_request), True)
 
 
 class TestRecommendations(amo.tests.TestCase):

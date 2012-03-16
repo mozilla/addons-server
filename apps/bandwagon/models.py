@@ -335,9 +335,10 @@ class Collection(CollectionBase, amo.models.ModelBase):
 
     def can_view_stats(self, request):
         from access import acl
-        if (request and request.amo_user):
-            return (request.amo_user.id == self.author_id or
-                    acl.action_allowed(request, 'CollectionStats', 'View'))
+        if request and request.amo_user:
+            return (self.publishable_by(request.amo_user) or
+                    acl.action_allowed(request, 'CollectionStats', 'View') or
+                    acl.action_allowed(request, 'Admin', 'EditAnyCollection'))
         return False
 
     @caching.cached_method
