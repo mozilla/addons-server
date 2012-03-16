@@ -9,35 +9,28 @@ from amo.tests import formset
 from addons.models import Addon, AddonUser
 from mkt.developers.models import ActivityLog
 from users.models import UserProfile
-from versions.models import License, Version
 
 
 class TestOwnership(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.version = self.addon.current_version
-        self.url = self.addon.get_dev_url('owner')
-        assert self.client.login(username='del@icio.us', password='password')
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url('owner')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        # Users are required to have read the dev agreement to become owners.
+        UserProfile.objects.filter(id__in=[31337, 999]).update(
+            read_dev_agreement=True)
 
     def formset(self, *args, **kw):
-        defaults = {'builtin': License.OTHER, 'text': 'filler'}
-        defaults.update(kw)
-        return formset(*args, **defaults)
+        return formset(*args, **kw)
 
-    def get_version(self):
-        return Version.objects.no_cache().get(id=self.version.id)
-
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=self.addon.id)
+    def get_webapp(self):
+        return Addon.objects.no_cache().get(id=337141)
 
 
 class TestEditAuthor(TestOwnership):
-
-    def test_addons_context(self):
-        r = self.client.get(self.url)
-        eq_(r.context['webapp'], False)
 
     def test_reorder_authors(self):
         """
@@ -64,9 +57,9 @@ class TestEditAuthor(TestOwnership):
         eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
-        q = (AddonUser.objects.no_cache().filter(addon=3615)
+        q = (AddonUser.objects.no_cache().filter(addon=self.webapp.id)
              .values_list('user', flat=True))
-        eq_(list(q.all()), [55021])
+        eq_(list(q.all()), [31337])
 
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
@@ -74,7 +67,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
         self.assertRedirects(r, self.url, 302)
-        eq_(list(q.all()), [55021, 999])
+        eq_(list(q.all()), [31337, 999])
 
     def test_success_edit_user(self):
         # Add an author b/c we can't edit anything about the current one.
@@ -83,7 +76,7 @@ class TestEditAuthor(TestOwnership):
                  role=amo.AUTHOR_ROLE_DEV, position=1)
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
-        eq_(AddonUser.objects.get(addon=3615, user=999).listed, True)
+        eq_(AddonUser.objects.get(addon=self.webapp.id, user=999).listed, True)
 
         # Edit the user we just added.
         user_form = self.client.get(self.url).context['user_form']
@@ -93,7 +86,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
         self.assertRedirects(r, self.url, 302)
-        eq_(AddonUser.objects.no_cache().get(addon=3615, user=999).listed,
+        eq_(AddonUser.objects.get(addon=self.webapp.id, user=999).listed,
             False)
 
     def test_add_user_twice(self):
@@ -118,7 +111,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(one.initial, two.initial, initial_count=2)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
-        eq_(999, AddonUser.objects.get(addon=3615).user_id)
+        eq_(AddonUser.objects.get(addon=self.webapp.id).user_id, 999)
 
     def test_switch_owner(self):
         # See if we can transfer ownership in one POST.
@@ -127,7 +120,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
-        eq_(999, AddonUser.objects.get(addon=3615).user_id)
+        eq_(AddonUser.objects.get(addon=self.webapp.id).user_id, 999)
         eq_(ActivityLog.objects.filter(
             action=amo.LOG.ADD_USER_WITH_ROLE.id).count(), 1)
         eq_(ActivityLog.objects.filter(
@@ -143,13 +136,13 @@ class TestEditAuthor(TestOwnership):
         self.client.login(username='regular@mozilla.com', password='password')
         self.client.post(self.url, data, follow=True)
 
-        # Try deleting the other AddonUser
+        # Try deleting the other AddonUser.
         one, two = self.client.get(self.url).context['user_form'].initial_forms
         one.initial['DELETE'] = True
         data = self.formset(one.initial, two.initial, initial_count=2)
         r = self.client.post(self.url, data, follow=True)
         eq_(r.status_code, 403)
-        eq_(AddonUser.objects.filter(addon=3615).count(), 2)
+        eq_(AddonUser.objects.filter(addon=self.webapp.id).count(), 2)
 
     def test_must_have_listed(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]

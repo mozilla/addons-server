@@ -185,13 +185,11 @@ def status(request, addon_id, addon, webapp=False):
 
 @dev_required(owner_for_post=True, webapp=True)
 def ownership(request, addon_id, addon, webapp=False):
-    fs, ctx = [], {}
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
     user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
-    fs.append(user_form)
 
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
+    if request.method == 'POST' and user_form.is_valid():
         # Authors.
         authors = user_form.save(commit=False)
         for author in authors:
@@ -219,7 +217,7 @@ def ownership(request, addon_id, addon, webapp=False):
 
         return redirect(addon.get_dev_url('owner'))
 
-    ctx.update(addon=addon, webapp=webapp, user_form=user_form)
+    ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
     return jingo.render(request, 'developers/addons/owner.html', ctx)
 
 
