@@ -538,13 +538,11 @@ class TestEditMedia(TestEdit):
         os.makedirs(os.path.dirname(self.preview.thumbnail_path))
         open(self.preview.thumbnail_path, 'w')
 
-        self.url = reverse('mkt.developers.ajax.image.status',
-                           args=[self.webapp.slug])
+        self.url = self.webapp.get_dev_url('ajax.image.status')
 
     def test_icon_status_no_choice(self):
         self.webapp.update(icon_type='')
-        url = reverse('mkt.developers.ajax.image.status',
-                      args=[self.webapp.slug])
+        url = self.webapp.get_dev_url('ajax.image.status')
         result = json.loads(self.client.get(url).content)
         assert result['icons']
 

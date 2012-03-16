@@ -294,14 +294,12 @@ class TestDetails(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def upload_preview(self, image_file=None):
-        url = reverse('mkt.developers.addons.upload_preview',
-                      args=[self.webapp.slug])
-        return self._upload_image(url, image_file=image_file)
+        return self._upload_image(self.webapp.get_dev_url('upload_preview'),
+                                  image_file=image_file)
 
     def upload_icon(self, image_file=None):
-        url = reverse('mkt.developers.addons.upload_icon',
-                      args=[self.webapp.slug])
-        return self._upload_image(url, image_file=image_file)
+        return self._upload_image(self.webapp.get_dev_url('upload_icon'),
+                                  image_file=image_file)
 
     def _upload_image(self, url, image_file=None):
         if not image_file:

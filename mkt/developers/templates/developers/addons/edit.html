@@ -30,7 +30,7 @@
     </div>
 
     <div class="edit-addon-section" id="edit-addon-media"
-         data-checkurl="{{ url('mkt.developers.ajax.image.status', addon.slug) }}">
+         data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
       {% include 'developers/addons/edit/media.html' %}
     </div>
 

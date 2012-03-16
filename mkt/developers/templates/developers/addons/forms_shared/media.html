@@ -80,7 +80,7 @@
             <div class="invisible-upload">
               <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
               <input type="file" id="id_icon_upload" name="icon_upload"
-                     data-upload-url="{{ url('mkt.developers.addons.upload_icon', addon.slug) }}">
+                     data-upload-url="{{ addon.get_dev_url('upload_icon') }}">
             </div>
             <div class="js-hidden">
               {{ form.icon_upload_hash }}
@@ -160,7 +160,7 @@
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
                 <input type="file" id="screenshot_upload" name="uploads" multiple
-                       data-upload-url="{{ url('mkt.developers.addons.upload_preview', addon.slug) }}">
+                       data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
               </div>
             {% endif %}
           {% else %}
@@ -176,7 +176,7 @@
   {% if editable and context == 'edit' %}
   <div class="edit-media-button listing-footer">
     <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ url('mkt.developers.addons.section', addon.slug, 'media') }}"
+      <a href="{{ addon.get_dev_url('section', ['media']) }}"
          class="addon-edit-cancel">{{ _('Cancel') }}</a>
     </div>
   {% elif context == 'submit' %}

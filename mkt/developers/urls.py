@@ -3,7 +3,6 @@ from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
-from addons.urls import ADDON_ID
 from amo.decorators import write
 from mkt.developers.decorators import use_apps
 from mkt.webapps.urls import APP_SLUG
@@ -68,63 +67,34 @@ app_detail_patterns = patterns('',
     url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
     url('^rmlocale$', views.remove_locale,
         name='mkt.developers.apps.remove-locale'),
-)
 
-# These will all start with /addon/<addon_id>/
-detail_patterns = patterns('',
-    # Redirect to the edit page from the base.
-    url('^$', lambda r, addon_id: redirect('mkt.developers.addons.edit',
-                                           addon_id, permanent=True)),
-    url('^edit$', views.edit, name='mkt.developers.addons.edit'),
-    url('^delete$', views.delete, name='mkt.developers.addons.delete'),
-    url('^disable$', views.disable, name='mkt.developers.addons.disable'),
-    url('^enable$', views.enable, name='mkt.developers.addons.enable'),
-    url('^cancel$', views.cancel, name='mkt.developers.addons.cancel'),
-    url('^ownership$', views.ownership, name='mkt.developers.addons.owner'),
-    url('^payments$', views.payments, name='mkt.developers.addons.payments'),
-    url('^payments/disable$', views.disable_payments,
-        name='mkt.developers.addons.payments.disable'),
-    url('^payments/permission/refund$', views.acquire_refund_permission,
-        name='mkt.developers.addons.acquire_refund_permission'),
-    url('^issue_refund$', views.issue_refund,
-        name='mkt.developers.addons.issue_refund'),
-    url('^refunds$', views.refunds, name='mkt.developers.addons.refunds'),
-    url('^profile$', views.profile, name='mkt.developers.addons.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='mkt.developers.addons.profile.remove'),
-    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
-        views.addons_section, name='mkt.developers.addons.section'),
-
-    url('^upload_preview$', views.upload_image, {'upload_type': 'preview'},
-        name='mkt.developers.addons.upload_preview'),
-    url('^upload_icon$', views.upload_image, {'upload_type': 'icon'},
-        name='mkt.developers.addons.upload_icon'),
-    url('^upload$', views.upload_for_addon,
-        name='mkt.developers.upload_for_addon'),
-    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
-        name='mkt.developers.upload_detail_for_addon'),
-
+    # Not apps-specific (yet).
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='mkt.developers.file_validation'),
     url('^file/(?P<file_id>[^/]+)/validation.json$',
         views.json_file_validation,
         name='mkt.developers.json_file_validation'),
-
-    url('^rmlocale$', views.remove_locale,
-        name='mkt.developers.addons.remove-locale'),
 )
 
-# These will all start with /ajax/addon/<addon_id>/
+# These will all start with /ajax/app/<app_slug>/
 ajax_patterns = patterns('',
     url('^image/status$', views.image_status,
-        name='mkt.developers.ajax.image.status'),
+        name='mkt.developers.apps.ajax.image.status'),
+)
+
+# These will all start with /addon/<addon_id>/
+detail_patterns = patterns('',
+    url('^upload$', views.upload_for_addon,
+        name='mkt.developers.upload_for_addon'),
+    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
+        name='mkt.developers.upload_detail_for_addon'),
 )
 
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='mkt.developers.index'),
 
-    # Redirect people who have /addons/ instead of /addon/.
-    ('^addons/\d+/.*',
+    # Redirect people who have /apps/ instead of /app/.
+    ('^apps/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Standalone validator:
@@ -132,9 +102,6 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.validate_addon'),
 
     # Redirect to /addons/ at the base.
-    url('^addon$',
-        lambda r: redirect('mkt.developers.addons', permanent=True)),
-    url('^addons$', views.dashboard, name='mkt.developers.addons'),
     url('^submissions$', use_apps(views.dashboard),
         name='mkt.developers.apps'),
     url('^upload$', views.upload, name='mkt.developers.upload'),
@@ -148,11 +115,9 @@ urlpatterns = decorate(write, patterns('',
     url('^upload-manifest$', views.upload_manifest,
         name='mkt.developers.upload_manifest'),
 
-    # URLs for a single add-on.
-    url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    # URLs for a single app.
     url('^app/%s/' % APP_SLUG, include(app_detail_patterns)),
-
-    url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
+    url('^ajax/app/%s/' % APP_SLUG, include(ajax_patterns)),
 
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',

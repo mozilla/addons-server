@@ -1,8 +1,7 @@
 {% from "developers/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
 <form method="post" action="{{ url('mkt.developers.apps.section', valid_slug, 'basic', 'edit') }}"
       id="addon-edit-basic"
-      data-baseurl="{{ url('mkt.developers.%s.edit' % ('apps' if addon.is_webapp() else 'addons'),
-                           valid_slug) }}">
+      data-baseurl="{{ url('mkt.developers.apps.edit', valid_slug) }}">
   <h2>
     {{ _('Basic Information') }}
     {% if not editable %}
@@ -197,7 +196,7 @@
     {% if editable %}
     <div class="listing-footer">
       <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ url('mkt.developers.addons.section', addon.slug, 'basic') }}"
+      <a href="{{ url('mkt.developers.apps.section', addon.slug, 'basic') }}"
          class="addon-edit-cancel">{{ _('Cancel') }}</a>
     </div>
     {% endif %}
