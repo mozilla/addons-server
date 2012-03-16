@@ -551,7 +551,7 @@ def collection_series(request, username, slug, format, group, start, end,
     group = 'date' if group == 'day' else group
     series = []
     c = get_collection(request, username, slug)
-    full_series = _collection_query(request, c.uuid, start, end)
+    full_series = _collection_query(request, c, start, end)
     for row in full_series:
         if field in row['data']:
             series.append({
@@ -567,14 +567,13 @@ def collection_stats(request, username, slug, group, start, end, format):
     return collection(request, c.uuid, format, start, end)
 
 
-def _collection_query(request, uuid, start=None, end=None):
+def _collection_query(request, collection, start=None, end=None):
     if not start and not end:
         start = date.today() - timedelta(days=365)
         end = date.today()
 
-    collection = get_object_or_404(Collection, uuid=uuid)
     if not collection.can_view_stats(request):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     qs = (CollectionCount.search().order_by('-date')
                          .filter(id=int(collection.pk),
@@ -589,9 +588,10 @@ def _collection_query(request, uuid, start=None, end=None):
 
 
 def collection(request, uuid, format, start=None, end=None):
+    collection = get_object_or_404(Collection, uuid=uuid)
+    series = _collection_query(request, collection, start, end)
     if format == 'csv':
-        series, fields = csv_fields(_collection_query(request, uuid, start,
-                                                      end))
+        series, fields = csv_fields(series)
         return render_csv(request, collection, series,
                           ['date', 'count'] + list(fields))
     return render_json(request, collection, series)
