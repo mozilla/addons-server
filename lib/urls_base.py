@@ -126,6 +126,9 @@ urlpatterns = patterns('',
     ('^pages/about$',
      lambda r: redirect('pages.about', permanent=True)),
 
+    ('^pages/credits$',
+     lambda r: redirect('pages.credits', permanent=True)),
+
     ('^pages/faq$',
      lambda r: redirect('pages.faq', permanent=True)),
 

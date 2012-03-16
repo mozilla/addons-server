@@ -229,8 +229,8 @@ MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'apps', 'blocklist', 'developers', 'editors',
-                     'img', 'jsi18n', 'localizers', 'media',
+SUPPORTED_NONAPPS = ('admin', 'apps', 'blocklist', 'credits', 'developers',
+                     'editors', 'img', 'jsi18n', 'localizers', 'media',
                      'marketplace-experiments', 'payments', 'robots.txt',
                      'statistics', 'services', 'sunbird')
 DEFAULT_APP = 'firefox'
