@@ -4,12 +4,13 @@
     display: block;
     position: relative;
     overflow: hidden;
-    padding: 16px 0;
+    padding: 0;
     max-width: 100%;
-
+    background: #ccc;
+    .box-shadow(0 1px 2px #000 inset);
     ul {
+        .border-box();
         white-space: nowrap;
-        margin: 0;
         padding: 0;
         text-align: center;
         -webkit-transition: .5s -webkit-transform ease-out;
@@ -26,12 +27,13 @@
         padding: 0;
         a {
             display: block;
+            .border-radius(3px);
+            .box-shadow(0 1px 2px #000);
             width: 200px;
             height: 150px;
             background: white;
-            border: 1px solid black;
             padding: 8px;
-            margin-right: 16px;
+            margin: 0 16px;
             img {
                 display: block;
                 margin: auto;

@@ -3,6 +3,24 @@
 body {
     color: @text;
     overflow-x: hidden;
+    background: #f0f0f0;
+}
+
+#site-header {
+    color: #fff;
+    padding: 4px;
+    background: #666;
+    margin-bottom: 32px;
+    .box-shadow(0 1px 2px #000);
+    h1 {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    section {
+        .width(10);
+        margin: 0 auto;
+    }
 }
 
 #site-header, #page {
@@ -28,6 +46,9 @@ body {
             .width(7);
         }
     }
+    #site-header section {
+        .width(7);
+    }
 }
 
 // 4 columns (landscape smartphone)
@@ -37,11 +58,20 @@ body {
             .width(4);
         }
     }
+    #site-header section {
+        .width(4);
+    }
 }
 
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
     #site-header, #page {
+        section {
+            .width(3);
+        }
+    }
+    #site-header {
+        margin-bottom: 20px;
         section {
             .width(3);
         }
