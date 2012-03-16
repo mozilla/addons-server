@@ -31,6 +31,7 @@ INSTALLED_APPS.remove('api')
 INSTALLED_APPS.remove('compat')
 INSTALLED_APPS.remove('discovery')
 INSTALLED_APPS.remove('devhub')
+INSTALLED_APPS.remove('search')
 INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
