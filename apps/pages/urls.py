@@ -5,10 +5,13 @@ from jingo.views import direct_to_template
 
 from amo.urlresolvers import reverse
 
+from . import views
+
 
 urlpatterns = patterns('',
     url('^about$', direct_to_template, {'template': 'pages/about.lhtml'},
         name='pages.about'),
+    url('^credits$', views.credits, name='pages.credits'),
     url('^faq$', direct_to_template, {'template': 'pages/faq.html'},
         name='pages.faq'),
     url('^(?:pages/)?compatibility_firstrun$', direct_to_template,
