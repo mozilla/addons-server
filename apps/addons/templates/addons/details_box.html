@@ -108,7 +108,7 @@
                     <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong></a>
                 </td>
               </tr>
-              {% if show_actions %}
+              {% if not show_actions %}
                 {# Show privacy policy / eula if the button isn't shown #}
                 {# (Basically, on the editor review page) #}
                 {% if addon.privacy_policy %}

@@ -28,10 +28,7 @@
 
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
 
-{# Hide add-on specific details for apps. #}
-{% with show_actions=not addon.is_webapp() %}
-  {% include "addons/details_box.html" %}
-{% endwith %}
+{% include 'addons/details_box.html' %}
 
 <div id="review-files-header">
   <h3 id="history">
