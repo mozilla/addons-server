@@ -1,14 +1,8 @@
-from django.shortcuts import get_object_or_404
-
 import jingo
 
 from addons.models import Addon
-from addons.decorators import (addon_view_factory, can_be_purchased,
-                               has_purchased, has_not_purchased)
+from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
-from reviews.forms import ReviewForm
-from reviews.models import Review
-from sharing.views import share as share_redirect
 from mkt.webapps.models import Installed
 
 
@@ -23,7 +17,7 @@ def detail(request, addon):
         'product': addon,
     }
 
-    return jingo.render(request, 'mkt/detail.html', ctx)
+    return jingo.render(request, 'detail/app.html', ctx)
 
 
 @json_view
@@ -34,6 +28,6 @@ def detail(request, addon):
 def record(request, addon):
     if addon.is_webapp():
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
-                                                    user=request.amo_user)
+            user=request.amo_user)
         return {'addon': addon.pk,
                 'receipt': installed.receipt if installed else ''}

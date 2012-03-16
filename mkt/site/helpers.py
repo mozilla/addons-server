@@ -27,7 +27,7 @@ def market_button(context, product):
             data_attrs.update({'manifest-url': product.manifest_url})
         c = dict(product=product, label=label,
                  data_attrs=data_attrs, classes=' '.join(classes))
-        t = env.get_template('mkt/webapp_button.html')
+        t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))
 
 
