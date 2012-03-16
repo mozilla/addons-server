@@ -10,7 +10,6 @@ from django.utils.http import urlencode
 
 import mock
 from nose.plugins.attrib import attr
-from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -24,7 +23,7 @@ from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from addons.models import Addon, AddonUpsell, AddonUser, Charity
+from addons.models import Addon, AddonUpsell, AddonUser
 from browse.tests import test_listing_sort, test_default_sort
 from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
@@ -39,7 +38,7 @@ from mkt.webapps.models import Webapp
 
 
 class AppHubTest(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.url = reverse('mkt.developers.apps')
@@ -252,54 +251,19 @@ class TestDevRequired(AppHubTest):
 
 
 class TestEditPayments(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.addon = self.get_addon()
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
-        self.foundation = Charity.objects.create(
-            id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
         self.url = self.addon.get_dev_url('payments')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
         paypal.check_paypal_id = self.paypal_mock
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
-
-    def post(self, *args, **kw):
-        d = dict(*args, **kw)
-        eq_(self.client.post(self.url, d).status_code, 302)
-
-    def check(self, **kw):
-        addon = self.get_addon()
-        for k, v in kw.items():
-            eq_(getattr(addon, k), v)
-        assert addon.wants_contributions
-        assert addon.takes_contributions
-
-    def test_dev_paypal_id_length(self):
-        raise SkipTest
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(int(doc('#id_paypal_id').attr('size')), 50)
-
-    def test_no_future(self):
-        raise SkipTest
-        self.get_addon().update(the_future=None)
-        res = self.client.get(self.url)
-        err = pq(res.content)('p.error').text()
-        eq_('completed developer profile' in err, True)
-
-    def test_with_upsell_no_contributions(self):
-        raise SkipTest
-        AddonUpsell.objects.create(free=self.addon, premium=self.addon)
-        res = self.client.get(self.url)
-        error = pq(res.content)('p.error').text()
-        eq_('premium add-on enrolled' in error, True)
-        eq_(' %s' % self.addon.name in error, True)
+        return Addon.objects.get(id=337141)
 
     @mock.patch('addons.models.Addon.upsell')
     def test_upsell(self, upsell):
@@ -307,11 +271,11 @@ class TestEditPayments(amo.tests.TestCase):
         d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
                  annoying=amo.CONTRIB_AFTER, premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.url, d)
-        eq_('premium add-on' in res.content, True)
+        eq_('premium app' in res.content, True)
 
 
 class TestPaymentsProfile(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=337141)
@@ -349,12 +313,15 @@ class TestPaymentsProfile(amo.tests.TestCase):
 
 
 class MarketplaceMixin(object):
+
     def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
+        self.addon = Addon.objects.get(id=337141)
         self.addon.update(status=amo.STATUS_NOMINATED,
-                          highest_status=amo.STATUS_NOMINATED)
+            highest_status=amo.STATUS_NOMINATED)
+
         self.url = self.addon.get_dev_url('payments')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
 
         self.marketplace = (waffle.models.Switch.objects
                                   .get_or_create(name='marketplace')[0])
@@ -368,7 +335,7 @@ class MarketplaceMixin(object):
     def setup_premium(self):
         self.price = Price.objects.create(price='0.99')
         self.price_two = Price.objects.create(price='1.99')
-        self.other_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+        self.other_addon = Addon.objects.create(type=amo.ADDON_WEBAPP,
                                                 premium_type=amo.ADDON_FREE)
         self.other_addon.update(status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=self.other_addon,
@@ -384,10 +351,10 @@ class MarketplaceMixin(object):
 @mock.patch('mkt.developers.forms.PremiumForm.clean',
              new=lambda x: x.cleaned_data)
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
-    def get_data(self):
-        return {
+    def get_data(self, **kw):
+        data = {
             'price': self.price.pk,
             'free': self.other_addon.pk,
             'do_upsell': 1,
@@ -395,6 +362,8 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
             'premium_type': amo.ADDON_PREMIUM,
             'support_email': 'c@c.com',
         }
+        data.update(kw)
+        return data
 
     def test_initial(self):
         self.setup_premium()
@@ -427,7 +396,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
     def test_set_upsell_wrong_type(self):
         self.setup_premium()
-        self.other_addon.update(type=amo.ADDON_WEBAPP)
+        self.other_addon.update(type=amo.ADDON_EXTENSION)
         res = self.client.post(self.url, data=self.get_data())
         eq_(res.status_code, 200)
         eq_(len(res.context['form'].errors['free']), 1)
@@ -435,9 +404,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
     def test_set_upsell_required(self):
         self.setup_premium()
-        data = self.get_data()
-        data['text'] = ''
-        res = self.client.post(self.url, data=data)
+        res = self.client.post(self.url, data=self.get_data(text=''))
         eq_(res.status_code, 200)
 
     def test_set_upsell_not_mine(self):
@@ -451,9 +418,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         upsell = AddonUpsell.objects.create(free=self.other_addon,
                                             premium=self.addon)
         eq_(self.addon._upsell_to.all()[0], upsell)
-        data = self.get_data().copy()
-        data['do_upsell'] = 0
-        self.client.post(self.url, data=data)
+        self.client.post(self.url, data=self.get_data(do_upsell=0))
         eq_(len(self.addon._upsell_to.all()), 0)
 
     def test_change_upsell(self):
@@ -461,9 +426,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         AddonUpsell.objects.create(free=self.other_addon,
                                    premium=self.addon, text='foo')
         eq_(self.addon._upsell_to.all()[0].text, 'foo')
-        data = self.get_data().copy()
-        data['text'] = 'bar'
-        self.client.post(self.url, data=data)
+        self.client.post(self.url, data=self.get_data(text='bar'))
         eq_(self.addon._upsell_to.all()[0].text, 'bar')
 
     def test_replace_upsell(self):
@@ -472,15 +435,13 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         AddonUpsell.objects.create(free=self.other_addon,
                                    premium=self.addon, text='foo')
         # And this will become our new upsell, replacing the one above.
-        new = Addon.objects.create(type=amo.ADDON_EXTENSION,
+        new = Addon.objects.create(type=amo.ADDON_WEBAPP,
                                    premium_type=amo.ADDON_FREE)
         new.update(status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
 
         eq_(self.addon._upsell_to.all()[0].text, 'foo')
-        data = self.get_data().copy()
-        data.update(free=new.id, text='bar')
-        self.client.post(self.url, data=data)
+        self.client.post(self.url, self.get_data(free=new.id, text='bar'))
         upsell = self.addon._upsell_to.all()
         eq_(len(upsell), 1)
         eq_(upsell[0].free, new)
@@ -505,17 +466,15 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
 
 class TestIssueRefund(amo.tests.TestCase):
-    fixtures = ('base/users', 'base/addon_3615')
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
-
-        Addon.objects.get(id=3615).update(type=amo.ADDON_WEBAPP,
-                                          app_slug='ballin')
-        self.addon = Addon.objects.no_cache().get(id=3615)
+        self.addon = Addon.objects.no_cache().get(id=337141)
         self.transaction_id = u'fake-txn-id'
         self.paykey = u'fake-paykey'
-        self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
         self.user = UserProfile.objects.get(username='clouserw')
         self.url = self.addon.get_dev_url('issue_refund')
 
@@ -634,16 +593,15 @@ class TestIssueRefund(amo.tests.TestCase):
 
 
 class TestRefunds(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
-        self.addon = Addon.objects.get(id=3615)
-        self.addon.premium_type = amo.ADDON_PREMIUM
-        self.addon.save()
-        self.user = UserProfile.objects.get(email='del@icio.us')
-        self.url = self.addon.get_dev_url('refunds')
-        self.client.login(username='del@icio.us', password='password')
+        self.webapp = Addon.objects.get(id=337141)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.user = UserProfile.objects.get(username='31337')
+        self.client.login(username=self.user.email, password='password')
+        self.url = self.webapp.get_dev_url('refunds')
         self.queues = {
             'pending': amo.REFUND_PENDING,
             'approved': amo.REFUND_APPROVED,
@@ -655,7 +613,7 @@ class TestRefunds(amo.tests.TestCase):
         self.expected = {}
         for status in amo.REFUND_STATUSES.keys():
             for x in xrange(status + 1):
-                c = Contribution.objects.create(addon=self.addon,
+                c = Contribution.objects.create(addon=self.webapp,
                     user=self.user, type=amo.CONTRIB_PURCHASE)
                 r = Refund.objects.create(contribution=c, status=status)
                 self.expected.setdefault(status, []).append(r)
@@ -679,8 +637,7 @@ class TestRefunds(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_not_premium(self):
-        self.addon.premium_type = amo.ADDON_FREE
-        self.addon.save()
+        self.webapp.update(premium_type=amo.ADDON_FREE)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#enable-payments').length, 1)
@@ -775,28 +732,29 @@ class TestDelete(amo.tests.TestCase):
 
 
 class TestProfileBase(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.version = self.addon.current_version
-        self.url = self.addon.get_dev_url('profile')
-        assert self.client.login(username='del@icio.us', password='password')
+        self.webapp = self.get_webapp()
+        self.version = self.webapp.current_version
+        self.url = self.webapp.get_dev_url('profile')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
 
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=self.addon.id)
+    def get_webapp(self):
+        return Addon.objects.get(id=337141)
 
     def enable_addon_contributions(self):
-        self.addon.wants_contributions = True
-        self.addon.paypal_id = 'somebody'
-        self.addon.save()
+        self.webapp.wants_contributions = True
+        self.webapp.paypal_id = 'somebody'
+        self.webapp.save()
 
     def post(self, *args, **kw):
         d = dict(*args, **kw)
         eq_(self.client.post(self.url, d).status_code, 302)
 
     def check(self, **kw):
-        addon = self.get_addon()
+        addon = self.get_webapp()
         for k, v in kw.items():
             if k in ('the_reason', 'the_future'):
                 eq_(getattr(getattr(addon, k), 'localized_string'), unicode(v))
@@ -808,35 +766,40 @@ class TestProfileStatusBar(TestProfileBase):
 
     def setUp(self):
         super(TestProfileStatusBar, self).setUp()
-        self.remove_url = self.addon.get_dev_url('profile.remove')
+        self.remove_url = self.webapp.get_dev_url('profile.remove')
+
+    def test_nav_link(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
+            self.url)
 
     def test_no_status_bar(self):
-        self.addon.the_reason = self.addon.the_future = None
-        self.addon.save()
+        self.webapp.the_reason = self.webapp.the_future = None
+        self.webapp.save()
         assert not pq(self.client.get(self.url).content)('#status-bar')
 
     def test_status_bar_no_contrib(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.wants_contributions = False
-        self.addon.save()
+        self.webapp.the_reason = self.webapp.the_future = '...'
+        self.webapp.wants_contributions = False
+        self.webapp.save()
         doc = pq(self.client.get(self.url).content)
         assert doc('#status-bar')
         eq_(doc('#status-bar button').text(), 'Remove Profile')
 
     def test_status_bar_with_contrib(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.wants_contributions = True
-        self.addon.paypal_id = 'xxx'
-        self.addon.save()
+        self.webapp.the_reason = self.webapp.the_future = '...'
+        self.webapp.wants_contributions = True
+        self.webapp.paypal_id = 'xxx'
+        self.webapp.save()
         doc = pq(self.client.get(self.url).content)
         assert doc('#status-bar')
         eq_(doc('#status-bar button').text(), 'Remove Profile')
 
     def test_remove_profile(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
+        self.webapp.the_reason = self.webapp.the_future = '...'
+        self.webapp.save()
         self.client.post(self.remove_url)
-        addon = self.get_addon()
+        addon = self.get_webapp()
         eq_(addon.the_reason, None)
         eq_(addon.the_future, None)
         eq_(addon.takes_contributions, False)
@@ -844,20 +807,20 @@ class TestProfileStatusBar(TestProfileBase):
 
     def test_remove_profile_without_content(self):
         # See bug 624852
-        self.addon.the_reason = self.addon.the_future = None
-        self.addon.save()
+        self.webapp.the_reason = self.webapp.the_future = None
+        self.webapp.save()
         self.client.post(self.remove_url)
-        addon = self.get_addon()
+        addon = self.get_webapp()
         eq_(addon.the_reason, None)
         eq_(addon.the_future, None)
 
     def test_remove_both(self):
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.wants_contributions = True
-        self.addon.paypal_id = 'xxx'
-        self.addon.save()
+        self.webapp.the_reason = self.webapp.the_future = '...'
+        self.webapp.wants_contributions = True
+        self.webapp.paypal_id = 'xxx'
+        self.webapp.save()
         self.client.post(self.remove_url)
-        addon = self.get_addon()
+        addon = self.get_webapp()
         eq_(addon.the_reason, None)
         eq_(addon.the_future, None)
         eq_(addon.takes_contributions, False)
@@ -869,7 +832,6 @@ class TestProfile(TestProfileBase):
     def test_without_contributions_labels(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(r.context['webapp'], False)
         doc = pq(r.content)
         eq_(doc('label[for=the_reason] .optional').length, 1)
         eq_(doc('label[for=the_future] .optional').length, 1)
@@ -922,63 +884,40 @@ class TestProfile(TestProfileBase):
         self.check(the_reason='to be hot', the_future='cold stuff')
 
 
-class TestAppProfile(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+class TestResumeStep(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(id=337141)
-        self.url = self.webapp.get_dev_url('profile')
-
-    def test_nav_link(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
-            self.url)
-
-    def test_labels(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(r.context['webapp'], True)
-        doc = pq(r.content)
-        eq_(doc('label[for=the_reason] .optional').length, 1)
-        eq_(doc('label[for=the_future] .optional').length, 1)
-
-
-class TestResumeStep(amo.tests.TestCase):
-
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+        self.webapp = self.get_addon()
+        self.url = reverse('submit.app.resume', args=[self.webapp.app_slug])
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(pk=3615)
-
-    def setUp(self):
-        assert self.client.login(username='del@icio.us', password='password')
-        self.get_addon().update(type=amo.ADDON_WEBAPP, app_slug='a3615')
-        self.addon = self.get_addon()
-        self.url = reverse('submit.app.resume', args=['a3615'])
+        return Addon.objects.no_cache().get(pk=337141)
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
         self.assertRedirects(r, self.get_addon().get_dev_url('edit'), 302)
 
     def test_step_redirects(self):
-        AppSubmissionChecklist.objects.create(addon=self.get_addon(),
+        AppSubmissionChecklist.objects.create(addon=self.webapp,
                                               terms=True, manifest=True)
         r = self.client.get(self.url, follow=True)
         self.assertRedirects(r, reverse('submit.app.details',
-                                        args=['a3615']))
+                                        args=[self.webapp.app_slug]))
 
     def test_redirect_from_other_pages(self):
-        AppSubmissionChecklist.objects.create(addon=self.get_addon(),
+        AppSubmissionChecklist.objects.create(addon=self.webapp,
                                               terms=True, manifest=True,
                                               details=True)
-        r = self.client.get(reverse('mkt.developers.addons.edit',
-                                    args=['a3615']), follow=True)
+        r = self.client.get(self.webapp.get_dev_url('edit'), follow=True)
         self.assertRedirects(r, reverse('submit.app.payments',
-                                        args=['a3615']))
+                                        args=[self.webapp.app_slug]))
 
     def test_resume_without_checklist(self):
-        r = self.client.get(reverse('submit.app.details', args=['a3615']))
+        r = self.client.get(reverse('submit.app.details',
+                                    args=[self.webapp.app_slug]))
         eq_(r.status_code, 200)
 
 
@@ -1115,8 +1054,6 @@ class TestUploadDetail(BaseUploadTest):
     @mock.patch('mkt.developers.tasks.run_validator')
     def test_detail_for_free_extension_webapp(self, validator_mock,
                                               urlopen_mock):
-        waffle.models.Flag.objects.create(name='form-errors-in-validation',
-                                          everyone=True)
         rs = mock.Mock()
         rs.read.return_value = self.file_content('mozball.owa')
         rs.headers = {'Content-Type': 'application/x-web-app-manifest+json'}
@@ -1329,30 +1266,29 @@ class TestDeleteApp(amo.tests.TestCase):
 
 
 class TestRemoveLocale(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        Addon.objects.get(id=3615).update(type=amo.ADDON_WEBAPP,
-                                          app_slug='ballin')
-        self.addon = Addon.objects.no_cache().get(id=3615)
-        self.url = reverse('mkt.developers.apps.remove-locale',
-                           args=['ballin'])
-        assert self.client.login(username='del@icio.us', password='password')
+        self.webapp = Addon.objects.no_cache().get(id=337141)
+        self.url = self.webapp.get_dev_url('remove-locale')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
 
     def test_bad_request(self):
         r = self.client.post(self.url)
         eq_(r.status_code, 400)
 
     def test_success(self):
-        self.addon.name = {'en-US': 'woo', 'el': 'yeah'}
-        self.addon.save()
-        self.addon.remove_locale('el')
-        qs = (Translation.objects.filter(localized_string__isnull=False)
-              .values_list('locale', flat=True))
+        self.webapp.name = {'en-US': 'woo', 'el': 'yeah'}
+        self.webapp.save()
+        self.webapp.remove_locale('el')
         r = self.client.post(self.url, {'locale': 'el'})
         eq_(r.status_code, 200)
-        eq_(sorted(qs.filter(id=self.addon.name_id)), ['en-US'])
+        qs = list(Translation.objects.filter(localized_string__isnull=False)
+                  .values_list('locale', flat=True)
+                  .filter(id=self.webapp.name_id))
+        eq_(qs, ['en-US'])
 
     def test_delete_default_locale(self):
-        r = self.client.post(self.url, {'locale': self.addon.default_locale})
+        r = self.client.post(self.url, {'locale': self.webapp.default_locale})
         eq_(r.status_code, 400)

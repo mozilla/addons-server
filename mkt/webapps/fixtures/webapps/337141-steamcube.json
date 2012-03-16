@@ -90,7 +90,7 @@
         "fields": {
             "localized_string_clean": null,
             "created": "2011-10-18 16:28:24",
-            "locale": "en-us",
+            "locale": "en-US",
             "modified": "2011-10-18 16:28:57",
             "id": 2425897,
             "localized_string": "Something Something!"
@@ -114,7 +114,7 @@
         "fields": {
             "localized_string_clean": "",
             "created": "2011-10-18 16:28:57",
-            "locale": "en-us",
+            "locale": "en-US",
             "modified": "2011-10-18 16:28:57",
             "id": 2425899,
             "localized_string": ""
@@ -126,7 +126,7 @@
         "fields": {
             "localized_string_clean": "",
             "created": "2011-07-26 14:16:26",
-            "locale": "en-us",
+            "locale": "en-US",
             "modified": "2011-07-26 14:16:26",
             "id": 2326782,
             "localized_string": null
