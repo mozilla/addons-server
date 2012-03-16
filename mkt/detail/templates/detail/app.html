@@ -8,6 +8,14 @@
     <div class="vitals">
       <h2>{{ product.name }}</h2>
       <h3 class="authors">{{ users_list(product.listed_authors) }}</h3>
+      <p class="downloads">
+        {% trans cnt=product.weekly_downloads,
+                 num=product.weekly_downloads|numberfmt %}
+          {{ num }} weekly download
+        {% pluralize %}
+          {{ num }} weekly downloads
+        {% endtrans %}
+      </p>
       {% if product.device_types %}
         <ul class="compat-list">
           {% for device in product.device_types %}
@@ -26,12 +34,12 @@
     <p>{{ product.description }}</p>
   </section>
 
-  {% if product.all_previews|length > 0 %}
+  {% if product.all_previews|length %}
     <section class="previews slider full">
       <ul>
         {%- for preview in product.all_previews -%}
           <li>
-            <a class="screenshot thumbnail" rel="jquery-lightbox"
+            <a class="screenshot thumbnail"
                href="{{ preview.image_url }}" title="{{ preview.caption }}">
               <img src="{{ preview.thumbnail_url }}">
             </a>
