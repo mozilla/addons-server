@@ -17,7 +17,6 @@ import commonware.log
 import jingo
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
-import waffle
 from waffle.decorators import waffle_switch
 
 from applications.models import Application, AppVersion
@@ -48,7 +47,6 @@ from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
 from mkt.webapps.models import Webapp
-from zadmin.models import ValidationResult
 
 from . import forms, tasks
 
@@ -123,12 +121,9 @@ def edit(request, addon_id, addon, webapp=False):
        'valid_slug': addon.app_slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all(),
+       'device_type_form': addon_forms.DeviceTypeForm(request.POST or None,
+                                                      addon=addon),
     }
-
-    if webapp and waffle.switch_is_active('marketplace'):
-        data['device_type_form'] = addon_forms.DeviceTypeForm(
-            request.POST or None, addon=addon)
-
     return jingo.render(request, 'developers/addons/edit.html', data)
 
 
@@ -559,8 +554,7 @@ def upload(request, addon_slug=None, is_standalone=False):
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
     else:
         tasks.validator.delay(fu.pk)
-    if (waffle.flag_is_active(request, 'form-errors-in-validation')
-        and addon_slug):
+    if addon_slug:
         return redirect('mkt.developers.upload_detail_for_addon',
                         addon_slug, fu.pk)
     elif is_standalone:
@@ -662,45 +656,6 @@ def file_validation(request, addon_id, addon, file_id):
                              addon=addon))
 
 
-@dev_required(allow_editors=True)
-def bulk_compat_result(request, addon_id, addon, result_id):
-    qs = ValidationResult.objects.exclude(completed=None)
-    result = get_object_or_404(qs, pk=result_id)
-    job = result.validation_job
-    revalidate_url = reverse('mkt.developers.json_bulk_compat_result',
-                             args=[addon.slug, result.id])
-    return _compat_result(request, revalidate_url,
-                          job.application, job.target_version,
-                          for_addon=result.file.version.addon,
-                          validated_filename=result.file.filename,
-                          validated_ts=result.completed)
-
-
-def _compat_result(request, revalidate_url, target_app, target_version,
-                   validated_filename=None, validated_ts=None,
-                   for_addon=None):
-    app_trans = dict((g, unicode(a.pretty)) for g, a in amo.APP_GUIDS.items())
-    ff_versions = (AppVersion.objects.filter(application=amo.FIREFOX.id,
-                                             version_int__gte=4000000000000)
-                   .values_list('application', 'version')
-                   .order_by('version_int'))
-    tpl = 'https://developer.mozilla.org/en/Firefox_%s_for_developers'
-    change_links = dict()
-    for app, ver in ff_versions:
-        major = ver[0]  # 4.0b3 -> 4
-        change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
-    return jingo.render(request, 'developers/validation.html',
-                        dict(validate_url=revalidate_url,
-                             filename=validated_filename,
-                             timestamp=validated_ts,
-                             target_app=target_app,
-                             target_version=target_version,
-                             addon=for_addon,
-                             result_type='compat',
-                             app_trans=app_trans,
-                             version_change_links=change_links))
-
-
 @json_view
 @csrf_view_exempt
 @dev_required(allow_editors=True)
@@ -723,21 +678,6 @@ def json_file_validation(request, addon_id, addon, file_id):
 
     return make_validation_result(dict(validation=validation,
                                        error=None))
-
-
-@json_view
-@csrf_view_exempt
-@post_required
-@dev_required(allow_editors=True)
-def json_bulk_compat_result(request, addon_id, addon, result_id):
-    qs = ValidationResult.objects.exclude(completed=None)
-    result = get_object_or_404(qs, pk=result_id)
-    if result.task_error:
-        return make_validation_result({'validation': '',
-                                       'error': result.task_error})
-    else:
-        validation = json.loads(result.validation)
-        return make_validation_result(dict(validation=validation, error=None))
 
 
 @json_view
@@ -764,19 +704,15 @@ def json_upload_detail(request, upload, addon_slug=None):
                 plat_exclude = set(s) - set(supported_platforms)
                 plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
-                if waffle.flag_is_active(request,
-                                         'form-errors-in-validation'):
-                    m = []
-                    for msg in exc.messages:
-                        # Simulate a validation error so the UI displays
-                        # it as such
-                        m.append({'type': 'error',
-                                  'message': msg, 'tier': 1})
-                    v = make_validation_result(
-                            dict(error='', validation=dict(messages=m)))
-                    return json_view.error(v)
-                else:
-                    log.error("XPI parsing error, ignored: %s" % exc)
+                m = []
+                for msg in exc.messages:
+                    # Simulate a validation error so the UI displays
+                    # it as such
+                    m.append({'type': 'error',
+                              'message': msg, 'tier': 1})
+                v = make_validation_result(
+                        dict(error='', validation=dict(messages=m)))
+                return json_view.error(v)
 
     result['platforms_to_exclude'] = plat_exclude
     return result
@@ -793,10 +729,9 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
                                         'warnings': 0})
         upload.save()
 
-    validation = json.loads(upload.validation) if upload.validation else ""
+    validation = json.loads(upload.validation) if upload.validation else ''
     if not url:
-        if (waffle.flag_is_active(request, 'form-errors-in-validation')
-            and addon):
+        if addon:
             url = reverse('mkt.developers.upload_detail_for_addon',
                           args=[addon.slug, upload.uuid])
         else:
@@ -847,9 +782,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
-        if webapp and waffle.switch_is_active('marketplace'):
-            device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
-                                                          addon=addon)
+        device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
+                                                      addon=addon)
 
     elif section == 'media':
         previews = forms.PreviewFormSet(request.POST or None,
@@ -1118,14 +1052,7 @@ def request_review(request, addon_id, addon, status):
 def docs(request, doc_name=None, doc_page=None):
     filename = ''
 
-    all_docs = {'getting-started': [],
-                'reference': [],
-                'policies': ['agreement'],
-                'case-studies': [],
-                'how-to': []}
-
-    if waffle.switch_is_active('marketplace'):
-        all_docs['marketplace'] = ['voluntary']
+    all_docs = {'policies': ['agreement']}
 
     if doc_name and doc_name in all_docs:
         filename = '%s.html' % doc_name

@@ -110,16 +110,6 @@ detail_patterns = patterns('',
         views.json_file_validation,
         name='mkt.developers.json_file_validation'),
 
-    url('^validation-result/(?P<result_id>\d+)$',
-        views.bulk_compat_result,
-        name='mkt.developers.bulk_compat_result'),
-    url('^validation-result/(?P<result_id>\d+).json$',
-        views.json_bulk_compat_result,
-        name='mkt.developers.json_bulk_compat_result'),
-
-    url('^request-review/(?P<status>[%s])$'
-        % ''.join(map(str, views.REQUEST_REVIEW)),
-        views.request_review, name='mkt.developers.request-review'),
     url('^rmlocale$', views.remove_locale,
         name='mkt.developers.addons.remove-locale'),
 )
