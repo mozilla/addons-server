@@ -70,24 +70,20 @@ app_detail_patterns = patterns('',
 
     # Not apps-specific (yet).
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
-        name='mkt.developers.file_validation'),
+        name='mkt.developers.apps.file_validation'),
     url('^file/(?P<file_id>[^/]+)/validation.json$',
         views.json_file_validation,
-        name='mkt.developers.json_file_validation'),
+        name='mkt.developers.apps.json_file_validation'),
+    url('^upload$', views.upload_for_addon,
+        name='mkt.developers.upload_for_addon'),
+    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
+        name='mkt.developers.upload_detail_for_addon'),
 )
 
 # These will all start with /ajax/app/<app_slug>/
 ajax_patterns = patterns('',
     url('^image/status$', views.image_status,
         name='mkt.developers.apps.ajax.image.status'),
-)
-
-# These will all start with /addon/<addon_id>/
-detail_patterns = patterns('',
-    url('^upload$', views.upload_for_addon,
-        name='mkt.developers.upload_for_addon'),
-    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
-        name='mkt.developers.upload_detail_for_addon'),
 )
 
 urlpatterns = decorate(write, patterns('',

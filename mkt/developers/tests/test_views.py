@@ -1088,50 +1088,6 @@ class TestUploadDetail(BaseUploadTest):
             reverse('mkt.developers.standalone_upload_detail',
                     args=[upload.uuid]))
 
-    @mock.patch('mkt.developers.tasks.run_validator')
-    def check_excluded_platforms(self, xpi, platforms, v):
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file(xpi)
-        upload = FileUpload.objects.get()
-        r = self.client.get(reverse('mkt.developers.upload_detail',
-                                    args=[upload.uuid, 'json']))
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        eq_(sorted(data['platforms_to_exclude']), sorted(platforms))
-
-    def test_multi_app_addon_can_have_all_platforms(self):
-        self.check_excluded_platforms('mobile-2.9.10-fx+fn.xpi', [])
-
-    def test_mobile_excludes_desktop_platforms(self):
-        self.check_excluded_platforms('mobile-0.1-fn.xpi',
-            [str(p) for p in amo.DESKTOP_PLATFORMS])
-
-    def test_android_excludes_desktop_platforms(self):
-        # Test native Fennec.
-        self.check_excluded_platforms('android-phone.xpi',
-            [str(p) for p in amo.DESKTOP_PLATFORMS])
-
-    def test_search_tool_excludes_all_platforms(self):
-        self.check_excluded_platforms('searchgeek-20090701.xml',
-            [str(p) for p in amo.SUPPORTED_PLATFORMS])
-
-    def test_desktop_excludes_mobile(self):
-        self.check_excluded_platforms('desktop.xpi',
-            [str(p) for p in amo.MOBILE_PLATFORMS])
-
-    @mock.patch('mkt.developers.tasks.run_validator')
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_unparsable_xpi(self, flag_is_active, v):
-        flag_is_active.return_value = True
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file('unopenable.xpi')
-        upload = FileUpload.objects.get()
-        r = self.client.get(reverse('mkt.developers.upload_detail',
-                                    args=[upload.uuid, 'json']))
-        data = json.loads(r.content)
-        eq_(list(m['message'] for m in data['validation']['messages']),
-            [u'Could not parse install.rdf.'])
-
 
 def assert_json_error(request, field, msg):
     eq_(request.status_code, 400)

@@ -646,8 +646,7 @@ def make_validation_result(data, is_compatibility=False):
 def file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
 
-    v = reverse('mkt.developers.json_file_validation',
-                args=[addon.slug, file.id])
+    v = addon.get_dev_url('json_file_validation', args=[file.id])
     return jingo.render(request, 'developers/validation.html',
                         dict(validate_url=v, filename=file.filename,
                              timestamp=file.created,

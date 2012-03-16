@@ -90,17 +90,15 @@ class TestFileValidation(amo.tests.TestCase):
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
         self.addon = self.file.version.addon
-        args = [self.addon.slug, self.file.id]
-        self.url = reverse('mkt.developers.file_validation', args=args)
-        self.json_url = reverse('mkt.developers.json_file_validation',
-                                args=args)
+        self.addon.update(app_slug=self.addon.slug, type=amo.ADDON_WEBAPP)
+        self.url = self.addon.get_dev_url('file_validation', [self.file.id])
+        self.json_url = self.addon.get_dev_url('json_file_validation',
+                                               [self.file.id])
 
-    @mock.patch.object(settings, 'APP_PREVIEW', True)
     def test_app_results_page(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
-        eq_(r.context['addon'], self.addon)
+        eq_(r.context['addon'].id, self.addon.id)
 
     def test_only_dev_can_see_results(self):
         self.client.logout()
@@ -188,6 +186,10 @@ class TestValidateFile(BaseUploadTest):
         shutil.copyfile(self.file_path('invalid-id-20101206.xpi'),
                         self.file.file_path)
         self.addon = self.file.version.addon
+        self.addon.update(app_slug=self.addon.slug, type=amo.ADDON_WEBAPP)
+        self.url = self.addon.get_dev_url('file_validation', [self.file.id])
+        self.json_url = self.addon.get_dev_url('json_file_validation',
+                                               [self.file.id])
 
     def tearDown(self):
         super(TestValidateFile, self).tearDown()
@@ -196,8 +198,7 @@ class TestValidateFile(BaseUploadTest):
 
     @attr('validator')
     def test_lazy_validate(self):
-        r = self.client.post(reverse('mkt.developers.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
+        r = self.client.post(self.json_url,
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
@@ -206,9 +207,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
 
     def test_time(self):
-        r = self.client.post(reverse('mkt.developers.file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
+        r = self.client.post(self.url, follow=True)
         doc = pq(r.content)
         assert doc('time').text()
 
@@ -216,9 +215,7 @@ class TestValidateFile(BaseUploadTest):
     @mock.patch('mkt.developers.tasks.run_validator')
     def test_validator_errors(self, v):
         v.side_effect = ValueError('catastrophic failure in amo-validator')
-        r = self.client.post(reverse('mkt.developers.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
+        r = self.client.post(self.json_url, follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['validation'], '')
@@ -248,9 +245,7 @@ class TestValidateFile(BaseUploadTest):
             }],
             "metadata": {}
         })
-        r = self.client.post(reverse('mkt.developers.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
+        r = self.client.post(self.json_url, follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         assert_no_validation_errors(data)
@@ -261,9 +256,7 @@ class TestValidateFile(BaseUploadTest):
     @mock.patch('mkt.developers.tasks.run_validator')
     def test_hide_validation_traceback(self, run_validator):
         run_validator.side_effect = RuntimeError('simulated task error')
-        r = self.client.post(reverse('mkt.developers.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
+        r = self.client.post(self.json_url, follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['validation'], '')
