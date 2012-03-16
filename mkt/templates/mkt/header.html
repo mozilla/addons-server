@@ -1,8 +1,18 @@
 <header id="site-header">
   <section>
-    <h1>{{ loc('Mozilla Marketplace') }}</h1>
+    <h1><a href="">{{ _('Mozilla Marketplace') }}</a></h1>
     <nav>
-      <a class="back"></a>
     </nav>
+    {% block search %}
+      {% set search_form = SimpleSearchForm(request, '') %}
+      <form action="">
+        <input id="search-q" type="text" name="q"
+               placeholder="{{ search_form.placeholder(search_placeholder) }}"
+               value="{{ search_form.q.value() }}">
+        {% if search_form.cat.value() %}
+          {{ search_form.cat }}
+        {% endif %}
+      </form>
+    {% endblock %}
   </section>
 </header>

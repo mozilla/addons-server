@@ -2,9 +2,6 @@
 
 CSS = {
     'mkt/devreg': (
-        # TODO: Port "READ ONLY" balloon from devreg-impala/header.less.
-        # TODO: Use `hub/css/terms.less` for submission.
-
         # Contains reset, clearfix, etc.
         'css/devreg/base.css',
 
@@ -68,6 +65,8 @@ CSS = {
     'mkt': (
         'css/mkt/reset.less',
         'css/mkt/site.less',
+        'css/mkt/forms.less',
+        'css/mkt/header.less',
         'css/mkt/detail.less',
         'css/mkt/slider.less',
         'css/mkt/overlay.less',

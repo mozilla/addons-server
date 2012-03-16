@@ -5,7 +5,7 @@ body {
     overflow-x: hidden;
 }
 
-#page {
+#site-header, #page {
     section {
         .width(10);
         margin: 0 auto;
@@ -23,22 +23,28 @@ body {
 
 // 7 columns (portrait tablet)
 @media (max-width: @7col) {
-    #page section {
-        .width(7);
+    #site-header, #page {
+        section {
+            .width(7);
+        }
     }
 }
 
 // 4 columns (landscape smartphone)
 @media (max-width: @4col) {
-    #page section {
-        .width(4);
+    #site-header, #page {
+        section {
+            .width(4);
+        }
     }
 }
 
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
-    #page section {
-        .width(3);
+    #site-header, #page {
+        section {
+            .width(3);
+        }
     }
 }
 
@@ -49,9 +55,9 @@ body {
 // TODO potch: Belongs with the "collapsible" widget.
 .more {
     display: none;
-}
-.more.expand {
-    display: block;
+    &.expand {
+        display: block;
+    }
 }
 
 footer {
