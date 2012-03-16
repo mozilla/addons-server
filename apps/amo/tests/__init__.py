@@ -313,7 +313,8 @@ def assert_no_validation_errors(validation):
 
 
 def app_factory(**kw):
-    return amo.tests.addon_factory(type=amo.ADDON_WEBAPP, **kw)
+    kw.update(type=amo.ADDON_WEBAPP)
+    return amo.tests.addon_factory(**kw)
 
 
 def addon_factory(version_kw={}, file_kw={}, **kw):
@@ -357,7 +358,7 @@ def version_factory(file_kw={}, **kw):
                                                      version='5.0')
         ApplicationsVersions.objects.create(application=a, version=v,
                                             min=av_min, max=av_max)
-        file_factory(version=v, **file_kw)
+    file_factory(version=v, **file_kw)
     return v
 
 

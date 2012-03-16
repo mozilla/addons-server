@@ -8,7 +8,6 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -19,12 +18,10 @@ class TestInstall(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
-            manifest_url='http://cbc.ca/manifest')
+        self.addon = amo.tests.app_factory(manifest_url='http://cbc.ca/man')
+        self.url = self.addon.get_detail_url('record')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.url = reverse('detail.record', args=[self.addon.app_slug])
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(username=self.user.email, password='password')
 
     def test_not_record_addon(self):
         self.addon.update(type=amo.ADDON_EXTENSION)

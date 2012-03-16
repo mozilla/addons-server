@@ -17,7 +17,13 @@ APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 urlpatterns = patterns('',
     # Home.
-    url('$^', settings.HOME, name='home'),
+    url('^$', settings.HOME, name='home'),
+
+    # App Detail pages.
+    ('^app/%s/' % APP_SLUG, include('mkt.detail.urls')),
+
+    # App Browse pages.
+    ('^apps/', include('mkt.webapps.urls')),
 
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
@@ -36,11 +42,6 @@ urlpatterns = patterns('',
 
     # Services.
     ('', include('apps.amo.urls')),
-
-    ('^app/%s/' % APP_SLUG, include('mkt.detail.urls')),
-
-    # Web apps.
-    ('^apps/', include('mkt.webapps.urls')),
 
     # Users.
     ('', include('users.urls')),
