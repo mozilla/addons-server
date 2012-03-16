@@ -313,7 +313,7 @@ def assert_no_validation_errors(validation):
 
 
 def app_factory(**kw):
-    return amo.tests.addon_factory(type=amo.ADDON_WEBAPP)
+    return amo.tests.addon_factory(type=amo.ADDON_WEBAPP, **kw)
 
 
 def addon_factory(version_kw={}, file_kw={}, **kw):

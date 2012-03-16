@@ -19,7 +19,7 @@ PRICE_CHOICES = [
 ]
 
 DEVICE_CHOICES = [
-    (None, _lazy(u'All Devices')),
+    (None, _lazy(u'Any Device')),
     ('desktop', _lazy(u'Desktop')),
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),

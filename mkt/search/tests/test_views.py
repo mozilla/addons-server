@@ -1,6 +1,5 @@
 import json
 
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -84,12 +83,12 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             urlparams(self.webapp.get_url_path(), src='search'))
 
     def test_results_downloads(self):
-        raise SkipTest
-        for sort in ('', 'downloads', 'rating', 'created'):
+        for sort in ('', 'downloads', 'created'):
             r = self.client.get(urlparams(self.url, sort=sort))
             dls = pq(r.content)('.item .downloads')
             eq_(dls.text().split()[0],
-                numberfmt(self.webapp.weekly_downloads))
+                numberfmt(self.webapp.weekly_downloads),
+                'Missing downloads for %s' % sort)
 
     def check_cat_filter(self, params, valid):
         cat_selected = params.get('cat') == self.cat.id
@@ -166,19 +165,18 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def setup_devices(self):
         self._generate(3)
         for name, idx in DEVICE_CHOICES_IDS.iteritems():
-            d = DeviceType.objects.create(name=name, id=idx)
             AddonDeviceType.objects.create(addon=self.apps[idx],
-                                           device_type=d)
+                device_type=DeviceType.objects.create(name=name, id=idx))
 
     def check_device_filter(self, device, selected):
         self.setup_devices()
-        self.refresh()
+        self.reindex(Webapp)
 
         r = self.client.get(self.url, {'device': device})
         eq_(r.status_code, 200)
         links = pq(r.content)('#device-facets a')
         expected = [
-            ('All Devices', self.url),
+            ('Any Device', self.url),
             ('Desktop', urlparams(self.url, device='desktop')),
             ('Mobile', urlparams(self.url, device='mobile')),
             ('Tablet', urlparams(self.url, device='tablet')),
@@ -187,21 +185,17 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         return list(r.context['pager'].object_list)
 
     def test_device_all(self):
-        raise SkipTest
-        eq_(sorted(a.id for a in self.check_device_filter('', 'All Devices')),
+        eq_(sorted(a.id for a in self.check_device_filter('', 'Any Device')),
             sorted(a.id for a in self.apps))
 
     def test_device_desktop(self):
-        raise SkipTest
         eq_(self.check_device_filter('desktop', 'Desktop'), [self.apps[1]])
 
     def test_device_mobile(self):
-        raise SkipTest
-        eq_(self.check_price_filter('mobile', 'Mobile'), [self.apps[2]])
+        eq_(self.check_device_filter('mobile', 'Mobile'), [self.apps[2]])
 
     def test_device_tablet(self):
-        raise SkipTest
-        eq_(self.check_price_filter('tablet', 'Tablet'), [self.apps[3]])
+        eq_(self.check_device_filter('tablet', 'Tablet'), [self.apps[3]])
 
     def test_results_sort_default(self):
         self._generate(3)

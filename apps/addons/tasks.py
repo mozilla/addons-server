@@ -107,7 +107,7 @@ def index_addons(ids, **kw):
 def attach_devices(addons):
     addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
     devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
-              .values_list('addon', 'device_type'))
+               .values_list('addon', 'device_type'))
     for addon, device_types in devices:
         addon_dict[addon].devices = device_types
 
