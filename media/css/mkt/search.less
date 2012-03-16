@@ -1,0 +1,246 @@
+@import 'lib';
+
+#subscribe,
+#sorter,
+#sorter ul {
+    line-height: 18px;
+}
+
+#sorter {
+    margin-bottom: 1em;
+    ul {
+        padding: 0;
+        list-style: none;
+    }
+    h3, > ul, form {
+        color: @note-gray;
+        float: left;
+        margin: 0;
+    }
+    h3, ul {
+        font-size: 11px;
+    }
+    li {
+        margin: 0;
+        &.selected a {
+            color: @orange;
+            font-weight: bold;
+            pointer-events: none;
+            text-decoration: none;
+        }
+    }
+    > ul > li {
+        float: left;
+        position: relative;
+        > a {
+            border-right: 1px solid @light-gray;
+            padding: 0 6px;
+        }
+        &:last-child:not(.extras) a {
+            border-right: none;
+        }
+    }
+}
+
+.html-rtl #sorter {
+    h3, ul, form {
+        float: right;
+    }
+    > ul > li {
+        float: right;
+        > a {
+            border: none;
+            border-left: 1px solid @light-gray;
+        }
+        &:last-child:not(.extras) a {
+            border-left: none;
+        }
+    }
+}
+
+.no-results {
+    font-size: 24px;
+    font-weight: bold;
+    opacity: .5;
+    padding: 20px;
+    text-align: center;
+}
+
+.listing {
+    ol {
+        list-style: none;
+        padding: 0;
+    }
+    .item {
+        .border-box;
+        background: @white;
+        padding: 10px;
+        + .item {
+            margin-top: 10px;
+        }
+        .install {
+            display: inline-block;
+        }
+        img {
+            float: left;
+            margin-right: 10px;
+        }
+    }
+}
+
+#search-results,
+#search-facets {
+    .border-box;
+    float: left;
+}
+#page #search-results {
+    .width(7);
+}
+#page #search-facets {
+    padding-right: 20px;
+    .width(3);
+}
+
+.selected > a {
+    color: @orange;
+}
+
+#search-facets {
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+    h2, h3, p {
+        font-size: 15px;
+    }
+    h3, p {
+        color: @medium-gray;
+    }
+    h2, .facets {
+        margin-bottom: 8px;
+    }
+    h2 {
+        line-height: 50px;
+        margin-bottom: 16px;
+        min-height: 29px;
+        padding: 0;
+        text-transform: inherit;
+    }
+    h3 {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    p {
+        font-size: 14px;
+        padding: 0 11px;
+        text-align: center;
+        b {
+            font-weight: none;
+        }
+    }
+    li {
+        border: 0;
+        a {
+            line-height: 16px;
+            margin-top: 2px;
+            padding: 0;
+        }
+        ul {
+            padding-left: 12px;
+        }
+    }
+    .facets {
+        .border-radius(5px);
+        background: rgba(255, 255, 255, 0.4);
+        border-color: #D7D9E8;
+        padding: 0;
+        width: 100%;
+        .facet {
+            border-top: 1px dotted #D7D9E8;
+            position: relative;
+            padding: 10px;
+            &:after {
+                color: @light-gray;
+                content: "\0BB";
+                font: normal 17px/14px @open-stack;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+            &:first-child {
+                border-top: none;
+                .border-radius(5px 5px 0 0);
+            }
+            &:last-child {
+                .border-radius(0 0 5px 5px);
+            }
+            &.active, &:hover {
+                background: rgb(255, 255, 255, 0.6);
+            }
+            &:hover {
+                cursor: pointer;
+                &:after {
+                    color: @medium-gray;
+                }
+                li a {
+                    pointer-events: none;
+                }
+            }
+            > ul {
+                max-height: 250px;
+                > li.selected:first-child a {
+                    color: @link;
+                }
+            }
+            li {
+                a {
+                    display: none;
+                    &:hover {
+                        background: inherit;
+                        text-decoration: underline;
+                    }
+                }
+                &.selected {
+                    > a {
+                        font-weight: bold;
+                        color: @orange;
+                        display: block;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+            &.active {
+                &:after {
+                    .transform(rotate(90deg));
+                }
+                li a {
+                    display: block;
+                }
+                &:hover li a {
+                    pointer-events: auto;
+                }
+                ul + ul {
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+}
+.html-rtl {
+    #search-facets {
+        li ul {
+            padding: 0 12px 0 0;
+        }
+        .facets .facet {
+            &:after {
+                right: auto;
+                left: 10px;
+            }
+            &.active:after {
+                .transform(rotate(-90deg));
+            }
+        }
+    }
+}

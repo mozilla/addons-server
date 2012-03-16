@@ -1,6 +1,6 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
-$('#page').delegate('.button.install', 'click', startInstall);
+$('#page').delegate('.button.install', 'click', startInstall)
 $('#page').delegate('.button.install', 'mousemove', function() {
     var $button = $(this),
         manifestURL = $button.attr('data-manifest-url');

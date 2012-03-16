@@ -51,19 +51,21 @@
 {% endmacro %}
 
 {% block content %}
-  <section class="primary">
-    <h1>{{ heading }}</h1>
-    <div id="search-results">
-      {% include 'search/results_inner.html' %}
-    </div>
-  </section>
-  <section id="search-facets" class="secondary">
-    <h2>{{ _('Filter Results') }}</h2>
-    <ul class="facets island pjax-trigger">
-      {{ facet(_('Price'), 'price-facets', prices) }}
-      {{ facet(_('Category'), 'category-facets', categories) }}
-      {{ facet(_('Optimized for'), 'device-facets', devices) }}
-    </ul>
-    {{ num_results() }}
+  <section class="c">
+    <section id="search-facets">
+      <h2>{{ _('Filter Results') }}</h2>
+      <ul class="facets island pjax-trigger">
+        {{ facet(_('Price'), 'price-facets', prices) }}
+        {{ facet(_('Category'), 'category-facets', categories) }}
+        {{ facet(_('Optimized for'), 'device-facets', devices) }}
+      </ul>
+      {{ num_results() }}
+    </section>
+    <section id="search-results">
+      <h1>{{ heading }}</h1>
+      <div id="search-listing" class="listing">
+        {% include 'search/results_inner.html' %}
+      </div>
+    </section>
   </section>
 {% endblock %}

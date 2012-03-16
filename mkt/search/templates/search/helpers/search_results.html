@@ -24,7 +24,7 @@
 {% endmacro %}
 
 {% for product in products %}
-  <li class="item result app">
+  <li class="item result app product-details c">
     <div class="info">
       <h3>
         {% set dl_url = product.get_url_path() %}
@@ -32,7 +32,8 @@
           {% set dl_url = dl_url|urlparams(src=dl_src) %}
         {% endif %}
         <a href="{{ dl_url }}">
-          <img src="{{ product.icon_url }}">{{ product.name }}</a>
+          <img class="icon" src="{{ product.get_icon_url(64) }}">
+          {{ product.name }}</a>
       </h3>
       <p class="desc">{{ product.summary|nl2br }}</p>
       <div class="vitals c">

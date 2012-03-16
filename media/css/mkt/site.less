@@ -1,5 +1,13 @@
 @import 'lib';
 
+a {
+    text-decoration: none;
+    color: @link;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 body {
     color: @text;
     overflow-x: hidden;
@@ -7,7 +15,7 @@ body {
 }
 
 #site-header, #page {
-    section {
+    > section {
         .width(10);
         margin: 0 auto;
         .border-box;
@@ -25,11 +33,11 @@ body {
 // 7 columns (portrait tablet)
 @media (max-width: @7col) {
     #site-header, #page {
-        section {
+        > section {
             .width(7);
         }
     }
-    #site-header section {
+    #site-header > section {
         .width(7);
     }
 }
@@ -37,7 +45,7 @@ body {
 // 4 columns (landscape smartphone)
 @media (max-width: @4col) {
     #site-header, #page {
-        section {
+        > section {
             .width(4);
         }
     }
@@ -49,13 +57,13 @@ body {
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
     #site-header, #page {
-        section {
+        > section {
             .width(3);
         }
     }
     #site-header {
         margin-bottom: 20px;
-        section {
+        > section {
             .width(3);
         }
     }
@@ -74,22 +82,8 @@ body {
 }
 
 footer {
-    clear: both;
-    text-align: center;
     border-top: 1px solid black;
-    padding: 16px;
-}
-
-.item .install {
-    display: inline-block;
-}
-
-.item + .item {
     margin-top: 20px;
-}
-.secondary {
-    width: 30%;
-}
-.primary {
-    width: 65%;
+    padding: 16px;
+    text-align: center;
 }

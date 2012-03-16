@@ -369,7 +369,7 @@ fieldset {
 
 /*
  * 1. Corrects color not being inherited in IE6/7/8/9
- * 2. Corrects text not wrapping in FF3 
+ * 2. Corrects text not wrapping in FF3
  * 3. Corrects alignment displayed oddly in IE6/7
  */
 
@@ -509,15 +509,6 @@ h1, h2, h3, h4, h5, h6 {
     These are easy to forget
 */
 
-::selection {
-    background: red;
-    color: white;
-}
-::-moz-selection {
-    background: red;
-    color: white;
-}
-
 img::selection {
     background: transparent;
 }
@@ -528,3 +519,11 @@ img::-moz-selection {
 body {
     -webkit-tap-highlight-color: rgba(255,0,0, 0.62);
 }
+
+/* >> The Magnificent CLEARFIX <<
+   Lifted from html5boilerplate.com
+   License is Public domain */
+.c:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.c { display: inline-block; }
+* html .c { height: 1%; } /* Hides from IE-mac \*/
+.c { display: block; }
