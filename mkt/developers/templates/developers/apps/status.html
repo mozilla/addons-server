@@ -60,7 +60,7 @@
   <div id="modals">
     {% if addon.can_be_deleted() %}
       <div id="modal-delete" class="modal modal-delete">
-        {% include "developers/addons/listing/delete_form.html" %}
+        {% include "developers/apps/listing/delete_form.html" %}
       </div>
     {% endif %}
     {% if not addon.disabled_by_user and not addon.is_disabled %}

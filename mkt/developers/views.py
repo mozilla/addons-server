@@ -109,7 +109,7 @@ def dashboard(request, webapp=False):
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
                 sort_opts=filter.opts, webapp=webapp)
-    return jingo.render(request, 'developers/addons/dashboard.html', data)
+    return jingo.render(request, 'developers/apps/dashboard.html', data)
 
 
 @dev_required(webapp=True)
@@ -124,7 +124,7 @@ def edit(request, addon_id, addon, webapp=False):
        'device_type_form': addon_forms.DeviceTypeForm(request.POST or None,
                                                       addon=addon),
     }
-    return jingo.render(request, 'developers/addons/edit.html', data)
+    return jingo.render(request, 'developers/apps/edit.html', data)
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -179,7 +179,7 @@ def disable(request, addon_id, addon):
 
 @dev_required(webapp=True)
 def status(request, addon_id, addon, webapp=False):
-    return jingo.render(request, 'developers/addons/status.html',
+    return jingo.render(request, 'developers/apps/status.html',
                         {'addon': addon, 'webapp': webapp})
 
 
@@ -218,7 +218,7 @@ def ownership(request, addon_id, addon, webapp=False):
         return redirect(addon.get_dev_url('owner'))
 
     ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
-    return jingo.render(request, 'developers/addons/owner.html', ctx)
+    return jingo.render(request, 'developers/apps/owner.html', ctx)
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -523,7 +523,7 @@ def profile(request, addon_id, addon, webapp=False):
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('profile'))
 
-    return jingo.render(request, 'developers/addons/profile.html',
+    return jingo.render(request, 'developers/apps/profile.html',
                         dict(addon=addon, webapp=webapp,
                              profile_form=profile_form))
 
@@ -847,7 +847,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'device_type_form': device_type_form}
 
     return jingo.render(request,
-                        'developers/addons/edit/%s.html' % section, data)
+                        'developers/apps/edit/%s.html' % section, data)
 
 
 @never_cache

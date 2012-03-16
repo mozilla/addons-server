@@ -19,7 +19,7 @@ from addons.helpers import new_context
 register.function(acl.check_addon_ownership)
 
 
-@register.inclusion_tag('developers/addons/listing/items.html')
+@register.inclusion_tag('developers/apps/listing/items.html')
 @jinja2.contextfunction
 def hub_addon_listing_items(context, addons, src=None, notes={}):
     return new_context(**locals())

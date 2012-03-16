@@ -80,7 +80,7 @@ class TestHome(amo.tests.TestCase):
         for url in [self.url, reverse('home')]:
             r = self.client.get(url, follow=True)
             eq_(r.status_code, 200)
-            self.assertTemplateUsed(r, 'developers/addons/dashboard.html')
+            self.assertTemplateUsed(r, 'developers/apps/dashboard.html')
 
 
 class TestAppBreadcrumbs(AppHubTest):
