@@ -144,6 +144,21 @@ class TestHomepageFeatures(amo.tests.TestCase):
         assert all([a.type == amo.ADDON_EXTENSION for a in addons]), (
             'Expected only extensions to be listed on mobile homepage')
 
+    @amo.tests.mobile_test
+    def test_mobile_home_featured(self):
+        r = self.client.get(self.url)
+        featured = r.context['featured']
+        assert all([a.is_featured(amo.FIREFOX, 'en-US') for a in featured]), (
+            'Expected only featured extensions to be listed under Featured')
+
+    @amo.tests.mobile_test
+    def test_mobile_home_popular(self):
+        r = self.client.get(self.url)
+        popular = r.context['popular']
+        eq_([a.id for a in popular],
+            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
+                                  reverse=True)])
+
 
 class TestPromobox(amo.tests.TestCase):
     fixtures = ['addons/ptbr-promobox']
@@ -1943,24 +1958,6 @@ class TestReportAbuse(amo.tests.TestCase):
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
                 'base/featured', 'bandwagon/featured_collections']
-
-
-class TestMobileHome(TestMobile):
-
-    def _test_addons(self):
-        r = self.client.get('/', follow=True)
-        eq_(r.status_code, 200)
-        app, lang = r.context['APP'], r.context['LANG']
-        featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 3)
-        assert all(a.is_featured(app, lang) for a in featured)
-        eq_(len(popular), 3)
-        eq_([a.id for a in popular],
-            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
-                                  reverse=True)])
-
-    def test_addons(self):
-        self._test_addons()
 
 
 class TestMobileDetails(TestMobile):
