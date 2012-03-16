@@ -188,10 +188,10 @@ class TestFetchManifest(amo.tests.TestCase):
     def check_validation(self, msg):
         upload = self.get_upload()
         validation = json.loads(upload.validation)
+        eq_([m['message'] for m in validation['messages']], [msg])
         eq_(validation['errors'], 1)
         eq_(validation['success'], False)
         eq_(len(validation['messages']), 1)
-        eq_(validation['messages'][0]['message'], msg)
 
     def test_connection_error(self):
         reason = socket.gaierror(8, 'nodename nor servname provided')
@@ -255,18 +255,14 @@ class TestFetchManifest(amo.tests.TestCase):
             json.loads(manifest)  # no parse error
             assert not manifest.startswith(codecs.BOM_UTF8)
 
-    def test_strip_utf16_bom(self):
+    def test_non_utf8_encoding(self):
         with self.patch_urlopen() as ur:
             with open(self.file('utf8bom.webapp')) as fp:
-                # Convert to UTF16, which will add a BOM by default.
-                data = fp.read().decode('utf8').encode('utf16')
-                ur.read.return_value = data
-
+                # Set encoding to utf16 which will be invalid
+                ur.read.return_value = fp.read().decode('utf8').encode('utf16')
         tasks.fetch_manifest('url', self.upload.pk)
-        upload = self.get_upload()
-        with open(upload.path, 'rb') as fp:
-            manifest = fp.read().decode('utf16')
-            json.loads(manifest)  # no parse error
+        self.check_validation(
+                    'Your manifest file was not encoded as valid UTF-8')
 
 
 class TestFetchIcon(BaseWebAppTest):

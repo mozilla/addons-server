@@ -289,6 +289,17 @@ def get_content_and_check_size(response, max_size, error_message):
     return content
 
 
+def check_manifest_encoding(url, content):
+    # TODO(Kumar) check for encoding hints in response headers
+    # and store an encoding hint on the file upload object
+    try:
+        content.decode('utf8')
+    except UnicodeDecodeError, exc:
+        log.info('Manifest decode error: %s: %s' % (url, exc))
+        exc.message = _('Your manifest file was not encoded as valid UTF-8')
+        raise
+
+
 def save_icon(webapp, content):
     tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
     with storage.open(tmp_dst, 'wb') as fd:
@@ -361,12 +372,13 @@ def fetch_manifest(url, upload_pk=None, **kw):
         content = get_content_and_check_size(response,
                                              settings.MAX_WEBAPP_UPLOAD_SIZE,
                                              size_error_message)
+        content = strip_bom(content)
+        check_manifest_encoding(url, content)
     except Exception, e:
         # Drop a message in the validation slot and bail.
         upload.update(validation=failed_validation(e.message))
         return
 
-    content = strip_bom(content)
     upload.add_file([content], url, len(content), is_webapp=True)
     # Send the upload to the validator.
     validator(upload.pk)
