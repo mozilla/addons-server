@@ -34,9 +34,8 @@ from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (CheckCompatibilityForm, InappConfigForm,
-                                  AppFormBasic, AppFormDetails,
-                                  PaypalSetupForm)
+from mkt.developers.forms import (AppFormBasic, AppFormDetails,
+                                  InappConfigForm, PaypalSetupForm)
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Refund, AddonPaymentData
@@ -537,28 +536,9 @@ def profile(request, addon_id, addon, webapp=False):
 
 
 @login_required
-@post_required
-@json_view
-def compat_application_versions(request):
-    app_id = request.POST['application_id']
-    f = CheckCompatibilityForm()
-    return {'choices': f.version_choices_for_app_id(app_id)}
-
-
-@login_required
 def validate_addon(request):
     return jingo.render(request, 'developers/validate_addon.html', {
         'title': _('Validate Add-on'),
-        'upload_url': reverse('mkt.developers.standalone_upload'),
-    })
-
-
-@login_required
-def check_addon_compatibility(request):
-    form = CheckCompatibilityForm()
-    return jingo.render(request, 'developers/validate_addon.html', {
-        'appversion_form': form,
-        'title': _('Check Add-on Compatibility'),
         'upload_url': reverse('mkt.developers.standalone_upload'),
     })
 
@@ -841,10 +821,6 @@ def upload_detail(request, uuid, format='html'):
 
     validate_url = reverse('mkt.developers.standalone_upload_detail',
                            args=[upload.uuid])
-    if upload.compat_with_app:
-        return _compat_result(request, validate_url,
-                              upload.compat_with_app,
-                              upload.compat_with_appver)
     return jingo.render(request, 'developers/validation.html',
                         dict(validate_url=validate_url, filename=upload.name,
                              timestamp=upload.created))

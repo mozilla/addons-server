@@ -4,7 +4,6 @@ import socket
 
 from django import forms
 from django.conf import settings
-from django.db.models import Q
 from django.forms.models import modelformset_factory
 
 import commonware
@@ -17,23 +16,19 @@ import amo
 import addons.forms
 from addons.forms import clean_name, slug_validator
 import paypal
-from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
-                           BlacklistedSlug, Charity, Preview)
+from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
+                           Preview)
 from amo.helpers import loc
-from amo.urlresolvers import reverse
 from amo.utils import raise_required
 
-from applications.models import Application, AppVersion
-from files.models import FileUpload, Platform
-from files.utils import parse_addon
+from files.models import FileUpload
 from market.models import AddonPremium, Price, AddonPaymentData
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from payments.models import InappConfig
-from translations.widgets import TransInput, TransTextarea, TranslationTextarea
+from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 from translations.models import Translation
 from translations.forms import TranslationFormMixin
-from versions.models import Version, ApplicationsVersions
 from mkt.webapps.models import Webapp
 from . import tasks
 
@@ -160,84 +155,6 @@ def ProfileForm(*args, **kw):
     return _Form(*args, **kw)
 
 
-class CharityForm(happyforms.ModelForm):
-    url = Charity._meta.get_field('url').formfield(verify_exists=False)
-
-    class Meta:
-        model = Charity
-        fields = ('name', 'url', 'paypal')
-
-    def clean_paypal(self):
-        check_paypal_id(self.cleaned_data['paypal'])
-        return self.cleaned_data['paypal']
-
-    def save(self, commit=True):
-        # We link to the charity row in contrib stats, so we force all charity
-        # changes to create a new row so we don't forget old charities.
-        if self.changed_data and self.instance.id:
-            self.instance.id = None
-        return super(CharityForm, self).save(commit)
-
-
-class ContribForm(TranslationFormMixin, happyforms.ModelForm):
-    RECIPIENTS = (('dev', _lazy(u'The developers of this add-on')),
-                  ('moz', _lazy(u'The Mozilla Foundation')),
-                  ('org', _lazy(u'An organization of my choice')))
-
-    recipient = forms.ChoiceField(choices=RECIPIENTS,
-                    widget=forms.RadioSelect(attrs={'class': 'recipient'}))
-    thankyou_note = TransField(widget=TransTextarea(), required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('paypal_id', 'suggested_amount', 'annoying',
-                  'enable_thankyou', 'thankyou_note')
-        widgets = {
-            'annoying': forms.RadioSelect(),
-            'suggested_amount': forms.TextInput(attrs={'class': 'short'}),
-            'paypal_id': forms.TextInput(attrs={'size': '50'})
-        }
-
-    @staticmethod
-    def initial(addon):
-        if addon.charity:
-            recip = 'moz' if addon.charity_id == amo.FOUNDATION_ORG else 'org'
-        else:
-            recip = 'dev'
-        return {'recipient': recip,
-                'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
-
-    def clean(self):
-        if self.instance.upsell:
-            raise forms.ValidationError(_('You cannot setup Contributions for '
-                                    'an add-on that is linked to a premium '
-                                    'add-on in the Marketplace.'))
-
-        data = self.cleaned_data
-        try:
-            if not self.errors and data['recipient'] == 'dev':
-                check_paypal_id(data['paypal_id'])
-        except forms.ValidationError, e:
-            self.errors['paypal_id'] = self.error_class(e.messages)
-        # thankyou_note is a dict since it's a Translation.
-        if not (data.get('enable_thankyou') and
-                any(data.get('thankyou_note').values())):
-            data['thankyou_note'] = {}
-            data['enable_thankyou'] = False
-        return data
-
-    def clean_suggested_amount(self):
-        amount = self.cleaned_data['suggested_amount']
-        if amount is not None and amount <= 0:
-            msg = _(u'Please enter a suggested amount greater than 0.')
-            raise forms.ValidationError(msg)
-        if amount > settings.MAX_CONTRIBUTION:
-            msg = _(u'Please enter a suggested amount less than ${0}.').format(
-                    settings.MAX_CONTRIBUTION)
-            raise forms.ValidationError(msg)
-        return amount
-
-
 def check_paypal_id(paypal_id):
     if not paypal_id:
         raise forms.ValidationError(
@@ -248,86 +165,6 @@ def check_paypal_id(paypal_id):
             raise forms.ValidationError(msg)
     except socket.error:
         raise forms.ValidationError(_('Could not validate PayPal id.'))
-
-
-class VersionForm(happyforms.ModelForm):
-    releasenotes = TransField(
-        widget=TransTextarea(), required=False)
-    approvalnotes = forms.CharField(
-        widget=TranslationTextarea(attrs={'rows': 4}), required=False)
-
-    class Meta:
-        model = Version
-        fields = ('releasenotes', 'approvalnotes')
-
-
-class ApplicationChoiceField(forms.ModelChoiceField):
-
-    def label_from_instance(self, obj):
-        return obj.id
-
-
-class AppVersionChoiceField(forms.ModelChoiceField):
-
-    def label_from_instance(self, obj):
-        return obj.version
-
-
-class CompatForm(happyforms.ModelForm):
-    application = ApplicationChoiceField(Application.objects.all(),
-                                         widget=forms.HiddenInput)
-    min = AppVersionChoiceField(AppVersion.objects.none())
-    max = AppVersionChoiceField(AppVersion.objects.none())
-
-    class Meta:
-        model = ApplicationsVersions
-        fields = ('application', 'min', 'max')
-
-    def __init__(self, *args, **kw):
-        super(CompatForm, self).__init__(*args, **kw)
-        if self.initial:
-            app = self.initial['application']
-        else:
-            app = self.data[self.add_prefix('application')]
-        self.app = amo.APPS_ALL[int(app)]
-        qs = AppVersion.objects.filter(application=app).order_by('version_int')
-        self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
-        self.fields['max'].queryset = qs.all()
-
-    def clean(self):
-        min = self.cleaned_data.get('min')
-        max = self.cleaned_data.get('max')
-        if not (min and max and min.version_int <= max.version_int):
-            raise forms.ValidationError(_('Invalid version range.'))
-        return self.cleaned_data
-
-
-class BaseCompatFormSet(BaseModelFormSet):
-
-    def __init__(self, *args, **kw):
-        super(BaseCompatFormSet, self).__init__(*args, **kw)
-        # We always want a form for each app, so force extras for apps
-        # the add-on does not already have.
-        qs = kw['queryset'].values_list('application', flat=True)
-        apps = [a for a in amo.APP_USAGE if a.id not in qs]
-        self.initial = ([{} for _ in qs] +
-                        [{'application': a.id} for a in apps])
-        self.extra = len(amo.APP_GUIDS) - len(self.forms)
-        self._construct_forms()
-
-    def clean(self):
-        if any(self.errors):
-            return
-        apps = filter(None, [f.cleaned_data for f in self.forms
-                             if not f.cleaned_data.get('DELETE', False)])
-        if not apps:
-            raise forms.ValidationError(
-                _('Need at least one compatible application.'))
-
-
-CompatFormSet = modelformset_factory(
-    ApplicationsVersions, formset=BaseCompatFormSet,
-    form=CompatForm, can_delete=True, extra=0)
 
 
 def verify_app_domain(manifest_url):
@@ -347,68 +184,8 @@ class NewWebappForm(happyforms.Form):
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
-        verify_app_domain(upload.name)  # JS puts manifest URL here
+        verify_app_domain(upload.name)  # JS puts manifest URL here.
         return upload
-
-
-class NewAddonForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
-    desktop_platforms = forms.ModelMultipleChoiceField(
-            queryset=Platform.objects,
-            widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-            initial=[amo.PLATFORM_ALL.id],
-            required=False)
-    desktop_platforms.choices = ((p.id, p.name)
-                                 for p in amo.DESKTOP_PLATFORMS.values())
-    mobile_platforms = forms.ModelMultipleChoiceField(
-            queryset=Platform.objects,
-            widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-            required=False)
-    mobile_platforms.choices = ((p.id, p.name)
-                                for p in amo.MOBILE_PLATFORMS.values())
-
-    def clean(self):
-        if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'])
-            addons.forms.clean_name(xpi['name'])
-            self._clean_all_platforms()
-        return self.cleaned_data
-
-    def _clean_all_platforms(self):
-        if (not self.cleaned_data['desktop_platforms']
-            and not self.cleaned_data['mobile_platforms']):
-            raise forms.ValidationError(_('Need at least one platform.'))
-
-
-class ReviewTypeForm(forms.Form):
-    _choices = [(k, amo.STATUS_CHOICES[k]) for k in
-                (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED)]
-    review_type = forms.TypedChoiceField(
-        choices=_choices, widget=forms.HiddenInput,
-        coerce=int, empty_value=None,
-        error_messages={'required': _lazy(u'A review type must be selected.')})
-
-
-class Step3Form(addons.forms.AddonFormBasic):
-    description = TransField(widget=TransTextarea, required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'description',
-                  'homepage', 'support_email', 'support_url')
-
-
-class Step3WebappForm(Step3Form):
-    """Form to override certain fields for webapps"""
-    name = TransField(max_length=128)
-    homepage = TransField.adapt(forms.URLField)(required=False,
-                                                verify_exists=False)
-    support_url = TransField.adapt(forms.URLField)(required=False,
-                                                   verify_exists=False)
-    support_email = TransField.adapt(forms.EmailField)(required=False)
 
 
 class PreviewForm(happyforms.ModelForm):
@@ -449,38 +226,6 @@ class BasePreviewFormSet(BaseModelFormSet):
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       form=PreviewForm, can_delete=True,
                                       extra=1)
-
-
-class CheckCompatibilityForm(happyforms.Form):
-    application = forms.ChoiceField(
-                label=_lazy(u'Application'),
-                choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
-    app_version = forms.ChoiceField(
-                label=_lazy(u'Version'),
-                choices=[('', _lazy(u'Select an application first'))])
-
-    def __init__(self, *args, **kw):
-        super(CheckCompatibilityForm, self).__init__(*args, **kw)
-        w = self.fields['application'].widget
-        # Get the URL after the urlconf has loaded.
-        w.attrs['data-url'] = reverse(
-            'mkt.developers.compat_application_versions')
-
-    def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application__id=app_id)
-        return [(v.id, v.version) for v in versions]
-
-    def clean_application(self):
-        app_id = int(self.cleaned_data['application'])
-        app = Application.objects.get(pk=app_id)
-        self.cleaned_data['application'] = app
-        choices = self.version_choices_for_app_id(app_id)
-        self.fields['app_version'].choices = choices
-        return self.cleaned_data['application']
-
-    def clean_app_version(self):
-        v = self.cleaned_data['app_version']
-        return AppVersion.objects.get(pk=int(v))
 
 
 class NewManifestForm(happyforms.Form):
@@ -608,47 +353,6 @@ class PremiumForm(happyforms.Form):
         if (not self.addon.paypal_id and self.addon.is_incomplete()
             and not self.addon.needs_paypal()):
             self.addon.mark_done()
-
-
-def DependencyFormSet(*args, **kw):
-    addon_parent = kw.pop('addon')
-
-    # Add-ons: Required add-ons cannot include apps nor personas.
-    # Apps:    Required apps cannot include any add-ons.
-    qs = Addon.objects.reviewed().exclude(id=addon_parent.id)
-    if addon_parent.is_webapp():
-        qs = qs.filter(type=amo.ADDON_WEBAPP)
-    else:
-        qs = qs.exclude(type__in=[amo.ADDON_PERSONA, amo.ADDON_WEBAPP])
-
-    class _Form(happyforms.ModelForm):
-        addon = forms.CharField(required=False, widget=forms.HiddenInput)
-        dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
-
-        class Meta:
-            model = AddonDependency
-            fields = ('addon', 'dependent_addon')
-
-        def clean_addon(self):
-            return addon_parent
-
-    class _FormSet(BaseModelFormSet):
-
-        def clean(self):
-            if any(self.errors):
-                return
-            form_count = len([f for f in self.forms
-                              if not f.cleaned_data.get('DELETE', False)])
-            if form_count > 3:
-                if addon_parent.is_webapp():
-                    error = loc('There cannot be more than 3 required apps.')
-                else:
-                    error = _('There cannot be more than 3 required add-ons.')
-                raise forms.ValidationError(error)
-
-    FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
-                                   form=_Form, extra=0, can_delete=True)
-    return FormSet(*args, **kw)
 
 
 class AppFormBasic(addons.forms.AddonFormBase):

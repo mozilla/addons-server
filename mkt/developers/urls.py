@@ -141,13 +141,6 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/validate/?$', views.validate_addon,
         name='mkt.developers.validate_addon'),
 
-    # Standalone compatibility checker:
-    url('^addon/check-compatibility$', views.check_addon_compatibility,
-        name='mkt.developers.check_addon_compatibility'),
-    url(r'^addon/check-compatibility/application_versions\.json$',
-        views.compat_application_versions,
-        name='mkt.developers.compat_application_versions'),
-
     # Redirect to /addons/ at the base.
     url('^addon$',
         lambda r: redirect('mkt.developers.addons', permanent=True)),
