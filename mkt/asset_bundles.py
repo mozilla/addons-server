@@ -142,6 +142,7 @@ JS = {
         'js/lib/underscore.js',
         'js/mkt/slider.js',
         'js/mkt/install.js',
+        'js/zamboni/apps.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
