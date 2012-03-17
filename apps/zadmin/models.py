@@ -252,7 +252,14 @@ class ValidationJobTally(object):
         self.kv.set('validation.msg_key:%s:message' % msg_key,
                     msg['message'])
         if type(msg['description']) == list:
-            des = '; '.join(msg['description'])
+            des = []
+            for _m in msg['description']:
+                if type(_m) == list:
+                    for x in _m:
+                        des.append(x)
+                else:
+                    des.append(_m)
+            des = '; '.join(des)
         else:
             des = msg['description']
         self.kv.set('validation.msg_key:%s:long_message' % msg_key,

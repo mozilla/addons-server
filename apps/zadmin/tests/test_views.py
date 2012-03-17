@@ -1096,6 +1096,19 @@ class TestTallyValidationErrors(BulkValidationTest):
         eq_(rows.pop(0), ['path.to.test_two',
                           'message two', 'message two long', 'error', '3'])
 
+    def test_nested_list_messages(self):
+        job = self.create_job()
+        self.data['messages'] = [{
+            "message": "message one",
+            "description": ["message one long", ["something nested"]],
+            "id": ["path", "to", "test_one"],
+            "uid": "de93a48831454e0b9d965642f6d6bf8f",
+            "type": "error",
+        }]
+        data_str = json.dumps(self.data)
+        # This was raising an exception. bug 733845
+        tasks.tally_validation_results(job.pk, data_str)
+
 
 def test_settings():
     # Are you there, settings page?
