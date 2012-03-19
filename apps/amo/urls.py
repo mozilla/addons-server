@@ -4,7 +4,7 @@ from waffle.views import wafflejs
 from django.conf.urls.defaults import patterns, url, include
 from django.views.decorators.cache import never_cache
 
-from . import views
+from . import views, install
 
 services_patterns = patterns('',
     url('^monitor(.json)?$', never_cache(views.monitor),
@@ -18,6 +18,7 @@ services_patterns = patterns('',
         views.graphite, name='amo.graphite'),
     url('^timing/record$', views.record, name='amo.timing.record'),
     url('^pfs.php$', views.plugin_check, name='api.plugincheck'),
+    url('^install.php$', install.install, name='api.install'),
 )
 
 urlpatterns = patterns('',
