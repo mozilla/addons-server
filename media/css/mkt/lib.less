@@ -76,6 +76,12 @@
     transition-duration: @duration;
 }
 
+.transition-delay(@delay:1s) {
+    -moz-transition-delay: @delay;
+    -webkit-transition-delay: @delay;
+    transition-delay: @delay;
+}
+
 .background-size(@size) {
     -moz-background-size: @size;
     -wekbkit-background-size: @size;
