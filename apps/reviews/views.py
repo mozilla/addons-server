@@ -220,7 +220,7 @@ def edit(request, addon, review_id):
 
 @login_required
 def spam(request):
-    if not acl.action_allowed(request, 'Admin', 'BattleSpam'):
+    if not acl.action_allowed(request, 'Spam', 'Flag'):
         return http.HttpResponseForbidden()
     spam = Spam()
 
