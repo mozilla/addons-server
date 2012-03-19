@@ -6,10 +6,10 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonCategory, AddonRecommendation, Category
-from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
-                              CollectionWatcher,
-                              RecommendedCollection, FeaturedCollection)
+from access.models import Group
+from addons.models import Addon, AddonRecommendation
+from bandwagon.models import (Collection, CollectionUser, CollectionWatcher,
+                              RecommendedCollection)
 from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
@@ -175,9 +175,15 @@ class TestCollections(amo.tests.TestCase):
                                     username='scrub', email='ez@dee')
         eq_(c.can_view_stats(fake_request), False)
 
+        # Member of group with Collections:Edit permission.
+        fake_request.groups = (Group(name='Collections Agency',
+                                     rules='Collections:Edit'),)
+        eq_(c.can_view_stats(fake_request), True)
+
         # Developer.
         user = UserProfile.objects.get(username='regularuser')
         CollectionUser.objects.create(collection=c, user=user)
+        fake_request.groups = ()
         fake_request.amo_user = user
         eq_(c.can_view_stats(fake_request), True)
 

@@ -338,7 +338,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
         if request and request.amo_user:
             return (self.publishable_by(request.amo_user) or
                     acl.action_allowed(request, 'CollectionStats', 'View') or
-                    acl.action_allowed(request, 'Admin', 'EditAnyCollection'))
+                    acl.action_allowed(request, 'Collections', 'Edit'))
         return False
 
     @caching.cached_method
