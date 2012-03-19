@@ -64,6 +64,7 @@ CSS = {
     ),
     'mkt': (
         'css/mkt/reset.less',
+        'css/mkt/typography.less',
         'css/mkt/site.less',
         'css/mkt/forms.less',
         'css/mkt/header.less',
