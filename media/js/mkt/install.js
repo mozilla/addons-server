@@ -17,18 +17,16 @@ function startInstall(e) {
     if (manifestURL) {
         oldLabel = $button.html();
         $button.html('Installing&hellip;');
-        apps.install(manifestURL, {
-            success: installSuccess,
-            error: installError
-        });
+        $.when(apps.install(manifestURL)).done(installSuccess.bind($button))
+                                         .fail(installError.bind($button));
     }
 }
 
 function installSuccess() {
-    $button.removeClass('install').addClass('installed');
-    $button.html('Installed');
+    this.removeClass('install').addClass('installed');
+    this.html('Installed');
 }
 
 function installError() {
-    $button.html(oldLabel);
+    this.html(oldLabel);
 }
