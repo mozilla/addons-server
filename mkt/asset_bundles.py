@@ -72,6 +72,7 @@ CSS = {
         'css/mkt/slider.less',
         'css/mkt/overlay.less',
         'css/mkt/search.less',
+        'css/mkt/paginator.less',
     ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',

@@ -2,7 +2,7 @@
 
 {% macro sort_vital(addon, field) %}
   {% if field in ('popular', 'downloads') or not addon.show_adu() %}
-    <div class="downloads">
+    <div class="vital downloads">
       {% with num=addon.weekly_downloads %}
         {# L10n: {0} is the number of downloads. #}
         {{ ngettext('{0} weekly download', '{0} weekly downloads',
@@ -11,7 +11,7 @@
     </div>
   {% endif %}
   {% if field in ('created', 'updated') %}
-    <div class="updated">
+    <div class="vital updated">
       {% if field == 'created' %}
         {# L10n: {0} is a date. #}
         {{ _('Added {0}')|f(addon.created|datetime) }}
@@ -24,7 +24,7 @@
 {% endmacro %}
 
 {% for product in products %}
-  <li class="item result app product-details c">
+  <li class="item result app c">
     <div class="info">
       <h3>
         {% set dl_url = product.get_url_path() %}

@@ -67,22 +67,61 @@
 }
 
 .listing {
+    p {
+        margin: 5px 0;
+    }
     ol {
         list-style: none;
         padding: 0;
     }
+    .icon {
+        max-height: 64px;
+        max-width: 64px;
+    }
+    .items {
+        border: 1px solid @light-gray;
+    }
     .item {
-        .border-box;
-        background: @white;
-        padding: 10px;
-        + .item {
-            margin-top: 10px;
+        .gradient-two-color(#f7f7f7, @faint-gray);
+        border-bottom: 1px solid @light-gray;
+        border-top: 1px solid @white;
+        min-height: 64px;
+        padding: 10px 120px 10px 95px;
+        position: relative;
+        &:last-child {
+            border-bottom: 0;
         }
-        .install {
+        h3 a {
+            display: block;
+        }
+        .vital {
             display: inline-block;
+            font-size: 11px;
+            + .vital {
+                &:before {
+                    color: @note-gray;
+                    content: "\00B7";
+                }
+            }
+        }
+        .downloads {
+            color: @green;
+        }
+        .actions, img {
+            position: absolute;
+            top: 10px;
+        }
+        .actions {
+            right: 10px;
+            margin-bottom: 10px;
+            .install {
+                display: inline-block;
+                line-height: 32px;
+                width: 100px;
+            }
         }
         img {
-            float: left;
+            left: 10px;
             margin-right: 10px;
         }
     }
@@ -93,10 +132,10 @@
     .border-box;
     float: left;
 }
-#page #search-results {
+#search-results {
     .width(7);
 }
-#page #search-facets {
+#search-facets {
     padding-right: 20px;
     .width(3);
 }
@@ -242,5 +281,55 @@
                 .transform(rotate(-90deg));
             }
         }
+    }
+}
+
+@media (max-width: @7col) {
+    #search-results, #search-facets {
+        float: none;
+    }
+    #search-results {
+        .width(7);
+    }
+    #search-facets {
+        padding-right: 0;
+        .width(7);
+    }
+}
+
+@media (max-width: @4col) {
+    .listing {
+        .item {
+            padding-left: 60px;
+            .actions {
+                margin: 10px 0 0;
+                position: static;
+            }
+            .vital + .vital:before {
+                display: none;
+            }
+        }
+        .icon {
+            max-height: 32px;
+            max-width: 32px;
+        }
+    }
+    #search-results, #search-facets {
+        float: none;
+    }
+    #search-results {
+        .width(4);
+    }
+    #search-facets {
+        .width(4);
+    }
+}
+
+@media (max-width: @3col) {
+    #search-results {
+        .width(3);
+    }
+    #search-facets {
+        .width(3);
     }
 }
