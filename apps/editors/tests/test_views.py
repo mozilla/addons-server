@@ -19,17 +19,19 @@ from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from amo.tests import addon_factory, check_links, formset, initial
 from abuse.models import AbuseReport
+from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
 from files.models import File
+from mkt.webapps.models import Webapp
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version, AppVersion, ApplicationsVersions
-from zadmin.models import set_config
-from mkt.webapps.models import Webapp
+from zadmin.models import get_config, set_config
+
 from . test_models import create_addon_file
 
 
@@ -2090,6 +2092,17 @@ class TestEditorMOTD(EditorTest):
         r = self.client.get(self.get_url())
         eq_(pq(r.content)('.daily-message p').text(), motd)
         eq_(r.context['form'], None)
+
+    def test_motd_edit_group(self):
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        group = Group.objects.create(name='Add-on Reviewer MOTD',
+                                     rules='AddonReviewerMOTD:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        self.login_as_editor()
+        r = self.client.post(reverse('editors.save_motd'),
+                             {'motd': 'I am the keymaster.'})
+        eq_(r.status_code, 302)
+        eq_(get_config('editors_review_motd'), 'I am the keymaster.')
 
     def test_form_errors(self):
         self.login_as_admin()

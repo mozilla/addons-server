@@ -237,7 +237,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 @reviewer_required
 def motd(request):
     form = None
-    if acl.action_allowed(request, 'Admin', 'EditorsMOTD'):
+    if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
         form = forms.MOTDForm()
     data = context(form=form)
     return jingo.render(request, 'editors/motd.html', data)
@@ -246,7 +246,7 @@ def motd(request):
 @reviewer_required
 @post_required
 def save_motd(request):
-    if not acl.action_allowed(request, 'Admin', 'EditorsMOTD'):
+    if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
         return http.HttpResponseForbidden()
     form = forms.MOTDForm(request.POST)
     if form.is_valid():
