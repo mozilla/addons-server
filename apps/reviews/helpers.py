@@ -65,7 +65,7 @@ def user_can_delete_review(request, review):
     People who can delete reviews:
       * The original review author.
       * Editors, but only if they aren't listed as an author of the add-on.
-      * Users in a group with "Admin:EditAnyUser" privileges.
+      * Users in a group with "Users:Edit" privileges.
       * Users in a group with "Admin:EditAnyAddon" privileges.
 
     TODO: Make this more granular when we have multiple reviewer types, e.g.
@@ -77,7 +77,7 @@ def user_can_delete_review(request, review):
     return (
         review.user_id == request.user.id or
         (is_editor and not is_author) or
-        acl.action_allowed(request, 'Admin', 'EditAnyUser') or
+        acl.action_allowed(request, 'Users', 'Edit') or
         acl.action_allowed(request, 'Admin', 'EditAnyAddon'))
 
 

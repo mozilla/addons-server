@@ -137,7 +137,7 @@ class TestEdit(UserViewBase):
                 .count(), 1)
 
     def test_password_empty(self):
-        admingroup = Group(rules='Admin:EditAnyUser')
+        admingroup = Group(rules='Users:Edit')
         admingroup.save()
         GroupUser.objects.create(group=admingroup, user=self.user)
         homepage = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
@@ -596,7 +596,7 @@ class TestLogin(UserViewBase):
         p = UserProfile(username='admin', email=email,
                         password='hunter2', created=datetime.now(), pk=998)
         p.create_django_user()
-        admingroup = Group.objects.create(rules='Admin:EditAnyUser')
+        admingroup = Group.objects.create(rules='Users:Edit')
         GroupUser.objects.create(group=admingroup, user=p)
 
     def _browserid_login(self, email, http_request):
@@ -1031,7 +1031,7 @@ class TestProfileLinks(UserViewBase):
         eq_(links.eq(0).attr('href'), reverse('users.edit'))
 
         # Admin, someone else's profile.
-        admingroup = Group(rules='Admin:EditAnyUser')
+        admingroup = Group(rules='Users:Edit')
         admingroup.save()
         GroupUser.objects.create(group=admingroup, user=self.user_profile)
         cache.clear()

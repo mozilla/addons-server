@@ -245,7 +245,7 @@ def edit(request):
 
 @write
 @login_required
-@permission_required('Admin', 'EditAnyUser')
+@permission_required('Users', 'Edit')
 def admin_edit(request, user_id):
     amouser = get_object_or_404(UserProfile, pk=user_id)
 
@@ -542,7 +542,7 @@ def profile(request, user_id):
                         .filter(following__user=user)
                         .order_by('-following__created'))[:10]
 
-    edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
+    edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
 
