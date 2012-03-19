@@ -320,6 +320,7 @@ def save_icon(webapp, content):
 
 
 @task
+@write
 def fetch_icon(webapp, **kw):
     """Downloads a webapp icon from the location specified in the manifest.
     Returns False if icon was not able to be retrieved
@@ -354,6 +355,7 @@ def fetch_icon(webapp, **kw):
 
 
 @task
+@write
 def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)
     upload = FileUpload.objects.get(pk=upload_pk)
