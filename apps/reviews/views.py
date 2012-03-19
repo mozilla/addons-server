@@ -65,7 +65,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
-            'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
+            'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
             'is_editor': acl.check_reviewer(request),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),
@@ -132,7 +132,7 @@ def _review_details(request, addon, form):
 @addon_view
 @login_required
 def reply(request, addon, review_id):
-    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
     is_author = acl.check_addon_ownership(request, addon, dev=True)
     if not (is_admin or is_author):
         return http.HttpResponseForbidden()
@@ -203,7 +203,7 @@ def add(request, addon, template=None):
 @post_required
 def edit(request, addon, review_id):
     review = get_object_or_404(Review, pk=review_id, addon=addon)
-    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
     if not (request.user.id == review.user.id or is_admin):
         return http.HttpResponseForbidden()
     cls = forms.ReviewReplyForm if review.reply_to else forms.ReviewForm

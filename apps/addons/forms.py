@@ -68,7 +68,7 @@ def clean_tags(request, tags):
 
     restricted = (Tag.objects.values_list('tag_text', flat=True)
                      .filter(tag_text__in=target, restricted=True))
-    if not acl.action_allowed(request, 'Admin', 'EditAnyAddon'):
+    if not acl.action_allowed(request, 'Addons', 'Edit'):
         if restricted:
             # L10n: {0} is a single tag or a comma-separated list of tags.
             msg = ngettext('"{0}" is a reserved tag and cannot be used.',
@@ -136,7 +136,7 @@ class AddonFormBasic(AddonFormBase):
         self.fields['name'].validators = name_validators
 
     def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
+        if acl.action_allowed(self.request, 'Addons', 'Edit'):
             return [t.tag_text for t in addon.tags.all()]
         else:
             return [t.tag_text for t in addon.tags.filter(restricted=False)]
@@ -328,7 +328,7 @@ class BaseCategoryFormSet(BaseFormSet):
 
             # If this add-on is featured for this application, category
             # changes are forbidden.
-            if not acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
+            if not acl.action_allowed(self.request, 'Addons', 'Edit'):
                 form.disabled = (app and self.addon.is_featured(app))
 
     def save(self):

@@ -433,7 +433,7 @@ def _review(request, addon):
                   'prev_url': '%s?num=%s' % (redirect_url, num - 1),
                   'next_url': '%s?num=%s' % (redirect_url, num + 1)}
 
-    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
