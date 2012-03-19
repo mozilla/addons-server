@@ -126,6 +126,12 @@
         if (!(group in acceptedGroups)) {
             group = 'day';
         }
+        // remora is down - these will be removed shortly
+        console.log('data.firstIndex: ');
+        console.log(data.firstIndex);
+        console.log('obj.data.empty: ');
+        console.log(obj.data.empty);
+        console.log(obj.data);
         if (obj.data.empty || !data.firstIndex) {
             showNoDataOverlay();
             $chart.removeClass('loading');
