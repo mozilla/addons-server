@@ -220,9 +220,11 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     def needs_tougher_password(user):
         from access import acl
         return (acl.action_allowed_user(user, 'Admin', '%') or
+                acl.action_allowed_user(user, 'Addons', 'Edit') or
                 acl.action_allowed_user(user, 'Addons', 'Review') or
                 acl.action_allowed_user(user, 'Apps', 'Review') or
-                acl.action_allowed_user(user, 'Personas', 'Review'))
+                acl.action_allowed_user(user, 'Personas', 'Review') or
+                acl.action_allowed_user(user, 'Users', 'Edit'))
 
     @property
     def name(self):
