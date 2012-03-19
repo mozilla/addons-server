@@ -25,7 +25,8 @@
                 maxZoom: 7 * 24 * 3600000, // seven days
                 title: {
                     text: null
-                }
+                },
+                tickmarkPlacement: 'on'
             },
             yAxis: {
                 title: {
@@ -61,11 +62,11 @@
                     },
                     states: {
                         hover: {
-                        lineWidth: 2
+                            lineWidth: 2
+                        }
                     }
-                 }
-              }
-           }
+                }
+            }
         };
     Highcharts.setOptions({ lang: { resetZoom: '' } });
     var chart;
@@ -144,11 +145,7 @@
                 field = fields[i];
                 val = parseFloat(z.StatsManager.getField(row, field));
                 if (val != val) val = null;
-                point = {
-                    'x' : d.getTime(),
-                    'y' : val
-                };
-                series[field].push(point);
+                series[field].push(val);
             }
         }, this);
 
@@ -162,6 +159,9 @@
                 'type'  : 'line',
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
+                'pointInterval' : 1000 * 3600 * 24,
+                // compensate for timezone offsets from UTC.
+                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
