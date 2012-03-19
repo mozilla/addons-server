@@ -10,6 +10,7 @@ if (typeof history.pushState === 'function') {
     function fetchFragment(href) {
         $.get(href, function(d) {
             $('#page').html(d);
+            $('html, body').animate({scrollTop: 0}, 200);
         });
     }
 
