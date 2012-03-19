@@ -99,10 +99,8 @@ def app_search(request):
 
     qs = (Webapp.search()
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                  is_disabled=False))
-
-    if not request.is_ajax():
-        qs = qs.facet(categories={'terms': {'field': 'category', 'size': 200}})
+                  is_disabled=False)
+          .facet(categories={'terms': {'field': 'category', 'size': 200}}))
 
     filters = ['cat', 'price', 'device', 'sort']
     sorting = {'downloads': '-weekly_downloads',
@@ -114,6 +112,7 @@ def app_search(request):
     qs = _filter_search(qs, query, filters, sorting)
 
     pager = amo.utils.paginate(request, qs)
+    facets = pager.object_list.facets
 
     ctx = {
         'pager': pager,
@@ -123,11 +122,8 @@ def app_search(request):
         'sort_opts': form.fields['sort'].choices,
         'extra_sort_opts': [],
         'sort': query.get('sort'),
-        'webapp': True,
+        'categories': category_sidebar(query, facets),
+        'prices': price_sidebar(query),
+        'devices': device_sidebar(query),
     }
-    if not request.is_ajax():
-        facets = pager.object_list.facets
-        ctx.update(categories=category_sidebar(query, facets),
-                   prices=price_sidebar(query),
-                   devices=device_sidebar(query))
     return jingo.render(request, 'search/results.html', ctx)

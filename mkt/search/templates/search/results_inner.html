@@ -8,6 +8,3 @@
 {% else %}
   {{ no_results() }}
 {% endif %}
-{% if request.is_ajax() %}
-  {{ num_results() }}
-{% endif %}
