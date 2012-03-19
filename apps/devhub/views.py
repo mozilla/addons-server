@@ -291,7 +291,7 @@ def edit(request, addon_id, addon, webapp=False):
             request.POST or None, addon=addon)
 
     if (not webapp and
-        acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon')):
+        acl.action_allowed(request, 'Addons', 'Configure')):
         data['admin_form'] = forms.AdminForm(instance=addon)
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
@@ -1765,7 +1765,7 @@ def validator_redirect(request, version_id):
 @post_required
 @addon_view
 def admin(request, addon):
-    if not acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon'):
+    if not acl.action_allowed(request, 'Addons', 'Configure'):
         return http.HttpResponseForbidden()
     form = forms.AdminForm(request, request.POST or None, instance=addon)
     if form.is_valid():

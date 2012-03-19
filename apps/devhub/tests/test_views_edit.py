@@ -7,21 +7,19 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
 
-import mock
 from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
-from waffle.models import Flag, Switch
 
 import amo
 import amo.tests
-from amo.tests import assert_required, formset, initial
+from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
-from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonDeviceType, AddonUser, Category, DeviceType)
+from addons.models import (Addon, AddonCategory, AddonDependency, AddonUser,
+                           Category)
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
 from tags.models import Tag, AddonTag
@@ -1278,6 +1276,7 @@ class TestAdmin(amo.tests.TestCase):
         r = self.client.get(url)
         eq_(r.status_code, 200)
         self.assertContains(r, 'Admin Settings')
+        assert 'admin_form' in r.context, 'AdminForm expected in context.'
 
     def test_show_admin_settings_nonadmin(self):
         self.login_user()
@@ -1285,6 +1284,8 @@ class TestAdmin(amo.tests.TestCase):
         r = self.client.get(url)
         eq_(r.status_code, 200)
         self.assertNotContains(r, 'Admin Settings')
+        assert 'admin_form' not in r.context, (
+                'AdminForm not expected in context.')
 
     def test_post_as_admin(self):
         self.login_admin()
