@@ -94,7 +94,7 @@
         h3 a {
             display: block;
         }
-        .vital {
+        .vital, .rating {
             display: inline-block;
             font-size: 11px;
             + .vital {
@@ -305,17 +305,16 @@
                 margin: 10px 0 0;
                 position: static;
             }
-            .vital + .vital:before {
-                display: none;
+            .vital, .rating {
+                + .vital:before {
+                    display: none;
+                }
             }
         }
         .icon {
             max-height: 32px;
             max-width: 32px;
         }
-    }
-    #search-results, #search-facets {
-        float: none;
     }
     #search-results {
         .width(4);
