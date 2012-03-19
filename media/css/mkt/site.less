@@ -1,5 +1,10 @@
 @import 'lib';
 
+/* Long titles othwerwise break our layout everywhere. */
+* {
+    word-wrap: break-word;
+}
+
 a {
     text-decoration: none;
     color: @link;
