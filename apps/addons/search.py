@@ -29,7 +29,7 @@ def extract(addon):
                                 in translations[addon.description_id]))
     d['summary'] = list(set(string for _, string
                             in translations[addon.summary_id]))
-    d['device'] = getattr(addon, 'devices', [])
+    d['device'] = getattr(addon, 'device_ids', [])
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
     d['tags'] = getattr(addon, 'tag_list', [])

@@ -56,7 +56,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
         # Emit post-save signal so the app gets reindexed.
         self.webapp.save()
-
         self.refresh()
 
     def _generate(self, num=3):
@@ -168,6 +167,11 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             AddonDeviceType.objects.create(addon=self.apps[idx],
                 device_type=DeviceType.objects.create(name=name, id=idx))
 
+        # Make an app have compatibility for every device.
+        for x in xrange(1, 4):
+            AddonDeviceType.objects.create(addon=self.apps[0],
+                                           device_type_id=x)
+
     def check_device_filter(self, device, selected):
         self.setup_devices()
         self.reindex(Webapp)
@@ -182,20 +186,23 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             ('Tablet', urlparams(self.url, device='tablet')),
         ]
         amo.tests.check_links(expected, links, selected)
-        return list(r.context['pager'].object_list)
+        return sorted(a.id for a in r.context['pager'].object_list)
 
     def test_device_all(self):
-        eq_(sorted(a.id for a in self.check_device_filter('', 'Any Device')),
+        eq_(self.check_device_filter('', 'Any Device'),
             sorted(a.id for a in self.apps))
 
     def test_device_desktop(self):
-        eq_(self.check_device_filter('desktop', 'Desktop'), [self.apps[1]])
+        eq_(self.check_device_filter('desktop', 'Desktop'),
+            sorted([self.apps[0].id, self.apps[1].id]))
 
     def test_device_mobile(self):
-        eq_(self.check_device_filter('mobile', 'Mobile'), [self.apps[2]])
+        eq_(self.check_device_filter('mobile', 'Mobile'),
+            sorted([self.apps[0].id, self.apps[2].id]))
 
     def test_device_tablet(self):
-        eq_(self.check_device_filter('tablet', 'Tablet'), [self.apps[3]])
+        eq_(self.check_device_filter('tablet', 'Tablet'),
+            sorted([self.apps[0].id, self.apps[3].id]))
 
     def test_results_sort_default(self):
         self._generate(3)

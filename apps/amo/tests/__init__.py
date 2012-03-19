@@ -23,7 +23,7 @@ import test_utils
 
 import amo
 from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
-from addons.models import Addon, Category, Persona
+from addons.models import Addon, Category, DeviceType, Persona
 import addons.search
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -439,8 +439,9 @@ class ESTestCase(TestCase):
     @classmethod
     def tearDownClass(cls):
         # Delete everything in reverse-order of the foreign key dependencies.
-        models = (Platform, Category, File, ApplicationsVersions, Version,
-                  Translation, Addon, Collection, AppVersion, Application)
+        models = (Platform, Category, DeviceType, File, ApplicationsVersions,
+                  Version, Translation, Addon, Collection, AppVersion,
+                  Application)
         for model in models:
             model.objects.all().delete()
 

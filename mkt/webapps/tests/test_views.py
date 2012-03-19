@@ -27,28 +27,27 @@ class PaidAppMixin(object):
         type_ = amo.ADDON_PREMIUM if type_ is None else type_
         self.free = [
             Webapp.objects.get(id=337141),
-            amo.tests.addon_factory(type=amo.ADDON_WEBAPP),
+            amo.tests.app_factory(),
         ]
 
         self.paid = []
         for x in xrange(1, 3):
             price = Price.objects.create(price=x)
-            addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
-                                            weekly_downloads=x * 100)
+            addon = amo.tests.app_factory(weekly_downloads=x * 100)
             AddonPremium.objects.create(price=price, addon=addon)
             addon.update(premium_type=type_)
             self.paid.append(addon)
 
         # For measure add some disabled free apps ...
-        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, disabled_by_user=True)
-        amo.tests.addon_factory(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
+        amo.tests.app_factory(disabled_by_user=True)
+        amo.tests.app_factory(status=amo.STATUS_NULL)
 
         # ... and some disabled paid apps.
-        addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
-            disabled_by_user=True, premium_type=amo.ADDON_PREMIUM)
+        addon = amo.tests.app_factory(disabled_by_user=True,
+                                      premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(price=price, addon=addon)
-        addon = amo.tests.addon_factory(type=amo.ADDON_WEBAPP,
-            status=amo.STATUS_NULL, premium_type=amo.ADDON_PREMIUM)
+        addon = amo.tests.app_factory(status=amo.STATUS_NULL,
+                                      premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(price=price, addon=addon)
 
         self.both = sorted(self.free + self.paid,

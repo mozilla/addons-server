@@ -15,7 +15,7 @@ from market.models import AddonPremium
 from tags.models import Tag
 from versions.models import Version
 from . import cron, search  # Pull in tasks from cron.
-from .models import (Addon, AddonDeviceType, Category, CompatOverride,
+from .models import (Addon, Category, CompatOverride, DeviceType,
                      IncompatibleVersions, Preview)
 
 log = logging.getLogger('z.task')
@@ -106,10 +106,10 @@ def index_addons(ids, **kw):
 
 def attach_devices(addons):
     addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
-    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
-               .values_list('addon', 'device_type'))
-    for addon, device_types in devices:
-        addon_dict[addon].devices = device_types
+    devices = (DeviceType.objects.filter(addondevicetype__addon__in=addon_dict)
+               .values_list('addondevicetype__addon', 'id'))
+    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
+        addon_dict[addon].device_ids = [d[1] for d in device_types]
 
 
 def attach_prices(addons):
@@ -125,7 +125,7 @@ def attach_prices(addons):
 def attach_categories(addons):
     """Put all of the add-on's categories into a category_ids list."""
     addon_dict = dict((a.id, a) for a in addons)
-    categories = (Category.objects.filter(addon__in=addon_dict)
+    categories = (Category.objects.filter(addoncategory__addon__in=addon_dict)
                   .values_list('addoncategory__addon', 'id'))
     for addon, cats in sorted_groupby(categories, lambda x: x[0]):
         addon_dict[addon].category_ids = [c[1] for c in cats]
