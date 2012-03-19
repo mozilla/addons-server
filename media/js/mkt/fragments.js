@@ -1,7 +1,7 @@
 if (typeof history.pushState === 'function') {
     $('#page').on('click', 'a', function(e) {
         var href = this.getAttribute('href');
-        if (!href || href.substr(0,4) == 'http') return;
+        if (!href || href.substr(0,4) == 'http' || href === '#') return;
         e.preventDefault();
         history.pushState({path: href}, false, href);
         fetchFragment(href);
