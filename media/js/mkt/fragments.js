@@ -15,7 +15,9 @@ if (typeof history.pushState === 'function') {
 
     $(window).on('popstate', function(e) {
         var state = e.originalEvent.state;
-        fetchFragment(state.path);
+        if (state) {
+            fetchFragment(state.path);
+        }
     });
 
     var path = window.location.pathname;
