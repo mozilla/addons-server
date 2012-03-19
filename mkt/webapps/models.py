@@ -18,7 +18,7 @@ import amo.models
 from amo.urlresolvers import reverse
 from amo.utils import memoize
 from addons import query
-from addons.models import (Addon, update_name_table, update_search_index)
+from addons.models import Addon, update_name_table, update_search_index
 from files.models import FileUpload, Platform
 from versions.models import Version
 

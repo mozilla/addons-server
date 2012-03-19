@@ -480,6 +480,19 @@ def reindex_addons():
 
 
 @cronjobs.register
+def reindex_apps():
+    """Apps do get indexed by `reindex_addons`, but run this for apps only."""
+    from . import tasks
+    search.setup_mapping()
+    ids = (Addon.objects.values_list('id', flat=True)
+           .filter(type=amo.ADDON_WEBAPP, status__in=amo.VALID_STATUSES,
+                   disabled_by_user=False))
+    ts = [tasks.index_addons.subtask(args=[chunk])
+          for chunk in chunked(sorted(list(ids)), 150)]
+    TaskSet(ts).apply_async()
+
+
+@cronjobs.register
 def reset_featured_addons():
     FeaturedManager.build()
     CreaturedManager.build()

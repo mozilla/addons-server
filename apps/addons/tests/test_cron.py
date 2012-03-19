@@ -1,4 +1,4 @@
-import os.path 
+import os.path
 from nose.tools import eq_
 import mock
 
@@ -225,3 +225,20 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
         addon = Addon.objects.get(pk=3615)
         eq_(addon.average_daily_users, addon.total_downloads)
 
+
+class TestReindex(amo.tests.ESTestCase):
+
+    @mock.patch('addons.models.update_search_index', new=mock.Mock)
+    def setUp(self):
+        self.addons = []
+        self.apps = []
+        for x in xrange(3):
+            self.addons.append(amo.tests.addon_factory())
+            self.apps.append(amo.tests.app_factory())
+
+    def test_job(self):
+        for job in [cron.reindex_addons, cron.reindex_apps]:
+            job()
+            self.refresh()
+            eq_(sorted(a.id for a in Addon.search()),
+                sorted(a.id for a in self.apps + self.addons))
