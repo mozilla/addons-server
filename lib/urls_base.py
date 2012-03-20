@@ -64,9 +64,6 @@ urlpatterns = patterns('',
     # Developer Hub.
     ('editors/', include('editors.urls')),
 
-    # In-app payments.
-    ('payments/', include('payments.urls')),
-
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 

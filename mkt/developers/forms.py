@@ -24,7 +24,7 @@ from amo.utils import raise_required
 from files.models import FileUpload
 from market.models import AddonPremium, Price, AddonPaymentData
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from payments.models import InappConfig
+from mkt.payments.models import InappConfig
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 from translations.models import Translation

@@ -31,6 +31,9 @@ urlpatterns = patterns('',
     # Submission.
     ('^developers/submit/app/', include('mkt.submit.urls')),
 
+    # In-app payments.
+    ('^payments/', include('mkt.payments.urls')),
+
     # Misc pages.
     ('', include('mkt.site.urls')),
 

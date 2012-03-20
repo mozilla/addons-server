@@ -231,7 +231,7 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'apps', 'blocklist', 'credits', 'developers',
                      'editors', 'img', 'jsi18n', 'localizers', 'media',
-                     'marketplace-experiments', 'payments', 'robots.txt',
+                     'marketplace-experiments', 'robots.txt',
                      'statistics', 'services', 'sunbird')
 DEFAULT_APP = 'firefox'
 
@@ -363,7 +363,6 @@ INSTALLED_APPS = (
     'market',
     'localizers',
     'pages',
-    'payments',
     'perf',
     'product_details',
     'reviews',

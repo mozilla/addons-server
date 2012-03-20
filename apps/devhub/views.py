@@ -40,14 +40,13 @@ from addons.decorators import addon_view, can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
-from devhub.forms import CheckCompatibilityForm, InappConfigForm
+from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import AddonPremium, Refund
-from payments.models import InappConfig
 from paypal.check import Check
 import paypal
 from search.views import BaseAjaxSearch
@@ -409,44 +408,6 @@ def payments(request, addon_id, addon, webapp=False):
     if addon.is_premium():
         return _premium(request, addon_id, addon, webapp)
     return _voluntary(request, addon_id, addon, webapp)
-
-
-@waffle_switch('in-app-payments')
-@dev_required(owner_for_post=True, webapp=True)
-@transaction.commit_on_success
-def in_app_config(request, addon_id, addon, webapp=True):
-    try:
-        inapp_config = InappConfig.objects.get(addon=addon,
-                                               status=amo.INAPP_STATUS_ACTIVE)
-    except models.ObjectDoesNotExist:
-        inapp_config = None
-    inapp_form = InappConfigForm(request.POST or None,
-                                 instance=inapp_config)
-
-    if request.method == 'POST' and inapp_form.is_valid():
-        new_inapp = inapp_form.save(commit=False)
-        new_inapp.addon = addon
-        new_inapp.status = amo.INAPP_STATUS_ACTIVE
-        if not new_inapp.public_key:
-            new_inapp.public_key = InappConfig.generate_public_key()
-        if not new_inapp.private_key:
-            new_inapp.private_key = InappConfig.generate_private_key()
-        new_inapp.save()
-
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect(addon.get_dev_url('in_app_config'))
-
-    return jingo.render(request, 'devhub/payments/in-app-config.html',
-                        dict(addon=addon, inapp_form=inapp_form,
-                             inapp_config=inapp_config))
-
-
-@waffle_switch('in-app-payments')
-@dev_required(owner_for_post=True, webapp=True)
-def in_app_secret(request, addon_id, addon, webapp=True):
-    inapp_config = get_object_or_404(InappConfig, addon=addon,
-                                     status=amo.INAPP_STATUS_ACTIVE)
-    return http.HttpResponse(inapp_config.private_key)
 
 
 def _premium(request, addon_id, addon, webapp=False):

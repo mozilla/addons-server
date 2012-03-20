@@ -34,7 +34,6 @@ from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
 from market.models import AddonPremium, Price
-from payments.models import InappConfig
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation, Translation
@@ -215,27 +214,6 @@ class LicenseForm(AMOModelForm):
                     amo.log(amo.LOG.CHANGE_LICENSE, license,
                             self.version.addon)
         return license
-
-
-class InappConfigForm(happyforms.ModelForm):
-
-    def clean_postback_url(self):
-        return self._clean_relative_url(self.cleaned_data['postback_url'])
-
-    def clean_chargeback_url(self):
-        return self._clean_relative_url(self.cleaned_data['chargeback_url'])
-
-    def _clean_relative_url(self, url):
-        url = url.strip()
-        if not url.startswith('/'):
-            raise forms.ValidationError(_('This URL is relative to your app '
-                                          'domain so it must start with a '
-                                          'slash.'))
-        return url
-
-    class Meta:
-        model = InappConfig
-        fields = ('postback_url', 'chargeback_url')
 
 
 class PolicyForm(TranslationFormMixin, AMOModelForm):
