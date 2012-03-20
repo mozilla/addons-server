@@ -69,4 +69,6 @@ function slider(el) {
     });
 }
 
-slider($('.slider')[0]);
+z.page.on('fragmentloaded', function() {
+    slider($('.slider'));
+});
