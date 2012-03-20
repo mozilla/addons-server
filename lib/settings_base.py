@@ -1230,6 +1230,10 @@ MODIFIED_DELAY = 3
 # previous: the major version before :main.
 COMPAT = (
     # Firefox.
+    dict(app=1, main='13.0', versions=('13.0', '13.0a2', '13.0a1'),
+         previous='12.0'),
+    dict(app=1, main='12.0', versions=('12.0', '12.0a2', '12.0a1'),
+         previous='11.0'),
     dict(app=1, main='11.0', versions=('11.0', '11.0a2', '11.0a1'),
          previous='10.0'),
     dict(app=1, main='10.0', versions=('10.0', '10.0a2', '10.0a1'),
@@ -1247,6 +1251,20 @@ COMPAT = (
     dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'),
          previous='3.6'),
     # Thunderbird.
+    dict(app=18, main='13.0', versions=('13.0', '13.0a2', '13.0a1'),
+         previous='12.0'),
+    dict(app=18, main='12.0', versions=('12.0', '12.0a2', '12.0a1'),
+         previous='11.0'),
+    dict(app=18, main='11.0', versions=('11.0', '11.0a2', '11.0a1'),
+         previous='10.0'),
+    dict(app=18, main='10.0', versions=('10.0', '10.0a2', '10.0a1'),
+         previous='9.0'),
+    dict(app=18, main='9.0', versions=('9.0', '9.0a2', '9.0a1'),
+         previous='8.0'),
+    dict(app=18, main='8.0', versions=('8.0', '8.0a2', '8.0a1'),
+         previous='7.0'),
+    dict(app=18, main='7.0', versions=('7.0', '7.0a2', '7.0a1'),
+         previous='6.0'),
     dict(app=18, main='6.0', versions=('6.0', '6.0a2', '6.0a1'),
          previous='5.0'),
     # Seamonkey.
