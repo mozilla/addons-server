@@ -1,26 +1,29 @@
-if (typeof history.pushState === 'function') {
-    $('#page').on('click', 'a', function(e) {
-        var href = this.getAttribute('href');
-        if (!href || href.substr(0,4) == 'http' || href === '#') return;
-        e.preventDefault();
-        history.pushState({path: href}, false, href);
-        fetchFragment(href);
-    });
-
-    function fetchFragment(href) {
-        $.get(href, function(d) {
-            $('#page').html(d);
-            $('html, body').animate({scrollTop: 0}, 200);
+(function() {
+    z.page = $('#page');
+    if (z.capabilities['replaceState']) {
+        z.page.on('click', 'a', function(e) {
+            var href = this.getAttribute('href');
+            if (!href || href.substr(0,4) == 'http' || href === '#') return;
+            e.preventDefault();
+            history.pushState({path: href}, false, href);
+            fetchFragment(href);
         });
-    }
 
-    $(window).on('popstate', function(e) {
-        var state = e.originalEvent.state;
-        if (state) {
-            fetchFragment(state.path);
+        function fetchFragment(href) {
+            $.get(href, function(d) {
+                z.page.html(d);
+                $('html, body').animate({scrollTop: 0}, 200);
+            });
         }
-    });
 
-    var path = window.location.pathname;
-    history.replaceState({path: path}, false, path);
-}
+        $(window).on('popstate', function(e) {
+            var state = e.originalEvent.state;
+            if (state) {
+                fetchFragment(state.path);
+            }
+        });
+
+        var path = window.location.pathname;
+        history.replaceState({path: path}, false, path);
+    }
+})();

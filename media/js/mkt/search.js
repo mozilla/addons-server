@@ -1,5 +1,5 @@
 (function() {
-    $('#search-facets').delegate('li.facet', 'click', function(e) {
+    z.page.on('click', '#search-facets li.facet', function(e) {
         var $this = $(this);
         if ($this.hasClass('active')) {
             if ($(e.target).is('a')) {

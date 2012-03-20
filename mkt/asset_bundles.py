@@ -143,6 +143,8 @@ JS = {
     'mkt': (
         'js/lib/jquery-1.7.1.js',
         'js/lib/underscore.js',
+        'js/mkt/init.js',
+        'js/mkt/capabilities.js',
         'js/mkt/fragments.js',
         'js/mkt/slider.js',
         'js/mkt/install.js',
