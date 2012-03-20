@@ -31,6 +31,7 @@ import amo.tasks
 import addons.cron
 import addons.search
 import bandwagon.cron
+import compat.cron
 import files.tasks
 import files.utils
 import users.cron
@@ -535,7 +536,7 @@ def elastic(request):
     mappings = {'addons': addons.cron.reindex_addons,
                 'apps': addons.cron.reindex_apps,
                 'collections': bandwagon.cron.reindex_collections,
-                'compat': None,
+                'compat': compat.cron.compatibility_report,
                 'users': users.cron.reindex_users,
                }
     if request.method == 'POST':
