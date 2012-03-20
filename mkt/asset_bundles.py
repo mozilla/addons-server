@@ -68,6 +68,7 @@ CSS = {
         'css/mkt/site.less',
         'css/mkt/forms.less',
         'css/mkt/header.less',
+        'css/mkt/buttons.less',
         'css/mkt/detail.less',
         'css/mkt/slider.less',
         'css/mkt/overlay.less',
