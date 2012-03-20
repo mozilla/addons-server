@@ -1,39 +1,36 @@
-{% extends "base_modal.html" %}
+{% extends "payments/base.html" %}
 
-{% block classes %}paypal-modal{% endblock %}
-
-{% block content %}
-<div class="ajax-submit">
-  <h2>{{ loc('Mozilla Payments') }}</h2>
-  <div class="paypal-content">
-    <span class="price">{{ currency }} {{ price }}</span>
-    <h5>{{ item }}</h5>
-    <p>{{ description }}</p>
-    <div class="paypal-parent">
-      {% if user.is_authenticated() %}
-      <div class="paypal-user">
-        {% trans user_email=user.email %}
-        You are logged in as <strong>{{ user_email }}</strong>!
-        {% endtrans %}
-      </div>
-      <form method="post" action="{{ url('payments.pay') }}">
-        {{ csrf() }}
-        <input type="hidden" name="req" value="{{ signed_request }}">
-        <button class="button prominent paypal">
-          {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
-          {{ loc('Pay <small>with</small> Pay<em>Pal</em>')|xssafe }}
-        </button>
-      </form>
-      <p>{{ loc('Complete your purchase with PayPal.  No PayPal account is necessary.') }}</p>
-      {% else %}
-      <div class="paypal-user login">
-        <a href="#" class="browserid-login button prominent"
-          data-url="{{ url('users.browserid_login') }}" data-event="login-complete">
-          {{ loc('Log in / Register') }}
-        </a>
-      </div>
-      <p>{{ loc('You need to be logged in to the Mozilla Marketplace to make payments.') }}</p>
-      {% endif %}
+{% block screen_content %}
+<h2>{{ loc('Mozilla Payments') }}</h2>
+<div class="paypal-content">
+  <span class="price">{{ currency }} {{ price }}</span>
+  <h5>{{ item }}</h5>
+  <p>{{ description }}</p>
+  <div class="paypal-parent">
+    {% if user.is_authenticated() %}
+    <div class="paypal-user">
+      {% trans user_email=user.email %}
+      You are logged in as <strong>{{ user_email }}</strong>!
+      {% endtrans %}
     </div>
+    <form method="post" action="{{ url('payments.pay') }}">
+      {{ csrf() }}
+      <input type="hidden" name="req" value="{{ signed_request }}">
+      <button class="button prominent paypal">
+        {# The <small> makes it smaller, <em> makes it darker. Don't localize "PayPal". #}
+        {{ loc('Pay <small>with</small> Pay<em>Pal</em>')|xssafe }}
+      </button>
+    </form>
+    <p>{{ loc('Complete your purchase with PayPal.  No PayPal account is necessary.') }}</p>
+    {% else %}
+    <div class="paypal-user login">
+      <a href="#" class="browserid-login button prominent"
+        data-url="{{ url('users.browserid_login') }}" data-event="login-complete">
+        {{ loc('Log in / Register') }}
+      </a>
+    </div>
+    <p>{{ loc('You need to be logged in to the Mozilla Marketplace to make payments.') }}</p>
+    {% endif %}
   </div>
+</div>
 {% endblock %}

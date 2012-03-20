@@ -1,0 +1,26 @@
+{% extends "mkt/base.html" %}
+
+{% block site_css %}
+  {{ css('mkt/in-app-payments') }}
+{% endblock %}
+
+
+{% block siteheader %}
+{% endblock %}
+
+
+{% block sitefooter %}
+{% endblock %}
+
+
+{% block site_js %}
+  {# {{ js('mkt/in-app-payments') }} #}
+{% endblock %}
+
+
+{% block content %}
+<div class="paypal-modal modal payment-screen">
+  {% block screen_content %}
+  {% endblock %}
+</div>
+{% endblock %}
