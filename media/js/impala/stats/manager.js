@@ -503,8 +503,9 @@ z.StatsManager = (function() {
             val     = row;
 
         // give up if the row is falsy.
-        console.log('val is: ' + val);
-        if (!_.isNumber(val)) return null;
+        console.log('val is: ');
+        console.log(val);
+        if (!val) return null;
         // drill into the row object for a nested key.
         // `data|api` means row['data']['api']
         for (var i = 0; i < parts.length; i++) {
