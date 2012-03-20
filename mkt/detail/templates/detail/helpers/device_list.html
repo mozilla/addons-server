@@ -3,7 +3,7 @@
   <ul>
     {% for device in device_types %}
       <li class="{{ device.class_name }}">
-        <span>{{ device.name }}</span>
+        {{ device.name }}
       </li>
     {% endfor %}
   </ul>

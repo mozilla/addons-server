@@ -33,10 +33,9 @@
 
 .device-list {
     h4, ul {
-        float: left;
-    }
-    h4 {
-        margin: 5px 10px 5px 0;
+        display: inline-block;
+        line-height: 20px;
+        vertical-align: top;
     }
     ul {
         color: @medium-gray;
@@ -45,34 +44,53 @@
     }
     li {
         display: inline-block;
-        height: 25px;
-        line-height: 25px;
-        span {
-            display: inline-block;
-            padding-left: 5px;
-        }
-        + li {
-            margin-left: 10px;
-        }
-        &:before {
-            background: url(../../img/mkt/device-icons.png) no-repeat;
-            content: "";
+        height: 22px;
+        line-height: 20px;
+        position: relative;
+        padding-left: 23px;
+        margin-left: 16px;
+        overflow: hidden;
+
+        &:before, &:after {
+            content: '';
+            background: #fff;
             display: block;
-            float: left;
-            height: 25px;
-            width: 25px;
+            position: absolute;
+            border-radius: 2px;
+            top: 0;
+            left: 0;
+            border: 2px solid #666;
         }
         &.mobile:before {
-            background-position: 0 0;
-            width: 17px;
+            left: 3px;
+            width: 10px;
+            height: 12px;
+            border-width: 3px 2px 6px;
+        }
+        &.mobile:after {
+            border-width: 1px;
+            border-color: #fff;
+            left: 9px;
+            top: 17px;
         }
         &.tablet:before {
-            background-position: -25px 0;
-            width: 25px;
+            top: 3px;
+            left: 0px;
+            width: 16px;
+            height: 10px;
+        }
+        &.tablet:after {
+            display: none;
         }
         &.desktop:before {
-            background-position: -50px 0;
-            width: 25px;
+            top: 3px;
+            width: 16px;
+            height: 8px;
+        }
+        &.desktop:after {
+            top: 15px;
+            width: 6px;
+            left: 5px;
         }
     }
 }
@@ -117,13 +135,8 @@
             display: none;
         }
         li {
-            + li {
-                margin-left: 5px;
-            }
-            span {
-                padding: 0;
-                text-indent: -9999px;
-            }
+            width: 0;
+            margin-left: 0;
         }
     }
 }
