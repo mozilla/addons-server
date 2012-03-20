@@ -24,7 +24,8 @@
             }
         });
 
-        var path = window.location.pathname;
+        var path = window.location.pathname + window.location.search;
         history.replaceState({path: path}, false, path);
+        $('#page').trigger('fragmentloaded');
     }
 })();
