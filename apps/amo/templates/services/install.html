@@ -5,7 +5,7 @@
 <script type="text/javascript">
     function install() {
         if ({{ referrers }}) {
-            var params = {{ params }};
+            var params = {{ params|safe }};
             for (var key in params) params[key].toString = function () { return this.URL; };
             InstallTrigger.install(params, goBack);
         } else {
