@@ -13,6 +13,7 @@
             $.get(href, function(d) {
                 z.page.html(d);
                 $('html, body').animate({scrollTop: 0}, 200);
+                $('#page').trigger('fragmentloaded');
             });
         }
 
