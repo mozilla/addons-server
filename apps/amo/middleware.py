@@ -38,11 +38,6 @@ class LocaleAndAppURLMiddleware(object):
         # Find locale, app
         prefixer = urlresolvers.Prefixer(request)
         redirect_type = HttpResponsePermanentRedirect
-        if settings.MARKETPLACE:
-            # Force en-US until we localize Marketplace.
-            prefixer.locale = 'en-US'
-            # Use 302 redirects if these URLs are gonna change.
-            redirect_type = redirect
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
