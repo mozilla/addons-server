@@ -31,7 +31,6 @@ import amo.tasks
 import addons.cron
 import addons.search
 import bandwagon.cron
-import compat.cron
 import files.tasks
 import files.utils
 import users.cron
@@ -43,6 +42,7 @@ from addons.decorators import addon_view
 from addons.models import Addon, CompatOverride, AddonUser
 from addons.utils import ReverseNameLookup
 from bandwagon.models import Collection
+from compat.cron import compatibility_report
 from compat.models import AppCompat
 from devhub.models import ActivityLog
 from files.models import Approval, File
@@ -536,7 +536,7 @@ def elastic(request):
     mappings = {'addons': addons.cron.reindex_addons,
                 'apps': addons.cron.reindex_apps,
                 'collections': bandwagon.cron.reindex_collections,
-                'compat': compat.cron.compatibility_report,
+                'compat': compatibility_report,
                 'users': users.cron.reindex_users,
                }
     if request.method == 'POST':
