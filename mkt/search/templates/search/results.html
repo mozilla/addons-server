@@ -52,7 +52,7 @@
 
 {% block content %}
   <section class="c">
-    <section id="search-facets">
+    <section id="search-facets" class="col">
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
         {{ facet(_('Price'), 'price-facets', prices) }}
@@ -61,7 +61,7 @@
       </ul>
       {{ num_results() }}
     </section>
-    <section id="search-results">
+    <section id="search-results" class="col">
       <h1>{{ heading }}</h1>
       <div id="search-listing" class="listing">
         {% include 'search/results_inner.html' %}

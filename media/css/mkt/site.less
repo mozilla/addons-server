@@ -83,6 +83,23 @@ body {
     clear: both;
 }
 
+.col {
+    float: left;
+    margin-left: @gutter * @px;
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.html-rtl .col {
+    float: right;
+    margin-right: @gutter * @px;
+    margin-left: auto;
+    &:first-child {
+        margin-right: 0;
+    }
+}
+
 // TODO potch: Belongs with the "collapsible" widget.
 .more {
     display: none;
