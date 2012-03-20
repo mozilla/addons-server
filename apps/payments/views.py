@@ -47,7 +47,7 @@ def decode_request(signed_request):
 
 @anonymous_csrf
 @remote_jsonp_view
-@waffle_switch('in-app-payments')
+@waffle_switch('in-app-payments-ui')
 def pay_start(request):
     signed_req = request.GET.get('req')
     if not signed_req:
@@ -64,7 +64,7 @@ def pay_start(request):
 @anonymous_csrf
 @login_required
 @remote_jsonp_view
-@waffle_switch('in-app-payments')
+@waffle_switch('in-app-payments-ui')
 def pay(request):
     signed_req = request.GET.get('req')
     if not signed_req:
@@ -78,6 +78,6 @@ def pay(request):
 
 
 @remote_jsonp_view
-@waffle_switch('in-app-payments')
+@waffle_switch('in-app-payments-ui')
 def inject_styles(request):
     return jingo.render(request, 'payments/inject_styles.html', {})
