@@ -2,7 +2,6 @@ from django import test, shortcuts
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
 
-from mock import patch
 from nose.tools import eq_, assert_not_equal
 import test_utils
 
@@ -41,24 +40,6 @@ class MiddlewareTest(test.TestCase):
             response = self.middleware.process_request(self.rf.get(path))
             eq_(response.status_code, 301)
             eq_(response['Location'], location)
-
-    # Patch for /developers/ redirect and l10n detection disabling.
-    @patch.object(settings, 'MARKETPLACE', True)
-    def test_marketplace_redirection(self):
-        # We're forcing en-US since Marketplace isn't localized yet.
-        redirections = {
-            '/': '/en-US/developers/',
-            '/developers': '/en-US/developers',
-            '/en-US/': '/en-US/developers/',
-            '/fr/': '/en-US/developers/',
-            '/fr/developers': '/en-US/developers',
-        }
-        for path, location in redirections.items():
-            r = self.middleware.process_request(self.rf.get(path))
-            eq_(r.status_code, 302,
-                'Expected a 302 for %s. (Got a %s)' % (path, r.status_code))
-            eq_(r['Location'], location,
-                '%s -> %s went to %s' % (path, location, r['Location']))
 
     def process(self, *args, **kwargs):
         request = self.rf.get(*args, **kwargs)
