@@ -63,7 +63,7 @@ def mkt_breadcrumbs(context, addon=None, items=None, add_default=False):
 
     if addon:
         if items:
-            url_ = addon.get_dev_url()
+            url_ = addon.get_detail_url()
         else:
             # The Addon is the end of the trail.
             url_ = None
