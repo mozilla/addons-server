@@ -121,9 +121,13 @@
             &:after {
                 border: 8px solid transparent;
                 border-right-color: fadeOut(@green, 40%);
-                content: "";
+                content: "\00b0";  /* degree sign */
+                color: fadeOut(@white, 60%);
+                font-size: 8px;
+                line-height: 3px;
                 margin: 0 4px 0 -16px;
                 position: absolute;
+                text-indent: 5px;
                 top: 0;
                 left: 0;
                 height: 0;
@@ -154,6 +158,9 @@
     .price {
         margin: 0 0 0 8px;
         padding: 0 4px 0 2px;
+        &:after {
+            text-indent: -8px;
+        }
     }
 }
 
