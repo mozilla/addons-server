@@ -58,8 +58,8 @@ class LocaleAndAppURLMiddleware(object):
                 full_path = "%s?%s" % (full_path, query_string)
 
             response = redirect_type(full_path)
-            # Cache the redirect for a year. But not for Marketplace!
-            if not (settings.DEBUG or settings.MARKETPLACE):
+            # Cache the redirect for a year.
+            if not settings.DEBUG:
                 patch_cache_control(response, max_age=60 * 60 * 24 * 365)
 
             # Vary on Accept-Language or User-Agent if we changed the locale or

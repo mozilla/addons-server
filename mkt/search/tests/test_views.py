@@ -68,8 +68,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        assert 'X-Requested-With' in r['vary'].split(','), (
-            'Expected "Vary: X-Requested-With" header')
         self.assertTemplateUsed(r, 'search/results.html')
 
     def test_results_item(self):

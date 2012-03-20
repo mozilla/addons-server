@@ -58,7 +58,13 @@ SUPPORTED_NONAPPS += (
     'users',
 )
 
+MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+# TODO: I want to get rid of these eventually but it breaks some junk now.
+# MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
+# MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
+# MIDDLEWARE_CLASSES.remove('cake.middleware.CookieCleaningMiddleware')
 MIDDLEWARE_CLASSES += (
+    'mkt.site.middleware.VaryOnAJAXMiddleware',
     'amo.middleware.NoConsumerMiddleware',
 )
 

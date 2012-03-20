@@ -1,5 +1,4 @@
 from django.shortcuts import redirect
-from django.views.decorators.vary import vary_on_headers
 
 import jingo
 from tower import ugettext as _
@@ -92,7 +91,6 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-@vary_on_headers('X-Requested-With')
 def app_search(request):
     form = forms.AppSearchForm(request.GET)
     form.is_valid()  # Let the form try to clean data.
