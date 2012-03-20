@@ -37,8 +37,7 @@
                         return Highcharts.numberFormat(this.value, 0);
                     }
                 },
-                min: 0,
-                minRange: 10,
+                minRange: 5,
                 minPadding: 0.2,
                 startOnTick: false,
                 showFirstLabel: false
