@@ -149,7 +149,12 @@
         forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
+                console.log('row:');
+                console.log(row);
+                console.log('field:');
+                console.log(field);
                 val = parseFloat(z.StatsManager.getField(row, field));
+                console.log('val in chart.js is: ' + val);
                 if (val != val) val = null;
                 series[field].push(val);
             }
