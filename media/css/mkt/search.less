@@ -94,13 +94,15 @@
         h3 a {
             display: block;
         }
-        .vital, .rating {
-            display: inline-block;
+        .vitals {
             font-size: 11px;
-            + .vital {
-                &:before {
-                    color: @note-gray;
-                    content: "\00B7";
+            span {
+                display: inline-block;
+                + .vital {
+                    &:before {
+                        color: @note-gray;
+                        content: "\00B7";
+                    }
                 }
             }
         }
@@ -303,7 +305,7 @@
                 margin: 10px 0 0;
                 position: static;
             }
-            .vital, .rating {
+            .vitals .vital {
                 + .vital:before {
                     display: none;
                 }

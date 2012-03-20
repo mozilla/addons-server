@@ -16,15 +16,7 @@
           {{ num }} weekly downloads
         {% endtrans %}
       </p>
-      {% if product.device_types %}
-        <ul class="compat-list">
-          {% for device in product.device_types %}
-            <li class="{{ device.class_name }}">
-              {{ device.name }}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+      {{ device_list(product) }}
     </div>
     <div class="actions">
       {{ market_button(product) }}

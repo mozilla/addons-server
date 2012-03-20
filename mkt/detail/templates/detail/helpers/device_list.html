@@ -1,0 +1,10 @@
+<div class="device-list c">
+  <h4>{{ _('Optimized for') }}</h4>
+  <ul>
+    {% for device in device_types %}
+      <li class="{{ device.class_name }}">
+        <span>{{ device.name }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
