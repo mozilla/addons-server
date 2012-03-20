@@ -98,7 +98,7 @@
             font-size: 11px;
             span {
                 display: inline-block;
-                + .vital {
+                + .vital, + .rating {
                     &:before {
                         color: @note-gray;
                         content: "\00B7";
@@ -111,7 +111,24 @@
             color: @green;
         }
         .price {
+            background: fadeOut(@green, 40%);
+            color: fadeOut(@white, 5%);
+            height: 16px;
             font-weight: bold;
+            margin: 0 2px 0 8px;
+            padding: 0 4px 0 2px;
+            position: relative;
+            &:after {
+                border: 8px solid transparent;
+                border-right-color: fadeOut(@green, 40%);
+                content: "";
+                margin: 0 4px 0 -16px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 0;
+                width: 0;
+            }
         }
         .actions, img {
             position: absolute;
@@ -130,6 +147,13 @@
             left: 10px;
             margin-right: 10px;
         }
+    }
+}
+
+.html-rtl .listing {
+    .price {
+        margin: 0 0 0 8px;
+        padding: 0 4px 0 2px;
     }
 }
 
@@ -306,8 +330,10 @@
                 position: static;
             }
             .vitals .vital {
-                + .vital:before {
-                    display: none;
+                + .vital, + .rating {
+                    &:before {
+                        display: none;
+                    }
                 }
             }
         }
