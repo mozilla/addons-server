@@ -533,6 +533,7 @@ def elastic(request):
     INDEX = site_settings.ES_INDEXES['default']
     es = elasticutils.get_es()
     mappings = {'addons': addons.cron.reindex_addons,
+                'apps': addons.cron.reindex_apps,
                 'collections': bandwagon.cron.reindex_collections,
                 'compat': None,
                 'users': users.cron.reindex_users,
