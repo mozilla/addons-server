@@ -63,7 +63,7 @@ CSS = {
     'mkt/devreg-legacy': (
         'css/devreg-legacy/developers.less',  # Legacy galore.
     ),
-    'mkt': (
+    'mkt/consumer': (
         'css/mkt/reset.less',
         'css/mkt/typography.less',
         'css/mkt/site.less',
@@ -143,7 +143,7 @@ JS = {
         'js/devreg/paypal.js',
         'js/zamboni/validator.js',
     ),
-    'mkt': (
+    'mkt/consumer': (
         'js/lib/jquery-1.7.1.js',
         'js/lib/underscore.js',
         'js/mkt/init.js',

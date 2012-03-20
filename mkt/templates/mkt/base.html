@@ -16,7 +16,7 @@
           href="{{ MEDIA_URL}}img/favicon.ico">
 
     {% block site_css %}
-      {{ css('mkt') }}
+      {{ css('mkt/consumer') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
@@ -67,7 +67,7 @@
       {% if waffle.switch('browserid-login') %}
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
-      {{ js('mkt') }}
+      {{ js('mkt/consumer') }}
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       <script>
         (function() {
