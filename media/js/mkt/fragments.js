@@ -11,9 +11,8 @@
 
         function fetchFragment(href) {
             $.get(href, function(d) {
-                z.page.html(d);
+                z.page.html(d).trigger('fragmentloaded');
                 $('html, body').animate({scrollTop: 0}, 200);
-                $('#page').trigger('fragmentloaded');
             });
         }
 
@@ -27,7 +26,7 @@
         $(function() {
             var path = window.location.pathname + window.location.search;
             history.replaceState({path: path}, false, path);
-            $('#page').trigger('fragmentloaded');
+            z.page.trigger('fragmentloaded');
         });
     }
 })();
