@@ -7,6 +7,7 @@ CSS = {
 
         # Base styles (body, breadcrumbs, islands, columns).
         'css/devreg/base.less',
+        'css/mkt/breadcrumbs.less',
 
         # Typographical styles (font treatments, headings).
         'css/devreg/typography.less',
@@ -68,6 +69,7 @@ CSS = {
         'css/mkt/site.less',
         'css/mkt/forms.less',
         'css/mkt/header.less',
+        'css/mkt/breadcrumbs.less',
         'css/mkt/buttons.less',
         'css/mkt/detail.less',
         'css/mkt/slider.less',

@@ -37,7 +37,7 @@
             "support_email": null,
             "public_stats": false,
             "status": 4,
-            "privacy_policy": null,
+            "privacy_policy": 2326784,
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
@@ -132,6 +132,19 @@
             "localized_string": null
         }
     },
+    {
+        "pk": 2425900,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "We sell your ish \r\nhttp://omg.org/yes",
+            "created": "2007-04-05 08:08:48",
+            "locale": "en-US",
+            "modified": "2009-03-26 07:41:10",
+            "id": 2326784,
+            "localized_string_clean": null
+        }
+    },
+
     {
         "pk": 31337,
         "model": "auth.user",

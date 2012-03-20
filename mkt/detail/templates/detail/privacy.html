@@ -1,0 +1,18 @@
+{% extends 'mkt/base.html' %}
+
+{% block title %}
+  {# L10n: {0} is the name of the app. #}
+  {{ mkt_page_title(_('Privacy Policy for {0}')|f(product.name)) }}
+{% endblock %}
+
+{% block content %}
+<section class="primary">
+  <hgroup class="hero">
+    {{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
+  </hgroup>
+  <div class="prose">
+    <h2>{{ _('Privacy Policy') }}</h2>
+    <div class="policy-statement">{{ product.privacy_policy|nl2br }}</div>
+  </div>
+</section>
+{% endblock %}

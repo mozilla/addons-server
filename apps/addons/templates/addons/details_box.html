@@ -115,7 +115,7 @@
                 <tr>
                   <th>{{ _('Privacy Policy') }}</th>
                   <td>
-                    <a href="{{ url('addons.privacy', addon.slug) }}">
+                    <a href="{{ addon.get_detail_url('privacy') }}">
                       {{ _('View Privacy Policy') }}</a>
                   </td>
                 </tr>

@@ -66,6 +66,9 @@ class AddonManager(amo.models.ManagerBase):
             return self.filter(slug=val)
         return self.filter(id=val)
 
+    def enabled(self):
+        return self.filter(disabled_by_user=False)
+
     def public(self):
         """Get public add-ons only"""
         return self.filter(self.valid_q([amo.STATUS_PUBLIC]))

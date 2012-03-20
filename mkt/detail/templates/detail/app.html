@@ -17,6 +17,8 @@
         {% endtrans %}
       </p>
       {{ device_list(product) }}
+      <a href="{{ product.get_detail_url('privacy') }}">
+        {{ _('Privacy Policy') }}</a>
     </div>
     <div class="actions">
       {{ market_button(product) }}

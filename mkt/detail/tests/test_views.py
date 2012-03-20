@@ -1,15 +1,22 @@
 import json
 
 from django.conf import settings
+from django.utils.html import strip_tags
 
 import mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_
+from pyquery import PyQuery as pq
+from tower import strip_whitespace
 
 import amo
 import amo.tests
 from users.models import UserProfile
 from mkt.webapps.models import Webapp
+
+
+def get_clean(selection):
+    return strip_whitespace(str(selection))
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
@@ -50,6 +57,61 @@ class TestInstall(amo.tests.TestCase):
         res = self.client.post(self.url)
         content = json.loads(res.content)
         assert content.get('receipt'), content
+
+
+class TestPrivacy(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(id=337141)
+        self.url = self.webapp.get_detail_url('privacy')
+
+    def test_app_statuses(self):
+        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        # Incomplete or pending apps should 404.
+        for status in (amo.STATUS_NULL, amo.STATUS_PENDING):
+            self.webapp.update(status=status)
+            r = self.client.get(self.url)
+            eq_(r.status_code, 404)
+
+        # Public-yet-disabled apps should 404.
+        self.webapp.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    def test_policy(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.policy-statement').text(),
+            strip_tags(get_clean(self.webapp.privacy_policy)))
+
+    def test_policy_html(self):
+        self.webapp.privacy_policy = """
+            <strong> what the koberger..</strong>
+            <ul>
+                <li>papparapara</li>
+                <li>todotodotodo</li>
+            </ul>
+            <ol>
+                <a href="irc://irc.mozilla.org/firefox">firefox</a>
+
+                Introduce yourself to the community, if you like!
+                This text will appear publicly on your user info page.
+                <li>papparapara2</li>
+                <li>todotodotodo2</li>
+            </ol>
+            """
+        self.webapp.save()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)('.policy-statement')
+        eq_(get_clean(doc('strong')), '<strong> what the koberger..</strong>')
+        eq_(get_clean(doc('ul')),
+            '<ul><li>papparapara</li> <li>todotodotodo</li> </ul>')
+        eq_(get_clean(doc('ol a').text()), 'firefox')
+        eq_(get_clean(doc('ol li:first')), '<li>papparapara2</li>')
 
 
 class TestReportAbuse(amo.tests.TestCase):

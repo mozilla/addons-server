@@ -3,7 +3,8 @@ from tower import ugettext as _
 
 import jinja2
 
-from amo.helpers import url
+from amo.helpers import impala_breadcrumbs, url
+from amo.urlresolvers import reverse
 
 
 def new_context(context, **kw):
@@ -42,6 +43,38 @@ def market_button(context, product):
                  data_attrs=data_attrs, classes=' '.join(classes))
         t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))
+
+
+@register.function
+@jinja2.contextfunction
+def mkt_breadcrumbs(context, addon=None, items=None, add_default=False):
+    """
+    Wrapper function for ``breadcrumbs``.
+
+    **items**
+        list of [(url, label)] to be inserted after Add-on.
+    **addon**
+        Adds the Add-on name to the end of the trail.  If items are
+        specified then the Add-on will be linked.
+    **add_default**
+        Prepends trail back to home when True.  Default is False.
+    """
+    crumbs = [(reverse('home'), _('Home'))]
+
+    if addon:
+        if items:
+            url_ = addon.get_dev_url()
+        else:
+            # The Addon is the end of the trail.
+            url_ = None
+        crumbs.append((url_, addon.name))
+    if items:
+        crumbs.extend(items)
+
+    if len(crumbs) == 1:
+        crumbs = []
+
+    return impala_breadcrumbs(context, crumbs, add_default)
 
 
 def price_label(product):
