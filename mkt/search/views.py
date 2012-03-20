@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views.decorators.vary import vary_on_headers
 
 import jingo
@@ -8,7 +9,7 @@ import amo.utils
 from apps.addons.models import Category
 from apps.search.views import name_query
 from mkt.webapps.models import Webapp
-from .forms import DEVICE_CHOICES, DEVICE_CHOICES_IDS, AppSearchForm
+from . import forms
 
 
 class FacetLink(object):
@@ -36,7 +37,7 @@ def _filter_search(qs, query, filters, sorting,
         elif query['price'] == 'free':
             qs = qs.filter(premium_type=amo.ADDON_FREE, price=0)
     if 'device' in show:
-        qs = qs.filter(device=DEVICE_CHOICES_IDS[query['device']])
+        qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
     if 'sort' in show:
         qs = qs.order_by(sorting[query['sort']])
     elif not query.get('q'):
@@ -80,7 +81,7 @@ def price_sidebar(query):
 def device_sidebar(query):
     device = query.get('device') or None
     links = []
-    for key, label in DEVICE_CHOICES:
+    for key, label in forms.DEVICE_CHOICES:
         links.append(FacetLink(label, dict(device=key), device == key))
     return links
 
@@ -93,9 +94,14 @@ def sort_sidebar(query, form):
 
 @vary_on_headers('X-Requested-With')
 def app_search(request):
-    form = AppSearchForm(request.GET)
+    form = forms.AppSearchForm(request.GET)
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
+
+    # Remove `sort=price` if `price=free`.
+    if query.get('price') == 'free' and query.get('sort') == 'price':
+        return redirect(amo.utils.urlparams(request.get_full_path(),
+                                            sort=None))
 
     qs = (Webapp.search()
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
@@ -114,12 +120,18 @@ def app_search(request):
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
 
+    if query.get('price') == 'free':
+        # Remove 'Sort by Price' option if filtering by free apps.
+        sort_opts = forms.FREE_SORT_CHOICES
+    else:
+        sort_opts = form.fields['sort'].choices
+
     ctx = {
         'pager': pager,
         'query': query,
         'form': form,
         'sorting': sort_sidebar(query, form),
-        'sort_opts': form.fields['sort'].choices,
+        'sort_opts': sort_opts,
         'extra_sort_opts': [],
         'sort': query.get('sort'),
         'categories': category_sidebar(query, facets),

@@ -224,3 +224,25 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def test_results_sort_newest(self):
         self._generate(3)
         self.check_sort_links('created', 'Newest', 'created')
+
+    def test_price_sort_visible_for_paid(self):
+        # 'Sort by Price' option should be preserved if filtering by paid apps.
+        r = self.client.get(self.url, {'price': 'paid'})
+        eq_(r.status_code, 200)
+        assert 'price' in dict(r.context['sort_opts']), 'Missing price sort'
+
+    def test_price_sort_visible_for_free(self):
+        # 'Sort by Price' option should be removed if filtering by free apps.
+        r = self.client.get(self.url, {'price': 'free'})
+        eq_(r.status_code, 200)
+        assert 'price' not in dict(r.context['sort_opts']), (
+            'Unexpected price sort')
+
+    def test_paid_price_sort(self):
+        r = self.client.get(self.url, {'price': 'paid', 'sort': 'price'})
+        eq_(r.status_code, 200)
+
+    def test_redirect_free_price_sort(self):
+        # `sort=price` should get removed if `price=free` is in querystring.
+        r = self.client.get(self.url, {'price': 'free', 'sort': 'price'})
+        self.assertRedirects(r, urlparams(self.url, price='free'))
