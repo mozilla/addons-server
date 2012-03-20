@@ -61,12 +61,9 @@
 
     {# js #}
     {% block site_js %}
-      {% if settings.APP_PREVIEW %}
-        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
-      {% endif %}
-      {% if waffle.switch('browserid-login') %}
-        <script async defer src="https://browserid.org/include.js"></script>
-      {% endif %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      <script async defer src="https://browserid.org/include.js"></script>
       {{ js('mkt/consumer') }}
       <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       <script>

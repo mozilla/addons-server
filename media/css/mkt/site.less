@@ -19,6 +19,23 @@ body {
     background: #f0f0f0;
 }
 
+.balloon {
+    .border-radius(0 0 5px 5px);
+    .transition(.2s top ease-out);
+    border: 2px solid #e3873b;
+    border-top-width: 0;
+    background-color: #fcefb7;
+    height: 27px;
+    line-height: 27px;
+    padding: 0 20px;
+    position: fixed;
+    top: -29px;
+    left: 50%;
+    &.active {
+        top: 0;
+    }
+}
+
 #site-header, #page {
     > section {
         .width(10);
