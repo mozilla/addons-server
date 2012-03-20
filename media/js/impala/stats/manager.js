@@ -246,6 +246,7 @@ z.StatsManager = (function() {
                 } else {
                     ret.firstIndex = firstIndex;
                     ret = groupData(ret, view);
+
                     ret.metric = metric;
                 }
                 $def.resolve(ret);
@@ -502,12 +503,12 @@ z.StatsManager = (function() {
             val     = row;
 
         // give up if the row is falsy.
-        if (!val) return null;
+        if (!_.isNumber(val)) return null;
         // drill into the row object for a nested key.
         // `data|api` means row['data']['api']
         for (var i = 0; i < parts.length; i++) {
             val = val[parts[i]];
-            if (!val) {
+            if (!_.isNumber(val)) {
                 return null;
             }
         }
