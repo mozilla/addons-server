@@ -144,10 +144,10 @@
         .actions {
             right: 10px;
             margin-bottom: 10px;
-            .install {
-                display: inline-block;
+            width: 100px;
+            .button {
+                display: block;
                 line-height: 32px;
-                width: 100px;
             }
         }
         img {
@@ -383,10 +383,11 @@
 @media (max-width: @4col) {
     .listing {
         .item {
-            padding-left: 60px;
-            .actions {
-                margin: 10px 0 0;
-                position: static;
+            padding-left: 54px;
+            padding-right: 78px;
+            h3 {
+                margin-bottom: 10px;
+                padding: 5px 0;
             }
             .vitals .vital {
                 + .vital, + .rating {
@@ -395,10 +396,20 @@
                     }
                 }
             }
+            .actions {
+                font-size: 12px;
+                width: 64px;
+                .button {
+                    height: 32px;
+                }
+            }
         }
         .icon {
             max-height: 32px;
             max-width: 32px;
+        }
+        .desc {
+            display: none;
         }
     }
     #search-results {
