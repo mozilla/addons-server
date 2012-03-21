@@ -471,6 +471,17 @@ class TestLogin(UserViewBase):
         r = self.client.get(self.url + '?to=http://xx.com', follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
 
+    def test_login_link(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#aux-nav li.login').length, 1)
+
+    def test_logout_link(self):
+        self.test_client_login()
+        r = self.client.get(reverse('home'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#aux-nav li.logout').length, 1)
+
     @amo.tests.mobile_test
     def test_mobile_login(self):
         r = self.client.get(self.url)
