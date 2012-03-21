@@ -177,6 +177,55 @@
     color: @orange;
 }
 
+.applied-filters {
+    font-size: 12px;
+    line-height: 14px;
+    h2 {
+        color: @medium-gray;
+        float: left;
+        font-size: 12px;
+        padding: 2px 0;
+    }
+    li {
+        display: inline-block;
+        font-size: 10px;
+        margin-left: 8px;
+        a {
+            .border-radius(5px);
+            background-color: @white;
+            border: 1px solid @medium-gray;
+            display: block;
+            padding: 2px 8px;
+            position: relative;
+            &:after {
+                .border-radius(10px);
+                background-color: @medium-gray;
+                color: @white;
+                content: "\00d7";  /* times sign */
+                display: block;
+                font-size: 11px;
+                height: 12px;
+                line-height: 10px;
+                position: absolute;
+                right: -6px;
+                top: -3px;
+                text-align: center;
+                width: 12px;
+            }
+        }
+    }
+}
+
+.html-rtl .applied-filters {
+    h2 {
+        float: right;
+        margin-left: 3px;
+    }
+    li {
+        margin: 0 8px 0 0;
+    }
+}
+
 #search-facets {
     ul {
         list-style: none;
@@ -300,6 +349,7 @@
         }
     }
 }
+
 .html-rtl {
     #search-facets {
         li ul {

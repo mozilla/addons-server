@@ -18,6 +18,8 @@ class FacetLink(object):
         self.urlparams = urlparams
         self.selected = selected
         self.children = children or []
+        self.null_urlparams = dict((x, None) for x in urlparams)
+        self.null_urlparams['page'] = None
 
 
 def _filter_search(qs, query, filters, sorting,
@@ -58,11 +60,9 @@ def category_sidebar(query, facets):
     categories = sorted(categories, key=lambda x: x.name)
     cat_params = dict(cat=None)
 
-    rv = []
-    link = FacetLink(_(u'All Apps'), cat_params, selected=not qcat)
-    link.children = [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
-                               c.id == qcat) for c in categories]
-    rv.append(link)
+    rv = [FacetLink(_(u'All Apps'), cat_params, selected=not qcat)]
+    rv += [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
+                     c.id == qcat) for c in categories]
     return rv
 
 
@@ -136,4 +136,14 @@ def app_search(request):
         'prices': price_sidebar(query),
         'devices': device_sidebar(query),
     }
+
+    applied_filters = []
+    for facet in ['prices', 'categories', 'devices', 'sorting']:
+        for idx, f in enumerate(ctx[facet]):
+            # Show filters where something besides its first/default choice
+            # is selected.
+            if idx and f.selected:
+                applied_filters.append(f)
+    ctx['applied_filters'] = applied_filters
+
     return jingo.render(request, 'search/results.html', ctx)
