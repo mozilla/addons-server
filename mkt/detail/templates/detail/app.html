@@ -19,6 +19,12 @@
       {{ device_list(product) }}
       <a href="{{ product.get_detail_url('privacy') }}">
         {{ _('Privacy Policy') }}</a>
+      {% if product.all_categories %}
+        <h3 class="categories">{{ _('Categories') }}</h3>
+        <span class="vital">
+          {{ product.all_categories|join(' &middot; ')|safe }}
+        </span>
+      {% endif %}
     </div>
     <div class="actions">
       {{ market_button(product) }}

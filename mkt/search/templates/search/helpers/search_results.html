@@ -38,6 +38,11 @@
       <p class="desc">{{ product.summary|nl2br }}</p>
       <div class="vitals c">
         {{ price(product) }}
+        {% if product.all_categories %}
+          <span class="vital">
+            {{ product.all_categories|join(' &middot; ')|safe }}
+          </span>
+        {% endif %}
         {{ impala_reviews_link(product) }}
         {{ sort_vital(product, 'downloads') }}
         {% if field in ('created', 'updated') %}
