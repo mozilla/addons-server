@@ -37,10 +37,6 @@ z.StatsManager = (function() {
         "statuses": true,
         "overview": true,
         "site": true
-        // These may need to be removed permanently
-        //"subscribers": true,
-        //"ratings": true
-        //"downloads": true
     };
 
     // is a metric an average or a sum?

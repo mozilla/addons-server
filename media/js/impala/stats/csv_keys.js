@@ -26,6 +26,12 @@ var csv_keys = {
     users_created: {
         'count': gettext('User Signups')
     },
+    subscribers: {
+        'count': gettext('Subscribers')
+    },
+    ratings: {
+        'count': gettext('Ratings')
+    },
     sources: {
         "null"                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
