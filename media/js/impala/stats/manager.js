@@ -23,7 +23,8 @@ z.StatsManager = (function() {
         baseURL         = $(".primary").attr("data-base_url"),
         pendingFetches  = 0,
         siteEventsEnabled = $('body').hasClass('waffle-site-events'),
-        writeInterval   = false;
+        writeInterval   = false,
+        lookup          = {};
 
     // It's a bummer, but we need to know which metrics have breakdown fields.
     // check by saying `if (metric in breakdownMetrics)`
@@ -453,11 +454,10 @@ z.StatsManager = (function() {
             },
             data = row.data,
             pretty, key,
-            lookup = {},
             ret = {};
 
         _.each(data, function(val, source) {
-            pretty = getPrettyName('sources', source);
+            pretty = $.trim(getPrettyName('sources', source));
             if (!lookup[pretty]) {
                 lookup[pretty] = source;
             }
