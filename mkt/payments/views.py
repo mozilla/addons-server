@@ -1,3 +1,4 @@
+import functools
 import json
 
 import jingo
@@ -22,7 +23,17 @@ def decode_request(signed_request):
     return app_req
 
 
+def allow_embed(view):
+    @functools.wraps(view)
+    def wrapper(*args, **kw):
+        response = view(*args, **kw)
+        response['x-frame-options'] = ''
+        return response
+    return wrapper
+
+
 @anonymous_csrf
+@allow_embed
 @waffle_switch('in-app-payments-ui')
 def pay_start(request):
     signed_req = request.GET.get('req')
@@ -38,6 +49,7 @@ def pay_start(request):
 
 
 @anonymous_csrf
+@allow_embed
 @login_required
 @waffle_switch('in-app-payments-ui')
 def pay(request):
