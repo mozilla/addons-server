@@ -507,7 +507,7 @@ z.StatsManager = (function() {
         // `data|api` means row['data']['api']
         for (var i = 0; i < parts.length; i++) {
             val = val[parts[i]];
-            if (!_.isNumber(val)) {
+            if (!_.isNumber(val) && !_.isObject(val)) {
                 return null;
             }
         }

@@ -26,7 +26,8 @@
                 title: {
                     text: null
                 },
-                tickmarkPlacement: 'on'
+                tickmarkPlacement: 'on',
+                offset: 10
             },
             yAxis: {
                 title: {
@@ -37,8 +38,8 @@
                         return Highcharts.numberFormat(this.value, 0);
                     }
                 },
-                minRange: 5,
-                minPadding: 0.2,
+                min: 0,
+                minRange: 10,
                 startOnTick: false,
                 showFirstLabel: false
             },
