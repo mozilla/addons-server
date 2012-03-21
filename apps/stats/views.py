@@ -519,9 +519,9 @@ def collection_report(request, username, slug, report):
     c = get_collection(request, username, slug)
     stats_base_url = c.stats_url()
     view = get_report_view(request)
-
     return jingo.render(request, 'stats/reports/%s.html' % report,
                         {'collection': c,
+                         'search_cat': 'collections',
                          'report': report,
                          'view': view,
                          'username': username,
