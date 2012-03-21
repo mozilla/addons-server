@@ -315,43 +315,18 @@ function initQueueSearch(doc) {
 function initScrollingSidebar() {
     var $window = $(window),
         $sb = $('#scroll_sidebar'),
-        $sb_parent = $sb.parent(),
-        sb_top = $sb_parent.offset().top,
-        sb_height = $sb.height(),
-        $addon = $('#addon'),
-        addon_top = $addon.offset().top,
-        current_state = false,
-        addon_height_current = 0;
+        addon_top = $('#addon').offset().top,
+        current_state = false;
 
-    function updateState(state){
-        if(state == current_state) return;
-
-        if(state == "bottom") {
-            $sb.css({'position': 'absolute', 'top': addon_height_current - sb_height});
-        } else if(state == "middle") {
-            $sb.css({'position': 'fixed', 'top': 0});
-        } else if(state == "top") {
-            $sb.css({'position': 'absolute', 'top': 0});
-        }
+    function setSticky(state) {
+        if (state == current_state) return;
+        current_state = state;
+        $sb.toggleClass('sticky', state);
     }
 
-    $window.scroll(debounce(function(){
-        var scroll_top = $window.scrollTop(),
-            addon_height = $addon.height();
-
-        if(addon_height_current != addon_height) {
-            $sb_parent.css('height', addon_height);
-            addon_height_current = addon_height;
-        }
-
-        if(addon_top + addon_height < scroll_top + sb_height) {
-            updateState('bottom', addon_height);
-        } else if(scroll_top > sb_top) {
-            updateState('middle');
-        } else {
-            updateState('top');
-        }
-    }, 200));
+    $window.scroll(_.throttle(function() {
+        setSticky(window.scrollY > addon_top);
+    }, 20));
 }
 
 

@@ -586,6 +586,15 @@ div.editor-stats-table > div.editor-stats-dark {
      font-weight: normal;
 }
 
+#scroll_sidebar {
+    position: absolute;
+    top: 0;
+}
+#scroll_sidebar.sticky {
+    position: fixed;
+    top: 10px;
+}
+
 #review-files {
     margin: 0;
     width: 100%;
