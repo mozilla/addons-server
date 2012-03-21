@@ -50,47 +50,56 @@
         padding-left: 23px;
         margin-left: 16px;
         overflow: hidden;
-
         &:before, &:after {
             content: '';
-            background: #fff;
+            background: @white;
             display: block;
             position: absolute;
             border-radius: 2px;
             top: 0;
             left: 0;
-            border: 2px solid #666;
+            border: 2px solid @medium-gray;
         }
-        &.mobile:before {
-            left: 3px;
-            width: 10px;
-            height: 12px;
-            border-width: 3px 2px 6px;
+        &.tablet,
+        &.desktop {
+            padding-left: 26px;
         }
-        &.mobile:after {
-            border-width: 1px;
-            border-color: #fff;
-            left: 9px;
-            top: 17px;
+        &.mobile {
+            &:before {
+                left: 3px;
+                width: 10px;
+                height: 12px;
+                border-width: 3px 2px 6px;
+            }
+            &:after {
+                border-width: 1px;
+                border-color: @white;
+                left: 9px;
+                top: 17px;
+            }
         }
-        &.tablet:before {
-            top: 3px;
-            left: 0px;
-            width: 16px;
-            height: 10px;
+        &.tablet {
+            &:before {
+                top: 3px;
+                left: 0px;
+                width: 16px;
+                height: 10px;
+            }
+            &:after {
+                display: none;
+            }
         }
-        &.tablet:after {
-            display: none;
-        }
-        &.desktop:before {
-            top: 3px;
-            width: 16px;
-            height: 8px;
-        }
-        &.desktop:after {
-            top: 15px;
-            width: 6px;
-            left: 5px;
+        &.desktop {
+            &:before {
+                top: 3px;
+                width: 16px;
+                height: 8px;
+            }
+            &:after {
+                top: 15px;
+                width: 6px;
+                left: 5px;
+            }
         }
     }
 }
