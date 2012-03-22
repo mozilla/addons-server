@@ -76,6 +76,7 @@ CSS = {
         'css/mkt/overlay.less',
         'css/mkt/search.less',
         'css/mkt/paginator.less',
+        'css/mkt/suggestions.less',
     ),
     'mkt/in-app-payments': (
         # Temporarily re-using PayPal styles for in-app-payments UI
@@ -193,13 +194,20 @@ JS = {
     'mkt/consumer': (
         'js/lib/jquery-1.7.1.js',
         'js/lib/underscore.js',
+        'js/lib/format.js',
         'js/mkt/init.js',
+        'js/mkt/utils.js',
+        'js/common/keys.js',
         'js/mkt/capabilities.js',
         'js/mkt/fragments.js',
         'js/mkt/slider.js',
         'js/mkt/install.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
+
+        # Search suggestions.
+        'js/impala/ajaxcache.js',
+        'js/impala/suggestions.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',

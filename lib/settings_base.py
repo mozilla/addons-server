@@ -582,6 +582,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/apps.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
+            'js/common/keys.js',
 
             # jQuery UI
             'js/lib/jquery-ui/jquery.ui.core.js',
@@ -661,6 +662,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
             'js/impala/footer.js',
+            'js/common/keys.js',
 
             # BrowserID
             'js/zamboni/browserid_support.js',

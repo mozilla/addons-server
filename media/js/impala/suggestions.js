@@ -37,30 +37,29 @@ $.fn.searchSuggestions = function($results) {
         msg = gettext('Search add-ons for <b>{0}</b>');
     }
     var base = template('<div class="wrap">' +
-                        '<p><a class="sel" href="#">{msg}</a></p><ul></ul>' +
+                        '<p><a class="sel" href="#"><span>{msg}</span></a></p><ul></ul>' +
                         '</div>');
     $results.html(base({'msg': msg}));
 
     // Control keys that shouldn't trigger new requests.
     var ignoreKeys = [
-        $.ui.keyCode.SHIFT, $.ui.keyCode.CONTROL, $.ui.keyCode.ALT,
-        19,  // pause
-        $.ui.keyCode.CAPS_LOCK, $.ui.keyCode.ESCAPE, $.ui.keyCode.ENTER,
-        $.ui.keyCode.PAGE_UP, $.ui.keyCode.PAGE_DOWN,
-        $.ui.keyCode.LEFT, $.ui.keyCode.UP,
-        $.ui.keyCode.RIGHT, $.ui.keyCode.DOWN,
-        $.ui.keyCode.HOME, $.ui.keyCode.END,
-        $.ui.keyCode.COMMAND,
-        92,  // right windows key
-        $.ui.keyCode.COMMAND_RIGHT,
-        219,  // left windows key (Opera)
-        220,  // right windows key (Opera)
-        224   // apple key
+        z.keys.SHIFT, z.keys.CONTROL, z.keys.ALT, z.PAUSE,
+        z.keys.CAPS_LOCK, z.keys.ESCAPE, z.keys.ENTER,
+        z.keys.PAGE_UP, z.keys.PAGE_DOWN,
+        z.keys.LEFT, z.keys.UP,
+        z.keys.RIGHT, z.keys.DOWN,
+        z.keys.HOME, z.keys.END,
+        z.keys.COMMAND,
+        z.keys.WINDOW_RIGHT,
+        z.keys.COMMAND_RIGHT,
+        z.keys.WINDOW_LEFT_OPERA,
+        z.keys.WINDOW_RIGHT_OPERA,
+        z.keys.APPLE,
     ];
 
     var gestureKeys = [
-        $.ui.keyCode.ESCAPE, $.ui.keyCode.UP, $.ui.keyCode.DOWN,
-        $.ui.keyCode.PAGE_UP, $.ui.keyCode.PAGE_DOWN
+        z.keys.ESCAPE, z.keys.UP, z.keys.DOWN,
+        z.keys.PAGE_UP, z.keys.PAGE_DOWN
     ];
 
     function pageUp() {
@@ -94,14 +93,14 @@ $.fn.searchSuggestions = function($results) {
             return;
         }
         e.preventDefault();
-        if (e.which == $.ui.keyCode.ESCAPE) {
+        if (e.which == z.keys.ESCAPE) {
             dismissHandler();
-        } else if (e.which == $.ui.keyCode.UP || e.which == $.ui.keyCode.DOWN) {
+        } else if (e.which == z.keys.UP || e.which == z.keys.DOWN) {
             var $sel = $results.find('.sel'),
                 $elems = $results.find('a'),
                 i = $elems.index($sel.get(0));
             if ($sel.length && i >= 0) {
-                if (e.which == $.ui.keyCode.UP) {
+                if (e.which == z.keys.UP) {
                     // Clamp the value so it goes to the previous row
                     // but never goes beyond the first row.
                     i = Math.max(0, i - 1);
@@ -116,10 +115,10 @@ $.fn.searchSuggestions = function($results) {
             $sel.removeClass('sel');
             $elems.eq(i).addClass('sel');
             $results.addClass('sel').trigger('selectedRowUpdate', [i]);
-        } else if (e.which == $.ui.keyCode.PAGE_UP) {
+        } else if (e.which == z.keys.PAGE_UP) {
             pageUp();
             $results.addClass('sel').trigger('selectedRowUpdate', [0]);
-        } else if (e.which == $.ui.keyCode.PAGE_DOWN) {
+        } else if (e.which == z.keys.PAGE_DOWN) {
             pageDown();
             $results.addClass('sel').trigger('selectedRowUpdate',
                                              [$results.find('a').length - 1]);
@@ -141,7 +140,7 @@ $.fn.searchSuggestions = function($results) {
             $results.find('p b').html(format('"{0}"', val));
 
             var li_item = template(
-                '<li><a href="{url}" {icon} {cls}><span>{name}</span>{subtitle}</a></li>'
+                '<li><a href="{url}" {cls}><span {icon}>{name}</span>{subtitle}</a></li>'
             );
 
             $.ajaxCache({

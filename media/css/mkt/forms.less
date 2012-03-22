@@ -1,19 +1,31 @@
 @import 'lib';
 
 button, input, select, textarea {
-    font-size: 100%;
+    font: 100% @open-stack;
     margin: 0;
     vertical-align: middle;
 }
+
 button, input {
     line-height: normal;
 }
+
 button, input[type=button], input[type=reset], input[type=submit] {
     cursor: pointer;
 }
+
 input[type=search] {
     -moz-box-sizing: content-box;
 }
+
+input::-webkit-input-placeholder {
+    color: @gray;
+}
+
+input:-moz-placeholder {
+    color: @gray;
+}
+
 textarea {
     overflow: auto;
     vertical-align: top;

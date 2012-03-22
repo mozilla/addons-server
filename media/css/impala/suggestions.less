@@ -45,33 +45,35 @@
         margin: 10px 16px 0;
     }
     a {
-        background: no-repeat 3px 50%;
-        .background-size(20px auto);
         display: block;
         overflow: hidden;
-        padding: 0 4px 0 32px;
         text-decoration: none;
         text-overflow: ellipsis;
         white-space: nowrap;
-        &.cat {
+        span {
+            background: no-repeat 4px 50%;
+            .background-size(20px auto);
+            padding: 2px 2px 2px 32px;
+        }
+        &.cat span {
             background-image: url(../../img/icons/search-cat.png);
         }
-        &.app {
+        &.app span {
             background-image: url(../../img/app-icons/16/sprite.png);
             .background-size(18px auto);
             background-position: 4px 5px;
             min-height: 0 !important;
         }
-        &.thunderbird {
+        &.thunderbird span {
             background-position: 5px -32px;
         }
-        &.seamonkey {
+        &.seamonkey span {
             background-position: 4px -68px;
         }
-        &.sunbird {
+        &.sunbird span {
             background-position: 4px -103px;
         }
-        &.android {
+        &.android span {
             background-position: 4px -140px;
         }
         .subtitle {

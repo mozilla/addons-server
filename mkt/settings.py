@@ -106,7 +106,6 @@ NO_CONSUMER_MODULES = (
     'users.views.edit',
     'users.views.purchases',
     'users.views.payments',
-    'search.views',
     'sharing.views',
     'tags.views',
     'versions.views',

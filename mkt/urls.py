@@ -5,6 +5,7 @@ from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
 from apps.users.views import logout
+from apps.browse.views import extensions
 from mkt.developers.views import login
 
 
@@ -24,6 +25,9 @@ urlpatterns = patterns('',
 
     # App Browse pages.
     ('^apps/', include('mkt.webapps.urls')),
+
+    # TODO: Port category pages (bug 735578).
+    url('^categories/(?P<category>[^ /]+)?$', extensions, name='browse.apps'),
 
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
