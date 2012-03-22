@@ -6,6 +6,10 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
+{% set icon_status_url = addon.get_dev_url('ajax.image.status') %}
+{% set icon_upload_url = addon.get_dev_url('upload_icon') %}
+{% set screenshot_upload_url = addon.get_dev_url('upload_preview') %}
+
 {% block content %}
   {{ hub_breadcrumbs(addon, items=[(None, _('Submit App'))]) }}
   <div id="temp-locale-container">{{ l10n_menu(addon.default_locale) }}</div>
@@ -24,9 +28,9 @@
         <div id="icon_preview" class="invisible-upload">
           <div id="icon_preview_64" class="icon_preview">
             <img src="{{ addon.get_icon_url(64) }}"
-                 data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
+                 data-checkurl="{{ icon_status_url }}">
             <input type="file" id="id_icon_upload" name="icon_upload"
-                   data-upload-url="{{ addon.get_dev_url('upload_icon') }}">
+                   data-upload-url="{{ icon_upload_url }}">
           </div>
         </div>
         <div class="houdini{{ ' ready' if not (form_basic.name.errors or
@@ -160,7 +164,7 @@
         <div class="invisible-upload">
           <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
           <input type="file" id="screenshot_upload" name="uploads" multiple
-                 data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
+                 data-upload-url="{{ screenshot_upload_url }}">
         </div>
         <div>
           <span class="hint">
