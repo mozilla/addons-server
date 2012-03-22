@@ -21,6 +21,12 @@
             $.get(href, function(d) {
                 clearTimeout(timeout);
                 z.page.html(d).trigger('fragmentloaded');
+
+                // We so sneaky.
+                var $title = z.page.find('title');
+                document.title = $title.text();
+                $title.remove();
+
                 _.delay(function() { $loading.removeClass('active'); }, 400);
                 $('html, body').animate({scrollTop: 0}, 200);
             });

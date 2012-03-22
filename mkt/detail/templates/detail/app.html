@@ -1,5 +1,7 @@
 {% extends 'mkt/base.html' %}
 
+{% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+
 {% block content %}
   <section class="product-details">
     <div class="visual">
