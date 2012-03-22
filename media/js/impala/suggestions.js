@@ -135,7 +135,7 @@ $.fn.searchSuggestions = function($results) {
             $results.find('p b').html(format('"{0}"', val));
 
             var li_item = template(
-                '<li><a href="{url}" {cls}><span {icon}>{name}</span>{subtitle}</a></li>'
+                '<li><a href="{url}"><span {cls} {icon}>{name}</span>{subtitle}</a></li>'
             );
 
             $.ajaxCache({
