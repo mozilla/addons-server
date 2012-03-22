@@ -3,10 +3,9 @@ import json
 from django import test
 from django.core.cache import cache
 
-import mock
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -14,7 +13,7 @@ import addons.signals
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonDependency, AddonUpsell, Preview
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection, MonthlyPick
+from bandwagon.models import MonthlyPick, SyncedCollection
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
@@ -89,26 +88,19 @@ class TestRecs(amo.tests.TestCase):
         ids = set(views.get_addon_ids(self.guids))
         eq_(ids, set(self.ids))
 
-    @mock.patch('api.views')
-    def test_success(self, api_mock):
-        raise SkipTest()  # bug 640694
-        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
+    def test_success(self):
         response = self.client.post(self.url, self.json,
                                     content_type='application/json')
         eq_(response.status_code, 200)
         eq_(response['Content-type'], 'application/json')
         data = json.loads(response.content)
 
-        eq_(set(data.keys()), set(['token', 'addons']))
+        eq_(set(data.keys()), set(['token2', 'addons']))
         eq_(len(data['addons']), 9)
         ids = [a['id'] for a in data['addons']]
         eq_(ids, self.expected_recs)
 
-    @mock.patch('api.views')
-    def test_only_show_public(self, api_mock):
-        raise SkipTest()  # bug 640694
-        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
-
+    def test_only_show_public(self):
         # Mark one add-on as non-public.
         unpublic = self.expected_recs[0]
         Addon.objects.filter(id=unpublic).update(status=amo.STATUS_LITE)
@@ -122,20 +114,17 @@ class TestRecs(amo.tests.TestCase):
         eq_(ids, Recs.expected_recs()[1:10])
         assert unpublic not in ids
 
-    def test_filter(self):
-        # The fixture doesn't contain valid add-ons so calling addon_filter on
-        # the recommendations will return nothing.
-        response = self.client.post(self.url, self.json,
+    def test_app_support_filter(self):
+        # The fixture doesn't contain valid add-ons for the provided URL args.
+        url = reverse('discovery.recs', args=['5.0', 'Darwin'])
+        response = self.client.post(url, self.json,
                                     content_type='application/json')
         eq_(response.status_code, 200)
         eq_(response['Content-type'], 'application/json')
         data = json.loads(response.content)
         eq_(len(data['addons']), 0)
 
-    @mock.patch('api.views')
-    def test_recs_bad_token(self, api_mock):
-        raise SkipTest()  # bug 640694
-        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
+    def test_recs_bad_token(self):
         post_data = json.dumps(dict(guids=self.guids, token='fake'))
         response = self.client.post(self.url, post_data,
                                     content_type='application/json')
@@ -158,10 +147,9 @@ class TestRecs(amo.tests.TestCase):
         # responses should be identical.
         eq_(one, two)
 
-    @mock.patch('api.views')
-    def test_update_new_index(self, api_mock):
-        raise SkipTest()
-        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
+    def test_update_new_index(self):
+        waffle.models.Sample.objects.create(name='disco-pane-store-collections',
+                                            percent='100.0')
         response = self.client.post(self.url, self.json,
                                     content_type='application/json')
         one = json.loads(response.content)
@@ -173,11 +161,14 @@ class TestRecs(amo.tests.TestCase):
         eq_(response.status_code, 200)
         two = json.loads(response.content)
 
-        eq_(one['token2'], two['token2'])
-        # assert one['recommendations'] != two['recommendations']
+        # Tokens are based on guid list, so these should be different.
+        assert one['token2'] != two['token2']
         assert one['addons'] != two['addons']
-        eq_(len(Collection.objects.filter(type=amo.COLLECTION_SYNCHRONIZED)),
-            2)
+        synced = SyncedCollection.objects.all()
+        eq_(SyncedCollection.objects.filter(addon_index=one['token2']).count(),
+            1)
+        eq_(SyncedCollection.objects.filter(addon_index=two['token2']).count(),
+            1)
 
 
 class TestModuleAdmin(amo.tests.TestCase):

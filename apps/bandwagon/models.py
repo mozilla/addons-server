@@ -89,13 +89,12 @@ class CollectionBase:
         qs = (Addon.objects.public()
               .filter(id__in=recs, appsupport__app=app.id,
                       appsupport__min__lte=vint, appsupport__max__gte=vint))
-        return recs, qs[:Collection.RECOMMENDATION_LIMIT]
+        return recs, qs
 
 
 class Collection(CollectionBase, amo.models.ModelBase):
 
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
-    RECOMMENDATION_LIMIT = 15  # Maximum number of add-ons to recommend.
 
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField(require_locale=False)

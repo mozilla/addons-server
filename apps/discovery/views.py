@@ -215,13 +215,13 @@ def recommendations(request, version, platform, limit=9):
 
 def _recommendations(request, version, platform, limit, token, ids, qs):
     """Return a JSON response for the recs view."""
-    addons = api.views.addon_filter(qs, 'ALL', limit, request.APP,
-                                    platform, version, shuffle=False)
+    addons = api.views.addon_filter(qs, 'ALL', 0, request.APP, platform,
+                                    version, shuffle=False)
     addons = dict((a.id, a) for a in addons)
-    data = {'token2': token,
-            'addons': [api.utils.addon_to_dict(addons[i], disco=True,
-                                               src='discovery-personalrec')
-                       for i in ids if i in addons]}
+    addons = [api.utils.addon_to_dict(addons[i], disco=True,
+                                      src='discovery-personalrec')
+              for i in ids if i in addons][:limit]
+    data = {'token2': token, 'addons': addons}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)
     return http.HttpResponse(content, content_type='application/json')
 

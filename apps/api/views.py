@@ -156,7 +156,7 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     # We prefer add-ons that support the current locale.
     lang = translation.get_language()
-    partitioner = lambda x: (x.description and
+    partitioner = lambda x: (x.description != None and
                              (x.description.locale == lang))
     groups = dict(partition(addons, partitioner))
     good, others = groups.get(True, []), groups.get(False, [])
@@ -165,9 +165,15 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
         random.shuffle(good)
         random.shuffle(others)
 
-    if len(good) < limit:
-        good.extend(others[:limit - len(good)])
-    return good[:limit]
+    # If limit=0, we return all addons with `good` coming before `others`.
+    # Otherwise pad `good` if less than the limit and return the limit.
+    if limit > 0:
+        if len(good) < limit:
+            good.extend(others[:limit - len(good)])
+        return good[:limit]
+    else:
+        good.extend(others)
+        return good
 
 
 class APIView(object):
