@@ -4,7 +4,9 @@ import unittest
 
 import test_utils
 import mock
+from nose import SkipTest
 from nose.tools import eq_, raises
+import waffle
 
 from django.conf import settings
 
@@ -80,6 +82,20 @@ class TestWebapp(test_utils.TestCase):
         webapp = Webapp()
         get_manifest_json.return_value = {'icons': {}}
         eq_(webapp.has_icon_in_manifest(), True)
+
+    def test_delete_app_domain(self):
+        raise SkipTest
+
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        # When an app is deleted its slugs and domain should get relinquished.
+        webapp = Addon.objects.create(slug='ballin', app_slug='app-ballin',
+                                      app_domain='http://omg.org/yes')
+        webapp.delete()
+
+        post_mortem = Addon.with_deleted.get(id=webapp.id)
+        eq_(post_mortem.exists(), True)
+        for attr in ['slug', 'app_slug', 'app_domain']:
+            eq_(getattr(post_mortem, attr), None)
 
 
 class TestWebappVersion(amo.tests.TestCase):

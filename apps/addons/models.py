@@ -392,7 +392,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
             if waffle.switch_is_active('soft_delete'):
                 self.status = amo.STATUS_DELETED
-                self.slug = self.app_slug = None
+                self.slug = self.app_slug = self.app_domain = None
                 self.save()
             else:
                 super(Addon, self).delete()
