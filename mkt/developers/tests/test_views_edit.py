@@ -59,11 +59,15 @@ class TestEdit(amo.tests.TestCase):
             eq_(unicode(getattr(webapp, k)), unicode(v))
 
     def check_form_url(self, section):
+        # Check form destinations and "Edit" button.
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('form').attr('action'), self.edit_url)
         eq_(doc('h2 .button').attr('data-editurl'), self.edit_url)
-        eq_(doc('form .addon-edit-cancel').attr('href'), self.url)
+
+        # Check "Cancel" button.
+        r = self.client.get(self.edit_url)
+        eq_(pq(r.content)('form .addon-edit-cancel').attr('href'), self.url)
 
 
 class TestEditListingWebapp(TestEdit):
