@@ -63,6 +63,7 @@ class TestEdit(amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('form').attr('action'), self.edit_url)
         eq_(doc('h2 .button').attr('data-editurl'), self.edit_url)
+        eq_(doc('form .addon-edit-cancel').attr('href'), self.url)
 
 
 class TestEditListingWebapp(TestEdit):

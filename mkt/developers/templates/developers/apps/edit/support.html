@@ -81,9 +81,8 @@
     {% if editable %}
     <div class="listing-footer">
       <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ url('mkt.developers.apps.section', addon.slug, 'support') }}"
-        class="addon-edit-cancel">
-        {{ _('Cancel') }}</a>
+      <a href="{{ addon.get_dev_url('section', ['support']) }}"
+         class="addon-edit-cancel">{{ _('Cancel') }}</a>
     </div>
     {% endif %}
   </div>
