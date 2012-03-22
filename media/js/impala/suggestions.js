@@ -43,18 +43,13 @@ $.fn.searchSuggestions = function($results) {
 
     // Control keys that shouldn't trigger new requests.
     var ignoreKeys = [
-        z.keys.SHIFT, z.keys.CONTROL, z.keys.ALT, z.PAUSE,
+        z.keys.SHIFT, z.keys.CONTROL, z.keys.ALT, z.keys.PAUSE,
         z.keys.CAPS_LOCK, z.keys.ESCAPE, z.keys.ENTER,
         z.keys.PAGE_UP, z.keys.PAGE_DOWN,
-        z.keys.LEFT, z.keys.UP,
-        z.keys.RIGHT, z.keys.DOWN,
+        z.keys.LEFT, z.keys.UP, z.keys.RIGHT, z.keys.DOWN,
         z.keys.HOME, z.keys.END,
-        z.keys.COMMAND,
-        z.keys.WINDOW_RIGHT,
-        z.keys.COMMAND_RIGHT,
-        z.keys.WINDOW_LEFT_OPERA,
-        z.keys.WINDOW_RIGHT_OPERA,
-        z.keys.APPLE,
+        z.keys.COMMAND, z.keys.WINDOWS_RIGHT, z.keys.COMMAND_RIGHT,
+        z.keys.WINDOWS_LEFT_OPERA, z.keys.WINDOWS_RIGHT_OPERA, z.keys.APPLE,
     ];
 
     var gestureKeys = [
