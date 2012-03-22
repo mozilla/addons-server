@@ -170,7 +170,7 @@ def check_paypal_id(paypal_id):
 def verify_app_domain(manifest_url):
     if settings.WEBAPPS_UNIQUE_BY_DOMAIN:
         domain = Webapp.domain_from_url(manifest_url)
-        if Addon.objects.filter(app_domain=domain).exists():
+        if Webapp.objects.filter(app_domain=domain).exists():
             raise forms.ValidationError(
                 _('An app already exists on this domain; '
                   'only one app per domain is allowed.'))

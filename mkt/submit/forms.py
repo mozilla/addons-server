@@ -18,7 +18,8 @@ from apps.users.notifications import app_surveys
 from apps.users.models import UserNotification
 from files.models import FileUpload
 from market.models import AddonPremium, Price
-from mkt.developers.forms import PaypalSetupForm as OriginalPaypalSetupForm
+from mkt.developers.forms import (PaypalSetupForm as OriginalPaypalSetupForm,
+                                  verify_app_domain)
 from mkt.developers import tasks
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
@@ -42,15 +43,6 @@ class DevAgreementForm(happyforms.Form):
         if self.cleaned_data.get('newsletter'):
             UserNotification.update_or_create(user=self.instance,
                 notification_id=app_surveys.id, update={'enabled': True})
-
-
-def verify_app_domain(manifest_url):
-    if settings.WEBAPPS_UNIQUE_BY_DOMAIN:
-        domain = Webapp.domain_from_url(manifest_url)
-        if Webapp.objects.filter(app_domain=domain).exists():
-            raise forms.ValidationError(
-                _('An app already exists on this domain; '
-                  'only one app per domain is allowed.'))
 
 
 class NewWebappForm(happyforms.Form):
