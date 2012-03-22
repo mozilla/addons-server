@@ -11,15 +11,22 @@
             var href = this.getAttribute('href');
             if (!href || href.substr(0,4) == 'http' || href === '#') return;
             e.preventDefault();
-            history.pushState({path: href}, false, href);
             fetchFragment(href);
         });
 
         function fetchFragment(href) {
             timeout = setTimeout(function() { $loading.addClass('active'); },
                                  threshold);
-            $.get(href, function(d) {
+            $.get(href, function(d, textStatus, xhr) {
                 clearTimeout(timeout);
+
+                // Bail if this is not HTML.
+                if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
+                    window.location = href;
+                    return;
+                }
+
+                history.pushState({path: href}, false, href);
                 z.page.html(d).trigger('fragmentloaded');
 
                 // We so sneaky.
