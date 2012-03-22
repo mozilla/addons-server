@@ -475,7 +475,7 @@ def _site_query(period, start, end):
     assert period in SERIES_GROUPS_DATE, '%s period is not valid.'
     sql = ("SELECT name, MIN(date), SUM(count) "
            "FROM global_stats "
-           "WHERE date > %%s AND date < %%s "
+           "WHERE date > %%s AND date <= %%s "
            "AND name IN (%s) "
            "GROUP BY %s(date), name "
            "ORDER BY %s(date) DESC;"

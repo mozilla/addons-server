@@ -26,8 +26,7 @@
                 title: {
                     text: null
                 },
-                tickmarkPlacement: 'on',
-                offset: 10
+                tickmarkPlacement: 'on'
             },
             yAxis: {
                 title: {

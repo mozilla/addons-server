@@ -91,7 +91,7 @@ z.StatsManager = (function() {
         if (storage.get("version") == STATS_VERSION) {
             return true;
         } else {
-            dbg("wrong offline data verion");
+            dbg("wrong offline data version");
             clearLocalStorage();
             return false;
         }
@@ -172,7 +172,7 @@ z.StatsManager = (function() {
             numRows = 0,
             fields = {};
 
-        // Non-breakdwon metrics only have one field.
+        // Non-breakdown metrics only have one field.
         if (metric == 'contributions') return ['count', 'total', 'average'];
         if (!(metric in breakdownMetrics)) return ["count"];
 
@@ -215,7 +215,6 @@ z.StatsManager = (function() {
     // the range currently stored locally. Once all server requests return,
     // we move on.
     function getDataRange(view) {
-        dbg("enter getDataRange", view.metric);
         var range = normalizeRange(view.range),
             metric = view.metric,
             ds = dataStore[metric],
@@ -425,7 +424,7 @@ z.StatsManager = (function() {
                 writeInterval = setTimeout(writeLocalStorage, 1000);
                 $def.resolve();
 
-            } else if (xhr.status == 202) { //Handle a successful fetch but with no reponse
+            } else if (xhr.status == 202) { //Handle a successful fetch but with no response
 
                 var retry_delay = 30000;
 
@@ -508,7 +507,6 @@ z.StatsManager = (function() {
                 return null;
             }
         }
-
         return val;
     }
 
