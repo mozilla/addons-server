@@ -44,8 +44,10 @@
       </div>
       <form method="post" id="upload-webapp">
         {{ csrf() }}
-        {{ form.non_field_errors() }}
-        {{ form.upload.errors }}
+        <!--
+          {{ form.non_field_errors() }}
+          {{ form.upload.errors }}
+        -->
         <div class="hidden">
           {{ form.upload }}
         </div>

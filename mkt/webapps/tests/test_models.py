@@ -4,7 +4,6 @@ import unittest
 
 import test_utils
 import mock
-from nose import SkipTest
 from nose.tools import eq_, raises
 import waffle
 
@@ -84,18 +83,17 @@ class TestWebapp(test_utils.TestCase):
         eq_(webapp.has_icon_in_manifest(), True)
 
     def test_delete_app_domain(self):
-        raise SkipTest
-
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
         # When an app is deleted its slugs and domain should get relinquished.
-        webapp = Addon.objects.create(slug='ballin', app_slug='app-ballin',
-                                      app_domain='http://omg.org/yes')
+        webapp = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
+                                       app_domain='http://omg.org/yes',
+                                       status=amo.STATUS_PENDING)
         webapp.delete()
 
-        post_mortem = Addon.with_deleted.get(id=webapp.id)
-        eq_(post_mortem.exists(), True)
+        post_mortem = Addon.with_deleted.filter(id=webapp.id)
+        eq_(post_mortem.count(), 1)
         for attr in ['slug', 'app_slug', 'app_domain']:
-            eq_(getattr(post_mortem, attr), None)
+            eq_(getattr(post_mortem[0], attr), None)
 
 
 class TestWebappVersion(amo.tests.TestCase):
