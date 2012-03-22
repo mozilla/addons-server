@@ -257,7 +257,7 @@ class PremiumForm(happyforms.Form):
                                   required=False,
                                   empty_label='')
     text = forms.CharField(widget=forms.Textarea(), required=False)
-    support_email = forms.EmailField(required=False)
+    support_email = forms.EmailField()
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
@@ -292,14 +292,6 @@ class PremiumForm(happyforms.Form):
         # For the wizard, we need to remove some fields.
         for field in self.extra.get('exclude', []):
             del self.fields[field]
-
-    def clean_support_email(self):
-        # Note: this can't be FREES, because Free + Premium should have
-        # a support email.
-        if (not self.cleaned_data.get('premium_type') == amo.ADDON_FREE
-            and not self.cleaned_data['support_email']):
-            raise_required()
-        return self.cleaned_data['support_email']
 
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
@@ -487,3 +479,20 @@ class AppFormDetails(addons.forms.AddonFormBase):
                       'name, summary, and description in that locale. '
                       'You are missing %s.') % ', '.join(map(repr, missing)))
         return data
+
+
+class AppFormSupport(addons.forms.AddonFormBase):
+    support_url = TransField.adapt(forms.URLField)(required=False,
+                                                   verify_exists=False)
+    support_email = TransField.adapt(forms.EmailField)()
+
+    class Meta:
+        model = Addon
+        fields = ('support_email', 'support_url')
+
+    def save(self, addon, commit=True):
+        i = self.instance
+        url = addon.support_url.localized_string
+        (i.get_satisfaction_company,
+         i.get_satisfaction_product) = addons.forms.get_satisfaction(url)
+        return super(AppFormSupport, self).save(commit)

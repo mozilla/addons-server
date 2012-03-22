@@ -831,6 +831,11 @@ class TestEditSupport(TestEdit):
         eq_(r.context['form'].errors, {})
         self.compare(data)
 
+    def test_edit_support_free_required(self):
+        r = self.client.post(self.edit_url, dict(support_url=''))
+        self.assertFormError(r, 'form', 'support_email',
+                             'This field is required.')
+
     def test_edit_support_premium_required(self):
         self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.post(self.edit_url, dict(support_url=''))
@@ -847,12 +852,6 @@ class TestEditSupport(TestEdit):
 
     def test_edit_support_url_optional(self):
         data = dict(support_email='sjobs@apple.com', support_url='')
-        r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
-        self.compare(data)
-
-    def test_edit_support_email_optional(self):
-        data = dict(support_email='', support_url='http://apple.com/')
         r = self.client.post(self.edit_url, data)
         eq_(r.context['form'].errors, {})
         self.compare(data)

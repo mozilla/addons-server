@@ -576,10 +576,11 @@ class TestDetails(TestSubmit):
         self.assertFormError(r, 'form_basic', 'support_url',
                              'Enter a valid URL.')
 
-    def test_support_email_optional(self):
+    def test_support_email_required(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(support_email=None))
-        self.assertNoFormErrors(r)
+        self.assertFormError(r, 'form_basic', 'support_email',
+                             'This field is required.')
 
     def test_support_email_invalid(self):
         self._step()

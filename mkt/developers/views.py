@@ -33,7 +33,7 @@ from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (AppFormBasic, AppFormDetails,
+from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormSupport,
                                   InappConfigForm, PaypalSetupForm)
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -765,7 +765,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
     models = {'basic': basic,
               'media': addon_forms.AddonFormMedia,
               'details': AppFormDetails,
-              'support': addon_forms.AddonFormSupport,
+              'support': AppFormSupport,
               'technical': addon_forms.AddonFormTechnical}
 
     if section not in models:

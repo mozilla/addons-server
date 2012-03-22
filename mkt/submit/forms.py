@@ -189,7 +189,7 @@ class AppDetailsBasicForm(AddonFormBasic):
        help_text=_(u'If your app has a support website or forum, enter '
                     'its address here.'),
         widget=TransInput(attrs={'class': 'full'}))
-    support_email = TransField.adapt(forms.EmailField)(required=False,
+    support_email = TransField.adapt(forms.EmailField)(
         label=_lazy(u'Support Email'),
         help_text=_(u'If you wish to display an email address for support '
                      'inquiries, enter it here.'),
