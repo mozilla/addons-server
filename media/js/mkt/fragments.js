@@ -12,10 +12,10 @@
             if (e.metaKey || e.ctrlKey || e.button !== 0) return;
             if (!href || href.substr(0,4) == 'http' || href === '#') return;
             e.preventDefault();
-            fetchFragment(href);
+            z.fetchFragment(href);
         });
 
-        function fetchFragment(href) {
+        z.fetchFragment = function(href) {
             timeout = setTimeout(function() { $loading.addClass('active'); },
                                  threshold);
             $.get(href, function(d, textStatus, xhr) {
@@ -43,7 +43,7 @@
         $(window).on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
-                fetchFragment(state.path);
+                z.fetchFragment(state.path);
             }
         });
 
