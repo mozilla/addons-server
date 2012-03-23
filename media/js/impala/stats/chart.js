@@ -38,7 +38,6 @@
                     }
                 },
                 min: 0,
-                minRange: 10,
                 startOnTick: false,
                 showFirstLabel: false
             },
@@ -141,15 +140,28 @@
         start = Date.iso(data.firstIndex);
         z.data = data;
         var step = '1 ' + group,
-            point;
+            point,
+            dataSum = 0;
+
         forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
                 val = parseFloat(z.StatsManager.getField(row, field));
                 if (val != val) val = null;
                 series[field].push(val);
+                if (val) dataSum += val;
             }
         }, this);
+
+        // highCharts seems to dislike 0 and null data when determining a yAxis range
+        if (dataSum === 0) {
+            baseConfig.yAxis.max = 10;
+            baseConfig.yAxis.min = null;
+            baseConfig.yAxis.minPadding = 0.07; // This gets reset by min=0.
+        } else {
+            baseConfig.yAxis.max = null;
+            baseConfig.yAxis.min = 0;
+        }
 
         // Populate the chart config object.
         var chartData = [], id;
