@@ -83,12 +83,14 @@ class CollectionBase:
         return self.get_recs_from_ids(addons, app, version)
 
     @classmethod
-    def get_recs_from_ids(cls, addons, app, version):
+    def get_recs_from_ids(cls, addons, app, version, compat_mode='strict'):
         vint = compare.version_int(version)
         recs = RecommendedCollection.build_recs(addons)
         qs = (Addon.objects.public()
               .filter(id__in=recs, appsupport__app=app.id,
-                      appsupport__min__lte=vint, appsupport__max__gte=vint))
+                      appsupport__min__lte=vint))
+        if compat_mode == 'strict':
+            qs = qs.filter(appsupport__max__gte=vint)
         return recs, qs
 
 

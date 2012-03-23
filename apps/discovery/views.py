@@ -30,6 +30,7 @@ from bandwagon.models import Collection, SyncedCollection
 from discovery.modules import PromoVideoCollection
 from reviews.models import Review
 from stats.models import GlobalStat
+from versions.compare import version_int
 
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
@@ -40,10 +41,21 @@ addon_view = addon_view_factory(Addon.objects.valid)
 log = commonware.log.getLogger('z.disco')
 
 
-def pane(request, version, platform, compat_mode='strict'):
+def get_compat_mode(version):
+    # Returns appropriate compat mode based on app version.
+    # Replace when we are ready to deal with bug 711698.
+    vint = version_int(version)
+    return 'ignore' if vint >= version_int('10.0') else 'strict'
+
+
+def pane(request, version, platform, compat_mode=None):
+
+    if not compat_mode:
+        compat_mode = get_compat_mode(version)
 
     def from_api(list_type):
-        return api_view(request, platform, version, list_type)
+        return api_view(request, platform, version, list_type,
+                        compat_mode=compat_mode)
 
     promovideo = PromoVideoCollection().get_items()
 
@@ -52,7 +64,7 @@ def pane(request, version, platform, compat_mode='strict'):
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
                          'version': version, 'platform': platform,
-                         'promovideo': promovideo})
+                         'promovideo': promovideo, 'compat_mode': compat_mode})
 
 
 def pane_account(request):
@@ -77,10 +89,14 @@ def pane_promos(request, version, platform, compat_mode='strict'):
     return promos(request, 'discovery', version, platform, compat_mode)
 
 
-def pane_more_addons(request, section, version, platform):
+def pane_more_addons(request, section, version, platform, compat_mode=None):
+
+    if not compat_mode:
+        compat_mode = get_compat_mode(version)
 
     def from_api(list_type):
-        return api_view(request, platform, version, list_type)
+        return api_view(request, platform, version, list_type,
+                        compat_mode=compat_mode)
 
     ctx = {}
     if section == 'featured':
@@ -111,13 +127,14 @@ def get_featured_personas(request):
     return manual_order(base, ids)[:6]
 
 
-def api_view(request, platform, version, list_type,
-             api_version=1.5, format='json', mimetype='application/json'):
+def api_view(request, platform, version, list_type, api_version=1.5,
+             format='json', mimetype='application/json', compat_mode='strict'):
     """Wrapper for calling an API view."""
     view = api.views.ListView()
     view.request, view.version = request, api_version
     view.format, view.mimetype = format, mimetype
-    r = view.process_request(list_type, platform=platform, version=version)
+    r = view.process_request(list_type, platform=platform, version=version,
+                             compat_mode=compat_mode)
     return json.loads(r.content)
 
 
@@ -158,26 +175,31 @@ def _sync_db_and_registry(qs, app):
 
 @csrf_exempt
 @post_required
-def recommendations(request, version, platform, limit=9):
+def recommendations(request, version, platform, limit=9, compat_mode=None):
     """
     Figure out recommended add-ons for an anonymous user based on POSTed guids.
 
     POST body looks like {"guids": [...]} with an optional "token" key if
     they've been here before.
     """
+    if not compat_mode:
+        compat_mode = get_compat_mode(version)
+
     try:
         POST = json.loads(request.raw_post_data)
         guids = POST['guids']
-    except (ValueError, TypeError, KeyError):
+    except (ValueError, TypeError, KeyError), e:
         # Errors: invalid json, didn't get a dict, didn't find "guids".
+        log.debug('Recommendations return 405 because: %s' % e)
         return http.HttpResponseBadRequest()
 
     addon_ids = get_addon_ids(guids)
     index = Collection.make_index(addon_ids)
 
-    ids, recs = Collection.get_recs_from_ids(addon_ids, request.APP, version)
-    recs = _recommendations(request, version, platform, limit,
-                            index, ids, recs)
+    ids, recs = Collection.get_recs_from_ids(addon_ids, request.APP, version,
+                                             compat_mode)
+    recs = _recommendations(request, version, platform, limit, index, ids,
+                            recs, compat_mode)
 
     # We're only storing a percentage of the collections we see because the db
     # can't keep up with 100%.
@@ -213,10 +235,11 @@ def recommendations(request, version, platform, limit=9):
     return recs
 
 
-def _recommendations(request, version, platform, limit, token, ids, qs):
+def _recommendations(request, version, platform, limit, token, ids, qs,
+                     compat_mode='strict'):
     """Return a JSON response for the recs view."""
     addons = api.views.addon_filter(qs, 'ALL', 0, request.APP, platform,
-                                    version, shuffle=False)
+                                    version, compat_mode, shuffle=False)
     addons = dict((a.id, a) for a in addons)
     addons = [api.utils.addon_to_dict(addons[i], disco=True,
                                       src='discovery-personalrec')
@@ -227,7 +250,8 @@ def _recommendations(request, version, platform, limit, token, ids, qs):
 
 
 def get_addon_ids(guids):
-    return Addon.objects.filter(guid__in=guids).values_list('id', flat=True)
+    return list(Addon.objects.filter(guid__in=guids)
+                             .values_list('id', flat=True))
 
 
 @addon_view

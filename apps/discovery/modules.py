@@ -7,6 +7,8 @@ import amo
 from addons.models import Addon
 from api.views import addon_filter
 from bandwagon.models import Collection, MonthlyPick as MP
+from versions.compare import version_int
+
 from .models import BlogCacheRyf
 
 
@@ -39,6 +41,9 @@ class PromoModule(object):
         self.request = request
         self.platform = platform
         self.version = version
+        self.compat_mode = 'strict'
+        if version_int(self.version) >= version_int('10.0'):
+            self.compat_mode = 'ignore'
 
     def render(self):
         raise NotImplementedError
@@ -118,7 +123,8 @@ class CollectionPromo(PromoModule):
     def get_addons(self):
         addons = self.collection.addons.filter(status=amo.STATUS_PUBLIC)
         kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
-                  platform=self.platform, version=self.version)
+                  platform=self.platform, version=self.version,
+                  compat_mode=self.compat_mode)
         f = lambda: addon_filter(addons, **kw)
         return caching.cached_with(addons, f, repr(kw))
 

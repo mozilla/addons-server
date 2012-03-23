@@ -9,6 +9,7 @@ import waffle
 
 import amo
 import amo.tests
+from amo.tests import addon_factory
 import addons.signals
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonDependency, AddonUpsell, Preview
@@ -124,6 +125,19 @@ class TestRecs(amo.tests.TestCase):
         data = json.loads(response.content)
         eq_(len(data['addons']), 0)
 
+    def test_app_support_filter_ignore(self):
+        # The fixture doesn't contain valid add-ons for the provided URL
+        # args, but with compat_mode=ignore, it should still find them.
+        url = reverse('discovery.recs', args=['5.0', 'Darwin', 'ignore'])
+        response = self.client.post(url, self.json,
+                                    content_type='application/json')
+        eq_(response.status_code, 200)
+        eq_(response['Content-type'], 'application/json')
+        data = json.loads(response.content)
+        eq_(len(data['addons']), 9)
+        ids = [a['id'] for a in data['addons']]
+        eq_(ids, self.expected_recs)
+
     def test_recs_bad_token(self):
         post_data = json.dumps(dict(guids=self.guids, token='fake'))
         response = self.client.post(self.url, post_data,
@@ -220,11 +234,15 @@ class TestUrls(amo.tests.TestCase):
         self.assertRedirects(r, url, 301)
 
     def test_resolve_disco_pane(self):
-        # Redirect adds default 'strict' if not supplied
-        r = self.client.get('/en-US/firefox/discovery/4.0b8/Darwin',
-                            follow=True)
-        url = reverse('discovery.pane', args=['4.0b8', 'Darwin', 'strict'])
-        self.assertRedirects(r, url, 301)
+        # Redirect to default 'strict' if version < 10.
+        r = self.client.get('/en-US/firefox/discovery/4.0/Darwin', follow=True)
+        url = reverse('discovery.pane', args=['4.0', 'Darwin', 'strict'])
+        self.assertRedirects(r, url, 302)
+
+        # Redirect to default 'ignore' if version >= 10.
+        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin', follow=True)
+        url = reverse('discovery.pane', args=['10.0', 'Darwin', 'ignore'])
+        self.assertRedirects(r, url, 302)
 
     def test_no_compat_mode(self):
         r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT')
@@ -530,3 +548,40 @@ class TestMonthlyPick(amo.tests.TestCase):
     def test_no_monthlypick(self):
         r = self.client.get(self.url)
         eq_(pq(r.content)('#monthly').length, 0)
+
+
+class TestPaneMoreAddons(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/appversion']
+
+    def setUp(self):
+        self.addon1 = addon_factory(hotness=99,
+                                    version_kw=dict(max_app_version='5.0'))
+        self.addon2 = addon_factory(hotness=0,
+                                    version_kw=dict(max_app_version='6.0'))
+
+    def _url(self, **kwargs):
+        default = dict(
+            section='up-and-coming',
+            version='5.0',
+            platform='Darwin')
+        default.update(kwargs)
+        return reverse('discovery.pane.more_addons', kwargs=default)
+
+    def test_hotness_strict(self):
+        # Defaults to strict compat mode, both are within range.
+        res = self.client.get(self._url())
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('.featured-addons').length, 2)
+
+    def test_hotness_strict_filtered(self):
+        # Defaults to strict compat mode, one is within range.
+        res = self.client.get(self._url(version='6.0'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('.featured-addons').length, 1)
+        self.assertContains(res, self.addon2.name)
+
+    def test_hotness_ignore(self):
+        # Defaults to ignore compat mode for Fx v10, both are compatible.
+        res = self.client.get(self._url(version='10.0'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('.featured-addons').length, 2)

@@ -18,9 +18,8 @@ compat_mode_re = '(?:/(?P<compat_mode>strict|normal|ignore))?'
 
 
 def pane_redirect(req, **kw):
-    if not kw.get('compat_mode'):
-        kw['compat_mode'] = 'strict'
-    return redirect(reverse('discovery.pane', kwargs=kw), permanent=True)
+    kw['compat_mode'] = views.get_compat_mode(kw.get('version'))
+    return redirect(reverse('discovery.pane', kwargs=kw), permanent=False)
 
 
 urlpatterns = patterns('',
@@ -32,9 +31,10 @@ urlpatterns = patterns('',
     url('^addon/%s/' % ADDON_ID, include(addon_patterns)),
 
     url('^pane/account$', views.pane_account, name='discovery.pane.account'),
-    url('^pane/(?P<section>featured|up-and-coming)/%s$' % browser_re,
-        views.pane_more_addons, name='discovery.pane.more_addons'),
-    url('^recs/%s$' % browser_re,
+    url('^pane/(?P<section>featured|up-and-coming)/%s$' % (
+        browser_re + compat_mode_re), views.pane_more_addons,
+        name='discovery.pane.more_addons'),
+    url('^recs/%s$' % (browser_re + compat_mode_re),
         views.recommendations, name='discovery.recs'),
     url('^%s$' % (browser_re + compat_mode_re), pane_redirect),
     url('^pane/%s$' % (browser_re + compat_mode_re), views.pane,

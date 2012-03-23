@@ -147,7 +147,10 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     if version is not None:
         v = search_utils.convert_version(version)
-        f = lambda app: app.min.version_int <= v <= app.max.version_int
+        if compat_mode == 'strict':
+            f = lambda app: app.min.version_int <= v <= app.max.version_int
+        else:
+            f = lambda app: app.min.version_int <= v
         xs = [(a, a.compatible_apps) for a in addons]
         addons = [a for a, apps in xs if apps.get(APP) and f(apps[APP])]
 
