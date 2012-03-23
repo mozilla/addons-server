@@ -133,16 +133,20 @@ def _app_search(request, category=None):
         'categories': category_sidebar(query, facets),
         'prices': price_sidebar(query),
         'devices': device_sidebar(query),
+        'active': {},
     }
 
+    applied_filters = []
+    for facet in ['prices', 'categories', 'devices']:
+        for idx, f in enumerate(ctx[facet]):
+            # Show filters where something besides its first/default choice
+            # is selected.
+            if idx and f.selected:
+                applied_filters.append(f)
+                ctx['active'][facet] = f
+
+    # We shouldn't show the "Applied Filters" for category browse/search pages.
     if not category:
-        applied_filters = []
-        for facet in ['prices', 'categories', 'devices']:
-            for idx, f in enumerate(ctx[facet]):
-                # Show filters where something besides its first/default choice
-                # is selected.
-                if idx and f.selected:
-                    applied_filters.append(f)
         ctx['applied_filters'] = applied_filters
 
     return ctx

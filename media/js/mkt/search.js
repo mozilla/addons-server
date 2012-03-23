@@ -7,7 +7,7 @@
             }
             $this.removeClass('active');
         } else {
-            $this.closest('ul').find('.active').removeClass('active');
+            $this.closest('ul').removeClass('active');
             $this.addClass('active');
         }
     });

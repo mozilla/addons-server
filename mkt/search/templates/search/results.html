@@ -60,9 +60,9 @@
     <section id="search-facets" class="col">
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
-        {{ facet(_('Category'), 'category-facets', categories, active=category) }}
-        {{ facet(_('Price'), 'price-facets', prices) }}
-        {{ facet(_('Optimized for'), 'device-facets', devices) }}
+        {{ facet(_('Category'), 'category-facets', categories, active=active.categories) }}
+        {{ facet(_('Price'), 'price-facets', prices, active=active.prices) }}
+        {{ facet(_('Optimized for'), 'device-facets', devices, active=active.devices) }}
       </ul>
       {{ num_results() }}
     </section>
