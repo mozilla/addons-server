@@ -137,7 +137,7 @@ def _app_search(request, category=None):
 
     if not category:
         applied_filters = []
-        for facet in ['prices', 'categories', 'devices', 'sorting']:
+        for facet in ['prices', 'categories', 'devices']:
             for idx, f in enumerate(ctx[facet]):
                 # Show filters where something besides its first/default choice
                 # is selected.
