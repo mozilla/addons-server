@@ -25,7 +25,7 @@ def update_addons_collections_downloads():
          .annotate(sum=Sum('count')))
 
     ts = [tasks.update_addons_collections_downloads.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
+          for chunk in chunked(d, 100)]
     TaskSet(ts).apply_async()
 
 
