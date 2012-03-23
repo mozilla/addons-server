@@ -89,7 +89,7 @@
         border-bottom: 1px solid @light-gray;
         border-top: 1px solid @white;
         min-height: 64px;
-        padding: 10px 120px 10px 95px;
+        padding: 10px 10px 10px 95px;
         position: relative;
         &:last-child {
             border-bottom: 0;
@@ -137,13 +137,18 @@
                 width: 0;
             }
         }
-        .actions, img {
+        .rating {
+            color: @gray;
+        }
+        img {
             position: absolute;
             top: 10px;
         }
+        .info {
+            max-width: 80%;
+        }
         .actions {
-            right: 10px;
-            margin-bottom: 10px;
+            float: right;
             width: 100px;
             .button {
                 display: block;
@@ -164,6 +169,46 @@
             text-indent: -8px;
         }
     }
+    .item {
+        padding: 10px 95px 10px 10px;
+    }
+    .actions {
+        float: left;
+    }
+    img {
+        left: auto;
+        right: 10px;
+        margin: 0 0 0 10px;
+    }
+}
+
+.stars {
+    background: url(../../img/impala/stars.png) no-repeat left top;
+    display: inline-block;
+    height: 12px;
+    margin-right: 4px;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 63px;
+    &.stars-4 { background-position: -13px 0; }
+    &.stars-3 { background-position: -26px 0; }
+    &.stars-2 { background-position: -39px 0; }
+    &.stars-1 { background-position: -52px 0; }
+    &.stars-0 { background-position: -65px 0; }
+    &.large {
+        display: block;
+        background: url(../../img/impala/stars-16.png) no-repeat left top;
+        width: 89px;
+        height: 16px;
+        &.stars-4 { background-position: -18px 0; }
+        &.stars-3 { background-position: -36px 0; }
+        &.stars-2 { background-position: -54px 0; }
+        &.stars-1 { background-position: -70px 0; }
+    }
+}
+
+.html-rtl .stars {
+    margin: 0 0 0 4px;
 }
 
 #search-results {
@@ -378,13 +423,10 @@
 @media (max-width: @7col) {
     #search-results, #search-facets {
         float: none;
-    }
-    #search-results {
         .width(7);
     }
     #search-facets {
         padding-right: 0;
-        .width(7);
     }
 }
 
@@ -392,21 +434,19 @@
     .listing {
         .item {
             padding-left: 54px;
-            padding-right: 78px;
             h3 {
                 margin-bottom: 10px;
                 padding: 5px 0;
             }
-            .vitals .vital {
-                + .vital, + .rating {
-                    &:before {
-                        display: none;
-                    }
+            .rating + span {
+                display: block;
+                &:before {
+                    display: none;
                 }
             }
             .actions {
                 font-size: 12px;
-                width: 64px;
+                .width(1);
                 .button {
                     height: 32px;
                 }
@@ -420,19 +460,13 @@
             display: none;
         }
     }
-    #search-results {
-        .width(4);
-    }
-    #search-facets {
+    #search-results, #search-facets {
         .width(4);
     }
 }
 
 @media (max-width: @3col) {
-    #search-results {
-        .width(3);
-    }
-    #search-facets {
+    #search-results, #search-facets {
         .width(3);
     }
 }

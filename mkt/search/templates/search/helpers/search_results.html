@@ -25,6 +25,10 @@
 
 {% for product in products %}
   <li class="item result app c">
+    <div class="actions">
+      {{ market_button(product) }}
+      {{ device_list(product) }}
+    </div>
     <div class="info">
       <h3>
         {% set dl_url = product.get_url_path() %}
@@ -52,11 +56,7 @@
         {% if field in ('created', 'updated') %}
           {{ sort_vital(product, field) }}
         {% endif %}
-        {{ device_list(product) }}
       </div>
-    </div>
-    <div class="actions">
-      {{ market_button(product) }}
     </div>
   </li>
 {% else %}

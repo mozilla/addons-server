@@ -32,6 +32,7 @@
 }
 
 .device-list {
+    margin-top: 10px;
     h4, ul {
         display: inline-block;
         line-height: 20px;
@@ -47,9 +48,12 @@
         height: 22px;
         line-height: 20px;
         position: relative;
-        padding-left: 23px;
+        padding-left: 28px;
         margin-left: 5px;
         overflow: hidden;
+        &.incompatible {
+            opacity: .5;
+        }
         &:before, &:after {
             content: '';
             background: @white;
@@ -59,10 +63,6 @@
             top: 0;
             left: 0;
             border: 2px solid @medium-gray;
-        }
-        &.tablet,
-        &.desktop {
-            padding-left: 26px;
         }
         &.mobile {
             &:before {
@@ -81,7 +81,7 @@
         &.tablet {
             &:before {
                 top: 3px;
-                left: 0px;
+                left: 0;
                 width: 16px;
                 height: 10px;
             }
@@ -100,6 +100,91 @@
                 width: 6px;
                 left: 5px;
             }
+        }
+    }
+}
+
+.listing .device-list {
+    padding-top: 3px;
+    h4, ul {
+        display: block;
+    }
+    h4 {
+        color: @gray;
+        font-size: 11px;
+        font-weight: normal;
+    }
+    ul {
+        color: @medium-gray;
+        font-size: 11px;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        display: block;
+        height: 20px;
+        line-height: 18px;
+        position: relative;
+        padding-left: 23px;
+        margin-left: 0;
+        overflow: hidden;
+        &.incompatible {
+            opacity: .5;
+        }
+        &:before, &:after {
+            content: '';
+            background: @white;
+            display: block;
+            position: absolute;
+            .border-radius(2px);
+            top: 0;
+            left: 0;
+            border: 2px solid @medium-gray;
+        }
+        &.tablet,
+        &.desktop {
+            height: 15px;
+            line-height: 13px;
+        }
+        &.mobile {
+            &:before {
+                left: 3px;
+                width: 8px;
+                height: 10px;
+                border-width: 3px 2px 6px;
+            }
+            &:after {
+                border-width: 1px;
+                border-color: @white;
+                left: 8px;
+                top: 15px;
+            }
+        }
+        &.tablet {
+            &:before {
+                top: 1px;
+                left: 0;
+                width: 14px;
+                height: 8px;
+            }
+            &:after {
+                display: none;
+            }
+        }
+        &.desktop {
+            &:before {
+                top: 1px;
+                width: 14px;
+                height: 6px;
+            }
+            &:after {
+                top: 10px;
+                width: 6px;
+                left: 4px;
+            }
+        }
+        + li {
+            margin-top: 3px;
         }
     }
 }
@@ -133,11 +218,17 @@
     }
     .device-list {
         h4 {
-            display: none;
+            display: none !important;
         }
         li {
-            width: 0;
             margin-left: 0;
+            width: 0;
+        }
+    }
+    .listing .actions .device-list {
+        li {
+            display: inline-block;
+            padding-left: 20px;
         }
     }
 }
