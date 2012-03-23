@@ -42,7 +42,7 @@
     }
 
     function cancelPurchase(e) {
-        if (e.preventDefault) e.preventDefault();
+        if (e && e.preventDefault) e.preventDefault();
         $def.reject(product, 'cancelled');
         $(window).unbind('.payments');
         overlay.unbind('.payments');
@@ -50,7 +50,7 @@
     }
 
     function startPayment(e) {
-        if (e.preventDefault) e.preventDefault();
+        if (e && e.preventDefault) e.preventDefault();
         doPaypal(product);
     }
 
