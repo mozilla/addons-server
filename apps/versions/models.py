@@ -16,7 +16,7 @@ import amo.utils
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
-from files.models import File, Platform
+from files.models import File, Platform, cleanup_file
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
@@ -370,7 +370,8 @@ def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
         return
-    instance.files.all().delete()
+    for file_ in instance.files.all():
+        cleanup_file(file_.__class__, file_)
 
 
 version_uploaded = django.dispatch.Signal()
