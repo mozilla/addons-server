@@ -93,10 +93,20 @@
         position: relative;
         text-decoration: none;
         z-index: 3;
+        &:after {
+            clear: both;
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+        }
         span {
+            .border-box;
+            .max-width(3);
             background: no-repeat 5px 50%;
             .background-size(20px auto);
             display: block;
+            float: left;
             overflow: hidden;
             padding: 0 5px 0 32px;
             text-overflow: ellipsis;
@@ -107,6 +117,7 @@
         }
         .subtitle {
             color: @note-gray;
+            float: left;
             font-size: 12px;
             font-style: normal;
         }

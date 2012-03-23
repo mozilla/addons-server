@@ -47,14 +47,26 @@
     a {
         display: block;
         text-decoration: none;
-        span {
-            background: no-repeat 4px 50%;
-            .background-size(20px auto);
+        &:after {
+            clear: both;
+            content: ".";
             display: block;
+            height: 0;
+            visibility: hidden;
+        }
+        span, .subtitle {
+            display: block;
+            float: left;
             overflow: hidden;
-            padding: 2px 2px 2px 32px;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+        span {
+            .border-box;
+            background: no-repeat 4px 50%;
+            .background-size(20px auto);
+            max-width: 280px;
+            padding: 2px 2px 2px 32px;
             &.cat {
                 background-image: url(../../img/icons/search-cat.png);
             }
@@ -81,6 +93,8 @@
             color: @note-gray;
             font-size: 12px;
             font-style: normal;
+            line-height: 30px;
+            margin-left: 5px;
         }
     }
     a:hover,
@@ -95,7 +109,9 @@
     }
 }
 
-.html-rtl #site-search-suggestions .wrap:before {
-    left: auto;
-    right: 14px;
+.html-rtl #site-search-suggestions {
+    .wrap:before {
+        left: auto;
+        right: 14px;
+    }
 }
