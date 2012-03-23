@@ -21,9 +21,10 @@
       {{ device_list(product) }}
       <a href="{{ product.get_detail_url('privacy') }}">
         {{ _('Privacy Policy') }}</a>
-      {% if product.all_categories %}
-        <h3 class="categories">{{ _('Categories') }}</h3>
-        <ul>
+      {% set categories = product.all_categories %}
+      {% if categories %}
+        <h3>{{ _('Categories') }}</h3>
+        <ul class="categories">
           {% for category in categories %}
           <li>
             <a href="{{ category.get_url_path() }}">

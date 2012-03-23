@@ -11,12 +11,35 @@ from tower import strip_whitespace
 
 import amo
 import amo.tests
+from addons.models import AddonCategory, Category
 from users.models import UserProfile
 from mkt.webapps.models import Webapp
 
 
 def get_clean(selection):
     return strip_whitespace(str(selection))
+
+
+class TestDetail(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(id=337141)
+        self.url = self.webapp.get_detail_url()
+
+    def test_page(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_categories(self):
+        cat = Category.objects.create(name='Lifestyle', slug='lifestyle',
+                                      type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.create(addon=self.webapp, category=cat)
+        r = self.client.get(self.url)
+        links = pq(r.content)('.categories a')
+        eq_(links.length, 1)
+        eq_(links.attr('href'), cat.get_url_path())
+        eq_(links.text(), cat.name)
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
