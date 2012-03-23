@@ -9,9 +9,9 @@
         <input id="search-q" type="text" name="q" autocomplete="off" title=""
                placeholder="{{ search_form.placeholder(search_placeholder) }}"
                value="{{ search_form.q.value() }}">
-        {% if search_form.cat.value() %}
-          {{ search_form.cat }}
-        {% endif %}
+        {% for key, value in request.GET.items() %}
+          <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endfor %}
         <div id="site-search-suggestions"
              data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
       </form>

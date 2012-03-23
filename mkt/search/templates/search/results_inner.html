@@ -1,11 +1,11 @@
-{{ impala_addon_listing_header(request.get_full_path()|urlparams(page=None),
+{{ impala_addon_listing_header(search_url|urlparams(page=None),
                                sort_opts, query.sort or None, extra_sort_opts) }}
 {% if applied_filters %}
   <section class="applied-filters">
     <h2>{{ _('Applied Filters:') }}</h2>
     <ol>
       {% for f in applied_filters %}
-        <li><a href="{{ request.get_full_path()|urlparams(**f.null_urlparams) }}">
+        <li><a href="{{ search_url|urlparams(**f.null_urlparams) }}">
           {{ f.text }}</a></li>
       {% endfor %}
     </ol>

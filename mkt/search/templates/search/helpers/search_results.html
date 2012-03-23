@@ -38,9 +38,13 @@
       <p class="desc">{{ product.summary|nl2br }}</p>
       <div class="vitals c">
         {{ price(product) }}
-        {% if product.all_categories %}
+        {% set cats = product.all_categories %}
+        {% if cats %}
           <span class="vital">
-            {{ product.all_categories|join(' &middot; ')|safe }}
+            {% for cat in cats %}
+              <a href="{{ cat.get_url_path() }}">{{ cat }}</a>
+              {%- if not loop.last %},{% endif %}
+            {% endfor %}
           </span>
         {% endif %}
         {{ impala_reviews_link(product) }}

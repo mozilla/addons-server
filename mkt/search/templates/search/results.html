@@ -1,12 +1,17 @@
 {% extends 'mkt/base.html' %}
 
 {% set query_term = query.q %}
+{% set search_url = request.get_full_path() %}
 
 {% if query_term %}
   {# L10n: {0} is a search term, such as Firebug. #}
   {% set title = _('{0} | Search')|f(query_term) %}
   {# L10n: {0} is a search term, such as Firebug. #}
   {% set heading = _('Search Results for "{0}"')|f(query_term) %}
+{% elif category %}
+  {% set search_url = url('search.search')|urlparams(cat=category.id) %}
+  {% set title = category.name %}
+  {% set heading = title %}
 {% else %}
   {% set title = _('Search') %}
   {% set heading = title %}
@@ -19,8 +24,8 @@
   <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
-{% macro facet(title, id, links) %}
-  <li id="{{ id }}" class="facet">
+{% macro facet(title, id, links, active=False) %}
+  <li id="{{ id }}" class="facet{{ ' active' if active }}">
     <h3>{{ title }}</h3>
     {{ facet_links(links) }}
   </li>
@@ -30,7 +35,7 @@
   <ul class="facet-group">
     {% for link in links recursive %}
     <li{% if link.selected %} class="selected"{% endif %}>
-      <a href="{{ request.get_full_path()|urlparams(page=None, **link.urlparams) }}"
+      <a href="{{ search_url|urlparams(page=None, **link.urlparams) }}"
          data-params="{{ dict(page=None, **link.urlparams)|json }}">
         {{ link.text }}</a>
       {% if link.children %}
@@ -55,8 +60,8 @@
     <section id="search-facets" class="col">
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
+        {{ facet(_('Category'), 'category-facets', categories, active=category) }}
         {{ facet(_('Price'), 'price-facets', prices) }}
-        {{ facet(_('Category'), 'category-facets', categories) }}
         {{ facet(_('Optimized for'), 'device-facets', devices) }}
       </ul>
       {{ num_results() }}
@@ -64,7 +69,9 @@
     <section id="search-results" class="col">
       <h1>{{ heading }}</h1>
       <div id="search-listing" class="listing">
-        {% include 'search/results_inner.html' %}
+        {% with search_url=search_url %}
+          {% include 'search/results_inner.html' %}
+        {% endwith %}
       </div>
     </section>
   </section>

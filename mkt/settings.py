@@ -28,6 +28,7 @@ ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)
 INSTALLED_APPS.remove('api')
+INSTALLED_APPS.remove('browse')
 INSTALLED_APPS.remove('compat')
 INSTALLED_APPS.remove('discovery')
 INSTALLED_APPS.remove('devhub')
@@ -36,18 +37,20 @@ INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
     'mkt.site',
-    'mkt.webapps',
+    'mkt.browse',
     'mkt.detail',
     'mkt.developers',
+    'mkt.experiments',
     'mkt.payments',
     'mkt.search',
     'mkt.submit',
-    'mkt.experiments',
+    'mkt.webapps',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
 SUPPORTED_NONAPPS += (
     # this line is here until bug 735120 is fixed.
     'app',
+    'apps',
     'dev',
     'login',
     'payments',

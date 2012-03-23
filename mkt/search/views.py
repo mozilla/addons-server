@@ -91,15 +91,10 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def app_search(request):
+def _app_search(request, category=None):
     form = forms.AppSearchForm(request.GET)
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
-
-    # Remove `sort=price` if `price=free`.
-    if query.get('price') == 'free' and query.get('sort') == 'price':
-        return redirect(amo.utils.urlparams(request.get_full_path(),
-                                            sort=None))
 
     qs = (Webapp.search()
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
@@ -118,11 +113,14 @@ def app_search(request):
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
 
-    if query.get('price') == 'free':
-        # Remove 'Sort by Price' option if filtering by free apps.
-        sort_opts = forms.FREE_SORT_CHOICES
+    if category:
+        sort_opts = forms.LISTING_SORT_CHOICES
     else:
-        sort_opts = form.fields['sort'].choices
+        if query.get('price') == 'free':
+            # Remove 'Sort by Price' option if filtering by free apps.
+            sort_opts = forms.FREE_SORT_CHOICES
+        else:
+            sort_opts = form.fields['sort'].choices
 
     ctx = {
         'pager': pager,
@@ -137,13 +135,25 @@ def app_search(request):
         'devices': device_sidebar(query),
     }
 
-    applied_filters = []
-    for facet in ['prices', 'categories', 'devices', 'sorting']:
-        for idx, f in enumerate(ctx[facet]):
-            # Show filters where something besides its first/default choice
-            # is selected.
-            if idx and f.selected:
-                applied_filters.append(f)
-    ctx['applied_filters'] = applied_filters
+    if not category:
+        applied_filters = []
+        for facet in ['prices', 'categories', 'devices', 'sorting']:
+            for idx, f in enumerate(ctx[facet]):
+                # Show filters where something besides its first/default choice
+                # is selected.
+                if idx and f.selected:
+                    applied_filters.append(f)
+        ctx['applied_filters'] = applied_filters
 
-    return jingo.render(request, 'search/results.html', ctx)
+    return ctx
+
+
+def app_search(request):
+    # Remove `sort=price` if `price=free`.
+    data = request.GET
+    if data.get('price') == 'free' and data.get('sort') == 'price':
+        return redirect(amo.utils.urlparams(request.get_full_path(),
+                                            sort=None))
+
+    # Otherwise render results.
+    return jingo.render(request, 'search/results.html', _app_search(request))
