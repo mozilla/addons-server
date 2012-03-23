@@ -2024,6 +2024,8 @@ class TestMobileDetails(TestPersonas, TestMobile):
         self.persona = Addon.objects.get(id=15679)
         self.create_addon_user(self.persona)
         self.persona_url = self.persona.get_url_path()
+        (waffle.models.Switch.objects
+               .create(name='personas-migration-completed', active=True))
 
     def test_extension(self):
         r = self.client.get(self.url)
