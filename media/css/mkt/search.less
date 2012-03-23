@@ -271,13 +271,17 @@
         }
     }
     .facets {
+        .border-box;
         .border-radius(5px);
-        background: rgba(255, 255, 255, 0.4);
-        border-color: #D7D9E8;
+        background: @faint-gray;
+        border: 1px solid rgba(200,200,200,.7);
         padding: 0;
         width: 100%;
         .facet {
-            border-top: 1px dotted #D7D9E8;
+            .transition(~'background .2s ease-in-out');
+            .gradient-two-color(rgb(247,247,247,.7), rgba(238,238,238,.7));
+            border-bottom: 1px solid @light-gray;
+            border-top: 1px solid @white;
             position: relative;
             padding: 10px;
             &:after {
@@ -295,8 +299,11 @@
             &:last-child {
                 .border-radius(0 0 5px 5px);
             }
-            &.active, &:hover {
-                background: rgb(255, 255, 255, 0.6);
+            &:hover {
+                background: rgba(255,255,255,.7);
+            }
+            &.active {
+                background: @white;
             }
             &:hover {
                 cursor: pointer;
@@ -335,6 +342,7 @@
             &.active {
                 &:after {
                     .transform(rotate(90deg));
+                    color: @gray;
                 }
                 li a {
                     display: block;

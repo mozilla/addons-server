@@ -123,6 +123,22 @@ body {
         float: none;
         margin: 0 auto;
     }
+    // Account for the wrapped stuff in the header.
+    #page {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: @4col) {
+    #page {
+        margin-top: 80px;
+    }
+}
+
+@media (max-width: @3col) {
+    #page {
+        margin-top: 85px;
+    }
 }
 
 // TODO potch: Belongs with the "collapsible" widget.
