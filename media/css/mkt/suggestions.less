@@ -73,7 +73,7 @@
             height: 12px;
             position: absolute;
             top: -5px;
-            left: 15px;
+            right: 13px;
             z-index: 2;
             width: 12px;
         }
@@ -90,16 +90,17 @@
         border-top: 1px solid @faint-gray;
         border-bottom: 1px solid transparent;
         display: block;
-        overflow: hidden;
         position: relative;
         text-decoration: none;
-        text-overflow: ellipsis;
         z-index: 3;
-        white-space: nowrap;
         span {
             background: no-repeat 5px 50%;
             .background-size(20px auto);
+            display: block;
+            overflow: hidden;
             padding: 0 5px 0 32px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             &.cat {
                 background-image: url(../../img/icons/search-cat.png);
             }
@@ -149,5 +150,5 @@
 
 .html-rtl #site-search-suggestions .wrap:before {
     left: auto;
-    right: 15px;
+    right: 13px;
 }

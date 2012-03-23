@@ -46,14 +46,15 @@
     }
     a {
         display: block;
-        overflow: hidden;
         text-decoration: none;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         span {
             background: no-repeat 4px 50%;
             .background-size(20px auto);
+            display: block;
+            overflow: hidden;
             padding: 2px 2px 2px 32px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             &.cat {
                 background-image: url(../../img/icons/search-cat.png);
             }
