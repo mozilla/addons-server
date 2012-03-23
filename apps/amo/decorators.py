@@ -3,6 +3,7 @@ import json
 
 from django import http
 from django.conf import settings
+from django.db import transaction
 from django.utils.http import urlquote
 
 import commonware.log
@@ -109,7 +110,8 @@ def use_master(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
         with context.use_master():
-            return f(*args, **kw)
+            with transaction.commit_on_success():
+                return f(*args, **kw)
     return wrapper
 
 

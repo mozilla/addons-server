@@ -49,6 +49,16 @@ def test_json_view_error():
     eq_(response['Content-Type'], 'application/json')
 
 
+@mock.patch('django.db.transaction.commit_on_success')
+def test_write(commit_on_success):
+    @decorators.write
+    def some_func():
+        pass
+    assert not commit_on_success.called
+    some_func()
+    assert commit_on_success.called
+
+
 class TestLoginRequired(object):
 
     def setUp(self):
