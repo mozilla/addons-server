@@ -50,7 +50,10 @@
 
     {% block sitefooter %}
       <footer>
-        signed in as {{ request.amo_user.email }}
+        {% if request.user.is_authenticated() %}
+          signed in as {{ request.amo_user.email }}
+          <a href="{{ url('users.logout') }}">(log out)</a>
+        {% endif %}
       </footer>
     {% endblock %}
 
@@ -63,9 +66,15 @@
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
       <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
-      <script async defer src="https://browserid.org/include.js"></script>
+      {% if not request.user.is_authenticated() %}
+        {# We need Persona only for non-authenticated users. %}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
       {{ js('mkt/consumer') }}
-      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+      {% if request.user.is_authenticated() %}
+        {# We need PayPal only for authenticated users. %}
+        <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+      {% endif %}
       <script>
         (function() {
           function trigger() {

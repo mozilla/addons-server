@@ -53,6 +53,7 @@ SUPPORTED_NONAPPS += (
     'apps',
     'dev',
     'login',
+    'logout',
     'payments',
     'privacy-policy',
     'search',
