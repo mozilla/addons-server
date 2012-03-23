@@ -185,7 +185,7 @@ def persona_detail(request, addon, template=None):
         'addon': addon,
         'persona': persona,
         'categories': categories,
-        'author_personas': addon.authors_other_addons(request.APP)[:3],
+        'author_personas': persona.authors_other_addons(request.APP)[:3],
         'category_personas': category_personas,
     }
     if not persona.is_new():

@@ -1395,7 +1395,20 @@ class Persona(caching.CachingMixin, models.Model):
         }, separators=(',', ':'), cls=JSONEncoder)
 
     def authors_other_addons(self, app=None):
-        return self.addon.authors_other_addons(app)
+        """
+        Return other addons by the author(s) of this addon,
+        optionally takes an app.
+        """
+        qs = (Addon.objects.valid()
+                           .exclude(id=self.addon.id)
+                           .filter(type=amo.ADDON_PERSONA))
+        # TODO(andym): delete this once personas are migrated.
+        if not waffle.switch_is_active('personas-migration-completed'):
+            return (qs.filter(persona__author=self.author)
+                      .select_related('persona'))
+        return (qs.filter(addonuser__listed=True,
+                          authors__in=self.addon.listed_authors)
+                  .distinct())
 
 
 class AddonCategory(caching.CachingMixin, models.Model):
