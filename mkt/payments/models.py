@@ -89,3 +89,38 @@ def limited_keygen(gen_key, max_tries):
         yield gen_key()
     raise TooManyKeyGenAttempts('exceeded %s tries to generate a unique key'
                                 % max_tries)
+
+
+class InappPayLog(amo.models.ModelBase):
+    action = models.IntegerField()
+    session_key = models.CharField(max_length=64)
+    app_public_key = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey('users.UserProfile', null=True, blank=True)
+    config = models.ForeignKey(InappConfig, null=True, blank=True)
+    exception = models.IntegerField(null=True, blank=True)
+
+    # Magic numbers:
+    _actions = {'PAY_START': 1,
+                'PAY': 2,
+                'EXCEPTION': 3}
+    _exceptions = {'InappPaymentError': 1,
+                   'AppPaymentsDisabled': 2,
+                   'RequestExpired': 3,
+                   'RequestVerificationError': 4,
+                   'UnknownAppError': 5,
+                   'AppPaymentsRevoked': 6,
+                   'InvalidRequest': 7}
+
+    class Meta:
+        db_table = 'addon_inapp_log'
+
+    @classmethod
+    def log(cls, request, action_name, user=None, config=None, exc_class=None,
+            app_public_key=None):
+        cls.objects.create(session_key=request.session.session_key,
+                           user=user,
+                           action=cls._actions[action_name],
+                           config=config,
+                           app_public_key=app_public_key,
+                           exception=cls._exceptions[exc_class]
+                                     if exc_class else None)

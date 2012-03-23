@@ -1,62 +1,39 @@
-import functools
-import json
-
+import commonware.log
 import jingo
-import jwt
 from session_csrf import anonymous_csrf
 from waffle.decorators import waffle_switch
 
-from django import http
-
-from amo.decorators import login_required
-
-
-def decode_request(signed_request):
-    app_req = jwt.decode(str(signed_request), verify=False)
-    app_req = json.loads(app_req)
-
-    # TODO(Kumar) using the app key, look up the app's secret and verify the
-    # request was encoded with the same secret.
-
-    # secret = AppSecrets.objects.get(app_key=app_req['iss'])
-    # jwt.decode(signed_request, secret, verify=True)
-    return app_req
+from amo.decorators import login_required, post_required, write, allow_embed
+from mkt.payments.decorators import require_inapp_request
+from mkt.payments.models import InappPayLog
 
 
-def allow_embed(view):
-    @functools.wraps(view)
-    def wrapper(*args, **kw):
-        response = view(*args, **kw)
-        response['x-frame-options'] = ''
-        return response
-    return wrapper
+log = commonware.log.getLogger('z.inapp')
 
 
+@require_inapp_request
 @anonymous_csrf
 @allow_embed
+@write
 @waffle_switch('in-app-payments-ui')
-def pay_start(request):
-    signed_req = request.GET.get('req')
-    if not signed_req:
-        return http.HttpResponseBadRequest()
-    decoded_req = decode_request(signed_req)
-    data = dict(price=decoded_req['request']['price'],
-                currency=decoded_req['request']['currency'],
-                item=decoded_req['request']['name'],
-                description=decoded_req['request']['description'],
+def pay_start(request, signed_req, pay_req):
+    InappPayLog.log(request, 'PAY_START', config=pay_req['_config'])
+    data = dict(price=pay_req['request']['price'],
+                currency=pay_req['request']['currency'],
+                item=pay_req['request']['name'],
+                description=pay_req['request']['description'],
                 signed_request=signed_req)
     return jingo.render(request, 'payments/pay_start.html', data)
 
 
+@require_inapp_request
 @anonymous_csrf
 @allow_embed
 @login_required
+@post_required
+@write
 @waffle_switch('in-app-payments-ui')
-def pay(request):
-    signed_req = request.POST.get('req')
-    if not signed_req:
-        return http.HttpResponseBadRequest()
-    # decoded_req = decode_request(signed_req)
+def pay(request, signed_req, pay_req):
 
     # Do Paypal stuff!
 

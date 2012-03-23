@@ -157,3 +157,13 @@ def redis(f):
         redis = redisutils.connections['master']
         return f(redis, *args, **kw)
     return wrapper
+
+
+def allow_embed(view):
+    """Allow the view to be embedded in a frame."""
+    @functools.wraps(view)
+    def wrapper(*args, **kw):
+        response = view(*args, **kw)
+        response['x-frame-options'] = ''
+        return response
+    return wrapper

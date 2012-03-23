@@ -1,9 +1,13 @@
+import inspect
+
 import fudge
 from nose.tools import eq_, raises
 
 import amo
 import amo.tests
-from mkt.payments.models import InappConfig, TooManyKeyGenAttempts
+from mkt.payments.models import InappConfig, TooManyKeyGenAttempts, InappPayLog
+from mkt.payments import verify
+from mkt.payments.verify import InappPaymentError
 from mkt.webapps.models import Webapp
 
 
@@ -70,3 +74,15 @@ class TestInapp(amo.tests.TestCase):
                                                   .next_call().returns(1)
                                                   .next_call().returns(0))
         assert InappConfig.generate_public_key(max_tries=5)
+
+
+def test_exception_mapping():
+    at_least_one = False
+    for name in dir(verify):
+        ob = getattr(verify, name)
+        if (inspect.isclass(ob) and (issubclass(ob, InappPaymentError)
+                                     or ob is InappPaymentError)):
+                at_least_one = True
+                assert ob.__name__ in InappPayLog._exceptions, (
+                                        '%r is not mapped' % ob.__name__)
+    assert at_least_one
