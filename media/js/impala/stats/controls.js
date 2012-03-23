@@ -49,6 +49,13 @@
             var nRange = normalizeRange(newState.range),
                 startStr = nRange.start.iso(),
                 endStr = nRange.end.iso();
+
+            // Trim nRange.end by one day if custom range.
+            if (newState.range.custom) {
+                nRange.end = new Date(nRange.end.getTime() - (24 * 60 * 60 * 1000));
+                endStr = nRange.end.iso();
+            }
+
             $("#date-range-start").val(startStr);
             $startPicker.datepicker("setDate", startStr);
             $("#date-range-end").val(endStr);

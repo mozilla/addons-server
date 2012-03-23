@@ -107,6 +107,12 @@ z.StatsManager = (function() {
     function processView(e, newView) {
         // Update our internal view state.
         currentView = $.extend(currentView, newView);
+
+        // On custom ranges request a range greater by 1 day. (bug 737910)
+        if (currentView.range.custom && typeof currentView.range.end == 'object') {
+            currentView.range.end = new Date(currentView.range.end.getTime() + (24 * 60 * 60 * 1000));
+        }
+
         // Fetch the data from the server or storage, and notify other components.
         $.when( getDataRange(currentView), getSiteEvents(currentView) )
          .then( function(data, events) {

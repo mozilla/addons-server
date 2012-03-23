@@ -456,8 +456,7 @@ def daterange(start_date, end_date):
         yield start_date + timedelta(n)
 
 
-# Removing temporarily to test a stats range fix.
-#@memoize(prefix='global_stats', time=60 * 60)
+@memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end):
     # Cached lookup of the keys and the SQL.
     # Taken from remora, a mapping of the old values.
