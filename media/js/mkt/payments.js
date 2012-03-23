@@ -45,6 +45,7 @@
         if (e.preventDefault) e.preventDefault();
         $def.reject(product, 'cancelled');
         $(window).unbind('.payments');
+        overlay.unbind('.payments');
         overlay.removeClass('show');
     }
 
