@@ -26,6 +26,9 @@ z.StatsManager = (function() {
         writeInterval   = false,
         lookup          = {};
 
+    // NaN is a poor choice for a storage key
+    if (isNaN(addonId)) addonId = 'globalstats';
+
     // It's a bummer, but we need to know which metrics have breakdown fields.
     // check by saying `if (metric in breakdownMetrics)`
     var breakdownMetrics = {
