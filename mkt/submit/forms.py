@@ -24,7 +24,6 @@ from mkt.developers import tasks
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
-from mkt.webapps.models import Webapp
 
 
 class DevAgreementForm(happyforms.Form):
@@ -183,8 +182,7 @@ class AppDetailsBasicForm(AddonFormBasic):
         widget=TransInput(attrs={'class': 'full'}))
     support_email = TransField.adapt(forms.EmailField)(
         label=_lazy(u'Support Email'),
-        help_text=_(u'If you wish to display an email address for support '
-                     'inquiries, enter it here.'),
+        help_text=_(u'Provide an email address for support inquiries.'),
         widget=TransInput(attrs={'class': 'full'}))
 
     class Meta:
