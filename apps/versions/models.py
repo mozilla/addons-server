@@ -370,8 +370,7 @@ def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
         return
-    for file_ in instance.all_files:
-        file_.delete()
+    instance.files.all().delete()
 
 
 version_uploaded = django.dispatch.Signal()
