@@ -9,6 +9,7 @@
 
         z.page.on('click', 'a', function(e) {
             var href = this.getAttribute('href');
+            if (e.metaKey || e.ctrlKey || e.button !== 0) return;
             if (!href || href.substr(0,4) == 'http' || href === '#') return;
             e.preventDefault();
             fetchFragment(href);
