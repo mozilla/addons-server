@@ -31,14 +31,15 @@ def market_button(context, product):
         if product.is_premium() and product.premium:
             classes.append('premium')
             data_attrs.update({
-                # 'purchase': product.get_detail_url('purchase') + '?',
-                # 'start-purchase': product.get_detail_url('purchase.start'),
+                'purchase': product.get_purchase_url() + '?',
+                #'start-purchase': product.get_detail_url('purchase.start'),
                 'cost': product.premium.get_price(),
             })
         if not product.is_premium() or product.has_purchased(request.amo_user):
             classes.append('install')
             label = _('Install')
             data_attrs.update({'manifest-url': product.manifest_url})
+        # TODO: Show inline BroswerID login popup for non-authenticated users.
         c = dict(product=product, label=label,
                  data_attrs=data_attrs, classes=' '.join(classes))
         t = env.get_template('site/helpers/webapp_button.html')
