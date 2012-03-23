@@ -501,6 +501,8 @@ def cleanup_file(sender, instance, **kw):
         except models.ObjectDoesNotExist:
             return
         if os.path.exists(filename):
+            log.info('Removing filename: %s for file: %s'
+                     % (filename, instance.pk))
             os.remove(filename)
 
 

@@ -366,6 +366,14 @@ def update_incompatible_versions(sender, instance, **kw):
     tasks.update_incompatible_appversions.delay([instance.id])
 
 
+def cleanup_version(sender, instance, **kw):
+    """On delete of the version object call the file delete and signals."""
+    if kw.get('raw'):
+        return
+    for file_ in instance.all_files:
+        file_.delete()
+
+
 version_uploaded = django.dispatch.Signal()
 models.signals.post_save.connect(update_status, sender=Version,
                                  dispatch_uid='version_update_status')
@@ -375,8 +383,11 @@ models.signals.post_delete.connect(update_status, sender=Version,
                                    dispatch_uid='version_update_status')
 models.signals.post_save.connect(update_incompatible_versions, sender=Version,
                                  dispatch_uid='version_update_incompat')
-models.signals.post_delete.connect(update_incompatible_versions, sender=Version,
+models.signals.post_delete.connect(update_incompatible_versions,
+                                   sender=Version,
                                    dispatch_uid='version_update_incompat')
+models.signals.pre_delete.connect(cleanup_version, sender=Version,
+                                   dispatch_uid='cleanup_version')
 
 
 class LicenseManager(amo.models.ManagerBase):

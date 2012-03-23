@@ -99,6 +99,11 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
             if os.path.exists(filename):
                 os.remove(filename)
 
+    def test_delete_by_version(self):
+        f = File.objects.get(pk=67442)
+        version = f.version
+        self.check_delete(version, f.file_path)
+
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
         self.check_delete(f, f.file_path)
