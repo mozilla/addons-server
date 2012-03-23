@@ -1260,6 +1260,7 @@ def _get_file_history(version):
 
 @dev_required
 @post_required
+@transaction.commit_on_success
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
