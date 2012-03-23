@@ -57,8 +57,11 @@
       </footer>
     {% endblock %}
 
-    <div class="overlay">
+    <div id="pay" class="overlay">
       <section>
+        <h2>Do you wish to purchase {name} for {price}?</h2>
+        <a href="#" id="payment-confirm" class="button">Yup</a>
+        <a href="#" id="payment-cancel" class="button">Nope</a>
       </section>
     </div>
 

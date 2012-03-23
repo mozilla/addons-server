@@ -1,7 +1,6 @@
 <a href="#"
     {% for k, v in data_attrs.items() -%}
-        data-{{ k }}="{{ v }}"
-    {%- endfor %}
-    class="button install">
+        data-{{ k }}="{{ v }}" {% endfor %}
+    class="{{ classes }}">
         {{ label }}
 </a>

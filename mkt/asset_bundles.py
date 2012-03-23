@@ -202,6 +202,7 @@ JS = {
         'js/mkt/fragments.js',
         'js/mkt/slider.js',
         'js/mkt/install.js',
+        'js/mkt/payments.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
 

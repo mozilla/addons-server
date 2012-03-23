@@ -2,9 +2,11 @@ from jingo import register, env
 from tower import ugettext as _
 
 import jinja2
+import json
 
 from amo.helpers import impala_breadcrumbs, url
 from amo.urlresolvers import reverse
+from amo.utils import JSONEncoder
 
 
 def new_context(context, **kw):
@@ -25,9 +27,12 @@ def no_results():
 def market_button(context, product):
     request = context['request']
     if product.is_webapp():
-        data_attrs = {}
         classes = ['button']
         label = price_label(product)
+        product_dict = product_as_dict(request, product)
+        data_attrs = {
+            'product': json.dumps(product_dict, cls=JSONEncoder)
+        }
         if product.is_premium() and product.premium:
             classes.append('premium')
             data_attrs.update({
@@ -38,12 +43,26 @@ def market_button(context, product):
         if not product.is_premium() or product.has_purchased(request.amo_user):
             classes.append('install')
             label = _('Install')
-            data_attrs.update({'manifest-url': product.manifest_url})
         # TODO: Show inline BroswerID login popup for non-authenticated users.
         c = dict(product=product, label=label,
                  data_attrs=data_attrs, classes=' '.join(classes))
         t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))
+
+
+def product_as_dict(request, product):
+    ret = {
+        'id': product.id,
+        'name': product.name,
+        'manifestUrl': product.manifest_url
+    }
+    if product.is_premium():
+        ret.update({
+            'price': product.premium.get_price() or '0',
+            'purchase': product.get_purchase_url(),
+            'isPurchased': product.has_purchased(request.amo_user),
+        })
+    return ret
 
 
 @register.function

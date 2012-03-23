@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
+import jingo
 import jinja2
 from tower import ugettext as _
 import waffle
@@ -170,4 +171,6 @@ def purchase_done(request, addon, status):
     context = {'realurl': request.GET.get('realurl', ''),
                'status': status, 'result': result}
 
-    return redirect(urlparams(addon.get_detail_url(), **context))
+    response = jingo.render(request, 'mkt/base.html', context)
+    response['x-frame-options'] = 'allow'
+    return response
