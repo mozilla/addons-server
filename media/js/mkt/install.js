@@ -34,17 +34,27 @@
     }
 
     function install(product, receipt) {
-        $.when(apps.install(product.manifestUrl))
-         .done(installSuccess)
-         .fail(installError);
+        var data = {};
+        $.post(product.recordUrl).success(function(response) {
+            if (response.receipt) {
+                data.receipt = response.receipt;
+            }
+            $.when(apps.install(product.manifestUrl, data))
+             .done(installSuccess)
+             .fail(installError);
+        }).error(function(response) {
+            throw 'Could not record generate receipt!';
+        });
     }
 
-    function installSuccess() {
-        this.removeClass('install').addClass('installed');
-        this.html('Installed');
+    function installSuccess(button, product) {
+        // Don't do this if cancelled.
+        //this.removeClass('install').addClass('installed');
+        // Store in localStorage (based on user if authenticated)?
+        //this.html('Installed');
     }
 
-    function installError() {
-        this.html(oldLabel);
+    function installError(button, product) {
+        //button.html(oldLabel);
     }
 })();

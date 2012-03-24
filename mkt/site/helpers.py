@@ -54,7 +54,8 @@ def product_as_dict(request, product):
     ret = {
         'id': product.id,
         'name': product.name,
-        'manifestUrl': product.manifest_url
+        'manifestUrl': product.manifest_url,
+        'recordUrl': product.get_detail_url('record')
     }
     if product.is_premium():
         ret.update({
