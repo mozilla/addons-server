@@ -1,4 +1,4 @@
-from lib.settings_base import *
+from default.settings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
