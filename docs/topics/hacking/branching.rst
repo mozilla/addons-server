@@ -1,20 +1,11 @@
 .. _branching:
 
-===================
-How We Do Branching
-===================
+================
+Push From Master
+================
 
-We manage our branches in a similar manner to `nvie's branching model`_.  The
-main difference is that we develop all code on the `master`_ branch and use the
-`next`_ branch as the place for staging releases.
-
-New development happens on ``master``, and is visible on
-https://preview.addons.mozilla.org.  When we have a code freeze (every one or
-two weeks), the ``next`` branch is synced with master and is visible on
-https://next.addons.mozilla.org.
-
-Tags should be created off of the ``next`` branch.  If we need to release a
-hotfix, it should be applied to the ``next`` branch and tagged from there.
+We deploy from the `master`_ branch once a week. If you commit something to master
+that needs additional QA time, be sure to use a `waffle`_ feature flag.
 
 
 Local Branches
@@ -30,7 +21,7 @@ of related patches from a feature branch.  The rule of thumb is to rebase and
 use fast-forward merge for single patches or a branch of unrelated bug fixes,
 but to use a merge commit if you have multiple commits that form a cohesive unit.
 
+Here are some tips on `Using topic branches and interactive rebasing effectively <http://blog.mozilla.com/webdev/2011/11/21/git-using-topic-branches-and-interactive-rebasing-effectively/>`_.
 
-.. _nvie's branching model: http://nvie.com/posts/a-successful-git-branching-model/
 .. _master: http://github.com/mozilla/zamboni/tree/master
-.. _next: http://github.com/mozilla/zamboni/tree/next
+.. _waffle: https://github.com/jsocol/django-waffle

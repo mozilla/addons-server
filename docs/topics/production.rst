@@ -39,7 +39,7 @@ below,  can be found at :src:`docs/settings/settings_local.prod.py`:
 Setting up mod_wsgi
 -------------------
 
-http://docs.djangoproject.com/en/dev/howto/deployment/modwsgi/
+https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/
 
 http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide
 

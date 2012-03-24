@@ -1,15 +1,22 @@
 
-=======================================
-Installing Zamboni In A VM With Vagrant
-=======================================
+===============================
+Installing In A VM With Vagrant
+===============================
 
-Instead of :doc:`installing Zamboni piecemeal <installation>`
-you can set it up in a virtual machine. This is an ideal way to
-get up and running quickly and to keep your dev system clean.
+Instead of :doc:`installing Zamboni piecemeal <installation>` you can set it up
+in a virtual machine. This is an ideal way to get up and running quickly and to
+keep your dev system clean. At the time of this writing there are a few
+outstanding Vagrant / VirtualBox bugs that have blocked some people. But if it
+works, let us know!
 
 Requirements
 ------------
-To get started, you'll need:
+
+.. note::
+
+    we have a :doc:`special section to help you get started on Windows! <vagrant-on-windows>`
+
+To get started on Mac OS X or Linux you'll need:
 
  * `git <http://git-scm.com/>`_
 

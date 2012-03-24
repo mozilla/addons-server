@@ -165,13 +165,14 @@ pip installs a few packages into our new virtualenv that we can't distribute in
 Settings
 --------
 
+.. note::
+
+    Also see the Multiple Sites section below for using settings files to run
+    the Add-ons and Marketplace sites side by side.
+
 Most of zamboni is already configured in ``settings.py``, but there's some
 things you need to configure locally.  All your local settings go into
-``settings_local.py``. Make sure you have ::
-
-    from lib.settings_base import *
-
-at the top of your ``settings_local.py``.  The settings template for
+``settings_local.py``.  The settings template for
 developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
 
 .. literalinclude:: /settings/settings_local.dev.py
@@ -181,39 +182,62 @@ I'm overriding the database parameters from ``settings.py`` and then extending
 Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome,
 you want it.
 
+Any file that looks like ``settings_local*`` is for local use only; it will be
+ignored by git.
+
+Database
+--------
+
+Instead of running ``manage.py syncdb`` your best bet is to grab a snapshot of
+our production DB which has been redacted and pruned for development use.
+Development snapshots are hosted over at
+https://landfill.addons.allizom.org/db/
+
+Here are some shell commands to pull down the latest snapshot and set it up::
+
+    export DB_NAME=zamboni
+    export DB_USER=zamboni
+    mysqladmin -uroot create $DB_NAME
+    mysql -uroot -B -e'GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost'
+    wget --no-check-certificate -P /tmp https://landfill.addons.allizom.org/db/landfill-`date +%Y-%m-%d`.sql.gz
+    zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
+    # Optionally, you can remove the landfill site notice:
+    mysql -uroot -e"delete from config where \`key\`='site_notice'" $DB_NAME
+
+Database Migrations
+-------------------
+
+Each incremental change we add to the database is done with a versioned SQL
+(and sometimes Python) file. To keep your local DB fresh and up to date, run
+migrations like this::
+
+    ./vendor/src/schematic/schematic migrations
+
+More info on schematic: https://github.com/jbalogh/schematic
+
+
 Multiple sites
 --------------
 
 We now run multiple sites off the zamboni code base. The current sites are:
 
-- *default* the current add-ons site
+- *default* the Add-ons site at https://addons.mozilla.org/
 
-- *mkt* the Mozilla Marketplace
+- *mkt* the Mozilla Marketplace at https://marketplace.mozilla.org/
 
-There are directories in zamboni for each of these. Each contains
-settings, url, templates and so on. That means if you want to run the market
-tests you should alter your `settings_local.py` to read::
+There are modules in zamboni for each of these base settings to make minor
+modifications to settings, url, templates and so on. Start by copying the
+template from ``settings/settings_local.dev.py`` into a custom file.
 
-    from lib.settings_base import *
+To run the Add-ons site, make a ``settings_local_amo.py`` file with this import
+header::
+
+    from default.settings import *
+
+Or to run the Marketplace site, make a ``settings_local_mkt.py`` file with
+these imports::
+
     from mkt.settings import *
-
-You might get a bit bored of flipping this around, so you might want to create
-multiple settings files, for example my `settings_local_mkt.py` which contains
-the above.
-
-To choose which settings file you are using, use the `settings` command line
-argument, for example::
-
-    manage.py runserver --settings=mkt 0.0.0.0:8000
-
-Or for tests::
-
-    manage.py test --settings=mkt
-
-Database
---------
-
-You can get a testing database from https://landfill.addons.allizom.org/db/.
 
 
 Run the Server
@@ -221,13 +245,28 @@ Run the Server
 
 If you've gotten the system requirements, downloaded ``zamboni`` and
 ``zamboni-lib``, set up your virtualenv with the compiled packages, and
-configured your settings and database, you're good to go.  Run the server::
+configured your settings and database, you're good to go.
 
-    ./manage.py runserver 0.0.0.0:8000
+To choose which site you want to run, use the `settings` command line
+argument to pass in a local settings file you created above.
+
+Run The Add-ons Server
+~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    ./manage.py runserver --settings=settings_local_amo 0.0.0.0:8000
+
+Run The Marketplace Server
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    ./manage.py runserver --settings=settings_local_mkt 0.0.0.0:8000
 
 
-Create a user
--------------
+Create an Admin User
+--------------------
 
 To log into your dev site, you can click the login / register link and login
 with Browser ID just like on the live site. However, if you want to grant
@@ -245,21 +284,17 @@ on the login screen then go back to the shell you started your dev server in.
 You'll see the email message with the password reset link in stdout.
 
 
-Contact
--------
-
-Come talk to us on irc://irc.mozilla.org/amo if you have questions, issues, or
-compliments.
-
-
 Testing
 -------
 
 The :ref:`testing` page has more info, but here's the quick way to run
-zamboni's tests::
+zamboni's marketplace tests::
 
-    ./manage.py test
+    ./manage.py test --settings=settings_local_mkt
 
+Or to run AMO's tests::
+
+    ./manage.py test --settings=settings_local_amo
 
 .. _updating:
 
@@ -278,17 +313,24 @@ We use `schematic <http://github.com/jbalogh/schematic/>`_ to run migrations::
 
     ./vendor/src/schematic/schematic migrations
 
-The :doc:`./contributing` page has more on managing branches.
+The :ref:`contributing` page has more on managing branches.
 
 If you want to pull in the latest locales::
 
     pushd locale && svn up && popd
 
 
+Contact
+-------
+
+Come talk to us on irc://irc.mozilla.org/amo if you have questions, issues, or
+compliments.
+
+
 Submitting a Patch
 ------------------
 
-See the :doc:`./contributing` page.
+See the :ref:`contributing` page.
 
 
 .. _advanced-install:
@@ -299,3 +341,9 @@ Advanced Installation
 In production we use things like memcached, rabbitmq + celery, sphinx, redis,
 and LESS.  Learn more about installing these on the
 :doc:`./advanced-installation` page.
+
+.. note::
+
+    Although we make an effort to keep advanced items as optional installs
+    you might need to install some components in order to run tests or start
+    up the development server.

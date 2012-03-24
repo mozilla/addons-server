@@ -1,40 +1,33 @@
 ===================================
-Welcome to zamboni's documentation!
+Welcome to Zamboni's documentation!
 ===================================
 
+Zamboni is the codebase for https://addons.mozilla.org/ and
+https://marketplace.mozilla.org/ ; the source lives at https://github.com/mozilla/zamboni
 
-Tip of the Day
---------------
-
-runserver_plus and rundevserver
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Part of ``django_extensions`` is a new ``manage.py`` command:
-``runserver_plus``.
-
-This hooks in the ``Werkzeug debugger`` when there is a traceback.  This
-debugger is interactive so it makes coding fun.
-
-Similar to ``runserver_plus`` is ``rundevserver`` which does all this, and
-outputs all database queries run.
-
+If you want to build a completely different site with all the same Django
+optimizations for security, scalability, L10n, and ease of use, check out
+Mozilla's `Playdoh starter kit <http://playdoh.readthedocs.org/>`_.
 
 Installation
 ------------
-If you're just getting started, the :ref:`install <installation>` docs are the best.
+What are you waiting for?! :ref:`Install Zamboni! <installation>`
 
 
 Contents
 --------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
+
+   topics/install-zamboni/index
+   topics/hacking/index
+
+.. toctree::
+   :maxdepth: 2
    :glob:
 
    topics/*
-
-
-Older Tips
-----------
 
 gettext in Javascript
 ~~~~~~~~~~~~~~~~~~~~~
