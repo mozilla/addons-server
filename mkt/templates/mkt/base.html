@@ -33,8 +33,8 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
-        {% if waffle.switch('marketplace') and request.amo_user %}
-        data-purchases="{{ request.amo_user.purchase_ids()|join(",") }}"
+        {% if request.amo_user %}
+          data-purchases="{{ request.amo_user.purchase_ids()|join(',') }}"
         {% endif %}
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
@@ -53,6 +53,7 @@
         {% if request.user.is_authenticated() %}
           signed in as {{ request.amo_user.email }}
           <a href="{{ url('users.logout') }}">(log out)</a>
+          <p><a href="{{ url('account.purchases') }}">My Purchases</a></p>
         {% endif %}
       </footer>
     {% endblock %}

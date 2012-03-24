@@ -1,0 +1,29 @@
+@import 'lib';
+
+#purchases {
+    .items .refunded {
+        opacity: .6;
+        .refund-notice {
+            font: 11px/13px @open-stack;
+            margin: 0;
+            padding: 0 10px 10px 10px;
+            text-align: right;
+        }
+    }
+    .contributions {
+        color: @note-gray;
+        line-height: 13px;
+        list-style: none;
+        margin: .5em 0 0;
+        padding: 0;
+        .supportable:after {
+            content: '\00B7';
+        }
+    }
+}
+
+.html-rtl #purchases {
+    .items .refunded .refund-notice {
+        text-align: left;
+    }
+}

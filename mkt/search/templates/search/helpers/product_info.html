@@ -1,0 +1,52 @@
+{% from 'addons/macros.html' import price %}
+{% macro sort_vital(addon, field) %}
+  {% if field not in ('created', 'updated') %}
+    <span class="vital downloads">
+      {% with num=addon.weekly_downloads %}
+        {# L10n: {0} is the number of downloads. #}
+        {{ ngettext('{0} weekly download', '{0} weekly downloads',
+                    num)|f(num|numberfmt) }}
+      {% endwith %}
+    </span>
+  {% endif %}
+  {% if field in ('created', 'updated') %}
+    <span class="vital updated">
+      {% if field == 'created' %}
+        {# L10n: {0} is a date. #}
+        {{ _('Added {0}')|f(addon.created|datetime) }}
+      {% else %}
+        {# L10n: {0} is a date. #}
+        {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+      {% endif %}
+    </span>
+  {% endif %}
+{% endmacro %}
+
+<h3>
+  {% set dl_url = product.get_url_path() %}
+  {% if dl_src %}
+    {% set dl_url = dl_url|urlparams(src=dl_src) %}
+  {% endif %}
+  <a href="{{ dl_url }}">
+    <img class="icon" src="{{ product.get_icon_url(64) }}">
+    {{ product.name }}</a>
+</h3>
+<p class="desc">{{ product.summary|nl2br }}</p>
+<div class="vitals c">
+  {{ price(product) }}
+  {% with cats = product.all_categories %}
+    {% if cats %}
+      <span class="vital">
+        {% for cat in cats %}
+          <a href="{{ cat.get_url_path() }}">{{ cat }}</a>
+          {%- if not loop.last %},{% endif %}
+        {% endfor %}
+      </span>
+    {% endif %}
+  {% endwith %}
+  {{ impala_reviews_link(product) }}
+  {{ sort_vital(product, 'downloads') }}
+  {% if field in ('created', 'updated') %}
+    {{ sort_vital(product, field) }}
+  {% endif %}
+</div>

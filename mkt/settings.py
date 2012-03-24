@@ -37,6 +37,7 @@ INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
     'mkt.site',
+    'mkt.account',
     'mkt.browse',
     'mkt.detail',
     'mkt.developers',
@@ -56,6 +57,7 @@ SUPPORTED_NONAPPS += (
     'logout',
     'payments',
     'privacy-policy',
+    'purchases',
     'search',
     'submit',
     'terms-of-use',

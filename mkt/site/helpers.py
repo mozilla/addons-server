@@ -67,27 +67,27 @@ def product_as_dict(request, product):
 
 @register.function
 @jinja2.contextfunction
-def mkt_breadcrumbs(context, addon=None, items=None, add_default=False):
+def mkt_breadcrumbs(context, product=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``.
 
     **items**
         list of [(url, label)] to be inserted after Add-on.
-    **addon**
-        Adds the Add-on name to the end of the trail.  If items are
-        specified then the Add-on will be linked.
+    **product**
+        Adds the App/Add-on name to the end of the trail.  If items are
+        specified then the App/Add-on will be linked.
     **add_default**
         Prepends trail back to home when True.  Default is False.
     """
     crumbs = [(reverse('home'), _('Home'))]
 
-    if addon:
+    if product:
         if items:
-            url_ = addon.get_detail_url()
+            url_ = product.get_detail_url()
         else:
-            # The Addon is the end of the trail.
+            # The Product is the end of the trail.
             url_ = None
-        crumbs.append((url_, addon.name))
+        crumbs.append((url_, product.name))
     if items:
         crumbs.extend(items)
 

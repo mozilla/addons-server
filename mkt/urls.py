@@ -34,6 +34,9 @@ urlpatterns = patterns('',
     # In-app payments.
     ('^payments/', include('mkt.payments.urls')),
 
+    # Account info (e.g., purchases, settings).
+    ('', include('mkt.account.urls')),
+
     # Misc pages.
     ('', include('mkt.site.urls')),
 

@@ -773,6 +773,7 @@ class PurchasesFilter(BaseFilter):
             return order_by_translation(qs, 'name')
 
 
+# TODO(cvan): I'll remove this view when it doesn't break every single thing.
 @login_required
 @mobile_template('users/{mobile/}purchases.html')
 @waffle_switch('marketplace')
