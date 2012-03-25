@@ -1,0 +1,56 @@
+{# PayPal loads this in an iframe. Yeah... #}
+
+<style type="text/css">
+/* This should die in a burning fire. Death to post-purchase modals. */
+#purchase-done {
+    border-radius: 5px;
+    background: #fff;
+    font-family: Helvetica;
+    padding: 10px;
+}
+</style>
+
+{% if status != 'complete' %}
+  <section id="purchase-done">
+    <h3>Error</h3>
+    <p>Sorry, payment failed.</p>
+  </section>
+{% else %}
+  <section id="purchase-done" class="overlay">
+    <h3>{{ _('Thank you!') }}</h3>
+    <p>
+      {% trans name=product.name %}
+        Your purchase of <b>{{ name }}</b> is complete.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans manifest_url=product.manifest_url, receipt=receipt, href='#',
+               class='trigger_app_install' %}
+        If installation does not automatically begin, please
+        <a class="{{ class }}" data-receipt="{{ receipt }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}">
+          click here</a>.
+      {% endtrans %}
+    </p>
+    <p class="mozilla-mission">
+      {% trans learn_more='http://www.mozilla.org/causes' %}
+        Your purchase helps support Mozilla's mission.
+        <a href="{{ learn_more }}" target="_blank">Learn more</a>
+      {% endtrans %}
+    </p>
+
+    {% if waffle.flag('allow-pre-auth') and not amo_user.has_preapproval_key() %}
+      <form form id="preapproval" method="post" action="{{ url('users.payments.preapproval') }}">
+        {{ csrf() }}
+        <p>{{ _('Want to do this faster next time?') }}</p>
+        <p>{{ _('Setting up PayPal pre-approval allows you to buy apps quickly on this site. They also allow you to use in-app purchases that go through this site.') }}</p>
+        <p><button type="submit">{{ _('Set up pre-approval') }}</button></p>
+      </form>
+    {% endif %}
+
+    <a href="{{ url('account.purchases') }}">{{ _('My Purchases') }}</a>
+    {# TODO(marketplace-docs)
+      &middot;
+      <a href="{{ url('devhub.docs', doc_name='marketplace') }}">{{ loc('Marketplace Support') }}</a>
+    #}
+  </section>
+{% endif %}

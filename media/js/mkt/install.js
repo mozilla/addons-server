@@ -1,7 +1,7 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 (function() {
-    z.page.on('click', '.button', startInstall);
+    z.page.on('click', '.install, .premium', startInstall);
 
     function startInstall(e) {
         e.preventDefault();

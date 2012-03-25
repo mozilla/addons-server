@@ -29,7 +29,7 @@
         overlay.html(paymentsTemplate(product));
         overlay.addClass('show');
         $(window).bind('keypress.payments', function(e) {
-            if (e.keyCode == 27) {
+            if (e.keyCode == z.keys.ESCAPE) {
                 cancelPurchase();
             }
         });
