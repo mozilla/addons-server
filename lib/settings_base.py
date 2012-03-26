@@ -1347,8 +1347,6 @@ WEBAPPS_RECEIPT_KEY = ''
 # be removed after apps-preview is completed. See
 # https://bugzilla.mozilla.org/show_bug.cgi?id=705814
 WEBAPPS_RECEIPT_REQUIRE_STOREDATA = False
-# If True, only allow one webapp per domain.
-WEBAPPS_UNIQUE_BY_DOMAIN = True
 
 # How long a watermarked addon should be re-used for, after this
 # time it will be regenerated.

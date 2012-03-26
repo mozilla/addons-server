@@ -168,7 +168,7 @@ def check_paypal_id(paypal_id):
 
 
 def verify_app_domain(manifest_url):
-    if settings.WEBAPPS_UNIQUE_BY_DOMAIN:
+    if waffle.switch_is_active('webapps-unique-by-domain'):
         domain = Webapp.domain_from_url(manifest_url)
         if Webapp.objects.filter(app_domain=domain).exists():
             raise forms.ValidationError(

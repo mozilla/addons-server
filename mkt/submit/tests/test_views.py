@@ -253,8 +253,9 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
             rs = json.loads(rs.content)
         return rs
 
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
     def test_duplicate_domain(self):
+        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
+                                            active=True)
         rs = self.upload_webapp('http://existing-app.com/my.webapp',
                                 expect_errors=True)
         eq_(rs.context['form'].errors,
@@ -262,19 +263,18 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
              ['An app already exists on this domain; only one '
               'app per domain is allowed.']})
 
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
     def test_allow_duplicate_domains(self):
         self.upload_webapp('http://existing-app.com/my.webapp')  # No errors.
 
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', True)
     def test_duplicate_domain_from_js(self):
+        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
+                                            active=True)
         data = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(data['validation']['errors'], 1)
         eq_(data['validation']['messages'][0]['message'],
             'An app already exists on this domain; '
             'only one app per domain is allowed.')
 
-    @mock.patch.object(settings, 'WEBAPPS_UNIQUE_BY_DOMAIN', False)
     def test_allow_duplicate_domains_from_js(self):
         rs = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(rs.status_code, 302)
