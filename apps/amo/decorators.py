@@ -110,8 +110,7 @@ def use_master(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
         with context.use_master():
-            with transaction.commit_on_success():
-                return f(*args, **kw)
+            return f(*args, **kw)
     return wrapper
 
 
