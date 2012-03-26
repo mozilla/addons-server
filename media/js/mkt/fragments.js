@@ -1,21 +1,20 @@
-(function() {
+(function(page) {
     var threshold = 250,
         timeout = false;
-    z.page = $('#page');
     if (z.capabilities['replaceState']) {
         var $loading = $('<div>', {'class': 'loading balloon',
                                    'html': gettext('Loading&hellip;')})
                         .prependTo($('#site-header'));
 
-        z.page.on('click', 'a', function(e) {
+        page.on('click', 'a', function(e) {
             var href = this.getAttribute('href');
             if (e.metaKey || e.ctrlKey || e.button !== 0) return;
             if (!href || href.substr(0,4) == 'http' || href === '#') return;
             e.preventDefault();
-            z.fetchFragment(href);
+            fetchFragment(href);
         });
 
-        z.fetchFragment = function(href) {
+        function fetchFragment(href, popped) {
             timeout = setTimeout(function() { $loading.addClass('active'); },
                                  threshold);
             $.get(href, function(d, textStatus, xhr) {
@@ -27,11 +26,11 @@
                     return;
                 }
 
-                history.pushState({path: href}, false, href);
-                z.page.html(d).trigger('fragmentloaded');
+                if (!popped) history.pushState({path: href}, false, href);
+                page.html(d).trigger('fragmentloaded');
 
                 // We so sneaky.
-                var $title = z.page.find('title');
+                var $title = page.find('title');
                 document.title = $title.text();
                 $title.remove();
 
@@ -43,14 +42,16 @@
         $(window).on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
-                z.fetchFragment(state.path);
+                fetchFragment(state.path, true);
             }
+        }).on('loadfragment', function(e, href) {
+            if (href) fetchFragment(href);
         });
 
         $(function() {
             var path = window.location.pathname + window.location.search;
             history.replaceState({path: path}, false, path);
-            z.page.trigger('fragmentloaded');
+            page.trigger('fragmentloaded');
         });
     }
-})();
+})(z.page);

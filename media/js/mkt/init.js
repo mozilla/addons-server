@@ -1,1 +1,3 @@
-var z = {};
+var z = {
+    page: $('#page')
+};
