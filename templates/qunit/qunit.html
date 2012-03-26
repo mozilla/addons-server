@@ -65,6 +65,50 @@
         </div>
     </div>
   </div>
+
+  <div id="button-d2c-compatible">
+    <div class="install-shell">
+      <div class="install"
+           data-min="4.0"
+           data-max="5.0"
+           data-is-compatible="true"
+           data-compat-overrides="[]">
+        <p class="install-button">
+        <a class="button download" data-hash="1337" href="http://testurl.com">Foo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="button-d2c-compatible-override">
+    <div class="install-shell">
+      <div class="install"
+           data-min="4.0"
+           data-max="5.0"
+           data-is-compatible="true"
+           data-compat-overrides="{{ [['10.0a1', '99.*']]|json }}">
+        <p class="install-button">
+        <a class="button download" data-hash="1337" href="http://testurl.com">Foo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="button-d2c-not-compatible">
+    <div class="install-shell">
+      <div class="install"
+           data-min="4.0"
+           data-max="5.0"
+           data-is-compatible="false"
+           data-compat-overrides="[]">
+        <p class="install-button">
+        <a class="button download" data-hash="1337" href="http://testurl.com">Foo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
     <div id="files-wrapper">
       <div id="files">
       <ul>

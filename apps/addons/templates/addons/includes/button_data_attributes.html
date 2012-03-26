@@ -16,6 +16,8 @@
 {% if compat %}
   data-min="{{ compat.min.version }}"
   data-max="{{ compat.max.version }}"
+  data-is-compatible="{{ version.is_compatible|json }}"
+  data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
 {% endif %}
 {% if addon.is_webapp() %}
   data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}

@@ -13,7 +13,7 @@ from pyquery import PyQuery
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon
+from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
 from applications.models import AppVersion, Application
 from devhub.models import ActivityLog
@@ -290,6 +290,52 @@ class TestVersion(amo.tests.TestCase):
         url = reverse('addons.versions.update_info',
                       args=(self.version.addon.id, self.version.version))
         self.assertRedirects(r, url, 301)
+
+    def test_is_compatible(self):
+        # Base test for fixture before the rest.
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+        eq_(version.is_compatible, True)
+
+    def test_is_compatible_type(self):
+        # Only ADDON_EXTENSIONs should be compatible.
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+        addon.update(type=amo.ADDON_PERSONA)
+        eq_(version.is_compatible, False)
+
+    def test_is_compatible_strict_opt_in(self):
+        # Add-ons opting into strict compatibility should not be compatible.
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+        file = version.all_files[0]
+        file.update(strict_compatibility=True)
+        eq_(version.is_compatible, False)
+
+    def test_is_compatible_binary_components(self):
+        # Add-ons using binary components should not be compatible.
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+        file = version.all_files[0]
+        file.update(binary_components=True)
+        eq_(version.is_compatible, False)
+
+    def test_is_compatible_max_version(self):
+        # Add-ons with max app version < 4.0 should not be compatible.
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon, max_app_version='3.5')
+        eq_(version.is_compatible, False)
+
+    def test_compat_override_app_versions(self):
+        app = Application.objects.get(pk=1)
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+        co = CompatOverride.objects.create(addon=addon)
+        CompatOverrideRange.objects.create(compat=co, app=app, min_version='0',
+                                           max_version=version.version,
+                                           min_app_version='10.0a1',
+                                           max_app_version='10.*')
+        eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
 
 
 class TestViews(amo.tests.TestCase):

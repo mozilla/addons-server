@@ -204,6 +204,46 @@ class Version(amo.models.ModelBase):
             all_plats.update(amo.MOBILE_PLATFORMS)
         return all_plats
 
+    @amo.cached_property
+    def is_compatible(self):
+        """Returns True if all server side conditions pass.
+
+        Server side conditions for determining compatibility are:
+            * The add-on is an extension (not a theme, app, etc.)
+            * Has not opted in to strict compatibility.
+            * Does not use binary_components in chrome.manifest.
+            * Has a supported max app version of 4.0 or greater.
+
+        Note: This does not take into account the client conditions.
+
+        """
+        return (self.addon.type == amo.ADDON_EXTENSION and
+                not self.files.filter(binary_components=True).exists() and
+                not self.files.filter(strict_compatibility=True).exists() and
+                self.apps.filter(
+                    application=amo.FIREFOX.id,
+                    max__version_int__gte=compare.version_int('4.0')).exists()
+               )
+
+    def compat_override_app_versions(self):
+        """Returns the incompatible app versions range(s).
+
+        If not ranges, returns empty list.  Otherwise, this will return all
+        the app version ranges that this particular version is incompatible
+        with.
+
+        """
+        from addons.models import CompatOverride
+        cos = CompatOverride.objects.filter(addon=self.addon)
+        if not cos:
+            return []
+        app_versions = []
+        for co in cos:
+            for range in co.collapsed_ranges():
+                if int(range.min_int) <= self.version_int <= int(range.max_int):
+                    app_versions.extend([(a.min, a.max) for a in range.apps])
+        return app_versions
+
     @amo.cached_property(writable=True)
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""

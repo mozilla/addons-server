@@ -172,4 +172,44 @@ $(document).ready(function() {
 
         this.check(this.expected);
     });
+
+    // All compatible.
+    module('D2C Install Button', $.extend({}, installButtonFixture, {
+        setup: function() {
+            installButtonFixture.setup.call(this, '#button-d2c-compatible');
+        }
+    }));
+    test('d2c, is_compatible', function() {
+        this.expected['class'] = 'button add installer';
+        this.check(this.expected);
+        equal($('.extra', this.sandbox).length, 0);
+
+    });
+
+    // Compatible, but with an override.
+    module('D2C Install Button', $.extend({}, installButtonFixture, {
+        setup: function() {
+            installButtonFixture.setup.call(this, '#button-d2c-compatible-override');
+        }
+    }));
+    test('d2c, is_compatible, override', function() {
+        this.expected['class'] = 'button add concealed';
+        this.check(this.expected);
+        equal($('.extra', this.sandbox).length, 1);
+        equal($('.notavail', this.sandbox).text().substr(0, 13), 'Not available');
+    });
+
+    // Server side checks are incompatible.
+    module('D2C Install Button', $.extend({}, installButtonFixture, {
+        setup: function() {
+            installButtonFixture.setup.call(this, '#button-d2c-not-compatible');
+        }
+    }));
+    test('d2c, not is_compatible', function() {
+        this.expected['class'] = 'button add concealed';
+        this.check(this.expected);
+        equal($('.extra', this.sandbox).length, 1);
+        equal($('.notavail', this.sandbox).text().substr(0, 13), 'Not available');
+    });
+
 });

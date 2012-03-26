@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 import jinja2
 
@@ -40,6 +41,8 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.app_slug = 'app_slug'
 
         self.version = v = Mock()
+        v.is_compatible = False
+        v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
         v.is_beta = False
         v.is_lite = False
@@ -86,6 +89,8 @@ class ButtonTest(amo.tests.TestCase):
         file.get_url_path.return_value = 'xpi.url'
         file.eula_url.return_value = 'eula.url'
         file.status = amo.STATUS_PUBLIC
+        file.strict_compatibility = False
+        file.binary_components = False
         return file
 
 
@@ -598,6 +603,24 @@ class TestButtonHtml(ButtonTest):
         self.addon.can_be_purchased.return_value = False
         doc = self.render(impala=True)
         assert doc('.install-button').text('Not ready for purchase.')
+
+    def test_d2c_attrs(self):
+        compat = Mock()
+        compat.min.version = '4.0'
+        compat.max.version = '12.0'
+        self.version.compatible_apps = {amo.FIREFOX: compat}
+        self.version.is_compatible = True
+        install = self.render(impala=True)('.install')
+        eq_(install.attr('data-min'), '4.0')
+        eq_(install.attr('data-max'), '12.0')
+        eq_(install.attr('data-is-compatible'), 'true')
+        eq_(install.attr('data-compat-overrides'), '[]')
+        # Also test overrides.
+        override = [('10.0a1', '10.*')]
+        self.version.compat_override_app_versions.return_value = override
+        install = self.render(impala=True)('.install')
+        eq_(install.attr('data-is-compatible'), 'true')
+        eq_(install.attr('data-compat-overrides'), json.dumps(override))
 
 
 class TestPremiumWebapp(ButtonTest):
