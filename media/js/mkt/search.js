@@ -25,7 +25,7 @@
             var href = $(sel).attr('href');
             if (href) {
                 e.preventDefault();
-                z.fetchFragment(href);
+                $(window).trigger('loadfragment', href);
             }
         }
     }
