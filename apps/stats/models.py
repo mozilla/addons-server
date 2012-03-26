@@ -330,7 +330,16 @@ class Contribution(amo.models.ModelBase):
     def get_absolute_refund_url(self):
         return absolutify(self.get_refund_url())
 
+    def can_we_refund(self):
+        """
+        We can only refund a purchase.
+        We cannot refund in app payments, PayPal can however.
+        """
+        return self.type == amo.CONTRIB_PURCHASE
+
     def is_instant_refund(self):
+        if not self.can_we_refund():
+            return False
         limit = datetime.timedelta(seconds=settings.PAYPAL_REFUND_INSTANT)
         return datetime.datetime.now() < (self.created + limit)
 

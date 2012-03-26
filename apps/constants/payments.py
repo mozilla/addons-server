@@ -59,18 +59,18 @@ CONTRIB_CHARGEBACK = 3
 # We've started a transaction and we need to wait to see what
 # paypal will return.
 CONTRIB_PENDING = 4
+CONTRIB_INAPP = 5
 CONTRIB_OTHER = 99
 
 CONTRIB_TYPES = {
-    CONTRIB_VOLUNTARY: _('Voluntary'),
+    CONTRIB_CHARGEBACK: _('Chargeback'),
+    CONTRIB_INAPP: _('In-app Purchase'),
+    CONTRIB_OTHER: _('Other'),
     CONTRIB_PURCHASE: _('Purchase'),
     CONTRIB_REFUND: _('Refund'),
-    CONTRIB_CHARGEBACK: _('Chargeback'),
-    CONTRIB_OTHER: _('Other'),
+    CONTRIB_VOLUNTARY: _('Voluntary'),
 }
 
-CONTRIB_NOT_PENDING = (CONTRIB_VOLUNTARY, CONTRIB_PURCHASE,
-                       CONTRIB_CHARGEBACK, CONTRIB_OTHER)
 CONTRIB_TYPE_DEFAULT = CONTRIB_VOLUNTARY
 
 INAPP_STATUS_ACTIVE = 0

@@ -40,6 +40,7 @@ class TestContributionModel(amo.tests.TestCase):
 
     def setUp(self):
         self.con = Contribution.objects.get(pk=1)
+        self.con.update(type=amo.CONTRIB_PURCHASE)
 
     def test_related_protected(self):
         user = UserProfile.objects.create(username='foo@bar.com')
@@ -56,12 +57,25 @@ class TestContributionModel(amo.tests.TestCase):
 
     def test_instant_refund(self):
         self.con.update(created=datetime.now())
+        assert self.con.can_we_refund(), 'Refund on purchases'
         assert self.con.is_instant_refund(), 'Refund should be instant'
 
     def test_not_instant_refund(self):
         diff = timedelta(seconds=settings.PAYPAL_REFUND_INSTANT + 10)
         self.con.update(created=datetime.now() - diff)
+        assert self.con.can_we_refund(), 'Refund on purchases'
         assert not self.con.is_instant_refund(), "Refund shouldn't be instant"
+
+    def test_refund_inapp_instant(self):
+        self.con.update(created=datetime.now(), type=amo.CONTRIB_INAPP)
+        assert not self.con.can_we_refund(), 'No refund on inapp'
+        assert not self.con.is_instant_refund(), 'No refund on inapp'
+
+    def test_refund_inapp_not_instant(self):
+        diff = timedelta(seconds=settings.PAYPAL_REFUND_INSTANT + 10)
+        self.con.update(created=datetime.now() - diff, type=amo.CONTRIB_INAPP)
+        assert not self.con.can_we_refund(), 'No refund on inapp'
+        assert not self.con.is_instant_refund(), 'No refund on inapp'
 
 
 class TestEmail(amo.tests.TestCase):
