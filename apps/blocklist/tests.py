@@ -375,6 +375,19 @@ class BlocklistGfxTest(BlocklistTest):
         r = self.client.get(self.fx4_url)
         self.assertNotContains(r, '<devices>')
 
+    def test_no_empty_nodes(self):
+        self.gfx.update(os=None, vendor=None, devices=None,
+                        feature=None, feature_status=None,
+                        driver_version=None, driver_version_comparator=None)
+        r = self.client.get(self.fx4_url)
+        self.assertNotContains(r, '<os>')
+        self.assertNotContains(r, '<vendor>')
+        self.assertNotContains(r, '<devices>')
+        self.assertNotContains(r, '<feature>')
+        self.assertNotContains(r, '<featureStatus>')
+        self.assertNotContains(r, '<driverVersion>')
+        self.assertNotContains(r, '<driverVersionComparator>')
+
     def test_block_id(self):
         item = (self.dom(self.fx4_url)
                 .getElementsByTagName('gfxBlacklistEntry')[0])

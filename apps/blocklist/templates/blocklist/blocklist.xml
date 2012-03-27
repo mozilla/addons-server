@@ -48,8 +48,12 @@
   <gfxItems>
   {% for gfx in gfxs %}
   <gfxBlacklistEntry {{ attrs(blockID=gfx.block_id) }}>
+      {%- if gfx.os %}
       <os>{{ gfx.os }}</os>
+      {%- endif %}
+      {%- if gfx.vendor %}
       <vendor>{{ gfx.vendor }}</vendor>
+      {%- endif %}
       {% if gfx.devices %}
         <devices>
           {% for device in gfx.devices.split(' ') %}
@@ -57,10 +61,18 @@
           {% endfor %}
         </devices>
       {% endif %}
+      {%- if gfx.feature %}
       <feature>{{ gfx.feature }}</feature>
+      {%- endif %}
+      {%- if gfx.feature_status %}
       <featureStatus>{{ gfx.feature_status }}</featureStatus>
+      {%- endif %}
+      {%- if gfx.driver_version %}
       <driverVersion>{{ gfx.driver_version }}</driverVersion>
+      {%- endif %}
+      {%- if gfx.driver_version_comparator %}
       <driverVersionComparator>{{ gfx.driver_version_comparator }}</driverVersionComparator>
+      {%- endif %}
     </gfxBlacklistEntry>
   {% endfor %}
   </gfxItems>
