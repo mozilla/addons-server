@@ -238,6 +238,11 @@ def refund(paykey):
                     responses.append({})
                 responses[i][subkey] = response[k]
         for d in responses:
+            if d['refundStatus'] == 'NO_API_ACCESS_TO_RECEIVER':
+                # The refund didn't succeed, but let's not raise it as
+                # an error, because the caller needs to report this to
+                # the user.
+                continue
             if d['refundStatus'] not in OK_STATUSES:
                 raise PaypalError('Bad refund status for %s: %s'
                                   % (d['receiver.email'],

@@ -461,6 +461,15 @@ def issue_refund(request, addon_id, addon, webapp=False):
                     messages.error(request, _('Refund was previously issued; '
                                               'no action taken.'))
                     return redirect(addon.get_dev_url('refunds'))
+                elif res['refundStatus'] == 'NO_API_ACCESS_TO_RECEIVER':
+                    paypal_log.debug(
+                        'Refund attempt for product %s with no refund token: %s, %s' %
+                        (product.pk, contribution.paykey, res['receiver.email']))
+                    messages.error(request, _("A refund can't be issued at this "
+                                              "time. We've notified an admin; "
+                                              "please try again later."))
+                    return redirect(addon.get_dev_url('refunds'))
+
             contribution.mail_approved()
             refund = contribution.enqueue_refund(amo.REFUND_APPROVED)
             paypal_log.info('Refund %r issued for contribution %r' %

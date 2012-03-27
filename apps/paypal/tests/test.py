@@ -353,10 +353,15 @@ good_refund_data = [{'receiver.email': 'bob@example.com',
                      'refundNetAmount': '1.21',
                      'refundStatus': 'REFUNDED'}]
 
-error_refund_string = (
+no_token_refund_string = (
     'refundInfoList.refundInfo(0).receiver.amount=123.45'
     '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
     '&refundInfoList.refundInfo(0).refundStatus=NO_API_ACCESS_TO_RECEIVER')
+
+error_refund_string = (
+    'refundInfoList.refundInfo(0).receiver.amount=123.45'
+    '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
+    '&refundInfoList.refundInfo(0).refundStatus=REFUND_ERROR')
 
 already_refunded_string = (
     'refundInfoList.refundInfo(0).receiver.amount=123.45'
@@ -376,6 +381,12 @@ class TestRefund(amo.tests.TestCase):
         """
         opener.return_value = StringIO(good_refund_string)
         eq_(paypal.refund('fake-paykey'), good_refund_data)
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_refund_no_refund_token(self, opener):
+        opener.return_value = StringIO(no_token_refund_string)
+        d = paypal.refund('fake-paykey')
+        eq_(d[0]['refundStatus'], 'NO_API_ACCESS_TO_RECEIVER')
 
     @mock.patch('urllib2.OpenerDirector.open')
     def test_refund_wrong_status(self, opener):
