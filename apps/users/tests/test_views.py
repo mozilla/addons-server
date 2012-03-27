@@ -670,6 +670,7 @@ class TestLogin(UserViewBase):
         http_request.return_value = (200, json.dumps(
                 {'status': 'okay',
                  'email': 'extrauser@example.com'}))
+        old_profile_count = UserProfile.objects.count()
         res = self.client.post(reverse('users.browserid_login'),
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
@@ -680,7 +681,7 @@ class TestLogin(UserViewBase):
         eq_(res.content, _m)
 
         profile_count = UserProfile.objects.count()
-        eq_(profile_count, 4)
+        eq_(profile_count, old_profile_count)
 
     @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
     @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
