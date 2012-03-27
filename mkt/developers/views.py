@@ -443,7 +443,10 @@ def issue_refund(request, addon_id, addon, webapp=False):
     form_enabled = True
     contribution = get_object_or_404(Contribution, transaction_id=txn_id,
                                      type=amo.CONTRIB_PURCHASE)
-    if Refund.objects.filter(contribution=contribution).exists():
+
+    if (hasattr(contribution, 'refund') and
+        contribution.refund.status != amo.REFUND_PENDING):
+        # If it's not pending, we've already taken action.
         messages.error(request, _('Refund already processed.'))
         form_enabled = False
 

@@ -517,6 +517,29 @@ class TestIssueRefund(amo.tests.TestCase):
     def test_apps_issue(self, refund, enqueue_refund):
         self._test_issue(refund, enqueue_refund)
 
+    def test_fresh_refund(self):
+        c = self.make_purchase()
+        Refund.objects.create(contribution=c)
+        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.no-results').length, 0)
+        eq_(doc('input[name=transaction_id]').val(), c.transaction_id)
+
+    def test_stale_refund(self):
+        c = self.make_purchase()
+        ref = Refund.objects.create(contribution=c)
+        # Any other status means we've already taken action.
+        for status in sorted(amo.REFUND_STATUSES.keys())[1:]:
+            ref.update(status=status)
+            r = self.client.get(self.url, {'transaction_id': c.transaction_id})
+            eq_(r.status_code, 200)
+            doc = pq(r.content)
+            eq_(doc('.no-results').length, 1,
+                'Expected no results for refund of status %r' % status)
+            eq_(doc('input[name=transaction_id]').length, 0,
+                'Expected form fields for refund of status %r' % status)
+
     @mock.patch('amo.messages.error')
     @mock.patch('paypal.refund')
     def test_only_one_issue(self, refund, error):

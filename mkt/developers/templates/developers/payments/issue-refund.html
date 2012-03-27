@@ -7,7 +7,8 @@
 
 {% block content %}
 <header>
-  {{ hub_breadcrumbs(addon) }}
+  {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('refunds'), _('Manage Refunds')),
+                                   (None, title)]) }}
   <h1>{{ title }}</h1>
 </header>
 <form method="post" action="" id="issue-refund" class="primary island full c">
@@ -43,7 +44,7 @@
       <input type="hidden" name="transaction_id" value="{{ transaction_id }}">
     </p>
   {% else %}
-    <p>{{ loc('No refundable transaction found.') }}</p>
+    <p class="no-results">{{ _('No refundable transaction found.') }}</p>
   {% endif %}
 </form>
 {% endblock %}
