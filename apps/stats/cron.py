@@ -37,7 +37,7 @@ def update_collections_total():
                                 .annotate(sum=Sum('count')))
 
     ts = [tasks.update_collections_total.subtask(args=[chunk])
-          for chunk in chunked(d, 100)]
+          for chunk in chunked(d, 50)]
     TaskSet(ts).apply_async()
 
 
