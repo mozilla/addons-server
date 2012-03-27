@@ -17,7 +17,7 @@ from mkt.payments.models import InappConfig, InappPayLog
 
 
 class PaymentTest(amo.tests.TestCase):
-    fixtures = ['base/337141-steamcube', 'base/users']
+    fixtures = ['webapps/337141-steamcube', 'base/users']
 
     def setUp(self):
         cfg = self.inapp_config = InappConfig(addon=self.get_app(),
