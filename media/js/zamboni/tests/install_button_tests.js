@@ -84,32 +84,6 @@ $(document).ready(function() {
 
     module('Install Button', $.extend({}, installButtonFixture, {
         setup: function() {
-            installButtonFixture.setup.call(this, '#install-button-marketplace');
-        }
-    }));
-    test('marketplace, mobile, can be purchased', function() {
-        this.expected['data-hash'] = '1337';
-        this.expected['href'] = 'http://sharedurl.com';
-        this.expected['data-realurl'] = 'http://testurl.com';
-
-        this.check(this.expected);
-    });
-
-    module('Install Button', $.extend({}, installButtonFixture, {
-        setup: function() {
-            installButtonFixture.setup.call(this, '#install-button-app-marketplace');
-        }
-    }));
-    test('app, marketplace, mobile, can be purchased', function() {
-        this.expected['data-hash'] = undefined;
-        this.expected['href'] = 'http://sharedurl.com';
-        this.expected['data-realurl'] = undefined;
-
-        this.check(this.expected);
-    });
-
-    module('Install Button', $.extend({}, installButtonFixture, {
-        setup: function() {
             installButtonFixture.setup.call(this, '#install-button-app-premium');
         }
     }));
