@@ -39,7 +39,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Refund, AddonPaymentData
-from mkt.payments.models import InappConfig
+from mkt.inapp_pay.models import InappConfig
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
 import paypal

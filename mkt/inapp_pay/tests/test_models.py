@@ -5,9 +5,9 @@ from nose.tools import eq_, raises
 
 import amo
 import amo.tests
-from mkt.payments.models import InappConfig, TooManyKeyGenAttempts, InappPayLog
-from mkt.payments import verify
-from mkt.payments.verify import InappPaymentError
+from mkt.inapp_pay.models import InappConfig, TooManyKeyGenAttempts, InappPayLog
+from mkt.inapp_pay import verify
+from mkt.inapp_pay.verify import InappPaymentError
 from mkt.webapps.models import Webapp
 
 
@@ -50,25 +50,25 @@ class TestInapp(amo.tests.TestCase):
         assert key
 
     @raises(TooManyKeyGenAttempts)
-    @fudge.patch('mkt.payments.models.InappConfig.objects.filter')
+    @fudge.patch('mkt.inapp_pay.models.InappConfig.objects.filter')
     def test_exhaust_private_keygen_attempts(self, fake_filter):
         fake_filter.expects_call().returns_fake().expects('count').returns(1)
         InappConfig.generate_private_key(max_tries=5)
 
     @raises(TooManyKeyGenAttempts)
-    @fudge.patch('mkt.payments.models.InappConfig.objects.filter')
+    @fudge.patch('mkt.inapp_pay.models.InappConfig.objects.filter')
     def test_exhaust_public_keygen_attempts(self, fake_filter):
         fake_filter.expects_call().returns_fake().expects('count').returns(1)
         InappConfig.generate_public_key(max_tries=5)
 
-    @fudge.patch('mkt.payments.models.InappConfig.objects.filter')
+    @fudge.patch('mkt.inapp_pay.models.InappConfig.objects.filter')
     def test_retry_private_keygen_until_unique(self, fake_filter):
         (fake_filter.expects_call().returns_fake().expects('count').returns(1)
                                                   .next_call().returns(1)
                                                   .next_call().returns(0))
         assert InappConfig.generate_private_key(max_tries=5)
 
-    @fudge.patch('mkt.payments.models.InappConfig.objects.filter')
+    @fudge.patch('mkt.inapp_pay.models.InappConfig.objects.filter')
     def test_retry_public_keygen_until_unique(self, fake_filter):
         (fake_filter.expects_call().returns_fake().expects('count').returns(1)
                                                   .next_call().returns(1)

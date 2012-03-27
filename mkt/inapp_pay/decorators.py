@@ -6,8 +6,8 @@ from django import http
 import commonware.log
 import jingo
 
-from mkt.payments.models import InappPayLog
-from mkt.payments.verify import verify_request, InappPaymentError
+from mkt.inapp_pay.models import InappPayLog
+from mkt.inapp_pay.verify import verify_request, InappPaymentError
 
 
 log = commonware.log.getLogger('z.inapp')

@@ -22,7 +22,7 @@ from amo.utils import raise_required, remove_icons
 from files.models import FileUpload
 from market.models import AddonPremium, Price, AddonPaymentData
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.payments.models import InappConfig
+from mkt.inapp_pay.models import InappConfig
 import paypal
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField

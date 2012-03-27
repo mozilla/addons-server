@@ -5,7 +5,7 @@ import waffle
 from addons.models import Addon
 import amo
 import amo.tests
-from mkt.payments.models import InappConfig
+from mkt.inapp_pay.models import InappConfig
 
 
 class TestInappConfig(amo.tests.TestCase):

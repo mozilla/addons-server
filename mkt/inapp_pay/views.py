@@ -5,8 +5,8 @@ from session_csrf import anonymous_csrf
 from waffle.decorators import waffle_switch
 
 from amo.decorators import login_required, post_required, write
-from mkt.payments.decorators import require_inapp_request
-from mkt.payments.models import InappPayLog
+from mkt.inapp_pay.decorators import require_inapp_request
+from mkt.inapp_pay.models import InappPayLog
 
 
 log = commonware.log.getLogger('z.inapp')

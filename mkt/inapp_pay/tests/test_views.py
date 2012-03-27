@@ -13,7 +13,7 @@ from addons.models import Addon
 import amo.tests
 from amo.urlresolvers import reverse
 
-from mkt.payments.models import InappConfig, InappPayLog
+from mkt.inapp_pay.models import InappConfig, InappPayLog
 
 
 class PaymentTest(amo.tests.TestCase):
@@ -70,17 +70,17 @@ class TestPay(PaymentTest):
                                  password='password')
 
     def test_missing_pay_request_on_start(self):
-        rp = self.client.get(reverse('payments.pay_start'))
+        rp = self.client.get(reverse('inapp_pay.pay_start'))
         eq_(rp.status_code, 400)
 
     def test_missing_pay_request(self):
-        rp = self.client.post(reverse('payments.pay'))
+        rp = self.client.post(reverse('inapp_pay.pay'))
         eq_(rp.status_code, 400)
 
     def test_pay_start(self):
         payload = self.payload()
         req = self.request(payload=json.dumps(payload))
-        rp = self.client.get(reverse('payments.pay_start'),
+        rp = self.client.get(reverse('inapp_pay.pay_start'),
                              data=dict(req=req))
         eq_(rp.status_code, 200)
         assert 'x-frame-options' not in rp, "Can't deny with x-frame-options"
@@ -95,7 +95,7 @@ class TestPay(PaymentTest):
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
 
     def test_pay_start_error(self):
-        rp = self.client.get(reverse('payments.pay_start'),
+        rp = self.client.get(reverse('inapp_pay.pay_start'),
                              data=dict(req=self.request(app_secret='invalid')))
         eq_(rp.status_code, 200)
         doc = pq(rp.content)
@@ -108,7 +108,7 @@ class TestPay(PaymentTest):
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
 
     def test_pay_error(self):
-        rp = self.client.post(reverse('payments.pay'),
+        rp = self.client.post(reverse('inapp_pay.pay'),
                               data=dict(req=self.request(app_id='unknown')))
         eq_(rp.status_code, 200)
         doc = pq(rp.content)

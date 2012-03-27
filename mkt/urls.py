@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     ('^developers/submit/app/', include('mkt.submit.urls')),
 
     # In-app payments.
-    ('^payments/', include('mkt.payments.urls')),
+    ('^inapp-pay/', include('mkt.inapp_pay.urls')),
 
     # Support (e.g., refunds, FAQs).
     ('^support/', include('mkt.support.urls')),

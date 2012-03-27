@@ -42,7 +42,7 @@ INSTALLED_APPS += (
     'mkt.detail',
     'mkt.developers',
     'mkt.experiments',
-    'mkt.payments',
+    'mkt.inapp_pay',
     'mkt.search',
     'mkt.submit',
     'mkt.support',

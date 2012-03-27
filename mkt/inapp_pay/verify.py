@@ -11,7 +11,7 @@ from statsd import statsd
 
 import amo
 
-from mkt.payments.models import InappConfig
+from mkt.inapp_pay.models import InappConfig
 
 
 class InappPaymentError(Exception):

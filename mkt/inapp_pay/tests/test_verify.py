@@ -10,8 +10,8 @@ from nose.tools import eq_, raises
 
 import amo
 
-from mkt.payments.tests.test_views import PaymentTest
-from mkt.payments.verify import (verify_request, UnknownAppError,
+from mkt.inapp_pay.tests.test_views import PaymentTest
+from mkt.inapp_pay.verify import (verify_request, UnknownAppError,
                                  RequestVerificationError, RequestExpired,
                                  AppPaymentsDisabled, AppPaymentsRevoked,
                                  InvalidRequest)

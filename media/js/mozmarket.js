@@ -60,7 +60,7 @@ function _overlay_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
     }
     $overlay = $('<iframe></iframe>', {'id': 'moz-payment-overlay',
                                        'type': 'text/html',
-                                       'src': server + '/payments/pay_start?req=' + signedRequest});
+                                       'src': server + '/inapp-pay/pay_start?req=' + signedRequest});
     $overlay.css({'position': 'absolute',
                   'top': top + 'px',
                   'left': left + 'px',
@@ -80,7 +80,7 @@ function _overlay_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
 
 function _popup_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
     if (payWindow == null || payWindow.closed) {
-        payWindow = window.open(server + '/payments/pay_start?req=' + signedRequest, 'moz-payment-screen',
+        payWindow = window.open(server + '/inapp-pay/pay_start?req=' + signedRequest, 'moz-payment-screen',
                                 'menubar=0,location=1,resizable=1,scrollbars=1,status=0,close=1,width=450,height=250,dialog=1');
     } else {
         payWindow.focus();

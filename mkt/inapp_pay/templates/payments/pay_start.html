@@ -13,7 +13,7 @@
       You are logged in as <strong>{{ user_email }}</strong>!
       {% endtrans %}
     </div>
-    <form method="post" action="{{ url('payments.pay') }}">
+    <form method="post" action="{{ url('inapp_pay.pay') }}">
       {{ csrf() }}
       <input type="hidden" name="req" value="{{ signed_request }}">
       <button class="button prominent paypal">
