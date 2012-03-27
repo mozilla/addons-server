@@ -133,7 +133,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(r.status_code, 200)
         links = pq(r.content)('#price-facets a')
         expected = [
-            ('Free & Premium', self.url),
+            ('Any Price', self.url),
             ('Free Only', urlparams(self.url, price='free')),
             ('Premium Only', urlparams(self.url, price='paid')),
         ]
@@ -141,11 +141,10 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         return list(r.context['pager'].object_list)
 
     def test_free_and_premium(self):
-        eq_(self.check_price_filter('', 'Free & Premium'), self.both)
+        eq_(self.check_price_filter('', 'Any Price'), self.both)
 
     def test_free_and_premium_inapp(self):
-        eq_(self.check_price_filter('', 'Free & Premium',
-                                     amo.ADDON_PREMIUM_INAPP),
+        eq_(self.check_price_filter('', 'Any Price', amo.ADDON_PREMIUM_INAPP),
             self.both)
 
     def test_free_and_inapp_only(self):
