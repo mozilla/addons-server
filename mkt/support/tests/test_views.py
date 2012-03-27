@@ -70,7 +70,7 @@ class TestRequestSupport(PurchaseBase):
     def test_contact_mozilla(self):
         data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
         res = self.client.post(self.get_support_url('mozilla'), data)
-        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_support_url('mozilla-sent'), 302)
 
     def test_contact_mozilla_mails(self):
         data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
