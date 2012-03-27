@@ -1006,7 +1006,7 @@ CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_LOG_LEVEL = logging.INFO
 CELERYD_HIJACK_ROOT_LOGGER = False
-CELERY_IMPORTS = ('django_arecibo.tasks',)
+CELERY_IMPORTS = ('django_arecibo.tasks', 'lib.videos.tasks.resize_video')
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
@@ -1019,6 +1019,9 @@ CELERY_ROUTES = {
     'devhub.tasks.fetch_icon': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
+
+    # Videos.
+    'lib.videos.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
@@ -1391,3 +1394,6 @@ DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 NO_LOGIN_REQUIRED_MODULES = ()
 NO_ADDONS_MODULES = ()
 NO_CONSUMER_MODULES = ()
+
+# Where to find ffmpeg if it's not in the PATH.
+FFMPEG_BINARY = 'ffmpeg'
