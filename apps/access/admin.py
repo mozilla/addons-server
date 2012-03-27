@@ -11,7 +11,7 @@ class GroupUserInline(admin.TabularInline):
 class GroupAdmin(admin.ModelAdmin):
     raw_id_fields = ('users',)
     ordering = ('name',)
-    list_display = ('name', 'rules')
+    list_display = ('name', 'rules', 'notes')
     inlines = (GroupUserInline,)
 
 admin.site.register(Group, GroupAdmin)
