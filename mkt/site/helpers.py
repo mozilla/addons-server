@@ -27,7 +27,7 @@ def no_results():
 def market_button(context, product):
     request = context['request']
     if product.is_webapp():
-        classes = ['button']
+        classes = ['button', 'product']
         label = price_label(product)
         product_dict = product_as_dict(request, product)
         data_attrs = {

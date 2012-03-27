@@ -9,12 +9,12 @@
     padding: 10px;
 }
 </style>
-
 {% if status != 'complete' %}
   <section id="purchase-done">
     <h3>Error</h3>
     <p>Sorry, payment failed.</p>
   </section>
+  <script src="{{ media('/js/mkt/purchase_error.js') }}"></script>
 {% else %}
   <section id="purchase-done" class="overlay">
     <h3>{{ _('Thank you!') }}</h3>
@@ -53,4 +53,5 @@
       <a href="{{ url('devhub.docs', doc_name='marketplace') }}">{{ loc('Marketplace Support') }}</a>
     #}
   </section>
+  <script src="{{ media('/js/mkt/purchase_success.js') }}"></script>
 {% endif %}
