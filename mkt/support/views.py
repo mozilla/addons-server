@@ -1,3 +1,5 @@
+from smtplib import SMTPRecipientsRefused
+
 from django import http
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
@@ -22,6 +24,15 @@ from . import forms
 
 log = commonware.log.getLogger('z.support')
 paypal_log = commonware.log.getLogger('z.paypal')
+
+
+def support_mail(title, template, sender, recipients):
+    try:
+        # L10n: %s is the app name.
+        return send_mail(title, template, sender, recipients)
+    except SMTPRecipientsRefused, e:
+        log.error('Tried to send mail from %s to %s: %s' %
+                  (sender, ', '.join(recipients), e), exc_info=True)
 
 
 # Start of the Support wizard all of these are accessed through the
@@ -50,10 +61,12 @@ def support_author(request, contribution, wizard):
                      'form': form, 'user': request.amo_user})
         log.info('Support request to dev. by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
+
         # L10n: %s is the app name.
-        send_mail(_(u'New Support Request for %s' % addon.name),
-                  template, request.amo_user.email,
-                  [smart_str(addon.support_email)])
+        support_mail(_(u'New Support Request for %s' % addon.name),
+                     template, sender=request.amo_user.email,
+                     recipients=[smart_str(addon.support_email)])
+
         return redirect(reverse('support',
                          args=[contribution.pk, 'author-sent']))
     return wizard.render(request, wizard.tpl('author.html'),
@@ -71,10 +84,12 @@ def support_mozilla(request, contribution, wizard):
                      'contribution': contribution, 'user': request.amo_user})
         log.info('Support request to mozilla by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
+
         # L10n: %s is the app name.
-        send_mail(_(u'New Support Request for %s' % addon.name),
-                  template, request.amo_user.email,
-                  [settings.MARKETPLACE_EMAIL])
+        support_mail(_(u'New Support Request for %s' % addon.name),
+                     template, sender=request.amo_user.email,
+                     recipients=[settings.MARKETPLACE_EMAIL])
+
         return redirect(reverse('support',
                                 args=[contribution.pk, 'mozilla-sent']))
     return wizard.render(request, wizard.tpl('mozilla.html'),
@@ -130,10 +145,12 @@ def refund_reason(request, contribution, wizard):
                      'refund_reason': reason})
         log.info('Refund request sent by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
+
         # L10n: %s is the app name.
-        send_mail(_(u'New Refund Request for %s' % addon.name),
-                  template, settings.NOBODY_EMAIL,
-                  [smart_str(addon.support_email)])
+        support_mail(_(u'New Refund Request for %s' % addon.name),
+                     template, sender=settings.NOBODY_EMAIL,
+                     recipients=[smart_str(addon.support_email)])
+
         # Add this refund request to the queue.
         contribution.enqueue_refund(amo.REFUND_PENDING, reason)
         return redirect(reverse('support',

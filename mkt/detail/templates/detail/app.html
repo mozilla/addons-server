@@ -34,6 +34,14 @@
           {% endfor %}
         </ul>
       {% endif %}
+      {% if product.support_email %}
+        {{ emaillink(product.support_email.localized_string,
+                     _('Support Email')) }}
+      {% endif %}
+      {% if product.support_url %}
+        <a href="{{ product.support_url|external_url }}">
+          {{ _('Support Site') }}</a>
+      {% endif %}
     </div>
     <div class="actions">
       {{ market_button(product) }}
