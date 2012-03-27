@@ -24,15 +24,16 @@
     }
 
     function purchaseSuccess(product, receipt) {
-        install(product, receipt);
+        // Firefox doesn't successfully fetch the manifest unless I do this.
+        setTimeout(function() {
+            install(product);
+        }, 0);
     }
 
     function purchaseError(product, msg) {
-        console.log(product, msg);
     }
 
     function install(product, receipt) {
-        // console.log('installing app '+product.name, product);
         $.when(apps.install(product.manifestUrl))
          .done(installSuccess)
          .fail(installError);

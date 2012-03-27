@@ -12,11 +12,10 @@
             top_opener = winTop.opener || winTop;
             top_dgFlow = top_opener.dgFlow;
         if (top_dgFlow) {
-            $(top_opener).trigger('yay');
+            top_opener.jQuery(top_opener).trigger('purchasecomplete');
             top_dgFlow.closeFlow();
         }
     })();
-
 
     function beginPurchase(prod) {
         if ($def && $def.state() == 'pending') {
@@ -49,9 +48,17 @@
         overlay.removeClass('show');
     }
 
+    function completePurchase() {
+        $(window).unbind('.payments');
+        overlay.unbind('.payments');
+        overlay.removeClass('show');
+        $def.resolve(product);
+    }
+
     function startPayment(e) {
         if (e && e.preventDefault) e.preventDefault();
-        doPaypal(product);
+        $.when(doPaypal(product))
+         .then(completePurchase);
     }
 
     function doPaypal() {
@@ -60,6 +67,10 @@
             dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
             dgFlow.startFlow(response.url);
         });
+        $(window).bind('purchasecomplete.payments',function() {
+            $def.resolve();
+        });
+        return $def.promise();
     }
 
     z.payments = {
