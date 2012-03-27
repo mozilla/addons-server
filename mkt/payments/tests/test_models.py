@@ -82,7 +82,7 @@ def test_exception_mapping():
         ob = getattr(verify, name)
         if (inspect.isclass(ob) and (issubclass(ob, InappPaymentError)
                                      or ob is InappPaymentError)):
-                at_least_one = True
-                assert ob.__name__ in InappPayLog._exceptions, (
-                                        '%r is not mapped' % ob.__name__)
+            at_least_one = True
+            assert ob.__name__ in InappPayLog._exceptions, (
+                                    '%r is not mapped' % ob.__name__)
     assert at_least_one

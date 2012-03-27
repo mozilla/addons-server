@@ -3,7 +3,6 @@ import json
 
 from django import http
 from django.conf import settings
-from django.db import transaction
 from django.utils.http import urlquote
 
 import commonware.log
@@ -156,14 +155,4 @@ def redis(f):
     def wrapper(*args, **kw):
         redis = redisutils.connections['master']
         return f(redis, *args, **kw)
-    return wrapper
-
-
-def allow_embed(view):
-    """Allow the view to be embedded in a frame."""
-    @functools.wraps(view)
-    def wrapper(*args, **kw):
-        response = view(*args, **kw)
-        response['x-frame-options'] = ''
-        return response
     return wrapper

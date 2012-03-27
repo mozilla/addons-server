@@ -1,9 +1,10 @@
+from commonware.response.decorators import xframe_allow
 import commonware.log
 import jingo
 from session_csrf import anonymous_csrf
 from waffle.decorators import waffle_switch
 
-from amo.decorators import login_required, post_required, write, allow_embed
+from amo.decorators import login_required, post_required, write
 from mkt.payments.decorators import require_inapp_request
 from mkt.payments.models import InappPayLog
 
@@ -13,7 +14,7 @@ log = commonware.log.getLogger('z.inapp')
 
 @require_inapp_request
 @anonymous_csrf
-@allow_embed
+@xframe_allow
 @write
 @waffle_switch('in-app-payments-ui')
 def pay_start(request, signed_req, pay_req):
@@ -28,7 +29,7 @@ def pay_start(request, signed_req, pay_req):
 
 @require_inapp_request
 @anonymous_csrf
-@allow_embed
+@xframe_allow
 @login_required
 @post_required
 @write

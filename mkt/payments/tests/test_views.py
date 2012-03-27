@@ -83,6 +83,7 @@ class TestPay(PaymentTest):
         rp = self.client.get(reverse('payments.pay_start'),
                              data=dict(req=req))
         eq_(rp.status_code, 200)
+        assert 'x-frame-options' not in rp, "Can't deny with x-frame-options"
         doc = pq(rp.content)
         eq_(doc('.paypal-content h5').text(), payload['request']['name'])
         eq_(doc('.paypal-content .price').text(), 'USD 0.99')
