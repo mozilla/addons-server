@@ -164,10 +164,14 @@
               </div>
             {% endif %}
           {% else %}
-            {% for preview in addon.previews.all() %}
-            <div class="preview-thumb" data-url="{{ preview.thumbnail_url }}" style="background-image:url({{ preview.thumbnail_url }})"></div>
-            {% endfor %}
-            {% endif %}
+            {% set previews = addon.previews.all() %}
+            {% call empty_unless(previews) %}
+              {% for preview in previews %}
+                <div class="preview-thumb" data-url="{{ preview.thumbnail_url }}"
+                     style="background-image:url({{ preview.thumbnail_url }})"></div>
+              {% endfor %}
+            {% endcall %}
+          {% endif %}
           </div>
         </td>
       </tr>

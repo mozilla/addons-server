@@ -405,22 +405,31 @@ class TestEditMedia(TestEdit):
         blank.update(**kw)
         return blank
 
-    def formset_media(self, *args, **kw):
+    def formset_media(self, blank_kw={}, *args, **kw):
         kw.setdefault('initial_count', 0)
         kw.setdefault('prefix', 'files')
 
-        fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
+        fs = formset(*[a for a in args] + [self.formset_new_form(**blank_kw)],
+                     **kw)
         return dict([(k, '' if v is None else v) for k, v in fs.items()])
+
+    def new_preview_hash(self):
+        # At least one screenshot is required.
+        src_image = open(get_image_path('mozilla.png'), 'rb')
+        r = self.client.post(self.preview_upload,
+                             dict(upload_image=src_image))
+        return {'upload_hash': json.loads(r.content)['upload_hash']}
 
     def test_form_url(self):
         self.check_form_url('media')
 
     def test_edit_defaulticon(self):
         data = dict(icon_type='')
-        data_formset = self.formset_media(**data)
+        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+                                          **data)
 
         r = self.client.post(self.edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
         assert webapp.get_icon_url(64).endswith('icons/default-64.png')
@@ -430,10 +439,11 @@ class TestEditMedia(TestEdit):
 
     def test_edit_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
-        data_formset = self.formset_media(**data)
+        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+                                          **data)
 
         r = self.client.post(self.edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
         assert webapp.get_icon_url(64).endswith('icons/appearance-64.png')
@@ -453,10 +463,11 @@ class TestEditMedia(TestEdit):
         # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
                     icon_upload_hash=response_json['upload_hash'])
-        data_formset = self.formset_media(**data)
+        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+                                          **data)
 
         r = self.client.post(self.edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
         # Unfortunate hardcoding of URL
@@ -494,10 +505,11 @@ class TestEditMedia(TestEdit):
         # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
                     icon_upload_hash=response_json['upload_hash'])
-        data_formset = self.formset_media(**data)
+        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+                                          **data)
 
         r = self.client.post(self.edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
         # Unfortunate hardcoding of URL
@@ -607,29 +619,24 @@ class TestEditMedia(TestEdit):
         self.check_image_animated(self.preview_upload,
                                   'Images cannot be animated.')
 
-    def preview_add(self, amount=1):
-        img = get_image_path('mozilla.png')
-        src_image = open(img, 'rb')
+    def preview_add(self, num=1):
+        src_image = open(get_image_path('mozilla.png'), 'rb')
 
         data_formset = self.formset_media(upload_image=src_image)
-        url = self.preview_upload
-
-        r = self.client.post(url, data_formset)
-
-        details = json.loads(r.content)
-        upload_hash = details['upload_hash']
+        r = self.client.post(self.preview_upload, data_formset)
+        self.assertNoFormErrors(r)
+        upload_hash = json.loads(r.content)['upload_hash']
 
         # Create and post with the formset.
         fields = []
-        for i in xrange(amount):
+        for i in xrange(num):
             fields.append(self.formset_new_form(caption='hi',
                                                 upload_hash=upload_hash,
                                                 position=i))
         data_formset = self.formset_media(*fields)
 
-        self.edit_url
-
         r = self.client.post(self.edit_url, data_formset)
+        self.assertNoFormErrors(r)
 
     def test_edit_preview_add(self):
         self.preview_add()
@@ -639,7 +646,7 @@ class TestEditMedia(TestEdit):
         self.preview_add()
         preview = self.get_webapp().previews.all()[0]
         edited = {'caption': 'bye',
-                  'upload_hash': '',
+                  'upload_hash': 'xxx',
                   'id': preview.id,
                   'position': preview.position,
                   'file_upload': None}
@@ -657,7 +664,7 @@ class TestEditMedia(TestEdit):
 
         previews = self.get_webapp().previews.all()
 
-        base = dict(upload_hash='', file_upload=None)
+        base = dict(upload_hash='xxx', file_upload=None)
 
         # Three preview forms were generated; mix them up here.
         a = dict(caption='first', position=1, id=previews[2].id)
@@ -668,7 +675,7 @@ class TestEditMedia(TestEdit):
         c.update(base)
 
         # Add them in backwards ("third", "second", "first")
-        data_formset = self.formset_media(c, b, a, initial_count=3)
+        data_formset = self.formset_media({}, *(c, b, a), initial_count=3)
         eq_(data_formset['files-0-caption'], 'third')
         eq_(data_formset['files-1-caption'], 'second')
         eq_(data_formset['files-2-caption'], 'first')
@@ -682,18 +689,26 @@ class TestEditMedia(TestEdit):
 
     def test_edit_preview_delete(self):
         self.preview_add()
-        preview = self.get_webapp().previews.get()
+        self.preview_add()
+        orig_previews = self.get_webapp().previews.all()
+
+        # Delete second preview. Keep the first.
         edited = {'DELETE': 'checked',
-                  'upload_hash': '',
-                  'id': preview.id,
+                  'upload_hash': 'xxx',
+                  'id': orig_previews[1].id,
                   'position': 0,
                   'file_upload': None}
+        ctx = self.client.get(self.edit_url).context
 
-        data_formset = self.formset_media(edited, initial_count=1)
+        first = initial(ctx['preview_form'].forms[0])
+        first['upload_hash'] = 'xxx'
+        data_formset = self.formset_media(edited, *(first,), initial_count=2)
 
-        self.client.post(self.edit_url, data_formset)
+        r = self.client.post(self.edit_url, data_formset)
+        self.assertNoFormErrors(r)
 
-        eq_(self.get_webapp().previews.count(), 0)
+        # First one should still be there.
+        eq_(list(self.get_webapp().previews.all()), [orig_previews[0]])
 
     def test_edit_preview_add_another(self):
         self.preview_add()
@@ -703,6 +718,11 @@ class TestEditMedia(TestEdit):
     def test_edit_preview_add_two(self):
         self.preview_add(2)
         eq_(self.get_webapp().previews.count(), 2)
+
+    def test_screenshot_required(self):
+        r = self.client.post(self.edit_url, self.formset_media())
+        eq_(r.context['preview_form'].non_form_errors(),
+            ['You must upload at least one screen shot.'])
 
 
 class TestEditDetails(TestEdit):
@@ -727,7 +747,7 @@ class TestEditDetails(TestEdit):
     def test_edit(self):
         data = self.get_dict()
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         self.compare(data)
 
     def test_edit_xss(self):
@@ -758,7 +778,7 @@ class TestEditDetails(TestEdit):
                     privacy_policy='we sell your data to everyone')
 
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         self.compare(data)
 
     def test_edit_default_locale_required_trans(self):
@@ -794,7 +814,7 @@ class TestEditDetails(TestEdit):
         # Now we're sending an fr description with the form.
         data['description_fr'] = 'fr description'
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
 
     def test_edit_default_locale_frontend_error(self):
         da = dict(description='xx', homepage='http://google.com',
@@ -832,7 +852,7 @@ class TestEditSupport(TestEdit):
                     support_url='http://apple.com/')
 
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         self.compare(data)
 
     def test_edit_support_free_required(self):
@@ -851,13 +871,13 @@ class TestEditSupport(TestEdit):
         data = dict(support_email='sjobs@apple.com',
                     support_url='')
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         eq_(self.get_webapp().support_email, data['support_email'])
 
     def test_edit_support_url_optional(self):
         data = dict(support_email='sjobs@apple.com', support_url='')
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         self.compare(data)
 
 
@@ -877,7 +897,7 @@ class TestEditTechnical(TestEdit):
         o = ActivityLog.objects
         eq_(o.count(), 0)
         r = self.client.post(self.edit_url, data)
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
     def test_toggles(self):
@@ -888,7 +908,7 @@ class TestEditTechnical(TestEdit):
                     view_source='on')
 
         r = self.client.post(self.edit_url, formset(**data))
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
         expected = dict(developer_comments='Test comment!',
                         external_software=True,
                         site_specific=True,
@@ -909,7 +929,7 @@ class TestEditTechnical(TestEdit):
                     site_specific='on',
                     view_source='on')
         r = self.client.post(self.edit_url, formset(**data))
-        eq_(r.context['form'].errors, {})
+        self.assertNoFormErrors(r)
 
         expected = dict(developer_comments='',
                         external_software=True,

@@ -12,9 +12,9 @@ from addons.models import Addon, AddonUser
 from market.models import AddonPaymentData
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import PaypalPaymentData
-from mkt.submit.forms import (AppDetailsBasicForm, PaypalSetupForm,
-                              PreviewFormSet, AddonFormMedia)
+from mkt.developers.forms import (AppFormMedia, PaypalPaymentData,
+                                  PreviewFormSet)
+from mkt.submit.forms import (AppDetailsBasicForm, PaypalSetupForm)
 from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from files.models import Platform
@@ -101,10 +101,9 @@ def details(request, addon_id, addon):
     form_cats = CategoryFormSet(request.POST or None, addon=addon,
                                 request=request)
     form_devices = DeviceTypeForm(request.POST or None, addon=addon)
-    form_icon = AddonFormMedia(request.POST or None, request.FILES or None,
-                               instance=addon, request=request)
-    form_previews = PreviewFormSet(request.POST or None,
-                                   prefix='files',
+    form_icon = AppFormMedia(request.POST or None, request.FILES or None,
+                             instance=addon, request=request)
+    form_previews = PreviewFormSet(request.POST or None, prefix='files',
                                    queryset=addon.previews.all())
 
     forms = {

@@ -14,17 +14,16 @@ import waffle
 
 import amo
 import addons.forms
-from addons.forms import clean_name, slug_validator
-import paypal
+from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
                            Preview)
 from amo.helpers import loc
-from amo.utils import raise_required
-
+from amo.utils import raise_required, remove_icons
 from files.models import FileUpload
 from market.models import AddonPremium, Price, AddonPaymentData
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from mkt.payments.models import InappConfig
+import paypal
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 from translations.models import Translation
@@ -221,6 +220,14 @@ class BasePreviewFormSet(BaseModelFormSet):
     def clean(self):
         if any(self.errors):
             return
+        at_least_one = False
+        for form in self.forms:
+            if (not form.cleaned_data.get('DELETE') and
+                form.cleaned_data.get('upload_hash')):
+                at_least_one = True
+        if not at_least_one:
+            raise forms.ValidationError(_('You must upload at least one '
+                                          'screen shot.'))
 
 
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
@@ -479,6 +486,40 @@ class AppFormDetails(addons.forms.AddonFormBase):
                       'name, summary, and description in that locale. '
                       'You are missing %s.') % ', '.join(map(repr, missing)))
         return data
+
+
+class AppFormMedia(addons.forms.AddonFormBase):
+    icon_type = forms.CharField(required=False,
+        widget=forms.RadioSelect(renderer=IconWidgetRenderer, choices=[]))
+    icon_upload_hash = forms.CharField(required=False)
+    unsaved_icon_data = forms.CharField(required=False,
+                                        widget=forms.HiddenInput)
+
+    class Meta:
+        model = Addon
+        fields = ('icon_upload_hash', 'icon_type')
+
+    def __init__(self, *args, **kwargs):
+        super(AppFormMedia, self).__init__(*args, **kwargs)
+
+        # Add icons here so we only read the directory when
+        # AppFormMedia is actually being used.
+        self.fields['icon_type'].widget.choices = icons()
+
+    def save(self, addon, commit=True):
+        if self.cleaned_data['icon_upload_hash']:
+            upload_hash = self.cleaned_data['icon_upload_hash']
+            upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
+
+            dirname = addon.get_icon_dir()
+            destination = os.path.join(dirname, '%s' % addon.id)
+
+            remove_icons(destination)
+            tasks.resize_icon.delay(upload_path, destination,
+                                    amo.ADDON_ICON_SIZES,
+                                    set_modified_on=[addon])
+
+        return super(AppFormMedia, self).save(commit)
 
 
 class AppFormSupport(addons.forms.AddonFormBase):

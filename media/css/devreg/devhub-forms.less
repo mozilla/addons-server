@@ -294,6 +294,11 @@ textarea {
         color: @error-red;
         margin-top: 2px;
     }
+    /* If errors are at the top of a form. */
+    input[type=hidden] + .errorlist {
+        line-height: 1;
+        margin: 0 0 4px;
+    }
 }
 
 /* AJAX forms */

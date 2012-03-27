@@ -246,11 +246,14 @@ class TestCase(RedisTest, test_utils.TestCase):
                     else:
                         # Otherwise, just return the errors for this form.
                         msg = v.errors.as_text()
+                    msg = msg.strip()
                     if msg != '':
                         self.fail('form %r had the following error(s):\n%s'
                                   % (k, msg))
                     if hasattr(v, 'non_field_errors'):
                         self.assertEquals(v.non_field_errors(), [])
+                    if hasattr(v, 'non_form_errors'):
+                        self.assertEquals(v.non_form_errors(), [])
 
     def assertLoginRedirects(self, response, to, status_code=302):
         self.assertRedirects(response,

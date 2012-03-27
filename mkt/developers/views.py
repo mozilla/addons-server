@@ -33,8 +33,9 @@ from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormSupport,
-                                  InappConfigForm, PaypalSetupForm)
+from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
+                                  AppFormSupport, InappConfigForm,
+                                  PaypalSetupForm, PreviewFormSet)
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Refund, AddonPaymentData
@@ -763,7 +764,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
                    webapp=False):
     basic = AppFormBasic if webapp else addon_forms.AddonFormBasic
     models = {'basic': basic,
-              'media': addon_forms.AddonFormMedia,
+              'media': AppFormMedia,
               'details': AppFormDetails,
               'support': AppFormSupport,
               'technical': addon_forms.AddonFormTechnical}
@@ -783,8 +784,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
                                                       addon=addon)
 
     elif section == 'media':
-        previews = forms.PreviewFormSet(request.POST or None,
-            prefix='files', queryset=addon.previews.all())
+        previews = PreviewFormSet(request.POST or None, prefix='files',
+            queryset=addon.previews.all())
 
     elif section == 'technical':
         if not webapp:
