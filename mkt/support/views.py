@@ -28,7 +28,6 @@ paypal_log = commonware.log.getLogger('z.paypal')
 
 def support_mail(title, template, sender, recipients):
     try:
-        # L10n: %s is the app name.
         return send_mail(title, template, sender, recipients)
     except SMTPRecipientsRefused, e:
         log.error('Tried to send mail from %s to %s: %s' %
