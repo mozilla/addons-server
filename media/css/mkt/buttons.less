@@ -13,30 +13,42 @@
 @btn-y-dark: darken(spin(@btn-y, 3), 8%);
 @btn-y-lite: saturate(spin(@btn-y, 4), 4%);
 
-.button {
+.button, button {
+    .gradient-two-color(@btn-b, @btn-b-dark);
     .border-radius(4px);
-    .box-shadow(0 2px 0 0 rgba(0, 0, 0, 0.1),
-                inset 0 -2px 0 0 rgba(0, 0, 0, 0.1));
-    background-color: #888;
-    color: #fff;
-    display: block;
+    .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                inset 0 -2px 0 0 rgba(0,0,0,.1));
+    background-color: @gray;
+    color: @white;
+    display: inline-block;
     font: 14px/48px @open-stack;
     font-weight: 600;
+    padding: 0 15px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    &:hover {
+        .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                    inset 0 -2px 0 0 rgba(0,0,0,.2),
+                    inset 0 12px 24px 2px @btn-b-lite);
+    }
+    &:active {
+        .box-shadow(inset 0 2px 0 0 rgba(0,0,0,.2),
+                    inset 0 12px 24px 6px rgba(0,0,0,.2),
+                    inset 0 0 2px 2px rgba(0,0,0,.2));
+    }
     &.install, &.premium {
-        background-color: @btn-g;
-        .gradient-two-color(@btn-g,  @btn-g-dark);
+        .gradient-two-color(@btn-g, @btn-g-dark);
         &:hover {
-            .box-shadow(0 2px 0 0 rgba(0, 0, 0, 0.1),
-                        inset 0 -2px 0 0 rgba(0, 0, 0, 0.2),
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 -2px 0 0 rgba(0,0,0,.2),
                         inset 0 12px 24px 2px @btn-g-lite);
         }
-        &:active {
-            .box-shadow(inset 0 2px 0 0 rgba(0, 0, 0, 0.2),
-                        inset 0 12px 24px 6px rgba(0,0,0,0.2),
-                        inset 0 0 2px 2px rgba(0,0,0,0.2));
-        }
     }
+}
+
+button {
+    border: 0;
+    display: inline-block;
+    line-height: 36px;
 }

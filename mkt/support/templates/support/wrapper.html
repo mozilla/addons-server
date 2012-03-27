@@ -1,0 +1,16 @@
+{% extends 'mkt/base.html' %}
+
+{% block title %}{{ mkt_page_title(wizard.title) }}{% endblock %}
+
+{% block content %}
+  <section id="support">
+    {% if title %}
+      {% set crumbs = [(url('support', contribution.pk), _('Support')),
+                       (None, title)] %}
+    {% else %}
+      {% set crumbs = [(None, _('Support'))] %}
+    {% endif %}
+    {{ mkt_breadcrumbs(product, crumbs) }}
+    {% include content %}
+  </section>
+{% endblock %}

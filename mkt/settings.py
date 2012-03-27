@@ -45,6 +45,7 @@ INSTALLED_APPS += (
     'mkt.payments',
     'mkt.search',
     'mkt.submit',
+    'mkt.support',
     'mkt.webapps',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
@@ -60,6 +61,7 @@ SUPPORTED_NONAPPS += (
     'purchases',
     'search',
     'submit',
+    'support',
     'terms-of-use',
     'users',
 )

@@ -1,0 +1,6 @@
+{% for message in messages %}
+  <section class="notification-box {{ message.tags }}">
+    {# The message is actually formatted inside of `message_content.html`. #}
+    {{ message|safe }}
+  </section>
+{% endfor %}

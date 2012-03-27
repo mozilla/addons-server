@@ -1,0 +1,5 @@
+{% trans %}
+Your refund request for {{ name }} has been denied by the developer.
+
+Thank you for shopping in the Mozilla Marketplace.
+{% endtrans %}

@@ -1,0 +1,61 @@
+@import 'lib';
+
+#support {
+    form {
+        margin-top: 10px;
+    }
+    .form-footer {
+        button {
+            margin-right: 5px;
+        }
+        a {
+            display: inline-block;
+            margin-left: 5px;
+            &:only-child {
+                margin: 0;
+            }
+        }
+    }
+    p, ul {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .support-url {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 40px;
+    }
+    ul {
+        list-style: none;
+        li + li {
+            margin-top: 5px;
+        }
+    }
+    .support-url, ul {
+        a {
+            display: block;
+        }
+    }
+
+    h1 + ul {
+        padding: 0;
+    }
+    .recipient {
+        font-weight: bold;
+    }
+    label {
+        color: @medium-gray;
+    }
+}
+
+.html-rtl #support .form-footer {
+    button {
+        margin: 0 0 0 5px;
+    }
+    a {
+        margin: 0 5px 0 0;
+        &:only-child {
+            margin: 0;
+        }
+    }
+}

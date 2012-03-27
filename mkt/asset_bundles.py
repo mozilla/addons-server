@@ -78,6 +78,7 @@ CSS = {
         'css/mkt/paginator.less',
         'css/mkt/suggestions.less',
         'css/mkt/purchases.less',
+        'css/mkt/support.less',
     ),
     'mkt/in-app-payments': (
         # Temporarily re-using PayPal styles for in-app-payments UI

@@ -1,9 +1,8 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}{{ page_title('My Purchases') }}{% endblock %}
+{% block title %}{{ mkt_page_title('My Purchases') }}{% endblock %}
 
 {% block content %}
-  {# include 'users/includes/navigation.html' #}
   <section id="purchases" class="listing">
     {{ mkt_breadcrumbs(product, [(None, _('My Purchases'))]) }}
     <h1>{{ _('My Purchases') }}</h1>

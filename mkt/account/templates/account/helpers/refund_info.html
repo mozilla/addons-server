@@ -17,7 +17,7 @@
             </span>
             {% if get_support %}
               <a class="request-support"
-                 href="{{ url('users.support', contribution.pk) }}">
+                 href="{{ url('support', contribution.pk) }}">
                 {{ _('Request Support') }}</a>
             {% endif %}
           {% elif contribution.type == amo.CONTRIB_REFUND %}

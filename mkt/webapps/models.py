@@ -250,7 +250,7 @@ def create_receipt(installed_pk):
     installed = Installed.objects.get(pk=installed_pk)
     addon_pk = installed.addon.pk
     verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
-    detail = reverse('users.purchases.receipt', args=[addon_pk])
+    detail = reverse('account.purchases.receipt', args=[addon_pk])
     receipt = dict(typ='purchase-receipt',
                    product={'url': installed.addon.origin,
                             'storedata': urlencode({'id': int(addon_pk)})},

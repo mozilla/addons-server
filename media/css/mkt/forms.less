@@ -28,6 +28,99 @@ input:-moz-placeholder {
 }
 
 textarea {
+    .border-box;
+    display: block;
     overflow: auto;
     vertical-align: top;
+    width: 100%;
+}
+
+input[type=text], input[type=password], select, textarea {
+    .border-box;
+    .border-radius(5px);
+    .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+    background: #fff;
+    border: 1px solid @light-gray;
+    color: @dark-gray;
+    padding: 5px;
+    &:focus {
+        color: @black;
+        border-color: @medium-gray;
+    }
+    &[disabled], &[readonly] {
+        background-color: @faint-gray;
+        color: @note-gray;
+        cursor: not-allowed;
+    }
+}
+
+input[type=file], select {
+    &:focus {
+        .box-shadow(none);
+    }
+}
+
+select {
+    padding: 0;
+}
+
+option {
+    max-width: 634px;
+}
+
+label, .label {
+    font-weight: bold;
+}
+
+.choice label,
+label.choice,
+li label {
+    cursor: pointer;
+}
+
+.choice label,
+label.choice {
+    font-weight: normal;
+}
+
+.req,
+.errorlist,
+.error,
+.error label {
+    color: @red !important;
+}
+
+.error {
+    margin-bottom: 5px;
+    input[type=text], input[type=password], select, textarea {
+        border-color: @red;
+    }
+}
+
+.errorlist {
+    margin: 0;
+    padding: 0;
+}
+
+p.req {
+    font-size: 11px;
+    margin: 0 0 10px;
+}
+
+/* CSRF token */
+form div[style]:first-child + p {
+    margin-top: 0;
+}
+
+.optional {
+    color: @note-gray;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.simple-field {
+    label {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
 }

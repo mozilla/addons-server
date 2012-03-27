@@ -1,0 +1,5 @@
+{% trans %}
+A reversal has occurred for your payment for {{ name }} from PayPal. Your account has been refunded {{ amount }}.
+
+Thank you for shopping in the Mozilla Marketplace.
+{% endtrans %}
