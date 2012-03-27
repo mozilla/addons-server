@@ -1,18 +1,20 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}{{ mkt_page_title('My Purchases') }}{% endblock %}
+{% set title = _('My Purchases') %}
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
   <section id="purchases" class="listing">
-    {{ mkt_breadcrumbs(product, [(None, _('My Purchases'))]) }}
-    <h1>{{ _('My Purchases') }}</h1>
+    {{ mkt_breadcrumbs(product, [(None, title)]) }}
+    <h1>{{ title }}</h1>
     {% if single %}
       <div id="sorter" class="c">
         <ul><li><a class="opt" href="{{ url('account.purchases') }}">
           {{ _('Show all purchases') }}</a></li></ul>
       </div>
     {% else %}
-      {{ impala_addon_listing_header(request.get_full_path(), search_filter=listing_filter) }}
+      {{ impala_addon_listing_header(request.get_full_path(),
+                                     search_filter=listing_filter) }}
     {% endif %}
     <ol class="items" start="{{ pager.start_index() }}">
       {% for product in pager.object_list %}
@@ -35,5 +37,6 @@
       {% else %}
         {{ no_results() }}
       {% endfor %}
+    </ol>
   </section>
 {% endblock %}
