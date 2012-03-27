@@ -15,7 +15,7 @@ $(document).ready(function() {
             .before(gettext('This feature is temporarily disabled while we ' +
                             'perform website maintenance. Please check back ' +
                             'a little later.'))
-            .find('button, input, select, textarea').attr('disabled', true);
+            .find('button, input, select, textarea').attr('disabled', true).addClass('disabled');
     }
 });
 
