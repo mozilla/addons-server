@@ -15,12 +15,14 @@
         {% endif %}
       </a>
     {% endif %}
-    {% for link in links %}
-      {% set extra = "platform " + link.os.shortname if link.os else "" %}
-      <!-- install error messages -->
-      <div class="apps-error-msg"><h2></h2><p></p></div>
-      {% include 'addons/includes/install_button.html' %}
-    {% endfor %}
+    {% if not addon.is_unreviewed() %}
+      {% for link in links %}
+        {% set extra = "platform " + link.os.shortname if link.os else "" %}
+        <!-- install error messages -->
+        <div class="apps-error-msg"><h2></h2><p></p></div>
+        {% include 'addons/includes/install_button.html' %}
+      {% endfor %}
+    {% endif %}
   </div>
   <ul class="badges">
     {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}

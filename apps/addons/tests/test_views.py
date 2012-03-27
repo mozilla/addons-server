@@ -1084,6 +1084,14 @@ class TestDetailPage(amo.tests.TestCase):
         beta = get_pq_content()
         eq_(beta('#beta-channel').length, 0)
 
+    @amo.tests.mobile_test
+    def test_unreviewed_disabled_button(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('.button.add').length, 0)
+        eq_(doc('.button.disabled').length, 1)
+
     def test_type_redirect(self):
         """
         If current add-on's type is unsupported by app, redirect to an
