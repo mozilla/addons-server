@@ -93,6 +93,13 @@ class TestDataValidate(amo.tests.TestCase):
         up = self.get(self.good_data)
         assert not up.is_valid()
 
+    def test_soft_deleted(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(status=amo.STATUS_DELETED)
+
+        up = self.get(self.good_data)
+        assert not up.is_valid()
+
     def test_no_version(self):
         data = self.good_data.copy()
         del data['version']
