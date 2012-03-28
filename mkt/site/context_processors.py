@@ -22,7 +22,8 @@ def global_settings(request):
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
         account_links = [
-            {'text': _('Change Password'), 'href': 'https://browserid.org/'},
+            {'text': _('Change Password'),
+             'href': 'https://browserid.org/signin'},
             {'text': _('Log out'), 'href': reverse('users.logout')},
         ]
         if '/developers/' not in request.path:
