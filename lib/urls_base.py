@@ -130,6 +130,10 @@ urlpatterns = patterns('',
      lambda r: redirect('pages.faq', permanent=True)),
 
     # Redirect persona/xxx
+    ('^getpersonas$',
+     lambda r: redirect('http://www.getpersonas.com/gallery/All/Popular',
+                        permanent=True)),
+
     url('^persona/(?P<persona_id>\d+)', 'addons.views.persona_redirect',
         name='persona'),
 
