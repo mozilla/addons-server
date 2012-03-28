@@ -61,9 +61,11 @@ SUPPORTED_NONAPPS += (
     'privacy-policy',
     'purchases',
     'search',
+    'settings',
     'submit',
     'support',
     'terms-of-use',
+    'user',
     'users',
 )
 

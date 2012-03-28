@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
 
+from django.contrib.auth.models import User
+from django.core import mail
 from django.core.cache import cache
+from django.forms.models import model_to_dict
 
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
@@ -10,11 +13,203 @@ import waffle
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import AddonPremium
+from addons.models import AddonPremium, AddonUser
 from market.models import Price
+from mkt.developers.models import ActivityLog
 from stats.models import Contribution
-from users.models import UserProfile
+from users.models import UserNotification, UserProfile
+import users.notifications as email
 from mkt.webapps.models import Installed, Webapp
+
+
+class TestAccountSettings(amo.tests.TestCase):
+    fixtures = ['users/test_backends']
+
+    def setUp(self):
+        self.user = self.get_user()
+        self.client.login(username=self.user.email, password='foo')
+        self.url = reverse('account.settings')
+        self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
+                     'oldpassword': 'foo', 'password': 'longenough',
+                     'password2': 'longenough', 'bio': 'boop'}
+        self.extra_data = {'homepage': 'http://omg.org/',
+                           'occupation': 'bro', 'location': 'desk 42',
+                           'display_name': 'Fligtar Scott'}
+        self.data.update(self.extra_data)
+
+    def get_user(self):
+        return UserProfile.objects.get(username='jbalogh')
+
+    def test_success(self):
+        r = self.client.post(self.url, self.data, follow=True)
+        self.assertRedirects(r, self.url)
+        doc = pq(r.content)
+
+        # Check that the values got updated appropriately.
+        user = self.get_user()
+        for field, expected in self.extra_data.iteritems():
+            eq_(unicode(getattr(user, field)), expected)
+            eq_(doc('#id_' + field).val(), expected)
+
+    def test_no_password_changes(self):
+        r = self.client.post(self.url, self.data)
+        eq_(self.user.userlog_set
+                .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
+                .count(), 0)
+
+    def test_email_cant_change(self):
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh.changed@mozilla.com',
+                'display_name': 'DJ SurfNTurf'}
+        r = self.client.post(self.url, data)
+        self.assertRedirects(r, self.url)
+        eq_(len(mail.outbox), 0)
+        eq_(self.get_user().email, self.data['email'],
+            'Email address should not have changed')
+
+    def test_edit_bio(self):
+        eq_(self.get_user().bio, None)
+
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh.changed@mozilla.com',
+                'bio': 'xxx unst unst'}
+
+        r = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(r, self.url)
+        self.assertContains(r, data['bio'])
+        eq_(unicode(self.get_user().bio), data['bio'])
+
+        data['bio'] = 'yyy unst unst'
+        r = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(r, self.url)
+        self.assertContains(r, data['bio'])
+        eq_(unicode(self.get_user().bio), data['bio'])
+
+    def check_default_choices(self, choices, checked=[]):
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('input[name=notifications]:checkbox').length, len(choices))
+        for id, label in choices:
+            box = doc('input[name=notifications][value=%s]' % id)
+            if id in checked:
+                eq_(box.filter(':checked').length, 1)
+            else:
+                eq_(box.length, 1)
+            parent = box.parent('label')
+            eq_(parent.remove('.req').text(), label)
+
+    def post_notifications(self, choices):
+        self.check_default_choices(choices=choices, checked=choices)
+
+        self.data['notifications'] = []
+        r = self.client.post(self.url, self.data)
+        self.assertRedirects(r, self.url)
+
+        eq_(UserNotification.objects.count(), len(email.APP_NOTIFICATIONS))
+        eq_(UserNotification.objects.filter(enabled=True).count(),
+            len(filter(lambda x: x.mandatory, email.APP_NOTIFICATIONS)))
+        self.check_default_choices(choices=choices, checked=[])
+
+    def test_edit_notifications(self):
+        # Make jbalogh a developer.
+        self.user.update(read_dev_agreement=True)
+
+        self.check_default_choices(choices=email.APP_NOTIFICATIONS_CHOICES,
+            checked=[email.individual_contact.id])
+
+        self.data['notifications'] = [email.app_individual_contact.id,
+                                      email.app_surveys.id]
+        r = self.client.post(self.url, self.data)
+        self.assertRedirects(r, self.url)
+
+        mandatory = [n.id for n in email.APP_NOTIFICATIONS if n.mandatory]
+        total = len(set(self.data['notifications'] + mandatory))
+        eq_(UserNotification.objects.count(), len(email.APP_NOTIFICATIONS))
+        eq_(UserNotification.objects.filter(enabled=True).count(), total)
+
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('input[name=notifications]:checked').length, total)
+
+    def test_edit_all_notifications(self):
+        self.user.update(read_dev_agreement=True)
+        self.post_notifications(email.APP_NOTIFICATIONS_CHOICES)
+
+    def test_edit_non_dev_notifications(self):
+        self.post_notifications(email.APP_NOTIFICATIONS_CHOICES_NOT_DEV)
+
+    def test_edit_non_dev_notifications_error(self):
+        # jbalogh isn't a developer so he can't set developer notifications.
+        self.data['notifications'] = [email.app_surveys.id]
+        r = self.client.post(self.url, self.data)
+        assert r.context['form'].errors['notifications']
+
+
+class TestAdminAccountSettings(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.regular = self.get_user()
+        self.url = reverse('users.admin_edit', args=[self.regular.pk])
+
+    def get_data(self, **kw):
+        data = model_to_dict(self.regular)
+        data['admin_log'] = 'test'
+        for key in ['password', 'resetcode_expires']:
+            del data[key]
+        data.update(kw)
+        return data
+
+    def get_user(self):
+        # Using pk so that we can still get the user after anonymize.
+        return UserProfile.objects.get(pk=999)
+
+    def test_get(self):
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_forbidden(self):
+        self.client.logout()
+        self.client.login(username='editor@mozilla.com', password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_forbidden_anon(self):
+        self.client.logout()
+        r = self.client.get(self.url)
+        self.assertLoginRedirects(r, self.url)
+
+    def test_anonymize(self):
+        r = self.client.post(self.url, self.get_data(anonymize=True))
+        self.assertRedirects(r, reverse('zadmin.index'))
+        eq_(self.get_user().password, 'sha512$Anonymous$Password')
+
+    def test_anonymize_fails_with_other_changed_fields(self):
+        # We don't let an admin change a field whilst anonymizing.
+        data = self.get_data(anonymize=True, display_name='something@else.com')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 200)
+        eq_(self.get_user().password, self.regular.password)  # Hasn't changed.
+
+    def test_admin_logs_edit(self):
+        self.client.post(self.url, self.get_data(email='something@else.com'))
+        r = ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_EDITED.id)
+        eq_(r.count(), 1)
+        assert self.get_data()['admin_log'] in r[0]._arguments
+
+    def test_admin_logs_anonymize(self):
+        self.client.post(self.url, self.get_data(anonymize=True))
+        r = (ActivityLog.objects
+                          .filter(action=amo.LOG.ADMIN_USER_ANONYMIZED.id))
+        eq_(r.count(), 1)
+        assert self.get_data()['admin_log'] in r[0]._arguments
+
+    def test_admin_no_password(self):
+        data = self.get_data(password='pass1234', password2='pass1234',
+                             oldpassword='password')
+        self.client.post(self.url, data)
+        logs = ActivityLog.objects.filter
+        eq_(logs(action=amo.LOG.CHANGE_PASSWORD.id).count(), 0)
+        r = logs(action=amo.LOG.ADMIN_USER_EDITED.id)
+        eq_(r.count(), 1)
+        eq_(r[0].details['password'][0], u'****')
 
 
 class PurchaseBase(amo.tests.TestCase):

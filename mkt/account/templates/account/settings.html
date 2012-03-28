@@ -1,0 +1,113 @@
+{% extends 'mkt/base.html' %}
+{% from 'developers/includes/macros.html' import some_html_tip %}
+
+{% set title = _('Account Settings') %}
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+
+{% block content %}
+  <section id="account-settings">
+    {{ mkt_breadcrumbs(product, [(None, title)]) }}
+    <h1>{{ title }}</h1>
+    <form class="form-grid" enctype="multipart/form-data" method="post">
+      {{ csrf() }}
+
+      <div id="profile-photo" class="simple-field c">
+        <div class="form-label">
+          <label for="id_photo">{{ _('Profile Photo') }}</label>
+        </div>
+        <div class="form-col">
+          <div class="invisible-upload">
+            <a href="#" class="button">{{ _('Choose Photo&hellip;') }}</a>
+            <span class="hint">{{ form.photo.help_text }}</span>
+            <input type="file" id="id_photo" name="photo">
+          </div>
+          <img src="{{ amouser.picture_url }}" class="avatar photo"
+              {%- if not amouser.picture_type %}
+                alt="{{ _('No Photo') }}"
+              {%- endif %}>
+          {% if amouser.picture_type %}
+            <a href="#" data-posturl="{{ url('account.delete_photo') }}"
+               class="delete button">{{ _('Delete current photo') }}</a>
+          {% endif %}
+          {{ form.photo.errors }}
+        </div>
+      </div>
+
+      <div class="simple-field c">
+        <div class="form-label">
+          {{ _('PersonaID Email') }}
+        </div>
+        <div class="form-col">
+          <input type="text" disabled value="{{ amo_user.email }}">
+          <a href="https://browserid.org/signin" target="_blank">
+            {{ _('Change Email') }}</a>
+        </div>
+      </div>
+
+      <div class="simple-field c">
+        <div class="form-label">
+          {{ _('PersonaID Password') }}
+        </div>
+        <div class="form-col">
+          <input type="text" disabled id="fake-password" value="•••••">
+          <a href="https://browserid.org/signin" target="_blank">
+            {{ _('Change Password') }}</a>
+        </div>
+      </div>
+
+      {{ grid_field(form.display_name, hint=True) }}
+
+      <div class="simple-field c">
+        <div class="form-label">
+          <label for="{{ form.username.auto_id }}">
+            {{ _('Username') }}
+          </label>
+        </div>
+        <div class="form-col">
+          <div class="edit_with_prefix c">
+            <span>{{ settings.SITE_URL }}/user/</span>{{ form.username }}
+          </div>
+          {{ form.username.errors }}
+        </div>
+      </div>
+
+      {{ grid_field(form.location) }}
+      {{ grid_field(form.occupation) }}
+      {{ grid_field(form.homepage) }}
+      {{ grid_field(form.bio, some_html=True) }}
+
+      <div id="user-notifications" class="simple-field c">
+        <div class="form-label">
+          {{ _('Email me when') }}
+        </div>
+        <div class="form-col">
+          <div class="choice">
+            {{ form.notifications }}
+            <p class="note">
+              {{ _('Mozilla reserves the right to contact you individually '
+                   'about specific concerns with your apps.') }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {% if 'admin_log' in form.fields %}
+        <h3>Administration</h3>
+        {{ grid_field(form.admin_log) }}
+        {{ grid_field(form.notes) }}
+        {{ grid_field(form.anonymize) }}
+      {% endif %}
+
+      <footer class="form-footer">
+        <button type="submit">{{ _('Save Changes') }}</button>
+        {% if 'admin_log' in form.fields %}
+          <a href="{{ url('admin:users_userprofile_delete', amouser.id) }}"
+             class="delete">Delete Account</a>
+        {% else %}
+          <a href="{{ url('account.delete') }}" class="delete">
+            {{ _('Delete Account') }}</a>
+        {% endif %}
+      </footer>
+    </form>
+  </section>
+{% endblock %}

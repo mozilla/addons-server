@@ -1,0 +1,45 @@
+@import '../mkt/lib';
+
+.edit_with_prefix {
+    .border-box;
+    border: 1px solid @light-gray;
+    background: @faint-gray;
+    .border-radius(5px);
+    color: @medium-gray;
+    padding: 0;
+    width: 400px;
+    span, input {
+        .border-box;
+    }
+    span {
+        border-right: 0 none;
+        display: block;
+        float: left;
+        line-height: 1.2;
+        overflow: hidden;
+        max-width: 215px;
+        padding: 5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    input[type=text] {
+        .border-radius(0 5px 5px 0);
+        .box-shadow(none);
+        border: 0;
+        float: right;
+        width: 170px !important;
+    }
+}
+
+.error .edit_with_prefix {
+    border-color: @red;
+}
+
+.simple-field {
+    .hint {
+        color: @gray;
+        display: block;
+        font-size: 11px;
+        margin-top: 4px;
+    }
+}

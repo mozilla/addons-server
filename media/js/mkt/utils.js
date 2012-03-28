@@ -21,9 +21,20 @@ var escape_ = function(s) {
 };
 
 
+// .exists()
+// This returns true if length > 0.
+$.fn.exists = function(callback, args) {
+    var $this = $(this),
+        len = $this.length;
+    if (len && callback) {
+        callback.apply(null, args);
+    }
+    return !!len;
+};
+
+
 // CSRF Tokens
 // Hijack the AJAX requests, and insert a CSRF token as a header.
-
 $('html').ajaxSend(function(event, xhr, ajaxSettings) {
     var csrf, $meta;
     // Block anything that starts with 'http:', 'https:', '://' or '//'.

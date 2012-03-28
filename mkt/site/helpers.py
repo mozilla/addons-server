@@ -107,12 +107,20 @@ def price_label(product):
 @register.function
 def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
                some_html=False, cc_startswith=None, cc_maxlength=None,
-               **attrs):
+               grid=False, **attrs):
     c = dict(field=field, label=label, tag=tag, req=req, opt=opt, hint=hint,
              some_html=some_html, cc_startswith=cc_startswith,
-             cc_maxlength=cc_maxlength, attrs=attrs)
+             cc_maxlength=cc_maxlength, grid=grid, attrs=attrs)
     t = env.get_template('site/helpers/simple_field.html').render(**c)
     return jinja2.Markup(t)
+
+
+@register.function
+def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
+               some_html=False, cc_startswith=None, cc_maxlength=None,
+               **attrs):
+    return form_field(field, label, tag, req, opt, hint, some_html,
+                      cc_startswith, cc_maxlength, grid=True, attrs=attrs)
 
 
 @register.function

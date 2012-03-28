@@ -229,7 +229,7 @@ class TestEdit(UserViewBase):
         r = self.client.post(self.url, self.data)
         self.assertRedirects(r, self.url, 302)
 
-        eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
+        eq_(UserNotification.objects.count(), len(email.NOTIFICATIONS))
         eq_(UserNotification.objects.filter(enabled=True).count(),
             len(filter(lambda x: x.mandatory, email.NOTIFICATIONS)))
         self.check_default_choices(choices, checked=False)
@@ -248,7 +248,7 @@ class TestEdit(UserViewBase):
 
         mandatory = [n.id for n in email.NOTIFICATIONS if n.mandatory]
         total = len(self.data['notifications'] + mandatory)
-        eq_(UserNotification.objects.count(), len(email.NOTIFICATION))
+        eq_(UserNotification.objects.count(), len(email.NOTIFICATIONS))
         eq_(UserNotification.objects.filter(enabled=True).count(), total)
 
         doc = pq(self.client.get(self.url, self.data).content)
@@ -257,30 +257,13 @@ class TestEdit(UserViewBase):
         eq_(doc('.more-none').length, len(email.NOTIFICATION_GROUPS))
         eq_(doc('.more-all').length, len(email.NOTIFICATION_GROUPS))
 
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_edit_app_notifications(self):
-        AddonUser.objects.create(user=self.user,
-            addon=Addon.objects.create(type=amo.ADDON_EXTENSION))
-        self.post_notifications(email.APP_NOTIFICATIONS_CHOICES)
-
     def test_edit_notifications_non_dev(self):
         self.post_notifications(email.NOTIFICATIONS_CHOICES_NOT_DEV)
 
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_edit_app_notifications_non_dev(self):
-        self.post_notifications(email.APP_NOTIFICATIONS_CHOICES_NOT_DEV)
-
-    def _test_edit_notifications_non_dev_error(self):
+    def test_edit_notifications_non_dev_error(self):
         self.data['notifications'] = [2, 4, 6]
         r = self.client.post(self.url, self.data)
         assert r.context['form'].errors['notifications']
-
-    def test_edit_notifications_non_dev_error(self):
-        self._test_edit_notifications_non_dev_error()
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_edit_app_notifications_non_dev_error(self):
-        self._test_edit_notifications_non_dev_error()
 
     def test_collections_toggles(self):
         r = self.client.get(self.url)
@@ -288,14 +271,6 @@ class TestEdit(UserViewBase):
         doc = pq(r.content)
         eq_(doc('#profile-misc').length, 1,
             'Collections options should be visible.')
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_apps_collections_toggles(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('#profile-misc').length, 0,
-            'Collections options should not be visible.')
 
 
 class TestEditAdmin(UserViewBase):

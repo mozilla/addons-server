@@ -5,9 +5,13 @@
 @btn-g-dark: darken(spin(@btn-g, 3), 8%); //hsl(88, 60%, 38%)
 @btn-g-lite: saturate(spin(@btn-g, 4), 4%); //hsl(89, 76%, 47%)
 
+@btn-r: lighten(spin(@btn-g, -90), 10%);
+@btn-r-dark: darken(spin(@btn-r, 3), 8%);
+@btn-r-lite: saturate(spin(@btn-r, 4), 60%);
+
 @btn-b: lighten(spin(@btn-g, 130), 10%);
 @btn-b-dark: darken(spin(@btn-b, 3), 8%);
-@btn-b-lite: saturate(spin(@btn-b, 4), 4%);
+@btn-b-lite: saturate(spin(@btn-b, 4), 60%);
 
 @btn-y: lighten(spin(@btn-g, -50), 10%);
 @btn-y-dark: darken(spin(@btn-y, 3), 8%);
@@ -21,7 +25,7 @@
     background-color: @gray;
     color: @white;
     display: inline-block;
-    font: 14px/48px @open-stack;
+    font: 14px/28px @open-stack;
     font-weight: 600;
     padding: 0 15px;
     text-align: center;
@@ -43,6 +47,14 @@
             .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
                         inset 0 -2px 0 0 rgba(0,0,0,.2),
                         inset 0 12px 24px 2px @btn-g-lite);
+        }
+    }
+    &.delete {
+        .gradient-two-color(@btn-r, @btn-r-dark);
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 -2px 0 0 rgba(0,0,0,.2),
+                        inset 0 12px 24px 2px @btn-r-lite);
         }
     }
 }

@@ -1,0 +1,78 @@
+@import 'lib';
+
+#user-notifications {
+    line-height: 16px;
+    ol, ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    ol,
+    ol > li + li {
+        margin-top: 10px;
+    }
+    ul li {
+        padding-bottom: 5px;
+    }
+    h3 {
+        display: none;
+    }
+    p.note {
+        font-style: italic;
+        margin: 10px 0 0;
+    }
+}
+
+.avatar {
+    border: 5px solid @white;
+    .box-shadow(1px 1px 3px #B2C8E0);
+}
+
+#account-settings {
+    img, .button {
+        .border-box;
+    }
+    img {
+        .max-width(1.5);
+    }
+    img[src*="anon_user"], .button {
+        .width(1.5);
+    }
+    .button {
+        font-size: 12px;
+        padding: 0;
+    }
+    #profile-photo {
+        img {
+            display: block;
+            margin-top: 5px;
+        }
+        .errorlist, a {
+            margin-top: 10px;
+        }
+        .invisible-upload a {
+            margin-top: 0;
+        }
+        a {
+            font-size: 11px;
+        }
+        a {
+            display: block;
+        }
+    }
+    .form-footer {
+        .delete {
+            color: @red;
+            font-size: 12px;
+            &:hover {
+                color: darken(@red, 10%);
+            }
+        }
+    }
+}
+
+#account-delete {
+    .notification-box, form {
+        margin-top: 10px;
+    }
+}

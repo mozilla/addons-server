@@ -120,15 +120,15 @@ class individual_contact(_NOTIFICATION):
 
 class app_individual_contact(individual_contact):
     app = True
-    label = loc('Mozilla needs to contact me about my individual app')
+    label = _('Mozilla needs to contact me about my individual app')
 
 
 class app_surveys(_NOTIFICATION):
     id = 13
-    group = 'user'
+    group = 'dev'
     short = 'surveys'
-    label = loc('Mozilla may email me with relevant App Developer news and '
-                'surveys')
+    label = _('Mozilla wants to contact me about relevant App Developer news '
+              'and surveys')
     mandatory = False
     default_checked = False
     app = True
@@ -137,10 +137,22 @@ class app_surveys(_NOTIFICATION):
 NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
+APP_NOTIFICATIONS = [app_reply, app_new_review, app_individual_contact,
+                     app_surveys]
+APP_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in APP_NOTIFICATIONS)
+APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
+APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]
+APP_NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in APP_NOTIFICATIONS
+                                     if l.group != 'dev']
+
 NOTIFICATIONS = [x for x in vars().values()
                  if isclass(x) and issubclass(x, _NOTIFICATION)
                  and x != _NOTIFICATION and not getattr(x, 'app', False)]
 NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
+
+ALL_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in
+                               NOTIFICATIONS + APP_NOTIFICATIONS)
+
 NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in NOTIFICATIONS)
 NOTIFICATION = AttributeDict((l.__name__, l) for l in NOTIFICATIONS)
 
@@ -149,8 +161,3 @@ NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in NOTIFICATIONS]
 NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in NOTIFICATIONS
                                  if l.group != 'dev']
 
-APP_NOTIFICATIONS = [app_reply, app_new_review, app_individual_contact]
-APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
-APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]
-APP_NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in APP_NOTIFICATIONS
-                                     if l.group != 'dev']

@@ -1,0 +1,54 @@
+{% extends 'mkt/base.html' %}
+{% from 'includes/forms.html' import required %}
+
+{% set title = _('Delete User Account') %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block content %}
+  <section id="account-delete">
+    <div class="primary island">
+      <h1>{{ title }}</h1>
+      {% if amouser.is_developer %}
+        <div class="notification-box info">
+          {% trans link=url('mkt.developers.apps') %}
+            You cannot delete your account if you are listed as an
+            <a href="{{ link }}">author of any apps</a>. To delete your
+            account, please have another person in your development group
+            delete you from the list of authors for your apps. Afterwards you
+            will be able to delete your account here.
+          {% endtrans %}
+        </div>
+      {% else %}
+        {% if form %}
+          <div class="notification-box error prose">
+            {% trans site=settings.DOMAIN %}
+              By clicking "delete" your account is going
+              to be <strong>permanently removed</strong>. That means:
+              <ul>
+                <li>You will not be able to log into {{ site }} anymore.</li>
+                <li>Your reviews and ratings will not be deleted, but they
+                    will no longer be associated with you.</li>
+              </ul>
+             {% endtrans %}
+          </div>
+          <form method="post" action="">
+            {{ csrf() }}
+            <h2>{{ _('Confirm account deletion') }}</h2>
+            <p>
+              <label for="{{ form.confirm.auto_id }}" class="choice">
+                {{ form.confirm }}
+                {{ _('I understand this step cannot be undone.') }}
+                {{ required() }}
+              </label>
+            </p>
+            <footer class="form-footer">
+              <button type="submit" class="delete">
+                {{ _('Delete my user account now') }}
+              </button>
+            </footer>
+          </form>
+        {% endif %}
+      {% endif %}{# /amouser.is_developer #}
+    </div>
+  </section>
+{% endblock %}

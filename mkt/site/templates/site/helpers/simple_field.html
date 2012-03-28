@@ -1,18 +1,41 @@
 {% from 'includes/forms.html' import required, optional, tip %}
 {% from 'developers/includes/macros.html' import some_html_tip %}
+
+{% macro simple_label(field, label, opt, req, tooltip, hint) %}
+  <label class="{{ 'choice' if choice }}" for="{{ field.auto_id }}">
+    {{ label or field.label }}
+  </label>
+
+  {% if field.field.required and req != False %}{{ required() -}}{% endif %}
+  {% if opt %}{{ optional() -}}{% endif %}
+
+  {% if not hint and tooltip %}{{ tip(None, tooltip) }}{% endif %}
+{% endmacro %}
+
 {% if tag %}
   <{{ tag }} class="brform simple-field c {{ class }}{{ ' error' if field.errors }}">
 {% endif %}
 {% set choice = field|is_choice_field %}
-{% if choice %}{{ field.as_widget() }}{% endif %}
-  <label class="{{ 'choice' if choice }}" for="{{ field.auto_id }}">
-    {{ label or field.label }}
-  </label>
-  {% if field.field.required and req != False %}{{ required() -}}{% endif %}
-  {% if opt %}{{ optional() -}}{% endif %}
-
   {% if not tooltip %}{% set tooltip = field.help_text %}{% endif %}
-  {% if not hint and tooltip %}{{ tip(None, tooltip) }}{% endif %}
+
+  {% if grid %}
+    <div class="form-label">
+  {% else %}
+    {% if choice %}{{ field.as_widget() }}{% endif %}
+  {% endif %}
+
+  {% if not choice %}
+    {{ simple_label(field, label, opt, req, tooltip, hint) }}
+  {% endif %}
+
+  {% if grid %}
+    </div>
+    <div class="form-col">
+      {% if choice %}
+        {{ field.as_widget() }}
+        {{ simple_label(field, label, opt, req, tooltip, hint) }}
+      {% endif %}
+  {% endif %}
 
   {% if not choice %}
     {{ field.as_widget(attrs=attrs) }}
@@ -32,6 +55,8 @@
         data-for-startswith="{{ cc_startswith }}"
       {% endif %}></div>
   {% endif %}
+
+  {% if grid %}</div>{% endif %}
 {% if tag %}
   </{{ tag }}>
 {% endif %}

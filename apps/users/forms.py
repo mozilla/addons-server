@@ -172,9 +172,12 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     details here, so we'd have to rewrite most of it anyway.
     """
     username = forms.CharField(max_length=50)
-    display_name = forms.CharField(max_length=50, required=False)
-    location = forms.CharField(max_length=100, required=False)
-    occupation = forms.CharField(max_length=100, required=False)
+    display_name = forms.CharField(label=_lazy('Display Name'), max_length=50,
+                                   required=False)
+    location = forms.CharField(label=_lazy('Location'), max_length=100,
+                               required=False)
+    occupation = forms.CharField(label=_lazy('Occupation'), max_length=100,
+                                 required=False)
     password = forms.CharField(max_length=255,
                                min_length=PasswordMixin.min_length,
                                error_messages=PasswordMixin.error_msg,
@@ -362,13 +365,7 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
         return u
 
 
-class AdminUserEditForm(UserEditForm):
-    admin_log = forms.CharField(required=True, label=_('Reason for change'),
-                                widget=forms.Textarea())
-    confirmationcode = forms.CharField(required=False, max_length=255,
-                                       label=_('Confirmation code'))
-    notes = forms.CharField(required=False, widget=forms.Textarea())
-    anonymize = forms.BooleanField(required=False)
+class BaseAdminUserEditForm(object):
 
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
@@ -391,6 +388,17 @@ class AdminUserEditForm(UserEditForm):
                                           ' the change but do not change any'
                                           ' other field.'))
         return self.cleaned_data['anonymize']
+
+
+class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
+    """This is the form used by admins to edit users' info."""
+    admin_log = forms.CharField(required=True, label='Reason for change',
+                                widget=forms.Textarea(attrs={'rows': 4}))
+    confirmationcode = forms.CharField(required=False, max_length=255,
+                                       label='Confirmation code')
+    notes = forms.CharField(required=False, label='Notes',
+                            widget=forms.Textarea(attrs={'rows': 4}))
+    anonymize = forms.BooleanField(required=False)
 
     def save(self, *args, **kw):
         profile = super(AdminUserEditForm, self).save(log_for_developer=False)

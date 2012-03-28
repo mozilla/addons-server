@@ -31,6 +31,7 @@ CSS = {
 
         # Forms (used for tables on "Manage ..." pages).
         'css/devreg/devhub-forms.less',
+        'css/common/forms.less',
 
         # Landing page
         'css/devreg/landing.less',
@@ -69,6 +70,8 @@ CSS = {
         'css/mkt/typography.less',
         'css/mkt/site.less',
         'css/mkt/forms.less',
+        'css/common/invisible-upload.less',
+        'css/common/forms.less',
         'css/mkt/header.less',
         'css/mkt/breadcrumbs.less',
         'css/mkt/buttons.less',
@@ -80,6 +83,8 @@ CSS = {
         'css/mkt/suggestions.less',
         'css/mkt/purchases.less',
         'css/mkt/support.less',
+        'css/mkt/account.less',
+        'css/devreg/l10n.less',
     ),
     'mkt/in-app-payments': (
         # Temporarily re-using PayPal styles for in-app-payments UI
@@ -208,10 +213,15 @@ JS = {
         'js/mkt/payments.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
+        'js/zamboni/outgoing_links.js',
+        'js/common/upload-image.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
+
+        # Account settings.
+        'js/mkt/account.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',

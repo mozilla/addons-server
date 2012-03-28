@@ -37,6 +37,9 @@ urlpatterns = patterns('',
     # Support (e.g., refunds, FAQs).
     ('^support/', include('mkt.support.urls')),
 
+    # Users (Legacy).
+    ('', include('users.urls')),
+
     # Account info (e.g., purchases, settings).
     ('', include('mkt.account.urls')),
 
@@ -51,9 +54,6 @@ urlpatterns = patterns('',
 
     # Services.
     ('', include('apps.amo.urls')),
-
-    # Users.
-    ('', include('users.urls')),
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),

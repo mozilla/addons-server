@@ -7,6 +7,25 @@ button, input, select, textarea {
     vertical-align: middle;
 }
 
+input {
+    &[type=file] {
+        font-family: sans-serif;
+    }
+    &[type=checkbox],
+    &[type=radio] {
+        margin-right: 5px;
+    }
+}
+
+.html-rtl {
+    input {
+        &[type=checkbox],
+        &[type=radio] {
+            margin: 0 0 0 5px;
+        }
+    }
+}
+
 button, input {
     line-height: normal;
 }
@@ -98,6 +117,7 @@ label.choice {
 }
 
 .errorlist {
+    list-style: none;
     margin: 0;
     padding: 0;
 }
@@ -122,5 +142,115 @@ form div[style]:first-child + p {
     label {
         display: inline-block;
         margin-bottom: 5px;
+    }
+}
+
+form {
+    margin: 10px 0;
+    .note,
+    .html-support {
+        color: @medium-gray;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+    .html-support {
+        margin: 5px 0 0;
+        text-align: right;
+        span {
+            border-bottom: 1px dotted @light-gray;
+            cursor: help;
+        }
+    }
+}
+
+.form-grid {
+    .simple-field {
+        .border-box;
+        border-top: 1px solid @light-gray;
+        padding: 10px 0;
+        width: 100%;
+        label {
+            margin: 0;
+        }
+    }
+    .form-label,
+    .form-col {
+        .border-box;
+        float: left;
+    }
+    .form-label {
+        line-height: 27px;
+        font-weight: bold;
+        min-height: 1px;
+        width: 25%;
+    }
+    .form-col {
+        width: 75%;
+        li {
+            line-height: 1;
+        }
+        p,
+        .errorlist {
+            margin: 5px 0 0;
+        }
+    }
+    p,
+    input + a {
+        color: @medium-gray;
+    }
+    p,
+    input + a,
+    .errorlist {
+        font-size: 11px;
+        line-height: 13px;
+    }
+    footer {
+        border-top: 1px solid @light-gray;
+        padding-top: 15px;
+    }
+    input {
+        &[type=text] {
+            .width(4);
+        }
+        + a {
+            margin-left: 10px;
+        }
+    }
+    .edit_with_prefix {
+        .width(4);
+    }
+}
+
+.html-rtl .form-grid {
+    input {
+        + a {
+            margin: 0 10px 0 0;
+        }
+    }
+
+}
+
+.form-footer {
+    button {
+        margin-right: 5px;
+    }
+    a {
+        display: inline-block;
+        margin-left: 5px;
+        &:only-child {
+            margin: 0;
+        }
+    }
+}
+
+.html-rtl .form-footer {
+    button {
+        margin: 0 0 0 5px;
+    }
+    a {
+        margin-left: 0 5px 0 0;
+        &:only-child {
+            margin: 0;
+        }
     }
 }

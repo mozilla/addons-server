@@ -37,7 +37,9 @@
     </ol>
     <form method="post">
       {{ csrf() }}
-      {{ form_field(agreement_form.newsletter, opt=True) }}
+      {{ form_field(agreement_form.newsletter,
+                    label=_('Mozilla may email me with relevant App Developer '
+                            'news and surveys'), opt=True) }}
       {{ agreement_form.newsletter.errors }}
       {{ agreement_form.read_dev_agreement }}
       {{ agreement_form.read_dev_agreement.errors }}

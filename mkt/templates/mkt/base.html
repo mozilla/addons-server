@@ -53,11 +53,15 @@
     </div>
 
     {% block sitefooter %}
-      <footer>
+      <footer id="site-footer">
         {% if request.user.is_authenticated() %}
           signed in as {{ request.amo_user.email }}
           <a href="{{ url('users.logout') }}">(log out)</a>
-          <p><a href="{{ url('account.purchases') }}">My Purchases</a></p>
+          <p>
+            <a href="{{ url('account.purchases') }}">My Purchases</a>
+            &middot;
+            <a href="{{ url('account.settings') }}">Account Settings</a>
+          </p>
         {% endif %}
       </footer>
     {% endblock %}
