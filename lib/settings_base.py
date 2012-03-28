@@ -1021,7 +1021,7 @@ CELERY_ROUTES = {
     'devhub.tasks.packager': {'queue': 'devhub'},
 
     # Videos.
-    'lib.videos.tasks.resize_video': {'queue': 'devhub'},
+    'lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
