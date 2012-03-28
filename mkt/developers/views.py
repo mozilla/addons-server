@@ -17,6 +17,7 @@ import commonware.log
 import jingo
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
+import waffle
 from waffle.decorators import waffle_switch
 
 from applications.models import Application, AppVersion
@@ -32,6 +33,7 @@ from addons import forms as addon_forms
 from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from lib.video.ffmpeg import Video
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, InappConfigForm,
@@ -886,7 +888,7 @@ def image_status(request, addon_id, addon, icon_size=64):
 
 
 @json_view
-def ajax_upload_image(request, upload_type):
+def ajax_upload_media(request, upload_type):
     errors = []
     upload_hash = ''
 
@@ -894,35 +896,47 @@ def ajax_upload_image(request, upload_type):
         upload_preview = request.FILES['upload_image']
         upload_preview.seek(0)
 
-        upload_hash = uuid.uuid4().hex
+        is_icon = upload_type == 'icon'
+        is_video = (upload_preview.content_type in amo.VIDEO_TYPES and
+                    waffle.switch_is_active('video-upload'))
+
+        # By pushing the type onto the instance hash, we can easily see what
+        # to do with the file later.
+        ext = upload_preview.content_type.replace('/', '-')
+        upload_hash = '%s.%s' % (uuid.uuid4().hex, ext)
         loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
 
         with storage.open(loc, 'wb') as fd:
             for chunk in upload_preview:
                 fd.write(chunk)
-        is_icon = upload_type == 'icon'
 
-        check = amo.utils.ImageCheck(upload_preview)
-        if (not check.is_image() or
-            upload_preview.content_type not in amo.IMG_TYPES):
-            if is_icon:
-                errors.append(_('Icons must be either PNG or JPG.'))
-            else:
-                errors.append(_('Images must be either PNG or JPG.'))
+        if is_video:
+            video = Video(loc)
+            video.get_meta()
+            if not video.is_valid():
+                errors.extend(video.errors)
 
-        if check.is_animated():
-            if is_icon:
-                errors.append(_('Icons cannot be animated.'))
-            else:
-                errors.append(_('Images cannot be animated.'))
+        else:
+            check = amo.utils.ImageCheck(upload_preview)
+            if (not check.is_image() or
+                upload_preview.content_type not in amo.IMG_TYPES):
+                if is_icon:
+                    errors.append(_('Icons must be either PNG or JPG.'))
+                else:
+                    errors.append(_('Images must be either PNG or JPG.'))
 
-        max_size = None
-        if is_icon:
-            max_size = settings.MAX_ICON_UPLOAD_SIZE
+            if check.is_animated():
+                if is_icon:
+                    errors.append(_('Icons cannot be animated.'))
+                else:
+                    errors.append(_('Images cannot be animated.'))
+
+        max_size = (settings.MAX_ICON_UPLOAD_SIZE if is_icon else
+                    settings.MAX_VIDEO_UPLOAD_SIZE if is_video else None)
 
         if max_size and upload_preview.size > max_size:
-            if is_icon:
-                errors.append(_('Please use images smaller than %dMB.') % (
+            if is_icon or is_video:
+                errors.append(_('Please use files smaller than %dMB.') % (
                     max_size / 1024 / 1024 - 1))
     else:
         errors.append(_('There was an error uploading your preview.'))
@@ -934,8 +948,8 @@ def ajax_upload_image(request, upload_type):
 
 
 @dev_required
-def upload_image(request, addon_id, addon, upload_type):
-    return ajax_upload_image(request, upload_type)
+def upload_media(request, addon_id, addon, upload_type):
+    return ajax_upload_media(request, upload_type)
 
 
 @dev_required(webapp=True)

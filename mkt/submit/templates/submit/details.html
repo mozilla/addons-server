@@ -30,6 +30,7 @@
             <img src="{{ addon.get_icon_url(64) }}"
                  data-checkurl="{{ icon_status_url }}">
             <input type="file" id="id_icon_upload" name="icon_upload"
+                   data-allowed-types="image/jpeg|image/png"
                    data-upload-url="{{ icon_upload_url }}">
           </div>
         </div>
@@ -123,7 +124,11 @@
 
       <div>
         <label>
-          {{ loc('Please provide at least one screen shot of your app:') }}
+          {% if waffle.switch('video-upload') %}
+            {{ _('Please provide at least one screenshot or video of your app:') }}
+          {% else %}
+            {{ loc('Please provide at least one screenshot of your app:') }}
+          {% endif %}
         </label>
         {{ required() }}
       </div>
@@ -145,7 +150,7 @@
               <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
               <div class="edit-previews-text">
                 <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
-                  {{ _('Please provide a caption for this screenshot:') }}
+                  {{ _('Please provide a caption for this:') }}
                 </label>
                 {{ form.caption }}
                 <a href="#" class="remove">x</a>
@@ -162,14 +167,22 @@
           {% endfor %}
         </div>
         <div class="invisible-upload">
-          <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
+          <a class="button" href="#">{% if waffle.switch('video-upload') -%}
+            {{ _('Add a Screenshot or Video...') }}{% else %}
+            {{ _('Add a Screenshot...') }}{%- endif %}</a>
           <input type="file" id="screenshot_upload" name="uploads" multiple
+                 data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
                  data-upload-url="{{ screenshot_upload_url }}">
         </div>
         <div>
           <span class="hint">
-            {{ loc('PNG and JPG supported. Large images will be resized to fit
+            {% if waffle.switch('video-upload') %}
+              {{ loc('PNG and JPG supported. Large images will be resized to fit
+                      700 x 520 px. WEBM supported for video.') }}
+            {% else %}
+              {{ loc('PNG and JPG supported. Large images will be resized to fit
                     700 x 520 px.') }}
+            {% endif %}
           </span>
         </div>
       </div>

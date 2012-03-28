@@ -29,6 +29,7 @@ from translations.models import Translation
 from translations.forms import TranslationFormMixin
 from mkt.webapps.models import Webapp
 from . import tasks
+from lib.video import tasks as vtasks
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -206,8 +207,16 @@ class PreviewForm(happyforms.ModelForm):
                 upload_hash = self.cleaned_data['upload_hash']
                 upload_path = os.path.join(settings.TMP_PATH, 'preview',
                                            upload_hash)
-                tasks.resize_preview.delay(upload_path, self.instance,
-                                           set_modified_on=[self.instance])
+                filetype = (os.path.splitext(upload_hash)[1][1:]
+                                   .replace('-', '/'))
+                if filetype in amo.VIDEO_TYPES:
+                    self.instance.update(filetype=filetype)
+                    vtasks.resize_video.delay(upload_path, self.instance,
+                                              set_modified_on=[self.instance])
+                else:
+                    self.instance.update(filetype='image/png')
+                    tasks.resize_preview.delay(upload_path, self.instance,
+                                               set_modified_on=[self.instance])
 
     class Meta:
         model = Preview
@@ -225,8 +234,12 @@ class BasePreviewFormSet(BaseModelFormSet):
                 form.cleaned_data.get('upload_hash')):
                 at_least_one = True
         if not at_least_one:
-            raise forms.ValidationError(_('You must upload at least one '
-                                          'screen shot.'))
+            if waffle.switch_is_active('video-upload'):
+                raise forms.ValidationError(_('You must upload at least one '
+                                              'screenshot or video.'))
+            else:
+                raise forms.ValidationError(_('You must upload at least one '
+                                              'screenshot.'))
 
 
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,

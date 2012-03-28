@@ -435,6 +435,23 @@ class TestDetails(TestSubmit):
         # TODO: Assert redirects when we go to next step.
         self.check_dict(data=data)
 
+    def test_no_video_types(self):
+        self._step()
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png')
+        eq_(doc('#id_icon_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png')
+
+    def test_video_types(self):
+        waffle.models.Switch.objects.create(name='video-upload', active=True)
+        self._step()
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png|video/webm')
+
     def test_screenshot(self):
         self._step()
         im_hash = self.upload_preview()
@@ -504,7 +521,18 @@ class TestDetails(TestSubmit):
                 data[k] = ''
         rp = self.client.post(self.url, data)
         eq_(rp.context['form_previews'].non_form_errors(),
-            ['You must upload at least one screen shot.'])
+            ['You must upload at least one screenshot.'])
+
+    def test_screenshot_or_video_required(self):
+        waffle.models.Switch.objects.create(name='video-upload', active=True)
+        self._step()
+        data = self.get_dict()
+        for k in data:
+            if k.startswith('files') and k.endswith('upload_hash'):
+                data[k] = ''
+        rp = self.client.post(self.url, data)
+        eq_(rp.context['form_previews'].non_form_errors(),
+            ['You must upload at least one screenshot or video.'])
 
     def test_name_length(self):
         self._step()

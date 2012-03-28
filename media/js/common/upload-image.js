@@ -94,12 +94,14 @@ $.fn.objectUrl = function(offset) {
             instance_id++;
             outstanding_uploads++;
 
-            // Make sure it's images only.
-            if(file.type != 'image/jpeg' && file.type != 'image/png') {
+            if($upload_field.attr('data-allowed-types').split('|').indexOf(file.type) < 0) {
                 var errors;
                 if (typeof $upload_field.attr('multiple') !== 'undefined') {
                     // If we have a `multiple` attribute, assume not an icon.
                     errors = [gettext("Images must be either PNG or JPG.")];
+                    if ($upload_field.attr('data-allowed-types').indexOf('video') > -1) {
+                       errors.push([gettext("Videos must be WEBM.")]);
+                    }
                 } else {
                     errors = [gettext("Icons must be either PNG or JPG.")];
                 }

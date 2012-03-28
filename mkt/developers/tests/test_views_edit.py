@@ -18,6 +18,7 @@ from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory,
                            AddonDeviceType, AddonUser, Category, DeviceType)
+from lib.video.tests import files as video_files
 from mkt.developers.models import ActivityLog
 from users.models import UserProfile
 
@@ -528,6 +529,21 @@ class TestEditMedia(TestEdit):
 
         eq_(Image.open(dest).size, (48, 48))
 
+    def test_no_video_types(self):
+        res = self.client.get(self.get_url('media', edit=True))
+        doc = pq(res.content)
+        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png')
+        eq_(doc('#id_icon_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png')
+
+    def test_video_types(self):
+        Switch.objects.create(name='video-upload', active=True)
+        res = self.client.get(self.get_url('media', edit=True))
+        doc = pq(res.content)
+        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png|video/webm')
+
     def check_image_type(self, url, msg):
         img = '%s/js/zamboni/devhub.js' % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
@@ -535,6 +551,14 @@ class TestEditMedia(TestEdit):
         res = self.client.post(url, {'upload_image': src_image})
         response_json = json.loads(res.content)
         eq_(response_json['errors'][0], msg)
+
+    # The check_image_type method uploads js, so let's try sending that
+    # to ffmpeg to see what it thinks.
+    @mock.patch.object(amo, 'VIDEO_TYPES', ['application/javascript'])
+    def test_edit_video_wrong_type(self):
+        Switch.objects.create(name='video-upload', active=True)
+        self.check_image_type(self.preview_upload,
+                              'Videos must be WEBM.')
 
     def test_edit_icon_wrong_type(self):
         self.check_image_type(self.icon_upload,
@@ -619,10 +643,8 @@ class TestEditMedia(TestEdit):
         self.check_image_animated(self.preview_upload,
                                   'Images cannot be animated.')
 
-    def preview_add(self, num=1):
-        src_image = open(get_image_path('mozilla.png'), 'rb')
-
-        data_formset = self.formset_media(upload_image=src_image)
+    def add(self, handle, num=1):
+        data_formset = self.formset_media(upload_image=handle)
         r = self.client.post(self.preview_upload, data_formset)
         self.assertNoFormErrors(r)
         upload_hash = json.loads(r.content)['upload_hash']
@@ -637,6 +659,44 @@ class TestEditMedia(TestEdit):
 
         r = self.client.post(self.edit_url, data_formset)
         self.assertNoFormErrors(r)
+
+    def preview_add(self, num=1):
+        self.add(open(get_image_path('mozilla.png'), 'rb'), num=num)
+
+    def preview_video_add(self, num=1):
+        self.add(open(video_files['good'], 'rb'), num=num)
+
+    def add_json(self, handle):
+        data_formset = self.formset_media(upload_image=handle)
+        result = self.client.post(self.preview_upload, data_formset)
+        return json.loads(result.content)
+
+    def test_edit_preview_video_add_hash(self):
+        Switch.objects.create(name='video-upload', active=True)
+        res = self.add_json(open(video_files['good'], 'rb'))
+        assert res['upload_hash'].endswith('.video-webm')
+
+    def test_edit_preview_video_add_hash_switch_off(self):
+        res = self.add_json(open(video_files['good'], 'rb'))
+        eq_(res['errors'], [u'Images must be either PNG or JPG.'])
+
+    def test_edit_preview_add_hash(self):
+        res = self.add_json(open(get_image_path('mozilla.png'), 'rb'))
+        assert res['upload_hash'].endswith('.image-png')
+
+    @mock.patch.object(settings, 'MAX_VIDEO_UPLOAD_SIZE', 1)
+    def test_edit_preview_video_size(self):
+        Switch.objects.create(name='video-upload', active=True)
+        res = self.add_json(open(video_files['good'], 'rb'))
+        assert res['errors'][0].startswith('Please use')
+
+    def test_edit_preview_video_add(self):
+        Switch.objects.create(name='video-upload', active=True)
+        self.preview_video_add()
+        eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
+
+    def test_edit_preview_video_add_switch_off(self):
+        self.assertRaises(AssertionError, self.preview_video_add)
 
     def test_edit_preview_add(self):
         self.preview_add()
@@ -722,7 +782,13 @@ class TestEditMedia(TestEdit):
     def test_screenshot_required(self):
         r = self.client.post(self.edit_url, self.formset_media())
         eq_(r.context['preview_form'].non_form_errors(),
-            ['You must upload at least one screen shot.'])
+            ['You must upload at least one screenshot.'])
+
+    def test_screenshot_video_required(self):
+        Switch.objects.create(name='video-upload', active=True)
+        r = self.client.post(self.edit_url, self.formset_media())
+        eq_(r.context['preview_form'].non_form_errors(),
+            ['You must upload at least one screenshot or video.'])
 
 
 class TestEditDetails(TestEdit):

@@ -80,6 +80,7 @@
             <div class="invisible-upload">
               <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
               <input type="file" id="id_icon_upload" name="icon_upload"
+                     data-allowed-types="image/jpeg|image/png"
                      data-upload-url="{{ addon.get_dev_url('upload_icon') }}">
             </div>
             <div class="js-hidden">
@@ -106,7 +107,11 @@
       <tr>
         {% if context == 'edit' %}
         <th>
-          <label>{{ _('Screenshots') }}</label>
+          {% if waffle.switch('video-upload') %}
+            <label>{{ _('Screenshots or Videos') }}</label>
+          {% else %}
+            <label>{{ _('Screenshots') }}</label>
+          {% endif %}
           {{ required() if editable }}
         </th>
         {% endif %}
@@ -114,7 +119,11 @@
           {% if context == 'submit' %}
           <label>
             {% if webapp %}
-              {{ _('Please provide at least one screen shot of your app:') }}
+              {% if waffle.switch('video-upload') %}
+                {{ _('Please provide at least one screenshot or video of your app:') }}
+              {% else %}
+                {{ _('Please provide at least one screenshot of your app:') }}
+              {% endif %}
             {% else %}
               {% trans %}
                 Please provide at least one screen shot of your add-on:
@@ -142,7 +151,7 @@
                     <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
                     <div class="edit-previews-text">
                       <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
-                        {{ _('Please provide a caption for this screenshot:') }}
+                        {{ _('Please provide a caption for this:') }}
                       </label>
                       {{ form.caption }}
                       <a href="#" class="remove">x</a>
@@ -158,8 +167,11 @@
                 {% endfor %}
               </div>
               <div class="invisible-upload">
-                <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
+                <a class="button" href="#">{% if waffle.switch('video-upload') -%}
+                  {{ _('Add a Screenshot or Video...') }}{% else %}
+                  {{ _('Add a Screenshot') }}{%- endif %}</a>
                 <input type="file" id="screenshot_upload" name="uploads" multiple
+                       data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
                        data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
               </div>
             {% endif %}

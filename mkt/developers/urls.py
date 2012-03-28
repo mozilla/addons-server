@@ -54,9 +54,9 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.acquire_refund_permission'),
     # Old stuff.
 
-    url('^upload_preview$', views.upload_image, {'upload_type': 'preview'},
+    url('^upload_preview$', views.upload_media, {'upload_type': 'preview'},
         name='mkt.developers.apps.upload_preview'),
-    url('^upload_icon$', views.upload_image, {'upload_type': 'icon'},
+    url('^upload_icon$', views.upload_media, {'upload_type': 'icon'},
         name='mkt.developers.apps.upload_icon'),
 
     url('^profile$', views.profile, name='mkt.developers.apps.profile'),

@@ -124,7 +124,7 @@ class Video(object):
         assert self.meta is not None
         self.errors = []
         if 'webm' not in self.meta.get('formats', ''):
-            self.errors.append('Must be a valid webm video')
+            self.errors.append('Videos must be WEBM.')
 
         #TODO(andym): More checks on duration, file size, bit rate?
         return not self.errors

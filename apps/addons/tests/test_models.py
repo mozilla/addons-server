@@ -1418,6 +1418,19 @@ class TestPreviewModel(amo.tests.TestCase):
         reality = sorted(Preview.objects.all()[0].as_dict().keys())
         eq_(expect, reality)
 
+    def test_filename(self):
+        preview = Preview.objects.get(pk=24)
+        eq_(preview.file_extension, 'png')
+        preview.update(filetype='')
+        eq_(preview.file_extension, 'png')
+        preview.update(filetype='video/webm')
+        eq_(preview.file_extension, 'webm')
+
+    def test_filename_in_url(self):
+        preview = Preview.objects.get(pk=24)
+        preview.update(filetype='video/webm')
+        assert 'webm' in preview.thumbnail_path
+
 
 class TestAddonRecommendations(amo.tests.TestCase):
     fixtures = ['base/addon-recs']
@@ -1479,7 +1492,7 @@ class TestFlushURLs(amo.tests.TestCase):
         settings.PREVIEW_THUMBNAIL_URL = (settings.STATIC_URL +
             '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
         settings.PREVIEW_FULL_URL = (settings.STATIC_URL +
-            '/img/uploads/previews/full/%s/%d.png?modified=%d')
+            '/img/uploads/previews/full/%s/%d.%s?modified=%d')
         _connect()
 
     def tearDown(self):

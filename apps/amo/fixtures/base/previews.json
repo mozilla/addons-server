@@ -165,7 +165,7 @@
         "model": "addons.preview",
         "fields": {
             "caption": 32680,
-            "filetype": "image/jpeg",
+            "filetype": "image/png",
             "created": "2007-03-05 09:54:15",
             "modified": null,
             "thumbtype": "image/png",

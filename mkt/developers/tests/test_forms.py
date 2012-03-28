@@ -17,31 +17,46 @@ class TestPreviewForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
 
     @mock.patch('amo.models.ModelBase.update')
     def test_preview_modified(self, update_mock):
-        addon = Addon.objects.get(pk=3615)
         name = 'transparent.png'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid()
-        form.save(addon)
+        form.save(self.addon)
         assert update_mock.called
 
     def test_preview_size(self):
-        addon = Addon.objects.get(pk=3615)
         name = 'non-animated.gif'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid()
-        form.save(addon)
-        eq_(addon.previews.all()[0].sizes,
+        form.save(self.addon)
+        eq_(self.addon.previews.all()[0].sizes,
             {u'image': [250, 297], u'thumbnail': [126, 150]})
+
+    def check_file_type(self, type_):
+        form = forms.PreviewForm({'caption': 'test', 'upload_hash': type_,
+                                  'position': 1})
+        assert form.is_valid()
+        form.save(self.addon)
+        return self.addon.previews.all()[0].filetype
+
+    def test_preview_good_file_type(self):
+        eq_(self.check_file_type('x.video-webm'), 'video/webm')
+
+    def test_preview_other_file_type(self):
+        eq_(self.check_file_type('x'), 'image/png')
+
+    def test_preview_bad_file_type(self):
+        eq_(self.check_file_type('x.foo'), 'image/png')
 
 
 class TestPaypalSetupForm(amo.tests.TestCase):

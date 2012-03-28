@@ -62,7 +62,7 @@ ADDON_ICON_URL = (STATIC_URL +
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
-        '/img/uploads/previews/full/%s/%d.png?modified=%d')
+        '/img/uploads/previews/full/%s/%d.%s?modified=%d')
 USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 CACHE_BACKEND = 'caching.backends.locmem://'

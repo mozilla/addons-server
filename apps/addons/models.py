@@ -1612,16 +1612,29 @@ class Preview(amo.models.ModelBase):
             modified = int(time.mktime(self.modified.timetuple()))
         else:
             modified = 0
-        return url_template % (self.id / 1000, self.id, modified)
+        args = [self.id / 1000, self.id, modified]
+        if '.png' not in url_template:
+            args.insert(2, self.file_extension)
+        return url_template % tuple(args)
 
     def _image_path(self, url_template):
-        return url_template % (self.id / 1000, self.id)
+        args = [self.id / 1000, self.id]
+        if '.png' not in url_template:
+            args.append(self.file_extension)
+        return url_template % tuple(args)
 
     def as_dict(self, src=None):
         d = {'full': urlparams(self.image_url, src=src),
              'thumbnail': urlparams(self.thumbnail_url, src=src),
              'caption': unicode(self.caption)}
         return d
+
+    @property
+    def file_extension(self):
+        # Assume that blank is an image.
+        if not self.filetype:
+            return 'png'
+        return self.filetype.split('/')[1]
 
     @property
     def thumbnail_url(self):
