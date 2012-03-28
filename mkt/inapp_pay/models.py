@@ -102,7 +102,10 @@ class InappPayLog(amo.models.ModelBase):
     # Magic numbers:
     _actions = {'PAY_START': 1,
                 'PAY': 2,
-                'EXCEPTION': 3}
+                'PAY_COMPLETE': 3,
+                'PAY_CANCEL': 4,
+                'PAY_ERROR': 5,
+                'EXCEPTION': 6}
     _exceptions = {'InappPaymentError': 1,
                    'AppPaymentsDisabled': 2,
                    'RequestExpired': 3,

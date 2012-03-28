@@ -26,6 +26,6 @@ def require_inapp_request(view):
             InappPayLog.log(request, 'EXCEPTION', app_public_key=exc.app_id,
                             exc_class=etype.__name__)
             log.info(u'%s: %s' % (etype.__name__, val))
-            return jingo.render(request, 'payments/error.html')
+            return jingo.render(request, 'inapp_pay/error.html')
         return view(request, signed_req, req, *args, **kw)
     return wrapper

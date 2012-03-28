@@ -59,7 +59,8 @@ CONTRIB_CHARGEBACK = 3
 # We've started a transaction and we need to wait to see what
 # paypal will return.
 CONTRIB_PENDING = 4
-CONTRIB_INAPP = 5
+CONTRIB_INAPP_PENDING = 5
+CONTRIB_INAPP = 6
 CONTRIB_OTHER = 99
 
 CONTRIB_TYPES = {

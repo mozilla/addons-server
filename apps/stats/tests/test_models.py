@@ -67,15 +67,22 @@ class TestContributionModel(amo.tests.TestCase):
         assert not self.con.is_instant_refund(), "Refund shouldn't be instant"
 
     def test_refund_inapp_instant(self):
-        self.con.update(created=datetime.now(), type=amo.CONTRIB_INAPP)
-        assert not self.con.can_we_refund(), 'No refund on inapp'
-        assert not self.con.is_instant_refund(), 'No refund on inapp'
+        for ctype in ('CONTRIB_INAPP', 'CONTRIB_INAPP_PENDING'):
+            self.con.update(created=datetime.now(), type=getattr(amo, ctype))
+            assert not self.con.can_we_refund(), (
+                                        'No refund on %s inapp' % ctype)
+            assert not self.con.is_instant_refund(), (
+                                        'No refund on %s inapp' % ctype)
 
     def test_refund_inapp_not_instant(self):
         diff = timedelta(seconds=settings.PAYPAL_REFUND_INSTANT + 10)
-        self.con.update(created=datetime.now() - diff, type=amo.CONTRIB_INAPP)
-        assert not self.con.can_we_refund(), 'No refund on inapp'
-        assert not self.con.is_instant_refund(), 'No refund on inapp'
+        for ctype in ('CONTRIB_INAPP', 'CONTRIB_INAPP_PENDING'):
+            self.con.update(created=datetime.now() - diff,
+                            type=getattr(amo, ctype))
+            assert not self.con.can_we_refund(), (
+                                        'No refund on %s inapp' % ctype)
+            assert not self.con.is_instant_refund(), (
+                                        'No refund on %s inapp' % ctype)
 
 
 class TestEmail(amo.tests.TestCase):
