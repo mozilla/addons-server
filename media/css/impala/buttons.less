@@ -267,46 +267,6 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
     display: none;
 }
 
-/* Invisible Upload */
-.invisible-upload {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    cursor: pointer;
-    input {
-        display: block;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: auto;
-        height: 110%;
-        opacity: 0;
-        cursor: pointer;
-        /* stack this below the navbar: */
-        z-index: 0;
-        outline: none;
-    }
-    &:hover input {
-        font-size: 1000px;
-    }
-    &:hover, &:focused {
-        a.button {
-            border-color: #25f;
-            .box-shadow(inset 0 0 2px #fff);
-        }
-        a.link {
-            text-decoration: underline;
-        }
-    }
-    a.button {
-        position: relative;
-        display: inline-block;
-    }
-    a.link {
-        text-decoration: none;
-        color: #05e;
-    }
-}
 button[disabled],
 .button.disabled,
 .button.concealed {

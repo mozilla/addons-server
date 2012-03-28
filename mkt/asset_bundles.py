@@ -46,6 +46,7 @@ CSS = {
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
         'css/devreg/media.less',
+        'css/common/invisible-upload.less',
 
         # Submission.
         'css/devreg/submit-progress.less',
@@ -183,7 +184,7 @@ JS = {
 
         # Developer Hub-specific scripts.
         'js/zamboni/truncation.js',
-        'js/zamboni/upload.js',
+        'js/common/upload-image.js',
 
         # New stuff.
         'js/devreg/devhub.js',

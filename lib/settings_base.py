@@ -473,6 +473,7 @@ MINIFY_BUNDLES = {
             'css/impala/typography.less',
             'css/global/headerfooter.css',
             'css/impala/forms.less',
+            'css/common/invisible-upload.less',
             'css/impala/header.less',
             'css/impala/footer.less',
             'css/impala/moz-tab.css',
@@ -529,6 +530,7 @@ MINIFY_BUNDLES = {
             'css/devhub/compat.less',
             'css/impala/formset.less',
             'css/devhub/forms.less',
+            'css/common/invisible-upload.less',
             'css/devhub/submission.less',
             'css/devhub/refunds.less',
             'css/devhub/buttons.less',
@@ -541,6 +543,7 @@ MINIFY_BUNDLES = {
             'css/devhub/compat.less',
             'css/devhub/dashboard.less',
             'css/devhub/forms.less',
+            'css/common/invisible-upload.less',
             'css/devhub/submission.less',
             'css/devhub/search.less',
             'css/devhub/refunds.less',
@@ -707,7 +710,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             # Persona creation
-            'js/zamboni/upload.js',
+            'js/common/upload-image.js',
             'js/lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
@@ -767,7 +770,8 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/devhub': (
             'js/zamboni/truncation.js',
-            'js/zamboni/upload.js',
+            'js/common/upload-addon.js',
+            'js/common/upload-image.js',
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
