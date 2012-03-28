@@ -20,6 +20,10 @@ def resize_video(src, instance, *kw):
     """
     log.info('[1@None] Encoding video %s' % instance.pk)
     video = Video(src)
+    if not video.encoder_available():
+        log.info('Video encoder not available for %s' % instance.pk)
+        return
+
     video.get_meta()
     if not video.is_valid():
         log.info('Video is not valid for %s' % instance.pk)

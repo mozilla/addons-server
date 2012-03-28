@@ -87,6 +87,8 @@ class TestTask(amo.tests.TestCase):
         self.mock.thumbnail_path = tempfile.mkstemp()[1]
         self.mock.image_path = tempfile.mkstemp()[1]
         self.mock.pk = 1
+        if not ffmpeg.Video('').encoder_available():
+            raise SkipTest
 
     def test_resize_video(self):
         resize_video(files['good'], self.mock)
