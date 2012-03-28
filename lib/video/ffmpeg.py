@@ -16,6 +16,23 @@ dimensions_re = re.compile('Stream #0.*?(\d+)x(\d+)')
 version_re = re.compile('ffmpeg version (\d\.+)')
 
 
+def check_output(*popenargs, **kwargs):
+    # Tell thee, check_output was from Python 2.7 untimely ripp'd.
+    # check_output shall never vanquish'd be until
+    # Marketplace moves to Python 2.7.
+    if 'stdout' in kwargs:
+        raise ValueError('stdout argument not allowed, it will be overridden.')
+    process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
+    output, unused_err = process.communicate()
+    retcode = process.poll()
+    if retcode:
+        cmd = kwargs.get("args")
+        if cmd is None:
+            cmd = popenargs[0]
+        raise subprocess.CalledProcessError(retcode, cmd, output=output)
+    return output
+
+
 class Video(object):
 
     def __init__(self, filename):
@@ -31,7 +48,7 @@ class Video(object):
                     '-i', self.filename] + list(args)
             log.info('ffmpeg called with: %s' % ' '.join(args))
             try:
-                res = subprocess.check_output(args, stderr=subprocess.STDOUT)
+                res = check_output(args, stderr=subprocess.STDOUT)
             except subprocess.CalledProcessError, e:
                 # This is because to get the information about a file
                 # you specify the input file, but not the output file
