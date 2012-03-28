@@ -32,6 +32,12 @@ var csv_keys = {
     ratings: {
         'count': gettext('Ratings')
     },
+    sales: {
+        'count': gettext('Sales')
+    },
+    installs: {
+        'count': gettext('Installs')
+    },
     sources: {
         "null"                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
@@ -96,6 +102,11 @@ var csv_keys = {
         'downloads' : gettext('Downloads'),
         'updates'   : gettext('Daily Users')
     },
+    app_overview: {
+        'installs': gettext('Installs'),
+        'sales': gettext('Sales'),
+        'usage': gettext('Usage')
+    },
     apps : {
         '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}' : gettext('Firefox'),
         '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}' : gettext('Mozilla'),
@@ -110,6 +121,12 @@ var csv_keys = {
             gettext("Downloads and Daily Users, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Downloads and Daily Users from {0} to {1}")
+        ],
+        "app_overview"  : [
+            // L10n: {0} is an integer.
+            gettext("Installs and Daily Users, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Installs and Daily Users from {0} to {1}")
         ],
         "downloads" : [
             // L10n: {0} is an integer.
@@ -224,6 +241,18 @@ var csv_keys = {
             gettext("Ratings, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Ratings from {0} to {1}")
+        ],
+        "sales"  : [
+            // L10n: {0} is an integer.
+            gettext("Sales, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Sales from {0} to {1}")
+        ],
+        "installs"  : [
+            // L10n: {0} is an integer.
+            gettext("Installs, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Installs from {0} to {1}")
         ]
     },
     aggregateLabel: {

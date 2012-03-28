@@ -133,6 +133,9 @@ CSS = {
         'css/impala/localizers.less',
         'css/mkt/in-app-payments.less',
     ),
+    'mkt/stats': (
+        'css/mkt/stats.less',
+    ),
     'marketplace-experiments': (
         'marketplace-experiments/css/reset.less',
         'marketplace-experiments/css/site.less',
@@ -222,6 +225,22 @@ JS = {
 
         # Account settings.
         'js/mkt/account.js',
+    ),
+    'mkt/stats': (
+        'js/zamboni/storage.js',
+        'js/mkt/modal.js',
+        'js/lib/jquery-datepicker.js',
+        'js/lib/highcharts.src.js',
+        'js/impala/stats/csv_keys.js',
+        'js/impala/stats/helpers.js',
+        'js/impala/stats/dateutils.js',
+        'js/impala/stats/manager.js',
+        'js/impala/stats/controls.js',
+        'js/impala/stats/overview.js',
+        'js/impala/stats/topchart.js',
+        'js/impala/stats/chart.js',
+        'js/impala/stats/table.js',
+        'js/impala/stats/stats.js',
     ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',

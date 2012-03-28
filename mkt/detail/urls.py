@@ -11,6 +11,9 @@ urlpatterns = patterns('',
     # Submission.
     ('^purchase/', include('mkt.purchase.urls')),
 
+    # Statistics
+    ('^statistics/', include('mkt.stats.urls')),
+
     # TODO: Port abuse.
     url('^abuse$', addons.views.report_abuse, name='detail.abuse'),
 )

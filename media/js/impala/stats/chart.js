@@ -79,9 +79,11 @@
         "versions"           : "users",
         "statuses"           : "users",
         "users_created"      : "users",
+        "installs"           : "users",
         "downloads"          : "downloads",
         "sources"            : "downloads",
         "contributions"      : "currency",
+        "sales"              : "currency",
         "reviews_created"    : "reviews",
         "addons_in_use"      : "addons",
         "addons_created"     : "addons",
@@ -121,7 +123,8 @@
             series  = {},
             events  = obj.events,
             chartRange = {},
-            t, row, i, field, val;
+            t, row, i, field, val,
+            is_overview = metric == 'overview' || metric == 'app_overview';
 
         if (!(group in acceptedGroups)) {
             group = 'day';
@@ -208,7 +211,7 @@
                 xFormatter = dayFormatter;
             }
 
-            if (metric == 'overview') {
+            if (is_overview) {
                 return function() {
                     var ret = "<b>" + xFormatter(this.x) + "</b>",
                         p;
@@ -268,7 +271,7 @@
         // Set up the new chart's configuration.
         var newConfig = $.extend(baseConfig, { series: chartData });
         // set up dual-axes for the overview chart.
-        if (metric == "overview" && newConfig.series.length) {
+        if (is_overview && newConfig.series.length) {
             _.extend(newConfig, {
                 yAxis : [
                     { // Downloads
@@ -300,8 +303,14 @@
                 }
             });
             // set Daily Users series to use the right yAxis.
-            _.find(newConfig.series,
+            if (metric == 'overview') {
+                _.find(newConfig.series,
                    function(s) { return s.id == 'updates'; }).yAxis = 1;
+            } else {
+                _.find(newConfig.series,
+                   function(s) { return s.id == 'usage'; }).yAxis = 1;
+            }
+
         }
         if (metric == "contributions" && newConfig.series.length) {
             _.extend(newConfig, {

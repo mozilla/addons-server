@@ -24,7 +24,8 @@ z.StatsManager = (function() {
         pendingFetches  = 0,
         siteEventsEnabled = $('body').hasClass('waffle-site-events'),
         writeInterval   = false,
-        lookup          = {};
+        lookup          = {},
+        msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
 
     // NaN is a poor choice for a storage key
     if (isNaN(addonId)) addonId = 'globalstats';
@@ -110,7 +111,7 @@ z.StatsManager = (function() {
 
         // On custom ranges request a range greater by 1 day. (bug 737910)
         if (currentView.range.custom && typeof currentView.range.end == 'object') {
-            currentView.range.end = new Date(currentView.range.end.getTime() + (24 * 60 * 60 * 1000));
+            currentView.range.end = new Date(currentView.range.end.getTime() + msDay);
         }
 
         // Fetch the data from the server or storage, and notify other components.

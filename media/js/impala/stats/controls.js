@@ -4,10 +4,13 @@
     var $rangeSelector = $(".criteria.range ul"),
         $customRangeForm = $("div.custom.criteria"),
         $groupSelector = $(".criteria.group ul"),
-        minDate = Date.iso($('.primary').attr('data-min-date'));
+        minDate = Date.iso($('.primary').attr('data-min-date')),
+        msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
 
     $.datepicker.setDefaults({showAnim: ''});
-    var $customModal = $("#custom-criteria").modal("#custom-date-range", { width: 520, hideme: false });
+    var $customModal = $("#custom-criteria").modal("#custom-date-range",
+                                                   { width: 520,
+                                                     hideme: false });
     var $startPicker = $("#start-date-picker").datepicker({
         maxDate: 0,
         minDate: minDate,
@@ -52,7 +55,7 @@
 
             // Trim nRange.end by one day if custom range.
             if (newState.range.custom) {
-                nRange.end = new Date(nRange.end.getTime() - (24 * 60 * 60 * 1000));
+                nRange.end = new Date(nRange.end.getTime() - msDay);
                 endStr = nRange.end.iso();
             }
 
@@ -66,10 +69,12 @@
                 var newRange = newState.range,
                     $rangeEl = $('li[data-range="' + newRange + '"]');
                 if ($rangeEl.length) {
-                    $rangeSelector.children("li.selected").removeClass("selected");
+                    $rangeSelector.children("li.selected")
+                                  .removeClass("selected");
                     $rangeEl.addClass("selected");
                 } else {
-                    $rangeSelector.children("li.selected").removeClass("selected");
+                    $rangeSelector.children("li.selected")
+                                  .removeClass("selected");
                     $('li[data-range="custom"]').addClass("selected");
                 }
             } else {

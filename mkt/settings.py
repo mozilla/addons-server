@@ -50,6 +50,7 @@ INSTALLED_APPS += (
     'mkt.purchase',
     'mkt.reviewers',
     'mkt.search',
+    'mkt.stats',
     'mkt.submit',
     'mkt.support',
     'mkt.webapps',

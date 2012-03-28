@@ -1,0 +1,183 @@
+{% extends 'mkt/base.html' %}
+
+{% set range = view.range %}
+
+{% block bodyclass %}
+  statistics
+  {{ 'waffle-site-events' if waffle.switch('site-events') else '' }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/stats') }}
+  <link rel="stylesheet"
+        href="{{ media('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
+{% endblock %}
+
+{% block title %}
+  {# L10n: {0} is the app name #}
+  {{ _('{0} · Statistics Dashboard')|f(addon.name) }}
+{% endblock %}
+
+{% block content %}
+<section id="stats">
+  <header class="c">
+    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                           (addon.get_url_path(), addon.name),
+                           (link, _('Statistics'))]) }}
+
+    <hgroup class="c">
+      <h1 class="addon"{{ addon.name|locale_html }}>
+        {# L10n: {0} is an add-on name #}
+        {{ _('Statistics for {0}')|f(addon.name) }}
+      </h1>
+    </hgroup>
+
+    <div class="criteria island">
+      <ul>
+        <li>{{ _('Controls:') }}</li>
+        <li>
+          <a id="chart-zoomout" class="inactive" href="#">
+               {{ _('reset zoom') }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="criteria group island">
+      <ul>
+        <li>{{ _('Group by:') }}</li>
+        <li data-group="day">
+            <a href="#">{{ _('day') }}</a>
+        </li>
+        <li data-group="week">
+            <a href="#">{{ _('week') }}</a>
+        </li>
+        <li data-group="month">
+            <a href="#">{{ _('month') }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="criteria range island">
+      <ul>
+        <li>{{ _('For last:') }}</li>
+        <li data-range="7 days"
+            {% if range == '7' %}class="selected"{% endif %}>
+            <a href="#">{{ _('7 days') }}</a></li>
+        <li data-range="30 days"
+            {% if range == '30' %}class="selected"{% endif %}>
+            <a href="#">{{ _('30 days') }}</a></li>
+        <li data-range="90 days"
+            {% if range == '90' %}class="selected"{% endif %}>
+            <a href="#">{{ _('90 days') }}</a></li>
+        <li data-range="365 days"
+            {% if range == '365' %}class="selected"{% endif %}>
+            <a href="#">{{ _('365 days') }}</a></li>
+        <li data-range="custom"
+            {% if range == 'custom' %}class="selected"{% endif %}>
+            <a id="custom-date-range" href="#">{{ _('Custom&hellip;') }}</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div id="lm" class="loadmessage">
+    <span>{{ _('Loading the latest data&hellip;') }}</span>
+  </div>
+  {# Initial stats will be `installs` only. Uncomment when others are done.
+  <div class="secondary">
+    {{ report_menu(request, report, obj=addon) }}
+    {% block stats_note_link %}{% endblock %}
+    <pre id="dbgout"></pre>
+  </div>
+  #}
+  <div class="primary statistics"
+    {% if addon %}
+      data-min-date="{{ addon.created|isotime }}"
+      data-addon_id="{{ addon.id }}"
+    {% endif %}
+    data-report="{{ report }}"
+    {% if view.last %}
+    data-range="{{ view.last }}"
+    {% endif %}
+    {% if view.start and view.end %}
+    data-range="custom"
+    data-start_date="{{ view.start }}"
+    data-end_date="{{ view.end }}"
+    {% endif %}
+    data-base_url="{{ stats_base_url }}">
+    <div class="island chart">
+      <div id="head-chart">
+      </div>
+      <div class="no-data-overlay">
+        <p>{{ _('No data available.') }}</p>
+      </div>
+    </div>
+    {% block stats %}
+    {% endblock %}
+    {% block csvtable %}
+      <div class="island">
+        {% block csvtitle %}{% endblock %}
+        <div class="tabular csv-table">
+          <div class="table-box">
+            <table>
+              <thead>
+              </thead>
+            </table>
+          </div>
+          <footer>
+            <nav class="paginator c">
+              <p class="range">
+              </p>
+              <p class="rel">
+                <a href="#"
+                   class="button prev disabled">
+                  &#x25C2; {{ _('Previous') }}</a>
+                <a href="#"
+                   class="button next">
+                  {{ _('Next') }} &#x25B8;</a>
+              </p>
+            </nav>
+          </footer>
+        </div>
+      </div>
+    {% endblock %}
+    <div id="stats-permissions">
+      {% if addon.public_stats %}
+        <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
+        {% if request.check_ownership(addon) %}
+          <p>{{ _('Contribution stats are currently <b>private</b>.') }}</p>
+        {% endif %}
+      {% else %}
+        <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
+      {% endif %}
+      {% if request.check_ownership(addon) %}
+        <p>
+          <a href="{{ addon.get_dev_url() }}#edit-addon-technical">
+            {{ _('Change settings.') }}
+          </a>
+        </p>
+      {% endif %}
+    </div>
+    <div class="hidden">
+      <div id="fieldMenuPopup" class="popup">
+        <form id="fieldMenu">
+          <ul id="fieldList">
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="popup-container">
+    {% include 'stats/popup.html' %}
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  <!--[if IE]>
+    <script
+      src="{{ media('js/lib/excanvas.compiled.js') }}">
+    </script>
+  <![endif]-->
+  {{ js('mkt/stats') }}
+{% endblock %}

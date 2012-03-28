@@ -3,7 +3,7 @@
     $(function() {
         "use strict";
 
-        // Modify the URL when the page state changes, if the browser supports pushSate.
+        // Modify the URL when the page state changes, if the browser supports pushState.
         if (z.capabilities.replaceState) {
             $(window).bind('changeview', function(e, view) {
                 var queryParams = {},
