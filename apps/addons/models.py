@@ -1410,6 +1410,18 @@ class Persona(caching.CachingMixin, models.Model):
                           authors__in=self.addon.listed_authors)
                   .distinct())
 
+    @amo.cached_property(writable=True)
+    def listed_authors(self):
+        # TODO(andym): delete this once personas are migrated.
+        if not waffle.switch_is_active('personas-migration-completed'):
+
+            class PersonaAuthor(unicode):
+                @property
+                def name(self):
+                    return self
+            return [PersonaAuthor(self.display_username)]
+        return self.addon.listed_authors
+
 
 class AddonCategory(caching.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)

@@ -1233,15 +1233,18 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
 
 class TestPersonas(object):
+    fixtures = ['addons/persona', 'base/users']
 
-    def create_addon_user(self, addon, user=None):
-        if user is None:
-            user = UserProfile.objects.get(pk=999)
-        AddonUser.objects.create(addon=addon, user=user)
+    def create_addon_user(self, addon):
+        if waffle.switch_is_active('personas-migration-completed'):
+            return AddonUser.objects.create(addon=addon, user_id=999)
+
+        if addon.type == amo.ADDON_PERSONA:
+            addon.persona.author = self.persona.author
+            addon.persona.save()
 
 
 class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
-    fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=15663)
@@ -1301,28 +1304,26 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         eq_(a.length, 1)
         eq_(a.attr('href'), other.get_url_path())
 
-    # TODO(andym): Turn on the personas-migration-completed switch
-    # Once migration is done, delete the patches, following the
-    # pre_migration tests and the create_addon_user method.
-    @patch.object(waffle, 'switch_is_active', lambda x: False)
-    def test_pre_migration_more_personas(self):
-        self.test_more_personas()
+    def test_by(self):
+        """Test that the by... bit works."""
+        r = self.client.get(self.url)
+        assert pq(r.content)('h4.author').text().startswith('by regularuser')
 
-    @patch.object(waffle, 'switch_is_active', lambda x: False)
-    def test_pre_migration_new_more_personas(self):
-        self.test_new_more_personas()
 
-    @patch.object(waffle, 'switch_is_active', lambda x: False)
-    def test_pre_migration_other_personas(self):
-        """Ensure listed personas by the same author show up."""
-        self.test_other_personas()
+# TODO(andym): delete once personas migration is live.
+class TestPrePersonaDetailPage(TestPersonaDetailPage):
 
-    def create_addon_user(self, addon, user=None):
-        if waffle.switch_is_active('personas-migration-completed'):
-            return (super(TestPersonaDetailPage, self)
-                         .create_addon_user(addon, user))
-        addon.persona.author = self.persona.author
-        addon.persona.save()
+    def setUp(self):
+        self.addon = Addon.objects.get(id=15663)
+        self.persona = self.addon.persona
+        self.url = self.addon.get_url_path()
+        (waffle.models.Switch.objects
+               .create(name='personas-migration-completed', active=False))
+        self.create_addon_user(self.addon)
+
+    def test_by(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('h4.author').text(), 'by My Persona')
 
 
 class TestStatus(amo.tests.TestCase):
@@ -1693,10 +1694,10 @@ class TestMobileDetails(TestPersonas, TestMobile):
         self.ext = Addon.objects.get(id=3615)
         self.url = reverse('addons.detail', args=[self.ext.slug])
         self.persona = Addon.objects.get(id=15679)
-        self.create_addon_user(self.persona)
         self.persona_url = self.persona.get_url_path()
         (waffle.models.Switch.objects
                .create(name='personas-migration-completed', active=True))
+        self.create_addon_user(self.persona)
 
     def test_extension(self):
         r = self.client.get(self.url)
