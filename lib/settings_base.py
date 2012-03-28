@@ -1006,7 +1006,7 @@ CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_LOG_LEVEL = logging.INFO
 CELERYD_HIJACK_ROOT_LOGGER = False
-CELERY_IMPORTS = ('django_arecibo.tasks', 'lib.videos.tasks.resize_video')
+CELERY_IMPORTS = ('django_arecibo.tasks', 'lib.video.tasks')
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
