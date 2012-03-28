@@ -149,7 +149,7 @@ def install(request):
         try:
             addon_id = int(addon_id)
         except ValueError:
-            return HttpResponseNotFound()
+            pass
     addon_key = request.GET.get('addon_key', None)
     addon_name = request.GET.get('addon_name', None)
     if addon_id in addons:

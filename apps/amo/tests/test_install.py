@@ -23,6 +23,12 @@ class InstallTests(TestCase):
         r = self.client.get(urlparams(url, addon_key='prism'))
         assert 'prompted to install Prism for Firefox' in r.content
 
+    def test_byidname(self):
+        url = reverse('api.install')
+        r = self.client.get(urlparams(url, addon_id='prism'))
+        assert 'prompted to install Prism for Firefox' in r.content
+
+
     def test_redirect(self):
         url = reverse('api.install')
         r = self.client.get(urlparams(url, addon_id=424))
