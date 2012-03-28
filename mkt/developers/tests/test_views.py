@@ -614,6 +614,17 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
         assert 'previously issued' in r.cookies['messages'].value
 
+    @mock.patch('paypal.refund')
+    def test_no_api_key(self, refund):
+        refund.return_value = [{'refundStatus': 'NO_API_ACCESS_TO_RECEIVER',
+                                'receiver.email': self.user.email}]
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'})
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
+        eq_(len(mail.outbox), 0)
+        assert 'try again later' in r.cookies['messages'].value
+
 
 class TestRefunds(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
