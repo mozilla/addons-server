@@ -363,6 +363,9 @@ button.loading-submit:after,
         th {
             padding-right: 20px;
             width: 130px;
+            .req {
+                vertical-align: top;
+            }
         }
         td {
             color: @medium-gray;
@@ -413,9 +416,25 @@ button.loading-submit:after,
     }
 }
 
-.login, .modal {
+.html-rtl, .login, .modal {
     .listing-footer {
         text-align: left;
+    }
+}
+
+.html-rtl {
+    .listing-footer {
+        button, .button {
+            margin: 0 0 0 6px;
+        }
+        a {
+            margin: 0 4px 0 0;
+        }
+    }
+    .login, .modal {
+        .listing-footer {
+            text-align: right;
+        }
     }
 }
 

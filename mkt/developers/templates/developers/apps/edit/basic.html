@@ -1,4 +1,5 @@
-{% from "developers/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
+{% from 'developers/includes/macros.html' import empty_unless, required, select_cats, tip, trans_readonly %}
+{% set req_if_edit = required() if editable %}
 <form method="post" action="{{ url('mkt.developers.apps.section', valid_slug, 'basic', 'edit') }}"
       id="addon-edit-basic"
       data-baseurl="{{ url('mkt.developers.apps.edit', valid_slug) }}">
@@ -15,7 +16,9 @@
       <caption>{{ _('Basic Information for {0}')|f(addon.name) }}</caption>
       <tbody>
         <tr>
-          <th><label data-for="name">{{ _("Name") }}</label></th>
+          <th>
+            <label data-for="name">{{ _('Name') }}</label> {{ req_if_edit }}
+          </th>
           <td>
             {% if editable %}
               {{ form.name }}
@@ -27,14 +30,9 @@
         </tr>
         <tr>
           <th>
-            {% if webapp %}
-              {# TODO(apps): Finalize copy. #}
-              {{ tip('App URL',
-                     'Choose a short, unique URL slug for your app.') }}
-            {% else %}
-              {{ tip(_("Add-on URL"),
-                 _("Choose a short, unique URL slug for your add-on.")) }}
-            {% endif %}
+            {{ tip(_('App URL'),
+                   _('Choose a short, unique URL slug for your app.')) }}
+            {{ req_if_edit }}
           </th>
           <td id="slug_edit">
             {% if editable %}
@@ -77,10 +75,10 @@
               {% if webapp %}
                 {# TODO(apps): Finalize copy. #}
                 {{ tip(None,
-                       "A short explanation of your app's basic
-                        functionality that is displayed in search and browse
-                        listings, as well as at the top of your app's
-                        details page.") }}
+                       _("A short explanation of your app's basic
+                         functionality that is displayed in search and browse
+                         listings, as well as at the top of your app's
+                         details page.")) }}
               {% else %}
                 {{ tip(None,
                        _("A short explanation of your add-on's basic
@@ -104,18 +102,11 @@
         </tr>
         <tr>
           <th>
-            {% if webapp %}
-              {# TODO(apps): Finalize copy. #}
-              {{ tip('Categories',
-                     "Categories are the primary way users browse through apps.
+            {{ tip(_('Categories'),
+                   _("Categories are the primary way users browse through apps.
                       Choose any that fit your app's functionality for the
-                      most exposure.") }}
-            {% else %}
-              {{ tip(_("Categories"),
-                     _("Categories are the primary way users browse through add-ons.
-                        Choose any that fit your add-on's functionality for the most
-                        exposure.")) }}
-            {% endif %}
+                      most exposure.")) }}
+            {{ req_if_edit }}
           </th>
           <td id="addon-categories-edit"
               data-max-categories="{{ amo.MAX_CATEGORIES }}">
@@ -125,7 +116,9 @@
               {% for form in cat_form.initial_forms %}
                 {% if form.disabled %}
                   <p class="addon-app-cats addon-app-cats-inline">
-                    <b>{{ form.app.pretty }}:</b>
+                    {% if form.app %}
+                      <b>{{ form.app.pretty }}:</b>
+                    {% endif %}
                     {% set cats = dict(addon.app_categories).get(form.app, []) %}
                     {{ cats|join(' &middot; ')|safe }}
                   </p>
@@ -168,12 +161,12 @@
             {% endif %}
           </td>
         </tr>
-        {% if webapp and waffle.switch('marketplace') %}
         <tr>
           <th>
-            {{ tip(loc('Device Types'),
-                   loc('Indicate support for desktop, mobile and tablet
-                        devices.')) }}
+            {{ tip(_('Device Types'),
+                   _('Indicate support for desktop, mobile and tablet
+                      devices.')) }}
+            {{ req_if_edit }}
           </th>
           <td id="addon-device-types-edit">
             {% if editable %}
@@ -190,7 +183,6 @@
             {% endif %}
           </td>
         </tr>
-        {% endif %}
       </tbody>
     </table>
     {% if editable %}

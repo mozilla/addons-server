@@ -1,4 +1,4 @@
-{% from "developers/includes/macros.html" import tip, empty_unless %}
+{% from 'developers/includes/macros.html' import empty_unless, required, tip %}
 
 {{ csrf() }}
 
@@ -106,15 +106,15 @@
       <tr>
         {% if context == 'edit' %}
         <th>
-          <label>{{ _("Screenshots") }}</label>
+          <label>{{ _('Screenshots') }}</label>
+          {{ required() if editable }}
         </th>
         {% endif %}
         <td class="edit-previews-readonly">
           {% if context == 'submit' %}
           <label>
             {% if webapp %}
-              {# TODO(apps): Finalize copy. #}
-              Please provide at least one screen shot of your app:
+              {{ _('Please provide at least one screen shot of your app:') }}
             {% else %}
               {% trans %}
                 Please provide at least one screen shot of your add-on:

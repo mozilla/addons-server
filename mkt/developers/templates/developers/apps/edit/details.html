@@ -1,4 +1,5 @@
-{% from "developers/includes/macros.html" import tip, some_html_tip, empty_unless %}
+{% from 'developers/includes/macros.html' import empty_unless, required, some_html_tip, tip %}
+{% set req_if_edit = required() if editable %}
 <form method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
   <h2>
     {{ loc('App Details') }}
@@ -15,20 +16,12 @@
           <th>
             <label data-for="description">
               {{ _('Description') }}
-              {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
-                {{ tip(None,
-                       "A longer explanation of features, functionality, and
+              {{ tip(None,
+                     _("A longer explanation of features, functionality, and
                         other relevant information. This field is displayed
-                        only on the app's details page.") }}
-              {% else %}
-                {{ tip(None,
-                       _("A longer explanation of features,
-                          functionality, and other relevant information. This
-                          field is only displayed on the add-on's details
-                          page.")) }}
-              {% endif %}
+                        only on the app's details page.")) }}
             </label>
+            {{ req_if_edit }}
           </th>
           <td>
             {% if editable %}
@@ -56,6 +49,7 @@
                      _("Information about your add-on is displayed in this locale
                         unless you override it with a locale-specific translation.")) }}
             {% endif %}
+            {{ req_if_edit }}
           </th>
           <td class="addon_edit_locale">
             {% if editable %}
@@ -106,6 +100,7 @@
                        "data is transmitted from a user's computer and how "
                        "it is used.")) }}
             </label>
+            {{ req_if_edit }}
           </th>
           <td>
             {% if editable %}
