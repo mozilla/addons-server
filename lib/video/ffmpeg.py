@@ -131,8 +131,8 @@ class Video(object):
 
     def encoder_available(self):
         try:
-            output = subprocess.check_output([self.name, '-version'],
-                                             stderr=subprocess.STDOUT)
+            output = check_output([self.name, '-version'],
+                                  stderr=subprocess.STDOUT)
             # If in the future we want to check for an ffmpeg version
             # this is the place to do it.
             return bool(version_re.match(output))

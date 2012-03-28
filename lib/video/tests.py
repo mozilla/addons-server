@@ -40,7 +40,7 @@ class TestGoodVideo(amo.tests.TestCase):
     # These tests can be a little bit slow, to say the least so they are
     # skipped. Un-skip them if you want.
     def test_screenshot(self):
-        #raise SkipTest
+        raise SkipTest
         try:
             screenshot = self.video.get_screenshot(amo.ADDON_PREVIEW_SIZES[0])
             assert os.stat(screenshot)[stat.ST_SIZE]
@@ -48,7 +48,7 @@ class TestGoodVideo(amo.tests.TestCase):
             os.remove(screenshot)
 
     def test_encoded(self):
-        #raise SkipTest
+        raise SkipTest
         try:
             video = self.video.get_encoded(amo.ADDON_PREVIEW_SIZES[0])
             assert os.stat(video)[stat.ST_SIZE]
