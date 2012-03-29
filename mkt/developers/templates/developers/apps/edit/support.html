@@ -17,9 +17,10 @@
             <label data-for="support_email">
               {{ _("Email") }}
               {{ tip(None,
-                     _("Provide an email address for support inquiries.
-                        If you have different addresses for each language
-                        multiple translations of this field can be added.")) }}
+                     loc("The email address used by end users to contact you
+                          with support issues and refund requests. If you have
+                          different addresses for each language multiple
+                          translations of this field can be added.")) }}
             </label>
             {{ required() if editable }}
           </th>

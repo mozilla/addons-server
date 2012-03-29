@@ -1,4 +1,5 @@
 {% extends 'developers/base_impala.html' %}
+{% from 'developers/includes/macros.html' import required %}
 
 {% set title = _('Manage Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
@@ -18,7 +19,9 @@
     <form method="post" action="{{ addon.get_dev_url('payments') }}">
       {{ csrf() }}
       <div class="brform" id="payments-premium-type">
-        <label for="id_premium_type">{{ form.premium_type.label }}</label>
+        <label for="id_premium_type">
+          {{ form.premium_type.label }} {{ required() }}
+        </label>
         <div class="extra">
           {{ loc('How your app will displayed on the marketplace.') }}
         </div>

@@ -69,7 +69,7 @@ class PremiumTypeForm(happyforms.Form):
 
 class UpsellForm(happyforms.Form):
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_('App price'),
+                                   label=_('App Price'),
                                    empty_label=None,
                                    required=True)
 
@@ -176,7 +176,8 @@ class AppDetailsBasicForm(AddonFormBasic):
         widget=TransInput(attrs={'class': 'full'}))
     support_email = TransField.adapt(forms.EmailField)(
         label=_lazy(u'Support Email'),
-        help_text=_(u'Provide an email address for support inquiries.'),
+        help_text=_(u'The email address used by end users to contact you with '
+                     'support issues and refund requests.'),
         widget=TransInput(attrs={'class': 'full'}))
 
     class Meta:

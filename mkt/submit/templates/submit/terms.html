@@ -36,7 +36,6 @@
       </li>
     </ol>
     <form method="post">
-      {# TODO: Add newsletter field. #}
       {{ csrf() }}
       {{ form_field(agreement_form.newsletter, opt=True) }}
       {{ agreement_form.newsletter.errors }}

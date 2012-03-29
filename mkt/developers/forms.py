@@ -17,7 +17,6 @@ import addons.forms
 from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
                            Preview)
-from amo.helpers import loc
 from amo.utils import raise_required, remove_icons
 from files.models import FileUpload
 from market.models import AddonPremium, Price, AddonPaymentData
@@ -249,22 +248,21 @@ class PremiumForm(happyforms.Form):
     The premium details for an addon, which is unfortunately
     distributed across a few models.
     """
-    premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
-                                choices=amo.ADDON_PREMIUM_TYPES.items(),
-                                widget=forms.RadioSelect())
+    premium_type = forms.TypedChoiceField(label=_lazy(u'Premium Type'),
+        coerce=lambda x: int(x), choices=amo.ADDON_PREMIUM_TYPES.items(),
+        widget=forms.RadioSelect())
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_('Add-on price'),
+                                   label=_('Add-on Price'),
                                    empty_label=None,
                                    required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=APP_UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
                                        required=False)
-    free = AddonChoiceField(queryset=Addon.objects.none(),
-                                  required=False,
-                                  empty_label='')
+    free = AddonChoiceField(queryset=Addon.objects.none(), required=False,
+                            empty_label='')
     text = forms.CharField(widget=forms.Textarea(), required=False)
-    support_email = forms.EmailField()
+    support_email = forms.EmailField(label=_lazy(u'Support Email'))
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
@@ -288,7 +286,7 @@ class PremiumForm(happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
         if self.addon.is_webapp():
-            self.fields['price'].label = loc('App price')
+            self.fields['price'].label = _(u'App Price')
             self.fields['do_upsell'].choices = APP_UPSELL_CHOICES
         self.fields['free'].queryset = (self.extra['amo_user'].addons
                                     .exclude(pk=self.addon.pk)

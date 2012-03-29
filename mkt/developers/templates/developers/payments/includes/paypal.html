@@ -1,5 +1,9 @@
+{% from 'developers/includes/macros.html' import required %}
 <div class="brform" id="payments-support-type">
-  <label for="id_support_email">{{ form.support_email.label }}</label>
+  <label for="id_support_email">
+    {{ form.support_email.label }}
+    {{ required() }}
+  </label>
   <div class="extra">
     <p>
       {% trans %}The email address used by end users to contact you

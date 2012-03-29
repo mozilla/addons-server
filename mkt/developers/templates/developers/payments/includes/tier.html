@@ -1,5 +1,6 @@
+{% from 'developers/includes/macros.html' import required %}
 <div class="brform" id="payments-price-level">
-  <label for="id_price">{{ form.price.label }}</label>
+  <label for="id_price">{{ form.price.label }} {{ required() }}</label>
   <div class="extra">
     <p>
           {{ loc('Select a price tier for your app below. Price tiers are based

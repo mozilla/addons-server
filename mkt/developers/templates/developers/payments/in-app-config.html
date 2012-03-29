@@ -1,4 +1,5 @@
 {% extends 'developers/base_impala.html' %}
+{% from 'developers/includes/macros.html' import required %}
 
 {% set title = _('Manage In-App Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
@@ -28,7 +29,7 @@
         <td>https://{{ addon.app_domain }}</td>
       </tr>
       <tr>
-        <th><label for="id_postback_url">{{ _("Postback URL") }}</label></th>
+        <th><label for="id_postback_url">{{ _("Postback URL") }} {{ required() }}</label></th>
         <td>
           {{ inapp_form.postback_url }}
           {{ inapp_form.postback_url.errors }}
@@ -36,7 +37,7 @@
         </td>
       </tr>
       <tr>
-        <th><label for="id_chargeback_url">{{ _("Chargeback URL") }}</label></th>
+        <th><label for="id_chargeback_url">{{ _("Chargeback URL") }} {{ required() }}</label></th>
         <td>
           {{ inapp_form.chargeback_url }}
           {{ inapp_form.chargeback_url.errors }}
