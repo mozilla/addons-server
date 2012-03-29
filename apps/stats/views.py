@@ -540,6 +540,7 @@ def site_series(request, format, group, start, end, field):
             series.append({
                 'date': row['date'],
                 'count': row['data'][field],
+                'data': {},
             })
     # TODO: (dspasovski) check whether this is the CSV data we really want
     if format == 'csv':
