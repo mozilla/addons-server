@@ -77,6 +77,23 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-welcome').length, 1)
         eq_(doc('#site-noinstall-apps').length, 0)
 
+    @mock.patch.object(settings, 'READ_ONLY', False)
+    def test_thunderbird_balloons_no_readonly(self):
+        response = self.client.get('/en-US/thunderbird/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 0)
+
+    @mock.patch.object(settings, 'READ_ONLY', True)
+    def test_thunderbird_balloons_readonly(self):
+        response = self.client.get('/en-US/thunderbird/')
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 1)
+        eq_(doc('#site-nonfx').length, 0,
+            'This balloon should appear for Firefox only')
+        eq_(doc('#site-welcome').length, 1)
+        eq_(doc('#site-noinstall-apps').length, 0)
+
     def test_tools_loggedout(self):
         r = self.client.get(self.url, follow=True)
         eq_(pq(r.content)('#aux-nav .tools').length, 0)

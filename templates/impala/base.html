@@ -125,16 +125,18 @@
                 <p>{{ loc('To use Apps, you must enable JavaScript.') }}</p>
               </div>
             {% else %}
-              <div class="site-balloon" id="site-nonfx">
-                <p>
-                  {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                    To try the thousands of add-ons available here, download
-                    <a href="{{ url }}">Mozilla Firefox</a>,
-                    a fast, free way to surf the Web!
-                  {% endtrans %}
-                </p>
-                <a href="#" class="close">{{ _('Close') }}</a>
-              </div>
+              {% if APP == amo.FIREFOX %}
+                <div class="site-balloon" id="site-nonfx">
+                  <p>
+                    {% trans url='http://mozilla.org/firefox/?src=amo' %}
+                      To try the thousands of add-ons available here, download
+                      <a href="{{ url }}">Mozilla Firefox</a>,
+                      a fast, free way to surf the Web!
+                    {% endtrans %}
+                  </p>
+                  <a href="#" class="close">{{ _('Close') }}</a>
+                </div>
+              {% endif %}
               <div class="site-balloon" id="site-welcome">
                 {# L10n: {0} is an application, such as Firefox. #}
                 <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>
