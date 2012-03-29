@@ -48,14 +48,8 @@ def _filter_search(qs, query, filters, sorting,
     return qs
 
 
-def category_sidebar(query, facets):
+def category_sidebar(query, categories):
     qcat = query.get('cat')
-    cats = [f['term'] for f in facets['categories']]
-    categories = Category.objects.filter(type=amo.ADDON_WEBAPP, id__in=cats)
-
-    # If category is not listed as a facet, then show All.
-    if qcat not in categories.values_list('id', flat=True):
-        qcat = None
 
     categories = sorted(categories, key=lambda x: x.name)
     cat_params = dict(cat=None)
@@ -96,6 +90,11 @@ def _app_search(request, category=None):
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
 
+    # Remove `sort=price` if `price=free`.
+    if query.get('price') == 'free' and query.get('sort') == 'price':
+        return {'redirect': amo.utils.urlparams(request.get_full_path(),
+                                                sort=None)}
+
     qs = (Webapp.search()
           .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
                   is_disabled=False)
@@ -122,6 +121,15 @@ def _app_search(request, category=None):
         else:
             sort_opts = form.fields['sort'].choices
 
+    cats = [f['term'] for f in facets['categories']]
+    categories = Category.objects.filter(type=amo.ADDON_WEBAPP, id__in=cats)
+
+    # If category is not listed as a facet, then remove `cat` and redirect.
+    if (query.get('cat') and
+        query['cat'] not in categories.values_list('id', flat=True)):
+        return {'redirect': amo.utils.urlparams(request.get_full_path(),
+                                                cat=None)}
+
     ctx = {
         'pager': pager,
         'query': query,
@@ -130,7 +138,7 @@ def _app_search(request, category=None):
         'sort_opts': sort_opts,
         'extra_sort_opts': [],
         'sort': query.get('sort'),
-        'categories': category_sidebar(query, facets),
+        'categories': category_sidebar(query, categories),
         'prices': price_sidebar(query),
         'devices': device_sidebar(query),
         'active': {},
@@ -153,11 +161,11 @@ def _app_search(request, category=None):
 
 
 def app_search(request):
-    # Remove `sort=price` if `price=free`.
-    data = request.GET
-    if data.get('price') == 'free' and data.get('sort') == 'price':
-        return redirect(amo.utils.urlparams(request.get_full_path(),
-                                            sort=None))
+    ctx = _app_search(request)
+
+    # If we're supposed to redirect, then do that.
+    if ctx.get('redirect'):
+        return redirect(ctx['redirect'])
 
     # Otherwise render results.
-    return jingo.render(request, 'search/results.html', _app_search(request))
+    return jingo.render(request, 'search/results.html', ctx)

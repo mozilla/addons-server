@@ -87,15 +87,14 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
                 numberfmt(self.webapp.weekly_downloads),
                 'Missing downloads for %s' % sort)
 
-    def check_cat_filter(self, params, valid):
+    def check_cat_filter(self, params):
         cat_selected = params.get('cat') == self.cat.id
         r = self.client.get(self.url)
         pager = r.context['pager']
 
         r = self.client.get(urlparams(self.url, **params))
-        if valid:
-            eq_(list(r.context['pager'].object_list), list(pager.object_list),
-                '%s != %s' % (self.url, urlparams(self.url, **params or {})))
+        eq_(list(r.context['pager'].object_list), list(pager.object_list),
+            '%s != %s' % (self.url, urlparams(self.url, **params or {})))
 
         doc = pq(r.content)('#category-facets')
         li = doc.children('li:first-child')
@@ -117,13 +116,17 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             {'cat': self.cat.id, 'page': None})
 
     def test_no_cat(self):
-        self.check_cat_filter({}, valid=True)
+        self.check_cat_filter({})
 
     def test_known_cat(self):
-        self.check_cat_filter({'cat': self.cat.id}, valid=True)
+        self.check_cat_filter({'cat': self.cat.id})
 
     def test_unknown_cat(self):
-        self.check_cat_filter({'cat': 999}, valid=False)
+        # `cat=999` should get removed from the querystring.
+        r = self.client.get(self.url, {'price': 'free', 'cat': '999'})
+        self.assertRedirects(r, urlparams(self.url, price='free'))
+        r = self.client.get(self.url, {'cat': '999'})
+        self.assertRedirects(r, self.url)
 
     def check_price_filter(self, price, selected, type_=None):
         self.setup_paid(type_=type_)
