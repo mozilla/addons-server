@@ -273,8 +273,8 @@ class CompatForm(BaseCompatForm):
 
 class GenerateErrorForm(happyforms.Form):
     error = forms.ChoiceField(choices=(
-                    ['zerodivisionerror', 'Zero Division Error'],
-                    ['iorequesterror', 'IORequest Error']))
+                    ['zerodivisionerror', 'Zero Division Error (will email)'],
+                    ['iorequesterror', 'IORequest Error (no email)']))
 
     def explode(self):
         error = self.cleaned_data.get('error')
