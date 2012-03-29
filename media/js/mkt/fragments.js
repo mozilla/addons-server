@@ -9,7 +9,10 @@
         page.on('click', 'a', function(e) {
             var href = this.getAttribute('href');
             if (e.metaKey || e.ctrlKey || e.button !== 0) return;
-            if (!href || href.substr(0,4) == 'http' || href === '#') return;
+            if (!href || href.substr(0,4) == 'http' || href === '#' ||
+                href.indexOf('/developers/') !== -1) {
+                return;
+            }
             e.preventDefault();
             fetchFragment(href);
         });

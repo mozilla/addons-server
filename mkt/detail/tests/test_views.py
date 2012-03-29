@@ -11,7 +11,7 @@ from tower import strip_whitespace
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, Category
+from addons.models import AddonCategory, AddonUser, Category
 from users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -21,7 +21,7 @@ def get_clean(selection):
 
 
 class TestDetail(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
@@ -40,6 +40,29 @@ class TestDetail(amo.tests.TestCase):
         eq_(links.length, 1)
         eq_(links.attr('href'), cat.get_url_path())
         eq_(links.text(), cat.name)
+
+    def test_manage_button_for_owner(self):
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.manage').length, 1)
+
+    def test_manage_button_for_dev(self):
+        user = UserProfile.objects.get(username='regularuser')
+        assert self.client.login(username=user.email, password='password')
+        AddonUser.objects.create(addon=self.webapp, user=user)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.manage').length, 1)
+
+    def test_no_manage_button_for_nondev(self):
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.manage').length, 0)
+
+    def test_no_manage_button_for_anon(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.manage').length, 0)
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',

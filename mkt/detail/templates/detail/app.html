@@ -45,6 +45,10 @@
     </div>
     <div class="actions">
       {{ market_button(product) }}
+      {% if request.check_ownership(product, require_owner=False) %}
+        <p><a href="{{ product.get_dev_url() }}" class="button developer manage">
+          {{ _('Manage') }}</a></p>
+      {% endif %}
     </div>
   </section>
   <section class="full description">
