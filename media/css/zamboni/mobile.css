@@ -909,9 +909,12 @@ button:active,
     background-position: 0 0%, 0 0;
     background-repeat: repeat, repeat;
     background-size: auto auto, auto auto;
-    color: #333333;
     text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
     top: 0;
+}
+.button.warning,
+.button.warning:link {
+    color: #333;
 }
 .button.add.warning:before {
     background: url(../../img/zamboni/mobile/install.svg) no-repeat 0 -50px;
