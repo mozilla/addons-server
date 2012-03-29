@@ -37,7 +37,7 @@
                         return Highcharts.numberFormat(this.value, 0);
                     }
                 },
-                min: 0,
+                minPadding: 0.05,
                 startOnTick: false,
                 showFirstLabel: false
             },
@@ -126,7 +126,7 @@
         if (!(group in acceptedGroups)) {
             group = 'day';
         }
-        
+
         if (obj.data.empty || !data.firstIndex) {
             showNoDataOverlay();
             $chart.removeClass('loading');
@@ -156,11 +156,8 @@
         // highCharts seems to dislike 0 and null data when determining a yAxis range
         if (dataSum === 0) {
             baseConfig.yAxis.max = 10;
-            baseConfig.yAxis.min = null;
-            baseConfig.yAxis.minPadding = 0.07; // This gets reset by min=0.
         } else {
             baseConfig.yAxis.max = null;
-            baseConfig.yAxis.min = 0;
         }
 
         // Populate the chart config object.
