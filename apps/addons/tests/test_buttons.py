@@ -605,6 +605,7 @@ class TestButtonHtml(ButtonTest):
         assert doc('.install-button').text('Not ready for purchase.')
 
     def test_d2c_attrs(self):
+        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         compat = Mock()
         compat.min.version = '4.0'
         compat.max.version = '12.0'

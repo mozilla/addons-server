@@ -98,6 +98,7 @@ var installButton = function() {
         accept_eula = $this.hasClass('accept'),
         webapp = $this.hasattr('data-manifest-url'),
         compatible = $this.attr('data-is-compatible') == 'true',
+        waffle_d2c_buttons = $this.hasattr('data-waffle-d2c-buttons'),
         has_overrides = $this.hasattr('data-compat-overrides'),
         // L10n: {0} is an app name like Firefox.
         _s = accept_eula ? gettext('Accept and Install') : gettext('Add to {0}'),
@@ -123,21 +124,25 @@ var installButton = function() {
         newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;
     }
 
-    // Firefox 10+ is compatible by default.
-    var compatible = compatible && z.browserVersion != 0 &&
+    if (waffle_d2c_buttons) {
+        // Firefox 10+ is compatible by default.
+        compatible = compatible && z.browserVersion != 0 &&
                      VersionCompare.compareVersions(z.browserVersion, '10.0') >= 0;
-    // If it's still compatible, check the overrides.
-    if (compatible && has_overrides) {
-        var overrides = JSON.parse($this.attr('data-compat-overrides'));
-        _.each(overrides, function(override) {
-            var _min = override[0],
-                _max = override[1];
-            if (VersionCompare.compareVersions(z.browserVersion, _min) >= 0 ||
-                VersionCompare.compareVersions(z.browserVersion, _max) <= 0) {
-                compatible = false;
-                return;
-            }
-        });
+        // If it's still compatible, check the overrides.
+        if (compatible && has_overrides) {
+            var overrides = JSON.parse($this.attr('data-compat-overrides'));
+            _.each(overrides, function(override) {
+                var _min = override[0],
+                    _max = override[1];
+                if (VersionCompare.compareVersions(z.browserVersion, _min) >= 0 ||
+                    VersionCompare.compareVersions(z.browserVersion, _max) <= 0) {
+                    compatible = false;
+                    return;
+                }
+            });
+        }
+    } else {
+        compatible = false;  // We always assumed not compatible before.
     }
 
     if (!$body.hasClass('acr-pitch') && newerBrowser && z.hasNightly && !z.hasACR) {

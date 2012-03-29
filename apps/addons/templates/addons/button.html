@@ -12,8 +12,11 @@
   {% if compat %}
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"
-     data-is-compatible="{{ version.is_compatible|json }}"
-     data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
+     {% if waffle.switch('d2c-buttons') %}
+       data-waffle-d2c-buttons="true"
+       data-is-compatible="{{ version.is_compatible|json }}"
+       data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
+     {% endif %}
      data-version="{{ version.version }}"
      data-compatible-apps="{{ version.compatible_apps[request.APP] }}"
      data-lastupdated-isotime="{{ version.created|isotime }}"
