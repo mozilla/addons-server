@@ -220,7 +220,8 @@ def refund(paykey):
     Returns: A list of dicts containing the refund info for each
     receiver of the original payment.
     """
-    OK_STATUSES = ['REFUNDED', 'REFUNDED_PENDING', 'ALREADY_REVERSED_OR_REFUNDED']
+    OK_STATUSES = ['REFUNDED', 'REFUNDED_PENDING',
+                   'ALREADY_REVERSED_OR_REFUNDED']
     with statsd.timer('paypal.payment.refund'):
         try:
             response = _call(settings.PAYPAL_PAY_URL + 'Refund',
@@ -228,6 +229,7 @@ def refund(paykey):
         except PaypalError:
             paypal_log.error('Refund error', exc_info=True)
             raise
+        paypal_log.info('Refund response: %s' % response)
         responses = []
         for k in response:
             g = re.match('refundInfoList.refundInfo\((\d+)\).(.*)', k)
