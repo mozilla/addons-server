@@ -396,6 +396,11 @@ class APITest(TestCase):
         for needle in needles:
             self.assertContains(response, needle)
 
+    def test_no_contribs_until_approved(self):
+        Addon.objects.filter(id=4664).update(status=amo.STATUS_LITE)
+        response = make_call('addon/4664', version=1.5)
+        self.assertNotContains(response, 'contribution_data')
+
     def test_no_suggested_amount(self):
         Addon.objects.filter(id=4664).update(suggested_amount=None)
         response = make_call('addon/4664', version=1.5)

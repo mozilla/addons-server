@@ -98,7 +98,7 @@
     {% endfor -%}
     {%- endif -%}
 
-    {%- if addon.wants_contributions -%}
+    {%- if addon.takes_contributions -%}
     <contribution_data>
       <link>{{ addon.contribution_url|absolutify|urlparams(src='api') }}</link>
       {% if addon.suggested_amount %}
