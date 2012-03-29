@@ -73,6 +73,23 @@ class UtilsTest(TestCase):
         eq_(d['summary'], 'i &lt;3 amo!')
         eq_(d['description'], 'i &lt;3 amo!')
 
+    def test_contrib_info(self):
+        self.a.wants_contributions = True
+        self.a.suggested_amount = 5
+        self.a.paypal_id = 'alice@example.com'
+        self.a.save()
+        d = api.utils.addon_to_dict(self.a)
+        eq_(d['contribution']['suggested_amount'], 5)
+
+    def test_no_contrib_info_until_approved(self):
+        self.a.wants_contributions = True
+        self.a.suggested_amount = 5
+        self.a.status = amo.STATUS_LITE
+        self.a.paypal_id = 'alice@example.com'
+        self.a.save()
+        d = api.utils.addon_to_dict(self.a)
+        assert 'contribution' not in d
+
 
 class No500ErrorsTest(TestCase):
     """

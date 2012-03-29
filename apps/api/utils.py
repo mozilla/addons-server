@@ -62,7 +62,7 @@ def addon_to_dict(addon, disco=False, src='api'):
     if addon.developer_comments:
         d['dev_comments'] = addon.developer_comments
 
-    if addon.wants_contributions:
+    if addon.takes_contributions:
         contribution = {
                 'link': url(addon.contribution_url, src=src),
                 'meet_developers': url(addon.meet_the_dev_url(), src=src),
