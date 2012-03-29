@@ -183,8 +183,8 @@ ADDON_FREE_INAPP = 3
 ADDON_PREMIUM_TYPES = {
     ADDON_FREE: _('Free'),
     ADDON_PREMIUM: _('Premium'),
-    ADDON_PREMIUM_INAPP: _('Premium with in app payments'),
-    ADDON_FREE_INAPP: _('Free with in app payments')
+    ADDON_PREMIUM_INAPP: _('Premium with in-app payments'),
+    ADDON_FREE_INAPP: _('Free with in-app payments')
 }
 
 ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)

@@ -76,7 +76,7 @@ def _notify(redis, context):
         # a sudden all the apps start failing their paypal checks.
         #
         # It would really suck if one errant current job disabled every app
-        # on the marketplace. So this is an attempt to sanity check this.
+        # on the Marketplace. So this is an attempt to sanity check this.
         for k in xrange(context['failed']):
             data = json.loads(redis.lindex(failures, k))
             addon = Addon.objects.get(pk=data[0])

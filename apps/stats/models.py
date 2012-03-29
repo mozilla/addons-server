@@ -333,7 +333,7 @@ class Contribution(amo.models.ModelBase):
     def can_we_refund(self):
         """
         We can only refund a purchase.
-        We cannot refund in app payments, PayPal can however.
+        We cannot refund in-app payments; PayPal can however.
         """
         return self.type == amo.CONTRIB_PURCHASE
 
