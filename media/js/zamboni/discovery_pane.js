@@ -104,21 +104,23 @@ function hideInstalled() {
         if (numListed < minSpots) {
             var emptySpots = minSpots - numListed;
             $.get(url, function(data) {
-                $.each($(data).find('li'), function() {
-                    var $el = $(this),
-                        guid = $el.attr('data-guid');
-                    // Ensure that the add-on isn't already in the list and
-                    // that it's not already installed by the user.
-                    if (!ul.find(format('li[data-guid="{0}"]', [guid])).length &&
-                        $.inArray(guid, z.guids) === -1) {
-                        ul.append($el);
-                        // We're done if all spots have been filled.
-                        if (emptySpots-- == 1) {
-                            return false;
+                if ($.trim(data)) {
+                    $.each($(data).find('li'), function() {
+                        var $el = $(this),
+                            guid = $el.attr('data-guid');
+                        // Ensure that the add-on isn't already in the list and
+                        // that it's not already installed by the user.
+                        if (!ul.find(format('li[data-guid="{0}"]', [guid])).length &&
+                            $.inArray(guid, z.guids) === -1) {
+                            ul.append($el);
+                            // We're done if all spots have been filled.
+                            if (emptySpots-- == 1) {
+                                return false;
+                            }
                         }
-                    }
-                });
-                initTrunc();
+                    });
+                    initTrunc();
+                }
             });
         }
     }
