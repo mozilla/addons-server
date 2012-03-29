@@ -239,6 +239,13 @@ class TestUrls(amo.tests.TestCase):
         url = reverse('discovery.pane', args=['4.0', 'Darwin', 'strict'])
         self.assertRedirects(r, url, 302)
 
+        # Redirect to 'strict' if version >= 10 and not d2c disco waffle.
+        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin', follow=True)
+        url = reverse('discovery.pane', args=['10.0', 'Darwin', 'strict'])
+        self.assertRedirects(r, url, 302)
+
+        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
+                                            active=True)
         # Redirect to default 'ignore' if version >= 10.
         r = self.client.get('/en-US/firefox/discovery/10.0/Darwin', follow=True)
         url = reverse('discovery.pane', args=['10.0', 'Darwin', 'ignore'])
@@ -581,6 +588,8 @@ class TestPaneMoreAddons(amo.tests.TestCase):
         self.assertContains(res, self.addon2.name)
 
     def test_hotness_ignore(self):
+        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
+                                            active=True)
         # Defaults to ignore compat mode for Fx v10, both are compatible.
         res = self.client.get(self._url(version='10.0'))
         eq_(res.status_code, 200)

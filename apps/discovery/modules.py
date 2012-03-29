@@ -2,6 +2,7 @@ import caching.base as caching
 import jingo
 import jinja2
 from tower import ugettext_lazy as _
+import waffle
 
 import amo
 from addons.models import Addon
@@ -42,7 +43,8 @@ class PromoModule(object):
         self.platform = platform
         self.version = version
         self.compat_mode = 'strict'
-        if version_int(self.version) >= version_int('10.0'):
+        if (waffle.switch_is_active('d2c-at-the-disco') and
+            version_int(self.version) >= version_int('10.0')):
             self.compat_mode = 'ignore'
 
     def render(self):
