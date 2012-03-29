@@ -6,23 +6,17 @@
   {% include 'addons/includes/button_data_attributes.html' %}>
   <div class="buttons">
     {% set links = b.links() %}
-    {% if not links or addon.is_unreviewed() %}
+    {% if not (links or addon.is_unreviewed()) %}
       <a class="button disabled">
-        {% if addon.is_unreviewed() %}
-          {{ _('Not yet reviewed') }}
-        {% else %}
-          {{ _('No compatible versions') }}
-        {% endif %}
+        {{ _('No compatible versions') }}
       </a>
     {% endif %}
-    {% if not addon.is_unreviewed() %}
-      {% for link in links %}
-        {% set extra = "platform " + link.os.shortname if link.os else "" %}
-        <!-- install error messages -->
-        <div class="apps-error-msg"><h2></h2><p></p></div>
-        {% include 'addons/includes/install_button.html' %}
-      {% endfor %}
-    {% endif %}
+    {% for link in links %}
+      {% set extra = "platform " + link.os.shortname if link.os else "" %}
+      <!-- install error messages -->
+      <div class="apps-error-msg"><h2></h2><p></p></div>
+      {% include 'addons/includes/install_button.html' %}
+    {% endfor %}
   </div>
   <ul class="badges">
     {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}

@@ -752,8 +752,8 @@ class TestDetailPage(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('.button.add').length, 0)
-        eq_(doc('.button.disabled').length, 1)
+        eq_(doc('.button.add').length, 1)
+        eq_(doc('.button.disabled').length, 0)
 
     def test_type_redirect(self):
         """
