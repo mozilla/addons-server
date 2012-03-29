@@ -6,7 +6,10 @@ var console = require('console');
 var server = http.createServer(function(req, res){
   res.end(html);
 });
-server.listen(8080);
+
+var port = +process.argv[2] || 8080;
+console.log('logging to port ' + port);
+server.listen(port);
 
 var nowjs = require("now");
 var everyone = nowjs.initialize(server);

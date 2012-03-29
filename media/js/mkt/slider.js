@@ -1,7 +1,3 @@
-window.onerror = window.dbg = function(e, f, l) {
-    document.querySelector('h1').innerHTML = e + ' ' + f + ':' + l;
-}
-
 function slider(el) {
     var $el = $(el),
         $ul = $('ul', $el).eq(0),

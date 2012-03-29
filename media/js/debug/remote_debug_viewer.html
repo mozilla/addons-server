@@ -36,19 +36,26 @@
             src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script src="/nowjs/now.js"></script>
     <script>
+      var format = (function() {
+          var re = /\{([^}]+)\}/g;
+          return function(s, args) {
+              if (!args) return;
+              if (!(args instanceof Array || args instanceof Object))
+                  args = Array.prototype.slice.call(arguments, 1);
+              return s.replace(re, function(_, match){ return args[match]; });
+          };
+      })();
       $(document).ready(function(){
         now.showLog = function(msg) {
           var obj = JSON.parse(decodeURIComponent(msg)),
               el = $('<li class="log">');
-          el.append('<b>' + obj.msg + '</b>');
-          el.append('<i>' + obj.file + ':' + obj.line + '</i>');
+          el.append(format('<b>{msg}</b>',obj));
           $('ul').prepend(el);
         }
         now.showError = function(err){
           var obj = JSON.parse(decodeURIComponent(err)),
               el = $('<li class="error">');
-          el.append('<b>' + obj.msg + '</b>');
-          el.append('<i>' + obj.file + ':' + obj.line + '</i>');
+          el.append(format('<b>{msg}</b><i><a href="{file}">{file}</a>:{line}</i>', obj));
           $('ul').prepend(el);
         };
       });
