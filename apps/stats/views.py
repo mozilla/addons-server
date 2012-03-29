@@ -541,6 +541,13 @@ def site_series(request, format, group, start, end, field):
                 'date': row['date'],
                 'count': row['data'][field],
             })
+    # TODO: (dspasovski) check whether this is the CSV data we really want
+    if format == 'csv':
+        series, fields = csv_fields(series)
+        return render_csv(request, None, series,
+                          ['date', 'count'] + list(fields),
+                          title='addons.mozilla.org week Site Statistics',
+                          show_disclaimer=True)
     return render_json(request, None, series)
 
 
