@@ -22,20 +22,34 @@
       li i {
         float: right;
       }
-      li b {
+      .error b {
         color: #c00;
       }
+      .log b {
+        color: #666;
+      }
+      .ajax b {
+        color: #00c;
+      }
     </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script src="/nowjs/now.js"></script>
     <script>
       $(document).ready(function(){
+        now.showLog = function(msg) {
+          var obj = JSON.parse(decodeURIComponent(msg)),
+              el = $('<li class="log">');
+          el.append('<b>' + obj.msg + '</b>');
+          el.append('<i>' + obj.file + ':' + obj.line + '</i>');
+          $('ul').prepend(el);
+        }
         now.showError = function(err){
           var obj = JSON.parse(decodeURIComponent(err)),
-              el = $('<li>');
+              el = $('<li class="error">');
           el.append('<b>' + obj.msg + '</b>');
-          el.append('<i>' + obj.file + ':' + obj.line + '</1>');
-          $('ul').append(el);
+          el.append('<i>' + obj.file + ':' + obj.line + '</i>');
+          $('ul').prepend(el);
         };
       });
     </script>
