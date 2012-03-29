@@ -9,7 +9,7 @@
     $.datepicker.setDefaults({showAnim: ''});
     var $customModal = $("#custom-criteria").modal("#custom-date-range", { width: 520, hideme: false });
     var $startPicker = $("#start-date-picker").datepicker({
-        maxDate: 1,
+        maxDate: 0,
         minDate: minDate,
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
@@ -17,7 +17,7 @@
         }
     });
     var $endPicker = $("#end-date-picker").datepicker({
-        maxDate: 1,
+        maxDate: 0,
         minDate: minDate,
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
