@@ -230,15 +230,33 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
     .extra {
         margin-top: 8px;
     }
-    .notavail {
+    .notavail,
+    .notsupported {
         color: @error-red;
         display: block;
         font-size: 11px;
         margin: 0 0 4px;
     }
-    .acr-incompat {
+    .acr-incompat,
+    .notsupported {
         color: @note-gray;
     }
+    .notsupported span:before {
+        content: "\0B7";
+        padding: 0 4px;
+    }
+}
+
+.listing .notsupported span {
+    display: block;
+    margin-top: 4px;
+    &:before {
+        content: "";
+    }
+}
+
+.versions .notsupported {
+    display: none;
 }
 
 .listing-grid {

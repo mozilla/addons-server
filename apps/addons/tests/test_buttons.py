@@ -434,7 +434,7 @@ class TestButtonHtml(ButtonTest):
 
     def test_basics(self):
         a = self.addon
-        a.id = 'addon id'
+        a.id = '12345'
         a.icon_url = 'icon url'
         a.meet_the_dev_url.return_value = 'meet.dev'
         a.name = 'addon name'
@@ -448,9 +448,11 @@ class TestButtonHtml(ButtonTest):
         eq_(doc('.button').length, 1)
 
         install = doc('.install')
-        eq_('addon id', install.attr('data-addon'))
+        eq_('12345', install.attr('data-addon'))
         eq_('icon url', install.attr('data-icon'))
         eq_('meet.dev', install.attr('data-developers'))
+        eq_(reverse('addons.versions', args=[a.id]),
+            install.attr('data-versions'))
         eq_('addon name', install.attr('data-name'))
         eq_(None, install.attr('data-min'))
         eq_(None, install.attr('data-max'))

@@ -19,6 +19,7 @@ z.button.after = {'contrib': function(xpi_url, status) {
 
 var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
     incompat = '<div class="extra"><span class="notavail acr-incompat">{0}</span></div>',
+    noappsupport = '<div class="extra"><span class="notsupported">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
 
@@ -100,6 +101,7 @@ var installButton = function() {
         compatible = $this.attr('data-is-compatible') == 'true',
         waffle_d2c_buttons = $this.hasattr('data-waffle-d2c-buttons'),
         has_overrides = $this.hasattr('data-compat-overrides'),
+        versions_url = $this.attr('data-versions'),
         // L10n: {0} is an app name like Firefox.
         _s = accept_eula ? gettext('Accept and Install') : gettext('Add to {0}'),
         addto = format(_s, [z.appName]),
@@ -309,6 +311,14 @@ var installButton = function() {
             // Good version, good platform.
             $button.addClass('installer');
             $button.closest('div').attr('data-version-supported', true);
+        } else if (!appSupported) {
+            var tpl = template('Works with {app} {min} - {max}' +
+                '<span class="more-versions"><a href="{versions_url}">' +
+                '{versions_link}</a></span>');
+            var context = {'app': z.appName, 'min': min, 'max': max,
+                'versions_url': versions_url,
+                'versions_link': gettext('View other versions')};
+            addWarning(tpl(context), noappsupport);
         }
         return false;
     };
