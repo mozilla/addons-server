@@ -1,6 +1,6 @@
 import jingo
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 import amo
 from addons.models import Category
@@ -19,5 +19,9 @@ def categories_apps(request, category=None):
         request.GET.update({'cat': ctx['category'].id, 'sort': 'downloads'})
 
     ctx.update(_app_search(request, ctx['category']))
+
+    # If category is not listed as a facet, then remove redirect to search.
+    if ctx.get('redirect'):
+        return redirect(ctx['redirect'])
 
     return jingo.render(request, 'search/results.html', ctx)

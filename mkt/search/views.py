@@ -4,6 +4,7 @@ import jingo
 from tower import ugettext as _
 
 import amo
+from amo.urlresolvers import reverse
 import amo.utils
 from apps.addons.models import Category
 from apps.search.views import name_query
@@ -127,8 +128,11 @@ def _app_search(request, category=None):
     # If category is not listed as a facet, then remove `cat` and redirect.
     if (query.get('cat') and
         query['cat'] not in categories.values_list('id', flat=True)):
-        return {'redirect': amo.utils.urlparams(request.get_full_path(),
-                                                cat=None)}
+        if category:
+            return {'redirect': reverse('search.search')}
+        else:
+            return {'redirect': amo.utils.urlparams(request.get_full_path(),
+                                                    cat=None)}
 
     ctx = {
         'pager': pager,

@@ -30,6 +30,14 @@ class TestCategories(amo.tests.ESTestCase):
         r = self.client.get(reverse('browse.apps', args=['xxx']))
         eq_(r.status_code, 404)
 
+    def test_non_indexed_cat(self):
+        new_cat = Category.objects.create(name='Slap Tickling', slug='booping',
+                                          type=amo.ADDON_WEBAPP)
+        r = self.client.get(reverse('browse.apps', args=[new_cat.slug]))
+
+        # If the category has no indexed apps, we redirect to main search page.
+        self.assertRedirects(r, reverse('search.search'))
+
     def test_sidebar(self):
         r = self.client.get(self.url)
         a = pq(r.content)('#category-facets .selected a')
