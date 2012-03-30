@@ -358,6 +358,13 @@ no_token_refund_string = (
     '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
     '&refundInfoList.refundInfo(0).refundStatus=NO_API_ACCESS_TO_RECEIVER')
 
+processing_failed_refund_string = (
+'refundInfoList.refundInfo(1).receiver.amount=0.30'
+'&refundInfoList.refundInfo(1).refundStatus=NO_API_ACCESS_TO_RECEIVER'
+'&refundInfoList.refundInfo(1).receiver.email=andy_1318364497_biz@gmail.com'
+'&refundInfoList.refundInfo(0).receiver.email=seller_1322765404_biz@gmail.com'
+'&refundInfoList.refundInfo(0).refundStatus=NOT_PROCESSED')
+
 error_refund_string = (
     'refundInfoList.refundInfo(0).receiver.amount=123.45'
     '&refundInfoList.refundInfo(0).receiver.email=bob@example.com'
@@ -385,6 +392,12 @@ class TestRefund(amo.tests.TestCase):
     @mock.patch('urllib2.OpenerDirector.open')
     def test_refund_no_refund_token(self, opener):
         opener.return_value = StringIO(no_token_refund_string)
+        d = paypal.refund('fake-paykey')
+        eq_(d[0]['refundStatus'], 'NO_API_ACCESS_TO_RECEIVER')
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_refund_processing_failed(self, opener):
+        opener.return_value = StringIO(processing_failed_refund_string)
         d = paypal.refund('fake-paykey')
         eq_(d[0]['refundStatus'], 'NO_API_ACCESS_TO_RECEIVER')
 
