@@ -5,6 +5,7 @@ import tempfile
 from django.conf import settings
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
