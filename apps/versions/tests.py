@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import os
-import sys
 
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -12,6 +11,7 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
+from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
@@ -42,6 +42,8 @@ def test_version_int_compare():
 
 
 def test_version_asterix_compare():
+    eq_(version_int('*'), version_int('99'))
+    assert version_int('98.*') < version_int('*')
     eq_(version_int('5.*'), version_int('5.99'))
     assert version_int('5.*') > version_int('5.0.*')
 
@@ -835,3 +837,38 @@ class TestMobileVersions(TestMobile):
         r = self.client.get(reverse('addons.versions', args=['a3615']))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'versions/mobile/version_list.html')
+
+
+class TestApplicationsVersions():
+
+    def setUp(self):
+        self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
+
+    def test_repr_when_compatible(self):
+        addon = addon_factory(version_kw=self.version_kw)
+        version = addon.current_version
+        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 and later')
+
+    def test_repr_when_strict(self):
+        addon = addon_factory(version_kw=self.version_kw,
+                              file_kw=dict(strict_compatibility=True))
+        version = addon.current_version
+        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+
+    def test_repr_when_binary(self):
+        addon = addon_factory(version_kw=self.version_kw,
+                              file_kw=dict(binary_components=True))
+        version = addon.current_version
+        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+
+    def test_repr_when_not_extension(self):
+        addon = addon_factory(type=amo.ADDON_THEME,
+                              version_kw=self.version_kw)
+        version = addon.current_version
+        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+
+    def test_repr_when_low_app_support(self):
+        addon = addon_factory(version_kw=dict(min_app_version='3.0',
+                                              max_app_version='3.5'))
+        version = addon.current_version
+        eq_(version.apps.all()[0].__unicode__(), 'Firefox 3.0 - 3.5')
