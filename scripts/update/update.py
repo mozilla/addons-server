@@ -126,11 +126,8 @@ def update(ctx):
     update_locales()
     update_products()
     compress_assets()
-    #TODO(andym): remove this check (but not the compress_assets) once
-    # apps-preview is dead.
-    if os.path.exists(os.path.join(settings.SRC_DIR,
-                                   'settings_local_mkt.py')):
-        compress_assets(arg='--settings=settings_local_mkt')
+    compress_assets(arg='--settings=settings_local_mkt')
     schematic()
     with ctx.lcd(settings.SRC_DIR):
         ctx.local('python2.6 manage.py dump_apps')
+        ctx.local('python2.6 manage.py statsd_ping --key=update')
