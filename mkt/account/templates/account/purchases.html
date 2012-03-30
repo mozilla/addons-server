@@ -34,6 +34,7 @@
             {{ refund_info(product, contributions) }}
           </div>
         </li>
+        {{ pager|impala_paginator }}
       {% else %}
         {{ no_results() }}
       {% endfor %}

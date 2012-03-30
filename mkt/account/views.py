@@ -210,7 +210,8 @@ def profile(request, username):
     submissions = []
     if user.is_developer:
         submissions = paginate(request,
-                               user.apps_listed.order_by('-weekly_downloads'))
+                               user.apps_listed.order_by('-weekly_downloads'),
+                               per_page=5)
 
     data = {'profile': user, 'edit_any_user': edit_any_user,
             'submissions': submissions, 'own_profile': own_profile}

@@ -94,3 +94,73 @@
         margin-top: 20px;
     }
 }
+
+#profile {
+    .avatar.col {
+        .border-box;
+        .width(2);
+    }
+    .prose.col {
+        .width(8);
+    }
+    table.person-info {
+        width: 100%;
+        caption {
+            display: none;
+        }
+        th, td {
+            border-top: 1px solid @border-black;
+            padding: 8px 0;
+        }
+        th {
+            font-weight: bold;
+            line-height: 15px;
+            text-align: left;
+            width: 40%;
+        }
+        tr:first-child {
+            th, td {
+                border-top: none;
+            }
+        }
+        td {
+            color: @dark-gray;
+            padding-top: 0;
+        }
+    }
+    #bio, #my-apps {
+        margin-top: 20px;
+    }
+}
+
+.html-rtl #profile table.person-info {
+    th {
+        text-align: right;
+    }
+}
+
+@media (max-width: @7col) {
+    #profile {
+        .col {
+            float: left;
+        }
+        .avatar.col {
+            .width(2);
+        }
+        .prose.col {
+            margin-left: 30px;
+            .width(5);
+        }
+    }
+}
+
+@media (max-width: @4col) {
+    #profile {
+        .avatar.col {
+            .width(2);
+        }
+        .prose.col {
+            .width(2);
+        }
+    }
+}

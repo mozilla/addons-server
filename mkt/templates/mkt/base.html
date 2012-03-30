@@ -54,7 +54,8 @@
     {% block sitefooter %}
       <footer id="site-footer">
         {% if request.user.is_authenticated() %}
-          signed in as <a href="{{ request.user.get_profile().get_url_path() }}">
+          signed in as
+          <a href="{{ url('users.profile', request.user.get_profile().username) }}">
             {{ request.amo_user.email }}</a>
           <a href="{{ url('users.logout') }}">(log out)</a>
           <p>

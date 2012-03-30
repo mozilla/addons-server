@@ -5,10 +5,42 @@
 {% endblock %}
 
 {% block content %}
-  <section id="purchases" class="account form-grid">
+  <section id="profile" class="account form-grid">
     {{ mkt_breadcrumbs(product, [(None, _('Users')), (None, profile.name)]) }}
     <header class="c">
-      <h1>{{ profile.name }}</h1>
+      <h1 class="fn n">{{ profile.name }}</h1>
+      <ul class="sub-nav">
+      {% if own_profile %}
+        <li><a id="edit-profile" href="{{ url('account.settings') }}">
+          {{ _('Edit Profile') }}</a></li>
+      {% endif %}
+      {% if edit_any_user %}
+        <li><a id="manage-user" href="{{ url('users.admin_edit', profile.id) }}">
+          Manage User</a></li>
+      {% endif %}
+      </ul>
     </header>
+    <section class="c">
+      <img class="col avatar" src="{{ profile.picture_url }}">
+      <section class="col prose">
+        <h2>{{ _('About me') }}</h2>
+        <div class="vcard">
+          {{ profile|user_vcard(is_profile=True, webapp=True) }}
+        </div>
+      </section>
+    </section>
+    {% if profile.bio %}
+      <h3 id="bio">{{ _('In a little more detail...') }}</h3>
+      <p class="intro">{{ profile.bio|nl2br }}</p>
+    {% endif %}
+    {% if submissions.object_list %}
+      <div id="my-apps" class="listing c">
+        <h2>{{ _('My Submissions') }}</h2>
+        <ol class="items" start="{{ submissions.start_index() }}">
+          {{ search_results(submissions.object_list, src='search') }}
+        </ol>
+        {{ submissions|impala_paginator }}
+      </div>
+    {% endif %}
   </section>
 {% endblock %}
