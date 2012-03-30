@@ -8,9 +8,11 @@ import commonware.log
 import jingo
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+from access import acl
 from addons.views import BaseFilter
 import amo
-from amo.decorators import permission_required, post_required, write
+from amo.decorators import (no_login_required, permission_required,
+                            post_required, write)
 from amo.utils import paginate
 from market.models import PreApprovalUser
 import paypal
@@ -192,3 +194,25 @@ def delete_photo(request):
     log.debug(u'User (%s) deleted photo' % request.amo_user)
     messages.success(request, _('Photo Deleted'))
     return http.HttpResponse()
+
+
+@no_login_required
+def profile(request, username):
+    if username.isdigit():
+        user = get_object_or_404(UserProfile, id=username)
+    else:
+        user = get_object_or_404(UserProfile, username=username)
+
+    edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
+    own_profile = (request.user.is_authenticated() and
+                   request.amo_user.id == user.id)
+
+    submissions = []
+    if user.is_developer:
+        submissions = paginate(request,
+                               user.apps_listed.order_by('-weekly_downloads'))
+
+    data = {'profile': user, 'edit_any_user': edit_any_user,
+            'submissions': submissions, 'own_profile': own_profile}
+
+    return jingo.render(request, 'account/profile.html', data)

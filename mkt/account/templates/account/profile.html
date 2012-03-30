@@ -1,0 +1,14 @@
+{% extends 'mkt/base.html' %}
+
+{% block title %}
+  {{ mkt_page_title(_('User Info for {0}')|f(profile.name)) }}
+{% endblock %}
+
+{% block content %}
+  <section id="purchases" class="account form-grid">
+    {{ mkt_breadcrumbs(product, [(None, _('Users')), (None, profile.name)]) }}
+    <header class="c">
+      <h1>{{ profile.name }}</h1>
+    </header>
+  </section>
+{% endblock %}

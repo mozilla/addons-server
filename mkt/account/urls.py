@@ -24,6 +24,9 @@ urlpatterns = decorate(login_required, patterns('',
     url(r'^purchases/(?P<product_id>\d+)', views.purchases,
         name='account.purchases.receipt'),
 
+    url(r'''user/(?P<username>[^/<>"']+)$''', views.profile,
+        name='users.profile'),
+
     # Keeping the same URL pattern since admin pages already know about this.
     url(r'^user/(?:/(?P<user_id>\d+)/)?edit$', views.admin_edit,
         name='users.admin_edit'),

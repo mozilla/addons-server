@@ -24,7 +24,6 @@
     {% block debug %}
       {% include "mobile/head_debug.html" %}
     {% endblock %}
-
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
@@ -55,7 +54,8 @@
     {% block sitefooter %}
       <footer id="site-footer">
         {% if request.user.is_authenticated() %}
-          signed in as {{ request.amo_user.email }}
+          signed in as <a href="{{ request.user.get_profile().get_url_path() }}">
+            {{ request.amo_user.email }}</a>
           <a href="{{ url('users.logout') }}">(log out)</a>
           <p>
             <a href="{{ url('account.purchases') }}">My Purchases</a>
