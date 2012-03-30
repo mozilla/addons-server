@@ -378,7 +378,7 @@ class APITest(TestCase):
                     "TwitterBar places an icon in the address bar.</caption>",
                 """<full type="image/png">""",
                 urlparams(settings.PREVIEW_FULL_URL %
-                          ('20', 20397, 1209834208), src='api'),
+                          ('20', 20397, 'png', 1209834208), src='api'),
                 """<thumbnail type="image/png">""",
                 urlparams(settings.PREVIEW_THUMBNAIL_URL %
                           ('20', 20397, 1209834208), src='api'),

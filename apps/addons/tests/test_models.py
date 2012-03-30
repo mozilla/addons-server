@@ -1429,7 +1429,8 @@ class TestPreviewModel(amo.tests.TestCase):
     def test_filename_in_url(self):
         preview = Preview.objects.get(pk=24)
         preview.update(filetype='video/webm')
-        assert 'webm' in preview.thumbnail_path
+        assert 'png' in preview.thumbnail_path
+        assert 'webm' in preview.image_path
 
 
 class TestAddonRecommendations(amo.tests.TestCase):
