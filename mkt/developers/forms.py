@@ -231,7 +231,7 @@ class BasePreviewFormSet(BaseModelFormSet):
         at_least_one = False
         for form in self.forms:
             if (not form.cleaned_data.get('DELETE') and
-                form.cleaned_data.get('upload_hash')):
+                form.cleaned_data.get('upload_hash') is not None):
                 at_least_one = True
         if not at_least_one:
             if waffle.switch_is_active('video-upload'):

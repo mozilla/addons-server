@@ -790,6 +790,16 @@ class TestEditMedia(TestEdit):
         eq_(r.context['preview_form'].non_form_errors(),
             ['You must upload at least one screenshot or video.'])
 
+    def test_screenshot_with_icon(self):
+        self.preview_add()
+        preview = self.get_webapp().previews.all()[0]
+        edited = {'upload_hash': '', 'id': preview.id}
+        data_formset = self.formset_media(edited, initial_count=1)
+        data_formset.update(icon_type='image/png', icon_upload_hash='')
+
+        r = self.client.post(self.edit_url, data_formset)
+        self.assertNoFormErrors(r)
+
 
 class TestEditDetails(TestEdit):
 
