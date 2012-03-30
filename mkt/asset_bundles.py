@@ -30,8 +30,8 @@ CSS = {
         'css/devreg/l10n.less',
 
         # Forms (used for tables on "Manage ..." pages).
-        'css/devreg/devhub-forms.less',
         'css/common/forms.less',
+        'css/devreg/devhub-forms.less',
 
         # Landing page
         'css/devreg/landing.less',
@@ -69,9 +69,9 @@ CSS = {
         'css/mkt/reset.less',
         'css/mkt/typography.less',
         'css/mkt/site.less',
-        'css/mkt/forms.less',
         'css/common/invisible-upload.less',
         'css/common/forms.less',
+        'css/mkt/forms.less',
         'css/mkt/header.less',
         'css/mkt/breadcrumbs.less',
         'css/mkt/buttons.less',
