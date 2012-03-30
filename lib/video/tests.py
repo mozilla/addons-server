@@ -22,6 +22,19 @@ files = {
     'bad': get_image_path('mozilla.png'),
 }
 
+older_output = """
+Input #0, matroska,webm, from 'lib/video/fixtures/disco-truncated.webm':
+  Duration: 00:00:10.00, start: 0.000000, bitrate: 298 kb/s
+    Stream #0:0(eng): Video: vp8, yuv420p, 640x360, SAR 1:1 DAR 16:9,
+    Stream #0:1(eng): Audio: vorbis, 44100 Hz, stereo, s16 (default)
+"""
+
+other_output = """
+Input #0, matroska, from 'disco-truncated.webm':
+  Metadata:
+    doctype         : webm
+"""
+
 
 class TestGoodVideo(amo.tests.TestCase):
 
@@ -29,20 +42,29 @@ class TestGoodVideo(amo.tests.TestCase):
         self.video = ffmpeg.Video(files['good'])
         if not self.video.encoder_available():
             raise SkipTest
-        self.video.get_meta()
+        self.video._call = Mock()
+        self.video._call.return_value = older_output
 
     def test_meta(self):
+        self.video.get_meta()
         eq_(self.video.meta['formats'], ['matroska', 'webm'])
         eq_(self.video.meta['duration'], 10.0)
         eq_(self.video.meta['dimensions'], (640, 360))
 
     def test_valid(self):
+        self.video.get_meta()
         assert self.video.is_valid()
+
+    def test_dev_valid(self):
+        self.video._call.return_value = other_output
+        self.video.get_meta()
+        eq_(self.video.meta['formats'], ['webm'])
 
     # These tests can be a little bit slow, to say the least so they are
     # skipped. Un-skip them if you want.
     def test_screenshot(self):
         raise SkipTest
+        self.video.get_meta()
         try:
             screenshot = self.video.get_screenshot(amo.ADDON_PREVIEW_SIZES[0])
             assert os.stat(screenshot)[stat.ST_SIZE]
@@ -51,6 +73,7 @@ class TestGoodVideo(amo.tests.TestCase):
 
     def test_encoded(self):
         raise SkipTest
+        self.video.get_meta()
         try:
             video = self.video.get_encoded(amo.ADDON_PREVIEW_SIZES[0])
             assert os.stat(video)[stat.ST_SIZE]

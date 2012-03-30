@@ -10,7 +10,10 @@ from django_statsd.clients import statsd
 
 log = logging.getLogger('z.video')
 
-formats_re = re.compile('Input #0, ([\w,]+)?, from')
+formats_re = [
+    re.compile('Input #0, ([\w,]+)?, from'),
+    re.compile('doctype\s+: (\w+)'),
+]
 duration_re = re.compile('Duration: (\d{2}):(\d{2}):(\d{2}.\d{2}),')
 dimensions_re = re.compile('Stream #0.*?(\d+)x(\d+)')
 version_re = re.compile('ffmpeg version (\d\.+)')
@@ -69,9 +72,11 @@ class Video(object):
         """
         result = self._call('meta', True)
         data = {}
-        formats = formats_re.search(result)
-        if formats:
-            data['formats'] = formats.group(1).split(',')
+        for fmt in formats_re:
+            formats = fmt.search(result)
+            if formats:
+                data['formats'] = formats.group(1).split(',')
+
         duration = duration_re.search(result)
         if duration:
             data['duration'] = ((3600 * int(duration.group(1)))
