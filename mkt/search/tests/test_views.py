@@ -100,10 +100,10 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         li = doc.children('li:first-child')
         # Note: PyQuery's `hasClass` matches children's classes, so yeah.
         eq_(li.attr('class'), 'selected' if not cat_selected else None,
-            "'All Apps' should be selected")
+            "'Any Category' should be selected")
         a = li.children('a')
         eq_(a.length, 1)
-        eq_(a.text(), 'All Apps')
+        eq_(a.text(), 'Any Category')
 
         li = doc('li:last')
         eq_(li.attr('class'), 'selected' if cat_selected else None,

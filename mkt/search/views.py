@@ -54,7 +54,7 @@ def category_sidebar(query, categories):
     categories = sorted(categories, key=lambda x: x.name)
     cat_params = dict(cat=None)
 
-    rv = [FacetLink(_(u'All Apps'), cat_params, selected=not qcat)]
+    rv = [FacetLink(_(u'Any Category'), cat_params, selected=not qcat)]
     rv += [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
                      c.id == qcat) for c in categories]
     return rv
