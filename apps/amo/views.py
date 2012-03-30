@@ -331,7 +331,7 @@ def plugin_check(request):
 
         plugin.update(
             name='Java Runtime Environment',
-            version='1.6 u29',
+            version='1.6 u31',
             manualInstallationURL='http://java.com/downloads',
             InstallerShowsUI='false',
             needsRestart='false')
@@ -344,12 +344,12 @@ def plugin_check(request):
             plugin.update(
                 guid='{fbe640ef-4375-4f45-8d79-767d60bf75b8}',
                 InstallerLocation='http://java.com/firefoxjre_exe',
-                InstallerHash='sha1:4951aadb74b69d5840c3a3fee6ae45e9cc064fe3')
+                InstallerHash='sha1:fe5d345ffd399641fd49d73258F60ac274af3a5f')
         elif g['clientOS'].startswith('Win'):
             plugin.update(
                 guid='{92a550f2-dfd2-4d2f-a35d-a98cfda73595}',
                 InstallerLocation='http://java.com/firefoxjre_exe',
-                InstallerHash='sha1:4951aadb74b69d5840c3a3fee6ae45e9cc064fe3',
+                InstallerHash='sha1:fe5d345ffd399641fd49d73258f60ac274af3A5f',
                 XPILocation='http://java.com/jre-install.xpi')
         else:
             plugin.update(
