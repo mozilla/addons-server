@@ -16,7 +16,7 @@ formats_re = [
 ]
 duration_re = re.compile('Duration: (\d{2}):(\d{2}):(\d{2}.\d{2}),')
 dimensions_re = re.compile('Stream #0.*?(\d+)x(\d+)')
-version_re = re.compile('ffmpeg version (\d\.+)')
+version_re = re.compile('ffmpeg version (\d\.+)', re.I)
 
 
 def check_output(*popenargs, **kwargs):
