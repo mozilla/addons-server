@@ -3,6 +3,8 @@
    request.path == url('account.settings')),
   (url('account.payment'), _('Payment'),
    request.path.startswith(url('account.payment'))),
+  (url('users.profile', request.user.get_profile().username), _('View Profile'),
+   request.path == url('users.profile', request.user.get_profile().username)),
 ] %}
 <ul class="sub-nav">
   {% for link, title, selected in urls %}

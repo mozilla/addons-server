@@ -73,6 +73,7 @@
             a {
                 .gradient-two-color(@white, rgba(238,238,238,.8));
                 border: 1px solid @note-gray;
+                border-right: 0;
                 color: @medium-gray;
                 display: inline-block;
                 font-size: 13px;
@@ -102,14 +103,13 @@
             }
             &:first-child a {
                 .border-radius(15px 0 0 15px);
-                border-right: 0;
             }
             &:last-child a {
                 .border-radius(0 15px 15px 0);
+                border-right: 1px solid @note-gray;
             }
             &:only-child a {
                 .border-radius(15px);
-                border-right: 1px solid @note-gray;
             }
         }
     }

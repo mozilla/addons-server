@@ -10,10 +10,11 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
 
+from access.models import Group, GroupUser
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import AddonPremium
+from addons.models import AddonPremium, AddonUser
 from market.models import PreApprovalUser, Price
 from mkt.developers.models import ActivityLog
 import paypal
@@ -28,7 +29,7 @@ class TestAccountSettings(amo.tests.TestCase):
 
     def setUp(self):
         self.user = self.get_user()
-        self.client.login(username=self.user.email, password='foo')
+        assert self.client.login(username=self.user.email, password='foo')
         self.url = reverse('account.settings')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
                      'oldpassword': 'foo', 'password': 'longenough',
@@ -148,7 +149,8 @@ class TestAdminAccountSettings(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
         self.regular = self.get_user()
         self.url = reverse('users.admin_edit', args=[self.regular.pk])
 
@@ -272,6 +274,113 @@ class TestPreapproval(amo.tests.TestCase):
         eq_(self.user.preapprovaluser.paypal_key, '')
         eq_(pq(res.content)('#preapproval').attr('action'),
             reverse('account.payment.preapproval'))
+
+
+class TestProfileLinks(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.user = self.get_user()
+        # Authentication is required for now.
+        assert self.client.login(username=self.user.email, password='password')
+
+    def get_user(self):
+        return UserProfile.objects.get(username='31337')
+
+    def get_url(self):
+        return reverse('users.profile', args=[self.user.username])
+
+    def test_id_or_username(self):
+        args = [self.user.id, self.user.username]
+        for arg in args:
+            r = self.client.get(reverse('users.profile', args=[arg]))
+            eq_(r.status_code, 200)
+
+    def get_profile_links(self, id=None, username=None):
+        """Grab profile, return edit links."""
+        url = reverse('users.profile', args=[id or username])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        return pq(r.content)('#profile-actions a')
+
+    def test_viewing_my_profile(self):
+        # Me as (non-admin) viewing my own profile.
+        links = self.get_profile_links(self.user.id)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'), reverse('account.settings'))
+
+    def test_viewing_my_profile_as_other_user(self):
+        # Ensure no edit buttons are shown.
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        links = self.get_profile_links(self.user.id)
+        eq_(links.length, 0, 'No edit buttons should be shown.')
+
+    def test_viewing_other_profile(self):
+        # Me as (non-admin) viewing someone else's my own profile.
+        eq_(self.get_profile_links(id=999).length, 0)
+
+    def test_viewing_my_profile_as_admin(self):
+        # Me as (with admin) viewing my own profile.
+        GroupUser.objects.create(
+            group=Group.objects.create(rules='Users:Edit'), user=self.user)
+        assert self.client.login(username=self.user.email, password='password')
+        links = self.get_profile_links(self.user.id)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'), reverse('account.settings'))
+
+    def test_viewing_other_profile_as_admin(self):
+        # Me as (with admin) viewing someone else's profile.
+        GroupUser.objects.create(
+            group=Group.objects.create(rules='Users:Edit'), user=self.user)
+        assert self.client.login(username=self.user.email, password='password')
+        links = self.get_profile_links(999)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'), reverse('users.admin_edit', args=[999]))
+
+
+class TestProfileSections(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.user = self.get_user()
+        # Authentication is required for now.
+        assert self.client.login(username=self.user.email, password='password')
+        self.url = reverse('users.profile', args=[self.user.username])
+
+    def get_user(self):
+        return UserProfile.objects.get(username='31337')
+
+    def test_my_submissions(self):
+        other_app = amo.tests.app_factory()
+        AddonUser.objects.create(user=self.user, addon=other_app)
+        AddonUser.objects.create(user=self.user, addon_id=3615)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        subs = r.context['submissions'].object_list
+        eq_(list(subs),
+            sorted(subs, key=lambda x: x.weekly_downloads, reverse=True))
+        eq_(sorted(s.id for s in subs), sorted([other_app.id, 337141]))
+
+        doc = pq(r.content)
+        eq_(doc('.num-submissions a[href="#my-submissions"]').length, 1)
+        eq_(doc('#my-submissions .item').length, 2)
+
+    def test_my_submissions_no_pagination(self):
+        r = self.client.get(self.url)
+        assert len(self.user.apps_listed) <= 10, (
+            'This user should have fewer than 10 add-ons.')
+        eq_(pq(r.content)('#my-submissions .paginator').length, 0)
+
+    def test_my_submissions_pagination(self):
+        for x in xrange(20):
+            AddonUser.objects.create(user=self.user, addon_id=337141)
+        assert len(self.user.apps_listed) > 10, (
+            'This user should have way more than 10 add-ons.')
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#my-submissions .paginator').length, 1)
 
 
 class PurchaseBase(amo.tests.TestCase):

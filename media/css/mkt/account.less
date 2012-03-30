@@ -96,70 +96,13 @@
 }
 
 #profile {
-    .avatar.col {
-        .border-box;
-        .width(2);
+    #avatar, #prose {
+        float: left;
     }
-    .prose.col {
-        .width(8);
+    #prose {
+        padding-left: 20px;
     }
-    table.person-info {
-        width: 100%;
-        caption {
-            display: none;
-        }
-        th, td {
-            border-top: 1px solid @border-black;
-            padding: 8px 0;
-        }
-        th {
-            font-weight: bold;
-            line-height: 15px;
-            text-align: left;
-            width: 40%;
-        }
-        tr:first-child {
-            th, td {
-                border-top: none;
-            }
-        }
-        td {
-            color: @dark-gray;
-        }
-    }
-    #bio, #my-apps {
-        margin-top: 20px;
-    }
-}
-
-.html-rtl #profile table.person-info {
-    th {
-        text-align: right;
-    }
-}
-
-@media (max-width: @7col) {
-    #profile {
-        .col {
-            float: left;
-        }
-        .avatar.col {
-            .width(2);
-        }
-        .prose.col {
-            margin-left: 30px;
-            .width(5);
-        }
-    }
-}
-
-@media (max-width: @4col) {
-    #profile {
-        .avatar.col {
-            .width(2);
-        }
-        .prose.col {
-            .width(2);
-        }
+    #bio, #my-submissions {
+        margin-top: 10px;
     }
 }
