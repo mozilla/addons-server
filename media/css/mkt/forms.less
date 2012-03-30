@@ -128,11 +128,6 @@ p.req {
     margin: 0 0 10px;
 }
 
-/* CSRF token */
-form div[style]:first-child + p {
-    margin-top: 0;
-}
-
 .optional {
     color: @note-gray;
     font-size: 11px;
@@ -199,17 +194,17 @@ form {
             margin: 5px 0 0;
         }
     }
-    p,
+    .form-col p,
     input + a {
         color: @medium-gray;
     }
-    p,
+    .form-col p,
     input + a,
     .errorlist {
         font-size: 11px;
         line-height: 13px;
     }
-    footer {
+    .form-footer {
         border-top: 1px solid @light-gray;
         padding-top: 15px;
     }

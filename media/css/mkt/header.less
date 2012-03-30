@@ -21,6 +21,7 @@
         float: left;
         font: normal 20px @open-stack;
         font-weight: 400;
+        text-shadow: 0 1px 1px rgba(0,0,0,.8);
         a {
             color: @faint-gray;
             text-decoration: none;
@@ -35,7 +36,7 @@
     }
 }
 
-@media (max-width: @3col) {
+@media (max-width: @4col) {
     #site-header {
         h1, form {
             float: none;
@@ -43,5 +44,78 @@
         h1 {
             margin-bottom: 10px;
         }
+        input {
+            margin: 0;
+        }
+    }
+}
+
+
+/* Content header (breadcrumbs, heading, subnav) - used on Account Settings, etc. */
+
+#page header {
+    margin-bottom: 10px;
+    h1 {
+        float: left;
+    }
+    .sub-nav {
+        float: right;
+    }
+    .sub-nav {
+        .border-radius(15px);
+        .box-shadow(0 1px 0 @barely-gray);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+            background-clip: padding-box;
+            float: left;
+            a {
+                .gradient-two-color(@white, rgba(238,238,238,.8));
+                border: 1px solid @note-gray;
+                color: @medium-gray;
+                display: inline-block;
+                font-size: 13px;
+                line-height: 15px;
+                padding: 5px 15px;
+                text-decoration: none;
+                text-shadow: 0 1px 0 rgba(255,255,255,.8);
+                &:hover {
+                    .gradient-two-color(@barely-gray, darken(@barely-gray, 15%));
+                    color: @dark-gray;
+                    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+                }
+                &:active {
+                    .box-shadow(0 1px 2px rgba(0,0,0,.1) inset);
+                    background: @faint-gray;
+                    border-color: @note-gray;
+                }
+            }
+            &.selected {
+                a, a:hover {
+                    .box-shadow(0 1px 0 rgba(0,0,0,.2) inset);
+                    .gradient-two-color(@medium-gray, fadeOut(@medium-gray, 75%));
+                    border-color: @medium-gray;
+                    color: @white;
+                    text-shadow: 0 1px 0 rgba(0,0,0,.2);
+                }
+            }
+            &:first-child a {
+                .border-radius(15px 0 0 15px);
+                border-right-width: 0;
+            }
+            &:last-child a {
+                .border-radius(0 15px 15px 0);
+            }
+        }
+    }
+}
+
+.html-rtl #page header {
+    h1 {
+        float: right;
+    }
+    .sub-nav {
+        float: left;
     }
 }

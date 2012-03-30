@@ -5,9 +5,12 @@
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <section id="account-settings">
+  <section id="account-settings" class="account">
     {{ mkt_breadcrumbs(product, [(None, title)]) }}
-    <h1>{{ title }}</h1>
+    <header class="c">
+      <h1>{{ _('Basic Info') }}</h1>
+      {% include 'account/includes/nav.html' %}
+    </header>
     <form class="form-grid" enctype="multipart/form-data" method="post">
       {{ csrf() }}
 

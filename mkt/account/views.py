@@ -1,7 +1,8 @@
+from datetime import datetime, timedelta
+
 from django import http
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
-from django.template import Context, loader
 
 import commonware.log
 import jingo
@@ -10,20 +11,79 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from addons.views import BaseFilter
 import amo
 from amo.decorators import permission_required, post_required, write
-from amo.urlresolvers import reverse
-from amo.utils import paginate, send_mail
+from amo.utils import paginate
+from market.models import PreApprovalUser
+import paypal
 from stats.models import Contribution
 from translations.query import order_by_translation
-from users.forms import AdminUserEditForm
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
-from users.utils import EmailResetCode
 from users.views import logout
 from mkt.site import messages
 from mkt.webapps.models import Webapp
 from . import forms
 
 log = commonware.log.getLogger('mkt.account')
+paypal_log = commonware.log.getLogger('mkt.paypal')
+
+
+def payment(request, status=None):
+    # Note this is not post_required because PayPal does not reply with a
+    # POST but a GET; that's a sad face.
+
+    if status:
+        pre, created = (PreApprovalUser.objects
+                        .safer_get_or_create(user=request.amo_user))
+
+        if status == 'complete':
+            # The user has completed the setup at PayPal and bounced back.
+            if 'setup-preapproval' in request.session:
+                messages.success(request, _('Pre-approval set up'))
+                paypal_log.info(u'Preapproval key created for user: %s'
+                                % request.amo_user)
+                data = request.session.get('setup-preapproval', {})
+                pre.update(paypal_key=data.get('key'),
+                           paypal_expiry=data.get('expiry'))
+                del request.session['setup-preapproval']
+
+        elif status == 'cancel':
+            # The user has chosen to cancel out of PayPal. Nothing really
+            # to do here; PayPal just bounces to this page.
+            messages.success(request, _('Pre-approval changes cancelled'))
+
+        elif status == 'remove':
+            # The user has an pre approval key set and chooses to remove it.
+            if pre.paypal_key:
+                pre.update(paypal_key='')
+                messages.success(request, _('Pre-approval removed'))
+                paypal_log.info(u'Preapproval key removed for user: %s'
+                                % request.amo_user)
+
+        ctx = {'preapproval': pre}
+    else:
+        ctx = {'preapproval': request.amo_user.get_preapproval()}
+
+    return jingo.render(request, 'account/payment.html', ctx)
+
+
+@post_required
+def preapproval(request):
+    today = datetime.today()
+    data = {'startDate': today,
+            'endDate': today + timedelta(days=365 * 2),
+            'pattern': 'account.payment'}
+    try:
+        result = paypal.get_preapproval_key(data)
+    except paypal.PaypalError, e:
+        paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
+        raise
+
+    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user)
+    request.session['setup-preapproval'] = {
+        'key': result['preapprovalKey'],
+        'expiry': data['endDate'],
+    }
+    return redirect(paypal.get_preapproval_url(result['preapprovalKey']))
 
 
 class PurchasesFilter(BaseFilter):

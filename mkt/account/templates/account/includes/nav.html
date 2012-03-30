@@ -1,0 +1,12 @@
+{% set urls = [
+  (url('account.settings'), _('Basic Info'),
+   request.path == url('account.settings')),
+  (url('account.payment'), _('Payment'),
+   request.path.startswith(url('account.payment'))),
+] %}
+<ul class="sub-nav">
+  {% for link, title, selected in urls %}
+    <li{% if selected %} class="selected"{% endif %}>
+      <a href="{{ link }}">{{ title }}</a></li>
+  {% endfor %}
+</ul>

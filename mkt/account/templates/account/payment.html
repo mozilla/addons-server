@@ -1,0 +1,58 @@
+{% extends 'mkt/base.html' %}
+
+{% set title = _('Payment Settings') %}
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+
+{% block content %}
+  <section id="purchases" class="account form-grid">
+    {{ mkt_breadcrumbs(product, [(url('account.settings'), _('Account Settings')),
+                                 (None, _('Payment'))]) }}
+    <header class="c">
+      <h1>{{ title }}</h1>
+      {% include 'account/includes/nav.html' %}
+    </header>
+    {% if preapproval.paypal_key %}
+      <form id="preapproval" method="post" class="simple-field"
+            action="{{ url('account.payment', 'remove') }}">
+        {{ csrf() }}
+        <p class="enabled">
+          {% trans %}
+            Your payment pre-approval is <b>enabled</b>.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+            All future app purchases will be automatically charged to your
+            PayPal account. To cancel this agreement at any time return to
+            this page.
+          {% endtrans %}
+        </p>
+        <footer>
+          <button class="delete" type="submit">
+            {{ _('Remove Pre-approval') }}
+          </button>
+        </footer>
+      </form>
+    {% else %}
+      <form id="preapproval" method="post" class="simple-field"
+            action="{{ url('account.payment.preapproval') }}">
+        {{ csrf() }}
+        <p>
+          {% trans %}
+            Setting up PayPal pre-approval allows you to buy apps with one
+            click from the Marketplace. They also allow you to use in-app
+            purchases that go through this site.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+            You can cancel pre-approval at any time by returning to this page.
+          {% endtrans %}
+        </p>
+        <footer>
+          <button type="submit">{{ _('Set Up Pre-approval') }}</button>
+        </footer>
+      </form>
+    {% endif %}
+  </section>
+{% endblock %}
