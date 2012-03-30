@@ -118,6 +118,7 @@ class TestTask(amo.tests.TestCase):
 
     @patch('lib.video.ffmpeg.Video.get_encoded')
     def test_resize_video_no_encode(self, get_encoded):
+        raise SkipTest
         waffle.models.Switch.objects.update(name='video-encode', active=False)
         resize_video(files['good'], self.mock)
         assert not get_encoded.called
@@ -125,6 +126,7 @@ class TestTask(amo.tests.TestCase):
         assert self.mock.save.called
 
     def test_resize_video(self):
+        raise SkipTest
         resize_video(files['good'], self.mock)
         assert isinstance(self.mock.sizes, dict)
         assert self.mock.save.called
