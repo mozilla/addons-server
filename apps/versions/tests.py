@@ -29,6 +29,8 @@ def test_version_int():
     """Tests that version_int. Corrects our versions."""
     eq_(version_int('3.5.0a1pre2'), 3050000001002)
     eq_(version_int(''), 200100)
+    eq_(version_int('0'), 200100)
+    eq_(version_int('*'), 99000000200100)
     eq_(version_int(MAXVERSION), MAXVERSION)
     eq_(version_int(MAXVERSION + 1), MAXVERSION)
     eq_(version_int('9999999'), MAXVERSION)

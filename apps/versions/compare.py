@@ -4,7 +4,7 @@ from django.utils.encoding import smart_str
 
 MAXVERSION = 2 ** 63 - 1
 
-version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
+version_re = re.compile(r"""(?P<major>\d+|\*)      # major (x in x.y)
                             \.?(?P<minor1>\d+|\*)? # minor1 (y in x.y)
                             \.?(?P<minor2>\d+|\*)? # minor2 (z in x.y.z)
                             \.?(?P<minor3>\d+|\*)? # minor3 (w in x.y.z.w)
