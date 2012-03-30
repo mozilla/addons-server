@@ -98,6 +98,9 @@ def support_mozilla(request, contribution, wizard):
 
 @waffle_switch('allow-refund')
 def refund_request(request, contribution, wizard):
+    if not contribution.can_we_refund():
+        return http.HttpResponseForbidden()
+
     addon = contribution.addon
     if request.method == 'POST':
         return redirect('support', contribution.pk, 'reason')
@@ -108,6 +111,9 @@ def refund_request(request, contribution, wizard):
 
 @waffle_switch('allow-refund')
 def refund_reason(request, contribution, wizard):
+    if not contribution.can_we_refund():
+        return http.HttpResponseForbidden()
+
     addon = contribution.addon
     if not 'request' in wizard.get_progress():
         return redirect('support', contribution.pk, 'request')

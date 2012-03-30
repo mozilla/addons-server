@@ -109,8 +109,8 @@ def purchases(request, product_id=None, template=None):
     """A list of purchases that a user has made through the Marketplace."""
     cs = (Contribution.objects
           .filter(user=request.amo_user,
-                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
-                            amo.CONTRIB_CHARGEBACK])
+                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP,
+                            amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK])
           .order_by('created'))
     if product_id:
         cs = cs.filter(addon=product_id)

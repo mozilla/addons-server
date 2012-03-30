@@ -30,6 +30,12 @@ class TestRequestSupport(PurchaseBase):
         eq_(doc('#support-start').find('a').eq(0).attr('href'),
             self.get_support_url('author'))
 
+    def test_start_no_inapp_refund(self):
+        self.con.update(type=amo.CONTRIB_INAPP)
+        content = self.client.get(self.get_support_url()).content
+        eq_(len(pq(content)('#support-start').find('a')), 3)
+        assert self.get_support_url('request') not in content
+
     def test_support_page_external_link(self):
         self.app.support_url = 'http://omg.org/yes'
         self.app.save()
@@ -86,6 +92,11 @@ class TestRequestSupport(PurchaseBase):
         res = self.client.post(self.get_support_url('mozilla'), {'b': 'c'})
         assert 'text' in res.context['form'].errors
 
+    def test_no_request_inapp(self):
+        self.con.update(type=amo.CONTRIB_INAPP)
+        res = self.client.post(self.get_support_url('request'))
+        eq_(res.status_code, 403)
+
     def test_refund_remove(self):
         res = self.client.post(self.get_support_url('request'), {'remove': 1})
         eq_(res.status_code, 302)
@@ -113,6 +124,11 @@ class TestRequestSupport(PurchaseBase):
         assert 'cannot be applied for yet' in res.cookies['messages'].value
         eq_(len(mail.outbox), 0)
         self.assertRedirects(res, reverse('account.purchases'), 302)
+
+    def test_no_reason_inapp(self):
+        self.con.update(type=amo.CONTRIB_INAPP)
+        res = self.client.post(self.get_support_url('reason'))
+        eq_(res.status_code, 403)
 
     @mock.patch('stats.models.Contribution.is_instant_refund')
     def test_request_mails(self, is_instant_refund):

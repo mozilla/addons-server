@@ -1,14 +1,14 @@
 {% set contributions = contributions.get(product.pk, []) %}
 {% if contributions %}
   <ul class="vitals contributions">
-    {% set last_contrib = contributions[-1].type == amo.CONTRIB_PURCHASE
+    {% set last_contrib = contributions[-1].type in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]
                           and contributions[-1].id %}
     {% for contribution in contributions %}
       {# Show "Request Support" link if this is the last contribution
          and is a purchase. #}
       {% set get_support = contribution.id == last_contrib %}
       <li>
-          {% if contribution.type == amo.CONTRIB_PURCHASE %}
+          {% if contribution.type in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP] %}
             <span class="purchase{{ ' supportable' if get_support }}">
               {% trans date=contribution.created|datetime,
                        amt=contribution.get_amount_locale() %}

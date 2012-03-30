@@ -415,7 +415,12 @@ class TestPurchases(PurchaseBase):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('body').attr('data-purchases'), '')
 
-    def test_refund_link(self):
+    def test_support_link(self):
+        eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
+            self.get_support_url())
+
+    def test_support_link_inapp(self):
+        self.con.update(type=amo.CONTRIB_INAPP)
         eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
             self.get_support_url())
 
