@@ -435,7 +435,7 @@ def _premium(request, addon_id, addon, webapp=False):
 
 
 @waffle_switch('allow-refund')
-@dev_required(webapp=True)
+@dev_required(support=True, webapp=True)
 def issue_refund(request, addon_id, addon, webapp=False):
     txn_id = request.REQUEST.get('transaction_id')
     if not txn_id:
@@ -462,12 +462,14 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                               'no action taken.'))
                     return redirect(addon.get_dev_url('refunds'))
                 elif res['refundStatus'] == 'NO_API_ACCESS_TO_RECEIVER':
-                    paypal_log.debug(
-                        'Refund attempt for product %s with no refund token: %s, %s' %
-                        (contribution.addon.pk, contribution.paykey, res['receiver.email']))
-                    messages.error(request, _("A refund can't be issued at this "
-                                              "time. We've notified an admin; "
-                                              "please try again later."))
+                    paypal_log.debug('Refund attempt for product %s with no '
+                                     'refund token: %s, %s' %
+                                    (contribution.addon.pk,
+                                     contribution.paykey,
+                                     res['receiver.email']))
+                    messages.error(request,
+                        _("A refund can't be issued at this time. We've "
+                          "notified an admin; please try again later."))
                     return redirect(addon.get_dev_url('refunds'))
 
             contribution.mail_approved()
@@ -493,8 +495,7 @@ def issue_refund(request, addon_id, addon, webapp=False):
 
 
 @waffle_switch('allow-refund')
-@dev_required(webapp=True)
-# TODO: Make sure 'Support' staff can access this.
+@dev_required(support=True, webapp=True)
 def refunds(request, addon_id, addon, webapp=False):
     ctx = {'addon': addon, 'webapp': webapp}
     queues = {

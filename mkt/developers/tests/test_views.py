@@ -55,6 +55,9 @@ class AppHubTest(amo.tests.TestCase):
             ids.append(new_addon.id)
         return ids
 
+    def get_app(self):
+        return Addon.objects.get(id=337141)
+
 
 class TestHome(amo.tests.TestCase):
     fixtures = ['base/users']
@@ -116,9 +119,6 @@ class TestAppDashboard(AppHubTest):
         super(TestAppDashboard, self).setUp()
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
-    def get_app(self):
-        return Addon.objects.get(id=337141)
-
     def test_no_apps(self):
         Addon.objects.all().delete()
         r = self.client.get(self.url)
@@ -146,8 +146,8 @@ class TestAppDashboard(AppHubTest):
 
     def test_incomplete_app(self):
         app = self.get_app()
-        self.make_mine()
         app.update(status=amo.STATUS_NULL)
+        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
@@ -156,8 +156,8 @@ class TestAppDashboard(AppHubTest):
     def test_action_links_with_payments(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
         app = self.get_app()
-        self.make_mine()
         app.update(premium_type=amo.ADDON_PREMIUM)
+        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Manage Developer Profile', app.get_dev_url('profile')),
@@ -166,6 +166,40 @@ class TestAppDashboard(AppHubTest):
             ('Manage Status', app.get_dev_url('versions')),
         ]
         amo.tests.check_links(expected, doc('.more-actions-popup a'))
+
+
+class TestManageLinks(AppHubTest):
+
+    def setUp(self):
+        super(TestManageLinks, self).setUp()
+        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
+        waffle.models.Switch.objects.create(name='allow-refund', active=True)
+
+    def test_refunds_link_support(self):
+        app = self.get_app()
+        app.update(premium_type=amo.ADDON_PREMIUM)
+
+        AddonUser.objects.update(role=amo.AUTHOR_ROLE_SUPPORT)
+        assert self.client.login(username=self.user.email, password='password')
+
+        for url in [self.url, app.get_dev_url()]:
+            r = self.client.get(self.url)
+            eq_(r.status_code, 200)
+            assert 'Manage Refunds' in r.content, (
+                'Expected "Manage Refunds" link')
+
+    def test_refunds_link_viewer(self):
+        app = self.get_app()
+        app.update(premium_type=amo.ADDON_PREMIUM)
+
+        AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
+        assert self.client.login(username=self.user.email, password='password')
+
+        for url in [self.url, app.get_dev_url()]:
+            r = self.client.get(self.url)
+            eq_(r.status_code, 200)
+            assert 'Manage Refunds' not in r.content, (
+                '"Manage Refunds" link should be hidden')
 
 
 class TestAppDashboardSorting(AppHubTest):
@@ -484,9 +518,34 @@ class TestIssueRefund(amo.tests.TestCase):
                                            user=self.user, paykey=self.paykey,
                                            amount=Decimal('10'), type=type)
 
+    def test_viewer_lacks_access(self):
+        AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        c = self.make_purchase()
+        data = {'transaction_id': c.transaction_id}
+        eq_(self.client.get(self.url, data).status_code, 403)
+        eq_(self.client.post(self.url, data).status_code, 403)
+
+    def _test_has_access(self, role):
+        AddonUser.objects.update(role=role)
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        c = self.make_purchase()
+        data = {'transaction_id': c.transaction_id}
+        eq_(self.client.get(self.url, data).status_code, 200)
+        eq_(self.client.post(self.url, data).status_code, 302)
+
+    def test_support_has_access(self):
+        self._test_has_access(amo.AUTHOR_ROLE_SUPPORT)
+
+    def test_dev_has_access(self):
+        self._test_has_access(amo.AUTHOR_ROLE_DEV)
+
     def test_request_issue(self):
         c = self.make_purchase()
         r = self.client.get(self.url, {'transaction_id': c.transaction_id})
+        eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#issue-refund button').length, 2)
         eq_(doc('#issue-refund input[name=transaction_id]').val(),
@@ -656,6 +715,16 @@ class TestRefunds(amo.tests.TestCase):
         self.client.logout()
         r = self.client.get(self.url, follow=True)
         self.assertLoginRedirects(r, self.url)
+
+    def test_viewer(self):
+        AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
+        assert self.client.login(username=self.user.email, password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_support(self):
+        AddonUser.objects.update(role=amo.AUTHOR_ROLE_SUPPORT)
+        assert self.client.login(username=self.user.email, password='password')
+        eq_(self.client.get(self.url).status_code, 200)
 
     def test_bad_owner(self):
         self.client.logout()
