@@ -32,7 +32,7 @@ class PriceManager(amo.models.ManagerBase):
 class Price(amo.models.ModelBase):
     active = models.BooleanField(default=True)
     name = TranslatedField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     objects = PriceManager()
     currency = 'USD'
@@ -93,7 +93,7 @@ class Price(amo.models.ModelBase):
 class PriceCurrency(amo.models.ModelBase):
     currency = models.CharField(max_length=10,
                                 choices=do_dictsort(amo.OTHER_CURRENCIES))
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     tier = models.ForeignKey(Price)
 
     class Meta:
