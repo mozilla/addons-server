@@ -336,39 +336,33 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
         return redirect(on_error)
 
     paypal_log.debug('User approved permissions for addon: %s' % addon_id)
-
     token = paypal.get_permissions_token(request.GET['request_token'],
                                          request.GET['verification_code'])
-    paypal_log.debug('Got refund token for addon: %s, token: %s....' %
-                     (addon_id, token[:10]))
 
-    # Sadly this is an update on a GET.
-    addonpremium, created = (AddonPremium.objects
-                                         .safer_get_or_create(addon=addon))
-
-    paypal_log.debug('AddonPremium %s for: %s' %
-                     ('created' if created else 'updated', addon.pk))
-    addonpremium.update(paypal_permissions_token=token)
-    paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
-
-    paypal_log.debug('Getting personal data for token: %s' % addonpremium.pk)
-    apd, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
-
-    # A sanity check, I'm not sure if this should be fatal and will
-    # occur on the prod server or it's just sandbox weirdness.
+    paypal_log.debug('Getting personal data for token: %s' % addon_id)
     data = paypal.get_personal_data(token)
     email = data.get('email')
+
+    # If the email from paypal is different, something has gone wrong.
     if email != addon.paypal_id:
         paypal_log.debug('Addon paypal_id and personal data differ: '
                          '%s vs %s' % (email, addon.paypal_id))
-        messages.warning(request, 'Warning the email returned by Paypal (%s) '
-                         'did not match the PayPal email you entered (%s), '
-                         'please be sure that you have the correct account.'
-                         % (email, addon.paypal_id))
-    apd.update(**data)
-    paypal_log.debug('Updating personal data for: %s' % apd.pk)
+        messages.warning(request, _('The email returned by Paypal, '
+                                    'did not match the PayPal email you '
+                                    'entered. Please login using %s.')
+                         % email)
+        return redirect(on_error)
 
-    paypal_log.debug('AddonPremium saved with token: %s' % addonpremium.pk)
+    # Set the permissions token that we have just successfully used
+    # in get_personal_data.
+    addonpremium, created = (AddonPremium.objects
+                                         .safer_get_or_create(addon=addon))
+    addonpremium.update(paypal_permissions_token=token)
+
+    # Finally update the data returned from PayPal for this addon.
+    paypal_log.debug('Updating personal data for: %s' % addon_id)
+    apd, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
+    apd.update(**data)
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
     if show_good_msgs:

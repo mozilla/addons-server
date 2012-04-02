@@ -488,15 +488,25 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         assert not pq(res.content)('#id_free')
 
     @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
-    @mock.patch('paypal.get_personal_data', lambda x: {})
+    @mock.patch('paypal.get_personal_data', lambda x: {'email': 'a@a.com'})
     def test_permissions_token(self):
         self.setup_premium()
         eq_(self.addon.premium.paypal_permissions_token, '')
         url = self.addon.get_dev_url('acquire_refund_permission')
-        data = {'request_token': 'foo', 'verification_code': 'bar'}
-        self.client.get('%s?%s' % (url, urlencode(data)))
+        self.client.get(urlparams(url, request_token='foo',
+                                       verification_code='bar'))
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.premium.paypal_permissions_token, 'FOO')
+
+    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
+    @mock.patch('paypal.get_personal_data', lambda x: {})
+    def test_permissions_token_different_email(self):
+        self.setup_premium()
+        url = self.addon.get_dev_url('acquire_refund_permission')
+        self.client.get(urlparams(url, request_token='foo',
+                                       verification_code='bar'))
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        eq_(self.addon.premium.paypal_permissions_token, '')
 
 
 class TestIssueRefund(amo.tests.TestCase):
