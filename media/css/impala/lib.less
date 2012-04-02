@@ -126,6 +126,13 @@
     box-sizing: border-box;
 }
 
+.animation(@animation) {
+    -webkit-animation: @animation;
+    -moz-animation: @animation;
+    -ms-animation: @animation;
+    animation: @animation;
+}
+
 .ellipsis() {
     overflow: hidden;
     text-overflow: ellipsis;

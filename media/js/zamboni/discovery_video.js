@@ -258,4 +258,8 @@ $(function() {
         if($(this).hasClass('close')) return popcorn.stop();
         popcorn.start();
     }));
+
+    $('#promos').delegate('.vid-button a', 'click', _pd(function() {
+        popcorn.start();
+    }));
 });

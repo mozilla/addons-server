@@ -171,6 +171,155 @@
     }
 }
 
+@-webkit-keyframes hand-moving {
+	0%   { background-position: 0 0; }
+	5%   { background-position: 5px -5px; }
+	25%   { background-position: 5px -5px; }
+	30%   { background-position: 0px -10px; }
+	50%   { background-position: 0px -10px; }
+	55%   { background-position: 10px -10px; }
+	95%   { background-position: 10px -10px; }
+	100%   { background-position: 0 0; }
+}
+@-moz-keyframes hand-moving {
+	0%   { background-position: 0 0; }
+	5%   { background-position: 5px -5px; }
+	25%   { background-position: 5px -5px; }
+	30%   { background-position: 0px -10px; }
+	50%   { background-position: 0px -10px; }
+	55%   { background-position: 10px -10px; }
+	95%   { background-position: 10px -10px; }
+	100%   { background-position: 0 0; }
+}
+@-ms-keyframes hand-moving {
+	0%   { background-position: 0 0; }
+	5%   { background-position: 5px -5px; }
+	25%   { background-position: 5px -5px; }
+	30%   { background-position: 0px -10px; }
+	50%   { background-position: 0px -10px; }
+	55%   { background-position: 10px -10px; }
+	95%   { background-position: 10px -10px; }
+	100%   { background-position: 0 0; }
+}
+
+@-webkit-keyframes eye-moving {
+	0%   { background-position: 0 0; }
+	5%   { background-position: -2px 0; }
+	25%   { background-position: -2px 0; }
+	30%   { background-position: 2px 0; }
+	65%   { background-position: 2px 0; }
+	66%   { background-position: 2px 4px; }
+	67%   { background-position: 2px 4px; }
+	68%   { background-position: 2px 0; }
+	95%   { background-position: 2px 0; }
+	100%   { background-position: 0 0; }
+}
+@-moz-keyframes eye-moving {
+	0%   { background-position: 0 0; }
+	5%   { background-position: -2px 0; }
+	25%   { background-position: -2px 0; }
+	30%   { background-position: 2px 0; }
+	65%   { background-position: 2px 0; }
+	66%   { background-position: 2px 4px; }
+	67%   { background-position: 2px 4px; }
+	68%   { background-position: 2px 0; }
+	95%   { background-position: 2px 0; }
+	100%   { background-position: 0 0; }
+}
+@-ms-keyframes eye-moving {
+	0%   { background-position: 0 0; }
+	5%   { background-position: -2px 0; }
+	25%   { background-position: -2px 0; }
+	30%   { background-position: 2px 0; }
+	65%   { background-position: 2px 0; }
+	66%   { background-position: 2px 4px; }
+	67%   { background-position: 2px 4px; }
+	68%   { background-position: 2px 0; }
+	95%   { background-position: 2px 0; }
+	100%   { background-position: 0 0; }
+}
+
+#addon-video-promo {
+    background: url("../../img/zamboni/discovery_pane/promos/video/bg.png") repeat scroll left bottom transparent;
+    position: relative;
+    h2 {
+        margin-top: 25px;
+    }
+
+    h2, h3 {
+        color: #fff;
+        margin-right: 200px;
+        text-shadow: 1px 1px 0px #000;
+    }
+
+    .vid-button {
+        display: block;
+        float: left;
+        .border-radius(5px);
+        background-color: #778343;
+        padding: 5px;
+        margin-top: 10px;
+        a {
+            background-color: #FFF;
+            border-radius: 5px;
+            .box-shadow(0 -5px #BBB inset);
+            color: #666;
+            display: block;
+            float: left;
+            font-size: 2em;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0 #fff;
+            .gradient-two-color(#fff, #ccc);
+            &:hover {
+                .box-shadow(0 -5px #AAA inset);
+                .gradient-two-color(#fff, #bbb);
+                color: #444;
+                strong {
+                    color: #111;
+                }
+            }
+            &:active {
+                padding-bottom: 8px;
+                margin-top: 2px;
+                position: relative;
+            }
+            strong {
+                color: #333;
+            }
+        }
+    }
+    .vid-guy {
+        width: 224px;
+        height: 192px;
+        position: absolute;
+        background-image: url("../../img/zamboni/discovery_pane/promos/video/guy.png");
+        right: 55px;
+        bottom: 0px;
+        &:before {
+            background: url("../../img/zamboni/discovery_pane/promos/video/hand.png") no-repeat scroll 7px 0 transparent;
+            content: " ";
+            display: block;
+            height: 43px;
+            left: 46px;
+            position: absolute;
+            top: 133px;
+            width: 25px;
+            .animation(hand-moving 20s infinite);
+        }
+        &:after {
+            background: url("../../img/zamboni/discovery_pane/promos/video/eyes.png") no-repeat scroll 0 0 #F7F2ED;
+            content: " ";
+            height: 4px;
+            left: 88px;
+            position: absolute;
+            top: 36px;
+            width: 48px;
+            .animation(eye-moving 15s infinite);
+        }
+    }
+}
+
 #valentines {
     background: url(../../img/zamboni/discovery_pane/promos/valentines-bg.png) 50% 0 no-repeat;
     h2, ul a h3 {
