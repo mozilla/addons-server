@@ -49,6 +49,9 @@ urlpatterns = patterns('',
     # Site Search.
     ('^search/', include('mkt.search.urls')),
 
+    # Reviewer tools.
+    ('^reviewers/', include('mkt.editortools.urls')),
+
     # Editor tools.
     ('^editors/', include('editors.urls')),
 
