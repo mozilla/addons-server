@@ -17,6 +17,7 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
 from files.models import File, Platform, cleanup_file
+from tower import ugettext as _
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
@@ -489,5 +490,6 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         if self.version.is_compatible:
-            return u'%s %s and later' % (self.application, self.min)
+            return _('{app} {min} and later').format(app=self.application,
+                                                     min=self.min)
         return u'%s %s - %s' % (self.application, self.min, self.max)
