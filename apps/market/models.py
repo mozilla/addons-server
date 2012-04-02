@@ -99,6 +99,7 @@ class PriceCurrency(amo.models.ModelBase):
     class Meta:
         db_table = 'price_currency'
         verbose_name = 'Price currencies'
+        unique_together = ('tier', 'currency')
 
     def get_price_locale(self):
         """Return the price as a nicely localised string for the locale."""
