@@ -312,12 +312,11 @@ var installButton = function() {
             $button.addClass('installer');
             $button.closest('div').attr('data-version-supported', true);
         } else if (!appSupported) {
-            var tpl = template('Works with {app} {min} - {max}' +
+            var tpl = template(gettext('Works with {app} {min} - {max}') +
                 '<span class="more-versions"><a href="{versions_url}">' +
-                '{versions_link}</a></span>');
+                gettext('View other versions') + '</a></span>');
             var context = {'app': z.appName, 'min': min, 'max': max,
-                'versions_url': versions_url,
-                'versions_link': gettext('View other versions')};
+                'versions_url': versions_url};
             addWarning(tpl(context), noappsupport);
         }
         return false;
