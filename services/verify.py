@@ -157,7 +157,7 @@ def application(environ, start_response):
     status = '200 OK'
     with statsd.timer('services.verify'):
 
-        data = environ['wsgi.input'].read(int(environ['CONTENT_LENGTH']))
+        data = environ['wsgi.input'].read()
         try:
             addon_id = id_re.search(environ['PATH_INFO']).group('addon_id')
         except AttributeError:
