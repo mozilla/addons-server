@@ -26,7 +26,8 @@
     <table>
       <tr>
         <th class="label">{{ _('Application Domain') }}</th>
-        <td>https://{{ addon.app_domain }}</td>
+        {# TODO(Kumar) make http(s) configurable. See bug 741484. #}
+        <td>http://{{ addon.app_domain }}</td>
       </tr>
       <tr>
         <th><label for="id_postback_url">{{ _("Postback URL") }} {{ required() }}</label></th>

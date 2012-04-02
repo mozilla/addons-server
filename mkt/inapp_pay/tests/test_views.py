@@ -8,6 +8,8 @@ import time
 from django.conf import settings
 
 import fudge
+from fudge.inspector import arg
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle.models
@@ -20,7 +22,7 @@ from paypal import PaypalError
 from stats.models import Contribution
 from users.models import UserProfile
 
-from mkt.inapp_pay.models import InappConfig, InappPayLog
+from mkt.inapp_pay.models import InappPayment, InappConfig, InappPayLog
 
 
 class PaymentTest(amo.tests.TestCase):
@@ -39,6 +41,27 @@ class PaymentTest(amo.tests.TestCase):
     def get_app(self):
         return Addon.objects.get(pk=337141)
 
+    def make_contrib(self):
+        payload = self.payload()
+        uuid_ = '12345'
+        return Contribution.objects.create(
+                    addon_id=self.app.pk, amount=payload['request']['price'],
+                    source='', source_locale='en-US',
+                    currency=payload['request']['currency'],
+                    uuid=uuid_, type=amo.CONTRIB_INAPP_PENDING,
+                    paykey='some-paykey', user=self.user)
+
+    def make_payment(self, contrib=None):
+        app_payment = self.payload()
+        if not contrib:
+            contrib = self.make_contrib()
+        return InappPayment.objects.create(
+                            config=self.inapp_config,
+                            contribution=contrib,
+                            name=app_payment['request']['name'],
+                            description=app_payment['request']['description'],
+                            app_data=app_payment['request']['productdata'])
+
     def payload(self, app_id=None, exp=None, iat=None):
         if not app_id:
             app_id = self.app_id
@@ -48,7 +71,7 @@ class PaymentTest(amo.tests.TestCase):
             exp = iat + 3600  # expires in 1 hour
         return {
             'iss': app_id,
-            'aud': settings.INAPP_PAYMENT_AUD,
+            'aud': settings.INAPP_MARKET_ID,
             'typ': 'mozilla/payments/pay/v1',
             'exp': exp,
             'iat': iat,
@@ -126,16 +149,25 @@ class TestPay(PaymentViewTest):
                                     args=[self.inapp_config.pk, 'complete'])
         self.cancel_url = reverse('inapp_pay.pay_done',
                                   args=[self.inapp_config.pk, 'cancel'])
+        self.upatch = mock.patch('mkt.inapp_pay.tasks.urlopen')
+        self.upatch.start()
 
-    def make_contrib(self):
-        payload = self.payload()
-        uuid_ = '12345'
-        return Contribution.objects.create(
-                    addon_id=self.app.pk, amount=payload['request']['price'],
-                    source='', source_locale='en-US',
-                    currency=payload['request']['currency'],
-                    uuid=uuid_, type=amo.CONTRIB_INAPP_PENDING,
-                    paykey='some-paykey', user=self.user)
+    def tearDown(self):
+        super(TestPay, self).tearDown()
+        self.upatch.stop()
+
+    def assert_payment_done(self, payload, contrib_type):
+        cnt = Contribution.objects.get(addon=self.app)
+        eq_(cnt.addon.pk, self.app.pk)
+        eq_(cnt.type, contrib_type)
+        eq_(cnt.amount, Decimal(payload['request']['price']))
+        eq_(cnt.currency, payload['request']['currency'])
+
+        pmt = InappPayment.objects.get(contribution=cnt)
+        eq_(pmt.config, self.inapp_config)
+        eq_(pmt.name, payload['request']['name'])
+        eq_(pmt.description, payload['request']['description'])
+        eq_(pmt.app_data, payload['request']['productdata'])
 
     def test_missing_pay_request(self):
         rp = self.client.post(reverse('inapp_pay.pay'))
@@ -175,19 +207,18 @@ class TestPay(PaymentViewTest):
         eq_(log.action, InappPayLog._actions['PAY'])
         eq_(log.config.pk, self.inapp_config.pk)
 
-        cnt = Contribution.objects.get(addon=self.app)
-        eq_(cnt.addon.pk, self.app.pk)
-        eq_(cnt.type, amo.CONTRIB_INAPP_PENDING)
-        eq_(cnt.amount, Decimal(payload['request']['price']))
-        eq_(cnt.currency, payload['request']['currency'])
+        self.assert_payment_done(payload, amo.CONTRIB_INAPP_PENDING)
 
     @fudge.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')
-    def test_preauth_ok(self, check_purchase, get_paykey):
+    @fudge.patch('mkt.inapp_pay.tasks.notify_app')
+    def test_preauth_ok(self, check_purchase, get_paykey, notify_app):
         payload = self.payload()
 
         get_paykey.expects_call().returns(['some-pay-key', 'COMPLETED'])
         check_purchase.expects_call().returns('COMPLETED')
+        notify_app.expects('delay').with_args(amo.INAPP_NOTICE_PAY,
+                                              arg.any())  # payment ID to-be
 
         req = self.request(payload=json.dumps(payload))
         self.client.post(reverse('inapp_pay.pay'), dict(req=req))
@@ -196,11 +227,7 @@ class TestPay(PaymentViewTest):
         eq_(logs[0].action, InappPayLog._actions['PAY'])
         eq_(logs[1].action, InappPayLog._actions['PAY_COMPLETE'])
 
-        cnt = Contribution.objects.get(addon=self.app)
-        eq_(cnt.addon.pk, self.app.pk)
-        eq_(cnt.type, amo.CONTRIB_INAPP)
-        eq_(cnt.amount, Decimal(payload['request']['price']))
-        eq_(cnt.currency, payload['request']['currency'])
+        self.assert_payment_done(payload, amo.CONTRIB_INAPP)
 
     @fudge.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')
@@ -213,8 +240,12 @@ class TestPay(PaymentViewTest):
                                 'Unexpected redirect: %s' % res['Location'])
         eq_(Contribution.objects.get().type, amo.CONTRIB_INAPP_PENDING)
 
-    def test_pay_complete(self):
+    @fudge.patch('mkt.inapp_pay.tasks.notify_app')
+    def test_pay_complete(self, notify_app):
         cnt = self.make_contrib()
+        payment = self.make_payment(contrib=cnt)
+        notify_app.expects('delay').with_args(amo.INAPP_NOTICE_PAY,
+                                              payment.pk)
         res = self.client.get(self.complete_url, {'uuid': cnt.uuid})
         self.assertContains(res, 'Payment received')
         cnt = Contribution.objects.get(pk=cnt.pk)
@@ -222,8 +253,10 @@ class TestPay(PaymentViewTest):
         eq_(InappPayLog.objects.get().action,
             InappPayLog._actions['PAY_COMPLETE'])
 
-    def test_pay_cancel(self):
+    @fudge.patch('mkt.inapp_pay.tasks.notify_app')
+    def test_pay_cancel(self, notify_app):
         cnt = self.make_contrib()
+        self.make_payment(contrib=cnt)
         res = self.client.get(self.cancel_url, {'uuid': cnt.uuid})
         self.assertContains(res, 'Payment canceled')
         cnt = Contribution.objects.get(pk=cnt.pk)

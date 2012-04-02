@@ -16,10 +16,12 @@ from django.shortcuts import redirect, get_object_or_404
 
 import amo
 from amo.decorators import login_required, post_required, write
-from mkt.inapp_pay.decorators import require_inapp_request
-from mkt.inapp_pay.models import InappPayLog, InappConfig
 import paypal
 from stats.models import Contribution
+
+from .decorators import require_inapp_request
+from .models import InappPayment, InappPayLog, InappConfig
+from . import tasks
 
 
 log = commonware.log.getLogger('z.inapp_pay')
@@ -88,40 +90,41 @@ def pay(request, signed_req, pay_req):
         InappPayLog.log(request, 'PAY_ERROR', config=pay_req['_config'])
         return jingo.render(request, 'inapp_pay/error.html', {})
 
-    if paykey:
-        contrib = Contribution(addon_id=addon.id, amount=amount,
-                               source=source, source_locale=request.LANG,
-                               currency=currency, uuid=str(uuid_),
-                               type=amo.CONTRIB_INAPP_PENDING,
-                               paykey=paykey, user=request.amo_user)
-        log.debug('Storing in-app payment contrib for uuid: %s' % uuid_)
+    contrib = Contribution(addon_id=addon.id, amount=amount,
+                           source=source, source_locale=request.LANG,
+                           currency=currency, uuid=str(uuid_),
+                           type=amo.CONTRIB_INAPP_PENDING,
+                           paykey=paykey, user=request.amo_user)
+    log.debug('Storing in-app payment contrib for uuid: %s' % uuid_)
 
-        # If this was a pre-approval, it's completed already, we'll
-        # double check this with PayPal, just to be sure nothing went wrong.
-        if status == 'COMPLETED':
-            paypal.paypal_log_cef(request, addon, uuid_,
-                                  'Purchase', 'PURCHASE',
-                                  'A user purchased using pre-approval')
+    # If this was a pre-approval, it's completed already, we'll
+    # double check this with PayPal, just to be sure nothing went wrong.
+    if status == 'COMPLETED':
+        paypal.paypal_log_cef(request, addon, uuid_,
+                              'Purchase', 'PURCHASE',
+                              'A user purchased using pre-approval')
 
-            log.debug('Status is completed for uuid: %s' % uuid_)
-            if paypal.check_purchase(paykey) == 'COMPLETED':
-                log.debug('Check in-app payment is completed for uuid: %s'
-                          % uuid_)
-                contrib.type = amo.CONTRIB_INAPP
-            else:
-                # In this case PayPal disagreed, we should not be trusting
-                # what get_paykey said. Which is a worry.
-                log.error('Check in-app payment failed on uuid: %s' % uuid_)
-                status = 'NOT-COMPLETED'
+        log.debug('Status is completed for uuid: %s' % uuid_)
+        if paypal.check_purchase(paykey) == 'COMPLETED':
+            log.debug('Check in-app payment is completed for uuid: %s'
+                      % uuid_)
+            contrib.type = amo.CONTRIB_INAPP
+        else:
+            # In this case PayPal disagreed, we should not be trusting
+            # what get_paykey said. Which is a worry.
+            log.error('Check in-app payment failed on uuid: %s' % uuid_)
+            status = 'NOT-COMPLETED'
 
-        contrib.save()
+    contrib.save()
 
-    else:
-        log.error('No paykey present for uuid: %s' % uuid_)
+    payment = InappPayment.objects.create(
+                            config=pay_req['_config'],
+                            contribution=contrib,
+                            name=pay_req['request']['name'],
+                            description=pay_req['request']['description'],
+                            app_data=pay_req['request']['productdata'])
 
     InappPayLog.log(request, 'PAY', config=pay_req['_config'])
-    log.debug('Got paykey for in-app payment config %s by user: %s'
-              % (pay_req['_config'].pk, request.amo_user.pk))
 
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
     if status != 'COMPLETED':
@@ -129,7 +132,7 @@ def pay(request, signed_req, pay_req):
         return redirect(url)
 
     # Payment was completed using pre-auth. Woo!
-    _log_payment_done(request, pay_req['_config'], uuid_)
+    _payment_done(request, payment)
     return jingo.render(request, 'inapp_pay/thanks_for_payment.html', {})
 
 
@@ -150,6 +153,7 @@ def pay_done(request, config_pk, status):
         log.error('PayPal returned invalid uuid %r from in-app payment'
                   % uuid_, exc_info=True)
         return jingo.render(request, 'inapp_pay/error.html')
+    payment = InappPayment.objects.get(config=cfg, contribution=cnt)
     if status == 'complete':
         cnt.update(type=amo.CONTRIB_INAPP)
         tpl = 'inapp_pay/thanks_for_payment.html'
@@ -159,10 +163,13 @@ def pay_done(request, config_pk, status):
         action = 'PAY_CANCEL'
     else:
         raise ValueError('Unexpected status: %r' % status)
-    _log_payment_done(request, cfg, uuid_, action=action)
+    _payment_done(request, payment, action=action)
     return jingo.render(request, tpl, {})
 
 
-def _log_payment_done(request, config, uuid_, action='PAY_COMPLETE'):
-    InappPayLog.log(request, action, config=config)
-    log.debug('In-app payment done for %s, uuid %r' % (config.pk, uuid_))
+def _payment_done(request, payment, action='PAY_COMPLETE'):
+    if action == 'PAY_COMPLETE':
+        tasks.notify_app.delay(amo.INAPP_NOTICE_PAY, payment.pk)
+    # TODO(Kumar) when canceled, notify app. bug 741588
+    InappPayLog.log(request, action, config=payment.config)
+    log.debug('in-app payment %s for payment %s' % (action, payment.pk))

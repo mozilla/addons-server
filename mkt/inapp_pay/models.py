@@ -127,3 +127,27 @@ class InappPayLog(amo.models.ModelBase):
                            app_public_key=app_public_key,
                            exception=cls._exceptions[exc_class]
                                      if exc_class else None)
+
+
+class InappPayment(amo.models.ModelBase):
+    config = models.ForeignKey(InappConfig)
+    contribution = models.ForeignKey('stats.Contribution')
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=255, blank=True)
+    app_data = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        db_table = 'addon_inapp_payment'
+        unique_together = ('config', 'contribution')
+
+
+class InappPayNotice(amo.models.ModelBase):
+    """In-app payment notification sent to the app."""
+    notice = models.IntegerField(choices=amo.INAPP_NOTICE_CHOICES)
+    payment = models.ForeignKey(InappPayment)
+    url = models.CharField(max_length=255)
+    success = models.BooleanField()  # App responded OK to notification.
+    last_error = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        db_table = 'addon_inapp_notice'

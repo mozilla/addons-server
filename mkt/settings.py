@@ -165,5 +165,8 @@ ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
 # Feature flags.
 POTCH_MARKETPLACE_EXPERIMENTS = False
 
-# All in-app payment JWTs must set aud (the audience) to this exact value:
-INAPP_PAYMENT_AUD = 'marketplace.mozilla.org'
+# JWT identifier for this marketplace.
+# This is used for in-app payments in two ways.
+# 1. app must send JWTs with aud (the audience) set to this exact value.
+# 2. apps will receive JWTs with iss (issuer) set to this value.
+INAPP_MARKET_ID = 'marketplace.mozilla.org'

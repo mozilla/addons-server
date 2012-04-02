@@ -4,6 +4,7 @@ import json
 import sys
 import time
 
+from django import forms
 from django.conf import settings
 
 import jwt
@@ -11,7 +12,8 @@ from statsd import statsd
 
 import amo
 
-from mkt.inapp_pay.models import InappConfig
+from .forms import PaymentForm, ContributionForm
+from .models import InappConfig
 
 
 class InappPaymentError(Exception):
@@ -145,14 +147,15 @@ def verify_request(signed_request):
     if not audience:
         raise InvalidRequest('Payment JWT is missing aud (audience)',
                              app_id=app_id)
-    if audience != settings.INAPP_PAYMENT_AUD:
+    if audience != settings.INAPP_MARKET_ID:
         raise InvalidRequest('Payment JWT aud (audience) must be set to %r; '
-                             'got: %r' % (settings.INAPP_PAYMENT_AUD,
+                             'got: %r' % (settings.INAPP_MARKET_ID,
                                           audience),
                              app_id=app_id)
 
-    # Check payment details.
     request = app_req.get('request', None)
+
+    # Check payment details.
     if not isinstance(request, dict):
         raise InvalidRequest('Payment JWT is missing request dict: %r'
                              % request, app_id=app_id)
@@ -160,6 +163,18 @@ def verify_request(signed_request):
         if key not in request:
             raise InvalidRequest('Payment JWT is missing request[%r]'
                                  % key, app_id=app_id)
+
+    # Validate values for model integrity.
+    key_trans = {'app_data': 'productdata', 'amount': 'price'}
+    for form in (PaymentForm(), ContributionForm()):
+        for name, field in form.fields.items():
+            req_field = key_trans.get(name, name)
+            value = request[req_field]
+            try:
+                field.clean(value)
+            except forms.ValidationError, exc:
+                _re_raise_as(InvalidRequest,
+                             u'request[%r] is invalid: %s' % (req_field, exc))
 
     # TODO(Kumar) Prevent repeat payments with nonce (bug 738776).
     return app_req

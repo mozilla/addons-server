@@ -84,6 +84,14 @@ INAPP_STATUS_CHOICES = (
     (INAPP_STATUS_REVOKED, _('Revoked'))
 )
 
+INAPP_NOTICE_PAY = 1
+INAPP_NOTICE_CHARGEBACK = 2
+
+INAPP_NOTICE_CHOICES = (
+    (INAPP_NOTICE_PAY, _('Pay')),
+    (INAPP_NOTICE_CHARGEBACK, _('Chargeback')),
+)
+
 PAYPAL_PERSONAL = {
     'first_name': 'http://axschema.org/namePerson/first',
     'last_name': 'http://axschema.org/namePerson/last',
