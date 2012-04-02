@@ -22,7 +22,7 @@ from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
 
-from . import compare
+from .compare import version_dict, version_int
 
 log = commonware.log.getLogger('z.versions')
 
@@ -47,20 +47,20 @@ class Version(amo.models.ModelBase):
 
     def __init__(self, *args, **kwargs):
         super(Version, self).__init__(*args, **kwargs)
-        self.__dict__.update(compare.version_dict(self.version or ''))
+        self.__dict__.update(version_dict(self.version or ''))
 
     def __unicode__(self):
         return jinja2.escape(self.version)
 
     def save(self, *args, **kw):
         if not self.version_int and self.version:
-            version_int = compare.version_int(self.version)
+            v_int = version_int(self.version)
             # Magic number warning, this is the maximum size
             # of a big int in MySQL to prevent version_int overflow, for
             # people who have rather crazy version numbers.
             # http://dev.mysql.com/doc/refman/5.5/en/numeric-types.html
-            if version_int < 9223372036854775807:
-                self.version_int = version_int
+            if v_int < 9223372036854775807:
+                self.version_int = v_int
             else:
                 log.error('No version_int written for version %s, %s' %
                           (self.pk, self.version))
@@ -223,7 +223,7 @@ class Version(amo.models.ModelBase):
                 not self.files.filter(strict_compatibility=True).exists() and
                 self.apps.filter(
                     application=amo.FIREFOX.id,
-                    max__version_int__gte=compare.version_int('4.0')).exists()
+                    max__version_int__gte=version_int('4.0')).exists()
                )
 
     def compat_override_app_versions(self):
@@ -241,7 +241,8 @@ class Version(amo.models.ModelBase):
         app_versions = []
         for co in cos:
             for range in co.collapsed_ranges():
-                if int(range.min_int) <= self.version_int <= int(range.max_int):
+                if (version_int(range.min) <= version_int(self.version)
+                                           <= version_int(range.max)):
                     app_versions.extend([(a.min, a.max) for a in range.apps])
         return app_versions
 

@@ -341,6 +341,17 @@ class TestVersion(amo.tests.TestCase):
                                            max_app_version='10.*')
         eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
 
+    def test_compat_override_app_versions_wildcard(self):
+        app = Application.objects.get(pk=1)
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon)
+        co = CompatOverride.objects.create(addon=addon)
+        CompatOverrideRange.objects.create(compat=co, app=app, min_version='0',
+                                           max_version='*',
+                                           min_app_version='10.0a1',
+                                           max_app_version='10.*')
+        eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
+
 
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
