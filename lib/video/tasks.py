@@ -2,6 +2,8 @@ import logging
 import os
 import shutil
 
+from django.conf import settings
+
 from celeryutils import task
 
 import amo
@@ -10,9 +12,11 @@ from lib.video.ffmpeg import Video
 import waffle
 
 log = logging.getLogger('z.devhub.task')
+time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
 
 
-@task
+# Video decoding can take a while, so let's increase these limits.
+@task(time_limit=time_limits['hard'], soft_time_limit=time_limits['soft'])
 @set_modified_on
 def resize_video(src, instance, **kw):
     """

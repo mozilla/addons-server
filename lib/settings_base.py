@@ -1045,6 +1045,14 @@ CELERY_ROUTES = {
     'stats.tasks.index_download_counts': {'queue': 'bulk'},
 }
 
+# This is just a place to store these values, you apply them in your
+# task decorator, for example:
+#   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
+# Otherwise your task will use the default settings.
+CELERY_TIME_LIMITS = {
+    'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
+}
+
 # When testing, we always want tasks to raise exceptions. Good for sanity.
 CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 
