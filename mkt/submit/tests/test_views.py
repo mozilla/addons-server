@@ -866,17 +866,17 @@ class TestPayments(TestSubmit):
 
     @mock.patch('paypal.get_permissions_token')
     @mock.patch('paypal.get_personal_data')
-    def test_bounce_result_fails(self, get_personal_data,
+    def test_bounce_result_fails_email(self, get_personal_data,
                                  get_permissions_token):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            paypal_id='b@b.com')
         get_permissions_token.return_value = 'foo'
         get_personal_data.return_value = {'email': 'a@a.com'}
         res = self.client.get(self.get_acquire_url())
-        self.assertRedirects(res, self.get_url('payments.bounce'))
+        self.assertRedirects(res, self.get_url('payments.paypal'))
 
     @mock.patch('paypal.get_permissions_token')
-    def test_bounce_result_fails(self, get_permissions_token):
+    def test_bounce_result_fails_paypal_error(self, get_permissions_token):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         get_permissions_token.side_effect = paypal.PaypalError
         res = self.client.get(self.get_acquire_url())
@@ -888,18 +888,6 @@ class TestPayments(TestSubmit):
             self.get_url('payments.bounce'))
         eq_(doc('div.prose form').attr('action'),
             self.get_url('payments.paypal'))
-
-    def test_bad_paypal(self):
-        # some tests for when it goes wrong
-        raise SkipTest
-
-    def test_acquire(self):
-        raise SkipTest
-
-    def test_confirm(self):
-        raise SkipTest
-        # and this is where it all breaks down, need to figure out
-        # how to test this new flow.
 
 
 class TestDone(TestSubmit):
