@@ -9,6 +9,7 @@ import jinja2
 import commonware.log
 import caching.base
 import path
+import waffle
 
 import amo
 import amo.models
@@ -21,7 +22,6 @@ from tower import ugettext as _
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
-import waffle
 
 from .compare import version_dict, version_int
 
@@ -225,16 +225,10 @@ class Version(amo.models.ModelBase):
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
-        max = {
-            amo.FIREFOX: '4.0',
-            amo.MOBILE: '11.0',
-            amo.SEAMONKEY: '2.1',
-            amo.THUNDERBIRD: '5.0',
-        }
-        appversion = self.compatible_apps.get(app, None)
-        if appversion and app in max:
+        appversion = self.compatible_apps.get(app)
+        if appversion and app in amo.D2C_MAX_VERSIONS:
             return (version_int(appversion.max.version) >=
-                    version_int(max.get(app, '*')))
+                    version_int(amo.D2C_MAX_VERSIONS.get(app, '*')))
         return False
 
     def compat_override_app_versions(self):

@@ -150,6 +150,13 @@ for _app in APP_USAGE:
     for _type in _app.types:
         APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
 
+# The lowest maxVersion an app has to support to allow default-to-compatible.
+D2C_MAX_VERSIONS = {
+    FIREFOX: '4.0',
+    MOBILE: '11.0',
+    SEAMONKEY: '2.1',
+    THUNDERBIRD: '5.0',
+}
 
 for _app in APPS_ALL.values():
     _versions = list(getattr(_app, 'exclude_versions', []))

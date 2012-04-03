@@ -8,6 +8,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery
+import waffle
 
 import amo
 import amo.tests
@@ -23,7 +24,6 @@ from users.models import UserProfile
 from versions import views
 from versions.models import Version, ApplicationsVersions
 from versions.compare import version_int, dict_from_int, version_dict, MAXVERSION
-import waffle
 
 
 def test_version_int():
