@@ -24,9 +24,7 @@
     {% if choice %}{{ field.as_widget() }}{% endif %}
   {% endif %}
 
-  {% if not choice %}
-    {{ simple_label(field, label, opt, req, tooltip, hint) }}
-  {% endif %}
+  {{ simple_label(field, label, opt, req, tooltip, hint) }}
 
   {% if grid %}
     </div>

@@ -89,7 +89,10 @@ class TestTerms(TestSubmit):
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#submit-terms').length, 1)
+        doc = pq(r.content)('#submit-terms')
+        eq_(doc.length, 1)
+        eq_(doc.find('input[name=newsletter]').siblings('label').length, 1,
+            'Missing its <label>!')
 
     def test_progress_display(self):
         self._test_progress_display([], 'terms')
