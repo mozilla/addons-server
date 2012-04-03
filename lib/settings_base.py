@@ -229,10 +229,11 @@ MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'apps', 'blocklist', 'credits', 'developers',
-                     'editors', 'img', 'jsi18n', 'localizers', 'media',
-                     'marketplace-experiments', 'robots.txt',
-                     'statistics', 'services', 'sunbird')
+SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
+                     'developer_agreement', 'developer_faq', 'developers',
+                     'editors', 'faq', 'img', 'jsi18n', 'localizers', 'media',
+                     'review_guide', 'robots.txt', 'statistics', 'services',
+                     'sunbird')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
@@ -996,6 +997,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BLACKLIST = (
     'nobody@mozilla.org',
 )
+
+# URL for Add-on Validation FAQ.
+VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
+                      'AddonReviews#Step_2:_Automatic_validation')
 
 
 ## Celery
