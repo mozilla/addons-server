@@ -613,10 +613,12 @@ class TestButtonHtml(ButtonTest):
         compat.max.version = '12.0'
         self.version.compatible_apps = {amo.FIREFOX: compat}
         self.version.is_compatible = True
+        self.version.is_compatible_app.return_value = True
         install = self.render(impala=True)('.install')
         eq_(install.attr('data-min'), '4.0')
         eq_(install.attr('data-max'), '12.0')
         eq_(install.attr('data-is-compatible'), 'true')
+        eq_(install.attr('data-is-compatible-app'), 'true')
         eq_(install.attr('data-compat-overrides'), '[]')
         # Also test overrides.
         override = [('10.0a1', '10.*')]
