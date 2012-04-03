@@ -310,11 +310,23 @@ class BlocklistPluginTest(BlocklistTest):
         v = self.dom().getElementsByTagName('versionRange')[0]
         eq_(v.getAttribute('severity'), '2')
 
-    def test_plugin_target_app(self):
-        self.plugin.update(min='1', max='2')
-        v = self.dom().getElementsByTagName('versionRange')[0]
-        app = v.getElementsByTagName('targetApplication')[0]
+    def test_plugin_no_target_app(self):
+        self.plugin.update(guid=None, severity=1, min='1', max='2')
+        vr = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(vr.getElementsByTagName('targetApplication'), [],
+            'There should not be a <targetApplication> if there was no app')
+        eq_(vr.getAttribute('severity'), '1')
+        eq_(vr.getAttribute('minVersion'), '1')
+        eq_(vr.getAttribute('maxVersion'), '2')
+
+    def test_plugin_with_target_app(self):
+        self.plugin.update(guid=amo.FIREFOX.guid, severity=1, min='1', max='2')
+        vr = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('severity'), '1')
+
+        app = vr.getElementsByTagName('targetApplication')[0]
         eq_(app.getAttribute('id'), amo.FIREFOX.guid)
+
         vr = app.getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('minVersion'), '1')
         eq_(vr.getAttribute('maxVersion'), '2')
