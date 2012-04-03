@@ -98,7 +98,7 @@ var installButton = function() {
         premium = $this.hasClass('premium'),
         accept_eula = $this.hasClass('accept'),
         webapp = $this.hasattr('data-manifest-url'),
-        compatible = $this.attr('data-is-compatible') == 'true',
+        compatible = ($this.attr('data-is-compatible') == 'true' && $this.attr('data-is-compatible-app') == 'true'),
         waffle_d2c_buttons = $this.hasattr('data-waffle-d2c-buttons'),
         has_overrides = $this.hasattr('data-compat-overrides'),
         versions_url = $this.attr('data-versions'),

@@ -23,6 +23,7 @@ from users.models import UserProfile
 from versions import views
 from versions.models import Version, ApplicationsVersions
 from versions.compare import version_int, dict_from_int, version_dict, MAXVERSION
+import waffle
 
 
 def test_version_int():
@@ -300,6 +301,7 @@ class TestVersion(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
         eq_(version.is_compatible, True)
+        eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_type(self):
         # Only ADDON_EXTENSIONs should be compatible.
@@ -307,6 +309,7 @@ class TestVersion(amo.tests.TestCase):
         version = amo.tests.version_factory(addon=addon)
         addon.update(type=amo.ADDON_PERSONA)
         eq_(version.is_compatible, False)
+        eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_strict_opt_in(self):
         # Add-ons opting into strict compatibility should not be compatible.
@@ -315,6 +318,7 @@ class TestVersion(amo.tests.TestCase):
         file = version.all_files[0]
         file.update(strict_compatibility=True)
         eq_(version.is_compatible, False)
+        eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_binary_components(self):
         # Add-ons using binary components should not be compatible.
@@ -323,12 +327,17 @@ class TestVersion(amo.tests.TestCase):
         file = version.all_files[0]
         file.update(binary_components=True)
         eq_(version.is_compatible, False)
+        eq_(version.is_compatible_app(amo.FIREFOX), True)
 
-    def test_is_compatible_max_version(self):
+    def test_is_compatible_app_max_version(self):
         # Add-ons with max app version < 4.0 should not be compatible.
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon, max_app_version='3.5')
-        eq_(version.is_compatible, False)
+        eq_(version.is_compatible_app(amo.FIREFOX), False)
+        # An app that isn't supported should also be False.
+        eq_(version.is_compatible_app(amo.THUNDERBIRD), False)
+        # An app that can't do d2c should also be False.
+        eq_(version.is_compatible_app(amo.UNKNOWN_APP), False)
 
     def test_compat_override_app_versions(self):
         app = Application.objects.get(pk=1)
@@ -850,9 +859,10 @@ class TestMobileVersions(TestMobile):
         self.assertTemplateUsed(r, 'versions/mobile/version_list.html')
 
 
-class TestApplicationsVersions():
+class TestApplicationsVersions(amo.tests.TestCase):
 
     def setUp(self):
+        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
 
     def test_repr_when_compatible(self):

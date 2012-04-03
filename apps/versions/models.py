@@ -21,6 +21,7 @@ from tower import ugettext as _
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
+import waffle
 
 from .compare import version_dict, version_int
 
@@ -213,18 +214,28 @@ class Version(amo.models.ModelBase):
             * The add-on is an extension (not a theme, app, etc.)
             * Has not opted in to strict compatibility.
             * Does not use binary_components in chrome.manifest.
-            * Has a supported max app version of 4.0 or greater.
 
+        Note: The lowest maxVersion compat check needs to be checked separately.
         Note: This does not take into account the client conditions.
 
         """
         return (self.addon.type == amo.ADDON_EXTENSION and
                 not self.files.filter(binary_components=True).exists() and
-                not self.files.filter(strict_compatibility=True).exists() and
-                self.apps.filter(
-                    application=amo.FIREFOX.id,
-                    max__version_int__gte=version_int('4.0')).exists()
-               )
+                not self.files.filter(strict_compatibility=True).exists())
+
+    def is_compatible_app(self, app):
+        """Returns True if the provided app passes compatibility conditions."""
+        max = {
+            amo.FIREFOX: '4.0',
+            amo.MOBILE: '11.0',
+            amo.SEAMONKEY: '2.1',
+            amo.THUNDERBIRD: '5.0',
+        }
+        appversion = self.compatible_apps.get(app, None)
+        if appversion and app in max:
+            return (version_int(appversion.max.version) >=
+                    version_int(max.get(app, '*')))
+        return False
 
     def compat_override_app_versions(self):
         """Returns the incompatible app versions range(s).
@@ -490,7 +501,9 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         unique_together = (("application", "version"),)
 
     def __unicode__(self):
-        if self.version.is_compatible:
+        if (waffle.switch_is_active('d2c-buttons') and
+            self.version.is_compatible and
+            self.version.is_compatible_app(amo.APP_IDS[self.application.id])):
             return _('{app} {min} and later').format(app=self.application,
                                                      min=self.min)
         return u'%s %s - %s' % (self.application, self.min, self.max)
