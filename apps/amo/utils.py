@@ -135,12 +135,13 @@ def paginate(request, queryset, per_page=20, count=None):
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
-              headers=None, connection=None):
+              manage_url=None, headers=None, connection=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
     Adds blacklist checking and error logging.
     """
+    from amo.helpers import absolutify
     import users.notifications as notifications
     if not recipient_list:
         return True
@@ -176,14 +177,16 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         if white_list:
             if perm_setting:
                 template = loader.get_template('amo/emails/unsubscribe.ltxt')
+                if not manage_url:
+                    manage_url = urlparams(absolutify(
+                        reverse('users.edit', add_prefix=False)),
+                        'acct-notify')
                 for recipient in white_list:
-                    # Add unsubscribe link to footer
+                    # Add unsubscribe link to footer.
                     token, hash = UnsubscribeCode.create(recipient)
-                    from amo.helpers import absolutify
                     unsubscribe_url = absolutify(reverse('users.unsubscribe',
-                            args=[token, hash, perm_setting.short]))
-                    manage_url = urlparams(absolutify(reverse('users.edit')),
-                                           'acct-notify')
+                            args=[token, hash, perm_setting.short],
+                            add_prefix=False))
 
                     context = {'message': message,
                                'manage_url': manage_url,

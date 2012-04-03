@@ -1,9 +1,8 @@
 from tower import ugettext_lazy as _lazy
 
-from editors.forms import ReviewAddonForm, ReviewFileForm
-from editors.helpers import ReviewFiles
+from editors.forms import ReviewAddonForm
 
-from mkt.reviewers.utils import ReviewAddon, ReviewHelper
+from mkt.reviewers.utils import ReviewHelper
 
 
 class ReviewAppForm(ReviewAddonForm):
@@ -19,8 +18,4 @@ class ReviewAppForm(ReviewAddonForm):
 
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
-    FormClass = ReviewAddonForm
-    FormClass = ReviewAppForm
-    form = {ReviewAddon: FormClass,
-            ReviewFiles: ReviewFileForm}[helper.handler.__class__]
-    return form(data, helper=helper)
+    return ReviewAppForm(data, helper=helper)

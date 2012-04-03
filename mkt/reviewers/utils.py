@@ -13,26 +13,24 @@ import amo
 from amo.helpers import absolutify, timesince
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
-
-# TODO: Remove.
-from editors.helpers import ItemStateTable, ReviewFiles
+from editors.helpers import ItemStateTable
 
 from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.mailer')
 
-NOMINATED_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
-PRELIMINARY_STATUSES = (amo.STATUS_UNREVIEWED, amo.STATUS_LITE)
-PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_LISTED,
-                    amo.STATUS_NULL, amo.STATUS_PENDING, amo.STATUS_PUBLIC)
-
 
 def send_mail(template, subject, emails, context, perm_setting=None):
     template = loader.get_template(template)
+    # Link to our newfangled "Account Settings" page.
+    manage_url = absolutify(reverse('account.settings')) + '#notifications'
     amo_send_mail(subject, template.render(Context(context, autoescape=False)),
-                  recipient_list=emails, from_email=settings.EDITORS_EMAIL,
-                  use_blacklist=False, perm_setting=perm_setting)
+                  recipient_list=emails,
+                  from_email=settings.NOBODY_EMAIL,
+                  use_blacklist=False, perm_setting=perm_setting,
+                  manage_url=manage_url,
+                  headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
 
 
 class WebappQueueTable(tables.ModelTable, ItemStateTable):
@@ -110,8 +108,8 @@ class ReviewBase:
                 created=datetime.now(), details=details)
 
     def notify_email(self, template, subject):
-        """Notify the authors that their addon has been reviewed."""
-        emails = [a.email for a in self.addon.authors.all()]
+        """Notify the authors that their app has been reviewed."""
+        emails = list(self.addon.authors.values_list('email', flat=True))
         data = self.data.copy()
         data.update(self.get_context_data())
         data['tested'] = ''
@@ -122,23 +120,21 @@ class ReviewBase:
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
-        data['addon_type'] = (_lazy('app')
-                              if self.addon.type == amo.ADDON_WEBAPP
-                              else _lazy('add-on'))
-        send_mail('editors/emails/%s.ltxt' % template,
-                   subject % (self.addon.name, self.version.version),
-                   emails, Context(data), perm_setting='editor_reviewed')
+        send_mail('reviewers/emails/decisions/%s.txt' % template,
+                  subject % self.addon.name,
+                  emails, Context(data), perm_setting='app_reviewed')
 
     def get_context_data(self):
         return {'name': self.addon.name,
-                'number': self.version.version,
-                'reviewer': (self.request.user.get_profile().display_name),
-                'addon_url': absolutify(
+                'reviewer': self.request.user.get_profile().display_name,
+                'detail_url': absolutify(
                     self.addon.get_url_path(add_prefix=False)),
-                'review_url': absolutify(reverse('editors.review',
-                                                 args=[self.addon.pk],
+                'review_url': absolutify(reverse('reviewers.app_review',
+                                                 args=[self.addon.app_slug],
                                                  add_prefix=False)),
+                'status_url': absolutify(self.addon.get_dev_url('versions')),
                 'comments': self.data['comments'],
+                'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
                 'SITE_URL': settings.SITE_URL}
 
     def request_information(self):
@@ -148,32 +144,28 @@ class ReviewBase:
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        send_mail('editors/emails/info.ltxt',
-                   u'Mozilla Add-ons: %s %s' %
-                   (self.addon.name, self.version.version),
+        send_mail('reviewers/emails/decisions/info.txt',
+                   u'Submission Update: %s' % self.addon.name,
                    emails, Context(self.get_context_data()),
-                   perm_setting='individual_contact')
+                   perm_setting='app_individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
-        log.info(u'Super review requested for %s' % (self.addon))
-        send_mail('editors/emails/super_review.ltxt',
-                   u'Super review requested: %s' % (self.addon.name),
-                   [settings.SENIOR_EDITORS_EMAIL],
+        log.info(u'Super review requested for %s' % self.addon)
+        send_mail('reviewers/emails/super_review.txt',
+                   u'Super Review Requested: %s' % self.addon.name,
+                   [settings.MKT_SENIOR_EDITORS_EMAIL],
                    Context(self.get_context_data()))
 
 
-class ReviewAddon(ReviewBase):
+class ReviewApp(ReviewBase):
 
     def set_data(self, data):
         self.data = data
         self.files = self.version.files.all()
 
     def process_public(self):
-        """Set an addon to public."""
-        if self.review_type == 'preliminary':
-            raise AssertionError('Preliminary addons cannot be made public.')
-
+        """Approve an app."""
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
@@ -183,55 +175,29 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Fully Reviewed')
+                          u'App Approved: %s')
 
-        log.info(u'Making %s public' % (self.addon))
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info(u'Making %s public' % self.addon)
+        log.info(u'Sending email for %s' % self.addon)
 
     def process_sandbox(self):
-        """Set an addon back to sandbox."""
+        """Reject an app."""
         self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Rejected')
+                          u'Submission Update: %s')
 
-        log.info(u'Making %s disabled' % (self.addon))
-        log.info(u'Sending email for %s' % (self.addon))
-
-    def process_preliminary(self):
-        """Set an addon to preliminary."""
-        if self.addon.is_premium():
-            raise AssertionError('Premium add-ons cannot become preliminary.')
-
-        changes = {'status': amo.STATUS_LITE}
-        if (self.addon.status in (amo.STATUS_PUBLIC,
-                                  amo.STATUS_LITE_AND_NOMINATED)):
-            changes['highest_status'] = amo.STATUS_LITE
-
-        template = '%s_to_preliminary' % self.review_type
-        if (self.review_type == 'preliminary' and
-            self.addon.status == amo.STATUS_LITE_AND_NOMINATED):
-            template = 'nominated_to_nominated'
-
-        self.set_addon(**changes)
-        self.set_files(amo.STATUS_LITE, self.version.files.all(),
-                       copy_to_mirror=True)
-
-        self.log_action(amo.LOG.PRELIMINARY_VERSION)
-        self.notify_email(template,
-                          u'Mozilla Add-ons: %s %s Preliminary Reviewed')
-
-        log.info(u'Making %s preliminary' % (self.addon))
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info(u'Making %s disabled' % self.addon)
+        log.info(u'Sending email for %s' % self.addon)
 
     def process_super_review(self):
-        """Give an addon super review."""
+        """Ask for super review for an app."""
         self.addon.update(admin_review=True)
-        self.notify_email('author_super_review',
-                          u'Mozilla Add-ons: %s %s flagged for Admin Review')
+        self.notify_email('author_super_review', u'Submission Update: %s')
+
         self.send_super_mail()
 
     def process_comment(self):
@@ -244,6 +210,7 @@ class ReviewHelper:
     A class that builds enough to render the form back to the user and
     process off to the correct handler.
     """
+
     def __init__(self, request=None, addon=None, version=None):
         self.handler = None
         self.required = {}
@@ -258,56 +225,9 @@ class ReviewHelper:
     def get_review_type(self, request, addon, version):
         if self.addon.type == amo.ADDON_WEBAPP:
             self.review_type = 'apps'
-            self.handler = ReviewAddon(request, addon, version, 'pending')
-        elif self.addon.status in NOMINATED_STATUSES:
-            self.review_type = 'nominated'
-            self.handler = ReviewAddon(request, addon, version, 'nominated')
-
-        elif self.addon.status == amo.STATUS_UNREVIEWED:
-            self.review_type = 'preliminary'
-            self.handler = ReviewAddon(request, addon, version, 'preliminary')
-
-        elif self.addon.status == amo.STATUS_LITE:
-            self.review_type = 'preliminary'
-            self.handler = ReviewFiles(request, addon, version, 'preliminary')
-        else:
-            self.review_type = 'pending'
-            self.handler = ReviewFiles(request, addon, version, 'pending')
+            self.handler = ReviewApp(request, addon, version, 'pending')
 
     def get_actions(self):
-        if self.addon.type == amo.ADDON_WEBAPP:
-            return self.get_app_actions()
-        labels, details = self._review_actions()
-
-        actions = SortedDict()
-        if self.review_type != 'preliminary':
-            actions['public'] = {'method': self.handler.process_public,
-                                 'minimal': False,
-                                 'label': _lazy('Push to public')}
-
-        if not self.addon.is_premium():
-            actions['prelim'] = {'method': self.handler.process_preliminary,
-                                 'label': labels['prelim'],
-                                 'minimal': False}
-
-        actions['reject'] = {'method': self.handler.process_sandbox,
-                             'label': _lazy('Reject'),
-                             'minimal': False}
-        actions['info'] = {'method': self.handler.request_information,
-                           'label': _lazy('Request more information'),
-                           'minimal': True}
-        actions['super'] = {'method': self.handler.process_super_review,
-                            'label': _lazy('Request super-review'),
-                            'minimal': True}
-        actions['comment'] = {'method': self.handler.process_comment,
-                              'label': _lazy('Comment'),
-                              'minimal': True}
-        for k, v in actions.items():
-            v['details'] = details.get(k)
-
-        return actions
-
-    def get_app_actions(self):
         actions = SortedDict()
         actions['public'] = {'method': self.handler.process_public,
                              'minimal': False,
@@ -328,60 +248,6 @@ class ReviewHelper:
                                     'Make a comment on this app.  The '
                                     'author won\'t be able to see this.')}
         return actions
-
-    def _review_actions(self):
-        labels = {'prelim': _lazy('Grant preliminary review')}
-        details = {'prelim': _lazy('This will mark the files as '
-                                   'premliminary reviewed.'),
-                   'info': _lazy('Use this form to request more information '
-                                 'from the author. They will receive an email '
-                                 'and be able to answer here. You will be '
-                                 'notified by email when they reply.'),
-                   'super': _lazy('If you have concerns about this add-on\'s '
-                                  'security, copyright issues, or other '
-                                  'concerns that an administrator should look '
-                                  'into, enter your comments in the area '
-                                  'below. They will be sent to '
-                                  'administrators, not the author.'),
-                   'reject': _lazy('This will reject the add-on and remove '
-                                   'it from the review queue.'),
-                   'comment': _lazy('Make a comment on this version.  The '
-                                    'author won\'t be able to see this.')}
-
-        if self.addon.status == amo.STATUS_LITE:
-            details['reject'] = _lazy('This will reject the files and remove '
-                                      'them from the review queue.')
-
-        if self.addon.status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
-            details['prelim'] = _lazy('This will mark the add-on as '
-                                      'preliminarily reviewed. Future '
-                                      'versions will undergo '
-                                      'preliminary review.')
-        elif self.addon.status == amo.STATUS_LITE:
-            details['prelim'] = _lazy('This will mark the files as '
-                                      'preliminarily reviewed. Future '
-                                      'versions will undergo '
-                                      'preliminary review.')
-        elif self.addon.status == amo.STATUS_LITE_AND_NOMINATED:
-            labels['prelim'] = _lazy('Retain preliminary review')
-            details['prelim'] = _lazy('This will retain the add-on as '
-                                      'preliminarily reviewed. Future '
-                                      'versions will undergo preliminary '
-                                      'review.')
-        if self.review_type == 'pending':
-            details['public'] = _lazy('This will approve a sandboxed version '
-                                      'of a public add-on to appear on the '
-                                      'public side.')
-            details['reject'] = _lazy('This will reject a version of a public '
-                                      'add-on and remove it from the queue.')
-        else:
-            details['public'] = _lazy('This will mark the add-on and its most '
-                                      'recent version and files as public. '
-                                      'Future versions will go into the '
-                                      'sandbox until they are reviewed by an '
-                                      'editor.')
-
-        return labels, details
 
     def process(self):
         action = self.handler.data.get('action', '')

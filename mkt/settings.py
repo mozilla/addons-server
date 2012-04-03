@@ -24,6 +24,10 @@ LOGOUT_URL = '/logout'
 # Let robots tear this place up.
 ENGAGE_ROBOTS = True
 
+MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
+MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
+MKT_SUPPORT_EMAIL = 'marketplace-developer-support@mozilla.org'
+
 ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)

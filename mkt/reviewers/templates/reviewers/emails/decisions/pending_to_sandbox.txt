@@ -1,0 +1,10 @@
+{% extends 'reviewers/emails/base.txt' %}
+{% block content %}
+After reviewing your submission to the Mozilla Marketplace, we have determined that it does not currently meet our requirements for public listing.
+
+{% include 'reviewers/emails/decisions/includes/details.txt' %}
+
+Once the concerns above have been addressed, you may resubmit your app from its Manage Status page at {{ status_url }}.
+
+{% include 'reviewers/emails/decisions/includes/questions.txt' %}
+{% endblock %}

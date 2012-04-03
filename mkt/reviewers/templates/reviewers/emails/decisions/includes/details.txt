@@ -1,0 +1,10 @@
+App: {{ name }}
+URL: {{ detail_url }}
+
+Reviewed by: {{ reviewer }}
+Comments:
+{{ comments }}
+{% if tested %}
+
+{{ tested }}
+{% endif %}

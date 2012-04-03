@@ -1,6 +1,6 @@
 from jingo import register
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import breadcrumbs
@@ -63,7 +63,4 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = queue_counts()
-    tabnav = [('apps', 'queue_apps',
-               (ngettext('Apps ({0})', 'Apps ({0})', counts['apps'])
-                .format(counts['apps'])))]
-    return tabnav
+    return [('apps', 'queue_apps', _('Apps ({0})').format(counts['apps']))]

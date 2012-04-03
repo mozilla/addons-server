@@ -1,0 +1,8 @@
+{% extends 'reviewers/emails/base.txt' %}
+{% block content %}
+Congratulations! Your submission has been approved for the Mozilla Marketplace and will be available for download in the coming weeks. Follow Mozilla Hacks (http://hacks.mozilla.org, http://twitter.com/mozhacks) to stay updated on when we plan to open for consumer testing and app installation.
+
+{% include 'reviewers/emails/decisions/includes/details.txt' %}
+
+{% include 'reviewers/emails/decisions/includes/questions.txt' %}
+{% endblock %}

@@ -1,0 +1,4 @@
+{% block content %}{% endblock %}
+--
+Mozilla Marketplace
+{{ SITE_URL }}

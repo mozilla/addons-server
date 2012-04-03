@@ -1,0 +1,8 @@
+{% extends 'reviewers/emails/base.txt' -%}
+{% block content %}
+Your app, {{ name }}, has been flagged for Admin Review by an editor.
+
+Your app is still in our review queue, but it will need to be checked by one of our admin reviewers. This means that your review will probably take longer than usual. Thanks for your understanding.
+
+{% include 'reviewers/emails/questions.txt' %}
+{% endblock %}

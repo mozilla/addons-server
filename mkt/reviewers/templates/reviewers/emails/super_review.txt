@@ -1,0 +1,20 @@
+{% extends 'reviewers/emails/base.txt' -%}
+{% block content %}
+Dear Superheroes,
+
+An editor has requested super-review of the following app due to security, copyright, or other administrative concerns.
+
+Please open your plethora of knowledge and wield your mighty administrative sword of decision making in the general vicinity of:
+
+App: {{ name }}
+URL: {{ review_url }}
+
+Reviewed by: {{ reviewer }}
+Comments:
+{{ comments }}
+
+{{ tested }}
+
+
+Love,
+{% endblock %}

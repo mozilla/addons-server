@@ -118,8 +118,16 @@ class individual_contact(_NOTIFICATION):
     default_checked = True
 
 
+class app_reviewed(editor_reviewed):
+    app = True
+    # Note: This is super ambiguous language if we say "reviewer."
+    short = 'app_reviewed'
+    label = _('my app is reviewed by an editor')
+
+
 class app_individual_contact(individual_contact):
     app = True
+    short = 'app_individual_contact'
     label = _('Mozilla needs to contact me about my individual app')
 
 
@@ -137,8 +145,8 @@ class app_surveys(_NOTIFICATION):
 NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
-APP_NOTIFICATIONS = [app_reply, app_new_review, app_individual_contact,
-                     app_surveys]
+APP_NOTIFICATIONS = [app_reply, app_new_review, app_reviewed,
+                     app_individual_contact, app_surveys]
 APP_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in APP_NOTIFICATIONS)
 APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
 APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]
@@ -153,11 +161,11 @@ NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
 ALL_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in
                                NOTIFICATIONS + APP_NOTIFICATIONS)
 
-NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in NOTIFICATIONS)
+NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in
+                              NOTIFICATIONS + APP_NOTIFICATIONS)
 NOTIFICATION = AttributeDict((l.__name__, l) for l in NOTIFICATIONS)
 
 NOTIFICATIONS_DEFAULT = [l.id for l in NOTIFICATIONS if l.default_checked]
 NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in NOTIFICATIONS]
 NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in NOTIFICATIONS
                                  if l.group != 'dev']
-

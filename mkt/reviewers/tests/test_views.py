@@ -18,7 +18,6 @@ from mkt.webapps.models import Webapp
 
 
 class AppReviewerTest(object):
-    """Base test class for Markplatce """
 
     def setUp(self):
         self.login_as_editor()
@@ -102,6 +101,16 @@ class TestReviewApp(AppReviewerTest, EditorTest):
             user=UserProfile.objects.get(username='editor'))
         eq_(self.client.head(self.url).status_code, 302)
 
+    def _check_email(self, msg, subject):
+        eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
+        eq_(msg.subject, '%s: %s' % (subject, self.app.name))
+        eq_(msg.from_email, settings.NOBODY_EMAIL)
+        eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
+
+        body = msg.message().as_string()
+        url = self.app.get_url_path(add_prefix=False)
+        assert url in body, 'Could not find apps detail URL in %s' % msg
+
     def test_push_public(self):
         files = list(self.version.files.values_list('id', flat=True))
         self.post({
@@ -112,9 +121,10 @@ class TestReviewApp(AppReviewerTest, EditorTest):
             'addon_files': files,
         })
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
+
         eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0].message().as_string()
-        assert 'Your app' in msg, 'Message not customized for apps: %s' % msg
+        msg = mail.outbox[0]
+        self._check_email(msg, 'App Approved')
 
     def test_comment(self):
         self.post({'action': 'comment', 'comments': 'mmm, nice app'})
@@ -124,9 +134,10 @@ class TestReviewApp(AppReviewerTest, EditorTest):
 
     def test_reject(self):
         self.post({'action': 'reject', 'comments': 'suxor'})
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0].message().as_string()
-        assert 'Your app' in msg, 'Message not customized for apps: %s' % msg
         eq_(self.get_app().status, amo.STATUS_NULL)
         action = amo.LOG.REJECT_VERSION
         eq_(ActivityLog.objects.filter(action=action.id).count(), 1)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
