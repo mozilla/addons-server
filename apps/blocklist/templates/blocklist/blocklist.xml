@@ -31,13 +31,17 @@
       {% if plugin.description %}<match name="description" exp="{{ plugin.description }}" />{% endif %}
       {% if plugin.filename %}<match name="filename" exp="{{ plugin.filename }}" />{% endif %}
       {% if plugin.severity or plugin.min or plugin.max %}
+        {% if plugin.guid %}
         <versionRange {{ attrs(severity=plugin.severity) }}>
           {% if apiver > 2 and plugin.min and plugin.max %}
-            <targetApplication id="{{ appguid }}">
+            <targetApplication id="{{ plugin.guid }}">
               <versionRange {{ attrs(minVersion=plugin.min, maxVersion=plugin.max) }} />
             </targetApplication>
           {% endif %}
         </versionRange>
+        {% elif apiver > 2 and plugin.min and plugin.max %}
+        <versionRange {{ attrs(severity=plugin.severity, minVersion=plugin.min, maxVersion=plugin.max) }}></versionRange>
+        {% endif %}
       {% endif %}
     </pluginItem>
   {% endfor %}
