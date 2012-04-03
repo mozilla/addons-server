@@ -21,7 +21,7 @@ exports.email_setup = function() {
         $('#paypal-change-address-form').show();
     });
     // If you've submitted the form and there was an error, show the form.
-    if ($('ul.errorlist').length) {
+    if ($('#paypal-change-address-form ul.errorlist').length) {
         $('#paypal-change-address-form').show();
     }
 };

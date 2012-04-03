@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -5,7 +7,7 @@ from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from market.models import Price, AddonPaymentData
+from market.models import AddonPaymentData, AddonPremium, Price, PriceCurrency
 from users.models import UserProfile
 
 
@@ -92,6 +94,7 @@ class TestPaypal(amo.tests.TestCase):
 
         self.client.login(username='admin@mozilla.com', password='password')
         self.price = Price.objects.all()[0]
+        AddonPremium.objects.create(addon=self.webapp)
 
     def get_webapp(self):
         return Addon.objects.get(pk=337141)
@@ -107,6 +110,22 @@ class TestPaypal(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url, follow=True)
         self.assertRedirects(res, reverse('submit.app.terms'))
+
+    def test_currencies_fails(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.url, {'currencies': ['GBP', 'EUR'],
+                                          'form': 'currency'})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'currency_form', 'currencies',
+                              [u'Select a valid choice. '
+                                'GBP is not one of the available choices.'])
+
+    def test_currencies_passes(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.url, {'currencies': ['EUR', 'BRL'],
+                                          'form': 'currency'})
+        eq_(res.status_code, 302)
+        eq_(self.webapp.premium.currencies, ['EUR', 'BRL'])
 
 
 class TestPaypalResponse(amo.tests.TestCase):

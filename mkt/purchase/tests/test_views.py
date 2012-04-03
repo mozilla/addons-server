@@ -32,7 +32,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        AddonPremium.objects.create(addon=self.addon, price_id=1)
+        AddonPremium.objects.create(addon=self.addon, price_id=1,
+                                    currencies=['BRL'])
         self.purchase_url = self.addon.get_purchase_url()
         self.client.login(username='regular@mozilla.com', password='password')
         self.brl = PriceCurrency.objects.create(currency='BRL',

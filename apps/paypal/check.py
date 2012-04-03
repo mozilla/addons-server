@@ -99,9 +99,9 @@ class Check(object):
             if not price:
                 tiers = [('USD', '1.00')]
             else:
-                tiers = [('USD', price.price)]
-                tiers += [(t.currency, t.price)
-                          for t in price._currencies.values()]
+                tiers = [(name, obj.price) for name, obj
+                         in self.addon.premium.supported_currencies()]
+
         else:
             tiers = (('USD', '0.99'),)
 
@@ -110,6 +110,7 @@ class Check(object):
                 self.test_paykey({'currency': currency,
                                   'amount': amount,
                                   'email': self.paypal_id})
+                log.info('Get paykey passed in %s' % currency)
             except paypal.PaypalError:
                 msg = loc('Failed to make a test transaction '
                           'in %s.' % (currency))

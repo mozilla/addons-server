@@ -19,7 +19,7 @@ from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
                            Preview)
 from amo.utils import raise_required, remove_icons
 from files.models import FileUpload
-from market.models import AddonPremium, Price, AddonPaymentData
+from market.models import AddonPaymentData, AddonPremium, Price, PriceCurrency
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from mkt.inapp_pay.models import InappConfig
 import paypal
@@ -548,3 +548,16 @@ class AppFormSupport(addons.forms.AddonFormBase):
         (i.get_satisfaction_company,
          i.get_satisfaction_product) = addons.forms.get_satisfaction(url)
         return super(AppFormSupport, self).save(commit)
+
+
+class CurrencyForm(happyforms.Form):
+    currencies = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                           required=False,
+                                           label=_('Other currencies'))
+
+    def __init__(self, *args, **kw):
+        super(CurrencyForm, self).__init__(*args, **kw)
+        choices = (PriceCurrency.objects.values_list('currency', flat=True)
+                                .distinct())
+        self.fields['currencies'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
+                                              for k in choices]

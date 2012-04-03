@@ -1,30 +1,30 @@
-from decimal import Decimal
-import json
-
-
-import mock
 from nose.tools import eq_
 
-from addons.models import Addon
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
-from market.models import AddonPremium, PreApprovalUser, Price, PriceCurrency
-from stats.models import Contribution
-from users.models import UserProfile
-
-from django.utils import translation
+from addons.models import Addon
+from market.models import AddonPremium, Price
 from market.forms import PriceCurrencyForm
 
 
 class TestForm(amo.tests.TestCase):
-    fixtures = ['prices.json']
+    fixtures = ['prices', 'base/addon_3615']
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)
+        self.addon = Addon.objects.get(pk=3615)
+        self.addon_premium = AddonPremium.objects.create(addon=self.addon,
+                                                         price=self.tier_one)
 
-    def test_form(self):
-        for currency, valid in (['EUR', True], ['CAD', True], ['BRL', False]):
+    def test_form_fails(self):
+        for currency, valid in (['EUR', False], ['CAD', False]):
             form = PriceCurrencyForm(data={'currency': currency},
-                                     price=self.tier_one)
-            eq_(bool(form.is_valid()), valid)
+                                     addon=self.addon)
+            eq_(bool(form.is_valid()), valid, 'Currency: %s' % currency)
+
+    def test_form_passes(self):
+        self.addon_premium.update(currencies=['EUR', 'CAD'])
+        for currency, valid in (['EUR', True], ['BRL', False], ['CAD', True]):
+            form = PriceCurrencyForm(data={'currency': currency},
+                                     addon=self.addon)
+            eq_(bool(form.is_valid()), valid, 'Currency: %s' % currency)

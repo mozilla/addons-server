@@ -36,11 +36,12 @@ from addons.views import BaseFilter
 from lib.video import ffmpeg
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
-                                  AppFormSupport, InappConfigForm,
-                                  PaypalSetupForm, PreviewFormSet)
+                                  AppFormSupport, CurrencyForm,
+                                  InappConfigForm, PaypalSetupForm,
+                                  PreviewFormSet)
 from files.models import File, FileUpload
 from files.utils import parse_addon
-from market.models import AddonPremium, Refund, AddonPaymentData
+from market.models import AddonPaymentData, AddonPremium, Refund
 from mkt.inapp_pay.models import InappConfig
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
@@ -229,17 +230,21 @@ def payments(request, addon_id, addon, webapp=False):
     return _premium(request, addon_id, addon, webapp)
 
 
-# PayPal config, the next generation.
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup(request, addon_id, addon, webapp):
     if addon.premium_type == amo.ADDON_FREE:
         messages.error(request, 'Your app does not use payments.')
         return redirect(addon.get_dev_url('payments'))
 
-    form = PaypalSetupForm(request.POST or None)
-    context = {'addon': addon, 'form': form}
-    if form.is_valid():
-        existing = form.cleaned_data['business_account']
+    paypal_form = PaypalSetupForm(request.POST or None)
+    currency_form = CurrencyForm(request.POST or None,
+                        initial={'currencies': addon.premium.currencies})
+
+    context = {'addon': addon, 'paypal_form': paypal_form,
+               'currency_form': currency_form}
+
+    if request.POST.get('form') == 'paypal' and paypal_form.is_valid():
+        existing = paypal_form.cleaned_data['business_account']
         if existing != 'yes':
             # Go create an account.
             # TODO: this will either become the API or something some better
@@ -247,10 +252,16 @@ def paypal_setup(request, addon_id, addon, webapp):
             return redirect(settings.PAYPAL_CGI_URL)
         else:
             # Go setup your details on paypal.
-            addon.update(paypal_id=form.cleaned_data['email'])
+            addon.update(paypal_id=paypal_form.cleaned_data['email'])
             if addon.premium and addon.premium.paypal_permissions_token:
                 addon.premium.update(paypal_permissions_token='')
             return redirect(addon.get_dev_url('paypal_setup_bounce'))
+
+    if request.POST.get('form') == 'currency' and currency_form.is_valid():
+        currencies = currency_form.cleaned_data['currencies']
+        addon.premium.update(currencies=currencies)
+        messages.success(request, _('Currencies updated.'))
+        return redirect(addon.get_dev_url('paypal_setup'))
 
     return jingo.render(request, 'developers/payments/paypal-setup.html',
                         context)

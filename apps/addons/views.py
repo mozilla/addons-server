@@ -496,7 +496,7 @@ def purchase(request, addon):
     amount, currency = addon.premium.get_price(), 'USD'
 
     # If tier is specified, then let's look it up.
-    form = PriceCurrencyForm(data=request.POST, price=addon.premium.price)
+    form = PriceCurrencyForm(data=request.POST, addon=addon)
     if form.is_valid():
         tier = form.get_tier()
         if tier:

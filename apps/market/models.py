@@ -14,6 +14,7 @@ from users.models import UserProfile
 from babel import Locale, numbers
 import commonware.log
 from jinja2.filters import do_dictsort
+import json_field
 import paypal
 
 log = commonware.log.getLogger('z.market')
@@ -83,7 +84,7 @@ class Price(amo.models.ModelBase):
         if not hasattr(self, '_currencies'):
             Price.transformer([])
 
-        currencies = [('', self)]  # This is USD, which is the default.
+        currencies = [('USD', self)]
         currencies.extend([(c.currency, c)
                            for c in self._currencies.values()
                            if c.tier_id == self.pk])
@@ -171,6 +172,7 @@ class AddonPremium(amo.models.ModelBase):
     addon = models.OneToOneField('addons.Addon')
     price = models.ForeignKey(Price, blank=True, null=True)
     paypal_permissions_token = models.CharField(max_length=255, blank=True)
+    currencies = json_field.JSONField(default={})
 
     class Meta:
         db_table = 'addons_premium'
@@ -207,6 +209,18 @@ class AddonPremium(amo.models.ModelBase):
             return False
         return paypal.check_permission(self.paypal_permissions_token,
                                        ['REFUND'])
+
+    def supported_currencies(self):
+        """
+        Return a list of the supported currencies for this app.
+        You get a list of tuples of currency name and the price currency
+        object.
+
+        USD will always be present since that is the default.
+        """
+        currencies = self.currencies or {}
+        return [c for c in self.price.currencies()
+                if c[0] in currencies or c[0] == 'USD']
 
 
 class PreApprovalUser(amo.models.ModelBase):

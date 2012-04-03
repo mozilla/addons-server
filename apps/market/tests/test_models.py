@@ -60,6 +60,19 @@ class TestPremium(amo.tests.TestCase):
         ap.paypal_permissions_token = 'asd'
         assert ap.has_valid_permissions_token()
 
+    def test_currencies(self):
+        ap = AddonPremium.objects.create(addon=self.addon, price=self.tier_one)
+        print type(ap.currencies)
+        assert self.tier_one.currencies()
+        eq_(len(ap.supported_currencies()), 1)
+        eq_(ap.supported_currencies()[0][0], 'USD')
+
+    def test_add_currency(self):
+        ap = AddonPremium.objects.create(addon=self.addon, price=self.tier_one)
+        ap.update(currencies=['CAD'])
+        eq_(len(ap.supported_currencies()), 2)
+        eq_(ap.supported_currencies()[1][0], 'CAD')
+
 
 class TestPrice(amo.tests.TestCase):
     fixtures = ['prices.json']
@@ -113,7 +126,7 @@ class TestPrice(amo.tests.TestCase):
     def test_currencies(self):
         currencies = Price.objects.get(pk=1).currencies()
         eq_(len(currencies), 3)
-        eq_(currencies[0][0], '')  # This is USD.
+        eq_(currencies[0][0], 'USD')
         eq_(currencies[1][1].currency, 'CAD')
 
 

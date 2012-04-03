@@ -16,26 +16,36 @@
   <section class="primary payments devhub-form" role="main">
     {% if addon.paypal_id %}
     <div class="island">
-      <p><strong>{{ loc('PayPal email address for this app.') }}</strong></p>
-      <p class="indent">{{ addon.paypal_id }}
-      <footer class="listing-footer">
-        <a class="button" href="#" id="paypal-change-address">{{ loc('Change PayPal email') }}</a>
-        <a class="button" href="{{ addon.get_dev_url('paypal_setup_details') }}">{{ loc('Manage contact details') }}</a>
-      </footer>
+      <form method="post">
+        <p><strong>{{ loc('PayPal email address for this app') }}</strong></p>
+        <p class="indent">{{ addon.paypal_id }}
+        <a href="#paypal-account" id="paypal-change-address">Change</a></p>
+          {{ csrf() }}
+          <div class="brform paypal-inline paypal devhub-form">
+            {{ form_field(currency_form.currencies) }}
+            <span class="hint">{{ loc('The default is U.S. Dollar and support for this is required.
+                 For each currency you would like to support for your price
+                 tier, you must maintain a balance in PayPal.') }}</span>
+          </div>
+        <footer class="listing-footer">
+          <button type="submit" name="form" value="currency">{{ _('Change') }}</button>
+          <a class="button" href="{{ addon.get_dev_url('paypal_setup_details') }}">{{ loc('Manage contact details') }}</a>
+        </footer>
+      </form>
     </div>
 
     <div class="island js-hidden" id="paypal-change-address-form">
-      <h2>Change your PayPal account</h2>
+      <h2><a name="paypal-account"></a>Change your PayPal account</h2>
       <p>{{ loc('Changing your PayPal account will mean setting up permissions
                  tokens again on the Marketplace and updating your data.') }}</p>
       <form method="post">
         {{ csrf() }}
         <div class="brform paypal-inline paypal devhub-form">
-          {{ form_field(form.business_account) }}
-          {{ form_field(form.email) }}
+          {{ form_field(paypal_form.business_account) }}
+          {{ form_field(paypal_form.email) }}
         </div>
         <footer class="listing-footer">
-          <button type="submit">{{ _('Change') }}</button>
+          <button type="submit" name="form" value="paypal">{{ _('Change') }}</button>
         </footer>
       </form>
     </div>
@@ -65,8 +75,8 @@
           <p>{{ loc('Do you already have a PayPal Premier or business-level account?
                      If not we will redirect you to PayPal to create an account.
                      Return here when done to complete your setup.') }}</p>
-          {{ form_field(form.business_account) }}
-          {{ form_field(form.email) }}
+          {{ form_field(paypal_form.business_account) }}
+          {{ form_field(paypal_form.email) }}
           <p>{{ loc('Learn about <a href="{0}">different PayPal account types</a>.')|f("https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/general/PayPalAccountTypes-outside")|xssafe }}</p>
         </div>
         <footer class="listing-footer">
