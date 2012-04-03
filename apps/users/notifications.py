@@ -29,6 +29,7 @@ class reply(_NOTIFICATION):
 
 class app_reply(reply):
     app = True
+    short = 'app_reply'
     label = loc('an app developer replies to my review')
 
 
@@ -70,6 +71,7 @@ class new_review(_NOTIFICATION):
 
 class app_new_review(new_review):
     app = True
+    short = 'app_new_review'
     label = loc('someone writes a review of my app')
 
 
