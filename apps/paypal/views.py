@@ -40,7 +40,7 @@ def paypal(request):
     try:
         return _paypal(request)
     except Exception, e:
-        paypal_log.error('%s\n%s' % (e, request))
+        paypal_log.error('%s\n%s' % (e, request), exc_info=True)
         return http.HttpResponseServerError('Unknown error.')
 
 
@@ -149,7 +149,9 @@ def _paypal(request):
 
     payment_status = post.get('payment_status', '').lower()
     if payment_status != 'completed':
-        return paypal_ignore(request, post)
+        paypal_log.info('Payment status not completed: %s, %s'
+                        % (post.get('txn_id', ''), payment_status))
+        return http.HttpResponse('Ignoring %s' % post.get('txn_id', ''))
 
     # There could be multiple transactions on the IPN. This will deal
     # with them appropriately or cope if we don't know how to deal with
@@ -159,36 +161,35 @@ def _paypal(request):
                'reversal': paypal_reversal}
     result = None
     called = False
-    for key, value in transactions.items():
-        status = value.get('status', '').lower()
+    # Ensure that we process 0, then 1 etc.
+    for (k, v) in sorted(transactions.items()):
+        status = v.get('status', '').lower()
         if status not in methods:
             paypal_log.info('Unknown status: %s' % status)
             continue
-        result = methods[status](request, post, value)
+        result = methods[status](request, post, v)
         called = True
+        # Because of chained payments a refund is more than one transaction.
+        # But from our point of view, it's actually only one transaction and
+        # we can safely ignore the rest.
+        if result.content == 'Success!' and status == 'refunded':
+            break
 
     if not called:
         # Whilst the payment status was completed, it contained
         # no transactions with status, which means we don't know
         # how to process it. Hence it's being ignored.
-        return paypal_ignore(request, post)
-
-    if not result:
-        return _log_unmatched(post)
+        paypal_log.info('No methods to call on: %s' % post.get('txn_id', ''))
+        return http.HttpResponse('Ignoring %s' % post.get('txn_id', ''))
 
     return result
-
-
-def paypal_ignore(request, post):
-    paypal_log.info('Ignoring: %s' % post.get('txn_id', ''))
-    return http.HttpResponse('Ignoring %s' % post.get('txn_id', ''))
 
 
 def paypal_refunded(request, post, transaction):
     try:
         original = Contribution.objects.get(transaction_id=post['txn_id'])
     except Contribution.DoesNotExist:
-        return None
+        return _log_unmatched(post)
 
     # If the contribution has a related contribution we've processed it.
     try:
@@ -221,7 +222,7 @@ def paypal_reversal(request, post, transaction):
     try:
         original = Contribution.objects.get(transaction_id=post['txn_id'])
     except Contribution.DoesNotExist:
-        return None
+        return _log_unmatched(post)
 
     # If the contribution has a related contribution we've processed it.
     try:
@@ -259,7 +260,7 @@ def paypal_completed(request, post, transaction):
     try:
         original = Contribution.objects.get(uuid=post['txn_id'])
     except Contribution.DoesNotExist:
-        return None
+        return _log_unmatched(post)
 
     paypal_log.info('Completed IPN received: %s' % post['txn_id'])
     data = StatsDictField().to_python(php.serialize(post))

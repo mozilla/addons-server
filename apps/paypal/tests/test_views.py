@@ -50,7 +50,7 @@ sample_refund = {
     'sender_email': 'some.other@gmail.com',
     'status': 'COMPLETED',
     'tracking_id': '5678',
-    'transaction[0].amount': 'USD 0.01',
+    'transaction[0].amount': 'USD 1.00',
     'transaction[0].id': 'ABC',
     'transaction[0].id_for_sender_txn': 'DEF',
     'transaction[0].is_primary_receiver': 'false',
@@ -64,6 +64,46 @@ sample_refund = {
     'transaction[0].status_for_sender_txn': 'Refunded',
     'transaction_type': 'Adjustment',
     'verify_sign': 'xyz'
+}
+
+sample_chained_refund = {
+    'action_type': 'PAY',
+    'charset': 'windows-1252',
+    'fees_payer': 'SECONDARYONLY',
+    'log_default_shipping_address_in_transaction': 'false',
+    'memo': 'Purchase of Sinuous-andy-video-test',
+    'notify_version': 'UNVERSIONED',
+    'pay_key': '1234',
+    'payment_request_date': 'Mon Apr 02 12:51:50 PDT 2012',
+    'reason_code': 'Refund',
+    'reverse_all_parallel_payments_on_error': 'false',
+    'sender_email': 'some-1@gmail.com',
+    'status': 'COMPLETED',
+    'test_ipn': '1',
+    'tracking_id': '5678',
+    'transaction[0].amount': 'USD 0.99',
+    'transaction[0].id': 'ABC',
+    'transaction[0].id_for_sender_txn': 'DEF',
+    'transaction[0].is_primary_receiver': 'true',
+    'transaction[0].paymentType': 'DIGITALGOODS',
+    'transaction[0].pending_reason': 'NONE',
+    'transaction[0].receiver': 'some-2@gmail.com',
+    'transaction[0].status': 'Refunded',
+    'transaction[0].status_for_sender_txn': 'Refunded',
+    'transaction[1].amount': 'USD 0.30',
+    'transaction[1].id': 'ABC',
+    'transaction[1].id_for_sender_txn': 'ASD',
+    'transaction[1].is_primary_receiver': 'false',
+    'transaction[1].paymentType': 'DIGITALGOODS',
+    'transaction[1].pending_reason': 'NONE',
+    'transaction[1].receiver': 'some-3@gmail.com',
+    'transaction[1].refund_account_charged': 'some-3@gmail.com',
+    'transaction[1].refund_amount': 'USD 0.30',
+    'transaction[1].refund_id': 'XYX',
+    'transaction[1].status': 'Refunded',
+    'transaction[1].status_for_sender_txn': 'Refunded',
+    'transaction_type': 'Adjustment',
+    'verify_sign': 'xyz',
 }
 
 sample_purchase = {
@@ -257,7 +297,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
 
     def test_parse_currency(self, urlopen):
         res = views._parse_currency(sample_refund['transaction[0].amount'])
-        eq_(res['amount'], Decimal('0.01'))
+        eq_(res['amount'], Decimal('1.00'))
         eq_(res['currency'], 'USD')
 
     def test_success(self, urlopen):
@@ -284,7 +324,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         response = self.client.post(self.url, data)
         return response
 
-    def _refund(self, urlopen):
+    def _refund(self, urlopen, data=sample_refund):
         """
         Receipt of an IPN for a refund results in a Contribution
         object recording its relation to the original payment.
@@ -294,9 +334,9 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         # a transaction id that will map the tracking_id sent by paypal.
         original = Contribution.objects.create(
                         uuid=None, user=user, addon=self.addon,
-                        transaction_id=sample_refund['tracking_id'])
+                        transaction_id=data['tracking_id'])
 
-        response = self._receive_ipn(urlopen, sample_refund)
+        response = self._receive_ipn(urlopen, data)
         eq_(response.content, 'Success!')
         return original
 
@@ -311,7 +351,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         eq_(refunds[0].addon, self.addon)
         eq_(refunds[0].user, original.user)
         eq_(refunds[0].type, amo.CONTRIB_REFUND)
-        eq_(refunds[0].amount, Decimal('-0.01'))
+        eq_(refunds[0].amount, Decimal('-1.00'))
 
     def test_refund_twice(self, urlopen):
         self._refund(urlopen)
@@ -327,6 +367,10 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         eq_(response.content, 'Contribution not found')
         refunds = Contribution.objects.filter(type=amo.CONTRIB_REFUND)
         eq_(len(refunds), 0)
+
+    def test_refund_amount(self, urlopen):
+        self._refund(urlopen, sample_chained_refund)
+        eq_(Contribution.objects.all()[1].amount, Decimal('-0.99'))
 
     def reversal(self, urlopen):
         user = UserProfile.objects.get(pk=999)
