@@ -8,6 +8,9 @@
         e.stopPropagation();
         var product = $(this).data('product');
 
+        if (z.anonymous) {
+            $(window).trigger('login');
+        }
         if (product.isPurchased || !product.price) {
             install(product);
             return;
@@ -39,7 +42,7 @@
             if (response.receipt) {
                 data.receipt = response.receipt;
             }
-            $.when(apps.install(product.manifestUrl, data))
+            $.when(apps.install(product, data))
              .done(installSuccess)
              .fail(installError);
         }).error(function(response) {
@@ -47,14 +50,11 @@
         });
     }
 
-    function installSuccess(button, product) {
-        // Don't do this if cancelled.
-        //this.removeClass('install').addClass('installed');
-        // Store in localStorage (based on user if authenticated)?
-        //this.html('Installed');
+    function installSuccess(product) {
+        $(window).trigger('appinstall', product);
     }
 
-    function installError(button, product) {
-        //button.html(oldLabel);
+    function installError(product) {
+        $(window).trigger('appinstallerror', product);
     }
 })();

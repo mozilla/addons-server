@@ -1,5 +1,6 @@
 var z = {
-    page: $('#page')
+    page: $('#page'),
+    anonymous: $('body').data('anonymous')
 };
 
 

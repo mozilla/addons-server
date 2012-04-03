@@ -32,46 +32,25 @@ navigator
     Something other than the global navigator, useful for testing
 
 */
-exports.install = function(manifestUrl, opt) {
+exports.install = function(product, opt) {
     opt = $.extend({'domContext': document,
                     'navigator': navigator,
                     'data': undefined}, opt || {});
     var self = apps,
         errSummary,
+        manifestUrl = product.manifestUrl,
         $def = $.Deferred();
     /* Try and install the app. */
-    if (opt.navigator.mozApps && opt.navigator.mozApps.install) {
+    if (manifestUrl && opt.navigator.mozApps && opt.navigator.mozApps.install) {
         var installRequest = opt.navigator.mozApps.install(manifestUrl, opt.data);
         installRequest.onsuccess = function() {
-            $def.resolve();
+            $def.resolve(product);
         };
-        installRequest.onerror = function(errorOb) {
-            switch (errorOb.code) {
-                case 'denied':
-                    break;
-                case 'permissionDenied':
-                    errSummary = gettext('App installation not allowed');
-                    break;
-                case 'manifestURLError':
-                    errSummary = gettext('App manifest is malformed');
-                    break;
-                case 'networkError':
-                    errSummary = gettext('App host could not be reached');
-                    break;
-                case 'manifestParseError':
-                    errSummary = gettext('App manifest is unparsable');
-                    break;
-                case 'invalidManifest':
-                    errSummary = gettext('App manifest is invalid');
-                    break;
-                default:
-                    errSummary = gettext('Unknown error');
-                    break;
-            }
-            $def.fail(errorOb, errSummary);
+        installRequest.onerror = function() {
+            $def.reject(product);
         };
     } else {
-        $def.fail();        
+        $def.reject();
     }
     return $def.promise();
 };
