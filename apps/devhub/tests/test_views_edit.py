@@ -1130,7 +1130,7 @@ class TestEditTechnical(TestEdit):
             Q(id__in=[self.addon.id, self.dependent_addon.id]) |
             Q(type=amo.ADDON_PERSONA))
         args = []
-        eq_(deps.count(), 4)  # The limit is 3.
+        assert deps.count() > 3  # The limit is 3.
         for dep in deps:
             args.append({'dependent_addon': dep.id})
         d = self.dep_formset(*args)
