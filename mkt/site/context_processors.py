@@ -29,9 +29,9 @@ def global_settings(request):
         if '/developers/' not in request.path:
             tools_links.append({'text': _('Developer Hub'),
                                 'href': reverse('mkt.developers.index')})
-        if '/editors/' not in request.path and acl.check_reviewer(request):
-            tools_links.append({'text': _('Editor Tools'),
-                                'href': reverse('editors.queue_apps')})
+        if '/reviewers/' not in request.path and acl.check_reviewer(request):
+            tools_links.append({'text': _('Reviewer Tools'),
+                                'href': reverse('reviewers.home')})
         if acl.action_allowed(request, 'Localizers', '%'):
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})

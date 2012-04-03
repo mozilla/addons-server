@@ -1,38 +1,40 @@
-{% extends 'editors/base.html' %}
+{% extends 'reviewers/base.html' %}
 
 {% block title %}
-  {{ editor_page_title(title=addon.name) }}
+  {{ reviewers_page_title(title=product.name) }}
 {% endblock %}
 
 {% block bodyclass %}inverse{% endblock %}
 
 {% block breadcrumbs %}
-{{ editors_breadcrumbs(addon_queue=addon, items=[(None, addon.name)]) }}
+  {{ reviewers_breadcrumbs(addon_queue=product, items=[(None, product.name)]) }}
 {% endblock %}
 
 {% block content %}
 
 <hgroup>
-  <h2 class="addon"{{ addon.name|locale_html }}>
-    <img src="{{ addon.icon_url }}" class="icon"/>
-    {# L10n: "Review [add-on name]" #}
+  <h2 class="addon"{{ product.name|locale_html }}>
+    <img src="{{ product.icon_url }}" class="icon"/>
+    {# L10n: {0} is the name of the app. #}
     <span>
-      {{ _('Review {0}')|f(addon.name) }}
+      {{ _('Review {0}')|f(product.name) }}
     </span>
-    {% if version and not addon.is_selfhosted() %}
+    {% if version and not product.is_selfhosted() %}
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h2>
-  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+  <h4 class="author">{{ _('by') }} {{ users_list(product.listed_authors) }}</h4>
 </hgroup>
 
-<div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
+<div id="addon" class="primary" role="main" data-id="{{ product.id }}">
 
-{% include 'addons/details_box.html' %}
+{% with addon=product %}
+  {% include 'addons/details_box.html' %}
+{% endwith %}
 
 <div id="review-files-header">
   <h3 id="history">
-    {{ _('Add-on History') }}
+    {{ _('App History') }}
     <span>
       {% trans %}
       open:
@@ -43,7 +45,7 @@
     </span>
   </h3>
   <div id="review-files-paginate">
-    {% include "editors/includes/paginator_history.html"  %}
+    {% include 'editors/includes/paginator_history.html'  %}
   </div>
 </div>
 <div class="results">
@@ -63,16 +65,16 @@
           <div><strong>{{ _('Files in this version:') }}</strong></div>
           <ul>
           {# Hide files until files and versions make sense for apps. #}
-          {% set version_files = [] if addon.is_webapp() else version.all_files %}
+          {% set version_files = [] if product.is_webapp() else version.all_files %}
           {% for file in version_files %}
           <li class="file-info">
             <span class="light">
               <strong><a href="{{ file.get_url_path('editor') }}" class="install"
-                  data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.platform }}</a></strong>
+                  data-type="{{ amo.ADDON_SLUGS[product.type] }}">{{ file.platform }}</a></strong>
               <div>
                 {{ file_review_status(addon, file) }}
               </div>
-              <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
+              <a href="{{ url('devhub.file_validation', product.slug, file.id) }}">{{ _('Validation') }}</a>
               &middot;
               <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
               {% if show_diff %}
@@ -207,7 +209,7 @@
         </label>
         {{ form.notify.errors }}
       </div>
-      {% if addon.admin_review and is_admin %}
+      {% if product.admin_review and is_admin %}
       <div class="review-actions-section">
         {{ form.adminflag }}
         <label for="{{ form.adminflag.auto_id }}">
@@ -246,50 +248,48 @@
 
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
-    <li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>
+    <li><a href="{{ product.get_url_path() }}">{{ _('View Listing') }}</a></li>
     {% if is_admin %}
-    <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
-    <li><a href="{{ url('zadmin.addon_manage', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
+    <li><a href="{{ product.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
+    <li><a href="{{ url('zadmin.addon_manage', product.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
     {% endif %}
   </ul>
 
 
-  <strong>{{ _('Review This Add-on') }}</strong>
+  <strong>{{ _('Review This App') }}</strong>
   <ul>
     <li><a href="#more-about">{{ _('More Information') }}</a></li>
-    <li><a href="#history">{{ _('Add-on History') }}</a></li>
+    <li><a href="#history">{{ _('App History') }}</a></li>
     <li><a href="#review-actions">{{ _('Resolution') }}</a></li>
   </ul>
 
   <strong>{{ _('Authors') }}</strong>
   <ul>
-    {% for author in addon.authors.all() %}
+    {% for author in product.authors.all() %}
     <li><a href="{{ url('users.profile', author.id) }}">{{ author.name }}</a></li>
     {% endfor %}
   </ul>
 
   <strong>{{ _('Categories') }}</strong>
   <ul>
-    {% for category in addon.categories.all() %}
+    {% for category in product.categories.all() %}
     <li>{{ category.name }}</a></li>
     {% endfor %}
   </ul>
 
-  {% if waffle.switch('marketplace') %}
   <strong>{{ _('Premium type') }}</strong>
   <ul id="premium-type">
-      <li>{{ addon.premium_type|premium_text }}</li>
+    <li>{{ product.premium_type|premium_text }}</li>
   </ul>
-  {% endif %}
 
   {% if flags: %}
-  <strong>{{ _('Flags') }}</strong>
-  <ul>
-    {% for flag in flags %}
-    {# TODO(andym): not sure what goes here #}
-    <li>{{ flag }}</li>
-    {% endfor %}
-  </ul>
+    <strong>{{ _('Flags') }}</strong>
+    <ul>
+      {% for flag in flags %}
+      {# TODO(andym): not sure what goes here #}
+      <li>{{ flag }}</li>
+      {% endfor %}
+    </ul>
   {% endif %}
 
   </div>

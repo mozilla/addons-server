@@ -41,8 +41,7 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
     abuse_reports__count = tables.Column(verbose_name=_lazy(u'Abuse Reports'))
 
     def render_name(self, row):
-        url = '%s?num=%s' % (reverse('editors.app_review', args=[row.slug]),
-                             self.item_number)
+        url = '%s?num=%s' % (self.review_url(row), self.item_number)
         self.increment_item()
         return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
 
@@ -64,7 +63,7 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
 
     @classmethod
     def review_url(cls, row):
-        return reverse('editors.app_review', args=[row.slug])
+        return reverse('reviewers.app_review', args=[row.app_slug])
 
     class Meta:
         sortable = True

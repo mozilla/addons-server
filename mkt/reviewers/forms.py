@@ -4,7 +4,7 @@ from editors.forms import ReviewAddonForm
 from editors.helpers import ReviewFiles
 from editors.forms import ReviewFileForm
 
-from mkt.editortools.utils import ReviewAddon, ReviewHelper
+from mkt.reviewers.utils import ReviewAddon, ReviewHelper
 
 
 class ReviewAppForm(ReviewAddonForm):

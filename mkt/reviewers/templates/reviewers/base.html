@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ reviewers_page_title() }}{% endblock %}
+
+{% block bodyclass %}editor-tools{% endblock %}
+
+{% block site_header_title %}
+<h1 class="site-title">
+  <a href="{{ url('reviewers.home') }}">
+    <strong>{{ _('Reviewer Tools') }}</strong></a>
+</h1>
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('zamboni/devhub') }}
+  {{ css('zamboni/editors') }}
+{% endblock %}
+
+{% block navbar %}
+  <div id="navbar">
+    <ul class="top">
+      <li class="top">
+        <a href="#" class="controller">{{ _('Queues') }}</a>
+        {% if queue_counts %}
+          <ul>
+            <li><a href="{{ url('reviewers.queue_apps') }}">
+              {{ _('Apps') }} ({{ queue_counts['apps'] }})</a></li>
+          </ul>
+        {% endif %}
+      </li>
+      {# TODO: Implement logs for apps (bug 741514). #}
+      <li class="top">
+        <a href="{{ url('editors.reviewlog') }}" class="controller">
+          {{ _('Logs') }}</a>
+      </li>
+      {# TODO: Implement MOTD for apps (bug 741529). #}
+      <li class="top">
+        <a href="{{ url('editors.motd') }}" class="controller">
+          {{ _('Announcement') }}</a>
+      </li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ js('zamboni/editors') }}
+{% endblock %}
+
+{# Hiding these for the Marketplace Editor Tools until consumer pages are done. #}
+{% block header_search %}{{ super() if not settings.MARKETPLACE }}{% endblock %}
+{% block footer %}{{ super() if not settings.MARKETPLACE }}{% endblock %}
+
+{% block outer_content %}
+  {% block breadcrumbs %}{% endblock %}
+  {% include 'editors/includes/daily-message.html' %}
+  {% include 'messages.html' %}
+{% endblock %}

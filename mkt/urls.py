@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     ('^search/', include('mkt.search.urls')),
 
     # Reviewer tools.
-    ('^reviewers/', include('mkt.editortools.urls')),
+    ('^reviewers/', include('mkt.reviewers.urls')),
 
     # Editor tools.
     ('^editors/', include('editors.urls')),
