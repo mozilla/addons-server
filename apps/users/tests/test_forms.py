@@ -304,7 +304,7 @@ class TestUserLoginForm(UserFormBase):
         url = urlparams(self._get_login_url(), to="en-US/firefox/about")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/about')
+        self.assertRedirects(r, '/en-US/about')
 
         # Test a valid domain.  Note that assertRedirects doesn't work on
         # external domains

@@ -41,9 +41,9 @@ def test_redirect_with_unicode_get():
 
 
 def test_trailing_slash_middleware():
-    response = test.Client().get(u'/en-US/firefox/about/?xxx=\xc3')
+    response = test.Client().get(u'/en-US/about/?xxx=\xc3')
     eq_(response.status_code, 301)
-    assert response['Location'].endswith('/en-US/firefox/about?xxx=%C3%83')
+    assert response['Location'].endswith('/en-US/about?xxx=%C3%83')
 
 
 class AdminMessageTest(amo.tests.TestCase):
@@ -156,7 +156,7 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
                                      status=500)
         response = LazyPjaxMiddleware().process_response(request, response)
         assert response.content.startswith('<html>'), (
-                    'Did not expect a pjax response: %s' % response.content)
+            'Did not expect a pjax response: %s' % response.content)
 
     @patch.object(settings, 'DEBUG', True)
     def test_non_html_is_ignored(self):

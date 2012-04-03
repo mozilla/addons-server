@@ -906,7 +906,7 @@ class TestLogout(UserViewBase):
     def test_redirect(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         self.client.get('/', follow=True)
-        url = '/en-US/firefox/about'
+        url = '/en-US/about'
         r = self.client.get(urlparams(reverse('users.logout'), to=url),
                             follow=True)
         self.assertRedirects(r, url, status_code=302)
@@ -921,10 +921,10 @@ class TestLogout(UserViewBase):
         self.assertEqual(code, 302)
 
         # Test an invalid domain
-        url = urlparams(reverse('users.logout'), to='/en-US/firefox/about',
+        url = urlparams(reverse('users.logout'), to='/en-US/about',
                         domain='http://evil.com')
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/about', status_code=302)
+        self.assertRedirects(r, '/en-US/about', status_code=302)
 
 
 class TestRegistration(UserViewBase):
