@@ -33,7 +33,7 @@ from addons import forms as addon_forms
 from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
-from lib.video.ffmpeg import Video
+from lib.video import ffmpeg
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, InappConfigForm,
@@ -905,7 +905,7 @@ def ajax_upload_media(request, upload_type):
                 fd.write(chunk)
 
         if is_video:
-            video = Video(loc)
+            video = ffmpeg.Video(loc)
             video.get_meta()
             if not video.is_valid():
                 errors.extend(video.errors)
