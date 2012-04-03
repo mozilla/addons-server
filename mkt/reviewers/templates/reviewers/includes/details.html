@@ -1,0 +1,155 @@
+<div class="featured">
+  <div class="featured-inner object-lead inverse">
+
+    <div id="addon-summary-wrapper">
+      <div id="addon-summary" class="primary">
+        <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
+
+        <table>
+          <tbody>
+            <tr class="addon-updated">
+              <th>{{ _('Updated') }}</th>
+              <td>
+                <time datetime="{{ product.last_updated|isotime }}">{{
+                  product.last_updated|datetime }}</time>
+              </td>
+            </tr>
+            {% if product.homepage %}
+              <tr>
+                <th>{{ _('Website') }}</th>
+                <td>
+                  <strong><a href="{{ product.homepage|external_url }}">{{
+                    product.homepage }}</a></strong>
+                </td>
+              </tr>
+            {% endif %}
+            {% if product.compatible_apps[APP] %}
+              <tr class="addon-compatible">
+                <th>{{ _('Works with') }}</th>
+                <td>{{ product.compatible_apps[APP] }}</td>
+              </tr>
+            {% endif %}
+            <tr>
+              <th>{{ _('Rating') }}</th>
+              <td>{{ reviews_link(product) }}</td>
+            </tr>
+            <tr class="meta-stats">
+              <th>{{ _('Downloads') }}</th>
+              <td>
+                <strong class="downloads">{{
+                  product.total_downloads|numberfmt }}</strong>
+                {% if product.public_stats %}
+                  <a href="{{ url('stats.overview', product.slug) }}">
+                    {{ _('View Statistics') }}</a>
+                {% endif %}
+              </td>
+            </tr>
+            <tr class="meta-abuse">
+              <th>{{ _('Abuse Reports') }}</th>
+              <td>
+                <a href="{{ url('editors.abuse_reports', product.slug) }}">
+                  <strong>{{ product.abuse_reports.count()|numberfmt }}</strong></a>
+              </td>
+            </tr>
+            {% with device_types = product.device_types %}
+              {% if device_types %}
+                <tr>
+                  <th>{{ _('Device Types') }}</th>
+                  <td>
+                    {% for device in device_types %}
+                      {{ device.name }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                  </td>
+                </tr>
+              {% endif %}
+            {% endwith %}
+            {% if product.privacy_policy %}
+            <tr>
+              <th>{{ _('Privacy Policy') }}</th>
+              <td>
+                <a href="{{ product.get_detail_url('privacy') }}">
+                  {{ _('View Privacy Policy') }}</a>
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+
+      </div>{# /addon-summary #}
+    </div>{# /addon-summary-wrapper #}
+
+    <div class="secondary">
+      {% if product.all_previews %}
+        {% with preview=product.all_previews[0] %}
+          <a class="screenshot thumbnail" rel="jquery-lightbox"
+            href="{{ preview.image_url }}" title="{{ preview.caption }}">
+              <img src="{{ preview.thumbnail_url }}">
+          </a>
+        {% endwith %}
+      {% else %}
+        <img src="{{ product.thumbnail_url }}" class="screenshot thumbnail"
+             width="200" height="150">
+      {% endif %}
+
+      {% if show_actions %}
+      <div class="widgets">
+        {{ favorites_widget(product) }}
+        {% include 'addons/includes/collection_add_widget.html' %}
+        {{ sharing_widget(product) }}
+      </div>
+      {% endif %}
+    </div>{# /secondary #}
+
+  </div>{# /featured-inner #}
+</div>{# /featured #}
+
+ {% if product.description or product.all_previews|length > 1 or
+       product.developer_comments %}
+  <h3 id="more-about">{{ _('More about this app') }}</h3>
+  <div class="article userinput">
+    {% if product.id == 4664 or product.id == 144983 %}
+      {# This is for Bug 595561. #}
+      {% include 'addons/qr_code.html' %}
+    {% endif %}
+    <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
+
+    {% if product.all_previews|length > 1 %}
+      <h4>{{ _('Image Gallery') }}</h4>
+      {% for preview in product.all_previews[1:] %}
+      <a class="screenshot thumbnail" rel="jquery-lightbox"
+        href="{{ preview.image_url }}" title="{{ preview.caption }}">
+        <img src="{{ preview.thumbnail_url }}">
+      </a>
+      {% endfor %}
+    {% endif %}
+
+    {% if product.developer_comments %}
+      <h4>{{ _('Developer Comments') }}</h4>
+      <div class="prose userinput">
+        <p{{ product.developer_comments|locale_html }}>{{
+          product.developer_comments|nl2br }}</p>
+      </div>
+    {% endif %}
+  </div>{# /article #}
+  {% else %}
+    <h3 id="more-about">{{ _('More about this app') }}</h3>
+    <div class="article">
+      <em>
+        {{ _('Nothing to see here! The developer did not include any details.') }}
+      </em>
+    </div>
+  {% endif %}
+
+{% if reviews is defined %}
+  {{ review_list_box(addon=product, reviews=reviews) }}
+{% endif %}
+
+{% if review_form %}
+  {% if request.user.is_authenticated() %}
+    {{ review_add_box(addon=product) }}
+  {% endif %}
+{% endif %}
+
+{% if abuse_form %}
+  {{ addon_report_abuse(hide=True, addon=product) }}
+{% endif %}

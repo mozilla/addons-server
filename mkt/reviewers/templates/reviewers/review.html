@@ -19,18 +19,13 @@
     <span>
       {{ _('Review {0}')|f(product.name) }}
     </span>
-    {% if version and not product.is_selfhosted() %}
-      <span class="version">{{ version.version }}</span>
-    {% endif %}
   </h2>
   <h4 class="author">{{ _('by') }} {{ users_list(product.listed_authors) }}</h4>
 </hgroup>
 
 <div id="addon" class="primary" role="main" data-id="{{ product.id }}">
 
-{% with addon=product %}
-  {% include 'addons/details_box.html' %}
-{% endwith %}
+{% include 'reviewers/includes/details.html' %}
 
 <div id="review-files-header">
   <h3 id="history">
