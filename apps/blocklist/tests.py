@@ -331,6 +331,16 @@ class BlocklistPluginTest(BlocklistTest):
         eq_(vr.getAttribute('minVersion'), '1')
         eq_(vr.getAttribute('maxVersion'), '2')
 
+    def test_plugin_with_severity_only(self):
+        self.plugin.update(guid=None, severity=1)
+        vr = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('severity'), '1')
+        eq_(vr.getAttribute('minVersion'), '')
+        eq_(vr.getAttribute('maxVersion'), '')
+
+        eq_(vr.getElementsByTagName('targetApplication'), [],
+            'There should not be a <targetApplication> if there was no app')
+
     def test_plugin_apiver_lt_3(self):
         self.plugin.update(severity='2')
         # No min & max so the app matches.
