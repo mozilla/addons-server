@@ -32,6 +32,7 @@ def csrf_failure(request, reason=''):
 
 @no_login_required
 def manifest(request):
+    ctx = RequestContext(request)
     data = {
         'name': 'Mozilla Marketplace',
         'description': 'The Mozilla Marketplace',
@@ -41,8 +42,8 @@ def manifest(request):
         },
         'icons': {
             # Using the default addon image until we get a marketplace logo.
-            '32': media(RequestContext(request),
-                        'img/zamboni/default-addon.png'),
+            '32': media(ctx, 'img/addon-icons/default-32.png'),
+            '64': media(ctx, 'img/addon-icons/default-64.png'),
         },
         # TODO: when we have specific locales, add them in here.
         'locales': {},
