@@ -11,9 +11,11 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
+from addons.models import Addon
 from bandwagon.models import Collection
+from mkt.webapps.models import Installed
 from stats import views, tasks
-from stats.search import es_dict
+from stats import search
 from stats.models import (CollectionCount, DownloadCount, GlobalStat,
                           UpdateCount)
 from users.models import UserProfile
@@ -821,8 +823,8 @@ class TestCollections(amo.tests.ESTestCase):
         for x in xrange(1, 4):
             data = {'date': self.today - datetime.timedelta(days=x - 1),
                     'id': int(self.collection.pk), 'count': x,
-                    'data': es_dict({'subscribers': x, 'votes_up': x,
-                                     'votes_down': x, 'downloads': x})}
+                    'data': search.es_dict({'subscribers': x, 'votes_up': x,
+                                            'votes_down': x, 'downloads': x})}
             CollectionCount.index(data, id='%s-%s' % (x, self.collection.pk))
 
         self.refresh('stats_collections_counts')
@@ -884,3 +886,34 @@ class TestCollections(amo.tests.ESTestCase):
         eq_(len(content), 2)
         eq_(content[0]['date'], yesterday.strftime('%Y-%m-%d'))
         eq_(content[1]['date'], day_before.strftime('%Y-%m-%d'))
+
+
+class TestInstalled(amo.tests.ESTestCase):
+    es = True
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.today = datetime.date.today()
+        self.webapp = Addon.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=999)
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.in_ = Installed.objects.create(addon=self.webapp, user=self.user)
+        Installed.index(search.extract_installed_count(self.in_),
+                        id=self.in_.pk)
+        self.refresh('users_install')
+
+    def get_url(self, start, end, fmt='json'):
+        return reverse('mkt.stats.installs_series',
+                       args=[self.webapp.app_slug, 'day',
+                             start.strftime('%Y%m%d'),
+                             end.strftime('%Y%m%d'), fmt])
+
+    def test_installed(self):
+        res = self.client.get(self.get_url(self.today, self.today))
+        data = json.loads(res.content)
+        eq_(data[0]['count'], 1)
+
+    def tests_installed_anon(self):
+        self.client.logout()
+        res = self.client.get(self.get_url(self.today, self.today))
+        eq_(res.status_code, 403)

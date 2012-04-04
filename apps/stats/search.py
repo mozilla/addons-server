@@ -110,6 +110,16 @@ def get_all_app_versions():
     return dict(rv)
 
 
+def extract_installed_count(installed):
+    date = installed.created.date()
+    return {'date': date,
+            'addon': installed.addon_id,
+            'count': installed.__class__.objects.filter(
+                created__year=date.year,
+                created__month=date.month,
+                created__day=date.day).count()}
+
+
 def setup_indexes():
     es = elasticutils.get_es()
     for model in CollectionCount, DownloadCount, UpdateCount:

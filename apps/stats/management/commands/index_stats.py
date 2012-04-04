@@ -8,9 +8,10 @@ from django.db.models import Max, Min
 from celery.task.sets import TaskSet
 
 from amo.utils import chunked
+from mkt.webapps.models import Installed
 from stats.models import CollectionCount, DownloadCount, UpdateCount
-from stats.tasks import (index_collection_counts, index_download_counts,
-                         index_update_counts)
+from stats.tasks import (index_collection_counts, index_installed_counts,
+                         index_download_counts, index_update_counts)
 
 log = logging.getLogger('z.stats')
 
@@ -52,32 +53,41 @@ class Command(BaseCommand):
 
         addons, dates = kw['addons'], kw['date']
 
-        queries = [(UpdateCount.objects, index_update_counts),
-                   (DownloadCount.objects, index_download_counts)]
+        queries = [(UpdateCount.objects, index_update_counts,
+                    {'date': 'date'}),
+                   (DownloadCount.objects, index_download_counts,
+                    {'date': 'date'}),
+                   (Installed.objects, index_installed_counts,
+                    {'date': 'created'})]
 
         if not addons:
             # We can't filter this by addons, so if that is specified,
             # we'll skip that.
-            queries.append((CollectionCount.objects, index_collection_counts))
+            queries.append((CollectionCount.objects, index_collection_counts,
+                            {'date': 'date'}))
 
-        for qs, task in queries:
-            qs = qs.order_by('-date').values_list('id', flat=True)
+        for qs, task, fields in queries:
+            date_field = fields['date']
+
+            qs = qs.order_by('-%s' % date_field).values_list('id', flat=True)
             if addons:
                 pks = [int(a.strip()) for a in addons.split(',')]
                 qs = qs.filter(addon__in=pks)
 
             if dates:
                 if ':' in dates:
-                    qs = qs.filter(date__range=dates.split(':'))
+                    qs = qs.filter(**{'%s__range' % date_field:
+                                      dates.split(':')})
                 else:
-                    qs = qs.filter(date=dates)
+                    qs = qs.filter(**{date_field: dates})
 
             if not (dates or addons):
                 # We're loading the whole world. Do it in stages so we get most
                 # recent stats first and don't do huge queries.
-                limits = (qs.model.objects.filter(date__isnull=False)
-                          .extra(where=['date <> "0000-00-00"'])
-                          .aggregate(min=Min('date'), max=Max('date')))
+                limits = (qs.model.objects.filter(**{'%s__isnull' %
+                                                     date_field: False})
+                          .extra(where=['%s <> "0000-00-00"' % date_field])
+                          .aggregate(min=Min(date_field), max=Max(date_field)))
                 # If there isn't any data at all, skip over.
                 if not (limits['max'] or limits['min']):
                     continue
@@ -88,7 +98,9 @@ class Command(BaseCommand):
                     stop = start + STEP
                     date_range = (today - timedelta(days=stop),
                                   today - timedelta(days=start))
-                    create_tasks(task, list(qs.filter(date__range=date_range)))
+                    create_tasks(task, list(qs.filter(**{
+                                            '%s__range' % date_field:
+                                            date_range})))
             else:
                 create_tasks(task, list(qs))
 

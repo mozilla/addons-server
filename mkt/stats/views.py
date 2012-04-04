@@ -9,12 +9,14 @@ from addons.models import Addon
 import amo
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
+from mkt.webapps.models import Installed
 
 # Reuse Potch's box of magic.
 from stats.models import DownloadCount
 from stats.views import (check_series_params_or_404, check_stats_permission,
-                         daterange, get_report_view, get_series, render_json,
-                         SERIES_GROUPS, SERIES_GROUPS_DATE, SERIES_FORMATS)
+                         daterange, get_report_view, get_series, render_csv,
+                         render_json, SERIES_GROUPS, SERIES_GROUPS_DATE,
+                         SERIES_FORMATS)
 
 # Most of these are not yet available.
 SERIES = ('active', 'devices', 'installs', 'app_overview', 'referrers', 'sales',
@@ -72,11 +74,7 @@ def installs_series(request, addon, group, start, end, format):
     """Generate install counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
-
-    series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
-
-    # Uncomment the line below to return fake stats.
-    return fake_app_stats(request, addon, group, start, end, format)
+    series = get_series(Installed, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])

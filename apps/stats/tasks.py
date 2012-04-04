@@ -10,6 +10,7 @@ from celeryutils import task
 import amo
 from addons.models import Addon
 from bandwagon.models import Collection, CollectionAddon
+from mkt.webapps.models import Installed
 from stats.models import Contribution
 from reviews.models import Review
 from users.models import UserProfile
@@ -238,4 +239,23 @@ def index_collection_counts(ids, **kw):
         es.flush_bulk(forced=True)
     except Exception, exc:
         index_collection_counts.retry(args=[ids], exc=exc)
+        raise
+
+
+@task
+def index_installed_counts(ids, **kw):
+    es = elasticutils.get_es()
+    qs = Installed.objects.filter(id__in=set(ids))
+    if qs:
+        log.info('Indexing %s installed counts: %s'
+                 % (len(qs), qs[0].created))
+    try:
+        for installed in qs:
+            addon_id = installed.addon_id
+            key = '%s-%s' % (addon_id, installed.created)
+            data = search.extract_installed_count(installed)
+            Installed.index(data, bulk=True, id=key)
+        es.flush_bulk(forced=True)
+    except Exception, exc:
+        index_installed_counts.retry(args=[ids], exc=exc)
         raise

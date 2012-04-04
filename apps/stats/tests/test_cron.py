@@ -7,9 +7,11 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
-from stats.models import (CollectionCount, DownloadCount, UpdateCount,
-                          GlobalStat, Contribution)
-from stats import tasks, cron
+from mkt.webapps.models import Installed
+from stats.models import (Contribution, DownloadCount, GlobalStat,
+                          UpdateCount)
+from stats import cron, search, tasks
+from users.models import UserProfile
 
 
 class TestGlobalStats(amo.tests.TestCase):
@@ -68,13 +70,13 @@ class TestIndexStats(amo.tests.TestCase):
         eq_(download[0], tasks.index_download_counts)
         eq_(download[1], list(qs))
 
-    def test_called_three(self, tasks_mock):
+    def test_called_four(self, tasks_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
-        eq_(tasks_mock.call_count, 3)
+        eq_(tasks_mock.call_count, 4)
 
-    def test_called_two(self, tasks_mock):
+    def test_called_three(self, tasks_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
-        eq_(tasks_mock.call_count, 2)
+        eq_(tasks_mock.call_count, 3)
 
     def test_by_date_range(self, tasks_mock):
         call_command('index_stats', addons=None,
@@ -87,17 +89,23 @@ class TestIndexStats(amo.tests.TestCase):
     def test_by_addon(self, tasks_mock):
         call_command('index_stats', addons='5', date=None)
         qs = self.downloads.filter(addon=5)
-        tasks_mock.assert_called_with(tasks.index_download_counts, list(qs))
+        download = tasks_mock.call_args_list[1][0]
+        eq_(download[0], tasks.index_download_counts)
+        eq_(download[1], list(qs))
 
     def test_by_addon_and_date(self, tasks_mock):
         call_command('index_stats', addons='4', date='2009-06-01')
         qs = self.downloads.filter(addon=4, date='2009-06-01')
-        tasks_mock.assert_called_with(tasks.index_download_counts, list(qs))
+        download = tasks_mock.call_args_list[1][0]
+        eq_(download[0], tasks.index_download_counts)
+        eq_(download[1], list(qs))
 
     def test_multiple_addons_and_date(self, tasks_mock):
         call_command('index_stats', addons='4, 5', date='2009-10-03')
         qs = self.downloads.filter(addon__in=[4, 5], date='2009-10-03')
-        tasks_mock.assert_called_with(tasks.index_download_counts, list(qs))
+        download = tasks_mock.call_args_list[1][0]
+        eq_(download[0], tasks.index_download_counts)
+        eq_(download[1], list(qs))
 
     def test_no_addon_or_date(self, tasks_mock):
         call_command('index_stats', addons=None, date=None)
@@ -128,3 +136,29 @@ class TestIndexLatest(amo.tests.ESTestCase):
             cron.index_latest_stats()
             call.assert_called_with('index_stats', addons=None,
                                     date='%s:%s' % (start, finish))
+
+
+class TestIndexInstalled(amo.tests.ESTestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+    es = True
+
+    def setUp(self):
+        self.today = datetime.date.today()
+        self.webapp = Addon.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=999)
+        self.other_user = UserProfile.objects.get(pk=4043307)
+
+    def test_search(self):
+        in_ = Installed.objects.create(addon=self.webapp, user=self.user)
+        res = search.extract_installed_count(in_)
+        eq_(res['count'], 1)
+        eq_(res['date'], self.today)
+        eq_(res['addon'], self.webapp.pk)
+
+    def test_distinct(self):
+
+    @mock.patch('mkt.webapps.models.Installed.index')
+    def test_index(self, index):
+        in_ = Installed.objects.create(addon=self.webapp, user=self.user)
+        tasks.index_installed_counts([in_.pk])
+        assert index.called
