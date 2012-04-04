@@ -30,11 +30,11 @@ purchases_patterns = decorate(login_required, patterns('',
 ))
 
 users_patterns = decorate(login_required, patterns('',
-    # TODO: Don't require authentication for this.
-    url(r'''(?P<username>[^/<>"']+)$''', views.profile,
-        name='users.profile'),
-
     # Keeping the same URL pattern since admin pages already know about this.
     url(r'^(?:(?P<user_id>\d+)/)?edit$', views.admin_edit,
         name='users.admin_edit'),
+
+    # TODO: Don't require authentication for this.
+    url(r'''(?P<username>[^/<>"']+)$''', views.profile,
+        name='users.profile'),
 ))
