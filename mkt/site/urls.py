@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url('^terms-of-use$', direct_to_template,
         {'template': 'site/terms-of-use.html'}, name='site.terms'),
     url('^robots.txt$', views.robots, name='robots.txt'),
+    url('^manifest.webapp$', views.manifest, name='manifest.webapp'),
 )

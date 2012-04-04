@@ -1,8 +1,12 @@
+import json
+
 from django.http import HttpResponse
+from django.template import RequestContext
 
 import jingo
 
 from amo.decorators import no_login_required
+from amo.helpers import media
 import api.views
 
 
@@ -24,6 +28,28 @@ def handler500(request):
 def csrf_failure(request, reason=''):
     return jingo.render(request, 'site/403.html', {'csrf': 'CSRF' in reason},
                         status=403)
+
+
+@no_login_required
+def manifest(request):
+    data = {
+        'name': 'Mozilla Marketplace',
+        'description': 'The Mozilla Marketplace',
+        'developer': {
+            'name': 'Mozilla',
+            'url': 'http://mozilla.org',
+        },
+        'icons': {
+            # Using the default addon image until we get a marketplace logo.
+            '32': media(RequestContext(request),
+                        'img/zamboni/default-addon.png'),
+        },
+        # TODO: when we have specific locales, add them in here.
+        'locales': {},
+        'default_locale': 'en-US'
+    }
+    return HttpResponse(json.dumps(data),
+                        mimetype='application/x-web-app-manifest+json')
 
 
 @no_login_required

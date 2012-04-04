@@ -74,6 +74,11 @@ SUPPORTED_NONAPPS += (
     'terms-of-use',
     'user',
     'users',
+    'manifest.webapp',
+)
+
+SUPPORTED_NONLOCALES += (
+    'manifest.webapp',
 )
 
 MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
