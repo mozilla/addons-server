@@ -41,6 +41,8 @@
         </versionRange>
         {% elif apiver > 2 and plugin.min and plugin.max %}
         <versionRange {{ attrs(severity=plugin.severity, minVersion=plugin.min, maxVersion=plugin.max) }}></versionRange>
+        {% elif plugin.severity and not (plugin.min or plugin.max) %}
+        <versionRange {{ attrs(severity=plugin.severity) }}></versionRange>
         {% endif %}
       {% endif %}
     </pluginItem>
