@@ -2,6 +2,7 @@
 
 #search {
     position: relative;
+    margin: 24px 0;
 }
 
 #search-q {
@@ -18,12 +19,25 @@
     color: #fff;
     display: block;
     height: 30px;
-    margin: 24px 0;
     outline: none;
-    padding: 0 50px 0 15px;
+    padding: 0 32px 0 15px;
     z-index: 1;
     font: 17px/30px @open-stack;
 }
+#search-go {
+    border: 0;
+    .box-shadow(none);
+    background: url(../../img/mkt/arrows/blue-med-go.png) center no-repeat;
+    margin: 0;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-indent: -9999px;
+    width: 30px;
+    height: 30px;
+}
+
 
 .html-rtl #site-header #search-q {
     background-position: 0 50%;
