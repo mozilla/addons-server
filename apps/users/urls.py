@@ -63,3 +63,10 @@ users_patterns = patterns('',
     url(r'payments/preapproval$', views.preapproval,
         name='users.payments.preapproval'),
 )
+
+
+urlpatterns = patterns('',
+    # URLs for a single user.
+    ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
+    ('^users/', include(users_patterns)),
+)
