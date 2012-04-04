@@ -238,7 +238,8 @@ def paypal_setup(request, addon_id, addon, webapp):
 
     paypal_form = PaypalSetupForm(request.POST or None)
     currency_form = CurrencyForm(request.POST or None,
-                        initial={'currencies': addon.premium.currencies})
+                        initial={'currencies': addon.premium.currencies
+                                               if addon.premium else {}})
 
     context = {'addon': addon, 'paypal_form': paypal_form,
                'currency_form': currency_form}
