@@ -8,5 +8,5 @@ services_patterns = patterns('',
 )
 
 urlpatterns = patterns('',
-    ('^services/', include(services_patterns)),
+    ('', include(services_patterns)),
 )

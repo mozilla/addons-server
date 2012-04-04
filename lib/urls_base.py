@@ -1,5 +1,3 @@
-import os.path
-
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
@@ -80,7 +78,7 @@ urlpatterns = patterns('',
     ('', include('amo.urls')),
 
     # Paypal
-    ('', include('paypal.urls')),
+    ('^services/', include('paypal.urls')),
 
     # Search
     ('^search/', include('search.urls')),
