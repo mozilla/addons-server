@@ -1,44 +1,50 @@
-{% extends 'base.html' %}
+{% extends 'developers/skeleton_impala.html' %}
 
 {% block title %}{{ reviewers_page_title() }}{% endblock %}
 
 {% block bodyclass %}editor-tools{% endblock %}
 
-{% block site_header_title %}
-<h1 class="site-title">
+{% block masthead %}
+<h1 id="masthead" class="site-title prominent">
   <a href="{{ url('reviewers.home') }}">
-    <strong>{{ _('Reviewer Tools') }}</strong></a>
+    {% trans %}
+      <small>Marketplace</small> Reviewer Tools
+    {% endtrans %}
+  </a>
 </h1>
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('zamboni/devhub') }}
-  {{ css('zamboni/editors') }}
+  {{ css('mkt/reviewers') }}
 {% endblock %}
 
-{% block navbar %}
-  <div id="navbar">
-    <ul class="top">
-      <li class="top">
-        <a href="#" class="controller">{{ _('Queues') }}</a>
-        {% if queue_counts %}
-          <ul>
-            <li><a href="{{ url('reviewers.queue_apps') }}">
-              {{ _('Apps') }} ({{ queue_counts['apps'] }})</a></li>
-          </ul>
-        {% endif %}
-      </li>
-      {# TODO: Implement logs for apps (bug 741514). #}
-      <li class="top">
-        <a href="{{ url('editors.reviewlog') }}" class="controller">
-          {{ _('Logs') }}</a>
-      </li>
-      {# TODO: Implement MOTD for apps (bug 741529). #}
-      <li class="top">
-        <a href="{{ url('editors.motd') }}" class="controller">
-          {{ _('Announcement') }}</a>
-      </li>
-    </ul>
+{% block site_header_title %}
+  <div id="site-nav">
+    <div class="pad">
+      <nav class="menu-nav app-nav no-img">
+        <ul class="c">
+          <li>
+            <a href="#" class="controller">{{ _('Queues') }}</a>
+            {% if queue_counts %}
+              <ul>
+                <li><a href="{{ url('reviewers.queue_apps') }}">
+                  {{ _('Apps') }} ({{ queue_counts['apps'] }})</a></li>
+              </ul>
+            {% endif %}
+          </li>
+          {# TODO: Implement logs for apps (bug 741514). #}
+          <li class="slim">
+            <a href="{{ url('editors.reviewlog') }}">
+              {{ _('Logs') }}</a>
+          </li>
+          {# TODO: Implement MOTD for apps (bug 741529). #}
+          <li class="slim">
+            <a href="{{ url('editors.motd') }}">
+              {{ _('Announcement') }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 {% endblock %}
 

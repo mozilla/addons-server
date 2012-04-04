@@ -276,6 +276,17 @@
     float: right;
 }
 
+.price {
+    color: @green;
+    &.premium {
+        color: @orange;
+    }
+}
+.price {
+    font-size: 11px;
+    line-height: 13px;
+}
+
 .listing .item {
     h3 img {
         height: auto;
@@ -286,16 +297,6 @@
     }
     .item-details {
         .border-box;
-    }
-    .price {
-        color: @green;
-        &.premium {
-            color: @orange;
-        }
-    }
-    .price {
-        font-size: 11px;
-        line-height: 13px;
     }
     p {
         font-size: 13px;

@@ -1,121 +1,96 @@
-<div class="featured">
-  <div class="featured-inner object-lead inverse">
-
-    <div id="addon-summary-wrapper">
-      <div id="addon-summary" class="primary">
-        <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
-
-        <table>
-          <tbody>
-            <tr class="addon-updated">
-              <th>{{ _('Updated') }}</th>
-              <td>
-                <time datetime="{{ product.last_updated|isotime }}">{{
-                  product.last_updated|datetime }}</time>
-              </td>
-            </tr>
-            {% if product.homepage %}
-              <tr>
-                <th>{{ _('Website') }}</th>
-                <td>
-                  <strong><a href="{{ product.homepage|external_url }}">{{
-                    product.homepage }}</a></strong>
-                </td>
-              </tr>
-            {% endif %}
-            {% if product.compatible_apps[APP] %}
-              <tr class="addon-compatible">
-                <th>{{ _('Works with') }}</th>
-                <td>{{ product.compatible_apps[APP] }}</td>
-              </tr>
-            {% endif %}
-            <tr>
-              <th>{{ _('Rating') }}</th>
-              <td>{{ reviews_link(product) }}</td>
-            </tr>
-            <tr class="meta-stats">
-              <th>{{ _('Downloads') }}</th>
-              <td>
-                <strong class="downloads">{{
-                  product.total_downloads|numberfmt }}</strong>
-                {% if product.public_stats %}
-                  <a href="{{ url('stats.overview', product.slug) }}">
-                    {{ _('View Statistics') }}</a>
-                {% endif %}
-              </td>
-            </tr>
-            <tr class="meta-abuse">
-              <th>{{ _('Abuse Reports') }}</th>
-              <td>
-                <a href="{{ url('editors.abuse_reports', product.slug) }}">
-                  <strong>{{ product.abuse_reports.count()|numberfmt }}</strong></a>
-              </td>
-            </tr>
-            {% with device_types = product.device_types %}
-              {% if device_types %}
-                <tr>
-                  <th>{{ _('Device Types') }}</th>
-                  <td>
-                    {% for device in device_types %}
-                      {{ device.name }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                  </td>
-                </tr>
-              {% endif %}
-            {% endwith %}
-            {% if product.privacy_policy %}
-            <tr>
-              <th>{{ _('Privacy Policy') }}</th>
-              <td>
-                <a href="{{ product.get_detail_url('privacy') }}">
-                  {{ _('View Privacy Policy') }}</a>
-              </td>
-            </tr>
-            {% endif %}
-          </tbody>
-        </table>
-
-      </div>{# /addon-summary #}
-    </div>{# /addon-summary-wrapper #}
-
-    <div class="secondary">
-      {% if product.all_previews %}
-        {% with preview=product.all_previews[0] %}
-          <a class="screenshot thumbnail" rel="jquery-lightbox"
-            href="{{ preview.image_url }}" title="{{ preview.caption }}">
-              <img src="{{ preview.thumbnail_url }}">
-          </a>
-        {% endwith %}
-      {% else %}
-        <img src="{{ product.thumbnail_url }}" class="screenshot thumbnail"
-             width="200" height="150">
+{% from 'addons/macros.html' import price %}
+<div id="summary">
+  {% if product.summary %}
+    <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
+  {% endif %}
+  <h2>{{ _('Info') }}</h2>
+  <dl>
+    <dt>{{ _('Price') }}</dt>
+    <dd>{{ price(product) }}</dd>
+    <dt>{{ _('Updated') }}</dt>
+    <dd class="addon-updated">
+      <time datetime="{{ product.last_updated|isotime }}">
+        {{ product.last_updated|datetime }}</time>
+    </dd>
+    {% if product.homepage %}
+      <dt>{{ _('Website') }}</dt>
+      <dd>
+        <a href="{{ product.homepage|external_url }}">
+          {{ product.homepage }}</a>
+      </dd>
+    {% endif %}
+    {% if product.compatible_apps[APP] %}
+      <dt>{{ _('Works with') }}</dt>
+      <dd>{{ product.compatible_apps[APP] }}</dd>
+    {% endif %}
+    {% if product.total_reviews %}
+      <dt>{{ _('Rating') }}</dt>
+      <dd>{{ impala_reviews_link(product) }}</dd>
+    {% endif %}
+    <dt>{{ _('Total Downloads') }}</dt>
+    <dd class="meta-stats">
+      <b class="total-downloads">{{ product.total_downloads|numberfmt }}</b>
+      {% if product.public_stats %}
+        <a href="{{ url('stats.overview', product.slug) }}">
+          {{ _('View Statistics') }}</a>
       {% endif %}
-
-      {% if show_actions %}
-      <div class="widgets">
-        {{ favorites_widget(product) }}
-        {% include 'addons/includes/collection_add_widget.html' %}
-        {{ sharing_widget(product) }}
-      </div>
+    </dd>
+    <dt>{{ _('Weekly Downloads') }}</dt>
+    <dd class="meta-stats">
+      <b class="weekly-downloads">{{ product.weekly_downloads|numberfmt }}</b>
+    </dd>
+    <dt>{{ _('Abuse Reports') }}</dt>
+    <dd>
+      <a href="{{ url('editors.abuse_reports', product.slug) }}">
+        <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
+    </dd>
+    {% with device_types = product.device_types %}
+      {% if device_types %}
+        <dt>{{ _('Device Types') }}</dt>
+        <dd>
+          {% for device in device_types %}
+            {{ device.name }}{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </dd>
       {% endif %}
-    </div>{# /secondary #}
-
-  </div>{# /featured-inner #}
-</div>{# /featured #}
+    {% endwith %}
+    {% if product.privacy_policy %}
+      <dt>{{ _('Privacy Policy') }}</dt>
+      <dd>
+        <a href="{{ product.get_detail_url('privacy') }}">
+          {{ _('View Privacy Policy') }}</a>
+      </dd>
+    {% endif %}
+    <dt>{{ _('Authors') }}</dd>
+    <dd>
+      {% for author in product.authors.all() %}
+        <a href="{{ url('users.profile', author.slug or author.id) }}">
+          {{ author.name }}</a>{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </dd>
+    <dt>{{ _('Categories') }}</dt>
+    <dd>
+      {% for category in product.categories.all() %}
+        <a href="{{ category.get_url_path() }}">
+          {{ category.name }}</a>{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </dd>
+    {% if flags %}
+      <dt>{{ _('Flags') }}</dt>
+      <dd>{{ flags|join(', ') }}</dd>
+    {% endif %}
+  </dl>
+</div>
 
  {% if product.description or product.all_previews|length > 1 or
        product.developer_comments %}
-  <h3 id="more-about">{{ _('More about this app') }}</h3>
+  <h2 id="more-about">{{ _('More about this app') }}</h2>
   <div class="article userinput">
-    {% if product.id == 4664 or product.id == 144983 %}
-      {# This is for Bug 595561. #}
-      {% include 'addons/qr_code.html' %}
-    {% endif %}
     <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
 
     {% if product.all_previews|length > 1 %}
-      <h4>{{ _('Image Gallery') }}</h4>
-      {% for preview in product.all_previews[1:] %}
+      <h3>{{ _('Image Gallery') }}</h3>
+      {% for preview in product.all_previews %}
       <a class="screenshot thumbnail" rel="jquery-lightbox"
         href="{{ preview.image_url }}" title="{{ preview.caption }}">
         <img src="{{ preview.thumbnail_url }}">
@@ -124,7 +99,7 @@
     {% endif %}
 
     {% if product.developer_comments %}
-      <h4>{{ _('Developer Comments') }}</h4>
+      <h3>{{ _('Developer Comments') }}</h3>
       <div class="prose userinput">
         <p{{ product.developer_comments|locale_html }}>{{
           product.developer_comments|nl2br }}</p>
@@ -132,7 +107,7 @@
     {% endif %}
   </div>{# /article #}
   {% else %}
-    <h3 id="more-about">{{ _('More about this app') }}</h3>
+    <h2 id="more-about">{{ _('More about this app') }}</h2>
     <div class="article">
       <em>
         {{ _('Nothing to see here! The developer did not include any details.') }}

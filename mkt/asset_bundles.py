@@ -65,6 +65,9 @@ CSS = {
     'mkt/devreg-legacy': (
         'css/devreg-legacy/developers.less',  # Legacy galore.
     ),
+    'mkt/reviewers': (
+        'css/mkt/reviewers.less',
+    ),
     'mkt/consumer': (
         'css/mkt/reset.less',
         'css/mkt/typography.less',

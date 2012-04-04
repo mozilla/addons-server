@@ -12,14 +12,8 @@
     {% endfor %}
   </ul>
 
-  <div class="queue-outer">
-    <div class="queue-inner">
-      {% if page.has_other_pages() %}
-        <div class="data-grid-content data-grid-top">
-        {{ page|paginator }}
-        </div>
-      {% endif %}
-      <table id="addon-queue" class="data-grid"
+  <section class="island">
+      <table id="addon-queue" class="data-grid items"
              data-url="{{ url('editors.queue_viewing') }}">
         <thead>
           <tr class="listing-header">
@@ -62,13 +56,8 @@
           {{ _('There are currently no items of this type to review.') }}
         </div>
       {% endif %}
-      {% if page.has_other_pages() %}
-        <div class="data-grid-content data-grid-bottom">
-          {{ page|paginator }}
-        </div>
-      {% endif %}
-    </div>
-  </div>
+     {{ page|impala_paginator }}
+  </section>
 
   <p id="helpfulLinks">
     {{ _('Helpful Links:') }}

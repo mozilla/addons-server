@@ -12,21 +12,51 @@
 
 {% block content %}
 
-<hgroup>
-  <h2 class="addon"{{ product.name|locale_html }}>
-    <img src="{{ product.icon_url }}" class="icon"/>
-    {# L10n: {0} is the name of the app. #}
-    <span>
-      {{ _('Review {0}')|f(product.name) }}
-    </span>
-  </h2>
-  <h4 class="author">{{ _('by') }} {{ users_list(product.listed_authors) }}</h4>
-</hgroup>
+<header class="c">
+  <ul id="actions">
+    <li><a href="{{ product.get_url_path() }}" class="button">
+        {{ _('View Listing') }}</a></li>
+    {% if is_admin %}
+      <li><a href="{{ product.get_dev_url() }}" class="button manage">
+        {{ _('Edit') }}</a></li>
+    {% endif %}
+  </ul>
+  <h1 class="addon"{{ product.name|locale_html }}>
+    <img src="{{ product.icon_url }}" class="icon">
+    <span>{{ product.name }}</span>
+  </h1>
+  <p class="author">{{ _('by') }} {{ users_list(product.listed_authors) }}</p>
+</header>
 
-<div id="addon" class="primary" role="main" data-id="{{ product.id }}">
+<div id="scroll_sidebar_parent">
+  <div id="scroll_sidebar">
+    <div class="currently_viewing_warning"></div>
+    {{ num }}
+    {% if paging %}
+    <div class="review-paging">
+      {% if paging.prev %}<a href="{{ paging.prev_url }}">&laquo;</a> &nbsp; {% endif %}
+      {% trans current=paging.current, total=paging.total %}
+        {{ current }} of {{ total }}
+      {% endtrans %}
+      {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">&raquo;</a>{% endif %}
+    </div>
+    {% endif %}
+    <strong>{{ _('Review This App') }}</strong>
+    <ul>
+      <li><a href="#more-about">{{ _('More Information') }}</a></li>
+      <li><a href="#history">{{ _('App History') }}</a></li>
+      <li><a href="#review-actions">{{ _('Resolution') }}</a></li>
+    </ul>
+  </div>
+</div>
 
-{% include 'reviewers/includes/details.html' %}
+<div id="addon" data-id="{{ product.id }}">
 
+<section class="island">
+  {% include 'reviewers/includes/details.html' %}
+</section>
+
+{# TODO: List all versions of manifest (bug 741970). #}
 <div id="review-files-header">
   <h3 id="history">
     {{ _('App History') }}
@@ -132,7 +162,6 @@
   </div>
 </div>
 
-
 <form method="POST" action="#review-actions">
   {{ csrf() }}
   {# form #}
@@ -227,66 +256,4 @@
 
 </div> {# /#primary #}
 
-<div class="secondary scroll_sidebar_parent">
-  <div id="scroll_sidebar">
-  <div class="currently_viewing_warning"></div>
-  {{ num }}
-  {% if paging %}
-  <div class="review-paging">
-    {% if paging.prev %}<a href="{{ paging.prev_url }}">&laquo;</a> &nbsp; {% endif %}
-    {% trans current=paging.current, total=paging.total %}
-    {{ current }} of {{ total }}
-    {% endtrans %}
-    {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">&raquo;</a>{% endif %}
-  </div>
-  {% endif %}
-
-  <strong>{{ _('Actions') }}</strong>
-  <ul id="actions-addon">
-    <li><a href="{{ product.get_url_path() }}">{{ _('View Listing') }}</a></li>
-    {% if is_admin %}
-    <li><a href="{{ product.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
-    <li><a href="{{ url('zadmin.addon_manage', product.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
-    {% endif %}
-  </ul>
-
-
-  <strong>{{ _('Review This App') }}</strong>
-  <ul>
-    <li><a href="#more-about">{{ _('More Information') }}</a></li>
-    <li><a href="#history">{{ _('App History') }}</a></li>
-    <li><a href="#review-actions">{{ _('Resolution') }}</a></li>
-  </ul>
-
-  <strong>{{ _('Authors') }}</strong>
-  <ul>
-    {% for author in product.authors.all() %}
-    <li><a href="{{ url('users.profile', author.id) }}">{{ author.name }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <strong>{{ _('Categories') }}</strong>
-  <ul>
-    {% for category in product.categories.all() %}
-    <li>{{ category.name }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <strong>{{ _('Premium type') }}</strong>
-  <ul id="premium-type">
-    <li>{{ product.premium_type|premium_text }}</li>
-  </ul>
-
-  {% if flags: %}
-    <strong>{{ _('Flags') }}</strong>
-    <ul>
-      {% for flag in flags %}
-      {# TODO(andym): not sure what goes here #}
-      <li>{{ flag }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  </div>
-</div>
 {% endblock %}

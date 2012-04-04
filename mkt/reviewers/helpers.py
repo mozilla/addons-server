@@ -3,7 +3,7 @@ import jinja2
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.helpers import breadcrumbs
+from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
 from mkt.developers.helpers import mkt_page_title
@@ -41,7 +41,7 @@ def reviewers_breadcrumbs(context, queue=None, addon_queue=None, items=None):
 
     if items:
         crumbs.extend(items)
-    return breadcrumbs(context, crumbs, add_default=False)
+    return impala_breadcrumbs(context, crumbs, add_default=True)
 
 
 @register.function
@@ -63,4 +63,5 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = queue_counts()
-    return [('apps', 'queue_apps', _('Apps ({0})').format(counts['apps']))]
+    return [('apps', 'queue_apps', _('Apps ({0})').format(counts['apps'])),
+            ('super', 'queue_apps', _('Super Review ({0})').format(0))]

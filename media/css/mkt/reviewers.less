@@ -1,0 +1,984 @@
+@import '../devreg/lib';
+
+h2, h3 {
+    margin: 10px 0 0;
+}
+
+#page p + h2 {
+    margin-top: 10px;
+}
+
+th {
+    font-weight: bold;
+}
+
+dt {
+    float: left;
+    min-width: 20%;
+}
+
+dd {
+    margin-bottom: 0;
+    &:after {
+        content: " ";
+        clear: both;
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+/* Review Page */
+
+header {
+    .icon {
+        margin-right: 5px;
+        padding: 4px;
+        position: relative;
+        top: 8px;
+        background: @white;
+        .border-radius(2px);
+        .box-shadow(0 1px 2px #000);
+    }
+    h1 {
+        float: left;
+        margin-bottom: 0;
+    }
+    .author {
+        clear: both;
+        margin: 10px 0 20px;
+    }
+    #actions {
+        float: right;
+        li {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    }
+}
+
+.html-rtl header {
+    .icon {
+        margin-left: 5px;
+    }
+    h1 {
+        float: right;
+    }
+    #actions {
+        float: left;
+    }
+}
+
+#addon {
+    float: left;
+    width: 75%;
+    #review-files-header,
+    .results {
+        display: none;
+    }
+    p {
+        color: @medium-gray;
+    }
+}
+
+.html-rtl #addon {
+    float: right;
+}
+
+#scroll_sidebar_parent {
+    float: right;
+    position: relative;
+    width: 15%;
+    strong {
+        display: block;
+        margin-top: 10px;
+    }
+    li {
+        margin-top: 5px;
+    }
+}
+
+.site-title {
+    margin: 0 0 7px;
+    display: block;
+    a {
+        display: block;
+        left: -250px;
+        padding-left: 250px;
+        position: relative;
+        text-decoration: none;
+        color: darken(@red, 10%);
+        width: 100%;
+        &:before {
+            display: none;
+        }
+    }
+}
+
+#site-header .menu-nav {
+    padding: 0;
+}
+
+#masthead {
+    padding: 24px 0 0;
+}
+
+.menu-nav {
+    margin: 0;
+}
+
+@media (max-width: 860px) {
+    #site-header {
+        h1, .menu-nav {
+            padding: 0 2%;
+        }
+    }
+}
+
+
+.site-title {
+    padding-top: 27px;
+    max-width: 530px;
+}
+.site-title a,
+.site-title a:visited,
+.site-title a:hover,
+.site-title a:focus {
+    font-size: 40px;
+}
+/* sprites for data grid icons */
+
+.app-icon, .platform-icon {
+    float: left;
+    margin-right: 4px;
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
+    width: 16px; height: 16px;
+    position: relative;
+    top: 4px;
+    text-decoration: none;
+}
+.ed-sprite-admin-review { background-position: 0 0; }
+.ed-sprite-firefox { background-position: 0 -66px; }
+.ed-sprite-notes { background-position: 0 -827px; }
+.ed-sprite-editor { background-position: 0 -893px; }
+.ed-sprite-info { background-position: 0 -959px; }
+.ed-sprite-premium { background-position: 0 -1026px; }
+
+.sort-icon {
+    background: url(../../img/developers/editor-sprite.png) no-repeat top left;
+}
+.ed-sprite-sort-asc {
+    background-position: right -321px;
+}
+.ed-sprite-sort-both {
+    background-position: right -378px;
+}
+.ed-sprite-sort-desc {
+    background-position: right -435px;
+}
+/* data grids on queue pages */
+.data-grid-top {
+    border-bottom: 1px solid #A5BFCE;
+}
+.data-grid-bottom {
+    border-top: 1px solid #A5BFCE;
+}
+.data-grid-content {
+    padding: 5px;
+}
+.data-grid-content:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+.data-grid-content ol.pagination {
+    margin: 0;
+}
+.queue-outer {
+    .border-radius(5px);
+    border: 4px solid #E0EFFD;
+    margin-bottom: 2em;
+}
+.queue-inner {
+    .border-radius(3px);
+    background-color: @white;
+    border: 1px solid #2E5186;
+}
+.queue-inner a em {
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+.queue-outer .no-results {
+    margin: 0;
+    padding: 6em 1em;
+    font-size: 1.1em;
+}
+
+table.data-grid {
+    margin-bottom: 0;
+    width: 100%;
+    thead th {
+        background: @faded-blue;
+        &:first-child {
+            width: 0;
+        }
+        &:nth-child(3) {
+            min-width: 7em;
+        }
+        &:nth-child(4) {
+            min-width: 8em;
+        }
+        &:nth-child(5) {
+            min-width: 5em;
+        }
+        &:nth-child(6) {
+            min-width: 7em;
+        }
+        &:nth-child(7) {
+            min-width: 7em;
+        }
+        &:nth-child(8) {
+            min-width: 10em;
+        }
+        a {
+            &:active, &:hover, &:visited {
+                color: #36b;
+            }
+        }
+        &.ordered {
+            .gradient-two-color(@faded-blue, @border-blue);
+            a {
+                color: #137;
+                &:active, &:hover, &:visited {
+                    color: #039;
+                }
+            }
+        }
+    }
+    tr {
+        th, td {
+            padding: 7px 10px;
+        }
+        td {
+            border-top: 1px dotted @border-gray;
+        }
+        a {
+            display: block;
+        }
+        &:nth-child(odd) {
+            background-color: #FAFAFA;
+        }
+        &:nth-child(even) {
+            background-color: @white;
+        }
+    }
+    .addon-row a {
+        max-width: 600px;
+    }
+    .addon-locked {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        top: 4px;
+    }
+    .locked .addon-locked {
+        background: url(../../img/developers/editor-sprite.png) no-repeat;
+        background-position: 0 -761px;
+    }
+    ul {
+        margin: 0;
+    }
+}
+
+/* Version notes */
+#popup-notes .version-notes {
+    overflow: auto;
+    max-height: 200px;
+    margin-bottom: 1em;
+}
+.addon-version-notes {
+    position: relative;
+}
+table.data-grid .addon-version-notes a {
+    text-decoration: none;
+}
+
+.island {
+    position: relative;
+    z-index: 1;
+}
+
+/* editors/queue tabs */
+ul.tabnav {
+    margin: 20px 10px 0;
+}
+.html-rtl ul.tabnav {
+    text-align: right;
+}
+ul.tabnav li {
+    display: inline;
+    position: relative;
+    top: 13px;
+    margin: 0 5px;
+    z-index: 0;
+    &:after {
+        /* Cover the bottom part of the box-shadow. */
+        background: @white;
+        content: "";
+        display: block;
+        float: left;
+        height: 15px;
+        margin-bottom: -15px;
+        position: relative;
+        top: 1px;
+        width: 100%;
+    }
+    &.selected {
+        z-index: 2;
+    }
+}
+ul.tabnav li a {
+    .border-radius(5px 5px 0 0);
+    background-color: @taupe;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    font-weight: bold;
+    color: @medium-gray;
+    display: inline-block;
+    padding: 10px 15px 20px;
+    text-decoration: none;
+}
+ul.tabnav li.selected {
+    a {
+        .box-shadow(0 -2px 0 fadeOut(@taupe, 80%) inset,
+                    0 0 1px rgba(0, 0, 0, 0.1));
+        background-color: @white;
+        border-color: @taupe;
+        color: @dark-gray;
+    }
+}
+ul.tabnav a:hover {
+//    background-color: rgba(0,0,0,.15);
+    color: @dark-gray;
+}
+
+/* Home */
+#editors_main .listing .results-inner {
+    padding: 0;
+}
+
+#editors_main .listing time {
+    color: #aaa;
+    font-style: italic;
+}
+
+#editors_main .listing .row {
+    padding: 0.5em;
+    margin: 0 5px;
+    border-bottom: 1px dotted #ADD0DC;
+}
+
+#editors_main .listing .row:last-child {
+    border-bottom-width: 0px;
+}
+
+.listing .listing-header {
+    text-align: center;
+    font-weight: bold;
+}
+
+.editor-stats-title,
+.editor-stats-table {
+    width: 33.3333%;
+    float: left;
+}
+
+.editor-stats-title span,
+.editor-stats-title a {
+    font-weight: bold;
+    padding-left: 7px;
+}
+
+.editor-stats-table > div {
+    padding: 0 10px 5px;
+    margin: 5px 0 0;
+    border-left: 1px dotted #ADD0DC;
+}
+
+.editor-stats-table:first-child > div {
+    border-left-width: 0px;
+}
+
+.editor-stats-table table {
+    width: 100%;
+    margin: 0;
+}
+
+.editor-stats-table td, .editor-stats-table th {
+    padding: 0;
+    border-top: 1px solid #F0F7FE;
+}
+
+.editor-stats-table table tr:first-child td {
+    border-top-width: 0px;
+}
+
+.editor-stats-table .int {
+    text-align: right;
+    color: #37A632;
+    font-weight: bold;
+}
+
+.editor-stats-table .date {
+    text-align: right;
+    color: #999;
+    font-style: italic;
+}
+
+.listing-header {
+    line-height: 1.8em;
+}
+
+.daily-message {
+    display: none;
+    position: relative;
+}
+
+.daily-message div {
+    padding: 15px;
+}
+
+.daily-message .close {
+    background-color: @border-gray;
+    .border-radius(15px);
+    color: @white;
+    font-weight: bold;
+    height: 15px;
+    line-height: 12px;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 5px;
+    width: 15px;
+    text-decoration: none;
+    display: none;
+}
+
+.daily-message .close:hover {
+    background-color: @light-gray;
+    text-decoration: none;
+}
+
+.daily-message p {
+    margin: 0;
+}
+
+.daily-message h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.featured-inner-padded {
+    padding: 15px;
+}
+
+table.data-grid tr.comments td {
+    border-top: none;
+    background: #def;
+}
+
+.waiting_old, .waiting_med, .waiting_new {
+    height: 20px;
+    .box-shadow(0px 2px rgba(0, 0, 0, 0.1) inset);
+    float: left;
+    -moz-transition: 0.3s background-color;
+}
+
+.waiting_old:hover, .waiting_med:hover, .waiting_new:hover {
+    -moz-transition: 0.1s background-color;
+}
+
+.waiting_old {
+    background-color: #FFD3D3;
+}
+.waiting_old:hover {
+    background-color: #FCBCBC;
+}
+
+.waiting_med {
+    background-color: #FFFFB4;
+}
+.waiting_med:hover {
+    background-color: #F5F484;
+}
+.waiting_new {
+    background-color: #B8E6B8;
+}
+.waiting_new:hover {
+    background-color: #9DE19C;
+}
+
+div.editor-waiting {
+    border: 1px solid #999999;
+    border-radius: 5px 5px 5px 5px;
+    overflow: hidden;
+}
+
+div.editor-stats-dark {
+    background-color: #F3F3F3;
+    border-top: 1px dotted #CCCCCC;
+    display: block;
+    padding: 5px 10px 10px;
+}
+
+div.editor-stats-table > div.editor-stats-dark {
+    border-left: 1px solid #DDDDDD;
+}
+
+/* Moderated reviews css */
+
+#reviews-flagged .review-flagged {
+    border-top: 1px dotted #CCCCCC;
+    padding: 1em;
+    margin: 0 0 1em 1em;
+}
+
+#reviews-flagged .review-flagged ul {
+    margin-bottom: 0;
+}
+
+#reviews-flagged .review-flagged:first-child {
+    border-top: 0;
+}
+
+#reviews-flagged .reviews-flagged-reasons {
+    background-color: #FFE4E4;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0 10px;
+    clear: both;
+}
+
+#reviews-flagged .reviews-flagged-reasons li {
+    padding: 10px 0;
+    border-top: 1px dotted #FFB1B1;
+}
+
+#reviews-flagged .reviews-flagged-reasons li:first-child {
+    border-top: 0;
+}
+
+#reviews-flagged h3 {
+    margin: 0;
+}
+
+#reviews-flagged .review-flagged-actions {
+    float: right;
+    padding-left: 10px;
+    margin-left: 10px;
+    border-left: 1px dashed #ccc;
+    width: 200px;
+}
+
+#reviews-flagged .review-flagged-actions label {
+    font-weight: normal;
+}
+
+#reviews-flagged form {
+    margin: 0;
+}
+
+#reviews-flagged div.review-saved {
+    padding: 10px;
+    text-align: right;
+    margin-bottom: 0;
+}
+
+#reviews-flagged label[for$=action_0] {
+    color: #429341;
+}
+
+#reviews-flagged label[for$=action_1] {
+    color: #4D80C6;
+}
+
+#reviews-flagged label[for$=action_2] {
+    color: #9A2E2E;
+}
+
+/* data grid search form */
+#log-filter form {
+    margin: 0;
+}
+.log-filter-outside {
+    float: right;
+}
+.log-filter-outside label {
+    font-weight: normal;
+}
+.log-filter-outside input::-webkit-input-placeholder {
+   color: #BBB;
+}
+
+.log-filter-outside input:-moz-placeholder {
+   color: #BBB;
+}
+
+.log-filter-outside div.date_range {
+    padding: 0.5em 0 0;
+}
+
+.queue-outer #queue-search table {
+    margin: 0;
+    padding: 0;
+}
+.queue-outer #queue-search,
+.date_range {
+    padding: 1em;
+}
+#advanced-search {
+    display: none;
+    margin-top: 1em;
+}
+#advanced-search .column1 {
+    float: left;
+    width: 375px;
+}
+#advanced-search .column1 label {
+    display: block;
+    float: left;
+    width: 13em;
+}
+#advanced-search .form-elem {
+    margin-bottom: 0.5em;
+}
+#advanced-search .column2,
+#advanced-search .column3 {
+    float: left;
+    width: 250px;
+}
+#advanced-search .column2 label,
+#advanced-search .column3 label {
+    display: block;
+}
+#advanced-search .form-row {
+    clear: both;
+    padding-bottom: 1em;
+}
+#advanced-search .column3:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+#id_text_query {
+    width: 25em;
+    height: 1.5em;
+}
+
+/* Add-on Review Log */
+#log-listing tr th:nth-child(1) {
+    width: 20%;
+}
+#log-listing tr th:nth-child(2) {
+    width: 40%;
+}
+#log-listing tr th:nth-child(3) {
+    width: 25%;
+}
+#log-listing tr th:nth-child(4) {
+    width: 15%;
+}
+
+#scroll_sidebar {
+    position: absolute;
+    top: 0;
+}
+#scroll_sidebar.sticky {
+    position: fixed;
+    top: 10px;
+}
+
+#review-files {
+    margin: 0;
+    width: 100%;
+}
+#review-files .files {
+    background-color: #FAFAFA;
+    border-right: 1px dotted #DDDDDD;
+    border-top: 0 none;
+    width: 255px;
+    padding: 15px;
+}
+#review-files-header h3 {
+    float: left;
+}
+#review-files-header h3 span {
+    font-size: 0.7em;
+}
+#review-files-header h3 a.on {
+    color: #333;
+    font-weight: bold;
+}
+#review-files-header #review-files-paginate {
+    float: right;
+    margin-top: 2em;
+}
+#review-files-paginate ol {
+    float: right;
+    margin: 0;
+    padding-left: 10px;
+    text-align: right;
+    top: -20px;
+    width: auto;
+}
+#review-files table.activity {
+    margin: 0 10px;
+    width: 100%;
+}
+#review-files table.activity th {
+  width: 25%;
+  padding-right: 1em;
+}
+#review-files table.activity tr {
+    border-top: 1px dotted #ccc;
+}
+#review-files table.activity tr:first-child {
+    border-top: 0 none;
+}
+#review-files .listing-header span.light {
+    font-weight: normal;
+    color: #999;
+}
+#review-files tr.listing-header:first-child {
+    border-top: none;
+}
+#review-files tr.listing-header {
+     border-top: 1px solid #A5BFCE;
+}
+#review-files tr.listing-header:hover {
+    cursor: pointer;
+    .gradient-two-color(@white, #CCE6FF);
+}
+#review-files tr.listing-header:active {
+    cursor: pointer;
+    .gradient-two-color(#e0effd, @white);
+}
+#review-files .files div:first-child {
+    padding-top: 0;
+}
+#review-files .files li,
+#review-files .files > div {
+    padding-top: 5px;
+    line-height: 1.3em;
+}
+#review-files .files ul {
+    margin: 0 0 5px 15px;
+}
+#review-files .no-activity {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+}
+#review-files .install {
+    padding: 0;
+}
+
+#review-actions-form {
+    background: @white;
+    display: none;
+    padding: 10px;
+    textarea, input[type=text], select {
+        border: 1px solid #AFBDD3;
+    }
+    textarea {
+        height: 200px;
+    }
+    .review-actions-desc {
+        text-align: center;
+    }
+    label {
+        display: inline-block;
+        margin: 5px 0;
+    }
+}
+
+.review-actions {
+    .border-radius(5px);
+    .box-shadow(0 -2px 0 @faded-blue inset,
+                0 0 1px rgba(0, 0, 0, 0.1));
+    border: 1px solid @border-blue;
+    margin-top: 20px;
+}
+
+.review-actions #review-actions-form {
+    display: none;
+}
+
+.review-actions .action_nav ul {
+    margin: 0;
+    display: table;
+    width: 100%;
+}
+
+.review-actions .action_nav li {
+    .gradient-two-color(@white, #e0effd);
+    display: table-cell;
+    text-align: center;
+}
+
+.review-actions .action_nav li:active {
+    .gradient-two-color(#e0effd, @white);
+}
+
+.review-actions .action_nav li input {
+    display: none;
+}
+
+.review-actions .action_nav li label {
+    display: block;
+    padding: 10px 5px;
+}
+
+.review-actions .action_nav li {
+    text-shadow: 1px 1px 0 @white;
+    border-top: 1px solid #2E5186;
+    border-bottom: 1px solid #2E5186;
+    border-right: 1px solid #A5BFCE;
+}
+
+.review-actions .action_nav li:first-child {
+    border-left: 1px solid #2E5186;
+    .border-radius(5px 0 0 5px);
+}
+
+.review-actions .action_nav li:last-child {
+    border-right: 1px solid #2E5186;
+    .border-radius(0 5px 5px 0);
+}
+
+.review-actions.on .action_nav ul li.on-tab {
+    background: #fff;
+    border-bottom: none;
+}
+
+.review-actions.on #review-actions-form {
+    border: 1px solid #2E5186;
+    border-top-width: 0;
+    .border-radius(0 0 5px 5px);
+}
+
+.review-actions.on .action_nav li:first-child {
+    .border-radius(5px 0 0);
+}
+
+.review-actions.on .action_nav li:last-child {
+    .border-radius(0 5px 0 0);
+}
+
+.review-actions.on .action_nav li {
+    border-bottom: 1px solid #A5BFCE;
+}
+
+/* Hide "files" for now. */
+.review-actions-files {
+    display: none !important;
+}
+
+#review-actions-files-warning {
+    color: #B47100;
+}
+
+.review-actions-canned {
+    text-align: right;
+}
+
+.review-actions-canned #id_canned_response optgroup[label=""] {
+    display: none;
+}
+
+.review-actions-canned select {
+    padding: 0;
+}
+
+.review-actions-section {
+    border-top: 1px dotted #ccc;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+.review-actions-tested label {
+    margin-left: 25px;
+    margin-right: 10px;
+}
+
+.review-actions-save {
+    text-align: right;
+}
+
+.review-actions-section label {
+    font-weight: normal;
+}
+
+.history-comment {
+    white-space: pre-wrap;
+}
+
+.history-comment, .history-comment-version {
+    padding: 10px;
+    overflow: auto;
+}
+
+.history-comment-byline {
+    padding: 0 10px;
+    font-style: italic;
+}
+
+.history-notes {
+    max-width: 370px;
+    overflow: auto;
+}
+
+.review-paging {
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+}
+
+#editor-motd textarea {
+    height: 5em;
+    margin-bottom: 0.5em;
+}
+
+#editor-motd .buttons {
+    text-align: right;
+}
+
+.currently_viewing_warning {
+    display: none;
+}
+
+.scroll_sidebar_parent .currently_viewing_warning {
+    margin-top: 0;
+    border: medium none;
+    border-radius: 8px;
+}
+
+div.currently_viewing_warning {
+    background-color: #FFE4E4;
+    margin: 1em 0;
+    border: 1px dashed #FE7272;
+    padding: 10px;
+}
+
+div.currently_viewing_warning strong {
+    display: block;
+}
+
+span.currently_viewing_warning {
+    color: red;
+    padding-right: 15px;
+}
