@@ -5,6 +5,10 @@ database:
         - abuse_reports
         - addonlogs
         - addon_purchase
+        - addon_inapp
+        - addon_inapp_log
+        - addon_inapp_notice
+        - addon_inapp_payment
         - api_auth_tokens
         - approvals
         - auth_group
