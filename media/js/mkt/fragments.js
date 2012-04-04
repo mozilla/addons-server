@@ -21,6 +21,7 @@
         function fetchFragment(href, popped) {
             timeout = setTimeout(function() { $loading.addClass('active'); },
                                  threshold);
+            console.log(format('fetching {0}', href));
             $.get(href, function(d, textStatus, xhr) {
                 clearTimeout(timeout);
 
@@ -57,5 +58,8 @@
             history.replaceState({path: path}, false, path);
             page.trigger('fragmentloaded');
         });
+        console.log("fragments enabled");
+    } else {
+        console.warn("fragments not enabled!!");
     }
 })(z.page);

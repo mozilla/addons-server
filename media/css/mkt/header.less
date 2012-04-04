@@ -1,55 +1,67 @@
 @import 'lib';
 
 #site-header {
-    .box-shadow(0 1px 3px rgba(0, 0, 0, .25),
-                0 -1px 0 rgba(0, 0, 0, .1) inset);
-    .gradient-two-color(#555, #666);
+    .border-box;
+    background-color: #404f5a;
+    background-image: url(../../img/mkt/grain.png);
     margin-bottom: 20px;
-    padding: 10px 0;
-
-    // header is sticky to the top of the page.
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+    height: 82px;
 
     h1, form {
         line-height: 30px;
     }
     h1 {
         float: left;
-        font: normal 20px @open-stack;
-        font-weight: 400;
-        text-shadow: 0 1px 1px rgba(0,0,0,.8);
+        padding: 15px 0;
         a {
-            color: @faint-gray;
-            text-decoration: none;
-            &:hover {
-                color: @white;
-            }
+            background-image: url(../../img/mkt/logo.png);
+            background-repeat: no-repeat;
+            display: block;
+            width: 215px;
+            height: 52px;
+            text-indent: -9999px;
+            overflow: hidden;
         }
     }
     form {
         float: right;
         margin: 0;
     }
-}
-
-@media (max-width: @4col) {
-    #site-header {
-        h1, form {
-            float: none;
+    .menu-button {
+        height: 28px;
+        width: 28px;
+        float: right;
+        height: 30px;
+        margin: 25px 0 0 44px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        // CSS Menu icon.
+        b, b:before, b:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-indent: -9999px;
+            .border-radius(2px);
+            .box-shadow(0 1px 0 fadeOut(#fff, 80%),
+                        0 1px 0 rgba(0,0,0,.5) inset,
+                        0 1px 1px rgba(0,0,0,.5) inset);
+            .gradient-two-color(#21292f, #2a353c);
+            display: block;
+            content: '';
+            background: black;
+            margin-bottom: 3px;
+            width: 28px;
+            height: 7px;
         }
-        h1 {
-            margin-bottom: 10px;
+        b:before {
+            top: 10px;
         }
-        input {
-            margin: 0;
+        b:after {
+            top: 20px;
         }
     }
 }
-
 
 /* Content header (breadcrumbs, heading, subnav) - used on Account Settings, etc. */
 
