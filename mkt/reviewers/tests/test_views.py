@@ -134,7 +134,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
 
     def test_reject(self):
         self.post({'action': 'reject', 'comments': 'suxor'})
-        eq_(self.get_app().status, amo.STATUS_NULL)
+        eq_(self.get_app().status, amo.STATUS_REJECTED)
         action = amo.LOG.REJECT_VERSION
         eq_(ActivityLog.objects.filter(action=action.id).count(), 1)
 

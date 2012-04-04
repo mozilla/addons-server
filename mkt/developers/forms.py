@@ -31,7 +31,8 @@ from mkt.webapps.models import Webapp
 from . import tasks
 from lib.video import tasks as vtasks
 
-paypal_log = commonware.log.getLogger('z.paypal')
+log = commonware.log.getLogger('mkt.developers')
+paypal_log = commonware.log.getLogger('mkt.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -561,3 +562,27 @@ class CurrencyForm(happyforms.Form):
                                 .distinct())
         self.fields['currencies'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
                                               for k in choices]
+
+
+class AppAppealForm(happyforms.Form):
+    """
+    If a developer's app is rejected he can make changes and request
+    another review.
+    """
+
+    release_notes = forms.CharField(
+        label=_(u'Your comments'),
+        required=False, widget=forms.Textarea(attrs={'rows': 2}))
+
+    def __init__(self, *args, **kw):
+        self.product = kw.pop('product', None)
+        super(AppAppealForm, self).__init__(*args, **kw)
+
+    def save(self):
+        v = self.product.versions.order_by('-created')[0]
+        v.releasenotes = self.cleaned_data['release_notes']
+        v.save()
+        amo.log(amo.LOG.EDIT_VERSION, v.addon, v)
+        # Mark app as pending again.
+        self.product.mark_done()
+        return v

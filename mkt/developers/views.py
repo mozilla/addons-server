@@ -33,6 +33,7 @@ from addons import forms as addon_forms
 from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from devhub.models import AddonLog
 from lib.video import library as video_library
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
@@ -183,8 +184,27 @@ def disable(request, addon_id, addon):
 
 @dev_required(webapp=True)
 def status(request, addon_id, addon, webapp=False):
-    return jingo.render(request, 'developers/apps/status.html',
-                        {'addon': addon, 'webapp': webapp})
+    form = forms.AppAppealForm(request.POST, product=addon)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, _('App successfully resubmitted.'))
+        return redirect(addon.get_dev_url('versions'))
+
+    ctx = {'addon': addon, 'webapp': webapp, 'form': form}
+
+    if addon.status == amo.STATUS_REJECTED:
+        try:
+            entry = (AddonLog.objects
+                     .filter(addon=addon,
+                             activity_log__action=amo.LOG.REJECT_VERSION.id)
+                     .order_by('-created'))[0]
+        except IndexError:
+            entry = None
+        # This contains the rejection reason and timestamp.
+        ctx['rejection'] = entry and entry.activity_log
+
+    return jingo.render(request, 'developers/apps/status.html', ctx)
 
 
 @dev_required(owner_for_post=True, webapp=True)

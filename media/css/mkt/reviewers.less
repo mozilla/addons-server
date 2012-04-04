@@ -50,6 +50,7 @@ header {
     }
     #actions {
         float: right;
+        margin-top: 15px;
         li {
             display: inline-block;
             margin-left: 10px;
@@ -72,12 +73,9 @@ header {
 #addon {
     float: left;
     width: 75%;
-    #review-files-header,
-    .results {
-        display: none;
-    }
     p {
         color: @medium-gray;
+        line-height: 15px;
     }
 }
 
@@ -522,14 +520,14 @@ table.data-grid tr.comments td {
 }
 
 div.editor-waiting {
-    border: 1px solid #999999;
-    border-radius: 5px 5px 5px 5px;
+    border: 1px solid @note-gray;
+    .border-radius(5px);
     overflow: hidden;
 }
 
 div.editor-stats-dark {
     background-color: #F3F3F3;
-    border-top: 1px dotted #CCCCCC;
+    border-top: 1px dotted @medium-gray;
     display: block;
     padding: 5px 10px 10px;
 }
@@ -541,7 +539,7 @@ div.editor-stats-table > div.editor-stats-dark {
 /* Moderated reviews css */
 
 #reviews-flagged .review-flagged {
-    border-top: 1px dotted #CCCCCC;
+    border-top: 1px dotted @medium-gray;
     padding: 1em;
     margin: 0 0 1em 1em;
 }
@@ -556,7 +554,7 @@ div.editor-stats-table > div.editor-stats-dark {
 
 #reviews-flagged .reviews-flagged-reasons {
     background-color: #FFE4E4;
-    border-radius: 10px;
+    .border-radius(10px);
     margin: 0;
     padding: 0 10px;
     clear: both;
@@ -579,7 +577,7 @@ div.editor-stats-table > div.editor-stats-dark {
     float: right;
     padding-left: 10px;
     margin-left: 10px;
-    border-left: 1px dashed #ccc;
+    border-left: 1px dashed @medium-gray;
     width: 200px;
 }
 
@@ -703,19 +701,42 @@ div.editor-stats-table > div.editor-stats-dark {
     top: 10px;
 }
 
-#review-files {
-    margin: 0;
+#history {
+    .border-box;
+    .border-radius(5px);
+    padding: 0;
     width: 100%;
+    #review-files-header {
+        padding: 0 15px;
+    }
+    h3 span {
+        color: @medium-gray;
+        padding: 0 5px;
+    }
+    table {
+        width: 100%;
+    }
+    blockquote {
+        color: @medium-gray;
+        margin: 10px 0 0;
+    }
 }
-#review-files .files {
+
+#review-files {
+    width: 100%;
+    .listing-header > th {
+        background: @faded-blue;
+        padding: 5px 15px;
+    }
+    .listing-header,
+    .listing-body {
+         border-top: 1px solid #A5BFCE;
+    }
+}
+#review-files td {
+    .border-radius(0 0 5px 5px);
     background-color: #FAFAFA;
-    border-right: 1px dotted #DDDDDD;
-    border-top: 0 none;
-    width: 255px;
     padding: 15px;
-}
-#review-files-header h3 {
-    float: left;
 }
 #review-files-header h3 span {
     font-size: 0.7em;
@@ -736,16 +757,21 @@ div.editor-stats-table > div.editor-stats-dark {
     top: -20px;
     width: auto;
 }
-#review-files table.activity {
-    margin: 0 10px;
-    width: 100%;
-}
 #review-files table.activity th {
   width: 25%;
   padding-right: 1em;
 }
 #review-files table.activity tr {
     border-top: 1px dotted #ccc;
+    td {
+        padding: 15px 0;
+    }
+    &:first-child td {
+        padding-top: 0;
+    }
+    &:last-child td {
+        padding-bottom: 0;
+    }
 }
 #review-files table.activity tr:first-child {
     border-top: 0 none;
@@ -755,10 +781,6 @@ div.editor-stats-table > div.editor-stats-dark {
     color: #999;
 }
 #review-files tr.listing-header:first-child {
-    border-top: none;
-}
-#review-files tr.listing-header {
-     border-top: 1px solid #A5BFCE;
 }
 #review-files tr.listing-header:hover {
     cursor: pointer;
@@ -812,7 +834,7 @@ div.editor-stats-table > div.editor-stats-dark {
     .box-shadow(0 -2px 0 @faded-blue inset,
                 0 0 1px rgba(0, 0, 0, 0.1));
     border: 1px solid @border-blue;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .review-actions #review-actions-form {
@@ -935,11 +957,6 @@ div.editor-stats-table > div.editor-stats-dark {
 .history-comment-byline {
     padding: 0 10px;
     font-style: italic;
-}
-
-.history-notes {
-    max-width: 370px;
-    overflow: auto;
 }
 
 .review-paging {

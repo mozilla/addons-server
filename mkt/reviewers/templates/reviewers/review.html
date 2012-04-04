@@ -56,25 +56,24 @@
   {% include 'reviewers/includes/details.html' %}
 </section>
 
-{# TODO: List all versions of manifest (bug 741970). #}
-<div id="review-files-header">
-  <h3 id="history">
-    {{ _('App History') }}
-    <span>
-      {% trans %}
-      open:
-      <a class="eh_open" data-num="1" href="#">1</a> &middot;
-      <a class="eh_open" data-num="3" href="#">3</a> &middot;
-      <a class="eh_open" data-num="20" href="#">all</a>
-      {% endtrans %}
-    </span>
-  </h3>
-  <div id="review-files-paginate">
-    {% include 'editors/includes/paginator_history.html'  %}
-  </div>
-</div>
-<div class="results">
-  <div class="results-inner">
+  <div id="history" class="island c">
+    {# TODO: List all versions of manifest (bug 741970). #}
+    <div id="review-files-header">
+      <h3>
+        {{ _('App History') }}
+        <span>
+          {% trans %}
+          open:
+          <a class="eh_open" data-num="1" href="#">1</a> &middot;
+          <a class="eh_open" data-num="3" href="#">3</a> &middot;
+          <a class="eh_open" data-num="20" href="#">all</a>
+          {% endtrans %}
+        </span>
+      </h3>
+      <div id="review-files-paginate">
+        {% include 'editors/includes/paginator_history.html'  %}
+      </div>
+    </div>
     <table id="review-files" class="item-history">
       {% for i in range(pager.object_list.count(), 0, -1) %}
       {% set version = pager.object_list[i-1] %}
@@ -86,40 +85,6 @@
         </th>
       </tr>
       <tr class="listing-body">
-        <td class="files">
-          <div><strong>{{ _('Files in this version:') }}</strong></div>
-          <ul>
-          {# Hide files until files and versions make sense for apps. #}
-          {% set version_files = [] if product.is_webapp() else version.all_files %}
-          {% for file in version_files %}
-          <li class="file-info">
-            <span class="light">
-              <strong><a href="{{ file.get_url_path('editor') }}" class="install"
-                  data-type="{{ amo.ADDON_SLUGS[product.type] }}">{{ file.platform }}</a></strong>
-              <div>
-                {{ file_review_status(addon, file) }}
-              </div>
-              <a href="{{ url('devhub.file_validation', product.slug, file.id) }}">{{ _('Validation') }}</a>
-              &middot;
-              <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
-              {% if show_diff %}
-              &middot;
-              <a class="compare" href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
-              {% endif %}
-            </span>
-          </li>
-          {% endfor %}
-          </ul>
-          <div><strong>{{ _('Compatibility:') }}</strong></div>
-          <ul>
-            {% for app, compat in version.compatible_apps_ordered %}
-            <li>
-              <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
-              {{ compat }}
-            </li>
-            {% endfor %}
-          </ul>
-        </td>
         <td>
           <table class="activity">
             {% if version.releasenotes %}
@@ -145,7 +110,20 @@
             {% set records = version.all_activity %}
             {% for record_version in records %}
               {% set record = record_version.activity_log %}
-              {% include 'editors/includes/history.html' %}
+              <tr>
+                <th>
+                  {{ record.log.short }}
+                </th>
+                <td>
+                  {% trans user=record.user|user_link,
+                           date=record.created|babel_datetime %}
+                    <div>By {{ user }} on {{ date }}</div>
+                  {% endtrans %}
+                  {% if record.details %}
+                    <blockquote>{{ record.details.comments }}</blockquote>
+                  {% endif %}
+                </td>
+              </tr>
             {% endfor %}
             {% if not version.releasenotes and not version.approvalnotes and not records %}
             <tr>
@@ -160,7 +138,6 @@
       {% endfor %}
     </table>
   </div>
-</div>
 
 <form method="POST" action="#review-actions">
   {{ csrf() }}

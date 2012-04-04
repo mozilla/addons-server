@@ -214,7 +214,7 @@ class WebAppParser(object):
                 'type': amo.ADDON_WEBAPP,
                 'name': {default_locale: data['name']},
                 'summary': self.trans_all_locales(localized_descr),
-                'version': '1.0',
+                'version': data.get('version'),
                 'default_locale': default_locale}
 
     def trans_locale(self, locale):

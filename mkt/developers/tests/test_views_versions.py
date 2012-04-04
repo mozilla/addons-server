@@ -1,4 +1,3 @@
-from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -6,6 +5,7 @@ import waffle
 import amo
 import amo.tests
 from addons.models import Addon
+from users.models import UserProfile
 
 
 class TestAppStatus(amo.tests.TestCase):
@@ -13,8 +13,11 @@ class TestAppStatus(amo.tests.TestCase):
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(id=337141)
+        self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url('versions')
+
+    def get_webapp(self):
+        return Addon.objects.get(id=337141)
 
     def test_nav_link(self):
         r = self.client.get(self.url)
@@ -54,10 +57,38 @@ class TestAppStatus(amo.tests.TestCase):
         self.webapp.update(status=amo.STATUS_PENDING)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#version-status .status-none').length, 1)
+        doc = pq(r.content)
+        eq_(doc('#version-status .status-none').length, 1)
+        eq_(doc('#rejection').length, 0)
 
     def test_public(self):
         eq_(self.webapp.status, amo.STATUS_PUBLIC)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#version-status .status-fully-approved').length, 1)
+        doc = pq(r.content)
+        eq_(doc('#version-status .status-fully-approved').length, 1)
+        eq_(doc('#rejection').length, 0)
+
+    def test_rejected(self):
+        comments = "oh no you di'nt!!"
+        amo.set_user(UserProfile.objects.get(username='editor'))
+        amo.log(amo.LOG.REJECT_VERSION, self.webapp,
+                self.webapp.current_version, user_id=999,
+                details={'comments': comments, 'reviewtype': 'pending'})
+        self.webapp.update(status=amo.STATUS_REJECTED)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)('#version-status')
+        eq_(doc('.status-rejected').length, 1)
+        eq_(doc('#rejection').length, 1)
+        eq_(doc('#rejection blockquote').text(), comments)
+
+        my_reply = 'fixed just for u, brah'
+        r = self.client.post(self.url, {'release_notes': my_reply})
+        self.assertRedirects(r, self.url, 302)
+
+        webapp = self.get_webapp()
+        eq_(webapp.status, amo.STATUS_PENDING,
+            'Reapplied apps should get marked as pending')
+        eq_(unicode(webapp.versions.all()[0].releasenotes), my_reply)

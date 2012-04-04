@@ -18,6 +18,7 @@ STATUS_LITE = 8
 STATUS_LITE_AND_NOMINATED = 9
 STATUS_PURGATORY = 10  # A temporary home; bug 614686
 STATUS_DELETED = 11
+STATUS_REJECTED = 12  # This applies only to apps (for now)
 
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
@@ -31,8 +32,8 @@ STATUS_CHOICES = {
     STATUS_LITE: _(u'Preliminarily Reviewed'),
     STATUS_LITE_AND_NOMINATED:
         _(u'Preliminarily Reviewed and Awaiting Full Review'),
-    STATUS_PURGATORY:
-        _(u'Pending a review choice'),
+    STATUS_PURGATORY: _(u'Pending a review choice'),
+    STATUS_REJECTED: _(u'Rejected')
 }
 
 REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)

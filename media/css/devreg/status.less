@@ -1,5 +1,31 @@
 @import 'lib';
 
+#rejection {
+    blockquote {
+        margin: 10px 0 0;
+    }
+    + p {
+        margin-top: 20px;
+    }
+}
+
+#version-status {
+    h3 {
+        color: @medium-gray;
+        font: normal 13px @sans-stack;
+        time {
+            color: @note-gray;
+            font-weight: normal;
+            &:after {
+                content: ":";
+            }
+        }
+    }
+    label {
+        margin-top: 5px;
+    }
+}
+
 .version-status-actions {
     border-top: 1px dotted @taupe;
     margin-top: 10px;
@@ -37,6 +63,13 @@
 .status-lite b,
 .status-lite-nom b {
     color: #329902;
+}
+
+.status-rejected {
+    display: inline;
+    b {
+        color: #800;
+    }
 }
 
 .delete-button:hover,

@@ -182,7 +182,7 @@ class ReviewApp(ReviewBase):
 
     def process_sandbox(self):
         """Reject an app."""
-        self.set_addon(status=amo.STATUS_NULL)
+        self.set_addon(status=amo.STATUS_REJECTED)
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
