@@ -93,7 +93,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return True
 
     def is_mirrorable(self):
-        if self.version.addon.is_premium():
+        if self.version.addon_id and self.version.addon.is_premium():
             return False
         return self.status in amo.MIRROR_STATUSES
 
