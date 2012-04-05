@@ -50,10 +50,6 @@ body {
     }
 }
 
-#page .notification-box {
-    margin-bottom: 10px;
-}
-
 .notification-box {
     .border-radius(5px);
     .box-shadow(0 -1px 0 #ddd inset, 0 1px 0 rgba(0,0,0,.1));
@@ -112,31 +108,38 @@ body {
         }
         &.full {
             width: 100%;
+            > div {
+                .width(14);
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
     }
 }
 
-// account for the header. Well...it's not a floating header anymore.
 #page {
-     margin-top: 24px;
+    position: relative;
+    .notification-box {
+        margin-bottom: 10px;
+    }
 }
 
-// 7 columns (portrait tablet)
-@media (max-width: @7col) {
+// 10 columns (portrait tablet)
+@media (max-width: @10col) {
     #site-header, #page {
-        > section {
-            .width(7);
+        > section, > section.full > div {
+            .width(10);
         }
     }
     #site-header > section {
-        .width(7);
+        .width(10);
     }
 }
 
 // 4 columns (landscape smartphone)
 @media (max-width: @4col) {
     #site-header, #page {
-        > section {
+        > section, > section.full > div {
             .width(4);
         }
     }
@@ -148,7 +151,7 @@ body {
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
     #site-header, #page {
-        > section {
+        > section, > section.full > div {
             .width(3);
         }
     }

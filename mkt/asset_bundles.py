@@ -87,6 +87,7 @@ CSS = {
         'css/mkt/purchases.less',
         'css/mkt/support.less',
         'css/mkt/account.less',
+        'css/mkt/home.less',
         'css/devreg/l10n.less',
     ),
     'mkt/in-app-payments': (

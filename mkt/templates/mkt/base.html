@@ -77,6 +77,8 @@
       </section>
     </div>
 
+    {% block dbgoverlay %}{% endblock %}
+
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>

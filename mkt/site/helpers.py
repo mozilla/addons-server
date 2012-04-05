@@ -66,6 +66,16 @@ def product_as_dict(request, product):
     return ret
 
 
+@register.filter
+@jinja2.contextfilter
+def promo_slider(context, products):
+    c = {
+        'products': products
+    }
+    t = env.get_template('site/promo_slider.html')
+    return jinja2.Markup(t.render(c))
+
+
 @register.function
 @jinja2.contextfunction
 def mkt_breadcrumbs(context, product=None, items=None, add_default=False):

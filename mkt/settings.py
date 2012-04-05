@@ -12,6 +12,7 @@ WAFFLE_TABLE_SUFFIX = 'mkt'
 MARKETPLACE = True
 
 # Pretty temporary. Set the correct home for Marketplace. Redirects are sick!
+#HOME = 'mkt.home.views.home'
 HOME = 'mkt.developers.views.home'
 
 # 403 view to render for CSRF failures.
@@ -46,6 +47,7 @@ INSTALLED_APPS += (
     'mkt.detail',
     'mkt.developers',
     'mkt.experiments',
+    'mkt.home',
     'mkt.inapp_pay',
     'mkt.purchase',
     'mkt.reviewers',
@@ -61,6 +63,7 @@ SUPPORTED_NONAPPS += (
     'app',
     'apps',
     'dev',
+    'home',
     'login',
     'logout',
     'payments',
