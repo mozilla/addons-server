@@ -59,7 +59,7 @@ class TestFFmpegVideo(amo.tests.TestCase):
 
     def setUp(self):
         self.video = ffmpeg.Video(files['good'])
-        if not ffmpeg.Video.encoder_available():
+        if not ffmpeg.Video.library_available():
             raise SkipTest
         self.video._call = Mock()
         self.video._call.return_value = older_output
@@ -104,7 +104,7 @@ class TestBadFFmpegVideo(amo.tests.TestCase):
 
     def setUp(self):
         self.video = ffmpeg.Video(files['bad'])
-        if not self.video.encoder_available():
+        if not self.video.library_available():
             raise SkipTest
         self.video.get_meta()
 
