@@ -6,6 +6,7 @@ import json
 
 import mock
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.urlresolvers import reverse
@@ -322,6 +323,25 @@ class TestCacheControl(StatsTest, amo.tests.TestCase):
                                           group='month', format='json')
         assert response.get('cache-control', '').startswith('max-age='), (
             'Bad or no cache-control: %r' % response.get('cache-control', ''))
+
+
+class TestLayout(StatsTest, amo.tests.TestCase):
+
+    def test_not_public_stats(self):
+        r = self.client.get(reverse('stats.downloads', args=[4]))
+        eq_(r.status_code, 404)
+
+    def get_public_url(self):
+        addon = amo.tests.addon_factory(public_status=True)
+        return reverse('stats.downloads', args=[addon.slug])
+
+    def test_public_stats_page_loads(self):
+        r = self.client.get(self.get_public_url())
+        eq_(r.status_code, 200)
+
+    def test_public_stats_stats_notes(self):
+        r = self.client.get(self.get_public_url())
+        eq_(pq(r.content)('#stats-note h2').length, 1)
 
 
 class TestResponses(ESStatsTest):

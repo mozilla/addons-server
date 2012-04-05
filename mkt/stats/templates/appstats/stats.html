@@ -168,6 +168,10 @@
     </div>
   </div>
   <div id="popup-container">
+    <div class="modal" id="stats-note">
+      <a class="close">{{ _('close') }}</a>
+      {% block stats_note %}{% endblock %}
+    </div>
     {% include 'stats/popup.html' %}
   </div>
 </section>
