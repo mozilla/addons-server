@@ -102,7 +102,7 @@ body {
 
 #site-header, #page {
     > section {
-        .width(10);
+        .width(14);
         margin: 0 auto;
         .border-box;
         &:after {
@@ -116,20 +116,15 @@ body {
     }
 }
 
-// account for the header.
-#page {
-     margin-top: 70px;
-}
-
-// 7 columns (portrait tablet)
-@media (max-width: @7col) {
+// 10 columns (portrait tablet)
+@media (max-width: @10col) {
     #site-header, #page {
         > section {
-            .width(7);
+            .width(10);
         }
     }
     #site-header > section {
-        .width(7);
+        .width(10);
     }
 }
 
@@ -178,29 +173,6 @@ body {
     margin-left: auto;
     &:first-child {
         margin-right: 0;
-    }
-}
-
-@media (max-width: @7col) {
-    .col {
-        float: none;
-        margin: 0 auto;
-    }
-    // Account for the wrapped stuff in the header.
-    #page {
-        margin-top: 60px;
-    }
-}
-
-@media (max-width: @4col) {
-    #page {
-        margin-top: 90px;
-    }
-}
-
-@media (max-width: @3col) {
-    #page {
-        margin-top: 95px;
     }
 }
 
