@@ -1,13 +1,29 @@
 @import 'lib';
 
+@text-gray: #424f5a;
+@link: #2d87ca;
+
 .product-details {
+    font-size: 14px;
+    text-shadow: 0 1px 0 @white;
+    /*
+    a {
+        color: @link;
+        &:hover, &:visited {
+            color: @link;
+        }
+    }
+    */
     .actions {
         .width(3);
         float: right;
         margin-bottom: 16px;
         .button {
             display: block;
-            line-height: 48px;
+            line-height: 32px;
+            color: @white;
+            font-size: 18px;
+            padding-bottom: 2px;
         }
     }
     .icon {
@@ -18,19 +34,40 @@
     }
     .vitals {
         float: left;
+        margin-left: 22px;
+        h2 {
+            font-size: 32px;
+            font-weight: 100;
+            line-height: 27px;
+            margin: 0 0 0 -1px;
+        }
+        .authors {
+            font-weight: normal;
+            font-size: 14px;
+            margin-top: 7px;
+        }
+        .downloads {
+            margin-top: 5px;
+        }
     }
     .visual {
         float: left;
-        width: 88px;
-        height: 100px;
+        width: 128px;
+        height: 128px;
+        //TODO: temp - nuke when 128px thumbs available
+        img {
+            width: 128px;
+            height: 128px;
+        }
     }
 }
 .description {
     clear: both;
-    padding: 16px;
+    color: @text-gray;
+    padding: 15px 0;
     p {
         .max-width(14);
-        margin: 0 auto;
+        font-size: 14px;
     }
 }
 

@@ -1,7 +1,7 @@
 @import 'lib';
 
 #breadcrumbs {
-    color: @medium-gray;
+    color: @text;
     font-family: @open-stack;
     ol {
         list-style: none;
@@ -11,20 +11,18 @@
     li {
         display: inline-block;
         &:before {
-            content: '\00a0\00bb\00a0';
-            font-size: 1.3em;
-            font-weight: bold;
+            content: '\00a0\/\00a0';
+            font-size: 14px;
         }
         a {
-            color: @note-gray;
             font-weight: bold;
         }
         a.home, &:first-child a {
-            background: url(../../img/impala/breadcrumb-home.png) no-repeat;
+            background: url(../../img/mkt/icons/home_crumb.png) no-repeat 0 3px;
             display: block;
             float: left;
-            height: 13px;
-            margin-top: 2px;
+            height: 17px;
+            margin-top: 3px;
             overflow: hidden;
             text-indent: -9999px;
             text-decoration: none;
@@ -36,15 +34,33 @@
         &:first-child:before {
             content: none;
         }
+        &:nth-child(2) {
+            padding-left: 7px;
+            &:before {
+                content: none;
+            }
+        }
     }
 }
 
-#breadcrumbs,
-#breadcrumbs + h1 {
+#breadcrumbs {
     margin-bottom: 5px;
 }
 
-.island #breadcrumbs,
-.island #breadcrumbs + h1 {
-    margin-bottom: 5px;
+#crumbs {
+    width: 100%;
+    border-top: 1px solid #c2c8cc; // define
+    border-bottom: 1px solid #bdc2c5; // define this
+    .gradient-two-color(rgba(176, 186, 192, 0.33), rgba(187, 195, 199, 0.33));
+    padding-top: 3px;
+    ol {
+        .width(14);
+        margin: 0 auto;
+        line-height: 20px;
+    }
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
 }

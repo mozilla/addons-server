@@ -116,15 +116,20 @@ body {
     }
 }
 
-// 10 columns (portrait tablet)
-@media (max-width: @10col) {
+// account for the header. Well...it's not a floating header anymore.
+#page {
+     margin-top: 24px;
+}
+
+// 7 columns (portrait tablet)
+@media (max-width: @7col) {
     #site-header, #page {
         > section {
-            .width(10);
+            .width(7);
         }
     }
     #site-header > section {
-        .width(10);
+        .width(7);
     }
 }
 
@@ -173,6 +178,29 @@ body {
     margin-left: auto;
     &:first-child {
         margin-right: 0;
+    }
+}
+
+@media (max-width: @7col) {
+    .col {
+        float: none;
+        margin: 0 auto;
+    }
+    // Account for the wrapped stuff in the header.
+    #page {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: @4col) {
+    #page {
+        margin-top: 90px;
+    }
+}
+
+@media (max-width: @3col) {
+    #page {
+        margin-top: 95px;
     }
 }
 

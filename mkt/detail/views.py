@@ -6,6 +6,7 @@ from access import acl
 from addons.models import Addon
 from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
+from amo import urlresolvers
 from mkt.webapps.models import Installed
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
@@ -15,7 +16,9 @@ addon_enabled_view = addon_view_factory(qs=Addon.objects.enabled)
 @addon_view
 def detail(request, addon):
     """Product details page."""
-    return jingo.render(request, 'detail/app.html', {'product': addon})
+    homelink = urlresolvers.reverse('home')
+    return jingo.render(request, 'detail/app.html', {'product': addon,
+                                                     'homelink': homelink })
 
 
 @addon_enabled_view

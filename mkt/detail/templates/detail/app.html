@@ -2,6 +2,16 @@
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
+{# breadcrumbs show just one category for now #}
+{% set firstcat = product.all_categories[0] %}
+
+{% block breadcrumbs %}
+  <section id="crumbs">
+    {{ impala_breadcrumbs([(homelink, _('Home')),
+        (firstcat.get_url_path(), firstcat), (None, product.name)]) }}
+  </section>
+{% endblock %}
+
 {% block content %}
   <section class="product-details">
     <div class="visual">
@@ -19,7 +29,7 @@
         {% endtrans %}
       </p>
       {{ device_list(product) }}
-      <a href="{{ product.get_detail_url('privacy') }}">
+      <!--a href="{{ product.get_detail_url('privacy') }}">
         {{ _('Privacy Policy') }}</a>
       {% set categories = product.all_categories %}
       {% if categories %}
@@ -40,7 +50,7 @@
       {% endif %}
       {% if product.support_url %}
         <a href="{{ product.support_url|external_url }}">
-          {{ _('Support Site') }}</a>
+          {{ _('Support Site') }}</a-->
       {% endif %}
     </div>
     <div class="actions">
@@ -51,7 +61,7 @@
       {% endif %}
     </div>
   </section>
-  <section class="full description">
+  <section class="description">
     <p>{{ product.description }}</p>
   </section>
 
