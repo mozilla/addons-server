@@ -188,7 +188,10 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'submit', 'tests',
                                      'webapps', 'mozball.webapp')
+        self.manifest_url = 'http://allizom.org/mozball.webapp'
         self.upload = self.get_upload(abspath=self.manifest)
+        self.upload.name = self.manifest_url
+        self.upload.save()
         self.url = reverse('submit.app.manifest')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
@@ -209,6 +212,17 @@ class TestCreateWebApp(BaseWebAppTest):
         webapp = Webapp.objects.get()
         self.assertRedirects(r,
             reverse('submit.app.details', args=[webapp.app_slug]))
+
+    def test_disallow_double_post(self):
+        self.post_addon()
+        self.upload = self.get_upload(abspath=self.manifest)
+        r = self.client.post(reverse('mkt.developers.upload_manifest'),
+                             dict(manifest=self.manifest_url))
+        data = json.loads(r.content)
+        eq_(data['validation']['messages'][0]['message'],
+            'Oops, looks like you already submitted that manifest for '
+            'MozillaBall, which is currently incomplete. '
+            '<a href="/en-US/developers/app/mozillaball/edit">Resume app</a>')
 
     def test_app_from_uploaded_manifest(self):
         addon = self.post_addon()
