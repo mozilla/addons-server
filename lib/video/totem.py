@@ -61,7 +61,7 @@ class Video(VideoBase):
     def get_screenshot(self, size):
         assert self.is_valid()
         assert self.meta.get('duration')
-        halfway = int(self.meta['duration'] / 2)
+        halfway = int(self.meta['duration']) / 2
         dest = tempfile.mkstemp(suffix='.png')[1]
         self._call_thumbnailer(halfway, dest, max(size))
         return dest
