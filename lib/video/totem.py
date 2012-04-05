@@ -63,7 +63,7 @@ class Video(VideoBase):
         assert self.meta.get('duration')
         halfway = int(self.meta['duration']) / 2
         dest = tempfile.mkstemp(suffix='.png')[1]
-        self._call_thumbnailer(halfway, dest, str(max(size)))
+        self._call_thumbnailer(str(halfway), dest, str(max(size)))
         return dest
 
     def is_valid(self):
