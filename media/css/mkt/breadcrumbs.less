@@ -3,10 +3,18 @@
 #breadcrumbs {
     color: @text;
     font-family: @open-stack;
+    width: 100%;
+    border-top: 1px solid #c2c8cc; // define
+    border-bottom: 1px solid #bdc2c5; // define this
+    .gradient-two-color(rgba(176, 186, 192, 0.33), rgba(187, 195, 199, 0.33));
+    padding-top: 3px;
+    margin-bottom: 5px;
     ol {
         list-style: none;
-        margin: 0;
-        padding: 0;
+        padding: 0 0 5px;
+        .width(14);
+        margin: 0 auto;
+        line-height: 20px;
     }
     li {
         display: inline-block;
@@ -40,27 +48,5 @@
                 content: none;
             }
         }
-    }
-}
-
-#breadcrumbs {
-    margin-bottom: 5px;
-}
-
-#crumbs {
-    width: 100%;
-    border-top: 1px solid #c2c8cc; // define
-    border-bottom: 1px solid #bdc2c5; // define this
-    .gradient-two-color(rgba(176, 186, 192, 0.33), rgba(187, 195, 199, 0.33));
-    padding-top: 3px;
-    ol {
-        .width(14);
-        margin: 0 auto;
-        line-height: 20px;
-    }
-    &:after {
-        content: '';
-        display: block;
-        clear: both;
     }
 }
