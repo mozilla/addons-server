@@ -63,7 +63,8 @@ class TestNotifyApp(PaymentTest):
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.success, False)
-        eq_(notice.last_error, 'URLError: <urlopen error too slow>')
+        er = notice.last_error
+        assert er.startswith('URLError:'), 'Unexpected: %s' % er
 
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
     def test_http_error(self, urlopen):
@@ -72,7 +73,8 @@ class TestNotifyApp(PaymentTest):
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.success, False)
-        eq_(notice.last_error, 'HTTPError: HTTP Error 404: Not Found')
+        er = notice.last_error
+        assert er.startswith('HTTPError:'), 'Unexpected: %s' % er
 
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
     def test_invalid_url_error(self, urlopen):
