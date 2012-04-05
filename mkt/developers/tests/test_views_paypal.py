@@ -127,6 +127,13 @@ class TestPaypal(amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(self.webapp.premium.currencies, ['EUR', 'BRL'])
 
+    def test_later(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.url, {'email': 'a@a.com',
+                                          'business_account': 'yes',
+                                          'form': 'paypal' })
+        self.assertRedirects(res, self.webapp.get_dev_url('paypal_setup_bounce'))
+
 
 class TestPaypalResponse(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
