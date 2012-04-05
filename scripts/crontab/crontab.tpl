@@ -25,7 +25,8 @@ HOME=/tmp
 
 #every 3 hours
 20 */3 * * * {{ z_cron }} compatibility_report
-20 */3 * * * {{ remora }}; php -f compatibility_report.php
+# clouserw commented this out
+#20 */3 * * * {{ remora }}; php -f compatibility_report.php
 
 #every 4 hours
 40 */4 * * * {{ django }} clean_redis
