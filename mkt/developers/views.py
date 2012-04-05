@@ -33,7 +33,7 @@ from addons import forms as addon_forms
 from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
-from lib.video import ffmpeg
+from lib.video import library as video_library
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CurrencyForm,
@@ -917,10 +917,13 @@ def ajax_upload_media(request, upload_type):
                 fd.write(chunk)
 
         if is_video:
-            video = ffmpeg.Video(loc)
-            video.get_meta()
-            if not video.is_valid():
-                errors.extend(video.errors)
+            if not video_library:
+                errors.append(_('Video support not enabled.'))
+            else:
+                video = video_library(loc)
+                video.get_meta()
+                if not video.is_valid():
+                    errors.extend(video.errors)
 
         else:
             check = amo.utils.ImageCheck(upload_preview)

@@ -1,11 +1,12 @@
 import logging
 import re
-import subprocess
 import tempfile
 
 from django.conf import settings
 
 from django_statsd.clients import statsd
+
+from .utils import check_output, subprocess, VideoBase
 
 
 log = logging.getLogger('z.video')
@@ -19,35 +20,11 @@ dimensions_re = re.compile('Stream #0.*?(\d+)x(\d+)')
 version_re = re.compile('ffmpeg version (\d\.+)', re.I)
 
 
-def check_output(*popenargs, **kwargs):
-    # Tell thee, check_output was from Python 2.7 untimely ripp'd.
-    # check_output shall never vanquish'd be until
-    # Marketplace moves to Python 2.7.
-    if 'stdout' in kwargs:
-        raise ValueError('stdout argument not allowed, it will be overridden.')
-    process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
-    output, unused_err = process.communicate()
-    retcode = process.poll()
-    if retcode:
-        cmd = kwargs.get("args")
-        if cmd is None:
-            cmd = popenargs[0]
-        error = subprocess.CalledProcessError(retcode, cmd)
-        error.output = output
-        raise error
-    return output
-
-
-class Video(object):
-
-    def __init__(self, filename):
-        self.name = settings.FFMPEG_BINARY
-        self.filename = filename
-        self.meta = None
-        self.errors = []
+class Video(VideoBase):
+    name = settings.FFMPEG_BINARY
 
     def _call(self, note, catch_error, *args):
-        with statsd.timer('video.%s' % note):
+        with statsd.timer('video.ffmpeg.%s' % note):
             args = [self.name,
                     '-y',  # Don't prompt for overwrite of file
                     '-i', self.filename] + list(args)
@@ -136,9 +113,10 @@ class Video(object):
         #TODO(andym): More checks on duration, file size, bit rate?
         return not self.errors
 
-    def encoder_available(self):
+    @classmethod
+    def library_available(cls):
         try:
-            output = check_output([self.name, '-version'],
+            output = check_output([cls.name, '-version'],
                                   stderr=subprocess.STDOUT)
             # If in the future we want to check for an ffmpeg version
             # this is the place to do it.

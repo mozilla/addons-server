@@ -8,7 +8,7 @@ from celeryutils import task
 
 import amo
 from amo.decorators import set_modified_on
-from lib.video.ffmpeg import Video
+from lib.video import library
 import waffle
 
 log = logging.getLogger('z.devhub.task')
@@ -24,11 +24,12 @@ def resize_video(src, instance, **kw):
     preview size and generate a thumbnail.
     """
     log.info('[1@None] Encoding video %s' % instance.pk)
-    video = Video(src)
-    if not video.encoder_available():
-        log.info('Video encoder not available for %s' % instance.pk)
+    lib = library
+    if not lib:
+        log.info('Video library not available for %s' % instance.pk)
         return
 
+    video = lib(src)
     video.get_meta()
     if not video.is_valid():
         log.info('Video is not valid for %s' % instance.pk)

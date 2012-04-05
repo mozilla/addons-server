@@ -1413,5 +1413,8 @@ NO_LOGIN_REQUIRED_MODULES = ()
 NO_ADDONS_MODULES = ()
 NO_CONSUMER_MODULES = ()
 
-# Where to find ffmpeg if it's not in the PATH.
+# Where to find ffmpeg and totem if it's not in the PATH.
 FFMPEG_BINARY = 'ffmpeg'
+TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
+                  'indexer': 'totem-video-indexer'}
+VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
