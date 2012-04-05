@@ -285,7 +285,7 @@ def weekly_downloads():
         (addon_id INT PRIMARY KEY, count INT)""")
     cursor.execute('INSERT INTO tmp VALUES %s' %
                    ','.join(['(%s,%s)'] * len(counts)),
-                   counts)
+                   list(itertools.chain(*counts)))
 
     cursor.execute("""
         UPDATE addons INNER JOIN tmp
