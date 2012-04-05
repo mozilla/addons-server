@@ -81,5 +81,6 @@ class Video(VideoBase):
             # We'll assume if the thumbnailer is there so is the indexer.
             check_output([cls.name['thumbnailer'], '-help'],
                          stderr=subprocess.STDOUT)
+            return True
         except (OSError, subprocess.CalledProcessError):
             pass
