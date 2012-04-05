@@ -13,7 +13,6 @@ import jingo
 from jingo.helpers import datetime as datetime_filter
 import mock
 from nose.plugins.attrib import attr
-from nose.plugins.skip import SkipTest
 from nose.tools import eq_, assert_not_equal, assert_raises
 from PIL import Image
 from pyquery import PyQuery as pq
@@ -36,7 +35,6 @@ from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            Category, Charity)
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
-from browse.tests import test_listing_sort, test_default_sort
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
 from devhub import tasks
@@ -1890,7 +1888,7 @@ class TestSubmitStep4(TestSubmitBase):
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
         self.icon_upload = reverse('devhub.addons.upload_icon',
-                                      args=['a3615'])
+                                   args=['a3615'])
         self.preview_upload = reverse('devhub.addons.upload_preview',
                                       args=['a3615'])
 
@@ -1920,6 +1918,14 @@ class TestSubmitStep4(TestSubmitBase):
 
         fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
         return dict([(k, '' if v is None else v) for k, v in fs.items()])
+
+    def test_icon_upload_attributes(self):
+        doc = pq(self.client.get(self.url).content)
+        field = doc('input[name=icon_upload]')
+        eq_(field.length, 1)
+        eq_(sorted(field.attr('data-allowed-types').split('|')),
+            ['image/jpeg', 'image/png'])
+        eq_(field.attr('data-upload-url'), self.icon_upload)
 
     def test_edit_media_defaulticon(self):
         data = dict(icon_type='')

@@ -447,7 +447,6 @@ class TestEditBasic(TestEdit):
         assert 'restartless' in divs.eq(1).text()
 
     def test_text_not_none_when_has_flags(self):
-        addon = self.get_addon()
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#addon-flags').text(), 'This is a site-specific add-on.')
@@ -524,6 +523,14 @@ class TestEditMedia(TestEdit):
 
         fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
         return dict([(k, '' if v is None else v) for k, v in fs.items()])
+
+    def test_icon_upload_attributes(self):
+        doc = pq(self.client.get(self.media_edit_url).content)
+        field = doc('input[name=icon_upload]')
+        eq_(field.length, 1)
+        eq_(sorted(field.attr('data-allowed-types').split('|')),
+            ['image/jpeg', 'image/png'])
+        eq_(field.attr('data-upload-url'), self.icon_upload)
 
     def test_edit_media_defaulticon(self):
         data = dict(icon_type='')
@@ -1208,12 +1215,6 @@ class TestEditTechnical(TestEdit):
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
-
-    def test_edit_no_app_dependencies(self):
-        """Apps should be able to add app dependencies."""
-        Addon.objects.all().update(type=amo.ADDON_WEBAPP)
-        addon = Addon.objects.get(id=5299)
-        r = self.client.get(self.technical_edit_url)
 
     def test_edit_addon_dependencies_no_add_apps(self):
         """Add-ons should not be able to add app dependencies."""
