@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
+  {{ mkt_breadcrumbs(product, [(None, _('Users')), (None, profile.name)]) }}
   <section id="profile" class="account form-grid">
-    {{ mkt_breadcrumbs(product, [(None, _('Users')), (None, profile.name)]) }}
     <header class="c">
       <h1 class="fn n">{{ profile.name }}</h1>
       <ul class="sub-nav" id="profile-actions">

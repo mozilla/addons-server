@@ -2,12 +2,12 @@
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
-{# mkt_breadcumbs may need to be able to handle martel's version #}
-{% block breadcrumbs %}
-      {{ mkt_breadcrumbs(product) }}
-{% endblock %}
+{# breadcrumbs show just one category for now #}
+{% set firstcat = product.all_categories[0] %}
 
 {% block content %}
+  {{ mkt_breadcrumbs(items=[(url('home'), _('Home')),
+          (firstcat.get_url_path(), firstcat), (None, product.name)]) }}
   <section class="product-details">
     <div class="visual">
       <img class="icon" src="{{ product.get_icon_url(64) }}" />

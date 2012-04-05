@@ -6,10 +6,8 @@
 {% endblock %}
 
 {% block content %}
+{{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
 <section class="primary">
-  <hgroup class="hero">
-    {{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
-  </hgroup>
   <div class="prose">
     <h2>{{ _('Privacy Policy') }}</h2>
     <div class="policy-statement">{{ product.privacy_policy|nl2br }}</div>
