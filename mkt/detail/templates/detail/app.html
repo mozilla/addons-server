@@ -2,12 +2,18 @@
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
-{# breadcrumbs show just one category for now #}
-{% set firstcat = product.all_categories[0] %}
+{# Breadcrumbs show just one category for now. #}
+{% set cats = product.all_categories %}
+{% set first_cat = cats[0] if cats else None %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(items=[(url('home'), _('Home')),
-          (firstcat.get_url_path(), firstcat), (None, product.name)]) }}
+  {% if first_cat %}
+    {{ mkt_breadcrumbs(items=[(url('home'), _('Home')),
+                              (first_cat.get_url_path(), first_cat),
+                              (None, product.name)]) }}
+  {% else %}
+    {{ mkt_breadcrumbs(product=product) }}
+  {% endif %}
   <section class="product-details">
     <div class="visual">
       <img class="icon" src="{{ product.get_icon_url(64) }}" />
