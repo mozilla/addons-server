@@ -455,8 +455,17 @@ class TestFeeds(amo.tests.TestCase):
         self._check_sort_urls(s.find('a.extra-opt'), 'extras')
 
     def test_themes_sort_opts_urls(self):
-        self.url = reverse('browse.themes')
-        self.rss_url = reverse('browse.themes.rss')
+        r = self.client.get(reverse('browse.themes'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#sorter').length, 1)
+        eq_(doc('#subscribe').length, 0)
+
+        Addon.objects.update(type=amo.ADDON_THEME)
+        Category.objects.update(type=amo.ADDON_THEME)
+
+        self.url = reverse('browse.themes', args=['alerts-updates'])
+        self.rss_url = reverse('browse.themes.rss', args=['alerts-updates'])
         self.filter = ThemeFilter
         r = self.client.get(self.url, follow=True)
         s = pq(r.content)('#sorter')

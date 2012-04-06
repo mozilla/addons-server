@@ -50,14 +50,16 @@
 {% if section in ('extensions', 'themes') %}
   {% if category %}
     {% set feed = url('browse.%s.rss' % section, category.slug) %}
-  {% else %}
+  {% elif section == 'extensions' %}
     {% set feed = url('browse.%s.rss' % section) %}
   {% endif %}
-  {% set feed_url = feed|urlparams(sort=sorting) %}
-  {% block rss_feed %}
-    <link rel="alternate" type="application/rss+xml" title="RSS"
-          href="{{ feed_url }}">
-  {% endblock %}
+  {% if feed %}
+    {% set feed_url = feed|urlparams(sort=sorting) %}
+    {% block rss_feed %}
+      <link rel="alternate" type="application/rss+xml" title="RSS"
+            href="{{ feed_url }}">
+    {% endblock %}
+  {% endif %}
 {% endif %}
 
 {% if request.MOBILE %}
