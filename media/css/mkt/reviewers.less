@@ -73,9 +73,16 @@ header {
 #addon {
     float: left;
     width: 75%;
-    p {
+    #summary p, .userinput {
         color: @medium-gray;
         line-height: 15px;
+    }
+    em.no-results {
+        display: block;
+        font-style: italic;
+        font-size: 13px;
+        font-weight: normal;
+        padding: 0;
     }
 }
 
@@ -86,7 +93,7 @@ header {
 #scroll_sidebar_parent {
     float: right;
     position: relative;
-    width: 15%;
+    width: 16%;
     strong {
         display: block;
         margin-top: 10px;
@@ -998,4 +1005,14 @@ div.currently_viewing_warning strong {
 span.currently_viewing_warning {
     color: red;
     padding-right: 15px;
+}
+
+.concealed {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px 10px 7px;
+    &:hover {
+        .gradient-two-color(#ccc, #bbb);
+        color: @dark-gray;
+    }
 }

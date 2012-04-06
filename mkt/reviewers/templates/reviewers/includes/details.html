@@ -3,7 +3,7 @@
   {% if product.summary %}
     <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
   {% endif %}
-  <h2>{{ _('Info') }}</h2>
+  <h2>{{ _('Details') }}</h2>
   <dl>
     <dt>{{ _('Price') }}</dt>
     <dd>{{ price(product) }}</dd>
@@ -84,12 +84,12 @@
 
  {% if product.description or product.all_previews|length > 1 or
        product.developer_comments %}
-  <h2 id="more-about">{{ _('More about this app') }}</h2>
+  <h2 id="more-about">{{ _('Description') }}</h2>
   <div class="article userinput">
     <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
 
     {% if product.all_previews|length > 1 %}
-      <h3>{{ _('Image Gallery') }}</h3>
+      <h2>{{ _('Image Gallery') }}</h2>
       {% for preview in product.all_previews %}
       <a class="screenshot thumbnail" rel="jquery-lightbox"
         href="{{ preview.image_url }}" title="{{ preview.caption }}">
@@ -99,7 +99,7 @@
     {% endif %}
 
     {% if product.developer_comments %}
-      <h3>{{ _('Developer Comments') }}</h3>
+      <h2>{{ _('Developer Comments') }}</h2>
       <div class="prose userinput">
         <p{{ product.developer_comments|locale_html }}>{{
           product.developer_comments|nl2br }}</p>
@@ -108,8 +108,8 @@
   </div>{# /article #}
   {% else %}
     <h2 id="more-about">{{ _('More about this app') }}</h2>
-    <div class="article">
-      <em>
+    <div class="article userinput">
+      <em class="no-results">
         {{ _('Nothing to see here! The developer did not include any details.') }}
       </em>
     </div>

@@ -34,11 +34,11 @@
     {{ num }}
     {% if paging %}
     <div class="review-paging">
-      {% if paging.prev %}<a href="{{ paging.prev_url }}">&laquo;</a> &nbsp; {% endif %}
+      {% if paging.prev %}<a href="{{ paging.prev_url }}" class="button concealed">&laquo;</a> &nbsp; {% endif %}
       {% trans current=paging.current, total=paging.total %}
         {{ current }} of {{ total }}
       {% endtrans %}
-      {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">&raquo;</a>{% endif %}
+      {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}" class="button concealed">&raquo;</a>{% endif %}
     </div>
     {% endif %}
     <strong>{{ _('Review This App') }}</strong>
