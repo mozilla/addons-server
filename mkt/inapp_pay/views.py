@@ -27,9 +27,9 @@ from . import tasks
 log = commonware.log.getLogger('z.inapp_pay')
 
 
+@xframe_allow
 @require_inapp_request
 @anonymous_csrf
-@xframe_allow
 @write
 @waffle_switch('in-app-payments-ui')
 def pay_start(request, signed_req, pay_req):
@@ -42,9 +42,9 @@ def pay_start(request, signed_req, pay_req):
     return jingo.render(request, 'inapp_pay/pay_start.html', data)
 
 
+@xframe_allow
 @require_inapp_request
 @anonymous_csrf
-@xframe_allow
 @transaction.commit_on_success
 @login_required
 @post_required
@@ -136,8 +136,8 @@ def pay(request, signed_req, pay_req):
     return jingo.render(request, 'inapp_pay/thanks_for_payment.html', {})
 
 
-@anonymous_csrf
 @xframe_allow
+@anonymous_csrf
 @transaction.commit_on_success
 @login_required
 @write
