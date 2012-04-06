@@ -612,14 +612,17 @@ class TestButtonHtml(ButtonTest):
         compat.min.version = '4.0'
         compat.max.version = '12.0'
         self.version.compatible_apps = {amo.FIREFOX: compat}
-        self.version.is_compatible = True
+        self.version.is_compatible = (True, [])
         self.version.is_compatible_app.return_value = True
-        install = self.render(impala=True)('.install')
+        doc = self.render(impala=True)
+        install_shell = doc('.install-shell')
+        install = doc('.install')
         eq_(install.attr('data-min'), '4.0')
         eq_(install.attr('data-max'), '12.0')
         eq_(install.attr('data-is-compatible'), 'true')
         eq_(install.attr('data-is-compatible-app'), 'true')
         eq_(install.attr('data-compat-overrides'), '[]')
+        eq_(install_shell.find('.d2c-reasons-popup ul li').length, 0)
         # Also test overrides.
         override = [('10.0a1', '10.*')]
         self.version.compat_override_app_versions.return_value = override
@@ -627,6 +630,41 @@ class TestButtonHtml(ButtonTest):
         eq_(install.attr('data-is-compatible'), 'true')
         eq_(install.attr('data-compat-overrides'), json.dumps(override))
 
+    def test_d2c_attrs_binary(self):
+        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
+        compat = Mock()
+        compat.min.version = '4.0'
+        compat.max.version = '12.0'
+        self.version.compatible_apps = {amo.FIREFOX: compat}
+        self.version.is_compatible = (False, ['Add-on binary components.'])
+        self.version.is_compatible_app.return_value = True
+        doc = self.render(impala=True)
+        install_shell = doc('.install-shell')
+        install = doc('.install')
+        eq_(install.attr('data-min'), '4.0')
+        eq_(install.attr('data-max'), '12.0')
+        eq_(install.attr('data-is-compatible'), 'false')
+        eq_(install.attr('data-is-compatible-app'), 'true')
+        eq_(install.attr('data-compat-overrides'), '[]')
+        eq_(install_shell.find('.d2c-reasons-popup ul li').length, 1)
+
+    def test_d2c_attrs_strict_and_binary(self):
+        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
+        compat = Mock()
+        compat.min.version = '4.0'
+        compat.max.version = '12.0'
+        self.version.compatible_apps = {amo.FIREFOX: compat}
+        self.version.is_compatible = (False, ['strict', 'binary'])
+        self.version.is_compatible_app.return_value = True
+        doc = self.render(impala=True)
+        install_shell = doc('.install-shell')
+        install = doc('.install')
+        eq_(install.attr('data-min'), '4.0')
+        eq_(install.attr('data-max'), '12.0')
+        eq_(install.attr('data-is-compatible'), 'false')
+        eq_(install.attr('data-is-compatible-app'), 'true')
+        eq_(install.attr('data-compat-overrides'), '[]')
+        eq_(install_shell.find('.d2c-reasons-popup ul li').length, 2)
 
 class TestPremiumWebapp(ButtonTest):
 

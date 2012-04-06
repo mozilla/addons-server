@@ -208,7 +208,7 @@ class Version(amo.models.ModelBase):
 
     @amo.cached_property
     def is_compatible(self):
-        """Returns True if all server side conditions pass.
+        """Returns tuple of compatibility and reasons why if not.
 
         Server side conditions for determining compatibility are:
             * The add-on is an extension (not a theme, app, etc.)
@@ -219,9 +219,20 @@ class Version(amo.models.ModelBase):
         Note: This does not take into account the client conditions.
 
         """
-        return (self.addon.type == amo.ADDON_EXTENSION and
-                not self.files.filter(binary_components=True).exists() and
-                not self.files.filter(strict_compatibility=True).exists())
+        compat = True
+        reasons = []
+        if self.addon.type != amo.ADDON_EXTENSION:
+            compat = False
+            # TODO: We may want this. For now we think it may be confusing.
+            # reasons.append(_('Add-on is not an extension.'))
+        if self.files.filter(binary_components=True).exists():
+            compat = False
+            reasons.append(_('Add-on uses binary components.'))
+        if self.files.filter(strict_compatibility=True).exists():
+            compat = False
+            reasons.append(_('Add-on has opted into strict compatibility '
+                             'checking.'))
+        return (compat, reasons)
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
@@ -496,7 +507,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         if (waffle.switch_is_active('d2c-buttons') and
-            self.version.is_compatible and
+            self.version.is_compatible[0] and
             self.version.is_compatible_app(amo.APP_IDS[self.application.id])):
             return _('{app} {min} and later').format(app=self.application,
                                                      min=self.min)

@@ -29,6 +29,10 @@
     background-image: url(../../img/zamboni/icons/no-32x32.png);
 }
 
+.install-note .msg.m-not-compatible li {
+    list-style-type: disc;
+}
+
 .install-note .beta {
     display: none;
 }
@@ -208,4 +212,25 @@
     margin: 0;
     color: inherit;
     font-size: inherit;
+}
+
+.d2c-reasons-popup {
+    display: none;
+    ul {
+        margin: 1em 0 0 20px;
+        list-style: disc;
+    }
+    li {
+        margin-left: 1em;
+        margin-bottom: 1em;
+    }
+}
+.d2c-reasons-help {
+    background-color: @light-gray;
+    .border-radius(4px);
+    color: #fff;
+    display: inline-block;
+    padding: 4px;
+    margin: 0 8px;
+    position: relative;
 }

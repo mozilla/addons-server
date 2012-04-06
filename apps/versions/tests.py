@@ -300,7 +300,7 @@ class TestVersion(amo.tests.TestCase):
         # Base test for fixture before the rest.
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
-        eq_(version.is_compatible, True)
+        eq_(version.is_compatible[0], True)
         eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_type(self):
@@ -308,7 +308,7 @@ class TestVersion(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
         addon.update(type=amo.ADDON_PERSONA)
-        eq_(version.is_compatible, False)
+        eq_(version.is_compatible[0], False)
         eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_strict_opt_in(self):
@@ -317,7 +317,8 @@ class TestVersion(amo.tests.TestCase):
         version = amo.tests.version_factory(addon=addon)
         file = version.all_files[0]
         file.update(strict_compatibility=True)
-        eq_(version.is_compatible, False)
+        eq_(version.is_compatible[0], False)
+        assert 'strict compatibility' in ''.join(version.is_compatible[1])
         eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_binary_components(self):
@@ -326,7 +327,8 @@ class TestVersion(amo.tests.TestCase):
         version = amo.tests.version_factory(addon=addon)
         file = version.all_files[0]
         file.update(binary_components=True)
-        eq_(version.is_compatible, False)
+        eq_(version.is_compatible[0], False)
+        assert 'binary components' in ''.join(version.is_compatible[1])
         eq_(version.is_compatible_app(amo.FIREFOX), True)
 
     def test_is_compatible_app_max_version(self):

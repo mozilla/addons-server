@@ -69,6 +69,17 @@
     <p class="warning">{{ _("This add-on is hosted on the developer's own website and has not been reviewed by Mozilla.") }}</p>
   {% endif %}
 {% endif %}
+
+{% with reasons=version.is_compatible[1] %}
+  <div class="d2c-reasons-popup popup">
+    <p>{% trans app=APP.pretty %}
+      This add-on is not compatible with your version of {{ app }} because of
+      the following:
+    {% endtrans %}</p>
+    <ul>{% for reason in reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
+  </div>
+{% endwith %}
+
 </div> {# install-shell #}
 
 {% if addon.is_webapp() %}

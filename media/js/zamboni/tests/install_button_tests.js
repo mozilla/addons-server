@@ -197,6 +197,8 @@ $(document).ready(function() {
         this.check(this.expected);
         equal($('.extra', this.sandbox).length, 1);
         equal($('.notavail', this.sandbox).text().substr(0, 13), 'Not available');
+        equal($('.d2c-reasons-popup ul li', this.sandbox).length, 1);
+        equal($('.d2c-reasons-popup ul', this.sandbox).html().indexOf('blacklisted') !== -1, true);
     });
 
     // Server side checks are incompatible.

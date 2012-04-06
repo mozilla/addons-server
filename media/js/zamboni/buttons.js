@@ -98,7 +98,8 @@ var installButton = function() {
         premium = $this.hasClass('premium'),
         accept_eula = $this.hasClass('accept'),
         webapp = $this.hasattr('data-manifest-url'),
-        compatible = ($this.attr('data-is-compatible') == 'true' && $this.attr('data-is-compatible-app') == 'true'),
+        compatible = $this.attr('data-is-compatible') == 'true',
+        compatible_app = $this.attr('data-is-compatible-app') == 'true',
         waffle_d2c_buttons = $this.hasattr('data-waffle-d2c-buttons'),
         has_overrides = $this.hasattr('data-compat-overrides'),
         versions_url = $this.attr('data-versions'),
@@ -111,6 +112,7 @@ var installButton = function() {
                   msg: z.appMatchesUserAgent ? addto : gettext('Download Now')},
         appSupported = z.appMatchesUserAgent && min && max,
         $body = $(document.body),
+        $d2c_reasons = $this.closest('.install-shell').find('.d2c-reasons-popup ul'),
         olderBrowser,
         newerBrowser;
 
@@ -126,10 +128,17 @@ var installButton = function() {
         newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;
     }
 
+    // Default to compatible checking.
     if (waffle_d2c_buttons) {
-        // Firefox 10+ is compatible by default.
-        compatible = compatible && z.browserVersion != 0 &&
-                     VersionCompare.compareVersions(z.browserVersion, '10.0') >= 0;
+        if (!compatible_app) {
+            $d2c_reasons.append($('<li>', {text: gettext('Add-on has not been updated to support default-to-compatible.')}));
+            compatible = false;
+        }
+        // TODO: Figure out if this needs to handle other apps.
+        if (z.browserVersion != 0 && VersionCompare.compareVersions(z.browserVersion, '10.0') < 0) {
+            $d2c_reasons.append($('<li>', {text: gettext('You need to be using Firefox 10.0 or higher.')}));
+            compatible = false;
+        }
         // If it's still compatible, check the overrides.
         if (compatible && has_overrides) {
             var overrides = JSON.parse($this.attr('data-compat-overrides'));
@@ -139,6 +148,7 @@ var installButton = function() {
                 if (VersionCompare.compareVersions(z.browserVersion, _min) >= 0 ||
                     VersionCompare.compareVersions(z.browserVersion, _max) <= 0) {
                     compatible = false;
+                    $d2c_reasons.append($('<li>', {text: gettext('This version has been blacklisted for your Firefox version.')}));
                     return;
                 }
             });
@@ -257,6 +267,9 @@ var installButton = function() {
             params['old_version'] = z.browserVersion;
             return message(newerBrowser ? 'not_updated' : 'newer_version')();
         });
+        var nocompat = addExtra(function() {
+            return message('not_compatible')();
+        });
         var merge = addExtra(function() {
             // Prepend the platform message to the version message.  We only
             // want to move the installer when we're looking at an older
@@ -286,17 +299,39 @@ var installButton = function() {
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
-            // L10n: {0} is an app name, {1} is the app version.
-            warn(format(gettext('Not available for {0} {1}'),
-                              [z.appName, z.browserVersion]));
+            // If it's a bad platform, don't bother also showing the
+            // incompatible reasons.
+            if (!badPlatform) {
+                // L10n: {0} is an app name, {1} is the app version.
+                var warn_txt = gettext('Not available for {0} {1}');
+                if ($d2c_reasons.children().length) {
+                    warn_txt += '<span><a class="d2c-reasons-help" href="#">?</a></span>';
+                }
+                warn(format(warn_txt, [z.appName, z.browserVersion]));
+            }
             $button.closest('div').attr('data-version-supported', false);
             $button.addClass('concealed');
             if (!opts.addPopup) return;
 
-            if (badPlatform && olderBrowser) {
-                $button.addPopup(merge);
-            } else if (badPlatform && newerBrowser) {
-                $button.addPopup(_.bind(merge, {switchInstaller: true}));
+            if (badPlatform) {
+                $button.addPopup(pmsg);
+            } else if (!compatible) {
+                // Show compatibility message.
+                var $ishell = $button.closest('.install-shell');
+                params['versions_url'] = versions_url;
+                params['reasons'] = $d2c_reasons.html();
+
+                $button.addPopup(nocompat);
+
+                if ($d2c_reasons.children().length) {
+                    $ishell.find('.d2c-reasons-popup').popup(
+                        $ishell.find('.d2c-reasons-help'), {
+                            callback: function(obj) {
+                                return {pointTo: $(obj.click_target)};
+                            }
+                        }
+                    );
+                }
             } else {
                 // Bad version.
                 $button.addPopup(vmsg);

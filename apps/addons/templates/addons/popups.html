@@ -142,6 +142,18 @@
   <li><a class="installer" href="{href}">{msg}</a></li>
 {% endmacro %}
 
+{% macro not_compatible() %}
+{# js vars: reasons, url, versions_url #}
+<div class="install-note">
+  <p class="msg m-not-compatible">{% trans app=APP.pretty %}
+    This add-on is not compatible with your version of {{ app }} because of the
+    following:{% endtrans %}</p>
+  <ul>{reasons}</ul>
+  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
+  <p><a href="{versions_url}">{{ _('View other versions') }}</a></p>
+</div>
+{% endmacro %}
+
 {# These all go through normal Jinja templating. #}
 z.button.messages = {
   learn_more: {{ learn_more()|json|safe }},
@@ -152,5 +164,6 @@ z.button.messages = {
   unreviewed: {{ unreviewed()|json|safe }},
   selfhosted: {{ selfhosted()|json|safe }},
   platform_link: {{ platform_link()|json|safe }},
-  bad_platform: {{ bad_platform()|json|safe }}
+  bad_platform: {{ bad_platform()|json|safe }},
+  not_compatible: {{ not_compatible()|json|safe }}
 };
