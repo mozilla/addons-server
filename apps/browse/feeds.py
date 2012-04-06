@@ -48,10 +48,6 @@ class AddonFeedMixin(object):
 
 class CategoriesRss(AddonFeedMixin, Feed):
 
-    category = None
-    request = None
-    TYPE = amo.ADDON_EXTENSION
-
     def get_object(self, request, category_name=None):
         """
         Get the Category for which we are about to output
@@ -87,6 +83,36 @@ class CategoriesRss(AddonFeedMixin, Feed):
         if category:
             addons = addons.filter(categories__id=category.id)
         return addons[:20]
+
+
+class ExtensionCategoriesRss(CategoriesRss):
+    category = None
+    request = None
+    TYPE = amo.ADDON_EXTENSION
+    title = _('Extensions')
+
+    def description(self, category):
+        """Description for the feed as a whole."""
+        if category:
+            # L10n: %s is a category name.
+            return _(u'%s Add-ons') % category.name
+        else:
+            return _('Extensions')
+
+
+class ThemeCategoriesRss(CategoriesRss):
+    category = None
+    request = None
+    TYPE = amo.ADDON_THEME
+    title = _('Themes')
+
+    def description(self, category):
+        """Description for the feed as a whole."""
+        if category:
+            # L10n: %s is a category name.
+            return _(u'%s Themes') % category.name
+        else:
+            return self.title
 
 
 class FeaturedRss(AddonFeedMixin, Feed):

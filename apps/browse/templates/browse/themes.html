@@ -10,6 +10,9 @@
   {% endif %}
     <h1>{{ title }}</h1>
     <div id="themes-listing" class="island listing hero c">
+      {% if feed_url %}
+        <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
+      {% endif %}
       {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
       <div class="items">
         {{ addons.object_list|theme_grid }}
