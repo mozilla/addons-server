@@ -7,13 +7,17 @@
 {% set first_cat = cats[0] if cats else None %}
 
 {% block content %}
-  {% if first_cat %}
-    {{ mkt_breadcrumbs(items=[(url('home'), _('Home')),
-                              (first_cat.get_url_path(), first_cat),
-                              (None, product.name)]) }}
-  {% else %}
-    {{ mkt_breadcrumbs(product=product) }}
-  {% endif %}
+  <section class="crumb full">
+    <div>
+      {% if first_cat %}
+        {{ mkt_breadcrumbs(items=[(url('home'), _('Home')),
+                                  (first_cat.get_url_path(), first_cat),
+                                  (None, product.name)]) }}
+      {% else %}
+        {{ mkt_breadcrumbs(product=product) }}
+      {% endif %}
+    </div>
+  </section>
   <section class="product-details">
     <div class="visual">
       <img class="icon" src="{{ product.get_icon_url(64) }}" />

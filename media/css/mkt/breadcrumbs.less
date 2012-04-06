@@ -1,6 +1,6 @@
 @import 'lib';
 
-#breadcrumbs {
+.crumb {
     color: @text;
     font-family: @open-stack;
     width: 100%;
@@ -9,13 +9,12 @@
     border-top: 1px solid #c2c8cc;
     border-bottom: 1px solid #bdc2c5;
 
-    .gradient-two-color(rgba(176, 186, 192, 0.33), rgba(187, 195, 199, 0.33));
+    .gradient-two-color(rgba(176,186,192, 0.33), rgba(187,195,199, 0.33));
     padding-top: 3px;
-    margin: -24px 0 24px; // offset #page's margin-top when crumbs are on
+    margin-bottom: 24px;
     ol {
         list-style: none;
         padding: 0 0 5px;
-        .width(14);
         margin: 0 auto;
         line-height: 20px;
     }
