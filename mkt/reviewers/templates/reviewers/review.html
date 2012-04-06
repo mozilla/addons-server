@@ -191,13 +191,13 @@
 
       <div class="review-actions-section review-actions-tested data-toggle"
            data-value="{{ actions_minimal|join("|") }}">
-        <strong>{{ _('Tested on:') }}</strong>
-        <label>
-          {{ form.operating_systems.label }}
+        <strong>{{ _('Tested with:') }}</strong>
+        <label for="{{ form.operating_systems.auto_id }}">
+          {{ _('Device Types:') }}
         </label>
         {{ form.operating_systems }}
-        <label>
-          {{ form.applications.label }}
+        <label for="{{ form.applications.auto_id }}">
+          {{ _('Browsers:') }}
         </label>
         {{ form.applications }}
         {{ form.operating_systems.errors }}
