@@ -246,6 +246,9 @@ JS = {
         'js/impala/stats/table.js',
         'js/impala/stats/stats.js',
     ),
+    'mkt/in-app-payments': (
+        'js/mkt/inapp_payments.js',
+    ),
     'marketplace-experiments': (
         'js/marketplace-experiments/jquery-1.7.1.min.js',
         'js/marketplace-experiments/slider.js',

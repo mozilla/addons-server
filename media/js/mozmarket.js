@@ -8,12 +8,16 @@ https://developer.mozilla.org/en/Apps/In-app_payments
 (function(exports) {
 "use strict";
 
-exports.buy = function(signedRequest, onPaySuccess, onPayFailure) {
+var onPaySuccess, onPayFailure;
+
+exports.buy = function(signedRequest, _onPaySuccess, _onPayFailure) {
+    onPaySuccess = _onPaySuccess;
+    onPayFailure = _onPayFailure;
     if (typeof navigator.showPaymentScreen == 'undefined') {
         // Define our stub for prototyping.
         navigator.showPaymentScreen = showPaymentScreen;
     }
-    navigator.showPaymentScreen(signedRequest, onPaySuccess, onPayFailure);
+    navigator.showPaymentScreen(signedRequest, _onPaySuccess, _onPayFailure);
 };
 
 
@@ -32,6 +36,8 @@ if (typeof $ === 'undefined') {
     console.log('This prototype currently requires jQuery');
 }
 
+// TODO: we'll eventually hardcode server to marketplace.mozilla.org,
+// this is in place for local development and testing.
 setTimeout(function() {
     $('script').each(function(i, elem) {
         var src = $(elem).attr('src');
@@ -40,6 +46,43 @@ setTimeout(function() {
         }
     });
 }, 1);
+
+
+function handleMessage(msg) {
+    if (msg.origin !== server) {
+        console.log('Unexpected origin:', msg.origin);
+        return;
+    }
+    var $overlay = $('#moz-payment-overlay');
+    if (payWindow) {
+        payWindow.close();
+    } else if ($overlay.length) {
+        $overlay.remove();
+    }
+    console.log(msg.data);
+    switch (msg.data) {
+        case 'moz-pay-success':
+            console.log('calling', onPaySuccess);
+            if (onPaySuccess) {
+                onPaySuccess();
+            }
+            break;
+        case 'moz-pay-failure':
+            console.log('calling', onPayFailure);
+            if (onPayFailure) {
+                onPayFailure();
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+if ( window.addEventListener ) {
+    window.addEventListener( "message", handleMessage, false );
+} else if ( window.attachEvent ) {
+    window.attachEvent( "onmessage", handleMessage );
+}
 
 
 function showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
