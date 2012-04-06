@@ -2,7 +2,8 @@ from django.conf.urls.defaults import include, patterns, url
 from django.shortcuts import redirect
 
 from amo.urlresolvers import reverse
-from browse.feeds import CategoriesRss, FeaturedRss, SearchToolsRss
+from browse.feeds import (ExtensionCategoriesRss, FeaturedRss, SearchToolsRss,
+                          ThemeCategoriesRss)
 from . import views
 
 impala_patterns = patterns('',
@@ -29,6 +30,8 @@ urlpatterns = patterns('',
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
+    url('^themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
+        ThemeCategoriesRss(), name='browse.themes.rss'),
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
         name='browse.extensions'),
@@ -39,7 +42,7 @@ urlpatterns = patterns('',
         views.creatured, name='browse.creatured'),
 
     url('^extensions/(?:(?P<category_name>[^/]+)/)?format:rss$',
-        CategoriesRss(), name='browse.extensions.rss'),
+        ExtensionCategoriesRss(), name='browse.extensions.rss'),
 
     url('^personas/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),

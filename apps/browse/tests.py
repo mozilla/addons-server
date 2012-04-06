@@ -4,7 +4,6 @@ from dateutil.parser import parse as parse_dt
 import re
 from urlparse import urlparse
 
-from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import http as urllib
@@ -27,10 +26,9 @@ from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
 from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from browse import views, feeds
-from browse.views import locale_display_name, AddonFilter
+from browse import feeds
+from browse.views import locale_display_name, AddonFilter, ThemeFilter
 from translations.models import Translation
-from translations.query import order_by_translation
 from users.models import UserProfile
 from versions.models import Version
 
@@ -439,13 +437,30 @@ class TestFeeds(amo.tests.TestCase):
             eq_(item.text(), unicode(title))
             self._check_feed(url, self.rss_url, slug)
 
-    def test_feed(self):
+    def test_extensions_feed(self):
         eq_(self.client.get(self.rss_url).status_code, 200)
 
-    def test_sort_opts_urls(self):
+    def test_themes_feed(self):
+        Addon.objects.update(type=amo.ADDON_THEME)
+        Category.objects.update(type=amo.ADDON_THEME)
+        r = self.client.get(reverse('browse.themes.rss',
+                                    args=['alerts-updates']))
+        eq_(r.status_code, 200)
+
+    def test_extensions_sort_opts_urls(self):
         r = self.client.get(self.url, follow=True)
         s = pq(r.content)('#sorter')
         self._check_feed(self.url, self.rss_url, 'featured')
+        self._check_sort_urls(s.find('a.opt'), 'opts')
+        self._check_sort_urls(s.find('a.extra-opt'), 'extras')
+
+    def test_themes_sort_opts_urls(self):
+        self.url = reverse('browse.themes')
+        self.rss_url = reverse('browse.themes.rss')
+        self.filter = ThemeFilter
+        r = self.client.get(self.url, follow=True)
+        s = pq(r.content)('#sorter')
+        self._check_feed(self.url, self.rss_url, 'users')
         self._check_sort_urls(s.find('a.opt'), 'opts')
         self._check_sort_urls(s.find('a.extra-opt'), 'extras')
 
@@ -1018,7 +1033,7 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 
 
 class TestLegacyRedirects(amo.tests.TestCase):
-    fixtures = ('base/category.json',)
+    fixtures = ['base/category']
 
     def test_types(self):
         def redirects(from_, to):
@@ -1036,6 +1051,10 @@ class TestLegacyRedirects(amo.tests.TestCase):
                   '/extensions/alerts-updates/format:rss?sort=created')
         redirects('/browse/type:1/cat:72/sort:weeklydownloads/format:rss',
                   '/extensions/alerts-updates/format:rss?sort=popular')
+
+        Category.objects.get(id=72).update(type=amo.ADDON_THEME)
+        redirects('/browse/type:2/cat:72/format:rss',
+                '/themes/alerts-updates/format:rss')
 
         redirects('/browse/type:2', '/themes/')
         redirects('/browse/type:3', '/language-tools/')

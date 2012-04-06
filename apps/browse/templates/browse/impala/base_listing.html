@@ -47,11 +47,11 @@
     'themes': (url('browse.themes'), _('Themes')),
 }.get(section, 'extensions') %}
 
-{% if section == 'extensions' %}
+{% if section in ('extensions', 'themes') %}
   {% if category %}
-    {% set feed = url('browse.extensions.rss', category.slug) %}
+    {% set feed = url('browse.%s.rss' % section, category.slug) %}
   {% else %}
-    {% set feed = url('browse.extensions.rss') %}
+    {% set feed = url('browse.%s.rss' % section) %}
   {% endif %}
   {% set feed_url = feed|urlparams(sort=sorting) %}
   {% block rss_feed %}
