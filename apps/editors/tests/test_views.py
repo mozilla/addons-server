@@ -1612,7 +1612,7 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         items = pq(r.content)('#review-files .files .file-info')
         eq_(items.length, 1)
-        eq_(items.find('a.install').text(), 'All Platforms')
+        eq_(items.find('a.editors-install').text(), 'All Platforms')
 
     def test_no_items(self):
         r = self.client.get(self.url)
@@ -1904,7 +1904,7 @@ class TestReview(ReviewBase):
             self.addon.update(premium_type=type_)
             res = self.client.get(self.url)
             doc = pq(res.content)
-            url = doc('#review-files .file-info .install').attr('href')
+            url = doc('#review-files .file-info .editors-install').attr('href')
             assert 'watermarked' in url, (
                 'Expected XPI URL to be watermarked: %r' % url)
 
