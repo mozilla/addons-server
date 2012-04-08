@@ -3,7 +3,7 @@ import jingo
 from django import http
 
 from access import acl
-from addons.models import Addon
+from addons.models import Addon, DeviceType
 from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
 from mkt.webapps.models import Installed

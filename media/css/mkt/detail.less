@@ -80,6 +80,12 @@
             }
         }
     }
+    &.slider {
+        height: 186px;
+        border-top: 1px solid #a0a4a7;
+        border-bottom: 1px solid #babec0;
+        .gradient-two-color(rgba(203, 210, 214, .33), rgba(216, 221, 223, .33))
+    }
 }
 
 .description {
@@ -106,60 +112,24 @@
     }
     li {
         display: inline-block;
-        height: 22px;
-        line-height: 20px;
+        height: 23px;
         position: relative;
-        padding-left: 28px;
-        margin-left: 5px;
-        overflow: hidden;
-        &.incompatible {
-            opacity: .5;
-        }
-        &:before, &:after {
-            content: '';
-            background: @white;
-            display: block;
-            position: absolute;
-            .border-radius(2px);
-            top: 0;
-            left: 0;
-            border: 2px solid @medium-gray;
-        }
-        &.mobile {
-            &:before {
-                left: 3px;
-                width: 10px;
-                height: 12px;
-                border-width: 3px 2px 6px;
-            }
-            &:after {
-                border-width: 1px;
-                border-color: @white;
-                left: 9px;
-                top: 17px;
-            }
+        text-indent: -99999px;
+        width: 26px;
+        background: url(../../img/mkt/icons/device_icons.png) no-repeat 0 0;
+        &.mobile.unavailable {
+            background-position: 0 -23px;
         }
         &.tablet {
-            &:before {
-                top: 3px;
-                left: 0;
-                width: 16px;
-                height: 10px;
-            }
-            &:after {
-                display: none;
+            background-position: 0 -46px;
+            &.unavailable {
+                background-position: 0 -69px;
             }
         }
         &.desktop {
-            &:before {
-                top: 3px;
-                width: 16px;
-                height: 8px;
-            }
-            &:after {
-                top: 15px;
-                width: 6px;
-                left: 5px;
+            background-position: 0 -92px;
+            &.unavailable {
+                background-position: 0 -115px;
             }
         }
     }
@@ -249,10 +219,31 @@
         }
     }
 }
-
 .html-rtl .device-list {
     li {
         margin: 0 5px 0 0;
+    }
+}
+
+.support ul {
+    margin-top: 47px;
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+    li {
+        float: left;
+        .width(7);
+        margin-bottom: 33px;
+        h3 {
+            font-size: 22px;
+        }
+        p {
+            margin: 0;
+            a {
+                padding-right: 19px;
+                background: url(../../img/mkt/arrows/support.png) no-repeat right 3px;
+            }
+        }
     }
 }
 
@@ -260,6 +251,9 @@
 @media (max-width: @7col) {
     .product-details {
 
+    }
+    .support ul li {
+        .width(2);
     }
 }
 
@@ -291,6 +285,9 @@
             display: inline-block;
             padding-left: 20px;
         }
+    }
+    .support ul li {
+        .width(4);
     }
 }
 

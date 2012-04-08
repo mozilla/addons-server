@@ -1,10 +1,15 @@
 <div class="device-list c">
-  <h4>{{ _('Optimized for') }}</h4>
   <ul>
-    {% for device in device_types %}
-      <li class="{{ device.class_name }}">
+    {% for device in all_device_types %}
+      {% if device in device_types %}
+      <li class="{{ device.class_name }}" title="{{ device.name }}">
         {{ device.name }}
       </li>
+      {% else %}
+      <li class="{{ device.class_name }} unavailable" title="{{ device.name }}">
+        {{ device.name }}
+      </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>

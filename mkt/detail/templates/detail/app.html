@@ -34,12 +34,10 @@
         {% endtrans %}
       </p>
       {{ device_list(product) }}
-      <a href="{{ product.get_detail_url('privacy') }}">
-        {{ _('Privacy Policy') }}</a>
       {% set categories = product.all_categories %}
       {% if categories %}
-        <h3>{{ _('Categories') }}</h3>
-        <ul class="categories">
+        <h3 class="hidden">{{ _('Categories') }}</h3>
+        <ul class="categories hidden">
           {% for category in categories %}
           <li>
             <a href="{{ category.get_url_path() }}">
@@ -48,14 +46,6 @@
           </li>
           {% endfor %}
         </ul>
-      {% endif %}
-      {% if product.support_email %}
-        {{ emaillink(product.support_email.localized_string,
-                     _('Support Email')) }}
-      {% endif %}
-      {% if product.support_url %}
-        <a href="{{ product.support_url|external_url }}">
-          {{ _('Support Site') }}</a>
       {% endif %}
     </div>
     <div class="actions">
@@ -84,4 +74,38 @@
       </ul>
     </section>
   {% endif %}
+
+  <section class="support c">
+    <ul>
+      {% if product.support_email %}
+        <li>
+          <h3>{{ _('Contact Support') }}</h3>
+          <p>{{ emaillink(product.support_email.localized_string,
+                     _('Support Email')) }}</p>
+        </li>
+      {% endif %}
+      <li>
+        <h3>{{ _('Privacy Policy') }}</h3>
+        <p>
+          <a href="{{ product.get_detail_url('privacy') }}">
+            {{ _('Privacy Policy') }}
+          </a>
+        </p>
+      </li>
+      {% if product.support_url %}
+        <li>
+          <h3>{{ _('App Homepage') }}</h3>
+          <p>
+            <a href="{{ product.support_url|external_url }}">
+              {{ _('App Homepage') }}
+            </a>
+          </p>
+        </li>
+      {% endif %}
+      <li>
+        <h3>{{ _('Published') }}</h3>
+        <p>2 months ago</p>
+      </li>
+    </ul>
+  </section>
 {% endblock %}
