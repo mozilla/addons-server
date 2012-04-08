@@ -108,6 +108,7 @@ def mkt_breadcrumbs(context, product=None, items=None, add_default=False):
     return impala_breadcrumbs(context, crumbs, add_default)
 
 
+@register.filter
 def price_label(product):
     if product.is_premium() and product.premium:
         return product.premium.get_price_locale()

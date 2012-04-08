@@ -1,5 +1,5 @@
-function slider(el) {
-    var $el = $(el),
+function slider() {
+    var $el = $(this),
         $ul = $('ul', $el).eq(0),
         startX,
         newX,
@@ -66,5 +66,5 @@ function slider(el) {
 }
 
 z.page.on('fragmentloaded', function() {
-    slider($('.slider'));
+    // $('.slider').each(slider);
 });

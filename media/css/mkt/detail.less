@@ -53,6 +53,35 @@
         }
     }
 }
+
+.previews {
+    ul {
+        white-space: nowrap;
+        padding: 0;
+        text-align: center;
+    }
+    li {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        a {
+            display: block;
+            .border-radius(3px);
+            .box-shadow(0 1px 2px #000);
+            width: 200px;
+            height: 150px;
+            background: white;
+            padding: 8px;
+            margin: 0 16px;
+            img {
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+}
+
 .description {
     clear: both;
     color: @text-gray;

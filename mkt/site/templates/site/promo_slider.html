@@ -1,0 +1,15 @@
+<div class="promo-slider">
+  <ul>
+    {% for product in products %}
+        <li>
+          <a href="{{ product.get_url_path() }}">
+            <img src="/media/img/mkt/placehold.png">
+            <h3>{{ product.name }}</h3>
+            <p>
+              {{ product|price_label }}
+            </p>
+          </a>
+        </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,11 +1,10 @@
 import jingo
 
-from addons.models import Addon
-
+from mkt.webapps.models import Webapp
 
 def home(request):
     """The home page."""
-    featured = []
-    popular= []
+    featured = Webapp.objects.all()
+    popular = Webapp.objects.all()
     return jingo.render(request, 'home/home.html', {'featured': featured,
                         'popular': popular})

@@ -29,14 +29,19 @@
         margin-bottom: 0px;
     }
 }
+.featured, .popular {
+    &.slider {
+        height: 282px;
+    }
+}
 .featured {
     background: #60747F;
     .grain;
     color: @white;
-    height: 282px;
-    border-bottom: 1px solid #666;
+    &.slider {
+        border-bottom: 1px solid #666;
+    }
 }
-.popular-slider {
+.popular h2 {
     padding-top: 10px;
-    height: 282px;
 }

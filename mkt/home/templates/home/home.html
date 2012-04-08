@@ -12,29 +12,16 @@
       </p>
     </div>
   </section>
-  <section class="featured slider full">
+  <section class="featured full">
     <div><h2>{{ _('Featured') }}</h2></div>
+  </section>
+  <section class="featured full slider">
     {{ featured|promo_slider }}
   </section>
-  <section class="popular-slider slider full">
+  <section class="popular full">
     <div><h2>{{ _('Popular') }}</h2></h2>
+  </section>
+  <section class="popular slider full">
     {{ popular|promo_slider }}
   </section>
-{% endblock %}
-
-{% block dbgoverlay %}
-<img id="mock" src="http://people.mozilla.com/~mclaypotch/marketplace-homepage.png"
-     style="position:absolute;top:0;left:0;right:0;margin:auto;opacity:0;pointer-events:none;-moz-transition:1s opacity ease-out;">
-<script>
-  window.addEventListener('keydown', function(e) {
-    if (e.keyCode == 77) {
-      document.getElementById('mock').style.opacity = '1';
-    }
-  });
-  window.addEventListener('keyup', function(e) {
-    if (e.keyCode == 77) {
-      document.getElementById('mock').style.opacity = '0';
-    }
-  });
-</script>
 {% endblock %}
