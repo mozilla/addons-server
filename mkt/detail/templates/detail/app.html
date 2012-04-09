@@ -104,7 +104,12 @@
       {% endif %}
       <li>
         <h3>{{ _('Published') }}</h3>
-        <p>2 months ago</p>
+        <p>
+          <time isotime="{{ product.created|isotime }}"
+                title="{{ product.created|isotime }}">
+            {{ product.created|timesince }}
+          </time>
+        </p>
       </li>
     </ul>
   </section>
