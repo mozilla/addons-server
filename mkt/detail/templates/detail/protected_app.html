@@ -1,0 +1,74 @@
+{% extends 'mkt/base.html' %}
+
+{% block extrahead %}
+  {% if settings.ENGAGE_ROBOTS and not product.is_public() %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+{% endblock %}
+
+{% set is_dev = request.check_ownership(product, require_owner=False,
+                                        ignore_disabled=True) %}
+
+{% macro notification(product, amo, is_dev) %}
+  {% if not product.is_public() %}
+    <section id="product-status" class="full notification-box">
+      <div>
+        {% if is_dev or is_admin %}
+          {% set status_url = product.get_dev_url('versions') %}
+          {% if product.status == amo.STATUS_NULL %}
+            {% trans %}
+              This app is currently incomplete and invisible to other users.
+              To complete your submission, visit its
+              <a href="{{ status_url }}">Manage Status page</a>.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_PENDING %}
+            {% trans %}
+              This app is <b>awaiting review</b>.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_REJECTED %}
+            {% trans %}
+              This app is currently rejected and invisible to other users.
+              To complete your submission, visit its
+              <a href="{{ status_url }}">Manage Status page</a>.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_DISABLED %}
+            {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
+              This app has been disabled by Mozilla. If you have any questions
+              about this, please email {{ email }}.
+            {% endtrans %}
+          {% elif product.disabled_by_user %}
+            {% trans %}
+              This app has been disabled by its developer and is invisible to
+              other users. To re-enable it, visit its
+              <a href="{{ status_url }}">Manage Status page</a>.
+            {% endtrans %}
+          {% endif %}
+        {% else %}
+          {% if product.status == amo.STATUS_NULL %}
+            {% trans %}
+              This app is <b>incomplete</b>.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_PENDING %}
+            {% trans %}
+              This app is <b>awaiting review</b>.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_REJECTED %}
+            {% trans %}
+              This app has been rejected and is unavailable until its developer
+              submits a new version.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_DISABLED %}
+            {% trans %}
+              This app has been disabled by Mozilla and is no longer available.
+            {% endtrans %}
+          {% elif product.disabled_by_user %}
+            {% trans %}
+              This app has been disabled by its developer and is no longer
+              available.
+            {% endtrans %}
+          {% endif %}
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+{% endmacro %}

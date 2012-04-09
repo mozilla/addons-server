@@ -3,6 +3,18 @@
 @text-gray: #424f5a;
 @link: #2d87ca;
 
+#product-status {
+    .border-radius(0);
+    .border-box;
+    a {
+        font-weight: bold;
+    }
+}
+
+.product-details + #product-status {
+    margin-top: 24px;
+}
+
 .product-details {
     font-size: 14px;
     text-shadow: 0 1px 0 @white;

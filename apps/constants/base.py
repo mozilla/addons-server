@@ -33,6 +33,7 @@ STATUS_CHOICES = {
     STATUS_LITE_AND_NOMINATED:
         _(u'Preliminarily Reviewed and Awaiting Full Review'),
     STATUS_PURGATORY: _(u'Pending a review choice'),
+    STATUS_DELETED: _(u'Deleted'),
     STATUS_REJECTED: _(u'Rejected')
 }
 
@@ -60,6 +61,9 @@ PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
 
 # Newly submitted apps begin life at this status.
 WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
+
+# An app with this status makes its detail page "invisible".
+WEBAPPS_UNLISTED_STATUSES = STATUS_PENDING, STATUS_DISABLED, STATUS_REJECTED
 
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1

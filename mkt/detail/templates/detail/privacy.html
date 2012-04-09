@@ -1,4 +1,4 @@
-{% extends 'mkt/base.html' %}
+{% extends 'detail/protected_app.html' %}
 
 {% block title %}
   {# L10n: {0} is the name of the app. #}
@@ -6,11 +6,19 @@
 {% endblock %}
 
 {% block content %}
-{{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
-<section class="primary">
-  <div class="prose">
-    <h2>{{ _('Privacy Policy') }}</h2>
-    <div class="policy-statement">{{ product.privacy_policy|nl2br }}</div>
-  </div>
-</section>
+  {{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
+  {% if not (is_dev or is_admin) and product.is_invisible() %}
+    <section class="product-details">
+      <h1>{{ product.name }}</h1>
+    </section>
+    {{ notification(product, amo, is_dev) }}
+  {% else %}
+    {{ notification(product, amo, is_dev) }}
+    <section>
+      <div class="prose">
+        <h2>{{ _('Privacy Policy') }}</h2>
+        <div class="policy-statement">{{ product.privacy_policy|nl2br }}</div>
+      </div>
+    </section>
+  {% endif %}
 {% endblock %}

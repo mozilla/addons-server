@@ -3,10 +3,10 @@ from django.contrib.auth.models import AnonymousUser
 
 from tower import ugettext as _
 
+from access import acl
 import amo
 from amo.context_processors import get_collect_timings
 from amo.urlresolvers import reverse
-from access import acl
 import mkt
 from zadmin.models import get_config
 
@@ -49,5 +49,6 @@ def global_settings(request):
                    tools_links=tools_links,
                    tools_title=tools_title,
                    ADMIN_MESSAGE=get_config('site_notice'),
-                   collect_timings_percent=get_collect_timings())
+                   collect_timings_percent=get_collect_timings(),
+                   is_admin=acl.action_allowed(request, 'Addons', 'Edit'))
     return context

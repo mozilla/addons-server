@@ -47,13 +47,14 @@ def action_allowed_user(user, app, action):
     return allowed
 
 
-def check_ownership(request, obj, require_owner=False):
+def check_ownership(request, obj, require_owner=False, ignore_disabled=False):
     """
     A convenience function.  Check if request.user has permissions
     for the object.
     """
     if isinstance(obj, Addon):
-        return check_addon_ownership(request, obj, viewer=not require_owner)
+        return check_addon_ownership(request, obj, viewer=not require_owner,
+                                     ignore_disabled=ignore_disabled)
     elif isinstance(obj, Collection):
         return check_collection_ownership(request, obj, require_owner)
     else:

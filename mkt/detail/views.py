@@ -3,22 +3,23 @@ import jingo
 from django import http
 
 from access import acl
-from addons.models import Addon, DeviceType
+from addons.models import Addon
 from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
 from mkt.webapps.models import Installed
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_enabled_view = addon_view_factory(qs=Addon.objects.enabled)
+addon_all_view = addon_view_factory(qs=Addon.objects.all)
 
 
-@addon_view
+@addon_all_view
 def detail(request, addon):
     """Product details page."""
     return jingo.render(request, 'detail/app.html', {'product': addon})
 
 
-@addon_enabled_view
+@addon_all_view
 def privacy(request, addon):
     if not (addon.is_public() or acl.check_reviewer(request)):
         raise http.Http404

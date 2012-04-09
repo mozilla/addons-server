@@ -1,6 +1,13 @@
-{% extends 'mkt/base.html' %}
+{% extends 'detail/protected_app.html' %}
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% for preview in product.all_previews %}
+    <link rel="prefetch" href="{{ preview.image_url }}">
+  {% endfor %}
+{% endblock %}
 
 {# Breadcrumbs show just one category for now. #}
 {% set cats = product.all_categories %}
@@ -14,13 +21,19 @@
   {% else %}
     {{ mkt_breadcrumbs(product=product) }}
   {% endif %}
+{% if not (is_dev or is_admin) and not product.is_public() %}
+  <section class="product-details">
+    <h1>{{ product.name }}</h1>
+  </section>
+  {{ notification(product, amo, is_dev) }}
+{% else %}
   <section class="product-details">
     <div class="visual">
       <img class="icon" src="{{ product.get_icon_url(64) }}" />
     </div>
     <div class="vitals">
-      <h2>{{ product.name }}</h2>
-      <h3 class="authors">{{ users_list(product.listed_authors) }}</h3>
+      <h1>{{ product.name }}</h1>
+      <h2 class="authors">{{ users_list(product.listed_authors) }}</h2>
       <p class="downloads">
         {% trans cnt=product.weekly_downloads,
                  num=product.weekly_downloads|numberfmt %}
@@ -46,12 +59,15 @@
     </div>
     <div class="actions">
       {{ market_button(product) }}
-      {% if request.check_ownership(product, require_owner=False) %}
+      {% if is_dev %}
         <p><a href="{{ product.get_dev_url() }}" class="button developer manage">
           {{ _('Manage') }}</a></p>
       {% endif %}
     </div>
   </section>
+
+  {{ notification(product, amo, is_dev) }}
+
   <section class="description">
     <p>{{ product.description }}</p>
   </section>
@@ -109,4 +125,5 @@
       </li>
     </ul>
   </section>
+{% endif %}
 {% endblock %}
