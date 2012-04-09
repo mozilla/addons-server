@@ -11,6 +11,7 @@ from tower import strip_whitespace
 
 import amo
 import amo.tests
+from addons.tests.test_views import setup_premium
 from addons.models import AddonCategory, AddonUser, Category
 from users.models import UserProfile
 from mkt.webapps.models import Webapp
@@ -179,3 +180,24 @@ class TestReportAbuse(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.post(self.url, {'text': 'this is some rauncy ish'})
         self.assertRedirects(r, self.webapp.get_detail_url())
+
+
+class TestPurchaseDetails(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(pk=337141)
+        setup_premium(self.webapp)
+        self.url = self.webapp.get_detail_url()
+
+    def test_details_no_preauth(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.get(self.url)
+        eq_(len(pq(res.content)('#pay form')), 0)
+
+    @mock.patch('users.models.UserProfile.get_preapproval')
+    def test_details_preauth(self, get_preapproval):
+        get_preapproval.return_value = 'foo'
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.get(self.url)
+        eq_(len(pq(res.content)('#pay form')), 1)

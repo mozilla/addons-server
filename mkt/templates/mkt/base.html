@@ -70,6 +70,14 @@
     <div id="pay" class="overlay">
       <section>
         <h2>Do you wish to purchase {name} for {price}?</h2>
+        {% if request.amo_user and request.amo_user.get_preapproval() %}
+          <form id="preapproval" method="post"
+                action="{{ url('users.payments.preapproval') }}">
+            {{ csrf() }}
+            <p>{{ _("Your wallet isn't set up yet") }}</p>
+            <p><button>{{ _('Set up') }}</button></p>
+          </form>
+        {% endif %}
         <a href="#" id="payment-confirm" class="button">Yup</a>
         <a href="#" id="payment-cancel" class="button">Nope</a>
       </section>
