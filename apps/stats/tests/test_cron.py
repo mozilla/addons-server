@@ -155,8 +155,6 @@ class TestIndexInstalled(amo.tests.ESTestCase):
         eq_(res['date'], self.today)
         eq_(res['addon'], self.webapp.pk)
 
-    def test_distinct(self):
-
     @mock.patch('mkt.webapps.models.Installed.index')
     def test_index(self, index):
         in_ = Installed.objects.create(addon=self.webapp, user=self.user)
