@@ -38,11 +38,14 @@ if (typeof $ === 'undefined') {
 
 // TODO: we'll eventually hardcode server to marketplace.mozilla.org,
 // this is in place for local development and testing.
+// WARNING: this is pretty much the most insecure code ever.
 setTimeout(function() {
     $('script').each(function(i, elem) {
         var src = $(elem).attr('src');
         if (src.search('mozmarket.js') != -1) {
             server = src.replace(/(https?:\/\/[^\/]+).*/g, '$1');
+            // When discovering the server based on a CDN link, convert the URL.
+            server = server.replace(/(marketplace)(-dev?)-cdn/g, '$1$2');
         }
     });
 }, 1);
