@@ -1,11 +1,11 @@
 from datetime import datetime
 
 from django.conf import settings
-from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 
 import commonware.log
 import django_tables as tables
+import jingo
 import jinja2
 from tower import ugettext_lazy as _lazy
 
@@ -21,11 +21,10 @@ from mkt.webapps.models import Webapp
 log = commonware.log.getLogger('z.mailer')
 
 
-def send_mail(template, subject, emails, context, perm_setting=None):
-    template = loader.get_template(template)
+def send_mail(request, template, subject, emails, context, perm_setting=None):
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify(reverse('account.settings')) + '#notifications'
-    amo_send_mail(subject, template.render(Context(context, autoescape=False)),
+    amo_send_mail(subject, jingo.render_to_string(request, template, context),
                   recipient_list=emails,
                   from_email=settings.NOBODY_EMAIL,
                   use_blacklist=False, perm_setting=perm_setting,
@@ -120,9 +119,9 @@ class ReviewBase:
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
-        send_mail('reviewers/emails/decisions/%s.txt' % template,
+        send_mail(self.request, 'reviewers/emails/decisions/%s.txt' % template,
                   subject % self.addon.name,
-                  emails, Context(data), perm_setting='app_reviewed')
+                  emails, data, perm_setting='app_reviewed')
 
     def get_context_data(self):
         return {'name': self.addon.name,
@@ -144,18 +143,18 @@ class ReviewBase:
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        send_mail('reviewers/emails/decisions/info.txt',
+        send_mail(self.request, 'reviewers/emails/decisions/info.txt',
                    u'Submission Update: %s' % self.addon.name,
-                   emails, Context(self.get_context_data()),
+                   emails, self.get_context_data(),
                    perm_setting='app_individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % self.addon)
-        send_mail('reviewers/emails/super_review.txt',
+        send_mail(self.request, 'reviewers/emails/super_review.txt',
                    u'Super Review Requested: %s' % self.addon.name,
                    [settings.MKT_SENIOR_EDITORS_EMAIL],
-                   Context(self.get_context_data()))
+                   self.get_context_data())
 
 
 class ReviewApp(ReviewBase):
