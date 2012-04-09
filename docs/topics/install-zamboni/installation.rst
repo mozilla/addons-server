@@ -265,6 +265,16 @@ Run The Marketplace Server
     ./manage.py runserver --settings=settings_local_mkt 0.0.0.0:8000
 
 
+
+Browser ID
+----------
+
+We use `Browser ID (Persona) <https://browserid.org/>`_ to log in and create accounts.
+In order for this to work you need to set ``SITE_URL`` in your local
+settings file based on how you run your dev server. Here is an example::
+
+    SITE_URL = 'http://localhost:8000'
+
 Create an Admin User
 --------------------
 
