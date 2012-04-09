@@ -70,7 +70,7 @@
     <div id="pay" class="overlay">
       <section>
         <h2>Do you wish to purchase {name} for {price}?</h2>
-        {% if request.amo_user and request.amo_user.get_preapproval() %}
+        {% if request.amo_user and not request.amo_user.get_preapproval() %}
           <form id="preapproval" method="post"
                 action="{{ url('users.payments.preapproval') }}">
             {{ csrf() }}

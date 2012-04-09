@@ -193,11 +193,11 @@ class TestPurchaseDetails(amo.tests.TestCase):
     def test_details_no_preauth(self):
         self.client.login(username='regular@mozilla.com', password='password')
         res = self.client.get(self.url)
-        eq_(len(pq(res.content)('#pay form')), 0)
+        eq_(len(pq(res.content)('#pay form')), 1)
 
     @mock.patch('users.models.UserProfile.get_preapproval')
     def test_details_preauth(self, get_preapproval):
-        get_preapproval.return_value = 'foo'
+        get_preapproval.return_value = True
         self.client.login(username='regular@mozilla.com', password='password')
         res = self.client.get(self.url)
-        eq_(len(pq(res.content)('#pay form')), 1)
+        eq_(len(pq(res.content)('#pay form')), 0)
