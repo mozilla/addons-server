@@ -19,12 +19,15 @@
 {% endblock %}
 
 {% block content %}
+<section class="crumb full">
+  <div>
+    {{ mkt_breadcrumbs(items=[(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                              (addon.get_url_path(), addon.name),
+                              (link, _('Statistics'))]) }}
+  </div>
+</section>
 <section id="stats">
   <header class="c">
-    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                           (addon.get_url_path(), addon.name),
-                           (link, _('Statistics'))]) }}
-
     <hgroup class="c">
       <h1 class="addon"{{ addon.name|locale_html }}>
         {# L10n: {0} is an add-on name #}
