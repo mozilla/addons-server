@@ -284,7 +284,7 @@ def check_stats_permission(request, addon, for_contributions=False):
     else:  # For contribution stats.
         # Only authors and Contribution Stats Viewers.
         if (addon.has_author(request.amo_user) or
-            acl.action_allowed(request, 'ContributionStats', 'View')):
+            acl.action_allowed(request, 'RevenueStats', 'View')):
             return
 
     raise PermissionDenied

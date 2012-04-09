@@ -116,8 +116,8 @@ class TestSeriesSecurity(ESStatsTest):
         user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
         group1 = Group.objects.create(name='Stats', rules='Stats:View')
         GroupUser.objects.create(user=user, group=group1)
-        group2 = Group.objects.create(name='Contribution Stats',
-                                      rules='ContributionStats:View')
+        group2 = Group.objects.create(name='Revenue Stats',
+                                      rules='RevenueStats:View')
         GroupUser.objects.create(user=user, group=group2)
         self.login_as_visitor()
 
@@ -150,8 +150,8 @@ class TestSeriesSecurity(ESStatsTest):
         user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
         group1 = Group.objects.create(name='Stats', rules='Stats:View')
         GroupUser.objects.create(user=user, group=group1)
-        group2 = Group.objects.create(name='Contribution Stats',
-                                      rules='ContributionStats:View')
+        group2 = Group.objects.create(name='Revenue Stats',
+                                      rules='RevenueStats:View')
         GroupUser.objects.create(user=user, group=group2)
         self.login_as_visitor()
 

@@ -177,7 +177,7 @@ class TestCollections(amo.tests.TestCase):
 
         # Member of group with Collections:Edit permission.
         fake_request.groups = (Group(name='Collections Agency',
-                                     rules='Collections:Edit'),)
+                                     rules='CollectionStats:View'),)
         eq_(c.can_view_stats(fake_request), True)
 
         # Developer.

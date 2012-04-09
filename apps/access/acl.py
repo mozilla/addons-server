@@ -91,7 +91,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     # Deleted addons can't be edited at all.
     if addon.is_deleted:
         return False
-    # Admins can do anything.
+    # Users with 'Addons:Edit' can do anything.
     if action_allowed(request, 'Addons', 'Edit'):
         return True
     # Only admins can edit admin-disabled addons.
