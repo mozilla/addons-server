@@ -3,6 +3,7 @@ import json
 import time
 from urllib import urlencode
 import urlparse
+import uuid
 
 from django.conf import settings
 from django.core.urlresolvers import NoReverseMatch
@@ -214,10 +215,7 @@ class Installed(amo.models.ModelBase):
     """Track WebApp installations."""
     addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
-    # This is the email used by user at the time of installation.
-    # It might be the real email, or a pseudonym, this is what will be going
-    # into the receipt for verification later.
-    email = models.CharField(max_length=255, db_index=True)
+    uuid = models.CharField(max_length=255, db_index=True, unique=True)
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
@@ -236,11 +234,11 @@ class Installed(amo.models.ModelBase):
 
 
 @receiver(models.signals.post_save, sender=Installed)
-def add_email(sender, **kw):
+def add_uuid(sender, **kw):
     if not kw.get('raw'):
         install = kw['instance']
-        if not install.email and install.premium_type == None:
-            install.email = install.user.email
+        if not install.uuid and install.premium_type == None:
+            install.uuid = ('%s-%s' % (install.pk, str(uuid.uuid4())))
             install.premium_type = install.addon.premium_type
             install.save()
 
@@ -254,8 +252,8 @@ def create_receipt(installed_pk):
     receipt = dict(typ='purchase-receipt',
                    product={'url': installed.addon.origin,
                             'storedata': urlencode({'id': int(addon_pk)})},
-                   user={'type': 'email',
-                         'value': installed.email},
+                   user={'type': 'directed-identifier',
+                         'value': installed.uuid},
                    iss=settings.SITE_URL,
                    nbf=time.mktime(installed.created.timetuple()),
                    iat=time.time(),

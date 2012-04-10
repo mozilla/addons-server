@@ -262,9 +262,9 @@ class TestReceipt(amo.tests.TestCase):
             self.create_install(self.user, self.webapp)
             assert self.webapp.get_receipt(self.user)
 
-    def test_install_has_email(self):
+    def test_install_has_uuid(self):
         install = self.create_install(self.user, self.webapp)
-        eq_(install.email, u'regular@mozilla.com')
+        assert install.uuid.startswith(str(install.pk))
 
     def test_install_not_premium(self):
         for type_ in amo.ADDON_FREES:

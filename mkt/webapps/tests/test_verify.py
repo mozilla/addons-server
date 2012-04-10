@@ -32,7 +32,10 @@ class TestVerify(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.user_data = {'user': {'value': self.user.email}}
+        self.user_data = {'user': {'type': 'directed-identifier',
+                                   'value': 'some-uuid'},
+                          'product': {'url': 'http://f.com',
+                                      'storedata': urlencode({'id': 3615})}}
 
     def get_decode(self, addon_id, receipt):
         # Ensure that the verify code is using the test database cursor.
@@ -46,7 +49,9 @@ class TestVerify(amo.tests.TestCase):
         return self.get_decode(addon_id, '')
 
     def make_install(self):
-        return Installed.objects.create(addon=self.addon, user=self.user)
+        install = Installed.objects.create(addon=self.addon, user=self.user)
+        install.update(uuid='some-uuid')
+        return install
 
     def make_purchase(self):
         return AddonPurchase.objects.create(addon=self.addon, user=self.user)
@@ -65,7 +70,23 @@ class TestVerify(amo.tests.TestCase):
         eq_(self.get(1, {})['status'], 'invalid')
 
     def test_no_addon(self):
-        eq_(self.get(0, {'user': {'value': 'a@a.com'}})['status'], 'invalid')
+        user_data = self.user_data.copy()
+        del user_data['product']
+        eq_(self.get(0, user_data)['status'], 'invalid')
+
+    def test_user_type_incorrect(self):
+        user_data = self.user_data.copy()
+        user_data['user']['type'] = 'nope'
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'invalid')
+
+    def test_user_value_incorrect(self):
+        user_data = self.user_data.copy()
+        user_data['user']['value'] = 'ugh'
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'invalid')
 
     def test_user_addon(self):
         self.make_install()
@@ -130,14 +151,6 @@ class TestVerify(amo.tests.TestCase):
             data = self.user_data.copy()
             data['product'] = {'url': 'http://f.com', 'storedata': storedata}
             eq_(self.get(3615, data)['status'], 'invalid')
-
-    @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_REQUIRE_STOREDATA',
-                       True)
-    def test_product_old_store_data_fails(self):
-        self.make_install()
-        data = self.user_data.copy()
-        data['product'] = 'http://f.com'
-        eq_(self.get(3615, data)['status'], 'invalid')
 
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.

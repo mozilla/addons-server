@@ -39,11 +39,17 @@ class Verify:
             self.log('Error decoding receipt: %s' % e)
             return self.invalid()
 
+        try:
+            assert receipt['user']['type'] == 'directed-identifier'
+        except (AssertionError, KeyError):
+            self.log('No directed-identifier supplied')
+            return self.invalid()
+
         # Get the addon and user information from the installed table.
         try:
-            email = receipt['user']['value']
+            uuid = receipt['user']['value']
         except KeyError:
-            # If somehow we got a valid receipt without an email,
+            # If somehow we got a valid receipt without a uuid
             # that's a problem. Log here.
             self.log('No user in receipt')
             return self.invalid()
@@ -54,13 +60,6 @@ class Verify:
         try:
             storedata = receipt['product']['storedata']
             receipt_addon_id = int(dict(parse_qsl(storedata)).get('id', ''))
-        except (KeyError, TypeError):
-            # At some point, we'll want to make this a hard failure,
-            # before the beta of apps store. But doing so now will break
-            # all of the existing receipts.
-            if settings.WEBAPPS_RECEIPT_REQUIRE_STOREDATA:
-                self.log('Invalid required store data')
-                return self.invalid()
         except:
             # There was some value for storedata but it was invalid.
             self.log('Invalid store data')
@@ -73,13 +72,13 @@ class Verify:
 
         sql = """SELECT id, user_id, premium_type FROM users_install
                  WHERE addon_id = %(addon_id)s
-                 AND email = %(email)s LIMIT 1;"""
+                 AND uuid = %(uuid)s LIMIT 1;"""
         self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                  'email': email})
+                                  'uuid': uuid})
         result = self.cursor.fetchone()
         if not result:
             # We've got no record of this receipt being created.
-            self.log('No entry in users_install for email: %s' % email)
+            self.log('No entry in users_install for uuid: %s' % uuid)
             return self.invalid()
 
         rid, user_id, premium = result
