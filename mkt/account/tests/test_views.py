@@ -267,6 +267,22 @@ class TestPreapproval(amo.tests.TestCase):
         eq_(pq(res.content)('#preapproval').attr('action'),
             self.get_url('remove'))
 
+    def test_session_complete(self):
+        ssn = self.client.session
+        ssn['setup-preapproval'] = {'key': 'xyz', 'complete': '/foo'}
+        ssn.save()
+        res = self.client.post(self.get_url('complete'))
+        assert res['Location'].endswith('/foo')
+        eq_(self.user.preapprovaluser.paypal_key, 'xyz')
+
+    def test_session_cancel(self):
+        ssn = self.client.session
+        ssn['setup-preapproval'] = {'key': 'abc', 'cancel': '/bar'}
+        ssn.save()
+        res = self.client.post(self.get_url('cancel'))
+        assert res['Location'].endswith('/bar')
+        eq_(self.user.preapprovaluser.paypal_key, 'xyz')
+
     def test_preapproval_remove(self):
         PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
         res = self.client.post(self.get_url('remove'))

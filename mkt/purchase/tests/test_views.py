@@ -17,8 +17,8 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
                            Price, PriceCurrency)
-import paypal
-from paypal import PaypalError, PaypalDataError
+from mkt.webapps.models import Webapp
+from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -361,3 +361,42 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                    .returns(('payKey', 'paymentExecStatus')))
         self.client.post(self.addon.get_purchase_url(),
                          {'result_type': 'json'})
+
+
+class TestPurchaseDetails(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.make_premium(self.webapp)
+        self.url = self.webapp.get_detail_url()
+        self.pre_url = reverse('detail.purchase.preapproval',
+                               args=[self.webapp.app_slug])
+        waffle.models.Flag.objects.create(name='allow-pre-auth', everyone=True)
+
+    @mock.patch('users.models.UserProfile.has_preapproval_key')
+    def test_details_no_preauth(self, has_preapproval_key):
+        self.client.login(username='regular@mozilla.com', password='password')
+        has_preapproval_key.return_value = False
+        res = self.client.get(self.url)
+        form = pq(res.content)('#pay form')
+        eq_(len(form), 1)
+        eq_(form.eq(0).attr('action'), '{preapprovalUrl}')
+
+    @mock.patch('users.models.UserProfile.has_preapproval_key')
+    def test_details_preauth(self, has_preapproval_key):
+        self.client.login(username='regular@mozilla.com', password='password')
+        has_preapproval_key.return_value = True
+        res = self.client.get(self.url)
+        eq_(len(pq(res.content)('#pay form')), 0)
+
+    def test_pre_approval_not_logged_in(self):
+        res = self.client.post(self.pre_url)
+        eq_(res.status_code, 302)
+
+    @mock.patch('paypal.get_preapproval_key')
+    def test_pre_approval(self, get_preapproval_key):
+        get_preapproval_key.return_value = {'preapprovalKey': 'x'}
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.post(self.pre_url)
+        eq_(res['Location'], get_preapproval_url('x'))

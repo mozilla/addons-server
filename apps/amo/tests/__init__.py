@@ -28,6 +28,7 @@ import addons.search
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
+from market.models import AddonPremium, Price
 import stats.search
 from translations.models import Translation
 from versions.models import Version, ApplicationsVersions
@@ -258,6 +259,11 @@ class TestCase(RedisTest, test_utils.TestCase):
     def assertLoginRedirects(self, response, to, status_code=302):
         self.assertRedirects(response,
             '%s?to=%s' % (reverse('users.login'), to), status_code)
+
+    def make_premium(self, addon):
+        price = Price.objects.create(price='1.00')
+        addon.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(addon=addon, price=price)
 
 
 class AMOPaths(object):

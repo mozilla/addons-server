@@ -11,8 +11,8 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from access import acl
 from addons.views import BaseFilter
 import amo
-from amo.decorators import (no_login_required, permission_required,
-                            post_required, write)
+from amo.decorators import (login_required, no_login_required,
+                            permission_required, post_required, write)
 from amo.utils import paginate
 from market.models import PreApprovalUser
 import paypal
@@ -29,61 +29,74 @@ log = commonware.log.getLogger('mkt.account')
 paypal_log = commonware.log.getLogger('mkt.paypal')
 
 
+@login_required
 def payment(request, status=None):
-    # Note this is not post_required because PayPal does not reply with a
-    # POST but a GET; that's a sad face.
-
+    # Note this is not post required, because PayPal does not reply with a
+    # POST but a GET, that's a sad face.
     if status:
         pre, created = (PreApprovalUser.objects
                         .safer_get_or_create(user=request.amo_user))
+        data = request.session.get('setup-preapproval', {})
 
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
             if 'setup-preapproval' in request.session:
-                messages.success(request, _('Pre-approval set up'))
                 paypal_log.info(u'Preapproval key created for user: %s'
                                 % request.amo_user)
-                data = request.session.get('setup-preapproval', {})
                 pre.update(paypal_key=data.get('key'),
                            paypal_expiry=data.get('expiry'))
+
+                # If there is a target, bounce to it and don't show a message
+                # we'll let whatever set this up worry about that.
+                if data.get('complete'):
+                    return redirect(data['complete'])
+
+                messages.success(request, _('Wallet set up.'))
                 del request.session['setup-preapproval']
 
         elif status == 'cancel':
             # The user has chosen to cancel out of PayPal. Nothing really
-            # to do here; PayPal just bounces to this page.
-            messages.success(request, _('Pre-approval changes cancelled'))
+            # to do here, PayPal just bounce to the cancel page if defined.
+            if data.get('cancel'):
+                return redirect(data['cancel'])
+
+            messages.success(request, _('Wallet changes cancelled.'))
 
         elif status == 'remove':
-            # The user has an pre approval key set and chooses to remove it.
+            # The user has an pre approval key set and chooses to remove it
             if pre.paypal_key:
                 pre.update(paypal_key='')
-                messages.success(request, _('Pre-approval removed'))
+                messages.success(request, _('Wallet removed.'))
                 paypal_log.info(u'Preapproval key removed for user: %s'
                                 % request.amo_user)
 
-        ctx = {'preapproval': pre}
+        context = {'preapproval': pre}
     else:
-        ctx = {'preapproval': request.amo_user.get_preapproval()}
+        context = {'preapproval': request.amo_user.get_preapproval()}
 
-    return jingo.render(request, 'account/payment.html', ctx)
+    return jingo.render(request, 'users/payments.html', context)
 
 
 @post_required
-def preapproval(request):
+@login_required
+def preapproval(request, complete=None, cancel=None):
     today = datetime.today()
     data = {'startDate': today,
             'endDate': today + timedelta(days=365 * 2),
-            'pattern': 'account.payment'}
+            'pattern': 'account.payment',
+            }
     try:
         result = paypal.get_preapproval_key(data)
     except paypal.PaypalError, e:
         paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
         raise
 
-    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user)
+    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
     request.session['setup-preapproval'] = {
         'key': result['preapprovalKey'],
         'expiry': data['endDate'],
+        'complete': complete,
+        'cancel': cancel
     }
     return redirect(paypal.get_preapproval_url(result['preapprovalKey']))
 

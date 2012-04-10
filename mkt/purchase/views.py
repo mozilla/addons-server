@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import hashlib
 import json
 import uuid
@@ -19,11 +20,11 @@ from amo.decorators import login_required, post_required, write
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
 from addons.models import Addon
-from amo.utils import urlparams
 from market.forms import PriceCurrencyForm
 import paypal
 from stats.models import Contribution
-
+from waffle.decorators import waffle_flag
+from mkt.account.views import preapproval as user_preapproval
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
@@ -175,3 +176,15 @@ def purchase_done(request, addon, status):
     response = jingo.render(request, 'purchase/done.html', context)
     response['x-frame-options'] = 'allow'
     return response
+
+
+@post_required
+@login_required
+@addon_view
+@waffle_flag('allow-pre-auth')
+def preapproval(request, addon):
+    return user_preapproval(request,
+                            # TODO: put something here to trigger purchase.
+                            complete=addon.get_detail_url(),
+                            # TODO: put something else here.
+                            cancel=addon.get_detail_url())

@@ -6,6 +6,7 @@ from . import views
 urlpatterns = patterns('',
     # App purchase.
     url('^$', views.purchase, name='purchase'),
+    url('^preapproval$', views.preapproval, name='detail.purchase.preapproval'),
     url('^(?P<status>cancel|complete)$', views.purchase_done,
         name='purchase.done'),
 

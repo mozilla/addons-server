@@ -56,6 +56,8 @@ def product_as_dict(request, product):
         'id': product.id,
         'name': product.name,
         'manifestUrl': product.manifest_url,
+        'preapprovalUrl': reverse('detail.purchase.preapproval',
+                                  args=[product.app_slug]),
         'recordUrl': product.get_detail_url('record')
     }
     if product.is_premium():
