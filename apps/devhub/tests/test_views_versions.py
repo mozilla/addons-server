@@ -1,13 +1,9 @@
 import re
 from datetime import datetime, timedelta
 
-from django.conf import settings
-
 import mock
-from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -250,7 +246,7 @@ class TestVersion(amo.tests.TestCase):
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         for status in amo.STATUS_CHOICES:
-            if status in amo.STATUS_UNDER_REVIEW:
+            if status in amo.STATUS_UNDER_REVIEW + (amo.STATUS_DELETED,):
                 continue
 
             self.addon.update(status=status)

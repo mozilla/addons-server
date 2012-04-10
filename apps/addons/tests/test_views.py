@@ -1457,6 +1457,8 @@ class TestStatus(amo.tests.TestCase):
 
     def test_persona(self):
         for status in amo.STATUS_CHOICES.keys():
+            if status == amo.STATUS_DELETED:
+                continue
             self.persona.status = status
             self.persona.save()
             eq_(self.client.head(self.persona_url).status_code,
@@ -1464,6 +1466,8 @@ class TestStatus(amo.tests.TestCase):
 
     def test_persona_disabled(self):
         for status in amo.STATUS_CHOICES.keys():
+            if status == amo.STATUS_DELETED:
+                continue
             self.persona.status = status
             self.persona.disabled_by_user = True
             self.persona.save()
