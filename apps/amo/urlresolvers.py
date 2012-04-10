@@ -10,6 +10,7 @@ from django.utils import encoding
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import jinja2
+import waffle
 
 import amo
 
@@ -134,7 +135,8 @@ class Prefixer(object):
             url_parts.append(locale)
 
         # Temporarily force home page to /<locale>/developers/.
-        if settings.MARKETPLACE and not path.partition('/')[0]:
+        if (not waffle.switch_is_active('unleash-consumer') and
+            settings.MARKETPLACE and not path.partition('/')[0]):
             url_parts.append('developers')
 
         elif path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:

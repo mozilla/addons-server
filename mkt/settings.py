@@ -3,6 +3,7 @@ import os
 from lib.settings_base import *
 from mkt import asset_bundles
 
+
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
 
@@ -10,10 +11,6 @@ WAFFLE_TABLE_SUFFIX = 'mkt'
 
 # So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
 MARKETPLACE = True
-
-# Pretty temporary. Set the correct home for Marketplace. Redirects are sick!
-#HOME = 'mkt.home.views.home'
-HOME = 'mkt.developers.views.home'
 
 # 403 view to render for CSRF failures.
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
@@ -59,7 +56,7 @@ INSTALLED_APPS += (
     'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
 SUPPORTED_NONAPPS += (
-    # this line is here until bug 735120 is fixed.
+    '',  # Can you tell I'm really putting off bug 735120?
     'app',
     'apps',
     'dev',
@@ -91,6 +88,7 @@ MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 # MIDDLEWARE_CLASSES.remove('cake.middleware.CookieCleaningMiddleware')
 MIDDLEWARE_CLASSES += (
     'mkt.site.middleware.VaryOnAJAXMiddleware',
+    # TODO: Remove when we flip `unleash-consumer`.
     'amo.middleware.NoConsumerMiddleware',
 )
 
@@ -135,6 +133,7 @@ NO_CONSUMER_MODULES = (
     'sharing.views',
     'tags.views',
     'versions.views',
+    'mkt.account.profile',
     'mkt.webapps.views',
 )
 

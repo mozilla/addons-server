@@ -53,6 +53,7 @@
               {% if not settings.READ_ONLY %}
                 {% include 'impala/user_login.html' %}
               {% endif %}
+              {% block aux_nav %}{% endblock %}
             </ul>
           </nav>
           {% block masthead %}

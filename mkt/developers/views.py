@@ -91,6 +91,7 @@ def addon_listing(request, default='name', webapp=False):
 
 
 @anonymous_csrf
+# TODO: Remove when we flip `unleash-consumer`.
 @no_login_required
 def login(request, template=None):
     return _login(request, template='developers/login.html')
@@ -602,6 +603,7 @@ def upload(request, addon_slug=None, is_standalone=False):
     else:
         return redirect('mkt.developers.upload_detail', fu.pk, 'json')
 
+
 def trap_duplicate(manifest_url):
     apps = Webapp.objects.filter(manifest_url=manifest_url)
     if not apps:
@@ -612,17 +614,18 @@ def trap_duplicate(manifest_url):
         return _('Oops, looks like you already submitted that manifest '
                  'for %s, which is currently public. '
                  '<a href="%s">Edit app</a>'
-                 )  % (app.name, error_url)
+                 ) % (app.name, error_url)
     elif app.status in [amo.STATUS_PENDING, amo.STATUS_NOMINATED]:
         return _('Oops, looks like you already submitted that manifest '
                  'for %s, which is currently pending. '
                  '<a href="%s">Edit app</a>'
-                 )  % (app.name, error_url)
+                 ) % (app.name, error_url)
     elif app.status in [amo.STATUS_NULL, amo.STATUS_DISABLED]:
         return _('Oops, looks like you already submitted that manifest '
                  'for %s, which is currently incomplete. '
                  '<a href="%s">Resume app</a>'
-                 )  % (app.name, error_url)
+                 ) % (app.name, error_url)
+
 
 @login_required
 @post_required

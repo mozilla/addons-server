@@ -6,7 +6,7 @@
           {% for target, label in breadcrumbs %}
             <li>
             {% if target %}
-              {% if loop.first and has_home %}
+              {% if loop.first %}
                 <a href="{{ target }}" class="home" title="{{ label }}">{{ label }}</a>
               {% else %}
                 <a href="{{ target }}">{{ label }}</a>

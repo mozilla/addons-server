@@ -81,8 +81,8 @@ def promo_slider(context, products):
 
 @register.function
 @jinja2.contextfunction
-def mkt_breadcrumbs(context, product=None, items=None, add_default=False,
-                    crumb_size=40):
+def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
+                    add_default=True):
     """
     Wrapper function for ``breadcrumbs``.
 
@@ -94,7 +94,10 @@ def mkt_breadcrumbs(context, product=None, items=None, add_default=False,
     **add_default**
         Prepends trail back to home when True.  Default is False.
     """
-    crumbs = [(reverse('home'), _('Home'))]
+    if add_default:
+        crumbs = [(reverse('home'), _('Home'))]
+    else:
+        crumbs = []
 
     if product:
         if items:
@@ -111,7 +114,7 @@ def mkt_breadcrumbs(context, product=None, items=None, add_default=False,
 
     crumbs = [(url_, truncate(label, crumb_size)) for (url_, label) in crumbs]
     t = env.get_template('site/helpers/breadcrumbs.html').render(
-        breadcrumbs=crumbs, has_home=add_default)
+        breadcrumbs=crumbs)
     return jinja2.Markup(t)
 
 

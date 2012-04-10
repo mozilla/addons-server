@@ -8,13 +8,15 @@ import jinja2
 from jingo import register
 from jingo.helpers import datetime
 from tower import ugettext as _, ungettext as ngettext
+import waffle
 
 import amo
 from amo.urlresolvers import reverse
-from amo.helpers import breadcrumbs, impala_breadcrumbs, loc
+from amo.helpers import breadcrumbs
 from access import acl
 from addons.helpers import new_context
 
+from mkt.site.helpers import mkt_breadcrumbs
 
 register.function(acl.check_addon_ownership)
 
@@ -41,7 +43,7 @@ def hub_page_title(context, title=None, addon=None):
 @jinja2.contextfunction
 def mkt_page_title(context, title, force_webapps=False):
     title = smart_unicode(title)
-    base_title = loc('Mozilla Marketplace')
+    base_title = _('Mozilla Marketplace')
     return u'%s | %s' % (title, base_title)
 
 
@@ -56,8 +58,7 @@ def docs_page_title(context, title=None):
 
 @register.function
 @jinja2.contextfunction
-def hub_breadcrumbs(context, addon=None, items=None, add_default=False,
-                    landing_galore=False):
+def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
     breadcrumbs.
@@ -72,18 +73,18 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False,
     **impala**
         Whether to use the impala_breadcrumbs helper. Default is False.
     """
-    if landing_galore:
+    if waffle.switch_is_active('unleash-consumer'):
         crumbs = [(reverse('mkt.developers.index'), _('Developer Hub'))]
     else:
         crumbs = [(reverse('mkt.developers.apps'), _('My Submissions'))]
-    if landing_galore:
+    if waffle.switch_is_active('unleash-consumer'):
         title = _('My Submissions')
         link = reverse('mkt.developers.apps')
     else:
         title = link = None
 
     if addon:
-        if landing_galore:
+        if waffle.switch_is_active('unleash-consumer'):
             if not addon and not items:
                 # We are at the end of the crumb trail.
                 crumbs.append((None, title))
@@ -101,7 +102,8 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False,
     if len(crumbs) == 1:
         crumbs = []
 
-    return impala_breadcrumbs(context, crumbs, add_default)
+    return mkt_breadcrumbs(context, items=crumbs,
+        add_default=waffle.switch_is_active('unleash-consumer'))
 
 
 @register.function

@@ -7,6 +7,7 @@ from django.utils import translation
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -40,7 +41,7 @@ def test_hub_page_title():
     eq_(s1, s2)
 
 
-class TestDevBreadcrumbs(unittest.TestCase):
+class TestLegacyDevBreadcrumbs(unittest.TestCase):
 
     def setUp(self):
         self.request = Mock()
@@ -50,60 +51,119 @@ class TestDevBreadcrumbs(unittest.TestCase):
         s = render('{{ hub_breadcrumbs() }}', {'request': self.request})
         eq_(s, '')
 
-    def test_no_args_with_default(self):
-        s = render('{{ hub_breadcrumbs(add_default=True) }}',
-                   {'request': self.request})
-        eq_(pq(s).text(), 'Add-ons')
+    def test_with_items(self):
+        s = render("""{{ hub_breadcrumbs(items=[('/foo', 'foo'),
+                                                ('/bar', 'bar')]) }}'""",
+                  {'request': self.request})
+        crumbs = pq(s)('li')
+        expected = [
+            ('My Submissions', reverse('mkt.developers.apps')),
+            ('foo', '/foo'),
+            ('bar', '/bar'),
+        ]
+        amo.tests.check_links(expected, crumbs, verify=False)
+
+    def test_with_app(self):
+        product = Mock()
+        product.name = 'Steamcube'
+        product.id = 9999
+        product.app_slug = 'scube'
+        product.type = amo.ADDON_WEBAPP
+        s = render("""{{ hub_breadcrumbs(product) }}""",
+                   {'request': self.request, 'product': product})
+        crumbs = pq(s)('li')
+        expected = [
+            ('My Submissions', reverse('mkt.developers.apps')),
+            ('Steamcube', None),
+        ]
+        amo.tests.check_links(expected, crumbs, verify=False)
+
+    def test_with_app_and_items(self):
+        product = Mock()
+        product.name = 'Steamcube'
+        product.id = 9999
+        product.app_slug = 'scube'
+        product.type = amo.ADDON_WEBAPP
+        product.get_dev_url.return_value = reverse('mkt.developers.apps.edit',
+                                                 args=[product.app_slug])
+        s = render("""{{ hub_breadcrumbs(product,
+                                         items=[('/foo', 'foo'),
+                                                ('/bar', 'bar')]) }}""",
+                   {'request': self.request, 'product': product})
+        crumbs = pq(s)('li')
+        expected = [
+            ('My Submissions', reverse('mkt.developers.apps')),
+            ('Steamcube', product.get_dev_url()),
+            ('foo', '/foo'),
+            ('bar', '/bar'),
+        ]
+        amo.tests.check_links(expected, crumbs, verify=False)
+
+
+class TestNewDevBreadcrumbs(amo.tests.TestCase):
+
+    def setUp(self):
+        self.request = Mock()
+        self.request.APP = None
+        waffle.models.Switch.objects.create(name='unleash-consumer',
+                                            active=True)
+
+    def test_no_args(self):
+        s = render('{{ hub_breadcrumbs() }}', {'request': self.request})
+        eq_(s, '')
 
     def test_with_items(self):
         s = render("""{{ hub_breadcrumbs(items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}'""",
                   {'request': self.request})
-        doc = pq(s)
-        crumbs = doc('li>a')
-        eq_(len(crumbs), 3)
-        eq_(crumbs.eq(1).text(), 'foo')
-        eq_(crumbs.eq(1).attr('href'), '/foo')
-        eq_(crumbs.eq(2).text(), 'bar')
-        eq_(crumbs.eq(2).attr('href'), '/bar')
+        crumbs = pq(s)('li')
+        expected = [
+            ('Home', reverse('home')),
+            ('Developer Hub', reverse('mkt.developers.index')),
+            ('foo', '/foo'),
+            ('bar', '/bar'),
+        ]
+        amo.tests.check_links(expected, crumbs, verify=False)
 
     def test_with_app(self):
-        addon = Mock()
-        addon.name = 'Firebug'
-        addon.id = 1843
-        addon.app_slug = 'fbug'
-        addon.type = amo.ADDON_WEBAPP
-        s = render("""{{ hub_breadcrumbs(addon) }}""",
-                   {'request': self.request, 'addon': addon})
-        doc = pq(s)
-        crumbs = doc('li')
-        eq_(crumbs.eq(0).text(), 'My Submissions')
-        eq_(crumbs.eq(0).children('a').attr('href'),
-            reverse('mkt.developers.apps'))
-        eq_(crumbs.eq(1).text(), 'Firebug')
-        eq_(crumbs.eq(1).children('a'), [])
+        product = Mock()
+        product.name = 'Steamcube'
+        product.id = 9999
+        product.app_slug = 'scube'
+        product.type = amo.ADDON_WEBAPP
+        s = render("""{{ hub_breadcrumbs(product) }}""",
+                   {'request': self.request, 'product': product})
+        crumbs = pq(s)('li')
+        expected = [
+            ('Home', reverse('home')),
+            ('Developer Hub', reverse('mkt.developers.index')),
+            ('My Submissions', reverse('mkt.developers.apps')),
+            ('Steamcube', None),
+        ]
+        amo.tests.check_links(expected, crumbs, verify=False)
 
-    def test_with_addon_and_items(self):
-        addon = Mock()
-        addon.name = 'Firebug'
-        addon.id = 1843
-        addon.app_slug = 'fbug'
-        addon.type = amo.ADDON_WEBAPP
-        addon.get_dev_url.return_value = reverse('mkt.developers.apps.edit',
-                                                 args=[addon.app_slug])
-        s = render("""{{ hub_breadcrumbs(addon,
+    def test_with_app_and_items(self):
+        product = Mock()
+        product.name = 'Steamcube'
+        product.id = 9999
+        product.app_slug = 'scube'
+        product.type = amo.ADDON_WEBAPP
+        product.get_dev_url.return_value = reverse('mkt.developers.apps.edit',
+                                                 args=[product.app_slug])
+        s = render("""{{ hub_breadcrumbs(product,
                                          items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}""",
-                   {'request': self.request, 'addon': addon})
-        doc = pq(s)
-        crumbs = doc('li')
-        eq_(len(crumbs), 4)
-        eq_(crumbs.eq(1).text(), 'Firebug')
-        eq_(crumbs.eq(1).children('a').attr('href'), addon.get_dev_url())
-        eq_(crumbs.eq(2).text(), 'foo')
-        eq_(crumbs.eq(2).children('a').attr('href'), '/foo')
-        eq_(crumbs.eq(3).text(), 'bar')
-        eq_(crumbs.eq(3).children('a').attr('href'), '/bar')
+                   {'request': self.request, 'product': product})
+        crumbs = pq(s)('li')
+        expected = [
+            ('Home', reverse('home')),
+            ('Developer Hub', reverse('mkt.developers.index')),
+            ('My Submissions', reverse('mkt.developers.apps')),
+            ('Steamcube', product.get_dev_url()),
+            ('foo', '/foo'),
+            ('bar', '/bar'),
+        ]
+        amo.tests.check_links(expected, crumbs, verify=False)
 
 
 def test_summarize_validation():

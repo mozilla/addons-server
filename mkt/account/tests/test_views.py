@@ -297,14 +297,15 @@ class TestProfileLinks(amo.tests.TestCase):
 
     def setUp(self):
         self.user = self.get_user()
-        # Authentication is required for now.
-        assert self.client.login(username=self.user.email, password='password')
 
     def get_user(self):
         return UserProfile.objects.get(username='31337')
 
     def get_url(self):
         return reverse('users.profile', args=[self.user.username])
+
+    def log_in(self):
+        assert self.client.login(username=self.user.email, password='password')
 
     def test_id_or_username(self):
         args = [self.user.id, self.user.username]
@@ -321,6 +322,7 @@ class TestProfileLinks(amo.tests.TestCase):
 
     def test_viewing_my_profile(self):
         # Me as (non-admin) viewing my own profile.
+        self.log_in()
         links = self.get_profile_links(self.user.id)
         eq_(links.length, 1)
         eq_(links.eq(0).attr('href'), reverse('account.settings'))
@@ -332,11 +334,18 @@ class TestProfileLinks(amo.tests.TestCase):
         links = self.get_profile_links(self.user.id)
         eq_(links.length, 0, 'No edit buttons should be shown.')
 
+    def test_viewing_my_profile_as_anonymous(self):
+        # Ensure no edit buttons are shown.
+        links = self.get_profile_links(self.user.id)
+        eq_(links.length, 0, 'No edit buttons should be shown.')
+
     def test_viewing_other_profile(self):
+        self.log_in()
         # Me as (non-admin) viewing someone else's my own profile.
         eq_(self.get_profile_links(id=999).length, 0)
 
     def test_viewing_my_profile_as_admin(self):
+        self.log_in()
         # Me as (with admin) viewing my own profile.
         GroupUser.objects.create(
             group=Group.objects.create(rules='Users:Edit'), user=self.user)
@@ -346,6 +355,7 @@ class TestProfileLinks(amo.tests.TestCase):
         eq_(links.eq(0).attr('href'), reverse('account.settings'))
 
     def test_viewing_other_profile_as_admin(self):
+        self.log_in()
         # Me as (with admin) viewing someone else's profile.
         GroupUser.objects.create(
             group=Group.objects.create(rules='Users:Edit'), user=self.user)

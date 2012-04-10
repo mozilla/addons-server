@@ -21,6 +21,11 @@
     (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
   ) %}
 {% endif %}
+{% if waffle.switch('unleash-consumer') %}
+  {% do urls.append(
+    (addon.get_url_path(), _('View Listing'))
+  ) %}
+{% endif %}
 
 <section class="secondary manage" role="complementary">
   <div class="island" id="edit-addon-nav">

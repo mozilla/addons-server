@@ -30,6 +30,7 @@ def csrf_failure(request, reason=''):
                         status=403)
 
 
+# TODO: Remove when we flip `unleash-consumer`.
 @no_login_required
 def manifest(request):
     ctx = RequestContext(request)
@@ -53,6 +54,7 @@ def manifest(request):
                         mimetype='application/x-web-app-manifest+json')
 
 
+# TODO: Remove when we flip `unleash-consumer`.
 @no_login_required
 def robots(request):
     """Generate a robots.txt"""

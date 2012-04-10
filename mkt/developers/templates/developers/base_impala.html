@@ -20,3 +20,13 @@
     <link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}">
   </noscript>
 {% endblock %}
+
+{% block aux_nav %}
+  {% if waffle.switch('unleash-consumer') %}
+    <li class="nomenu">
+      <a class="return" href="{{ url('home') }}">{{ _('Back to Apps') }}</a>
+    </li>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}

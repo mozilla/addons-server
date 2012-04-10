@@ -11,8 +11,8 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from access import acl
 from addons.views import BaseFilter
 import amo
-from amo.decorators import (login_required, no_login_required,
-                            permission_required, post_required, write)
+from amo.decorators import (login_required, permission_required, post_required,
+                            write)
 from amo.utils import paginate
 from market.models import PreApprovalUser
 import paypal
@@ -174,6 +174,7 @@ def account_settings(request):
 
 
 @write
+@login_required
 @permission_required('Users', 'Edit')
 def admin_edit(request, user_id):
     amouser = get_object_or_404(UserProfile, pk=user_id)
@@ -209,7 +210,6 @@ def delete_photo(request):
     return http.HttpResponse()
 
 
-@no_login_required
 def profile(request, username):
     if username.isdigit():
         user = get_object_or_404(UserProfile, id=username)
