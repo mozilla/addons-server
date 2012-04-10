@@ -20,6 +20,7 @@ import paypal
 from stats.models import Contribution
 
 from .decorators import require_inapp_request
+from .helpers import render_error
 from .models import InappPayment, InappPayLog, InappConfig
 from . import tasks
 
@@ -79,7 +80,7 @@ def pay(request, signed_req, pay_req):
             slug=pay_req['_config'].pk,  # passed to pay_done() via reverse()
             uuid=uuid_
         ))
-    except paypal.PaypalError:
+    except paypal.PaypalError, exc:
         paypal.paypal_log_cef(request, addon, uuid_,
                               'in-app PayKey Failure', 'PAYKEYFAIL',
                               'There was an error getting the paykey')
@@ -87,7 +88,7 @@ def pay(request, signed_req, pay_req):
                   % pay_req['_config'].pk,
                   exc_info=True)
         InappPayLog.log(request, 'PAY_ERROR', config=pay_req['_config'])
-        return jingo.render(request, 'inapp_pay/error.html', {})
+        return render_error(request, exc)
 
     with transaction.commit_on_success():
         contrib = Contribution(addon_id=addon.id, amount=amount,

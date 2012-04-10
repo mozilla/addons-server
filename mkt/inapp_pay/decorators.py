@@ -4,11 +4,10 @@ import sys
 from django import http
 
 import commonware.log
-import jingo
 
-from mkt.inapp_pay.models import InappPayLog
-from mkt.inapp_pay.verify import verify_request, InappPaymentError
-
+from .helpers import render_error
+from .models import InappPayLog
+from .verify import verify_request, InappPaymentError
 
 log = commonware.log.getLogger('z.inapp')
 
@@ -23,9 +22,10 @@ def require_inapp_request(view):
             req = verify_request(signed_req)
         except InappPaymentError, exc:
             etype, val, tb = sys.exc_info()
+            exc_class = etype.__name__
             InappPayLog.log(request, 'EXCEPTION', app_public_key=exc.app_id,
-                            exc_class=etype.__name__)
+                            exc_class=exc_class)
             log.exception('in @require_inapp_request')
-            return jingo.render(request, 'inapp_pay/error.html')
+            return render_error(request, exc, exc_class=exc_class)
         return view(request, signed_req, req, *args, **kw)
     return wrapper

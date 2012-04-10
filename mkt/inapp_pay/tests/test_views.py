@@ -140,6 +140,13 @@ class TestPayStart(PaymentViewTest):
         eq_(log.exception, InappPayLog._exceptions['RequestVerificationError'])
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
 
+    @mock.patch.object(settings, 'INAPP_VERBOSE_ERRORS', True)
+    def test_verbose_error(self):
+        rp = self.client.get(reverse('inapp_pay.pay_start'),
+                             data=dict(req=self.request(app_secret='invalid')))
+        eq_(rp.status_code, 200)
+        self.assertContains(rp, 'RequestVerificationError')
+
 
 class TestPay(PaymentViewTest):
 
@@ -188,6 +195,14 @@ class TestPay(PaymentViewTest):
         self.assertContains(res, 'Payment Error')
         eq_(InappPayLog.objects.get().action,
             InappPayLog._actions['PAY_ERROR'])
+
+    @mock.patch.object(settings, 'INAPP_VERBOSE_ERRORS', True)
+    @fudge.patch('paypal.get_paykey')
+    def test_verbose_paypal_error(self, get_paykey):
+        get_paykey.expects_call().raises(PaypalError())
+        res = self.client.post(reverse('inapp_pay.pay'),
+                               data=dict(req=self.request()))
+        self.assertContains(res, 'PaypalError')
 
     @fudge.patch('paypal.get_paykey')
     def test_ok_no_preauth(self, get_paykey):
