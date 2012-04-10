@@ -140,7 +140,6 @@ class TestIndexLatest(amo.tests.ESTestCase):
 
 class TestIndexInstalled(amo.tests.ESTestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
-    es = True
 
     def setUp(self):
         self.today = datetime.date.today()
