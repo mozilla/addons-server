@@ -107,6 +107,13 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(msg.from_email, settings.NOBODY_EMAIL)
         eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
 
+    def _check_admin_email(self, msg, subject):
+        eq_(msg.to, [settings.MKT_SENIOR_EDITORS_EMAIL])
+        eq_(msg.subject, '%s: %s' % (subject, self.app.name))
+        eq_(msg.from_email, settings.NOBODY_EMAIL)
+        eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
+
+    def _check_email_body(self, msg):
         body = msg.message().as_string()
         url = self.app.get_url_path(add_prefix=False)
         assert url in body, 'Could not find apps detail URL in %s' % msg
@@ -125,6 +132,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
+        self._check_email_body(msg)
 
     def test_comment(self):
         self.post({'action': 'comment', 'comments': 'mmm, nice app'})
@@ -141,3 +149,14 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
+        self._check_email_body(msg)
+
+    def test_super_review(self):
+        self.post({'action': 'super', 'comments': 'soup her man'})
+        eq_(self.get_app().admin_review, True)
+        # Test 2 emails: 1 to dev, 1 to admin.
+        eq_(len(mail.outbox), 2)
+        dev_msg = mail.outbox[0]
+        self._check_email(dev_msg, 'Submission Update')
+        adm_msg = mail.outbox[1]
+        self._check_admin_email(adm_msg, 'Super Review Requested')

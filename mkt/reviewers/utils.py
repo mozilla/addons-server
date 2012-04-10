@@ -7,7 +7,7 @@ import commonware.log
 import django_tables as tables
 import jingo
 import jinja2
-from tower import ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import absolutify, timesince
@@ -34,6 +34,7 @@ def send_mail(request, template, subject, emails, context, perm_setting=None):
 
 class WebappQueueTable(tables.ModelTable, ItemStateTable):
     name = tables.Column(verbose_name=_lazy(u'App'))
+    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
     created = tables.Column(verbose_name=_lazy(u'Waiting Time'))
     abuse_reports__count = tables.Column(verbose_name=_lazy(u'Abuse Reports'))
 
@@ -42,13 +43,23 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
         self.increment_item()
         return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
 
+    def render_flags(self, row):
+        o = []
+
+        if row.admin_review:
+            o.append(u'<div class="app-icon ed-sprite-admin-review" '
+                     u'title="%s"></div>' % _('Admin Review'))
+
+        return ''.join(o)
+
+
+    def render_created(self, row):
+        return timesince(row.created)
+
     def render_abuse_reports__count(self, row):
         url = reverse('editors.abuse_reports', args=[row.slug])
         return u'<a href="%s">%s</a>' % (jinja2.escape(url),
                                          row.abuse_reports__count)
-
-    def render_created(self, row):
-        return timesince(row.created)
 
     @classmethod
     def translate_sort_cols(cls, colname):
@@ -65,7 +76,7 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
     class Meta:
         sortable = True
         model = Webapp
-        columns = ['name', 'created', 'abuse_reports__count']
+        columns = ['name', 'flags', 'created', 'abuse_reports__count']
 
 
 class ReviewBase:
@@ -246,6 +257,11 @@ class ReviewHelper:
                               'details': _lazy(
                                     'Make a comment on this app.  The '
                                     'author won\'t be able to see this.')}
+        actions['super'] = {'method': self.handler.process_super_review,
+                            'label': _lazy('Request super-review'),
+                            'minimal': True,
+                            'details': _lazy(
+                                'Flag this app for an admin to review')}
         return actions
 
     def process(self):

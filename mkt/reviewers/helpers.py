@@ -63,5 +63,4 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = queue_counts()
-    return [('apps', 'queue_apps', _('Apps ({0})').format(counts['apps'])),
-            ('super', 'queue_apps', _('Super Review ({0})').format(0))]
+    return [('apps', 'queue_apps', _('Apps ({0})').format(counts['apps']))]
