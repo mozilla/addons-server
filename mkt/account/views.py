@@ -74,7 +74,7 @@ def payment(request, status=None):
     else:
         context = {'preapproval': request.amo_user.get_preapproval()}
 
-    return jingo.render(request, 'users/payments.html', context)
+    return jingo.render(request, 'account/payment.html', context)
 
 
 @post_required

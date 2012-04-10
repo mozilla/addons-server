@@ -41,7 +41,7 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_button(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['manifestUrl'], self.webapp.manifest_url)
-        eq_(data['price'], self.webapp.premium.get_price() or '0')
+        eq_(data['price'], 1.0)
         eq_(data['purchase'], self.webapp.get_purchase_url())
         eq_(data['isPurchased'], True)
 
