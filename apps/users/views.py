@@ -109,14 +109,12 @@ def confirm(request, user_id, token):
 
     if user.confirmationcode != token:
         log.info(u"Account confirmation failed for user (%s)", user)
-        if waffle.switch_is_active('zamboni-login'):
-            messages.error(request, _('Invalid confirmation code!'))
+        messages.error(request, _('Invalid confirmation code!'))
         return redirect('users.login')
 
     user.confirmationcode = ''
     user.save()
-    if waffle.switch_is_active('zamboni-login'):
-        messages.success(request, _('Successfully verified!'))
+    messages.success(request, _('Successfully verified!'))
     log.info(u"Account confirmed for user (%s)", user)
     return redirect('users.login')
 
@@ -134,12 +132,11 @@ def confirm_resend(request, user_id):
 
     user.email_confirmation_code()
 
-    if waffle.switch_is_active('zamboni-login'):
-        msg = _(u'An email has been sent to your address {0} to confirm '
-                 'your account. Before you can log in, you have to activate '
-                 'your account by clicking on the link provided in this '
-                 'email.').format(user.email)
-        messages.info(request, _('Confirmation Email Sent'), msg)
+    msg = _(u'An email has been sent to your address {0} to confirm '
+             'your account. Before you can log in, you have to activate '
+             'your account by clicking on the link provided in this '
+             'email.').format(user.email)
+    messages.info(request, _('Confirmation Email Sent'), msg)
 
     return redirect('users.login')
 
@@ -626,19 +623,16 @@ def register(request):
 
                 u.email_confirmation_code()
 
-                if waffle.switch_is_active('zamboni-login'):
-                    # Hide these messages since prod still uses remora for
-                    # authentication, so django messages won't be displayed
-                    # until post-login.
-                    msg = _('Congratulations! Your user account was '
-                            'successfully created.')
-                    messages.success(request, msg)
+                msg = _('Congratulations! Your user account was '
+                        'successfully created.')
+                messages.success(request, msg)
 
-                    msg = _(u'An email has been sent to your address {0} to '
-                            'confirm your account. Before you can log in, you '
-                            'have to activate your account by clicking on the '
-                            'link provided in this email.').format(u.email)
-                    messages.info(request, _('Confirmation Email Sent'), msg)
+                msg = _(u'An email has been sent to your address {0} to '
+                        'confirm your account. Before you can log in, you '
+                        'have to activate your account by clicking on the '
+                        'link provided in this email.').format(u.email)
+                messages.info(request, _('Confirmation Email Sent'), msg)
+
             except IntegrityError, e:
                 # I was unable to reproduce this, but I suspect it happens
                 # when they POST twice quickly and the slaves don't have the

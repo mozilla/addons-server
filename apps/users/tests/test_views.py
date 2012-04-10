@@ -930,8 +930,6 @@ class TestLogout(UserViewBase):
 class TestRegistration(UserViewBase):
 
     def test_new_confirm(self):
-        waffle.models.Switch.objects.create(name='zamboni-login', active=True)
-
         # User doesn't have a confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
@@ -964,8 +962,6 @@ class TestRegistration(UserViewBase):
         eq_(pq(r.content)('.notification-box').length, 0)
 
     def test_new_confirm_resend(self):
-        waffle.models.Switch.objects.create(name='zamboni-login', active=True)
-
         # User doesn't have a confirmation code.
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
