@@ -7,7 +7,7 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
-  {% if not (is_dev or is_admin) and product.is_invisible() %}
+  {% if not (is_dev or is_admin) and not product.is_public() %}
     <section class="product-details">
       <h1>{{ product.name }}</h1>
     </section>
