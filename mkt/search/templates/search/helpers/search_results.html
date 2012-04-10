@@ -1,11 +1,11 @@
 {% for product in products %}
   <li class="item result app c">
+    <div class="info">
+      {{ product_info(product) }}
+    </div>
     <div class="actions">
       {{ market_button(product) }}
       {{ device_list(product) }}
-    </div>
-    <div class="info">
-      {{ product_info(product) }}
     </div>
   </li>
 {% else %}
