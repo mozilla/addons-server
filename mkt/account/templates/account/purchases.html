@@ -4,8 +4,8 @@
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
+  {{ mkt_breadcrumbs(product, [(None, title)]) }}
   <section id="purchases" class="listing">
-    {{ mkt_breadcrumbs(product, [(None, title)]) }}
     <h1>{{ title }}</h1>
     {% if single %}
       <div id="sorter" class="c">
