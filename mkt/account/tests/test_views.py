@@ -281,7 +281,7 @@ class TestPreapproval(amo.tests.TestCase):
         ssn.save()
         res = self.client.post(self.get_url('cancel'))
         assert res['Location'].endswith('/bar')
-        eq_(self.user.preapprovaluser.paypal_key, 'xyz')
+        eq_(self.user.preapprovaluser.paypal_key, None)
 
     def test_preapproval_remove(self):
         PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
