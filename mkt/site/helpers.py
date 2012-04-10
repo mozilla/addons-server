@@ -4,9 +4,10 @@ from tower import ugettext as _
 import jinja2
 import json
 
-from amo.helpers import impala_breadcrumbs, url
+from amo.helpers import url
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder
+from translations.helpers import truncate
 
 
 def new_context(context, **kw):
@@ -78,7 +79,8 @@ def promo_slider(context, products):
 
 @register.function
 @jinja2.contextfunction
-def mkt_breadcrumbs(context, product=None, items=None, add_default=False):
+def mkt_breadcrumbs(context, product=None, items=None, add_default=False,
+                    crumb_size=40):
     """
     Wrapper function for ``breadcrumbs``.
 
@@ -105,7 +107,10 @@ def mkt_breadcrumbs(context, product=None, items=None, add_default=False):
     if len(crumbs) == 1:
         crumbs = []
 
-    return impala_breadcrumbs(context, crumbs, add_default)
+    crumbs = [(url_, truncate(label, crumb_size)) for (url_, label) in crumbs]
+    t = env.get_template('site/helpers/breadcrumbs.html').render(
+        breadcrumbs=crumbs, has_home=add_default)
+    return jinja2.Markup(t)
 
 
 @register.filter

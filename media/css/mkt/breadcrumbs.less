@@ -1,17 +1,14 @@
 @import 'lib';
 
-.crumb {
-    color: @text;
-    font-family: @open-stack;
-    width: 100%;
-
-    // Colors below should be one-time use only
+#breadcrumbs {
+    // Colors below should be one-time use only.
     border-top: 1px solid #c2c8cc;
     border-bottom: 1px solid #bdc2c5;
-
     .gradient-two-color(rgba(176,186,192, 0.33), rgba(187,195,199, 0.33));
-    padding-top: 3px;
+    color: @text;
     margin-bottom: 24px;
+    padding-top: 3px;
+    width: 100%;
     ol {
         list-style: none;
         padding: 0 0 5px;
@@ -51,11 +48,4 @@
             }
         }
     }
-}
-
-.developer-hub #breadcrumbs {
-    border: 0;
-    background-color: transparent;
-    background-image: none;
-    margin: 0 0 5px;
 }

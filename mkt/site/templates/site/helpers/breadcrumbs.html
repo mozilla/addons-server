@@ -1,0 +1,23 @@
+{% if breadcrumbs %}
+  <section id="breadcrumbs" class="full">
+    <div>
+      <nav>
+        <ol>
+          {% for target, label in breadcrumbs %}
+            <li>
+            {% if target %}
+              {% if loop.first and has_home %}
+                <a href="{{ target }}" class="home" title="{{ label }}">{{ label }}</a>
+              {% else %}
+                <a href="{{ target }}">{{ label }}</a>
+              {% endif %}
+            {% else %}
+              <span>{{ label }}</span>
+            {% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      </nav>
+    </div>
+  </section>
+{% endif %}

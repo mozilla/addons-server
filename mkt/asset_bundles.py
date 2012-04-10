@@ -7,7 +7,7 @@ CSS = {
 
         # Base styles (body, breadcrumbs, islands, columns).
         'css/devreg/base.less',
-        'css/mkt/breadcrumbs.less',
+        'css/devreg/breadcrumbs.less',
 
         # Typographical styles (font treatments, headings).
         'css/devreg/typography.less',
