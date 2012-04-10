@@ -64,8 +64,9 @@ def product_as_dict(request, product):
         ret.update({
             'price': product.premium.get_price() or '0',
             'purchase': product.get_purchase_url(),
-            'isPurchased': product.pk in request.amo_user.purchase_ids(),
         })
+        if request.amo_user:
+            ret['isPurchased'] = product.pk in request.amo_user.purchase_ids()
     return ret
 
 
