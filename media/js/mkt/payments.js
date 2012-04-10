@@ -55,6 +55,7 @@
         $.post(product.purchase, function(response) {
             dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
             dgFlow.startFlow(response.url);
+            overlay.removeClass('show');
         });
         $(window).bind('purchasecomplete.payments',function() {
             $def.resolve();
