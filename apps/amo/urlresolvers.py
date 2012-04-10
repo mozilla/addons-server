@@ -135,8 +135,9 @@ class Prefixer(object):
             url_parts.append(locale)
 
         # Temporarily force home page to /<locale>/developers/.
-        if (not waffle.switch_is_active('unleash-consumer') and
-            settings.MARKETPLACE and not path.partition('/')[0]):
+        if (settings.MARKETPLACE
+            and not waffle.switch_is_active('unleash-consumer')
+            and not path.partition('/')[0]):
             url_parts.append('developers')
 
         elif path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
