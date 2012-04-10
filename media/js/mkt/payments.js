@@ -1,7 +1,7 @@
 (function() {
 
     var overlay = $('#pay'),
-        paymentsTemplate = template(overlay.html()),
+        paymentsTemplate = template($('#pay-template').html()),
         product,
         purchaseInProgress = true,
         $def,
@@ -27,7 +27,7 @@
 
         // TODO: allow multiple payment systems
         overlay.on('click.payments', '#payment-confirm', startPayment);
-        overlay.on('click.payments', '#payment-cancel', cancelPurchase);
+        overlay.on('click.payments', '#pay .close', cancelPurchase);
 
         return $def.promise();
     }

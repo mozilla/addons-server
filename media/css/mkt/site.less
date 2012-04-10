@@ -121,6 +121,47 @@ body {
     position: relative;
 }
 
+#pay section {
+    height: 344px; // Bad idea but will have to polish this later.
+    .authors {
+        margin-top: 2px;
+    }
+    h1 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+}
+
+#preapproval {
+    border: 1px solid @border-blue;
+    color: @text;
+    padding: 15px 180px 3px 20px;
+    .border-radius(5px);
+    background: #fff url(../../img/mkt/paypal_cards.png) no-repeat 95% 11px;
+    background-size: 90px; // This may not be a good idea (browser resampling).
+    h3 {
+        font-weight: 600;
+        maergin-top: 5px;
+    }
+    // Colors below are PayPal specific.
+    button {
+        min-width: 200px;
+        .gradient-two-color(@white, #fee1a7);
+        border: 1px solid #fa0;
+        color: #333;
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                inset 0 -2px 0 0 rgba(0,0,0,.1),
+                inset 0 12px 24px 2px #facc6f);
+            background-color: @gray;
+        }
+    }
+}
+
 // 10 columns (portrait tablet)
 @media (max-width: @10col) {
     #site-header, #page {

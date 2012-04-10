@@ -1,16 +1,29 @@
-<div id="pay" class="overlay">
+<div id="pay" class="overlay"></div>
+<script type="text/template" id="pay-template">
   <section>
-    <h2>Do you wish to purchase {name} for {price}?</h2>
+    <a href="#" class="close">X</a>
+    <div class="product-details c">
+      <div class="visual">
+        <img class="icon" src="{icon_128_url}">
+      </div>
+      <div class="vitals">
+        <h2>{name}</h2>
+        <h3 class="authors"><a href="{author_url}">{author}</a></h3>
+      </div>
+    </div>
     {% if request.amo_user and not request.amo_user.has_preapproval_key() %}
       <form id="preapproval" method="post"
             action="{preapprovalUrl}">
         {{ csrf() }}
-        <p>{{ _("Your wallet isn't set up yet") }}</p>
+        <h3>{{ _('To complete your purchase please set up your Marketplace
+                  Wallet.') }}</h3>
         <p><button>{{ _('Set up') }}</button></p>
       </form>
     {% endif %}
-    <a href="#" id="payment-confirm" class="button">Yup</a>
-    <a href="#" id="payment-cancel" class="button">Nope</a>
+    <p>
+      <a href="#" id="payment-confirm">
+        {{ _('Make a one time payment using your credit card.') }}
+      </a>
+    </p>
   </section>
-</div>
-
+</script>
