@@ -32,6 +32,7 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-login-url="{{ url('users.browserid_login') }}"
         {% if request.amo_user %}
           data-purchases="{{ request.amo_user.purchase_ids()|join(',') }}"
         {% endif %}
@@ -80,6 +81,40 @@
         {% endif %}
         <a href="#" id="payment-confirm" class="button">Yup</a>
         <a href="#" id="payment-cancel" class="button">Nope</a>
+      </section>
+    </div>
+
+    <div id="login" class="overlay">
+      <section>
+        <div class="new">
+          <h2>Please sign in</h2>
+          <footer>
+            <a class="button browserid" href="#">Log in / Register</a>
+          </footer>
+        </div>
+        <div class="old">
+          <h2>Additional authorization required</h2>
+          <form method="post" action="{{ url('users.login') }}" class="listing-footer">
+            {{ csrf() }}
+            <div class="row">
+              <label for="id_username">Email address</label>
+              <input id="id_username" name="username" maxlength="50" type="text">
+            </div>
+            <div class="row">
+              <label for="id_password">Password</label>
+              <input name="password" id="id_password" type="password">
+            </div>
+            <div class="row">
+              <label for="id_rememberme" class="check">
+                <input name="rememberme" id="id_rememberme" type="checkbox">
+                Remember me on this computer
+              </label>
+            </div>
+            <footer>
+              <button id="login-submit" type="submit">Log in</button>
+            </footer>
+          </form>
+        </div>
       </section>
     </div>
 

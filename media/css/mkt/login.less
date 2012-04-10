@@ -1,0 +1,27 @@
+#login {
+    section {
+        max-width: 320px;
+        max-height: 160px;
+    }
+    .new {
+        display: block;
+        footer {
+            text-align: center;
+        }
+    }
+    .old {
+        display: none;
+    }
+    &.old {
+        section {
+            max-height: 220px;
+            max-width: 500px;
+        }
+        .new {
+            display: none;
+        }
+        .old {
+            display: block;
+        }
+    }
+}

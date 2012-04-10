@@ -10,6 +10,7 @@
 
         if (z.anonymous) {
             $(window).trigger('login');
+            return;
         }
         if (product.isPurchased || !product.price) {
             install(product);
