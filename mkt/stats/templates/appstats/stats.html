@@ -19,13 +19,9 @@
 {% endblock %}
 
 {% block content %}
-<section class="crumb full">
-  <div>
-    {{ mkt_breadcrumbs(items=[(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                              (addon.get_url_path(), addon.name),
-                              (link, _('Statistics'))]) }}
-  </div>
-</section>
+{{ mkt_breadcrumbs(items=[(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                          (addon.get_url_path(), addon.name),
+                          (link, _('Statistics'))]) }}
 <section id="stats">
   <header class="c">
     <hgroup class="c">
