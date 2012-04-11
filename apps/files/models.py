@@ -552,8 +552,6 @@ class Platform(amo.models.ModelBase):
     # `name` and `shortname` are provided in amo.__init__
     # name = TranslatedField()
     # shortname = TranslatedField()
-    # icondata => mysql blob
-    icontype = models.CharField(max_length=25, default='')
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'platforms'

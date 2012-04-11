@@ -988,7 +988,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def takes_contributions(self):
-        # TODO(jbalogh): config.paypal_disabled
         return (self.status == amo.STATUS_PUBLIC and self.wants_contributions
                 and (self.paypal_id or self.charity_id))
 
