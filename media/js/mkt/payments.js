@@ -15,7 +15,12 @@
         }
         $def = $.Deferred();
         product = prod;
-        // console.log('beginning payment for ' + product.name, product);
+
+        // If the user is pre-authed, just call PayPal right away.
+        if (z.pre_auth) {
+            startPayment();
+            return $def.promise();
+        }
 
         overlay.html(paymentsTemplate(product));
         overlay.addClass('show');
@@ -57,14 +62,21 @@
 
     function doPaypal() {
         var $def = $.Deferred();
-        $.post(product.purchase, function(response) {
-            dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
-            dgFlow.startFlow(response.url);
-            overlay.removeClass('show');
-        });
         $(window).bind('purchasecomplete.payments',function() {
-            $('#purchased').toggle();
             $def.resolve();
+        });
+        $.post(product.purchase, function(response) {
+            if (response.status == 'COMPLETED') {
+                // If the response from pre-auth was good,
+                // then just jump to the next step.
+                $def.resolve();
+            } else {
+                // This will show if the user is not pre-authed
+                // or for some reason the pre-auth failed.
+                dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
+                dgFlow.startFlow(response.url);
+                overlay.removeClass('show');
+            }
         });
         return $def.promise();
     }
