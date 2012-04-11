@@ -84,11 +84,12 @@ CSS = {
         'css/mkt/search.less',
         'css/mkt/paginator.less',
         'css/mkt/suggestions.less',
-        'css/mkt/purchases.less',
         'css/mkt/support.less',
         'css/mkt/account.less',
+        'css/mkt/account-purchases.less',
         'css/mkt/home.less',
         'css/mkt/login.less',
+        'css/mkt/purchase.less',
         'css/devreg/l10n.less',
     ),
     'mkt/in-app-payments': (
