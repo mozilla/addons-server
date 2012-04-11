@@ -539,17 +539,6 @@ class TestPurchases(PurchaseBase):
         eq_(pq(res.content)('#sorter a').attr('href'),
             reverse('account.purchases'))
 
-    def test_purchases_attribute(self):
-        doc = pq(self.client.get(self.url).content)
-        ids = list(Webapp.objects.values_list('pk', flat=True).order_by('pk'))
-        eq_(doc('body').attr('data-purchases'),
-            ','.join([str(i) for i in ids]))
-
-    def test_no_purchases_attribute(self):
-        self.user.addonpurchase_set.all().delete()
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('body').attr('data-purchases'), '')
-
     def test_support_link(self):
         eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
             self.get_support_url())
