@@ -2,18 +2,18 @@
 import json
 import urlparse
 
+from django.conf import settings
+
 import mock
 from nose.tools import eq_
 
-from django.conf import settings
+import amo.tests
 from lib.metrics import metrics, send, send_request
-
-import test_utils
 
 
 @mock.patch('lib.metrics.urllib2.urlopen')
 @mock.patch.object(settings, 'METRICS_SERVER', 'http://localhost')
-class TestMetrics(test_utils.TestCase):
+class TestMetrics(amo.tests.TestCase):
 
     def test_called(self, urlopen):
         send('install', {})
