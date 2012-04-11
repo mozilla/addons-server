@@ -149,7 +149,7 @@ def _app_search(request, category=None):
     }
 
     applied_filters = []
-    for facet in ['prices', 'categories', 'devices']:
+    for facet in ('prices', 'categories', 'devices'):
         for idx, f in enumerate(ctx[facet]):
             # Show filters where something besides its first/default choice
             # is selected.
