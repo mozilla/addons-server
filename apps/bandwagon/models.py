@@ -397,15 +397,6 @@ class CollectionAddon(amo.models.ModelBase):
         unique_together = (('addon', 'collection'),)
 
 
-class CollectionAddonRecommendation(models.Model):
-    collection = models.ForeignKey(Collection, null=True)
-    addon = models.ForeignKey(Addon, null=True)
-    score = models.FloatField(blank=True)
-
-    class Meta:
-        db_table = 'collection_addon_recommendations'
-
-
 class CollectionFeature(amo.models.ModelBase):
     title = TranslatedField()
     tagline = TranslatedField()
