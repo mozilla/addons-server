@@ -34,9 +34,12 @@ class TestMetrics(amo.tests.TestCase):
 
     def test_send_request(self, urlopen):
         request = mock.Mock()
+        request.LANG = 'en'
         request.META = {'HTTP_USER_AGENT': 'py'}
         send_request('install', request, {})
-        eq_(urlopen.call_args[0][0].data, '{"user-agent": "py"}')
+        data = json.loads(urlopen.call_args[0][0].data)
+        eq_(data['user-agent'], 'py')
+        eq_(data['locale'], 'en')
 
     def get_response(self, code):
         response = mock.Mock()

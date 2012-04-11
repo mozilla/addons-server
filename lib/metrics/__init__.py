@@ -29,6 +29,7 @@ def send_request(action, request, data):
     before doing so. Use this from Django views.
     """
     data['user-agent'] = request.META.get('HTTP_USER_AGENT')
+    data['locale'] = request.LANG
     send(action, data)
 
 
