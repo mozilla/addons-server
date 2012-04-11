@@ -83,6 +83,12 @@ loggers = {
         'level': 'ERROR',
         'propagate': True,
     },
+    'z.celery': {
+        'handlers': ['mail_admins', 'errortype_syslog',
+                     'statsd', 'arecibo'],
+        'level': 'ERROR',
+        'propagate': True,
+    },
 }
 
 cfg = {
