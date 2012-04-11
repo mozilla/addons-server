@@ -1532,7 +1532,6 @@ class BlacklistedGuid(amo.models.ModelBase):
 class Category(amo.models.ModelBase):
     name = TranslatedField()
     slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
-    description = TranslatedField()
     type = models.PositiveIntegerField(db_column='addontype_id',
                                        choices=do_dictsort(amo.ADDON_TYPE))
     application = models.ForeignKey('applications.Application', null=True,

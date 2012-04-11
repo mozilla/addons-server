@@ -68,7 +68,6 @@
         "model": "addons.category",
         "fields": {
             "count": 8,
-            "description": null,
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-01-20 02:03:03",

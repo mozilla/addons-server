@@ -390,7 +390,6 @@
         "model": "addons.category",
         "fields": {
             "count": 901,
-            "description": null,
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-02-23 19:17:32",
@@ -405,7 +404,6 @@
         "model": "addons.category",
         "fields": {
             "count": 901,
-            "description": null,
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-02-23 19:17:32",
@@ -420,7 +418,6 @@
         "model": "addons.category",
         "fields": {
             "count": 901,
-            "description": null,
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-02-23 19:17:32",
