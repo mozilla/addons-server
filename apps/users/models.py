@@ -472,6 +472,9 @@ class RequestUser(UserProfile):
         keys = super(RequestUser, self)._cache_keys()
         return keys + (UserProfile(id=self.id).cache_key,)
 
+    def is_anonymous(self):
+        return False
+
 
 class BlacklistedUsername(amo.models.ModelBase):
     """Blacklisted user usernames."""

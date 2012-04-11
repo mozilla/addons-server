@@ -29,7 +29,7 @@
     {% endif %}
   </head>
   <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
-        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-login-url="{{ url('users.browserid_login') }}"

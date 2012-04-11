@@ -1,6 +1,5 @@
 var z = {
     page: $('#page'),
-    anonymous: $('body').data('anonymous')
 };
 
 
@@ -20,6 +19,11 @@ $(document).ready(function() {
             .find('button, input, select, textarea').attr('disabled', true)
             .addClass('disabled');
     }
+    var data_user = $('body').data('user');
+    _.extend(z, {
+        anonymous: data_user.anonymous,
+        pre_auth: data_user.pre_auth
+    });
 });
 
 

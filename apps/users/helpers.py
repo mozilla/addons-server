@@ -81,3 +81,10 @@ def user_report_abuse(context, hide, profile):
 @register.filter
 def contribution_type(type):
     return amo.CONTRIB_TYPES[type]
+
+
+@register.function
+def user_data(amo_user):
+    return {'anonymous': amo_user.is_anonymous(),
+            'pre_auth': False if amo_user.is_anonymous()
+                              else amo_user.has_preapproval_key()}

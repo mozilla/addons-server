@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import re
 
+from django.contrib.auth.models import AnonymousUser
+
+import mock
 from nose.tools import eq_
 
 from amo.urlresolvers import reverse
-from users.helpers import emaillink, user_link, users_list
-from users.models import UserProfile
+from users.helpers import emaillink, user_link, users_list, user_data
+from users.models import UserProfile, RequestUser
 
 
 def test_emaillink():
@@ -78,3 +81,23 @@ def test_user_link_unicode():
     url = reverse('users.profile', args=[1])
     eq_(user_link(u),
         u'<a href="%s">%s</a>' % (url, u.username))
+
+
+def test_user_data():
+    u = user_data(RequestUser(username='foo', pk=1))
+    eq_(u['anonymous'], False)
+    eq_(u['pre_auth'], False)
+
+
+@mock.patch('users.models.RequestUser.has_preapproval_key')
+def test_user_data_approved(has_preapproval_key):
+    has_preapproval_key.return_value = True
+    u = user_data(RequestUser(username='foo', pk=1))
+    eq_(u['anonymous'], False)
+    eq_(u['pre_auth'], True)
+
+
+def test_anonymous_user_data():
+    u = user_data(AnonymousUser())
+    eq_(u['anonymous'], True)
+    eq_(u['pre_auth'], False)
