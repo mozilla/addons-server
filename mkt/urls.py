@@ -5,8 +5,6 @@ from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
-import waffle
-
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
@@ -22,15 +20,10 @@ handler500 = 'mkt.site.views.handler500'
 
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
-if waffle.switch_is_active('unleash-consumer'):
-    HOME = 'mkt.home.views.home'
-else:
-    HOME = 'mkt.developers.views.home'
-
 
 urlpatterns = patterns('',
     # Home.
-    url('^$', HOME, name='home'),
+    url('^$', 'mkt.home.views.home', name='home'),
 
     # App Detail pages.
     ('^app/%s/' % APP_SLUG, include('mkt.detail.urls')),
