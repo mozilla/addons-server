@@ -32,18 +32,17 @@ def market_button(context, product):
         label = price_label(product)
         product_dict = product_as_dict(request, product)
         data_attrs = {
-            'product': json.dumps(product_dict, cls=JSONEncoder)
+            'product': json.dumps(product_dict, cls=JSONEncoder),
+            'manifestUrl': product.manifest_url,
         }
         if product.is_premium() and product.premium:
             classes.append('premium')
-            data_attrs.update({
-                'purchase': product.get_purchase_url() + '?',
-                #'start-purchase': product.get_detail_url('purchase.start'),
-                'cost': product.premium.get_price(),
-            })
-        if not product.is_premium() or product.has_purchased(request.amo_user):
+        if not product.is_premium():
             classes.append('install')
             label = _('Install')
+        elif product.has_purchased(request.amo_user):
+            classes.append('install purchased')
+            label = _('Purchased')
         # TODO: Show inline BroswerID login popup for non-authenticated users.
         c = dict(product=product, label=label,
                  data_attrs=data_attrs, classes=' '.join(classes))

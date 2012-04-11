@@ -26,6 +26,7 @@
     }
 
     function purchase(product) {
+        $(window).trigger('app_purchase_start', product);
         $.when(z.payments.purchase(product))
          .done(purchaseSuccess)
          .fail(purchaseError);
@@ -39,10 +40,12 @@
     }
 
     function purchaseError(product, msg) {
+        $(window).trigger('app_purchase_error', product, msg);
     }
 
     function install(product, receipt) {
         var data = {};
+        $(window).trigger('app_install_start', product);
         $.post(product.recordUrl).success(function(response) {
             if (response.receipt) {
                 data.receipt = response.receipt;
@@ -51,22 +54,25 @@
              .done(installSuccess)
              .fail(installError);
         }).error(function(response) {
-            throw 'Could not record generate receipt!';
+            // Could not record/generate receipt!
+            installError(product);
         });
     }
 
     function installSuccess(product) {
-        $(window).trigger('appinstall', product);
+        $(window).trigger('app_install_success', product);
     }
 
-    function installError(product) {
-        $(window).trigger('appinstallerror', product);
+    function installError(product, msg) {
+        $(window).trigger('app_install_error', product, msg);
     }
 
-    if (localStorage.getItem('toInstall')) {
-        var lsVal = localStorage.getItem('toInstall');
-        localStorage.removeItem('toInstall');
-        var product = JSON.parse(lsVal);
-        startInstall(product);
-    }
+    $(function() {
+        if (localStorage.getItem('toInstall')) {
+            var lsVal = localStorage.getItem('toInstall');
+            localStorage.removeItem('toInstall');
+            var product = JSON.parse(lsVal);
+            startInstall(product);
+        }
+    });
 })();

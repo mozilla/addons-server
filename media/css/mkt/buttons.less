@@ -23,14 +23,6 @@
     text-align: center;
     text-decoration: none;
     text-shadow: 0 1px 0 rgba(0,0,0,.25);
-    &.install, &.premium {
-        .gradient-two-color(@btn-b, @btn-b-dark);
-        &:hover {
-            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                        inset 0 -2px 0 0 rgba(0,0,0,.2),
-                        inset 0 12px 24px 2px @btn-b-lite);
-        }
-    }
     &.delete {
         .gradient-two-color(@btn-r, @btn-r-dark);
         &:hover {
@@ -44,7 +36,62 @@
                     inset 0 -2px 0 0 rgba(0,0,0,.2),
                     inset 0 12px 24px 2px @btn-b-lite);
     }
-    &:link:active {
+}
+
+.button {
+    &.install, &.premium {
+        .gradient-two-color(@btn-b, @btn-b-dark);
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 -2px 0 0 rgba(0,0,0,.2),
+                        inset 0 12px 24px 2px @btn-b-lite);
+        }
+    }
+}
+
+button[disabled],
+.button.disabled,
+.button.purchasing,
+.button.purchased,
+.button.installing,
+.button.installed {
+    color: #919497;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+button[disabled],
+.button.disabled {
+    .gradient-two-color(#ddd, @light-gray);
+    pointer-events: none;
+}
+
+.button {
+    &.install, &.premium {
+        &.purchasing, &.purchased, &.installing, &.installed {
+            .gradient-two-color(#ddd, @light-gray);
+            &:hover {
+                .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                            inset 0 -2px 0 0 rgba(0,0,0,.2),
+                            inset 0 12px 24px 2px @light-gray);
+                color: @medium-gray;
+            }
+        }
+        &.error {
+            .gradient-two-color(@btn-r, @btn-r-dark);
+            color: @white;
+            &:hover {
+                .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                            inset 0 -2px 0 0 rgba(0,0,0,.2),
+                            inset 0 12px 24px 2px @btn-r-lite);
+            }
+        }
+    }
+    &:link:active,
+    &.purchasing,
+    &:link:active.purchased,
+    &.installing,
+    &:link:active.installed {
+        /* I'm so depressed. */
         .box-shadow(inset 0 2px 0 0 rgba(0,0,0,.2),
                     inset 0 12px 24px 6px rgba(0,0,0,.2),
                     inset 0 0 2px 2px rgba(0,0,0,.2));
