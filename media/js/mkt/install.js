@@ -1,14 +1,18 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 (function() {
-    z.page.on('click', '.button.product', startInstall);
+    z.page.on('click', '.button.product', clickHandler);
 
-    function startInstall(e) {
+    function clickHandler(e) {
         e.preventDefault();
         e.stopPropagation();
         var product = $(this).data('product');
+        startInstall(product);
+    }
 
+    function startInstall(product) {
         if (z.anonymous) {
+            localStorage.setItem('toInstall', JSON.stringify(product));
             $(window).trigger('login');
             return;
         }
@@ -57,5 +61,12 @@
 
     function installError(product) {
         $(window).trigger('appinstallerror', product);
+    }
+
+    if (localStorage.getItem('toInstall')) {
+        var lsVal = localStorage.getItem('toInstall');
+        localStorage.removeItem('toInstall');
+        var product = JSON.parse(lsVal);
+        startInstall(product);
     }
 })();
