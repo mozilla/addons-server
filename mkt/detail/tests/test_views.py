@@ -243,6 +243,14 @@ class TestInstall(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 302)
 
+    @mock.patch('mkt.detail.views.send_request')
+    def test_record_metrics(self, send_request):
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(send_request.call_args[0][0], 'install')
+        eq_(send_request.call_args[0][2], {'app-domain': u'cbc.ca',
+                                           'app-id': self.addon.pk})
+
     def test_record_install(self):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
