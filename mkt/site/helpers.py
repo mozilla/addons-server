@@ -63,6 +63,7 @@ def product_as_dict(request, product):
     if product.is_premium():
         ret.update({
             'price': product.premium.get_price() or '0',
+            'priceLocale': product.premium.get_price_locale(),
             'purchase': product.get_purchase_url(),
         })
         if request.amo_user:

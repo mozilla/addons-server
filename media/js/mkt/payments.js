@@ -4,7 +4,8 @@
         paymentsTemplate = template(overlay.html()),
         product,
         purchaseInProgress = true,
-        $def;
+        $def,
+        message = $('#purchased');
 
     function beginPurchase(prod) {
         if ($def && $def.state() == 'pending') {
@@ -22,6 +23,7 @@
                 cancelPurchase();
             }
         });
+
         // TODO: allow multiple payment systems
         overlay.on('click.payments', '#payment-confirm', startPayment);
         overlay.on('click.payments', '#payment-cancel', cancelPurchase);
@@ -41,6 +43,8 @@
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
+        message.html(template(message.html())(product));
+        message.toggle();
         $def.resolve(product);
     }
 
@@ -58,12 +62,13 @@
             overlay.removeClass('show');
         });
         $(window).bind('purchasecomplete.payments',function() {
+            $('#purchased').toggle();
             $def.resolve();
         });
         return $def.promise();
     }
 
     z.payments = {
-        'purchase': beginPurchase
+        'purchase': beginPurchase,
     };
 })();
