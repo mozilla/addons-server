@@ -51,6 +51,14 @@ def market_button(context, product):
 
 
 def product_as_dict(request, product):
+
+    # Dev environments might not have authors set.
+    author = ''
+    author_url = ''
+    if product.listed_authors[0]:
+        author = product.listed_authors[0].name
+        author_url = product.listed_authors[0].get_url_path()
+
     ret = {
         'id': product.id,
         'name': product.name,
@@ -58,8 +66,8 @@ def product_as_dict(request, product):
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
         'recordUrl': product.get_detail_url('record'),
-        'author': product.listed_authors[0].name,
-        'author_url': product.listed_authors[0].get_url_path(),
+        'author': author
+        'author_url': author_url
         'icon_128_url': product.get_icon_url(128)
     }
     if product.is_premium():
