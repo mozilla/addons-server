@@ -133,3 +133,31 @@
         float: left;
     }
 }
+
+@media (max-width: @4col) {
+    #page header h1,
+    #page header .sub-nav,
+    #page header .sub-nav li {
+        float: none;
+    }
+    #page header .sub-nav {
+        .border-radius(0);
+        .box-shadow(0);
+        margin: 15px 0;
+        li a,
+        li a:first-child {
+            .border-radius(0);
+        }
+        li {
+            a {
+                border: 1px solid @note-gray;
+                border-top-width: 0;
+                display: block;
+                padding: 10px 15px;
+            }
+            &:first-child a {
+                border-top-width: 1px;
+            }
+        }
+    }
+}

@@ -236,22 +236,10 @@ form {
 
 @media (max-width: @4col) {
     .form-grid {
-        .form-label {
-            width: 30%;
-        }
+        .form-label,
         .form-col {
-            width: 70%;
-        }
-    }
-}
-
-@media (max-width: @3col) {
-    .form-grid {
-        .form-label {
-            width: 40%;
-        }
-        .form-col {
-            width: 60%;
+            float: none;
+            width: 100%;
         }
     }
 }
