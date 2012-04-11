@@ -194,9 +194,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @mock.patch('paypal.check_purchase')
     def test_check_purchase(self, check_purchase):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
         check_purchase.return_value = 'COMPLETED'
         self.make_contribution()
         self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
@@ -207,7 +204,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @mock.patch('paypal.check_purchase')
     def test_check_addon_purchase_error(self, check_purchase):
-        # Fix when we implement payment confirmation.
         raise SkipTest
 
         check_purchase.return_value = 'ERROR'
@@ -221,9 +217,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @mock.patch('paypal.check_purchase')
     def test_check_addon_purchase(self, check_purchase):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
         check_purchase.return_value = 'COMPLETED'
         self.make_contribution()
         res = self.client.get_ajax('%s?uuid=%s' %
@@ -233,9 +226,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         # Test that we redirect to app detail page.
 
     def test_check_cancel(self):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
         self.make_contribution()
         res = self.client.get_ajax('%s?uuid=%s' %
                                    (self.get_url('cancel'), '123'))
@@ -244,9 +234,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @mock.patch('paypal.check_purchase')
     def test_check_wrong_uuid(self, check_purchase):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
         check_purchase.return_value = 'COMPLETED'
         self.make_contribution()
         res = self.client.get_ajax('%s?uuid=%s' %
