@@ -24,8 +24,7 @@
         });
         // TODO: allow multiple payment systems
         overlay.on('click.payments', '#payment-confirm', startPayment);
-        overlay.on('click.payments', '#payment-cancel, #pay .close',
-                   cancelPurchase);
+        overlay.on('click.payments', '#payment-cancel', cancelPurchase);
 
         return $def.promise();
     }

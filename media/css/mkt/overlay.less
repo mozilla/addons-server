@@ -18,19 +18,13 @@
     -webkit-transition: .5s opacity ease;
     .close {
         display: block;
-        background-color: @text;
+        background-color: #fff;
         position: absolute;
         margin: 0;
         z-index: 20;
         top: 5px;
         right: 5px;
-        .border-radius(5px);
-        color: #fff;
-        padding: 3px 9px;
-        font-weight: bold;
-        &:hover {
-            text-decoration: none;
-        }
+        .box-shadow(0 0 5px #000);
     }
     &.show {
         pointer-events: auto;
@@ -40,11 +34,9 @@
     section {
         .border-box();
         .box-shadow(0 2px 2px fadeOut(#000, 50%));
-        border: 2px solid @text;
-        .border-radius(5px);
-        .gradient-two-color(#dee3e6, #fff);
         padding: 1em;
         position: absolute;
+        background: #fff;
         top: 0;
         left: 0;
         bottom: 0;
@@ -58,7 +50,6 @@
         max-height: 500px;
         -moz-transition: .5s all ease;
         -webkit-transition: .5s all ease;
-        color: @text;
         footer {
             backround-color: #ccc;
             .grain;
