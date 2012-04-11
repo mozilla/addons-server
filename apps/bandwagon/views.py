@@ -40,7 +40,7 @@ def get_collection(request, username, slug):
 
 
 def owner_required(f=None, require_owner=True):
-    """Requires collection to be owner, by someone."""
+    """Requires collection to be owned, by someone."""
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, username, slug, *args, **kw):
@@ -405,7 +405,7 @@ def ajax_collection_alter(request, action):
 @login_required
 @owner_required(require_owner=False)
 def edit(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, 'Admin', '%')
+    is_admin = acl.action_allowed(request, 'Collections', 'Edit')
 
     if request.method == 'POST':
         initial = initial_data_from_request(request)
@@ -471,7 +471,7 @@ def edit_addons(request, collection, username, slug):
 @owner_required
 @post_required
 def edit_contributors(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, 'Admin', '%')
+    is_admin = acl.action_allowed(request, 'Collections', 'Edit')
 
     if is_admin:
         admin_form = forms.AdminForm(request.POST)

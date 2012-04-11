@@ -67,6 +67,8 @@ def check_collection_ownership(request, collection, require_owner=False):
 
     if action_allowed(request, 'Admin', '%'):
         return True
+    elif action_allowed(request, 'Collections', 'Edit'):
+        return True
     elif request.amo_user.id == collection.author_id:
         return True
     elif not require_owner:

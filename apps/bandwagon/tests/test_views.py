@@ -15,6 +15,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from access.models import Group, GroupUser
 from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from amo.urlresolvers import reverse
@@ -508,6 +509,43 @@ class TestCRUD(amo.tests.TestCase):
         r = self.client.get(url)
         eq_(r.status_code, 403)
 
+        url = reverse('collections.edit_privacy', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 403)
+
+        url = reverse('collections.delete', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 403)
+
+    def test_acl_collections_edit(self):
+        # Test users in group with 'Collections:Edit' are allowed.
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        group = Group.objects.create(name='Staff', rules='Collections:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        r = self.client.post(self.add_url, self.data, follow=True)
+        self.login_regular()
+        url_args = ['admin', self.slug]
+
+        url = reverse('collections.edit', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
+        url = reverse('collections.edit_addons', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 405)  # Passed acl check, but this view needs a POST.
+
+        url = reverse('collections.edit_contributors', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 405)  # Passed acl check, but this view needs a POST.
+
+        url = reverse('collections.edit_privacy', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 405)  # Passed acl check, but this view needs a POST.
+
+        url = reverse('collections.delete', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
     def test_edit_favorites(self):
         r = self.client.get(reverse('collections.list'))
         fav = r.context['request'].amo_user.favorites_collection()
@@ -627,8 +665,6 @@ class TestCRUD(amo.tests.TestCase):
         doc = pq(r.content)
         eq_(len(doc('a.delete')), 2)
 
-        # TODO: bug 590305
-        return
         self.login_regular()
         r = self.client.get(url)
         eq_(r.status_code, 200)
