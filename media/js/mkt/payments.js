@@ -69,6 +69,6 @@
     }
 
     z.payments = {
-        'purchase': beginPurchase,
+        'purchase': beginPurchase
     };
 })();
