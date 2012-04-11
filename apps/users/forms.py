@@ -370,7 +370,7 @@ class BaseAdminUserEditForm(object):
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
         return (set(self.changed_data) -
-                set(['admin_log', 'nickname', 'notifications',
+                set(['admin_log', 'notifications',
                      'password', 'password2', 'oldpassword']))
 
     def changes(self):

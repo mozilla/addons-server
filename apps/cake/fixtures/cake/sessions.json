@@ -3,11 +3,8 @@
     "pk": 1,
     "model": "users.userprofile",
     "fields": {
-        "nickname": "fligtard",
         "username": "fligtard",
         "display_name": "Scott \u0627\u0644\u062a\u0637\u0628",
-        "firstname": "Scott",
-        "lastname": "Bakula",
         "emailhidden": 1,
         "display_collections": 1,
         "display_collections_fav": 1,

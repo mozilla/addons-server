@@ -3,10 +3,7 @@
     "pk": 1,
     "model": "users.userprofile",
     "fields": {
-        "nickname": "fligtard",
         "username": "fligtard",
-        "firstname": "Scott",
-        "lastname": "Bakula",
         "email": "scott@bakula.com",
         "emailhidden": 1,
         "display_collections": 1,
@@ -28,10 +25,7 @@
     "pk": 2,
     "model": "users.userprofile",
     "fields": {
-        "nickname": "milos",
         "username": "milos",
-        "firstname": "Milos",
-        "lastname": "Dinic",
         "email": "milos@dinic.com",
         "emailhidden": 1,
         "display_collections": 1,

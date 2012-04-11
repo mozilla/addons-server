@@ -25,8 +25,6 @@ class FeedTest(amo.tests.TestCase):
 
         self.user = mock.Mock()
         self.user.username = None
-        self.user.firstname = self.u
-        self.user.lastname = self.u
 
         self.review = mock.Mock()
         self.review.title = self.wut

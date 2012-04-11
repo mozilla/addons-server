@@ -15,7 +15,6 @@
         "pk": 4043307,
         "model": "users.userprofile",
         "fields": {
-            "nickname": "jbalogh",
             "username": "jbalogh",
             "deleted": 0,
             "user": 4043307,
@@ -39,7 +38,6 @@
         "pk": 8675309,
         "model": "users.userprofile",
         "fields": {
-            "nickname": "nobodyspecial",
             "username": "nobodyspecial",
             "deleted": 0,
             "user": 8675309,

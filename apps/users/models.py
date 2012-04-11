@@ -93,12 +93,6 @@ class UserEmailField(forms.EmailField):
 
 
 class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
-    # nickname, firstname, & lastname are deprecated.
-    nickname = models.CharField(max_length=255, default='', null=True,
-                                blank=True)
-    firstname = models.CharField(max_length=255, default='', blank=True)
-    lastname = models.CharField(max_length=255, default='', blank=True)
-
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
@@ -245,9 +239,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
         self.password = "sha512$Anonymous$Password"
-        self.firstname = ""
-        self.lastname = ""
-        self.nickname = None
         self.username = "Anonymous-%s" % self.id  # Can't be null
         self.display_name = None
         self.homepage = ""
@@ -265,10 +256,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         # we have to fix stupid things that we defined poorly in remora
         if not self.resetcode_expires:
             self.resetcode_expires = datetime.now()
-
-        # TODO POSTREMORA (maintain remora's view of user names.)
-        if not self.firstname or self.lastname or self.nickname:
-            self.nickname = self.name
 
         delete_user = None
         if self.deleted and self.user:
