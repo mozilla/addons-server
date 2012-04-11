@@ -53,3 +53,9 @@ $('html').ajaxSend(function(event, xhr, ajaxSettings) {
 }).ajaxSuccess(function(event, xhr, ajaxSettings) {
     $(window).trigger('resize'); // Redraw what needs to be redrawn.
 });
+
+
+// If any field changes, submit the form.
+$('form.go').change(function() {
+    this.submit();
+});

@@ -4,6 +4,8 @@ from django.conf import settings
 
 import mock
 from nose.tools import eq_
+from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -42,3 +44,22 @@ class TestRobots(amo.tests.TestCase):
     def test_do_not_engage_robots(self):
         rs = self.client.get('/robots.txt')
         self.assertContains(rs, 'Disallow: /')
+
+
+class TestFooter(amo.tests.TestCase):
+
+    def test_language_selector(self):
+        waffle.models.Switch.objects.create(name='unleash-consumer',
+                                            active=True)
+        r = self.client.get(reverse('home'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#lang-form option[selected]').attr('value'),
+            'en-us')
+
+    def test_language_selector_variables(self):
+        waffle.models.Switch.objects.create(name='unleash-consumer',
+                                            active=True)
+        r = self.client.get(reverse('home'), {'x': 'xxx', 'y': 'yyy'})
+        doc = pq(r.content)('#lang-form')
+        eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')
+        eq_(doc('input[type=hidden][name=y]').attr('value'), 'yyy')
