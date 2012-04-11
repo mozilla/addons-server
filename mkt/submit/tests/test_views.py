@@ -5,7 +5,6 @@ from django.conf import settings
 
 import mock
 from nose.tools import eq_
-from nose import SkipTest
 from pyquery import PyQuery as pq
 import waffle
 
@@ -213,7 +212,20 @@ class TestCreateWebApp(BaseWebAppTest):
         self.assertRedirects(r,
             reverse('submit.app.details', args=[webapp.app_slug]))
 
-    def test_disallow_double_post(self):
+    def test_no_hint(self):
+        self.post_addon()
+        self.upload = self.get_upload(abspath=self.manifest)
+        r = self.client.post(reverse('mkt.developers.upload_manifest'),
+                             dict(manifest=self.manifest_url), follow=True)
+        eq_(r.status_code, 200)
+        assert 'already submitted' not in r.content, (
+            'Unexpected helpful error (trap_duplicate)')
+        assert 'already exists' not in r.content, (
+            'Unexpected validation error (verify_app_domain)')
+
+    def test_hint_for_same_manifest(self):
+        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
+                                            active=True)
         self.post_addon()
         self.upload = self.get_upload(abspath=self.manifest)
         r = self.client.post(reverse('mkt.developers.upload_manifest'),
@@ -223,6 +235,23 @@ class TestCreateWebApp(BaseWebAppTest):
             'Oops, looks like you already submitted that manifest for '
             'MozillaBall, which is currently incomplete. '
             '<a href="/en-US/developers/app/mozillaball/edit">Resume app</a>')
+
+    def test_no_hint_for_same_manifest_different_author(self):
+        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
+                                            active=True)
+        self.post_addon()
+
+        # Submit same manifest as different user.
+        assert self.client.login(username='clouserw@gmail.com',
+                                 password='password')
+        self.upload = self.get_upload(abspath=self.manifest)
+        r = self.client.post(reverse('mkt.developers.upload_manifest'),
+                             dict(manifest=self.manifest_url))
+
+        data = json.loads(r.content)
+        eq_(data['validation']['messages'][0]['message'],
+            'An app already exists on this domain; only one app per domain is '
+            'allowed.')
 
     def test_app_from_uploaded_manifest(self):
         addon = self.post_addon()

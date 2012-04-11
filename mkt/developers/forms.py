@@ -18,7 +18,6 @@ from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
                            Preview)
 from amo.utils import raise_required, remove_icons
-from files.models import FileUpload
 from market.models import AddonPaymentData, AddonPremium, Price, PriceCurrency
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
 from mkt.inapp_pay.models import InappConfig
@@ -167,6 +166,43 @@ def check_paypal_id(paypal_id):
         raise forms.ValidationError(_('Could not validate PayPal id.'))
 
 
+def trap_duplicate(request, manifest_url):
+    # See if this user has any other apps with the same manifest.
+    owned = request.amo_user.addonuser_set.filter(
+        addon__manifest_url=manifest_url)
+    if not owned:
+        return
+    app = owned[0].addon
+    error_url = app.get_dev_url()
+    msg = None
+    if app.status == amo.STATUS_PUBLIC:
+        msg = _('Oops, looks like you already submitted that manifest '
+                'for %s, which is currently public. '
+                '<a href="%s">Edit app</a>')
+    elif app.status == amo.STATUS_PENDING:
+        msg = _('Oops, looks like you already submitted that manifest '
+                'for %s, which is currently pending. '
+                '<a href="%s">Edit app</a>')
+    elif app.status == amo.STATUS_NULL:
+        msg = _('Oops, looks like you already submitted that manifest '
+                'for %s, which is currently incomplete. '
+                '<a href="%s">Resume app</a>')
+    elif app.status == amo.STATUS_REJECTED:
+        msg = _('Oops, looks like you already submitted that manifest '
+                'for %s, which is currently rejected. '
+                 '<a href="%s">Edit app</a>')
+    elif app.status == amo.STATUS_DISABLED:
+        msg = _('Oops, looks like you already submitted that manifest '
+                'for %s, which is currently disabled by Mozilla. '
+                '<a href="%s">Edit app</a>')
+    elif app.disabled_by_user:
+        msg = _('Oops, looks like you already submitted that manifest '
+                'for %s, which is currently disabled. '
+                '<a href="%s">Edit app</a>')
+    if msg:
+        return msg % (app.name, error_url)
+
+
 def verify_app_domain(manifest_url):
     if waffle.switch_is_active('webapps-unique-by-domain'):
         domain = Webapp.domain_from_url(manifest_url)
@@ -174,18 +210,6 @@ def verify_app_domain(manifest_url):
             raise forms.ValidationError(
                 _('An app already exists on this domain; '
                   'only one app per domain is allowed.'))
-
-
-class NewWebappForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
-
-    def clean_upload(self):
-        upload = self.cleaned_data['upload']
-        verify_app_domain(upload.name)  # JS puts manifest URL here.
-        return upload
 
 
 class PreviewForm(happyforms.ModelForm):

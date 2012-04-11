@@ -13,11 +13,12 @@ from apps.users.notifications import app_surveys
 from apps.users.models import UserNotification
 from files.models import FileUpload
 from market.models import AddonPremium, Price
+from translations.widgets import TransInput, TransTextarea
+from translations.fields import TransField
+
 from mkt.developers.forms import (PaypalSetupForm as OriginalPaypalSetupForm,
                                   verify_app_domain)
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from translations.widgets import TransInput, TransTextarea
-from translations.fields import TransField
 
 
 class DevAgreementForm(happyforms.Form):
@@ -46,7 +47,8 @@ class NewWebappForm(happyforms.Form):
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
-        verify_app_domain(upload.name)  # JS puts manifest URL here.
+        # Throw an error if this is a dupe.
+        verify_app_domain(upload.name)  # JS sets manifest as `upload.name`.
         return upload
 
 

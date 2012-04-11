@@ -35,15 +35,9 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import AddonLog
 from lib.video import library as video_library
-from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
-                                  AppFormSupport, CurrencyForm,
-                                  InappConfigForm, PaypalSetupForm,
-                                  PreviewFormSet)
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPaymentData, AddonPremium, Refund
-from mkt.inapp_pay.models import InappConfig
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
 import paypal
@@ -51,6 +45,13 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
+
+from mkt.developers.decorators import dev_required
+from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
+                                  AppFormSupport, CurrencyForm,
+                                  InappConfigForm, PaypalSetupForm,
+                                  PreviewFormSet, trap_duplicate)
+from mkt.inapp_pay.models import InappConfig
 from mkt.webapps.models import Webapp
 
 from . import forms, tasks
@@ -604,41 +605,19 @@ def upload(request, addon_slug=None, is_standalone=False):
         return redirect('mkt.developers.upload_detail', fu.pk, 'json')
 
 
-def trap_duplicate(manifest_url):
-    apps = Webapp.objects.filter(manifest_url=manifest_url)
-    if not apps:
-        return
-    app = apps[0]
-    error_url = app.get_dev_url()
-    if app.status == amo.STATUS_PUBLIC:
-        return _('Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently public. '
-                 '<a href="%s">Edit app</a>'
-                 ) % (app.name, error_url)
-    elif app.status in [amo.STATUS_PENDING, amo.STATUS_NOMINATED]:
-        return _('Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently pending. '
-                 '<a href="%s">Edit app</a>'
-                 ) % (app.name, error_url)
-    elif app.status in [amo.STATUS_NULL, amo.STATUS_DISABLED]:
-        return _('Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently incomplete. '
-                 '<a href="%s">Resume app</a>'
-                 ) % (app.name, error_url)
-
-
 @login_required
 @post_required
 @json_view
 def upload_manifest(request):
     form = forms.NewManifestForm(request.POST)
-    if form.is_valid():
-        dup_msg = trap_duplicate(form.cleaned_data['manifest'])
+    if waffle.switch_is_active('webapps-unique-by-domain'):
+        # Helpful error if user already submitted the same manifest.
+        dup_msg = trap_duplicate(request, request.POST.get('manifest'))
         if dup_msg:
             return {'validation': {'errors': 1, 'success': False,
-                                   'messages': [{'type': 'error',
-                                                 'message': dup_msg,
-                                                 'tier': 1}]}}
+                    'messages': [{'type': 'error', 'message': dup_msg,
+                                  'tier': 1}]}}
+    if form.is_valid():
         upload = FileUpload.objects.create()
         tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
         return redirect('mkt.developers.upload_detail', upload.pk, 'json')
