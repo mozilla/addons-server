@@ -192,3 +192,8 @@ class TestVerify(PaymentTest):
     def test_app_data_too_long(self):
         max = InappPayment._meta.get_field_by_name('app_data')[0].max_length
         self.verify(update_request={'productdata': 'x' * (max + 1)})
+
+    @raises(UnknownAppError)
+    def test_non_public_app(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        self.verify()

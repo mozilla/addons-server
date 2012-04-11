@@ -88,9 +88,11 @@ def verify_request(signed_request):
 
     # Verify the signature:
     try:
-        cfg = InappConfig.objects.get(public_key=app_id)
+        cfg = InappConfig.objects.get(public_key=app_id,
+                                      addon__status=amo.STATUS_PUBLIC)
     except InappConfig.DoesNotExist:
-        _re_raise_as(UnknownAppError, 'App does not exist', app_id=app_id)
+        _re_raise_as(UnknownAppError, 'App does not exist or is not public',
+                     app_id=app_id)
     if cfg.status == amo.INAPP_STATUS_REVOKED:
         raise AppPaymentsRevoked('Payments revoked', app_id=app_id)
     elif cfg.status != amo.INAPP_STATUS_ACTIVE:
