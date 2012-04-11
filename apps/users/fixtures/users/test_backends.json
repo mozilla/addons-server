@@ -21,7 +21,6 @@
         "pk": 4043307,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": 1,
             "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
@@ -76,7 +75,6 @@
         "pk": 9945,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": 1,
             "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "Add-ons Product Management @ Mozilla",
@@ -128,7 +126,6 @@
         "pk": 5349055,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": false,
             "display_collections": false,
             "occupation": "",
@@ -179,7 +176,6 @@
         "pk": 9946,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": 1,
             "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",

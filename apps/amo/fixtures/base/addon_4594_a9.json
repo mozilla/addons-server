@@ -143,7 +143,6 @@
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": true,
             "display_collections": true,
             "averagerating": "3.38",

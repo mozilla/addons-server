@@ -3,7 +3,6 @@
         "pk": 5189612,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": false,
             "display_collections": false,
             "occupation": "",

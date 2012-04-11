@@ -170,7 +170,6 @@
         "pk": 3907389,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": "4.84",

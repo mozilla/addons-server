@@ -45,7 +45,6 @@
         "pk": 5293223,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": false,
             "display_collections": false,
             "occupation": "",
@@ -127,7 +126,6 @@
         "pk": 346,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": false,
             "display_collections": true,
             "occupation": "",

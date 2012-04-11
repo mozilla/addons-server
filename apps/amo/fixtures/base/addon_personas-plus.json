@@ -264,7 +264,6 @@
         "pk": 5133025,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": false,
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": "2.93",

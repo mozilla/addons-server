@@ -21,7 +21,6 @@
         "pk": 4043307,
         "model": "users.userprofile",
         "fields": {
-            "sandboxshown": 1,
             "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",

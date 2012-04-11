@@ -48,7 +48,7 @@ class UserAdmin(admin.ModelAdmin):
         ('Flags', {
             'fields': ('deleted', 'display_collections',
                        'display_collections_fav', 'emailhidden',
-                       'notifycompat', 'notifyevents', 'sandboxshown'),
+                       'notifycompat', 'notifyevents'),
         }),
         ('Admin', {
             'fields': ('notes', 'picture_type'),
