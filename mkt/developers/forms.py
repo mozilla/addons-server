@@ -108,6 +108,18 @@ class DeleteForm(happyforms.Form):
 
 class InappConfigForm(happyforms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super(InappConfigForm, self).__init__(*args, **kwargs)
+        if settings.INAPP_REQUIRE_HTTPS:
+            self.fields['is_https'].widget.attrs['disabled'] = 'disabled'
+            self.initial['is_https'] = True
+
+    def clean_is_https(self):
+        if settings.INAPP_REQUIRE_HTTPS:
+            return True  # cannot override it with form values
+        else:
+            return self.cleaned_data['is_https']
+
     def clean_postback_url(self):
         return self._clean_relative_url(self.cleaned_data['postback_url'])
 
@@ -124,7 +136,7 @@ class InappConfigForm(happyforms.ModelForm):
 
     class Meta:
         model = InappConfig
-        fields = ('postback_url', 'chargeback_url')
+        fields = ('postback_url', 'chargeback_url', 'is_https')
 
 
 def ProfileForm(*args, **kw):

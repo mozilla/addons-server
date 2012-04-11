@@ -26,8 +26,15 @@
     <table>
       <tr>
         <th class="label">{{ _('Application Domain') }}</th>
-        {# TODO(Kumar) make http(s) configurable. See bug 741484. #}
-        <td>http://{{ addon.app_domain }}</td>
+        <td><span class="inapp-domain-protocol">https://</span>{{ addon.app_domain }}</td>
+      </tr>
+      <tr>
+        <th><label for="id_is_https">{{ _("SSL") }} {{ required() }}</label></th>
+        <td>
+          {{ inapp_form.is_https }}
+          {{ inapp_form.is_https.errors }}
+          <span class="is-https hint">{{ inapp_form.is_https.help_text }}</span>
+        </td>
       </tr>
       <tr>
         <th><label for="id_postback_url">{{ _("Postback URL") }} {{ required() }}</label></th>

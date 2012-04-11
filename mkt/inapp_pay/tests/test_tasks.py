@@ -9,6 +9,7 @@ from django.conf import settings
 import fudge
 from fudge.inspector import arg
 import jwt
+import mock
 from nose.tools import eq_
 
 import amo
@@ -33,9 +34,8 @@ class TestNotifyApp(PaymentTest):
                                  chargeback_url=self.chargeback)
         self.payment = self.make_payment(contrib=self.contrib)
 
-    def url(self, path):
-        # TODO(Kumar) make http(s) configurable. See bug 741484.
-        return 'http://' + self.domain + path
+    def url(self, path, protocol='https'):
+        return protocol + '://' + self.domain + path
 
     def notify(self):
         tasks.notify_app(amo.INAPP_NOTICE_PAY, self.payment.pk)
@@ -55,6 +55,42 @@ class TestNotifyApp(PaymentTest):
         eq_(notice.success, True)
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)
+
+    @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', True)
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_force_https(self, urlopen):
+        self.inapp_config.update(is_https=False)
+        url = self.url(self.postback, protocol='https')
+        (urlopen.expects_call().with_args(url, arg.any(), timeout=arg.any())
+                               .returns_fake()
+                               .is_a_stub())
+        self.notify()
+        notice = InappPayNotice.objects.get()
+        eq_(notice.last_error, '')
+
+    @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_configurable_https(self, urlopen):
+        self.inapp_config.update(is_https=True)
+        url = self.url(self.postback, protocol='https')
+        (urlopen.expects_call().with_args(url, arg.any(), timeout=arg.any())
+                               .returns_fake()
+                               .is_a_stub())
+        self.notify()
+        notice = InappPayNotice.objects.get()
+        eq_(notice.last_error, '')
+
+    @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_configurable_http(self, urlopen):
+        self.inapp_config.update(is_https=False)
+        url = self.url(self.postback, protocol='http')
+        (urlopen.expects_call().with_args(url, arg.any(), timeout=arg.any())
+                               .returns_fake()
+                               .is_a_stub())
+        self.notify()
+        notice = InappPayNotice.objects.get()
+        eq_(notice.last_error, '')
 
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
     def test_notify_timeout(self, urlopen):

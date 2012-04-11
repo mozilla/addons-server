@@ -75,3 +75,4 @@ DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 
 VIDEO_LIBRARIES = ['lib.video.dummy']
 INAPP_VERBOSE_ERRORS = False
+INAPP_REQUIRE_HTTPS = True

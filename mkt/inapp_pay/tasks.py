@@ -1,9 +1,7 @@
 import calendar
-import httplib
 import logging
-import socket
 import time
-from urllib2 import urlopen, URLError
+from urllib2 import urlopen
 import urlparse
 
 from django.conf import settings
@@ -25,8 +23,7 @@ def notify_app(notice, payment_id, **kw):
     payment = InappPayment.objects.get(pk=payment_id)
     config = payment.config
     contrib = payment.contribution
-    # TODO(Kumar) make http(s) configurable. See bug 741484.
-    url = urlparse.urlunparse(('http', config.addon.app_domain,
+    url = urlparse.urlunparse((config.app_protocol(), config.addon.app_domain,
                                config.postback_url, '', '', ''))
     exception = None
     success = False
@@ -47,6 +44,8 @@ def notify_app(notice, payment_id, **kw):
     try:
         res = urlopen(url, signed_notice, timeout=5)
         res_content = res.read().strip()
+    except AssertionError:
+        raise  # Raise test-related exceptions.
     except Exception, exception:
         log.error('In-app payment %s raised exception in URL %s'
                   % (payment.pk, url), exc_info=True)
@@ -65,6 +64,8 @@ def notify_app(notice, payment_id, **kw):
         last_error = u'%s: %s' % (exception.__class__.__name__, exception)
     else:
         last_error = ''
+    s = InappPayNotice._meta.get_field_by_name('last_error')[0].max_length
+    last_error = last_error[:s]  # truncate to fit
 
     InappPayNotice.objects.create(payment=payment,
                                   notice=amo.INAPP_NOTICE_PAY,

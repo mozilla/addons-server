@@ -419,6 +419,7 @@ def in_app_config(request, addon_id, addon, webapp=True):
                                                status=amo.INAPP_STATUS_ACTIVE)
     except models.ObjectDoesNotExist:
         inapp_config = None
+
     inapp_form = InappConfigForm(request.POST or None,
                                  instance=inapp_config)
 

@@ -1058,6 +1058,8 @@ function initTruncateSummary() {
 }
 
 function initInAppConfig($dom) {
+    var $appProtocol = $('.inapp-domain-protocol', $dom),
+        $chbox = $('#id_is_https', $dom);
     $('#in-app-private-key .generator', $dom).click(_pd(function() {
         var $generator = $(this),
             url = $generator.attr('data-url'),
@@ -1080,4 +1082,15 @@ function initInAppConfig($dom) {
                 },
                 dataType: 'text'});
     }));
+
+    function setProtocol() {
+        var protocol = $chbox.is(':checked') ? 'https': 'http';
+        $appProtocol.text(protocol + '://');
+    }
+
+    $chbox.change(function() {
+        setProtocol();
+    });
+
+    setProtocol();
 }

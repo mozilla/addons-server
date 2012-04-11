@@ -2,6 +2,7 @@ import base64
 import os
 import random
 
+from django.conf import settings
 from django.db import models
 
 from tower import ugettext_lazy as _lazy
@@ -26,6 +27,11 @@ class InappConfig(amo.models.ModelBase):
                         u'/payments/postback'))
     private_key = models.CharField(max_length=255, unique=True)
     public_key = models.CharField(max_length=255, unique=True, db_index=True)
+    # Allow https to be configurable only if it's declared in settings.
+    # This is intended for development.
+    is_https = models.BooleanField(
+            default=True,
+            help_text=_lazy(u'Use SSL when posting to app'))
     status = models.PositiveIntegerField(choices=amo.INAPP_STATUS_CHOICES,
                                          default=amo.INAPP_STATUS_INACTIVE,
                                          db_index=True)
@@ -82,6 +88,13 @@ class InappConfig(amo.models.ModelBase):
         for key in limited_keygen(gen_key, max_tries):
             if cls.objects.filter(private_key=key).count() == 0:
                 return key
+
+    def app_protocol(self):
+        """Protocol to use when posting to this app domain."""
+        if settings.INAPP_REQUIRE_HTTPS:
+            return 'https'
+        else:
+            return 'https' if self.is_https else 'http'
 
 
 def limited_keygen(gen_key, max_tries):
