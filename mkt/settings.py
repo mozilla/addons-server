@@ -97,7 +97,6 @@ TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
 TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.webapps.context_processors.is_webapps',
     'mkt.site.context_processors.global_settings',
-    'mkt.experiments.context_processors.fragment',
 ]
 
 # Tests.
