@@ -5,7 +5,8 @@
         product,
         purchaseInProgress = true,
         $def,
-        message = $('#purchased');
+        message = $('#purchased'),
+        messageTemplate = template(message.html());
 
     function beginPurchase(prod) {
         if ($def && $def.state() == 'pending') {
@@ -43,7 +44,7 @@
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
-        message.html(template(message.html())(product));
+        message.html(messageTemplate(product));
         message.toggle();
         $def.resolve(product);
     }
