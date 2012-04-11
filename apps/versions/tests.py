@@ -275,7 +275,7 @@ class TestVersion(amo.tests.TestCase):
     def test_version_update_info(self):
         addon = Addon.objects.get(pk=3615)
         r = self.client.get(reverse('addons.versions.update_info',
-                                    args=(addon.id, self.version.version)))
+                                    args=(addon.slug, self.version.version)))
         eq_(r.status_code, 200)
         doc = PyQuery(r.content)
         eq_(doc('p').html(), 'Fix for an important bug')
@@ -283,7 +283,7 @@ class TestVersion(amo.tests.TestCase):
         # Test update info in another language.
         with self.activate(locale='fr'):
             r = self.client.get(reverse('addons.versions.update_info',
-                                        args=(addon.id, self.version.version)))
+                                        args=(addon.slug, self.version.version)))
             eq_(r.status_code, 200)
             doc = PyQuery(r.content)
             eq_(doc('p').html(), u"Quelque chose en français.<br/><br/>" \
@@ -293,7 +293,7 @@ class TestVersion(amo.tests.TestCase):
         r = self.client.get('/versions/updateInfo/%s' % self.version.id,
                             follow=True)
         url = reverse('addons.versions.update_info',
-                      args=(self.version.addon.id, self.version.version))
+                      args=(self.version.addon.slug, self.version.version))
         self.assertRedirects(r, url, 301)
 
     def test_is_compatible(self):

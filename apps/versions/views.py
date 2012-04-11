@@ -59,11 +59,15 @@ def _find_version_page(qs, addon, version_num):
         raise http.Http404()
 
 
-def update_info(request, addon_id, version_num):
-    version = get_object_or_404(Version, addon__id=addon_id,
-                                version=version_num)
+@addon_view
+def update_info(request, addon, version_num):
+    qs = addon.versions.filter(version=version_num,
+                               files__status__in=amo.VALID_STATUSES)
+    if not qs:
+        raise http.Http404()
+
     return jingo.render(request, 'versions/update_info.html',
-                        {'version': version})
+                        {'version': qs[0]})
 
 
 def update_info_redirect(request, version_id):
