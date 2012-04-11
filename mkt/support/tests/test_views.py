@@ -32,8 +32,9 @@ class TestRequestSupport(PurchaseBase):
 
     def test_start_no_inapp_refund(self):
         self.con.update(type=amo.CONTRIB_INAPP)
-        content = self.client.get(self.get_support_url()).content
-        eq_(len(pq(content)('#support-start').find('a')), 3)
+        r = self.client.get(self.get_support_url())
+        content = r.content.decode('utf-8')
+        eq_(pq(content)('#support-start').find('a').length, 3)
         assert self.get_support_url('request') not in content
 
     def test_support_page_external_link(self):
