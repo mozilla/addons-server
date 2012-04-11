@@ -43,7 +43,6 @@ INSTALLED_APPS += (
     'mkt.browse',
     'mkt.detail',
     'mkt.developers',
-    'mkt.experiments',
     'mkt.home',
     'mkt.inapp_pay',
     'mkt.purchase',
@@ -168,9 +167,6 @@ CELERY_ROUTES.update({
 # Paths.
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/hub')
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
-
-# Feature flags.
-POTCH_MARKETPLACE_EXPERIMENTS = False
 
 # JWT identifier for this marketplace.
 # This is used for in-app payments in two ways.

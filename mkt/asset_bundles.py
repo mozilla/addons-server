@@ -141,14 +141,6 @@ CSS = {
     'mkt/stats': (
         'css/mkt/stats.less',
     ),
-    'marketplace-experiments': (
-        'marketplace-experiments/css/reset.less',
-        'marketplace-experiments/css/site.less',
-        'marketplace-experiments/css/header.less',
-        'marketplace-experiments/css/detail.less',
-        'marketplace-experiments/css/buttons.less',
-        'marketplace-experiments/css/slider.less',
-    ),
 }
 
 JS = {
@@ -253,9 +245,5 @@ JS = {
     ),
     'mkt/in-app-payments': (
         'js/mkt/inapp_payments.js',
-    ),
-    'marketplace-experiments': (
-        'js/marketplace-experiments/jquery-1.7.1.min.js',
-        'js/marketplace-experiments/slider.js',
     ),
 }

@@ -98,14 +98,6 @@ urlpatterns = patterns('',
     ('', include('apps.amo.urls')),
 )
 
-
-# Marketplace UI Experiments.
-if getattr(settings, 'POTCH_MARKETPLACE_EXPERIMENTS', False):
-    urlpatterns += patterns('',
-        ('^marketplace-experiments/', include('mkt.experiments.urls'))
-    )
-
-
 if settings.TEMPLATE_DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
