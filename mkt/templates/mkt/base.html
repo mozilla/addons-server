@@ -1,4 +1,4 @@
-{% if VIEW_FRAGMENT %}
+{% if request.is_ajax() %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
 <!DOCTYPE html>
