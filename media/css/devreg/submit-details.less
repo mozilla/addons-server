@@ -19,8 +19,20 @@
         display: block;
         font-weight: bold;
         margin-top: 5px;
+        &:before {
+            background: url(../../img/admin/icon_changelink.gif) 0 50% no-repeat;
+            content: "";
+            display: block;
+            float: left;
+            height: 15px;
+            width: 17px;
+            opacity: .5;
+        }
         &:hover {
             color: darken(@link, 10%);
+            &:before {
+                opacity: 1;
+            }
         }
     }
     .done {
@@ -54,6 +66,13 @@
     }
 }
 
+.html-rtl .houdini {
+    .edit:before {
+        background-position: 100% 50%;
+        float: right;
+    }
+}
+
 .devhub-form label.houdini {
     display: block;
     margin: 0;
@@ -76,8 +95,13 @@
         h2 {
             color: @blue;
             font-weight: bold;
-            margin: 0 0 10px;
+            margin: 0 0 5px;
             word-wrap: break-word;
+        }
+        .view {
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 5px;
         }
         .details-url {
             margin: 10px 0;
@@ -96,8 +120,11 @@
             border-top: 0;
             padding: 0;
             label {
-                display: block;
+                display: inline-block;
                 margin-top: 8px;
+            }
+            .tip {
+                vertical-align: middle;
             }
         }
         th {

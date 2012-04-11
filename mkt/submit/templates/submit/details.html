@@ -1,4 +1,4 @@
-{% from 'developers/includes/macros.html' import select_cats %}
+{% from 'developers/includes/macros.html' import select_cats, tip %}
 {% from 'includes/forms.html' import required %}
 {% extends 'developers/base_impala.html' %}
 
@@ -43,7 +43,11 @@
                so let's not reverse it just yet. #}
             {{ settings.SITE_URL }}/&hellip;/
             {{ addon.app_slug }}
-            <em class="edit-addon-details">{{ loc('(Not Available Yet)') }}</em>
+            {% if waffle.switch('unleash-consumer') %}
+              <a class="view" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+            {% else %}
+              <em class="edit-addon-details">{{ loc('(Not Available Yet)') }}</em>
+            {% endif %}
           </div>
           <div class="after">
             <table>
@@ -63,6 +67,7 @@
                   <label for="{{ form_basic.slug.auto_id }}">
                     {{ _('App URL') }}
                   </label>
+                  {{ tip(None, _('Choose a short, unique URL slug for your app.')) }}
                 </th>
                 <td>
                   <div class="edit_with_prefix c">
@@ -74,7 +79,7 @@
             </table>
           </div>
           <div class="before">
-            <span class="edit">{{ ('Change name') }}</span>
+            <span class="edit">{{ _('Edit') }}</span>
           </div>
         </div>
         <div class="js-hidden">
