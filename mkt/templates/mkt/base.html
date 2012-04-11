@@ -76,7 +76,13 @@
     <div id="login" class="overlay">
       <section>
         <div class="new">
-          <h2>Please sign in</h2>
+          <h2>{{ _('Please sign in') }}</h2>
+          <p>
+            {% trans personaid_url='https://browserid.org/' %}
+              Just log in or register with your
+              <a href="{{ personaid_url }}">PersonaID</a> account below.
+            {% endtrans %}
+          </p>
           <footer>
             <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
           </footer>
