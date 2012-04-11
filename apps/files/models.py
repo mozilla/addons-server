@@ -652,54 +652,6 @@ class FileValidation(amo.models.ModelBase):
         return new
 
 
-class TestCase(amo.models.ModelBase):
-    test_group = models.ForeignKey('TestGroup')
-    help_link = models.CharField(max_length=255, blank=True,
-            help_text='Deprecated')
-    function = models.CharField(max_length=255,
-            help_text='Name of the function to call')
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'test_cases'
-
-
-class TestGroup(amo.models.ModelBase):
-    category = models.CharField(max_length=255, blank=True)
-    tier = models.PositiveSmallIntegerField(default=2,
-            help_text="Run in order.  Tier 1 runs before Tier 2, etc.")
-    critical = models.BooleanField(default=False,
-            help_text="Should this group failing stop all tests?")
-    types = models.PositiveIntegerField(default=0,
-            help_text="Pretty sure it involves binary math... KHAN!!!")
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'test_groups'
-
-
-class TestResult(amo.models.ModelBase):
-    file = models.ForeignKey(File)
-    test_case = models.ForeignKey(TestCase)
-    result = models.PositiveSmallIntegerField(default=0)
-    line = models.PositiveIntegerField(default=0)
-    filename = models.CharField(max_length=255, blank=True)
-    message = models.TextField(blank=True)
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'test_results'
-
-
-class TestResultCache(models.Model):
-    """When a file is checked the results are stored here in JSON.  This is
-    temporary storage and removed with the garbage cleanup cron."""
-    date = models.DateTimeField()
-    key = models.CharField(max_length=255, db_index=True)
-    test_case = models.ForeignKey(TestCase)
-    value = models.TextField(blank=True)
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'test_results_cache'
-
-
 def nfd_str(u):
     """Uses NFD to normalize unicode strings."""
     if isinstance(u, unicode):

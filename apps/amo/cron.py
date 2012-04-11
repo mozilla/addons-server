@@ -17,7 +17,6 @@ from bandwagon.models import Collection
 from cake.models import Session
 from constants.base import VALID_STATUSES
 from devhub.models import ActivityLog, LegacyAddonLog
-from files.models import TestResultCache
 from sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
 
@@ -75,10 +74,8 @@ def gc(test_result=True):
     two_days_ago = calendar.timegm(days_ago(2).utctimetuple())
     Session.objects.filter(expires__lt=two_days_ago).delete()
 
-    log.debug('Cleaning up test results cache.')
-    TestResultCache.objects.filter(date__lt=one_hour_ago).delete()
-
     log.debug('Cleaning up test results extraction cache.')
+    # lol at check for '/'
     if settings.NETAPP_STORAGE and settings.NETAPP_STORAGE != '/':
         cmd = ('find', settings.NETAPP_STORAGE, '-maxdepth', '1', '-name',
                'validate-*', '-mtime', '+7', '-type', 'd',
