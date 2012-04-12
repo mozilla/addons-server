@@ -11,6 +11,7 @@ from market.models import AddonPurchase
 from mkt.webapps.models import Webapp
 from mkt.site.helpers import market_button
 
+
 class TestMarketButton(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
@@ -35,7 +36,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['recordUrl'], self.webapp.get_detail_url('record'))
         eq_(data['preapprovalUrl'], reverse('detail.purchase.preapproval',
                                             args=[self.webapp.app_slug]))
-        eq_(data['id'], self.webapp.pk)
+        eq_(data['id'], str(self.webapp.pk))
         eq_(data['name'], self.webapp.name)
 
     def test_is_premium_webapp(self):
@@ -63,5 +64,18 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['isPurchased'], True)
 
+    def test_xss(self):
+        nasty = '<script>'
+        escaped = '&lt;script&gt;'
+        author = self.webapp.authors.all()[0]
+        author.display_name = nasty
+        author.save()
+
+        self.webapp.name = nasty
+        self.webapp.save()
+        doc = pq(market_button(self.context, self.webapp))
+        data = json.loads(doc('a').attr('data-product'))
+        eq_(data['name'], escaped)
+        eq_(data['author'], escaped)
 
 

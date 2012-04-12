@@ -78,7 +78,11 @@ def product_as_dict(request, product):
         })
         if request.amo_user:
             ret['isPurchased'] = product.pk in request.amo_user.purchase_ids()
-    return ret
+    # Jinja2 escape everything except this whitelist so that bool is retained
+    # for the JSON encoding.
+    wl = ('isPurchased', 'price')
+    return dict([k, jinja2.escape(v) if k not in wl else v]
+                for k, v in ret.items())
 
 
 @register.filter
