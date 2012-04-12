@@ -106,9 +106,20 @@
     line-height: 1.3;
 }
 
-.item.island .trans {
-    max-width: 530px;
-    word-wrap: break-word;
+.item.island {
+    .trans {
+        max-width: 530px;
+        word-wrap: break-word;
+    }
+    table .trans {
+        max-height: 250px;
+        padding-right: 15px;
+        overflow: auto;
+    }
+}
+
+.html-rtl .item.island  table .trans {
+    padding: 0 0 0 15px;
 }
 
 #submit-describe {
