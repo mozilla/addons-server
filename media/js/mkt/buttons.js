@@ -2,7 +2,7 @@
     function getButton(product) {
         // Look up button by its manifest URL.
         return $button = $(format('.button[data-manifestUrl="{0}"]',
-                                 product.manifestUrl));
+                                  product.manifestUrl));
     }
 
     function setButton($button, text, cls) {
@@ -47,8 +47,9 @@
             revertButton($button);
         }
     });
+
+    z.page.bind('fragmentloaded', function(e) {
+        // Shrink text in buttons so everything fits on one line.
+        $('.button').linefit();
+    });
 })();
-
-
-// Shrink text in buttons so everything fits on one line.
-$('.button').linefit();
