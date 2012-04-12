@@ -72,6 +72,8 @@
 
   {{ notification(product, amo, is_dev) }}
 
+  {% include 'purchase/message.html' %}
+
   <section class="description">
     <p>{{ product.description }}</p>
   </section>
@@ -129,8 +131,6 @@
       </li>
     </ul>
   </section>
-
-  {% include 'purchase/message.html' %}
 
 {% endif %}
 {% endblock %}
