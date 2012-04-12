@@ -17,7 +17,8 @@
         {% endif %}
       </h1>
       <h2 class="author">
-        {{ _('by') }} {{ users_list(addon.listed_authors) }}
+        {{ _('by') }} {{ users_list(addon.persona.listed_authors) or
+                         addon.persona.display_username }}
       </h2>
     </header>
     {% block main %}{% endblock %}

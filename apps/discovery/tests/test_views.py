@@ -162,8 +162,8 @@ class TestRecs(amo.tests.TestCase):
         eq_(one, two)
 
     def test_update_new_index(self):
-        waffle.models.Sample.objects.create(name='disco-pane-store-collections',
-                                            percent='100.0')
+        waffle.models.Sample.objects.create(
+            name='disco-pane-store-collections', percent='100.0')
         response = self.client.post(self.url, self.json,
                                     content_type='application/json')
         one = json.loads(response.content)
@@ -178,7 +178,6 @@ class TestRecs(amo.tests.TestCase):
         # Tokens are based on guid list, so these should be different.
         assert one['token2'] != two['token2']
         assert one['addons'] != two['addons']
-        synced = SyncedCollection.objects.all()
         eq_(SyncedCollection.objects.filter(addon_index=one['token2']).count(),
             1)
         eq_(SyncedCollection.objects.filter(addon_index=two['token2']).count(),
@@ -240,14 +239,16 @@ class TestUrls(amo.tests.TestCase):
         self.assertRedirects(r, url, 302)
 
         # Redirect to 'strict' if version >= 10 and not d2c disco waffle.
-        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin', follow=True)
+        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin',
+                            follow=True)
         url = reverse('discovery.pane', args=['10.0', 'Darwin', 'strict'])
         self.assertRedirects(r, url, 302)
 
         waffle.models.Switch.objects.create(name='d2c-at-the-disco',
                                             active=True)
         # Redirect to default 'ignore' if version >= 10.
-        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin', follow=True)
+        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin',
+                            follow=True)
         url = reverse('discovery.pane', args=['10.0', 'Darwin', 'ignore'])
         self.assertRedirects(r, url, 302)
 
@@ -454,6 +455,26 @@ class TestDetails(amo.tests.TestCase):
         a = upsell.find('.premium a')
         eq_(a.text(), unicode(premie.name))
         eq_(a.attr('href').endswith('?src=discovery-upsell'), True)
+
+
+class TestPersonaDetails(amo.tests.TestCase):
+    fixtures = ['addons/persona', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=15663)
+        self.persona = self.addon.persona
+        self.persona.author = self.persona.author
+        self.persona.save()
+        self.url = reverse('discovery.addons.detail', args=[self.addon.slug])
+
+    def test_page(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_by(self):
+        """Test that the `by ... <authors>` section works."""
+        r = self.client.get(self.url)
+        assert pq(r.content)('h2.author').text().startswith('by My Persona')
 
 
 class TestDownloadSources(amo.tests.TestCase):

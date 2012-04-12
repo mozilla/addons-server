@@ -1321,9 +1321,16 @@ class TestPrePersonaDetailPage(TestPersonaDetailPage):
                .create(name='personas-migration-completed', active=False))
         self.create_addon_user(self.addon)
 
-    def test_by(self):
+    def _test_by(self):
         r = self.client.get(self.url)
         eq_(pq(r.content)('h4.author').text(), 'by My Persona')
+
+    def test_by(self):
+        self._test_by()
+
+    @amo.tests.mobile_test
+    def test_mobile_by(self):
+        self._test_by()
 
 
 class TestStatus(amo.tests.TestCase):
