@@ -3,8 +3,8 @@
 
     exports.houdini = function() {
         // Initialize magic labels.
-        $(document).delegate('.houdini.ready', 'click', _pd(function(e) {
-            var $label = $(this);
+        $(document).delegate('.houdini.ready .edit', 'click', _pd(function(e) {
+            var $label = $(this).closest('.houdini');
             $label.addClass('fading');
             setTimeout(function() {
                 $label.removeClass('ready').addClass('active');
