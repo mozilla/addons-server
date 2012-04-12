@@ -170,6 +170,7 @@ JS = {
         'js/common/keys.js',
         'js/mkt/capabilities.js',
         'js/mkt/fragments.js',
+        'js/mkt/overlay.js',
         'js/mkt/slider.js',
         'js/mkt/login.js',
         'js/mkt/install.js',

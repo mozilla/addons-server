@@ -28,6 +28,8 @@
             if (e.keyCode == z.keys.ESCAPE) {
                 cancelPurchase();
             }
+        }).bind('click.payments', function(e) {
+            cancelPurchase();
         });
 
         // TODO: allow multiple payment systems
