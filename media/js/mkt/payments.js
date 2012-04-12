@@ -32,11 +32,15 @@
             cancelPurchase();
         });
 
-        // TODO: allow multiple payment systems
+        overlay.on('click.payments', '#pre-approval', beginPreApproval);
         overlay.on('click.payments', '#payment-confirm', startPayment);
         overlay.on('click.payments', '#pay .close', cancelPurchase);
 
         return $def.promise();
+    }
+
+    function beginPreApproval(e) {
+        localStorage.setItem('toInstall', product.manifestUrl);
     }
 
     function cancelPurchase(e) {
