@@ -76,6 +76,14 @@
                 dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
                 dgFlow.startFlow(response.url);
                 overlay.removeClass('show');
+                // When PayPal modal gets dismissed, reset install button.
+                var intVal = setInterval(function() {
+                    if (!dgFlow.isOpen()) {
+                        clearInterval(intVal);
+                        $(window).trigger('app_install_error', product);
+                        return;
+                    }
+                }, 1000);
             }
         });
         return $def.promise();

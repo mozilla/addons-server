@@ -1,14 +1,14 @@
 (function() {
     function getButton(product) {
         // Look up button by its manifest URL.
-        return $button = $(format('.button[data-manifestUrl="{0}"]',
-                                  product.manifestUrl));
+        return $(format('.button[data-manifestUrl="{0}"]', product.manifestUrl));
     }
 
     function setButton($button, text, cls) {
         if (cls == 'purchasing' || cls == 'installing') {
             // Save the old text of the button if we know we may revert later.
-            $button.data('old-text', $button.html());
+            $button.data('old-text', $button.html())
+                   .data('old-font-size', $button.css('font-size'));
         }
         $button.html(text);
         if (cls == 'purchasing' || cls == 'installing') {
@@ -25,7 +25,7 @@
         $button.html($button.data('old-text'))
                .removeClass('purchasing');
         // The text has changed, so do another linefit.
-        $button.css('font-size', 14).linefit();
+        $button.css('font-size', $button.data('old-font-size')).linefit();
     }
 
     $(window).bind('app_purchase_start', function(e, product) {
