@@ -36,6 +36,7 @@ log = commonware.log.getLogger('z.inapp_pay')
 def pay_start(request, signed_req, pay_req):
     InappPayLog.log(request, 'PAY_START', config=pay_req['_config'])
     data = dict(price=pay_req['request']['price'],
+                product=pay_req['_config'].addon,
                 currency=pay_req['request']['currency'],
                 item=pay_req['request']['name'],
                 description=pay_req['request']['description'],

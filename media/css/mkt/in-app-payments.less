@@ -1,27 +1,44 @@
-html {
-    background: none;
-}
-body {
-    border: none;
-}
-#page {
-    margin: 0;
-    min-height: 250px;
-    min-width: 300px;
-    max-width: none;
-    width: auto;
-    height: auto;
-}
-.payment-screen {
-    border: 0;
-    width: 300px;
-    margin: 0 auto;
-    z-index: auto;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1em;
+@import 'lib';
+
+section {
+    .border-radius(2px);
+    .box-shadow(0 2px 2px fadeOut(#000, 20%));
+    background-color: @bg;
+    .grain;
+    .border-box;
+    margin: 10px;
+    height: 200px;
     position: relative;
-    float: none;
-    background: none;
-    left: auto;
+    header {
+        .box-shadow(0 2px 2px fadeOut(#000, 50%));
+        background-color: #404f5a;
+        .grain;
+        color: @white;
+        padding: 10px;
+    }
+    & > div {
+        padding: 10px 1em;
+        margin-bottom: 54px;
+        overflow: hidden;
+    }
+    .product-details {
+        float: left;
+        width: 270px;
+    }
+    .actions {
+        float: right;
+        width: 120px;
+        .button {
+            display: block;
+        }
+    }
+    footer {
+        .border-box;
+        font-size: 12px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
 }
