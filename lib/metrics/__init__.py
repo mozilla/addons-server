@@ -30,6 +30,7 @@ def send_request(action, request, data):
     """
     data['user-agent'] = request.META.get('HTTP_USER_AGENT')
     data['locale'] = request.LANG
+    data['src'] = request.GET.get('src', '')
     send(action, data)
 
 
