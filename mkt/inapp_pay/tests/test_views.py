@@ -117,9 +117,6 @@ class TestPayStart(PaymentViewTest):
                              data=dict(req=req))
         eq_(rp.status_code, 200)
         assert 'x-frame-options' not in rp, "Can't deny with x-frame-options"
-        doc = pq(rp.content)
-        eq_(doc('.paypal-content h5').text(), payload['request']['name'])
-        eq_(doc('.paypal-content .price').text(), 'USD 0.99')
         # TODO(Kumar) UI is still in the works here.
 
         log = InappPayLog.objects.get()
