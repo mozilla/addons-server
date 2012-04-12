@@ -11,6 +11,7 @@ z.capabilities = {
         typeof navigator.mozApps.html5Implementation === 'undefined'
     ),
     'fileAPI': !!window.FileReader,
+    'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch
 };
 
 

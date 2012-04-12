@@ -3,7 +3,7 @@
 .slider {
     display: block;
     position: relative;
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
     padding: 0;
     max-width: 100%;
@@ -19,6 +19,60 @@
     }
 }
 
+.touch {
+    .slider {
+        overflow-x: scroll;
+    }
+}
+
+@-moz-keyframes moving-left {
+	from, to {
+	    -moz-animation-timing-function: ease-out;
+	}
+	50% {
+	    left: -100%;
+        -moz-animation-timing-function: ease-in;
+	}
+}
+
+@-moz-keyframes moving-right {
+	from, to {
+	    -moz-animation-timing-function: ease-out;
+	}
+	50% {
+	    left: 100%;
+        -moz-animation-timing-function: ease-in;
+	}
+}
+
+.desktop {
+    .slider ul {
+        left: 0;
+        position: relative;
+        &.moving-left {
+            .animation(moving-left 15s infinite);
+        }
+        &.moving-right {
+            .animation(moving-right 15s infinite);
+        }
+        &.hovered.stop {
+            animation-play-state: paused;
+            -moz-animation-play-state: paused;
+            background:pink;
+        }
+        &.done {
+            -moz-animation-play-state: paused;
+            left: 0;
+        }
+        .frozen {
+            a {
+                background-color: red !important;
+                color: pink;
+            }
+        }
+    }
+}
+
 .promo-slider {
     height: 240px;
     ul {
@@ -27,7 +81,23 @@
         list-style-type: none;
         a {
             display: block;
-            color: @white;
+            opacity: .8;
+            position: relative;
+            &:after {
+                background: url(../../img/mkt/arrows/plain.gif) no-repeat;
+                content: "";
+                display: block;
+                opacity: .7;
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                height: 18px;
+                width: 18px;
+            }
+            &:hover,
+            &:hover:after {
+                opacity: 1;
+            }
         }
         li {
             clear: both;
@@ -43,13 +113,13 @@
                 margin-bottom: 10px;
             }
             h3, p {
+                line-height: 22px;
                 margin: 0 10px;
             }
             h3 {
+                .ellipsis;
                 float: left;
                 max-width: 190px;
-                word-wrap: break-word;
-                white-space: normal;
             }
             p {
                 float: right;

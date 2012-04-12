@@ -68,3 +68,25 @@ function slider() {
 z.page.on('fragmentloaded', function() {
     // $('.slider').each(slider);
 });
+
+$('.slider').each(function() {
+    var $this = $(this),
+        $ul = $this.find('ul'),
+        $a = $ul.find('a');
+    $this.hover(function(e) {
+        $ul.addClass('moving-left');
+        // e.clientX > ($this.width() / 2)
+    });
+    $this.mouseout(function() {
+        $a.removeClass('frozen');
+        $ul.addClass('done');
+    });
+    $a.hover(_.throttle(function(e) {
+        $(this).addClass('frozen');
+        $ul.addClass('done');
+    }, 250));
+    $a.mouseout(_.throttle(function(e) {
+        $(this).removeClass('frozen');
+        $ul.removeClass('done');
+    }, 250));
+});

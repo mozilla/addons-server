@@ -36,4 +36,7 @@ $(function() {
                              {'manifestUrl': val.manifestURL});
         });
     };
+
+    // Add class for touch devices.
+    $('body').addClass(z.capabilities.touch ? 'touch' : 'desktop');
 });

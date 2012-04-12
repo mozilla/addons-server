@@ -1,27 +1,52 @@
 {% extends 'mkt/base.html' %}
 
-{% block bodyclass %}home {% endblock %}
+{% block bodyclass %}home{% endblock %}
 
 {% block content %}
   <section class="homepage-promo full">
     <div>
-      <h2>Always open.</h2>
+      <h2>{{ _('Always open.') }}</h2>
       <p>
-        Get apps for all your internet connected devices
-        and discover the best the web has to offer.
+        {% trans %}
+          Get apps for all your internet connected devices
+          and discover the best the web has to offer.
+        {% endtrans %}
       </p>
+      <a href="https://developer.mozilla.org/Apps" class="button arrow"
+         target="_blank">{{ _('Learn more') }}</a>
     </div>
   </section>
   <section class="featured full">
-    <div><h2>{{ _('Featured') }}</h2></div>
+    <div>
+      <h2><a href="{{ url('browse.apps')|urlparams(sort='featured') }}">{{ _('Featured') }}</a></h2>
+    </div>
   </section>
   <section class="featured full slider">
     {{ featured|promo_slider }}
   </section>
   <section class="popular full">
-    <div><h2>{{ _('Popular') }}</h2></h2>
+    <div>
+      <h2><a href="{{ url('browse.apps')|urlparams(sort='popular') }}">{{ _('Popular') }}</a></h2>
+    </div>
   </section>
   <section class="popular slider full">
     {{ popular|promo_slider }}
+  </section>
+  <section class="categories full">
+    <div><h2>{{ _('All categories') }}</h2></div>
+  </section>
+  <section class="categories slider full">
+    <div class="promo-slider">
+      <ul>
+        {% for category in categories %}
+          <li>
+            <a href="{{ category.get_url_path() }}">
+              <img src="">
+              <h3>{{ category.name }}</h3>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   </section>
 {% endblock %}

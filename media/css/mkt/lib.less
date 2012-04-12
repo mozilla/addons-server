@@ -42,6 +42,7 @@
 @barely-gray: #fcfcfc;
 @white: #fff;
 @bg: #dee3e6;
+@pale-bg: #eff1f3;
 
 
 // Font Stacks
@@ -139,6 +140,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.animation(@animation) {
+    -webkit-animation: @animation;
+    -moz-animation: @animation;
+    -ms-animation: @animation;
+    animation: @animation;
 }
 
 .gradient-two-color(@color1, @color2) {

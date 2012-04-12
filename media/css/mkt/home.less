@@ -10,10 +10,12 @@
     background-image: url(../../img/mkt/grain.png),
                       -webkit-gradient(linear, left bottom, left top, from(#60747F), to(#394C58));
     /*.gradient-two-color(#394C58, #60747F);*/
-    height: 320px;
+    min-height: 320px;
     color: @white;
     div {
         .border-box;
+        background: url(../../img/mkt/quest.png) 100% 58px no-repeat;
+        min-height: 330px;
         padding-top: 58px;
         position: relative;
         .width(10);
@@ -29,6 +31,28 @@
         margin-bottom: 0px;
     }
 }
+
+@media (max-width: @10col) {
+    .homepage-promo {
+        div {
+            .background-size(60% auto);
+        }
+        h2, p {
+            .width(3);
+        }
+    }
+    #page > section.full > div {
+        margin: 0 15px;
+        width: 100%;
+    }
+}
+
+@media (max-width: @4col) {
+    .homepage-promo div {
+        background-position: 150% 58px;
+    }
+}
+
 .featured, .popular {
     &.slider {
         height: 282px;
@@ -41,7 +65,86 @@
     &.slider {
         border-bottom: 1px solid #666;
     }
+    a {
+        color: lighten(@text, 60%);
+        &:hover {
+            color: @white;
+        }
+    }
 }
-.popular h2 {
-    padding-top: 10px;
+
+.popular {
+    h2 {
+        padding-top: 10px;
+    }
+    a {
+        color: @text;
+        &:hover {
+            color: darken(@text, 15%);
+        }
+    }
+}
+
+.popular, .categories {
+    h2 {
+        padding-top: 10px;
+    }
+}
+
+.categories {
+    background: @pale-bg;
+    &.slider {
+        margin-bottom: -19px;
+    }
+    a {
+        color: @medium-gray;
+        &:hover {
+            color: @dark-gray;
+        }
+    }
+    .promo-slider {
+        ul li h3 {
+            margin: 0;
+            text-align: center;
+            width: 100%;
+        }
+        li, img {
+            width: 128px;
+        }
+        img {
+            .gradient-two-color(@light-gray, @pale-bg);
+            height: 128px;
+        }
+    }
+}
+
+.arrow.button {
+    .border-box;
+    .width(3);
+    color: lighten(@text, 60%);
+    font-size: 18px;
+    line-height: 40px;
+    position: relative;
+    text-align: left;
+    &:after {
+        background: url(../../img/mkt/arrows/plain.gif) 100% 50% no-repeat;
+        content: "";
+        display: block;
+        height: 40px;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        right: 15px;
+        width: 18px;
+    }
+    &:hover {
+        color: @white;
+        &:after {
+            opacity: 1;
+        }
+    }
+}
+
+.html-rtl .arrow.button {
+    text-align: right;
 }

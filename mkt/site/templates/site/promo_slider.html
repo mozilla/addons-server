@@ -1,15 +1,17 @@
 <div class="promo-slider">
   <ul>
     {% for product in products %}
+      {% if product.all_previews|length %}
         <li>
           <a href="{{ product.get_url_path() }}">
-            <img src="/media/img/mkt/placehold.png">
+            <img src="{{ product.all_previews[0].thumbnail_url }}">
             <h3>{{ product.name }}</h3>
             <p>
               {{ product|price_label }}
             </p>
           </a>
         </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>
