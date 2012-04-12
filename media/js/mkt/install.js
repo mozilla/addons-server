@@ -12,7 +12,7 @@
 
     function startInstall(product) {
         if (z.anonymous) {
-            localStorage.setItem('toInstall', JSON.stringify(product));
+            localStorage.setItem('toInstall', product.manifestUrl);
             $(window).trigger('login');
             return;
         }
@@ -71,8 +71,11 @@
         if (localStorage.getItem('toInstall')) {
             var lsVal = localStorage.getItem('toInstall');
             localStorage.removeItem('toInstall');
-            var product = JSON.parse(lsVal);
-            startInstall(product);
+            var product = $(format('.button[data-manifestUrl="{0}"]',
+                                   lsVal)).data('product');
+            if (product) {
+                startInstall(product);
+            }
         }
     });
 })();
