@@ -13,7 +13,7 @@
         $button.html(text);
         if (cls == 'purchasing' || cls == 'installing') {
             // The text has changed, so do another linefit.
-            $button.css('font-size', 14).linefit();
+            $button.css('font-size', $button.data('old-font-size')).linefit();
         } else {
             $button.removeClass('purchasing installing');
         }
@@ -23,7 +23,7 @@
     function revertButton($button) {
         // Cancelled install/purchase. Roll back button to its previous state.
         $button.html($button.data('old-text'))
-               .removeClass('purchasing');
+               .removeClass('purchasing installing');
         // The text has changed, so do another linefit.
         $button.css('font-size', $button.data('old-font-size')).linefit();
     }
