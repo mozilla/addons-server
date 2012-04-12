@@ -1421,3 +1421,11 @@ VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
 METRICS_SERVER = ''
 # And how long we'll give the server to respond.
 METRICS_SERVER_TIMEOUT = 10
+
+# Turn on/off the use of the signing server and all the related things. This
+# is a temporary flag that we will remove.
+SIGNING_SERVER_ACTIVE = False
+# This is the signing REST server for signing receipts.
+SIGNING_SERVER = ''
+# And how long we'll give the server to respond.
+SIGNING_SERVER_TIMEOUT = 10

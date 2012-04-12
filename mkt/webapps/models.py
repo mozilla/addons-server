@@ -21,6 +21,7 @@ from amo.utils import memoize
 from addons import query
 from addons.models import Addon, update_name_table, update_search_index
 from files.models import FileUpload, Platform
+from lib.crypto.receipt import sign
 from versions.models import Version
 
 import jwt
@@ -259,7 +260,12 @@ def create_receipt(installed_pk):
                    iat=time.time(),
                    detail=absolutify(detail),
                    verify=absolutify(verify))
-    return jwt.encode(receipt, get_key(), u'RS512')
+    if settings.SIGNING_SERVER_ACTIVE:
+        # The shiny new code.
+        return sign(receipt)
+    else:
+        # Our old bad code.
+        return jwt.encode(receipt, get_key(), u'RS512')
 
 
 def get_key():

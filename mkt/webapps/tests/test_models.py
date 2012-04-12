@@ -290,6 +290,14 @@ class TestReceipt(amo.tests.TestCase):
         eq_(product['url'], self.webapp.manifest_url[:-1])
         eq_(product['storedata'], 'id=%s' % int(ins.addon.pk))
 
+    @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
+    @mock.patch('mkt.webapps.models.sign')
+    def test_receipt_signer(self, sign):
+        sign.return_value = 'something-cunning'
+        ins = self.create_install(self.user, self.webapp)
+        eq_(ins.receipt, 'something-cunning')
+        #TODO: more goes here.
+
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key() + '.foo')
