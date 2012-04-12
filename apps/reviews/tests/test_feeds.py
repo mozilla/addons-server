@@ -24,7 +24,7 @@ class FeedTest(amo.tests.TestCase):
         self.addon.name = self.wut
 
         self.user = mock.Mock()
-        self.user.username = None
+        self.user.name = self.u
 
         self.review = mock.Mock()
         self.review.title = self.wut
@@ -43,8 +43,7 @@ class FeedTest(amo.tests.TestCase):
         eq_(self.feed.item_title(self.review), self.u)
 
     def test_item_author_name(self):
-        eq_(self.feed.item_author_name(self.review),
-            '%s %s' % (self.u, self.u))
+        eq_(self.feed.item_author_name(self.review), self.u)
 
         self.user.username = self.u
         eq_(self.feed.item_author_name(self.review), self.u)

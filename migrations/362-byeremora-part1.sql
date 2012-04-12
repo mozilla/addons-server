@@ -35,6 +35,7 @@ ALTER TABLE `platforms` DROP COLUMN `icontype`;
 ALTER TABLE `addons` DROP COLUMN `binary`;
 
 -- Removed from code in separate commit
+ALTER TABLE `categories` DROP FOREIGN KEY `categories_ibfk_4`;
 ALTER TABLE `categories` DROP COLUMN `description`;
 
 ALTER TABLE `collections` DROP COLUMN `access`;

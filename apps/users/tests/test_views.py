@@ -947,19 +947,6 @@ class TestRegistration(UserViewBase):
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'Successfully verified!')
 
-    def test_legacy_confirm(self):
-        # User doesn't have a valid confirmation code.
-        url = reverse('users.confirm', args=[self.user.id, 'blah'])
-        r = self.client.get(url, follow=True)
-        # Ensure we don't show django messages for registrations via Remora.
-        eq_(pq(r.content)('.notification-box').length, 0)
-
-        self.user_profile.update(confirmationcode='code')
-
-        url = reverse('users.confirm', args=[self.user.id, 'code'])
-        r = self.client.get(url, follow=True)
-        eq_(pq(r.content)('.notification-box').length, 0)
-
     def test_new_confirm_resend(self):
         # User doesn't have a confirmation code.
         url = reverse('users.confirm.resend', args=[self.user.id])
@@ -970,13 +957,6 @@ class TestRegistration(UserViewBase):
         # URL has the right confirmation code now.
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'An email has been sent to your address')
-
-    def test_legacy_confirm_resend(self):
-        self.user_profile.update(confirmationcode='code')
-        url = reverse('users.confirm.resend', args=[self.user.id])
-        r = self.client.get(url, follow=True)
-        # Ensure we don't show django messages for Remora.
-        eq_(pq(r.content)('.notification-box').length, 0)
 
 
 class TestProfileLinks(UserViewBase):
