@@ -1,4 +1,6 @@
-{% extends 'base_modal.html' if request.is_ajax() else 'developers/base_impala.html' %}
+{% extends 'base_modal.html' if request.is_ajax() else
+           ('mkt/base.html' if waffle.switch('unleash-consumer') and '/developers/' not in request.path else
+            'developers/base_impala.html') %}
 
 {% block title %}{{ hub_page_title(_('Oops')) }}{% endblock %}
 
@@ -19,7 +21,7 @@
           {{ csrf() }}
           <input type="hidden" name="business_account" value="later" />
           <p>Setting up PayPal is required if you'd like to sell your app on
-             the marketplace.</p>
+             the Marketplace.</p>
           <p>
             <input type="submit" class="button" value="Setup PayPal later"> or
             <a href="{{ url('submit.app.payments.bounce', addon.app_slug) }}">try again</a>.

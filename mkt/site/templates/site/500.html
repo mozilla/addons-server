@@ -1,6 +1,8 @@
-{% extends 'base_modal.html' if request.is_ajax() else 'developers/base_impala.html' %}
+{% extends 'base_modal.html' if request.is_ajax() else
+           ('mkt/base.html' if waffle.switch('unleash-consumer') and '/developers/' not in request.path else
+            'developers/base_impala.html') %}
 
-{% block title %}{{ _('Oops') }}{% endblock %}
+{% block title %}{{ mkt_page_title(_('Oops')) }}{% endblock %}
 
 {# TODO(apps): Finalize copy. #}
 

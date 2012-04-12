@@ -14,10 +14,29 @@ from amo.urlresolvers import reverse
 
 class Test404(amo.tests.TestCase):
 
+    def _test_404(self, url):
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 404)
+        self.assertTemplateUsed(r, 'site/404.html')
+        return r
+
     def test_404(self):
-        response = self.client.get('/xxx', follow=True)
-        eq_(response.status_code, 404)
-        self.assertTemplateUsed(response, 'site/404.html')
+        r = self._test_404('/xxx')
+        eq_(pq(r.content)('#site-header h1').text(),
+            'Marketplace Developer Hub')
+
+    def test_404_devhub(self):
+        waffle.models.Switch.objects.create(name='unleash-consumer',
+                                            active=True)
+        r = self._test_404('/developers/xxx')
+        eq_(pq(r.content)('#site-header h1').text(),
+            'Marketplace Developer Hub')
+
+    def test_404_consumer(self):
+        waffle.models.Switch.objects.create(name='unleash-consumer',
+                                            active=True)
+        r = self._test_404('/xxx')
+        eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
 
 
 class TestManifest(amo.tests.TestCase):
