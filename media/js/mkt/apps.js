@@ -42,7 +42,7 @@ exports.install = function(product, opt) {
         $def = $.Deferred();
     /* Try and install the app. */
     if (manifestUrl && opt.navigator.mozApps && opt.navigator.mozApps.install) {
-        var installRequest = opt.navigator.mozApps.install(manifestUrl, opt);
+        var installRequest = opt.navigator.mozApps.install(manifestUrl, opt.data);
         installRequest.onsuccess = function() {
             $def.resolve(product);
         };

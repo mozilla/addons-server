@@ -48,7 +48,7 @@
         $(window).trigger('app_install_start', product);
         $.post(product.recordUrl).success(function(response) {
             if (response.receipt) {
-                data.receipts = [response.receipt];
+                data['data'] = {'receipts': [response.receipt]};
             }
             $.when(apps.install(product, data))
              .done(installSuccess)
