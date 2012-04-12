@@ -87,7 +87,7 @@
                 var intVal = setInterval(function() {
                     if (!dgFlow.isOpen()) {
                         clearInterval(intVal);
-                        $(window).trigger('app_install_error', product);
+                        cancelPurchase();
                         return;
                     }
                 }, 1000);
