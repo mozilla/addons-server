@@ -261,6 +261,7 @@ class ReviewAddonForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
+        self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewAddonForm, self).__init__(*args, **kw)
         self.fields['addon_files'].queryset = self.helper.all_files
         self.addon_files_disabled = (self.helper.all_files
@@ -271,7 +272,7 @@ class ReviewAddonForm(happyforms.Form):
         # We're starting with an empty one, which will be hidden via CSS.
         canned_choices = [['', [('', _('Choose a canned response...'))]]]
 
-        responses = CannedResponse.objects.all()
+        responses = CannedResponse.objects.filter(type=self.type)
 
         # Loop through the actions (prelim, public, etc).
         for k, action in self.helper.actions.iteritems():

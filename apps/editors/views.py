@@ -27,7 +27,7 @@ from devhub.models import ActivityLog
 from editors import forms
 from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
-                            EventLog, CannedResponse, PerformanceGraph,
+                            EventLog, AddonCannedResponse, PerformanceGraph,
                             ViewFastTrackQueue)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable, WebappQueueTable,
@@ -445,7 +445,7 @@ def _review(request, addon):
         amo.messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 
-    canned = CannedResponse.objects.all()
+    canned = AddonCannedResponse.objects.all()
     actions = form.helper.actions.items()
 
     statuses = [amo.STATUS_PUBLIC, amo.STATUS_LITE,

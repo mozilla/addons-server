@@ -310,3 +310,14 @@ SITE_EVENT_CHOICES = {
     SITE_EVENT_RELEASE: _('Release'),
     SITE_EVENT_CHANGE: _('Change'),
 }
+
+# Types of Canned Responses for reviewer tools.
+CANNED_RESPONSE_ADDON = 1
+CANNED_RESPONSE_APP = 2
+CANNED_RESPONSE_PERSONA = 3
+
+CANNED_RESPONSE_CHOICES = {
+    CANNED_RESPONSE_ADDON: _('Add-on'),
+    CANNED_RESPONSE_APP: _('App'),
+    CANNED_RESPONSE_PERSONA: _('Persona'),
+}

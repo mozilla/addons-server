@@ -1,5 +1,6 @@
 from tower import ugettext_lazy as _lazy
 
+import amo
 from editors.forms import ReviewAddonForm
 
 from mkt.reviewers.utils import ReviewHelper
@@ -8,6 +9,7 @@ from mkt.reviewers.utils import ReviewHelper
 class ReviewAppForm(ReviewAddonForm):
 
     def __init__(self, *args, **kw):
+        kw.update(type=amo.CANNED_RESPONSE_APP)
         super(ReviewAppForm, self).__init__(*args, **kw)
         # We don't want to disable any app files:
         self.addon_files_disabled = tuple([])

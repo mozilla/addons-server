@@ -1,10 +1,17 @@
 from django.contrib import admin
 
+from translations.helpers import truncate
+
 from .models import CannedResponse, EventLog
 
 
 class CannedResponseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'response')
+    def truncate_response(obj):
+        return truncate(obj.response, 50)
+    truncate_response.short_description = 'Response'
+
+    list_display = ('name', truncate_response)
+    list_filter = ('type',)
 
 
 admin.site.register(CannedResponse, CannedResponseAdmin)

@@ -25,14 +25,29 @@ user_log = commonware.log.getLogger('z.users')
 class CannedResponse(amo.models.ModelBase):
 
     name = TranslatedField()
-    response = TranslatedField()
+    response = TranslatedField(short=False)
     sort_group = models.CharField(max_length=255)
+    type = models.PositiveIntegerField(
+        choices=amo.CANNED_RESPONSE_CHOICES.items(), db_index=True, default=0)
 
     class Meta:
         db_table = 'cannedresponses'
 
     def __unicode__(self):
         return unicode(self.name)
+
+
+class AddonCannedResponseManager(amo.models.ManagerBase):
+    def get_query_set(self):
+        qs = super(AddonCannedResponseManager, self).get_query_set()
+        return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
+
+
+class AddonCannedResponse(CannedResponse):
+    objects = AddonCannedResponseManager()
+
+    class Meta:
+        proxy = True
 
 
 class EventLog(models.Model):

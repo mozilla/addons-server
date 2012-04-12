@@ -14,13 +14,14 @@ from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
-from editors.models import CannedResponse, EditorSubscription
+from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from reviews.models import Review
 from zadmin.models import get_config
 
 from mkt.webapps.models import Webapp
 from . import forms, utils
+from .models import AppCannedResponse
 
 
 @reviewer_required
@@ -122,7 +123,7 @@ def _review(request, addon):
         messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 
-    canned = CannedResponse.objects.all()
+    canned = AppCannedResponse.objects.all()
     actions = form.helper.actions.items()
 
     statuses = [amo.STATUS_PUBLIC, amo.STATUS_LITE,

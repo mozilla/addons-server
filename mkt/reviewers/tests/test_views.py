@@ -11,6 +11,7 @@ from amo.tests import app_factory, check_links
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import ActivityLog
+from editors.models import CannedResponse
 from editors.tests.test_views import EditorTest
 from users.models import UserProfile
 
@@ -170,3 +171,32 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
+
+
+class TestCannedResponses(EditorTest):
+
+    def setUp(self):
+        super(TestCannedResponses, self).setUp()
+        self.login_as_editor()
+        self.app = app_factory(name='XXX',
+                               status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        self.cr_addon = CannedResponse.objects.create(
+            name=u'addon reason', response=u'addon reason body',
+            sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
+        self.cr_app = CannedResponse.objects.create(
+            name=u'app reason', response=u'app reason body',
+            sort_group=u'public', type=amo.CANNED_RESPONSE_APP)
+        self.url = reverse('reviewers.app_review', args=[self.app.app_slug])
+
+    def test_no_addon(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        form = r.context['form']
+        choices = form.fields['canned_response'].choices[1][1]
+        # choices is grouped by the sort_group, where choices[0] is the
+        # default "Choose a response..." option.
+        # Within that, it's paired by [group, [[response, name],...]].
+        # So above, choices[1][1] gets the first real group's list of responses.
+        eq_(len(choices), 1)
+        assert self.cr_app.response in choices[0]
+        assert self.cr_addon.response not in choices[0]
