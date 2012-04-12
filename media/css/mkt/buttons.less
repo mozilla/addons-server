@@ -96,6 +96,15 @@ button[disabled],
                     inset 0 12px 24px 6px rgba(0,0,0,.2),
                     inset 0 0 2px 2px rgba(0,0,0,.2));
     }
+    /* Set some good base font-sizes. These'll get clamped to one line anyway. */
+    &.purchasing,
+    &.installing {
+        font-size: 11px;
+    }
+    &.purchased,
+    &.installed {
+        font-size: 13px;
+    }
 }
 
 button {
