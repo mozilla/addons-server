@@ -160,3 +160,13 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         self._check_email(dev_msg, 'Submission Update')
         adm_msg = mail.outbox[1]
         self._check_admin_email(adm_msg, 'Super Review Requested')
+
+    def test_more_information(self):
+        self.post({'action': 'info', 'comments': 'Knead moor in faux'})
+        eq_(self.get_app().status, amo.STATUS_PENDING)
+        vqs = self.get_app().versions.all()
+        eq_(vqs.count(), 1)
+        eq_(vqs.filter(has_info_request=True).count(), 1)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')

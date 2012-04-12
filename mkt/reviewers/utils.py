@@ -22,8 +22,12 @@ log = commonware.log.getLogger('z.mailer')
 
 
 def send_mail(request, template, subject, emails, context, perm_setting=None):
+    # Get a jinja environment so we can override autoescaping for text emails.
+    env = jingo.get_env()
+    env.autoescape = False
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify(reverse('account.settings')) + '#notifications'
+    template = env.get_template(template)
     amo_send_mail(subject, jingo.render_to_string(request, template, context),
                   recipient_list=emails,
                   from_email=settings.NOBODY_EMAIL,
@@ -136,7 +140,7 @@ class ReviewBase:
 
     def get_context_data(self):
         return {'name': self.addon.name,
-                'reviewer': self.request.user.get_profile().display_name,
+                'reviewer': self.request.user.get_profile().name,
                 'detail_url': absolutify(
                     self.addon.get_url_path(add_prefix=False)),
                 'review_url': absolutify(reverse('reviewers.app_review',
@@ -251,17 +255,23 @@ class ReviewHelper:
                              'details': _lazy(
                                 'This will reject the app and remove it '
                                 'from the review queue.')}
+        actions['info'] = {'method': self.handler.request_information,
+                           'label': _lazy('Request more information'),
+                           'minimal': True,
+                           'details': _lazy(
+                               'This will send the author(s) an email '
+                               'requesting more information.')}
+        actions['super'] = {'method': self.handler.process_super_review,
+                            'label': _lazy('Request super-review'),
+                            'minimal': True,
+                            'details': _lazy(
+                                'Flag this app for an admin to review')}
         actions['comment'] = {'method': self.handler.process_comment,
                               'label': _lazy('Comment'),
                               'minimal': True,
                               'details': _lazy(
                                     'Make a comment on this app.  The '
                                     'author won\'t be able to see this.')}
-        actions['super'] = {'method': self.handler.process_super_review,
-                            'label': _lazy('Request super-review'),
-                            'minimal': True,
-                            'details': _lazy(
-                                'Flag this app for an admin to review')}
         return actions
 
     def process(self):
