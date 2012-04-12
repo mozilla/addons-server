@@ -47,7 +47,7 @@ def metrics(uid, action, data, **kw):
         return
 
     timeout = settings.METRICS_SERVER_TIMEOUT
-    namespace = settings.DOMAIN.replace('.', '_') + action
+    namespace = settings.DOMAIN.replace('.', '_') + '_' + action
 
     destination = '%s/%s/%s' % (destination, namespace, uid)
     headers = {'Content-Type': 'application/json'}
