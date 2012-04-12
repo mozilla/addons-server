@@ -41,7 +41,11 @@ def pay_start(request, signed_req, pay_req):
                 item=pay_req['request']['name'],
                 description=pay_req['request']['description'],
                 signed_request=signed_req)
-    return jingo.render(request, 'inapp_pay/pay_start.html', data)
+    if waffle.switch_is_active('in-app-payments-proto'):
+        tpl = 'inapp_pay/prototype/pay_start.html'
+    else:
+        tpl = 'inapp_pay/pay_start.html'
+    return jingo.render(request, tpl, data)
 
 
 @xframe_allow
@@ -134,7 +138,12 @@ def pay(request, signed_req, pay_req):
 
     # Payment was completed using pre-auth. Woo!
     _payment_done(request, payment)
-    return jingo.render(request, 'inapp_pay/thanks_for_payment.html', {})
+
+    if waffle.switch_is_active('in-app-payments-proto'):
+        tpl = 'inapp_pay/prototype/thanks_for_payment.html'
+    else:
+        tpl = 'inapp_pay/thanks_for_payment.html'
+    return jingo.render(request, tpl, {})
 
 
 @xframe_allow
@@ -143,6 +152,10 @@ def pay(request, signed_req, pay_req):
 @write
 @waffle_switch('in-app-payments-ui')
 def pay_done(request, config_pk, status):
+    if waffle.switch_is_active('in-app-payments-proto'):
+        tpl_path = 'inapp_pay/prototype/'
+    else:
+        tpl_path = 'inapp_pay/'
     with transaction.commit_on_success():
         cfg = get_object_or_404(InappConfig, pk=config_pk)
         uuid_ = None
@@ -157,15 +170,16 @@ def pay_done(request, config_pk, status):
         payment = InappPayment.objects.get(config=cfg, contribution=cnt)
         if status == 'complete':
             cnt.update(type=amo.CONTRIB_INAPP)
-            tpl = 'inapp_pay/thanks_for_payment.html'
+            tpl = tpl_path + 'thanks_for_payment.html'
             action = 'PAY_COMPLETE'
         elif status == 'cancel':
-            tpl = 'inapp_pay/payment_cancel.html'
+            tpl = tpl_path + 'payment_cancel.html'
             action = 'PAY_CANCEL'
         else:
             raise ValueError('Unexpected status: %r' % status)
 
     _payment_done(request, payment, action=action)
+
     return jingo.render(request, tpl, {})
 
 
