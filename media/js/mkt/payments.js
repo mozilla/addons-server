@@ -28,7 +28,7 @@
             if (e.keyCode == z.keys.ESCAPE) {
                 cancelPurchase();
             }
-        }).bind('click.payments', function(e) {
+        }).bind('overlay_dismissed', function(e) {
             cancelPurchase();
         });
 
