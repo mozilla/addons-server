@@ -78,6 +78,11 @@
                 dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
                 dgFlow.startFlow(response.url);
                 overlay.removeClass('show');
+                // Scroll to top of PayPal modal.
+                var offset = $('iframe[name=PPDGFrame]').offset().top;
+                if (offset > 9) {
+                    $(document.documentElement).animate({scrollTop: offset}, 1000);
+                }
                 // When PayPal modal gets dismissed, reset install button.
                 var intVal = setInterval(function() {
                     if (!dgFlow.isOpen()) {
