@@ -71,9 +71,10 @@ for number in ['580027', '580022']:
 
 # Here you can map PayPal error messages into hopefully more useful
 # error messages.
-messages = {'589023': loc('The amount is too small for conversion '
-                          "into the receiver's currency.")}
-
+messages = {'589023': _("The amount is too small for conversion "
+                        "into the receiver's currency."),
+            '579033': _('The buyer and seller must have different '
+                        'PayPal accounts.')}
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
