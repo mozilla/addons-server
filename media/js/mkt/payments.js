@@ -71,8 +71,17 @@
         $(window).bind('purchasecomplete.payments',function() {
             $def.resolve();
         });
+
+        $(window).bind('purchaseerror.payments', function(e, p, error) {
+            $('#pay-error').show().find('div').text(error);
+            cancelPurchase();
+        });
+
         $.post(product.purchase, function(response) {
-            if (response.status == 'COMPLETED') {
+            if (response.error) {
+                $(window).trigger('purchaseerror', [product, response.error]);
+            }
+            else if (response.status == 'COMPLETED') {
                 // If the response from pre-auth was good,
                 // then just jump to the next step.
                 $def.resolve();

@@ -14,6 +14,8 @@
 {% set first_cat = cats[0] if cats else None %}
 
 {% block content %}
+  {% include 'purchase/error.html' %}
+
   {% if first_cat %}
     {{ mkt_breadcrumbs(items=[(url('home'), _('Home')),
                               (first_cat.get_url_path(), first_cat),
