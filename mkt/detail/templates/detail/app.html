@@ -58,7 +58,9 @@
       {% endif %}
     </div>
     <div class="actions">
-      {{ market_button(product) }}
+      {% if product.is_public() %}
+        {{ market_button(product) }}
+      {% endif %}
       {% if is_dev %}
         <p><a href="{{ product.get_dev_url() }}" class="button developer manage">
           {{ _('Manage') }}</a></p>
