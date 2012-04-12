@@ -43,7 +43,8 @@ def purchase(request, addon):
     source = request.POST.get('source', '')
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # L10n: {0} is the addon name.
-    contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
+    contrib_for = (_(u'Mozilla Marketplace purchase of {0}')
+                   .format(addon.name))
 
     # Default is USD.
     amount, currency = addon.premium.get_price(), 'USD'
