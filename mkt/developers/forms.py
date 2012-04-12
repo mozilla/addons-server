@@ -180,11 +180,14 @@ def check_paypal_id(paypal_id):
 
 def trap_duplicate(request, manifest_url):
     # See if this user has any other apps with the same manifest.
-    owned = request.amo_user.addonuser_set.filter(
-        addon__manifest_url=manifest_url)
+    owned = (request.user.get_profile().addonuser_set
+             .filter(addon__manifest_url=manifest_url))
     if not owned:
         return
-    app = owned[0].addon
+    try:
+        app = owned[0].addon
+    except Addon.DoesNotExist:
+        return
     error_url = app.get_dev_url()
     msg = None
     if app.status == amo.STATUS_PUBLIC:
