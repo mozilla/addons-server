@@ -10,6 +10,7 @@
             var href = this.getAttribute('href');
             if (e.metaKey || e.ctrlKey || e.button !== 0) return;
             if (!href || href.substr(0,4) == 'http' ||
+                href.substr(0,7) === 'mailto:' ||
                 href.substr(0,1) === '#' ||
                 href.indexOf('/developers/') !== -1 ||
                 href.indexOf('/statistics/') !== -1) {

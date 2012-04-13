@@ -5,11 +5,13 @@ var z = {
 
 $(document).ready(function() {
     // Initialize email links.
-    $('span.emaillink').each(function() {
-        var $this = $(this);
-        $this.find('.i').remove();
-        var em = $this.text().split('').reverse().join('');
-        $this.prev('a').attr('href', 'mailto:' + em);
+    z.page.on('fragmentloaded', function() {
+        $('span.emaillink').each(function() {
+            var $this = $(this);
+            $this.find('.i').remove();
+            var em = $this.text().split('').reverse().join('');
+            $this.prev('a').attr('href', 'mailto:' + em);
+        });
     });
     if (z.readonly) {
         $('form[method=post]')
