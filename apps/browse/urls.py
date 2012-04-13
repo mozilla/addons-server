@@ -24,6 +24,9 @@ urlpatterns = patterns('',
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='browse.language-tools'),
 
+    url('^dictionaries$',
+        lambda r: redirect(reverse('browse.language-tools'), permanent=True)),
+
     url('^featured$',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
