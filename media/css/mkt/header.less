@@ -34,6 +34,7 @@
         display: block;
         position: relative;
         overflow: hidden;
+        outline: none;
         // CSS Menu icon.
         b, b:before, b:after {
             position: absolute;
@@ -59,6 +60,98 @@
             top: 20px;
         }
     }
+    nav {
+        position: relative;
+    }
+    nav ul {
+        .transition-property(~'top, opacity, visibility');
+        .transition-duration(.3s);
+        .border-radius(5px);
+        .box-shadow(0 1px 4px fadeOut(@black, 50%));
+        background: @white;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        visibility: hidden;
+        top: 32px;
+        right: 0;
+        .width(3);
+        z-index: 9001;
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            top: 70px;
+        }
+        li:first-child a:before {
+            .box-shadow(1px 1px 0 rgba(255,255,255,.1) inset,
+                        -1px -1px 0 fadeOut(@black, 75%));
+            .transform(~'rotate(45deg)');
+            background: @white;
+            content: "";
+            height: 12px;
+            position: absolute;
+            top: -5px;
+            right: 13px;
+            z-index: 2;
+            width: 12px;
+        }
+        li:first-child a:hover:before {
+            .gradient-two-color(@btn-b, lighten(@btn-b-dark, 13%));
+        }
+        li {
+            + li {
+                border-top: 1px solid @medium-gray;
+            }
+            &:first-child a {
+                .border-radius(5px 5px 0 0);
+            }
+            &:last-child a {
+                .border-radius(0 0 5px 5px);
+            }
+        }
+        a, a:after {
+            height: 30px;
+        }
+        a {
+            color: @link;
+            display: block;
+            font-size: 15px;
+            line-height: 30px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+            &:after {
+                .transition(.2s right);
+                background: url(../../img/mkt/arrows/plain.gif) 100% 50% no-repeat;
+                content: "";
+                display: block;
+                opacity: .7;
+                position: absolute;
+                top: 0;
+                right: 15px;
+                width: 18px;
+            }
+            &:hover, &:active {
+                .gradient-two-color(@btn-b, @btn-b-dark);
+                color: @white;
+                text-decoration: none;
+                &:after {
+                    opacity: 1;
+                    right: 10px;
+                }
+            }
+            &:active {
+                .box-shadow(inset 0 2px 0 0 rgba(0,0,0,.2),
+                            inset 0 12px 24px 6px rgba(0,0,0,.2),
+                            inset 0 0 2px 2px rgba(0,0,0,.2));
+            }
+        }
+    }
+}
+
+.nav-overlay.show {
+    background: transparent;
 }
 
 /* Content header (breadcrumbs, heading, subnav) - used on Account Settings, etc. */
@@ -157,6 +250,14 @@
             }
             &:first-child a {
                 border-top-width: 1px;
+            }
+        }
+    }
+    #site-header {
+        nav ul {
+            top: 115px;
+            &.active {
+                top: 150px;
             }
         }
     }

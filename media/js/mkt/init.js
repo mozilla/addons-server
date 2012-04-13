@@ -39,4 +39,15 @@ $(function() {
 
     // Add class for touch devices.
     $('body').addClass(z.capabilities.touch ? 'touch' : 'desktop');
+
+    // Navigation toggle.
+    var $header = $('#site-header'),
+        $nav = $header.find('nav ul');
+    $header.on('click', '.menu-button', function() {
+        $nav.toggleClass('active');
+        $('.nav-overlay').addClass('show');
+    });
+    $(window).bind('overlay_dismissed', function() {
+       $nav.removeClass('active');
+    });
 });
