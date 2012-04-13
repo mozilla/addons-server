@@ -2,28 +2,28 @@
 
 
 
-DROP TABLE `addons_pledges`;
-DROP TABLE `cache`;
-DROP TABLE `collection_addon_recommendations`;
-DROP TABLE `facebook_data`;
-DROP TABLE `facebook_detected`;
-DROP TABLE `facebook_favorites`;
-DROP TABLE `facebook_sessions`;
-DROP TABLE `facebook_users`;
-DROP TABLE `fizzypop`;
-DROP TABLE `howto_votes`;
-DROP TABLE `reviewratings`;
-DROP TABLE `sphinx_index_feed_tmp`;
+DROP TABLE IF EXISTS `addons_pledges`;
+DROP TABLE IF EXISTS `cache`;
+DROP TABLE IF EXISTS `collection_addon_recommendations`;
+DROP TABLE IF EXISTS `facebook_data`;
+DROP TABLE IF EXISTS `facebook_detected`;
+DROP TABLE IF EXISTS `facebook_favorites`;
+DROP TABLE IF EXISTS `facebook_sessions`;
+DROP TABLE IF EXISTS `facebook_users`;
+DROP TABLE IF EXISTS `fizzypop`;
+DROP TABLE IF EXISTS `howto_votes`;
+DROP TABLE IF EXISTS `reviewratings`;
+DROP TABLE IF EXISTS `sphinx_index_feed_tmp`;
 
-DROP TABLE `collections_search_summary`;
-DROP TABLE `text_search_summary`;
-DROP TABLE `versions_summary`;
+DROP TABLE IF EXISTS `collections_search_summary`;
+DROP TABLE IF EXISTS `text_search_summary`;
+DROP TABLE IF EXISTS `versions_summary`;
 
 -- Removed from code in separate commit
-DROP TABLE `test_cases`;
-DROP TABLE `test_groups`;
-DROP TABLE `test_results`;
-DROP TABLE `test_results_cache`;
+DROP TABLE IF EXISTS `test_cases`;
+DROP TABLE IF EXISTS `test_groups`;
+DROP TABLE IF EXISTS `test_results`;
+DROP TABLE IF EXISTS `test_results_cache`;
 
 -- Removed from code in separate commit
 ALTER TABLE `applications` DROP COLUMN `icondata`;
