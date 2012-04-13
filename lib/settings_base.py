@@ -1325,7 +1325,7 @@ ES_INDEXES = {'default': 'amo',
               'download_counts': 'amo_stats',
               'stats_collections_counts': 'amo_stats',
               'users_install': 'amo_stats'}
-ES_TIMEOUT = 5
+ES_TIMEOUT = 30
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
