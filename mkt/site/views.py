@@ -26,8 +26,8 @@ def handler500(request):
 
 
 def csrf_failure(request, reason=''):
-    return jingo.render(request, 'site/403.html', {'csrf': 'CSRF' in reason},
-                        status=403)
+    return jingo.render(request, 'site/403.html',
+                        {'because_csrf': 'CSRF' in reason}, status=403)
 
 
 # TODO: Remove when we flip `unleash-consumer`.
