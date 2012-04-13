@@ -15,6 +15,7 @@ from editors.models import CannedResponse
 from editors.tests.test_views import EditorTest
 from users.models import UserProfile
 
+from mkt.developers.models import AppLog
 from mkt.webapps.models import Webapp
 
 
@@ -119,6 +120,11 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         url = self.app.get_url_path(add_prefix=False)
         assert url in body, 'Could not find apps detail URL in %s' % msg
 
+    def _check_log(self, action):
+        assert AppLog.objects.filter(addon=self.app,
+                                     activity_log__action=action.id).exists(), (
+            "Didn't find `%s` action in logs." % action.short)
+
     def test_push_public(self):
         files = list(self.version.files.values_list('id', flat=True))
         self.post({
@@ -129,6 +135,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
             'addon_files': files,
         })
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        self._check_log(amo.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
@@ -138,14 +145,12 @@ class TestReviewApp(AppReviewerTest, EditorTest):
     def test_comment(self):
         self.post({'action': 'comment', 'comments': 'mmm, nice app'})
         eq_(len(mail.outbox), 0)
-        comment_version = amo.LOG.COMMENT_VERSION
-        eq_(ActivityLog.objects.filter(action=comment_version.id).count(), 1)
+        self._check_log(amo.LOG.COMMENT_VERSION)
 
     def test_reject(self):
         self.post({'action': 'reject', 'comments': 'suxor'})
         eq_(self.get_app().status, amo.STATUS_REJECTED)
-        action = amo.LOG.REJECT_VERSION
-        eq_(ActivityLog.objects.filter(action=action.id).count(), 1)
+        self._check_log(amo.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
@@ -155,6 +160,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
     def test_super_review(self):
         self.post({'action': 'super', 'comments': 'soup her man'})
         eq_(self.get_app().admin_review, True)
+        self._check_log(amo.LOG.REQUEST_SUPER_REVIEW)
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
         dev_msg = mail.outbox[0]
@@ -165,6 +171,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
     def test_more_information(self):
         self.post({'action': 'info', 'comments': 'Knead moor in faux'})
         eq_(self.get_app().status, amo.STATUS_PENDING)
+        self._check_log(amo.LOG.REQUEST_INFORMATION)
         vqs = self.get_app().versions.all()
         eq_(vqs.count(), 1)
         eq_(vqs.filter(has_info_request=True).count(), 1)
