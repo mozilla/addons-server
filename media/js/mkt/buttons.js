@@ -38,10 +38,39 @@
     }).bind('app_install_success', function(e, product) {
         setButton(getButton(product), gettext('Installed'), 'installed');
     }).bind('app_purchase_error app_install_error', function(e, product, msg) {
-        var $button = getButton(product);
+        var $button = getButton(product),
+            errSummary;
+
+        // From the old apps.js
+        switch (msg) {
+            case 'DENIED':
+                errSummary = gettext('App installation not allowed.');
+                break;
+            case 'MANIFEST_URL_ERROR':
+                errSummary = gettext('App manifest is malformed.');
+                break;
+            case 'NETWORK_ERROR':
+                errSummary = gettext('App host could not be reached.');
+                break;
+            case 'MANIFEST_PARSE_ERROR':
+                errSummary = gettext('App manifest is unparsable.');
+                break;
+            case 'INVALID_MANIFEST':
+                errSummary = gettext('App manifest is invalid.');
+                break;
+            default:
+                errSummary = gettext('Unknown error.');
+                break;
+        }
+
         if (msg) {
             setButton($button, gettext('Error'), 'error');
-            alert(msg);
+            var $overlay = $('<div id="install-error" class="overlay"></div>');
+            $overlay.append('<section><h3>' + gettext('Error') + '</h3><p>' +
+                            errSummary + '</p></section>');
+            $('#install-error').remove();
+            $('body').append($overlay);
+            $overlay.addClass('show');
         } else {
             // Cancelled install. Roll back.
             revertButton($button);

@@ -64,7 +64,7 @@
     }
 
     function installError(product, msg) {
-        $(window).trigger('app_install_error', product, msg);
+        $(window).trigger('app_install_error', [product, msg]);
     }
 
     $(function() {

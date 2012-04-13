@@ -24,8 +24,6 @@ success
     Optional callback for when app installation was successful
 error
     Optional callback for when app installation resulted in error
-errModalCallback
-    Callback to pass into $.modal(...)
 domContext
     Something other than document, useful for testing
 navigator
@@ -47,7 +45,7 @@ exports.install = function(product, opt) {
             $def.resolve(product);
         };
         installRequest.onerror = function() {
-            $def.reject(product);
+            $def.reject(product, this.error.name);
         };
     } else {
         $def.reject();
