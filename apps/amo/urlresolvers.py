@@ -127,6 +127,8 @@ class Prefixer(object):
         return lang_from_accept_header(accept)
 
     def fix(self, path):
+        # In mkt, don't add the app to the URL.
+        with_app = not getattr(settings, 'MARKETPLACE', False)
         path = path.lstrip('/')
         url_parts = [self.request.META['SCRIPT_NAME']]
 
@@ -140,7 +142,8 @@ class Prefixer(object):
             and not path.partition('/')[0]):
             url_parts.append('developers')
 
-        elif path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
+        elif (with_app
+              and path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
             app = self.app if self.app else self.get_app()
             url_parts.append(app)
 

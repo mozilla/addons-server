@@ -40,6 +40,8 @@ class LocaleAndAppURLMiddleware(object):
         redirect_type = HttpResponsePermanentRedirect
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
+        # In mkt, don't vary headers on User-Agent.
+        with_app = not getattr(settings, 'MARKETPLACE', False)
 
         if 'lang' in request.GET:
             # Blank out the locale so that we can set a new one.  Remove lang
@@ -69,7 +71,7 @@ class LocaleAndAppURLMiddleware(object):
             new_locale, new_app, _ = prefixer.split_path(full_path)
             if old_locale != new_locale:
                 patch_vary_headers(response, ['Accept-Language'])
-            if old_app != new_app:
+            if with_app and old_app != new_app:
                 patch_vary_headers(response, ['User-Agent'])
             return response
 

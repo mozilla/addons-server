@@ -10,6 +10,7 @@ APP_PREVIEW = True
 WAFFLE_TABLE_SUFFIX = 'mkt'
 
 # So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
+# Also used to determine if we add the /<app>/ to URLs.
 MARKETPLACE = True
 
 # 403 view to render for CSRF failures.
@@ -53,27 +54,6 @@ INSTALLED_APPS += (
     'mkt.support',
     'mkt.webapps',
     'devhub',  # Put here so helpers.py doesn't get loaded first.
-)
-SUPPORTED_NONAPPS += (
-    '',  # Can you tell I'm really putting off bug 735120?
-    'app',
-    'apps',
-    'dev',
-    'home',
-    'inapp_pay',
-    'login',
-    'logout',
-    'privacy-policy',
-    'purchases',
-    'reviewers',
-    'search',
-    'settings',
-    'submit',
-    'support',
-    'terms-of-use',
-    'user',
-    'users',
-    'manifest.webapp',
 )
 
 SUPPORTED_NONLOCALES += (
