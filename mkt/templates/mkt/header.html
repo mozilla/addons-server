@@ -19,9 +19,13 @@
       {% endblock %}
       <ul>
         <li><a href="{{ url('home') }}">{{ _('Home') }}</a></li>
-        <li><a href="{{ url('browse.apps') }}?sort=featured">{{ _('Featured') }}</a></li>
-        <li><a href="{{ url('browse.apps') }}?sort=popular">{{ _('Popular') }}</a></li>
-        <li><a href="#categories">{{ _('Categories') }}</a></li>
+        <li><a href="{{ url('browse.apps')|urlparams(sort='downloads') }}">
+          {{ _('Popular') }}</a></li>
+        <li><a href="{{ url('browse.apps')|urlparams(sort='downloads', price='free') }}">
+          {{ _('Top Free') }}</a></li>
+        <li><a href="{{ url('browse.apps')|urlparams(sort='downloads', price='paid') }}">
+          {{ _('Top Paid') }}</a></li>
+        <li><a href="{{ url('home') }}#categories">{{ _('Categories') }}</a></li>
       </ul>
     </nav>
   </section>

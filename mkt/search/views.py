@@ -86,7 +86,7 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _app_search(request, category=None):
+def _app_search(request, category=None, browse=None):
     form = forms.AppSearchForm(request.GET)
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
@@ -113,7 +113,7 @@ def _app_search(request, category=None):
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets
 
-    if category:
+    if category or browse:
         sort_opts = forms.LISTING_SORT_CHOICES
     else:
         if query.get('price') == 'free':
@@ -142,6 +142,7 @@ def _app_search(request, category=None):
         'sort_opts': sort_opts,
         'extra_sort_opts': [],
         'sort': query.get('sort'),
+        'price': query.get('price'),
         'categories': category_sidebar(query, categories),
         'prices': price_sidebar(query),
         'devices': device_sidebar(query),

@@ -12,6 +12,30 @@
   {% set search_url = url('search.search')|urlparams(cat=category.id) %}
   {% set title = category.name %}
   {% set heading = title %}
+{% elif browse %}
+  {# Yeah, you're right this is ridiculous. #}
+  {% if sort == 'downloads' %}
+    {% if price == 'free' %}
+      {% set title = _('Top Free') %}
+    {% elif price == 'paid' %}
+      {% set title = _('Top Paid') %}
+    {% else %}
+      {% set title = _('By Popularity') %}
+    {% endif %}
+  {% elif sort == 'rating' %}
+    {% set title = _('By Rating') %}
+  {% elif sort == 'price' %}
+    {% set title = _('By Price') %}
+  {% elif sort == 'created' %}
+    {% set title = _('Newest Apps') %}
+  {% endif %}
+  {% if title %}
+    {% set heading = title %}
+    {% set title = '%s | %s' % (title, _('Apps')) %}
+  {% else %}
+    {% set title = 'Apps' %}
+    {% set heading = title %}
+  {% endif %}
 {% else %}
   {% set title = _('Search') %}
   {% set heading = title %}
