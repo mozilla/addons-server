@@ -24,6 +24,44 @@ import users.notifications as email
 from mkt.webapps.models import Installed, Webapp
 
 
+class TestAccountDelete(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = self.get_user()
+        self.url = reverse('account.delete')
+        assert self.client.login(username=self.user.email, password='password')
+
+    def get_user(self):
+        return UserProfile.objects.get(id=999)
+
+    def test_anonymous(self):
+        self.client.logout()
+        r = self.client.get(self.url)
+        self.assertLoginRedirects(r, self.url)
+
+    def test_page(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_success(self):
+        r = self.client.post(self.url, {'confirm': True}, follow=True)
+        self.assertRedirects(r, reverse('users.login'))
+        user = self.get_user()
+        eq_(user.deleted, True)
+        eq_(user.email, None)
+
+    def test_fail(self):
+        r = self.client.post(self.url, follow=True)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'confirm', 'This field is required.')
+        eq_(pq(r.content)('input[name=confirm]').siblings('.errorlist').length,
+            1, 'Expected an error message to be shown')
+        user = self.get_user()
+        eq_(user.deleted, False, 'User should not have been deleted')
+        eq_(user.email, self.user.email, 'Email should not have changed')
+
+
 class TestAccountSettings(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 

@@ -134,7 +134,8 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
 
 
 class UserDeleteForm(forms.Form):
-    confirm = forms.BooleanField()
+    confirm = forms.BooleanField(
+        label=_lazy(u'I understand this step cannot be undone.'))
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)

@@ -34,13 +34,9 @@
           </div>
           <form method="post" action="">
             {{ csrf() }}
-            <h2>{{ _('Confirm account deletion') }}</h2>
+            <h3>{{ _('Confirm account deletion') }}</h3>
             <p>
-              <label for="{{ form.confirm.auto_id }}" class="choice">
-                {{ form.confirm }}
-                {{ _('I understand this step cannot be undone.') }}
-                {{ required() }}
-              </label>
+              {{ form_field(form.confirm) }}
             </p>
             <footer class="form-footer">
               <button type="submit" class="delete">
