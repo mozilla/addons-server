@@ -35,7 +35,7 @@
     </div>
     <div class="vitals">
       <h1>{{ product.name }}</h1>
-      <h2 class="authors">{{ users_list(product.listed_authors) }}</h2>
+      <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
       <p class="downloads">
         {% trans cnt=product.weekly_downloads,
                  num=product.weekly_downloads|numberfmt %}

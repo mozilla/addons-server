@@ -143,7 +143,11 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return u'%s: %s' % (self.id, self.display_name or self.username)
 
     def get_url_path(self):
-        return reverse('users.profile', args=[self.id])
+        if settings.MARKETPLACE:
+            return reverse('users.profile', args=[self.username or self.id])
+        else:
+            # AMO isn't ready for this.
+            return reverse('users.profile', args=[self.id])
 
     def flush_urls(self):
         urls = ['*/user/%d/' % self.id,
