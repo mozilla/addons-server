@@ -225,13 +225,13 @@ def plugin_check(request):
 
             if re.match(r'^(?!.*(Win64|x64))Win.*$', g['clientOS']):
                 plugin.update(
-                    version='11.2.202.228',
-                    InstallerHash='sha256:0387d736ee952536ca1229994cf626028315edc1fdd38b897d735fa2dc719d46',
+                    version='11.2.202.233',
+                    InstallerHash='sha256:94887c02a7bc40c844798c3ca840d53ead56203410d2a1cf49f1f557773a41a2',
                     InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_32bit.exe')
             else:
                 plugin.update(
-                    version='11.2.202.228 64-bit',
-                    InstallerHash='sha256:727a1ac4ffa2aa07872117e75934f009c0b3e612b39e80bc254b65c377a5dc74',
+                    version='11.2.202.233 64-bit',
+                    InstallerHash='sha256:d60c42140f5612a818e364690f2d6ee021a45cabc0f2cfffe1d010e99939c374',
                     InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_64bit.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
