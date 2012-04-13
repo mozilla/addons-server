@@ -26,7 +26,55 @@ from mkt.inapp_pay.models import InappPayment, InappConfig, InappPayLog
 from mkt.inapp_pay.verify import InappPaymentError
 
 
-class PaymentTest(amo.tests.TestCase):
+class InappPaymentUtil:
+
+    def make_contrib(self, **contrib_kw):
+        payload = self.payload()
+        uuid_ = '12345'
+        kw = dict(addon_id=self.app.pk, amount=payload['request']['price'],
+                  source='', source_locale='en-US',
+                  currency=payload['request']['currency'],
+                  uuid=uuid_, type=amo.CONTRIB_INAPP_PENDING,
+                  paykey='some-paykey', user=self.user)
+        kw.update(contrib_kw)
+        return Contribution.objects.create(**kw)
+
+    def make_payment(self, contrib=None):
+        app_payment = self.payload()
+        if not contrib:
+            contrib = self.make_contrib()
+        return InappPayment.objects.create(
+                            config=self.inapp_config,
+                            contribution=contrib,
+                            name=app_payment['request']['name'],
+                            description=app_payment['request']['description'],
+                            app_data=app_payment['request']['productdata'])
+
+    def payload(self, app_id=None, exp=None, iat=None,
+                typ='mozilla/payments/pay/v1'):
+        if not app_id:
+            app_id = self.app_id
+        if not iat:
+            iat = calendar.timegm(time.gmtime())
+        if not exp:
+            exp = iat + 3600  # expires in 1 hour
+        return {
+            'iss': app_id,
+            'aud': settings.INAPP_MARKET_ID,
+            'typ': typ,
+            'exp': exp,
+            'iat': iat,
+            'request': {
+                'price': '0.99',
+                'currency': 'USD',
+                'name': 'My bands latest album',
+                'description': '320kbps MP3 download, DRM free!',
+                'productdata': 'my_product_id=1234'
+            }
+        }
+
+
+class PaymentTest(InappPaymentUtil, amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
     def setUp(self):
@@ -41,49 +89,6 @@ class PaymentTest(amo.tests.TestCase):
 
     def get_app(self):
         return Addon.objects.get(pk=337141)
-
-    def make_contrib(self):
-        payload = self.payload()
-        uuid_ = '12345'
-        return Contribution.objects.create(
-                    addon_id=self.app.pk, amount=payload['request']['price'],
-                    source='', source_locale='en-US',
-                    currency=payload['request']['currency'],
-                    uuid=uuid_, type=amo.CONTRIB_INAPP_PENDING,
-                    paykey='some-paykey', user=self.user)
-
-    def make_payment(self, contrib=None):
-        app_payment = self.payload()
-        if not contrib:
-            contrib = self.make_contrib()
-        return InappPayment.objects.create(
-                            config=self.inapp_config,
-                            contribution=contrib,
-                            name=app_payment['request']['name'],
-                            description=app_payment['request']['description'],
-                            app_data=app_payment['request']['productdata'])
-
-    def payload(self, app_id=None, exp=None, iat=None):
-        if not app_id:
-            app_id = self.app_id
-        if not iat:
-            iat = calendar.timegm(time.gmtime())
-        if not exp:
-            exp = iat + 3600  # expires in 1 hour
-        return {
-            'iss': app_id,
-            'aud': settings.INAPP_MARKET_ID,
-            'typ': 'mozilla/payments/pay/v1',
-            'exp': exp,
-            'iat': iat,
-            'request': {
-                'price': '0.99',
-                'currency': 'USD',
-                'name': 'My bands latest album',
-                'description': '320kbps MP3 download, DRM free!',
-                'productdata': 'my_product_id=1234'
-            }
-        }
 
     def request(self, app_secret=None, payload=None, **payload_kw):
         if not app_secret:
@@ -221,14 +226,13 @@ class TestPay(PaymentViewTest):
 
     @fudge.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')
-    @fudge.patch('mkt.inapp_pay.tasks.notify_app')
-    def test_preauth_ok(self, check_purchase, get_paykey, notify_app):
+    @fudge.patch('mkt.inapp_pay.tasks.payment_notify')
+    def test_preauth_ok(self, check_purchase, get_paykey, payment_notify):
         payload = self.payload()
 
         get_paykey.expects_call().returns(['some-pay-key', 'COMPLETED'])
         check_purchase.expects_call().returns('COMPLETED')
-        notify_app.expects('delay').with_args(amo.INAPP_NOTICE_PAY,
-                                              arg.any())  # payment ID to-be
+        payment_notify.expects('delay').with_args(arg.any())  # pay ID to-be
 
         req = self.request(payload=json.dumps(payload))
         self.client.post(reverse('inapp_pay.pay'), dict(req=req))

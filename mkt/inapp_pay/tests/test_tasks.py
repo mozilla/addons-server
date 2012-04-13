@@ -37,13 +37,25 @@ class TestNotifyApp(PaymentTest):
     def url(self, path, protocol='https'):
         return protocol + '://' + self.domain + path
 
+    def do_chargeback(self):
+        tasks.chargeback_notify(self.payment.pk)
+
     def notify(self):
-        tasks.notify_app(amo.INAPP_NOTICE_PAY, self.payment.pk)
+        tasks.payment_notify(self.payment.pk)
 
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
     def test_notify_pay(self, urlopen):
         url = self.url(self.postback)
-        (urlopen.expects_call().with_args(url, arg.any(),
+        payload = self.payload(typ='mozilla/payments/pay/postback/v1')
+
+        def req_ok(req):
+            dd = jwt.decode(req, verify=False)
+            eq_(dd['request'], payload['request'])
+            eq_(dd['typ'], payload['typ'])
+            jwt.decode(req, self.inapp_config.private_key, verify=True)
+            return True
+
+        (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
                                           timeout=5)
                                .returns_fake()
                                .expects('read')
@@ -52,6 +64,31 @@ class TestNotifyApp(PaymentTest):
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.notice, amo.INAPP_NOTICE_PAY)
+        eq_(notice.success, True)
+        eq_(notice.url, url)
+        eq_(notice.payment.pk, self.payment.pk)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_notify_chargeback(self, urlopen):
+        url = self.url(self.chargeback)
+        payload = self.payload(typ='mozilla/payments/pay/chargeback/v1')
+
+        def req_ok(req):
+            dd = jwt.decode(req, verify=False)
+            eq_(dd['request'], payload['request'])
+            eq_(dd['typ'], payload['typ'])
+            jwt.decode(req, self.inapp_config.private_key, verify=True)
+            return True
+
+        (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
+                                          timeout=5)
+                               .returns_fake()
+                               .expects('read')
+                               .returns(str(self.contrib.pk))
+                               .expects('close'))
+        self.do_chargeback()
+        notice = InappPayNotice.objects.get()
+        eq_(notice.notice, amo.INAPP_NOTICE_CHARGEBACK)
         eq_(notice.success, True)
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)

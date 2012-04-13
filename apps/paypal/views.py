@@ -233,6 +233,7 @@ def paypal_reversal(request, post, transaction):
     except Contribution.DoesNotExist:
         pass
 
+    original.handle_reversal()
     paypal_log.info('Reversal IPN received: %s' % post['txn_id'])
     amount = _parse_currency(transaction['amount'])
     refund = Contribution.objects.create(

@@ -173,7 +173,7 @@ def pay_status(request, config_pk, status):
 
 def _payment_done(request, payment, action='PAY_COMPLETE'):
     if action == 'PAY_COMPLETE':
-        tasks.notify_app.delay(amo.INAPP_NOTICE_PAY, payment.pk)
+        tasks.payment_notify.delay(payment.pk)
     # TODO(Kumar) when canceled, notify app. bug 741588
     InappPayLog.log(request, action, config=payment.config)
     log.debug('in-app payment %s for payment %s' % (action, payment.pk))

@@ -9,7 +9,6 @@ from django.core import mail
 
 from mock import patch, Mock
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
@@ -170,8 +169,7 @@ sample_reversal = sample_refund.copy()
 sample_reversal['transaction[0].status'] = 'reversal'
 
 
-@patch('paypal.views.urllib2.urlopen')
-class TestPaypal(amo.tests.TestCase):
+class PaypalTest(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('amo.paypal')
@@ -182,6 +180,10 @@ class TestPaypal(amo.tests.TestCase):
         m = Mock()
         m.readline.return_value = status
         return m
+
+
+@patch('paypal.views.urllib2.urlopen')
+class TestPaypal(PaypalTest):
 
     def test_not_verified(self, urlopen):
         urlopen.return_value = self.urlopener('xxx')

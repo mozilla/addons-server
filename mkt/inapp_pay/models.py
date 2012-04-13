@@ -144,10 +144,21 @@ class InappPayLog(amo.models.ModelBase):
 
 class InappPayment(amo.models.ModelBase):
     config = models.ForeignKey(InappConfig)
-    contribution = models.ForeignKey('stats.Contribution')
+    contribution = models.ForeignKey('stats.Contribution',
+                                     related_name='inapp_payment')
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255, blank=True)
     app_data = models.CharField(max_length=255, blank=True)
+
+    def handle_reversal(self):
+        """
+        Hook to handle a payment reversal.
+
+        When a reversal (or chargeback) is received from a PayPal IPN
+        for this payment's contribution, the hook is called.
+        """
+        from mkt.inapp_pay import tasks
+        tasks.chargeback_notify.delay(self.pk)
 
     class Meta:
         db_table = 'addon_inapp_payment'

@@ -19,18 +19,37 @@ log = logging.getLogger('z.inapp_pay.tasks')
 
 @task
 @write
-def notify_app(notice, payment_id, **kw):
+def payment_notify(payment_id, **kw):
+    _notify(payment_id, amo.INAPP_NOTICE_PAY)
+
+
+@task
+@write
+def chargeback_notify(payment_id, **kw):
+    _notify(payment_id, amo.INAPP_NOTICE_CHARGEBACK)
+
+
+def _notify(payment_id, notice_type):
     payment = InappPayment.objects.get(pk=payment_id)
     config = payment.config
     contrib = payment.contribution
+    if notice_type == amo.INAPP_NOTICE_PAY:
+        uri = config.postback_url
+        typ = 'mozilla/payments/pay/postback/v1'
+    elif notice_type == amo.INAPP_NOTICE_CHARGEBACK:
+        uri = config.chargeback_url
+        typ = 'mozilla/payments/pay/chargeback/v1'
+    else:
+        raise NotImplementedError('Unknown type: %s' % notice_type)
     url = urlparse.urlunparse((config.app_protocol(), config.addon.app_domain,
-                               config.postback_url, '', '', ''))
+                               uri, '', '', ''))
     exception = None
     success = False
     issued_at = calendar.timegm(time.gmtime())
+
     signed_notice = jwt.encode({'iss': settings.INAPP_MARKET_ID,
                                 'aud': config.public_key,  # app ID
-                                'typ': 'mozilla/payments/pay/postback/v1',
+                                'typ': typ,
                                 'iat': issued_at,
                                 'exp': issued_at + 3600,  # expires in 1 hour
                                 'request': {'price': str(contrib.amount),
@@ -68,7 +87,7 @@ def notify_app(notice, payment_id, **kw):
     last_error = last_error[:s]  # truncate to fit
 
     InappPayNotice.objects.create(payment=payment,
-                                  notice=amo.INAPP_NOTICE_PAY,
+                                  notice=notice_type,
                                   success=success,
                                   url=url,
                                   last_error=last_error)
