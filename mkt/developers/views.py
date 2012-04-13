@@ -41,6 +41,7 @@ from market.models import AddonPaymentData, AddonPremium, Refund
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
 import paypal
+from paypal import PaypalError
 from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -483,7 +484,15 @@ def issue_refund(request, addon_id, addon, webapp=False):
 
     elif request.method == 'POST':
         if 'issue' in request.POST:
-            results = paypal.refund(contribution.paykey)
+            try:
+                results = paypal.refund(contribution.paykey)
+            except PaypalError:
+                paypal_log.error('Refund failed for: %s' % txn_id,
+                                 exc_info=True)
+                messages.error(request, _('There was an error with '
+                                          'the refund.'))
+                return redirect(addon.get_dev_url('refunds'))
+
             for res in results:
                 if res['refundStatus'] == 'ALREADY_REVERSED_OR_REFUNDED':
                     paypal_log.debug(

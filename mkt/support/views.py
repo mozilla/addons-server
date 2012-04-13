@@ -18,6 +18,7 @@ from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from amo.utils import send_mail
 import paypal
+from paypal import PaypalError
 from mkt.site import messages
 from stats.models import Contribution
 from . import forms
@@ -127,8 +128,14 @@ def refund_reason(request, contribution, wizard):
         return redirect('account.purchases')
 
     if contribution.is_instant_refund():
-        paypal.refund(contribution.paykey)
-        # TODO: Consider requiring a refund reason for instant refunds.
+        try:
+            paypal.refund(contribution.paykey)
+        except PaypalError:
+            paypal_log.error('Paypal error with refund', exc_info=True)
+            messages.error(request, _('There was an error with your instant '
+                                      'refund.'))
+            return redirect('account.purchases')
+
         refund = contribution.enqueue_refund(amo.REFUND_APPROVED_INSTANT)
         paypal_log.info('Refund %r issued for contribution %r' %
                         (refund.pk, contribution.pk))

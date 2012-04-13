@@ -10,6 +10,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 import users.notifications as email
 from mkt.account.tests.test_views import PurchaseBase
+from paypal import PaypalError
 
 
 class TestRequestSupport(PurchaseBase):
@@ -169,3 +170,13 @@ class TestRequestSupport(PurchaseBase):
         # There should be one instant refund added.
         eq_(enqueue_refund.call_args_list[0][0],
             (amo.REFUND_APPROVED_INSTANT,))
+
+    @mock.patch('stats.models.Contribution.is_instant_refund')
+    @mock.patch('mkt.support.views.paypal')
+    def test_request_instant_fails(self, refund, is_instant_refund):
+        refund.refund.side_effect = PaypalError
+        is_instant_refund.return_value = True
+        self.client.post(self.get_support_url('request'), {'remove': 1})
+        res = self.client.post(self.get_support_url('reason'), {}, follow=True)
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('.notification-box')), 1)

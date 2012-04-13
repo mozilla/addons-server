@@ -18,6 +18,7 @@ import amo
 import amo.tests
 import paypal
 from paypal.check import Check
+from paypal import PaypalError
 from amo.helpers import babel_datetime, timesince
 from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
@@ -585,6 +586,15 @@ class TestIssueRefund(amo.tests.TestCase):
     @mock.patch('paypal.refund')
     def test_apps_issue(self, refund, enqueue_refund):
         self._test_issue(refund, enqueue_refund)
+
+    @mock.patch('stats.models.Contribution.enqueue_refund')
+    @mock.patch('paypal.refund')
+    def test_apps_issue(self, refund, enqueue_refund):
+        refund.side_effect = PaypalError
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'}, follow=True)
+        eq_(len(pq(r.content)('.notification-box')), 1)
 
     def test_fresh_refund(self):
         c = self.make_purchase()
