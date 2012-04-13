@@ -5,7 +5,6 @@
 DROP TABLE `addons_pledges`;
 DROP TABLE `cache`;
 DROP TABLE `collection_addon_recommendations`;
-DROP TABLE `collections_tokens`;
 DROP TABLE `facebook_data`;
 DROP TABLE `facebook_detected`;
 DROP TABLE `facebook_favorites`;
