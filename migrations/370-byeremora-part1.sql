@@ -20,6 +20,9 @@ DROP TABLE IF EXISTS `text_search_summary`;
 DROP TABLE IF EXISTS `versions_summary`;
 
 -- Removed from code in separate commit
+ALTER TABLE `test_cases` DROP FOREIGN KEY `test_cases_ibfk_1`;
+ALTER TABLE `test_results` DROP FOREIGN KEY `test_results_ibfk_1`;
+ALTER TABLE `test_results` DROP FOREIGN KEY `test_results_ibfk_2`;
 DROP TABLE IF EXISTS `test_cases`;
 DROP TABLE IF EXISTS `test_groups`;
 DROP TABLE IF EXISTS `test_results`;
@@ -34,6 +37,9 @@ ALTER TABLE `platforms` DROP COLUMN `icontype`;
 ALTER TABLE `addons` DROP COLUMN `binary`;
 
 -- Removed from code in separate commit
+ALTER TABLE `categories` DROP FOREIGN KEY `categories_ibfk_1`;
+ALTER TABLE `categories` DROP FOREIGN KEY `categories_ibfk_2`;
+ALTER TABLE `categories` DROP FOREIGN KEY `categories_ibfk_3`;
 ALTER TABLE `categories` DROP FOREIGN KEY `categories_ibfk_4`;
 ALTER TABLE `categories` DROP COLUMN `description`;
 
