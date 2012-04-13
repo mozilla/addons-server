@@ -90,10 +90,10 @@ def log_configure():
     cfg = {
         'version': 1,
         'filters': {},
-        'formatters': dict(prod2=formatters['prod2']),
-        'handlers': dict(syslog2=handlers['syslog2']),
+        'formatters': dict(prod=formatters['prod']),
+        'handlers': dict(syslog=handlers['syslog']),
         'loggers': {
-            'z': {'handlers': ['syslog2']},
+            'z': {'handlers': ['syslog']},
         },
         'root': {},
     }
