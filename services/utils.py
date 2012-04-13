@@ -92,7 +92,9 @@ def log_configure():
         'filters': {},
         'formatters': dict(prod2=formatters['prod2']),
         'handlers': dict(syslog2=handlers['syslog2']),
-        'loggers': {},
+        'loggers': {
+            'z': {'handlers': ['syslog2']},
+        },
         'root': {},
     }
     dictconfig.dictConfig(cfg)
