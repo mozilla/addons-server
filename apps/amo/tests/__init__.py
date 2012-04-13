@@ -416,7 +416,7 @@ class ESTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
         super(ESTestCase, cls).setUpClass()
-        cls.es = elasticutils.get_es()
+        cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
 
         if ESTestCase.use_es is None:
             for key, index in settings.ES_INDEXES.items():
