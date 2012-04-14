@@ -3,21 +3,69 @@
 @text-gray: #424f5a;
 @link: #2d87ca;
 
-#product-status {
-    .border-radius(0);
-    .border-box;
-    a {
-        font-weight: bold;
-    }
+.icon {
+    background: @white;
+    .border-radius(2px);
+    .box-shadow(0 1px 2px fadeOut(@black, 50%));
 }
 
 .product-details + #product-status {
     margin-top: 24px;
 }
 
+#upsell {
+    background: @yellow;
+    h3 {
+        color: darken(@yellow, 75%);
+        font-weight: bold;
+    }
+    .upsell,
+    .product {
+        margin: 15px 0;
+    }
+    .upsell {
+        .ellipsis;
+        display: block;
+        float: left;
+        font-weight: 200;
+        font-size: 21px;
+        line-height: 24px;
+        padding: 5px 0 5px 45px;
+        position: relative;
+        width: 75%;
+    }
+    .product {
+        float: right;
+        .width(1);
+    }
+    .icon {
+        display: inline-block;
+        margin-right: 15px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        vertical-align: top;
+    }
+    .prose {
+        color: @medium-gray;
+    }
+}
+
+.html-rtl #upsell {
+    .upsell {
+        padding: 5px 45px 5px 0;
+    }
+    .icon {
+        margin: 0 0 0 15px;
+    }
+}
+
 .product-details {
     font-size: 14px;
     text-shadow: 0 1px 0 @white;
+    .icon {
+        .width(2);
+    }
     .actions {
         .width(3);
         float: right;
@@ -28,12 +76,6 @@
             line-height: 32px;
             padding-bottom: 2px;
         }
-    }
-    .icon {
-        background: #fff;
-        .border-radius(2px);
-        .box-shadow(0 1px 2px fadeOut(#000, 50%));
-        .width(2);
     }
     .vitals {
         float: left;

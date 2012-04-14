@@ -74,6 +74,23 @@
 
   {% include 'purchase/message.html' %}
 
+  {% set upsell = product.upsell %}
+  {% if upsell %}
+    <section id="upsell" class="notification-box full">
+      <div class="c">
+        <h3>{{ _('Premium version available') }}</h3>
+          {% with prm = upsell.premium %}
+            <a href="{{ prm.get_url_path() }}" class="upsell">
+              <img class="icon" src="{{ prm.get_icon_url(16) }}">{{ prm.name }}</a>
+              {% if prm.is_public() %}
+                {{ market_button(prm) }}
+              {% endif %}
+          {% endwith %}
+      </div>
+      <div class="prose">{{ upsell.text|nl2br }}</div>
+    </section>
+  {% endif %}
+
   <section class="description">
     <p>{{ product.description }}</p>
   </section>

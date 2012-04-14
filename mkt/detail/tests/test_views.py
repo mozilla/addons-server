@@ -11,7 +11,7 @@ from tower import strip_whitespace
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, AddonUser, Category
+from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -30,6 +30,11 @@ class DetailBase(amo.tests.TestCase):
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
 
+    def get_pq(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        return pq(r.content)
+
 
 class TestDetail(DetailBase):
 
@@ -41,8 +46,7 @@ class TestDetail(DetailBase):
         cat = Category.objects.create(name='Lifestyle', slug='lifestyle',
                                       type=amo.ADDON_WEBAPP)
         AddonCategory.objects.create(addon=self.webapp, category=cat)
-        r = self.client.get(self.url)
-        links = pq(r.content)('.categories a')
+        links = self.get_pq()('.categories a')
         eq_(links.length, 1)
         eq_(links.attr('href'), cat.get_url_path())
         eq_(links.text(), cat.name)
@@ -50,25 +54,34 @@ class TestDetail(DetailBase):
     def test_manage_button_for_owner(self):
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('.manage').length, 1)
+        eq_(self.get_pq()('.manage').length, 1)
 
     def test_manage_button_for_dev(self):
         user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=user.email, password='password')
         AddonUser.objects.create(addon=self.webapp, user=user)
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('.manage').length, 1)
+        eq_(self.get_pq()('.manage').length, 1)
 
     def test_no_manage_button_for_nondev(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('.manage').length, 0)
+        eq_(self.get_pq()('.manage').length, 0)
 
     def test_no_manage_button_for_anon(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('.manage').length, 0)
+        eq_(self.get_pq()('.manage').length, 0)
+
+    def test_upsell(self):
+        eq_(self.get_pq()('#upsell').length, 0)
+        premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
+        AddonUpsell.objects.create(free=self.webapp, premium=premie,
+                                   text='XXX')
+        upsell = self.get_pq()('#upsell')
+        eq_(upsell.length, 1)
+        eq_(upsell.find('.upsell').text(), unicode(premie.name))
+        eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(16))
+        eq_(upsell.find('.install').attr('data-manifesturl'),
+            premie.manifest_url)
+        eq_(upsell.find('.prose').text(), 'XXX')
 
 
 class TestDetailPagePermissions(DetailBase):
