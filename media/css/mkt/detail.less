@@ -80,6 +80,7 @@
     .vitals {
         float: left;
         margin-left: 22px;
+        .max-width(9);
         h1 {
             font-size: 32px;
             font-weight: 100;
@@ -226,11 +227,20 @@
         }
         p {
             margin: 0;
+            a, time {
+                display: inline-block;
+                padding: 5px 20px 5px 0;
+            }
             a {
-                padding-right: 19px;
-                background: url(../../img/mkt/arrows/support.png) no-repeat right 3px;
+                background: url(../../img/mkt/arrows/support.png) no-repeat 100% 50%;
             }
         }
+    }
+}
+
+.html-rtl .support ul {
+    a, time {
+        padding: 5px 0 5px 20px;
     }
 }
 
@@ -246,11 +256,13 @@
 // 7 columns
 @media (max-width: @7col) {
     .product-details {
-
+        .actions {
+        }
     }
     .support ul li {
         .width(2);
     }
+
 }
 
 //4 columns
@@ -260,15 +272,31 @@
         padding: 16px;
     }
     .product-details {
-        .vitals {
-            .width(2);
-        }
+        .vitals,
         .actions {
-            .width(1);
+            float: none;
+            width: 100%;
+        }
+        .vitals {
+            margin: 0;
+            max-width: 100%;
         }
     }
     .support ul li {
         .width(4);
+    }
+    /* Big click targets. */
+    .support {
+        a, time {
+            display: inline-block;
+            padding: 5px 20px 5px 0;
+        }
+    }
+    .html-rtl .support {
+        a, time {
+            display: inline-block;
+            padding: 5px 0 5px 20px;
+        }
     }
 }
 
@@ -278,7 +306,6 @@
         .visual {
         }
         .vitals {
-            .width(3);
             float: none;
         }
         .actions {
