@@ -4,7 +4,7 @@ from tower import ugettext as _
 import jinja2
 import json
 
-from amo.helpers import url
+from amo.helpers import url, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
@@ -64,7 +64,8 @@ def product_as_dict(request, product, purchased=None):
         'manifestUrl': product.manifest_url,
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
-        'recordUrl': product.get_detail_url('record'),
+        'recordUrl': urlparams(product.get_detail_url('record'),
+                               src=request.GET.get('src', '')),
         'author': author,
         'author_url': author_url,
         'icon_128_url': product.get_icon_url(128)

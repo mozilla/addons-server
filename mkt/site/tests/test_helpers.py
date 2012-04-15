@@ -6,6 +6,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from market.models import AddonPurchase
 from mkt.webapps.models import Webapp
@@ -21,6 +22,7 @@ class TestMarketButton(amo.tests.TestCase):
         self.user = UserProfile.objects.get(pk=999)
         request = mock.Mock()
         request.amo_user = self.user
+        request.GET = {'src': 'foo'}
         self.context = {'request': request}
 
     def test_not_webapp(self):
@@ -33,7 +35,8 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_button(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['manifestUrl'], self.webapp.manifest_url)
-        eq_(data['recordUrl'], self.webapp.get_detail_url('record'))
+        eq_(data['recordUrl'], urlparams(self.webapp.get_detail_url('record'),
+                                         src='foo'))
         eq_(data['preapprovalUrl'], reverse('detail.purchase.preapproval',
                                             args=[self.webapp.app_slug]))
         eq_(data['id'], str(self.webapp.pk))
@@ -77,5 +80,3 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['name'], escaped)
         eq_(data['author'], escaped)
-
-
