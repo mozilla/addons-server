@@ -28,16 +28,18 @@ def no_results():
 def market_button(context, product):
     request = context['request']
     if product.is_webapp():
+        purchased = (request.amo_user and
+                     product.pk in request.amo_user.purchase_ids())
         classes = ['button', 'product']
         label = price_label(product)
-        product_dict = product_as_dict(request, product)
+        product_dict = product_as_dict(request, product, purchased=purchased)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
             'manifestUrl': product.manifest_url,
         }
         if product.is_premium() and product.premium:
             classes.append('premium')
-        if not product.is_premium() or product.has_purchased(request.amo_user):
+        if not product.is_premium() or purchased:
             classes.append('install')
             label = _('Install')
         # TODO: Show inline BroswerID login popup for non-authenticated users.
@@ -47,7 +49,7 @@ def market_button(context, product):
     return jinja2.Markup(t.render(c))
 
 
-def product_as_dict(request, product):
+def product_as_dict(request, product, purchased=None):
 
     # Dev environments might not have authors set.
     author = ''
@@ -74,7 +76,7 @@ def product_as_dict(request, product):
             'purchase': product.get_purchase_url(),
         })
         if request.amo_user:
-            ret['isPurchased'] = product.pk in request.amo_user.purchase_ids()
+            ret['isPurchased'] = purchased
     # Jinja2 escape everything except this whitelist so that bool is retained
     # for the JSON encoding.
     wl = ('isPurchased', 'price')
