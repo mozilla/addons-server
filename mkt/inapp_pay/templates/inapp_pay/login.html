@@ -1,0 +1,15 @@
+{% extends "inapp_pay/base.html" %}
+
+{% block screen_content %}
+  <header>
+    {{ _('Marketplace') }} &mdash; {{ _('Please Sign In') }}
+  </header>
+  <div>
+    <h2>{{ item }}</h2>
+    <p>{{ description }}</p>
+  </div>
+  <footer>
+    <a href="#" class="button browserid">Sign In</a>
+  </footer>
+  <script async defer src="https://browserid.org/include.js"></script>
+{% endblock %}

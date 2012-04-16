@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     {{ css('mkt/in-app-payments') }}
   </head>
-  <body data-user="{{ user_data(amo_user)|json }}">
+  <body data-user="{{ user_data(amo_user)|json }}"
+        data-login-url="{{ url('users.browserid_login') }}"
+        class="{% block bodyclass %}{% endblock %}">
+    <a href="#" class="close exit"></a>
     <section>
       {% block screen_content %}
       {% endblock %}
     </section>
-    {#{ js('mkt/in-app-payments') }#}
+    {{ js('mkt/in-app-payments') }}
   </body>
 </html>

@@ -1,3 +1,26 @@
+var z = {},
+    _ = {
+    extend: function(obj, ext) {
+        for (var p in ext) {
+            obj[p] = ext[p];
+        }
+    }
+};
+
+(function() {
+    var win_top = window.top;
+    if (win_top.opener) {
+        win_top = win_top.opener;
+    }
+    $('.close').click(function() {
+        if ($('body').hasClass('success')) {
+            win_top.postMessage('moz-pay-success', '*');
+        } else {
+            win_top.postMessage('mox-pay-cancel', '*');
+        }
+    });
+
+})();
 // (function(exports) {
 //     "use strict";
 

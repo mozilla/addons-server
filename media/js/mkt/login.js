@@ -1,6 +1,7 @@
 $(window).bind('login', function() {
     $('#login').addClass('show');
-}).on('click', '.button.browserid', _pd(function() {
+}).on('click', '.button.browserid', function(e) {
+    e.preventDefault();
     var $this = $(this);
     $this.addClass('loading-submit');
     $.when(z.login())
@@ -13,10 +14,10 @@ $(window).bind('login', function() {
          if (err.privs) {
              $('#login').addClass('show old');
          } else {
-             alert(err);
+             alert(err.msg);
          }
      });
-}));
+});
 // Hijack the login form to send us to the right place
 $("#login form").submit(function(e) {
     var $this = $(this),

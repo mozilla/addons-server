@@ -1,0 +1,17 @@
+{% extends "inapp_pay/base.html" %}
+
+{% block screen_content %}
+<header>
+  {{ _('Marketplace') }} &mdash; {{ _('Couldn&quot;t complete purchase') }}
+</header>
+<div>
+  <p class="no-wallet">
+    In-app purchases require payment pre-authorization. Would you like to
+    set up now?
+  </p>
+</div>
+<footer>
+    <a class="button" href="#">{{ _('Set up wallet') }}</a>
+    <a class="button close" href="#">{{ _('No thanks') }}</a>
+</footer>
+{% endblock %}

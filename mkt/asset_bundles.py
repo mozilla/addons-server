@@ -252,7 +252,10 @@ JS = {
         'js/impala/stats/stats.js',
     ),
     'mkt/in-app-payments': (
+        'js/lib/jquery-1.7.1.js',
         'js/mkt/inapp_payments.js',
+        'js/mkt/browserid.js',
+        'js/mkt/login.js',
     ),
     'mkt/in-app-payments-proto': (
         'js/mkt/inapp_payments_proto.js',

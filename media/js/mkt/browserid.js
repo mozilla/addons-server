@@ -1,4 +1,4 @@
-_.extend(z, (function(window) {
+_.extend(z, (function() {
     var loginUrl = $('body').data('login-url'),
         exports = {},
         $def;
@@ -27,7 +27,7 @@ _.extend(z, (function(window) {
                         err.privs = true;
                     } else {
                         err.msg = jqXHR.responseText;
-                        if (!msg) {
+                        if (!err.msg) {
                             err.msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") +
                                           " " + textStatus + " " + errorThrown;
                         }

@@ -1,12 +1,37 @@
 @import 'lib';
 
+.close.exit {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 27px;
+    height: 27px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: @white;
+    font-weight: bold;
+    background: #404f5a;
+    text-align: center;
+    z-index: 1000;
+    .grain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    .box-shadow(0 1px 2px fadeOut(#000, 20%));
+    &:after {
+        position: absolute;
+        content: url(../../img/mkt/close.png);
+        top: 6px;
+        left: 6px;
+    }
+}
+
 section {
     .border-radius(2px);
     .box-shadow(0 2px 2px fadeOut(#000, 20%));
     background-color: @bg;
     .grain;
     .border-box;
-    margin: 10px;
+    margin: 13px;
     height: 200px;
     position: relative;
     header {
@@ -28,7 +53,9 @@ section {
     .actions {
         float: right;
         width: 120px;
+        position: relative;
         .button {
+            width: 100%;
             display: block;
         }
     }
@@ -38,7 +65,11 @@ section {
         position: absolute;
         bottom: 0;
         width: 100%;
-        padding: 10px;
+        padding: 1em;
         text-align: center;
+        .button {
+            float: right;
+            margin-left: 10px;
+        }
     }
 }

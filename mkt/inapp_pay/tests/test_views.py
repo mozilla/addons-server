@@ -10,7 +10,7 @@ from django.conf import settings
 import fudge
 from fudge.inspector import arg
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, raises
 from pyquery import PyQuery as pq
 import waffle.models
 
@@ -23,6 +23,7 @@ from stats.models import Contribution
 from users.models import UserProfile
 
 from mkt.inapp_pay.models import InappPayment, InappConfig, InappPayLog
+from mkt.inapp_pay.verify import InappPaymentError
 
 
 class PaymentTest(amo.tests.TestCase):
@@ -149,10 +150,6 @@ class TestPay(PaymentViewTest):
 
     def setUp(self):
         super(TestPay, self).setUp()
-        self.complete_url = reverse('inapp_pay.pay_done',
-                                    args=[self.inapp_config.pk, 'complete'])
-        self.cancel_url = reverse('inapp_pay.pay_done',
-                                  args=[self.inapp_config.pk, 'cancel'])
         self.upatch = mock.patch('mkt.inapp_pay.tasks.urlopen')
         self.upatch.start()
 
@@ -202,7 +199,8 @@ class TestPay(PaymentViewTest):
         self.assertContains(res, 'PaypalError')
 
     @fudge.patch('paypal.get_paykey')
-    def test_ok_no_preauth(self, get_paykey):
+    @raises(InappPaymentError)
+    def test_no_preauth(self, get_paykey):
         payload = self.payload()
         (get_paykey.expects_call()
                    .with_matching_args(addon_id=self.app.pk,
@@ -239,10 +237,9 @@ class TestPay(PaymentViewTest):
         eq_(logs[0].action, InappPayLog._actions['PAY'])
         eq_(logs[1].action, InappPayLog._actions['PAY_COMPLETE'])
 
-        self.assert_payment_done(payload, amo.CONTRIB_INAPP)
-
     @fudge.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')
+    @raises(InappPaymentError)
     def test_unverified_preauth(self, check_purchase, get_paykey):
         get_paykey.expects_call().returns(['some-pay-key', 'COMPLETED'])
         check_purchase.expects_call().returns('')  # unverified preauth
@@ -251,39 +248,3 @@ class TestPay(PaymentViewTest):
         assert 'some-pay-key' in res['Location'], (
                                 'Unexpected redirect: %s' % res['Location'])
         eq_(Contribution.objects.get().type, amo.CONTRIB_INAPP_PENDING)
-
-    @fudge.patch('mkt.inapp_pay.tasks.notify_app')
-    def test_pay_complete(self, notify_app):
-        cnt = self.make_contrib()
-        payment = self.make_payment(contrib=cnt)
-        notify_app.expects('delay').with_args(amo.INAPP_NOTICE_PAY,
-                                              payment.pk)
-        res = self.client.get(self.complete_url, {'uuid': cnt.uuid})
-        self.assertContains(res, 'Payment received')
-        cnt = Contribution.objects.get(pk=cnt.pk)
-        eq_(cnt.type, amo.CONTRIB_INAPP)
-        eq_(InappPayLog.objects.get().action,
-            InappPayLog._actions['PAY_COMPLETE'])
-
-    @fudge.patch('mkt.inapp_pay.tasks.notify_app')
-    def test_pay_cancel(self, notify_app):
-        cnt = self.make_contrib()
-        self.make_payment(contrib=cnt)
-        res = self.client.get(self.cancel_url, {'uuid': cnt.uuid})
-        self.assertContains(res, 'Payment canceled')
-        cnt = Contribution.objects.get(pk=cnt.pk)
-        eq_(cnt.type, amo.CONTRIB_INAPP_PENDING)
-        eq_(InappPayLog.objects.get().action,
-            InappPayLog._actions['PAY_CANCEL'])
-
-    def test_invalid_contrib_uuid(self):
-        res = self.client.get(self.complete_url, {'uuid': 'invalid-uuid'})
-        self.assertContains(res, 'Payment Error')
-
-    def test_non_ascii_invalid_uuid(self):
-        res = self.client.get(self.complete_url, {'uuid': u'Азәрбајҹан'})
-        self.assertContains(res, 'Payment Error')
-
-    def test_missing_uuid(self):
-        res = self.client.get(self.complete_url)
-        self.assertContains(res, 'Payment Error')

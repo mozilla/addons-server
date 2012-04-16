@@ -1,0 +1,21 @@
+{% extends "inapp_pay/base.html" %}
+
+{% block bodyclass %}success {% endblock %}
+
+{% block screen_content %}
+<header>
+  {{ _('Marketplace') }} &mdash; {{ product.name }}
+</header>
+<div>
+  <div class="product-details">
+    <h2>{{ item }}</h2>
+    <p>{{ description }}</p>
+  </div>
+    <div class="actions">
+      <button href="#" class="button disabled">{{ _('purchased') }}</button>
+    </div>
+</div>
+<footer>
+  <button class="button close">{{ loc('Close window') }}</button>
+</footer>
+{% endblock %}
