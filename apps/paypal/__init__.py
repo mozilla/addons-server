@@ -63,8 +63,8 @@ errors = {'520003': AuthError}
 # See http://bit.ly/vWV525 for information on these values.
 # Note that if you have and invalid preapproval key you get 580022, but this
 # also occurs in other cases so don't assume its preapproval only.
-for number in ['579024', '579025', '579026', '579027', '579028',
-               '579030', '579031']:
+for number in ['569017', '569018', '569019', '569016', '579014', '579024',
+               '579025', '579026', '579027', '579028', '579030', '579031']:
     errors[number] = PreApprovalError
 for number in ['580027', '580022']:
     errors[number] = CurrencyError
