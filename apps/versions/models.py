@@ -215,7 +215,8 @@ class Version(amo.models.ModelBase):
             * Has not opted in to strict compatibility.
             * Does not use binary_components in chrome.manifest.
 
-        Note: The lowest maxVersion compat check needs to be checked separately.
+        Note: The lowest maxVersion compat check needs to be checked
+              separately.
         Note: This does not take into account the client conditions.
 
         """
@@ -509,6 +510,6 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         if (waffle.switch_is_active('d2c-buttons') and
             self.version.is_compatible[0] and
             self.version.is_compatible_app(amo.APP_IDS[self.application.id])):
-            return _('{app} {min} and later').format(app=self.application,
-                                                     min=self.min)
+            return _(u'{app} {min} and later').format(app=self.application,
+                                                      min=self.min)
         return u'%s %s - %s' % (self.application, self.min, self.max)

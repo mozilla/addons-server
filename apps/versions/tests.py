@@ -23,7 +23,8 @@ from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import views
 from versions.models import Version, ApplicationsVersions
-from versions.compare import version_int, dict_from_int, version_dict, MAXVERSION
+from versions.compare import (MAXVERSION, version_int, dict_from_int,
+                              version_dict)
 
 
 def test_version_int():
@@ -283,7 +284,8 @@ class TestVersion(amo.tests.TestCase):
         # Test update info in another language.
         with self.activate(locale='fr'):
             r = self.client.get(reverse('addons.versions.update_info',
-                                        args=(addon.slug, self.version.version)))
+                                        args=(addon.slug,
+                                              self.version.version)))
             eq_(r.status_code, 200)
             doc = PyQuery(r.content)
             eq_(doc('p').html(), u"Quelque chose en français.<br/><br/>" \
@@ -895,3 +897,9 @@ class TestApplicationsVersions(amo.tests.TestCase):
                                               max_app_version='3.5'))
         version = addon.current_version
         eq_(version.apps.all()[0].__unicode__(), 'Firefox 3.0 - 3.5')
+
+    def test_repr_when_unicode(self):
+        addon = addon_factory(version_kw=dict(min_app_version=u'ك',
+                                              max_app_version=u'ك'))
+        version = addon.current_version
+        eq_(unicode(version.apps.all()[0]), u'Firefox ك - ك')
