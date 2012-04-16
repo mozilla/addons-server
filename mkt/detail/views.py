@@ -6,8 +6,10 @@ from access import acl
 from addons.models import Addon
 from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
+from amo.utils import memoize_get
 from lib.metrics import send_request
-from mkt.webapps.models import Installed
+from lib.crypto.receipt import cef
+from mkt.webapps.models import create_receipt, Installed
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_enabled_view = addon_view_factory(qs=Addon.objects.enabled)
@@ -41,5 +43,13 @@ def record(request, addon):
         send_request('install', request, {
                         'app-domain': addon.domain_from_url(addon.origin),
                         'app-id': addon.pk})
-        return {'addon': addon.pk,
-                'receipt': installed.receipt if installed else ''}
+
+        # Look up to see if its in the receipt cache and log if we have
+        # to recreate it.
+        receipt = memoize_get('create-receipt', installed.pk)
+        cef(request, addon, 'request', 'Receipt requested')
+        if not receipt:
+            cef(request, addon, 'sign', 'Receipt signing')
+            receipt = create_receipt(installed.pk)
+
+        return {'addon': addon.pk, 'receipt': receipt}

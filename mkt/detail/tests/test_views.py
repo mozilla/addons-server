@@ -319,6 +319,20 @@ class TestInstall(amo.tests.TestCase):
         eq_(send_request.call_args[0][2], {'app-domain': u'cbc.ca',
                                            'app-id': self.addon.pk})
 
+    @mock.patch('mkt.detail.views.cef')
+    def test_cef_logs(self, cef):
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(cef.call_args_list), 2)
+        eq_([x[0][2] for x in cef.call_args_list],
+            ['request', 'sign'])
+
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(cef.call_args_list), 3)
+        eq_([x[0][2] for x in cef.call_args_list],
+            ['request', 'sign', 'request'])
+
     def test_record_install(self):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)

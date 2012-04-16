@@ -1,14 +1,15 @@
+import json
 import urllib2
 
 from django.conf import settings
 from django_statsd.clients import statsd
 
+from amo.utils import log_cef
 import commonware.log
 
 log = commonware.log.getLogger('z.services')
 
 
-# TODO: insert some CEF logging into here.
 def sign(receipt):
     """
     Send the receipt to the signing service.
@@ -22,10 +23,8 @@ def sign(receipt):
 
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
-    #TODO: see how rtilder wants this encoded, jwt, json, text, wasn't clear
-    # to me from the Wiki.
     headers = {'Content-Type': 'application/json'}
-    request = urllib2.Request(destination, receipt, headers)
+    request = urllib2.Request(destination, json.dumps(receipt), headers)
 
     try:
         with statsd.timer('services.sign'):
@@ -48,3 +47,21 @@ def sign(receipt):
 
     return response.status_code
 
+
+def decode(receipt):
+    """
+    Decode and verify that the receipt is sound from a crypto point of view.
+    Will raise errors if the receipt is not valid, returns receipt contents
+    if it is valid.
+    """
+    raise NotImplementedError
+
+
+def cef(request, app, msg, longer):
+    """Log receipt transactions to the CEF library."""
+    log_cef('Receipt %s' % msg, 5, request,
+            # We'll have a user for marketplace interactions, but not for
+            # receipts.
+            username=getattr(request, 'amo_user', ''),
+            signature='RECEIPT%s' % msg.upper(), msg=longer, cs2=app,
+            cs2Label='ReceiptTransaction')

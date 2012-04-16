@@ -525,6 +525,20 @@ class HttpResponseSendFile(http.HttpResponse):
             return wrapper()
 
 
+def memoize_key(prefix, *args, **kwargs):
+    """Returns the memoize key."""
+    key = hashlib.md5()
+    for arg in itertools.chain(args, sorted(kwargs.items())):
+        key.update(str(arg))
+    return '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
+                                 prefix, key.hexdigest())
+
+
+def memoize_get(prefix, *args, **kwargs):
+    """Returns the content of the cache given the key."""
+    return cache.get(memoize_key(prefix, *args, **kwargs))
+
+
 def memoize(prefix, time=60):
     """
     A simple memoize that caches into memcache, using a simple
@@ -533,11 +547,7 @@ def memoize(prefix, time=60):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            key = hashlib.md5()
-            for arg in itertools.chain(args, sorted(kwargs.items())):
-                key.update(str(arg))
-            key = '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
-                                        prefix, key.hexdigest())
+            key = memoize_key(prefix, *args, **kwargs)
             data = cache.get(key)
             if data is not None:
                 return data

@@ -16,7 +16,7 @@ from mkt.developers.tests.test_views import BaseWebAppTest
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
-from mkt.webapps.models import Installed, Webapp, get_key
+from mkt.webapps.models import create_receipt, get_key, Installed, Webapp
 
 
 class TestWebapp(test_utils.TestCase):
@@ -214,11 +214,6 @@ class TestReceipt(amo.tests.TestCase):
         self.user = UserProfile.objects.get(pk=999)
         self.other_user = UserProfile.objects.exclude(pk=999)[0]
 
-    def test_no_receipt(self):
-        self.webapp.update(type=amo.ADDON_EXTENSION)
-        ap = Installed.objects.create(user=self.user, addon=self.webapp)
-        eq_(ap.receipt, '')
-
     def create_install(self, user, webapp):
         webapp.update(type=amo.ADDON_WEBAPP,
                       manifest_url='http://somesite.com/')
@@ -236,31 +231,24 @@ class TestReceipt(amo.tests.TestCase):
 
     def test_receipt(self):
         ins = self.create_install(self.user, self.webapp)
-        assert ins.receipt.startswith('eyJhbGciOiAiUlM1MTIiLCA'), ins.receipt
-
-    def test_get_receipt(self):
-        ins = self.create_install(self.user, self.webapp)
-        assert self.webapp.get_receipt(self.user), ins
-
-    def test_no_receipt_second_try(self):
-        assert not self.webapp.get_receipt(self.user)
+        assert create_receipt(ins.pk).startswith('eyJhbGciOiAiUlM1MTIiLCA')
 
     def test_receipt_different(self):
         ins = self.create_install(self.user, self.webapp)
         ins_other = self.create_install(self.other_user, self.webapp)
-        assert ins.receipt != ins_other.receipt
+        assert create_receipt(ins.pk) != create_receipt(ins_other.pk)
 
     def test_addon_premium(self):
         for type_ in amo.ADDON_PREMIUMS:
             self.webapp.update(premium_type=type_)
-            self.create_install(self.user, self.webapp)
-            assert self.webapp.get_receipt(self.user)
+            ins = self.create_install(self.user, self.webapp)
+            assert create_receipt(ins.pk)
 
     def test_addon_free(self):
         for type_ in amo.ADDON_FREES:
             self.webapp.update(premium_type=amo.ADDON_FREE)
-            self.create_install(self.user, self.webapp)
-            assert self.webapp.get_receipt(self.user)
+            ins = self.create_install(self.user, self.webapp)
+            assert create_receipt(ins.pk)
 
     def test_install_has_uuid(self):
         install = self.create_install(self.user, self.webapp)
@@ -285,7 +273,7 @@ class TestReceipt(amo.tests.TestCase):
     def test_receipt_data(self, encode):
         encode.return_value = 'tmp-to-keep-memoize-happy'
         ins = self.create_install(self.user, self.webapp)
-        assert ins.receipt
+        create_receipt(ins.pk)
         product = encode.call_args[0][0]['product']
         eq_(product['url'], self.webapp.manifest_url[:-1])
         eq_(product['storedata'], 'id=%s' % int(ins.addon.pk))
@@ -295,7 +283,7 @@ class TestReceipt(amo.tests.TestCase):
     def test_receipt_signer(self, sign):
         sign.return_value = 'something-cunning'
         ins = self.create_install(self.user, self.webapp)
-        eq_(ins.receipt, 'something-cunning')
+        eq_(create_receipt(ins.pk), 'something-cunning')
         #TODO: more goes here.
 
 

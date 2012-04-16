@@ -21,7 +21,7 @@ from amo.utils import memoize
 from addons import query
 from addons.models import Addon, update_name_table, update_search_index
 from files.models import FileUpload, Platform
-from lib.crypto.receipt import sign
+from lib.crypto.receipt import sign, cef
 from versions.models import Version
 
 import jwt
@@ -167,13 +167,6 @@ class Webapp(Addon):
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])
 
-    def get_receipt(self, user):
-        """Gets the receipt for the user for this webapp, or None."""
-        try:
-            return self.installed.get(user=user).receipt
-        except Installed.DoesNotExist:
-            return
-
     def manifest_updated(self, manifest):
         """The manifest has updated, create a version and file."""
         with open(manifest) as fh:
@@ -227,12 +220,6 @@ class Installed(amo.models.ModelBase):
         db_table = 'users_install'
         unique_together = ('addon', 'user')
 
-    @property
-    def receipt(self):
-        if self.addon.is_webapp():
-            return create_receipt(self.pk)
-        return ''
-
 
 @receiver(models.signals.post_save, sender=Installed)
 def add_uuid(sender, **kw):
@@ -262,6 +249,7 @@ def create_receipt(installed_pk):
                    verify=absolutify(verify))
     if settings.SIGNING_SERVER_ACTIVE:
         # The shiny new code.
+        cef(installed.user, installed.addon, 'sign', 'A signing request')
         return sign(receipt)
     else:
         # Our old bad code.

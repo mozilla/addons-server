@@ -12,6 +12,7 @@ log_configure()
 
 import jwt
 import M2Crypto
+from lib.crypto.receipt import cef, decode
 # This has to be imported after the settings (utils).
 from statsd import statsd
 
@@ -143,8 +144,11 @@ def decode_receipt(receipt):
     to using the cert at some point, especially when we get the HSM.
     """
     with statsd.timer('services.decode'):
-        key = jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
-        raw = jwt.decode(receipt, key)
+        if settings.SIGNING_SERVER_ACTIVE:
+            raw = decode(receipt)
+        else:
+            key = jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
+            raw = jwt.decode(receipt, key)
     return raw
 
 # For consistency with the rest of amo, we'll include addon id in the
@@ -170,9 +174,11 @@ def application(environ, start_response):
             verify = Verify(addon_id, data)
             output = verify()
             start_response(status, verify.get_headers(len(output)))
+            cef(environ, addon_id, 'verify', 'Receipt verification')
         except:
             output = ''
             log_exception({'receipt': '%s...' % data[:10], 'addon': addon_id})
+            cef(environ, addon_id, 'verify', 'Receipt verification error')
             start_response('500 Internal Server Error', [])
 
     return [output]

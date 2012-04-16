@@ -10,7 +10,7 @@ import amo.tests
 from addons.models import Addon
 from services import verify
 from services import utils
-from mkt.webapps.models import Installed
+from mkt.webapps.models import create_receipt, Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution
@@ -155,13 +155,21 @@ class TestVerify(amo.tests.TestCase):
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = self.make_install().receipt
+        receipt = create_receipt(self.make_install().pk)
         result = verify.decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
 
+    @mock.patch('services.verify.settings')
+    def test_crack_receipt_new(self, settings):
+        # Check that we can decode our receipt and get a dictionary back.
+        self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
+        receipt = create_receipt(self.make_install().pk)
+        # This is just temporary until decoding this happens.
+        self.assertRaises(NotImplementedError, verify.decode_receipt, receipt)
+
     def test_crack_borked_receipt(self):
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = self.make_install().receipt
+        receipt = create_receipt(self.make_install().pk)
         self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,
                           receipt + 'x')
 
