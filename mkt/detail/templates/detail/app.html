@@ -127,11 +127,11 @@
           </a>
         </p>
       </li>
-      {% if product.support_url %}
+      {% if product.homepage %}
         <li>
           <h3>{{ _('App Homepage') }}</h3>
           <p>
-            <a href="{{ product.support_url|external_url }}">
+            <a href="{{ product.homepage|external_url }}">
               {{ _('App Homepage') }}
             </a>
           </p>
