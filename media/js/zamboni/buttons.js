@@ -299,44 +299,63 @@ var installButton = function() {
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
-            // If it's a bad platform, don't bother also showing the
-            // incompatible reasons.
-            if (!badPlatform) {
-                // L10n: {0} is an app name, {1} is the app version.
-                var warn_txt = gettext('Not available for {0} {1}');
-                if ($d2c_reasons.children().length) {
-                    warn_txt += '<span><a class="d2c-reasons-help" href="#">?</a></span>';
+            if (waffle_d2c_buttons) {
+                // If it's a bad platform, don't bother also showing the
+                // incompatible reasons.
+                if (!badPlatform) {
+                    // L10n: {0} is an app name, {1} is the app version.
+                    var warn_txt = gettext('Not available for {0} {1}');
+                    if ($d2c_reasons.children().length) {
+                        warn_txt += '<span><a class="d2c-reasons-help" href="#">?</a></span>';
+                    }
+                    warn(format(warn_txt, [z.appName, z.browserVersion]));
                 }
-                warn(format(warn_txt, [z.appName, z.browserVersion]));
-            }
-            $button.closest('div').attr('data-version-supported', false);
-            $button.addClass('concealed');
-            if (!opts.addPopup) return;
+                $button.closest('div').attr('data-version-supported', false);
+                $button.addClass('concealed');
+                if (!opts.addPopup) return;
 
-            if (badPlatform) {
-                $button.addPopup(pmsg);
-            } else if (!compatible) {
-                // Show compatibility message.
-                var $ishell = $button.closest('.install-shell');
-                params['versions_url'] = versions_url;
-                params['reasons'] = $d2c_reasons.html();
+                if (badPlatform) {
+                    $button.addPopup(pmsg);
+                } else if (!compatible) {
+                    // Show compatibility message.
+                    var $ishell = $button.closest('.install-shell');
+                    params['versions_url'] = versions_url;
+                    params['reasons'] = $d2c_reasons.html();
 
-                $button.addPopup(nocompat);
+                    $button.addPopup(nocompat);
 
-                if ($d2c_reasons.children().length) {
-                    $ishell.find('.d2c-reasons-popup').popup(
-                        $ishell.find('.d2c-reasons-help'), {
-                            callback: function(obj) {
-                                return {pointTo: $(obj.click_target)};
+                    if ($d2c_reasons.children().length) {
+                        $ishell.find('.d2c-reasons-popup').popup(
+                            $ishell.find('.d2c-reasons-help'), {
+                                callback: function(obj) {
+                                    return {pointTo: $(obj.click_target)};
+                                }
                             }
-                        }
-                    );
+                        );
+                    }
+                } else {
+                    // Bad version.
+                    $button.addPopup(vmsg);
                 }
+                return true;
             } else {
-                // Bad version.
-                $button.addPopup(vmsg);
+                // L10n: {0} is an app name, {1} is the app version.
+                warn(format(gettext('Not available for {0} {1}'),
+                            [z.appName, z.browserVersion]));
+                $button.closest('div').attr('data-version-supported', false);
+                $button.addClass('concealed');
+                if (!opts.addPopup) return;
+
+                if (badPlatform && olderBrowser) {
+                    $button.addPopup(merge);
+                } else if (badPlatform && newerBrowser) {
+                    $button.addPopup(_.bind(merge, {switchInstaller: true}));
+                } else {
+                    // Bad version.
+                    $button.addPopup(vmsg);
+                }
+                return true;
             }
-            return true;
         } else if (badPlatform && opts.addPopup) {
             // Only bad platform is possible.
             $button.addPopup(pmsg);
