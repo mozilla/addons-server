@@ -10,12 +10,11 @@ import amo
 from amo.tests import app_factory, check_links
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from devhub.models import ActivityLog
+from devhub.models import AppLog
 from editors.models import CannedResponse
 from editors.tests.test_views import EditorTest
 from users.models import UserProfile
 
-from mkt.developers.models import AppLog
 from mkt.webapps.models import Webapp
 
 

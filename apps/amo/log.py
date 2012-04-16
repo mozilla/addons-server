@@ -444,9 +444,8 @@ def log(action, *args, **kw):
     """
     from addons.models import Addon
     from amo import get_user, logger_log
-    from devhub.models import (ActivityLog, AddonLog, UserLog,
+    from devhub.models import (ActivityLog, AddonLog, AppLog, UserLog,
                                CommentLog, VersionLog)
-    from mkt.developers.models import AppLog
     from mkt.webapps.models import Webapp
     from users.models import UserProfile
     from versions.models import Version

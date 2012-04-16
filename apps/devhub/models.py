@@ -14,6 +14,7 @@ import amo
 import amo.models
 from addons.models import Addon
 from bandwagon.models import Collection
+from mkt.webapps.models import Webapp
 from reviews.models import Review
 from tags.models import Tag
 from translations.fields import TranslatedField
@@ -90,6 +91,18 @@ class AddonLog(amo.models.ModelBase):
 
     class Meta:
         db_table = 'log_activity_addon'
+        ordering = ('-created',)
+
+
+class AppLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by app.
+    """
+    addon = models.ForeignKey(Webapp)
+    activity_log = models.ForeignKey('ActivityLog')
+
+    class Meta:
+        db_table = 'log_activity_app'
         ordering = ('-created',)
 
 
