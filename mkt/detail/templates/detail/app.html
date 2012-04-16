@@ -93,6 +93,10 @@
 
   <section class="description">
     <p>{{ product.description }}</p>
+    {% if product.developer_comments %}
+      <h3>{{ _('Developer Comments') }}</h3>
+      <div class="developer-comments">{{ product.developer_comments }}</div>
+    {% endif %}
   </section>
 
   {% if product.all_previews|length %}
@@ -112,14 +116,24 @@
 
   <section class="support c">
     <ul>
-      {% if product.support_email %}
-        <li>
+      {% if product.support_email or product.support_url %}
+        <li class="contact-support">
           <h3>{{ _('Contact Support') }}</h3>
-          <p>{{ emaillink(product.support_email.localized_string,
-                     _('Support Email')) }}</p>
+          {% if product.support_email %}
+            <p class="support-email">
+              {{ emaillink(product.support_email.localized_string,
+                           _('Support Email')) }}
+            </p>
+          {% endif %}
+          {% if product.support_url %}
+            <p class="support-url">
+              <a href="{{ product.support_url|external_url }}">
+                {{ _('Support Site') }}</a>
+            </p>
+          {% endif %}
         </li>
       {% endif %}
-      <li>
+      <li class="privacy">
         <h3>{{ _('Privacy Policy') }}</h3>
         <p>
           <a href="{{ product.get_detail_url('privacy') }}">
@@ -128,16 +142,15 @@
         </p>
       </li>
       {% if product.homepage %}
-        <li>
+        <li class="homepage">
           <h3>{{ _('App Homepage') }}</h3>
           <p>
             <a href="{{ product.homepage|external_url }}">
-              {{ _('App Homepage') }}
-            </a>
+              {{ product.homepage }}</a>
           </p>
         </li>
       {% endif %}
-      <li>
+      <li class="published">
         <h3>{{ _('Published') }}</h3>
         <p>
           <time isotime="{{ product.created|isotime }}"

@@ -10,6 +10,7 @@ from pyquery import PyQuery as pq
 from tower import strip_whitespace
 
 import amo
+from amo.helpers import external_url
 import amo.tests
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from users.models import UserProfile
@@ -82,6 +83,60 @@ class TestDetail(DetailBase):
         eq_(upsell.find('.install').attr('data-manifesturl'),
             premie.manifest_url)
         eq_(upsell.find('.prose').text(), 'XXX')
+
+    def test_no_description(self):
+        eq_(self.get_pq()('.description p').text(), '')
+
+    def test_has_description(self):
+        self.webapp.description = 'xxx'
+        self.webapp.save()
+        eq_(self.get_pq()('.description p').text(), self.webapp.description)
+
+    def test_no_developer_comments(self):
+        eq_(self.get_pq()('.developer-comments').length, 0)
+
+    def test_has_developer_comments(self):
+        self.webapp.developer_comments = 'hot ish is coming brah'
+        self.webapp.save()
+        eq_(self.get_pq()('.developer-comments').text(),
+            self.webapp.developer_comments)
+
+    def test_no_support(self):
+        eq_(self.get_pq()('.developer-comments').length, 0)
+
+    def test_has_support_email(self):
+        self.webapp.support_email = 'gkoberger@mozilla.com'
+        self.webapp.save()
+        email = self.get_pq()('.support .support-email')
+        eq_(email.length, 1)
+        eq_(email.remove('a').remove('span.i').text().replace(' ', ''),
+            'moc.allizom@regrebokg', 'Email should be reversed')
+
+    def test_has_support_url(self):
+        self.webapp.support_url = 'http://omg.org/yes'
+        self.webapp.save()
+        url = self.get_pq()('.support .support-url')
+        eq_(url.length, 1)
+        eq_(url.find('a').attr('href'), external_url(self.webapp.support_url))
+
+    def test_has_support_both(self):
+        self.webapp.support_email = 'gkoberger@mozilla.com'
+        self.webapp.support_url = 'http://omg.org/yes'
+        self.webapp.save()
+        li = self.get_pq()('.support .contact-support')
+        eq_(li.find('.support-email').length, 1)
+        eq_(li.find('.support-url').length, 1)
+
+    def test_no_homepage(self):
+        eq_(self.get_pq()('.support .homepage').length, 0)
+
+    def test_has_homepage(self):
+        self.webapp.homepage = 'http://omg.org/yes'
+        self.webapp.save()
+        url = self.get_pq()('.support .homepage')
+        eq_(url.length, 1)
+        eq_(url.find('a').text(), self.webapp.homepage)
+        eq_(url.find('a').attr('href'), external_url(self.webapp.homepage))
 
 
 class TestDetailPagePermissions(DetailBase):
