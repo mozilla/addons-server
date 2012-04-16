@@ -586,6 +586,10 @@ class TestPurchases(PurchaseBase):
         eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
             self.get_support_url())
 
+    def test_support_text_inapp(self):
+        self.con.update(type=amo.CONTRIB_INAPP)
+        assert self.get_pq()('span.purchase').eq(0).text().startswith('In-app')
+
     def test_free_shows_up(self):
         Contribution.objects.all().delete()
         res = self.client.get(self.url)

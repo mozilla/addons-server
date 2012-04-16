@@ -10,10 +10,17 @@
       <li>
           {% if contribution.type in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP] %}
             <span class="purchase{{ ' supportable' if get_support }}">
-              {% trans date=contribution.created|datetime,
-                       amt=contribution.get_amount_locale() %}
-                Purchased {{ date }} for {{ amt }}
-              {% endtrans %}
+              {% if contribution.type == amo.CONTRIB_INAPP %}
+                {% trans date=contribution.created|datetime,
+                         amt=contribution.get_amount_locale() %}
+                  In-app purchase {{ date }} for {{ amt }}
+                {% endtrans %}
+              {% else %}
+                {% trans date=contribution.created|datetime,
+                         amt=contribution.get_amount_locale() %}
+                  Purchased {{ date }} for {{ amt }}
+                {% endtrans %}
+              {% endif %}
             </span>
             {% if get_support %}
               <a class="request-support"
