@@ -156,6 +156,18 @@ class ActivityLogManager(amo.models.ManagerBase):
         else:
             return self.none()
 
+    def for_apps(self, apps):
+        if isinstance(apps, Webapp):
+            apps = (apps,)
+
+        vals = (AppLog.objects.filter(addon__in=apps)
+                .values_list('activity_log', flat=True))
+
+        if vals:
+            return self.filter(pk__in=list(vals))
+        else:
+            return self.none()
+
     def for_version(self, version):
         vals = (VersionLog.objects.filter(version=version)
                 .values_list('activity_log', flat=True))

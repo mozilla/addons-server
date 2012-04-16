@@ -88,17 +88,17 @@ class TestUpdateManifest(amo.tests.TestCase):
     def test_not_log(self):
         self._hash = ohash
         self._run()
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 0)
 
     def test_log(self):
         self._run()
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 1)
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
 
     @mock.patch('mkt.webapps.tasks._get_content_hash')
     def test_error(self, _get_content_hash):
         _get_content_hash.side_effect = Exception()
         update_manifests(ids=(self.addon.pk,))
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 0)
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 0)
 
     @mock.patch('mkt.webapps.tasks.update_manifests')
     def test_ignore_not_webapp(self, update_manifests):

@@ -33,7 +33,7 @@ from addons import forms as addon_forms
 from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
-from devhub.models import AddonLog
+from devhub.models import AppLog
 from lib.video import library as video_library
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -198,7 +198,7 @@ def status(request, addon_id, addon, webapp=False):
 
     if addon.status == amo.STATUS_REJECTED:
         try:
-            entry = (AddonLog.objects
+            entry = (AppLog.objects
                      .filter(addon=addon,
                              activity_log__action=amo.LOG.REJECT_VERSION.id)
                      .order_by('-created'))[0]
