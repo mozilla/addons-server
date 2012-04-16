@@ -84,8 +84,7 @@ loggers = {
         'propagate': True,
     },
     'z.celery': {
-        'handlers': ['mail_admins', 'errortype_syslog',
-                     'statsd', 'arecibo'],
+        'handlers': ['mail_admins', 'errortype_syslog', 'statsd'],
         'level': 'ERROR',
         'propagate': True,
     },

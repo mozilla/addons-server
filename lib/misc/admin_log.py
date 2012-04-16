@@ -57,7 +57,7 @@ class ErrorTypeHandler(logging.Handler):
         # other handlers to decide to use this information.
 
         # If this has no exc_info or request, fail fast.
-        if not record.exc_info or not record.request:
+        if not record.exc_info:
             return False
 
         tb = '\n'.join(traceback.format_exception(*record.exc_info))
@@ -88,7 +88,8 @@ class AreciboHandler(ErrorTypeHandler):
 
     def emit(self, record):
         arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
-        if not self.should_email(record) or not arecibo:
+        if (not self.should_email(record) or not arecibo
+            or not getattr(record, 'request', None)):
             return
 
         post(record.request, 500)
@@ -97,15 +98,16 @@ class AreciboHandler(ErrorTypeHandler):
 
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
     """
-    Send error to syslog, only if we aren't mailing it. This should only
-    be used for errors that have a request attached.
+    Send error to syslog, only if we aren't mailing it. If there is no
+    request, cope.
     """
 
     def emit(self, record):
         if not getattr(record, 'request', None):
-            return
+            record.request_path = ''
+        else:
+            record.request_path = record.request.path
 
-        record.request_path = record.request.path
         UnicodeHandler.emit(self, record)
         self.emitted(self.__class__.__name__.lower())
 

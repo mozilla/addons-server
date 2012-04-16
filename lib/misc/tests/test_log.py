@@ -111,4 +111,21 @@ class TestErrorLog(amo.tests.TestCase):
     def test_no_exc_info_request(self, emitted):
         self.log.error('blargh!')
         eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set([]))
+            set(['errorsysloghandler']))
+
+    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
+    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
+    def test_no_request(self, emitted):
+        self.log.error('blargh!',
+                       exc_info=self.io_error())
+        eq_(set([n[0][0] for n in emitted.call_args_list]),
+            set(['errorsysloghandler', 'statsdhandler']))
+
+    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
+    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
+    def test_no_request(self, emitted):
+        self.log.error('blargh!',
+                       exc_info=self.division_error())
+        eq_(set([n[0][0] for n in emitted.call_args_list]),
+            set(['errorsysloghandler', 'statsdhandler',
+                 'adminemailhandler']))
