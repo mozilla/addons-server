@@ -1,0 +1,59 @@
+{% extends 'mkt/base.html' %}
+
+{% set title = _('Report Abuse') %}
+{% block title %}
+  {# L10n: {0} is the name of the app. #}
+  {{ mkt_page_title(_('Report abuse for {0}')|f(product.name)) }}
+{% endblock %}
+
+{% block content %}
+  {{ mkt_breadcrumbs(product, [(None, title)]) }}
+  <section id="abuse" class="friendly">
+    <div>
+      <h2>{{ title }}</h2>
+      <p>
+        <label id="label" for="{{ abuse_form.text.auto_id }}">
+          {% trans policies_url='https://developer.mozilla.org/en/Apps/'
+                                'Marketplace_Review' %}
+            If you suspect this app violates
+            <a href="{{ policies_url }}">our policies</a> or has security or
+            privacy issues, please use the form below to describe your
+            concerns. Please do not use this form for any other reason.
+          {% endtrans %}
+        </label>
+      </p>
+      <form method="post">
+        {{ csrf() }}
+        {{ grid_field(abuse_form.text, req=False, label='') }}
+        {% if abuse_form.has_recaptcha %}
+        {% from 'includes/forms.html' import required %}
+          <div id="recap-container">
+            <label for="recaptcha_response_field">
+              {{ _('Are you human?') }} {{ required() }}
+              <a href="#" id="recaptcha_help">{{ _("What's this?") }}</a>
+            </label>
+            <div class="recaptcha-container">
+              {% trans %}
+                <p>
+                  Please enter <strong>both words</strong> below,
+                  <strong>separated by a space</strong>.
+                </p>
+                <p>
+                  If this is hard to read, you can
+                  <a href="#" id="recaptcha_different">try different words</a> or
+                  <a href="#" id="recaptcha_audio">listen to something</a> instead.
+                </p>
+              {% endtrans %}
+              <div id="recaptcha_div"></div>
+            </div>
+          </div>
+          {{ abuse_form.recaptcha.errors }}
+        {% endif %}
+        <p class="form-footer">
+          <button type="submit">{{ _('Send Report') }}</button> {{ _('or') }}
+          <a href="{{ product.get_detail_url() }}">{{ _('Cancel') }}</a>
+        </p>
+      </form>
+    </div>
+  </section>
+{% endblock %}

@@ -1193,6 +1193,7 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
                  RECAPTCHA_PUBLIC_KEY)
+RECAPTCHA_AJAX_URL = 'http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True

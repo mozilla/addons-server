@@ -3,7 +3,7 @@
 
 {% macro simple_label(field, label, opt, req, tooltip, hint) %}
   <label class="{{ 'choice' if choice }}" for="{{ field.auto_id }}">
-    {{ label or field.label }}
+    {{ label }}
   </label>
 
   {% if field.field.required and req != False %}{{ required() -}}{% endif %}
@@ -24,7 +24,12 @@
     {% if choice %}{{ field.as_widget() }}{% endif %}
   {% endif %}
 
-  {{ simple_label(field, label, opt, req, tooltip, hint) }}
+  {% if not label %}
+    {% set label = field.label %}
+  {% endif %}
+  {% if label %}
+    {{ simple_label(field, label, opt, req, tooltip, hint) }}
+  {% endif %}
 
   {% if grid %}
     </div>

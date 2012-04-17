@@ -1,0 +1,55 @@
+@import 'lib';
+
+.recaptcha-container {
+    position: relative;
+}
+
+#abuse {
+    ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    #recap-container {
+        margin-top: 15px;
+    }
+    #label {
+        display: block;
+        font-weight: normal;
+        margin-bottom: 15px;
+    }
+}
+
+#recap-container {
+    .border-radius(5px);
+    background: @yellow;
+    border: 1px solid darken(@yellow, 60%);
+    padding: 1em;
+    margin-bottom: 1em;
+    position: relative;
+    label {
+        color: @gold;
+        font-weight: bold;
+    }
+    input {
+        width: 300px;
+    }
+}
+
+#recaptcha_help {
+    color: @gray;
+    float: right;
+    font-size: 11px;
+}
+
+#recaptcha_widget_div {
+    display: none !important;
+}
+
+
+@media (max-width: @4col) {
+    #recaptcha_image {
+        width: 100% !important;
+    }
+}

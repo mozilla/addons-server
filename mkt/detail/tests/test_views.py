@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 import json
 
 from django.conf import settings
+from django.core import mail
 from django.utils.html import strip_tags
 
 import mock
@@ -10,6 +12,7 @@ from pyquery import PyQuery as pq
 from tower import strip_whitespace
 import waffle
 
+from abuse.models import AbuseReport
 import amo
 from amo.helpers import external_url, numberfmt
 import amo.tests
@@ -626,22 +629,52 @@ class TestPrivacy(amo.tests.TestCase):
         eq_(get_clean(doc('ol li:first')), '<li>papparapara2</li>')
 
 
-class TestReportAbuse(amo.tests.TestCase):
+
+@mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+class TestReportAbuse(DetailBase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.webapp = Webapp.objects.get(id=337141)
+        super(TestReportAbuse, self).setUp()
         self.url = self.webapp.get_detail_url('abuse')
 
-    def test_get(self):
-        # TODO: Uncomment Report Abuse gets ported to mkt.
-        raise SkipTest
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+    def log_in(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
 
-    def test_submit(self):
-        # TODO: Uncomment Report Abuse gets ported to mkt.
-        raise SkipTest
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.post(self.url, {'text': 'this is some rauncy ish'})
-        self.assertRedirects(r, self.webapp.get_detail_url())
+    def test_recaptcha_shown_for_anonymous(self):
+        eq_(self.get_pq()('#recap-container').length, 1)
+
+    def test_no_recaptcha_for_authenticated(self):
+        self.log_in()
+        eq_(self.get_pq()('#recap-container').length, 0)
+
+    @mock.patch('captcha.fields.ReCaptchaField.clean', new=mock.Mock)
+    def test_abuse_anonymous(self):
+        self.client.post(self.url, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(addon=337141)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter, None)
+
+    def test_abuse_anonymous_fails(self):
+        r = self.client.post(self.url, {'text': 'spammy'})
+        assert 'recaptcha' in r.context['abuse_form'].errors
+
+    def test_abuse_authenticated(self):
+        self.log_in()
+        self.client.post(self.url, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+        report = AbuseReport.objects.get(addon=337141)
+        eq_(report.message, 'spammy')
+        eq_(report.reporter.email, 'regular@mozilla.com')
+
+    def test_abuse_name(self):
+        self.webapp.name = 'Bmrk.ru Социальные закладки'
+        self.webapp.save()
+        self.log_in()
+        self.client.post(self.url, {'text': 'spammy'})
+        assert 'spammy' in mail.outbox[0].body
+        assert AbuseReport.objects.get(addon=self.webapp)
