@@ -112,6 +112,20 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(3615, user_data)
         eq_(res['status'], 'expired')
 
+    def test_expired(self):
+        user_data = self.user_data.copy()
+        user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'expired')
+
+    def test_garbage_expired(self):
+        user_data = self.user_data.copy()
+        user_data['exp'] = 'a'
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'expired')
+
     def test_premium_addon_not_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.make_install()
