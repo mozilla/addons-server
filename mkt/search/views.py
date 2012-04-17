@@ -6,8 +6,9 @@ from tower import ugettext as _
 import amo
 from amo.urlresolvers import reverse
 import amo.utils
+from amo.decorators import json_view
 from apps.addons.models import Category
-from apps.search.views import name_query
+from apps.search.views import name_query, WebappSuggestionsAjax
 from mkt.webapps.models import Webapp
 from . import forms
 
@@ -174,3 +175,8 @@ def app_search(request):
 
     # Otherwise render results.
     return jingo.render(request, 'search/results.html', ctx)
+
+
+@json_view
+def ajax_search(request):
+    return WebappSuggestionsAjax(request).items

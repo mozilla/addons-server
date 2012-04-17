@@ -11,6 +11,7 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
 from mkt.account.urls import (purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.developers.views import login
+from mkt.zadmin.views import featured_apps_admin
 
 
 admin.autodiscover()
@@ -77,6 +78,10 @@ urlpatterns = patterns('',
 
     # Paypal, needed for IPNs only.
     ('^services/', include('paypal.urls')),
+
+    # Featured apps selector.
+    url('^admin/apps/featured$', featured_apps_admin,
+        name='admin.featured_apps'),
 
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),

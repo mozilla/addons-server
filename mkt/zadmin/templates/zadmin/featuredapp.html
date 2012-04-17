@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+
+
+{% block js %}
+{{ super() }}
+<script src="{{ media('js/mkt/admin_featuredapp.js') }}"></script>
+{% endblock %}
+
+{% set title = 'Feature Manager' %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% macro appsform(id, addons) %}
+  <table>
+    <thead>
+      <th>App</th>
+      <th class="js-hidden">Delete</th>
+    </thead>
+    <tbody id="{{ id }}-webapps">
+      {% for info in addons %}
+      <tr><td><div class="current-webapp js-hidden" style="display: block;"><a class="collectionitem" target="_blank" href="{{ info[1].url }}"><img src="{{ info[1].icon_url }}">{{ info[1].name }}</a></div><input type="hidden" name="{{info[0]}}-{{id}}-webapp" value="{{ info[1].id }}"><a class="remove">×</a>
+      {% endfor %}
+    </tbody>
+    <tfoot class="hidden">
+      <tr><td><div class="current-webapp js-hidden" style="display: block;"></div><input placeholder="{{ _('Enter the name of the webapp to include') }}" class="placeholder addon-ac" data-src="{{ url('search.apps_ajax') }}" /><input type="hidden"><a class="remove">×</a></td></tr>
+    </tfoot>
+  </table>
+{% endmacro %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+<form method="post">
+  {{ csrf() }}
+<h3>Home</h3>
+  {{ appsform("home", home_addons) }}
+  <p><a href="#" id="home-add">Add an app to Home</a></p>
+  <p>
+    <button type="submit" name="home_submit">Save Changes</button> or <a href="">Cancel</a>
+  </p>
+<h3>Featured</h3>
+  {{ appsform("featured", featured_addons) }}
+  <p><a href="#" id="featured-add">Add an app to Featured</a></p>
+  <p>
+    <button type="submit" name="featured_submit">Save Changes</button> or <a href="">Cancel</a>
+  </p>
+</form>
+{% endblock %}
