@@ -166,8 +166,9 @@ class TestDetailPagePermissions(DetailBase):
             eq_(doc.find('.actions').length, 1,
                 'The rest of the page should be visible')
         else:
-            eq_(status.find('a').length, 0,
-                'There should be no Manage Status link')
+            url = self.webapp.get_dev_url('versions')
+            eq_(status.find('a[href="%s"]' % url).length,
+                0, 'There should be no Manage Status link')
             eq_(doc.find('.actions').length, 0,
                 'The rest of the page should be invisible')
 
