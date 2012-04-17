@@ -10,4 +10,5 @@ urlpatterns = (
     url(r'^queue/apps$', views.queue_apps, name='reviewers.queue_apps'),
     url(r'^apps/review/%s$' % APP_SLUG, views.app_review,
         name='reviewers.app_review'),
+    url(r'^logs$', views.logs, name='reviewers.logs'),
 )

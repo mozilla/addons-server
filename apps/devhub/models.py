@@ -187,8 +187,9 @@ class ActivityLogManager(amo.models.ManagerBase):
     def editor_events(self):
         return self.filter(action__in=amo.LOG_EDITORS)
 
-    def review_queue(self):
-        return self.filter(action__in=amo.LOG_REVIEW_QUEUE)
+    def review_queue(self, webapp=False):
+        qs = self._by_type(webapp)
+        return qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
 
     def total_reviews(self):
         """Return the top users, and their # of reviews."""
@@ -206,6 +207,13 @@ class ActivityLogManager(amo.models.ManagerBase):
                             action__in=amo.LOG_REVIEW_QUEUE)
                     .annotate(approval_count=models.Count('id'))
                     .order_by('-approval_count'))
+
+    def _by_type(self, webapp=False):
+        qs = super(ActivityLogManager, self).get_query_set()
+        table = 'log_activity_app' if webapp else 'log_activity_addon'
+        return qs.extra(
+            tables=[table],
+            where=['%s.activity_log_id=log_activity.id' % table])
 
 
 class SafeFormatter(string.Formatter):

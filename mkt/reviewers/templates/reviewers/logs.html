@@ -1,0 +1,80 @@
+{% extends "reviewers/base.html" %}
+
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(items=[(None, _('App Review Log'))]) }}
+{% endblock %}
+
+{% block content %}
+
+  <div id="log-filter" class="log-filter-outside">
+    <form action="{{ url('reviewers.logs') }}" method="get">
+      <div class="date_range">
+        {{ form.start.label_tag() }}
+        {{ form.start }}
+        {{ form.end.label_tag() }}
+        {{ form.end }}
+        {{ form.search.label_tag() }}
+        {{ form.search }}
+
+        {# L10n: "Filter" is a button label (verb) #}
+        <button type="submit">{{ _('Filter') }}</button>
+      </div>
+    </form>
+  </div><!-- #log-filter -->
+
+  <h1>{{ _('App Review Log') }}</h1>
+
+  <section class="island">
+    {% if pager.object_list %}
+      <table id="log-listing" class="data-grid items">
+        <thead>
+          <tr class="listing-header">
+            <th>{{ _('Date') }}</th>
+            <th>{{ _('Event') }}</th>
+            <th>{{ _('Reviewer') }}</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in pager.object_list %}
+            <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
+              <td>{{ item.created|babel_datetime }}</td>
+              <td>
+                {% if item.arguments.0 %}
+                  {{ item.arguments.0|link }}
+                  {% if item.arguments|count >= 2 %}
+                    {{ item.arguments[1] }}
+                    <a href="{{ url('reviewers.app_review', item.arguments[0].app_slug) }}">
+                      {{ ACTION_DICT.get(item.action).short }}
+                    </a>
+                  {% else %}
+                    {{ ACTION_DICT.get(item.action).short }}
+                  {% endif %}
+                {% else %}
+                    {{ _('App has been deleted.') }}
+                {% endif %}
+              </td>
+              <td>{{ item.user.display_name }}</td>
+              <td>
+                <a class="comments show" href="#">{{ _('Show Comments') }}</a>
+                <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
+              </td>
+            </tr>
+            <tr class="comments hide">
+              <td>&nbsp;</td>
+              <td colspan="4">{{ item.details['comments'] }}</td>
+            </tr>
+            <tr class="hide"><td>{{ item.action }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-results">{{ _('No reviews found for this period.') }}</p>
+    {% endif %}
+
+    {% if pager.has_other_pages() %}
+      {{ pager|impala_paginator }}
+    {% endif %}
+  </section>
+
+{% endblock %}

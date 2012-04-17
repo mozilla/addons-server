@@ -1,3 +1,5 @@
+import time
+
 from django.core import mail
 from django.conf import settings
 
@@ -206,3 +208,157 @@ class TestCannedResponses(EditorTest):
         eq_(len(choices), 1)
         assert self.cr_app.response in choices[0]
         assert self.cr_addon.response not in choices[0]
+
+
+class TestReviewLog(EditorTest):
+
+    def setUp(self):
+        self.login_as_editor()
+        super(TestReviewLog, self).setUp()
+        self.login_as_editor()
+        self.apps = [app_factory(name='XXX',
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                     app_factory(name='YYY',
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)]
+        self.url = reverse('reviewers.logs')
+
+    def get_user(self):
+        return UserProfile.objects.all()[0]
+
+    def make_approvals(self):
+        for app in self.apps:
+            amo.log(amo.LOG.REJECT_VERSION, app, app.current_version,
+                    user=self.get_user(), details={'comments': 'youwin'})
+
+    def make_an_approval(self, action, comment='youwin', username=None,
+                         app=None):
+        if username:
+            user = UserProfile.objects.get(username=username)
+        else:
+            user = self.get_user()
+        if not app:
+            app = self.apps[0]
+        amo.log(action, app, app.current_version, user=user,
+                details={'comments': comment})
+
+    def test_basic(self):
+        self.make_approvals()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        assert doc('#log-filter button'), 'No filters.'
+        # Should have 2 showing.
+        rows = doc('tbody tr')
+        eq_(rows.filter(':not(.hide)').length, 2)
+        eq_(rows.filter('.hide').eq(0).text(), 'youwin')
+
+    def test_xss(self):
+        a = self.apps[0]
+        a.name = '<script>alert("xss")</script>'
+        a.save()
+        amo.log(amo.LOG.REJECT_VERSION, a, a.current_version,
+                user=self.get_user(), details={'comments': 'xss!'})
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        inner_html = pq(r.content)('#log-listing tbody td').eq(1).html()
+
+        assert '&lt;script&gt;' in inner_html
+        assert '<script>' not in inner_html
+
+    def test_end_filter(self):
+        """
+        Let's use today as an end-day filter and make sure we see stuff if we
+        filter.
+        """
+        self.make_approvals()
+        # Make sure we show the stuff we just made.
+        date = time.strftime('%Y-%m-%d')
+        r = self.client.get(self.url, dict(end=date))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)('#log-listing tbody')
+        eq_(doc('tr:not(.hide)').length, 2)
+        eq_(doc('tr.hide').eq(0).text(), 'youwin')
+
+    def test_end_filter_wrong(self):
+        """
+        Let's use today as an end-day filter and make sure we see stuff if we
+        filter.
+        """
+        self.make_approvals()
+        r = self.client.get(self.url, dict(end='wrong!'))
+        # If this is broken, we'll get a traceback.
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#log-listing tr:not(.hide)').length, 3)
+
+    def test_search_comment_exists(self):
+        """Search by comment."""
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        r = self.client.get(self.url, dict(search='hello'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#log-listing tbody tr.hide').eq(0).text(), 'hello')
+
+    def test_search_comment_doesnt_exist(self):
+        """Search by comment, with no results."""
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        r = self.client.get(self.url, dict(search='bye'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.no-results').length, 1)
+
+    def test_search_author_exists(self):
+        """Search by author."""
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, username='editor',
+                              comment='hi')
+
+        r = self.client.get(self.url, dict(search='editor'))
+        eq_(r.status_code, 200)
+        rows = pq(r.content)('#log-listing tbody tr')
+
+        eq_(rows.filter(':not(.hide)').length, 1)
+        eq_(rows.filter('.hide').eq(0).text(), 'hi')
+
+    def test_search_author_doesnt_exist(self):
+        """Search by author, with no results."""
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, username='editor')
+
+        r = self.client.get(self.url, dict(search='wrong'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.no-results').length, 1)
+
+    def test_search_addon_exists(self):
+        """Search by add-on name."""
+        self.make_approvals()
+        app = self.apps[0]
+        r = self.client.get(self.url, dict(search=app.name))
+        eq_(r.status_code, 200)
+        tr = pq(r.content)('#log-listing tr[data-addonid="%s"]' % app.id)
+        eq_(tr.length, 1)
+        eq_(tr.siblings('.comments').text(), 'youwin')
+
+    def test_search_addon_doesnt_exist(self):
+        """Search by add-on name, with no results."""
+        self.make_approvals()
+        r = self.client.get(self.url, dict(search='zzz'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.no-results').length, 1)
+
+    @mock.patch('devhub.models.ActivityLog.arguments', new=mock.Mock)
+    def test_addon_missing(self):
+        self.make_approvals()
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#log-listing tr td').eq(1).text(),
+            'App has been deleted.')
+
+    def test_request_info_logs(self):
+        self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
+            'More information requested')
+
+    def test_super_review_logs(self):
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
+            'Super review requested')

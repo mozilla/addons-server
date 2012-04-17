@@ -1,6 +1,8 @@
+from datetime import date
+
 from django import http
 from django.conf import settings
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import redirect
 
 import jingo
@@ -14,11 +16,13 @@ from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from editors.forms import ReviewLogForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from reviews.models import Review
 from zadmin.models import get_config
 
+from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
 from . import forms, utils
 from .models import AppCannedResponse
@@ -176,3 +180,34 @@ def app_review(request, addon):
 def queue_apps(request):
     qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
     return _queue(request, utils.WebappQueueTable, 'apps', qs=qs)
+
+
+@permission_required('Apps', 'Review')
+def logs(request):
+    data = request.GET.copy()
+
+    if not data.get('start') and not data.get('end'):
+        today = date.today()
+        data['start'] = date(today.year, today.month, 1)
+
+    form = ReviewLogForm(data)
+
+    approvals = ActivityLog.objects.review_queue(webapp=True)
+
+    if form.is_valid():
+        data = form.cleaned_data
+        if data.get('start'):
+            approvals = approvals.filter(created__gte=data['start'])
+        if data.get('end'):
+            approvals = approvals.filter(created__lt=data['end'])
+        if data.get('search'):
+            term = data['search']
+            approvals = approvals.filter(
+                    Q(commentlog__comments__contains=term) |
+                    Q(applog__addon__name__localized_string__contains=term) |
+                    Q(user__display_name__contains=term) |
+                    Q(user__username__contains=term)).distinct()
+
+    pager = amo.utils.paginate(request, approvals, 50)
+    data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID)
+    return jingo.render(request, 'reviewers/logs.html', data)

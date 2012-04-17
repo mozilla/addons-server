@@ -32,10 +32,8 @@
               </ul>
             {% endif %}
           </li>
-          {# TODO: Implement logs for apps (bug 741514). #}
           <li class="slim">
-            <a href="{{ url('editors.reviewlog') }}">
-              {{ _('Logs') }}</a>
+            <a href="{{ url('reviewers.logs') }}">{{ _('Logs') }}</a>
           </li>
           {# TODO: Implement MOTD for apps (bug 741529). #}
           <li class="slim">

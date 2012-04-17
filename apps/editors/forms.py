@@ -50,10 +50,8 @@ class EventLogForm(happyforms.Form):
 class ReviewLogForm(happyforms.Form):
     start = forms.DateField(required=False,
                             label=_lazy(u'View entries between'))
-    end = forms.DateField(required=False,
-                          label=_lazy(u'and'))
-    search = forms.CharField(required=False,
-                          label=_lazy(u'containing'))
+    end = forms.DateField(required=False, label=_lazy(u'and'))
+    search = forms.CharField(required=False, label=_lazy(u'containing'))
 
     def __init__(self, *args, **kw):
         super(ReviewLogForm, self).__init__(*args, **kw)
