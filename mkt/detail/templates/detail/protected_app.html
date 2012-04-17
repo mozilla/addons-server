@@ -48,10 +48,13 @@
             {% trans %}
               This app is <b>incomplete</b>.
             {% endtrans %}
+            <a href="{{ url('submit.app.resume', product.app_slug) }}"
+               target="_blank">{{ _('Please complete your app.') }}</a>
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
               This app is <b>awaiting review</b>.
             {% endtrans %}
+            {{ _('You will receive an email when the review is complete.') }}
           {% elif product.status == amo.STATUS_REJECTED %}
             {% trans %}
               This app has been rejected and is unavailable until its developer
