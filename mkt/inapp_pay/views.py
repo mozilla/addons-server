@@ -10,6 +10,7 @@ from tower import ugettext as _
 import waffle
 from waffle.decorators import waffle_switch
 
+from django import http
 from django.conf import settings
 from django.db import transaction
 from django.shortcuts import redirect, get_object_or_404
@@ -84,7 +85,7 @@ def pay(request, signed_req, pay_req):
             email=product.paypal_id,
             ip=request.META.get('REMOTE_ADDR'),
             memo=contrib_for,
-            pattern='inapp_pay.pay_done',
+            pattern='inapp_pay.pay_status',
             preapproval=preapproval,
             qs={'realurl': request.POST.get('realurl')},
             slug=pay_req['_config'].pk,  # passed to pay_done() via reverse()
@@ -142,7 +143,7 @@ def pay(request, signed_req, pay_req):
     if status != 'COMPLETED':
         # Pre-auth failed. Boo!
         raise InappPaymentError('PayPal did not recognize preauth token for '
-                                'user %s' % request.amo_user)
+                                'user %s (status %s)' % (request.amo_user, status))
 
     # Payment was completed using pre-auth. Woo!
     _payment_done(request, payment)
@@ -159,6 +160,15 @@ def pay(request, signed_req, pay_req):
                  description=pay_req['request']['description'],
                  signed_request=signed_req)
     return jingo.render(request, tpl, c)
+
+
+@xframe_allow
+@anonymous_csrf
+@login_required
+@write
+@waffle_switch('in-app-payments-ui')
+def pay_status(request, config_pk, status):
+    return http.HttpResponse()
 
 
 def _payment_done(request, payment, action='PAY_COMPLETE'):
