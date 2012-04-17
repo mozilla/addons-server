@@ -18,7 +18,8 @@ from translations.fields import TransField
 
 from mkt.developers.forms import (PaypalSetupForm as OriginalPaypalSetupForm,
                                   verify_app_domain)
-from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
+from mkt.site.forms import (AddonChoiceField, APP_UPSELL_CHOICES,
+                            APP_PUBLIC_CHOICES)
 
 
 class DevAgreementForm(happyforms.Form):
@@ -74,7 +75,12 @@ class UpsellForm(happyforms.Form):
                                    label=_('App Price'),
                                    empty_label=None,
                                    required=True)
-
+    make_public = forms.TypedChoiceField(choices=APP_PUBLIC_CHOICES,
+                                    widget=forms.RadioSelect(),
+                                    label=_('When should your app be '
+                                            'made available for sale?'),
+                                    coerce=int,
+                                    required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=APP_UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
@@ -98,6 +104,7 @@ class UpsellForm(happyforms.Form):
         if 'initial' not in kw:
             kw['initial'] = {}
 
+        kw['initial']['make_public'] = amo.PUBLIC_IMMEDIATELY
         if self.addon.premium:
             kw['initial']['price'] = self.addon.premium.price
 
@@ -119,6 +126,10 @@ class UpsellForm(happyforms.Form):
             and not self.cleaned_data['free']):
             raise_required()
         return self.cleaned_data['free']
+
+    def clean_make_public(self):
+        return (amo.PUBLIC_WAIT if self.cleaned_data.get('make_public')
+                                else None)
 
     def save(self):
         if 'price' in self.cleaned_data:
@@ -144,6 +155,8 @@ class UpsellForm(happyforms.Form):
             upsell.save()
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
+
+        self.addon.update(make_public=self.cleaned_data['make_public'])
 
 
 class AppDetailsBasicForm(AddonFormBasic):

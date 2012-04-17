@@ -379,6 +379,16 @@ class MANIFEST_UPDATED(_LOG):
     format = _(u'{addon} manifest updated.')
 
 
+class APPROVE_VERSION_WAITING(_LOG):
+    id = 53
+    action_class = 'approve'
+    format = _(u'{addon} {version} approved but waiting to be made public.')
+    short = _(u'Approved but waiting')
+    keep = True
+    review_email_user = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

@@ -123,7 +123,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
 
     def _check_log(self, action):
         assert AppLog.objects.filter(addon=self.app,
-                                     activity_log__action=action.id).exists(), (
+                        activity_log__action=action.id).exists(), (
             "Didn't find `%s` action in logs." % action.short)
 
     def test_push_public(self):
@@ -141,6 +141,24 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
+        self._check_email_body(msg)
+
+    def test_push_public_waiting(self):
+        files = list(self.version.files.values_list('id', flat=True))
+        self.get_app().update(make_public=amo.PUBLIC_WAIT)
+        self.post({
+            'action': 'public',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        })
+        eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
+        self._check_log(amo.LOG.APPROVE_VERSION_WAITING)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
 
     def test_comment(self):
@@ -204,7 +222,8 @@ class TestCannedResponses(EditorTest):
         # choices is grouped by the sort_group, where choices[0] is the
         # default "Choose a response..." option.
         # Within that, it's paired by [group, [[response, name],...]].
-        # So above, choices[1][1] gets the first real group's list of responses.
+        # So above, choices[1][1] gets the first real group's list of
+        # responses.
         eq_(len(choices), 1)
         assert self.cr_app.response in choices[0]
         assert self.cr_addon.response not in choices[0]

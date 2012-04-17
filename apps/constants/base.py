@@ -1,3 +1,4 @@
+from datetime import datetime
 import re
 
 from django.conf import settings
@@ -19,6 +20,7 @@ STATUS_LITE_AND_NOMINATED = 9
 STATUS_PURGATORY = 10  # A temporary home; bug 614686
 STATUS_DELETED = 11
 STATUS_REJECTED = 12  # This applies only to apps (for now)
+STATUS_PUBLIC_WAITING = 13  # bug 740967
 
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
@@ -34,18 +36,26 @@ STATUS_CHOICES = {
         _(u'Preliminarily Reviewed and Awaiting Full Review'),
     STATUS_PURGATORY: _(u'Pending a review choice'),
     STATUS_DELETED: _(u'Deleted'),
-    STATUS_REJECTED: _(u'Rejected')
+    STATUS_REJECTED: _(u'Rejected'),
+    # Approved, but the developer would like to put it public when they want.
+    # The need to go to the marketplace and actualy make it public.
+    STATUS_PUBLIC_WAITING: _('Approved but waiting'),
 }
+
+PUBLIC_IMMEDIATELY = None
+# Our MySQL does not store microseconds.
+PUBLIC_WAIT = datetime.max.replace(microsecond=0)
 
 REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)
 UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                        STATUS_PURGATORY)
 VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                   STATUS_PUBLIC, STATUS_LISTED, STATUS_BETA, STATUS_LITE,
-                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY)
+                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY,
+                  STATUS_PUBLIC_WAITING)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
 LISTED_STATUSES = tuple(st for st in VALID_STATUSES
-                        if st not in (STATUS_PENDING,))
+                        if st not in (STATUS_PENDING, STATUS_PUBLIC_WAITING))
 
 # An add-on in one of these statuses is awaiting a review.
 STATUS_UNDER_REVIEW = (STATUS_UNREVIEWED, STATUS_NOMINATED,

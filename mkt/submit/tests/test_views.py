@@ -818,6 +818,22 @@ class TestPayments(TestSubmit):
         AddonUser.objects.create(addon=free, user=self.user)
         return free
 
+    def test_immediate(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.upsell'),
+                               {'price': self.price.pk,
+                                'make_public': 0})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().make_public, amo.PUBLIC_IMMEDIATELY)
+
+    def test_wait(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.upsell'),
+                               {'price': self.price.pk,
+                                'make_public': 1})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().make_public, amo.PUBLIC_WAIT)
+
     def test_upsell_states(self):
         free = self._make_upsell()
         free.update(status=amo.STATUS_NULL)
@@ -850,7 +866,7 @@ class TestPayments(TestSubmit):
         res = self.client.get(self.get_url('payments.upsell'),
                                {'price': self.price.pk})
         eq_(res.status_code, 200)
-        eq_(len(pq(res.content)('div.brform')), 2)
+        eq_(len(pq(res.content)('div.brform')), 3)
 
     def test_upsell_missing(self):
         free = Addon.objects.create(type=amo.ADDON_WEBAPP)

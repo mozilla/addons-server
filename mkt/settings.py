@@ -39,6 +39,7 @@ INSTALLED_APPS.remove('search')
 INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
+    'devhub',  # Put here so helpers.py doesn't get loaded first.
     'mkt.site',
     'mkt.account',
     'mkt.browse',
@@ -53,7 +54,6 @@ INSTALLED_APPS += (
     'mkt.submit',
     'mkt.support',
     'mkt.webapps',
-    'devhub',  # Put here so helpers.py doesn't get loaded first.
 )
 
 SUPPORTED_NONLOCALES += (

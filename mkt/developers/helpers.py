@@ -183,6 +183,7 @@ def status_class(addon):
         amo.STATUS_LITE: 'lite',
         amo.STATUS_LITE_AND_NOMINATED: 'lite-nom',
         amo.STATUS_PURGATORY: 'purgatory',
+        amo.STATUS_PUBLIC_WAITING: 'waiting',
     }
     if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
         cls = 'disabled'

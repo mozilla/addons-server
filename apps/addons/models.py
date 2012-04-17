@@ -283,6 +283,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
+    make_public = models.DateTimeField(null=True)
 
     class Meta:
         db_table = 'addons'

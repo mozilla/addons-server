@@ -56,7 +56,6 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
 
         return ''.join(o)
 
-
     def render_created(self, row):
         return timesince(row.created)
 
@@ -179,11 +178,28 @@ class ReviewApp(ReviewBase):
         self.files = self.version.files.all()
 
     def process_public(self):
+        if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
+            return self.process_public_immediately()
+        return self.process_public_waiting()
+
+    def process_public_waiting(self):
+        """Make an app pending."""
+        self.set_files(amo.STATUS_PUBLIC_WAITING, self.version.files.all())
+        self.set_addon(highest_status=amo.STATUS_PUBLIC_WAITING,
+                       status=amo.STATUS_PUBLIC_WAITING)
+
+        self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
+        self.notify_email('%s_to_public_waiting' % self.review_type,
+                          u'App Approved but waiting: %s')
+
+        log.info(u'Making %s public but pending' % self.addon)
+        log.info(u'Sending email for %s' % self.addon)
+
+    def process_public_immediately(self):
         """Approve an app."""
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
-                       copy_to_mirror=True)
+        self.set_files(amo.STATUS_PUBLIC, self.version.files.all())
         self.set_addon(highest_status=amo.STATUS_PUBLIC,
                        status=amo.STATUS_PUBLIC)
 

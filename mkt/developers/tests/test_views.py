@@ -6,7 +6,6 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
-from django.utils.http import urlencode
 
 import mock
 from nose.plugins.attrib import attr
@@ -589,7 +588,7 @@ class TestIssueRefund(amo.tests.TestCase):
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
-    def test_apps_issue(self, refund, enqueue_refund):
+    def test_apps_issue_error(self, refund, enqueue_refund):
         refund.side_effect = PaypalError
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
@@ -827,6 +826,39 @@ class TestRefunds(amo.tests.TestCase):
                 babel_datetime(refund.contribution.created).strip())
             eq_(tr.find('.requested-date').text(),
                 babel_datetime(refund.requested).strip())
+
+
+class TestPublicise(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = self.get_webapp()
+        self.webapp.update(status=amo.STATUS_PUBLIC_WAITING)
+        self.publicise_url = self.webapp.get_dev_url('publicise')
+        self.status_url = self.webapp.get_dev_url('versions')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+
+    def get_webapp(self):
+        return Addon.objects.no_cache().get(id=337141)
+
+    def test_logout(self):
+        self.client.logout()
+        res = self.client.post(self.publicise_url)
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
+
+    def test_publicise(self):
+        res = self.client.post(self.publicise_url)
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
+
+    def test_status(self):
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#version-status form').attr('action'), self.publicise_url)
+        eq_(len(doc('strong.status-waiting')), 1)
 
 
 class TestDelete(amo.tests.TestCase):

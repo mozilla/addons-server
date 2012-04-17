@@ -20,6 +20,7 @@
         <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers">
         Learn more about price tiers</a></p>
                    {{ form_field(form.price) }}
+        {{ form_field(form.make_public) }}
         {% if form.fields['free'].queryset.count() %}
           <p>{{ loc('Linking this app with its free counterpart allows you
                      to promote your premium app next to the free version.

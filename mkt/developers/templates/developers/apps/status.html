@@ -36,6 +36,9 @@
                   questions, please email app-reviews@mozilla.org.") }}
         {% elif addon.status == amo.STATUS_REJECTED %}
           {{ status(_('This app has been <b>rejected</b> by a Mozilla Marketplace reviewer.')|safe) }}
+        {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
+          {{ status(_('Your app has been <b>approved but is not public</b>.')|safe) }}
+          {{ _('It is waiting your approval to make public.') }}
         {% endif %}
         {% if not (addon.is_disabled or addon.is_incomplete()) %}
           <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
@@ -67,6 +70,11 @@
             {% endif %}
             {{ form_field(form.release_notes, opt=True) }}
             <p><button type="submit">{{ _('Resubmit App') }}</button></p>
+          </form>
+        {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
+          <form method="post" action="{{ addon.get_dev_url('publicise') }}">
+            {{ csrf() }}
+            <p><button type="submit">{{ _('Make App public') }}</button></p>
           </form>
         {% endif %}
       </p>

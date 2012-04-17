@@ -185,6 +185,15 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
+@dev_required
+@post_required
+def publicise(request, addon_id, addon):
+    if addon.status == amo.STATUS_PUBLIC_WAITING:
+        addon.update(status=amo.STATUS_PUBLIC)
+        amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    return redirect(addon.get_dev_url('versions'))
+
+
 @dev_required(webapp=True)
 def status(request, addon_id, addon, webapp=False):
     form = forms.AppAppealForm(request.POST, product=addon)
