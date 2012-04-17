@@ -160,3 +160,5 @@ INAPP_VERBOSE_ERRORS = False
 # When False, the developer can toggle HTTPS on/off.
 # This is useful for development and testing.
 INAPP_REQUIRE_HTTPS = True
+
+CACHE_EMPTY_QUERYSETS = True
