@@ -161,4 +161,4 @@ INAPP_VERBOSE_ERRORS = False
 # This is useful for development and testing.
 INAPP_REQUIRE_HTTPS = True
 
-CACHE_EMPTY_QUERYSETS = True
+#CACHE_EMPTY_QUERYSETS = True
