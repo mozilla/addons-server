@@ -32,3 +32,8 @@
     {% endfor %}
   </ul>
 </nav>
+{% if waffle.switch('fav-addons-contest') %}
+  <p id="win-tablet"><a href="http://blog.mozilla.com/addons/?p=4569">
+    Win a Tablet! Tell us about your favorite add-on for a chance to win 1
+    of 3 Android tablets.</a></p>
+{% endif %}

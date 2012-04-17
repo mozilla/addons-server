@@ -532,3 +532,32 @@
     height: 0;
     visibility: hidden;
 }
+
+#win-tablet a {
+    display: block;
+    opacity: .9;
+    text-indent: -9999px;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+section#win-tablet {
+    padding: 0;
+    a {
+        .border-box;
+        .border-radius(6px);
+        background: url(../../img/zamboni/promos/fav-large.jpg) 50% 50% no-repeat;
+        height: 180px;
+        width: 100%;
+    }
+}
+
+#side-nav + #win-tablet {
+    padding: 0;
+    a {
+        background: url(../../img/zamboni/promos/fav-small.jpg) no-repeat;
+        height: 180px;
+        width: 180px;
+    }
+}
