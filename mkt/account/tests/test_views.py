@@ -527,9 +527,10 @@ class TestPurchases(PurchaseBase):
             app = Webapp.objects.create(name='f%s' % x, guid='f%s' % x)
             Installed.objects.create(addon=app, user=self.user)
 
-        for guid, app in self.apps.iteritems():
-            purchase = app.addonpurchase_set.get(user=self.user)
-            purchase.update(created=datetime.now() + timedelta(days=app.id))
+        for app in self.apps.values():
+            for contribution in app.contribution_set.all():
+                contribution.update(created=datetime.now()
+                                    + timedelta(days=app.id))
 
         # Purchase an app on behalf of a different user, which shouldn't
         # affect the ordering of my purchases. Right?
@@ -544,8 +545,7 @@ class TestPurchases(PurchaseBase):
         eq_(self.get_order(''), default)
         eq_(self.get_order('purchased'), default)
 
-        # Make another purchase for app `t2`.
-        self.apps['t2'].addonpurchase_set.all()[0].update(
+        self.apps['t2'].contribution_set.all()[0].update(
             created=datetime.now() + timedelta(days=999))
         cache.clear()
         eq_(self.get_order('purchased'), ['t2', 't4', 't3', 't1', 'f1', 'f2'])

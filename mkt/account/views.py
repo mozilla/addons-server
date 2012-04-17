@@ -13,6 +13,7 @@ from addons.views import BaseFilter
 import amo
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
+from amo.models import manual_order
 from amo.utils import paginate
 from market.models import PreApprovalUser
 import paypal
@@ -106,16 +107,23 @@ class PurchasesFilter(BaseFilter):
             ('price', _lazy(u'Price')),
             ('name', _lazy(u'Name')))
 
+    def __init__(self, *args, **kwargs):
+        self.ids = kwargs.pop('ids')
+        self.uids = kwargs.pop('uids')
+        super(PurchasesFilter, self).__init__(*args, **kwargs)
+
     def filter(self, field):
         qs = self.base_queryset
         if field == 'purchased':
-            return (qs.filter(Q(addonpurchase__user=self.request.amo_user) |
-                              Q(addonpurchase__isnull=True))
-                    .order_by('-addonpurchase__created', 'id'))
+            # Id's are in created order, so let's invert them for this query.
+            # According to my testing we don't actually need to dedupe this.
+            ids = list(reversed(self.ids[0])) + self.ids[1]
+            return manual_order(qs.filter(id__in=ids), ids)
         elif field == 'price':
-            return qs.order_by('addonpremium__price__price', 'id')
+            return (qs.filter(id__in=self.uids)
+                      .order_by('addonpremium__price__price', 'id'))
         elif field == 'name':
-            return order_by_translation(qs, 'name')
+            return order_by_translation(qs.filter(id__in=self.uids), 'name')
 
 
 def purchases(request, product_id=None, template=None):
@@ -129,26 +137,29 @@ def purchases(request, product_id=None, template=None):
         cs = cs.filter(addon=product_id)
 
     ids = list(cs.values_list('addon_id', flat=True))
+    product_ids = []
     # If you are asking for a receipt for just one item, show only that.
     # Otherwise, we'll show all apps that have a contribution or are free.
     if not product_id:
-        ids += list(request.amo_user.installed_set
-                    .exclude(addon__in=ids)
-                    .values_list('addon_id', flat=True))
+        product_ids = list(request.amo_user.installed_set
+                           .exclude(addon__in=ids)
+                           .values_list('addon_id', flat=True))
 
     contributions = {}
     for c in cs:
         contributions.setdefault(c.addon_id, []).append(c)
 
-    ids = list(set(ids))
-    listing = PurchasesFilter(request, Webapp.objects.filter(id__in=ids),
-                              key='sort', default='purchased')
+    unique_ids = set(ids + product_ids)
+    listing = PurchasesFilter(request, Webapp.objects.all(),
+                              key='sort', default='purchased',
+                              ids=[ids, product_ids],
+                              uids=unique_ids)
 
     if product_id and not listing.qs:
         # User has requested a receipt for an app he ain't got.
         raise http.Http404
 
-    products = paginate(request, listing.qs, count=len(ids))
+    products = paginate(request, listing.qs, count=len(unique_ids))
     return jingo.render(request, 'account/purchases.html',
                         {'pager': products,
                          'listing_filter': listing,
