@@ -16,7 +16,6 @@ from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
-from editors.forms import ReviewLogForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from reviews.models import Review
@@ -190,7 +189,7 @@ def logs(request):
         today = date.today()
         data['start'] = date(today.year, today.month, 1)
 
-    form = ReviewLogForm(data)
+    form = forms.ReviewAppLogForm(data)
 
     approvals = ActivityLog.objects.review_queue(webapp=True)
 
@@ -203,10 +202,11 @@ def logs(request):
         if data.get('search'):
             term = data['search']
             approvals = approvals.filter(
-                    Q(commentlog__comments__contains=term) |
-                    Q(applog__addon__name__localized_string__contains=term) |
-                    Q(user__display_name__contains=term) |
-                    Q(user__username__contains=term)).distinct()
+                    Q(commentlog__comments__icontains=term) |
+                    Q(applog__addon__name__localized_string__icontains=term) |
+                    Q(applog__addon__app_slug__icontains=term) |
+                    Q(user__display_name__icontains=term) |
+                    Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
     data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID)

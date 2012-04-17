@@ -356,6 +356,18 @@ class TestReviewLog(EditorTest):
         eq_(tr.length, 1)
         eq_(tr.siblings('.comments').text(), 'youwin')
 
+    def test_search_addon_by_slug_exists(self):
+        """Search by app slug."""
+        app = self.apps[0]
+        app.app_slug = 'a-fox-was-sly'
+        app.save()
+        self.make_approvals()
+        r = self.client.get(self.url, dict(search='fox'))
+        eq_(r.status_code, 200)
+        tr = pq(r.content)('#log-listing tr[data-addonid="%s"]' % app.id)
+        eq_(tr.length, 1)
+        eq_(tr.siblings('.comments').text(), 'youwin')
+
     def test_search_addon_doesnt_exist(self):
         """Search by add-on name, with no results."""
         self.make_approvals()

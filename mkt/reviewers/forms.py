@@ -1,7 +1,7 @@
 from tower import ugettext_lazy as _lazy
 
 import amo
-from editors.forms import ReviewAddonForm
+from editors.forms import ReviewAddonForm, ReviewLogForm
 
 from mkt.reviewers.utils import ReviewHelper
 
@@ -21,3 +21,13 @@ class ReviewAppForm(ReviewAddonForm):
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
     return ReviewAppForm(data, helper=helper)
+
+
+class ReviewAppLogForm(ReviewLogForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ReviewAppLogForm, self).__init__(*args, **kwargs)
+        self.fields['search'].widget.attrs = {
+            # L10n: Descript of what can be searched for.
+            'placeholder': _lazy('app, reviewer, or comment'),
+            'size': 30}
