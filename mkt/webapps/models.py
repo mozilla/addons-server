@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import calendar
 import json
 import time
 from urllib import urlencode
@@ -237,6 +238,7 @@ def create_receipt(installed_pk):
     addon_pk = installed.addon.pk
     verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
     detail = reverse('account.purchases.receipt', args=[addon_pk])
+    reissue = installed.addon.get_purchase_url('reissue')
     receipt = dict(typ='purchase-receipt',
                    product={'url': installed.addon.origin,
                             'storedata': urlencode({'id': int(addon_pk)})},
@@ -244,9 +246,12 @@ def create_receipt(installed_pk):
                          'value': installed.uuid},
                    iss=settings.SITE_URL,
                    nbf=time.mktime(installed.created.timetuple()),
-                   iat=time.time(),
+                   iat=calendar.timegm(time.gmtime()),
+                   exp=(calendar.timegm(time.gmtime()) +
+                        settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS),
                    detail=absolutify(detail),
-                   verify=absolutify(verify))
+                   verify=absolutify(verify),
+                   reissue=absolutify(reissue))
     if settings.SIGNING_SERVER_ACTIVE:
         # The shiny new code.
         cef(installed.user, installed.addon, 'sign', 'A signing request')

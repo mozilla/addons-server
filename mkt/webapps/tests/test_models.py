@@ -1,5 +1,7 @@
+import calendar
 from datetime import datetime, timedelta
 import json
+import time
 import unittest
 
 import test_utils
@@ -274,9 +276,13 @@ class TestReceipt(amo.tests.TestCase):
         encode.return_value = 'tmp-to-keep-memoize-happy'
         ins = self.create_install(self.user, self.webapp)
         create_receipt(ins.pk)
-        product = encode.call_args[0][0]['product']
-        eq_(product['url'], self.webapp.manifest_url[:-1])
-        eq_(product['storedata'], 'id=%s' % int(ins.addon.pk))
+        receipt = encode.call_args[0][0]
+        eq_(receipt['product']['url'], self.webapp.manifest_url[:-1])
+        eq_(receipt['product']['storedata'], 'id=%s' % int(ins.addon.pk))
+        assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
+                                 settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS -
+                                 100)
+        eq_(receipt['reissue'], self.webapp.get_purchase_url('reissue'))
 
     @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
     @mock.patch('mkt.webapps.models.sign')
