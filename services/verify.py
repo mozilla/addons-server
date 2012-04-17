@@ -1,7 +1,9 @@
+import calendar
+from datetime import datetime
 from email.Utils import formatdate
 import json
 import re
-from time import time
+from time import gmtime, time
 from urlparse import parse_qsl
 
 from utils import (log_configure, log_exception, log_info, mypool, settings,
@@ -39,6 +41,20 @@ class Verify:
         except (jwt.DecodeError, M2Crypto.RSA.RSAError), e:
             self.log('Error decoding receipt: %s' % e)
             return self.invalid()
+
+        # Check the expiry on a receipt.
+        try:
+            expire = int(receipt.get('exp', 0))
+        except ValueError:
+            self.log('Error with expiry in the receipt')
+            return self.expired()
+
+        now = calendar.timegm(gmtime()) + 10  # For any clock skew.
+        if now > expire:
+            self.log('This receipt has expired: %s UTC < %s UTC'
+                                 % (datetime.utcfromtimestamp(expire),
+                                    datetime.utcfromtimestamp(now)))
+            return self.expired()
 
         try:
             assert receipt['user']['type'] == 'directed-identifier'
@@ -136,6 +152,9 @@ class Verify:
 
     def refund(self):
         return json.dumps({'status': 'refunded'})
+
+    def expired(self):
+        return json.dumps({'status': 'expired'})
 
 
 def decode_receipt(receipt):

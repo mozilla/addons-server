@@ -1,8 +1,14 @@
 # -*- coding: utf8 -*-
+import calendar
+import json
+from urllib import urlencode
+import time
+
 from django.db import connection
 from django.conf import settings
-from urllib import urlencode
 
+import M2Crypto
+import mock
 from nose.tools import eq_
 
 import amo
@@ -14,10 +20,6 @@ from mkt.webapps.models import create_receipt, Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution
-
-import json
-import M2Crypto
-import mock
 
 
 # There are two "different" settings files that need to be patched,
@@ -35,7 +37,8 @@ class TestVerify(amo.tests.TestCase):
         self.user_data = {'user': {'type': 'directed-identifier',
                                    'value': 'some-uuid'},
                           'product': {'url': 'http://f.com',
-                                      'storedata': urlencode({'id': 3615})}}
+                                      'storedata': urlencode({'id': 3615})},
+                          'exp': calendar.timegm(time.gmtime()) + 1000}
 
     def get_decode(self, addon_id, receipt):
         # Ensure that the verify code is using the test database cursor.
@@ -67,7 +70,9 @@ class TestVerify(amo.tests.TestCase):
         eq_(self.get_decode(1, 'blah.blah.blah')['status'], 'invalid')
 
     def test_no_user(self):
-        eq_(self.get(1, {})['status'], 'invalid')
+        user_data = self.user_data.copy()
+        del user_data['user']
+        eq_(self.get(0, user_data)['status'], 'invalid')
 
     def test_no_addon(self):
         user_data = self.user_data.copy()
@@ -93,6 +98,20 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(3615, self.user_data)
         eq_(res['status'], 'ok')
         eq_(res['receipt'], self.user_data)
+
+    def test_expired(self):
+        user_data = self.user_data.copy()
+        user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'expired')
+
+    def test_garbage_expired(self):
+        user_data = self.user_data.copy()
+        user_data['exp'] = 'a'
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'expired')
 
     def test_premium_addon_not_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
