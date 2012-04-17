@@ -24,7 +24,6 @@ var $ = (function(win, doc, undefined) {
             return ret;
         };
 
-        console.log('foo');
 
         ret.on = function(type, handler) {
             ret.each(function() {

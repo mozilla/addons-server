@@ -16,7 +16,7 @@ var z = {},
         if ($('body').hasClass('success')) {
             win_top.postMessage('moz-pay-success', '*');
         } else {
-            win_top.postMessage('mox-pay-cancel', '*');
+            win_top.postMessage('moz-pay-cancel', '*');
         }
     });
 
