@@ -14,6 +14,40 @@
         h2 {
             font-size: 24px;
         }
+        .vitals {
+            .max-width(3);
+        }
+        .price {
+            position: relative;
+            font-weight: bold;
+            float: right;
+            font-size: 18px;
+            margin: 43px -15px 0 0;
+            padding: 4px 20px 4px 8px;
+            border: 2px solid @text;
+            .border-radius(5px 0 0 5px);
+            .box-shadow(inset 1px 2px 2px rgba(0,0,0,0.5));
+            background-color: @link;
+            color: @white;
+            text-shadow: none;
+            > a {
+                display: block;
+                font-size: 13px;
+                padding: 2px;
+                color: @white;
+                &:after {
+                    content: "";
+                    float: right;
+                    height: 8px;
+                    width: 18px;
+                    margin-top: 6px;
+                    background: url(../../img/mkt/arrows/collapse.png) no-repeat right 0;
+                }
+                &.expanded:after {
+                    .transform(scaleY(-1));
+                }
+            }
+        }
     }
     #preapproval {
         border: 1px solid @border-blue;
@@ -37,6 +71,47 @@
                     inset 0 -2px 0 0 rgba(0,0,0,.1),
                     inset 0 12px 24px 2px #facc6f);
                 background-color: @gray;
+            }
+        }
+    }
+}
+
+#currency-list {
+    position: absolute;
+    padding: 0;
+    opacity: 0;
+    background-color: @white;
+    list-style-type: none;
+    .border-radius(5px);
+    .box-shadow(0 3px 4px rgba(0,0,0,0.5));
+    right: 20px;
+    top: 36px;
+    display: none;
+    -moz-transition: .5s opacity ease;
+    -webkit-transition: .5s opacity ease;
+    &.show {
+        opacity: 1;
+        display: block;
+    }
+    li {
+        font-size: 13px;
+        white-space: nowrap;
+        border-bottom: 1px dotted @gray;
+        a {
+            padding: 7px 10px;
+            display: block;
+            &:hover {
+                background-color: #fff5e0;
+                text-decoration: none;
+            }
+        }
+        &:first-child a {
+            .border-radius(5px 5px 0 0);
+        }
+        &:last-child {
+            border-bottom: 0;
+            a {
+                .border-radius(0 0 5px 5px);
             }
         }
     }

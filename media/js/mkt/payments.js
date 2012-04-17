@@ -6,7 +6,8 @@
         purchaseInProgress = true,
         $def,
         message = $('#purchased'),
-        messageTemplate = template(message.html());
+        messageTemplate = template(message.html()),
+        data = {};
 
     function beginPurchase(prod) {
         if ($def && $def.state() == 'pending') {
@@ -20,6 +21,10 @@
         if (z.pre_auth) {
             startPayment();
             return $def.promise();
+        }
+
+        if (product.currencies) {
+            initCurrencies(JSON.parse(product.currencies));
         }
 
         overlay.html(paymentsTemplate(product));
@@ -39,6 +44,53 @@
         return $def.promise();
     }
 
+    function initCurrencies(clist) {
+        var $list = $('<ul id="currency-list"></ul>'),
+            $trigger = $(format('<a href="#">{0}</a>', gettext('Currency'))),
+            $item;
+
+        for (var currency in clist) {
+            $item = $(format('<li><a href="#">{0} ({1})</a></li>', currency,
+                             clist[currency]));
+            $list.append($item);
+        }
+
+        // Yea...(race condition)
+        setTimeout(function() {
+            $('.product-details .price').append($trigger, $list);
+            initCurrencyEvents($trigger, $list);
+        }, 0);
+    }
+
+    function initCurrencyEvents($trigger, $list) {
+        var $price = $('#price-display');
+
+        $trigger.unbind('click').click(_pd(function(e) {
+            $list.addClass('show');
+        }));
+
+        $('#pay').unbind('click').click(_pd(function(e) {
+            var $targ = $(e.target);
+
+            if ($targ.parents('#currency-list').length ||
+                $targ.parent('.price').length) {
+                var sel = $targ.html().split(' ');
+
+                if ($targ.html() != $trigger.html()) {
+                    sel[1] = sel[1].replace('\(', '').replace('\)', '');
+
+                    // Feel free to remove.
+                    console.log('Setting currency to: ', sel[0]);
+                    data.currency = sel[0];
+                    $('#price-display').html(sel[1]);
+                    $list.removeClass('show');
+                }
+            } else {
+                $list.removeClass('show');
+            }
+        }));
+    }
+
     function beginPreApproval(e) {
         localStorage.setItem('toInstall', product.manifestUrl);
     }
@@ -49,12 +101,14 @@
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
+        $('#currency-list').removeClass('show');
     }
 
     function completePurchase() {
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
+        $('#currency-list').removeClass('show');
         message.html(messageTemplate(product));
         message.toggle();
         $def.resolve(product);
@@ -68,7 +122,7 @@
 
     function doPaypal() {
         var $def = $.Deferred();
-        $(window).bind('purchasecomplete.payments',function() {
+        $(window).bind('purchasecomplete.payments', function() {
             $def.resolve();
         });
 
@@ -77,7 +131,7 @@
             cancelPurchase();
         });
 
-        $.post(product.purchase, function(response) {
+        $.post(product.purchase, data, function(response) {
             if (response.error) {
                 $(window).trigger('purchaseerror', [product, response.error]);
             }
