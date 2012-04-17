@@ -389,3 +389,16 @@ class TestPurchaseDetails(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         res = self.client.post(self.pre_url)
         eq_(res['Location'], get_preapproval_url('x'))
+
+
+class TestReissue(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(pk=337141)
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        self.url = self.webapp.get_purchase_url('reissue')
+
+    def test_reissue(self):
+        self.assertRaises(NotImplementedError, self.client.get, self.url)

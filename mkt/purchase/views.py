@@ -189,3 +189,9 @@ def preapproval(request, addon):
                             complete=addon.get_detail_url(),
                             # TODO: put something else here.
                             cancel=addon.get_detail_url())
+
+
+@login_required
+@addon_view
+def reissue(request, addon):
+    raise NotImplementedError
