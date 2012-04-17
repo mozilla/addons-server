@@ -82,12 +82,12 @@
         height: 64px;
         line-height: 53px;
         span {
-            display: inline-block;
+            display: block;
             line-height: 20px;
             vertical-align: middle;
         }
     }
-    img {
+    img, video {
         -moz-transition: .3s opacity ease;
         -webkit-transition: .3s opacity ease;
         opacity: 0;
@@ -100,5 +100,34 @@
         bottom: 0;
         display: block;
         position: absolute;
+    }
+    video {
+        max-height: 80%;
+    }
+}
+
+.previews, #lightbox {
+    .control {
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 5%;
+        text-decoration: none;
+        font-size: 48px;
+        font-family: Georgia, serif;
+        text-align: center;
+        line-height: 200px;
+        top: 0;
+        z-index: 30;
+        .transition(.3s color);
+        &.next {
+            right: 0;
+        }
+        &.prev {
+            left: 0;
+        }
+        &.disabled {
+            color: #ccc;
+        }
     }
 }

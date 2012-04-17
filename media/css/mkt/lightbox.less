@@ -1,0 +1,41 @@
+@import 'lib';
+
+#lightbox {
+    .controls {
+        height: 80px;
+    }
+    .caption {
+        span {
+            line-height: 20px;
+            margin: 0 auto;
+            height: 60px;
+            overflow: hidden;
+            width: 90%;
+        }
+    }
+    .close {
+        .border-radius(4px);
+        background-image: url(../../img/impala/banner-close.png);
+        cursor: pointer;
+        height: 25px;
+        text-indent: -9999px;
+        margin: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        width: 25px;
+        &:hover {
+            background-color: #c40000;
+            background-position: -25px 0;
+        }
+    }
+}
+
+.previews, #lightbox {
+    .control {
+        font-size: 48px;
+        line-height: 50px;
+        width: 64px;
+    }
+}

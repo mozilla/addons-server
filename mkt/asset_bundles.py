@@ -91,6 +91,8 @@ CSS = {
         'css/mkt/login.less',
         'css/mkt/purchase.less',
         'css/devreg/l10n.less',
+        'css/impala/lightbox.less',
+        'css/mkt/lightbox.less',
     ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
@@ -227,6 +229,7 @@ JS = {
         'js/mkt/apps.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
+        'js/mkt/lightbox.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',

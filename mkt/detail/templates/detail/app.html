@@ -99,7 +99,7 @@
     {% endif %}
   </section>
 
-  {% if product.all_previews|length %}
+  {% if product.all_previews %}
     <section class="previews slider full">
       <ul class="content">
         {%- for preview in product.all_previews -%}
@@ -112,6 +112,18 @@
         {%- endfor -%}
       </ul>
     </section>
+    <div id="lightbox">
+      <section>
+        <div class="content">
+          <a class="close" href="#">{{ _('Close') }}</a>
+        </div>
+        <div class="controls">
+          <a href="#" class="control next">&raquo;</a>
+          <a href="#" class="control prev">&laquo;</a>
+          <div class="caption"><span></span></div>
+        </div>
+      </section>
+    </div>
   {% endif %}
 
   <section class="support c">

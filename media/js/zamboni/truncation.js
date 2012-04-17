@@ -76,9 +76,8 @@ $.fn.lineclamp = function(lines) {
         if (lh.substr(-2) == 'px') {
             lh = parseFloat(lh.replace('px', ''));
             $this.css({'max-height': Math.ceil(lh) * lines,
-                       'overflow': 'hidden',
-                       'text-overflow': 'ellipsis'})
-                 .truncate({dir: 'v'});
+                      'overflow': 'hidden',
+                      'text-overflow': 'ellipsis'});
         }
     });
 };
