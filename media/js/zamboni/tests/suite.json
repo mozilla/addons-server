@@ -16,7 +16,6 @@
         "js/zamboni/truncation.js",
         "js/zamboni/storage.js",
         "js/zamboni/editors.js",
-        "js/zamboni/upload.js",
         "js/zamboni/contributions.js",
         "js/impala/persona_creation.js"
     ]
