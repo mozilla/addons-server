@@ -25,6 +25,7 @@
             {% trans %}
               This app is <b>awaiting review</b>.
             {% endtrans %}
+            {{ _('You will receive an email when the review is complete.') }}
           {% elif product.status == amo.STATUS_REJECTED %}
             {% trans %}
               This app is currently rejected and invisible to other users.
@@ -43,6 +44,10 @@
               <a href="{{ status_url }}">Manage Status page</a>.
             {% endtrans %}
           {% endif %}
+          {% if not (product.is_disabled or product.is_incomplete()) %}
+            <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
+               target="_blank">{{ _('Learn more') }}</a>
+          {% endif %}
         {% else %}
           {% if product.status == amo.STATUS_NULL %}
             {% trans %}
@@ -54,7 +59,6 @@
             {% trans %}
               This app is <b>awaiting review</b>.
             {% endtrans %}
-            {{ _('You will receive an email when the review is complete.') }}
           {% elif product.status == amo.STATUS_REJECTED %}
             {% trans %}
               This app has been rejected and is unavailable until its developer

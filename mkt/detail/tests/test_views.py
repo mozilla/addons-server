@@ -238,7 +238,9 @@ class TestDetailPagePermissions(DetailBase):
         txt = msg.text()
         assert 'awaiting review' in txt, (
             'Expected something about it being pending: %s' % txt)
-        eq_(msg.find('a').length, 0, 'There should be no Manage Status link')
+        url = self.webapp.get_dev_url('versions')
+        eq_(msg.find('a[href="%s"]' % url).length, 0,
+            'There should be no Manage Status link')
 
     def _test_dev_disabled_by_mozilla(self):
         # I'm a developer or an admin.
