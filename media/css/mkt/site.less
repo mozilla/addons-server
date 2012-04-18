@@ -28,7 +28,7 @@ a {
 body {
     color: @text;
     overflow-x: hidden;
-    background-color: @bg;
+    background-color: @pale-bg;
     background-image: url(../../img/mkt/grain.png);
 }
 
@@ -124,6 +124,8 @@ body {
 }
 
 #page {
+    .box-shadow(0 1px 3px fadeOut(#000, 80%));
+    background-color: @bg;
     position: relative;
     > section:only-child {
         margin-top: 24px;
@@ -222,10 +224,8 @@ body {
 }
 
 #site-footer {
-    .box-shadow(0 1px 3px fadeOut(#000, 80%));
     background-color: @pale-bg;
     .grain;
-    margin-top: 20px;
     padding: 16px;
     text-align: center;
 }
