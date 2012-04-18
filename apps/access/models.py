@@ -11,7 +11,7 @@ class Group(amo.models.ModelBase):
     rules = models.TextField()
     users = models.ManyToManyField('users.UserProfile', through='GroupUser',
                                    related_name='groups')
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
 
     class Meta:
         db_table = 'groups'
