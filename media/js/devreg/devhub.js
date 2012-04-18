@@ -423,8 +423,15 @@ function initUploadPreview() {
         form = create_new_preview_field();
         forms['form_' + file.instance] = form;
 
-        $(form).show().find('.preview-thumb').addClass('loading')
-               .css('background-image', 'url(' + file.dataURL + ')');
+        var $thumb = $(form).show().find('.preview-thumb');
+        $thumb.addClass('loading');
+        if (file.type.indexOf('video') > -1) {
+            $thumb.replaceWith(format(
+                '<video controls class="preview-thumb loading" src="{0}"></video>',
+                file.dataURL));
+        } else {
+            $thumb.css('background-image', 'url(' + file.dataURL + ')');
+        }
         renumberPreviews();
     }
 
@@ -437,6 +444,7 @@ function initUploadPreview() {
     function upload_success(e, file, upload_hash) {
         form = forms['form_' + file.instance];
         form.find('[name$="upload_hash"]').val(upload_hash);
+        form.find('[name$="unsaved_image_type"]').val(file.type);
         form.find('[name$="unsaved_image_data"]').val(file.dataURL);
     }
 
@@ -486,7 +494,15 @@ function initUploadPreview() {
     $('#file-list .preview_extra [name$="unsaved_image_data"]').each(function(i, elem) {
         var $data = $(elem);
         if ($data.val()) {
-            $data.parents('.preview').find('.preview-thumb').css('background-image', 'url(' + $data.val() + ')');
+            var $thumb = $data.parents('.preview').find('.preview-thumb'),
+                file_type = $data.siblings('input[name$="unsaved_image_type"]').val();
+            if (file_type.indexOf('video') > -1) {
+                $thumb.replaceWith(format(
+                    '<video controls class="preview-thumb" src="{0}"></video>',
+                    $data.val()));
+            } else {
+                $thumb.css('background-image', 'url(' + $data.val() + ')');
+            }
         }
     });
 }

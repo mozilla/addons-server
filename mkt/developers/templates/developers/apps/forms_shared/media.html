@@ -76,6 +76,7 @@
             </div>
             <div class="hidden">
               {{ form.icon_type }}
+              {{ form.unsaved_icon_data }}
             </div>
             <div class="invisible-upload">
               <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
@@ -161,6 +162,8 @@
                     </div>
                     <div class="preview_extra">
                       {{ form.upload_hash }}
+                      {{ form.unsaved_image_type }}
+                      {{ form.unsaved_image_data }}
                     </div>
                     {{ form.errors }}
                   </div>

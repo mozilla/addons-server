@@ -235,6 +235,8 @@ class PreviewForm(happyforms.ModelForm):
     # show them if there were form errors.
     unsaved_image_data = forms.CharField(required=False,
                                          widget=forms.HiddenInput)
+    unsaved_image_type = forms.CharField(required=False,
+                                         widget=forms.HiddenInput)
 
     def save(self, addon, commit=True):
         if self.cleaned_data:

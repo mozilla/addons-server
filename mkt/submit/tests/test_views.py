@@ -583,17 +583,21 @@ class TestDetails(TestSubmit):
     def test_unsaved_screenshot(self):
         self._step()
         # If there are form errors we should still pass the previews URIs.
-        preview_uris = ['moz-filedata:p00p', 'moz-filedata:p33']
+        preview_type = 'video/webm'
+        preview_uri = 'moz-filedata:p00p'
         data = self.preview_formset({
             'position': 1,
             'upload_hash': '<hash_one>',
-            'unsaved_image_data': preview_uris[0]
+            'unsaved_image_type': preview_type,
+            'unsaved_image_data': preview_uri
         })
         r = self.client.post(self.url, data)
         eq_(r.status_code, 200)
         form = pq(r.content)('form')
+        eq_(form.find('input[name=files-0-unsaved_image_type]').val(),
+            preview_type)
         eq_(form.find('input[name=files-0-unsaved_image_data]').val(),
-            preview_uris[0])
+            preview_uri)
 
     def test_name_length(self):
         self._step()
