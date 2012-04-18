@@ -13,7 +13,6 @@
   {% if not product.is_public() %}
     <section id="product-status" class="full notification-box">
       <div>
-        <!-- is_dev={{ is_dev }}, is_admin={{ is_admin }}, status={{ product.status }} -->
         {% if is_dev or is_admin %}
           {% set status_url = product.get_dev_url('versions') %}
           {% if product.status == amo.STATUS_NULL %}
@@ -45,10 +44,6 @@
               <a href="{{ status_url }}">Manage Status page</a>.
             {% endtrans %}
           {% endif %}
-          {% if not (product.is_disabled or product.is_incomplete()) %}
-            <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
-               target="_blank">{{ _('Learn more') }}</a>
-          {% endif %}
         {% else %}
           {% if product.status == amo.STATUS_NULL %}
             {% trans %}
@@ -75,6 +70,10 @@
               available.
             {% endtrans %}
           {% endif %}
+        {% endif %}
+        {% if not (product.is_disabled or product.is_incomplete()) %}
+          <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
+             target="_blank">{{ _('Learn more') }}</a>
         {% endif %}
       </div>
     </section>
