@@ -1,0 +1,105 @@
+{% extends 'reviewers/base.html' %}
+
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(queue=tab) }}
+{% endblock %}
+
+{% block content %}
+  <section class="island">
+    <div class="featured" id="editors-stats-charts">
+      <div class="listing-header">
+        <div class="editor-stats-title">
+          <a href="{{ url('reviewers.apps.queue_pending') }}">
+            {{ ngettext('Pending Update ({num})',
+                        'Pending Updates ({num})',
+                        queue_counts['pending'])|f(num=queue_counts['pending']) }}
+          </a>
+        </div>
+        <div class="editor-stats">
+          {% for type in ['pending']: %}
+            <div class="editor-stats-table">
+              <div>
+                {{ ngettext("{c} unreviewed submissions.",
+                            "{c} unreviewed submissions.",
+                            progress['week'])|f(c=progress['week']) }}
+              </div>
+              <div class="editor-stats-dark">
+                <strong>{{ _('Current waiting times:') }}</strong>
+                <div class="editor-waiting">
+                  {% for (d, duration) in durations: %}
+                  {% set total = progress[d] %}
+                  <div class="waiting_{{ d }} tooltip"
+                       data-delay="100"
+                       style="width:{{ percentage[d] }}%"
+                       title="{{ duration }} ::
+                              {{ ngettext('{0} app', '{0} apps', total)|f(total) }}
+                              &bull; {{ _('{0}%')|f(percentage[d]|round|int) }}"></div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="island c">
+    <div class="featured" id="editors-stats">
+      <div class="listing-header">
+        <div class="editor-stats-title"><span>{{ _('Total Reviews') }}</span></div>
+        <div class="editor-stats-title"><span>{{ _('Reviews This Month') }}</span></div>
+        {#<div class="editor-stats-title"><span>{{ _('New Reviewers') }}</span></div>#}
+      </div>
+      <div class="editor-stats">
+        <div class="editor-stats-table">
+          <div>
+            <table>
+              {% for row in reviews_total %}
+              <tr>
+                <td>{{ row['user__display_name']|d(row['user__username'], true) }}</td>
+                <td class="int">{{ row['approval_count']|numberfmt }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        <div class="editor-stats-table">
+          <div>
+            <table>
+              {% for row in reviews_monthly %}
+              <tr>
+                <td>{{ row['user__display_name']|d(row['user__username'], true) }}</td>
+                <td class="int">{{ row['approval_count']|numberfmt }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        {# TODO: Bug 747035
+        <div class="editor-stats-table">
+          <div>
+            <table>
+              {% for editors in new_editors %}
+              <tr>
+                <td>
+                  <a href="{{ url('users.profile', editors['added']) }}">
+                    {{ editors['display_name'] }}
+                  </a>
+                </td>
+                <td class="date" title="{{ editors['created']|babel_datetime }}">
+                  {{ editors['created']|timesince }}
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        #}
+      </div>
+    </div>
+  </section>
+
+  {# TODO: Bug 746755 -- Moderated user review queue #}
+
+{% endblock %}

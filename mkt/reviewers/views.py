@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 
 from django import http
 from django.conf import settings
@@ -29,18 +29,63 @@ from .models import AppCannedResponse
 
 @reviewer_required
 def home(request):
-    # TODO: Implement landing page for apps (bug 741634).
-    return redirect('reviewers.queue_apps')
+    durations = (('new', _('New Apps (Under 5 days)')),
+                 ('med', _('Passable (5 to 10 days)')),
+                 ('old', _('Overdue (Over 10 days)')))
+
+    progress, percentage = _progress()
+
+    data = context(
+        reviews_total=ActivityLog.objects.total_reviews(webapp=True)[:5],
+        reviews_monthly=ActivityLog.objects.monthly_reviews(webapp=True)[:5],
+        #new_editors=EventLog.new_editors(),  # Bug 747035
+        #eventlog=ActivityLog.objects.editor_events()[:6],  # Bug 746755
+        progress=progress,
+        percentage=percentage,
+        durations=durations
+    )
+    return jingo.render(request, 'reviewers/home.html', data)
 
 
-def queue_counts(type_=None, **kw):
-    counts = {'apps': Webapp.objects.pending().count}
-    if type_:
-        # Evaluate count for only this type.
-        return counts.get(type_)()
-    else:
-        # Evaluate all counts.
-        return dict((k, v()) for k, v in counts.iteritems())
+def queue_counts(type=None, **kw):
+    counts = {
+        'pending': Webapp.objects.pending().count()
+    }
+    rv = {}
+    if isinstance(type, basestring):
+        return counts[type]
+    for k, v in counts.items():
+        if not isinstance(type, list) or k in type:
+            rv[k] = v
+    return rv
+
+
+def _progress():
+    """Returns unreviewed apps progress.
+
+    Return the number of apps still unreviewed for a given period of time and
+    the percentage.
+    """
+
+    days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
+    qs = Webapp.objects.pending()
+    progress = {
+        'new': qs.filter(created__gt=days_ago(5)).count(),
+        'med': qs.filter(created__range=(days_ago(10), days_ago(5))).count(),
+        'old': qs.filter(created__lt=days_ago(10)).count(),
+        'week': qs.filter(created__gte=days_ago(7)).count(),
+    }
+
+    # Return the percent of (p)rogress out of (t)otal.
+    pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
+
+    percentage = {}
+    total = progress['new'] + progress['med'] + progress['old']
+    percentage = {}
+    for duration in ('new', 'med', 'old'):
+        percentage[duration] = pct(progress[duration], total)
+
+    return (progress, percentage)
 
 
 def _queue(request, TableObj, tab, qs=None):
@@ -65,7 +110,7 @@ def _queue(request, TableObj, tab, qs=None):
     order_by = request.GET.get('sort', TableObj.default_order_by())
     order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
-    default = 10  # TODO: Change to 100.
+    default = 100
     per_page = request.GET.get('per_page', default)
     try:
         per_page = int(per_page)
@@ -99,7 +144,7 @@ def _review(request, addon):
 
     queue_type = (form.helper.review_type if form.helper.review_type
                   != 'preliminary' else 'prelim')
-    redirect_url = reverse('reviewers.queue_%s' % queue_type)
+    redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
 
     num = request.GET.get('num')
     paging = {}
@@ -178,7 +223,7 @@ def app_review(request, addon):
 @permission_required('Apps', 'Review')
 def queue_apps(request):
     qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
-    return _queue(request, utils.WebappQueueTable, 'apps', qs=qs)
+    return _queue(request, utils.WebappQueueTable, 'pending', qs=qs)
 
 
 @permission_required('Apps', 'Review')
@@ -186,8 +231,8 @@ def logs(request):
     data = request.GET.copy()
 
     if not data.get('start') and not data.get('end'):
-        today = date.today()
-        data['start'] = date(today.year, today.month, 1)
+        today = datetime.date.today()
+        data['start'] = datetime.date(today.year, today.month, 1)
 
     form = forms.ReviewAppLogForm(data)
 

@@ -1,10 +1,12 @@
+import datetime
+from itertools import cycle
 import time
 
 from django.core import mail
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from addons.models import AddonUser
@@ -35,6 +37,65 @@ class AppReviewerTest(object):
         eq_(self.client.head(self.url).status_code, 403)
 
 
+class TestReviewersHome(EditorTest):
+
+    def setUp(self):
+        self.login_as_editor()
+        super(TestReviewersHome, self).setUp()
+        self.login_as_editor()
+        self.apps = [app_factory(name='Antelope',
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                     app_factory(name='Bear',
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                     app_factory(name='Cougar',
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)]
+        self.url = reverse('reviewers.home')
+
+    def test_stats_waiting(self):
+        now = datetime.datetime.now()
+        days_ago = lambda n: now - datetime.timedelta(days=n)
+
+        self.apps[0].update(created=days_ago(1))
+        self.apps[1].update(created=days_ago(5))
+        self.apps[2].update(created=days_ago(15))
+
+        doc = pq(self.client.get(self.url).content)
+
+        # Total unreviewed apps.
+        eq_(doc('.editor-stats-title a').text(), 'Pending Updates (3)')
+        # Unreviewed submissions in the past week.
+        ok_('2 unreviewed submissions.' in
+            doc('.editor-stats-table > div').text())
+        # Maths.
+        eq_(doc('.waiting_new').attr('title')[-3:], '33%')
+        eq_(doc('.waiting_med').attr('title')[-3:], '33%')
+        eq_(doc('.waiting_old').attr('title')[-3:], '33%')
+
+    def test_reviewer_leaders(self):
+        reviewers = UserProfile.objects.all()[:2]
+        # 1st user reviews 2, 2nd user only 1.
+        users = cycle(reviewers)
+        for app in self.apps:
+            amo.log(amo.LOG.APPROVE_VERSION, app, app.current_version,
+                    user=users.next(), details={'comments': 'hawt'})
+
+        doc = pq(self.client.get(self.url).content.decode('utf-8'))
+
+        # Top Reviews.
+        table = doc('#editors-stats .editor-stats-table').eq(0)
+        eq_(table.find('td').eq(0).text(), reviewers[0].name)
+        eq_(table.find('td').eq(1).text(), u'2')
+        eq_(table.find('td').eq(2).text(), reviewers[1].name)
+        eq_(table.find('td').eq(3).text(), u'1')
+
+        # Top Reviews this month.
+        table = doc('#editors-stats .editor-stats-table').eq(1)
+        eq_(table.find('td').eq(0).text(), reviewers[0].name)
+        eq_(table.find('td').eq(1).text(), u'2')
+        eq_(table.find('td').eq(2).text(), reviewers[1].name)
+        eq_(table.find('td').eq(3).text(), u'1')
+
+
 class TestAppQueue(AppReviewerTest, EditorTest):
 
     def setUp(self):
@@ -43,10 +104,10 @@ class TestAppQueue(AppReviewerTest, EditorTest):
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='YYY',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
-        self.url = reverse('reviewers.queue_apps')
+        self.url = reverse('reviewers.apps.queue_pending')
 
     def review_url(self, app, num):
-        return urlparams(reverse('reviewers.app_review', args=[app.app_slug]),
+        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
                          num=num)
 
     def test_restricted_results(self):
@@ -89,14 +150,14 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING)
         self.version = self.app.current_version
-        self.url = reverse('reviewers.app_review', args=[self.app.app_slug])
+        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def get_app(self):
         return Webapp.objects.get(id=337141)
 
     def post(self, data):
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, reverse('reviewers.queue_apps'))
+        self.assertRedirects(r, reverse('reviewers.apps.queue_pending'))
 
     @mock.patch.object(settings, 'DEBUG', False)
     def test_cannot_review_my_app(self):
@@ -212,7 +273,7 @@ class TestCannedResponses(EditorTest):
         self.cr_app = CannedResponse.objects.create(
             name=u'app reason', response=u'app reason body',
             sort_group=u'public', type=amo.CANNED_RESPONSE_APP)
-        self.url = reverse('reviewers.app_review', args=[self.app.app_slug])
+        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def test_no_addon(self):
         r = self.client.get(self.url)
@@ -239,7 +300,7 @@ class TestReviewLog(EditorTest):
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='YYY',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
-        self.url = reverse('reviewers.logs')
+        self.url = reverse('reviewers.apps.logs')
 
     def get_user(self):
         return UserProfile.objects.all()[0]

@@ -27,13 +27,13 @@ def reviewers_breadcrumbs(context, queue=None, addon_queue=None, items=None):
     crumbs = [(reverse('reviewers.home'), _('Reviewer Tools'))]
 
     if addon_queue and addon_queue.type == amo.ADDON_WEBAPP:
-        queue = 'apps'
+        queue = 'pending'
 
     if queue:
-        queues = {'apps': _('Apps')}
+        queues = {'pending': _('Apps')}
 
         if items and not queue == 'queue':
-            url = reverse('reviewers.queue_%s' % queue)
+            url = reverse('reviewers.apps.queue_%s' % queue)
         else:
             # The Addon is the end of the trail.
             url = None
@@ -63,4 +63,5 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = queue_counts()
-    return [('apps', 'queue_apps', _('Apps ({0})').format(counts['apps']))]
+    return [('apps', 'queue_pending',
+             _('Apps ({0})').format(counts['pending']))]

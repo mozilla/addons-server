@@ -27,13 +27,13 @@
             <a href="#" class="controller">{{ _('Queues') }}</a>
             {% if queue_counts %}
               <ul>
-                <li><a href="{{ url('reviewers.queue_apps') }}">
-                  {{ _('Apps') }} ({{ queue_counts['apps'] }})</a></li>
+                <li><a href="{{ url('reviewers.apps.queue_pending') }}">
+                  {{ _('Apps') }} ({{ queue_counts['pending'] }})</a></li>
               </ul>
             {% endif %}
           </li>
           <li class="slim">
-            <a href="{{ url('reviewers.logs') }}">{{ _('Logs') }}</a>
+            <a href="{{ url('reviewers.apps.logs') }}">{{ _('Logs') }}</a>
           </li>
           {# TODO: Implement MOTD for apps (bug 741529). #}
           <li class="slim">

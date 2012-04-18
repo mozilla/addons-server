@@ -191,22 +191,24 @@ class ActivityLogManager(amo.models.ManagerBase):
         qs = self._by_type(webapp)
         return qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
 
-    def total_reviews(self):
+    def total_reviews(self, webapp=False):
+        qs = self._by_type(webapp)
         """Return the top users, and their # of reviews."""
-        return (self.values('user', 'user__display_name')
-                    .filter(action__in=amo.LOG_REVIEW_QUEUE)
-                    .annotate(approval_count=models.Count('id'))
-                    .order_by('-approval_count'))
+        return (qs.values('user', 'user__display_name', 'user__username')
+                  .filter(action__in=amo.LOG_REVIEW_QUEUE)
+                  .annotate(approval_count=models.Count('id'))
+                  .order_by('-approval_count'))
 
-    def monthly_reviews(self):
+    def monthly_reviews(self, webapp=False):
         """Return the top users for the month, and their # of reviews."""
+        qs = self._by_type(webapp)
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
-        return (self.values('user', 'user__display_name')
-                    .filter(created__gte=created_date,
-                            action__in=amo.LOG_REVIEW_QUEUE)
-                    .annotate(approval_count=models.Count('id'))
-                    .order_by('-approval_count'))
+        return (qs.values('user', 'user__display_name', 'user__username')
+                  .filter(created__gte=created_date,
+                          action__in=amo.LOG_REVIEW_QUEUE)
+                  .annotate(approval_count=models.Count('id'))
+                  .order_by('-approval_count'))
 
     def _by_type(self, webapp=False):
         qs = super(ActivityLogManager, self).get_query_set()

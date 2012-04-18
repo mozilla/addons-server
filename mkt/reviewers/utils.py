@@ -74,7 +74,7 @@ class WebappQueueTable(tables.ModelTable, ItemStateTable):
 
     @classmethod
     def review_url(cls, row):
-        return reverse('reviewers.app_review', args=[row.app_slug])
+        return reverse('reviewers.apps.review', args=[row.app_slug])
 
     class Meta:
         sortable = True
@@ -142,7 +142,7 @@ class ReviewBase:
                 'reviewer': self.request.user.get_profile().name,
                 'detail_url': absolutify(
                     self.addon.get_url_path(add_prefix=False)),
-                'review_url': absolutify(reverse('reviewers.app_review',
+                'review_url': absolutify(reverse('reviewers.apps.review',
                                                  args=[self.addon.app_slug],
                                                  add_prefix=False)),
                 'status_url': absolutify(self.addon.get_dev_url('versions')),
@@ -254,7 +254,7 @@ class ReviewHelper:
 
     def get_review_type(self, request, addon, version):
         if self.addon.type == amo.ADDON_WEBAPP:
-            self.review_type = 'apps'
+            self.review_type = 'pending'
             self.handler = ReviewApp(request, addon, version, 'pending')
 
     def get_actions(self):

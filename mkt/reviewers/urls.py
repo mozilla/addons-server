@@ -4,11 +4,13 @@ from mkt.urls import APP_SLUG
 from . import views
 
 
-# All URLs under /editortools/.
+# All URLs under /reviewers/.
 urlpatterns = (
     url(r'^$', views.home, name='reviewers.home'),
-    url(r'^queue/apps$', views.queue_apps, name='reviewers.queue_apps'),
+    url(r'^apps/queue/$', views.queue_apps,
+        name='reviewers.apps.queue_pending'),
     url(r'^apps/review/%s$' % APP_SLUG, views.app_review,
-        name='reviewers.app_review'),
-    url(r'^logs$', views.logs, name='reviewers.logs'),
+        name='reviewers.apps.review'),
+    url(r'^apps/logs$', views.logs,
+        name='reviewers.apps.logs'),
 )
