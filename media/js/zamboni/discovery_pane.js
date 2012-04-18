@@ -28,18 +28,15 @@ $(document).ready(function(){
 
     initPromos(null, 'discovery');
     $(this).bind('promos_shown', function(e, $promos) {
-        // Show "Starter Pack" panel only if user has fewer than 3 extensions.
-        if (z.has_addons) {
-            $('#starter').closest('.panel').remove();
-        } else if($('#learn-more').hasClass('video')) { // Is the video available?
+        if($('#learn-more').hasClass('video')) { // Is the video available?
             var starter = $('#starter').closest('.panel'),
-                s_panel = $('<li>', {'class': 'panel'}),
-                s_div = $('<div>', {'class': 'feature promo', 'id': 'addon-video-promo'}),
-                s_title = $('<h2>', {'text': 'First time with Add-ons?'}),
-                s_sub = $('<h3>', {'text': 'Check out our interactive video to learn about some of the awesome things you can do with add-ons!'}),
-                s_button = $('<a>', {'html': '<strong>Watch</strong> the Video', 'href': '#'}),
-                s_button_span = $('<span>', {'class': 'vid-button'}),
-                s_guy = $('<div>', {'class': 'vid-guy'});
+            s_panel = $('<li>', {'class': 'panel'}),
+            s_div = $('<div>', {'class': 'feature promo', 'id': 'addon-video-promo'}),
+            s_title = $('<h2>', {'text': 'First time with Add-ons?'}),
+            s_sub = $('<h3>', {'text': 'Check out our interactive video to learn about some of the awesome things you can do with add-ons!'}),
+            s_button = $('<a>', {'html': '<strong>Watch</strong> the Video', 'href': '#'}),
+            s_button_span = $('<span>', {'class': 'vid-button'}),
+            s_guy = $('<div>', {'class': 'vid-guy'});
 
             starter.replaceWith(s_panel);
             s_panel.append(s_div);
@@ -48,6 +45,9 @@ $(document).ready(function(){
             s_button_span.append(s_button);
             s_div.append(s_button_span);
             s_div.append(s_guy);
+        } else if (z.has_addons) {
+            // Show "Starter Pack" panel only if user has fewer than 3 extensions.
+            $('#starter').closest('.panel').remove();
         }
         // Set up the promo carousel.
         $promos.fadeIn('slow').addClass('js').zCarousel({
