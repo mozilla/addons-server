@@ -188,7 +188,7 @@ class Contribution(amo.models.ModelBase):
         When a reversal (or chargeback) is received from a PayPal IPN
         for this contribution, the hook is called.
         """
-        if self.inapp_payment.count():
+        if hasattr(self, 'inapp_payment') and self.inapp_payment.count():
             self.inapp_payment.get().handle_reversal()
 
     def _switch_locale(self):
