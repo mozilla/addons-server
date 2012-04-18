@@ -229,7 +229,6 @@ JS = {
         'js/mkt/apps.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
-        'js/mkt/lightbox.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
@@ -237,6 +236,10 @@ JS = {
 
         # Account settings.
         'js/mkt/account.js',
+
+        # Detail page.
+        'js/mkt/detail.js',
+        'js/mkt/lightbox.js',
     ),
     'mkt/stats': (
         'js/zamboni/storage.js',

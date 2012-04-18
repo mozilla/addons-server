@@ -187,10 +187,36 @@
 .description {
     clear: both;
     color: @text-gray;
-    padding: 15px 0;
+    padding: 15px 30px 15px 0;
     p {
         .max-width(14);
         font-size: 14px;
+    }
+    a.collapse {
+        .transition(~'.2s opacity');
+        background: url(../../img/mkt/arrows/collapse.png) no-repeat 100% 50%;
+        display: block;
+        float: right;
+        height: 8px;
+        margin-right: -30px;
+        padding: 20px 0;
+        opacity: .7;
+        outline: none;
+        text-indent: -9999px;
+        width: 30px;
+        &:hover,
+        &.expanded {
+            opacity: 1;
+        }
+        &.expanded {
+            .transform(~'scaleY(-1)');
+        }
+    }
+    .more {
+        display: none;
+        &.show {
+            display: block;
+        }
     }
 }
 

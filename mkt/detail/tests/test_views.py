@@ -84,13 +84,28 @@ class TestDetail(DetailBase):
             premie.manifest_url)
         eq_(upsell.find('.prose').text(), 'XXX')
 
-    def test_no_description(self):
-        eq_(self.get_pq()('.description p').text(), '')
+    def test_no_summary_no_description(self):
+        self.webapp.summary = self.webapp.description = ''
+        self.webapp.save()
+        description = self.get_pq()('.description')
+        eq_(description.find('.summary').text(), '')
+        eq_(description.find('.more').length, 0)
+
+    def test_has_summary(self):
+        self.webapp.summary = 'sumthang brief'
+        self.webapp.description = ''
+        self.webapp.save()
+        description = self.get_pq()('.description')
+        eq_(description.find('.summary').text(), self.webapp.summary)
+        eq_(description.find('.more').length, 0)
 
     def test_has_description(self):
-        self.webapp.description = 'xxx'
+        self.webapp.summary = ''
+        self.webapp.description = 'a whole lotta text'
         self.webapp.save()
-        eq_(self.get_pq()('.description p').text(), self.webapp.description)
+        description = self.get_pq()('.description')
+        eq_(description.find('.summary').text(), '')
+        eq_(description.find('.more').text(), self.webapp.description)
 
     def test_no_developer_comments(self):
         eq_(self.get_pq()('.developer-comments').length, 0)
