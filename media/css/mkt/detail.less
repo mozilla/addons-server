@@ -120,17 +120,59 @@
         margin: 0;
         padding: 0;
         a {
+            .border-box;
             display: block;
             .border-radius(3px);
             .box-shadow(0 1px 2px #000);
-            width: 200px;
-            height: 150px;
+            width: 216px;
+            height: 166px;
             background: white;
             padding: 8px;
             margin: 0 16px;
+            display: table;
+            em {
+                display: table-row;
+                width: 100%;
+            }
+            span {
+                display: table-cell;
+                vertical-align: middle;
+            }
             img {
                 display: block;
                 margin: auto;
+                text-align: center;
+            }
+            &.video {
+                background: @black;
+                position: relative;
+                &:after,
+                img {
+                    .transition-property(~'opacity, visibility');
+                    .transition-duration(.3s);
+                }
+                &:after {
+                    background: url(../../img/mkt/icons/video.png) 50% 50% no-repeat;
+                    content: "";
+                    display: block;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                }
+                img {
+                    opacity: .8;
+                }
+                &:hover {
+                    img {
+                        opacity: 1;
+                    }
+                    &:after {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
             }
         }
     }

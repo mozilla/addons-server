@@ -35,6 +35,7 @@ class Video(VideoBase):
             args = [self.name['thumbnailer'],
                     '-t', timepoint,  # Start at this point.
                     '-s', size,  # This can only be one of the sizes.
+                    '-r',  # Remove overlayed borders.
                     self.filename,
                     destination]
             log.info('totem called with: %s' % ' '.join(args))
