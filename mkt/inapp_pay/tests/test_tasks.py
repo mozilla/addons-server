@@ -37,8 +37,8 @@ class TestNotifyApp(PaymentTest):
     def url(self, path, protocol='https'):
         return protocol + '://' + self.domain + path
 
-    def do_chargeback(self):
-        tasks.chargeback_notify(self.payment.pk)
+    def do_chargeback(self, reason):
+        tasks.chargeback_notify(self.payment.pk, reason)
 
     def notify(self):
         tasks.payment_notify(self.payment.pk)
@@ -69,7 +69,7 @@ class TestNotifyApp(PaymentTest):
         eq_(notice.payment.pk, self.payment.pk)
 
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_notify_chargeback(self, urlopen):
+    def test_notify_refund_chargeback(self, urlopen):
         url = self.url(self.chargeback)
         payload = self.payload(typ='mozilla/payments/pay/chargeback/v1')
 
@@ -77,6 +77,8 @@ class TestNotifyApp(PaymentTest):
             dd = jwt.decode(req, verify=False)
             eq_(dd['request'], payload['request'])
             eq_(dd['typ'], payload['typ'])
+            eq_(dd['response']['transactionID'], self.contrib.pk)
+            eq_(dd['response']['reason'], 'refund')
             jwt.decode(req, self.inapp_config.private_key, verify=True)
             return True
 
@@ -86,12 +88,33 @@ class TestNotifyApp(PaymentTest):
                                .expects('read')
                                .returns(str(self.contrib.pk))
                                .expects('close'))
-        self.do_chargeback()
+        self.do_chargeback('refund')
         notice = InappPayNotice.objects.get()
         eq_(notice.notice, amo.INAPP_NOTICE_CHARGEBACK)
         eq_(notice.success, True)
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_notify_reversal_chargeback(self, urlopen):
+        url = self.url(self.chargeback)
+        payload = self.payload(typ='mozilla/payments/pay/chargeback/v1')
+
+        def req_ok(req):
+            dd = jwt.decode(req, verify=False)
+            eq_(dd['response']['reason'], 'reversal')
+            return True
+
+        (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
+                                          timeout=5)
+                               .returns_fake()
+                               .expects('read')
+                               .returns(str(self.contrib.pk))
+                               .expects('close'))
+        self.do_chargeback('reversal')
+        notice = InappPayNotice.objects.get()
+        eq_(notice.notice, amo.INAPP_NOTICE_CHARGEBACK)
+        eq_(notice.success, True)
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', True)
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')

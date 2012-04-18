@@ -20,19 +20,32 @@ log = logging.getLogger('z.inapp_pay.tasks')
 @task
 @write
 def payment_notify(payment_id, **kw):
+    """Notify the app of a successful payment.
+
+    payment_id: pk of InappPayment
+    """
     _notify(payment_id, amo.INAPP_NOTICE_PAY)
 
 
 @task
 @write
-def chargeback_notify(payment_id, **kw):
-    _notify(payment_id, amo.INAPP_NOTICE_CHARGEBACK)
+def chargeback_notify(payment_id, reason, **kw):
+    """Notify the app of a chargeback.
+
+    payment_id: pk of InappPayment
+    reason: either 'reversal' or 'refund'
+    """
+    _notify(payment_id, amo.INAPP_NOTICE_CHARGEBACK,
+            extra_response={'reason': reason})
 
 
-def _notify(payment_id, notice_type):
+def _notify(payment_id, notice_type, extra_response=None):
     payment = InappPayment.objects.get(pk=payment_id)
     config = payment.config
     contrib = payment.contribution
+    response = {'transactionID': contrib.pk}
+    if extra_response:
+        response.update(extra_response)
     if notice_type == amo.INAPP_NOTICE_PAY:
         uri = config.postback_url
         typ = 'mozilla/payments/pay/postback/v1'
@@ -57,7 +70,7 @@ def _notify(payment_id, notice_type):
                                             'name': payment.name,
                                             'description': payment.description,
                                             'productdata': payment.app_data},
-                                'response': {'transactionID': contrib.pk}},
+                                'response': response},
                                config.private_key,
                                algorithm='HS256')
     try:

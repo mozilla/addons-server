@@ -200,6 +200,7 @@ def paypal_refunded(request, post, transaction):
     except Contribution.DoesNotExist:
         pass
 
+    original.handle_chargeback('refund')
     paypal_log.info('Refund IPN received: %s' % post['txn_id'])
     amount = _parse_currency(transaction['amount'])
 
@@ -233,7 +234,7 @@ def paypal_reversal(request, post, transaction):
     except Contribution.DoesNotExist:
         pass
 
-    original.handle_reversal()
+    original.handle_chargeback('reversal')
     paypal_log.info('Reversal IPN received: %s' % post['txn_id'])
     amount = _parse_currency(transaction['amount'])
     refund = Contribution.objects.create(

@@ -150,15 +150,17 @@ class InappPayment(amo.models.ModelBase):
     description = models.CharField(max_length=255, blank=True)
     app_data = models.CharField(max_length=255, blank=True)
 
-    def handle_reversal(self):
+    def handle_chargeback(self, reason):
         """
-        Hook to handle a payment reversal.
+        Hook to handle a payment chargeback.
 
-        When a reversal (or chargeback) is received from a PayPal IPN
+        When a chargeback is received from a PayPal IPN
         for this payment's contribution, the hook is called.
+
+        reason is either 'reversal' or 'refund'
         """
         from mkt.inapp_pay import tasks
-        tasks.chargeback_notify.delay(self.pk)
+        tasks.chargeback_notify.delay(self.pk, reason)
 
     class Meta:
         db_table = 'addon_inapp_payment'

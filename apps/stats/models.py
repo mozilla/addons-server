@@ -181,15 +181,17 @@ class Contribution(amo.models.ModelBase):
             # post_data may be None or missing a key
             return None
 
-    def handle_reversal(self):
+    def handle_chargeback(self, reason):
         """
-        Hook to handle a payment reversal.
+        Hook to handle a payment chargeback.
 
-        When a reversal (or chargeback) is received from a PayPal IPN
+        When a chargeback is received from a PayPal IPN
         for this contribution, the hook is called.
+
+        reason is either 'reversal' or 'refund'
         """
         if hasattr(self, 'inapp_payment') and self.inapp_payment.count():
-            self.inapp_payment.get().handle_reversal()
+            self.inapp_payment.get().handle_chargeback(reason)
 
     def _switch_locale(self):
         if self.source_locale:
