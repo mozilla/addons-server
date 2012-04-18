@@ -231,6 +231,10 @@ class PreviewForm(happyforms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)
+    # This lets us POST the data URIs of the unsaved previews so we can still
+    # show them if there were form errors.
+    unsaved_image_data = forms.CharField(required=False,
+                                         widget=forms.HiddenInput)
 
     def save(self, addon, commit=True):
         if self.cleaned_data:

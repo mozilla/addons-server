@@ -580,6 +580,21 @@ class TestDetails(TestSubmit):
         eq_(rp.context['form_previews'].non_form_errors(),
             ['You must upload at least one screenshot or video.'])
 
+    def test_unsaved_screenshot(self):
+        self._step()
+        # If there are form errors we should still pass the previews URIs.
+        preview_uris = ['moz-filedata:p00p', 'moz-filedata:p33']
+        data = self.preview_formset({
+            'position': 1,
+            'upload_hash': '<hash_one>',
+            'unsaved_image_data': preview_uris[0]
+        })
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 200)
+        form = pq(r.content)('form')
+        eq_(form.find('input[name=files-0-unsaved_image_data]').val(),
+            preview_uris[0])
+
     def test_name_length(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(name='a' * 129))
