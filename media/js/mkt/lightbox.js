@@ -1,3 +1,6 @@
+$('video').bind('focus', function() {
+    alert('focused');
+});
 (function() {
     var $document = $(document),
         $lightbox = $('#lightbox'),
@@ -27,7 +30,7 @@
         //I want to ensure the lightbox is painted before fading it in.
         setTimeout(function() {
             $lightbox.addClass('show');
-        },0);
+        }, 0);
     }
     function hideLightbox() {
         $lightbox.removeClass('show');
@@ -55,12 +58,14 @@
         if ($img.length) {
             $oldimg.css('opacity', 0);
             $img.css('opacity', 1);
+            $img.filter('video').focus();
         } else {
             $img = $(cookieCutter([current, $a.attr('href')]));
             $content.append($img);
             $img.load(function(e) {
                 $oldimg.css('opacity', 0);
                 $img.css('opacity', 1);
+                $img.filter('video').focus();
                 for (var i=0; i<$strip.length; i++) {
                     if (i != current) {
                         var $p = $strip.eq(i).find('a');
@@ -69,20 +74,26 @@
                 }
             });
         }
-        $caption.removeAttr('style oldtext');
-        $caption.text($a.attr('title'));
-        $caption.truncate({dir: 'v'});
+        $caption.text($a.attr('title'))
+                .removeAttr('style oldtext')
+                .truncate({dir: 'v'});
         $lightbox.find('.control').removeClass('disabled');
         if (current < 1) {
             $lightbox.find('.control.prev').addClass('disabled');
         }
-        if (current == $strip.length-1){
+        if (current == $strip.length-1) {
             $lightbox.find('.control.next').addClass('disabled');
         }
     }
     function showNext() {
         if (current < $strip.length-1) {
-            showImage($strip.eq(current+1).find('a'));
+            var $image = $strip.eq(current+1).find('a'),
+                $video = $content.find('video:visible');
+            showImage($image);
+            if ($video.length) {
+                $video.blur();
+                $video[0].pause();
+            }
             if (!this.window) {
                 $(this).blur();
             }
@@ -90,16 +101,22 @@
     }
     function showPrev() {
         if (current > 0) {
-            showImage($strip.eq(current-1).find('a'));
+            var $image = $strip.eq(current-1).find('a'),
+                $video = $content.find('video:visible');
+            showImage($image);
+            if ($video.length) {
+                $video.blur();
+                $video[0].pause();
+            }
             if (!this.window) {
                 $(this).blur();
             }
         }
     }
-    $('#lightbox .next').click(_pd(showNext));
-    $('#lightbox .prev').click(_pd(showPrev));
-    $('.previews ul a').click(_pd(showLightbox));
-    $('#lightbox').click(_pd(function(e) {
+    $lightbox.find('.next').click(_pd(showNext));
+    $lightbox.find('.prev').click(_pd(showPrev));
+    $previews.find('ul a').click(_pd(showLightbox));
+    $lightbox.click(_pd(function(e) {
         if ($(e.target).is('.close, #lightbox')) {
             hideLightbox();
         }

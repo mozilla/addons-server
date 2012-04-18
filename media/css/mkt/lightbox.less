@@ -1,6 +1,7 @@
 @import 'lib';
 
 #lightbox {
+    background: rgba(0,0,0,.2);
     img, video {
         max-height: 80%;
     }
@@ -40,5 +41,14 @@
         font-size: 48px;
         line-height: 50px;
         width: 64px;
+    }
+}
+
+@media (max-width: @4col) {
+    #lightbox {
+        section {
+            .border-radius(0);
+            border: 0;
+        }
     }
 }
