@@ -6,15 +6,17 @@ import re
 from time import gmtime, time
 from urlparse import parse_qsl
 
-from utils import (log_configure, log_exception, log_info, mypool, settings,
-                   CONTRIB_CHARGEBACK, CONTRIB_PURCHASE, CONTRIB_REFUND)
+from utils import (log_configure, log_exception, log_info, log_cef, mypool,
+                   settings, CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
+                   CONTRIB_REFUND)
 
 # Go configure the log.
 log_configure()
 
 import jwt
 import M2Crypto
-#from lib.crypto.receipt import cef, decode
+from lib.crypto.receipt import cef, decode
+
 # This has to be imported after the settings (utils).
 from statsd import statsd
 
@@ -164,8 +166,7 @@ def decode_receipt(receipt):
     """
     with statsd.timer('services.decode'):
         if settings.SIGNING_SERVER_ACTIVE:
-            #raw = decode(receipt)
-            raise NotImplementedError
+            raw = decode(receipt)
         else:
             key = jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
             raw = jwt.decode(receipt, key)
@@ -194,11 +195,11 @@ def application(environ, start_response):
             verify = Verify(addon_id, data)
             output = verify()
             start_response(status, verify.get_headers(len(output)))
-            #cef(environ, addon_id, 'verify', 'Receipt verification')
+            cef(environ, addon_id, 'verify', 'Receipt verification')
         except:
             output = ''
             log_exception({'receipt': '%s...' % data[:10], 'addon': addon_id})
-            #cef(environ, addon_id, 'verify', 'Receipt verification error')
+            cef(environ, addon_id, 'verify', 'Receipt verification error')
             start_response('500 Internal Server Error', [])
 
     return [output]

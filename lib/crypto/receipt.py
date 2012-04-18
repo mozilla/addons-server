@@ -4,7 +4,7 @@ import urllib2
 from django.conf import settings
 from django_statsd.clients import statsd
 
-from amo.utils import log_cef
+from cef import log_cef as _log_cef
 import commonware.log
 
 log = commonware.log.getLogger('z.services')
@@ -59,9 +59,17 @@ def decode(receipt):
 
 def cef(request, app, msg, longer):
     """Log receipt transactions to the CEF library."""
-    log_cef('Receipt %s' % msg, 5, request,
-            # We'll have a user for marketplace interactions, but not for
-            # receipts.
-            username=getattr(request, 'amo_user', ''),
-            signature='RECEIPT%s' % msg.upper(), msg=longer, cs2=app,
-            cs2Label='ReceiptTransaction')
+
+def log_cef(request, app, msg, longer):
+    """Log receipt transactions to the CEF library."""
+    c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
+         'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
+         'cef.version': getattr(settings, 'CEF_VERSION', '0'),
+         'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
+         'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
+
+    kwargs = {'username': getattr(request, 'amo_user', ''),
+              'signature': 'RECEIPT%s' % msg.upper(),
+              'msg': longer, 'config': c,
+              'cs2': app, 'cs2Label': 'ReceiptTransaction'}
+    return _log_cef('Receipt %s' % msg, 5, request, **kwargs)
