@@ -88,10 +88,16 @@ def install_cron(ctx):
 @hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 def deploy_app(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
-    ctx.remote("/bin/touch %s/wsgi/zamboni.wsgi" % settings.REMOTE_APP)
-    ctx.remote("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
-    ctx.remote("/bin/touch %s/services/wsgi/verify.wsgi" % settings.REMOTE_APP)
-    ctx.remote("/bin/touch %s/services/wsgi/application.wsgi" % settings.REMOTE_APP)
+    if getattr(settings, 'GUNICORN', False):
+        ctx.remote("/sbin/service gunicorn-addons graceful")
+        ctx.remote("/sbin/service gunicorn-addons-update graceful")
+        ctx.remote("/sbin/service gunicorn-marketplace graceful")
+        ctx.remote("/sbin/service gunicorn-receiptcheck-marketplace graceful")
+    else:
+        ctx.remote("/bin/touch %s/wsgi/zamboni.wsgi" % settings.REMOTE_APP)
+        ctx.remote("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
+        ctx.remote("/bin/touch %s/services/wsgi/verify.wsgi" % settings.REMOTE_APP)
+        ctx.remote("/bin/touch %s/services/wsgi/application.wsgi" % settings.REMOTE_APP)
 
 
 @hostgroups(settings.CELERY_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})

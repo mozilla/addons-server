@@ -17,4 +17,7 @@ CELERY_HOSTGROUP = "addons-celery-dev"
 
 SSH_KEY = None
 
+# assumes mod_wsgi if False
+GUNICORN = False
+
 CRON_NAME = "addons-dev"
