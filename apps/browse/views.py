@@ -3,7 +3,7 @@ import collections
 from django import http
 from django.db.models import Q
 from django.http import HttpResponsePermanentRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import cache_page
 
 import jingo
@@ -445,3 +445,11 @@ def search_tools(request, category=None):
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
                          'search_extensions_filter': sidebar_ext})
+
+
+def moreinfo_redirect(request):
+    try:
+        addon_id = int(request.GET.get('id', ''))
+        return redirect('discovery.addons.detail', addon_id, permanent=True)
+    except ValueError:
+        raise http.Http404
