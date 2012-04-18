@@ -8,7 +8,7 @@ import amo
 import amo.tests
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
-from market.models import AddonPurchase, PriceCurrency
+from market.models import AddonPremium, AddonPurchase
 from mkt.webapps.models import Webapp
 from mkt.site.helpers import market_button
 
@@ -88,11 +88,10 @@ class TestMarketButton(amo.tests.TestCase):
         assert 'currencies' not in data
 
     def test_some_supported_currencies(self):
-        self.make_premium(self.webapp)
-        self.webapp.premium.update(currencies=['USD', 'CAD'])
-        PriceCurrency.objects.create(tier=self.webapp.premium.price,
-                                     currency='CAD', price='100')
+        self.make_premium(self.webapp, currencies=['CAD'])
+        ad = AddonPremium.objects.get(addon=self.webapp)
+        ad.update(currencies = ['USD', 'CAD'])
         doc = pq(market_button(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
-        eq_(data['currencies']['USD'], '$1.00')
-        eq_(data['currencies']['CAD'], '$100')
+        eq_(json.loads(data['currencies'])['USD'], '$1.00')
+        eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')

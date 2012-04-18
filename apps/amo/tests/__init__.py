@@ -28,7 +28,7 @@ import addons.search
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, Price, PriceCurrency
 import stats.search
 from translations.models import Translation
 from versions.models import Version, ApplicationsVersions
@@ -260,8 +260,12 @@ class TestCase(RedisTest, test_utils.TestCase):
         self.assertRedirects(response,
             '%s?to=%s' % (reverse('users.login'), to), status_code)
 
-    def make_premium(self, addon):
+    def make_premium(self, addon, currencies=None):
         price = Price.objects.create(price='1.00')
+        if currencies:
+            for currency in currencies:
+                PriceCurrency.objects.create(currency=currency,
+                                             price='1.00', tier=price)
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price)
 
