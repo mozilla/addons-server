@@ -89,8 +89,19 @@
 }
 
 .preview-thumb.error-loading {
-    border-color: #C63717;
-    opacity: .5;
+    border-color: darken(@red, 30%);
+    background-color: @red;
+    color: @white;
+    opacity: .6;
+    &:before {
+        display: block;
+        content: "!";
+        font-size: 100px;
+        font-weight: bold;
+        line-height: 94px;
+        text-align: center;
+        width: 100%;
+    }
 }
 
 .edit-previews-readonly .preview-thumb {
