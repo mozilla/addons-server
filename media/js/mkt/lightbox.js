@@ -33,6 +33,7 @@ $('video').bind('focus', function() {
         }, 0);
     }
     function hideLightbox() {
+        pauseVideo();
         $lightbox.removeClass('show');
         // We can't trust transitionend to fire in all cases.
         setTimeout(function() {
@@ -45,6 +46,13 @@ $('video').bind('focus', function() {
             return lbVideo(values);
         } else {
             return lbImage(values);
+        }
+    }
+    function pauseVideo() {
+        var $video = $content.find('video:visible');
+        if ($video.length) {
+            $video.blur();
+            $video[0].pause();
         }
     }
     function showImage(a) {
@@ -87,13 +95,8 @@ $('video').bind('focus', function() {
     }
     function showNext() {
         if (current < $strip.length-1) {
-            var $image = $strip.eq(current+1).find('a'),
-                $video = $content.find('video:visible');
-            showImage($image);
-            if ($video.length) {
-                $video.blur();
-                $video[0].pause();
-            }
+            showImage($strip.eq(current + 1).find('a'));
+            pauseVideo();
             if (!this.window) {
                 $(this).blur();
             }
@@ -101,13 +104,8 @@ $('video').bind('focus', function() {
     }
     function showPrev() {
         if (current > 0) {
-            var $image = $strip.eq(current-1).find('a'),
-                $video = $content.find('video:visible');
-            showImage($image);
-            if ($video.length) {
-                $video.blur();
-                $video[0].pause();
-            }
+            showImage($strip.eq(current - 1).find('a'));
+            pauseVideo();
             if (!this.window) {
                 $(this).blur();
             }
