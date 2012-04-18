@@ -31,6 +31,8 @@ urlpatterns = patterns('',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
+    url('^(themes|extensions)/moreinfo.php$', views.moreinfo_redirect),
+
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
     url('^themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
@@ -49,6 +51,10 @@ urlpatterns = patterns('',
 
     url('^personas/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),
+
+    url('^browse/type:7$',
+        lambda r: redirect("https://www.mozilla.org/plugincheck/",
+                            permanent=True)),
 
     url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+))?'
         '(?:/sort:(?P<sort>[^/]+))?(?:/format:(?P<format>[^/]+).*)?',
