@@ -62,14 +62,13 @@ class TestPremium(amo.tests.TestCase):
 
     def test_currencies(self):
         ap = AddonPremium.objects.create(addon=self.addon, price=self.tier_one)
-        print type(ap.currencies)
         assert self.tier_one.currencies()
         eq_(len(ap.supported_currencies()), 1)
         eq_(ap.supported_currencies()[0][0], 'USD')
 
     def test_add_currency(self):
         ap = AddonPremium.objects.create(addon=self.addon, price=self.tier_one)
-        ap.update(currencies=['CAD'])
+        ap.update(currencies=['USD', 'CAD'])
         eq_(len(ap.supported_currencies()), 2)
         eq_(ap.supported_currencies()[1][0], 'CAD')
 

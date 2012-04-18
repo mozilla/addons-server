@@ -76,8 +76,10 @@ def product_as_dict(request, product, purchased=None):
             'priceLocale': product.premium.get_price_locale(),
             'purchase': product.get_purchase_url(),
         })
-        if len(product.premium.price.currencies()) > 1:
-            currencies_dict = currencies_as_dict(product)
+        currencies = product.premium.supported_currencies()
+        if len(currencies) > 1:
+            currencies_dict = dict([(k, v.get_price_locale())
+                                    for k, v in currencies])
             ret['currencies'] = json.dumps(currencies_dict, cls=JSONEncoder)
         if request.amo_user:
             ret['isPurchased'] = purchased
@@ -86,10 +88,6 @@ def product_as_dict(request, product, purchased=None):
     wl = ('isPurchased', 'price', 'currencies')
     return dict([k, jinja2.escape(v) if k not in wl else v]
                 for k, v in ret.items())
-
-
-def currencies_as_dict(p):
-    return dict([(k, v.get_price_locale()) for k, v in p.premium.price.currencies()])
 
 
 @register.filter
