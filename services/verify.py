@@ -148,7 +148,7 @@ class Verify:
                   'addon': self.addon_id}, msg)
 
     def ok(self, receipt):
-        return json.dumps({'status': 'ok', 'receipt': receipt})
+        return json.dumps({'status': 'ok'})
 
     def refund(self):
         return json.dumps({'status': 'refunded'})

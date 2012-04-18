@@ -97,7 +97,6 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(3615, self.user_data)
         eq_(res['status'], 'ok')
-        eq_(res['receipt'], self.user_data)
 
     def test_expired(self):
         user_data = self.user_data.copy()
