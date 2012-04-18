@@ -91,8 +91,7 @@ class TestMarketButton(amo.tests.TestCase):
         self.make_premium(self.webapp)
         self.webapp.premium.update(currencies=['USD', 'CAD'])
         PriceCurrency.objects.create(tier=self.webapp.premium.price,
-                                    currency='CAD',
-                                    price='100')
+                                     currency='CAD', price='100')
         doc = pq(market_button(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['currencies']['USD'], '$1.00')
