@@ -24,6 +24,7 @@ def payment_notify(payment_id, **kw):
 
     payment_id: pk of InappPayment
     """
+    log.debug('sending payment notice for payment %s' % payment_id)
     _notify(payment_id, amo.INAPP_NOTICE_PAY)
 
 
@@ -35,6 +36,8 @@ def chargeback_notify(payment_id, reason, **kw):
     payment_id: pk of InappPayment
     reason: either 'reversal' or 'refund'
     """
+    log.debug('sending chargeback notice for payment %s, reason %r'
+              % (payment_id, reason))
     _notify(payment_id, amo.INAPP_NOTICE_CHARGEBACK,
             extra_response={'reason': reason})
 
