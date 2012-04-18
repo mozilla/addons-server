@@ -43,8 +43,9 @@ def manifest(request):
         },
         'icons': {
             # Using the default addon image until we get a marketplace logo.
-            '32': media(ctx, 'img/addon-icons/default-32.png'),
-            '64': media(ctx, 'img/addon-icons/default-64.png'),
+            '32': media(ctx, 'img/mkt/logos/32.png'),
+            '64': media(ctx, 'img/mkt/logos/64.png'),
+            '128': media(ctx, 'img/mkt/logos/128.png'),
         },
         # TODO: when we have specific locales, add them in here.
         'locales': {},
