@@ -126,7 +126,7 @@ $(document).ready(function() {
             }
 
             $(this).trigger('upload_finished', [true, r, message]);
-            $('#upload-file button.upload-file-submit').attr('disabled', false);
+            $('#upload-file button.upload-file-submit').removeAttr('disabled').focus();
         });
 
         // Add protocol if needed
