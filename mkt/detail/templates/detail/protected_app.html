@@ -13,6 +13,7 @@
   {% if not product.is_public() %}
     <section id="product-status" class="full notification-box">
       <div>
+        <!-- is_dev={{ is_dev }}, is_admin={{ is_admin }}, status={{ product.status }} -->
         {% if is_dev or is_admin %}
           {% set status_url = product.get_dev_url('versions') %}
           {% if product.status == amo.STATUS_NULL %}
