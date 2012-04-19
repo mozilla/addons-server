@@ -49,11 +49,7 @@
       <img class="icon" src="{{ c.icon_url }}">
       {{ c.name }}
     </a>
-    {% if c.type == amo.ADDON_PERSONA %}
-      <span>{{ users_list(c.persona.listed_authors) or c.persona.display_username }}</span>
-    {% else %}
-      <span>{{ _('by {0}')|f(c.author|user_link)|safe }}</span>
-    {% endif %}
+    <span>{{ _('by {0}')|f(c.author|user_link)|safe }}</span>
   </h3>
   <blockquote>{{ c.description }}</blockquote>
 </div>
