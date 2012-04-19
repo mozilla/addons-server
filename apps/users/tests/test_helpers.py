@@ -6,7 +6,9 @@ from django.contrib.auth.models import AnonymousUser
 import mock
 from nose.tools import eq_
 
+import amo.tests
 from amo.urlresolvers import reverse
+from market.models import PreApprovalUser
 from users.helpers import emaillink, user_link, users_list, user_data
 from users.models import UserProfile, RequestUser
 
@@ -89,15 +91,26 @@ def test_user_data():
     eq_(u['pre_auth'], False)
 
 
-@mock.patch('users.models.RequestUser.has_preapproval_key')
-def test_user_data_approved(has_preapproval_key):
-    has_preapproval_key.return_value = True
-    u = user_data(RequestUser(username='foo', pk=1))
-    eq_(u['anonymous'], False)
-    eq_(u['pre_auth'], True)
+class TestUserData(amo.tests.TestCase):
 
+    def test_user_data_approved(self):
+        up = UserProfile.objects.create(email='aq@a.com', username='foo')
+        PreApprovalUser.objects.create(user=up, paypal_key='asd')
+        u = user_data(RequestUser.objects.get(pk=up.pk))
+        eq_(u['anonymous'], False)
+        eq_(u['pre_auth'], True)
+        eq_(u['currency'], 'USD')
 
-def test_anonymous_user_data():
-    u = user_data(AnonymousUser())
-    eq_(u['anonymous'], True)
-    eq_(u['pre_auth'], False)
+    def test_anonymous_user_data(self):
+        u = user_data(AnonymousUser())
+        eq_(u['anonymous'], True)
+        eq_(u['pre_auth'], False)
+        eq_(u['currency'], 'USD')
+
+    def test_preapproval_user_data(self):
+        up = UserProfile.objects.create(email='aq@a.com', username='foo')
+        PreApprovalUser.objects.create(user=up, paypal_key='asd', currency='EUR')
+        u = user_data(RequestUser.objects.get(pk=up.pk))
+        eq_(u['anonymous'], False)
+        eq_(u['pre_auth'], True)
+        eq_(u['currency'], 'EUR')
