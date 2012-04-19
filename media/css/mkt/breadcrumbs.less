@@ -11,40 +11,37 @@
     width: 100%;
     ol {
         list-style: none;
-        padding: 0 0 5px;
+        padding: 0;
         margin: 0 auto;
         line-height: 20px;
     }
     li {
         display: inline-block;
-        &:before {
+        + li:before {
             content: '\00a0\/\00a0';
             font-size: 14px;
         }
         a {
+            display: inline-block;
             font-weight: bold;
-        }
-        a.home, &:first-child a {
-            background: url(../../img/mkt/icons/home_crumb.png) no-repeat 0 3px;
-            display: block;
-            float: left;
-            height: 17px;
-            margin-top: 3px;
-            overflow: hidden;
-            text-indent: -9999px;
-            text-decoration: none;
-            width: 15px;
-            &:hover {
-                opacity: .7;
-            }
-        }
-        &:first-child:before {
-            content: none;
-        }
-        &:nth-child(2) {
-            padding-left: 7px;
-            &:before {
-                content: none;
+            padding: 5px 0;
+            &.home {
+                &:before {
+                    background: url(../../img/mkt/icons/home_crumb.png) no-repeat 0 50%;
+                    content: "";
+                    display: inline-block;
+                    opacity: .8;
+                    position: relative;
+                    text-decoration: none;
+                    top: 1px;
+                    height: 14px;
+                    width: 25px;
+                }
+                &:hover {
+                    &:before {
+                        opacity: 1;
+                    }
+                }
             }
         }
     }

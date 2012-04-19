@@ -8,6 +8,8 @@
   {% set title = _('{0} | Search')|f(query_term) %}
   {# L10n: {0} is a search term, such as Firebug. #}
   {% set heading = _('Search Results for "{0}"')|f(query_term) %}
+  {% set crumbs = [(url('search.search'), _('Search')),
+                   (None, query_term)] %}
 {% elif category %}
   {% set search_url = url('search.search')|urlparams(cat=category.id) %}
   {% set title = category.name %}
@@ -32,6 +34,8 @@
   {% if title %}
     {% set heading = title %}
     {% set title = '%s | %s' % (title, _('Apps')) %}
+    {% set crumbs = [(url('browse.apps'), _('Apps')),
+                     (None, title)] %}
   {% else %}
     {% set title = 'Apps' %}
     {% set heading = title %}
@@ -39,6 +43,10 @@
 {% else %}
   {% set title = _('Search') %}
   {% set heading = title %}
+{% endif %}
+
+{% if not crumbs %}
+  {% set crumbs = [(None, title)] %}
 {% endif %}
 
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
@@ -80,7 +88,7 @@
 {% endmacro %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None, title)]) }}
+  {{ mkt_breadcrumbs(product, crumbs) }}
   <section class="c">
     <section id="search-facets" class="col">
       <h2>{{ _('Filter Results') }}</h2>
