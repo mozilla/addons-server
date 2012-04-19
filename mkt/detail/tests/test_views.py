@@ -429,6 +429,16 @@ class TestInstall(amo.tests.TestCase):
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         assert self.client.login(username=self.user.email, password='password')
 
+    def test_pending_for_reviewer(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        eq_(self.client.post(self.url).status_code, 200)
+
+    def test_pending_for_anonymous(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        eq_(self.client.post(self.url).status_code, 404)
+
     def test_not_record_addon(self):
         self.addon.update(type=amo.ADDON_EXTENSION)
         self.client.post(self.url)
