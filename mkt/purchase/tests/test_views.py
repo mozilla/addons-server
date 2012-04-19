@@ -401,7 +401,8 @@ class TestPurchaseDetails(amo.tests.TestCase):
     def test_pre_approval(self, get_preapproval_key):
         get_preapproval_key.return_value = {'preapprovalKey': 'x'}
         self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.post(self.pre_url)
+        res = self.client.post(self.pre_url, {'currency':'USD'})
+        eq_(res.status_code, 302)
         eq_(res['Location'], get_preapproval_url('x'))
 
 
