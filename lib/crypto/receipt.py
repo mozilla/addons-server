@@ -2,6 +2,7 @@ import json
 import urllib2
 
 from django.conf import settings
+from django.http import HttpRequest
 from django_statsd.clients import statsd
 
 from cef import log_cef as _log_cef
@@ -58,7 +59,7 @@ def decode(receipt):
     raise NotImplementedError
 
 
-def cef(request, app, msg, longer):
+def cef(environ, app, msg, longer):
     """Log receipt transactions to the CEF library."""
     c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
          'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
@@ -71,5 +72,6 @@ def cef(request, app, msg, longer):
               'msg': longer, 'config': c,
               'cs2': app, 'cs2Label': 'ReceiptTransaction'}
 
-    environ = request.META.copy()
+    if isinstance(environ, HttpRequest):
+        environ = environ.META.copy()
     return _log_cef('Receipt %s' % msg, 5, environ, **kwargs)
