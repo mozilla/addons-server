@@ -42,7 +42,7 @@ class TestVerify(amo.tests.TestCase):
 
     def get_decode(self, addon_id, receipt):
         # Ensure that the verify code is using the test database cursor.
-        v = verify.Verify(addon_id, receipt)
+        v = verify.Verify(addon_id, receipt, {})
         v.cursor = connection.cursor()
         return json.loads(v())
 
@@ -112,19 +112,21 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(3615, user_data)
         eq_(res['status'], 'expired')
 
-    def test_expired(self):
+    def test_expired_has_receipt(self):
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
         self.make_install()
         res = self.get(3615, user_data)
-        eq_(res['status'], 'expired')
+        assert 'receipt' in res
 
-    def test_garbage_expired(self):
+    @mock.patch('services.verify.sign')
+    def test_new_expiry(self, sign):
         user_data = self.user_data.copy()
-        user_data['exp'] = 'a'
+        user_data['exp'] = old = calendar.timegm(time.gmtime()) - 10000
         self.make_install()
-        res = self.get(3615, user_data)
-        eq_(res['status'], 'expired')
+        sign.return_value = ''
+        self.get(3615, user_data)
+        assert sign.call_args[0][0]['exp'] > old
 
     def test_premium_addon_not_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
@@ -208,7 +210,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch.object(verify, 'decode_receipt')
     def get_headers(self, decode_receipt):
         decode_receipt.return_value = ''
-        return verify.Verify(3615, '').get_headers(1)
+        return verify.Verify(3615, '', mock.Mock()).get_headers(1)
 
     def test_cross_domain(self):
         hdrs = self.get_headers()

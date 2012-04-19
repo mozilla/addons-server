@@ -24,7 +24,8 @@ def sign(receipt):
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
     headers = {'Content-Type': 'application/json'}
-    request = urllib2.Request(destination, json.dumps(receipt), headers)
+    data = receipt if isinstance(receipt, basestring) else json.dumps(receipt)
+    request = urllib2.Request(destination, data, headers)
 
     try:
         with statsd.timer('services.sign'):
@@ -59,9 +60,6 @@ def decode(receipt):
 
 def cef(request, app, msg, longer):
     """Log receipt transactions to the CEF library."""
-
-def log_cef(request, app, msg, longer):
-    """Log receipt transactions to the CEF library."""
     c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
          'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
          'cef.version': getattr(settings, 'CEF_VERSION', '0'),
@@ -72,4 +70,5 @@ def log_cef(request, app, msg, longer):
               'signature': 'RECEIPT%s' % msg.upper(),
               'msg': longer, 'config': c,
               'cs2': app, 'cs2Label': 'ReceiptTransaction'}
+
     return _log_cef('Receipt %s' % msg, 5, request, **kwargs)

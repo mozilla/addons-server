@@ -330,7 +330,8 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 302)
 
     @mock.patch('mkt.detail.views.send_request')
-    def test_record_metrics(self, send_request):
+    @mock.patch('mkt.detail.views.cef')
+    def test_record_metrics(self, cef, send_request):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(send_request.call_args[0][0], 'install')
@@ -351,12 +352,14 @@ class TestInstall(amo.tests.TestCase):
         eq_([x[0][2] for x in cef.call_args_list],
             ['request', 'sign', 'request'])
 
-    def test_record_install(self):
+    @mock.patch('mkt.detail.views.cef')
+    def test_record_install(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
 
-    def test_record_multiple_installs(self):
+    @mock.patch('mkt.detail.views.cef')
+    def test_record_multiple_installs(self, cef):
         self.client.post(self.url)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
@@ -364,7 +367,8 @@ class TestInstall(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                        amo.tests.AMOPaths.sample_key())
-    def test_record_receipt(self):
+    @mock.patch('mkt.detail.views.cef')
+    def test_record_receipt(self, cef):
         res = self.client.post(self.url)
         content = json.loads(res.content)
         assert content.get('receipt'), content

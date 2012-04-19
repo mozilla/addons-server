@@ -6,7 +6,7 @@ import re
 from time import gmtime, time
 from urlparse import parse_qsl
 
-from utils import (log_configure, log_exception, log_info, log_cef, mypool,
+from utils import (log_configure, log_exception, log_info, mypool,
                    settings, CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
                    CONTRIB_REFUND)
 
@@ -15,7 +15,7 @@ log_configure()
 
 import jwt
 import M2Crypto
-from lib.crypto.receipt import cef, decode
+from lib.crypto.receipt import cef, decode, sign
 
 # This has to be imported after the settings (utils).
 from statsd import statsd
@@ -23,10 +23,11 @@ from statsd import statsd
 
 class Verify:
 
-    def __init__(self, addon_id, receipt):
+    def __init__(self, addon_id, receipt, environ):
         # The regex should ensure that only sane ints get to this point.
         self.addon_id = int(addon_id)
         self.receipt = receipt
+        self.environ = environ
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
 
@@ -43,20 +44,6 @@ class Verify:
         except (jwt.DecodeError, M2Crypto.RSA.RSAError), e:
             self.log('Error decoding receipt: %s' % e)
             return self.invalid()
-
-        # Check the expiry on a receipt.
-        try:
-            expire = int(receipt.get('exp', 0))
-        except ValueError:
-            self.log('Error with expiry in the receipt')
-            return self.expired()
-
-        now = calendar.timegm(gmtime()) + 10  # For any clock skew.
-        if now > expire:
-            self.log('This receipt has expired: %s UTC < %s UTC'
-                                 % (datetime.utcfromtimestamp(expire),
-                                    datetime.utcfromtimestamp(now)))
-            return self.expired()
 
         try:
             assert receipt['user']['type'] == 'directed-identifier'
@@ -106,7 +93,7 @@ class Verify:
         # information.
         if not premium:
             self.log('Valid receipt, not premium')
-            return self.ok(receipt)
+            return self.ok_or_expired(receipt)
 
         else:
             sql = """SELECT id, type FROM addon_purchase
@@ -125,7 +112,7 @@ class Verify:
 
             elif result[-1] == CONTRIB_PURCHASE:
                 self.log('Valid receipt')
-                return self.ok(receipt)
+                return self.ok_or_expired(receipt)
 
             else:
                 self.log('Valid receipt, but invalid contribution')
@@ -149,14 +136,35 @@ class Verify:
         log_info({'receipt': '%s...' % self.receipt[:10],
                   'addon': self.addon_id}, msg)
 
-    def ok(self, receipt):
+    def ok_or_expired(self, receipt):
+        # This receipt is ok now let's check it's expiry.
+        # If it's expired, we'll have to return a new receipt
+        try:
+            expire = int(receipt.get('exp', 0))
+        except ValueError:
+            self.log('Error with expiry in the receipt')
+            return self.expired(receipt)
+
+        now = calendar.timegm(gmtime()) + 10  # For any clock skew.
+        if now > expire:
+            self.log('This receipt has expired: %s UTC < %s UTC'
+                                 % (datetime.utcfromtimestamp(expire),
+                                    datetime.utcfromtimestamp(now)))
+            return self.expired(receipt)
+
+        return self.ok()
+
+    def ok(self):
         return json.dumps({'status': 'ok'})
 
     def refund(self):
         return json.dumps({'status': 'refunded'})
 
-    def expired(self):
-        return json.dumps({'status': 'expired'})
+    def expired(self, receipt):
+        receipt['exp'] = (calendar.timegm(gmtime()) +
+                          settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
+        cef(self.environ, self.addon_id, 'sign', 'Expired signing request')
+        return json.dumps({'status': 'expired', 'receipt': sign(receipt)})
 
 
 def decode_receipt(receipt):
@@ -192,7 +200,7 @@ def application(environ, start_response):
             return [output]
 
         try:
-            verify = Verify(addon_id, data)
+            verify = Verify(addon_id, data, environ)
             output = verify()
             start_response(status, verify.get_headers(len(output)))
             cef(environ, addon_id, 'verify', 'Receipt verification')

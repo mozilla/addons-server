@@ -254,7 +254,6 @@ def create_receipt(installed_pk):
                    reissue=absolutify(reissue))
     if settings.SIGNING_SERVER_ACTIVE:
         # The shiny new code.
-        cef(installed.user, installed.addon, 'sign', 'A signing request')
         return sign(receipt)
     else:
         # Our old bad code.
