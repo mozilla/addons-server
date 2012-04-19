@@ -17,7 +17,7 @@
           <button id="search-go">Go</button>
         </form>
       {% endblock %}
-      <ul>
+      <ul id="flyout">
         <li><a href="{{ url('home') }}">{{ _('Home') }}</a></li>
         <li><a href="{{ url('browse.apps')|urlparams(sort='downloads') }}">
           {{ _('Popular') }}</a></li>
