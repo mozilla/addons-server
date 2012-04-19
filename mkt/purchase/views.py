@@ -194,4 +194,8 @@ def preapproval(request, addon):
 @login_required
 @addon_view
 def reissue(request, addon):
-    raise NotImplementedError
+    reissue = not addon.is_premium()
+    if addon.is_premium() and addon.has_purchased(request.amo_user):
+        reissue = True
+    return jingo.render(request, 'purchase/reissue.html',
+                        {'reissue': reissue, 'app': addon})

@@ -1,0 +1,15 @@
+{% extends 'mkt/base.html' %}
+
+{% block content %}
+  <section>
+    {% if reissue %}
+      {# TODO install is not the right text for this button and I'm not
+         sure on any of this text either. #}
+      <p>{{ loc('Update the receipt for this app.') }}</p>
+      {{ market_button(app) }}
+    {% else %}
+      <p>{{ loc('Our records show that you have not purchased this app.') }}</p>
+      <a class="button" href="{{ app.get_detail_url() }}">Purchase app</a>
+    {% endif %}
+  </section>
+{% endblock %}
