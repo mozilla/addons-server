@@ -67,6 +67,7 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
         eq_(doc('#site-noinstall-apps').length, 0)
+        eq_(doc('#acr-pitch').length, 1)
 
     @mock.patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
@@ -76,6 +77,7 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
         eq_(doc('#site-noinstall-apps').length, 0)
+        eq_(doc('#acr-pitch').length, 1)
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_thunderbird_balloons_no_readonly(self):
@@ -90,6 +92,8 @@ class TestCommon(amo.tests.TestCase):
         doc = pq(response.content)
         eq_(doc('#site-notice').length, 1)
         eq_(doc('#site-nonfx').length, 0,
+            'This balloon should appear for Firefox only')
+        eq_(doc('#acr-pitch').length, 0,
             'This balloon should appear for Firefox only')
         eq_(doc('#site-welcome').length, 1)
         eq_(doc('#site-noinstall-apps').length, 0)
