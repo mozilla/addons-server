@@ -19,57 +19,35 @@
     }
 }
 
+.slide-pager {
+    margin: 5px 0 0;
+    .next-page, .prev-page {
+        display: inline-block;
+        width: 18px;
+        height: 19px;
+        background: url(../../img/mkt/arrows/plain-lrg-go.png) no-repeat 0 0;
+        &:hover {
+            background-position: 0 -19px;
+        }
+    }
+    .prev-page {
+        .transform(scaleX(-1));
+    }
+    .next-page {
+        float: right;
+    }
+}
+
 .touch {
     .slider {
         overflow-x: scroll;
     }
 }
 
-@-moz-keyframes moving-left {
-	from, to {
-	    -moz-animation-timing-function: ease-out;
-	}
-	50% {
-	    left: -100%;
-        -moz-animation-timing-function: ease-in;
-	}
-}
-
-@-moz-keyframes moving-right {
-	from, to {
-	    -moz-animation-timing-function: ease-out;
-	}
-	50% {
-	    left: 100%;
-        -moz-animation-timing-function: ease-in;
-	}
-}
-
 .desktop {
     .slider ul {
         left: 0;
         position: relative;
-        &.moving-left {
-            .animation(moving-left 15s infinite);
-        }
-        &.moving-right {
-            .animation(moving-right 15s infinite);
-        }
-        &.hovered.stop {
-            animation-play-state: paused;
-            -moz-animation-play-state: paused;
-            background:pink;
-        }
-        &.done {
-            -moz-animation-play-state: paused;
-            left: 0;
-        }
-        .frozen {
-            a {
-                background-color: red !important;
-                color: pink;
-            }
-        }
     }
 }
 
