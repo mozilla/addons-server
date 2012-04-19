@@ -62,9 +62,9 @@ class TestReviewersHome(EditorTest):
         doc = pq(self.client.get(self.url).content)
 
         # Total unreviewed apps.
-        eq_(doc('.editor-stats-title a').text(), 'Pending Updates (3)')
+        eq_(doc('.editor-stats-title a').text(), '3 App Reviews')
         # Unreviewed submissions in the past week.
-        ok_('2 unreviewed submissions.' in
+        ok_('2 unreviewed app submissions' in
             doc('.editor-stats-table > div').text())
         # Maths.
         eq_(doc('.waiting_new').attr('title')[-3:], '33%')
