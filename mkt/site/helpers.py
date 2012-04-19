@@ -68,7 +68,7 @@ def product_as_dict(request, product, purchased=None):
                                src=request.GET.get('src', '')),
         'author': author,
         'author_url': author_url,
-        'icon_128_url': product.get_icon_url(128)
+        'iconUrl': product.get_icon_url(64)
     }
     if product.is_premium():
         ret.update({
