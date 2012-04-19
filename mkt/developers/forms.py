@@ -334,10 +334,6 @@ class PremiumForm(happyforms.Form):
         }
         if self.addon.premium:
             kw['initial']['price'] = self.addon.premium.price
-        elif len(self.fields['price'].choices) > 1:
-            # Tier 0 (Free) should not be the default selection.
-            kw['initial']['price'] = (Price.objects.active()
-                                      .exclude(price='0.00')[0])
 
         upsell = self.addon.upsold
         if upsell:
@@ -356,6 +352,10 @@ class PremiumForm(happyforms.Form):
                                     .filter(premium_type__in=amo.ADDON_FREES,
                                             status__in=amo.VALID_STATUSES,
                                             type=self.addon.type))
+        if len(self.fields['price'].choices) > 1:
+            # Tier 0 (Free) should not be the default selection.
+            self.initial['price'] = (Price.objects.active()
+                                     .exclude(price='0.00')[0])
 
         # For the wizard, we need to remove some fields.
         for field in self.extra.get('exclude', []):

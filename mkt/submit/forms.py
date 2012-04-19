@@ -107,10 +107,6 @@ class UpsellForm(happyforms.Form):
         kw['initial']['make_public'] = amo.PUBLIC_IMMEDIATELY
         if self.addon.premium:
             kw['initial']['price'] = self.addon.premium.price
-        elif len(self.fields['price'].choices) > 1:
-            # Tier 0 (Free) should not be the default selection.
-            kw['initial']['price'] = (Price.objects.active()
-                                      .exclude(price='0.00')[0])
 
         super(UpsellForm, self).__init__(*args, **kw)
         self.fields['free'].queryset = (self.extra['amo_user'].addons
@@ -118,6 +114,11 @@ class UpsellForm(happyforms.Form):
                                     .filter(premium_type__in=amo.ADDON_FREES,
                                             status__in=amo.VALID_STATUSES,
                                             type=self.addon.type))
+
+        if len(self.fields['price'].choices) > 1:
+            # Tier 0 (Free) should not be the default selection.
+            self.initial['price'] = (Price.objects.active()
+                                     .exclude(price='0.00')[0])
 
     def clean_text(self):
         if (self.cleaned_data['do_upsell']
