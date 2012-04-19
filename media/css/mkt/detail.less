@@ -3,6 +3,54 @@
 @text-gray: #424f5a;
 @link: #2d87ca;
 
+.checkmark {
+    display: block;
+    color: @black;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+    &:before {
+        .border-radius(10px);
+        background-color: @green;
+        color: @white;
+        content: "\2714";  /* checkmark */
+        display: inline-block;
+        font-weight: normal;
+        height: 20px;
+        margin-right: 5px;
+        position: relative;
+        text-align: center;
+        width: 20px;
+    }
+}
+
+.actions {
+    .button {
+        position: relative;
+        z-index: 1;
+    }
+    .approval {
+        .border-radius(0 0 5px 5px);
+        background: fadeOut(@green, 90%);
+        display: block;
+        margin-top: -5px;
+        padding: 15px 5px 10px;
+        position: relative;
+        z-index: 0;
+    }
+    .approval-pitch {
+        display: block;
+        color: @dark-gray;
+        font-size: 12px;
+        font-weight: bold;
+        padding-top: 8px;
+        text-align: center;
+        &:hover {
+            color: @medium-gray;
+        }
+    }
+}
+
 .icon {
     background: @white;
     .border-radius(2px);
@@ -257,7 +305,6 @@
 }
 
 .listing .device-list {
-    padding-top: 3px;
     text-align: center;
     h4, ul {
         display: block;

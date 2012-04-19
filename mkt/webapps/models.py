@@ -22,7 +22,7 @@ from amo.utils import memoize
 from addons import query
 from addons.models import Addon, update_name_table, update_search_index
 from files.models import FileUpload, Platform
-from lib.crypto.receipt import sign, cef
+from lib.crypto.receipt import sign
 from versions.models import Version
 
 import jwt
@@ -194,6 +194,9 @@ class Webapp(Addon):
                               .exclude(id=self.id).distinct()
                               .filter(addonuser__listed=True,
                                       authors__in=self.listed_authors))
+
+    def can_purchase(self):
+        return self.is_premium() and self.premium and self.is_public()
 
 
 # Pull all translated_fields from Addon over to Webapp.

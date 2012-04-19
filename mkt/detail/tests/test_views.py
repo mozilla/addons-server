@@ -13,7 +13,9 @@ import amo
 from amo.helpers import external_url
 import amo.tests
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from market.models import PreApprovalUser
 from users.models import UserProfile
+
 from mkt.webapps.models import Webapp
 
 
@@ -30,6 +32,9 @@ class DetailBase(amo.tests.TestCase):
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
+
+    def get_user(self):
+        return UserProfile.objects.get(email='regular@mozilla.com')
 
     def get_pq(self):
         r = self.client.get(self.url)
@@ -152,6 +157,36 @@ class TestDetail(DetailBase):
         eq_(url.length, 1)
         eq_(url.find('a').text(), self.webapp.homepage)
         eq_(url.find('a').attr('href'), external_url(self.webapp.homepage))
+
+    def test_free_no_preapproval(self):
+        eq_(self.get_pq()('.approval-pitch, .approval.checkmark').length, 0)
+
+    def test_free_preapproval_enabled(self):
+        PreApprovalUser.objects.create(user=self.get_user(), paypal_key='xyz')
+        eq_(self.get_pq()('.approval-pitch, .approval.checkmark').length, 0)
+
+    def test_paid_no_preapproval_anonymous(self):
+        self.make_premium(self.webapp)
+        doc = self.get_pq()
+        eq_(doc('.approval-pitch').length, 1)
+        eq_(doc('.approval.checkmark').length, 0)
+
+    def test_paid_no_preapproval_authenticated(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.make_premium(self.webapp)
+        doc = self.get_pq()
+        eq_(doc('.approval-pitch').length, 1)
+        eq_(doc('.approval.checkmark').length, 0)
+
+    def test_paid_preapproval_enabled(self):
+        self.make_premium(self.webapp)
+        user = self.get_user()
+        assert self.client.login(username=user.email, password='password')
+        PreApprovalUser.objects.create(user=user, paypal_key='xyz')
+        doc = self.get_pq()
+        eq_(doc('.approval-pitch').length, 0)
+        eq_(doc('.approval.checkmark').length, 1)
 
 
 class TestDetailPagePermissions(DetailBase):

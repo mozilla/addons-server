@@ -61,6 +61,14 @@
     <div class="actions">
       {% if product.is_public() %}
         {{ market_button(product) }}
+        {% if product.can_purchase() %}
+          {% if request.amo_user and request.amo_user.get_preapproval().paypal_key %}
+            <span class="approval checkmark">{{ _('PayPal pre-approval') }}</span>
+          {% else %}
+            <a class="approval-pitch" href="{{ url('account.payment') }}">
+              {{ _('Set up purchasing') }}</a>
+          {% endif %}
+        {% endif %}
       {% endif %}
       {% if is_dev %}
         <p><a href="{{ product.get_dev_url() }}" class="button developer manage">
