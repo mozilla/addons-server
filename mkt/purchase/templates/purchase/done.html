@@ -23,35 +23,5 @@
         Your purchase of <b>{{ name }}</b> is complete.
       {% endwith %}
     </p>
-    <p>
-      {% with manifest_url=product.manifest_url, receipt=receipt, href='#',
-               class='trigger_app_install' %}
-        If installation does not automatically begin, please
-        <a class="{{ class }}" data-receipt="{{ receipt }}" data-manifest-url="{{ manifest_url }}" href="{{ href }}">
-          click here</a>.
-      {% endwith %}
-    </p>
-    <p class="mozilla-mission">
-      {% with learn_more='http://www.mozilla.org/causes' %}
-        Your purchase helps support Mozilla's mission.
-        <a href="{{ learn_more }}" target="_blank">Learn more</a>
-      {% endwith %}
-    </p>
-
-    {% if waffle.flag('allow-pre-auth') and not amo_user.has_preapproval_key() %}
-      <form form id="preapproval" method="post" action="{{ url('users.payments.preapproval') }}">
-        {{ csrf() }}
-        <p>{{ loc('Want to do this faster next time?') }}</p>
-        <p>{{ loc('Setting up PayPal pre-approval allows you to buy apps quickly on this site. They also allow you to use in-app purchases that go through this site.') }}</p>
-        <p><button type="submit">{{ loc('Set up pre-approval') }}</button></p>
-      </form>
-    {% endif %}
-
-    <a href="{{ url('account.purchases') }}">{{ _('My Purchases') }}</a>
-    {# TODO(marketplace-docs)
-      &middot;
-      <a href="{{ url('devhub.docs', doc_name='marketplace') }}">{{ loc('Marketplace Support') }}</a>
-    #}
-  </section>
   <script src="{{ media('/js/mkt/purchase_success.js') }}"></script>
 {% endif %}
