@@ -89,6 +89,20 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.client.post_ajax(self.purchase_url, data={'tier': 0})
 
     @fudge.patch('paypal.get_paykey')
+    def test_paykey_default_currency(self, get_paykey):
+        PreApprovalUser.objects.create(user=self.user, currency='BRL',
+                                       paypal_key='foo')
+
+        def check(*args, **kw):
+            return (args[0]['currency'] == 'BRL' and
+                    args[0]['amount'] == Decimal('0.99'))
+        (get_paykey.expects_call()
+                   .with_args(arg.passes_test(check))
+                   .returns(('some-pay-key', '')))
+        self.client.post_ajax(self.purchase_url, data={'tier': 0})
+
+
+    @fudge.patch('paypal.get_paykey')
     def test_paykey_error(self, get_paykey):
         get_paykey.expects_call().raises(PaypalError())
         res = self.client.post_ajax(self.purchase_url)
