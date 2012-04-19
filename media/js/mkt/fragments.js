@@ -14,7 +14,8 @@
                 href.substr(0,1) === '#' ||
                 href.indexOf('/developers/') !== -1 ||
                 href.indexOf('/statistics/') !== -1 ||
-                href.indexOf('?modified=') !== -1) {
+                href.indexOf('?modified=') !== -1 ||
+                this.getAttribute('target') === '_blank') {
                 return;
             }
             e.preventDefault();

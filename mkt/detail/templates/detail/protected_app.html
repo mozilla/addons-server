@@ -9,6 +9,11 @@
 {% set is_dev = request.check_ownership(product, require_owner=False,
                                         ignore_disabled=True) %}
 
+{# Reviewers should be able to see pending apps. #}
+{% if not is_admin and is_reviewer and product.is_pending() %}
+  {% set is_admin = True %}
+{% endif %}
+
 {% macro notification(product, amo, is_dev) %}
   {% if not product.is_public() %}
     <section id="product-status" class="full notification-box">

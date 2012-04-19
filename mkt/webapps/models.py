@@ -198,6 +198,9 @@ class Webapp(Addon):
     def can_purchase(self):
         return self.is_premium() and self.premium and self.is_public()
 
+    def is_pending(self):
+        return self.status == amo.STATUS_PENDING
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

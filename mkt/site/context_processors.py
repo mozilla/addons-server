@@ -23,6 +23,7 @@ def global_settings(request):
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
         account_links = []
+        context['is_reviewer'] = acl.check_reviewer(request)
         if waffle.switch_is_active('unleash-consumer'):
             account_links = [
                 {'text': _('My Purchases'),
@@ -38,7 +39,7 @@ def global_settings(request):
         if '/developers/' not in request.path:
             tools_links.append({'text': _('Developer Hub'),
                                 'href': reverse('mkt.developers.index')})
-        if '/reviewers/' not in request.path and acl.check_reviewer(request):
+        if '/reviewers/' not in request.path and context['is_reviewer']:
             tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('reviewers.home')})
         if acl.action_allowed(request, 'Localizers', '%'):

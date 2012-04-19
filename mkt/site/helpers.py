@@ -28,14 +28,20 @@ def no_results():
 def market_button(context, product):
     request = context['request']
     if product.is_webapp():
+        faked_purchase = False
         purchased = (request.amo_user and
                      product.pk in request.amo_user.purchase_ids())
+        is_dev = request.check_ownership(product, require_owner=False,
+                                         ignore_disabled=True)
+        if (not purchased and is_dev or product.is_pending() and
+            (context['is_reviewer'] or context['is_admin'])):
+            purchased = faked_purchase = True
         classes = ['button', 'product']
         label = price_label(product)
         product_dict = product_as_dict(request, product, purchased=purchased)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
-            'manifestUrl': product.manifest_url,
+            'manifestUrl': product.manifest_url
         }
         if product.is_premium() and product.premium:
             classes.append('premium')
@@ -43,7 +49,7 @@ def market_button(context, product):
             classes.append('install')
             label = _('Install')
         # TODO: Show inline BroswerID login popup for non-authenticated users.
-        c = dict(product=product, label=label,
+        c = dict(product=product, label=label, faked_purchase=faked_purchase,
                  data_attrs=data_attrs, classes=' '.join(classes))
         t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))

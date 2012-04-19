@@ -69,10 +69,17 @@
               {{ _('Set up purchasing') }}</a>
           {% endif %}
         {% endif %}
+      {% elif is_dev or is_reviewer %}
+        {{ market_button(product) }}
       {% endif %}
       {% if is_dev %}
-        <p><a href="{{ product.get_dev_url() }}" class="button developer manage">
+        <p><a href="{{ product.get_dev_url() }}" class="button manage">
           {{ _('Manage') }}</a></p>
+      {% endif %}
+      {% if is_reviewer and product.is_pending() %}
+        <p><a href="{{ url('reviewers.app_review', product.app_slug) }}"
+              class="button good" target="_blank">
+          {{ _('Approve / Reject') }}</a></p>
       {% endif %}
     </div>
   </section>

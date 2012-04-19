@@ -6,6 +6,10 @@
 @btn-r-dark: darken(spin(@btn-r, 3), 8%);
 @btn-r-lite: saturate(spin(@btn-r, 4), 60%);
 
+@btn-g: lighten(spin(@btn-b, -115), 4%);
+@btn-g-dark: darken(spin(@btn-g, 3), 8%);
+@btn-g-lite: saturate(spin(@btn-g, 4), 60%);
+
 .button, button {
     .gradient-two-color(@btn-b, @btn-b-dark);
     .border-radius(4px);
@@ -20,6 +24,14 @@
     text-align: center;
     text-decoration: none;
     text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    &.good {
+        .gradient-two-color(@btn-g, @btn-g-dark);
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 -2px 0 0 rgba(0,0,0,.2),
+                        inset 0 12px 24px 2px @btn-g-lite);
+        }
+    }
     &.delete, &.manage {
         .gradient-two-color(@btn-r, @btn-r-dark);
         &:hover {

@@ -29,14 +29,28 @@
         position: relative;
         z-index: 1;
     }
+    .faked-purchase,
     .approval {
         .border-radius(0 0 5px 5px);
-        background: fadeOut(@green, 90%);
         display: block;
         margin-top: -5px;
         padding: 15px 5px 10px;
         position: relative;
         z-index: 0;
+    }
+    .faked-purchase {
+        .border-radius(0 0 5px 5px);
+        background: fadeOut(@red, 90%);
+        font-size: 12px;
+        text-align: center;
+        b {
+            color: @maroon;
+            display: block;
+            text-transform: uppercase;
+        }
+    }
+    .approval {
+        background: fadeOut(@green, 90%);
     }
     .approval-pitch {
         display: block;

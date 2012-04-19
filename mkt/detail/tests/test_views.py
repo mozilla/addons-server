@@ -57,6 +57,81 @@ class TestDetail(DetailBase):
         eq_(links.attr('href'), cat.get_url_path())
         eq_(links.text(), cat.name)
 
+    def test_free_install_button_for_anon(self):
+        doc = self.get_pq()
+        eq_(doc('.product').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
+
+    def test_free_install_button_for_owner(self):
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(doc('.product').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
+        eq_(doc('.manage').length, 1)
+
+    def test_free_install_button_for_dev(self):
+        user = UserProfile.objects.get(username='regularuser')
+        assert self.client.login(username=user.email, password='password')
+        AddonUser.objects.create(addon=self.webapp, user=user)
+        doc = self.get_pq()
+        eq_(doc('.product').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
+        eq_(doc('.manage').length, 1)
+
+    def test_free_install_button_for_reviewer(self):
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(doc('.product').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
+        eq_(doc('.manage').length, 0)
+
+    def test_paid_install_button_for_anon(self):
+        # This purchase should not be faked.
+        self.make_premium(self.webapp)
+        doc = self.get_pq()
+        eq_(doc('.product.premium').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
+
+    def test_paid_install_button_for_owner(self):
+        self.make_premium(self.webapp)
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(doc('.product.install.premium').length, 1)
+        eq_(doc('.faked-purchase').length, 1)
+        eq_(doc('.manage').length, 1)
+
+    def test_paid_install_button_for_dev(self):
+        self.make_premium(self.webapp)
+        user = UserProfile.objects.get(username='regularuser')
+        assert self.client.login(username=user.email, password='password')
+        AddonUser.objects.create(addon=self.webapp, user=user)
+        doc = self.get_pq()
+        eq_(doc('.product.install.premium').length, 1)
+        eq_(doc('.faked-purchase').length, 1)
+        eq_(doc('.manage').length, 1)
+
+    def test_paid_public_install_button_for_reviewer(self):
+        self.make_premium(self.webapp)
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(doc('.product.premium').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
+        eq_(doc('.manage').length, 0)
+
+    def test_paid_pending_install_button_for_reviewer(self):
+        self.webapp.update(status=amo.STATUS_PENDING)
+        self.make_premium(self.webapp)
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(doc('.product.install.premium').length, 1)
+        eq_(doc('.faked-purchase').length, 1)
+        eq_(doc('.manage').length, 0)
+
     def test_manage_button_for_owner(self):
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
@@ -85,7 +160,7 @@ class TestDetail(DetailBase):
         eq_(upsell.length, 1)
         eq_(upsell.find('.upsell').text(), unicode(premie.name))
         eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(16))
-        eq_(upsell.find('.install').attr('data-manifesturl'),
+        eq_(upsell.find('.product').attr('data-manifesturl'),
             premie.manifest_url)
         eq_(upsell.find('.prose').text(), 'XXX')
 
