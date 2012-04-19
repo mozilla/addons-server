@@ -10,8 +10,8 @@
       <div class="listing-header">
         <div class="editor-stats-title">
           <a href="{{ url('reviewers.apps.queue_pending') }}">
-            {{ ngettext('Pending Update ({num})',
-                        'Pending Updates ({num})',
+            {{ ngettext('{num} App Review',
+                        '{num} App Reviews',
                         queue_counts['pending'])|f(num=queue_counts['pending']) }}
           </a>
         </div>
@@ -19,8 +19,8 @@
           {% for type in ['pending']: %}
             <div class="editor-stats-table">
               <div>
-                {{ ngettext("{c} unreviewed submissions.",
-                            "{c} unreviewed submissions.",
+                {{ ngettext("{c} unreviewed app submission this week.",
+                            "{c} unreviewed app submissions this week.",
                             progress['week'])|f(c=progress['week']) }}
               </div>
               <div class="editor-stats-dark">
