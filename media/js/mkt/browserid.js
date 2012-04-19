@@ -6,7 +6,10 @@ _.extend(z, (function() {
     exports.login = function() {
         $def = $.Deferred();
 
-        navigator.id.getVerifiedEmail(gotVerifiedEmail);
+        navigator.id.get(gotVerifiedEmail, {
+            privacyURL: 'https://marketplace.mozilla.org/en-US/privacy-policy',
+            tosURL: 'https://marketplace.mozilla.org/en-US/terms-of-use'
+        });
 
         return $def;
     };
