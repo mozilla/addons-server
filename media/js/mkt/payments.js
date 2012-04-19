@@ -55,7 +55,7 @@
             $list.append($item);
         }
 
-        // Yea...(race condition)
+        // Yea...(race condition).
         setTimeout(function() {
             $('.product-details .price').append($trigger, $list);
             initCurrencyEvents($trigger, $list);
@@ -69,7 +69,8 @@
             $list.addClass('show');
         }));
 
-        $('#pay').unbind('click').click(_pd(function(e) {
+        $('#pay').unbind('click.currency')
+                 .on('click.currency', _pd(function(e) {
             var $targ = $(e.target);
 
             if ($targ.parents('#currency-list').length ||
