@@ -24,7 +24,12 @@
   {% endif %}
 {% if not (is_dev or is_admin) and not product.is_public() %}
   <section class="product-details">
-    <h1>{{ product.name }}</h1>
+    <h1>
+      {% if 'id' in request.GET %}
+        <b class="num">#{{ product.id }}</b>
+      {% endif %}
+      {{ product.name }}
+    </h1>
   </section>
   {{ notification(product, amo, is_dev) }}
 {% else %}
@@ -33,7 +38,12 @@
       <img class="icon" src="{{ product.get_icon_url(64) }}">
     </div>
     <div class="vitals">
-      <h1>{{ product.name }}</h1>
+      <h1>
+        {% if 'id' in request.GET %}
+          <b class="num">#{{ product.id }}</b>
+        {% endif %}
+        {{ product.name }}
+      </h1>
       <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
       <p class="downloads">
         {% trans cnt=product.weekly_downloads,

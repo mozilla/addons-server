@@ -8,7 +8,12 @@
   {{ mkt_breadcrumbs(product, [(None, _('Users')), (None, profile.name)]) }}
   <section id="profile" class="account form-grid">
     <header class="c">
-      <h1 class="fn n">{{ profile.name }}</h1>
+      <h1 class="fn n">
+        {% if 'id' in request.GET %}
+          <b class="num">#{{ profile.id }}</b>
+        {% endif %}
+        {{ profile.name }}
+      </h1>
       <ul class="sub-nav" id="profile-actions">
       {% if own_profile %}
         <li><a id="edit-profile" href="{{ url('account.settings') }}">
