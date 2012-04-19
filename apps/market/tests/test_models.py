@@ -83,6 +83,12 @@ class TestPrice(amo.tests.TestCase):
         eq_(Price.objects.count(), 2)
         eq_(Price.objects.active().count(), 1)
 
+    def test_active_order(self):
+        Price.objects.create(name='USD', price='0.00')
+        Price.objects.create(name='USD', price='1.99')
+        eq_(list(Price.objects.active().values_list('price', flat=True)),
+            [Decimal('0.00'), Decimal('0.99'), Decimal('1.99')])
+
     def test_currency(self):
         eq_(self.tier_one.pricecurrency_set.count(), 2)
 

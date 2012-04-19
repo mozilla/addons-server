@@ -27,7 +27,7 @@ class PriceManager(amo.models.ManagerBase):
         return qs.transform(Price.transformer)
 
     def active(self):
-        return self.filter(active=True)
+        return self.filter(active=True).order_by('price')
 
 
 class Price(amo.models.ModelBase):
