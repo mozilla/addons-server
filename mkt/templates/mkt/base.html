@@ -82,10 +82,11 @@
         <div class="new">
           <h2>{{ _('Please sign in') }}</h2>
           <p>
-            {% trans personaid_url='https://browserid.org/' %}
+            {# TODO(copy): Localize when BrowserID is called Persona. #}
+            {% with personaid_url='https://browserid.org/' %}
               Just log in or register with your
-              <a href="{{ personaid_url }}">PersonaID</a> account below.
-            {% endtrans %}
+              <a href="{{ personaid_url }}">BrowserID</a> account below.
+            {% endwith %}
           </p>
           <footer>
             <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
