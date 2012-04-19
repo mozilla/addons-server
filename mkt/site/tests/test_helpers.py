@@ -22,6 +22,7 @@ class TestMarketButton(amo.tests.TestCase):
         self.user = UserProfile.objects.get(pk=999)
         request = mock.Mock()
         request.amo_user = self.user
+        request.check_ownership.return_value = False
         request.GET = {'src': 'foo'}
         self.context = {'request': request}
 
@@ -90,7 +91,7 @@ class TestMarketButton(amo.tests.TestCase):
     def test_some_supported_currencies(self):
         self.make_premium(self.webapp, currencies=['CAD'])
         ad = AddonPremium.objects.get(addon=self.webapp)
-        ad.update(currencies = ['USD', 'CAD'])
+        ad.update(currencies=['USD', 'CAD'])
         doc = pq(market_button(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(json.loads(data['currencies'])['USD'], '$1.00')
