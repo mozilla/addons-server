@@ -69,6 +69,7 @@ z.page.on('fragmentloaded', function() {
     // $('.slider').each(slider);
 });
 
+/*
 if ($('body.home').length) {
     $('.slider').each(function() {
         var $this = $(this),
@@ -92,3 +93,4 @@ if ($('body.home').length) {
         }, 250));
     });
 }
+*/
