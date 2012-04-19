@@ -191,29 +191,29 @@ def trap_duplicate(request, manifest_url):
     error_url = app.get_dev_url()
     msg = None
     if app.status == amo.STATUS_PUBLIC:
-        msg = _('Oops, looks like you already submitted that manifest '
-                'for %s, which is currently public. '
-                '<a href="%s">Edit app</a>')
+        msg = _(u'Oops, looks like you already submitted that manifest '
+                 'for %s, which is currently public. '
+                 '<a href="%s">Edit app</a>')
     elif app.status == amo.STATUS_PENDING:
-        msg = _('Oops, looks like you already submitted that manifest '
-                'for %s, which is currently pending. '
-                '<a href="%s">Edit app</a>')
+        msg = _(u'Oops, looks like you already submitted that manifest '
+                 'for %s, which is currently pending. '
+                 '<a href="%s">Edit app</a>')
     elif app.status == amo.STATUS_NULL:
-        msg = _('Oops, looks like you already submitted that manifest '
-                'for %s, which is currently incomplete. '
-                '<a href="%s">Resume app</a>')
+        msg = _(u'Oops, looks like you already submitted that manifest '
+                 'for %s, which is currently incomplete. '
+                 '<a href="%s">Resume app</a>')
     elif app.status == amo.STATUS_REJECTED:
-        msg = _('Oops, looks like you already submitted that manifest '
-                'for %s, which is currently rejected. '
+        msg = _(u'Oops, looks like you already submitted that manifest '
+                 'for %s, which is currently rejected. '
                  '<a href="%s">Edit app</a>')
     elif app.status == amo.STATUS_DISABLED:
-        msg = _('Oops, looks like you already submitted that manifest '
-                'for %s, which is currently disabled by Mozilla. '
-                '<a href="%s">Edit app</a>')
+        msg = _(u'Oops, looks like you already submitted that manifest '
+                 'for %s, which is currently disabled by Mozilla. '
+                 '<a href="%s">Edit app</a>')
     elif app.disabled_by_user:
-        msg = _('Oops, looks like you already submitted that manifest '
-                'for %s, which is currently disabled. '
-                '<a href="%s">Edit app</a>')
+        msg = _(u'Oops, looks like you already submitted that manifest '
+                 'for %s, which is currently disabled. '
+                 '<a href="%s">Edit app</a>')
     if msg:
         return msg % (app.name, error_url)
 

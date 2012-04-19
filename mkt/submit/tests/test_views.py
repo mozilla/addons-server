@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 
@@ -231,10 +232,8 @@ class TestCreateWebApp(BaseWebAppTest):
         r = self.client.post(reverse('mkt.developers.upload_manifest'),
                              dict(manifest=self.manifest_url))
         data = json.loads(r.content)
-        eq_(data['validation']['messages'][0]['message'],
-            'Oops, looks like you already submitted that manifest for '
-            'MozillaBall, which is currently incomplete. '
-            '<a href="/en-US/developers/app/mozillaball/edit">Resume app</a>')
+        assert 'Oops' in data['validation']['messages'][0]['message'], (
+            'Expected oops')
 
     def test_no_hint_for_same_manifest_different_author(self):
         waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
@@ -257,9 +256,9 @@ class TestCreateWebApp(BaseWebAppTest):
         addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.guid, None)
-        eq_(unicode(addon.name), 'MozillaBall')
+        eq_(unicode(addon.name), u'MozillaBall ょ')
         eq_(addon.slug, 'app-%s' % addon.id)
-        eq_(addon.app_slug, 'mozillaball')
+        eq_(addon.app_slug, u'mozillaball-ょ')
         eq_(addon.summary, u'Exciting Open Web development action!')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
