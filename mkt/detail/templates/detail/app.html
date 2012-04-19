@@ -77,7 +77,7 @@
           {{ _('Manage') }}</a></p>
       {% endif %}
       {% if is_reviewer and product.is_pending() %}
-        <p><a href="{{ url('reviewers.app_review', product.app_slug) }}"
+        <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
               class="button good" target="_blank">
           {{ _('Approve / Reject') }}</a></p>
       {% endif %}
