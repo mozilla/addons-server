@@ -90,6 +90,7 @@ def deploy_app(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
     if getattr(settings, 'GUNICORN', False):
         ctx.remote("/sbin/service gunicorn-addons graceful")
+        ctx.remote("/sbin/service gunicorn-addons-services graceful")
         ctx.remote("/sbin/service gunicorn-addons-update graceful")
         ctx.remote("/sbin/service gunicorn-marketplace graceful")
         ctx.remote("/sbin/service gunicorn-receiptcheck-marketplace graceful")
