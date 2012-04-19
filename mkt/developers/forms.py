@@ -334,6 +334,10 @@ class PremiumForm(happyforms.Form):
         }
         if self.addon.premium:
             kw['initial']['price'] = self.addon.premium.price
+        elif len(self.fields['price'].choices) > 1:
+            # Tier 0 (Free) should not be the default selection.
+            kw['initial']['price'] = (Price.objects.active()
+                                      .exclude(price='0.00')[0])
 
         upsell = self.addon.upsold
         if upsell:

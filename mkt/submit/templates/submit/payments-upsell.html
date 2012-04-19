@@ -17,9 +17,9 @@
         <p>To sell your app in the Marketplace, you'll first need to set its
         price tier below. Price tiers are based on US Dollars and are fixed
         for all supported currencies.
-        <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers">
-        Learn more about price tiers</a></p>
-                   {{ form_field(form.price) }}
+        <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers"
+           target="_blank">Learn more about price tiers</a></p>
+        {{ form_field(form.price) }}
         {{ form_field(form.make_public) }}
         {% if form.fields['free'].queryset.count() %}
           <p>{{ loc('Linking this app with its free counterpart allows you
