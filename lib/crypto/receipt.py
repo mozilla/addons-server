@@ -71,4 +71,5 @@ def cef(request, app, msg, longer):
               'msg': longer, 'config': c,
               'cs2': app, 'cs2Label': 'ReceiptTransaction'}
 
-    return _log_cef('Receipt %s' % msg, 5, request, **kwargs)
+    environ = request.META.copy()
+    return _log_cef('Receipt %s' % msg, 5, environ **kwargs)
