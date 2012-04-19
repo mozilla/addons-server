@@ -15,7 +15,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonPremium, AddonUser
-from market.models import PreApprovalUser, Price
+from market.models import PreApprovalUser, Price, PriceCurrency
 from mkt.developers.models import ActivityLog
 import paypal
 from stats.models import Contribution
@@ -259,9 +259,30 @@ class TestPreapproval(amo.tests.TestCase):
     def setUp(self):
         self.user = UserProfile.objects.get(pk=999)
         assert self.client.login(username=self.user.email, password='password')
+        self.currency_url = reverse('account.payment.currency')
 
     def get_url(self, status=None):
         return reverse('account.payment', args=[status] if status else [])
+
+    def test_currency_denied(self):
+        self.client.logout()
+        eq_(self.client.get(self.currency_url).status_code, 302)
+
+    def test_currency_set(self):
+        eq_(self.user.get_preapproval(), None)
+        eq_(self.client.post(self.currency_url,
+                             {'currency': 'USD'}).status_code, 302)
+        eq_(self.user.get_preapproval().currency, 'USD')
+
+    def test_extra_currency(self):
+        price = Price.objects.create(price='1')
+        PriceCurrency.objects.create(price='1', tier=price, currency='EUR')
+        eq_(self.client.post(self.currency_url,
+                             {'currency': 'EUR'}).status_code, 302)
+        eq_(self.user.get_preapproval().currency, 'EUR')
+        eq_(self.client.post(self.currency_url,
+                             {'currency': 'BRL'}).status_code, 200)
+        eq_(self.user.get_preapproval().currency, 'EUR')
 
     def test_preapproval_denied(self):
         self.client.logout()
@@ -276,9 +297,24 @@ class TestPreapproval(amo.tests.TestCase):
             reverse('account.payment.preapproval'))
 
     @mock.patch('paypal.get_preapproval_key')
-    def test_fake_preapproval(self, get_preapproval_key):
+    def test_fake_preapproval_with_currency(self, get_preapproval_key):
+        get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
+        self.client.post(reverse('account.payment.preapproval'),
+                         {'currency': 'USD'})
+        eq_(self.user.get_preapproval().currency, 'USD')
+
+    @mock.patch('paypal.get_preapproval_key')
+    def test_fake_preapproval_no_currency(self, get_preapproval_key):
         get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
         res = self.client.post(reverse('account.payment.preapproval'))
+        eq_(res.status_code, 200)
+        eq_(self.user.get_preapproval().currency, None)
+
+    @mock.patch('paypal.get_preapproval_key')
+    def test_fake_preapproval(self, get_preapproval_key):
+        get_preapproval_key.return_value = {'preapprovalKey': 'xyz' }
+        res = self.client.post(reverse('account.payment.preapproval'),
+                               {'currency': 'USD'})
         ssn = self.client.session['setup-preapproval']
         eq_(ssn['key'], 'xyz')
         # Checking it's in the future at least 353 just so this test will work

@@ -3,6 +3,19 @@
 {% set title = _('Payment Settings') %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
+
+{% macro currency_form() %}
+  <p>
+    {% trans %}
+      Choose the currency you'd like to use for these pre-approved payments:
+    {% endtrans %}
+  </p>
+  <p>
+    {{ currency.currency.errors }}
+    {{ currency.currency }}
+  </p>
+{% endmacro %}
+
 {% block content %}
   {{ mkt_breadcrumbs(product, [(url('account.settings'), _('Account Settings')),
                                (None, _('Payment'))]) }}
@@ -33,6 +46,14 @@
           </button>
         </footer>
       </form>
+      <form id="currency" method="post" class="simple-field"
+            action="{{ url('account.payment.currency') }}">
+        {{ csrf() }}
+        {{ currency_form() }}
+        <footer>
+          <button type="submit">{{ _('Change Currency') }}</button>
+        </footer>
+
     {% else %}
       <form id="preapproval" method="post" class="simple-field"
             action="{{ url('account.payment.preapproval') }}">
@@ -44,6 +65,7 @@
             purchases that go through this site.
           {% endtrans %}
         </p>
+        {{ currency_form() }}
         <p>
           {% trans %}
             You can cancel pre-approval at any time by returning to this page.

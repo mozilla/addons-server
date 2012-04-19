@@ -5,9 +5,11 @@ from django import forms
 from django.conf import settings
 
 import commonware.log
+import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from market.models import PriceCurrency
 from translations.fields import TransField, TransTextarea
 from users.forms import BaseAdminUserEditForm, UserRegisterForm
 from users.models import UserNotification, UserProfile
@@ -150,3 +152,15 @@ class UserDeleteForm(forms.Form):
                                                           % self.request.user)
             raise forms.ValidationError('Developers cannot delete their '
                                         'accounts.')
+
+
+class CurrencyForm(happyforms.Form):
+    currency = forms.ChoiceField(widget=forms.RadioSelect)
+
+    def __init__(self, *args, **kw):
+        super(CurrencyForm, self).__init__(*args, **kw)
+        choices = [u'USD'] + list((PriceCurrency.objects
+                                        .values_list('currency', flat=True)
+                                        .distinct()))
+        self.fields['currency'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
+                                              for k in choices if k]

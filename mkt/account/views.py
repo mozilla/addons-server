@@ -14,6 +14,7 @@ import amo
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
 from amo.models import manual_order
+from amo.urlresolvers import reverse
 from amo.utils import paginate
 from market.models import PreApprovalUser
 import paypal
@@ -22,6 +23,7 @@ from translations.query import order_by_translation
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
 from users.views import logout
+from mkt.account.forms import CurrencyForm
 from mkt.site import messages
 from mkt.webapps.models import Webapp
 from . import forms
@@ -34,9 +36,9 @@ paypal_log = commonware.log.getLogger('mkt.paypal')
 def payment(request, status=None):
     # Note this is not post required, because PayPal does not reply with a
     # POST but a GET, that's a sad face.
-    if status:
-        pre, created = (PreApprovalUser.objects
+    pre, created = (PreApprovalUser.objects
                         .safer_get_or_create(user=request.amo_user))
+    if status:
         data = request.session.get('setup-preapproval', {})
 
         if status == 'complete':
@@ -75,12 +77,34 @@ def payment(request, status=None):
     else:
         context = {'preapproval': request.amo_user.get_preapproval()}
 
+    context['currency'] = CurrencyForm(initial={'currency': pre.currency})
     return jingo.render(request, 'account/payment.html', context)
 
 
 @post_required
 @login_required
+def currency(request, do_redirect=True):
+    pre, created = (PreApprovalUser.objects
+                        .safer_get_or_create(user=request.amo_user))
+    currency = CurrencyForm(request.POST or {},
+                            initial={'currency': pre.currency})
+    if currency.is_valid():
+        pre.update(currency=currency.cleaned_data['currency'])
+        if do_redirect:
+            messages.success(request, _('Currency saved.'))
+            return redirect(reverse('account.payment'))
+    else:
+        return jingo.render(request, 'account/payment.html',
+                            {'preapproval': pre,
+                             'currency': currency})
+
+@post_required
+@login_required
 def preapproval(request, complete=None, cancel=None):
+    failure = currency(request, do_redirect=False)
+    if failure:
+        return failure
+
     today = datetime.today()
     data = {'startDate': today,
             'endDate': today + timedelta(days=365),

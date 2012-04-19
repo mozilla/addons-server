@@ -610,7 +610,7 @@ class CurrencyForm(happyforms.Form):
         choices = (PriceCurrency.objects.values_list('currency', flat=True)
                                 .distinct())
         self.fields['currencies'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
-                                              for k in choices]
+                                              for k in choices if k]
 
 
 class AppAppealForm(happyforms.Form):

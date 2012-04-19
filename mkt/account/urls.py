@@ -14,6 +14,8 @@ settings_patterns = patterns('',
         name='account.payment'),
     url('payment/preapproval$', views.preapproval,
         name='account.payment.preapproval'),
+    url('payment/currency$', views.currency,
+        name='account.payment.currency'),
 )
 
 
