@@ -32,11 +32,13 @@ def privacy(request, addon):
 
 
 @json_view
-@addon_view
+@addon_all_view
 @login_required
 @post_required
 @write
 def record(request, addon):
+    if not (addon.is_public() or acl.check_reviewer(request)):
+        raise http.Http404
     if addon.is_webapp():
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
             user=request.amo_user)
