@@ -192,6 +192,12 @@
         .max-width(14);
         font-size: 14px;
     }
+    .collapse {
+        display: none;
+        &.show {
+            display: block;
+        }
+    }
     a.collapse {
         .transition(~'.2s opacity');
         background: url(../../img/mkt/arrows/collapse.png) no-repeat 100% 50%;
@@ -210,12 +216,6 @@
         }
         &.expanded {
             .transform(~'scaleY(-1)');
-        }
-    }
-    .more {
-        display: none;
-        &.show {
-            display: block;
         }
     }
 }

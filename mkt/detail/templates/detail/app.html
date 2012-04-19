@@ -95,12 +95,16 @@
       <a href="#" class="collapse">{{ _('Read More') }}</a>
     {% endif %}
     <p class="summary">{{ product.summary|nl2br }}</p>
-    {% if product.description %}
-      <div class="more collapse">{{ product.description|nl2br }}</div>
-    {% endif %}
-    {% if product.developer_comments %}
-      <h3>{{ _('Developer Comments') }}</h3>
-      <div class="developer-comments">{{ product.developer_comments }}</div>
+    {% if product.description or product.developer_comments %}
+      <div class="collapse">
+        {% if product.description %}
+          <div class="more">{{ product.description|nl2br }}</div>
+        {% endif %}
+        {% if product.developer_comments %}
+          <h3>{{ _('Developer Comments') }}</h3>
+          <div class="developer-comments">{{ product.developer_comments }}</div>
+        {% endif %}
+      </div>
     {% endif %}
   </section>
 
