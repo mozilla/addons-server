@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 from tower import ugettext as _
+import waffle
 
 from access import acl
 import amo
@@ -21,7 +22,15 @@ def global_settings(request):
 
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
-        account_links = [
+        account_links = []
+        if waffle.switch_is_active('unleash-consumer'):
+            account_links = [
+                {'text': _('My Purchases'),
+                 'href': reverse('account.purchases')},
+                {'text': _('Account Settings'),
+                 'href': reverse('account.settings')},
+            ]
+        account_links += [
             {'text': _('Change Password'),
              'href': 'https://browserid.org/signin'},
             {'text': _('Log out'), 'href': reverse('users.logout')},
