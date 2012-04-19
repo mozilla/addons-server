@@ -10,9 +10,9 @@
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       {{ addon.name }}</a>
     <span>
-      {% if c.type == amo.ADDON_PERSONA %}
-        {% set users = users_list(c.persona.listed_authors, size=2) or
-                       c.persona.display_username %}
+      {% if addon.type == amo.ADDON_PERSONA %}
+        {% set users = users_list(addon.persona.listed_authors, size=2) or
+                                  addon.persona.display_username %}
       {% else %}
         {% set users = users_list(addon.listed_authors, size=2) %}
       {% endif %}
