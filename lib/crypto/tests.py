@@ -1,6 +1,4 @@
 # -*- coding: utf8 -*-
-import urlparse
-
 from django.conf import settings
 
 import mock
@@ -16,7 +14,7 @@ class TestMetrics(amo.tests.TestCase):
 
     def test_called(self, urlopen):
         sign('my-receipt')
-        eq_(urlopen.call_args[0][0].data, '"my-receipt"')
+        eq_(urlopen.call_args[0][0].data, 'my-receipt')
 
     def test_some_unicode(self, urlopen):
         sign({'name': u'Вагиф Сәмәдоғлу'})
