@@ -8,6 +8,13 @@
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ loc('Mozilla Marketplace') }}{% endblock %}</title>
 
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL }}img/mkt/logos/128.png" sizes="128x128">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL }}img/mkt/logos/64.png" sizes="64x64">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL }}img/mkt/logos/32.png" sizes="32x32">
+
     <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet" />
 
     {{ css('mkt/devreg') }}
