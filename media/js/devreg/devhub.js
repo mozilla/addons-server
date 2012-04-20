@@ -427,7 +427,7 @@ function initUploadPreview() {
         $thumb.addClass('loading');
         if (file.type.indexOf('video') > -1) {
             $thumb.replaceWith(format(
-                '<video controls class="preview-thumb loading" src="{0}" '
+                '<video controls class="preview-thumb loading" src="{0}" ' +
                 'type="video/webm"></video>', file.dataURL));
         } else {
             $thumb.css('background-image', 'url(' + file.dataURL + ')');
@@ -498,7 +498,8 @@ function initUploadPreview() {
                 file_type = $data.siblings('input[name$="unsaved_image_type"]').val();
             if (file_type.indexOf('video') > -1) {
                 $thumb.replaceWith(format(
-                    '<video controls class="preview-thumb" src="{0}"></video>',
+                    '<video controls class="preview-thumb" src="{0}" ' +
+                    'type="video/webm"></video>',
                     $data.val()));
             } else {
                 $thumb.css('background-image', 'url(' + $data.val() + ')');
