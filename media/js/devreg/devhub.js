@@ -427,8 +427,8 @@ function initUploadPreview() {
         $thumb.addClass('loading');
         if (file.type.indexOf('video') > -1) {
             $thumb.replaceWith(format(
-                '<video controls class="preview-thumb loading" src="{0}"></video>',
-                file.dataURL));
+                '<video controls class="preview-thumb loading" src="{0}" '
+                'type="video/webm"></video>', file.dataURL));
         } else {
             $thumb.css('background-image', 'url(' + file.dataURL + ')');
         }
