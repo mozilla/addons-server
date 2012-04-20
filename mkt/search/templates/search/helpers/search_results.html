@@ -4,6 +4,10 @@
       {{ product_info(product) }}
     </div>
     <div class="actions">
+      {% if product.is_purchased(request.amo_user) %}
+        <a href="{{ url('account.purchases') }}"
+           class="checkmark purchased">{{ _('Purchased') }}</a>
+      {% endif %}
       {{ device_list(product) }}
     </div>
   </li>

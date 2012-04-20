@@ -198,6 +198,9 @@ class Webapp(Addon):
     def can_purchase(self):
         return self.is_premium() and self.premium and self.is_public()
 
+    def is_purchased(self, user):
+        return user and self.id in user.purchase_ids()
+
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
 

@@ -22,6 +22,10 @@
         {% set is_chargeback = product.is_chargeback(amo_user) %}
         <li class="item result app c{{ ' refunded' if is_refunded }}{{ ' reversed' if is_chargeback }}">
           <div class="actions">
+            {% if product.is_purchased(request.amo_user) %}
+              <a href="{{ url('account.purchases') }}"
+                 class="checkmark purchased">{{ _('Purchased') }}</a>
+            {% endif %}
             {% if is_refunded %}
               <div class="purchase refund-notice">
                 {{ _('Purchase Refunded') }}

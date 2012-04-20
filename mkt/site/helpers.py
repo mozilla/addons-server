@@ -48,9 +48,9 @@ def market_button(context, product):
         if not product.is_premium() or purchased:
             classes.append('install')
             label = _('Install')
-        # TODO: Show inline BroswerID login popup for non-authenticated users.
-        c = dict(product=product, label=label, faked_purchase=faked_purchase,
-                 data_attrs=data_attrs, classes=' '.join(classes))
+        c = dict(product=product, label=label, purchased=purchased,
+                 faked_purchase=faked_purchase, data_attrs=data_attrs,
+                 classes=' '.join(classes))
         t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))
 
