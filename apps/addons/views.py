@@ -336,7 +336,7 @@ def home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
     # This is lame for performance. Kill it with ES.
-    frozen = FrozenAddon.objects.values_list('addon', flat=True)
+    frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
     # Collections.
     collections = Collection.objects.filter(listed=True,
