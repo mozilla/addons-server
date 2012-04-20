@@ -31,7 +31,7 @@ urlpatterns = patterns('',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
-    url('^(themes|extensions)/moreinfo.php$', views.moreinfo_redirect),
+    url('^(?:themes|extensions)/moreinfo.php$', views.moreinfo_redirect),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
