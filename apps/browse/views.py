@@ -310,7 +310,7 @@ def personas_listing(request, category=None):
                                 type=TYPE)
     categories = order_by_translation(q, 'name')
 
-    frozen = FrozenAddon.objects.values_list('addon', flat=True)
+    frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
     base = (Addon.objects.public().filter(type=TYPE)
                  .exclude(id__in=frozen)
