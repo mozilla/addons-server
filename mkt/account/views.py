@@ -77,7 +77,8 @@ def payment(request, status=None):
     else:
         context = {'preapproval': request.amo_user.get_preapproval()}
 
-    context['currency'] = CurrencyForm(initial={'currency': pre.currency})
+    context['currency'] = CurrencyForm(initial={'currency':
+                                                pre.currency or 'USD'})
     return jingo.render(request, 'account/payment.html', context)
 
 
@@ -87,7 +88,7 @@ def currency(request, do_redirect=True):
     pre, created = (PreApprovalUser.objects
                         .safer_get_or_create(user=request.amo_user))
     currency = CurrencyForm(request.POST or {},
-                            initial={'currency': pre.currency})
+                            initial={'currency': pre.currency or 'USD'})
     if currency.is_valid():
         pre.update(currency=currency.cleaned_data['currency'])
         if do_redirect:

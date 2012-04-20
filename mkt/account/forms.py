@@ -164,4 +164,3 @@ class CurrencyForm(happyforms.Form):
                                         .distinct()))
         self.fields['currency'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
                                               for k in choices if k]
-        self.initial['currency'] = 'USD'
