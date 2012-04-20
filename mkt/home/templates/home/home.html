@@ -36,8 +36,8 @@
     <div><h2>{{ _('All categories') }}</h2></div>
   </section>
   <section class="categories slider full">
-    <div class="promo-slider">
-      <ul>
+    <div>
+      <ul class="content">
         {% for category in categories %}
           <li>
             <a href="{{ category.get_url_path() }}">
