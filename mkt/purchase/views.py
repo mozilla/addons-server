@@ -61,7 +61,7 @@ def purchase(request, addon):
     if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
         preapproval = request.amo_user.get_preapproval()
         # User the users default currency.
-        if currency == 'USD' and preapproval.currency:
+        if currency == 'USD' and preapproval and preapproval.currency:
             currency = preapproval.currency
 
     try:
