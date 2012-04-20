@@ -73,7 +73,7 @@ MIDDLEWARE_CLASSES += (
     'amo.middleware.NoConsumerMiddleware',
 )
 
-TEMPLATE_DIRS += (path('mkt/templates'),)
+TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
 TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
 TEMPLATE_CONTEXT_PROCESSORS += [
