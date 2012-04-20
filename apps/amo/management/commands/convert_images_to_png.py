@@ -1,6 +1,6 @@
 import os
 import sys
-
+from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand
 
 
@@ -18,7 +18,7 @@ class Command(BaseCommand):
             if not os.path.isdir(path):
                 sys.exit("Can't read pics path: %s" % path)
 
-            for root, dirs, files in os.walk(path):
+            for root, dirs, files in storage.walk(path):
                 for file in files:
                     # Aside from 9 files missing extentsions entirely (!)
                     # everything is jpg or gif or png
@@ -27,9 +27,9 @@ class Command(BaseCommand):
                         oldfile = "%s/%s" % (root, file)
                         newfile = "%s/%s.png" % (root, name)
 
-                        if os.path.isfile(newfile):
+                        if storage.exists(newfile):
                             print "Removing pre-existing file: %s" % (newfile)
-                            os.remove(newfile)
+                        storage.delete(newfile)
 
                         print "Converting %s to %s" % (oldfile, newfile)
                         try:

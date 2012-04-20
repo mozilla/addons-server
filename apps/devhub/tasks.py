@@ -239,8 +239,8 @@ def get_preview_sizes(ids, **kw):
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
                 sizes = {
-                    'thumbnail':  Image.open(preview.thumbnail_path).size,
-                    'image':  Image.open(preview.image_path).size,
+                    'thumbnail':  Image.open(storage.open(preview.thumbnail_path)).size,
+                    'image':  Image.open(storage.open(preview.image_path)).size,
                 }
                 preview.update(sizes=sizes)
             except Exception, err:

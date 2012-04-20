@@ -4,11 +4,13 @@ from optparse import make_option
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
+from django.core.files.storage import default_storage as storage
 
 from addons.models import Addon
 
 import amo
 from amo.decorators import write
+from amo.storage_utils import walk_storage
 from amo.utils import resize_image, chunked
 
 extensions = ['.png', '.jpg', '.gif']
@@ -18,20 +20,18 @@ size_suffixes = ['-%s' % s for s in sizes]
 
 @write
 def convert(directory, delete=False):
-    if not os.path.isdir(directory):
-        raise ValueError('Not a directory: %s' % directory)
     print 'Converting icons in %s' % directory
 
     pks = []
     k = 0
-    for path, names, filenames in os.walk(directory):
+    for path, names, filenames in walk_storage(directory):
         for filename in filenames:
             old = os.path.join(path, filename)
             pre, ext = os.path.splitext(old)
             if (pre[-3:] in size_suffixes or ext not in extensions):
                 continue
 
-            if not os.stat(old)[stat.ST_SIZE]:
+            if not storage.size(old):
                 print 'Icon %s is empty, ignoring.' % old
                 continue
 
@@ -45,7 +45,7 @@ def convert(directory, delete=False):
                 pks.append(os.path.basename(pre))
 
             if delete:
-                os.remove(old)
+                storage.delete(old)
 
             k += 1
             if not k % 1000:

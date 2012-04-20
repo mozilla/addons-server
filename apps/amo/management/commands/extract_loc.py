@@ -2,6 +2,7 @@ import os
 import re
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand
 
 
@@ -20,14 +21,14 @@ class Command(BaseCommand):
     """
     def handle(self, *args, **options):
         count = 0
-        for root, folders, files in os.walk(_root):
+        for root, folders, files in storage.walk(_root):
             if not root.startswith(_subs):
                 continue
 
             for fname in files:
                 fname = os.path.join(root, fname)
                 if fname.endswith(_exts):
-                    data = open(fname).read()
+                    data = storage.open(fname).read()
                     found = False
                     for match in _loc_re.finditer(data):
                         if not found:

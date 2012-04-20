@@ -5,6 +5,7 @@ import shutil
 import stat
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
 from django.template.defaultfilters import filesizeformat
@@ -15,7 +16,7 @@ from jingo import register, env
 from tower import ugettext as _
 
 import amo
-from amo.utils import memoize, Message
+from amo.utils import memoize, Message, rm_local_tmp_dir
 from amo.urlresolvers import reverse
 from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,
@@ -60,6 +61,10 @@ def file_tree(files, selected):
 
 
 class FileViewer:
+    """
+    Provide access to a storage-managed file by copying it locally and
+    extracting info from it. `src` is a storage-managed path and `dest` is a local temp path.
+    """
 
     def __init__(self, file_obj):
         self.file = file_obj
@@ -90,8 +95,9 @@ class FileViewer:
                 os.makedirs(self.dest)
             except OSError, err:
                 pass
-            shutil.copyfile(self.src,
-                            os.path.join(self.dest, self.file.filename))
+            shutil.copyfileobj(storage.open(self.src),
+                               open(os.path.join(self.dest,
+                                                 self.file.filename), 'w'))
         else:
             try:
                 extract_xpi(self.src, self.dest, expand=True)
@@ -101,7 +107,7 @@ class FileViewer:
 
     def cleanup(self):
         if os.path.exists(self.dest):
-            shutil.rmtree(self.dest)
+            rm_local_tmp_dir(self.dest)
 
     def is_search_engine(self):
         """Is our file for a search engine?"""

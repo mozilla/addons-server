@@ -3,7 +3,7 @@ import os
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-
+from django.core.files.storage import default_storage as storage
 import commonware.log
 import amo
 from applications.models import Application, AppVersion
@@ -32,6 +32,6 @@ class Command(BaseCommand):
                 # Sunbird is still in the database but shouldn't show up here.
                 pass
 
-        with open(self.JSON_PATH, 'w') as f:
+        with storage.open(self.JSON_PATH, 'w') as f:
             json.dump(apps, f)
             log.debug("Wrote: %s" % f.name)

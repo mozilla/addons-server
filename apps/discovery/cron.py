@@ -6,6 +6,7 @@ import urllib2
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import commonware.log
 from pyquery import PyQuery as pq
@@ -72,15 +73,8 @@ def fetch_ryf_blog():
         log.error("Error fetching ryf image: %s" % e)
         return
 
-    img_tmp = NamedTemporaryFile(delete=False)
-    img_tmp.write(img.read())
-    img_tmp.close()
-
     image_basename = os.path.basename(image)
-
-    if not os.path.exists(RYF_IMAGE_PATH):
-        os.makedirs(RYF_IMAGE_PATH)
-    shutil.move(img_tmp.name, os.path.join(RYF_IMAGE_PATH, image_basename))
+    storage.save(os.path.join(RYF_IMAGE_PATH, image_basename), ContentFile(img.read()))
 
     page.image = image_basename
     page.save()
