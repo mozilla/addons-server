@@ -383,6 +383,7 @@ INSTALLED_APPS = (
     'djcelery',
     'django_extensions',
     'django_nose',
+    'raven.contrib.django',
     'gunicorn',
     'piston',
     'waffle',
