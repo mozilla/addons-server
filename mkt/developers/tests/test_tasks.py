@@ -290,6 +290,12 @@ class TestFetchIcon(BaseWebAppTest):
         tasks.fetch_icon(iconless_app)
         assert not self.urlopen_mock.called
 
+    def test_bad_icons(self):
+        path = os.path.join(self.apps_path, 'badicon.webapp')
+        iconless_app = self.webapp_from_path(path)
+        tasks.fetch_icon(iconless_app)
+        assert not self.urlopen_mock.called
+
     def check_icons(self, webapp):
         manifest = webapp.get_manifest_json()
         biggest = max([int(size) for size in manifest['icons']])

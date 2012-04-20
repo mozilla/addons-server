@@ -331,7 +331,12 @@ def fetch_icon(webapp, **kw):
         # Set the icon type to empty.
         webapp.update(icon_type='')
         return
-    biggest = max([int(size) for size in manifest['icons']])
+
+    try:
+        biggest = max([int(size) for size in manifest['icons']])
+    except ValueError:
+        return
+
     icon_url = manifest['icons'][str(biggest)]
     if icon_url.startswith('data:image'):
         image_string = icon_url.split('base64,')[1]
