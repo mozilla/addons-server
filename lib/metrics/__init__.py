@@ -1,4 +1,5 @@
 import json
+import re
 import urllib2
 import uuid
 
@@ -48,7 +49,7 @@ def metrics(uid, action, data, **kw):
         return
 
     timeout = settings.METRICS_SERVER_TIMEOUT
-    namespace = settings.DOMAIN.replace('.', '-') + '-' + action
+    namespace = re.sub('\.|-', '_', settings.DOMAIN)
 
     destination = '%s/%s/%s' % (destination, namespace, uid)
     headers = {'Content-Type': 'application/json'}
