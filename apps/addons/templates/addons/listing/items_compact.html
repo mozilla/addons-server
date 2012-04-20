@@ -4,7 +4,7 @@
 {% for addon in addons %}
   <div class="item">
     {{ install_button(addon) }}
-    {{ heading(addon) }}
+    {{ heading(addon, amo) }}
     <blockquote>
       <div>{{ addon.summary|truncate(250)|nl2br }}</div>
     </blockquote>

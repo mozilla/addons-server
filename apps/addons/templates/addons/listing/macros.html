@@ -1,4 +1,4 @@
-{% macro heading(addon, collection) %}
+{% macro heading(addon, amo, collection) %}
   <h3>
     {% if collection %}
       {% set collection_path = "?src=collection&collection_id=" + collection.uuid %}
@@ -10,7 +10,7 @@
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       {{ addon.name }}</a>
     <span>
-      {% if addon.persona %}
+      {% if addon.type == amo.ADDON_PERSONA %}
         {% set users = users_list(addon.persona.listed_authors, size=2) or
                                   addon.persona.display_username %}
       {% else %}
