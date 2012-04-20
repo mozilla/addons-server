@@ -89,9 +89,10 @@ z.page.on('fragmentloaded', function() {
                 $this = $(this),
                 maxPage = numPages($this.find('ul'));
 
-            if ($this.prev().find('.slide-pager').length === 0) {
+            if ($this.find('.slide-pager').length === 0) {
                 $pager.append($prevLink, $nextLink);
-                $(this).prev().find('div').append($pager);
+                $this.prepend('<div></div>');
+                $this.find('div:first-child').prepend($pager);
                 $prevLink.click(_pd(prevPage));
                 $nextLink.click(_pd(nextPage));
             }
