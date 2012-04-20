@@ -5,7 +5,7 @@
         <li>
           <a href="{{ product.get_url_path() }}">
             {% if feature %}
-              <img src="{{ product.previews.order_by('-created').image_url }}">
+              <img src="{{ product.previews.order_by('-created')[0].image_url }}">
             {% else %}
               <img src="{{ product.previews.order_by('-created')[0].thumbnail_url }}">
             {% endif %}
