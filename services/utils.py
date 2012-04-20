@@ -109,7 +109,7 @@ def log_exception(data):
 
 def log_info(data, msg):
     error_log = logging.getLogger('z.services')
-    error_log.info(u'Msg: %s, Data: %s' % (msg, data))
+    error_log.error(u'Msg: %s, Data: %s' % (msg, data))
 
 
 def log_cef(request, app, msg, longer):
