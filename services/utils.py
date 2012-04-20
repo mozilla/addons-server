@@ -94,7 +94,7 @@ def log_configure():
         'formatters': dict(prod=formatters['prod']),
         'handlers': dict(syslog=handlers['syslog']),
         'loggers': {
-            'z': {'handlers': ['syslog']},
+            'z': {'handlers': ['syslog'], 'level': logging.INFO},
         },
         'root': {},
     }
