@@ -145,14 +145,6 @@
         {# We need PayPal only for authenticated users. #}
         <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       {% endif %}
-      <script>
-        (function() {
-          function trigger() {
-            $(window).trigger('saferesize');
-          }
-          window.addEventListener('resize', _.debounce(trigger, 200), false);
-        })();
-      </script>
     {% endblock %}
     {% block js %}{% endblock %}
   </body>

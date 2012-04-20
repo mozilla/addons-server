@@ -10,6 +10,12 @@ var z = {
     }
 };
 
+(function() {
+    function trigger() {
+        $(window).trigger('saferesize');
+    }
+    window.addEventListener('resize', _.debounce(trigger, 200), false);
+})();
 
 $(document).ready(function() {
     // Initialize email links.
