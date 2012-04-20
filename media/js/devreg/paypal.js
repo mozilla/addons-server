@@ -41,7 +41,10 @@ exports.payment_setup = function() {
               'payments-upsell'], []],
             // Free with in-app
             [['payments-support-type'],
-             ['payments-price-level', 'payments-upsell']]
+             ['payments-price-level', 'payments-upsell']],
+            // Premium but other.
+            [[], ['payments-support-type', 'payments-price-level',
+                  'payments-upsell']],
         ];
         $.each(fields[value][0], function() { $('#' + this).show(); });
         $.each(fields[value][1], function() { $('#' + this).hide(); });

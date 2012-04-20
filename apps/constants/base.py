@@ -195,12 +195,15 @@ ADDON_FREE = 0
 ADDON_PREMIUM = 1
 ADDON_PREMIUM_INAPP = 2
 ADDON_FREE_INAPP = 3
+# The addon will have payments, but they aren't using our payment system.
+ADDON_PREMIUM_OTHER = 4
 
 ADDON_PREMIUM_TYPES = {
     ADDON_FREE: _('Free'),
     ADDON_PREMIUM: _('Premium'),
     ADDON_PREMIUM_INAPP: _('Premium with in-app payments'),
-    ADDON_FREE_INAPP: _('Free with in-app payments')
+    ADDON_FREE_INAPP: _('Free with in-app payments'),
+    ADDON_PREMIUM_OTHER: _("Premium, but I'll use my own payments system")
 }
 
 ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)

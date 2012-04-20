@@ -822,6 +822,12 @@ class TestPayments(TestSubmit):
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('payments.paypal'))
 
+    def test_premium_other(self):
+        res = self.client.post(self.get_url('payments'),
+                               {'premium_type': amo.ADDON_PREMIUM_OTHER})
+        eq_(res.status_code, 302)
+        self.assertRedirects(res, self.get_url('done'))
+
     def test_price(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.upsell'),
