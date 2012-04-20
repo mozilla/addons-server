@@ -8,7 +8,7 @@
             current, $strip,
             lbImage = template('<img id="preview{0}" src="{1}">'),
             lbVideo = template('<video id="preview{0}" src="{1}" controls ' +
-                               'type="video/webm"></video>');
+                               'preload="auto" type="video/webm"></video>');
         if (!$lightbox.length) return;
         function showLightbox() {
             $lightbox.show();
@@ -63,15 +63,15 @@
                      .eq(current).addClass('active');
             var $img = $('#preview'+current);
             if ($img.length) {
-                $oldimg.css('opacity', 0);
-                $img.css('opacity', 1);
+                $oldimg.removeClass('show');
+                $img.addClass('show');
                 $img.filter('video').focus();
             } else {
                 $img = $(cookieCutter([current, $a.attr('href')]));
                 $content.append($img);
-                $img.load(function(e) {
-                    $oldimg.css('opacity', 0);
-                    $img.css('opacity', 1);
+                $img.bind('load loadstart', function(e) {
+                    $oldimg.removeClass('show');
+                    $img.addClass('show');
                     $img.filter('video').focus();
                     for (var i=0; i<$strip.length; i++) {
                         if (i != current) {
