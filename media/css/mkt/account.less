@@ -79,7 +79,7 @@
     }
 }
 
-#preapproval {
+#preapproval, #currency {
     p {
         font-size: 15px;
         line-height: 20px;
@@ -93,12 +93,28 @@
     footer {
         margin-top: 20px;
     }
+}
+
+#preapproval, #currency {
     ul {
         list-style: none;
         padding: 0;
         li + li {
             margin-top: 5px;
         }
+    }
+    label {
+        color: @black;
+        font-weight: normal;
+    }
+}
+
+#currency {
+    ul {
+        margin-bottom: 20px;
+    }
+    p {
+        font-weight: bold;
     }
 }
 
