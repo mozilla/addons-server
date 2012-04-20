@@ -10,10 +10,8 @@
       Choose the currency you'd like to use for these pre-approved payments:
     {% endtrans %}
   </p>
-  <p>
-    {{ currency.currency.errors }}
-    {{ currency.currency }}
-  </p>
+  {{ currency.currency.errors }}
+  {{ currency.currency }}
 {% endmacro %}
 
 {% block content %}
