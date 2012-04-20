@@ -20,5 +20,5 @@ def search_results(context, products, field=None, src=None, dl_src=None):
 
 
 @register.function
-def SimpleSearchForm(request):
-    return forms.SimpleSearchForm(request.GET)
+def SimpleSearchForm(data):
+    return forms.SimpleSearchForm(data)

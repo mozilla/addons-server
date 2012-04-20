@@ -6,6 +6,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     padding: 0;
+    min-height: 20px;
     max-width: 100%;
     -webkit-overflow-scrolling: touch;
     .content {
@@ -28,7 +29,7 @@
         opacity: 0;
         visibility: hidden;
         width: 48px;
-        height: 240px;
+        height: 220px;
         left: 0;
         background: fadeOut(@white, 80%);
         z-index: 1;
@@ -79,7 +80,7 @@
 }
 
 .promo-slider {
-    height: 200px;
+    height: 245px;
     ul {
         white-space: nowrap;
         padding: 0;
@@ -124,6 +125,7 @@
             h3 {
                 .ellipsis;
                 float: left;
+                font-size: 16px;
                 max-width: 190px;
             }
             p {
@@ -131,4 +133,137 @@
             }
         }
     }
+}
+
+#home-featured, #home-popular {
+    .controls {
+        .next-page, .prev-page {
+            height: 240px;
+        }
+    }
+    .promo-slider {
+        height: 282px;
+    }
+}
+
+.featured {
+    background: #60747F;
+    .grain;
+    color: @white;
+    &.slider {
+        border-bottom: 1px solid #666;
+    }
+    a {
+        color: lighten(@text, 60%);
+        &:hover {
+            color: @white;
+        }
+    }
+}
+
+.popular {
+    h2 {
+        padding-top: 10px;
+    }
+    a {
+        color: @text;
+        &:hover {
+            color: darken(@text, 15%);
+        }
+    }
+}
+
+.popular, .categories {
+    h2 {
+        padding-top: 10px;
+    }
+}
+
+.categories {
+    background: @pale-bg;
+    .controls {
+        .next-page, .prev-page {
+            height: 162px;
+            top: 12px;
+        }
+    }
+    a {
+        color: @medium-gray;
+        &:hover {
+            color: @dark-gray;
+        }
+    }
+    .promo-slider {
+        height: 175px;
+        li, li a, img {
+            height: 120px;
+            width: 120px;
+        }
+        li {
+            h3 {
+                margin: 0;
+                text-align: center;
+                width: 100%;
+            }
+            a {
+                .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 2px 1px 0 rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05) inset');
+                .transition-duration(0.1s);
+                .transition-property(~'background-color,'
+                                      '-moz-box-shadow, -webkit-box-shadow,'
+                                      'box-shadow, line-height');
+                background-color: #D9DDE0;
+                display: block;
+                line-height: 120px;
+                margin: 0 auto;
+                text-align: center;
+                &:hover {
+                    .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 4px 1px 0 rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 48px 0 @white inset, 0 -3px 0 0 rgba(0,0,0,.15) inset');
+                    line-height: 118px;
+                }
+                &:active {
+                    background-color: rgba(0,0,0,0.1);
+                    .box-shadow(~'0 2px 0 0 rgba(0,0,0,.2) inset, 0 12px 24px 6px rgba(0,0,0,.2) inset, 0 2px 2px 2px rgba(0,0,0,.2) inset');
+                    line-height: 124px;
+                }
+            }
+        }
+        img {
+            background: url(../../img/mkt/glyphs/rocket.png) 50% 50% no-repeat;
+        }
+    }
+    .promo-slider ul a:after {
+        bottom: 5px;
+        right: 5px;
+    }
+}
+
+.arrow.button {
+    .border-box;
+    .width(3);
+    color: lighten(@text, 60%);
+    font-size: 18px;
+    line-height: 35px;
+    position: relative;
+    text-align: left;
+    &:after {
+        background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
+        content: "";
+        display: block;
+        height: 19px;
+        opacity: .7;
+        position: absolute;
+        top: 8px;
+        right: 15px;
+        width: 18px;
+    }
+    &:hover {
+        color: @white;
+        &:after {
+            opacity: 1;
+        }
+    }
+}
+
+.html-rtl .arrow.button {
+    text-align: right;
 }

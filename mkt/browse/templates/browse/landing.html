@@ -1,0 +1,37 @@
+{% extends 'mkt/base.html' %}
+
+{% if category %}
+  {% set title = category.name %}
+  {% set heading = title %}
+  {% set crumbs = [(url('browse.apps'), _('Apps')),
+                   (None, title)] %}
+{% else %}
+  {% set title = _('Apps') %}
+  {% set heading = title %}
+  {% set crumbs = [(None, title)] %}
+{% endif %}
+
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+
+{% block content %}
+  {{ mkt_breadcrumbs(product, crumbs, cls='dark') }}
+  <section id="browse-featured" class="featured full">
+    <div>
+      <h2>{{ title if category else _('Featured') }}</h2>
+    </div>
+  </section>
+  <section class="featured full slider">
+    {{ featured|promo_slider(feature=True) }}
+  </section>
+  <section class="popular full">
+    <div>
+      <h2><a href="{{ url('browse.apps')|urlparams(category=category.slug or None,
+                                                   sort='popular') }}">
+        {{ _('By popularity') }}</a></h2>
+    </div>
+  </section>
+  <section class="popular grid full">
+    {{ popular|promo_grid }}
+  </section>
+  {{ category_slider() }}
+{% endblock %}

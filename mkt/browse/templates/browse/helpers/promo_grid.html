@@ -1,0 +1,18 @@
+{% if products %}
+  <div class="promo-grid">
+    <ul class="content">
+      {% for product in products %}
+        <li>
+          <a href="{{ product.get_url_path() }}">
+            <img src="{{ product.get_icon_url(64) }}">
+            <h3>{{ product.name }}</h3>
+            {% if product.listed_authors %}
+              <em class="author">{{ product.listed_authors[0].name }}</em>
+            {% endif %}
+            <p class="price">{{ product|price_label }}</p>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

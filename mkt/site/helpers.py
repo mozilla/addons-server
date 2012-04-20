@@ -110,7 +110,7 @@ def promo_slider(context, products, feature=False):
 @register.function
 @jinja2.contextfunction
 def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
-                    add_default=True):
+                    add_default=True, cls=None):
     """
     Wrapper function for ``breadcrumbs``.
 
@@ -142,7 +142,7 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
 
     crumbs = [(url_, truncate(label, crumb_size)) for (url_, label) in crumbs]
     t = env.get_template('site/helpers/breadcrumbs.html').render(
-        breadcrumbs=crumbs)
+        breadcrumbs=crumbs, cls=cls)
     return jinja2.Markup(t)
 
 

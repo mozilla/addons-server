@@ -15,8 +15,7 @@ function registerAddonAutocomplete(node) {
     select: function(event, ui) {
         $(node).val(ui.item.name).attr('data-id', ui.item.id);
         var current = template(
-            '<a href="{url}" target="_blank" ' +
-                'class="collectionitem"><img src="{icon}">{name}</a>');
+            '<a href="{url}" target="_blank"><img src="{icon}"> {name}</a>');
             $td.find('.current-webapp').show().html(current({
                 url: ui.item.url,
                 icon: ui.item.icon,
@@ -29,12 +28,12 @@ function registerAddonAutocomplete(node) {
         }
     }).data('autocomplete')._renderItem = function(ul, item) {
         var html = format('<a>{0}<b>ID: {1}</b></a>', [item.name, item.id]);
-            return $('<li>').data('item.autocomplete', item).append(html).appendTo(ul);
-        };
+        return $('<li>').data('item.autocomplete', item).append(html).appendTo(ul);
+    };
 }
 
 function newAddonSlot(id) {
-    var $tbody = $("#" + id + "-webapps")
+    var $tbody = $("#" + id + "-webapps");
     var $form = $tbody.next().children("tr").clone();
     var $input = $form.find('input.placeholder');
     registerAddonAutocomplete($input);
@@ -44,9 +43,9 @@ function newAddonSlot(id) {
 }
 
 $(document).ready(function(){
-    $("#home-webapps, #featured-webapps").delegate(
+    $("#home-webapps, #category-webapps").delegate(
         '.remove', 'click', _pd(function() {$(this).closest('tr').remove();}));
 
     $('#home-add').click(_pd(function() { newAddonSlot("home"); }));
-    $('#featured-add').click(_pd(function() { newAddonSlot("featured"); }));
+    $('#category-add').click(_pd(function() { newAddonSlot("category"); }));
 });

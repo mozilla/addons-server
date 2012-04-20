@@ -1,0 +1,27 @@
+{% if products %}
+  <div class="promo-slider">
+    <div class="controls">
+      <a href="#" class="prev-page"></a>
+      <a href="#" class="next-page"></a>
+    </div>
+    <ul class="content">
+      {% for product in products %}
+        {% if product.previews.all() %}
+          <li>
+            <a href="{{ product.get_url_path() }}">
+              {% if feature %}
+                <img src="{{ product.previews.order_by('-created')[0].image_url }}">
+              {% else %}
+                <img src="{{ product.previews.order_by('-created')[0].thumbnail_url }}">
+              {% endif %}
+              <h3>{{ product.name }}</h3>
+              <p>
+                {{ product|price_label }}
+              </p>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

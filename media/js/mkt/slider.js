@@ -81,6 +81,7 @@ z.page.on('fragmentloaded', function() {
     }
 
     function initSliders() {
+        $('.promo-grid h3').lineclamp(2);
         $('.slider').each(function() {
             var currentPage,
                 $this = $(this),

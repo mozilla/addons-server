@@ -80,6 +80,7 @@ CSS = {
         'css/mkt/buttons.less',
         'css/mkt/detail.less',
         'css/mkt/slider.less',
+        'css/mkt/promo-grid.less',
         'css/mkt/overlay.less',
         'css/mkt/search.less',
         'css/mkt/paginator.less',
@@ -93,6 +94,7 @@ CSS = {
         'css/devreg/l10n.less',
         'css/impala/lightbox.less',
         'css/mkt/lightbox.less',
+        'css/mkt/browse.less',
     ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',

@@ -9,19 +9,31 @@
 {% set title = 'Feature Manager' %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
-{% macro appsform(id, addons) %}
+{% macro appsform(id, apps) %}
   <table>
     <thead>
       <th>App</th>
       <th class="js-hidden">Delete</th>
     </thead>
     <tbody id="{{ id }}-webapps">
-      {% for info in addons %}
-      <tr><td><div class="current-webapp js-hidden" style="display: block;"><a class="collectionitem" target="_blank" href="{{ info[1].url }}"><img src="{{ info[1].icon_url }}">{{ info[1].name }}</a></div><input type="hidden" name="{{info[0]}}-{{id}}-webapp" value="{{ info[1].id }}"><a class="remove">×</a>
+      {% for idx, app in apps %}
+      <tr><td>
+        <div class="current-webapp js-hidden" style="display: block;">
+          <a target="_blank" href="{{ app.get_url_path() }}">
+            <img src="{{ app.icon_url }}"> {{ app.name }}</a>
+        </div>
+        <input type="hidden" name="{{ idx }}-{{ id }}-webapp" value="{{ app.id }}">
+        <a class="remove">×</a>
+      </td></tr>
       {% endfor %}
     </tbody>
     <tfoot class="hidden">
-      <tr><td><div class="current-webapp js-hidden" style="display: block;"></div><input placeholder="{{ _('Enter the name of the webapp to include') }}" class="placeholder addon-ac" data-src="{{ url('search.apps_ajax') }}" /><input type="hidden"><a class="remove">×</a></td></tr>
+      <tr><td>
+        <div class="current-webapp js-hidden" style="display: block;"></div>
+        <input placeholder="{{ _('Enter the name of the webapp to include') }}"
+               class="placeholder addon-ac large" data-src="{{ url('search.apps_ajax') }}">
+        <input type="hidden"><a class="remove">×</a>
+      </td></tr>
     </tfoot>
   </table>
 {% endmacro %}
@@ -31,17 +43,17 @@
 
 <form method="post">
   {{ csrf() }}
-<h3>Home</h3>
-  {{ appsform("home", home_addons) }}
-  <p><a href="#" id="home-add">Add an app to Home</a></p>
+  <h3>Home Featured</h3>
+  {{ appsform('home', home_featured) }}
+  <p><a href="#" id="home-add">Add an app</a></p>
   <p>
     <button type="submit" name="home_submit">Save Changes</button> or <a href="">Cancel</a>
   </p>
-<h3>Featured</h3>
-  {{ appsform("featured", featured_addons) }}
-  <p><a href="#" id="featured-add">Add an app to Featured</a></p>
+  <h3>Category Featured</h3>
+  {{ appsform('category', category_featured) }}
+  <p><a href="#" id="category-add">Add an app</a></p>
   <p>
-    <button type="submit" name="featured_submit">Save Changes</button> or <a href="">Cancel</a>
+    <button type="submit" name="category_submit">Save Changes</button> or <a href="">Cancel</a>
   </p>
 </form>
 {% endblock %}

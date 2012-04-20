@@ -128,7 +128,7 @@ class TestWebappManager(test_utils.TestCase):
     def setUp(self):
         self.reviewed_eq = (lambda f=[]:
                             eq_(list(Webapp.objects.reviewed()), f))
-        self.listed_eq = (lambda f=[]: eq_(list(Webapp.objects.listed()), f))
+        self.listed_eq = (lambda f=[]: eq_(list(Webapp.objects.visible()), f))
 
     def test_reviewed(self):
         for status in amo.REVIEWED_STATUSES:

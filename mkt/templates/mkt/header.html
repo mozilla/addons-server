@@ -4,7 +4,8 @@
     <nav>
       <a href="#" class="menu-button"><b></b></a>
       {% block search %}
-        {% set search_form = SimpleSearchForm(request) %}
+        {% set data = {'cat': category.id} if category else request.GET %}
+        {% set search_form = SimpleSearchForm(data) %}
         <form id="search" action="{{ url('search.search') }}">
           <input id="search-q" type="text" name="q" autocomplete="off" title=""
                  placeholder="{{ _('Search') }}"

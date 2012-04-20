@@ -35,7 +35,7 @@
     {% set heading = title %}
     {% set title = '%s | %s' % (title, _('Apps')) %}
     {% set crumbs = [(url('browse.apps'), _('Apps')),
-                     (None, title)] %}
+                     (None, heading)] %}
   {% else %}
     {% set title = 'Apps' %}
     {% set heading = title %}

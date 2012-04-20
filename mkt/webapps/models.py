@@ -21,6 +21,7 @@ from amo.urlresolvers import reverse
 from amo.utils import memoize
 from addons import query
 from addons.models import Addon, update_name_table, update_search_index
+from bandwagon.models import Collection
 from files.models import FileUpload, Platform
 from lib.crypto.receipt import sign
 from versions.models import Version
@@ -41,19 +42,18 @@ class WebappManager(amo.models.ManagerBase):
     def reviewed(self):
         return self.filter(status__in=amo.REVIEWED_STATUSES)
 
-    def listed(self):
-        return self.reviewed().filter(_current_version__isnull=False,
-                                      disabled_by_user=False)
+    def visible(self):
+        return self.filter(status=amo.STATUS_PUBLIC, disabled_by_user=False)
 
     def top_free(self, listed=True):
-        qs = self.listed() if listed else self
+        qs = self.visible() if listed else self
         return (qs.filter(premium_type__in=amo.ADDON_FREES)
                 .exclude(addonpremium__price__price__isnull=False)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
     def top_paid(self, listed=True):
-        qs = self.listed() if listed else self
+        qs = self.visible() if listed else self
         return (qs.filter(premium_type__in=amo.ADDON_PREMIUMS,
                           addonpremium__price__price__gt=0)
                 .order_by('-weekly_downloads')
@@ -189,7 +189,7 @@ class Webapp(Addon):
 
     def authors_other_addons(self, app=None):
         """Return other apps by the same author."""
-        return (self.__class__.objects.listed()
+        return (self.__class__.objects.visible()
                               .filter(type=amo.ADDON_WEBAPP)
                               .exclude(id=self.id).distinct()
                               .filter(addonuser__listed=True,
@@ -203,6 +203,33 @@ class Webapp(Addon):
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
+
+    @classmethod
+    def featured_collection(cls, group):
+        try:
+            featured = Collection.objects.get(author__username='mozilla',
+                                              slug='featured_apps_%s' % group,
+                                              type=amo.COLLECTION_FEATURED)
+        except Collection.DoesNotExist:
+            featured = None
+        return featured
+
+    @classmethod
+    def featured(cls, group):
+        featured = cls.featured_collection(group)
+        if featured:
+            return (featured.addons.filter(status=amo.STATUS_PUBLIC,
+                                           disabled_by_user=False)
+                    .order_by('-weekly_downloads'))
+        else:
+            return cls.objects.none()
+
+    @classmethod
+    def popular(cls):
+        """Elastically grab the most popular apps."""
+        return (cls.search().filter(status=amo.STATUS_PUBLIC,
+                                    is_disabled=False)
+                .order_by('-weekly_downloads'))
 
 
 # Pull all translated_fields from Addon over to Webapp.
