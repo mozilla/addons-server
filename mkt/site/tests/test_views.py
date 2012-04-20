@@ -88,8 +88,8 @@ class TestCSRF(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def test_csrf(self):
-        assert json.loads(self.client.get(reverse('csrf')).content)['csrf']
+        assert json.loads(self.client.post(reverse('csrf')).content)['csrf']
 
     def test_not_csrf(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        eq_(self.client.get(reverse('csrf')).status_code, 403)
+        eq_(self.client.post(reverse('csrf')).status_code, 403)
