@@ -1,11 +1,6 @@
-import logging
-
 import amo
 from addons.models import Addon
 from bandwagon.models import Collection
-
-
-log = logging.getLogger('z.access')
 
 
 def match_rules(rules, app, action):
@@ -33,8 +28,6 @@ def action_allowed(request, app, action):
                   getattr(request, 'groups', ()))
     user = (hasattr(request, 'amo_user') and request.amo_user and
             request.amo_user.id or 'Anonymous')
-    log.info('User %s %s %s:%s' % (user, 'allowed' if allowed else 'denied',
-                                   app, action))
     return allowed
 
 
@@ -42,8 +35,6 @@ def action_allowed_user(user, app, action):
     """Similar to action_allowed, but takes user instead of request."""
     allowed =  any(match_rules(group.rules, app, action) for group in
                    user.groups.all())
-    log.info('User %d %s %s:%s' % (user.id, 'allowed' if allowed else 'denied',
-                                   app, action))
     return allowed
 
 
