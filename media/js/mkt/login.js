@@ -13,8 +13,9 @@ $(window).bind('login', function() {
          $this.removeClass('loading-submit');
          if (err.privs) {
              $.post('/csrf', function(r) {
-                $('#login').append($('<input>', {type:'hidden', value:r.csrf,
-                                                 name:'csrf'}));
+                $('#login form').append($('<input>',
+                                        {type:'hidden', value:r.csrf,
+                                         name:'csrf'}));
              });
              $('#login').addClass('show old');
          } else {

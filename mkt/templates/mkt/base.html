@@ -106,23 +106,27 @@
         </div>
         <div class="old">
           <h2>Additional authorization required</h2>
-          <form method="post" action="{{ url('users.login') }}" class="listing-footer">
+          <form method="post" action="{{ url('users.login') }}"
+                class="form-grid">
             {{ csrf() }}
-            <div class="row">
-              <label for="id_username">Email address</label>
-              <input id="id_username" name="username" maxlength="50" type="text">
+            <div class="simple-field row c">
+              <div class="form-label">
+                <label for="id_username">Email address</label>
+              </div>
+              <div class="form-col">
+                <input id="id_username" name="username" maxlength="50" type="text">
+              </div>
             </div>
-            <div class="row">
-              <label for="id_password">Password</label>
-              <input name="password" id="id_password" type="password">
+            <div class="simple-field row c">
+              <div class="form-label">
+                <label for="id_password">Password</label>
+              </div>
+              <div class="form-col">
+                <input name="password" id="id_password" type="password">
+              </div>
             </div>
-            <div class="row">
-              <label for="id_rememberme" class="check">
-                <input name="rememberme" id="id_rememberme" type="checkbox">
-                Remember me on this computer
-              </label>
-            </div>
-            <footer>
+            <input type="hidden" name="rememberme" value="1">
+            <footer class="listing-footer">
               <button id="login-submit" type="submit">Log in</button>
             </footer>
           </form>
