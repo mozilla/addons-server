@@ -4,7 +4,7 @@
       {% if product.all_previews|length %}
         <li>
           <a href="{{ product.get_url_path() }}">
-            <img src="{{ product.all_previews[0].thumbnail_url }}">
+            <img src="{{ product.previews.order_by('-created')[0].thumbnail_url }}">
             <h3>{{ product.name }}</h3>
             <p>
               {{ product|price_label }}
