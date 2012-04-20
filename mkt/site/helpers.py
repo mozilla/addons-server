@@ -98,9 +98,10 @@ def product_as_dict(request, product, purchased=None):
 
 @register.filter
 @jinja2.contextfilter
-def promo_slider(context, products):
+def promo_slider(context, products, feature=False):
     c = {
-        'products': products
+        'products': products,
+        'feature': feature,
     }
     t = env.get_template('site/promo_slider.html')
     return jinja2.Markup(t.render(c))
