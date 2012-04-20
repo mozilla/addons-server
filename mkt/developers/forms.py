@@ -410,8 +410,7 @@ class PremiumForm(happyforms.Form):
 
         # If they checked later in the wizard and then decided they want
         # to keep it free, push to pending.
-        if (not self.addon.paypal_id and self.addon.is_incomplete()
-            and not self.addon.needs_paypal()):
+        if (not self.addon.needs_paypal() and self.addon.is_incomplete()):
             self.addon.mark_done()
 
 

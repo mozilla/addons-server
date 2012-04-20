@@ -80,8 +80,16 @@ class TestPayments(amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
+    def test_later_then_free_with_paypal_id(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
+                           status=amo.STATUS_NULL,
+                           paypal_id='a@a.com')
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE,
+                                          'support_email': 'foo@bar.com'})
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
-# Testing the paypal page.
+
 class TestPaypal(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
                 'prices']
