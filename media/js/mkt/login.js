@@ -12,6 +12,10 @@ $(window).bind('login', function() {
      .fail(function(err) {
          $this.removeClass('loading-submit');
          if (err.privs) {
+             $.post('/csrf', function(r) {
+                $('#login').append($('<input>', {type:'hidden', value:r.csrf,
+                                                 name:'csrf'}));
+             });
              $('#login').addClass('show old');
          } else {
              alert(err.msg);

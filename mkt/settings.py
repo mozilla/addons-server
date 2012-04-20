@@ -59,6 +59,7 @@ INSTALLED_APPS += (
 
 SUPPORTED_NONLOCALES += (
     'manifest.webapp',
+    'csrf',
 )
 
 MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)

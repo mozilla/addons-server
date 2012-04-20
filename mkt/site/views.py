@@ -1,11 +1,12 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext
 
 import jingo
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
-from amo.decorators import no_login_required
+from amo.decorators import no_login_required, post_required
 from amo.helpers import media
 import api.views
 
@@ -61,3 +62,15 @@ def robots(request):
     """Generate a robots.txt"""
     template = jingo.render(request, 'site/robots.txt')
     return HttpResponse(template, mimetype="text/plain")
+
+
+@anonymous_csrf
+@anonymous_csrf_exempt
+@post_required
+def csrf(request):
+    """A CSRF for anonymous users only."""
+    if not request.amo_user:
+        data = json.dumps({'csrf': RequestContext(request)['csrf_token']})
+        return HttpResponse(data, content_type='application/json')
+
+    return HttpResponseForbidden()
