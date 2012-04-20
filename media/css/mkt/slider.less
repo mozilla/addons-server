@@ -19,22 +19,41 @@
     }
 }
 
-.slide-pager {
-    margin: 5px 0 0;
+.controls {
     .next-page, .prev-page {
-        display: inline-block;
-        width: 18px;
-        height: 19px;
-        background: url(../../img/mkt/arrows/plain-lrg-go.png) no-repeat 0 0;
-        &:hover {
-            background-position: 0 -19px;
+        .border-radius(10px 0 0 10px);
+        position: absolute;
+        display: block;
+        width: 48px;
+        height: 240px;
+        left: 0;
+        background: fadeOut(@white, 80%);
+        &:after {
+            content: '';
+            width: 18px;
+            height: 19px;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
         }
+        &:hover {
+            background: fadeOut(@white, 50%);
+            &:after {
+                background-position: 0 -19px;
+            }
+        }
+    }
+    .next-page {
+        right: 0;
+        left: auto;
     }
     .prev-page {
         .transform(scaleX(-1));
-    }
-    .next-page {
-        float: right;
     }
 }
 

@@ -83,19 +83,13 @@ z.page.on('fragmentloaded', function() {
     function initSliders() {
         $('.slider').each(function() {
             var currentPage,
-                $pager = $('<p class="slide-pager c"></p>'),
-                $nextLink = $('<a href="#" class="next-page"></a>'),
-                $prevLink = $('<a href="#" class="prev-page"></a>'),
                 $this = $(this),
+                $nextLink = $('.next-page', $this),
+                $prevLink = $('.prev-page', $this),
                 maxPage = numPages($this.find('ul'));
 
-            if ($this.find('.slide-pager').length === 0) {
-                $pager.append($prevLink, $nextLink);
-                $this.prepend('<div></div>');
-                $this.find('div:first-child').prepend($pager);
-                $prevLink.click(_pd(prevPage));
-                $nextLink.click(_pd(nextPage));
-            }
+            $prevLink.click(_pd(prevPage));
+            $nextLink.click(_pd(nextPage));
 
             gotoPage(0);
 
