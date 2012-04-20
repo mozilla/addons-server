@@ -34,6 +34,13 @@ h1 .num {
             content: "$";
         }
     }
+    &.installed {
+        &:before {
+            background: url(../../img/mkt/icons/disk.png) 50% 50% no-repeat;
+            .border-radius(0);
+            content: "\00a0";
+        }
+    }
 }
 
 .listing .purchased {

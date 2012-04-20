@@ -43,7 +43,9 @@ $(function() {
     r.onsuccess = function() {
         _.each(r.result, function(val) {
             $(window).trigger('app_install_success',
-                             {'manifestUrl': val.manifestURL});
+                              {'manifestUrl': val.manifestURL})
+                     .trigger('app_install_mark',
+                              {'manifestUrl': val.manifestURL});
         });
     };
 
@@ -59,5 +61,17 @@ $(function() {
     });
     $(window).bind('overlay_dismissed', function() {
        $nav.removeClass('active');
+    }).bind('app_install_mark', function(e, product) {
+        var $li = $(format('.listing li[data-manifest="{0}"]',
+                           product.manifestUrl)),
+            $actions = $li.find('.actions'),
+            $purchased = $actions.find('.checkmark.purchased'),
+            installed = format('<span class="checkmark installed">{0}</span>',
+                               gettext('Installed'));
+        if ($purchased.length) {
+            $purchased.replaceWith(installed);
+        } else {
+            $purchased.prepend(installed);
+        }
     });
 });

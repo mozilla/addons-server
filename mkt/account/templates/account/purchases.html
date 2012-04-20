@@ -20,21 +20,21 @@
       {% for product in pager.object_list %}
         {% set is_refunded = product.is_refunded(amo_user) %}
         {% set is_chargeback = product.is_chargeback(amo_user) %}
-        <li class="item result app c{{ ' refunded' if is_refunded }}{{ ' reversed' if is_chargeback }}">
+        <li data-manifest="{{ product.manifest_url }}"
+            class="item result app c{{ ' refunded' if is_refunded }}{{ ' reversed' if is_chargeback }}">
+          <div class="info">
+            {{ product_info(product) }}
+            {{ refund_info(product, contributions) }}
+          </div>
           <div class="actions">
             {% if product.is_purchased(request.amo_user) %}
-              <a href="{{ url('account.purchases') }}"
-                 class="checkmark purchased">{{ _('Purchased') }}</a>
+              <span class="checkmark purchased">{{ _('Purchased') }}</a>
             {% endif %}
             {% if is_refunded %}
               <div class="purchase refund-notice">
                 {{ _('Purchase Refunded') }}
               </div>
             {% endif %}
-          </div>
-          <div class="info">
-            {{ product_info(product) }}
-            {{ refund_info(product, contributions) }}
           </div>
         </li>
         {{ pager|impala_paginator }}
