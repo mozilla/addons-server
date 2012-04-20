@@ -31,7 +31,9 @@
         <tr>
           <th>
             {{ tip(_('App URL'),
-                   _('Choose a short, unique URL slug for your app.')) }}
+                   _('Select a unique URL for your detail page. '
+                     'By default we use your app name to create '
+                     'this URL.')) }}
             {{ req_if_edit }}
           </th>
           <td id="slug_edit">
