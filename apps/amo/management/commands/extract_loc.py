@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand
 
+from amo.storage_utils import walk_storage
 
 _loc_re = re.compile(r"""\\?(loc)\(.*?\)""", (re.M | re.S))
 _exts = ('.py', '.html')
@@ -21,7 +22,7 @@ class Command(BaseCommand):
     """
     def handle(self, *args, **options):
         count = 0
-        for root, folders, files in storage.walk(_root):
+        for root, folders, files in walk_storage(_root):
             if not root.startswith(_subs):
                 continue
 
