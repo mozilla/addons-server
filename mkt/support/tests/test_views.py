@@ -132,7 +132,7 @@ class TestRequestSupport(PurchaseBase):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         eq_(msg.to, ['a@a.com'])
-        eq_(msg.from_email, 'nobody@mozilla.org')
+        eq_(msg.from_email, settings.NOBODY_EMAIL)
         assert '$1.00' in msg.body, 'Missing refund price in %s' % email.body
         assert reason in msg.body, 'Missing refund reason in %s' % email.body
 
