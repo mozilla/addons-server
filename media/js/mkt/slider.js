@@ -88,31 +88,45 @@ z.page.on('fragmentloaded', function() {
                 $prevLink = $('.prev-page', $this),
                 maxPage = numPages($this.find('ul'));
 
+            // Show "next" arrow if there is at least one page.
+            if (maxPage) {
+                $nextLink.addClass('show');
+            }
             $prevLink.click(_pd(prevPage));
             $nextLink.click(_pd(nextPage));
 
             gotoPage(0);
 
             function gotoPage(n) {
-                if (n < 0 || n > maxPage) return;
+                if (n < 0 || n > maxPage) {
+                    return;
+                }
+                $item = $this.find('ul li');
                 var $item = $this.find('ul li'),
-                    val = n * (itemsPerPage($item) *
-                         ($item.width() + parseInt($item.css('margin-right'), 10)));
-                    // Have no idea why the magic number is needed.
-                    val += n * (itemsPerPage($item) + 7);
+                    perPage = itemsPerPage($item),
+                    val = n * perPage * $item.outerWidth(true);
+                // Have no idea why the magic number is needed.
+                val += n * (perPage + 7);
                 currentPage = n;
                 $this.find('ul').css(z.prefixed('transform'),
                                      'translateX(-'+val+'px)');
+                if (n == 0) {
+                    $prevLink.removeClass('show');
+                } else if (n == maxPage) {
+                    $nextLink.removeClass('show');
+                }
             }
 
             function nextPage() {
                 if (currentPage < maxPage) {
+                    $prevLink.addClass('show');
                     gotoPage(currentPage+1);
                 }
             }
 
             function prevPage() {
                 if (currentPage) {
+                    $nextLink.addClass('show');
                     gotoPage(currentPage-1);
                 }
             }
