@@ -43,6 +43,11 @@
                 document.title = $title.text();
                 $title.remove();
 
+                var $bodyclass = page.find('meta[name=bodyclass]'),
+                    $body = $('body');
+                $body.attr('class', $body.data('class') + ' ' + $bodyclass.attr('content'));
+                $bodyclass.remove();
+
                 _.delay(function() { $loading.removeClass('active'); }, 400);
                 $('html, body').animate({scrollTop: 0}, 200);
             });

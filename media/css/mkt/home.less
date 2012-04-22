@@ -1,5 +1,11 @@
 @import 'lib';
 
+.home {
+    #page {
+        .box-shadow(none);
+    }
+}
+
 .homepage-promo {
     background-image: url(../../img/mkt/grain.png),
                       linear-gradient(#394C58, #60747F);
@@ -12,6 +18,7 @@
     /*.gradient-two-color(#394C58, #60747F);*/
     min-height: 320px;
     color: @white;
+    text-shadow: 0 1px 0 rgba(0,0,0,.25);
     div {
         .border-box;
         background: url(../../img/mkt/quest.png) 100% 58px no-repeat;
@@ -25,10 +32,10 @@
         font-size: 14px;
         width: 320px;
     }
-    h2 {
-        font-size: 43px;
-        line-height: 52px;
-        margin-bottom: 0px;
+    h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
+        line-height: 100%;
     }
 }
 

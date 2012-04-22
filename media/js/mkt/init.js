@@ -55,8 +55,11 @@ $(function() {
         });
     };
 
+    var $body = $('body');
     // Add class for touch devices.
-    $('body').addClass(z.capabilities.touch ? 'touch' : 'desktop');
+    $body.addClass(z.capabilities.touch ? 'touch' : 'desktop');
+    // Store baseline classes.
+    $body.data('class', $body.attr('class'));
 
     // Navigation toggle.
     var $header = $('#site-header'),
