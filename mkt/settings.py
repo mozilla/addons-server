@@ -26,6 +26,9 @@ ENGAGE_ROBOTS = True
 MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 MKT_SUPPORT_EMAIL = 'marketplace-developer-support@mozilla.org'
+MARKETPLACE_EMAIL = 'amo-marketplace@mozilla.org'
+ABUSE_EMAIL = 'Mozilla Marketplace <marketplace-abuse@mozilla.org>'
+NOBODY_EMAIL = 'Mozilla Marketplace <nobody@mozilla.org>'
 
 ROOT_URLCONF = 'mkt.urls'
 
