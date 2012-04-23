@@ -157,6 +157,7 @@ CSS = {
 JS = {
     'mkt/devreg': (
         'js/lib/jquery-1.6.4.js',
+        'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
@@ -181,6 +182,9 @@ JS = {
         'js/zamboni/global.js',
         'js/zamboni/l10n.js',
         'js/zamboni/debouncer.js',
+
+        # Tracking.
+        'js/devreg/tracking.js',
 
         # Users.
         'js/zamboni/users.js',
@@ -212,6 +216,7 @@ JS = {
     ),
     'mkt/consumer': (
         'js/lib/jquery-1.7.1.js',
+        'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/lib/format.js',
         'js/mkt/init.js',
@@ -221,6 +226,7 @@ JS = {
         'js/common/keys.js',
         'js/mkt/capabilities.js',
         'js/mkt/fragments.js',
+        'js/mkt/tracking.js',
         'js/mkt/overlay.js',
         'js/mkt/slider.js',
         'js/mkt/login.js',
