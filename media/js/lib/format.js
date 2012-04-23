@@ -9,6 +9,9 @@
 var format = (function() {
     var re = /\{([^}]+)\}/g;
     return function(s, args) {
+        if (!s) {
+            throw "Format string is empty!";
+        }
         if (!args) return;
         if (!(args instanceof Array || args instanceof Object))
             args = Array.prototype.slice.call(arguments, 1);
@@ -16,5 +19,8 @@ var format = (function() {
     };
 })();
 function template(s) {
+    if (!s) {
+        throw "Template string is empty!";
+    }
     return function(args) { return format(s, args); };
 }
