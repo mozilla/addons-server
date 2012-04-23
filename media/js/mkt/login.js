@@ -15,7 +15,7 @@ $(window).bind('login', function() {
              $.post('/csrf', function(r) {
                 $('#login form').append($('<input>',
                                         {type:'hidden', value:r.csrf,
-                                         name:'csrf'}));
+                                         name:'csrfmiddlewaretoken'}));
              });
              $('#login').addClass('show old');
          } else {
