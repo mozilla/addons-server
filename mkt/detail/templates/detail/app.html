@@ -71,15 +71,17 @@
     <div class="actions">
       {% if product.is_public() %}
         {{ market_button(product) }}
-        {% if product.is_purchased(request.amo_user) %}
-          <span class="approval checkmark purchased">
-            {{ _('Purchased') }}</span>
-        {% elif product.can_purchase() %}
-          {% if request.amo_user and request.amo_user.get_preapproval().paypal_key %}
-            <span class="approval checkmark">{{ _('PayPal pre-approval') }}</span>
-          {% else %}
-            <a class="approval-pitch" href="{{ url('account.payment') }}">
-              {{ _('Set up purchasing') }}</a>
+        {% if request.amo_user %}
+          {% if product.is_purchased(request.amo_user) %}
+            <span class="approval checkmark purchased">
+              {{ _('Purchased') }}</span>
+          {% elif product.can_purchase() %}
+            {% if request.amo_user and request.amo_user.get_preapproval().paypal_key %}
+              <span class="approval checkmark">{{ _('PayPal pre-approval') }}</span>
+            {% else %}
+              <a class="approval-pitch" href="{{ url('account.payment') }}">
+                {{ _('Set up purchasing') }}</a>
+            {% endif %}
           {% endif %}
         {% endif %}
       {% elif is_dev or is_reviewer %}

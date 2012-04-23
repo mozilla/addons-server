@@ -243,7 +243,7 @@ class TestDetail(DetailBase):
     def test_paid_no_preapproval_anonymous(self):
         self.make_premium(self.webapp)
         doc = self.get_pq()
-        eq_(doc('.approval-pitch').length, 1)
+        eq_(doc('.approval-pitch').length, 0)
         eq_(doc('.approval.checkmark').length, 0)
 
     def test_paid_no_preapproval_authenticated(self):
