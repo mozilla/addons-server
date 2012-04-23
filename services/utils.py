@@ -23,8 +23,9 @@ from lib.log_settings_base import formatters, handlers, loggers
 # remove all this.
 from constants.applications import APPS_ALL
 from constants.platforms import PLATFORMS
-from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
-                            STATUS_LITE, STATUS_LITE_AND_NOMINATED)
+from constants.base import (ADDON_PREMIUM, STATUS_PUBLIC, STATUS_DISABLED,
+                            STATUS_BETA, STATUS_LITE,
+                            STATUS_LITE_AND_NOMINATED)
 from constants.payments import (CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
                                 CONTRIB_REFUND)
 

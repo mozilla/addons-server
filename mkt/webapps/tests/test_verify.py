@@ -158,6 +158,15 @@ class TestVerify(amo.tests.TestCase):
             res = self.get(3615, self.user_data)
             eq_(res['status'], 'refunded')
 
+    def test_other_premiums(self):
+        for k in (amo.ADDON_FREE, amo.ADDON_PREMIUM_INAPP,
+                  amo.ADDON_FREE_INAPP, amo.ADDON_PREMIUM_OTHER):
+            Installed.objects.all().delete()
+            self.addon.update(premium_type=k)
+            self.make_install()
+            res = self.get(3615, self.user_data)
+            eq_(res['status'], 'ok')
+
     def test_product_wrong_store_data(self):
         self.make_install()
         data = self.user_data.copy()

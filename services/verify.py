@@ -7,8 +7,8 @@ from time import gmtime, time
 from urlparse import parse_qsl
 
 from utils import (log_configure, log_exception, log_info, mypool,
-                   settings, CONTRIB_CHARGEBACK, CONTRIB_PURCHASE,
-                   CONTRIB_REFUND)
+                   settings, ADDON_PREMIUM, CONTRIB_CHARGEBACK,
+                   CONTRIB_PURCHASE, CONTRIB_REFUND)
 
 # Go configure the log.
 log_configure()
@@ -91,7 +91,7 @@ class Verify:
 
         # If it's a premium addon, then we need to get that the purchase
         # information.
-        if not premium:
+        if premium != ADDON_PREMIUM:
             self.log('Valid receipt, not premium')
             return self.ok_or_expired(receipt)
 
