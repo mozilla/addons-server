@@ -14,7 +14,7 @@ class TestHome(BrowseBase):
                                             active=True)
         self.url = reverse('home')
 
-    def test_good_cat(self):
+    def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'home/home.html')
