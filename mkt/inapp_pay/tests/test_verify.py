@@ -18,6 +18,7 @@ from mkt.inapp_pay.verify import (verify_request, UnknownAppError,
                                   InvalidRequest)
 
 
+@mock.patch.object(settings, 'DEBUG', True)
 class TestVerify(PaymentTest):
 
     def verify(self, request=None, update=None, update_request=None):

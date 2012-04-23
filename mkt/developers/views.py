@@ -439,9 +439,9 @@ def in_app_config(request, addon_id, addon, webapp=True):
         new_inapp.status = amo.INAPP_STATUS_ACTIVE
         if not new_inapp.public_key:
             new_inapp.public_key = InappConfig.generate_public_key()
-        if not new_inapp.private_key:
-            new_inapp.private_key = InappConfig.generate_private_key()
         new_inapp.save()
+        if not new_inapp.has_private_key():
+            new_inapp.set_private_key(InappConfig.generate_private_key())
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('in_app_config'))
@@ -456,7 +456,7 @@ def in_app_config(request, addon_id, addon, webapp=True):
 def in_app_secret(request, addon_id, addon, webapp=True):
     inapp_config = get_object_or_404(InappConfig, addon=addon,
                                      status=amo.INAPP_STATUS_ACTIVE)
-    return http.HttpResponse(inapp_config.private_key)
+    return http.HttpResponse(inapp_config.get_private_key())
 
 
 def _premium(request, addon_id, addon, webapp=False):

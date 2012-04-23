@@ -20,6 +20,7 @@ from mkt.inapp_pay.models import InappPayNotice
 from mkt.inapp_pay.tests.test_views import PaymentTest
 
 
+@mock.patch.object(settings, 'DEBUG', True)
 class TestNotifyApp(PaymentTest):
 
     def setUp(self):
@@ -52,7 +53,7 @@ class TestNotifyApp(PaymentTest):
             dd = jwt.decode(req, verify=False)
             eq_(dd['request'], payload['request'])
             eq_(dd['typ'], payload['typ'])
-            jwt.decode(req, self.inapp_config.private_key, verify=True)
+            jwt.decode(req, self.inapp_config.get_private_key(), verify=True)
             return True
 
         (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
@@ -79,7 +80,7 @@ class TestNotifyApp(PaymentTest):
             eq_(dd['typ'], payload['typ'])
             eq_(dd['response']['transactionID'], self.contrib.pk)
             eq_(dd['response']['reason'], 'refund')
-            jwt.decode(req, self.inapp_config.private_key, verify=True)
+            jwt.decode(req, self.inapp_config.get_private_key(), verify=True)
             return True
 
         (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
@@ -98,7 +99,6 @@ class TestNotifyApp(PaymentTest):
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
     def test_notify_reversal_chargeback(self, urlopen):
         url = self.url(self.chargeback)
-        payload = self.payload(typ='mozilla/payments/pay/chargeback/v1')
 
         def req_ok(req):
             dd = jwt.decode(req, verify=False)
@@ -219,7 +219,7 @@ class TestNotifyApp(PaymentTest):
         # Ensure that the JWT sent to the app for payment notification
         # includes the same payment data that the app originally sent.
         def is_valid(payload):
-            data = jwt.decode(payload, self.inapp_config.private_key,
+            data = jwt.decode(payload, self.inapp_config.get_private_key(),
                               verify=True)
             eq_(data['iss'], settings.INAPP_MARKET_ID)
             eq_(data['aud'], self.inapp_config.public_key)

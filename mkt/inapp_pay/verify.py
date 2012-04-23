@@ -103,7 +103,7 @@ def verify_request(signed_request):
     # TODO(Kumar) see bug 736573 for HSM integration
     try:
         with statsd.timer('inapp_pay.verify'):
-            jwt.decode(signed_request, cfg.private_key, verify=True)
+            jwt.decode(signed_request, cfg.get_private_key(), verify=True)
     except jwt.DecodeError, exc:
         _re_raise_as(RequestVerificationError,
                      'Payment verification failed: %s' % exc,

@@ -1,13 +1,13 @@
-import base64
-import os
 import random
 
 from django.conf import settings
-from django.db import models
+from django.db import connection, models
 
 from tower import ugettext_lazy as _lazy
 
 import amo
+from amo.models import VarbinaryField
+from lib.crypto import generate_key
 
 
 class TooManyKeyGenAttempts(Exception):
@@ -25,7 +25,8 @@ class InappConfig(amo.models.ModelBase):
         help_text=_lazy(u'Relative URL in your app that the marketplace will '
                         u'post a confirmed transaction to. For example: '
                         u'/payments/postback'))
-    private_key = models.CharField(max_length=255, unique=True)
+    _encrypted_private_key = VarbinaryField(max_length=128, blank=True,
+                                            null=True, db_column='private_key')
     public_key = models.CharField(max_length=255, unique=True, db_index=True)
     # Allow https to be configurable only if it's declared in settings.
     # This is intended for development.
@@ -44,6 +45,29 @@ class InappConfig(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon, self.status)
+
+    def get_private_key(self):
+        """Get the real private key from the database."""
+        cursor = connection.cursor()
+        cursor.execute('select AES_DECRYPT(private_key, %s) '
+                       'from addon_inapp where id=%s', [_get_key(), self.id])
+        secret = cursor.fetchone()[0]
+        if not secret:
+            raise ValueError('Secret was empty! It either was not set or '
+                             'the decryption key is wrong')
+        return str(secret)  # make sure it is in bytes
+
+    def has_private_key(self):
+        return bool(self._encrypted_private_key)
+
+    def set_private_key(self, raw_value):
+        """Store the private key in the database."""
+        if isinstance(raw_value, unicode):
+            raw_value = raw_value.encode('ascii')
+        cursor = connection.cursor()
+        cursor.execute('update addon_inapp set '
+                       'private_key = AES_ENCRYPT(%s, %s)',
+                       [raw_value, _get_key()])
 
     @classmethod
     def any_active(cls, addon, exclude_config=None):
@@ -79,14 +103,14 @@ class InappConfig(amo.models.ModelBase):
 
     @classmethod
     def generate_private_key(cls, max_tries=40):
+        """Generate a random 43 character secret key."""
 
-        def gen_key():
-            """Generate a random 43 character secret key."""
-            key = os.urandom(32)  # 256 bit
-            return base64.b64encode(key).rstrip('=')  # strip off padding
-
-        for key in limited_keygen(gen_key, max_tries):
-            if cls.objects.filter(private_key=key).count() == 0:
+        for key in limited_keygen(lambda: generate_key(43), max_tries):
+            cursor = connection.cursor()
+            cursor.execute('select count(*) from addon_inapp where '
+                           'private_key = AES_ENCRYPT(%s, %s) ',
+                           [key, _get_key()])
+            if cursor.fetchone()[0] == 0:
                 return key
 
     def app_protocol(self):
@@ -102,6 +126,16 @@ def limited_keygen(gen_key, max_tries):
         yield gen_key()
     raise TooManyKeyGenAttempts('exceeded %s tries to generate a unique key'
                                 % max_tries)
+
+
+def _get_key():
+    """Get the key used to encrypt data in the db."""
+    if (not settings.DEBUG and
+        settings.INAPP_KEY_PATH.endswith('inapp-sample-pay.key')):
+        raise EnvironmentError('encryption key looks like the one we '
+                               'committed to the repo!')
+    with open(settings.INAPP_KEY_PATH, 'rb') as fp:
+        return fp.read()
 
 
 class InappPayLog(amo.models.ModelBase):

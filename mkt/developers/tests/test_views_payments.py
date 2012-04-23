@@ -1,6 +1,9 @@
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
+
+from django.conf import settings
 
 from addons.models import Addon
 import amo
@@ -8,6 +11,7 @@ import amo.tests
 from mkt.inapp_pay.models import InappConfig
 
 
+@mock.patch.object(settings, 'DEBUG', True)
 class TestInappConfig(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
@@ -23,12 +27,13 @@ class TestInappConfig(amo.tests.TestCase):
     def config(self, public_key='pub-key', private_key='priv-key',
                status=amo.INAPP_STATUS_ACTIVE,
                postback_url='/postback', chargeback_url='/chargeback'):
-        return InappConfig.objects.create(public_key=public_key,
-                                          private_key=private_key,
-                                          addon=self.webapp,
-                                          status=status,
-                                          postback_url=postback_url,
-                                          chargeback_url=chargeback_url)
+        cfg = InappConfig.objects.create(public_key=public_key,
+                                         addon=self.webapp,
+                                         status=status,
+                                         postback_url=postback_url,
+                                         chargeback_url=chargeback_url)
+        cfg.set_private_key(private_key)
+        return cfg
 
     def post(self, data, expect_error=False):
         resp = self.client.post(self.url, data, follow=True)
@@ -44,7 +49,7 @@ class TestInappConfig(amo.tests.TestCase):
         eq_(inapp.postback_url, '/postback')
         eq_(inapp.status, amo.INAPP_STATUS_ACTIVE)
         assert inapp.public_key, 'public key was not generated'
-        assert inapp.private_key, 'private key was not generated'
+        assert inapp.has_private_key(), 'private key was not generated'
 
     def test_hide_inactive_keys(self):
         self.config(status=amo.INAPP_STATUS_INACTIVE)
@@ -61,11 +66,12 @@ class TestInappConfig(amo.tests.TestCase):
 
     def test_regenerate_keys_when_inactive(self):
         old_inapp = self.config(status=amo.INAPP_STATUS_INACTIVE)
+        old_secret = old_inapp.get_private_key()
         self.post(dict(chargeback_url='/chargeback', postback_url='/postback'))
         inapp = InappConfig.objects.get(addon=self.webapp,
                                         status=amo.INAPP_STATUS_ACTIVE)
-        assert inapp.private_key != old_inapp.private_key, (
-                    '%s != %s' % (inapp.private_key, old_inapp.private_key))
+        new_secret = inapp.get_private_key()
+        assert new_secret != old_secret, '%s != %s' % (new_secret, old_secret)
 
     def test_bad_urls(self):
         resp = self.post(dict(chargeback_url='chargeback',
@@ -86,12 +92,12 @@ class TestInappConfig(amo.tests.TestCase):
         eq_(inapp.postback_url, '/new/postback')
         eq_(inapp.status, amo.INAPP_STATUS_ACTIVE)
         eq_(inapp.public_key, 'exisiting-pub-key')
-        eq_(inapp.private_key, 'exisiting-priv-key')
+        eq_(inapp.get_private_key(), 'exisiting-priv-key')
 
     def test_show_secret(self):
-        inapp = self.config()
+        self.config(private_key='123456')
         resp = self.client.get(self.webapp.get_dev_url('in_app_secret'))
-        eq_(resp.content, inapp.private_key)
+        eq_(resp.content, '123456')
 
     def test_deny_secret_to_no_auth(self):
         self.config()

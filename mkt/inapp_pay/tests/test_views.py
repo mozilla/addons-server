@@ -73,16 +73,19 @@ class InappPaymentUtil:
         }
 
 
+@mock.patch.object(settings, 'DEBUG', True)
 class PaymentTest(InappPaymentUtil, amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
+    @mock.patch.object(settings, 'DEBUG', True)
     def setUp(self):
         self.app = self.get_app()
         cfg = self.inapp_config = InappConfig(addon=self.app,
                                               status=amo.INAPP_STATUS_ACTIVE)
         cfg.public_key = self.app_id = InappConfig.generate_public_key()
-        cfg.private_key = self.app_secret = InappConfig.generate_private_key()
+        self.app_secret = InappConfig.generate_private_key()
         cfg.save()
+        cfg.set_private_key(self.app_secret)
         self.app.paypal_id = 'app-dev-paypal@theapp.com'
         self.app.save()
 
@@ -109,6 +112,7 @@ class PaymentViewTest(PaymentTest):
                                  password='password')
 
 
+@mock.patch.object(settings, 'DEBUG', True)
 class TestPayStart(PaymentViewTest):
 
     def test_missing_pay_request_on_start(self):
@@ -150,6 +154,7 @@ class TestPayStart(PaymentViewTest):
         self.assertContains(rp, 'RequestVerificationError')
 
 
+@mock.patch.object(settings, 'DEBUG', True)
 class TestPay(PaymentViewTest):
 
     def setUp(self):

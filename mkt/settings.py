@@ -166,4 +166,8 @@ INAPP_VERBOSE_ERRORS = False
 # This is useful for development and testing.
 INAPP_REQUIRE_HTTPS = True
 
+# Path to key for local AES encrypt/decrypt.
+INAPP_KEY_PATH = os.path.join(ROOT, 'mkt', 'inapp_pay', 'tests', 'resources',
+                              'inapp-sample-pay.key')
+
 #CACHE_EMPTY_QUERYSETS = True

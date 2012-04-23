@@ -3,18 +3,23 @@ from mock import patch
 from nose.tools import eq_
 import waffle
 
+from django.conf import settings
+
 from addons.models import Addon
 import amo
 from mkt.inapp_pay.models import InappConfig
 from mkt.inapp_pay.tests.test_views import InappPaymentUtil
-from paypal.tests.test_views import PaypalTest, sample_reversal, sample_chained_refund
+from paypal.tests.test_views import (PaypalTest, sample_reversal,
+                                     sample_chained_refund)
 from users.models import UserProfile
 
 
 @patch('paypal.views.urllib2.urlopen')
+@patch.object(settings, 'DEBUG', True)
 class TestInappIPN(InappPaymentUtil, PaypalTest):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
+    @patch.object(settings, 'DEBUG', True)
     def setUp(self):
         super(TestInappIPN, self).setUp()
         self.app = self.get_app()
@@ -51,7 +56,8 @@ class TestInappIPN(InappPaymentUtil, PaypalTest):
     @fudge.patch('mkt.inapp_pay.tasks.chargeback_notify')
     def test_refund(self, urlopen, chargeback_notify):
         urlopen.return_value = self.urlopener('VERIFIED')
-        con = self.make_contrib(transaction_id=sample_chained_refund['tracking_id'])
+        tx = sample_chained_refund['tracking_id']
+        con = self.make_contrib(transaction_id=tx)
         pay = self.make_payment(contrib=con)
 
         chargeback_notify.expects('delay').with_args(pay.pk, 'refund')

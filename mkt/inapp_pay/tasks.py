@@ -74,7 +74,7 @@ def _notify(payment_id, notice_type, extra_response=None):
                                             'description': payment.description,
                                             'productdata': payment.app_data},
                                 'response': response},
-                               config.private_key,
+                               config.get_private_key(),
                                algorithm='HS256')
     try:
         res = urlopen(url, signed_notice, timeout=5)
