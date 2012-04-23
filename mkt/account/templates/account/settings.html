@@ -41,7 +41,7 @@
           {{ loc('BrowserID Email') }}
         </div>
         <div class="form-col">
-          <input type="text" disabled value="{{ amo_user.email }}">
+          <input type="text" readonly id="email" value="{{ amouser.email }}">
           <a href="https://browserid.org/signin" target="_blank">
             {{ _('Manage Account') }}</a>
         </div>
