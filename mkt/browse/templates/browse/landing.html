@@ -23,15 +23,17 @@
   <section class="featured full slider">
     {{ featured|promo_slider(feature=True) }}
   </section>
-  <section class="popular full">
-    <div>
-      <h2><a href="{{ url('browse.apps')|urlparams(category=category.slug or None,
-                                                   sort='popular') }}">
-        {{ _('By popularity') }}</a></h2>
-    </div>
-  </section>
-  <section class="popular grid full">
-    {{ popular|promo_grid }}
-  </section>
+  {% if popular %}
+    <section class="popular full">
+      <div>
+        <h2><a href="{{ url('browse.apps')|urlparams(category=category.slug or None,
+                                                     sort='popular') }}">
+          {{ _('By popularity') }}</a></h2>
+      </div>
+    </section>
+    <section class="popular grid full">
+      {{ popular|promo_grid }}
+    </section>
+  {% endif %}
   {{ category_slider() }}
 {% endblock %}

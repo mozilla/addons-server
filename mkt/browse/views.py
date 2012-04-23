@@ -24,7 +24,7 @@ def _landing(request, category=None):
     return jingo.render(request, 'browse/landing.html', {
         'category': category,
         'featured': featured[:6],
-        'popular': paginate(request, Webapp.popular(), count=6)
+        'popular': paginate(request, popular, count=6)
     })
 
 

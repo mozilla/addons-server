@@ -25,14 +25,16 @@
   <section class="featured full slider">
     {{ featured|promo_slider(feature=True) }}
   </section>
-  <section id="home-popular" class="popular full">
-    <div>
-      <h2><a href="{{ url('browse.apps')|urlparams(sort='popular') }}">
-        {{ _('Popular') }}</a></h2>
-    </div>
-  </section>
-  <section class="popular slider full">
-    {{ popular|promo_slider }}
-  </section>
+  {% if popular %}
+    <section id="home-popular" class="popular full">
+      <div>
+        <h2><a href="{{ url('browse.apps')|urlparams(sort='popular') }}">
+          {{ _('Popular') }}</a></h2>
+      </div>
+    </section>
+    <section class="popular slider full">
+      {{ popular|promo_slider }}
+    </section>
+  {% endif %}
   {{ category_slider() }}
 {% endblock %}
