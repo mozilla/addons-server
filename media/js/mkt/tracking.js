@@ -1,4 +1,5 @@
 z.page.on('fragmentloaded', function() {
+    // Copyright (c) 2012 Webtrends Inc.  All rights reserved.
     window.webtrendsAsyncInit = function() {
         var dcs = new Webtrends.dcs().init({
             dcsid: 'dcsk3ol5yvz5bdu9x8ttypqsj_3o6u',
