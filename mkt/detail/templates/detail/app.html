@@ -101,8 +101,6 @@
 
   {{ notification(product, amo, is_dev) }}
 
-  {% include 'purchase/message.html' %}
-
   {% set upsell = product.upsell %}
   {% if upsell %}
     <section id="upsell" class="notification-box full">

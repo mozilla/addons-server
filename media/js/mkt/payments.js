@@ -107,10 +107,6 @@
     }
 
     function completePurchase() {
-        console.log('completing purchase of ', product);
-        if (!product) {
-            console.log('somehow we don\'t have a product!');
-        }
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
