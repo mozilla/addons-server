@@ -1,9 +1,16 @@
 @import 'lib';
 
 .home {
-    #site-header {
+    /* Cover the box-shadow from #page */
+    #site-header:after {
+        background: url(../../img/mkt/grain.png) #394C58;
+        content: "";
+        display: block;
+        height: 4px;
+        top: -2px;
         position: relative;
         z-index: 1;
+        width: 100%;
     }
 }
 
