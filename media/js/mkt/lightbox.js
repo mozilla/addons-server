@@ -16,12 +16,15 @@
             $(window).bind('keydown.lightboxDismiss', function(e) {
                 switch (e.which) {
                     case z.keys.ESCAPE:
+                        e.preventDefault();
                         hideLightbox();
                         break;
                     case z.keys.LEFT:
+                        e.preventDefault();
                         showPrev();
                         break;
                     case z.keys.RIGHT:
+                        e.preventDefault();
                         showNext();
                         break;
                 }

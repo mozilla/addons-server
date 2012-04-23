@@ -19,13 +19,16 @@ $(function () {
             showImage(this);
             $(window).bind('keydown.lightboxDismiss', function(e) {
                 switch(e.which) {
-                    case 27:
+                    case z.keys.ESCAPE:
+                        e.preventDefault();
                         hideLightbox();
                         break;
-                    case 37:
+                    case z.keys.LEFT:
+                        e.preventDefault();
                         showPrev();
                         break;
-                    case 39:
+                    case z.keys.RIGHT:
+                        e.preventDefault();
                         showNext();
                         break;
                 }
