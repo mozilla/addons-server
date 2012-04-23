@@ -4,6 +4,8 @@ import os
 import shutil
 import sys
 import traceback
+import tempfile
+import codecs
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -24,7 +26,7 @@ from amo.urlresolvers import reverse
 from applications.models import AppVersion, Application
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
-from files.utils import parse_addon
+from files.utils import parse_addon, WebAppParser
 from users.models import UserProfile
 from zadmin.models import ValidationResult
 
