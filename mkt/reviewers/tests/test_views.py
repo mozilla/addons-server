@@ -9,15 +9,18 @@ import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-from addons.models import AddonUser
 import amo
+from access.models import Group, GroupUser
+from addons.models import AddonUser
 from amo.tests import app_factory, check_links
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import AppLog
+from editors.forms import MOTDForm
 from editors.models import CannedResponse
 from editors.tests.test_views import EditorTest
 from users.models import UserProfile
+from zadmin.models import get_config, set_config
 
 from mkt.webapps.models import Webapp
 
@@ -42,7 +45,6 @@ class TestReviewersHome(EditorTest):
     def setUp(self):
         self.login_as_editor()
         super(TestReviewersHome, self).setUp()
-        self.login_as_editor()
         self.apps = [app_factory(name='Antelope',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='Bear',
@@ -295,7 +297,6 @@ class TestReviewLog(EditorTest):
     def setUp(self):
         self.login_as_editor()
         super(TestReviewLog, self).setUp()
-        self.login_as_editor()
         self.apps = [app_factory(name='XXX',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='YYY',
@@ -454,3 +455,52 @@ class TestReviewLog(EditorTest):
         r = self.client.get(self.url)
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
             'Super review requested')
+
+
+class TestMotd(EditorTest):
+
+    def setUp(self):
+        super(TestMotd, self).setUp()
+        self.url = reverse('reviewers.apps.motd')
+        self.key = u'mkt_reviewers_motd'
+        set_config(self.key, u'original value')
+
+    def test_perms_not_editor(self):
+        req = self.client.get(self.url, follow=True)
+        self.assertRedirects(req, '%s?to=%s' % (reverse('users.login'),
+                                                self.url))
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_perms_not_motd(self):
+        # Any type of reviewer can see the MOTD.
+        self.login_as_editor()
+        req = self.client.get(self.url)
+        eq_(req.status_code, 200)
+        eq_(req.context['form'], None)
+        # No redirect means it didn't save.
+        eq_(self.client.post(self.url, dict(motd='motd')).status_code, 200)
+        eq_(get_config(self.key), u'original value')
+
+    def test_motd_change(self):
+        # Only users in the MOTD group can POST.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        group = Group.objects.create(name='App Reviewer MOTD',
+                                     rules='AppReviewerMOTD:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        self.login_as_editor()
+
+        # Get is a 200 with a form.
+        req = self.client.get(self.url)
+        eq_(req.status_code, 200)
+        eq_(req.context['form'].initial['motd'], u'original value')
+        # Empty post throws an error.
+        req = self.client.post(self.url, dict(motd=''))
+        eq_(req.status_code, 200)  # Didn't redirect after save.
+        eq_(pq(req.content)('#editor-motd .errorlist').text(),
+            'This field is required.')
+        # A real post now.
+        req = self.client.post(self.url, dict(motd='new motd'))
+        self.assertRedirects(req, self.url)
+        eq_(get_config(self.key), u'new motd')

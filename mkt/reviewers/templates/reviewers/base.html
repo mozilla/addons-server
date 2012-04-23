@@ -35,11 +35,11 @@
           <li class="slim">
             <a href="{{ url('reviewers.apps.logs') }}">{{ _('Logs') }}</a>
           </li>
-          {# TODO: Implement MOTD for apps (bug 741529). #}
-          <li class="slim">
-            <a href="{{ url('editors.motd') }}">
-              {{ _('Announcement') }}</a>
-          </li>
+          {% if action_allowed('AppReviewerMOTD', 'Edit') %}
+            <li class="slim">
+              <a href="{{ url('reviewers.apps.motd') }}">{{ _('Announcement') }}</a>
+            </li>
+          {% endif %}
         </ul>
       </nav>
     </div>

@@ -16,10 +16,11 @@ from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from reviews.models import Review
-from zadmin.models import get_config
+from zadmin.models import get_config, set_config
 
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
@@ -125,7 +126,7 @@ def _queue(request, TableObj, tab, qs=None):
 
 
 def context(**kw):
-    ctx = dict(motd=get_config('editors_review_motd'),
+    ctx = dict(motd=get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts())
     ctx.update(kw)
     return ctx
@@ -256,3 +257,16 @@ def logs(request):
     pager = amo.utils.paginate(request, approvals, 50)
     data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID)
     return jingo.render(request, 'reviewers/logs.html', data)
+
+
+@reviewer_required
+def motd(request):
+    form = None
+    motd = get_config('mkt_reviewers_motd')
+    if acl.action_allowed(request, 'AppReviewerMOTD', 'Edit'):
+        form = MOTDForm(request.POST or None, initial={'motd': motd})
+    if form and request.method == 'POST' and form.is_valid():
+            set_config(u'mkt_reviewers_motd', form.cleaned_data['motd'])
+            return redirect(reverse('reviewers.apps.motd'))
+    data = context(form=form)
+    return jingo.render(request, 'reviewers/motd.html', data)
