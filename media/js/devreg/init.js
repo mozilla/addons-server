@@ -8,6 +8,10 @@ $(document).ready(function() {
         var em = $this.text().split('').reverse().join('');
         $this.prev('a').attr('href', 'mailto:' + em);
     });
+
+    // Initialize webtrends tracking.
+    webtrendsAsyncInit();
+
     // Fake placeholders if we need to.
     $('input[placeholder]').placeholder();
     if (z.readonly) {

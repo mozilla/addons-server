@@ -161,6 +161,7 @@ JS = {
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
+        'js/common/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
         'js/impala/capabilities.js',
         'js/lib/format.js',
@@ -182,9 +183,6 @@ JS = {
         'js/zamboni/global.js',
         'js/zamboni/l10n.js',
         'js/zamboni/debouncer.js',
-
-        # Tracking.
-        'js/devreg/tracking.js',
 
         # Users.
         'js/zamboni/users.js',
@@ -219,6 +217,7 @@ JS = {
         'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/lib/format.js',
+        'js/common/tracking.js',
         'js/mkt/init.js',
         'js/mkt/utils.js',
         'js/mkt/browserid.js',
@@ -226,7 +225,6 @@ JS = {
         'js/common/keys.js',
         'js/mkt/capabilities.js',
         'js/mkt/fragments.js',
-        'js/mkt/tracking.js',
         'js/mkt/overlay.js',
         'js/mkt/slider.js',
         'js/mkt/login.js',

@@ -10,6 +10,9 @@ var z = {
     }
 };
 
+// Initialize webtrends tracking.
+z.page.on('fragmentloaded', webtrendsAsyncInit);
+
 (function() {
     function trigger() {
         $(window).trigger('saferesize');
