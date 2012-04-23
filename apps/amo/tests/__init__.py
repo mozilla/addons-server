@@ -459,8 +459,6 @@ class ESTestCase(TestCase):
                   Application)
         for model in models:
             model.objects.all().delete()
-        for index in settings.ES_INDEXES.values():
-            cls.es.delete_index_if_exists(index)
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod
