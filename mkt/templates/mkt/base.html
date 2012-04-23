@@ -21,7 +21,7 @@
           href="{{ MEDIA_URL }}img/mkt/logos/32.png" sizes="32x32">
 
     {% block site_css %}
-      {{ css('mkt/consumer') }}
+      {{ css('mkt/consumer', debug=True) }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
@@ -145,7 +145,7 @@
         {# We need Persona only for non-authenticated users. #}
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
-      {{ js('mkt/consumer') }}
+      {{ js('mkt/consumer', debug=True) }}
       {% if logged %}
         {# We need PayPal only for authenticated users. #}
         <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
