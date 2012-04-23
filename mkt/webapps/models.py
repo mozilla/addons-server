@@ -227,8 +227,11 @@ class Webapp(Addon):
     @classmethod
     def popular(cls):
         """Elastically grab the most popular apps."""
-        return (cls.search().filter(status=amo.STATUS_PUBLIC,
-                                    is_disabled=False)
+        # TODO: Figure out why ES flakes on this.
+        #return (cls.search().filter(status=amo.STATUS_PUBLIC,
+        #                            is_disabled=False)
+        return (cls.objects.filter(status=amo.STATUS_PUBLIC,
+                                   disabled_by_user=False)
                 .order_by('-weekly_downloads'))
 
 
