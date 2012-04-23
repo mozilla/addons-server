@@ -10,6 +10,7 @@
         data = {};
 
     function beginPurchase(prod) {
+        if (!prod) return;
         if ($def && $def.state() == 'pending') {
             $def.reject(product, 'collision');
             return;
@@ -106,6 +107,10 @@
     }
 
     function completePurchase() {
+        console.log('completing purchase of ', product);
+        if (!product) {
+            console.log('somehow we don\'t have a product!');
+        }
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
