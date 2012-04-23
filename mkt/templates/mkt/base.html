@@ -87,8 +87,9 @@
       </footer>
     {% endblock %}
 
+    {% include 'purchase/start.html' %}
+
     {% if not logged %}
-      {% include 'purchase/start.html' %}
       <div id="login" class="overlay">
         <section>
           <div class="new">
