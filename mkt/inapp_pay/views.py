@@ -141,9 +141,7 @@ def pay(request, signed_req, pay_req):
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
 
     if status != 'COMPLETED':
-        # Pre-auth failed. Boo!
-        raise InappPaymentError('PayPal did not recognize preauth token for '
-                                'user %s (status %s)' % (request.amo_user, status))
+        return redirect(url)
 
     # Payment was completed using pre-auth. Woo!
     _payment_done(request, payment)
@@ -168,7 +166,35 @@ def pay(request, signed_req, pay_req):
 @write
 @waffle_switch('in-app-payments-ui')
 def pay_status(request, config_pk, status):
-    return http.HttpResponse()
+    if waffle.switch_is_active('in-app-payments-proto'):
+        tpl_path = 'inapp_pay/prototype/'
+    else:
+        tpl_path = 'inapp_pay/'
+    with transaction.commit_on_success():
+        cfg = get_object_or_404(InappConfig, pk=config_pk)
+        uuid_ = None
+        try:
+            uuid_ = str(request.GET['uuid'])
+            cnt = Contribution.objects.get(uuid=uuid_)
+        except (KeyError, UnicodeEncodeError, ValueError,
+                Contribution.DoesNotExist):
+            log.error('PayPal returned invalid uuid %r from in-app payment'
+                      % uuid_, exc_info=True)
+            return jingo.render(request, 'inapp_pay/error.html')
+        payment = InappPayment.objects.get(config=cfg, contribution=cnt)
+        if status == 'complete':
+            cnt.update(type=amo.CONTRIB_INAPP)
+            tpl = tpl_path + 'complete.html'
+            action = 'PAY_COMPLETE'
+        elif status == 'cancel':
+            tpl = tpl_path + 'payment_cancel.html'
+            action = 'PAY_CANCEL'
+        else:
+            raise ValueError('Unexpected status: %r' % status)
+
+    _payment_done(request, payment, action=action)
+
+    return jingo.render(request, tpl, {'product': cnt.addon})
 
 
 def _payment_done(request, payment, action='PAY_COMPLETE'):
