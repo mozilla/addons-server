@@ -4,7 +4,7 @@ from tower import ugettext as _
 import jinja2
 import json
 
-from amo.helpers import url, urlparams
+from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
@@ -175,32 +175,29 @@ def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
 @register.function
 def admin_site_links():
     return {
-        'addons': [
-            ('Search for add-ons by name or id', url('zadmin.addon-search')),
-            ('Featured add-ons', url('zadmin.features')),
-            ('Monthly Pick', url('zadmin.monthly_pick')),
-            ('Upgrade jetpack add-ons', url('zadmin.jetpack')),
-            ('Name blocklist', url('zadmin.addon-name-blocklist')),
-            ('Bulk add-on validation', url('zadmin.validation')),
-            ('Fake mail', url('zadmin.mail')),
-            ('Flagged reviews', url('zadmin.flagged')),
-            ('ACR Reports', url('zadmin.compat')),
-            ('Email Add-on Developers', url('zadmin.email_devs')),
+        'apps': [
+            ('Search for add-ons by name or id',
+             reverse('zadmin.addon-search')),
+            ('Featured add-ons', reverse('admin.featured_apps')),
+            ('Name blocklist', reverse('zadmin.addon-name-blocklist')),
+            ('Fake mail', reverse('zadmin.mail')),
+            ('Flagged reviews', reverse('zadmin.flagged')),
         ],
         'settings': [
-            ('View site settings', url('zadmin.settings')),
-            ('Django admin pages', url('zadmin.home')),
-            ('Site Events', url('zadmin.site_events')),
+            ('View site settings', reverse('zadmin.settings')),
+            ('Django admin pages', reverse('zadmin.home')),
+            ('Site Events', reverse('zadmin.site_events')),
         ],
         'tools': [
-            ('View request environment', url('amo.env')),
-            ('Manage elasticsearch', url('zadmin.elastic')),
-            ('View celery stats', url('zadmin.celery')),
-            ('Purge data from memcache', url('zadmin.memcache')),
-            ('Purge pages from zeus', url('zadmin.hera')),
-            ('View graphite trends', url('amo.graphite', 'addons')),
+            ('View request environment', reverse('amo.env')),
+            ('Manage elasticsearch', reverse('zadmin.elastic')),
+            ('View celery stats', reverse('zadmin.celery')),
+            ('Purge data from memcache', reverse('zadmin.memcache')),
+            ('Purge pages from zeus', reverse('zadmin.hera')),
+            ('View graphite trends', reverse('amo.graphite', args=['addons'])),
             ('Create a new OAuth Consumer',
-             url('zadmin.oauth-consumer-create')),
-            ('Generate error', url('zadmin.generate-error')),
+             reverse('zadmin.oauth-consumer-create')),
+            ('Generate error', reverse('zadmin.generate-error')),
+            ('Site Status', reverse('amo.monitor')),
         ],
     }

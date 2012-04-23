@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends 'zadmin/base.html' %}
 
 
 {% block js %}
@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% set title = 'Feature Manager' %}
-{% block title %}{{ page_title(title) }}{% endblock %}
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% macro appsform(id, addons) %}
   <table>

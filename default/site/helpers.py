@@ -39,5 +39,6 @@ def admin_site_links():
             ('View event log', url('admin:editors_eventlog_changelist')),
             ('View addon log', url('admin:devhub_activitylog_changelist')),
             ('Generate error', url('zadmin.generate-error')),
+            ('Site Status', url('amo.monitor')),
         ],
-        }
+    }
