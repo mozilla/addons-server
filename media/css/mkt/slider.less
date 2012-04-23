@@ -31,7 +31,7 @@
         width: 48px;
         height: 220px;
         left: 0;
-        background: fadeOut(@white, 80%);
+        background: fadeOut(@white, 75%);
         z-index: 1;
         &.show {
             opacity: 1;
@@ -50,11 +50,8 @@
             margin: auto;
             background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
         }
-        &:hover {
-            background: fadeOut(@white, 50%);
-            &:after {
-                background-position: 0 -19px;
-            }
+        &:hover:after {
+            background-position: 0 -19px;
         }
     }
     .next-page {
@@ -63,6 +60,19 @@
     }
     .prev-page {
         .transform(scaleX(-1));
+    }
+}
+
+.slider {
+    &:hover .controls a,
+    .controls a:hover {
+        .transition(~'.2s background ease-in-out');
+    }
+    &:hover .controls a {
+        background: fadeOut(@white, 50%);
+    }
+    .controls a:hover {
+        background: fadeOut(@white, 25%);
     }
 }
 
@@ -123,8 +133,6 @@
                 margin: 0 10px;
             }
             h3 {
-                .ellipsis;
-                float: left;
                 font-size: 16px;
                 max-width: 190px;
             }
@@ -135,7 +143,7 @@
     }
 }
 
-#home-featured, #home-popular {
+.featured, .popular {
     .controls {
         .next-page, .prev-page {
             height: 240px;
@@ -143,6 +151,10 @@
     }
     .promo-slider {
         height: 282px;
+    }
+    h3 {
+        .ellipsis;
+        float: left;
     }
 }
 
@@ -175,7 +187,7 @@
 
 .popular, .categories {
     h2 {
-        padding-top: 10px;
+        padding-top: 20px;
     }
 }
 
@@ -201,6 +213,7 @@
         }
         li {
             h3 {
+                .ellipsis;
                 margin: 0;
                 text-align: center;
                 width: 100%;

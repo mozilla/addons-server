@@ -67,10 +67,8 @@ function slider() {
 
 z.page.on('fragmentloaded', function() {
     function itemsPerPage($item) {
-        var contWidth = $('#page > section > div').width(),
-            margin = parseInt($item.css('margin-right'), 10);
-
-        return Math.floor(contWidth / ($item.width() + margin));
+        var contWidth = $item.closest('.promo-slider').width();
+        return Math.floor(contWidth / $item.outerWidth(true));
     }
 
     function numPages($list) {
@@ -81,6 +79,7 @@ z.page.on('fragmentloaded', function() {
     }
 
     function initSliders() {
+        $('.categories h3').linefit();
         $('.promo-grid h3').lineclamp(2);
         $('.slider').each(function() {
             var currentPage,
@@ -107,7 +106,7 @@ z.page.on('fragmentloaded', function() {
                     perPage = itemsPerPage($item),
                     val = n * perPage * $item.outerWidth(true);
                 // Have no idea why the magic number is needed.
-                val += n * (perPage + 7);
+                val += n * (perPage + ($this.hasClass('categories') ? 14 : 7));
                 currentPage = n;
                 $this.find('ul').css(z.prefixed('transform'),
                                      'translateX(-'+val+'px)');
