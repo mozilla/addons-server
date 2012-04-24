@@ -33,7 +33,9 @@
       {{ _('Manage Payments') }}</a>
   </li>
   {% if waffle.switch('unleash-consumer') %}
-    <li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>
+    <li>
+      <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+    </li>
   {% endif %}
   <li>
     <a href="#" class="more-actions">{{ _('More') }}</a>
