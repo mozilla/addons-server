@@ -72,12 +72,9 @@ def payment(request, status=None):
                 paypal_log.info(u'Preapproval key removed for user: %s'
                                 % request.amo_user)
 
-        context = {'preapproval': pre}
-    else:
-        context = {'preapproval': request.amo_user.get_preapproval()}
-
-    context['currency'] = CurrencyForm(initial={'currency':
-                                                pre.currency or 'USD'})
+    context = {'preapproval': pre,
+               'currency': CurrencyForm(initial={'currency':
+                                                 pre.currency or 'USD'})}
     return jingo.render(request, 'account/payment.html', context)
 
 
