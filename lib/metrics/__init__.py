@@ -52,7 +52,8 @@ def metrics(uid, action, data, **kw):
     timeout = settings.METRICS_SERVER_TIMEOUT
     namespace = re.sub('\.|-', '_', settings.DOMAIN)
 
-    destination = urljoin(destination, '%s_%s/%s' % (namespace, action, uid))
+    destination = urljoin(destination, 'submit/%s_%s/%s'
+                          % (namespace, action, uid))
     headers = {'Content-Type': 'application/json'}
     request = urllib2.Request(destination, data, headers)
 
