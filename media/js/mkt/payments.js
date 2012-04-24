@@ -30,6 +30,13 @@
 
         overlay.html(paymentsTemplate(product));
         overlay.addClass('show');
+
+        // Guess and set the payment overlay height.
+        setTimeout(function() {
+            overlay.find('section').css('height',
+                $('#pay section > div').outerHeight() + 30 +'px');
+        }, 10);
+
         $(window).bind('keypress.payments', function(e) {
             if (e.keyCode == z.keys.ESCAPE) {
                 cancelPurchase();

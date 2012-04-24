@@ -1,32 +1,34 @@
 <div id="pay" class="overlay"></div>
 <script type="text/template" id="pay-template">
   <section>
-    <a href="#" class="close">X</a>
-    <div class="product-details c">
-      <div class="visual">
-        <img class="icon" src="{iconUrl}">
+    <div>
+      <a href="#" class="close">X</a>
+      <div class="product-details c">
+        <div class="visual">
+          <img class="icon" src="{iconUrl}">
+        </div>
+        <div class="vitals">
+          <h2>{name}</h2>
+          <h3 class="authors"><a href="{author_url}">{author}</a></h3>
+        </div>
+        <div class="price">
+          <span id="price-display">{priceLocale}</span>
+        </div>
       </div>
-      <div class="vitals">
-        <h2>{name}</h2>
-        <h3 class="authors"><a href="{author_url}">{author}</a></h3>
-      </div>
-      <div class="price">
-        <span id="price-display">{priceLocale}</span>
-      </div>
+      {% if request.amo_user and not request.amo_user.has_preapproval_key() %}
+        <form id="preapproval" method="post"
+              action="{preapprovalUrl}">
+          {{ csrf() }}
+          <h3>{{ _('To complete your purchase please set up your Marketplace
+                    Wallet.') }}</h3>
+          <p><button id="pre-approval">{{ _('Set up') }}</button></p>
+        </form>
+      {% endif %}
+      <p>
+        <a href="#" id="payment-confirm">
+          {{ _('Make a one time payment using your credit card.') }}
+        </a>
+      </p>
     </div>
-    {% if request.amo_user and not request.amo_user.has_preapproval_key() %}
-      <form id="preapproval" method="post"
-            action="{preapprovalUrl}">
-        {{ csrf() }}
-        <h3>{{ _('To complete your purchase please set up your Marketplace
-                  Wallet.') }}</h3>
-        <p><button id="pre-approval">{{ _('Set up') }}</button></p>
-      </form>
-    {% endif %}
-    <p>
-      <a href="#" id="payment-confirm">
-        {{ _('Make a one time payment using your credit card.') }}
-      </a>
-    </p>
   </section>
 </script>
