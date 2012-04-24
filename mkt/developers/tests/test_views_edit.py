@@ -407,7 +407,8 @@ class TestEditMedia(TestEdit):
         blank.update(**kw)
         return blank
 
-    def formset_media(self, blank_kw={}, *args, **kw):
+    def formset_media(self, blank_kw=None, *args, **kw):
+        blank_kw = blank_kw or {}
         kw.setdefault('initial_count', 0)
         kw.setdefault('prefix', 'files')
 

@@ -26,8 +26,8 @@ class BrowseBase(amo.tests.ESTestCase):
         self.webapp.save()
         self.refresh()
 
-    def get_pks(self, key, url, data={}):
-        r = self.client.get(url, data)
+    def get_pks(self, key, url, data=None):
+        r = self.client.get(url, data or {})
         eq_(r.status_code, 200)
         return sorted(x.id for x in r.context[key])
 

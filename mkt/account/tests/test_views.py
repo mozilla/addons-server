@@ -125,7 +125,8 @@ class TestAccountSettings(amo.tests.TestCase):
         self.assertContains(r, data['bio'])
         eq_(unicode(self.get_user().bio), data['bio'])
 
-    def check_default_choices(self, choices, checked=[]):
+    def check_default_choices(self, choices, checked=None):
+        checked = checked or []
         doc = pq(self.client.get(self.url).content)
         eq_(doc('input[name=notifications]:checkbox').length, len(choices))
         for id, label in choices:
@@ -312,7 +313,7 @@ class TestPreapproval(amo.tests.TestCase):
 
     @mock.patch('paypal.get_preapproval_key')
     def test_fake_preapproval(self, get_preapproval_key):
-        get_preapproval_key.return_value = {'preapprovalKey': 'xyz' }
+        get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
         res = self.client.post(reverse('account.payment.preapproval'),
                                {'currency': 'USD'})
         ssn = self.client.session['setup-preapproval']

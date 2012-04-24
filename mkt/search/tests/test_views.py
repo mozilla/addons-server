@@ -24,7 +24,9 @@ class SearchBase(amo.tests.ESTestCase):
         return results
 
     def check_sort_links(self, key, title=None, sort_by=None, reverse=True,
-                         params={}):
+                         params=None):
+        if not params:
+            params = {}
         r = self.client.get(urlparams(self.url, sort=key, **params))
         eq_(r.status_code, 200)
         doc = pq(r.content)
