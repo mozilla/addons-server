@@ -1,4 +1,5 @@
 import jingo
+from tower import ugettext as _
 
 from django import http
 
@@ -8,7 +9,7 @@ from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
 from amo.utils import memoize_get
 from lib.metrics import send_request
-from lib.crypto.receipt import cef
+from lib.crypto.receipt import cef, SigningError
 from mkt.webapps.models import create_receipt, Installed
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
@@ -52,6 +53,9 @@ def record(request, addon):
         cef(request, addon, 'request', 'Receipt requested')
         if not receipt:
             cef(request, addon, 'sign', 'Receipt signing')
-            receipt = create_receipt(installed.pk)
+            try:
+                receipt = create_receipt(installed.pk)
+            except SigningError:
+                error = _('There was a problem installing the app.')
 
-        return {'addon': addon.pk, 'receipt': receipt}
+        return {'addon': addon.pk, 'receipt': receipt, 'error': error}

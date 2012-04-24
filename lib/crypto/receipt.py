@@ -11,6 +11,10 @@ import commonware.log
 log = commonware.log.getLogger('z.services')
 
 
+class SigningError(Exception):
+    pass
+
+
 def sign(receipt):
     """
     Send the receipt to the signing service.
@@ -37,17 +41,18 @@ def sign(receipt):
         # Will occur when a 3xx or greater code is returned
         log.error('Posting to signing failed: %s'
                   % (error.code))
-        return error.code
+        raise SigningError
     except:
         # Will occur when some other error occurs.
         log.error('Posting to signing failed', exc_info=True)
-        return
+        raise SigningError
 
     # The list of valid statuses are here:
     # https://wiki.mozilla.org/Apps/WebApplicationReceipt/SigningService
     if response.status_code not in [400, 401, 404, 409, 503, 404]:
         log.error('Posting to signing failed: %s'
                   % (response.status_code))
+        raise SigningError
 
     return response.read()
 

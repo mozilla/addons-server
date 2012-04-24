@@ -22,10 +22,12 @@
 
     function revertButton($button) {
         // Cancelled install/purchase. Roll back button to its previous state.
-        $button.html($button.data('old-text'))
-               .removeClass('purchasing installing error');
-        // The text has changed, so do another linefit.
-        $button.css('font-size', $button.data('old-font-size')).linefit();
+        $button.removeClass('purchasing installing error');
+        if ($button.data('old-text')) {
+            $button.html($button.data('old-text'))
+            // The text has changed, so do another linefit.
+            $button.css('font-size', $button.data('old-font-size')).linefit();
+        }
     }
 
     $(window).bind('app_purchase_start', function(e, product) {
