@@ -23,7 +23,8 @@ class TestReceipt(amo.tests.TestCase):
 
     def get_response(self, code):
         response = mock.Mock()
-        response.status_code = code
+        response.getcode = mock.Mock()
+        response.getcode.return_value = code
         return response
 
     @raises(SigningError)

@@ -47,9 +47,10 @@ def sign(receipt):
         log.error('Posting to signing failed', exc_info=True)
         raise SigningError
 
-    if response.status_code != 200:
+    print response.get_code()
+    if response.getcode() != 200:
         log.error('Posting to signing failed: %s'
-                  % (response.status_code))
+                  % (response.getcode()))
         raise SigningError
 
     return response.read()
