@@ -10,7 +10,7 @@ from lib.crypto.receipt import sign
 
 @mock.patch('lib.metrics.urllib2.urlopen')
 @mock.patch.object(settings, 'SIGNING_SERVER', 'http://localhost')
-class TestMetrics(amo.tests.TestCase):
+class TestReceipt(amo.tests.TestCase):
 
     def test_called(self, urlopen):
         sign('my-receipt')

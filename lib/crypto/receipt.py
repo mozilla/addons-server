@@ -22,8 +22,10 @@ def sign(receipt):
     if not destination:
         return
 
+    destination += '/1.0/sign'
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
+    log.info('Calling service: %s' % destination)
     headers = {'Content-Type': 'application/json'}
     data = receipt if isinstance(receipt, basestring) else json.dumps(receipt)
     request = urllib2.Request(destination, data, headers)
@@ -43,11 +45,11 @@ def sign(receipt):
 
     # The list of valid statuses are here:
     # https://wiki.mozilla.org/Apps/WebApplicationReceipt/SigningService
-    if response.status_code not in [400, 401, 409, 503]:
+    if response.status_code not in [400, 401, 404, 409, 503, 404]:
         log.error('Posting to signing failed: %s'
                   % (response.status_code))
 
-    return response.status_code
+    return response.read()
 
 
 def decode(receipt):
