@@ -99,15 +99,13 @@
   {% set upsell = product.upsell %}
   {% if upsell %}
     {% set prm = upsell.premium %}
-    <section id="upsell" class="notification-box full">
-      <div class="c">
+    <section id="upsell" class="notification-box c">
+      <a href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}" class="upsell">
         <h3>{{ _('Premium version available') }}</h3>
-        <a href="{{ prm.get_url_path() }}" class="upsell">
-          <img class="icon" src="{{ prm.get_icon_url(32) }}">{{ prm.name }}</a>
-          <a class="button special" href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-            {{ _('Read More') }}
-          </a>
-      </div>
+        <img class="icon" src="{{ prm.get_icon_url(64) }}">{{ prm.name }}</a>
+        <a class="button special" href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+          {{ _('Read More') }}
+      </a>
       <div class="details">
         <div class="prose">{{ upsell.text|nl2br }}</div>
         <div class="vitals">
