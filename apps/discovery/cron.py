@@ -6,6 +6,7 @@ import urllib2
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
+from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 
 import commonware.log
