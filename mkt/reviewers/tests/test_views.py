@@ -5,18 +5,19 @@ import time
 from django.core import mail
 from django.conf import settings
 
+from elasticutils import S
 import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
+from abuse.models import AbuseReport
 from access.models import Group, GroupUser
-from addons.models import AddonUser
+from addons.models import AddonDeviceType, AddonUser, DeviceType
 from amo.tests import app_factory, check_links
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import AppLog
-from editors.forms import MOTDForm
 from editors.models import CannedResponse
 from editors.tests.test_views import EditorTest
 from users.models import UserProfile
@@ -30,12 +31,12 @@ class AppReviewerTest(object):
     def setUp(self):
         self.login_as_editor()
 
-    def test_403_for_non_editor(self):
+    def test_403_for_non_editor(self, *args, **kwargs):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         eq_(self.client.head(self.url).status_code, 403)
 
-    def test_403_for_anonymous(self):
+    def test_403_for_anonymous(self, *args, **kwargs):
         self.client.logout()
         eq_(self.client.head(self.url).status_code, 403)
 
@@ -99,20 +100,34 @@ class TestReviewersHome(EditorTest):
 
 
 class TestAppQueue(AppReviewerTest, EditorTest):
+    fixtures = ['base/devicetypes', 'base/users']
 
     def setUp(self):
-        self.login_as_editor()
+
+        now = datetime.datetime.now()
+        days_ago = lambda n: now - datetime.timedelta(days=n)
+
         self.apps = [app_factory(name='XXX',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='YYY',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
+        self.apps[0].update(created=days_ago(2))
+        self.apps[1].update(created=days_ago(1))
+
+        self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_pending')
+
+        # Mock S(...).values() so we don't touch ES.
+        patcher = mock.patch.object(S, 'values')
+        self.s_mock = patcher.start()
+        self.s_mock.return_value = [a.id for a in self.apps]
+        self.addCleanup(patcher.stop)
 
     def review_url(self, app, num):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
                          num=num)
 
-    def test_restricted_results(self):
+    def test_template_links(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
@@ -123,21 +138,72 @@ class TestAppQueue(AppReviewerTest, EditorTest):
         ]
         check_links(expected, links, verify=False)
 
+    def test_flag_super_review(self):
+        self.apps[0].update(admin_review=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.ed-sprite-admin-review')
+        eq_(flags.length, 1)
+
+    def test_flag_info(self):
+        self.apps[0].current_version.update(has_info_request=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.ed-sprite-info')
+        eq_(flags.length, 1)
+
+    def test_flag_comment(self):
+        self.apps[0].current_version.update(has_editor_comment=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.ed-sprite-editor')
+        eq_(flags.length, 1)
+
+    def test_devices(self):
+        AddonDeviceType.objects.create(
+            addon=self.apps[0], device_type=DeviceType.objects.get(pk=1))
+        AddonDeviceType.objects.create(
+            addon=self.apps[0], device_type=DeviceType.objects.get(pk=2))
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(5)')
+        eq_(tds('ul li:not(.unavailable)').length, 2)
+
+    def test_payments(self):
+        self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
+        self.apps[1].update(premium_type=amo.ADDON_FREE_INAPP)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(6)')
+        eq_(tds.eq(0).text(), amo.ADDON_PREMIUM_TYPES[amo.ADDON_PREMIUM])
+        eq_(tds.eq(1).text(), amo.ADDON_PREMIUM_TYPES[amo.ADDON_FREE_INAPP])
+
+    def test_abuse(self):
+        AbuseReport.objects.create(addon=self.apps[0], message='!@#$')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(7)')
+        eq_(tds.eq(0).text(), '1')
+
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
         eq_(r.status_code, 200)
-        eq_(r.context['page'].number, 1)
+        eq_(r.context['pager'].number, 1)
 
     def test_queue_count(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.tabnav li a:eq(0)').text(), u'Apps (2)')
 
-    def test_sort(self):
-        r = self.client.get(self.url, {'sort': '-name'})
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
-            str(self.apps[1].id))
+    # TODO(robhudson): Add sorting back in.
+    #def test_sort(self):
+    #    r = self.client.get(self.url, {'sort': '-name'})
+    #    eq_(r.status_code, 200)
+    #    eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
+    #        str(self.apps[1].id))
 
     def test_redirect_to_review(self):
         r = self.client.get(self.url, {'num': 2})
@@ -159,7 +225,9 @@ class TestReviewApp(AppReviewerTest, EditorTest):
 
     def post(self, data):
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, reverse('reviewers.apps.queue_pending'))
+        # Purposefully not using assertRedirects to avoid having to mock ES.
+        eq_(r.status_code, 302)
+        ok_(reverse('reviewers.apps.queue_pending') in r['Location'])
 
     @mock.patch.object(settings, 'DEBUG', False)
     def test_cannot_review_my_app(self):

@@ -24,6 +24,7 @@ CSS = {
 
         # Popups, Modals, Tooltips.
         'css/devreg/devhub-popups.less',
+        'css/mkt/device.less',
         'css/devreg/tooltips.less',
 
         # L10n menu ("Localize for ...").
@@ -81,6 +82,7 @@ CSS = {
         'css/mkt/buttons.less',
         'css/mkt/detail.less',
         'css/mkt/ratings.less',
+        'css/mkt/device.less',
         'css/mkt/slider.less',
         'css/mkt/promo-grid.less',
         'css/mkt/overlay.less',

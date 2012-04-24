@@ -342,66 +342,6 @@ h1 .num {
     }
 }
 
-.device-list {
-    margin-top: 10px;
-    h4, ul {
-        display: inline-block;
-        line-height: 20px;
-        vertical-align: top;
-    }
-    ul {
-        color: @medium-gray;
-        margin: 0;
-        padding: 0;
-    }
-    li {
-        display: inline-block;
-        height: 23px;
-        position: relative;
-        text-indent: -99999px;
-        width: 26px;
-        background: url(../../img/mkt/icons/device_icons.png) no-repeat 0 0;
-        &.mobile.unavailable {
-            background-position: 0 -23px;
-        }
-        &.tablet {
-            background-position: 0 -46px;
-            &.unavailable {
-                background-position: 0 -69px;
-            }
-        }
-        &.desktop {
-            background-position: 0 -92px;
-            &.unavailable {
-                background-position: 0 -115px;
-            }
-        }
-    }
-}
-
-.listing .device-list {
-    text-align: center;
-    h4, ul {
-        display: block;
-    }
-    h4 {
-        color: @gray;
-        font-size: 11px;
-        font-weight: normal;
-    }
-    ul {
-        color: @medium-gray;
-        font-size: 11px;
-        margin: 0;
-        padding: 0;
-    }
-}
-.html-rtl .device-list {
-    li {
-        margin: 0 5px 0 0;
-    }
-}
-
 .support ul {
     margin-top: 47px;
     list-style-type: none;

@@ -2,20 +2,23 @@ import datetime
 
 from django import http
 from django.conf import settings
-from django.db.models import Count, Q
+from django.db.models import Q
 from django.shortcuts import redirect
 
+from elasticutils import S
 import jingo
 from tower import ugettext as _
 
 from access import acl
 import amo
 from amo import messages
+from amo.utils import urlparams
 from addons.decorators import addon_view
 from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from apps.search.views import name_query
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
@@ -24,8 +27,12 @@ from zadmin.models import get_config, set_config
 
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
-from . import forms, utils
+
+from . import forms
 from .models import AppCannedResponse
+
+
+QUEUE_PER_PAGE = 100
 
 
 @reviewer_required
@@ -87,42 +94,6 @@ def _progress():
         percentage[duration] = pct(progress[duration], total)
 
     return (progress, percentage)
-
-
-def _queue(request, TableObj, tab, qs=None):
-    if qs is None:
-        qs = TableObj.Meta.model.objects.all()
-    review_num = request.GET.get('num', None)
-    if review_num:
-        try:
-            review_num = int(review_num)
-        except ValueError:
-            pass
-        else:
-            try:
-                # Force a limit query for efficiency:
-                start = review_num - 1
-                row = qs[start: start + 1][0]
-                return redirect('%s?num=%s' % (
-                                TableObj.review_url(row),
-                                review_num))
-            except IndexError:
-                pass
-    order_by = request.GET.get('sort', TableObj.default_order_by())
-    order_by = TableObj.translate_sort_cols(order_by)
-    table = TableObj(data=qs, order_by=order_by)
-    default = 100
-    per_page = request.GET.get('per_page', default)
-    try:
-        per_page = int(per_page)
-    except ValueError:
-        per_page = default
-    if per_page <= 0 or per_page > 200:
-        per_page = default
-    page = paginate(request, table.rows, per_page=per_page)
-    table.set_page(page)
-    return jingo.render(request, 'reviewers/queue.html',
-                        context(table=table, page=page, tab=tab))
 
 
 def context(**kw):
@@ -223,8 +194,37 @@ def app_review(request, addon):
 
 @permission_required('Apps', 'Review')
 def queue_apps(request):
-    qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
-    return _queue(request, utils.WebappQueueTable, 'pending', qs=qs)
+    sqs = S(Webapp).filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING,
+                           is_disabled=False)
+
+    q = request.GET.get('q', None)
+    if q:
+        sqs = sqs.query(or_=name_query(q))
+    ids = sqs.values()
+    qs = Webapp.objects.filter(id__in=ids).order_by('created')
+
+    review_num = request.GET.get('num', None)
+    if review_num:
+        try:
+            review_num = int(review_num)
+        except ValueError:
+            pass
+        else:
+            try:
+                # Force a limit query for efficiency:
+                start = review_num - 1
+                row = qs[start:start + 1][0]
+                return redirect(
+                    urlparams(reverse('reviewers.apps.review',
+                                      args=[row.app_slug]),
+                              num=review_num))
+            except IndexError:
+                pass
+
+    per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
+    pager = paginate(request, qs, per_page)
+
+    return jingo.render(request, 'reviewers/queue.html', {'pager': pager})
 
 
 @permission_required('Apps', 'Review')

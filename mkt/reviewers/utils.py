@@ -4,17 +4,12 @@ from django.conf import settings
 from django.utils.datastructures import SortedDict
 
 import commonware.log
-import django_tables as tables
-import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.helpers import absolutify, timesince
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
-from editors.helpers import ItemStateTable
-
-from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -27,52 +22,6 @@ def send_mail(subject, template, context, emails, perm_setting=None):
                     from_email=settings.NOBODY_EMAIL, use_blacklist=False,
                     perm_setting=perm_setting, manage_url=manage_url,
                     headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
-
-
-class WebappQueueTable(tables.ModelTable, ItemStateTable):
-    name = tables.Column(verbose_name=_lazy(u'App'))
-    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
-    created = tables.Column(verbose_name=_lazy(u'Waiting Time'))
-    abuse_reports__count = tables.Column(verbose_name=_lazy(u'Abuse Reports'))
-
-    def render_name(self, row):
-        url = '%s?num=%s' % (self.review_url(row), self.item_number)
-        self.increment_item()
-        return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
-
-    def render_flags(self, row):
-        o = []
-
-        if row.admin_review:
-            o.append(u'<div class="app-icon ed-sprite-admin-review" '
-                     u'title="%s"></div>' % _('Admin Review'))
-
-        return ''.join(o)
-
-    def render_created(self, row):
-        return timesince(row.created)
-
-    def render_abuse_reports__count(self, row):
-        url = reverse('editors.abuse_reports', args=[row.slug])
-        return u'<a href="%s">%s</a>' % (jinja2.escape(url),
-                                         row.abuse_reports__count)
-
-    @classmethod
-    def translate_sort_cols(cls, colname):
-        return colname
-
-    @classmethod
-    def default_order_by(cls):
-        return 'created'
-
-    @classmethod
-    def review_url(cls, row):
-        return reverse('reviewers.apps.review', args=[row.app_slug])
-
-    class Meta:
-        sortable = True
-        model = Webapp
-        columns = ['name', 'flags', 'created', 'abuse_reports__count']
 
 
 class ReviewBase:
@@ -227,7 +176,7 @@ class ReviewApp(ReviewBase):
         self.log_action(amo.LOG.COMMENT_VERSION)
 
 
-class ReviewHelper:
+class ReviewHelper(object):
     """
     A class that builds enough to render the form back to the user and
     process off to the correct handler.
