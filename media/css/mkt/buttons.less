@@ -142,3 +142,35 @@ button {
     display: inline-block;
     line-height: 36px;
 }
+
+.arrow.button {
+    .border-box;
+    padding-right: 48px;
+    color: lighten(@text, 60%);
+    font-size: 18px;
+    line-height: 35px;
+    position: relative;
+    text-align: left;
+    &:after {
+        background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
+        content: "";
+        display: block;
+        height: 19px;
+        opacity: .7;
+        position: absolute;
+        top: 8px;
+        right: 15px;
+        width: 18px;
+    }
+    &:hover {
+        color: @white;
+        &:after {
+            opacity: 1;
+        }
+    }
+}
+
+.html-rtl .arrow.button {
+    text-align: right;
+}
+

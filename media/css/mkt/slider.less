@@ -23,19 +23,19 @@
 .controls {
     .next-page, .prev-page {
         .border-radius(10px 0 0 10px);
-        .transition(~'.2s opacity, .2s visibility');
+        .box-shadow(0 0 4px fadeOut(#000, 50%));
+        .transition(~'.2s opacity, .2s background');
         position: absolute;
         display: block;
         opacity: 0;
-        visibility: hidden;
         width: 48px;
         height: 220px;
         left: 0;
-        background: fadeOut(@white, 80%);
+        pointer-events: none;
+        background: fadeOut(@white, 75%);
         z-index: 1;
         &.show {
             opacity: 1;
-            visibility: visible;
         }
         &:after {
             content: '';
@@ -251,33 +251,3 @@
     }
 }
 
-.arrow.button {
-    .border-box;
-    .width(3);
-    color: lighten(@text, 60%);
-    font-size: 18px;
-    line-height: 35px;
-    position: relative;
-    text-align: left;
-    &:after {
-        background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
-        content: "";
-        display: block;
-        height: 19px;
-        opacity: .7;
-        position: absolute;
-        top: 8px;
-        right: 15px;
-        width: 18px;
-    }
-    &:hover {
-        color: @white;
-        &:after {
-            opacity: 1;
-        }
-    }
-}
-
-.html-rtl .arrow.button {
-    text-align: right;
-}
