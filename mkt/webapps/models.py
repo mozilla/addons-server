@@ -107,10 +107,10 @@ class Webapp(Addon):
         return reverse(('detail.%s' % action) if action else 'detail',
                        args=[self.app_slug])
 
-    def get_purchase_url(self, action=None, args=[]):
+    def get_purchase_url(self, action=None, args=None):
         # Reverse URLs for 'purchase', 'purchase.done', etc.
         return reverse(('purchase.%s' % action) if action else 'purchase',
-                       args=[self.app_slug] + args)
+                       args=[self.app_slug] + [] if args is None else args)
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         # Either link to the "new" Marketplace Developer Hub or the old one.
