@@ -23,7 +23,7 @@
     function revertButton($button) {
         // Cancelled install/purchase. Roll back button to its previous state.
         $button.html($button.data('old-text'))
-               .removeClass('purchasing installing');
+               .removeClass('purchasing installing error');
         // The text has changed, so do another linefit.
         $button.css('font-size', $button.data('old-font-size')).linefit();
     }
@@ -75,9 +75,12 @@
             // Cancelled install. Roll back.
             revertButton($button);
         }
+    }).bind('overlay_dismissed', function() {
+        // Dismissed error. Roll back.
+        revertButton($('.button.error'));
     });
 
-    z.page.bind('fragmentloaded', function(e) {
+    z.page.on('fragmentloaded', function(e) {
         // Shrink text in buttons so everything fits on one line.
         $('.button').linefit();
     });
