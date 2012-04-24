@@ -10,7 +10,7 @@
           <a href="{{ product.get_url_path() }}">
             {# TODO: Replace previews with promo graphics (bug 744648). #}
             {% set previews = product.previews %}
-            {% if preview %}
+            {% if previews.exists() %}
               {% set preview = previews.order_by('-created')[0].image_url if feature else
                                previews.order_by('-created')[0].thumbnail_url %}
             {% endif %}

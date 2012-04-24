@@ -3,7 +3,6 @@ import jingo
 from django.shortcuts import get_object_or_404, redirect
 
 import amo
-from amo.utils import paginate
 from addons.models import Category
 
 from mkt.search.views import _app_search
@@ -24,7 +23,7 @@ def _landing(request, category=None):
     return jingo.render(request, 'browse/landing.html', {
         'category': category,
         'featured': featured[:6],
-        'popular': paginate(request, popular, count=6)
+        'popular': popular[:6]
     })
 
 
