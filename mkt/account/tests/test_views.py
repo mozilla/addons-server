@@ -52,7 +52,7 @@ class TestAccountDelete(amo.tests.TestCase):
         eq_(user.email, None)
 
     def test_fail(self):
-        r = self.client.post(self.url, follow=True)
+        r = self.client.post(self.url, {'submit': True}, follow=True)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'confirm', 'This field is required.')
         eq_(pq(r.content)('input[name=confirm]').siblings('.errorlist').length,
