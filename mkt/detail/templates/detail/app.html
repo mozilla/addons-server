@@ -46,12 +46,7 @@
       </h1>
       <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
       <p class="downloads">
-        {% trans cnt=product.weekly_downloads,
-                 num=product.weekly_downloads|numberfmt %}
-          {{ num }} weekly download
-        {% pluralize %}
-          {{ num }} weekly downloads
-        {% endtrans %}
+        {{ product|weekly_downloads }}
       </p>
       {{ device_list(product) }}
       {% set categories = product.all_categories %}
@@ -103,18 +98,25 @@
 
   {% set upsell = product.upsell %}
   {% if upsell %}
+    {% set prm = upsell.premium %}
     <section id="upsell" class="notification-box full">
       <div class="c">
         <h3>{{ _('Premium version available') }}</h3>
-          {% with prm = upsell.premium %}
-            <a href="{{ prm.get_url_path() }}" class="upsell">
-              <img class="icon" src="{{ prm.get_icon_url(16) }}">{{ prm.name }}</a>
-              {% if prm.is_public() %}
-                {{ market_button(prm) }}
-              {% endif %}
-          {% endwith %}
+        <a href="{{ prm.get_url_path() }}" class="upsell">
+          <img class="icon" src="{{ prm.get_icon_url(32) }}">{{ prm.name }}</a>
+          <a class="button special" href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+            {{ _('Read More') }}
+          </a>
       </div>
-      <div class="prose">{{ upsell.text|nl2br }}</div>
+      <div class="details">
+        <div class="prose">{{ upsell.text|nl2br }}</div>
+        <div class="vitals">
+          <span class="vital price">{{ prm.get_price() }}</span>
+          <span class="vital downloads">
+            {{ prm|weekly_downloads }}
+          </span>
+        </div>
+      </div>
     </section>
   {% endif %}
 

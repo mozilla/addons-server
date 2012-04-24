@@ -37,7 +37,7 @@ def market_button(context, product):
             (context['is_reviewer'] or context['is_admin'])):
             purchased = faked_purchase = True
         classes = ['button', 'product']
-        label = price_label(product)
+        label = product.get_price()
         product_dict = product_as_dict(request, product, purchased=purchased)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
@@ -144,13 +144,6 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
     t = env.get_template('site/helpers/breadcrumbs.html').render(
         breadcrumbs=crumbs, cls=cls)
     return jinja2.Markup(t)
-
-
-@register.filter
-def price_label(product):
-    if product.is_premium() and product.premium:
-        return product.premium.get_price_locale()
-    return _('FREE')
 
 
 @register.function

@@ -66,6 +66,47 @@
     text-align: center;
 }
 
+.vitals {
+    font-size: 11px;
+    span {
+        display: inline-block;
+        + .vital, + .rating {
+            &:before {
+                color: @note-gray;
+                content: "\00B7";
+            }
+        }
+    }
+    .downloads,
+    .price {
+        color: @green;
+    }
+    .price {
+        background: fadeOut(@green, 40%);
+        color: fadeOut(@white, 5%);
+        height: 16px;
+        font-weight: bold;
+        margin: 0 2px 0 8px;
+        padding: 0 4px 0 3px;
+        position: relative;
+        &:after {
+            border: 8px solid transparent;
+            border-right-color: fadeOut(@green, 40%);
+            content: "\00b0";  /* degree sign */
+            color: fadeOut(@white, 60%);
+            font-size: 8px;
+            line-height: 3px;
+            margin: 0 4px 0 -16px;
+            position: absolute;
+            text-indent: 5px;
+            top: 0;
+            left: 0;
+            height: 0;
+            width: 0;
+        }
+    }
+}
+
 .listing {
     p {
         margin: 5px 0;
@@ -96,46 +137,6 @@
         }
         h3 a {
             display: block;
-        }
-        .vitals {
-            font-size: 11px;
-            span {
-                display: inline-block;
-                + .vital, + .rating {
-                    &:before {
-                        color: @note-gray;
-                        content: "\00B7";
-                    }
-                }
-            }
-        }
-        .downloads,
-        .price {
-            color: @green;
-        }
-        .price {
-            background: fadeOut(@green, 40%);
-            color: fadeOut(@white, 5%);
-            height: 16px;
-            font-weight: bold;
-            margin: 0 2px 0 8px;
-            padding: 0 4px 0 3px;
-            position: relative;
-            &:after {
-                border: 8px solid transparent;
-                border-right-color: fadeOut(@green, 40%);
-                content: "\00b0";  /* degree sign */
-                color: fadeOut(@white, 60%);
-                font-size: 8px;
-                line-height: 3px;
-                margin: 0 4px 0 -16px;
-                position: absolute;
-                text-indent: 5px;
-                top: 0;
-                left: 0;
-                height: 0;
-                width: 0;
-            }
         }
         .rating {
             color: @gray;

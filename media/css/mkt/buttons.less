@@ -10,6 +10,10 @@
 @btn-g-dark: darken(spin(@btn-g, 3), 8%);
 @btn-g-lite: saturate(spin(@btn-g, 4), 60%);
 
+@btn-o: lighten(spin(@btn-r, 30), 0%);
+@btn-o-dark: darken(spin(@btn-o, 3), 8%);
+@btn-o-lite: saturate(spin(@btn-o, 4), 60%);
+
 .button, button {
     .gradient-two-color(@btn-b, @btn-b-dark);
     .border-radius(4px);
@@ -30,6 +34,17 @@
             .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
                         inset 0 -2px 0 0 rgba(0,0,0,.2),
                         inset 0 12px 24px 2px @btn-g-lite);
+        }
+    }
+    &.special {
+        .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                    inset 0 -2px 0 0 rgba(0,0,0,.1),
+                    inset 0 12px 24px 2px darken(@btn-o-lite, 10%));
+        .gradient-two-color(@btn-r, @btn-r-dark);
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 -2px 0 0 rgba(0,0,0,.2),
+                        inset 0 12px 24px 2px @btn-o-lite);
         }
     }
     &.delete, &.manage {

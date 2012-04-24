@@ -10,7 +10,7 @@ from pyquery import PyQuery as pq
 from tower import strip_whitespace
 
 import amo
-from amo.helpers import external_url
+from amo.helpers import external_url, numberfmt
 import amo.tests
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from market.models import PreApprovalUser
@@ -160,8 +160,11 @@ class TestDetail(DetailBase):
         eq_(upsell.length, 1)
         eq_(upsell.find('.upsell').text(), unicode(premie.name))
         eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(16))
-        eq_(upsell.find('.product').attr('data-manifesturl'),
-            premie.manifest_url)
+        eq_(upsell.find('.special').attr('href'),
+            premie.get_url_path() + '?src=mkt-detail-upsell')
+        eq_(upsell.find('.price').text(), premie.get_price())
+        eq_(upsell.find('.downloads').text().split(' ')[0],
+            numberfmt(premie.weekly_downloads))
         eq_(upsell.find('.prose').text(), 'XXX')
 
     def test_no_summary_no_description(self):

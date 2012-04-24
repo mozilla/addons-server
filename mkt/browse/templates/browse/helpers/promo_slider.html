@@ -17,7 +17,7 @@
             <img src="{{ preview }}">
             <h3>{{ product.name }}</h3>
             <p>
-              {{ product|price_label }}
+              {{ product.get_price() }}
             </p>
           </a>
         </li>

@@ -12,6 +12,7 @@ from django.db import models
 from django.dispatch import receiver
 
 import commonware.log
+from tower import ugettext as _
 
 import amo
 from amo.decorators import skip_cache
@@ -203,6 +204,11 @@ class Webapp(Addon):
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
+
+    def get_price(self):
+        if self.is_premium() and self.premium:
+            return self.premium.get_price_locale()
+        return _(u'FREE')
 
     @classmethod
     def featured_collection(cls, group):

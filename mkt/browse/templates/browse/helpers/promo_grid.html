@@ -9,7 +9,7 @@
             {% if product.listed_authors %}
               <em class="author">{{ product.listed_authors[0].name }}</em>
             {% endif %}
-            <p class="price">{{ product|price_label }}</p>
+            <p class="price">{{ product.get_price() }}</p>
           </a>
         </li>
       {% endfor %}

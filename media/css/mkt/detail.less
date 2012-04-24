@@ -108,10 +108,11 @@ h1 .num {
         color: darken(@yellow, 75%);
         font-size: 16px;
         font-weight: bold;
+        margin-bottom: 10px;
     }
-    .upsell,
-    .product {
-        margin: 15px 0;
+    h3, .upsell, .prose, .vitals {
+        padding-left: 45px;
+        width: 75%;
     }
     .upsell {
         .ellipsis;
@@ -119,14 +120,16 @@ h1 .num {
         float: left;
         font-weight: 200;
         font-size: 21px;
-        line-height: 24px;
-        padding: 5px 0 5px 45px;
+        min-height: 35px;
+        line-height: 32px;
         position: relative;
-        width: 75%;
     }
-    .product {
+    .special {
+        .border-box;
+        .width(2);
+        display: block;
         float: right;
-        .width(1);
+        max-width: 20%;
     }
     .icon {
         display: inline-block;
@@ -138,15 +141,24 @@ h1 .num {
     }
     .prose {
         color: @medium-gray;
+        margin-bottom: 10px;
     }
 }
 
 .html-rtl #upsell {
+    h3, .upsell, .prose, .vitals {
+        padding: 0 45px 0 0;
+    }
     .upsell {
-        padding: 5px 45px 5px 0;
+        float: right;
+    }
+    .special {
+        float: left;
     }
     .icon {
         margin: 0 0 0 15px;
+        right: 0;
+        left: auto;
     }
 }
 
