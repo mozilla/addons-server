@@ -35,7 +35,7 @@ paypal_log = commonware.log.getLogger('mkt.paypal')
 def payment(request, status=None):
     # Note this is not post required, because PayPal does not reply with a
     # POST but a GET, that's a sad face.
-    pre, created = (PreApprovalUser.objects
+    pre, created = (PreApprovalUser.uncached
                         .safer_get_or_create(user=request.amo_user))
     if status:
         data = request.session.get('setup-preapproval', {})

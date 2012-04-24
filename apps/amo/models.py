@@ -139,6 +139,18 @@ class UncachedManagerBase(models.Manager):
         return RawQuerySet(raw_query, self.model, params=params,
                            using=self._db, *args, **kwargs)
 
+    def safer_get_or_create(self, **kw):
+        """
+        This is subjective, but I don't trust get_or_create until #13906
+        gets fixed. It's probably fine, but this makes me happy for the moment
+        and solved a get_or_create we've had in the past.
+        """
+        with transaction.commit_on_success():
+            try:
+                return self.get(**kw), False
+            except self.model.DoesNotExist:
+                return self.create(**kw), True
+
 
 class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     """
@@ -159,18 +171,6 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     def raw(self, raw_query, params=None, *args, **kwargs):
         return CachingRawQuerySet(raw_query, self.model, params=params,
                                   using=self._db, *args, **kwargs)
-
-    def safer_get_or_create(self, **kw):
-        """
-        This is subjective, but I don't trust get_or_create until #13906
-        gets fixed. It's probably fine, but this makes me happy for the moment
-        and solved a get_or_create we've had in the past.
-        """
-        with transaction.commit_on_success():
-            try:
-                return self.get(**kw), False
-            except self.model.DoesNotExist:
-                return self.create(**kw), True
 
 
 class _NoChangeInstance(object):
