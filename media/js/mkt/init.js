@@ -46,7 +46,7 @@ $(document).ready(function() {
 });
 
 
-$(function() {
+z.page.on('fragmentloaded', function() {
     // Get list of installed apps and mark as such.
     r = window.navigator.mozApps.getInstalled();
     r.onsuccess = function() {
