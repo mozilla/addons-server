@@ -55,6 +55,7 @@ def metrics(uid, action, data, **kw):
     headers = {'Content-Type': 'application/json'}
     request = urllib2.Request(destination, data, headers)
 
+    log.info('Calling metrics: %s' % destination)
     try:
         response = urllib2.urlopen(request, timeout=timeout)
     except urllib2.HTTPError, error:
