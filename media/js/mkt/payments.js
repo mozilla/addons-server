@@ -148,7 +148,7 @@
                 dgFlow.startFlow(response.url);
                 overlay.removeClass('show');
                 // Scroll to top of PayPal modal.
-                var offset = $('iframe[name=PPDGFrame]').offset().top;
+                var offset = $('[name=PPDGFrame]').offset().top;
                 if (offset > 9) {
                     $(document.documentElement).animate({scrollTop: offset}, 1000);
                 }
