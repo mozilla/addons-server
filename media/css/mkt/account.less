@@ -35,9 +35,14 @@
         .border-box;
     }
     img {
+        .transition(~'.2s all ease-in-out');
         .max-width(2);
+        &.previewed {
+            max-height: 210px;
+            max-width: 210px;
+        }
     }
-    img[src*="anon_user"], .button {
+    .button {
         .width(2);
     }
     .button {

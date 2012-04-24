@@ -44,7 +44,7 @@
         var img = $this.objectUrl();
         if (img) {
             $a.show();
-            $avatar.attr('src', img);
+            $avatar.attr('src', img).addClass('previewed');
         }
     });
 })();
