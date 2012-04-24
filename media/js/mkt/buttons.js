@@ -75,7 +75,7 @@
             // Cancelled install. Roll back.
             revertButton($button);
         }
-    }).bind('overlay_dismissed', function() {
+    }).bind('buttons.overlay_dismissed', function() {
         // Dismissed error. Roll back.
         revertButton($('.button.error'));
     });
