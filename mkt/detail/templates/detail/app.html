@@ -184,14 +184,6 @@
           {% endif %}
         </li>
       {% endif %}
-      <li class="privacy">
-        <h3>{{ _('Privacy Policy') }}</h3>
-        <p>
-          <a href="{{ product.get_detail_url('privacy') }}">
-            {{ _('Privacy Policy') }}
-          </a>
-        </p>
-      </li>
       {% if product.homepage %}
         <li class="homepage">
           <h3>{{ _('App Homepage') }}</h3>
@@ -201,6 +193,21 @@
           </p>
         </li>
       {% endif %}
+      <li class="more-info">
+        <h3>{{ _('More Info') }}</h3>
+        <p class="privacy">
+          <a href="{{ product.get_detail_url('privacy') }}">
+            {{ _('Privacy Policy') }}
+          </a>
+        </p>
+        {% if waffle.switch('app-stats') and product.public_stats %}
+          <p class="view-stats">
+            <a href="{{ url('mkt.stats.overview', product.app_slug) }}">
+              {{ _('Statistics') }}
+            </a>
+          </p>
+        {% endif %}
+      </li>
       <li class="published">
         <h3>{{ _('Published') }}</h3>
         <p>

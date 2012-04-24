@@ -8,10 +8,12 @@ from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
+import waffle
 
 import amo
 from amo.helpers import external_url, numberfmt
 import amo.tests
+from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from market.models import PreApprovalUser
 from users.models import UserProfile
@@ -235,6 +237,26 @@ class TestDetail(DetailBase):
         eq_(url.length, 1)
         eq_(url.find('a').text(), self.webapp.homepage)
         eq_(url.find('a').attr('href'), external_url(self.webapp.homepage))
+
+    def test_no_stats_without_waffle(self):
+        # TODO: Remove this test when `app-stats` switch gets unleashed.
+        self.webapp.update(public_stats=True)
+        eq_(self.get_webapp().public_stats, True)
+        eq_(self.get_pq()('.more-info .view-stats').length, 0)
+
+    def test_no_public_stats(self):
+        waffle.Switch.objects.create(name='app-stats', active=True)
+        eq_(self.webapp.public_stats, False)
+        eq_(self.get_pq()('.more-info .view-stats').length, 0)
+
+    def test_public_stats(self):
+        waffle.Switch.objects.create(name='app-stats', active=True)
+        self.webapp.update(public_stats=True)
+        eq_(self.get_webapp().public_stats, True)
+        p = self.get_pq()('.more-info .view-stats')
+        eq_(p.length, 1)
+        eq_(p.find('a').attr('href'),
+            reverse('mkt.stats.overview', args=[self.webapp.app_slug]))
 
     def test_free_no_preapproval(self):
         eq_(self.get_pq()('.approval-pitch, .approval.checkmark').length, 0)
