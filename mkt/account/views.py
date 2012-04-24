@@ -43,8 +43,9 @@ def payment(request, status=None):
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
             if 'setup-preapproval' in request.session:
-                paypal_log.info(u'Preapproval key created for user: %s'
-                                % request.amo_user)
+                paypal_log.info(u'Preapproval key created for user: %s, %s..' %
+                                (request.amo_user.pk, data['key'][:5]))
+
                 pre.update(paypal_key=data.get('key'),
                            paypal_expiry=data.get('expiry'))
 
@@ -114,7 +115,8 @@ def preapproval(request, complete=None, cancel=None):
         paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
         raise
 
-    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
+    paypal_log.info(u'Got preapproval key for user: %s, %s...' %
+                    (request.amo_user.pk, result['preapprovalKey'][:5]))
     request.session['setup-preapproval'] = {
         'key': result['preapprovalKey'],
         'expiry': data['endDate'],
