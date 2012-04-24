@@ -39,6 +39,18 @@
             {% endif %}
           </td>
         </tr>
+        <tr>
+          <th>
+            {{ tip(_("Public Stats?"),
+                   _("Whether the install and usage stats of your app can
+                      be displayed in our online viewer.")) }}
+          </th>
+          <td>
+            {{ flags(_("This app's stats are publicly viewable."),
+                     addon.public_stats if not editable else form.public_stats, editable,
+                     _("No, this app's stats are not publicly viewable.")) }}
+          </td>
+        </tr>
       </tbody>
     </table>
     {% if editable %}

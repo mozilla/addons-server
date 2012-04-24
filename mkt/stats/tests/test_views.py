@@ -41,3 +41,9 @@ class TestInstalled(amo.tests.ESTestCase):
         self.client.logout()
         res = self.client.get(self.get_url(self.today, self.today))
         eq_(res.status_code, 403)
+
+    def tests_installed_anon_public(self):
+        self.client.logout()
+        self.webapp.update(public_stats=True)
+        res = self.client.get(self.get_url(self.today, self.today))
+        eq_(res.status_code, 200)
