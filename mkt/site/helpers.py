@@ -168,13 +168,15 @@ def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
 @register.function
 def admin_site_links():
     return {
-        'apps': [
-            ('Search for add-ons by name or id',
-             reverse('zadmin.addon-search')),
+        'addons': [
+            ('Search for apps by name or id', reverse('zadmin.addon-search')),
             ('Featured add-ons', reverse('admin.featured_apps')),
             ('Name blocklist', reverse('zadmin.addon-name-blocklist')),
             ('Fake mail', reverse('zadmin.mail')),
             ('Flagged reviews', reverse('zadmin.flagged')),
+        ],
+        'users': [
+            ('Configure groups', reverse('admin:access_group_changelist')),
         ],
         'settings': [
             ('View site settings', reverse('zadmin.settings')),

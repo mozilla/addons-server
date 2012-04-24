@@ -37,7 +37,9 @@ data-default-locale="en-us"
 <div id="navbar">
   <ul class="top">
     <li class="top">
-      <a href="" class="controller">Manage Add-ons</a>
+      <a href="{{ url('zadmin.home') }}" class="controller">
+        Manage {{ 'Apps' if settings.MARKETPLACE else 'Add-ons' }}
+      </a>
       {{ ul(links, 'addons') }}
     </li>
     <li class="top">

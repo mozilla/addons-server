@@ -1,10 +1,16 @@
+from django.conf import settings
+
 from jingo import register
 
 from amo.helpers import url
 
+from mkt.site.helpers import admin_site_links as mkt_admin_site_links
+
 
 @register.function
 def admin_site_links():
+    if settings.MARKETPLACE:
+        return mkt_admin_site_links()
     return {
         'addons': [
             ('Search for add-ons by name or id', url('zadmin.addon-search')),
