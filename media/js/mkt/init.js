@@ -68,7 +68,7 @@ z.page.on('fragmentloaded', function() {
     var $header = $('#site-header'),
         $nav = $header.find('nav ul');
     $header.on('click', '.menu-button', function() {
-        $nav.toggleClass('active');
+        $nav.addClass('active');
         $('.nav-overlay').addClass('show');
     });
     $(window).bind('overlay_dismissed', function() {
