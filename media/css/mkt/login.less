@@ -1,3 +1,5 @@
+@import 'lib';
+
 #login {
     section {
         max-width: 380px;
@@ -24,5 +26,56 @@
         .old {
             display: block;
         }
+    }
+}
+
+.login {
+    .notification-box {
+        margin-bottom: 24px;
+    }
+    #welcome {
+        min-height: 180px;
+        &:before {
+            background: url(../../img/mkt/monster.png) 55% 100% no-repeat;
+            content: "";
+            display: block;
+            float: right;
+            height: 233px;
+            margin-bottom: -50%;
+            width: 100%;
+        }
+        > div {
+            width: 40%;
+            .proceed {
+                margin: 0;
+            }
+            .forgot {
+                margin: 5px 0 0;
+                a {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+    #access-devhub {
+        text-align: left;
+        b {
+            display: block;
+        }
+    }
+    #site-footer {
+        > div {
+            .border-box;
+            .width(14);
+            margin: 0 auto;
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+    }
+    #lang-form {
+        margin-top: 30px;
     }
 }
