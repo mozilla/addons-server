@@ -1,6 +1,7 @@
 import json
 import re
 import urllib2
+from urlparse import urljoin
 import uuid
 
 from django.conf import settings
@@ -51,7 +52,7 @@ def metrics(uid, action, data, **kw):
     timeout = settings.METRICS_SERVER_TIMEOUT
     namespace = re.sub('\.|-', '_', settings.DOMAIN)
 
-    destination = '%s/%s/%s' % (destination, namespace, uid)
+    destination = urljoin(destination, '%s_%s/%s' % (namespace, action, uid))
     headers = {'Content-Type': 'application/json'}
     request = urllib2.Request(destination, data, headers)
 
