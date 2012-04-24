@@ -2,10 +2,10 @@
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, raises
 
 import amo.tests
-from lib.crypto.receipt import sign
+from lib.crypto.receipt import sign, SigningError
 
 
 @mock.patch('lib.metrics.urllib2.urlopen')
@@ -13,10 +13,12 @@ from lib.crypto.receipt import sign
 class TestReceipt(amo.tests.TestCase):
 
     def test_called(self, urlopen):
+        urlopen.return_value = self.get_response(200)
         sign('my-receipt')
         eq_(urlopen.call_args[0][0].data, 'my-receipt')
 
     def test_some_unicode(self, urlopen):
+        urlopen.return_value = self.get_response(200)
         sign({'name': u'Вагиф Сәмәдоғлу'})
 
     def get_response(self, code):
@@ -24,14 +26,16 @@ class TestReceipt(amo.tests.TestCase):
         response.status_code = code
         return response
 
+    @raises(SigningError)
     def test_error(self, urlopen):
         urlopen.return_value = self.get_response(403)
-        eq_(sign('x'), 403)
+        sign('x')
 
     def test_good(self, urlopen):
         urlopen.return_value = self.get_response(200)
-        eq_(sign('x'), 200)
+        sign('x')
 
+    @raises(SigningError)
     def test_other(self, urlopen):
         urlopen.return_value = self.get_response(206)
-        eq_(sign('x'), 206)
+        sign('x')

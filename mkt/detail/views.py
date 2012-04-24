@@ -50,6 +50,7 @@ def record(request, addon):
         # Look up to see if its in the receipt cache and log if we have
         # to recreate it.
         receipt = memoize_get('create-receipt', installed.pk)
+        error = ''
         cef(request, addon, 'request', 'Receipt requested')
         if not receipt:
             cef(request, addon, 'sign', 'Receipt signing')
