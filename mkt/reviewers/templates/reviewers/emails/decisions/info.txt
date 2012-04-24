@@ -7,5 +7,5 @@ URL: {{ detail_url }}
 
 {{ reviewer }} wrote:
 
-"{{ comments }}"
+{{ comments }}
 {% endblock %}
