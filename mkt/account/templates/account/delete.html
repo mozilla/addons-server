@@ -36,8 +36,7 @@
           <form method="post" action="">
             {{ csrf() }}
             <p>{{ loc('By clicking "delete" your account is going '
-                      'to be <strong>permanently removed</strong>. '
-                      'I understand this step cannot be undone.')|safe }}</p>
+                      'to be <strong>permanently removed</strong>.')|safe }}</p>
             <p>
               {{ form_field(form.confirm) }}
             </p>
@@ -48,7 +47,7 @@
             </footer>
           </form>
         {% endif %}
-      {% endif %}{# /amouser.is_developer #}
+      {% endif %}
     </div>
   </section>
 {% endblock %}

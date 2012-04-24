@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
 from django import http
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -98,6 +97,7 @@ def currency(request, do_redirect=True):
         return jingo.render(request, 'account/payment.html',
                             {'preapproval': pre,
                              'currency': currency})
+
 
 @post_required
 @login_required
@@ -226,7 +226,7 @@ def admin_edit(request, user_id):
 
 def delete(request):
     amouser = request.amo_user
-    form = forms.UserDeleteForm(request.POST, request=request)
+    form = forms.UserDeleteForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         messages.success(request, _('Profile Deleted'))
         amouser.anonymize()
