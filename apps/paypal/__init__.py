@@ -24,9 +24,10 @@ from tower import ugettext as _
 
 class PaypalError(Exception):
     # The generic Paypal error and message.
-    def __init__(self, message='', id=None):
+    def __init__(self, message='', id=None, paypal_data=None):
         super(PaypalError, self).__init__(message)
         self.id = id
+        self.paypal_data = paypal_data
         self.default = _('There was an error communicating with PayPal. '
                          'Please try again later.')
 
@@ -56,7 +57,10 @@ class PreApprovalError(PaypalError):
 
 class CurrencyError(PaypalError):
     # This currency was bad.
-    pass
+
+    def __str__(self):
+        return (messages.get(self.id) %
+                amo.PAYPAL_CURRENCIES[self.paypal_data['currencyCode']])
 
 
 errors = {'520003': AuthError}
@@ -66,7 +70,7 @@ errors = {'520003': AuthError}
 for number in ['569017', '569018', '569019', '569016', '579014', '579024',
                '579025', '579026', '579027', '579028', '579030', '579031']:
     errors[number] = PreApprovalError
-for number in ['580027', '580022']:
+for number in ['559044', '580027', '580022']:
     errors[number] = CurrencyError
 
 # Here you can map PayPal error messages into hopefully more useful
@@ -74,7 +78,9 @@ for number in ['580027', '580022']:
 messages = {'589023': _("The amount is too small for conversion "
                         "into the receiver's currency."),
             '579033': _('The buyer and seller must have different '
-                        'PayPal accounts.')}
+                        'PayPal accounts.'),
+            #L10n: {0} is the currency.
+            '559044': _(u'The seller does not accept payments in %s.')}
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -501,7 +507,7 @@ def _call(url, paypal_data, ip=None, token=None):
     if 'error(0).errorId' in response:
         id_, msg = response['error(0).errorId'], response['error(0).message']
         paypal_log.error('Paypal Error (%s): %s' % (id_, msg))
-        raise errors.get(id_, PaypalError)(id=id_)
+        raise errors.get(id_, PaypalError)(id=id_, paypal_data=paypal_data)
 
     return response
 
