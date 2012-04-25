@@ -50,6 +50,7 @@ z.page.on('fragmentloaded', function() {
     // Get list of installed apps and mark as such.
     r = window.navigator.mozApps.getInstalled();
     r.onsuccess = function() {
+        z.apps = r.result;
         _.each(r.result, function(val) {
             $(window).trigger('app_install_success',
                               {'manifestUrl': val.manifestURL})
