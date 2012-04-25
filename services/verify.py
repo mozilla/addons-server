@@ -188,6 +188,7 @@ def decode_receipt(receipt):
             raw = jwt.decode(receipt, key)
     return raw
 
+
 # For consistency with the rest of amo, we'll include addon id in the
 # URL and pull it out using this regex.
 id_re = re.compile('/verify/(?P<addon_id>\d+)$')

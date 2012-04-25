@@ -7,6 +7,7 @@ import time
 from django.db import connection
 from django.conf import settings
 
+import jwt
 import M2Crypto
 import mock
 from nose import SkipTest
@@ -21,6 +22,33 @@ from mkt.webapps.models import create_receipt, Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution
+
+
+def get_response(data, status):
+    response = mock.Mock()
+    response.read.return_value = data
+    response.getcode.return_value = status
+    return response
+
+
+sample = ('eyJqa3UiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYtY2RuL'
+'mFsbGl6b20ub3JnL3B1YmxpY19rZXlzL3Rlc3Rfcm9vdF9wdWIuandrIiwgInR5cCI6ICJKV'
+'1QiLCAiYWxnIjogIlJTMjU2In0.eyJwcm9kdWN0IjogeyJ1cmwiOiAiaHR0cDovL2Rla2tvc'
+'3R1ZGlvcy5jb20iLCAic3RvcmVkYXRhIjogImlkPTM2Mzk4MiJ9LCAiaXNzIjogImh0dHBzO'
+'i8vbWFya2V0cGxhY2UtZGV2LmFsbGl6b20ub3JnIiwgInZlcmlmeSI6ICJodHRwczovL3JlY'
+'2VpcHRjaGVjay1tYXJrZXRwbGFjZS1kZXYuYWxsaXpvbS5vcmcvdmVyaWZ5LzM2Mzk4MiIsI'
+'CJkZXRhaWwiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYuYWxsaXpvbS5vcmcvZW4tVVMvc'
+'HVyY2hhc2VzLzM2Mzk4MiIsICJyZWlzc3VlIjogImh0dHBzOi8vbWFya2V0cGxhY2UtZGV2L'
+'mFsbGl6b20ub3JnL2VuLVVTL2FwcC9zZWV2YW5zLXVuZGVyd29ybGQtYWR2ZW50dXIvcHVyY'
+'2hhc2UvcmVpc3N1ZSIsICJ1c2VyIjogeyJ0eXBlIjogImRpcmVjdGVkLWlkZW50aWZpZXIiL'
+'CAidmFsdWUiOiAiMjYzLTI3OGIwYTc3LWE5MGMtNDYyOC1iODQ3LWU3YTU0MzQ1YTMyMCJ9L'
+'CAiZXhwIjogMTMzNTk5MDkwOSwgImlhdCI6IDEzMzUzODYxMDksICJ0eXAiOiAicHVyY2hhc'
+'2UtcmVjZWlwdCIsICJuYmYiOiAxMzM1Mzg2MTA5fQ.ksPSozpX5ufHSdjrKGEUa9QC1tLh_t'
+'a-xIkY18ZRwbmDqV05oCLdhzO6L1Gqzg8bCUg3cl_cBD9cKP23dvqfSwydeZlQL0jbBEUSIs'
+'9EDd1_eIDOt_ifjm0D6YrTvfXuokRhD5ojhS6b8_fzAlWiQ_UWnyccaYE2eflR96hGXi-cJZ'
+'9u6Fb9DNlgAK4xI4uLzYHxJJuY2N9yotcle0IzQGDBIooBKIns7FWC7J5mCdTJP4nil2rrMb'
+'pprvfinNhfK5oYPWTPgc3NQNteBbK7XDoY2ZESXW66sYgG5jDMVnhTO2NXJmyDHuIrhiVWsf'
+'xVjY54e0R4NlfjsQmM3wURxg')
 
 
 # There are two "different" settings files that need to be patched,
@@ -99,24 +127,27 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(3615, self.user_data)
         eq_(res['status'], 'ok')
 
-    def test_expired(self):
-        raise SkipTest
+    @mock.patch('services.verify.sign')
+    def test_expired(self, sign):
+        sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
         self.make_install()
         res = self.get(3615, user_data)
         eq_(res['status'], 'expired')
 
-    def test_garbage_expired(self):
-        raise SkipTest
+    @mock.patch('services.verify.sign')
+    def test_garbage_expired(self, sign):
+        sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = 'a'
         self.make_install()
         res = self.get(3615, user_data)
         eq_(res['status'], 'expired')
 
-    def test_expired_has_receipt(self):
-        raise SkipTest
+    @mock.patch('services.verify.sign')
+    def test_expired_has_receipt(self, sign):
+        sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
         self.make_install()
@@ -207,13 +238,12 @@ class TestVerify(amo.tests.TestCase):
         eq_(result['typ'], u'purchase-receipt')
 
     @mock.patch('services.verify.settings')
-    def test_crack_receipt_new(self, settings):
-        raise SkipTest
+    @mock.patch('services.verify.trunion_verify.ReceiptVerifier')
+    def test_crack_receipt_new_called(self, trunion_verify, settings):
         # Check that we can decode our receipt and get a dictionary back.
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = create_receipt(self.make_install().pk)
-        # This is just temporary until decoding this happens.
-        self.assertRaises(NotImplementedError, verify.decode_receipt, receipt)
+        verify.decode_receipt('.~' + sample)
+        assert trunion_verify.called
 
     def test_crack_borked_receipt(self):
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
