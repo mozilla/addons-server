@@ -5,14 +5,13 @@ from django.utils.datastructures import SortedDict
 
 import commonware.log
 import django_tables as tables
-import jingo
 import jinja2
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import absolutify, timesince
 from amo.urlresolvers import reverse
-from amo.utils import send_mail as amo_send_mail
+from amo.utils import send_mail_jinja
 from editors.helpers import ItemStateTable
 
 from mkt.webapps.models import Webapp
@@ -22,18 +21,12 @@ log = commonware.log.getLogger('z.mailer')
 
 
 def send_mail(request, template, subject, emails, context, perm_setting=None):
-    # Get a jinja environment so we can override autoescaping for text emails.
-    env = jingo.get_env()
-    env.autoescape = False
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify(reverse('account.settings')) + '#notifications'
-    template = env.get_template(template)
-    amo_send_mail(subject, jingo.render_to_string(request, template, context),
-                  recipient_list=emails,
-                  from_email=settings.NOBODY_EMAIL,
-                  use_blacklist=False, perm_setting=perm_setting,
-                  manage_url=manage_url,
-                  headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
+    send_mail_jinja(request, template, subject, context, recipient_list=emails,
+                    from_email=settings.NOBODY_EMAIL, use_blacklist=False,
+                    perm_setting=perm_setting, manage_url=manage_url,
+                    headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
 
 
 class WebappQueueTable(tables.ModelTable, ItemStateTable):
@@ -134,8 +127,8 @@ class ReviewBase:
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
         send_mail(self.request, 'reviewers/emails/decisions/%s.txt' % template,
-                  subject % self.addon.name,
-                  emails, data, perm_setting='app_reviewed')
+                  subject % self.addon.name, emails, data,
+                  perm_setting='app_reviewed')
 
     def get_context_data(self):
         return {'name': self.addon.name,

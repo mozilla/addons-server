@@ -38,6 +38,7 @@ from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
+import jingo
 import jinja2
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
@@ -221,6 +222,20 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             raise
 
     return result
+
+
+def send_mail_jinja(request, template, subject, context, *args, **kwargs):
+    """Sends mail using a Jinja template with autoescaping turned off.
+
+    Jinja is especially useful for sending email since it has whitespace
+    control.
+    """
+    # Get a jinja environment so we can override autoescaping for text emails.
+    env = jingo.get_env()
+    env.autoescape = False
+    template = env.get_template(template)
+    send_mail(subject, jingo.render_to_string(request, template, context),
+              *args, **kwargs)
 
 
 class JSONEncoder(json.DjangoJSONEncoder):
