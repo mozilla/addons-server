@@ -6,11 +6,14 @@
       {#
         <a href="{{ url('ecosystem.tutorial') }}">Tutorials</a>
       #}
-      <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
+      
       {% if not request.user.is_authenticated() %}
-        <a href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Developer Sign-in</a>
+        <a href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Sign in/Register</a>
+        <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
       {% else %}
-       <a href="{{ url('account.settings') }}">Account Settings</a>
+       <a href="{{ url('mkt.developers.apps') }}">My Apps</a>
+       <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
+       <a href="{{ url('users.logout') }}">Logout</a>
       {% endif %}
     </nav>
     
