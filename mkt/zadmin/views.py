@@ -1,5 +1,6 @@
 import jingo
 
+from django.contrib import admin
 from django.shortcuts import redirect
 from django.db import transaction
 
@@ -13,6 +14,7 @@ from mkt.webapps.models import Webapp
 
 @transaction.commit_on_success
 @write
+@admin.site.admin_view
 def featured_apps_admin(request):
     home_collection = Webapp.featured_collection('home')
     category_collection = Webapp.featured_collection('category')

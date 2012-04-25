@@ -94,6 +94,7 @@ def manifest(request):
 @dev_required
 @submit_step('details')
 def details(request, addon_id, addon):
+    import pdb; pdb.set_trace()
     # Name, Slug, Summary, Description, Privacy Policy,
     # Homepage URL, Support URL, Support Email.
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
