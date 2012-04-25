@@ -47,13 +47,12 @@ def sign(receipt):
         log.error('Posting to signing failed', exc_info=True)
         raise SigningError
 
-    print response.get_code()
     if response.getcode() != 200:
         log.error('Posting to signing failed: %s'
                   % (response.getcode()))
         raise SigningError
 
-    return response.read()
+    return json.loads(response.read())['receipt']
 
 
 def decode(receipt):

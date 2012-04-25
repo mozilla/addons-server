@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 from django.conf import settings
 
+import json
 import mock
 from nose.tools import eq_, raises
 
@@ -25,6 +26,7 @@ class TestReceipt(amo.tests.TestCase):
         response = mock.Mock()
         response.getcode = mock.Mock()
         response.getcode.return_value = code
+        response.read.return_value = json.dumps({'receipt': ''})
         return response
 
     @raises(SigningError)

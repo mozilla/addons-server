@@ -288,7 +288,7 @@ def create_receipt(installed_pk):
                    user={'type': 'directed-identifier',
                          'value': installed.uuid},
                    iss=settings.SITE_URL,
-                   nbf=time.mktime(installed.created.timetuple()),
+                   nbf=int(time.mktime(installed.created.timetuple())),
                    iat=calendar.timegm(time.gmtime()),
                    exp=(calendar.timegm(time.gmtime()) +
                         settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS),
