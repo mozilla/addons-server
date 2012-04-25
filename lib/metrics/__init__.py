@@ -70,8 +70,8 @@ def metrics(uid, action, data, **kw):
         log.error('Posting to metrics failed uuid: %s' % uid, exc_info=True)
         return
 
-    # Catches codes that are 2xx but not 200.
-    if response.getcode() != 200:
+    # Catches codes that are 2xx but not 201.
+    if response.getcode() != 201:
         log.error('Posting to metrics failed: %s, uuid: %s'
                   % (response.getcode(), uid))
 

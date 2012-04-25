@@ -45,7 +45,7 @@ class TestMetrics(amo.tests.TestCase):
 
     def get_response(self, code):
         response = mock.Mock()
-        response.status_code = code
+        response.getcode.return_value = code
         return response
 
     def test_error(self, urlopen):
@@ -53,12 +53,12 @@ class TestMetrics(amo.tests.TestCase):
         eq_(metrics('x', 'install', {}), 403)
 
     def test_good(self, urlopen):
-        urlopen.return_value = self.get_response(200)
-        eq_(metrics('x', 'install', {}), 200)
+        urlopen.return_value = self.get_response(201)
+        eq_(metrics('x', 'install', {}), 201)
 
     def test_other(self, urlopen):
-        urlopen.return_value = self.get_response(206)
-        eq_(metrics('x', 'install', {}), 206)
+        urlopen.return_value = self.get_response(200)
+        eq_(metrics('x', 'install', {}), 200)
 
     def test_uid(self, urlopen):
         metrics('x', 'install', {})
