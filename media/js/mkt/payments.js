@@ -34,8 +34,8 @@
         // Guess and set the payment overlay height.
         setTimeout(function() {
             overlay.find('section').css('height',
-                $('#pay section > div').outerHeight() + 30 +'px');
-        }, 10);
+                $('#pay section > div').outerHeight() + 38 +'px');
+        }, 0);
 
         $(window).bind('keypress.payments', function(e) {
             if (e.keyCode == z.keys.ESCAPE) {
@@ -54,7 +54,7 @@
 
     function initCurrencies(clist) {
         var $list = $('<ul id="currency-list"></ul>'),
-            $trigger = $(format('<a href="#">{0}</a>', gettext('Currency'))),
+            $label = $(format('<div><em>{0}</em></div>', gettext('Currency'))),
             $item;
 
         for (var currency in clist) {
@@ -63,19 +63,30 @@
             $list.append($item);
         }
 
+        $label.prepend($list);
+
         // Yea...(race condition).
         setTimeout(function() {
-            $('.product-details .price').append($trigger, $list);
-            initCurrencyEvents($trigger, $list);
+            $('.product-details .price').addClass('has-currency')
+                                        .append($label);
+            initCurrencyEvents($list);
         }, 0);
     }
 
-    function initCurrencyEvents($trigger, $list) {
-        var $price = $('#price-display');
+    function initCurrencyEvents($list) {
+        var $price = $('#price-display'),
+            $items = $list.find('li');
 
-        $trigger.unbind('click').click(_pd(function(e) {
-            $list.addClass('show');
-        }));
+        $('#pay .has-currency').unbind('click').click(function(e) {
+            if ($price.hasClass('expanded')) {
+                $price.removeClass('expanded');
+                $list.css('height', 0);
+            } else {
+                var myHeight = $items.length * $items.outerHeight();
+                $price.addClass('expanded');
+                $list.css('height', myHeight + 'px');
+            }
+        });
 
         $('#pay').unbind('click.currency')
                  .on('click.currency', _pd(function(e) {
@@ -85,17 +96,18 @@
                 $targ.parent('.price').length) {
                 var sel = $targ.html().split(' ');
 
-                if ($targ.html() != $trigger.html()) {
+                if (sel.length == 2) {
                     sel[1] = sel[1].replace('\(', '').replace('\)', '');
 
                     // Feel free to remove.
                     console.log('Setting currency to: ', sel[0]);
                     data.currency = sel[0];
-                    $('#price-display').html(sel[1]);
-                    $list.removeClass('show');
+                    $price.removeClass('expanded').html(sel[1]);
+                    $list.css('height', 0);
                 }
             } else {
-                $list.removeClass('show');
+                $price.removeClass('expanded');
+                $list.css('height', 0);
             }
         }));
     }
@@ -110,14 +122,12 @@
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
-        $('#currency-list').removeClass('show');
     }
 
     function completePurchase() {
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
-        $('#currency-list').removeClass('show');
         message.html(messageTemplate(product));
         message.toggle();
         $def.resolve(product);

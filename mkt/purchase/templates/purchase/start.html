@@ -19,9 +19,14 @@
         <form id="preapproval" method="post"
               action="{preapprovalUrl}">
           {{ csrf() }}
-          <h3>{{ _('To complete your purchase please set up your Marketplace
-                    Wallet.') }}</h3>
-          <p><button id="pre-approval">{{ _('Set up') }}</button></p>
+          <h3>{{ _("Complete your purchase by linking your PayPal and
+                    Marketplace accounts. You'll be ready to go for instant
+                    app purchases in the future!") }}</h3>
+          <p>
+            <button id="pre-approval">
+              {{ _('Link or Create PayPal Account') }}
+            </button>
+          </p>
         </form>
       {% endif %}
       <p>
