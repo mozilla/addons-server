@@ -325,6 +325,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return
         src, dst = self.guarded_file_path, self.file_path
         self.mv(src, dst, 'Moving undisabled file: %s => %s')
+        # Put files back on the mirrors if necessary.
+        destinations = [self.version.path_prefix]
+        if self.status in amo.MIRROR_STATUSES:
+            destinations.append(self.version.mirror_path_prefix)
+        for dest in destinations:
+            dest = os.path.join(dest, nfd_str(self.filename))
+            log.info('Re-mirroring disabled/enabled file to %s' % dest)
+            copy_stored_file(self.file_path, dest)
 
     def copy_to_mirror(self):
         if not self.filename:

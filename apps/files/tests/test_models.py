@@ -12,6 +12,7 @@ from xml.parsers import expat
 import zipfile
 
 from django import forms
+from django.core.files.storage import default_storage as storage
 from django.conf import settings
 from django.utils.encoding import smart_str
 
@@ -154,6 +155,28 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.status = amo.STATUS_PUBLIC
         f.save()
         assert unhide_mock.called
+
+    def test_unhide_disabled_file_mirroring(self):
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(lambda: shutil.rmtree(tmp))
+        with mock.patch.object(settings, 'MIRROR_STAGE_PATH', tmp):
+            fo = File.objects.get(pk=67442)
+            with storage.open(fo.file_path, 'wb') as fp:
+                fp.write('<pretend this is an xpi>')
+            with storage.open(fo.mirror_file_path, 'wb') as fp:
+                fp.write('<pretend this is an xpi>')
+            fo.status = amo.STATUS_DISABLED
+            fo.save()
+            assert not os.path.exists(fo.file_path), 'file not hidden'
+            assert not os.path.exists(fo.mirror_file_path), (
+                            'file not removed from mirror')
+
+            fo = File.objects.get(pk=67442)
+            fo.status = amo.STATUS_PUBLIC
+            fo.save()
+            assert os.path.exists(fo.file_path), 'file not un-hidden'
+            assert os.path.exists(fo.mirror_file_path), (
+                            'file not copied back to mirror')
 
     @mock.patch('files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
