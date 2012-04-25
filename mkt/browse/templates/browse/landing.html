@@ -36,6 +36,8 @@
     <section class="popular grid full">
       {{ popular|promo_grid }}
     </section>
+  {% else %}
+    {{ no_results() }}
   {% endif %}
   {{ category_slider() }}
 {% endblock %}

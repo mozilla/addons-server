@@ -177,6 +177,14 @@ class TestCategoryLanding(BrowseBase):
         r = self.client.get(reverse('browse.apps', args=['xxx']))
         eq_(r.status_code, 404)
 
+    def test_empty_cat(self):
+        cat = Category.objects.create(name='Empty', slug='empty',
+                                      type=amo.ADDON_WEBAPP)
+        cat_url = reverse('browse.apps', args=[cat.slug])
+        r = self.client.get(cat_url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.no-results').length, 1)
+
     def test_featured(self):
         a, b, c = self.setup_featured()
 
