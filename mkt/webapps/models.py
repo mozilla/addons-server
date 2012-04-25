@@ -282,16 +282,16 @@ def create_receipt(installed_pk):
     verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
     detail = reverse('account.purchases.receipt', args=[addon_pk])
     reissue = installed.addon.get_purchase_url('reissue')
+    time_ = calendar.timegm(time.gmtime())
     receipt = dict(typ='purchase-receipt',
                    product={'url': installed.addon.origin,
                             'storedata': urlencode({'id': int(addon_pk)})},
                    user={'type': 'directed-identifier',
                          'value': installed.uuid},
                    iss=settings.SITE_URL,
-                   nbf=int(time.mktime(installed.created.timetuple())),
-                   iat=calendar.timegm(time.gmtime()),
-                   exp=(calendar.timegm(time.gmtime()) +
-                        settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS),
+                   nbf=time_,
+                   iat=time_,
+                   exp=(time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS),
                    detail=absolutify(detail),
                    verify=absolutify(verify),
                    reissue=absolutify(reissue))
