@@ -15,9 +15,11 @@ from amo.decorators import write
 from .models import InappPayment, InappPayNotice
 
 log = logging.getLogger('z.inapp_pay.tasks')
+task_kw = dict(default_retry_delay=15,  # seconds
+               max_tries=5)
 
 
-@task
+@task(**task_kw)
 @write
 def payment_notify(payment_id, **kw):
     """Notify the app of a successful payment.
@@ -25,10 +27,10 @@ def payment_notify(payment_id, **kw):
     payment_id: pk of InappPayment
     """
     log.debug('sending payment notice for payment %s' % payment_id)
-    _notify(payment_id, amo.INAPP_NOTICE_PAY)
+    _notify(payment_id, amo.INAPP_NOTICE_PAY, payment_notify)
 
 
-@task
+@task(**task_kw)
 @write
 def chargeback_notify(payment_id, reason, **kw):
     """Notify the app of a chargeback.
@@ -39,10 +41,11 @@ def chargeback_notify(payment_id, reason, **kw):
     log.debug('sending chargeback notice for payment %s, reason %r'
               % (payment_id, reason))
     _notify(payment_id, amo.INAPP_NOTICE_CHARGEBACK,
+            chargeback_notify,
             extra_response={'reason': reason})
 
 
-def _notify(payment_id, notice_type, extra_response=None):
+def _notify(payment_id, notice_type, notifier_task, extra_response=None):
     payment = InappPayment.objects.get(pk=payment_id)
     config = payment.config
     contrib = payment.contribution
@@ -84,6 +87,11 @@ def _notify(payment_id, notice_type, extra_response=None):
     except Exception, exception:
         log.error('In-app payment %s raised exception in URL %s'
                   % (payment.pk, url), exc_info=True)
+        try:
+            notifier_task.retry(exc=exception)
+        except:
+            log.exception('retrying in-app payment %s notification URL %s'
+                          % (payment.pk, url))
     else:
         if res_content == str(contrib.pk):
             success = True

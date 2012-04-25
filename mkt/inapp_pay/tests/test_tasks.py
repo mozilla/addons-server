@@ -162,6 +162,13 @@ class TestNotifyApp(PaymentTest):
         er = notice.last_error
         assert er.startswith('URLError:'), 'Unexpected: %s' % er
 
+    @mock.patch('mkt.inapp_pay.tasks.payment_notify.retry')
+    @mock.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_retry_http_error(self, retry, urlopen):
+        urlopen.side_effect = urllib2.HTTPError('url', 500, 'Error', [], None)
+        self.notify()
+        assert retry.called, 'task was not retried after error'
+
     @fudge.patch('mkt.inapp_pay.tasks.urlopen')
     def test_http_error(self, urlopen):
         urlopen.expects_call().raises(urllib2.HTTPError('url', 404,
