@@ -338,7 +338,8 @@ def browserid_authenticate(request, assertion):
               '<a href="https://developer.mozilla.org/en-US/apps">'
               'Learn more</a>')
         return (None, _m)
-    profile = UserProfile.objects.create(username=username, email=email)
+    profile = UserProfile.objects.create(username=username, email=email,
+                                         display_name=username)
     profile.create_django_user()
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
     if settings.APP_PREVIEW:

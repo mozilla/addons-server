@@ -613,6 +613,7 @@ class TestLogin(UserViewBase):
         profiles = UserProfile.objects.filter(email=email)
         eq_(len(profiles), 1)
         eq_(profiles[0].username, 'newuser')
+        eq_(profiles[0].display_name, 'newuser')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'APP_PREVIEW', True)
@@ -749,6 +750,7 @@ class TestLogin(UserViewBase):
         eq_(res.status_code, 200)
         profiles = UserProfile.objects.filter(email=email)
         eq_(profiles[0].username, 'jbalogh2')
+        eq_(profiles[0].display_name, 'jbalogh2')
         # Note: lower level unit tests for this functionality are in
         # TestAutoCreateUsername()
 
