@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    {% block extrameta %}{% endblock %}
+    <title>{% block title %}{{ _('Mozilla Marketplace') }}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL }}img/ecosystem/favicon.ico" sizes="32x32">
+    
+
+    {% block site_css %}
+      {{ css('mkt/consumer') }}
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+
+    {% block debug %}
+      {% include "mobile/head_debug.html" %}
+    {% endblock %}
+    {% if request.user.is_authenticated() %}
+      <meta name="csrf" content="{{ csrf_token }}">
+    {% endif %}
+  </head>
+  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        data-login-url="{{ url('users.browserid_login') }}"
+        {% if request.amo_user %}
+          data-purchases="{{ request.amo_user.purchase_ids()|join(',') }}"
+        {% endif %}
+        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
+        {% block bodyattrs %}{% endblock %}>
+
+    {% block siteheader %}
+      {% include 'ecosystem/header.html' %}
+    {% endblock %}
+
+    <div id="page" class="c">
+      {# `outer_content` is for stuff you want above `content` on every page. #}
+      {% block outer_content %}
+        {% include 'site/messages/display.html' %}
+      {% endblock %}
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    {% block sitefooter %}
+     
+        <footer id="site-footer">
+          <div class="center">
+            <ul>
+              <li><a href="{{ url('site.privacy') }}">
+                {{ _('Privacy Policy') }}</a></li>
+              <li><a href="{{ url('site.terms') }}">
+                {{ _('Terms of Use') }}</a></li>
+              <li><a href="http://mozilla.com/legal/fraud-report/index.html">
+                {{ _('Report Trademark Abuse') }}</a></li>
+            </ul>
+            <h1 id="footzilla">mozilla</h1>
+            <p>
+              {% trans %}
+                Except where otherwise
+                <a href="http://mozilla.com/about/legal.html#site">noted</a>,
+                content on this site is licensed under the <br />
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/">
+                  Creative Commons Attribution Share-Alike License v3.0
+                </a> or any later version.
+              {% endtrans %}
+            </p>
+            
+            {% block sitefooter_append %}
+            {% endblock %}
+          </div>
+        </footer>
+      
+    {% endblock %}
+
+
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {% if not request.user.is_authenticated() %}
+        {# We need Persona only for non-authenticated users. #}
+        <script async defer src="https://browserid.org/include.js"></script>
+      {% endif %}
+    {% endblock %}
+    {% block js %}{% endblock %}
+  </body>
+</html>

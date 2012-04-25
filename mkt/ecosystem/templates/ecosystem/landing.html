@@ -1,0 +1,119 @@
+{% extends "ecosystem/base.html" %}
+
+{% block title %}{{ super() }} Developers {% endblock %}
+
+{% block extrahead %}
+	{{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+
+	<div id="top-marketing">
+
+		<section  class="primary full call-to-action"> 
+			<img id="rotator" class="placeholder img-rotator" 
+				src="{{ MEDIA_URL }}img/ecosystem/hero.png">
+			</img>
+
+			<div>
+				<h1>Open Web Apps</h1>
+				<p>Get your app on five platforms with 
+					one code base, without giving up any 
+					functionality.<br />
+        </p>
+				<a href="{{ url('users.login') }}" class="button">Register as a Developer</a>
+			</div>
+		</section>
+
+	</div>
+
+	<div id="landing-page">
+		
+		<section class="primary full marketing-block no-pad">
+			<ul id="marketing-horz">
+				<li>
+					<div>
+					<img class="placeholder" 
+						src="{{ MEDIA_URL }}img/ecosystem/html_icon.png"></img>
+					<h2>Open Technologies</h2>
+					<p>Build apps for multiple platforms
+					with standards based technologies.
+					</p>
+					</div>
+				</li>
+				<li>
+					<div>
+					<img class="placeholder"
+						src="{{ MEDIA_URL }}img/ecosystem/open_icon.png"></img>
+					<h2>Developer Choice</h2>
+					<p>No walled gardens and a stack that moves at the speed of innovation - it's the web, you drive.</p>
+					</div>
+				</li>
+				<li>
+					<div>
+					<img class="placeholder"
+						src="{{ MEDIA_URL }}img/ecosystem/reach_icon.png"></img>
+					<h2>Unprecedented Reach</h2>
+					<p>Target billions of users worldwide
+					on any platform or device.</p>
+					</div>
+				</li>
+			</ul>
+		</section>
+
+		<section class="primary full marketing-block">
+			<ul id="demo-list">
+				<li>
+          <a href="https://marketplace.mozilla.org/en-US/app/evernote-web/">
+					<img class="placeholder"
+						src="{{ MEDIA_URL }}img/ecosystem/evernote.png"></img></a>
+            <span>Evernote</span>
+				</li>
+				<li>
+          <a href="https://developer.mozilla.org/en-US/demos/">
+					<img class="placeholder"
+						src="{{ MEDIA_URL }}img/ecosystem/placeholder2.png"></img></a>
+            <span>Mozilla HTML5 Demos</span>
+				</li>
+				<li>
+          <a href="https://marketplace.mozilla.org/en-US/app/lordofultima/">
+					<img class="placeholder"
+						src="{{ MEDIA_URL }}img/ecosystem/ultima.png"></img></a>
+            <span>Lord of Ultima</span>
+				</li>
+				<li>
+          <a href="https://marketplace.mozilla.org/en-US/app/sandglaz/">
+					<img class="placeholder"
+						src="{{ MEDIA_URL }}img/ecosystem/sandglaz.png"></img></a>
+            <span>Sandglaz</span>
+				</li>
+			</ul>
+			
+			<h2>See what's possible</h2>
+			<p>Using standards-based technologies that developers already 
+			know, such as HTML5, CSS, and JavaScript, you can develop 
+			apps quickly and easily. With extended access to device APIs 
+			you can do anything Native Apps can do.</p>
+			{# <a href="#">Start Developing Now</a> #}
+			<div class="c">&nbsp;</div>
+
+		</section>	
+		
+		{# <section class="primary full marketing-block img-right">
+			<h2>No restrictions</h2>
+			<img class="placeholder huge" 
+				src="{{ MEDIA_URL }}img/ecosystem/placeholder3.png"></img>
+			<p>For developers who want to step away from the restrictions of proprietary technology, Mozilla respresents the freedom to develop, distribute, and monetize apps in an environment as vast and open as the Web.  You can even publish your apps on your own site if you choose.</p>
+			<a href="#">Learn more about the platform >></a>
+			
+		</section> #}
+	
+	</div>
+
+
+{% endblock %}
+
+{% block sitefooter_append %}
+    <p>HTML5 Logo by <a href="http://www.w3.org/">
+      <abbr title="World Wide Web Consortium">W3C</abbr></a></p>
+{% endblock %}

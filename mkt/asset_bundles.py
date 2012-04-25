@@ -96,6 +96,10 @@ CSS = {
         'css/mkt/lightbox.less',
         'css/mkt/browse.less',
     ),
+    'mkt/ecosystem': (
+        'css/ecosystem/landing.less',
+        'css/ecosystem/footer.less',
+	),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
         'css/mkt/typography.less',

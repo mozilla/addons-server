@@ -52,7 +52,6 @@ from versions.models import Version
 from zadmin.forms import GenerateErrorForm, SiteEventForm
 from zadmin.models import SiteEvent
 
-
 from . import tasks
 from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
                     OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,

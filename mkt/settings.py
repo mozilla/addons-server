@@ -48,6 +48,7 @@ INSTALLED_APPS += (
     'mkt.browse',
     'mkt.detail',
     'mkt.developers',
+    'mkt.ecosystem',
     'mkt.home',
     'mkt.inapp_pay',
     'mkt.purchase',

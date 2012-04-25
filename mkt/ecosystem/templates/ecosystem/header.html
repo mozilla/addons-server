@@ -1,0 +1,18 @@
+<header id="site-header">
+  <section>
+    <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
+    
+    <nav>
+      {#
+        <a href="{{ url('ecosystem.tutorial') }}">Tutorials</a>
+      #}
+      <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
+      {% if not request.user.is_authenticated() %}
+        <a href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Developer Sign-in</a>
+      {% else %}
+       <a href="{{ url('account.settings') }}">Account Settings</a>
+      {% endif %}
+    </nav>
+    
+  </section>
+</header>
