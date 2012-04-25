@@ -19,6 +19,11 @@ from lib.crypto.receipt import cef, decode, sign
 
 # This has to be imported after the settings (utils).
 from statsd import statsd
+import trunion_verify
+
+
+class VerificationError(Exception):
+    pass
 
 
 class Verify:
@@ -41,8 +46,8 @@ class Verify:
         # information.
         try:
             receipt = decode_receipt(self.receipt)
-        except (jwt.DecodeError, M2Crypto.RSA.RSAError), e:
-            self.log('Error decoding receipt: %s' % e)
+        except:
+            self.log('Error decoding receipt')
             return self.invalid()
 
         try:
@@ -174,7 +179,10 @@ def decode_receipt(receipt):
     """
     with statsd.timer('services.decode'):
         if settings.SIGNING_SERVER_ACTIVE:
-            raw = decode(receipt)
+            verifier = trunion_verify.ReceiptVerifier()
+            if not verifier.verify(receipt):
+                raise VerificationError()
+            return jwt.decode(receipt.split('~')[1], verify=False)
         else:
             key = jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
             raw = jwt.decode(receipt, key)
