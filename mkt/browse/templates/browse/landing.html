@@ -26,9 +26,11 @@
   {% if popular %}
     <section class="popular full">
       <div>
-        <h2><a href="{{ url('browse.apps')|urlparams(category=category.slug or None,
-                                                     sort='popular') }}">
-          {{ _('By popularity') }}</a></h2>
+        <h2 class="see-all c">
+          <a href="{{ request.path|urlparams(category=category.slug or None,
+                                             sort='popular') }}">
+          <span>{{ _('By popularity') }}</span> <em>{{ _('See all') }}</em></a>
+        </h2>
       </div>
     </section>
     <section class="popular grid full">

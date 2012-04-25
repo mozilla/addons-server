@@ -3,3 +3,28 @@
 #browse-featured {
     padding-top: 24px;
 }
+
+.popular {
+    .see-all {
+        span, em {
+            display: inline-block;
+        }
+        span {
+            float: left;
+        }
+        em {
+            color: @medium-gray;
+            float: right;
+            font-size: 16px;
+            font-style: normal;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        a:hover {
+            span {
+                text-decoration: underline;
+            }
+            color: @dark-gray;
+        }
+    }
+}
