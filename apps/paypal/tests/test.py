@@ -205,6 +205,20 @@ class TestPayKey(amo.tests.TestCase):
         eq_(res[0], '123')
 
     @mock.patch('paypal._call')
+    def test_preapproval_currency_retry(self, _call):
+        # Trigger an error on the currency and then pass.
+        def error_if(*args, **kw):
+            if 'preapprovalKey' in args[1]:
+                raise paypal.CurrencyError('some error')
+            return {'payKey': '123', 'paymentExecStatus': ''}
+        _call.side_effect = error_if
+        data = self.get_pre_data()
+        data['currency'] = 'BRL'
+        res = paypal.get_paykey(data)
+        eq_(_call.call_count, 2)
+        eq_(res[0], '123')
+
+    @mock.patch('paypal._call')
     def test_preapproval_both_fail(self, _call):
         # Trigger an error on the preapproval and then fail again.
         def error_if(*args, **kw):

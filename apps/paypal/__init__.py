@@ -59,8 +59,12 @@ class CurrencyError(PaypalError):
     # This currency was bad.
 
     def __str__(self):
-        return (messages.get(self.id) %
-                amo.PAYPAL_CURRENCIES[self.paypal_data['currencyCode']])
+        default = _('There was an error with this currency.')
+        if self.paypal_data:
+            return (messages.get(self.id) %
+                    amo.PAYPAL_CURRENCIES[self.paypal_data['currencyCode']])
+        return default
+
 
 
 errors = {'520003': AuthError}
@@ -187,12 +191,19 @@ def get_paykey(data):
         with statsd.timer('paypal.paykey.retrieval'):
             response = _call(settings.PAYPAL_PAY_URL + 'Pay', paypal_data,
                              ip=data['ip'])
-    except PreApprovalError, e:
+    except (CurrencyError, PreApprovalError), e:
+        # If this is NOT a preapproval, but a currency issue, re-raise.
+        if 'preapprovalKey' not in paypal_data:
+            raise
+
         # Let's retry just once without preapproval.
         paypal_log.error('Failed using preapproval, reason: %s' % e)
         # Now it's not a pre-approval, make sure we get the
         # DIGITALGOODS setting back in there.
+
         del paypal_data['preapprovalKey']
+        # Flip the currency to USD.
+        paypal_data['currencyCode'] = 'USD'
         paypal_data.update(add_receivers(*receivers))
         # If this fails, we won't try again, just fail.
         with statsd.timer('paypal.paykey.retrieval'):
