@@ -88,12 +88,11 @@ z.page.on('fragmentloaded', function() {
                 $prevLink = $('.prev-page', $this),
                 maxPage = numPages($this.find('ul'));
 
-            // Show "next" arrow if there is at least one page.
-            if (maxPage) {
-                $nextLink.addClass('show');
-            }
             $prevLink.click(_pd(prevPage));
             $nextLink.click(_pd(nextPage));
+
+            // Show "next" arrow if there is at least one page.
+            $nextLink.toggleClass('show', !!maxPage);
 
             gotoPage(0);
 
