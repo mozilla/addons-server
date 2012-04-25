@@ -128,7 +128,7 @@ def setup_mapping():
         if index.startswith('test_'):
             index_settings = {
                 'index': {
-                    'number_of_shards': 1,
+                    'number_of_shards': 2,
                     'number_of_replicas': 0,
                     'store': {'type': 'memory'}
                 }
