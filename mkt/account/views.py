@@ -43,7 +43,7 @@ def payment(request, status=None):
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
             if 'setup-preapproval' in request.session:
-                paypal_log.info(u'Preapproval key created for user: %s, %s..' %
+                paypal_log.info(u'Preapproval key created for user: %s, %s.' %
                                 (request.amo_user.pk, data['key'][:5]))
 
                 pre.update(paypal_key=data.get('key'),
@@ -54,7 +54,8 @@ def payment(request, status=None):
                 if data.get('complete'):
                     return redirect(data['complete'])
 
-                messages.success(request, _('Wallet set up.'))
+                messages.success(request,
+                    _("You're all set for instant app purchases with PayPal."))
                 del request.session['setup-preapproval']
 
         elif status == 'cancel':
@@ -63,13 +64,15 @@ def payment(request, status=None):
             if data.get('cancel'):
                 return redirect(data['cancel'])
 
-            messages.success(request, _('Wallet changes cancelled.'))
+            messages.success(request,
+                _('Your payment pre-approval has been cancelled.'))
 
         elif status == 'remove':
             # The user has an pre approval key set and chooses to remove it
             if pre.paypal_key:
                 pre.update(paypal_key='')
-                messages.success(request, _('Wallet removed.'))
+                messages.success(request,
+                    _('Your payment pre-approval has been disabled.'))
                 paypal_log.info(u'Preapproval key removed for user: %s'
                                 % request.amo_user)
 
