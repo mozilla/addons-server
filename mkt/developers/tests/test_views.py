@@ -96,7 +96,8 @@ class TestAppBreadcrumbs(AppHubTest):
         r = self.client.get(reverse('submit.app'), follow=True)
         eq_(r.status_code, 200)
         expected = [
-            ('My Submissions', reverse('mkt.developers.apps')),
+            ('Home', reverse('home')),
+            ('Developer Hub', reverse('mkt.developers.index')),
             ('Submit App', None),
         ]
         amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
@@ -107,6 +108,8 @@ class TestAppBreadcrumbs(AppHubTest):
         r = self.client.get(webapp.get_dev_url('edit'))
         eq_(r.status_code, 200)
         expected = [
+            ('Home', reverse('home')),
+            ('Developer Hub', reverse('mkt.developers.index')),
             ('My Submissions', reverse('mkt.developers.apps')),
             (unicode(webapp.name), None),
         ]

@@ -1,7 +1,6 @@
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -38,9 +37,6 @@ class BrowseBase(amo.tests.ESTestCase):
         CollectionAddon.objects.create(collection=c, addon=webapp)
 
     def setup_featured(self):
-        waffle.models.Switch.objects.get_or_create(name='unleash-consumer',
-                                                   active=True)
-
         amo.tests.addon_factory()
 
         # Category featured.
@@ -68,9 +64,6 @@ class BrowseBase(amo.tests.ESTestCase):
         # way, pun-wise or code-wise, please don't hesitate to do so.] In the
         # meantime, SkipTest is the rubber band to our elastic problems.)
         raise SkipTest
-
-        waffle.models.Switch.objects.get_or_create(name='unleash-consumer',
-                                                   active=True)
 
         amo.tests.addon_factory()
 

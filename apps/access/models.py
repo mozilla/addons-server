@@ -1,8 +1,30 @@
+import re
+
 from django.db import models
 from django import dispatch
 from django.db.models import signals
 
 import amo.models
+
+
+class AccessWhitelist(amo.models.ModelBase):
+    email = models.CharField(max_length=255, default='')
+    notes = models.TextField(blank=True)
+
+    class Meta:
+        db_table = 'access_whitelist'
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.id, self.email)
+
+    @classmethod
+    def matches(cls, email):
+        """Loop through whitelist and find any matches."""
+        for w in AccessWhitelist.objects.all():
+            # Asterisks become .+ so that we can match wildcards.
+            if re.match(re.escape(w.email).replace('\\*', '.+'), email):
+                return True
+        return False
 
 
 class Group(amo.models.ModelBase):

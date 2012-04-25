@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block aux_nav %}
-  {% if waffle.switch('unleash-consumer') %}
+  {% if request.can_view_consumer %}
     <li class="nomenu">
       <a class="return" href="{{ url('home') }}">{{ _('Back to Apps') }}</a>
     </li>

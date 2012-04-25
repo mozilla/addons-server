@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 from tower import ugettext as _
-import waffle
 
 from access import acl
 import amo
@@ -24,7 +23,7 @@ def global_settings(request):
         amo_user = request.amo_user
         account_links = []
         context['is_reviewer'] = acl.check_reviewer(request)
-        if waffle.switch_is_active('unleash-consumer'):
+        if getattr(request, 'can_view_consumer', True):
             account_links = [
                 {'text': _('My Purchases'),
                  'href': reverse('account.purchases')},

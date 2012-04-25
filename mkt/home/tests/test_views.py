@@ -1,5 +1,4 @@
 from nose.tools import eq_
-import waffle
 
 from amo.urlresolvers import reverse
 
@@ -10,9 +9,10 @@ class TestHome(BrowseBase):
 
     def setUp(self):
         super(TestHome, self).setUp()
-        waffle.models.Switch.objects.create(name='unleash-consumer',
-                                            active=True)
         self.url = reverse('home')
+        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
 
     def test_page(self):
         r = self.client.get(self.url)

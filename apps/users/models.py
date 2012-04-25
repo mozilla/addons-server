@@ -21,6 +21,7 @@ import caching.base as caching
 import commonware.log
 from tower import ugettext as _
 
+from access.models import AccessWhitelist
 import amo
 import amo.models
 from amo.urlresolvers import reverse
@@ -205,6 +206,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.addonuser_set.exists()
 
     @amo.cached_property
+    def is_app_developer(self):
+        return self.addonuser_set.filter(addon__type=amo.ADDON_WEBAPP).exists()
+
+    @amo.cached_property
     def is_artist(self):
         """Is this user a Personas Artist?"""
         return self.addonuser_set.filter(
@@ -378,6 +383,12 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         pre_approval doesn't exist or the key is blank.
         """
         return bool(getattr(self.get_preapproval(), 'paypal_key', ''))
+
+    def can_view_consumer(self):
+        # To view the consumer pages, the user must satisfy either criterion:
+        #   * Have submitted an app.
+        #   * Is a vouched Mozillian or whitelisted fella.
+        return self.is_app_developer or AccessWhitelist.matches(self.email)
 
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,

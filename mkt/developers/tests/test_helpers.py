@@ -7,7 +7,6 @@ from django.utils import translation
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -41,72 +40,11 @@ def test_hub_page_title():
     eq_(s1, s2)
 
 
-class TestLegacyDevBreadcrumbs(unittest.TestCase):
-
-    def setUp(self):
-        self.request = Mock()
-        self.request.APP = None
-
-    def test_no_args(self):
-        s = render('{{ hub_breadcrumbs() }}', {'request': self.request})
-        eq_(s, '')
-
-    def test_with_items(self):
-        s = render("""{{ hub_breadcrumbs(items=[('/foo', 'foo'),
-                                                ('/bar', 'bar')]) }}'""",
-                  {'request': self.request})
-        crumbs = pq(s)('li')
-        expected = [
-            ('My Submissions', reverse('mkt.developers.apps')),
-            ('foo', '/foo'),
-            ('bar', '/bar'),
-        ]
-        amo.tests.check_links(expected, crumbs, verify=False)
-
-    def test_with_app(self):
-        product = Mock()
-        product.name = 'Steamcube'
-        product.id = 9999
-        product.app_slug = 'scube'
-        product.type = amo.ADDON_WEBAPP
-        s = render("""{{ hub_breadcrumbs(product) }}""",
-                   {'request': self.request, 'product': product})
-        crumbs = pq(s)('li')
-        expected = [
-            ('My Submissions', reverse('mkt.developers.apps')),
-            ('Steamcube', None),
-        ]
-        amo.tests.check_links(expected, crumbs, verify=False)
-
-    def test_with_app_and_items(self):
-        product = Mock()
-        product.name = 'Steamcube'
-        product.id = 9999
-        product.app_slug = 'scube'
-        product.type = amo.ADDON_WEBAPP
-        product.get_dev_url.return_value = reverse('mkt.developers.apps.edit',
-                                                 args=[product.app_slug])
-        s = render("""{{ hub_breadcrumbs(product,
-                                         items=[('/foo', 'foo'),
-                                                ('/bar', 'bar')]) }}""",
-                   {'request': self.request, 'product': product})
-        crumbs = pq(s)('li')
-        expected = [
-            ('My Submissions', reverse('mkt.developers.apps')),
-            ('Steamcube', product.get_dev_url()),
-            ('foo', '/foo'),
-            ('bar', '/bar'),
-        ]
-        amo.tests.check_links(expected, crumbs, verify=False)
-
-
 class TestNewDevBreadcrumbs(amo.tests.TestCase):
 
     def setUp(self):
         self.request = Mock()
         self.request.APP = None
-        waffle.models.Switch.objects.create(name='unleash-consumer',
-                                            active=True)
 
     def test_no_args(self):
         s = render('{{ hub_breadcrumbs() }}', {'request': self.request})

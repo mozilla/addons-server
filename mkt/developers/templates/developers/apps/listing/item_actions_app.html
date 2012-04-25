@@ -32,7 +32,7 @@
     <a href="{{ addon.get_dev_url('payments') }}">
       {{ _('Manage Payments') }}</a>
   </li>
-  {% if waffle.switch('unleash-consumer') %}
+  {% if request.can_view_consumer %}
     <li>
       <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
     </li>

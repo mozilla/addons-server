@@ -1,5 +1,5 @@
 {% extends 'base_modal.html' if request.is_ajax() else
-           ('mkt/base.html' if waffle.switch('unleash-consumer') and '/developers/' not in request.path else
+           ('mkt/base.html' if '/developers/' not in request.path else
             'developers/base_impala.html') %}
 
 {% block title %}{{ mkt_page_title(_('Not Found')) }}{% endblock %}

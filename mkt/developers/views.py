@@ -24,8 +24,7 @@ from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages
-from amo.decorators import (json_view, login_required, no_login_required,
-                            post_required, write)
+from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import loc
 from amo.utils import escape_all
 from amo.urlresolvers import reverse
@@ -93,8 +92,6 @@ def addon_listing(request, default='name', webapp=False):
 
 
 @anonymous_csrf
-# TODO: Remove when we flip `unleash-consumer`.
-@no_login_required
 def login(request, template=None):
     return _login(request, template='developers/login.html')
 

@@ -43,7 +43,7 @@
                so let's not reverse it just yet. #}
             {{ settings.SITE_URL }}/&hellip;/
             {{ addon.app_slug }}
-            {% if waffle.switch('unleash-consumer') %}
+            {% if request.can_view_consumer %}
               <a class="view" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
             {% else %}
               <em class="edit-addon-details">{{ loc('(Not Available Yet)') }}</em>

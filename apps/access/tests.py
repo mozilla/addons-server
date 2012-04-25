@@ -3,6 +3,7 @@ from django.http import HttpRequest
 import mock
 from nose.tools import assert_false, eq_
 
+from access.models import AccessWhitelist
 import amo
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
@@ -184,12 +185,42 @@ class TestHasPerm(TestCase):
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, support=True)
+        assert not check_addon_ownership(self.request, self.addon,
+                                         support=True)
 
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
-        assert not check_addon_ownership(self.request, self.addon, support=True)
+        assert not check_addon_ownership(self.request, self.addon,
+                                         support=True)
 
         self.au.role = amo.AUTHOR_ROLE_SUPPORT
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, support=True)
+
+
+class TestAccessWhitelist(amo.tests.TestCase):
+
+    def test_matches(self):
+        def matches(email, expected):
+            return eq_(AccessWhitelist.matches(email), expected)
+
+        emails = [
+            'fligtar@gmail.com',
+            '*@gmail.com',
+            '*@mozilla.*',
+            '*igta*@mozilla.*',
+            'cvan+me@not.legit.biz'
+        ]
+        for email in emails:
+            AccessWhitelist.objects.create(email=email)
+
+        matches('', False)
+        matches('omg@org.yes', False)
+        matches('fligtar@gmail.com', True)
+        matches('fligtar@mozilla.com', True)
+        matches('cvan@mozilla', False)
+        matches('cvan@mozilla.com', True)
+        matches('cvan@mozilla.org', True)
+        matches('cvan+me@mozilla.legit.biz', True)
+        matches('cvan+me@not.legit.biz', True)
+        matches('cvan__is__me@not.legit.biz', False)

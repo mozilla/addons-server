@@ -234,9 +234,7 @@ class LoginRequiredMiddleware(ViewMiddleware):
             getattr(view_func, '_no_login_required', False) or
             name.startswith(settings.NO_LOGIN_REQUIRED_MODULES)):
             return
-
-        return redirect('/%s/%s%s' % (request.LANG, request.APP.short,
-                                      settings.LOGIN_URL))
+        return redirect(urlresolvers.reverse('users.login'))
 
 
 class NoConsumerMiddleware(ViewMiddleware):
@@ -247,9 +245,12 @@ class NoConsumerMiddleware(ViewMiddleware):
     """
 
     def process_view(self, request, view_func, view_args, view_kwargs):
+        request.can_view_consumer = (
+            request.user.is_authenticated() and
+            request.user.get_profile().can_view_consumer()
+        )
         name = self.get_name(view_func)
-        if name.startswith(settings.NO_ADDONS_MODULES +
-                           settings.NO_CONSUMER_MODULES):
+        if name.startswith(settings.NO_ADDONS_MODULES):
             return jingo.render(request, 'site/no_consumer.html')
 
 

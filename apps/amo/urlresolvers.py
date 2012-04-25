@@ -136,13 +136,7 @@ class Prefixer(object):
             locale = self.locale if self.locale else self.get_language()
             url_parts.append(locale)
 
-        # Temporarily force home page to /<locale>/developers/.
-        if (settings.MARKETPLACE
-            and not waffle.switch_is_active('unleash-consumer')
-            and not path.partition('/')[0]):
-            url_parts.append('developers')
-
-        elif (with_app
+        if (with_app
               and path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
             app = self.app if self.app else self.get_app()
             url_parts.append(app)

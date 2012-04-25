@@ -73,8 +73,13 @@ MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 # MIDDLEWARE_CLASSES.remove('cake.middleware.CookieCleaningMiddleware')
 MIDDLEWARE_CLASSES += (
     'mkt.site.middleware.VaryOnAJAXMiddleware',
-    # TODO: Remove when we flip `unleash-consumer`.
+
+    # Remove this if you want to see consumer pages without the walled garden.
     'amo.middleware.NoConsumerMiddleware',
+
+    # This is in the settings_local_mkt on marketplace-dev,
+    # but don't enable it here unless you want broken tests.
+    #'amo.middleware.LoginRequiredMiddleware',
 )
 
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))
@@ -118,6 +123,8 @@ NO_CONSUMER_MODULES = (
     'tags.views',
     'versions.views',
     'mkt.account.profile',
+    'mkt.account.views.profile',
+    'mkt.search.views',
     'mkt.webapps.views',
 )
 
@@ -126,11 +133,16 @@ NO_LOGIN_REQUIRED_MODULES = (
     'csp.views.policy',
     'csp.views.report',
     'mkt.developers',
+    'mkt.reviewers',
     'mkt.submit',
     'django.views.i18n.javascript_catalog',
     'django.contrib.auth.views.password_reset',
     'django.contrib.auth.views.password_reset_done',
-    'jingo.views.direct_to_template'
+    'jingo.views.direct_to_template',
+    'zadmin.views',
+    'users.browserid_login',
+    'mkt.site.views',
+    'mkt.zadmin.views',
 )
 
 # Extend the bundles.

@@ -6,7 +6,7 @@ from django.template import RequestContext
 import jingo
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
-from amo.decorators import no_login_required, post_required
+from amo.decorators import post_required
 from amo.helpers import media
 import api.views
 
@@ -31,8 +31,6 @@ def csrf_failure(request, reason=''):
                         {'because_csrf': 'CSRF' in reason}, status=403)
 
 
-# TODO: Remove when we flip `unleash-consumer`.
-@no_login_required
 def manifest(request):
     ctx = RequestContext(request)
     data = {
@@ -56,8 +54,6 @@ def manifest(request):
                         mimetype='application/x-web-app-manifest+json')
 
 
-# TODO: Remove when we flip `unleash-consumer`.
-@no_login_required
 def robots(request):
     """Generate a robots.txt"""
     template = jingo.render(request, 'site/robots.txt')

@@ -5,7 +5,6 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -13,6 +12,7 @@ from amo.urlresolvers import reverse
 
 
 class Test404(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def _test_404(self, url):
         r = self.client.get(url, follow=True)
@@ -22,19 +22,24 @@ class Test404(amo.tests.TestCase):
 
     def test_404(self):
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header h1').text(),
-            'Marketplace Developer Hub')
+        eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
 
     def test_404_devhub(self):
-        waffle.models.Switch.objects.create(name='unleash-consumer',
-                                            active=True)
+        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
         r = self._test_404('/developers/xxx')
         eq_(pq(r.content)('#site-header h1').text(),
             'Marketplace Developer Hub')
 
+    def test_404_consumer_legacy(self):
+        r = self._test_404('/xxx')
+        eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
+
     def test_404_consumer(self):
-        waffle.models.Switch.objects.create(name='unleash-consumer',
-                                            active=True)
+        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
         r = self._test_404('/xxx')
         eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
 
@@ -66,18 +71,21 @@ class TestRobots(amo.tests.TestCase):
 
 
 class TestFooter(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def test_language_selector(self):
-        waffle.models.Switch.objects.create(name='unleash-consumer',
-                                            active=True)
+        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
         r = self.client.get(reverse('home'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#lang-form option[selected]').attr('value'),
             'en-us')
 
     def test_language_selector_variables(self):
-        waffle.models.Switch.objects.create(name='unleash-consumer',
-                                            active=True)
+        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
         r = self.client.get(reverse('home'), {'x': 'xxx', 'y': 'yyy'})
         doc = pq(r.content)('#lang-form')
         eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')

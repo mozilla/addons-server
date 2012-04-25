@@ -8,7 +8,6 @@ import jinja2
 from jingo import register
 from jingo.helpers import datetime
 from tower import ugettext as _, ungettext as ngettext
-import waffle
 
 import amo
 from amo.urlresolvers import reverse
@@ -73,18 +72,19 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     **impala**
         Whether to use the impala_breadcrumbs helper. Default is False.
     """
-    if waffle.switch_is_active('unleash-consumer'):
+    can_view = getattr(context['request'], 'can_view_consumer', True)
+    if can_view:
         crumbs = [(reverse('mkt.developers.index'), _('Developer Hub'))]
     else:
         crumbs = [(reverse('mkt.developers.apps'), _('My Submissions'))]
-    if waffle.switch_is_active('unleash-consumer'):
+    if can_view:
         title = _('My Submissions')
         link = reverse('mkt.developers.apps')
     else:
         title = link = None
 
     if addon:
-        if waffle.switch_is_active('unleash-consumer'):
+        if can_view:
             if not addon and not items:
                 # We are at the end of the crumb trail.
                 crumbs.append((None, title))
@@ -102,8 +102,7 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     if len(crumbs) == 1:
         crumbs = []
 
-    return mkt_breadcrumbs(context, items=crumbs,
-        add_default=waffle.switch_is_active('unleash-consumer'))
+    return mkt_breadcrumbs(context, items=crumbs, add_default=can_view)
 
 
 @register.function
