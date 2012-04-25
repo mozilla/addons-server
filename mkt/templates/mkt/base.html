@@ -92,6 +92,12 @@
 
     {% include 'purchase/message.html' %}
 
+    <script type="text/template" id="noApps">
+      <div class="noApps">You need a
+      <a href="https://wiki.mozilla.org/Marketplace/Mozillian_Preview">
+      supported browser</a> to install this app.</div>
+    </script>
+
     {% if not logged %}
       <div id="login" class="overlay">
         <section>

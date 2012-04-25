@@ -222,6 +222,7 @@ JS = {
         'js/lib/underscore.js',
         'js/lib/format.js',
         'js/common/tracking.js',
+        'js/zamboni/browser.js',
         'js/mkt/init.js',
         'js/mkt/utils.js',
         'js/mkt/browserid.js',

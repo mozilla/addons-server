@@ -7,8 +7,19 @@ var z = {
     prefixed: function(property) {
         if (!z.prefix) return property;
         return '-' + z.prefix + '-' + property;
-    }
+    },
+    canInstallApps: true
 };
+
+(function() {
+    _.extend(z, {'nav': BrowserUtils()});
+    if (!z.nav.browser.firefox || z.nav.browser.mobile ||
+        VersionCompare.compareVersions(z.nav.browserVersion, '14.0a1') <= 0) {
+        z.canInstallApps = false;
+    }
+})();
+
+
 
 // Initialize webtrends tracking.
 z.page.on('fragmentloaded', webtrendsAsyncInit);
@@ -58,6 +69,10 @@ z.page.on('fragmentloaded', function() {
                               {'manifestUrl': val.manifestURL});
         });
     };
+
+    if (!z.canInstallApps) {
+        $(window).trigger('app_install_disabled');
+    }
 
     var $body = $('body');
     // Add class for touch devices.

@@ -30,7 +30,7 @@ function BrowserUtils() {
             match = pattern.exec(navigator.userAgent);
             browser[i] = !!(match && match.length === 3);
             if (browser[i]) {
-                browserVersion = escape_(match[2]);
+                browserVersion = match[2];
                 badBrowser = false;
             }
         }

@@ -80,6 +80,11 @@
     }).bind('buttons.overlay_dismissed', function() {
         // Dismissed error. Roll back.
         revertButton($('.button.error'));
+    }).bind('app_install_disabled', function(e, product) {
+        // You're not using a compatible browser.
+        var $button = $('.button.product');
+        setButton($button, $button.html(), 'disabled');
+        $button.parent().append($('#noApps').html());
     });
 
     z.page.on('fragmentloaded', function(e) {
