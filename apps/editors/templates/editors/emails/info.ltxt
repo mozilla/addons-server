@@ -3,5 +3,5 @@ A Mozilla Add-ons Editor requested further information from you regarding versio
 
 {{ reviewer }} wrote:
 
-"{{ comments }}"
+{{ comments }}
 {% endblock %}
