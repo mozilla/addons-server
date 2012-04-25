@@ -151,7 +151,7 @@
             } else {
                 // This will show if the user is not pre-authed
                 // or for some reason the pre-auth failed.
-                dgFlow = new PAYPAL.apps.DGFlow({expType: 'mini', trigger: '#page'});
+                dgFlow = new PAYPAL.apps.DGFlow({trigger: '#page'});
                 dgFlow.startFlow(response.url);
                 overlay.removeClass('show');
                 // Scroll to top of PayPal modal.
