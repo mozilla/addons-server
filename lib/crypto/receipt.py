@@ -30,6 +30,7 @@ def sign(receipt):
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
     log.info('Calling service: %s' % destination)
+    log.info('Receipt contents: %s' % receipt)
     headers = {'Content-Type': 'application/json'}
     data = receipt if isinstance(receipt, basestring) else json.dumps(receipt)
     request = urllib2.Request(destination, data, headers)
