@@ -124,8 +124,17 @@ def setup_mapping():
     # we'll get burned later on.
     for model in Addon, AppCompat, Collection, UserProfile:
         index = model._get_index()
+        index_settings = None
+        if index.startswith('test_'):
+            index_settings = {
+                'index': {
+                    'number_of_shards': 1,
+                    'number_of_replicas': 0,
+                    'store': {'type': 'memory'}
+                }
+            }
         try:
-            es.create_index_if_missing(index)
+            es.create_index_if_missing(index, index_settings)
         except pyes.ElasticSearchException:
             pass
         try:
