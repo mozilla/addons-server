@@ -422,6 +422,9 @@ def update_incompatible_versions(sender, instance, **kw):
     """When a new version is added or deleted, send to task to update if it
     matches any compat overrides.
     """
+    if not instance.addon.type == amo.ADDON_EXTENSION:
+        return
+
     from addons import tasks
     tasks.update_incompatible_appversions.delay([instance.id])
 

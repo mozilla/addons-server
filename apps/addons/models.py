@@ -1891,6 +1891,8 @@ class IncompatibleVersions(amo.models.ModelBase):
 def update_incompatible_versions(sender, instance, **kw):
     if not instance.compat.addon_id:
         return
+    if not instance.compat.addon.type == amo.ADDON_EXTENSION:
+        return
 
     from . import tasks
     versions = instance.compat.addon.versions.values_list('id', flat=True)
