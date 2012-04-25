@@ -160,8 +160,8 @@ class TestDetail(DetailBase):
                                    text='XXX')
         upsell = self.get_pq()('#upsell')
         eq_(upsell.length, 1)
-        eq_(upsell.find('.upsell').text(), unicode(premie.name))
-        eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(16))
+        eq_(upsell.find('.upsell').find('.name').text(), unicode(premie.name))
+        eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(64))
         eq_(upsell.find('.special').attr('href'),
             premie.get_url_path() + '?src=mkt-detail-upsell')
         eq_(upsell.find('.price').text(), premie.get_price())
