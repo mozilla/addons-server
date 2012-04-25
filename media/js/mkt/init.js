@@ -14,7 +14,7 @@ var z = {
 (function() {
     _.extend(z, {'nav': BrowserUtils()});
     if (!z.nav.browser.firefox || z.nav.browser.mobile ||
-        VersionCompare.compareVersions(z.nav.browserVersion, '14.0a1') <= 0) {
+        VersionCompare.compareVersions(z.nav.browserVersion, '14.0a1') < 0) {
         z.canInstallApps = false;
     }
 })();
