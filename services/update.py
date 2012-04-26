@@ -346,10 +346,7 @@ def log_exception(data):
 
 
 def application(environ, start_response):
-    start = time()
     status = '200 OK'
-    timing = (environ['REQUEST_METHOD'], '%s?%s' %
-              (environ['SCRIPT_NAME'], environ['QUERY_STRING']))
     with statsd.timer('services.update'):
         data = dict(parse_qsl(environ['QUERY_STRING']))
         compat_mode = data.pop('compatMode', 'strict')
@@ -358,11 +355,7 @@ def application(environ, start_response):
             output = update.get_rdf()
             start_response(status, update.get_headers(len(output)))
         except:
-            timing_log.info('%s "%s" (500) %.2f [ANON]' %
-                            (timing[0], timing[1], time() - start))
             #mail_exception(data)
             log_exception(data)
             raise
-        timing_log.info('%s "%s" (200) %.2f [ANON]' %
-                        (timing[0], timing[1], time() - start))
     return [output]
