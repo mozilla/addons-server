@@ -77,7 +77,7 @@
                 </span>
             {% else %}
               <form method="post" id="preapproval-shortcut"
-                    action="{{ url('account.payment.preapproval') }}">
+                    action="{{ product.get_detail_url('purchase.preapproval') }}">
                 {{ csrf() }}
                 <input type="hidden" name="currency" value="USD">
                 <a class="approval-pitch" href="#">
