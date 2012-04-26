@@ -1,0 +1,17 @@
+{% extends 'mkt/base.html' %}
+
+{% block content %}
+<section id="walled">
+  <div>
+    <h1>Check back soon!</h1>
+    <p>
+      The Marketplace is currently only available to invited Mozillians.
+      If you're an active Mozilla contributor and would like access, please
+      send your vouched
+      <a href="https://mozillians.org/" target="_blank">mozillians.org</a>
+      profile link to {{ emaillink('marketplace-testing@mozilla.org') }}.
+    </p>
+  </div>
+</section>
+{% endblock %}
+
