@@ -5,9 +5,7 @@
     }
     z.page.on('click', 'a.collapse', _pd(function() {
         toggle($(this));
-    }));
-
-    $('.approval-pitch').click(_pd(function() {
+    })).on('click', '.approval-pitch', _pd(function() {
         $('#preapproval-shortcut').submit();
     }));
 })();

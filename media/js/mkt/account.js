@@ -11,7 +11,7 @@
                        'href': '#'}).hide();
 
     // Doing a POST on click because deleting on a GET is the worst thing ever.
-    $photo.find('.delete').click(_pd(function() {
+    z.page.on('click', '#profile-photo .delete', _pd(function() {
         $.post(this.getAttribute('data-posturl')).success(function() {
             // Redirect back to this page.
             window.location = window.location;

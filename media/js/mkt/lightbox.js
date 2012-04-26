@@ -7,7 +7,7 @@
             $previews = $('.previews'),
             current, $strip,
             lbImage = template('<img id="preview{0}" src="{1}">'),
-            lbVideo = template('<video id="preview{0}" src="{1}" controls ' +
+            lbVideo = template('<video id="preview{0}" src="{1}" controls autoplay' +
                                'preload="auto" type="video/webm"></video>');
         if (!$lightbox.length) return;
         function showLightbox() {
