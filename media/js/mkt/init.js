@@ -1,5 +1,5 @@
 window.onerror = function(m) {
-    document.querySelector('h1').innerHTML = m;
+    document.querySelector('.vitals h1').innerHTML = m;
 };
 
 var z = {
