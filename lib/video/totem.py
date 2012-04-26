@@ -33,6 +33,7 @@ class Video(VideoBase):
             except subprocess.CalledProcessError, e:
                 log.error('totem failed with: %s' % e.output)
                 raise
+            log.info('totem returned: %s' % res)
         return res
 
     def _call_thumbnailer(self, timepoint, destination, size):
