@@ -21,14 +21,18 @@
         <p class="indent">{{ addon.paypal_id }}
         <a href="#paypal-account" id="paypal-change-address">Change</a></p>
           {{ csrf() }}
-          <div class="brform paypal-inline paypal devhub-form">
-            {{ form_field(currency_form.currencies) }}
-            <span class="hint">{{ loc('The default is U.S. Dollar and support for this is required.
-                 For each currency you would like to support for your price
-                 tier, you must maintain a balance in PayPal.') }}</span>
-          </div>
+          {% if waffle.switch('currencies') %}
+            <div class="brform paypal-inline paypal devhub-form">
+              {{ form_field(currency_form.currencies) }}
+              <span class="hint">{{ loc('The default is U.S. Dollar and support for this is required.
+                   For each currency you would like to support for your price
+                   tier, you must maintain a balance in PayPal.') }}</span>
+            </div>
+          {% endif %}
         <footer class="listing-footer">
-          <button type="submit" name="form" value="currency">{{ _('Change') }}</button>
+          {% if waffle.switch('currencies') %}
+            <button type="submit" name="form" value="currency">{{ _('Change') }}</button>
+          {% endif %}
           <a class="button" href="{{ addon.get_dev_url('paypal_setup_details') }}">{{ loc('Manage contact details') }}</a>
         </footer>
       </form>

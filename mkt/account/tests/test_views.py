@@ -298,14 +298,20 @@ class TestPreapproval(amo.tests.TestCase):
             reverse('account.payment.preapproval'))
 
     @mock.patch('paypal.get_preapproval_key')
-    def test_fake_preapproval_with_currency(self, get_preapproval_key):
+    @mock.patch('mkt.account.views.waffle.switch_is_active')
+    def test_fake_preapproval_with_currency(self, switch_is_active,
+                                            get_preapproval_key):
+        switch_is_active.return_value = True
         get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
         self.client.post(reverse('account.payment.preapproval'),
                          {'currency': 'USD'})
         eq_(self.user.get_preapproval().currency, 'USD')
 
     @mock.patch('paypal.get_preapproval_key')
-    def test_fake_preapproval_no_currency(self, get_preapproval_key):
+    @mock.patch('mkt.account.views.waffle.switch_is_active')
+    def test_fake_preapproval_no_currency(self, switch_is_active,
+                                          get_preapproval_key):
+        switch_is_active.return_value = True
         get_preapproval_key.return_value = {'preapprovalKey': 'xyz'}
         res = self.client.post(reverse('account.payment.preapproval'))
         eq_(res.status_code, 200)

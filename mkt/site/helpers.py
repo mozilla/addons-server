@@ -1,8 +1,9 @@
-from jingo import register, env
-from tower import ugettext as _
-
-import jinja2
 import json
+
+from jingo import register, env
+import jinja2
+from tower import ugettext as _
+import waffle
 
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
@@ -83,7 +84,7 @@ def product_as_dict(request, product, purchased=None):
             'purchase': product.get_purchase_url(),
         })
         currencies = product.premium.supported_currencies()
-        if len(currencies) > 1:
+        if len(currencies) > 1 and waffle.switch_is_active('currencies'):
             currencies_dict = dict([(k, v.get_price_locale())
                                     for k, v in currencies])
             ret['currencies'] = json.dumps(currencies_dict, cls=JSONEncoder)

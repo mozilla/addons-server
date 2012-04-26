@@ -88,7 +88,9 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('a').attr('data-product'))
         assert 'currencies' not in data
 
-    def test_some_supported_currencies(self):
+    @mock.patch('mkt.site.helpers.waffle.switch_is_active')
+    def test_some_supported_currencies(self, switch_is_active):
+        switch_is_active.return_value = True
         self.make_premium(self.webapp, currencies=['CAD'])
         ad = AddonPremium.objects.get(addon=self.webapp)
         ad.update(currencies=['USD', 'CAD'])

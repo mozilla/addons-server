@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 from tower import ugettext as _, ugettext_lazy as _lazy
+import waffle
 
 from access import acl
 from addons.views import BaseFilter
@@ -103,9 +104,10 @@ def currency(request, do_redirect=True):
 @post_required
 @login_required
 def preapproval(request, complete=None, cancel=None):
-    failure = currency(request, do_redirect=False)
-    if failure:
-        return failure
+    if waffle.switch_is_active('currencies'):
+        failure = currency(request, do_redirect=False)
+        if failure:
+            return failure
 
     today = datetime.today()
     data = {'startDate': today,

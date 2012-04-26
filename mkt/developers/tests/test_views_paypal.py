@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -119,7 +120,9 @@ class TestPaypal(amo.tests.TestCase):
         res = self.client.get(self.url, follow=True)
         self.assertRedirects(res, reverse('submit.app.terms'))
 
-    def test_currencies_fails(self):
+    @mock.patch('mkt.developers.views.waffle.switch_is_active')
+    def test_currencies_fails(self, switch_is_active):
+        switch_is_active.return_value = True
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.url, {'currencies': ['GBP', 'EUR'],
                                           'form': 'currency'})
@@ -128,7 +131,9 @@ class TestPaypal(amo.tests.TestCase):
                               [u'Select a valid choice. '
                                 'GBP is not one of the available choices.'])
 
-    def test_currencies_passes(self):
+    @mock.patch('mkt.developers.views.waffle.switch_is_active')
+    def test_currencies_passes(self, switch_is_active):
+        switch_is_active.return_value = True
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.url, {'currencies': ['EUR', 'BRL'],
                                           'form': 'currency'})
@@ -139,8 +144,9 @@ class TestPaypal(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.url, {'email': 'a@a.com',
                                           'business_account': 'yes',
-                                          'form': 'paypal' })
-        self.assertRedirects(res, self.webapp.get_dev_url('paypal_setup_bounce'))
+                                          'form': 'paypal'})
+        self.assertRedirects(res,
+                             self.webapp.get_dev_url('paypal_setup_bounce'))
 
 
 class TestPaypalResponse(amo.tests.TestCase):

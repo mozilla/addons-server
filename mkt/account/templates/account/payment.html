@@ -44,14 +44,16 @@
           </button>
         </footer>
       </form>
-      <form id="currency" method="post" class="simple-field"
-            action="{{ url('account.payment.currency') }}">
-        {{ csrf() }}
-        {{ currency_form() }}
-        <footer>
-          <button type="submit">{{ _('Change Currency') }}</button>
-        </footer>
-
+      {% if waffle.switch('currencies') %}
+        <form id="currency" method="post" class="simple-field"
+              action="{{ url('account.payment.currency') }}">
+          {{ csrf() }}
+          {{ currency_form() }}
+          <footer>
+            <button type="submit">{{ _('Change Currency') }}</button>
+          </footer>
+        </form>
+      {% endif %}
     {% else %}
       <form id="preapproval" method="post" class="simple-field"
             action="{{ url('account.payment.preapproval') }}">
@@ -63,7 +65,9 @@
             purchases that go through this site.
           {% endtrans %}
         </p>
-        {{ currency_form() }}
+        {% if waffle.switch('currencies') %}
+          {{ currency_form() }}
+        {% endif %}
         <p>
           {% trans %}
             You can cancel pre-approval at any time by returning to this page.

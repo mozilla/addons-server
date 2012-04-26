@@ -70,6 +70,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @fudge.patch('paypal.get_paykey')
     def test_paykey_currency(self, get_paykey):
+        waffle.models.Switch.objects.create(name='currencies', active=True)
+
         def check(*args, **kw):
             return (args[0]['currency'] == 'BRL' and
                     args[0]['amount'] == Decimal('0.50'))
@@ -80,6 +82,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @fudge.patch('paypal.get_paykey')
     def test_paykey_invalid_currency(self, get_paykey):
+        waffle.models.Switch.objects.create(name='currencies', active=True)
+
         def check(*args, **kw):
             return (args[0]['currency'] == 'USD' and
                     args[0]['amount'] == Decimal('0.99'))

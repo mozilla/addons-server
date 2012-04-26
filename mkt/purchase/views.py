@@ -50,11 +50,12 @@ def purchase(request, addon):
     amount, currency = addon.premium.get_price(), 'USD'
 
     # If tier is specified, then let's look it up.
-    form = PriceCurrencyForm(data=request.POST, addon=addon)
-    if form.is_valid():
-        tier = form.get_tier()
-        if tier:
-            amount, currency = tier.price, tier.currency
+    if waffle.switch_is_active('currencies'):
+        form = PriceCurrencyForm(data=request.POST, addon=addon)
+        if form.is_valid():
+            tier = form.get_tier()
+            if tier:
+                amount, currency = tier.price, tier.currency
 
     paykey, status, error = '', '', ''
     preapproval = None

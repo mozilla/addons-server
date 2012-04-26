@@ -287,7 +287,8 @@ def paypal_setup(request, addon_id, addon, webapp):
                 addon.premium.update(paypal_permissions_token='')
             return redirect(addon.get_dev_url('paypal_setup_bounce'))
 
-    if request.POST.get('form') == 'currency' and currency_form.is_valid():
+    if (waffle.switch_is_active('currencies') and
+        request.POST.get('form') == 'currency' and currency_form.is_valid()):
         currencies = currency_form.cleaned_data['currencies']
         addon.premium.update(currencies=currencies)
         messages.success(request, _('Currencies updated.'))
