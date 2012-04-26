@@ -24,7 +24,7 @@ import paypal
 from stats.models import Contribution
 from waffle.decorators import waffle_flag
 from mkt.account.views import preapproval as user_preapproval
-from webapps.models import Webapp
+from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
