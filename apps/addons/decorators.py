@@ -6,6 +6,9 @@ from django.shortcuts import get_object_or_404
 import waffle
 
 from addons.models import Addon
+import commonware.log
+
+log = commonware.log.getLogger('mkt.purchase')
 
 
 def addon_view(f, qs=Addon.objects.all):
@@ -48,6 +51,7 @@ def can_be_purchased(f):
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):
         if not waffle.switch_is_active('marketplace'):
+            log.error('Marketplace waffle switch is off')
             raise http.Http404
         if not addon.can_be_purchased():
             return http.HttpResponseForbidden()
