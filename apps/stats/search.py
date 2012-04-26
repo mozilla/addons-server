@@ -124,11 +124,8 @@ def setup_indexes():
     es = elasticutils.get_es()
     for model in CollectionCount, DownloadCount, UpdateCount:
         index = model._get_index()
-        index_settings = None
-        if index.startswith('test_'):
-            index_settings = {'index': {'store': {'type': 'memory'}}}
         try:
-            es.create_index_if_missing(index, index_settings)
+            es.create_index_if_missing(index)
         except pyes.ElasticSearchException:
             pass
 
@@ -142,8 +139,8 @@ def setup_indexes():
                             'k': {'type': 'string'}
                         }
                 },
-                'date': {'format':'dateOptionalTime',
-                         'type':'date'}
+                'date': {'format': 'dateOptionalTime',
+                         'type': 'date'}
             }
     }
     es.put_mapping(CollectionCount._meta.db_table, mapping,
