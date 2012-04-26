@@ -12,7 +12,6 @@ from django.core.cache import cache
 import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
-from nose.exc import SkipTest
 from piston.models import Consumer
 from pyquery import PyQuery as pq
 
@@ -248,7 +247,6 @@ class TestBulkValidation(BulkValidationTest):
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_ignore_non_public_addons(self, bulk_validate_file):
-        raise SkipTest
         target_ver = self.appversion('3.7a3').id
         for status in (amo.STATUS_DISABLED, amo.STATUS_NULL,
                        amo.STATUS_DELETED):
