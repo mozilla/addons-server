@@ -15,15 +15,16 @@ class AccessWhitelist(amo.models.ModelBase):
         db_table = 'access_whitelist'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.id, self.email)
+        return u'%s: %s' % (self.id, self.email[:20])
 
     @classmethod
     def matches(cls, email):
         """Loop through whitelist and find any matches."""
         for w in AccessWhitelist.objects.all():
-            # Asterisks become .+ so that we can match wildcards.
-            if re.match(re.escape(w.email).replace('\\*', '.+'), email):
-                return True
+            for e in w.email.split('\n'):
+                # Asterisks become .+ so that we can match wildcards.
+                if re.match(re.escape(e).replace('\\*', '.+'), email):
+                    return True
         return False
 
 

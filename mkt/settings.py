@@ -122,8 +122,10 @@ NO_CONSUMER_MODULES = (
     'sharing.views',
     'tags.views',
     'versions.views',
-    'mkt.account.profile',
-    'mkt.account.views.profile',
+    'mkt.account.views',
+    'mkt.detail.views',
+    'mkt.payments.views',
+    'mkt.support.views',
     'mkt.search.views',
     'mkt.webapps.views',
 )

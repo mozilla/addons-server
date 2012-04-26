@@ -1,6 +1,7 @@
 <header id="site-header">
   <section>
     <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
+    {% if request.can_view_consumer %}
     <nav>
       <a href="#" class="menu-button"><b></b></a>
       {% block search %}
@@ -29,6 +30,7 @@
         <li><a href="{{ url('browse.apps') }}#categories">{{ _('Categories') }}</a></li>
       </ul>
     </nav>
+    {% endif %}
   </section>
 </header>
 <div class="overlay nav-overlay"></div>

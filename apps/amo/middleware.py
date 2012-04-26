@@ -250,7 +250,9 @@ class NoConsumerMiddleware(ViewMiddleware):
             request.user.get_profile().can_view_consumer()
         )
         name = self.get_name(view_func)
-        if name.startswith(settings.NO_ADDONS_MODULES):
+        if (name.startswith(settings.NO_ADDONS_MODULES) or
+            not request.can_view_consumer and
+            name.startswith(settings.NO_CONSUMER_MODULES)):
             return jingo.render(request, 'site/no_consumer.html')
 
 

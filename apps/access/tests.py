@@ -209,7 +209,8 @@ class TestAccessWhitelist(amo.tests.TestCase):
             '*@gmail.com',
             '*@mozilla.*',
             '*igta*@mozilla.*',
-            'cvan+me@not.legit.biz'
+            'cvan+me@not.legit.biz',
+            'me@gkoberger.net\nme@potch.com\nchris@*.com'
         ]
         for email in emails:
             AccessWhitelist.objects.create(email=email)
@@ -224,3 +225,7 @@ class TestAccessWhitelist(amo.tests.TestCase):
         matches('cvan+me@mozilla.legit.biz', True)
         matches('cvan+me@not.legit.biz', True)
         matches('cvan__is__me@not.legit.biz', False)
+        matches('cvan__is__me@not.legit.biz', False)
+        matches('me@gkoberger.net', True)
+        matches('me@potch.com', True)
+        matches('chris@dekkostudios.com', True)
