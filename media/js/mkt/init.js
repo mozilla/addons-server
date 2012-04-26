@@ -1,7 +1,3 @@
-window.onerror = function(m) {
-    document.querySelector('.vitals h1').innerHTML = m;
-};
-
 var z = {
     page: $('#page'),
     prefix: (function() {
