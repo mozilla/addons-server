@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 import tempfile
 
@@ -22,6 +23,10 @@ class Video(VideoBase):
         with statsd.timer('video.totem.meta'):
             args = [self.name['indexer'],
                     self.filename]
+            if not os.path.exists(self.filename):
+                log.info('file did not exist for thumbnailing: %s'
+                         % self.filename)
+                raise
             log.info('totem called with: %s' % ' '.join(args))
             try:
                 res = check_output(args, stderr=subprocess.STDOUT)
