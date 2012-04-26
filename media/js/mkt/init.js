@@ -1,3 +1,7 @@
+window.onerror = function(m) {
+    document.querySelector('h1').innerHTML = m;
+};
+
 var z = {
     page: $('#page'),
     prefix: (function() {
