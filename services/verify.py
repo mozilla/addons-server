@@ -47,6 +47,8 @@ class Verify:
         try:
             receipt = decode_receipt(self.receipt)
         except:
+            log_exception({'receipt': '%s...' % self.receipt[:10],
+                           'addon': self.addon_id})
             self.log('Error decoding receipt')
             return self.invalid()
 
