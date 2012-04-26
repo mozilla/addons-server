@@ -70,5 +70,6 @@
         console.log("fragments enabled");
     } else {
         console.warn("fragments not enabled!!");
+        page.trigger('fragmentloaded');
     }
 })(z.page);
