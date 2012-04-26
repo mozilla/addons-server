@@ -5,8 +5,8 @@
         product,
         purchaseInProgress = true,
         $def,
-        message = $('#purchased'),
-        messageTemplate = template(message.html()),
+        message = $('#purchased-message'),
+        messageTemplate = template($('#purchased-template').html()),
         data = {'currency': $('body').data('user').currency};
 
     function beginPurchase(prod) {
@@ -135,8 +135,8 @@
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
-        message.html(messageTemplate(product));
-        message.toggle();
+        message.replaceWith(messageTemplate(product));
+        $('#purchased').removeClass('js-hidden');
         $def.resolve(product);
     }
 

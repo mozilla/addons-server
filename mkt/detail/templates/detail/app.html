@@ -104,6 +104,8 @@
 
   {{ notification(product, amo, is_dev) }}
 
+  <div id="purchased-message"></div>
+
   {% set upsell = product.upsell %}
   {% if upsell %}
     {% set prm = upsell.premium %}
