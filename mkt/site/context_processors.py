@@ -37,7 +37,7 @@ def global_settings(request):
         ]
         if '/developers/' not in request.path:
             tools_links.append({'text': _('Developer Hub'),
-                                'href': reverse('mkt.developers.index')})
+                                'href': reverse('ecosystem.landing')})
         if '/reviewers/' not in request.path and context['is_reviewer']:
             tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('reviewers.home')})

@@ -58,32 +58,35 @@
       <footer id="site-footer">
         {% if logged %}
           signed in as
-          <a href="{{ request.user.get_profile().get_url_path() }}">
-            {{ request.amo_user.email }}</a>
+          {% if request.can_view_consumer %}
+            <a href="{{ request.user.get_profile().get_url_path() }}">
+              {{ request.amo_user.email }}</a>
+          {% else %}
+            {{ request.amo_user.email }}
+          {% endif %}
           <a href="{{ url('users.logout') }}">(log out)</a>
           <p>
-            {% if tools_links|length > 2 %}
-              {% for link in tools_links %}
-                <a href="{{ link.href }}">{{ link.text }}</a>
-                {% if not loop.last %}&middot;{% endif %}
-              {% endfor %}
-              <br>
-            {% else %}
-              {% for link in tools_links %}
-                <a href="{{ link.href }}">{{ link.text }}</a>
-                &middot;
-              {% endfor %}
+            {% for link in tools_links %}
+              <a href="{{ link.href }}">{{ link.text }}</a>
+              {% if not loop.last %}&middot;{% endif %}
+            {% endfor %}
+            {% if tools_links|length > 2 %}<br>{% endif %}
+            {% if request.can_view_consumer %}
+              &middot;
+              <a href="{{ url('account.purchases') }}">
+                {{ _('Account History') }}</a>
+              &middot;
+              <a href="{{ url('account.settings') }}">
+                {{ _('Account Settings') }}</a>
             {% endif %}
-            <a href="{{ url('account.purchases') }}">
-              {{ _('Account History') }}</a>
-            &middot;
-            <a href="{{ url('account.settings') }}">
-              {{ _('Account Settings') }}</a>
           </p>
         {% else %}
           <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
         {% endif %}
-        {% include 'site/includes/languages.html' %}
+          {% include 'site/includes/languages.html' %}
+        <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
+        &middot;
+        <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
       </footer>
     {% endblock %}
 

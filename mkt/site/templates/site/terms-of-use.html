@@ -1,13 +1,13 @@
-{% extends 'developers/base_impala.html' %}
+{% extends 'mkt/base.html' %}
 
 {% set title = _('Terms of Use') %}
 
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <h1>{{ title }}</h1>
   <section id="terms-of-use" class="primary prose">
-
+    <div>
+    <h1>{{ title }}</h1>
     <p>Note: The proposed full version of the Terms of Use for the Mozilla Marketplace is currently under review and comment on our <a href="http://groups.google.com/group/mozilla.governance/topics">governance mailing list</a>. &nbsp;When the Mozilla Marketplace is fully launched, we will ask for your consent to the final Terms of Use.</p>
 
     <p>February 23, 2012</p>
@@ -120,6 +120,6 @@
 
     <h2>Miscellaneous</h2>
     <p>You may not assign your rights or delegate its obligations under these Terms. &nbsp;These Terms are not intended to benefit, nor shall it be deemed to give rise to, any rights in any third party. &nbsp;These Terms will be governed and construed in accordance with the laws of California, without regard to conflict of law principles. The parties are independent contractors. &nbsp;These Terms shall not be construed to create a joint venture or partnership between the parties. &nbsp;Neither party shall be deemed to be an employee, agent, partner or legal representative of the other for any purpose and neither shall have any right, power or authority to create any obligation or responsibility on behalf of the other. These Terms constitute the entire agreement between the parties with respect to the subject matter hereof. &nbsp;These Terms supersede, and govern, any other prior or collateral agreements with respect to the subject matter hereof. If any provision of these Terms are held or made invalid or unenforceable for any reason, such invalidity shall not affect the remainder of these Terms, and the invalid or unenforceable provisions shall be replaced by a mutually acceptable provision, which being valid, legal and enforceable comes closest to the original intentions of the parties hereto and has like economic effect. &nbsp;The failure of either party at any time or times to require performance of any provision hereof shall in no manner affect the right at a later time to enforce the same. &nbsp;No waiver by either party of the breach of any term or covenant contained in these Terms, whether by conduct or otherwise, in any one or more instances, shall be deemed to be, or construed as, a further or continuing waiver of any such breach or a waiver of the breach of any other term or covenant contained in these Terms. </p>
-
+    </div>
   </section>
 {% endblock %}
