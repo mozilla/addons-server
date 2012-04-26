@@ -2,7 +2,7 @@ You have products at the Mozilla Marketplace that have pending refund requests a
 
 {% for addon in addons %}
     {{ addon.name }} ({{ ngettext('{0} request', '{0} requests', refunds[addon.pk])|f(refunds[addon.pk]) }})
-    {{ addon.get_dev_url('refunds')|absolutify }}
+    {{ addon.get_dev_url('refunds')|absolutify(site_url) }}
 {% endfor %}
 
 Thanks for your prompt response.  Your customers will appreciate it!

@@ -1,11 +1,12 @@
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.core import mail
 
+import mock
 from nose.tools import eq_
 
 import amo
-from amo.helpers import absolutify
 import amo.tests
 from addons.models import Addon, AddonUser
 from market.cron import clean_out_addonpremium, mail_pending_refunds
@@ -100,6 +101,7 @@ class TestPendingRefunds(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].body.count('1 request'), 2)
 
+    @mock.patch.object(settings, 'SITE_URL', 'not.this.domain.com')
     def test_email_escaping(self):
         self.webapp.name = 'You <3 My App'
         self.webapp.save()
@@ -108,5 +110,5 @@ class TestPendingRefunds(amo.tests.TestCase):
         email = mail.outbox[0]
         assert str(self.webapp.name) in email.body
         assert '1 request' in email.body
-        assert absolutify(self.webapp.get_dev_url('refunds')) in email.body
+        assert not 'not.this.domain.com' in email.body
         assert [self.author.email] == email.to
