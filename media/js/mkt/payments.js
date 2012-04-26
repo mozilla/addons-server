@@ -32,7 +32,9 @@
         overlay.addClass('show');
 
         // Let's set user's default currency unless he/she changes it.
-        $('#preapproval input').val(data.currency);
+        if (data.currency) {
+            $('#preapproval input[name=currency]').val(data.currency);
+        }
 
         // Guess and set the payment overlay height.
         setTimeout(function() {
