@@ -3,8 +3,8 @@ import browserid.certificates
 import browserid.jwt
 from browserid.verifiers import local
 from browserid.utils import unbundle_certs_and_assertion
-from browserid.utils import decode_bytes, encode_bytes
-from browserid.utils import decode_json_bytes, encode_json_bytes
+from browserid.utils import decode_bytes
+from browserid.utils import decode_json_bytes
 from browserid.errors import (ConnectionError, InvalidIssuerError,
                               InvalidSignatureError, ExpiredSignatureError)
 
@@ -14,6 +14,7 @@ from requests.exceptions import RequestException
 from binascii import hexlify
 import time
 import json
+
 
 def fetch_public_key(url, *args):
     """Fetch the public key from the given URL."""
@@ -59,7 +60,8 @@ def parse_jwt(data):
 
 
 def jwt_cert_to_key(jwtoken):
-    """Converts a JWT encapsulated JWK key into something usable by PyBrowserID.jwt"""
+    """Converts a JWT encapsulated JWK key into
+    something usable by PyBrowserID.jwt"""
     if type(jwtoken) != dict:
         jwtoken = parse_jwt(jwtoken)
     return jwk_to_key(jwtoken.payload['jwk'][0], jwtoken.header['alg'])
@@ -149,14 +151,18 @@ class ReceiptVerifier(local.LocalVerifier):
         current_key = root_key
         for cert in certificates:
             if cert.payload["exp"] < now:
-                raise ExpiredSignatureError("expired certificate in chain")
+                raise ExpiredSignatureError("expired certificate in "
+                                            "chain: %s < %s" %
+                                            (cert.payload['exp'], now))
             if not cert.check_signature(current_key):
-                raise InvalidSignatureError("bad signature in chain by: '%s'" % current_key['kid'])
+                raise InvalidSignatureError("bad signature in chain by: '%s'"
+                                            % current_key['kid'])
             current_key = cert.payload["jwk"][0]
         return cert
 
 #
 # MONKEY PATCH TIME!
 #
-browserid.certificates.fetch_public_key_orig = browserid.certificates.fetch_public_key
+browserid.certificates.fetch_public_key_orig = (browserid.certificates
+                                                         .fetch_public_key)
 browserid.certificates.fetch_public_key = fetch_public_key
