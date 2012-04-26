@@ -70,9 +70,12 @@
               <a href="{{ link.href }}">{{ link.text }}</a>
               {% if not loop.last %}&middot;{% endif %}
             {% endfor %}
-            {% if tools_links|length > 2 %}<br>{% endif %}
-            {% if request.can_view_consumer %}
+            {% if tools_links|length > 2 %}
+              <br>
+            {% else %}
               &middot;
+            {% endif %}
+            {% if request.can_view_consumer %}
               <a href="{{ url('account.purchases') }}">
                 {{ _('Account History') }}</a>
               &middot;
