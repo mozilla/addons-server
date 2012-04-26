@@ -2,14 +2,13 @@ from datetime import datetime, timedelta
 
 import commonware.log
 import cronjobs
-from jingo import env
 
 from django.conf import settings
 from django.db.models import Count
 
 from addons.models import Addon, AddonUser
 import amo
-from amo.utils import send_mail
+from amo.utils import send_mail_jinja
 from market.models import AddonPremium, Refund
 
 log = commonware.log.getLogger('z.cron')
@@ -42,6 +41,7 @@ def mail_pending_refunds():
     log.info('Mailing pending refunds: %s refunds found' % len(pending))
 
     # Find all owners of those addons.
+    from mkt import settings as mkt_settings
     users = (AddonUser.objects.filter(role=amo.AUTHOR_ROLE_OWNER,
                                       addon__in=pending.keys())
                               .values_list('addon_id', 'user__email'))
@@ -58,8 +58,10 @@ def mail_pending_refunds():
         log.info('Sending refund emails to: %s about %s' %
                  (email, ', '.join([str(i) for i in addon_ids])))
         addons = Addon.objects.filter(pk__in=addon_ids)
+        is_webapp = addons[0].is_webapp()
         ctx = {'addons': addons, 'refunds': pending}
-        send_mail('Pending refund requests at the Mozilla Marketplace',
-                  env.get_template('market/emails/refund-nag.txt').render(ctx),
-                  from_email=settings.NOBODY_EMAIL,
-                  recipient_list=[owner])
+        from_email = (settings.NOBODY_EMAIL if is_webapp
+                                            else mkt_settings.NOBODY_EMAIL)
+        send_mail_jinja('Pending refund requests at the Mozilla Marketplace',
+                        'market/emails/refund-nag.txt', ctx,
+                        from_email=from_email, recipient_list=[owner])

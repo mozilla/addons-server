@@ -5,6 +5,7 @@ from django.core import mail
 from nose.tools import eq_
 
 import amo
+from amo.helpers import absolutify
 import amo.tests
 from addons.models import Addon, AddonUser
 from market.cron import clean_out_addonpremium, mail_pending_refunds
@@ -98,3 +99,14 @@ class TestPendingRefunds(amo.tests.TestCase):
         mail_pending_refunds()
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].body.count('1 request'), 2)
+
+    def test_email_escaping(self):
+        self.webapp.name = 'You <3 My App'
+        self.webapp.save()
+        mail_pending_refunds()
+        eq_(len(mail.outbox), 1)
+        email = mail.outbox[0]
+        assert str(self.webapp.name) in email.body
+        assert '1 request' in email.body
+        assert absolutify(self.webapp.get_dev_url('refunds')) in email.body
+        assert [self.author.email] == email.to

@@ -38,7 +38,7 @@ from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
-import jingo
+from jingo import env
 import jinja2
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
@@ -224,18 +224,18 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     return result
 
 
-def send_mail_jinja(request, template, subject, context, *args, **kwargs):
+def send_mail_jinja(subject, template, context, *args, **kwargs):
     """Sends mail using a Jinja template with autoescaping turned off.
 
     Jinja is especially useful for sending email since it has whitespace
     control.
     """
     # Get a jinja environment so we can override autoescaping for text emails.
-    env = jingo.get_env()
+    autoescape_orig = env.autoescape
     env.autoescape = False
     template = env.get_template(template)
-    send_mail(subject, jingo.render_to_string(request, template, context),
-              *args, **kwargs)
+    send_mail(subject, template.render(**context), *args, **kwargs)
+    env.autoescape = autoescape_orig
 
 
 class JSONEncoder(json.DjangoJSONEncoder):
@@ -832,6 +832,8 @@ def attach_trans_dict(model, addons):
     for id, translations in sorted_groupby(qs, lambda x: x[0]):
         ids[id].translations[id] = [(locale, string)
                                     for id, locale, string in translations]
+
+
 def rm_local_tmp_dir(path):
     """Remove a local temp directory.
 

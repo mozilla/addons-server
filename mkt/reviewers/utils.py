@@ -20,10 +20,10 @@ from mkt.webapps.models import Webapp
 log = commonware.log.getLogger('z.mailer')
 
 
-def send_mail(request, template, subject, emails, context, perm_setting=None):
+def send_mail(subject, template, context, emails, perm_setting=None):
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify(reverse('account.settings')) + '#notifications'
-    send_mail_jinja(request, template, subject, context, recipient_list=emails,
+    send_mail_jinja(subject, template, context, recipient_list=emails,
                     from_email=settings.NOBODY_EMAIL, use_blacklist=False,
                     perm_setting=perm_setting, manage_url=manage_url,
                     headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
@@ -126,9 +126,9 @@ class ReviewBase:
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
-        send_mail(self.request, 'reviewers/emails/decisions/%s.txt' % template,
-                  subject % self.addon.name, emails, data,
-                  perm_setting='app_reviewed')
+        send_mail(subject % self.addon.name,
+                  'reviewers/emails/decisions/%s.txt' % template, data,
+                  emails, perm_setting='app_reviewed')
 
     def get_context_data(self):
         return {'name': self.addon.name,
@@ -150,18 +150,17 @@ class ReviewBase:
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        send_mail(self.request, 'reviewers/emails/decisions/info.txt',
-                   u'Submission Update: %s' % self.addon.name,
-                   emails, self.get_context_data(),
-                   perm_setting='app_individual_contact')
+        send_mail(u'Submission Update: %s' % self.addon.name,
+                  'reviewers/emails/decisions/info.txt',
+                  self.get_context_data(), emails,
+                  perm_setting='app_individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % self.addon)
-        send_mail(self.request, 'reviewers/emails/super_review.txt',
-                   u'Super Review Requested: %s' % self.addon.name,
-                   [settings.MKT_SENIOR_EDITORS_EMAIL],
-                   self.get_context_data())
+        send_mail(u'Super Review Requested: %s' % self.addon.name,
+                  'reviewers/emails/super_review.txt',
+                  self.get_context_data(), [settings.MKT_SENIOR_EDITORS_EMAIL])
 
 
 class ReviewApp(ReviewBase):
