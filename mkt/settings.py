@@ -75,7 +75,7 @@ MIDDLEWARE_CLASSES += (
     'mkt.site.middleware.VaryOnAJAXMiddleware',
 
     # TODO: Remove this when we remove `request.can_view_consumer`.
-    #'amo.middleware.DefaultConsumerMiddleware',
+    'amo.middleware.DefaultConsumerMiddleware',
 
     # Put this in your settings_local_mkt if you want the walled garden.
     #'amo.middleware.NoConsumerMiddleware',
