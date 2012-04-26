@@ -10,6 +10,7 @@ from django.utils.datastructures import SortedDict
 
 from mock import Mock, patch
 from nose.tools import eq_
+from nose.exc import SkipTest
 from pyquery import PyQuery as pq
 import waffle
 
@@ -1947,6 +1948,7 @@ class TestReviewPreliminary(ReviewBase):
             'File Public.xpi is not pending review.')
 
     def test_prelim_from_lite_wrong_two(self):
+        raise SkipTest
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
         f = self.version.files.all()[0]
