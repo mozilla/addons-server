@@ -7,7 +7,7 @@
         $def,
         message = $('#purchased'),
         messageTemplate = template(message.html()),
-        data = {};
+        data = {'currency': $('body').data('user').currency};
 
     function beginPurchase(prod) {
         if (!prod) return;
@@ -30,6 +30,9 @@
 
         overlay.html(paymentsTemplate(product));
         overlay.addClass('show');
+
+        // Let's set user's default currency unless he/she changes it.
+        $('#preapproval input').val(data.currency);
 
         // Guess and set the payment overlay height.
         setTimeout(function() {
