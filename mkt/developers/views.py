@@ -52,6 +52,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   InappConfigForm, PaypalSetupForm,
                                   PreviewFormSet, trap_duplicate)
 from mkt.inapp_pay.models import InappConfig
+from mkt.webapps.tasks import update_manifests
 from mkt.webapps.models import Webapp
 
 from . import forms, tasks
@@ -867,7 +868,13 @@ def addons_section(request, addon_id, addon, section, editable=False,
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
             if form.is_valid() and (not previews or previews.is_valid()):
+
                 addon = form.save(addon)
+
+                if 'manifest_url' in form.changed_data:
+                    addon.update(
+                        app_domain=addon.domain_from_url(addon.manifest_url))
+                    update_manifests([addon.pk])
 
                 if previews:
                     for preview in previews.forms:

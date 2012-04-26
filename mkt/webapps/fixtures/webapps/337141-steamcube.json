@@ -85,6 +85,22 @@
         }
     },
     {
+        "pk": 81555,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:3808b13ef8341378b9c8305ca648200954ee7dcd8dce09fef55f2673458bc31f",
+            "created": "2009-10-21 09:58:52",
+            "modified": "2009-10-21 10:02:38",
+            "filename": "steamcube.webapp",
+            "platform": 1,
+            "version": 1268829,
+            "size": 379,
+            "datestatuschanged": "2009-10-21 09:58:40"
+        }
+    },
+    {
         "pk": 2527085,
         "model": "translations.translation",
         "fields": {

@@ -1,4 +1,3 @@
-import hashlib
 import logging
 from tempfile import mkstemp
 

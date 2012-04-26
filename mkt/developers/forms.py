@@ -13,6 +13,7 @@ from quieter_formset.formset import BaseModelFormSet
 import waffle
 
 import amo
+from access import acl
 import addons.forms
 from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
@@ -418,12 +419,13 @@ class AppFormBasic(addons.forms.AddonFormBase):
     """Form to edit basic app info."""
     name = TransField(max_length=128, widget=TransInput)
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
+    manifest_url = forms.URLField(verify_exists=False)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary')
+        fields = ('name', 'slug', 'manifest_url', 'summary')
 
     def __init__(self, *args, **kw):
         # Force the form to use app_slug if this is a webapp. We want to keep
@@ -466,6 +468,16 @@ class AppFormBasic(addons.forms.AddonFormBase):
                 raise forms.ValidationError(_('The slug cannot be: %s.'
                                               % target))
         return target
+
+    def clean_manifest_url(self):
+        manifest_url = self.cleaned_data['manifest_url']
+        # Only verify if manifest changed.
+        if 'manifest_url' in self.changed_data:
+            # Only Admins can edit the manifest_url.
+            if not acl.action_allowed(self.request, 'Admin', '%'):
+                return self.instance.manifest_url
+            verify_app_domain(manifest_url)
+        return manifest_url
 
     def save(self, addon, commit=False):
         # We ignore `commit`, since we need it to be `False` so we can save

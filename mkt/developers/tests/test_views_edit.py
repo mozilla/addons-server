@@ -24,6 +24,26 @@ from mkt.developers.models import ActivityLog
 from users.models import UserProfile
 
 
+response_mock = mock.Mock()
+response_mock.read.return_value = '''
+    {
+        "name": "Something Ballin!",
+        "description": "Goin' hard in the paint.",
+        "launch_path": "/ballin/4.eva",
+        "developer": {
+            "name": "Pro Balliner",
+            "url": "http://www.ballin4eva.xxx"
+        },
+        "icons": {
+            "128": "/ballin/icon.png"
+        },
+        "installs_allowed_from": [ "https://addons.mozilla.org" ]
+    }
+'''
+response_mock.headers = {'Content-Type':
+                         'application/x-web-app-manifest+json'}
+
+
 def get_section_url(addon, section, edit=False):
     args = [addon.app_slug, section]
     if edit:
@@ -89,6 +109,7 @@ class TestEditListingWebapp(TestEdit):
         eq_(doc('.view-stats').length, 0)
 
 
+@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestEditBasic(TestEdit):
     fixtures = TestEdit.fixtures
 
@@ -113,7 +134,8 @@ class TestEditBasic(TestEdit):
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
         result = {'device_types': self.dtype.id, 'name': 'new name',
-                  'slug': 'test_slug', 'summary': 'new summary'}
+                  'slug': 'test_slug', 'summary': 'new summary',
+                  'manifest_url': self.get_webapp().manifest_url}
         result.update(**kw)
         result.update(fs)
         return result
@@ -184,8 +206,51 @@ class TestEditBasic(TestEdit):
         r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
         self.assertNoFormErrors(r)
 
-        # The manifest should remain unchanged since this is disabled for now.
+        # The manifest should remain unchanged since this is disabled for
+        # non-admins.
         eq_(self.get_webapp().manifest_url, self.webapp.manifest_url)
+
+    @mock.patch('devhub.tasks.urllib2.urlopen')
+    def test_view_admin_edit_manifest_url(self, mock_urlopen):
+        mock_urlopen.return_value = response_mock
+
+        self.client.login(username='admin@mozilla.com', password='password')
+        # Should be able to see manifest URL listed.
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#manifest-url a').attr('href'),
+            self.webapp.manifest_url)
+
+        # Admins can edit the manifest URL and should see a text field.
+        r = self.client.get(self.edit_url)
+        row = pq(r.content)('#manifest-url')
+        eq_(row.find('input[name=manifest_url]').length, 1)
+        eq_(row.find('input[name=manifest_url][disabled]').length, 0)
+
+        # POST with the new manifest URL.
+        url = 'https://ballin.com/ballin4eva.webapp'
+        r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
+        self.assertNoFormErrors(r)
+
+        self.webapp = self.get_webapp()
+        eq_(self.webapp.manifest_url, url)
+        eq_(self.webapp.app_domain, 'ballin.com')
+        eq_(self.webapp.current_version.version, '1.0')
+        eq_(sorted(self.webapp.versions.values_list('version', flat=True)),
+            sorted(['1.0', '1.0']))
+
+    @mock.patch('devhub.tasks.urllib2.urlopen')
+    def test_view_manifest_changed_dupe_app_domain(self, mock_urlopen):
+        mock_urlopen.return_value = response_mock
+        Switch.objects.create(name='webapps-unique-by-domain', active=True)
+        amo.tests.app_factory(name='Super Duper', app_domain='ballin.com')
+
+        self.client.login(username='admin@mozilla.com', password='password')
+        # POST with the new manifest URL.
+        url = 'https://ballin.com/ballin4eva.webapp'
+        r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
+        form = r.context['form']
+        assert 'manifest_url' in form.errors
+        assert 'one app per domain' in form.errors['manifest_url'][0]
 
     def test_view_manifest_url_changed(self):
         new_url = 'http://omg.org/yes'
