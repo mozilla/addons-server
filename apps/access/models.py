@@ -8,7 +8,7 @@ import amo.models
 
 
 class AccessWhitelist(amo.models.ModelBase):
-    email = models.CharField(max_length=255, default='')
+    email = models.TextField(blank=True)
     notes = models.TextField(blank=True)
 
     class Meta:
