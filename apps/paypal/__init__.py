@@ -60,11 +60,10 @@ class CurrencyError(PaypalError):
 
     def __str__(self):
         default = _('There was an error with this currency.')
-        if self.paypal_data:
+        if self.paypal_data and 'currencyCode' in self.paypal_data:
             return (messages.get(self.id) %
                     amo.PAYPAL_CURRENCIES[self.paypal_data['currencyCode']])
         return default
-
 
 
 errors = {'520003': AuthError}

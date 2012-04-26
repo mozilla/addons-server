@@ -96,6 +96,17 @@ class TestPayKey(amo.tests.TestCase):
             raise ValueError('No PaypalError was raised')
 
     @mock.patch('urllib2.OpenerDirector.open')
+    def test_error_no_currency(self, opener):
+        opener.return_value = StringIO(other_error.replace('520001', '559044'))
+        try:
+            data = self.data.copy()
+            paypal.get_paykey(data)
+        except paypal.PaypalError as error:
+            eq_(error.id, '559044')
+        else:
+            raise ValueError('No PaypalError was raised')
+
+    @mock.patch('urllib2.OpenerDirector.open')
     def test_other_fails(self, opener):
         opener.return_value = StringIO(other_error)
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
