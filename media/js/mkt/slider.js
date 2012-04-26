@@ -68,6 +68,9 @@ function slider() {
 z.page.on('fragmentloaded', function() {
     function itemsPerPage($item) {
         var contWidth = $item.closest('.promo-slider').width();
+        if (!contWidth) {
+            contWidth = $item.closest('.alt-slider').width();
+        }
         return Math.floor(contWidth / $item.outerWidth(true));
     }
 

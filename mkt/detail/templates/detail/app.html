@@ -152,16 +152,22 @@
 
   {% if product.all_previews %}
     <section class="previews slider full">
-      <ul class="content">
-        {%- for preview in product.all_previews -%}
-          <li>
-            <a class="screenshot thumbnail{{ ' video' if preview.filetype == 'video/webm' }}"
-               href="{{ preview.image_url }}" title="{{ preview.caption }}">
-              <em><span><img src="{{ preview.thumbnail_url }}"></span></em>
-            </a>
-          </li>
-        {%- endfor -%}
-      </ul>
+      <div class="alt-slider">
+        <div class="controls">
+          <a href="#" class="prev-page"></a>
+          <a href="#" class="next-page"></a>
+        </div>
+        <ul class="content">
+          {%- for preview in product.all_previews -%}
+            <li>
+              <a class="screenshot thumbnail{{ ' video' if preview.filetype == 'video/webm' }}"
+                 href="{{ preview.image_url }}" title="{{ preview.caption }}">
+                <em><span><img src="{{ preview.thumbnail_url }}"></span></em>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
     </section>
     <div id="lightbox">
       <section>
