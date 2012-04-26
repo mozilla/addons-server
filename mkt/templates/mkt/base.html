@@ -72,7 +72,7 @@
             {% endfor %}
             {% if tools_links|length > 2 %}
               <br>
-            {% elif tools_link|length > 1 %}
+            {% else %}
               &middot;
             {% endif %}
             {% if request.can_view_consumer %}
