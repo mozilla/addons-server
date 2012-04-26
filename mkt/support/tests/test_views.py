@@ -56,13 +56,14 @@ class TestRequestSupport(PurchaseBase):
         self.app.support_email = 'a@a.com'
         self.app.save()
 
-        data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
+        data = {'text': 'Lorem ipsum dolor sit amet, <3 consectetur'}
         self.client.post(self.get_support_url('author'), data)
         eq_(len(mail.outbox), 1)
 
         msg = mail.outbox[0]
         eq_(msg.to, ['a@a.com'])
         eq_(msg.from_email, 'regular@mozilla.com')
+        assert '<3' in msg.body  # Check no escaping.
 
     def test_contact_fails(self):
         res = self.client.post(self.get_support_url('author'), {'b': 'c'})
@@ -74,13 +75,14 @@ class TestRequestSupport(PurchaseBase):
         self.assertRedirects(res, self.get_support_url('mozilla-sent'), 302)
 
     def test_contact_mozilla_mails(self):
-        data = {'text': 'Lorem ipsum dolor sit amet, consectetur'}
+        data = {'text': 'Lorem ipsum dolor sit amet, <3 consectetur'}
         self.client.post(self.get_support_url('mozilla'), data)
         eq_(len(mail.outbox), 1)
 
         msg = mail.outbox[0]
         eq_(msg.to, [settings.MARKETPLACE_EMAIL])
         eq_(msg.from_email, 'regular@mozilla.com')
+        assert '<3' in msg.body  # Check no escaping.
         assert 'Lorem' in msg.body
 
     def test_contact_mozilla_fails(self):
@@ -126,13 +128,14 @@ class TestRequestSupport(PurchaseBase):
         self.app.support_email = 'a@a.com'
         self.app.save()
 
-        reason = 'something'
+        reason = 'something <3'
         self.client.post(self.get_support_url('request'), {'remove': 1})
         self.client.post(self.get_support_url('reason'), {'text': reason})
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         eq_(msg.to, ['a@a.com'])
         eq_(msg.from_email, settings.NOBODY_EMAIL)
+        assert '<3' in msg.body  # Check no escaping.
         assert '$1.00' in msg.body, 'Missing refund price in %s' % email.body
         assert reason in msg.body, 'Missing refund reason in %s' % email.body
 

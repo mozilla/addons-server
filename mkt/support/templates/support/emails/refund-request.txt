@@ -1,5 +1,5 @@
 Your app, {{ product.name }}, has received a new refund request:
-User: {{ user.name }}
+User: {{ user.display_name or user.username }}
 Email: {{ user.email }}
 Purchased on {{ contribution.date|datetime }}
 Price: {{ contribution.get_amount_locale() }}

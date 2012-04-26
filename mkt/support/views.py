@@ -16,7 +16,7 @@ from waffle.decorators import waffle_switch
 import amo
 from amo.decorators import login_required
 from amo.urlresolvers import reverse
-from amo.utils import send_mail
+from amo.utils import send_mail_jinja
 import paypal
 from paypal import PaypalError
 from mkt.site import messages
@@ -27,9 +27,10 @@ log = commonware.log.getLogger('z.support')
 paypal_log = commonware.log.getLogger('z.paypal')
 
 
-def support_mail(title, template, sender, recipients):
+def support_mail(subject, template, context, sender, recipients):
     try:
-        return send_mail(title, template, sender, recipients)
+        return send_mail_jinja(subject, template, context, from_email=sender,
+                               recipient_list=recipients)
     except SMTPRecipientsRefused, e:
         log.error('Tried to send mail from %s to %s: %s' %
                   (sender, ', '.join(recipients), e), exc_info=True)
@@ -55,17 +56,15 @@ def support_author(request, contribution, wizard):
     addon = contribution.addon
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        template = jingo.render_to_string(request,
-            wizard.tpl('emails/support-request.txt'),
-            context={'contribution': contribution, 'product': addon,
-                     'form': form, 'user': request.amo_user})
+        context = {'contribution': contribution, 'product': addon,
+                   'form': form, 'user': request.amo_user, 'request': request}
         log.info('Support request to dev. by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
 
         # L10n: %s is the app name.
         support_mail(_(u'New Support Request for %s' % addon.name),
-                     template, sender=request.amo_user.email,
-                     recipients=[smart_str(addon.support_email)])
+                     wizard.tpl('emails/support-request.txt'), context,
+                     request.amo_user.email, [smart_str(addon.support_email)])
 
         return redirect(reverse('support',
                          args=[contribution.pk, 'author-sent']))
@@ -78,17 +77,16 @@ def support_mozilla(request, contribution, wizard):
     addon = contribution.addon
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        template = jingo.render_to_string(request,
-            wizard.tpl('emails/support-request.txt'),
-            context={'product': addon, 'form': form,
-                     'contribution': contribution, 'user': request.amo_user})
+        context = {'product': addon, 'form': form,
+                   'contribution': contribution, 'user': request.amo_user,
+                   'request': request}
         log.info('Support request to mozilla by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
 
         # L10n: %s is the app name.
         support_mail(_(u'New Support Request for %s' % addon.name),
-                     template, sender=request.amo_user.email,
-                     recipients=[settings.MARKETPLACE_EMAIL])
+                     wizard.tpl('emails/support-request.txt'), context,
+                     request.amo_user.email, [settings.MARKETPLACE_EMAIL])
 
         return redirect(reverse('support',
                                 args=[contribution.pk, 'mozilla-sent']))
@@ -141,21 +139,20 @@ def refund_reason(request, contribution, wizard):
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         reason = form.cleaned_data['text']
-        template = jingo.render_to_string(request,
-            wizard.tpl('emails/refund-request.txt'),
-            context={'product': addon,
-                     'form': form,
-                     'user': request.amo_user,
-                     'contribution': contribution,
-                     'refund_url': contribution.get_absolute_refund_url(),
-                     'refund_reason': reason})
+        context = {'product': addon,
+                   'form': form,
+                   'user': request.amo_user,
+                   'contribution': contribution,
+                   'refund_url': contribution.get_absolute_refund_url(),
+                   'refund_reason': reason,
+                   'request': request}
         log.info('Refund request sent by user: %s for addon: %s' %
                  (request.amo_user.pk, addon.pk))
 
         # L10n: %s is the app name.
         support_mail(_(u'New Refund Request for %s' % addon.name),
-                     template, sender=settings.NOBODY_EMAIL,
-                     recipients=[smart_str(addon.support_email)])
+                     wizard.tpl('emails/refund-request.txt'), context,
+                     settings.NOBODY_EMAIL, [smart_str(addon.support_email)])
 
         # Add this refund request to the queue.
         contribution.enqueue_refund(amo.REFUND_PENDING, reason)
