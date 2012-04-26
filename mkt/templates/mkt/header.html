@@ -20,7 +20,9 @@
         </form>
       {% endblock %}
       <ul id="flyout">
-        <li><a href="{{ url('home') }}">{{ _('Home') }}</a></li>
+        {% if request.path != url('home') %}
+          <li><a href="{{ url('home') }}">{{ _('Home') }}</a></li>
+        {% endif %}
         <li><a href="{{ url('browse.apps')|urlparams(sort='downloads') }}">
           {{ _('Popular') }}</a></li>
         <li><a href="{{ url('browse.apps')|urlparams(sort='downloads', price='free') }}">
