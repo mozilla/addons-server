@@ -19,6 +19,7 @@
         <form id="preapproval" method="post"
               action="{preapprovalUrl}">
           {{ csrf() }}
+          <input type="hidden" name="currency" value="USD">
           <h3>{{ _("Complete your purchase by linking your PayPal and
                     Marketplace accounts. You'll be ready to go for instant
                     app purchases in the future!") }}</h3>

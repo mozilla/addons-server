@@ -73,10 +73,17 @@
               {{ _('Purchased') }}</span>
           {% elif product.can_purchase() %}
             {% if user.get_preapproval().paypal_key %}
-              <span class="approval checkmark">{{ _('PayPal pre-approval') }}</span>
+              <span class="approval checkmark">{{ _('PayPal pre-approval') }}
+                </span>
             {% else %}
-              <a class="approval-pitch" href="{{ url('account.payment') }}">
-                {{ _('Set up purchasing') }}</a>
+              <form method="post" id="preapproval-shortcut"
+                    action="{{ url('account.payment.preapproval') }}">
+                {{ csrf() }}
+                <input type="hidden" name="currency" value="USD">
+                <a class="approval-pitch" href="#">
+                  {{ _('Set up purchasing') }}
+                </a>
+              </form>
             {% endif %}
           {% endif %}
         {% endif %}

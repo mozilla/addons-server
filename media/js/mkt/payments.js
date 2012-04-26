@@ -102,6 +102,7 @@
                     // Feel free to remove.
                     console.log('Setting currency to: ', sel[0]);
                     data.currency = sel[0];
+                    $('#preapproval input').val(sel[0]);
                     $price.removeClass('expanded').html(sel[1]);
                     $list.css('height', 0);
                 }
@@ -114,6 +115,7 @@
 
     function beginPreApproval(e) {
         localStorage.setItem('toInstall', product.manifestUrl);
+        $('#preapproval').submit();
     }
 
     function cancelPurchase(e) {
