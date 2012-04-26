@@ -1,23 +1,31 @@
+@import '../mkt/lib';
+
 body {
     font-size: 14px;
 }
+
+.home #site-header:after {
+    height: 6px;
+    top: -6px;
+}
+
 #site-header {
     h1 a {
         background-image: url('../../img/ecosystem/developers_logo.png');
+        height: 54px;
         width: 375px;
     }
     nav {
-        float:right;
+        float: right;
         margin-top: 41px;
     }
     nav a {
-
         margin-left: 25px;
         padding-top: 25px;
         color: #6DC7FF;
         text-transform: uppercase;
-        font-size: 13pt;  
-        text-shadow: 0 1px 1px #444;  
+        font-size: 13pt;
+        text-shadow: 0 1px 1px #444;
 
     }
     a.external {
@@ -28,26 +36,27 @@ body {
     }
 }
 
-#top-marketing {
-    background-color: #394C58;
-    background-image: url("../../img/mkt/grain.png");
-    text-align: center;
-    margin: 0 auto; 
-    text-shadow: 0 1px 2px #000; 
+#page {
+    clear: both;
+}
 
+#top-marketing {
+    .grain;
+    border-bottom: darken(#404f5a, 5%) 1px solid;
+    background-color: #394C58;
+    margin: 0 auto;
+    text-shadow: 0 1px 2px #000;
     .placeholder {
         height: 250px;
         margin: 0 auto;
         max-width: 510px;
-        width: 70%; 
+        width: 70%;
     }
-    
 }
 
 .call-to-action {
-    
     padding: 20px 25px 25px 25px;
-    overflow: hidden;           
+    overflow: hidden;
     margin: 0 auto 0 auto;
     width: 948px;
 
@@ -57,10 +66,13 @@ body {
 
     div {
         float: left;
+        text-align: center;
         width: 320px;
-        color: white;   
-        margin-top: 34px; 
-        text-align: left;  
+        color: white;
+        margin-top: 40px;
+        p {
+            margin: 10px 0 20px;
+        }
     }
     h1 {
         font-size: 3em;
@@ -77,15 +89,19 @@ body {
     width:90%;
 }
 
+#demo-block {
+    padding-bottom: 0;
+}
+
 #demo-list {
     max-width:485px;
     float:left;
     margin: 0;
     padding: 0;
-
     li {
         list-style: none;
-        display:inline-block;
+        display: inline-block;
+        margin-bottom: 20px;
     }
     .placeholder {
         height: 120px;
@@ -95,6 +111,18 @@ body {
     }
     span {
         display: block;
+    }
+    a {
+        color: @medium-gray;
+        img {
+            opacity: .9;
+        }
+        &:hover {
+            color: @dark-gray;
+            img {
+                opacity: 1;
+            }
+        }
     }
 }
 
@@ -109,22 +137,22 @@ body {
         float: left;
         max-width: 302px;
         padding: 0 10px;
-        
+
     }
     li div {
         margin: 0 auto;
     }
     .placeholder {
-       
+
     }
 }
 
-.marketing-block {   
+.marketing-block {
     overflow: hidden;
     background-color: white;
     padding: 25px;
     margin: 25px auto 0 auto;
-    border: 1px solid #BBBBBB;    
+    border: 1px solid #BBBBBB;
     box-shadow: 0 1px 5px -3px #000000;
 
     p {
@@ -148,7 +176,7 @@ body {
 
 .no-pad {
     padding: 0;
-}   
+}
 
 
 #tutorial {
@@ -196,7 +224,7 @@ body {
     }
     #content {
         float: left;
-        width: 100%;        
+        width: 100%;
     }
     #mdn-content {
         margin-left: 275px;

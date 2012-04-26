@@ -8,7 +8,7 @@
       #}
 
       {% if not request.user.is_authenticated() %}
-        <a href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Sign in/Register</a>
+        <a href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Log in / Register</a>
         <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
       {% else %}
        <a href="{{ url('submit.app') }}">Submit an App</a>

@@ -2,6 +2,8 @@
 
 {% block title %}Developers | {{ super() }}{% endblock %}
 
+{% block bodyclass %}home{% endblock %}
+
 {% block extrahead %}
 	{{ css('mkt/ecosystem') }}
 {% endblock %}
@@ -17,9 +19,9 @@
 
 			<div>
 				<h1>Open Web Apps</h1>
-				<p>Get your app on five platforms with
-					one code base, without giving up any
-					functionality.<br />
+				<p>
+				  Develop your app using a single codebase that runs on today's
+				  popular web-enabled devices.
         </p>
 				<a href="{{ url('submit.app') }}" class="button">Submit an App</a>
 			</div>
@@ -61,31 +63,35 @@
 			</ul>
 		</section>
 
-		<section class="primary full marketing-block">
+		<section id="demo-block" class="primary full marketing-block">
 			<ul id="demo-list">
 				<li>
           <a href="https://marketplace.mozilla.org/en-US/app/evernote-web/">
 					<img class="placeholder"
-						src="{{ MEDIA_URL }}img/ecosystem/evernote.png"></img></a>
+						src="{{ MEDIA_URL }}img/ecosystem/evernote.png"></img>
             <span>Evernote</span>
+          </a>
 				</li>
 				<li>
           <a href="https://developer.mozilla.org/en-US/demos/">
 					<img class="placeholder"
-						src="{{ MEDIA_URL }}img/ecosystem/placeholder2.png"></img></a>
+						src="{{ MEDIA_URL }}img/ecosystem/placeholder2.png"></img>
             <span>Mozilla HTML5 Demos</span>
+          </a>
 				</li>
 				<li>
-          <a href="https://marketplace.mozilla.org/en-US/app/lordofultima/">
+          <a href="https://marketplace.mozilla.org/en-US/app/lord-of-ultima/">
 					<img class="placeholder"
-						src="{{ MEDIA_URL }}img/ecosystem/ultima.png"></img></a>
+						src="{{ MEDIA_URL }}img/ecosystem/ultima.png"></img>
             <span>Lord of Ultima</span>
+          </a>
 				</li>
 				<li>
           <a href="https://marketplace.mozilla.org/en-US/app/sandglaz/">
 					<img class="placeholder"
-						src="{{ MEDIA_URL }}img/ecosystem/sandglaz.png"></img></a>
+						src="{{ MEDIA_URL }}img/ecosystem/sandglaz.png"></img>
             <span>Sandglaz</span>
+          </a>
 				</li>
 			</ul>
 
