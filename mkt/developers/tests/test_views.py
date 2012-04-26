@@ -77,13 +77,17 @@ class TestHome(amo.tests.TestCase):
         r = self.client.get(self.url)
         self.assertLoginRedirects(r, '/en-US/developers/submissions', 302)
 
-    def test_home(self):
+    def test_home_anonymous(self):
+        r = self.client.get(self.url, follow=True)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'developers/login.html')
+
+    def test_home_authenticated(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        for url in [self.url, reverse('home')]:
-            r = self.client.get(url, follow=True)
-            eq_(r.status_code, 200)
-            self.assertTemplateUsed(r, 'developers/apps/dashboard.html')
+        r = self.client.get(self.url, follow=True)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'developers/apps/dashboard.html')
 
 
 class TestAppBreadcrumbs(AppHubTest):
