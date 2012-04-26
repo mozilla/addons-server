@@ -40,7 +40,8 @@ def resize_video(src, instance, **kw):
         try:
             video_file = video.get_encoded(amo.ADDON_PREVIEW_SIZES[1])
         except Exception:
-            log.info('Error encoding video for %s' % instance.pk)
+            log.info('Error encoding video for %s, %s' %
+                     (instance.pk, video.meta), exc_info=True)
             return
 
     # Do the thumbnail next, this will be the signal that the
