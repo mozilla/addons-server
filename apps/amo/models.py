@@ -367,14 +367,14 @@ def manual_order(qs, pks, pk_name='id'):
             order_by=['_manual'])
 
 
-class VarbinaryField(models.Field):
-    """MySQL varbinary column.
+class BlobField(models.Field):
+    """MySQL blob column.
 
     This is for using AES_ENCYPT() to store values.
     It could maybe turn into a fancy transparent encypt/decrypt field
     like http://djangosnippets.org/snippets/2489/
     """
-    description = "Varbinary"
+    description = "blob"
 
     def db_type(self, **kw):
-        return 'varbinary(%s)' % self.max_length
+        return 'blob'

@@ -6,7 +6,7 @@ from django.db import connection, models
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.models import VarbinaryField
+from amo.models import BlobField
 from lib.crypto import generate_key
 
 
@@ -25,8 +25,8 @@ class InappConfig(amo.models.ModelBase):
         help_text=_lazy(u'Relative URL in your app that the marketplace will '
                         u'post a confirmed transaction to. For example: '
                         u'/payments/postback'))
-    _encrypted_private_key = VarbinaryField(max_length=128, blank=True,
-                                            null=True, db_column='private_key')
+    _encrypted_private_key = BlobField(blank=True, null=True,
+                                       db_column='private_key')
     public_key = models.CharField(max_length=255, unique=True, db_index=True)
     # Allow https to be configurable only if it's declared in settings.
     # This is intended for development.
