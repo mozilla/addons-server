@@ -1,6 +1,6 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}{{ mkt_page_title(loc('Developer Registration')) }}{% endblock %}
+{% block title %}{{ mkt_page_title(loc('Mozillian Preview')) }}{% endblock %}
 
 {% block bodyclass %}login {{ super() }}{% endblock %}
 
@@ -26,11 +26,9 @@
       <p class="proceed">
         <a class="button prominent browserid" href="#">{{ _('Log in / Register') }}</a>
       </p>
-      <p class="forgot">
-        <a href="https://browserid.org/forgot">{{ _('Forgot your password?') }}</a>
-      </p>
     </div>
   </section>
+
 {% endblock %}
 
 {% block sitefooter %}
@@ -39,9 +37,17 @@
       <p id="access-devhub">
         <b>Have an app to submit?</b>
         The Marketplace Developer Hub is open now.
-        <a href="{{ url('mkt.developers.index') }}">Upload your app &raquo;</a>
+        <a href="{{ url('ecosystem.landing') }}">Upload your app &raquo;</a>
       </p>
+      <div>
+        <ul>
+          <li><a href="{{ url('site.privacy') }}">
+            {{ _('Privacy Policy') }}</a></li>
+          <li><a href="{{ url('site.terms') }}">
+            {{ _('Terms of Use') }}</a></li>
+        </ul>
+        {% include 'site/includes/languages.html' %}
+      </div>
     </div>
-    {% include 'site/includes/languages.html' %}
   </footer>
 {% endblock %}

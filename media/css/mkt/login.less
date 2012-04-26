@@ -35,18 +35,23 @@
     }
     #welcome {
         min-height: 180px;
+        padding-top: 25px;
+        position: relative;
         &:before {
-            background: url(../../img/mkt/crate.png) 55% 100% no-repeat;
-            .background-size(auto 80%);
+            background: url(../../img/mkt/crate.png) 57% 100% no-repeat;
+            .background-size(auto 95%);
             content: "";
             display: block;
             float: right;
             height: 233px;
-            margin-bottom: -50%;
+            position: absolute;
+            top: 25px;
             width: 100%;
         }
         > div {
+            position: relative;
             width: 40%;
+            z-index: 1;
             .proceed {
                 margin: 0;
             }
@@ -58,11 +63,40 @@
             }
         }
     }
+    #access-devhub,
+    #access-devhub + div {
+        margin: 15px 0;
+    }
     #access-devhub {
+        float: left;
         text-align: left;
         b {
             display: block;
         }
+        + div {
+            float: right;
+        }
+    }
+    #site-footer ul {
+        float: right;
+        list-style: none;
+        margin: 0 0 5px 0;
+        padding: 0;
+        li {
+            display: inline-block;
+            + li {
+                margin-left: 10px;
+                &:before {
+                    color: @medium-gray;
+                    content: "\00b7";
+                    float: left;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    #lang-form {
+        clear: both;
     }
     #site-footer {
         > div {
@@ -75,8 +109,5 @@
                 clear: both;
             }
         }
-    }
-    #lang-form {
-        margin-top: 30px;
     }
 }
