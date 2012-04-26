@@ -72,6 +72,7 @@
         text-align: left;
         b {
             display: block;
+            margin-bottom: 5px;
         }
         + div {
             float: right;
@@ -80,7 +81,7 @@
     #site-footer ul {
         float: right;
         list-style: none;
-        margin: 0 0 5px 0;
+        margin: 0 0 5px;
         padding: 0;
         li {
             display: inline-block;
@@ -98,16 +99,58 @@
     #lang-form {
         clear: both;
     }
-    #site-footer {
-        > div {
-            .border-box;
-            .width(14);
-            margin: 0 auto;
-            &:after {
-                content: "";
-                display: block;
-                clear: both;
+    #site-footer > div {
+        .border-box;
+        .max-width(14);
+        margin: 0 auto;
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
+}
+
+@media (max-width: @10col) {
+    .login #welcome:before {
+        .background-size(auto 80%);
+        background-position: 62% 90%;
+    }
+    #site-footer > div {
+        .width(10);
+    }
+}
+
+@media (max-width: @4col) {
+    .login {
+        #page {
+            margin: 0;
+        }
+        #welcome {
+            min-height: 230px;
+            &:before {
+                background-position: 50% 50%;
+                opacity: .2;
             }
+            > div {
+                width: 100%;
+            }
+        }
+        #site-footer {
+            text-align: center;
+            > div {
+                .width(4);
+            }
+        }
+        #access-devhub,
+        #access-devhub + div,
+        #site-footer ul {
+            float: none;
+        }
+        #access-devhub {
+            border-bottom: 1px dotted @light-gray;
+            text-align: center;
+            padding-bottom: 15px;
         }
     }
 }
