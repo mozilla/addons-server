@@ -19,15 +19,15 @@ from amo import messages
 from amo.decorators import login_required, post_required, write
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
-from addons.models import Addon
 from market.forms import PriceCurrencyForm
 import paypal
 from stats.models import Contribution
 from waffle.decorators import waffle_flag
 from mkt.account.views import preapproval as user_preapproval
+from webapps.models import Webapp
 
 log = commonware.log.getLogger('z.purchase')
-addon_view = addon_view_factory(qs=Addon.objects.valid)
+addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
 @login_required

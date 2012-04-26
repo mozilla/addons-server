@@ -40,6 +40,10 @@ class WebappManager(amo.models.ManagerBase):
         qs = qs._clone(klass=query.IndexQuerySet)
         return qs.filter(type=amo.ADDON_WEBAPP)
 
+    def valid(self):
+        return self.filter(status__in=amo.LISTED_STATUSES,
+                           disabled_by_user=False)
+
     def reviewed(self):
         return self.filter(status__in=amo.REVIEWED_STATUSES)
 
