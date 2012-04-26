@@ -234,7 +234,11 @@ class LoginRequiredMiddleware(ViewMiddleware):
             getattr(view_func, '_no_login_required', False) or
             name.startswith(settings.NO_LOGIN_REQUIRED_MODULES)):
             return
-        return redirect(urlresolvers.reverse('users.login'))
+        if settings.MARKETPLACE:
+            return redirect('/%s%s' % (request.LANG, settings.LOGIN_URL))
+        else:
+            return redirect('/%s/%s%s' % (request.LANG, request.APP.short,
+                                          settings.LOGIN_URL))
 
 
 class DefaultConsumerMiddleware(ViewMiddleware):
