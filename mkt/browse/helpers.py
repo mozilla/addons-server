@@ -3,7 +3,7 @@ from jingo import env, register
 import jinja2
 
 import amo
-from addons.models import Category
+from addons.models import AddonCategory, Category
 
 
 @register.function
@@ -12,7 +12,11 @@ def category_slider():
 
 
 def _categories():
-    categories = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
+    public_cats = (AddonCategory.objects
+                   .filter(addon__status=amo.STATUS_PUBLIC)
+                   .values_list('category', flat=True).distinct())
+    categories = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0,
+                                         id__in=public_cats)
     t = env.get_template('browse/helpers/category_slider.html')
     return jinja2.Markup(t.render(categories=categories))
 
