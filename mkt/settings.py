@@ -74,11 +74,11 @@ MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 MIDDLEWARE_CLASSES += (
     'mkt.site.middleware.VaryOnAJAXMiddleware',
 
-    # Remove this if you want to see consumer pages without the walled garden.
-    'amo.middleware.NoConsumerMiddleware',
+    # TODO: Remove this when we remove `request.can_view_consumer`.
+    #'amo.middleware.DefaultConsumerMiddleware',
 
-    # This is in the settings_local_mkt on marketplace-dev,
-    # but don't enable it here unless you want broken tests.
+    # Put this in your settings_local_mkt if you want the walled garden.
+    #'amo.middleware.NoConsumerMiddleware',
     #'amo.middleware.LoginRequiredMiddleware',
 )
 

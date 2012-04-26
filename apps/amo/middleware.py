@@ -237,6 +237,16 @@ class LoginRequiredMiddleware(ViewMiddleware):
         return redirect(urlresolvers.reverse('users.login'))
 
 
+class DefaultConsumerMiddleware(ViewMiddleware):
+    """
+    The only purpose of this middleware is to ensure consumer pages are
+    still visible if `NoConsumerMiddleware` isn't enabled.
+    """
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        request.can_view_consumer = True
+
+
 class NoConsumerMiddleware(ViewMiddleware):
     """
     Suprisingly similar to the other middleware, except on finding a match
