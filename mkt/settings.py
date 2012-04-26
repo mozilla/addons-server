@@ -143,6 +143,7 @@ NO_LOGIN_REQUIRED_MODULES = (
     'jingo.views.direct_to_template',
     'zadmin.views',
     'users.browserid_login',
+    'mkt.ecosystem.views',
     'mkt.site.views',
     'mkt.zadmin.views',
 )
