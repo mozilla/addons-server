@@ -1367,7 +1367,7 @@ WEBAPPS_RECEIPT_URL = '%s/verify/' % SITE_URL
 # The key we'll use to sign webapp receipts.
 WEBAPPS_RECEIPT_KEY = ''
 # The expiry that we will add into the receipt.
-WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 7
+WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 365
 
 # How long a watermarked addon should be re-used for, after this
 # time it will be regenerated.
