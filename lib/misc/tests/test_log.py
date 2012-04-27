@@ -28,14 +28,10 @@ cfg = {
             'class': 'lib.misc.admin_log.ErrorSyslogHandler',
             'formatter': 'error',
         },
-        'test_statsd_handler': {
-            'class': 'lib.misc.admin_log.StatsdHandler',
-        },
     },
     'loggers': {
         'test.lib.misc.logging': {
-            'handlers': ['test_syslog',
-                         'test_statsd_handler'],
+            'handlers': ['test_syslog'],
             'level': 'ERROR',
             'propagate': False,
         },
@@ -84,7 +80,7 @@ class TestErrorLog(amo.tests.TestCase):
                        exc_info=self.division_error(),
                        extra={'request': self.request})
         eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['statsdhandler', 'errorsysloghandler']))
+            set(['errorsysloghandler']))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
     def test_called_no_email(self, emitted):
@@ -92,7 +88,7 @@ class TestErrorLog(amo.tests.TestCase):
                        exc_info=self.io_error(),
                        extra={'request': self.request})
         eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler', 'statsdhandler']))
+            set(['errorsysloghandler']))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
     def test_no_exc_info_request(self, emitted):
@@ -105,4 +101,4 @@ class TestErrorLog(amo.tests.TestCase):
         self.log.error('blargh!',
                        exc_info=self.io_error())
         eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler', 'statsdhandler']))
+            set(['errorsysloghandler']))

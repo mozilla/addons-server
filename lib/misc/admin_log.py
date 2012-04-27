@@ -26,7 +26,6 @@ import logging
 import traceback
 
 from django.conf import settings
-from django_statsd.clients import statsd
 from unicode_log import UnicodeHandler
 
 getLogger = logging.getLogger
@@ -67,17 +66,6 @@ class ErrorTypeHandler(logging.Handler):
     def emitted(self, name):
         # This is currently in place for the tests. Patches welcome.
         pass
-
-
-class StatsdHandler(ErrorTypeHandler):
-    """Send error to statsd, we'll send this every time."""
-
-    def emit(self, record):
-        if not record.exc_info:
-            return
-
-        statsd.incr('error.%s' % record.exc_info[0].__name__.lower())
-        self.emitted(self.__class__.__name__.lower())
 
 
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):

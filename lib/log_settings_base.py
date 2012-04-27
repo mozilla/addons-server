@@ -57,7 +57,7 @@ handlers = {
     },
     'statsd': {
         'level': 'ERROR',
-        'class': 'lib.misc.admin_log.StatsdHandler',
+        'class': 'django_statsd.loggers.errors.StatsdHandler',
     },
     'errortype_syslog': {
         'class': 'lib.misc.admin_log.ErrorSyslogHandler',
