@@ -7,8 +7,9 @@
             $previews = $('.previews'),
             current, $strip,
             lbImage = template('<img id="preview{0}" src="{1}">'),
-            lbVideo = template('<video id="preview{0}" src="{1}" controls autoplay' +
-                               'preload="auto" type="video/webm"></video>');
+            lbVideo = template('<video id="preview{0}" src="{1}" ' +
+                               'preload="auto" controls type="video/webm"> ' +
+                               '</video>');
         if (!$lightbox.length) return;
         function showLightbox() {
             $lightbox.show();
@@ -70,18 +71,18 @@
                 $img.addClass('show');
                 $img.filter('video').focus();
             } else {
+                console.log('no match found!', '#preview'+current, $img);
                 $img = $(cookieCutter([current, $a.attr('href')]));
                 $content.append($img);
                 $img.bind('load loadstart', function(e) {
                     $oldimg.removeClass('show');
                     $img.addClass('show');
-                    $img.filter('video').focus();
-                    for (var i=0; i<$strip.length; i++) {
-                        if (i != current) {
-                            var $p = $strip.eq(i).find('a');
-                            $content.append(cookieCutter([i, $p.attr('href')]));
-                        }
-                    }
+                //     for (var i=0; i<$strip.length; i++) {
+                //         if (i != current) {
+                //             var $p = $strip.eq(i).find('a');
+                //             $content.append(cookieCutter([i, $p.attr('href')]));
+                //         }
+                //     }
                 });
             }
             $caption.text($a.attr('title'))
