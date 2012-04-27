@@ -1,7 +1,10 @@
+import posixpath
 import random
+import urlparse
 
 from django.conf import settings
 from django.db import connection, models
+from django.core.files.storage import default_storage as storage
 
 from tower import ugettext_lazy as _lazy
 
@@ -211,3 +214,29 @@ class InappPayNotice(amo.models.ModelBase):
 
     class Meta:
         db_table = 'addon_inapp_notice'
+
+
+class InappImage(amo.models.ModelBase):
+    config = models.ForeignKey(InappConfig)
+    image_url = models.CharField(max_length=255, db_index=True)
+    image_format = models.CharField(max_length=4)
+    valid = models.BooleanField(default=False, db_index=True)
+    processed = models.BooleanField(default=False, db_index=True)
+
+    class Meta:
+        db_table = 'addon_inapp_image'
+
+    def absolute_image_url(self):
+        if self.image_url.lower().startswith('http'):
+            return self.image_url
+        else:
+            # Assume it is relative to the app.
+            return urlparse.urlunparse((self.config.app_protocol(),
+                                        self.config.addon.app_domain,
+                                        self.image_url, '', '', ''))
+
+    def path(self):
+        dp = posixpath.join(settings.INAPP_IMAGE_PATH,
+                            str(self.config.addon.pk),
+                            '%s.%s' % (self.pk, self.image_format.lower()))
+        return storage.path(dp)

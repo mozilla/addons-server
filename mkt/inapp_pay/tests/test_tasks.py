@@ -1,6 +1,10 @@
 import calendar
+from datetime import datetime, timedelta
+import os
 import httplib
+import json
 import socket
+from cStringIO import StringIO
 import time
 import urllib2
 
@@ -16,21 +20,30 @@ import amo
 from users.models import UserProfile
 
 from mkt.inapp_pay import tasks
-from mkt.inapp_pay.models import InappPayNotice
+from mkt.inapp_pay.models import InappPayNotice, InappImage
 from mkt.inapp_pay.tests.test_views import PaymentTest
 
 
+class TalkToAppTest(PaymentTest):
+
+    def setUp(self):
+        super(TalkToAppTest, self).setUp()
+        self.domain = 'somenonexistantappdomain.com'
+        self.app.update(app_domain=self.domain)
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+
+    def url(self, path, protocol='https'):
+        return protocol + '://' + self.domain + path
+
+
 @mock.patch.object(settings, 'DEBUG', True)
-class TestNotifyApp(PaymentTest):
+class TestNotifyApp(TalkToAppTest):
 
     def setUp(self):
         super(TestNotifyApp, self).setUp()
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.contrib = self.make_contrib()
         self.postback = '/postback'
         self.chargeback = '/chargeback'
-        self.domain = 'somenonexistantappdomain.com'
-        self.app.update(app_domain=self.domain)
         self.inapp_config.update(postback_url=self.postback,
                                  chargeback_url=self.chargeback)
         self.payment = self.make_payment(contrib=self.contrib)
@@ -253,3 +266,96 @@ class TestNotifyApp(PaymentTest):
                                .returns('<not a valid response>')
                                .expects('close'))
         self.notify()
+
+
+class TestFetchProductImage(TalkToAppTest):
+
+    def setUp(self):
+        super(TestFetchProductImage, self).setUp()
+
+    def fetch(self, url='/media/my.jpg'):
+        req = self.request(extra={'imageURL': url})
+        req = json.loads(jwt.decode(str(req), verify=False))
+        tasks.fetch_product_image(self.inapp_config.pk, req)
+
+    def open_img(self):
+        img = open(os.path.join(os.path.dirname(__file__),
+                                'resources', 'product.jpg'), 'rb')
+        self.addCleanup(img.close)
+        return img
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_ignore_error(self, urlopen):
+        (urlopen.expects_call()
+                .raises(urllib2.HTTPError('url', 500, 'Error', [], None)))
+        self.fetch()
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_ignore_read_error(self, urlopen):
+        (urlopen.expects_call()
+                .returns_fake().expects('read').raises(socket.error))
+        self.fetch()
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_ignore_valid_image(self, urlopen):
+        url = '/media/my.jpg'
+        InappImage.objects.create(image_url=url,
+                                  config=self.inapp_config,
+                                  valid=True)
+        self.fetch(url=url)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_refetch_old_image(self, urlopen):
+        url = '/media/my.jpg'
+        now = datetime.now()
+        old = now - timedelta(days=6)
+        prod = InappImage.objects.create(image_url=url,
+                                         config=self.inapp_config,
+                                         valid=True)
+        prod.update(modified=old)
+        urlopen.expects_call().returns(self.open_img())
+        self.fetch(url=url)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_update_existing_image(self, urlopen):
+        url = '/media/my.jpg'
+        InappImage.objects.create(image_url=url,
+                                  config=self.inapp_config,
+                                  processed=False,
+                                  valid=False)
+        urlopen.expects_call().returns(self.open_img())
+        self.fetch(url=url)
+        prod = InappImage.objects.get()
+        eq_(prod.processed, True)
+        eq_(prod.valid, True)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_absolute_url(self, urlopen):
+        url = 'http://mycdn-somewhere.com/media/my.jpg'
+        (urlopen.expects_call()
+                .with_args(url, timeout=arg.any())
+                .returns(self.open_img()))
+        self.fetch(url=url)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_ignore_non_image(self, urlopen):
+        im = StringIO('<not an image>')
+        urlopen.expects_call().returns(im)
+        self.fetch()
+        prod = InappImage.objects.get()
+        assert not os.path.exists(prod.path()), 'Image ignored'
+        eq_(prod.valid, False)
+        eq_(prod.processed, True)
+
+    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
+    def test_fetch_ok(self, urlopen):
+        url = '/media/my.jpg'
+        (urlopen.expects_call()
+                .with_args(self.url(url), timeout=arg.any())
+                .returns(self.open_img()))
+        self.fetch(url=url)
+        prod = InappImage.objects.get()
+        assert os.path.exists(prod.path()), 'Image not created'
+        eq_(prod.valid, True)
+        eq_(prod.processed, True)
+        eq_(prod.config.pk, self.inapp_config.pk)

@@ -426,21 +426,31 @@ def patched_load(self):
 Image.Image.load = patched_load
 
 
-def resize_image(src, dst, size=None, remove_src=True):
-    """Resizes and image from src, to dst. Returns width and height."""
+def resize_image(src, dst, size=None, remove_src=True,
+                 locally=False):
+    """Resizes and image from src, to dst. Returns width and height.
+
+    When locally is True, src and dst are assumed to reside
+    on the local disk (not in the default storage). When dealing
+    with local files it's up to you to ensure that all directories
+    exist leading up to the dst filename.
+    """
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
 
-    with storage.open(src, 'rb') as fp:
+    open_ = open if locally else storage.open
+    delete = os.unlink if locally else storage.delete
+
+    with open_(src, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
         if size:
             im = processors.scale_and_crop(im, size)
-    with storage.open(dst, 'wb') as fp:
+    with open_(dst, 'wb') as fp:
         im.save(fp, 'png')
 
     if remove_src:
-        storage.delete(src)
+        delete(src)
 
     return im.size
 

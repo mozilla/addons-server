@@ -4,13 +4,11 @@ import uuid
 from commonware.response.decorators import xframe_allow
 import commonware.log
 import jingo
-import jinja2
 from session_csrf import anonymous_csrf
 from tower import ugettext as _
 import waffle
 from waffle.decorators import waffle_switch
 
-from django import http
 from django.conf import settings
 from django.db import transaction
 from django.shortcuts import redirect, get_object_or_404
@@ -24,7 +22,6 @@ from stats.models import Contribution
 from .decorators import require_inapp_request
 from .helpers import render_error
 from .models import InappPayment, InappPayLog, InappConfig
-from .verify import InappPaymentError
 from . import tasks
 
 
@@ -44,8 +41,11 @@ def pay_start(request, signed_req, pay_req):
                 item=pay_req['request']['name'],
                 description=pay_req['request']['description'],
                 signed_request=signed_req)
+    tasks.fetch_product_image.delay(pay_req['_config'].pk,
+                                    _serializable_req(pay_req))
     if waffle.switch_is_active('in-app-payments-proto'):
-        return jingo.render(request, 'inapp_pay/prototype/pay_start.html', data)
+        return jingo.render(request, 'inapp_pay/prototype/pay_start.html',
+                            data)
     if not request.user.is_authenticated():
         return jingo.render(request, 'inapp_pay/login.html', data)
     preapproval = None
@@ -210,3 +210,13 @@ def _payment_done(request, payment, action='PAY_COMPLETE'):
 def mozmarket_lib(request):
     return jingo.render(request, 'inapp_pay/library.js',
                         content_type='text/javascript')
+
+
+def _serializable_req(pay_req):
+    """
+    Convert payment request json (from signed JWT)
+    to dict that can be serialized.
+    """
+    pay_req = pay_req.copy()
+    del pay_req['_config']
+    return pay_req

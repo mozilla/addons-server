@@ -50,26 +50,27 @@ class InappPaymentUtil:
                             app_data=app_payment['request']['productdata'])
 
     def payload(self, app_id=None, exp=None, iat=None,
-                typ='mozilla/payments/pay/v1'):
+                typ='mozilla/payments/pay/v1', extra=None):
         if not app_id:
             app_id = self.app_id
         if not iat:
             iat = calendar.timegm(time.gmtime())
         if not exp:
             exp = iat + 3600  # expires in 1 hour
+        req = {'price': '0.99',
+               'currency': 'USD',
+               'name': 'My bands latest album',
+               'description': '320kbps MP3 download, DRM free!',
+               'productdata': 'my_product_id=1234'}
+        if extra:
+            req.update(extra)
         return {
             'iss': app_id,
             'aud': settings.INAPP_MARKET_ID,
             'typ': typ,
             'exp': exp,
             'iat': iat,
-            'request': {
-                'price': '0.99',
-                'currency': 'USD',
-                'name': 'My bands latest album',
-                'description': '320kbps MP3 download, DRM free!',
-                'productdata': 'my_product_id=1234'
-            }
+            'request': req
         }
 
 
@@ -113,13 +114,14 @@ class PaymentViewTest(PaymentTest):
 
 
 @mock.patch.object(settings, 'DEBUG', True)
+@mock.patch('mkt.inapp_pay.tasks.fetch_product_image')
 class TestPayStart(PaymentViewTest):
 
-    def test_missing_pay_request_on_start(self):
+    def test_missing_pay_request_on_start(self, fetch_prod_im):
         rp = self.client.get(reverse('inapp_pay.pay_start'))
         eq_(rp.status_code, 400)
 
-    def test_pay_start(self):
+    def test_pay_start(self, fetch_prod_im):
         payload = self.payload()
         req = self.request(payload=json.dumps(payload))
         rp = self.client.get(reverse('inapp_pay.pay_start'),
@@ -132,8 +134,9 @@ class TestPayStart(PaymentViewTest):
         eq_(log.action, InappPayLog._actions['PAY_START'])
         eq_(log.config.pk, self.inapp_config.pk)
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
+        assert fetch_prod_im.delay.called, 'product image fetched'
 
-    def test_pay_start_error(self):
+    def test_pay_start_error(self, fetch_prod_im):
         rp = self.client.get(reverse('inapp_pay.pay_start'),
                              data=dict(req=self.request(app_secret='invalid')))
         eq_(rp.status_code, 200)
@@ -145,9 +148,11 @@ class TestPayStart(PaymentViewTest):
         eq_(log.app_public_key, self.inapp_config.public_key)
         eq_(log.exception, InappPayLog._exceptions['RequestVerificationError'])
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
+        assert not fetch_prod_im.delay.called, (
+                    'product image not fetched on error')
 
     @mock.patch.object(settings, 'INAPP_VERBOSE_ERRORS', True)
-    def test_verbose_error(self):
+    def test_verbose_error(self, fetch_prod_im):
         rp = self.client.get(reverse('inapp_pay.pay_start'),
                              data=dict(req=self.request(app_secret='invalid')))
         eq_(rp.status_code, 200)

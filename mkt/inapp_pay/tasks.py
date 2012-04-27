@@ -1,25 +1,32 @@
 import calendar
+from datetime import datetime, timedelta
+import json
 import logging
+import os
+import tempfile
 import time
 from urllib2 import urlopen
 import urlparse
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
+from django.db import transaction
 
 from celeryutils import task
 import jwt
 
 import amo
 from amo.decorators import write
+from amo.utils import ImageCheck, resize_image
 
-from .models import InappPayment, InappPayNotice
+from .models import InappPayment, InappPayNotice, InappImage, InappConfig
 
 log = logging.getLogger('z.inapp_pay.tasks')
-task_kw = dict(default_retry_delay=15,  # seconds
-               max_tries=5)
+notify_kw = dict(default_retry_delay=15,  # seconds
+                 max_tries=5)
 
 
-@task(**task_kw)
+@task(**notify_kw)
 @write
 def payment_notify(payment_id, **kw):
     """Notify the app of a successful payment.
@@ -30,7 +37,7 @@ def payment_notify(payment_id, **kw):
     _notify(payment_id, amo.INAPP_NOTICE_PAY, payment_notify)
 
 
-@task(**task_kw)
+@task(**notify_kw)
 @write
 def chargeback_notify(payment_id, reason, **kw):
     """Notify the app of a chargeback.
@@ -115,3 +122,102 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
                                   success=success,
                                   url=url,
                                   last_error=last_error)
+
+
+@task
+@transaction.commit_on_success
+def fetch_product_image(config_id, app_req, read_size=100000, **kw):
+    config = InappConfig.objects.get(pk=config_id)
+    url = app_req['request'].get('imageURL')
+    if not url:
+        log.info(u'in-app product %r for config %s does not have an image URL'
+                 % (app_req['request']['name'], config.pk))
+        return
+    params = dict(config=config, image_url=url)
+    try:
+        product = InappImage.objects.get(**params)
+    except InappImage.DoesNotExist:
+        product = InappImage.objects.create(processed=False,
+                                            valid=False,
+                                            **params)
+    now = datetime.now()
+    if product.valid and product.modified > now - timedelta(days=5):
+        log.info('Already have valid, recent image for config %s at URL %s'
+                 % (config.pk, url))
+        return
+
+    abs_url = product.absolute_image_url()
+    tmp_dest = tempfile.NamedTemporaryFile(delete=False)
+    try:
+        im_src = urlopen(abs_url, timeout=5)
+        done = False
+        while not done:
+            chunk = im_src.read(read_size)
+            if not chunk:
+                done = True
+            else:
+                tmp_dest.write(chunk)
+    except (AssertionError, RuntimeError):
+        raise  # Raise test-related exceptions.
+    except:
+        tmp_dest.close()
+        os.unlink(tmp_dest.name)
+        log.error('fetch_product_image urlopen error with '
+                  '%s for config %s' % (abs_url, config.pk),
+                  exc_info=True)
+        return
+    else:
+        tmp_dest.close()
+
+    try:
+        valid, img_format = _check_image(tmp_dest.name, abs_url, config)
+        if valid:
+            log.info('resizing in-app image for config %s URL %s'
+                     % (config.pk, url))
+            tmp_dest = _resize_image(tmp_dest)
+
+        product.update(processed=True, valid=valid,
+                       image_format=img_format)
+
+        if valid:
+            _store_image(tmp_dest, product, read_size)
+    finally:
+        os.unlink(tmp_dest.name)
+
+
+def _check_image(im_path, abs_url, config):
+    valid = True
+    img_format = ''
+    with open(im_path, 'rb') as fp:
+        im = ImageCheck(fp)
+        if not im.is_image():
+            valid = False
+            log.error('image at %s for config %s is not an image'
+                      % (abs_url, config.pk))
+        if im.is_animated():
+            valid = False
+            log.error('image at %s for config %s is animated'
+                      % (abs_url, config.pk))
+        if valid:
+            img_format = im.img.format
+    return valid, img_format
+
+
+def _resize_image(old_im):
+    new_dest = tempfile.NamedTemporaryFile()
+    new_dest.close()
+    resize_image(old_im.name, new_dest.name,
+                 size=settings.INAPP_IMAGE_SIZE, locally=True)
+    return new_dest
+
+
+def _store_image(im_src, product, read_size):
+    with open(im_src.name, 'rb') as src:
+        with storage.open(product.path(), 'wb') as fp:
+            done = False
+            while not done:
+                chunk = src.read(read_size)
+                if not chunk:
+                    done = True
+                else:
+                    fp.write(chunk)

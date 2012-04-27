@@ -170,6 +170,13 @@ CELERY_ROUTES.update({
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/hub')
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
 
+# Directory path to where product images for in-app payments are stored.
+INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
+
+# Tuple of (x, y) pixel sizes that an in-app product image should be
+# resized to for display on the payment screen.
+INAPP_IMAGE_SIZE = (150, 150)
+
 # JWT identifier for this marketplace.
 # This is used for in-app payments in two ways.
 # 1. app must send JWTs with aud (the audience) set to this exact value.
