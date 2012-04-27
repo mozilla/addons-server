@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
+from django.utils.translation.trans_real import to_language
 
 import jingo
 
@@ -106,6 +107,19 @@ def details(request, addon_id, addon):
     form_previews = PreviewFormSet(request.POST or None, prefix='files',
                                    queryset=addon.previews.all())
 
+    # For empty webapp-locale (or no-locale) fields that have
+    # form-locale values, duplicate them to satisfy the requirement.
+    form_locale = request.COOKIES.get("current_locale", "")
+    app_locale = to_language(addon.default_locale)
+    for name, value in request.POST.items():
+        if value:
+            if name.endswith(form_locale):
+                basename = name[:-len(form_locale)]
+            else:
+                basename = name + '_'
+            othername = basename + app_locale
+            if not request.POST.get(othername, None):
+                request.POST[othername] = value
     forms = {
         'form_basic': form_basic,
         'form_devices': form_devices,

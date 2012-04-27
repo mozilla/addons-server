@@ -647,6 +647,17 @@ class TestDetails(TestSubmit):
         self.assertFormError(r, 'form_basic', 'privacy_policy',
                              'This field is required.')
 
+    def test_clashing_locale(self):
+        self.webapp.default_locale = 'de'
+        self.webapp.save()
+        self._step()
+        self.client.cookies['current_locale'] = 'en-us'
+        r = self.client.post(self.url, self.get_dict(name=None, name_de="Test name",
+                                                     privacy_policy=None,
+                                                     **{'privacy_policy_en-us': 'XXX'}))
+        self.assertNoFormErrors(r)
+
+
     def test_homepage_url_optional(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(homepage=None))
