@@ -262,7 +262,7 @@ $(document).ready(function () {
         if ($.cookie('current_locale') != currentLocale &&
             currentLocale != dl) {
             $.cookie('current_locale', null);
-            $.cookie('current_locale', currentLocazle, {expires: 0});
+            $.cookie('current_locale', currentLocale, {expires: 0});
         }
     }
 
