@@ -21,7 +21,7 @@ class AccessWhitelist(amo.models.ModelBase):
     def matches(cls, email):
         """Loop through whitelist and find any matches."""
         for w in AccessWhitelist.objects.all():
-            for e in w.email.split('\n'):
+            for e in w.email.replace('\r').split('\n'):
                 # Asterisks become .+ so that we can match wildcards.
                 if re.match(re.escape(e).replace('\\*', '.+'), email):
                     return True

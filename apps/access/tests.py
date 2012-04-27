@@ -210,7 +210,7 @@ class TestAccessWhitelist(amo.tests.TestCase):
             '*@mozilla.*',
             '*igta*@mozilla.*',
             'cvan+me@not.legit.biz',
-            'me@gkoberger.net\nme@potch.com\nchris@*.com'
+            'me@gkoberger.net\nme@potch.com\r\nchris@*.com'
         ]
         for email in emails:
             AccessWhitelist.objects.create(email=email)
