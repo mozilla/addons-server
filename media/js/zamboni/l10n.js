@@ -88,7 +88,12 @@ $(document).ready(function () {
 
     $("#all_locales").delegate("a", "switch", switchLocale);
 
-    $(format("#all_locales a[href$='{0}']",[$.cookie('current_locale')])).trigger("switch");
+    // If the locale switcher is visible, use the cookie.
+    var initLocale = dl;
+    if ($('#l10n-menu:visible').length) {
+        initLocale = $.cookie('current_locale');
+    }
+    $(format("#all_locales a[href$='{0}']",[initLocale])).trigger("switch");
 
     function switchLocale(e) {
         e.preventDefault();
