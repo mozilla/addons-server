@@ -18,8 +18,10 @@ import M2Crypto
 from lib.crypto.receipt import cef, decode, sign
 
 # This has to be imported after the settings (utils).
+import receipts
+print receipts.__file__
+from receipts import certs
 from statsd import statsd
-import trunion_verify
 
 
 class VerificationError(Exception):
@@ -181,7 +183,7 @@ def decode_receipt(receipt):
     """
     with statsd.timer('services.decode'):
         if settings.SIGNING_SERVER_ACTIVE:
-            verifier = trunion_verify.ReceiptVerifier()
+            verifier = certs.ReceiptVerifier()
             if not verifier.verify(receipt):
                 raise VerificationError()
             return jwt.decode(receipt.split('~')[1], verify=False)

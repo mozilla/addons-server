@@ -15,6 +15,7 @@ for path in [
              '../../vendor/src/tower',
              '../../vendor/src/pyjwt',
              '../../vendor/src/requests',
+             '../../vendor/src/receipts',
              '../../lib',
              '../../vendor/lib/python',
              '../../apps']:
