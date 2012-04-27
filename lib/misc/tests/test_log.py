@@ -3,7 +3,6 @@ import logging
 import sys
 
 from django.conf import settings
-from django.core import mail
 
 from mock import Mock, patch
 from nose.tools import eq_
@@ -29,22 +28,14 @@ cfg = {
             'class': 'lib.misc.admin_log.ErrorSyslogHandler',
             'formatter': 'error',
         },
-        'test_mail_admins': {
-            'class': 'lib.misc.admin_log.AdminEmailHandler'
-        },
         'test_statsd_handler': {
             'class': 'lib.misc.admin_log.StatsdHandler',
         },
-        'test_arecibo_handler': {
-            'class': 'lib.misc.admin_log.AreciboHandler',
-        }
     },
     'loggers': {
         'test.lib.misc.logging': {
-            'handlers': ['test_mail_admins',
-                         'test_syslog',
-                         'test_statsd_handler',
-                         'test_arecibo_handler'],
+            'handlers': ['test_syslog',
+                         'test_statsd_handler'],
             'level': 'ERROR',
             'propagate': False,
         },
@@ -88,17 +79,14 @@ class TestErrorLog(amo.tests.TestCase):
         assert not et.should_email(self.fake_record(self.io_error()))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
     def test_called_email(self, emitted):
         self.log.error('blargh!',
                        exc_info=self.division_error(),
                        extra={'request': self.request})
         eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['adminemailhandler', 'errorsysloghandler',
-                 'statsdhandler', 'arecibohandler']))
+            set(['statsdhandler', 'errorsysloghandler']))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
     def test_called_no_email(self, emitted):
         self.log.error('blargh!',
                        exc_info=self.io_error(),
@@ -107,25 +95,14 @@ class TestErrorLog(amo.tests.TestCase):
             set(['errorsysloghandler', 'statsdhandler']))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
     def test_no_exc_info_request(self, emitted):
         self.log.error('blargh!')
         eq_(set([n[0][0] for n in emitted.call_args_list]),
             set(['errorsysloghandler']))
 
     @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
     def test_no_request(self, emitted):
         self.log.error('blargh!',
                        exc_info=self.io_error())
         eq_(set([n[0][0] for n in emitted.call_args_list]),
             set(['errorsysloghandler', 'statsdhandler']))
-
-    @patch('lib.misc.admin_log.ErrorTypeHandler.emitted')
-    @patch.object(settings, 'ARECIBO_SERVER_URL', 'something')
-    def test_no_request(self, emitted):
-        self.log.error('blargh!',
-                       exc_info=self.division_error())
-        eq_(set([n[0][0] for n in emitted.call_args_list]),
-            set(['errorsysloghandler', 'statsdhandler',
-                 'adminemailhandler']))

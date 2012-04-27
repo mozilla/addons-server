@@ -55,17 +55,9 @@ handlers = {
     'null': {
         'class': 'lib.misc.admin_log.NullHandler',
     },
-    'mail_admins': {
-        'level': 'ERROR',
-        'class': 'lib.misc.admin_log.AdminEmailHandler'
-    },
     'statsd': {
         'level': 'ERROR',
         'class': 'lib.misc.admin_log.StatsdHandler',
-    },
-    'arecibo': {
-        'level': 'ERROR',
-        'class': 'lib.misc.admin_log.AreciboHandler',
     },
     'errortype_syslog': {
         'class': 'lib.misc.admin_log.ErrorSyslogHandler',
@@ -78,13 +70,12 @@ loggers = {
     'z': {},
     'django.request': {
         # Note these handlers will choose what they want to emit and when.
-        'handlers': ['mail_admins', 'errortype_syslog',
-                     'statsd', 'arecibo'],
+        'handlers': ['errortype_syslog', 'statsd'],
         'level': 'ERROR',
         'propagate': True,
     },
     'z.celery': {
-        'handlers': ['mail_admins', 'errortype_syslog', 'statsd'],
+        'handlers': ['errortype_syslog', 'statsd'],
         'level': 'ERROR',
         'propagate': True,
     },

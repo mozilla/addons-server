@@ -26,9 +26,6 @@ import logging
 import traceback
 
 from django.conf import settings
-from django.core import mail
-
-from django_arecibo.tasks import post
 from django_statsd.clients import statsd
 from unicode_log import UnicodeHandler
 
@@ -83,19 +80,6 @@ class StatsdHandler(ErrorTypeHandler):
         self.emitted(self.__class__.__name__.lower())
 
 
-class AreciboHandler(ErrorTypeHandler):
-    """Send error to Arecibo, only if we are also emailing it."""
-
-    def emit(self, record):
-        arecibo = getattr(settings, 'ARECIBO_SERVER_URL', '')
-        if (not self.should_email(record) or not arecibo
-            or not getattr(record, 'request', None)):
-            return
-
-        post(record.request, 500)
-        self.emitted(self.__class__.__name__.lower())
-
-
 class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
     """
     Send error to syslog, only if we aren't mailing it. If there is no
@@ -109,42 +93,6 @@ class ErrorSyslogHandler(UnicodeHandler, ErrorTypeHandler):
             record.request_path = record.request.path
 
         UnicodeHandler.emit(self, record)
-        self.emitted(self.__class__.__name__.lower())
-
-
-class AdminEmailHandler(ErrorTypeHandler):
-    """An exception log handler that emails log entries to site admins."""
-
-    def __init__(self, include_html=False):
-        logging.Handler.__init__(self)
-        self.include_html = include_html
-
-    def emit(self, record):
-        if not self.should_email(record):
-            return
-
-        try:
-            request = record.request
-            subject = '%s (%s IP): %s' % (record.levelname,
-                (request.META.get('REMOTE_ADDR') in settings.INTERNAL_IPS and
-                 'internal' or 'EXTERNAL'),
-                record.msg
-            )
-            request_repr = repr(request)
-        except:
-            subject = '%s: %s' % (record.levelname, record.getMessage())
-            request = None
-            request_repr = "Request repr() unavailable."
-
-        if record.exc_info:
-            stack_trace = '\n'.join(traceback
-                                    .format_exception(*record.exc_info))
-        else:
-            stack_trace = 'No stack trace available'
-
-        message = "%s\n\n%s" % (stack_trace, request_repr)
-        mail.mail_admins(subject, message, fail_silently=True)
-
         self.emitted(self.__class__.__name__.lower())
 
 
