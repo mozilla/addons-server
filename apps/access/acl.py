@@ -106,7 +106,14 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
                                 addonuser__role__in=roles).exists()
 
 
-def check_reviewer(request):
-    return (action_allowed(request, 'Addons', 'Review') or
-            action_allowed(request, 'Apps', 'Review') or
-            action_allowed(request, 'Personas', 'Review'))
+def check_reviewer(request, only=None):
+    addon = action_allowed(request, 'Addons', 'Review')
+    app = action_allowed(request, 'Apps', 'Review')
+    persona = action_allowed(request, 'Personas', 'Review')
+    if only == 'addon' and addon:
+        return True
+    elif only == 'app' and app:
+        return True
+    elif only == 'persona' and persona:
+        return True
+    return addon or app or persona

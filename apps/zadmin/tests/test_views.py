@@ -4,7 +4,6 @@ from cStringIO import StringIO
 from datetime import datetime
 import json
 
-from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -20,6 +19,7 @@ import amo.tests
 from amo.tests import (formset, initial, close_to_now, assert_required,
                        assert_no_validation_errors)
 from amo.urlresolvers import reverse
+from access.models import Group, GroupUser
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from applications.models import AppVersion
 from bandwagon.models import FeaturedCollection, MonthlyPick
@@ -32,8 +32,7 @@ from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
 from zadmin import forms
-from zadmin.models import (EmailPreviewTopic, SiteEvent, ValidationJob,
-                           ValidationResult)
+from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
 from zadmin.views import completed_versions_dirty, find_files
 from zadmin import tasks
 
@@ -1110,12 +1109,6 @@ class TestTallyValidationErrors(BulkValidationTest):
         tasks.tally_validation_results(job.pk, data_str)
 
 
-def test_settings():
-    # Are you there, settings page?
-    response = test.Client().get(reverse('zadmin.settings'), follow=True)
-    eq_(response.status_code, 200)
-
-
 class TestEmailPreview(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -1831,3 +1824,52 @@ class TestEmailDevs(amo.tests.TestCase):
         res = self.post()
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
+
+
+class TestPerms(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        user = UserProfile.objects.get(email='clouserw@gmail.com')
+        group = Group.objects.create(name='Developers',
+                                     rules='AdminTools:View')
+        GroupUser.objects.create(user=user, group=group)
+
+    def test_admin_user(self):
+        # Admin should see views with Django's perm decorator and our own.
+        self.client.login(username='admin@mozilla.com',
+                          password='password')
+        # Uses @admin.site.admin_view.
+        r = self.client.get(reverse('zadmin.settings'))
+        eq_(r.status_code, 200)
+        # Uses any_permission_required.
+        r = self.client.get(reverse('zadmin.settings'))
+        eq_(r.status_code, 200)
+
+    def test_admin_settings(self):
+        # Unprivileged user.
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        r = self.client.get(reverse('zadmin.settings'))
+        eq_(r.status_code, 403)
+        self.client.logout()
+
+        # Privileged user.
+        self.client.login(username='clouserw@gmail.com',
+                          password='password')
+        r = self.client.get(reverse('zadmin.settings'))
+        eq_(r.status_code, 200)
+
+    def test_generate_error(self):
+        # Unprivileged user.
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        r = self.client.get(reverse('zadmin.generate-error'))
+        eq_(r.status_code, 403)
+        self.client.logout()
+
+        # Privileged user.
+        self.client.login(username='clouserw@gmail.com',
+                          password='password')
+        r = self.client.get(reverse('zadmin.generate-error'))
+        eq_(r.status_code, 200)

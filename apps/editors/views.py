@@ -19,8 +19,7 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
-from amo.decorators import (login_required, json_view, post_required,
-                            permission_required)
+from amo.decorators import json_view, login_required, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -39,8 +38,19 @@ from mkt.webapps.models import Webapp
 from zadmin.models import get_config, set_config
 
 
-def reviewer_required(func):
-    """Requires the user to be logged in as a reviewer or admin.
+def _view_on_get(request):
+    """Returns whether the user can access this page.
+
+    If the user is in a group with rule 'ReviewerTools:View' and the request is
+    a GET request, they are allowed to view.
+    """
+    return (request.method == 'GET' and
+            acl.action_allowed(request, 'ReviewerTools', 'View'))
+
+
+def reviewer_required(only=None):
+    """Requires the user to be logged in as a reviewer or admin, or allows
+    someone with rule 'ReviewerTools:View' for GET requests.
 
     Reviewer is someone who is in one of the groups with the following
     permissions:
@@ -49,17 +59,24 @@ def reviewer_required(func):
         Apps:Review
         Personas:Review
 
-    For finer grained access control, use one of the above rather than this
-    decorator.
+    If only is provided, it will only check for a certain type of reviewer.
+    Valid values for only are: addon, app, persona.
+
     """
-    @functools.wraps(func)
-    @login_required
-    def wrapper(request, *args, **kw):
-        if acl.check_reviewer(request):
-            return func(request, *args, **kw)
-        else:
-            return http.HttpResponseForbidden()
-    return wrapper
+    def decorator(f):
+        @login_required
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            if acl.check_reviewer(request, only) or _view_on_get(request):
+                return f(request, *args, **kw)
+            else:
+                return http.HttpResponseForbidden()
+        return wrapper
+    # If decorator has no args, and is "paren-less", it's callable.
+    if callable(only):
+        return decorator(only)
+    else:
+        return decorator
 
 
 def context(**kw):
@@ -378,7 +395,7 @@ def queue_moderated(request):
                                 search_form=None))
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required('app')
 def queue_apps(request):
     qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
     return _queue(request, WebappQueueTable, 'apps', qs=qs)
@@ -399,7 +416,7 @@ def review(request, addon):
     return _review(request, addon)
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required('app')
 @addon_view
 def app_review(request, addon):
     return _review(request, addon)

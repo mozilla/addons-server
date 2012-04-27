@@ -64,6 +64,22 @@ def permission_required(app, action):
     return decorator
 
 
+def any_permission_required(pairs):
+    """
+    If any permission passes, call the function. Otherwise raise 403.
+    """
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            from access import acl
+            for app, action in pairs:
+                if acl.action_allowed(request, app, action):
+                    return f(request, *args, **kw)
+            return http.HttpResponseForbidden()
+        return wrapper
+    return decorator
+
+
 def modal_view(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):

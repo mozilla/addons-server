@@ -35,7 +35,8 @@ import files.tasks
 import files.utils
 import users.cron
 from amo import messages, get_user
-from amo.decorators import login_required, json_view, post_required
+from amo.decorators import (any_permission_required, json_view,
+                            login_required, post_required)
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from addons.decorators import addon_view
@@ -138,7 +139,8 @@ def hera(request):
                         {'form': form, 'boxes': boxes})
 
 
-@admin.site.admin_view
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View')])
 def settings(request):
     settings_dict = debug.get_safe_settings()
 
@@ -150,7 +152,8 @@ def settings(request):
     # Retain this so that legacy PAYPAL_CGI_AUTH variables in settings_local
     # are not exposed.
     for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH']:
-        settings_dict[i] = debug.cleanse_setting(i, getattr(site_settings, i))
+        settings_dict[i] = debug.cleanse_setting(i,
+                                                 getattr(site_settings, i, {}))
 
     settings_dict['WEBAPPS_RECEIPT_KEY'] = '********************'
 
@@ -815,7 +818,8 @@ def delete_site_event(request, event_id):
     return redirect('zadmin.site_events')
 
 
-@admin.site.admin_view
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View')])
 def generate_error(request):
     form = GenerateErrorForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
