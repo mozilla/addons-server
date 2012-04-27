@@ -148,6 +148,8 @@ NO_LOGIN_REQUIRED_MODULES = (
     'mkt.ecosystem.views',
     'mkt.site.views',
     'mkt.zadmin.views',
+    # in-app views have their own login protection.
+    'mkt.inapp_pay.views',
 )
 
 # Extend the bundles.
