@@ -238,7 +238,7 @@ class TestVerify(amo.tests.TestCase):
         eq_(result['typ'], u'purchase-receipt')
 
     @mock.patch('services.verify.settings')
-    @mock.patch('services.verify.trunion_verify.ReceiptVerifier')
+    @mock.patch('services.verify.receipts.certs.ReceiptVerifier')
     def test_crack_receipt_new_called(self, trunion_verify, settings):
         # Check that we can decode our receipt and get a dictionary back.
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
