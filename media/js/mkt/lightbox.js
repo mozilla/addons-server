@@ -116,10 +116,8 @@
         $lightbox.find('.next').click(_pd(showNext));
         $lightbox.find('.prev').click(_pd(showPrev));
         $previews.find('ul a').click(_pd(showLightbox));
-        $lightbox.click(_pd(function(e) {
-            if ($(e.target).is('.close, #lightbox')) {
-                hideLightbox();
-            }
+        $lightbox.find('.close').click(_pd(function(e) {
+            hideLightbox();
         }));
     });
 })();
