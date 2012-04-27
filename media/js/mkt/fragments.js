@@ -19,13 +19,21 @@
                 return;
             }
             e.preventDefault();
-            fetchFragment(href);
+            fetchFragment({path: href});
         });
 
-        function fetchFragment(href, popped) {
+        function markScrollTop() {
+            var path = window.location.pathname + window.location.search;
+            var state = {path: path, scrollTop: $(document).scrollTop()};
+            history.replaceState(state, false, path);
+        }
+
+        function fetchFragment(state, popped) {
+            var href = state.path;
+            markScrollTop();
             timeout = setTimeout(function() { $loading.addClass('active'); },
                                  threshold);
-            console.log(format('fetching {0}', href));
+            console.log(format('fetching {0} at {1}', href, state.scrollTop));
             $.get(href, function(d, textStatus, xhr) {
                 clearTimeout(timeout);
 
@@ -35,7 +43,8 @@
                     return;
                 }
 
-                if (!popped) history.pushState({path: href}, false, href);
+                var newState = {path: href, scrollTop: $(document).scrollTop()};
+                if (!popped) history.pushState(newState, false, href);
                 page.html(d).trigger('fragmentloaded');
 
                 // We so sneaky.
@@ -49,17 +58,17 @@
                 $bodyclass.remove();
 
                 _.delay(function() { $loading.removeClass('active'); }, 400);
-                $('html, body').animate({scrollTop: 0}, 200);
+                $('html, body').scrollTop(state.scrollTop || 0);
             });
         }
 
         $(window).on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
-                fetchFragment(state.path, true);
+                fetchFragment(state, true);
             }
         }).on('loadfragment', function(e, href) {
-            if (href) fetchFragment(href);
+            if (href) fetchFragment({path: href});
         });
 
         $(function() {
