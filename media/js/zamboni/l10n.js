@@ -254,8 +254,10 @@ $(document).ready(function () {
         $(format(".trans>:not([lang='{0}'])", currentLocale)).hide();
         $(format(".trans [lang='{0}']", currentLocale)).show();
         initCharCount();
-        if ($.cookie('current_locale') != currentLocale) {
-            $.cookie('current_locale', currentLocale, {expires: 0});
+        if ($.cookie('current_locale') != currentLocale &&
+            currentLocale != dl) {
+            $.cookie('current_locale', null);
+            $.cookie('current_locale', currentLocazle, {expires: 0});
         }
     }
 
