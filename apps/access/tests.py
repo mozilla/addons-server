@@ -199,6 +199,7 @@ class TestHasPerm(TestCase):
 
 
 class TestAccessWhitelist(amo.tests.TestCase):
+    fixtures = ['base/users']
 
     def test_matches(self):
         def matches(email, expected):
@@ -229,3 +230,27 @@ class TestAccessWhitelist(amo.tests.TestCase):
         matches('me@gkoberger.net', True)
         matches('me@potch.com', True)
         matches('chris@dekkostudios.com', True)
+
+    def test_post_save_with_empty_email(self):
+        with self.assertNumQueries(1):
+            # Exit post-save.
+            AccessWhitelist.objects.create(email='')
+
+    def test_post_save_invalidate_users(self):
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), False)
+
+        AccessWhitelist.objects.create(
+            email='regular@mozilla.com\r\nfligczar@gmail.com')
+
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), True)
+
+    def test_post_save_invalidate_correct_users(self):
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), False)
+
+        AccessWhitelist.objects.create(email='fligczar@gmail.com')
+
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), False)

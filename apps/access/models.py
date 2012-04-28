@@ -15,7 +15,7 @@ class AccessWhitelist(amo.models.ModelBase):
         db_table = 'access_whitelist'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.id, self.email[:20])
+        return u'%s: %s...' % (self.id, self.email[:30])
 
     @classmethod
     def matches(cls, email):
@@ -26,6 +26,17 @@ class AccessWhitelist(amo.models.ModelBase):
                 if re.match(re.escape(e).replace('\\*', '.+'), email):
                     return True
         return False
+
+
+@dispatch.receiver(signals.post_save, sender=AccessWhitelist,
+                   dispatch_uid='accesswhitelist.post_save')
+def accesswhitelist_post_save(sender, instance, **kw):
+    if not kw.get('raw') and instance.email:
+        from users.models import UserProfile
+        emails = instance.email.replace('\r', '').split('\n')
+        # Invalidate users.
+        for user in UserProfile.objects.filter(email__in=emails):
+            user.save()
 
 
 class Group(amo.models.ModelBase):
