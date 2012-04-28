@@ -71,7 +71,7 @@
         position: absolute;
         visibility: hidden;
         top: 32px;
-        right: 0;
+        right: -15px;
         .width(3);
         z-index: 9001;
         &.active {
@@ -85,12 +85,12 @@
             .transform(~'rotate(45deg)');
             background: @white;
             content: "";
-            height: 12px;
+            height: 14px;
             position: absolute;
-            top: -5px;
-            right: 13px;
+            top: -7px;
+            right: 22px;
             z-index: 0;
-            width: 12px;
+            width: 14px;
         }
         li:first-child a:hover:before,
         li:first-child a:active:before {
@@ -111,13 +111,13 @@
             }
         }
         a, a:after {
-            height: 30px;
+            height: 35px;
         }
         a {
             color: @link;
             display: block;
             font-size: 15px;
-            line-height: 30px;
+            line-height: 35px;
             padding: 0 15px;
             position: relative;
             z-index: 2;
