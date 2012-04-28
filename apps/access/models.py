@@ -32,11 +32,14 @@ class AccessWhitelist(amo.models.ModelBase):
                    dispatch_uid='accesswhitelist.post_save')
 def accesswhitelist_post_save(sender, instance, **kw):
     if not kw.get('raw') and instance.email:
+        from amo.utils import chunked
         from users.models import UserProfile
-        emails = instance.email.replace('\r', '').split('\n')
-        # Invalidate users.
-        for user in UserProfile.objects.filter(email__in=emails):
-            user.save()
+        # Invalidate all users whose emails match the whitelisted patterns.
+        users = UserProfile.objects.filter(notes='__market__')
+        for chunk in chunked(users, 150):
+            for user in chunk:
+                if AccessWhitelist.matches(user.email):
+                    user.save()
 
 
 class Group(amo.models.ModelBase):

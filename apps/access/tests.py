@@ -239,6 +239,7 @@ class TestAccessWhitelist(amo.tests.TestCase):
     def test_post_save_invalidate_users(self):
         u = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(amo.tests.close_to_now(u.modified), False)
+        u.update(notes='__market__')
 
         AccessWhitelist.objects.create(
             email='regular@mozilla.com\r\nfligczar@gmail.com')
@@ -249,8 +250,20 @@ class TestAccessWhitelist(amo.tests.TestCase):
     def test_post_save_invalidate_correct_users(self):
         u = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(amo.tests.close_to_now(u.modified), False)
+        u.update(notes='__market__')
 
-        AccessWhitelist.objects.create(email='fligczar@gmail.com')
+        AccessWhitelist.objects.create(
+            email='regular@*.com\r\nfligczar@gmail.com')
 
         u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), True)
+
+    def test_post_save_skip_amo_users(self):
+        a = AccessWhitelist.objects.create(email='regular@mozilla.*')
+        u = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(amo.tests.close_to_now(u.modified), False)
+
+        u.update(notes='__market__')
+        a.save()
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), True)
