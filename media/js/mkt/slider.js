@@ -66,18 +66,17 @@ function slider() {
 }
 
 z.page.on('fragmentloaded', function() {
-    function itemsPerPage($item) {
-        var contWidth = $item.closest('.promo-slider').width();
+    function itemsPerPage($li) {
+        var contWidth = $li.closest('.promo-slider').width();
         if (!contWidth) {
-            contWidth = $item.closest('.alt-slider').width();
+            contWidth = $li.closest('.alt-slider').width();
         }
-        return Math.floor(contWidth / $item.outerWidth(true));
+        return Math.floor(contWidth / $li.outerWidth(true));
     }
 
-    function numPages($list) {
-        var $item = $list.find('li'),
-            rawVal = $item.length / itemsPerPage($item),
-            floorVal = Math.floor($item.length / itemsPerPage($item));
+    function numPages($li, perPage) {
+        var rawVal = $li.length / perPage,
+            floorVal = Math.floor($li.length / perPage);
         return rawVal == floorVal ? floorVal - 1 : floorVal;
     }
 
@@ -89,13 +88,25 @@ z.page.on('fragmentloaded', function() {
                 $this = $(this),
                 $nextLink = $('.next-page', $this),
                 $prevLink = $('.prev-page', $this),
-                maxPage = numPages($this.find('ul'));
+                $li = $('li', $this),
+                perPage = itemsPerPage($li),
+                maxPage = numPages($li, perPage);
 
             $prevLink.click(_pd(prevPage));
             $nextLink.click(_pd(nextPage));
 
+            var showNext = false,
+                $window = $(window),
+                fold = $window.width() + $window.scrollLeft();
+            $li.each(function() {
+                var $this = $(this);
+                // Check if this item is off screen!
+                if ($this.offset().left + $this.outerWidth() > fold) {
+                    return showNext = true;
+                }
+            });
             // Show "next" arrow if there is at least one page.
-            $nextLink.toggleClass('show', !!maxPage);
+            $nextLink.toggleClass('show', showNext && !!maxPage);
 
             gotoPage(0);
 
@@ -103,10 +114,7 @@ z.page.on('fragmentloaded', function() {
                 if (n < 0 || n > maxPage) {
                     return;
                 }
-                $item = $this.find('ul li');
-                var $item = $this.find('ul li'),
-                    perPage = itemsPerPage($item),
-                    val = n * perPage * $item.outerWidth(true);
+                var val = n * perPage * $li.outerWidth(true);
                 // Have no idea why the magic number is needed.
                 val += n * (perPage + ($this.hasClass('categories') ? 14 : 7));
                 currentPage = n;
