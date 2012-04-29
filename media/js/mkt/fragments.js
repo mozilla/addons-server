@@ -52,10 +52,14 @@
                 document.title = $title.text();
                 $title.remove();
 
-                var $bodyclass = page.find('meta[name=bodyclass]'),
-                    $body = $('body');
-                $body.attr('class', $body.data('class') + ' ' + $bodyclass.attr('content'));
-                $bodyclass.remove();
+                // We so classy.
+                var $body = $('body');
+                if ($body.data('class')) {
+                    var $newclass = page.find('meta[name=bodyclass]');
+                    $body.attr('class', $body.data('class') + ' ' +
+                                        $newclass.attr('content'));
+                    $newclass.remove();
+                }
 
                 _.delay(function() { $loading.removeClass('active'); }, 400);
                 $('html, body').scrollTop(state.scrollTop || 0);

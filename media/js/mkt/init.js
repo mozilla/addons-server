@@ -74,11 +74,13 @@ z.page.on('fragmentloaded', function() {
         $(window).trigger('app_install_disabled');
     }
 
-    var $body = $('body');
-    // Add class for touch devices.
-    $body.addClass(z.capabilities.touch ? 'touch' : 'desktop');
-    // Store baseline classes.
-    $body.data('class', $body.attr('class'));
+    // Set body classes and store baseline classes in $('body').data for
+    // fragment-loading jazz.
+    var $body = $('body'),
+        baseline = $body.attr('class').split(' ')[0],
+        device = z.capabilities.touch ? 'touch' : 'desktop';
+    baseline += ' ' + device;
+    $body.data('class', baseline).addClass(device);
 
     // Navigation toggle.
     var $header = $('#site-header'),
