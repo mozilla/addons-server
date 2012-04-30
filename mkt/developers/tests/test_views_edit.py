@@ -196,10 +196,10 @@ class TestEditBasic(TestEdit):
         eq_(pq(r.content)('#manifest-url a').attr('href'),
             self.webapp.manifest_url)
 
-        # There should be a disabled text field.
+        # There should be a readonly text field.
         r = self.client.get(self.edit_url)
         row = pq(r.content)('#manifest-url')
-        eq_(row.find('input[name=manifest_url][disabled]').length, 1)
+        eq_(row.find('input[name=manifest_url][readonly]').length, 1)
 
         # POST with the new manifest URL.
         url = 'https://ballin.com/ballin4eva'
@@ -224,7 +224,7 @@ class TestEditBasic(TestEdit):
         r = self.client.get(self.edit_url)
         row = pq(r.content)('#manifest-url')
         eq_(row.find('input[name=manifest_url]').length, 1)
-        eq_(row.find('input[name=manifest_url][disabled]').length, 0)
+        eq_(row.find('input[name=manifest_url][readonly]').length, 0)
 
         # POST with the new manifest URL.
         url = 'https://ballin.com/ballin4eva.webapp'

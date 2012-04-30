@@ -56,7 +56,7 @@
           <th class="label">{{ _('Manifest URL') }}</th>
           <td>
             {% if editable %}
-              <input type="text" name="manifest_url"{% if not action_allowed('Admin', '%') %} disabled{% endif %} value="{{ addon.manifest_url }}">
+              <input type="text" name="manifest_url"{% if not action_allowed('Admin', '%') %} readonly{% endif %} value="{{ addon.manifest_url }}">
               <p class="note">
                 {% with email='app-reviews@mozilla.org' %}
                   Manifest URLs cannot be changed after your app has been
