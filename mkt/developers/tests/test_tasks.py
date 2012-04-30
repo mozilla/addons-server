@@ -330,3 +330,13 @@ class TestFetchIcon(BaseWebAppTest):
         eq_(webapp.icon_type, self.content_type)
 
         self.check_icons(webapp)
+
+    @mock.patch('mkt.developers.tasks._fetch_content')
+    def test_cdn_icon(self, fetch):
+        response = mock.Mock()
+        response.read.return_value = ''
+        webapp = {'icons': {'128': 'http://foo.com/bar'}}
+
+        fetch.return_value = response
+        tasks.fetch_icon(webapp)
+        assert 'https://marketplace' in fetch.call_args[0][0]

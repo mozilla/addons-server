@@ -8,6 +8,7 @@ import socket
 import sys
 import traceback
 import urllib2
+import urlparse
 import uuid
 
 from django.conf import settings
@@ -342,8 +343,11 @@ def fetch_icon(webapp, **kw):
         image_string = icon_url.split('base64,')[1]
         content = base64.decodestring(image_string)
     else:
+        if not urlparse.urlparse(icon_url).scheme:
+            icon_url = webapp.origin + icon_url
+
         try:
-            response = _fetch_content(webapp.origin + icon_url)
+            response = _fetch_content(icon_url)
         except Exception, e:
             log.error('Failed to fetch icon for webapp %s: %s'
                       % (webapp.pk, e.message))
