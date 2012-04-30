@@ -365,6 +365,16 @@ class TestDetailPagePermissions(DetailBase):
         assert 'awaiting review' in msg, (
             'Expected something about it being pending: %s' % msg)
 
+    def test_public_waiting(self):
+        msg = self.get_msg(visible=False, status=amo.STATUS_PUBLIC_WAITING)
+        txt = msg.text()
+        assert 'approved' in txt and 'unavailable' in txt, (
+            'Expected something about it being approved and unavailable: %s' %
+            txt)
+        url = self.webapp.get_dev_url('versions')
+        eq_(msg.find('a[href="%s"]' % url).length, 0,
+            'There should be no Manage Status link')
+
     def test_disabled_by_mozilla(self):
         msg = self.get_msg(visible=False, status=amo.STATUS_DISABLED).text()
         assert 'disabled by Mozilla' in msg, (
@@ -404,6 +414,15 @@ class TestDetailPagePermissions(DetailBase):
         eq_(msg.find('a[href="%s"]' % url).length, 0,
             'There should be no Manage Status link')
 
+    def _test_dev_public_waiting(self):
+        # I'm a developer or an admin.
+        msg = self.get_msg(visible=True, status=amo.STATUS_PUBLIC_WAITING)
+        txt = msg.text()
+        assert ' approved ' and ' waiting ' in txt, (
+            'Expected something about it being approved and waiting: %s' % txt)
+        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+            'Expected a Manage Status link')
+
     def _test_dev_disabled_by_mozilla(self):
         # I'm a developer or an admin.
         msg = self.get_msg(visible=True, status=amo.STATUS_DISABLED)
@@ -434,6 +453,10 @@ class TestDetailPagePermissions(DetailBase):
         self.log_in_as('owner')
         self._test_dev_pending()
 
+    def test_owner_public_waiting(self):
+        self.log_in_as('owner')
+        self._test_dev_public_waiting()
+
     def test_owner_disabled_by_mozilla(self):
         self.log_in_as('owner')
         self._test_dev_disabled_by_mozilla()
@@ -453,6 +476,10 @@ class TestDetailPagePermissions(DetailBase):
     def test_admin_pending(self):
         self.log_in_as('admin')
         self._test_dev_pending()
+
+    def test_admin_public_waiting(self):
+        self.log_in_as('admin')
+        self._test_dev_public_waiting()
 
     def test_admin_disabled_by_mozilla(self):
         self.log_in_as('admin')

@@ -27,9 +27,15 @@
             {% endtrans %}
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
-              This app is <b>awaiting review</b>.
+              This app is awaiting review.
             {% endtrans %}
             {{ _('You will receive an email when the review is complete.') }}
+          {% elif product.status == amo.STATUS_PUBLIC_WAITING %}
+            {% trans %}
+              Your app has been approved but is not public. It is waiting your
+              approval to make public. To enable it, visit its
+              <a href="{{ status_url }}">Manage Status page</a>.
+            {% endtrans %}
           {% elif product.status == amo.STATUS_REJECTED %}
             {% trans %}
               This app is currently rejected and invisible to other users.
@@ -51,11 +57,20 @@
         {% else %}
           {% if product.status == amo.STATUS_NULL %}
             {% trans %}
-              This app is <b>incomplete</b>.
+              This app is incomplete.
             {% endtrans %}
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
-              This app is <b>awaiting review</b>.
+              This app is awaiting review.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_PENDING %}
+            {% trans %}
+              This app is approved but is not public.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_PUBLIC_WAITING %}
+            {% trans %}
+              This has has been approved but is unavailable until its developer
+              makes it public.
             {% endtrans %}
           {% elif product.status == amo.STATUS_REJECTED %}
             {% trans %}

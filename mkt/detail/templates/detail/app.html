@@ -213,11 +213,13 @@
       {% endif %}
       <li class="more-info">
         <h3>{{ _('More Info') }}</h3>
-        <p class="privacy">
-          <a href="{{ product.get_detail_url('privacy') }}">
-            {{ _('Privacy Policy') }}
-          </a>
-        </p>
+        {% if product.privacy_policy and (product.is_public() or is_reviewer) %}
+          <p class="privacy">
+            <a href="{{ product.get_detail_url('privacy') }}">
+              {{ _('Privacy Policy') }}
+            </a>
+          </p>
+        {% endif %}
         {% if waffle.switch('app-stats') and product.public_stats %}
           <p class="view-stats">
             <a href="{{ url('mkt.stats.overview', product.app_slug) }}">
