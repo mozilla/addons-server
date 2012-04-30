@@ -25,7 +25,7 @@ def global_settings(request):
         context['is_reviewer'] = acl.check_reviewer(request)
         if getattr(request, 'can_view_consumer', True):
             account_links = [
-                {'text': _('My Purchases'),
+                {'text': _('Account History'),
                  'href': reverse('account.purchases')},
                 {'text': _('Account Settings'),
                  'href': reverse('account.settings')},
