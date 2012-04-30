@@ -164,17 +164,6 @@ def enable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required(owner_for_post=True)
-def cancel(request, addon_id, addon):
-    if addon.status in amo.STATUS_UNDER_REVIEW:
-        if addon.status == amo.STATUS_LITE_AND_NOMINATED:
-            addon.update(status=amo.STATUS_LITE)
-        else:
-            addon.update(status=amo.STATUS_NULL)
-        amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-    return redirect(addon.get_dev_url('versions'))
-
-
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
@@ -1100,40 +1089,11 @@ def marketplace_confirm(request, addon_id, addon, webapp=False):
 @dev_required
 @post_required
 def remove_locale(request, addon_id, addon):
-    POST = request.POST
-    if 'locale' in POST and POST['locale'] != addon.default_locale:
-        addon.remove_locale(POST['locale'])
+    locale = request.POST.get('locale')
+    if locale and locale != addon.default_locale:
+        addon.remove_locale(locale)
         return http.HttpResponse()
     return http.HttpResponseBadRequest()
-
-
-# You can only request one of the new review tracks.
-REQUEST_REVIEW = (amo.STATUS_PUBLIC, amo.STATUS_LITE)
-
-
-@dev_required
-@post_required
-def request_review(request, addon_id, addon, status):
-    status_req = int(status)
-    if status_req not in addon.can_request_review():
-        return http.HttpResponseBadRequest()
-    elif status_req == amo.STATUS_PUBLIC:
-        if addon.status == amo.STATUS_LITE:
-            new_status = amo.STATUS_LITE_AND_NOMINATED
-        else:
-            new_status = amo.STATUS_NOMINATED
-    elif status_req == amo.STATUS_LITE:
-        if addon.status in (amo.STATUS_PUBLIC, amo.STATUS_LITE_AND_NOMINATED):
-            new_status = amo.STATUS_LITE
-        else:
-            new_status = amo.STATUS_UNREVIEWED
-
-    addon.update(status=new_status)
-    msg = {amo.STATUS_LITE: _('Preliminary Review Requested.'),
-           amo.STATUS_PUBLIC: _('Full Review Requested.')}
-    messages.success(request, msg[status_req])
-    amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-    return redirect(addon.get_dev_url('versions'))
 
 
 def docs(request, doc_name=None, doc_page=None):
