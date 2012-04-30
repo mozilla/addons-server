@@ -7,7 +7,8 @@
         $def,
         message = $('#purchased-message'),
         messageTemplate = template($('#purchased-template').html()),
-        data = {'currency': $('body').data('user').currency};
+        data = {'currency': $('body').data('user').currency},
+        oneTimePayClicked = false;
 
     function beginPurchase(prod) {
         if (!prod) return;
@@ -17,6 +18,7 @@
         }
         $def = $.Deferred();
         product = prod;
+        oneTimePayClicked = false;
 
         // If the user is pre-authed, just call PayPal right away.
         if (z.pre_auth) {
@@ -142,6 +144,10 @@
 
     function startPayment(e) {
         if (e && e.preventDefault) e.preventDefault();
+        if (oneTimePayClicked) {
+            return;
+        }
+        oneTimePayClicked = true;
         $.when(doPaypal(product))
          .then(completePurchase);
     }
