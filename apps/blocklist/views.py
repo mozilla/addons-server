@@ -1,13 +1,11 @@
 import base64
 import collections
 import hashlib
-from datetime import datetime, timedelta
+from datetime import datetime
 from operator import attrgetter
 import time
-import uuid
 
 from django.core.cache import cache
-from django.conf import settings
 from django.db.models import Q, signals as db_signals
 from django.shortcuts import get_object_or_404
 from django.utils.cache import patch_cache_control
@@ -19,8 +17,8 @@ import redisutils
 from amo.utils import sorted_groupby
 from amo.tasks import flush_front_end_cache_urls
 from versions.compare import version_int
-from .models import (BlocklistItem, BlocklistPlugin, BlocklistGfx,
-                     BlocklistApp, BlocklistDetail, BlocklistCA)
+from .models import (BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx,
+                     BlocklistItem, BlocklistPlugin)
 
 
 App = collections.namedtuple('App', 'guid min max')
@@ -78,7 +76,7 @@ def clear_blocklist(*args, **kw):
 
 
 for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,
-          BlocklistCA):
+          BlocklistCA, BlocklistDetail):
     db_signals.post_save.connect(clear_blocklist, sender=m,
                                  dispatch_uid='save_%s' % m)
     db_signals.post_delete.connect(clear_blocklist, sender=m,
