@@ -343,3 +343,32 @@ body {
         }
     }
 }
+
+@media (max-width: 800px) {
+   #site-header {
+        &:after {
+            height: 8px;
+            top: -28px;
+        }
+        a:first-child {
+            margin: 0;
+        }
+        nav {
+            clear: both;
+            padding: 0;
+            text-align: left;
+            z-index: 1;
+        }
+    }
+    #tutorial {
+        nav img {
+            display: none;
+        }
+        #content {
+            width: 100%;
+        }
+        #mdn-content, #sidebar {
+            margin-left: 0;
+        }
+    }
+}

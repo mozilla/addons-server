@@ -195,6 +195,7 @@ def admin_site_links():
         'tools': [
             ('View request environment', reverse('amo.env')),
             ('Manage elasticsearch', reverse('zadmin.elastic')),
+            ('Manage EcoSystem', reverse('mkt.zadmin.ecosystem')),
             ('View celery stats', reverse('zadmin.celery')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Purge pages from zeus', reverse('zadmin.hera')),

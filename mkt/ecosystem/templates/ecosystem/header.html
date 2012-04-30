@@ -1,22 +1,22 @@
 <header id="site-header">
   <section>
     <div class="wrapper">
-    <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
-    <nav>
-      {#
-        <a href="{{ url('ecosystem.tutorial') }}">Tutorials</a>
-      #}
+      <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
+      <nav>
+        {#
+          <a href="{{ url('ecosystem.tutorial') }}">Tutorials</a>
+        #}
 
-      {% if not request.user.is_authenticated() %}
-        <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Log in / Register</a>
-        <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
-      {% else %}
-       <a href="{{ url('submit.app') }}">Submit an App</a>
-       <a href="{{ url('mkt.developers.apps') }}">My Apps</a>
-       <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
-       <a href="{{ url('users.logout') }}">Logout</a>
-      {% endif %}
-    </nav>
+        {% if not request.user.is_authenticated() %}
+          <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">Log in / Register</a>
+          <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
+        {% else %}
+         <a href="{{ url('submit.app') }}">Submit an App</a>
+         <a href="{{ url('mkt.developers.apps') }}">My Apps</a>
+         <a class="external" href="https://developer.mozilla.org/en-US/apps">Reference</a>
+         <a href="{{ url('users.logout') }}">Logout</a>
+        {% endif %}
+      </nav>
     </div>
   </section>
 </header>

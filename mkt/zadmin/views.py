@@ -9,6 +9,8 @@ from amo.decorators import write
 from amo.urlresolvers import reverse
 from bandwagon.models import CollectionAddon
 
+from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
+from mkt.ecosystem.models import MdnCache
 from mkt.webapps.models import Webapp
 
 
@@ -41,3 +43,18 @@ def featured_apps_admin(request):
         'home_featured': enumerate(home_collection.addons.all()),
         'category_featured': enumerate(category_collection.addons.all())
     })
+
+
+@admin.site.admin_view
+def ecosystem(request):
+    if request.method == 'POST':
+        refresh_mdn_cache()
+        return redirect(request.path)
+
+    pages = MdnCache.objects.all()
+    ctx = {
+        'pages': pages,
+        'tutorials': tutorials
+    }
+
+    return jingo.render(request, 'zadmin/ecosystem.html', ctx)
