@@ -349,9 +349,11 @@ class TestDetailPagePermissions(DetailBase):
         eq_(r.status_code, 404)
 
     def test_incomplete(self):
-        msg = self.get_msg(visible=False, status=amo.STATUS_NULL).text()
-        assert 'incomplete' in msg, (
-            'Expected something about it being incomplete: %s' % msg)
+        msg = self.get_msg(visible=False, status=amo.STATUS_NULL)
+        txt = msg.text()
+        assert 'incomplete' in txt, (
+            'Expected something about it being incomplete: %s' % txt)
+        eq_(msg.find('a').length, 0)
 
     def test_rejected(self):
         msg = self.get_msg(visible=False, status=amo.STATUS_REJECTED).text()
@@ -372,6 +374,16 @@ class TestDetailPagePermissions(DetailBase):
         msg = self.get_msg(visible=False, disabled_by_user=True).text()
         assert 'disabled by its developer' in msg, (
             'Expected something about it being disabled: %s' % msg)
+
+    def _test_dev_incomplete(self):
+        # I'm a developer or admin.
+        msg = self.get_msg(visible=True, status=amo.STATUS_NULL)
+        txt = msg.text()
+        assert 'incomplete' in txt, (
+            'Expected something about it being incomplete: %s' % txt)
+        eq_(msg.find('a').attr('href'),
+            reverse('submit.app.resume', args=[self.webapp.app_slug]),
+            'Expected a Resume App link')
 
     def _test_dev_rejected(self):
         # I'm a developer or admin.
@@ -410,6 +422,10 @@ class TestDetailPagePermissions(DetailBase):
         eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
             'Expected a Manage Status link')
 
+    def test_owner_incomplete(self):
+        self.log_in_as('owner')
+        self._test_dev_incomplete()
+
     def test_owner_rejected(self):
         self.log_in_as('owner')
         self._test_dev_rejected()
@@ -425,6 +441,10 @@ class TestDetailPagePermissions(DetailBase):
     def test_owner_disabled_by_user(self):
         self.log_in_as('owner')
         self._test_dev_disabled_by_user()
+
+    def test_admin_incomplete(self):
+        self.log_in_as('admin')
+        self._test_dev_incomplete()
 
     def test_admin_rejected(self):
         self.log_in_as('admin')

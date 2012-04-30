@@ -21,10 +21,9 @@
         {% if is_dev or is_admin %}
           {% set status_url = product.get_dev_url('versions') %}
           {% if product.status == amo.STATUS_NULL %}
-            {% trans %}
+            {% trans resume_url=url('submit.app.resume', product.app_slug) %}
               This app is currently incomplete and invisible to other users.
-              To complete your submission, visit its
-              <a href="{{ status_url }}">Manage Status page</a>.
+              <a href="{{ resume_url }}">Please complete your submission.</a>
             {% endtrans %}
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
@@ -54,8 +53,6 @@
             {% trans %}
               This app is <b>incomplete</b>.
             {% endtrans %}
-            <a href="{{ url('submit.app.resume', product.app_slug) }}"
-               target="_blank">{{ _('Please complete your app.') }}</a>
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
               This app is <b>awaiting review</b>.
