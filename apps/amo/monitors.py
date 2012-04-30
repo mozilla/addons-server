@@ -11,7 +11,6 @@ from django.conf import settings
 import commonware.log
 import elasticutils
 
-from hera.contrib.django_utils import get_hera
 from applications.management.commands import dump_apps
 
 
@@ -163,22 +162,6 @@ def redis():
     status = all(i for i in redis_results.values())
 
     return status, redis_results
-
-
-def hera():
-    # Zeus is too slow right now to test HERA. We can remove this line once it has been fixed.
-    return True, []
-
-    hera_results = []
-    status = True
-    for i in settings.HERA:
-        r = {'location': urlparse(i['LOCATION'])[1],
-             'result': bool(get_hera(i))}
-        hera_results.append(r)
-        if not hera_results[-1]['result']:
-            status = False
-
-    return status, hera_results
 
 
 def signer():
