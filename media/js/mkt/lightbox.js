@@ -120,5 +120,10 @@
         $lightbox.find('.close').click(_pd(function(e) {
             hideLightbox();
         }));
+        $lightbox.click(function(e) {
+            if ($(e.target).parent('#page').length) {
+                hideLightbox();
+            }
+        });
     });
 })();
