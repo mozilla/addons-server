@@ -43,9 +43,6 @@ def pay_start(request, signed_req, pay_req):
                 signed_request=signed_req)
     tasks.fetch_product_image.delay(pay_req['_config'].pk,
                                     _serializable_req(pay_req))
-    if waffle.switch_is_active('in-app-payments-proto'):
-        return jingo.render(request, 'inapp_pay/prototype/pay_start.html',
-                            data)
     if not request.user.is_authenticated():
         return jingo.render(request, 'inapp_pay/login.html', data)
     preapproval = None
@@ -146,18 +143,13 @@ def pay(request, signed_req, pay_req):
     # Payment was completed using pre-auth. Woo!
     _payment_done(request, payment)
 
-    if waffle.switch_is_active('in-app-payments-proto'):
-        tpl = 'inapp_pay/prototype/complete.html'
-        c = {}
-    else:
-        tpl = 'inapp_pay/complete.html'
-        c = dict(price=pay_req['request']['price'],
-                 product=pay_req['_config'].addon,
-                 currency=pay_req['request']['currency'],
-                 item=pay_req['request']['name'],
-                 description=pay_req['request']['description'],
-                 signed_request=signed_req)
-    return jingo.render(request, tpl, c)
+    c = dict(price=pay_req['request']['price'],
+             product=pay_req['_config'].addon,
+             currency=pay_req['request']['currency'],
+             item=pay_req['request']['name'],
+             description=pay_req['request']['description'],
+             signed_request=signed_req)
+    return jingo.render(request, 'inapp_pay/complete.html', c)
 
 
 @xframe_allow
@@ -166,10 +158,7 @@ def pay(request, signed_req, pay_req):
 @write
 @waffle_switch('in-app-payments-ui')
 def pay_status(request, config_pk, status):
-    if waffle.switch_is_active('in-app-payments-proto'):
-        tpl_path = 'inapp_pay/prototype/'
-    else:
-        tpl_path = 'inapp_pay/'
+    tpl_path = 'inapp_pay/'
     with transaction.commit_on_success():
         cfg = get_object_or_404(InappConfig, pk=config_pk)
         uuid_ = None
