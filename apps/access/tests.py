@@ -247,7 +247,16 @@ class TestAccessWhitelist(amo.tests.TestCase):
         u = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(amo.tests.close_to_now(u.modified), True)
 
-    def test_post_save_invalidate_correct_users(self):
+    def test_post_save_invalidate_strict_users(self):
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), False)
+
+        AccessWhitelist.objects.create(email='regular@mozilla.com')
+
+        u = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(amo.tests.close_to_now(u.modified), True)
+
+    def test_post_save_invalidate_marketplace_users(self):
         u = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(amo.tests.close_to_now(u.modified), False)
         u.update(notes='__market__')
