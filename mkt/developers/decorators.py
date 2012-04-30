@@ -2,7 +2,6 @@ import functools
 
 from django import http
 from django.core.exceptions import ObjectDoesNotExist
-import waffle
 
 from amo.decorators import login_required
 from access import acl
@@ -69,8 +68,5 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
 # Mark a view as a web app
 def use_apps(f):
     def wrapper(request, *args, **kwargs):
-        # This should be set to True when the waffle
-        # flag is removed!
-        show_webapp = waffle.flag_is_active(request, 'accept-webapps')
-        return f(request, *args, webapp=show_webapp, **kwargs)
+        return f(request, *args, webapp=True, **kwargs)
     return wrapper

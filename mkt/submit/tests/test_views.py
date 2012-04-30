@@ -185,7 +185,6 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'submit', 'tests',
                                      'webapps', 'mozball.webapp')
         self.manifest_url = 'http://allizom.org/mozball.webapp'
@@ -333,7 +332,6 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_NULL)
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
@@ -652,11 +650,11 @@ class TestDetails(TestSubmit):
         self.webapp.save()
         self._step()
         self.client.cookies['current_locale'] = 'en-us'
-        r = self.client.post(self.url, self.get_dict(name=None, name_de="Test name",
-                                                     privacy_policy=None,
-                                                     **{'privacy_policy_en-us': 'XXX'}))
+        data = self.get_dict(name=None, name_de='Test name',
+                             privacy_policy=None,
+                             **{'privacy_policy_en-us': 'XXX'})
+        r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
-
 
     def test_homepage_url_optional(self):
         self._step()

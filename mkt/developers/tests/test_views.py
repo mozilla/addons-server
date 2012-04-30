@@ -94,7 +94,6 @@ class TestAppBreadcrumbs(AppHubTest):
 
     def setUp(self):
         super(TestAppBreadcrumbs, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def test_regular_breadcrumbs(self):
         r = self.client.get(reverse('submit.app'), follow=True)
@@ -124,7 +123,6 @@ class TestAppDashboard(AppHubTest):
 
     def setUp(self):
         super(TestAppDashboard, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
 
     def test_no_apps(self):
         Addon.objects.all().delete()
@@ -179,7 +177,6 @@ class TestManageLinks(AppHubTest):
 
     def setUp(self):
         super(TestManageLinks, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
 
     def test_refunds_link_support(self):
@@ -215,7 +212,6 @@ class TestAppDashboardSorting(AppHubTest):
         super(TestAppDashboardSorting, self).setUp()
         self.my_apps = self.user.addons
         self.url = reverse('mkt.developers.apps')
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         self.clone(3)
 
     def clone(self, num=3):
@@ -1275,7 +1271,6 @@ class BaseWebAppTest(BaseUploadTest, amo.tests.TestCase):
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
                                      'addons', 'mozball.webapp')
         self.upload = self.get_upload(abspath=self.manifest)
@@ -1343,7 +1338,6 @@ class TestDeleteApp(amo.tests.TestCase):
         self.versions_url = self.webapp.get_dev_url('versions')
         self.dev_url = reverse('mkt.developers.apps')
         self.client.login(username='admin@mozilla.com', password='password')
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
 
     def test_delete_nonincomplete(self):
