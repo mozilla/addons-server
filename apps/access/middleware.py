@@ -4,9 +4,13 @@ their ACLs into the request.
 """
 from functools import partial
 
+import commonware.log
+
 import amo
 from access import acl
 from users.models import RequestUser
+
+log = commonware.log.getLogger('z.access')
 
 
 class ACLMiddleware(object):
@@ -17,7 +21,13 @@ class ACLMiddleware(object):
 
         # figure out our list of groups...
         if request.user.is_authenticated():
-            amo_user = RequestUser.objects.get(pk=request.user.pk)
+            try:
+                amo_user = RequestUser.objects.get(pk=request.user.pk)
+            except RequestUser.DoesNotExist:
+                log.info('No RequestUser found for: %s' % request.user.pk)
+                request.amo_user = None
+                return
+
             amo.set_user(amo_user)
             request.user._profile_cache = request.amo_user = amo_user
             request.groups = request.amo_user.groups.all()
