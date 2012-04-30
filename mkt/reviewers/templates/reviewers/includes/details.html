@@ -5,6 +5,13 @@
   {% endif %}
   <h2>{{ _('Details') }}</h2>
   <dl>
+    <dt>{{ _('Manifest URL') }}</dt>
+    <dd>
+      <a href="{{ product.manifest_url }}" target="_blank">
+        {{ product.manifest_url }}</a>
+    </dd>
+    <dt>{{ _('Default Locale') }}</dt>
+    <dd>{{ product.default_locale }}</dd>
     <dt>{{ _('Price') }}</dt>
     <dd>{{ price(product) }}</dd>
     <dt>{{ _('Updated') }}</dt>
