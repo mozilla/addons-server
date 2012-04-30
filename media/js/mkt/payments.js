@@ -159,7 +159,10 @@
         });
 
         $(window).bind('purchaseerror.payments', function(e, p, error) {
-            $('#pay-error').show().find('div').text(error);
+            // PayPal iframe was dismissed by user.
+            if (error) {
+                $('#pay-error').show().find('div').text(error);
+            }
             cancelPurchase();
         });
 
