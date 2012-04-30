@@ -194,7 +194,7 @@
         "fields": {
             "locale": "",
             "collection_feature": 4,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 2,
             "created": "2010-01-05 18:16:52"
         }
@@ -205,7 +205,7 @@
         "fields": {
             "locale": "",
             "collection_feature": 1,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 37265,
             "created": "2010-01-05 18:16:11"
         }
@@ -216,7 +216,7 @@
         "fields": {
             "locale": "",
             "collection_feature": 2,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 33357,
             "created": "2009-09-18 12:14:09"
         }
@@ -227,7 +227,7 @@
         "fields": {
             "locale": "",
             "collection_feature": 3,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 10,
             "created": "2009-06-09 22:49:47"
         }
@@ -238,7 +238,7 @@
         "fields": {
             "locale": "",
             "collection_feature": 5,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 4,
             "created": "2009-06-09 22:49:15"
         }
@@ -353,7 +353,7 @@
         "fields": {
             "locale": "pt-BR",
             "collection_feature": 3,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 29294,
             "created": "2009-09-08 13:23:28"
         }
@@ -364,7 +364,7 @@
         "fields": {
             "locale": "pt-BR",
             "collection_feature": 2,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 24161,
             "created": "2009-09-08 13:22:44"
         }
@@ -375,7 +375,7 @@
         "fields": {
             "locale": "pt-BR",
             "collection_feature": 4,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 308,
             "created": "2009-09-08 13:21:54"
         }
@@ -386,7 +386,7 @@
         "fields": {
             "locale": "pt-BR",
             "collection_feature": 1,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "collection": 23926,
             "created": "2009-09-08 13:12:03"
         }

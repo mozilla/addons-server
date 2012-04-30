@@ -1,12 +1,14 @@
 [
     {
+        "pk": 4664,
+        "model": "translations.translation",
         "fields": {
             "locale": "en-US",
             "id": "4664",
-            "localized_string": "Embrace hug love hug meow meow"
-        },
-        "model": "translations.translation",
-        "pk": 4664
+            "localized_string": "Embrace hug love hug meow meow",
+            "created": "2007-03-17 05:29:25",
+            "modified": "2010-04-14 08:24:16"
+        }
     },
     {
         "pk": 65220,
@@ -75,7 +77,7 @@
             "localized_string": "* Now with better and more relevant trending news in the Twitter sidebar.",
             "created": "2010-04-25 20:09:18",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-04-25 20:09:18",
             "id": 1054175,
             "localized_string_clean": "* Now with better and more relevant trending news in the Twitter sidebar."
         }
@@ -232,7 +234,8 @@
             "application": 1,
             "version": "3.6.*",
             "version_int": 3069900200100,
-            "created": "2007-03-05 13:09:34"
+            "created": "2007-03-05 13:09:34",
+            "modified": "2007-03-05 13:09:34"
         }
     },
     {
@@ -242,7 +245,8 @@
             "application": 1,
             "version": "3.5",
             "version_int": 3050000200100,
-            "created": "2007-03-05 13:09:34"
+            "created": "2007-03-05 13:09:34",
+            "modified": "2007-03-05 13:09:34"
         }
     },
     {
@@ -273,7 +277,7 @@
             "version_int": 1019900200100,
             "application": 60,
             "version": "1.1.*",
-            "modified": null,
+            "modified": "2007-03-05 13:09:34",
             "created": "2007-03-05 13:09:34"
         }
     },
@@ -284,7 +288,8 @@
             "version_int": 1000000200100,
             "application": 60,
             "version": "1.0",
-            "created": "2007-03-05 13:09:34"
+            "created": "2007-03-05 13:09:34",
+            "modified": "2007-03-05 13:09:34"
         }
     },
     {
@@ -315,7 +320,7 @@
             "localized_string_clean": null,
             "created": "2008-05-03 10:03:27",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2008-05-03 10:03:27",
             "id": 130761,
             "localized_string": "TwitterBar places an icon in the address bar."
         },

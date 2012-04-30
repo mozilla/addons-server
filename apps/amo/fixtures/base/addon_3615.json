@@ -14,6 +14,7 @@
         "fields": {
             "localized_string": "bunch of crap",
             "created": "2009-05-11 22:06:47",
+            "modified": "2009-05-11 22:06:47",
             "locale": "en-US",
             "id": 379597,
             "localized_string_clean": null
@@ -132,7 +133,7 @@
             "localized_string": "Fix for an important bug",
             "created": "2009-10-21 10:02:38",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2009-10-21 10:02:38",
             "id": 650353
         }
     },
@@ -143,7 +144,7 @@
             "localized_string": "Quelque chose en français.\n\nQuelque chose d'autre.",
             "created": "2009-10-21 10:02:38",
             "locale": "fr",
-            "modified": null,
+            "modified": "2009-10-21 10:02:38",
             "id": 650353
         }
     },
@@ -313,7 +314,7 @@
             "version": "3.7a1pre",
             "created": "2007-03-05 13:09:26",
             "version_int": 3070000001000,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {
@@ -324,7 +325,7 @@
             "version": "2.0",
             "created": "2007-03-05 13:09:26",
             "version_int": 2000000200100,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {
@@ -354,6 +355,7 @@
         "fields": {
             "localized_string": "Bookmarks",
             "created": "2009-05-11 22:06:47",
+            "modified": "2009-05-11 22:06:47",
             "locale": "en-US",
             "id": 2222,
             "localized_string_clean": null
@@ -365,6 +367,7 @@
         "fields": {
             "localized_string": "Feeds",
             "created": "2009-05-11 22:06:47",
+            "modified": "2009-05-11 22:06:47",
             "locale": "en-US",
             "id": 2323,
             "localized_string_clean": null
@@ -376,6 +379,7 @@
         "fields": {
             "localized_string": "Social",
             "created": "2009-05-11 22:06:47",
+            "modified": "2009-05-11 22:06:47",
             "locale": "en-US",
             "id": 2424,
             "localized_string_clean": null

@@ -15,7 +15,7 @@
             "version_int": 3000000001100,
             "application": 1,
             "version": "3.0a1",
-            "modified": null,
+            "modified": "2007-03-05 13:09:26",
             "created": "2007-03-05 13:09:26"
         }
     },
@@ -26,7 +26,7 @@
             "version_int": 3000000002100,
             "application": 1,
             "version": "3.0a2",
-            "modified": null,
+            "modified": "2007-03-05 13:09:26",
             "created": "2007-03-05 13:09:26"
         }
     },
@@ -37,7 +37,7 @@
             "version_int": 3000000003100,
             "application": 1,
             "version": "3.0a3",
-            "modified": null,
+            "modified": "2007-03-05 13:09:26",
             "created": "2007-03-05 13:09:26"
         }
     },
@@ -48,8 +48,8 @@
             "version_int": 3000000004100,
             "application": 1,
             "version": "3.0a4",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -59,8 +59,8 @@
             "version_int": 3000000005100,
             "application": 1,
             "version": "3.0a5",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -70,8 +70,8 @@
             "version_int": 3000000006100,
             "application": 1,
             "version": "3.0a6",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -81,8 +81,8 @@
             "version_int": 3000000007100,
             "application": 1,
             "version": "3.0a7",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -92,8 +92,8 @@
             "version_int": 3000000008100,
             "application": 1,
             "version": "3.0a8",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -103,8 +103,8 @@
             "version_int": 3000000009100,
             "application": 1,
             "version": "3.0a9",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -114,8 +114,8 @@
             "version_int": 3000000101100,
             "application": 1,
             "version": "3.0b1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -125,8 +125,8 @@
             "version_int": 3000000102100,
             "application": 1,
             "version": "3.0b2",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -136,8 +136,8 @@
             "version_int": 3000000103100,
             "application": 1,
             "version": "3.0b3",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -147,8 +147,8 @@
             "version_int": 3000000104100,
             "application": 1,
             "version": "3.0b4",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -158,8 +158,8 @@
             "version_int": 3000000105100,
             "application": 1,
             "version": "3.0b5",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -169,8 +169,8 @@
             "version_int": 3000000200100,
             "application": 1,
             "version": "3.0",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -180,8 +180,8 @@
             "version_int": 3000900200100,
             "application": 1,
             "version": "3.0.9",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -191,8 +191,8 @@
             "version_int": 3009900200100,
             "application": 1,
             "version": "3.0.*",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -202,8 +202,8 @@
             "version_int": 3010000001100,
             "application": 1,
             "version": "3.1a1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -213,8 +213,8 @@
             "version_int": 3010000002100,
             "application": 1,
             "version": "3.1a2",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -224,8 +224,8 @@
             "version_int": 3010000101100,
             "application": 1,
             "version": "3.1b1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -235,8 +235,8 @@
             "version_int": 3010000102100,
             "application": 1,
             "version": "3.1b2",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -246,8 +246,8 @@
             "version_int": 3010000103100,
             "application": 1,
             "version": "3.1b3",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -257,8 +257,8 @@
             "version_int": 3050000104100,
             "application": 1,
             "version": "3.5b4",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -268,8 +268,8 @@
             "version_int": 3050000200100,
             "application": 1,
             "version": "3.5",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -279,8 +279,8 @@
             "version_int": 3059900200100,
             "application": 1,
             "version": "3.5.*",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -290,8 +290,8 @@
             "version_int": 3060000001100,
             "application": 1,
             "version": "3.6a1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -301,8 +301,8 @@
             "version_int": 3060000102100,
             "application": 1,
             "version": "3.6b2",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -312,8 +312,8 @@
             "version_int": 3060000200100,
             "application": 1,
             "version": "3.6",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -323,8 +323,8 @@
             "version_int": 3069900200100,
             "application": 1,
             "version": "3.6.*",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -334,8 +334,8 @@
             "version_int": 3070000001100,
             "application": 1,
             "version": "3.7a1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -345,8 +345,8 @@
             "version_int": 3070000002100,
             "application": 1,
             "version": "3.7a2",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -356,8 +356,8 @@
             "version_int": 3070000003100,
             "application": 1,
             "version": "3.7a3",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -367,8 +367,8 @@
             "version_int": 3070000004100,
             "application": 1,
             "version": "3.7a4",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -376,8 +376,8 @@
             "application": 1,
             "version": "3.7a1pre",
             "version_int": 3070000001000,
-            "modified": null,
-            "created": "2009-02-23 23:47:34"
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         },
         "model": "applications.appversion",
         "pk": 282
@@ -389,8 +389,8 @@
             "version_int": 2000000001000,
             "application": 60,
             "version": "2.0a1pre",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -400,8 +400,8 @@
             "version_int": 4000000102000,
             "application": 60,
             "version": "4.0b2pre",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -411,8 +411,8 @@
             "version_int": 4000000102000,
             "application": 59,
             "version": "4.0",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -422,8 +422,8 @@
             "version_int": 4000000102000,
             "application": 18,
             "version": "4.1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -433,8 +433,8 @@
             "version_int": 4000000102000,
             "application": 2,
             "version": "4.0b2pre",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -444,8 +444,8 @@
             "version_int": 4000000200100,
             "application": 1,
             "version": "4.0",
-            "modified": null,
-            "created": "2007-03-05 13:09:25"
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -455,8 +455,8 @@
             "version_int": 10000000001100,
             "application": 61,
             "version": "10.0a1",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -466,8 +466,8 @@
             "version_int": 12990000200100,
             "application": 61,
             "version": "12.*",
-            "modified": null,
-            "created": null
+            "modified": "2007-03-05 13:09:26",
+            "created": "2007-03-05 13:09:26"
         }
     }
 ]

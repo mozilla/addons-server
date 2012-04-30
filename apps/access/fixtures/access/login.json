@@ -9,7 +9,10 @@
         "display_collections": 1,
         "display_collections_fav": 1,
         "notifycompat": 1,
-        "notifyevents": 1
+        "notifyevents": 1,
+        "created": "2010-09-08 07:06:05",
+        "modified": "2010-09-08 07:06:05"
+
     }
   },
   {
@@ -31,7 +34,9 @@
         "display_collections": 1,
         "display_collections_fav": 1,
         "notifycompat": 1,
-        "notifyevents": 1
+        "notifyevents": 1,
+        "created": "2010-09-08 07:06:05",
+        "modified": "2010-09-08 07:06:05"
     }
   },
   {
@@ -48,7 +53,9 @@
       "model": "access.group",
       "fields": {
           "name": "Admins",
-          "rules": "*:*"
+          "rules": "*:*",
+          "created": "2010-09-08 07:06:05",
+          "modified": "2010-09-08 07:06:05"
       }
   },
   {

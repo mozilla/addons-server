@@ -15,8 +15,8 @@
             "version_int": 4000000200100,
             "application": 1,
             "version": "4.0",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -26,8 +26,8 @@
             "version_int": 5000000200100,
             "application": 1,
             "version": "5.0",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -37,8 +37,8 @@
             "version_int": 5990000200100,
             "application": 1,
             "version": "5.*",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -48,8 +48,8 @@
             "version_int": 6000000200100,
             "application": 1,
             "version": "6.0",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -59,8 +59,8 @@
             "version_int": 6990000200100,
             "application": 1,
             "version": "6.*",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -70,8 +70,8 @@
             "version_int": 7000000200100,
             "application": 1,
             "version": "7.0",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -81,8 +81,8 @@
             "version_int": 7990000200100,
             "application": 1,
             "version": "7.*",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {
@@ -92,8 +92,8 @@
             "version_int": 8000000200100,
             "application": 1,
             "version": "8.0",
-            "modified": null,
-            "created": null
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
         }
     },
     {

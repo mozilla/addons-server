@@ -6,7 +6,7 @@
             "localized_string": "Copyright 2009 Yoono, Inc.  All Rights Reserved.",
             "created": "2009-05-27 16:04:04",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2009-05-27 16:04:04",
             "id": 387641,
             "localized_string_clean": null
         }
@@ -167,7 +167,7 @@
             "version": "3.7a2pre",
             "created": "2010-08-11 10:46:27",
             "version_int": 3070000002000,
-            "modified": null
+            "modified": "2010-08-11 10:46:27"
         }
     },
     {
@@ -178,7 +178,7 @@
             "version": "3.0",
             "created": "2010-08-11 10:46:27",
             "version_int": 3000000200100,
-            "modified": null
+            "modified": "2010-08-11 10:46:27"
         }
     },
     {

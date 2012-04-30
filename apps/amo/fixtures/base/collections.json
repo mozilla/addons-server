@@ -6,7 +6,7 @@
             "localized_string": "WebDev",
             "created": "2009-06-09 23:35:09",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2009-06-09 23:35:09",
             "id": 394557,
             "localized_string_clean": null
         }
@@ -51,7 +51,7 @@
         "fields": {
             "locale": "",
             "collection_feature": 1,
-            "modified": null,
+            "modified": "2010-01-05 18:16:11",
             "collection": 80,
             "created": "2010-01-05 18:16:11"
         }
@@ -62,7 +62,7 @@
         "fields": {
             "created": "2009-06-09 23:35:10",
             "downloads": 30,
-            "modified": null,
+            "modified": "2009-06-09 23:35:10",
             "comments": null,
             "user": 10482,
             "collection": 80,

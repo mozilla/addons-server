@@ -56,7 +56,7 @@
         "fields": {
             "tag_text": "SEO",
             "blacklisted": 0,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "created": "2009-07-16 07:03:03"
         }
     },
@@ -118,7 +118,7 @@
         "fields": {
             "addon": 8680,
             "tag": 226,
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "created": "2009-09-07 05:53:05"
         }
     },

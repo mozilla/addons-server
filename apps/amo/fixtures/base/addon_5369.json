@@ -150,9 +150,9 @@
         "fields": {
             "application": 1,
             "version": "3.6.*",
-            "created": null,
+            "created": "2010-01-02 12:34:56",
             "version_int": 3069900200100,
-            "modified": null
+            "modified": "2010-01-02 12:34:56"
         }
     },
     {
@@ -161,9 +161,9 @@
         "fields": {
             "application": 1,
             "version": "3.0",
-            "created": null,
+            "created": "2010-01-02 12:34:56",
             "version_int": 3000000200100,
-            "modified": null
+            "modified": "2010-01-02 12:34:56"
         }
     },
     {

@@ -6,7 +6,7 @@
             "localized_string": "Doubly Free Software Public License",
             "created": "2009-06-21 20:51:54",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2009-06-21 20:51:54",
             "id": 436038
         }
     },
@@ -149,9 +149,9 @@
         "fields": {
             "application": 1,
             "version": "3.7a5pre",
-            "created": null,
+            "created": "2007-03-05 13:09:26",
             "version_int": 3070000005000,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {
@@ -162,7 +162,7 @@
             "version": "1.5",
             "created": "2007-03-05 13:09:26",
             "version_int": 1050000200100,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {

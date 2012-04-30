@@ -42,7 +42,7 @@
             "localized_string_clean": "This toolbar for the Mozilla and Netscape browser enables you to search with google,yahoo,msn,ebay,cnn,amazon UK, amazon US, amazon CA and amazon Germany...",
             "created": "2007-03-05 13:10:19",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1729,
             "localized_string": "This toolbar for the Mozilla and Netscape browser enables you to search with google,yahoo,msn,ebay,cnn,amazon UK, amazon US, amazon CA and amazon Germany..."
         }
@@ -54,7 +54,7 @@
             "localized_string_clean": "This toolbar for the Mozilla and Netscape browser enables you to search with google,yahoo,msn,ebay,cnn,amazon UK, amazon US, amazon CA and amazon Germany.\n\nNote: This extension works with Mozilla and Netscape 7.x, not with Firefox !",
             "created": "2007-03-05 13:10:19",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1727,
             "localized_string": "This toolbar for the Mozilla and Netscape browser enables you to search with google,yahoo,msn,ebay,cnn,amazon UK, amazon US, amazon CA and amazon Germany.\r\n\r\nNote: This extension works with Mozilla and Netscape 7.x, not with Firefox !"
         }
@@ -66,7 +66,7 @@
             "localized_string_clean": null,
             "created": "2007-03-05 13:10:19",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1726,
             "localized_string": "http://freewebs.com/freestuffintheweb/"
         }
@@ -89,7 +89,7 @@
             "localized_string_clean": null,
             "created": "2007-03-05 13:10:19",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1725,
             "localized_string": "FreeSearchingBar"
         }
@@ -101,7 +101,7 @@
             "localized_string_clean": null,
             "created": "2007-03-05 13:24:55",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 32680,
             "localized_string": "FreeSearchingBar"
         }
@@ -167,7 +167,7 @@
             "caption": 32680,
             "filetype": "image/png",
             "created": "2007-03-05 09:54:15",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "thumbtype": "image/png",
             "addon": 159
         }

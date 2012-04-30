@@ -19,7 +19,7 @@
             "localized_string_clean": null,
             "created": "2010-09-12 07:28:44",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325266,
             "localized_string": "Thank You for your generous contribution"
         }
@@ -31,7 +31,7 @@
             "localized_string_clean": null,
             "created": "2010-09-12 07:27:48",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325265,
             "localized_string": "Future: This is line one.\n\nThis is line two"
         }
@@ -43,7 +43,7 @@
             "localized_string_clean": null,
             "created": "2010-09-12 07:27:48",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325264,
             "localized_string": "Why: This is line one.\n\nThis is line two"
         }
@@ -55,7 +55,7 @@
             "localized_string_clean": "it does cool stuff",
             "created": "2010-09-12 07:17:04",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325251,
             "localized_string": "it does cool stuff"
         }
@@ -67,7 +67,7 @@
             "localized_string_clean": "Do step 1, then do step 2",
             "created": "2010-09-12 07:23:53",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325258,
             "localized_string": "Do step 1, then do step 2"
         }
@@ -76,10 +76,10 @@
         "pk": 1399503,
         "model": "translations.translation",
         "fields": {
-            "localized_string_clean": null,
+            "localized_string_clean": "test",
             "created": "2010-09-12 07:25:39",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325263,
             "localized_string": "nobody@nowhere.com"
         }
@@ -91,7 +91,7 @@
             "localized_string_clean": null,
             "created": "2010-09-12 07:17:04",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325249,
             "localized_string": "http://www.somewhere.com/"
         }
@@ -103,7 +103,7 @@
             "localized_string_clean": null,
             "created": "2010-09-12 07:17:04",
             "locale": "en-US",
-            "modified": null,
+            "modified": "2010-01-02 12:34:56",
             "id": 1325250,
             "localized_string": "My Cool Add-on"
         }

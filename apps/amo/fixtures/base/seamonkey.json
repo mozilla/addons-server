@@ -188,9 +188,9 @@
         "fields": {
             "application": 1,
             "version": "3.7a3pre",
-            "created": null,
+            "created": "2010-09-08 07:06:05",
             "version_int": 3070000003000,
-            "modified": null
+            "modified": "2010-09-08 07:06:05"
         }
     },
     {
@@ -201,7 +201,7 @@
             "version": "1.5",
             "created": "2007-03-05 13:09:26",
             "version_int": 1050000200100,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {
@@ -212,7 +212,7 @@
             "version": "1.5a",
             "created": "2007-03-05 13:09:26",
             "version_int": 1050000000100,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {
@@ -223,7 +223,7 @@
             "version": "1.0",
             "created": "2007-03-05 13:09:26",
             "version_int": 1000000200100,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {
@@ -232,9 +232,9 @@
         "fields": {
             "application": 1,
             "version": "3.0.*",
-            "created": null,
+            "created": "2010-09-08 07:06:05",
             "version_int": 3009900200100,
-            "modified": null
+            "modified": "2010-09-08 07:06:05"
         }
     },
     {
@@ -245,7 +245,7 @@
             "version": "0.8",
             "created": "2007-03-05 13:09:26",
             "version_int": 80000200100,
-            "modified": null
+            "modified": "2007-03-05 13:09:26"
         }
     },
     {

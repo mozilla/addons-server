@@ -50,7 +50,7 @@
         "model": "access.group",
         "fields": {
             "rules": "*:*",
-            "modified": null,
+            "modified": "2007-03-05 16:06:55",
             "name": "Admins",
             "created": "2007-03-05 16:06:55"
         }

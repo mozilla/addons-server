@@ -215,7 +215,9 @@
         "fields": {
             "version_int": 3001200200100,
             "application": 1,
-            "version": "3.0.12"
+            "version": "3.0.12",
+            "created": "2007-10-10 15:34:20",
+            "modified": "2007-10-10 15:34:20"
         }
     },
     {

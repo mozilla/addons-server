@@ -145,7 +145,7 @@
             "version": "3.6.*",
             "created": "2010-08-11 10:46:27",
             "version_int": 3069900200100,
-            "modified": null
+            "modified": "2010-01-02 12:34:56"
         }
     },
     {
@@ -156,7 +156,7 @@
             "version": "3.0",
             "created": "2010-08-11 10:46:27",
             "version_int": 3000000200100,
-            "modified": null
+            "modified": "2010-01-02 12:34:56"
         }
     },
     {
