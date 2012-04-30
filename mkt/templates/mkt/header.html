@@ -1,3 +1,10 @@
+{% set urls = [
+  (_('Home'), url('home')),
+  (_('Popular'), url('browse.apps')|urlparams(sort='downloads')),
+  (_('Top Free'), url('browse.apps')|urlparams(sort='downloads', price='free')),
+  (_('Top Paid'), url('browse.apps')|urlparams(sort='downloads', price='paid')),
+  (_('Categories'), url('browse.apps')|urlparams('categories')),
+] %}
 <header id="site-header">
   <section>
     <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
@@ -20,16 +27,9 @@
         </form>
       {% endblock %}
       <ul id="flyout">
-        {% if request.path != url('home') %}
-          <li><a href="{{ url('home') }}">{{ _('Home') }}</a></li>
-        {% endif %}
-        <li><a href="{{ url('browse.apps')|urlparams(sort='downloads') }}">
-          {{ _('Popular') }}</a></li>
-        <li><a href="{{ url('browse.apps')|urlparams(sort='downloads', price='free') }}">
-          {{ _('Top Free') }}</a></li>
-        <li><a href="{{ url('browse.apps')|urlparams(sort='downloads', price='paid') }}">
-          {{ _('Top Paid') }}</a></li>
-        <li><a href="{{ url('browse.apps') }}#categories">{{ _('Categories') }}</a></li>
+        {% for text, link in urls %}
+          <li><a href="{{ link }}">{{ text }}</a></li>
+        {% endfor %}
       </ul>
     </nav>
     {% endif %}
