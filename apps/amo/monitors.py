@@ -3,6 +3,7 @@ from PIL import Image
 import socket
 import StringIO
 import traceback
+import urllib2
 from urlparse import urlparse
 
 from django.conf import settings
@@ -178,3 +179,19 @@ def hera():
             status = False
 
     return status, hera_results
+
+
+def signer():
+    destination = getattr(settings, 'SIGNING_SERVER', None)
+    if not destination:
+        return True, "Signer is not configured."
+
+    destination += "/1.0/sign"
+    request = urllib2.Request(destination)
+    try:
+        urllib2.urlopen(request)
+    except urllib2.HTTPError, error:
+        if error.code == 405:
+            return True, "%s is working." % destination
+
+    return False, "%s can not be contacted." % destination
