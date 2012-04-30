@@ -1,6 +1,6 @@
 @import '../mkt/lib';
 
-.html-rtl nav { 
+.html-rtl nav {
     text-align: left;
 }
 
@@ -19,7 +19,7 @@ body {
         height: 54px;
         width: 375px;
     }
-    nav {        
+    nav {
         padding-top: 41px;
         text-align: right;
     }
@@ -41,11 +41,25 @@ body {
     section {
          .grain;
          background-color: @navy-gray;
+         width: 100%;
+         .wrapper {
+             margin: 0 auto;
+             width: 90%;
+         }
     }
+    .grain;
+    background-color: @navy-gray;
 }
 
 #page {
     clear: both;
+}
+
+#site-header .wrapper,
+#top-marketing section,
+#landing-page {
+    max-width: 984px;
+    width: 90%;
 }
 
 #top-marketing {
@@ -55,23 +69,20 @@ body {
     margin: 0 auto;
     text-shadow: 0 1px 2px #000;
     .placeholder {
-        height: 250px;
         margin: 0 auto;
-        max-width: 510px;
-        width: 70%;
+        max-height: 250px;
+        max-width: 70%;
     }
 }
 
 .call-to-action {
-    padding: 20px 25px 25px 25px;
+    padding: 20px 25px 25px;
     overflow: hidden;
-    margin: 0 auto 0 auto;
-    width: 948px;
-
+    margin: 0 auto;
+    width: 90%;
     img {
         float: right;
     }
-
     div {
         float: left;
         text-align: center;
@@ -92,9 +103,10 @@ body {
 }
 
 #landing-page {
-    margin: 0px auto 25px auto;
-    max-width: 984px;
-    width:90%;
+    margin: 0 auto 25px;
+    img {
+        max-width: 100%;
+    }
 }
 
 #demo-block {
@@ -135,18 +147,17 @@ body {
 }
 
 #marketing-horz {
-    display: inline-block;
     margin: 0;
     padding: 0;
-
+    width: 100%;
     li {
+        .border-box;
         list-style: none;
         text-align: center;
         float: left;
-        max-width: 302px;
+        max-width: 33.3%;
         padding: 0 10px;
-        width: 30%;
-
+        width: 33.33%;
     }
     li div {
         margin: 0 auto;
@@ -243,6 +254,89 @@ body {
         ol, ol ol {
             padding: 0;
             margin: 0;
+        }
+    }
+}
+
+@media (max-width: @10col) {
+    #page {
+        margin-top: 0;
+    }
+    .home {
+        #site-header {
+            &:after {
+                height: 8px;
+                top: -28px;
+            }
+            a:first-child {
+                margin: 0;
+            }
+            nav {
+                clear: both;
+                padding: 0;
+                text-align: left;
+                z-index: 1;
+            }
+        }
+    }
+    h2 {
+        font-size: 22px;
+    }
+    #landing-page #marketing-horz {
+        li {
+            float: left;
+            font-size: 110%;
+        }
+    }
+    #top-marketing {
+        text-align: center;
+        div {
+            float: none;
+            margin-top: 20px;
+            width: 90%;
+        }
+        .placeholder {
+            float: none;
+            margin: 50px auto 0;
+            max-height: 150px;
+        }
+    }
+}
+
+@media (max-width: @4col) {
+    .home {
+        #site-header {
+            margin-bottom: 0;
+            nav {
+                clear: both;
+                padding: 0;
+                z-index: 1;
+            }
+        }
+    }
+    #site-header nav a {
+        text-transform: none;
+        + a {
+            margin-left: 10px;
+        }
+    }
+    #landing-page #marketing-horz {
+        li {
+            float: none;
+            text-align: center;
+            font-size: 120%;
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+    .call-to-action {
+        div {
+            margin: 0 auto;
+            width: 100%;
+        }
+        .placeholder {
+            margin-top: 40px;
+            max-height: 130px;
         }
     }
 }
