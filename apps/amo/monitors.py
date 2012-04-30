@@ -3,6 +3,7 @@ from PIL import Image
 import socket
 import StringIO
 import traceback
+import urllib2
 from urlparse import urlparse
 
 from django.conf import settings
@@ -10,7 +11,6 @@ from django.conf import settings
 import commonware.log
 import elasticutils
 
-from hera.contrib.django_utils import get_hera
 from applications.management.commands import dump_apps
 
 
@@ -164,17 +164,17 @@ def redis():
     return status, redis_results
 
 
-def hera():
-    # Zeus is too slow right now to test HERA. We can remove this line once it has been fixed.
-    return True, []
+def signer():
+    destination = getattr(settings, 'SIGNING_SERVER', None)
+    if not destination:
+        return True, "Signer is not configured."
 
-    hera_results = []
-    status = True
-    for i in settings.HERA:
-        r = {'location': urlparse(i['LOCATION'])[1],
-             'result': bool(get_hera(i))}
-        hera_results.append(r)
-        if not hera_results[-1]['result']:
-            status = False
+    destination += "/1.0/sign"
+    request = urllib2.Request(destination)
+    try:
+        urllib2.urlopen(request)
+    except urllib2.HTTPError, error:
+        if error.code == 405:
+            return True, "%s is working." % destination
 
-    return status, hera_results
+    return False, "%s can not be contacted." % destination

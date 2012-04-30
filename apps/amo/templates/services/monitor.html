@@ -86,23 +86,6 @@
   </dl>
 </div>
 
-<div class="notification-box {{ status(status_summary.hera) }}">
-  <h2>[Zeus] Connection Tests (Hera) ({{ hera_timer }}ms)</h2>
-  <ul>
-  {% for result in hera_results %}
-    <li>{{ result.location }}:
-    {% if result.result %}
-      Success
-    {% else %}
-      <strong>Failed</strong>
-    {% endif %}
-    </li>
-  {% else %}
-    <li>Hera isn't configured!</li>
-  {% endfor %}
-  </ul>
-</div>
-
 <div class="notification-box {{ status(status_summary.elastic) }}">
   <h2>[Elastic Search] Health Check ({{ elastic_timer }}ms)</h2>
   <ul>
@@ -115,6 +98,13 @@
     {% else %}
       <strong>Failed</strong><br><pre>{{ elastic_results }}</pre>
     {% endif %}
+  </ul>
+</div>
+
+<div class="notification-box {{ status(status_summary.signer) }}">
+  <h2>[Signer] Connection Test (signer) ({{ signer_timer }}ms)</h2>
+  <ul>
+      <li>{{ signer_results }}</li>
   </ul>
 </div>
 
