@@ -101,6 +101,11 @@ class TestPendingRefunds(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].body.count('1 request'), 2)
 
+    def test_email_url(self):
+        mail_pending_refunds()
+        eq_(len(mail.outbox), 1)
+        assert 'https://marketplace.mozilla.org/' in mail.outbox[0].body
+
     @mock.patch.object(settings, 'SITE_URL', 'not.this.domain.com')
     def test_email_escaping(self):
         self.webapp.name = 'You <3 My App'
@@ -111,4 +116,4 @@ class TestPendingRefunds(amo.tests.TestCase):
         assert str(self.webapp.name) in email.body
         assert '1 request' in email.body
         assert not 'not.this.domain.com' in email.body
-        assert [self.author.email] == email.to
+        eq_(email.to, [self.author.email])
