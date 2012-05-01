@@ -227,11 +227,19 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         self._generate(3)
         self.check_sort_links('created', 'Newest', 'created')
 
-    def test_price_sort_visible_for_paid(self):
+    def test_price_sort_visible_for_paid_search(self):
         # 'Sort by Price' option should be preserved if filtering by paid apps.
         r = self.client.get(self.url, {'price': 'paid'})
         eq_(r.status_code, 200)
         assert 'price' in dict(r.context['sort_opts']), 'Missing price sort'
+
+    def test_price_sort_visible_for_paid_browse(self):
+        # 'Sort by Price' option should be removed if filtering by free apps.
+        r = self.client.get(reverse('browse.apps'),
+                            {'price': 'free', 'sort': 'downloads'})
+        eq_(r.status_code, 200)
+        assert 'price' not in dict(r.context['sort_opts']), (
+            'Unexpected price sort')
 
     def test_price_sort_visible_for_free(self):
         # 'Sort by Price' option should be removed if filtering by free apps.
@@ -241,10 +249,12 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             'Unexpected price sort')
 
     def test_paid_price_sort(self):
-        r = self.client.get(self.url, {'price': 'paid', 'sort': 'price'})
-        eq_(r.status_code, 200)
+        for url in [self.url, reverse('browse.apps')]:
+            r = self.client.get(url, {'price': 'paid', 'sort': 'price'})
+            eq_(r.status_code, 200)
 
     def test_redirect_free_price_sort(self):
-        # `sort=price` should get removed if `price=free` is in querystring.
-        r = self.client.get(self.url, {'price': 'free', 'sort': 'price'})
-        self.assertRedirects(r, urlparams(self.url, price='free'))
+        for url in [self.url, reverse('browse.apps')]:
+            # `sort=price` should be removed if `price=free` is in querystring.
+            r = self.client.get(url, {'price': 'free', 'sort': 'price'})
+            self.assertRedirects(r, urlparams(url, price='free'))

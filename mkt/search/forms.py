@@ -36,6 +36,8 @@ DEVICE_CHOICES_IDS = {
 
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
+FREE_LISTING_SORT_CHOICES = [(k, v) for k, v in LISTING_SORT_CHOICES
+                             if k != 'price']
 
 # Placeholder.
 SEARCH_PLACEHOLDERS = {'apps': _lazy(u'Search for apps')}

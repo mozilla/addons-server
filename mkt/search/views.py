@@ -115,7 +115,10 @@ def _app_search(request, category=None, browse=None):
     facets = pager.object_list.facets
 
     if category or browse:
-        sort_opts = forms.LISTING_SORT_CHOICES
+        if query.get('price') == 'free':
+            sort_opts = forms.FREE_LISTING_SORT_CHOICES
+        else:
+            sort_opts = forms.LISTING_SORT_CHOICES
     else:
         if query.get('price') == 'free':
             # Remove 'Sort by Price' option if filtering by free apps.
