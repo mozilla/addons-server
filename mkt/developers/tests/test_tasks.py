@@ -332,11 +332,12 @@ class TestFetchIcon(BaseWebAppTest):
         self.check_icons(webapp)
 
     @mock.patch('mkt.developers.tasks._fetch_content')
-    def test_cdn_icon(self, fetch):
+    @mock.patch('mkt.developers.tasks.save_icon')
+    def test_cdn_icon(self, save, fetch):
         response = mock.Mock()
         response.read.return_value = ''
-        webapp = {'icons': {'128': 'http://foo.com/bar'}}
-
-        fetch.return_value = response
+        webapp = mock.Mock()
+        url = 'http://foo.com/bar'
+        webapp.get_manifest_json.return_value = {'icons': {'128': url}}
         tasks.fetch_icon(webapp)
-        assert 'https://marketplace' in fetch.call_args[0][0]
+        assert url in fetch.call_args[0][0]
