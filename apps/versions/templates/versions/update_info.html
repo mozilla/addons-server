@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}">
+<html lang="{{ LANG }}" dir="{{ DIR }}"{% if serve_xhtml %} xmlns="http://www.w3.org/1999/xhtml"{% endif %}>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
   <title></title>
 </head>
 <body>
-<p{{ version.releasenotes|locale_html }}>{{ version.releasenotes|nl2br }}</p>
+<p{{ version.releasenotes|locale_html }}>{{ version.releasenotes|nl2br_xhtml }}</p>
 </body>
 </html>

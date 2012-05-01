@@ -65,9 +65,11 @@ def update_info(request, addon, version_num):
                                files__status__in=amo.VALID_STATUSES)
     if not qs:
         raise http.Http404()
-
+    serve_xhtml = ('application/xhtml+xml' in
+                   request.META.get('HTTP_ACCEPT', '').lower())
     return jingo.render(request, 'versions/update_info.html',
-                        {'version': qs[0]})
+                        {'version': qs[0], 'serve_xhtml': serve_xhtml},
+                        content_type='application/xhtml+xml')
 
 
 def update_info_redirect(request, version_id):

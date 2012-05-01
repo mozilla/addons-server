@@ -278,8 +278,8 @@ class TestVersion(amo.tests.TestCase):
         r = self.client.get(reverse('addons.versions.update_info',
                                     args=(addon.slug, self.version.version)))
         eq_(r.status_code, 200)
-        doc = PyQuery(r.content)
-        eq_(doc('p').html(), 'Fix for an important bug')
+        eq_(r['Content-Type'], 'application/xhtml+xml')
+        eq_(PyQuery(r.content)('p').html(), 'Fix for an important bug')
 
         # Test update info in another language.
         with self.activate(locale='fr'):
@@ -287,9 +287,11 @@ class TestVersion(amo.tests.TestCase):
                                         args=(addon.slug,
                                               self.version.version)))
             eq_(r.status_code, 200)
-            doc = PyQuery(r.content)
-            eq_(doc('p').html(), u"Quelque chose en français.<br/><br/>" \
-                                 u"Quelque chose d'autre.")
+            eq_(r['Content-Type'], 'application/xhtml+xml')
+            assert '<br/>' in r.content, (
+                'Should be using XHTML self-closing tags!')
+            eq_(PyQuery(r.content)('p').html(),
+                u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
 
     def test_version_update_info_legacy_redirect(self):
         r = self.client.get('/versions/updateInfo/%s' % self.version.id,
