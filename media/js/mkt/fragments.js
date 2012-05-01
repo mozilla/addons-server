@@ -29,7 +29,8 @@
         }
 
         function fetchFragment(state, popped) {
-            var href = state.path;
+            var href = state.path,
+                start = new Date().getTime();
             markScrollTop();
             timeout = setTimeout(function() { $loading.addClass('active'); },
                                  threshold);
@@ -63,6 +64,7 @@
 
                 _.delay(function() { $loading.removeClass('active'); }, 400);
                 $('html, body').scrollTop(state.scrollTop || 0);
+                stick.custom({'fragment.loaded': new Date().getTime() - start});
             });
         }
 

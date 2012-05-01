@@ -54,6 +54,8 @@ $(document).ready(function() {
         anonymous: data_user.anonymous,
         pre_auth: data_user.pre_auth
     });
+
+    stick.basic();
 });
 
 

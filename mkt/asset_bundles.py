@@ -204,6 +204,9 @@ JS = {
         # Detail page.
         'js/mkt/detail.js',
         'js/mkt/lightbox.js',
+
+        # Stick.
+        'js/lib/stick.js',
     ),
     'mkt/stats': (
         'js/zamboni/storage.js',

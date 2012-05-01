@@ -2,10 +2,13 @@ import json
 
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext
+from django.views.decorators.csrf import csrf_exempt
 
+from django_statsd.views import record as django_statsd_record
 import jingo
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
+from amo.context_processors import get_collect_timings
 from amo.decorators import post_required
 from amo.helpers import media
 import api.views
@@ -70,3 +73,14 @@ def csrf(request):
         return HttpResponse(data, content_type='application/json')
 
     return HttpResponseForbidden()
+
+
+@csrf_exempt
+@post_required
+def record(request):
+    # The rate limiting is done up on the client, but if things go wrong
+    # we can just turn the percentage down to zero.
+    if get_collect_timings():
+        print request.POST
+        return django_statsd_record(request)
+    return http.HttpResponseForbidden()

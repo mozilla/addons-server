@@ -195,5 +195,11 @@ INAPP_REQUIRE_HTTPS = True
 # Path to key for local AES encrypt/decrypt.
 INAPP_KEY_PATH = os.path.join(ROOT, 'mkt', 'inapp_pay', 'tests', 'resources',
                               'inapp-sample-pay.key')
-
-#CACHE_EMPTY_QUERYSETS = True
+STATSD_RECORD_KEYS = [
+    'window.performance.timing.domComplete',
+    'window.performance.timing.domInteractive',
+    'window.performance.timing.domLoading',
+    'window.performance.navigation.redirectCount',
+    'window.performance.navigation.type',
+    'fragment.loaded',
+]
