@@ -14,4 +14,4 @@ for path in ['../', '../..',
              '../../apps']:
     site.addsitedir(os.path.abspath(os.path.join(wsgidir, path)))
 
-from pfs import application
+from ..pfs import application
