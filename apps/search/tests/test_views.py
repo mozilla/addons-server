@@ -225,8 +225,6 @@ class TestESSearch(SearchBase):
 
     def setUp(self):
         self.url = reverse('search.search')
-        self.search_views = ('search.search', 'apps.search')
-
         self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                            disabled_by_user=False)
         for addon in self.addons:
@@ -241,8 +239,7 @@ class TestESSearch(SearchBase):
     def test_get(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        assert 'X-PJAX' in r['vary'].split(','), (
-            'Expected "Vary: X-PJAX" header')
+        assert 'X-PJAX' in r['vary'].split(','), 'Expected "Vary: X-PJAX"'
         self.assertTemplateUsed(r, 'search/results.html')
 
     @amo.tests.mobile_test
@@ -469,38 +466,30 @@ class TestESSearch(SearchBase):
         self.check_appver_filters('y.y')
 
     def test_non_pjax_results(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['is_pjax'], None)
+
         # These context variables should exist for normal requests.
-        expected_context_vars = {
-            'search.search': ('categories', 'platforms', 'versions', 'tags'),
-            'apps.search': ('categories', 'tags'),
-        }
+        for var in ('categories', 'platforms', 'versions', 'tags'):
+            assert var in r.context, '%r missing context var in view' % var
 
-        for view in self.search_views:
-            r = self.client.get(reverse(view))
-            eq_(r.status_code, 200)
-            eq_(r.context['is_pjax'], None)
-
-            for var in expected_context_vars[view]:
-                assert var in r.context, (
-                    '%r missing context var in view %r' % (var, view))
-
-            doc = pq(r.content)
-            eq_(doc('html').length, 1)
-            eq_(doc('#pjax-results').length, 1)
-            eq_(doc('#search-facets .facets.pjax-trigger').length, 1)
-            eq_(doc('#sorter.pjax-trigger').length, 1)
+        doc = pq(r.content)
+        eq_(doc('html').length, 1)
+        eq_(doc('#pjax-results').length, 1)
+        eq_(doc('#search-facets .facets.pjax-trigger').length, 1)
+        eq_(doc('#sorter.pjax-trigger').length, 1)
 
     def test_pjax_results(self):
-        for view in self.search_views:
-            r = self.client.get(reverse(view), HTTP_X_PJAX=True)
-            eq_(r.status_code, 200)
-            eq_(r.context['is_pjax'], True)
+        r = self.client.get(self.url, HTTP_X_PJAX=True)
+        eq_(r.status_code, 200)
+        eq_(r.context['is_pjax'], True)
 
-            doc = pq(r.content)
-            eq_(doc('html').length, 0)
-            eq_(doc('#pjax-results').length, 0)
-            eq_(doc('#search-facets .facets.pjax-trigger').length, 0)
-            eq_(doc('#sorter.pjax-trigger').length, 1)
+        doc = pq(r.content)
+        eq_(doc('html').length, 0)
+        eq_(doc('#pjax-results').length, 0)
+        eq_(doc('#search-facets .facets.pjax-trigger').length, 0)
+        eq_(doc('#sorter.pjax-trigger').length, 1)
 
     def test_facet_data_params_default(self):
         r = self.client.get(self.url)
