@@ -1440,3 +1440,6 @@ SIGNING_SERVER_ACTIVE = False
 SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
+
+# True when the Django app is running from the test suite.
+IN_TEST_SUITE = False

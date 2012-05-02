@@ -41,6 +41,8 @@ def paypal(request):
         return _paypal(request)
     except Exception, e:
         paypal_log.error('%s\n%s' % (e, request), exc_info=True)
+        if settings.IN_TEST_SUITE:
+            raise
         return http.HttpResponseServerError('Unknown error.')
 
 

@@ -26,8 +26,8 @@ def _polite_tmpdir():
     _tmpdirs.add(tmp)
     return tmp
 
-
 # See settings.py for documentation:
+IN_TEST_SUITE = True
 NETAPP_STORAGE = _polite_tmpdir()
 ADDONS_PATH = _polite_tmpdir()
 PERSONAS_PATH = _polite_tmpdir()
