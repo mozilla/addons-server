@@ -22,7 +22,9 @@ from stats.models import Contribution
 from translations.query import order_by_translation
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
-from users.views import logout
+from users.views import (logout,
+                         password_reset_confirm as amo_password_reset_confirm)
+
 from mkt.account.forms import CurrencyForm
 from mkt.site import messages
 from mkt.webapps.models import Webapp
@@ -270,3 +272,8 @@ def profile(request, username):
             'submissions': submissions, 'own_profile': own_profile}
 
     return jingo.render(request, 'account/profile.html', data)
+
+
+def password_reset_confirm(request, uidb36=None, token=None):
+    return amo_password_reset_confirm(request, uidb36, token,
+                                      'account/pwreset/confirm.html')

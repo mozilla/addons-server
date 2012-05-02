@@ -1,0 +1,42 @@
+{% extends 'mkt/base.html' %}
+
+{% set title = 'Password Reset' %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block content %}
+  {% if not validlink %}
+    <section class="notification-box error full">
+      <div>
+        <h2>{{ _('Password reset unsuccessful') }}</h2>
+      </div>
+    </section>
+  {% endif %}
+  {{ mkt_breadcrumbs(product, [(None, title)]) }}
+  <section id="pwreset" class="form-grid">
+    <header class="c">
+      <h1>{{ title }}</h1>
+    </header>
+    <div>
+      {% if validlink %}
+        <form class="form-grid" method="post">
+          {{ csrf() }}
+          {% with form_user=form.user %}
+            {% include 'users/tougher_password.html' %}
+          {% endwith %}
+          {{ grid_field(form.new_password1) }}
+          {{ grid_field(form.new_password2) }}
+          <footer class="form-footer">
+            <button type="submit">{{ _('Update') }}</button>
+          </footer>
+        </form>
+      {% else %}
+        <p>
+          {% trans %}
+            The password reset link was invalid, possibly because it has
+            already been used.  Please request a new password reset.
+          {% endtrans %}
+        </p>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

@@ -680,7 +680,8 @@ def report_abuse(request, user_id):
 
 @never_cache
 @no_login_required
-def password_reset_confirm(request, uidb36=None, token=None):
+def password_reset_confirm(request, uidb36=None, token=None,
+                           template='users/pwreset_confirm.html'):
     """
     Pulled from django contrib so that we can add user into the form
     so then we can show relevant messages about the user.
@@ -711,7 +712,7 @@ def password_reset_confirm(request, uidb36=None, token=None):
         validlink = False
         form = None
 
-    return jingo.render(request, 'users/pwreset_confirm.html',
+    return jingo.render(request, template,
                         {'form': form, 'validlink': validlink})
 
 
