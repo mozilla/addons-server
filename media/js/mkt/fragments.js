@@ -64,7 +64,8 @@
 
                 _.delay(function() { $loading.removeClass('active'); }, 400);
                 $('html, body').scrollTop(state.scrollTop || 0);
-                stick.custom({'fragment.loaded': new Date().getTime() - start});
+                stick.custom({'window.performance.timing.fragment.loaded':
+                              new Date().getTime() - start});
             });
         }
 
