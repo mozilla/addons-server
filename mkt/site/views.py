@@ -81,6 +81,5 @@ def record(request):
     # The rate limiting is done up on the client, but if things go wrong
     # we can just turn the percentage down to zero.
     if get_collect_timings():
-        print request.POST
         return django_statsd_record(request)
     return http.HttpResponseForbidden()
