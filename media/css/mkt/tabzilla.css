@@ -1,0 +1,287 @@
+/* Fonts */
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../mkt/fonts/OpenSans-Regular-webfont.eot');
+    src: url('../mkt/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../mkt/fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../mkt/fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../mkt/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../mkt/fonts/OpenSans-Semibold-webfont.eot');
+    src: url('../mkt/fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../mkt/fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+         url('../mkt/fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+         url('../mkt/fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+/* Tab */
+
+#tabzilla {
+    float: right;
+    display: block;
+    background: url(../../img/mkt/tabzilla/tab.png);
+    height: 45px;
+    width: 150px;
+    position: relative;
+    text-indent: -2000px;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.darkbg #tabzilla {
+    background-image: url(../../img/mkt/tabzilla/tab-darkbg.png);
+}
+
+#tabzilla.tabzilla-opened,
+.darkbg #tabzilla.tabzilla-opened {
+    background-position: 0 -45px;
+}
+
+#tabzilla:after {
+    background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEX%2F%2F%2F9ISEhr7AOpAAAAAXRSTlMAQObYZgAAACVJREFUCNdjYEACHAIMMhYMdjUM8j8Y%2BD8wsD9gYD7AwNiArAQAd4oFaCu14IQAAAAASUVORK5CYII%3D);
+    content: "x";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 11px;
+    right: 23px;
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px;
+}
+
+#tabzilla.tabzilla-opened:after {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/* Tab panel */
+
+#tabzilla-panel {
+    height: 0;
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.3;
+    font-size: 11px;
+    color: #484848;
+    position: relative;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    direction: ltr;
+}
+
+#tabzilla-panel.tabzilla-opened {
+    height: 200px;
+}
+
+#tabzilla-contents {
+    width: 992px;
+    margin: 0 auto;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -486px;
+    right: 0;
+}
+
+* html #tabzilla-contents             { zoom: 1; } /* IE6 */
+*:first-child+html #tabzilla-contents { zoom: 1; } /* IE7 */
+
+#tabzilla-contents:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+#tabzilla-promo {
+    float: left;
+    display: inline;
+    width: 300px;
+    height: 210px;
+    margin-right: 5px;
+    background: #f8f8f8;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#tabzilla-promo .snippet img {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+}
+
+#tabzilla-promo .snippet {
+    padding: 40px;
+}
+
+#tabzilla-promo .snippet h4,
+#tabzilla-panel #tabzilla-nav,
+#tabzilla-panel #tabzilla-nav h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #484848;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+#tabzilla-promo .snippet h4 {
+    line-height: 1.1;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 0.4em;
+}
+
+#tabzilla-panel #tabzilla-nav h2 {
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0 20px 0.4em 20px;
+    white-space: nowrap;
+}
+
+#tabzilla-panel #tabzilla-nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+#tabzilla-panel #tabzilla-nav ul li {
+    float: left;
+    display: inline;
+    list-style-type: none;
+    margin: 40px 0 0 0;
+    padding: 0;
+    width: 135px;
+    height: 95px;
+    border-right: 1px dotted #d6d6d6;
+    background: none;
+    line-height: 1.1;
+}
+
+#tabzilla-panel #tabzilla-nav ul li ul li {
+    float: none;
+    margin: 0;
+    border-right: 0;
+    height: auto;
+}
+
+#tabzilla-panel #tabzilla-nav a {
+    color: #484848;
+    display: block;
+    padding: 0.4em 20px;
+    outline: 0;
+}
+
+#tabzilla-panel #tabzilla-nav a,
+#tabzilla-panel #tabzilla-nav a:link,
+#tabzilla-panel #tabzilla-nav a:visited {
+    text-decoration: none;
+}
+
+#tabzilla-panel #tabzilla-nav a:hover,
+#tabzilla-panel #tabzilla-nav a:active,
+#tabzilla-panel #tabzilla-nav a:focus {
+    text-decoration: underline;
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search {
+    border-right: 0;
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search a {
+    padding-top: 0;
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search form  {
+    margin: 0.4em 20px
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search input {
+    width: 90px;
+    background: #fafafa;
+    color: #484848;
+    border: 1px solid #ddd;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-box-shadow: 0 0 0 3px rgba(0,0,0,0.02) inset;
+    -webkit-box-shadow: 0 0 0 3px rgba(0,0,0,0.02) inset;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.02) inset;
+    -webkit-appearance: none;
+    padding: 4px;
+    -moz-transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search input:hover {
+    border-color: #ccc;
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search input:focus {
+    outline: 0;
+    border-color: #999;
+}
+
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search input::-webkit-input-placeholder { color: #ddd; }
+#tabzilla-panel #tabzilla-nav ul li#tabzilla-search input:-moz-placeholder           { color: #ddd; }
+
+/* Firefox Flicks Promo */
+
+#tabzilla-promo .snippet {
+    padding: 0;
+}
+
+#tabzilla-promo .snippet a {
+    display: block;
+    padding: 40px 35px 40px 95px;
+    height: 130px;
+    background-image: url(../../img/mkt/tabzilla/promo-flicks.png);
+    background-position: 20px 37px;
+    background-repeat: no-repeat;
+    color: #484848;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+#tabzilla-promo .snippet a:hover,
+#tabzilla-promo .snippet a:active {
+    text-decoration: none;
+    background-color: #f0f0f0;
+}
+
+#tabzilla-promo .snippet#tabzilla-promo-theden a {
+    padding: 40px 35px;
+    background-image: url(../../img/mkt/tabzilla/promo-theden.png);
+    background-position: 0 100%;
+}
