@@ -227,10 +227,15 @@
 }
 .d2c-reasons-help {
     background-color: @light-gray;
-    .border-radius(4px);
+    .border-radius(10px);
     color: #fff;
     display: inline-block;
+    line-height: 7px;
     padding: 4px;
     margin: 0 8px;
     position: relative;
+    &:hover {
+        background-color: @note-gray;
+        text-decoration: none;
+    }
 }
