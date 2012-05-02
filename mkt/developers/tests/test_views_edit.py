@@ -210,6 +210,14 @@ class TestEditBasic(TestEdit):
         # non-admins.
         eq_(self.get_webapp().manifest_url, self.webapp.manifest_url)
 
+    def test_view_edit_manifest_url_empty(self):
+        # Empty manifest should throw an error.
+        url = ''
+        r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
+        form = r.context['form']
+        assert 'manifest_url' in form.errors
+        assert 'This field is required' in form.errors['manifest_url'][0]
+
     @mock.patch('devhub.tasks.urllib2.urlopen')
     def test_view_admin_edit_manifest_url(self, mock_urlopen):
         mock_urlopen.return_value = response_mock
