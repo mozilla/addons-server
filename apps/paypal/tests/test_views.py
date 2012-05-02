@@ -239,6 +239,7 @@ class TestPaypal(PaypalTest):
         _, path, _ = urlopen.call_args[0]
         eq_(path, 'cmd=_notify-validate&%s' % query)
 
+    @patch.object(settings, 'IN_TEST_SUITE', False)
     def test_any_exception(self, urlopen):
         urlopen.side_effect = Exception()
         response = self.client.post(self.url)

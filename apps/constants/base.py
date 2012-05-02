@@ -335,3 +335,5 @@ CANNED_RESPONSE_CHOICES = {
     CANNED_RESPONSE_APP: _('App'),
     CANNED_RESPONSE_PERSONA: _('Persona'),
 }
+
+APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""

@@ -1,10 +1,10 @@
-from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
+import amo
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
@@ -19,15 +19,13 @@ admin.autodiscover()
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
-APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
-
 
 urlpatterns = patterns('',
     # Home.
     url('^$', 'mkt.home.views.home', name='home'),
 
     # App Detail pages.
-    ('^app/%s/' % APP_SLUG, include('mkt.detail.urls')),
+    ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
 
     # Browse pages.
     ('^apps/', include('mkt.browse.urls')),

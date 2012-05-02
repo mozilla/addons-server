@@ -3,9 +3,9 @@ from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
+import amo
 from amo.decorators import write
 from mkt.developers.decorators import use_apps
-from mkt.urls import APP_SLUG
 from . import views
 
 
@@ -113,8 +113,8 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.upload_manifest'),
 
     # URLs for a single app.
-    url('^app/%s/' % APP_SLUG, include(app_detail_patterns)),
-    url('^ajax/app/%s/' % APP_SLUG, include(ajax_patterns)),
+    url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
+    url('^ajax/app/%s/' % amo.APP_SLUG, include(ajax_patterns)),
 
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',

@@ -4,9 +4,9 @@ from django.shortcuts import redirect
 from lib.misc.urlconf_decorator import decorate
 
 from addons.urls import ADDON_ID
+import amo
 from amo.decorators import write
 from devhub.decorators import use_apps
-from mkt.urls import APP_SLUG
 from . import views
 
 PACKAGE_NAME = '(?P<package_name>[_\w]+)'
@@ -231,7 +231,7 @@ urlpatterns = decorate(write, patterns('',
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
-    url('^app/%s/' % APP_SLUG, include(app_detail_patterns)),
+    url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
     url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
