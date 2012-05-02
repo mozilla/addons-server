@@ -51,21 +51,26 @@
     }
     &.delete, &.manage {
         .gradient-two-color(@btn-r, @btn-r-dark);
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 2px 0 0 rgba(0,0,0,.2),
+                        inset 0 12px 24px 2px @btn-r-lite);
+        }
     }
     &:hover {
         .box-shadow(0 2px 1px 0 rgba(0,0,0,.2),
                     inset 0 -3px 0 0 rgba(0,0,0,.2));
-        line-height: 26px;
-        text-decoration: none;
-    }
-    &:active {
-        line-height: 28px;
     }
 }
 
 .button {
     &.install, &.premium {
         .gradient-two-color(@btn-b, @btn-b-dark);
+        &:hover {
+            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
+                        inset 0 -2px 0 0 rgba(0,0,0,.2),
+                        inset 0 12px 24px 2px @btn-b-lite);
+        }
     }
 }
 
