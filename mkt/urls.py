@@ -56,14 +56,14 @@ urlpatterns = patterns('',
     # Support (e.g., refunds, FAQs).
     ('^support/', include('mkt.support.urls')),
 
+    # Users (Legacy).
+    ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
+    ('^users/', include(users_users_patterns)),
+
     # Account info (e.g., purchases, settings).
     ('^users/', include(mkt_users_patterns)),
     ('^purchases/', include(purchases_patterns)),
     ('^settings', include(settings_patterns)),
-
-    # Users (Legacy).
-    ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
-    ('^users/', include(users_users_patterns)),
 
     # Site Search.
     ('^search/', include('mkt.search.urls')),

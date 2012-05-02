@@ -1,10 +1,8 @@
 from datetime import datetime, timedelta
 
-from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.core.cache import cache
 from django.forms.models import model_to_dict
-from django.utils.http import int_to_base36
 
 import mock
 from jingo.helpers import datetime as datetime_filter
@@ -695,34 +693,3 @@ class TestPurchases(PurchaseBase):
             "Expected '.item' to have 'reversed' class")
         assert not item.find('a.request-support'), (
             "Unexpected 'Request Support' link")
-
-
-class TestPasswordReset(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.user = self.get_user()
-        self.token = [int_to_base36(self.user.id),
-                      default_token_generator.make_token(self.user)]
-        self.url = reverse('users.pwreset_confirm', args=self.token)
-
-    def get_user(self):
-        return UserProfile.objects.get(email='editor@mozilla.com')
-
-    def test_reset_msg(self):
-        res = self.client.get(self.url)
-        assert 'For your account' in res.content
-
-    def test_reset_fails(self):
-        res = self.client.post(self.url, {'new_password1': 'spassword',
-                                          'new_password2': 'spassword'})
-        eq_(res.context['form'].errors['new_password1'][0],
-            'Letters and numbers required.')
-
-
-class TestLegacyRedirects(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def test_disable_register(self):
-        r = self.client.get(reverse('users.register'))
-        self.assertRedirects(r, reverse('users.login'), 301)
