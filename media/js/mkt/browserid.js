@@ -43,7 +43,13 @@ _.extend(z, (function() {
 
     function finishLogin() {
         $def.resolve();
-        window.location.reload();
+        // If we have a `to` query string and it's not outbound, go "to" it.
+        var qs = z.getVars(window.location.search);
+        if (qs.to && qs.to[0] == '/') {
+            window.location = qs.to;
+        } else {
+            window.location.reload();
+        }
     }
 
     return exports;

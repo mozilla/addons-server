@@ -99,7 +99,7 @@ CSS = {
     'mkt/ecosystem': (
         'css/ecosystem/landing.less',
         'css/ecosystem/footer.less',
-	),
+    ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
         'css/mkt/typography.less',
@@ -193,6 +193,7 @@ JS = {
         'js/mkt/apps.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
+        'js/impala/serializers.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
