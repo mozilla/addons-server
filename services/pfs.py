@@ -111,13 +111,13 @@ def get_output(data):
 
             if re.match(r'^(?!.*(Win64|x64))Win.*$', g['clientOS']):
                 plugin.update(
-                    version='11.1.102.62',
-                    InstallerHash='sha256:02e42d4272ec2404b6063b67bfa851cc667826ae7ee8d2c69139e42fb48139bb',
+                    version='11.2.202.233',
+                    InstallerHash='sha256:94887c02a7bc40c844798c3ca840d53ead56203410d2a1cf49f1f557773a41a2',
                     InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_32bit.exe')
             else:
                 plugin.update(
-                    version='11.1.102.62 64-bit',
-                    InstallerHash='sha256:6183182fa16b15b02950b2c6dc559cb54740958d662f98c1cc1128cff76dbf20',
+                    version='11.2.202.233 64-bit',
+                    InstallerHash='sha256:d60c42140f5612a818e364690f2d6ee021a45cabc0f2cfffe1d010e99939c374',
                     InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_64bit.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
@@ -217,7 +217,7 @@ def get_output(data):
 
         plugin.update(
             name='Java Runtime Environment',
-            version='1.6 u29',
+            version='1.6 u31',
             manualInstallationURL='http://java.com/downloads',
             InstallerShowsUI='false',
             needsRestart='false')
@@ -230,12 +230,12 @@ def get_output(data):
             plugin.update(
                 guid='{fbe640ef-4375-4f45-8d79-767d60bf75b8}',
                 InstallerLocation='http://java.com/firefoxjre_exe',
-                InstallerHash='sha1:4951aadb74b69d5840c3a3fee6ae45e9cc064fe3')
+                InstallerHash='sha1:fe5d345ffd399641fd49d73258F60ac274af3a5f')
         elif g['clientOS'].startswith('Win'):
             plugin.update(
                 guid='{92a550f2-dfd2-4d2f-a35d-a98cfda73595}',
                 InstallerLocation='http://java.com/firefoxjre_exe',
-                InstallerHash='sha1:4951aadb74b69d5840c3a3fee6ae45e9cc064fe3',
+                InstallerHash='sha1:fe5d345ffd399641fd49d73258f60ac274af3A5f',
                 XPILocation='http://java.com/jre-install.xpi')
         else:
             plugin.update(
