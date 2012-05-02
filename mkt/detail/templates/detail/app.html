@@ -67,12 +67,11 @@
       {% if product.is_public() %}
         {{ market_button(product) }}
         {% if request.amo_user %}
-          {% set user = request.amo_user.user.get_profile() %}
-          {% if product.is_purchased(user) %}
+          {% if product.pk in request.amo_user.purchase_ids() %}
             <span class="approval checkmark purchased">
               {{ _('Purchased') }}</span>
           {% elif product.can_purchase() %}
-            {% if user.get_preapproval().paypal_key %}
+            {% if user_data(amo_user)['pre_auth'] %}
               <span class="approval checkmark">{{ _('PayPal pre-approval') }}
                 </span>
             {% else %}
