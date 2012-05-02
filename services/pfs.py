@@ -61,10 +61,10 @@ def get_output(data):
     required = ['mimetype', 'appID', 'appVersion', 'clientOS', 'chromeLocale']
 
     # Some defaults we override depending on what we find below.
-    plugin = dict(mimetype='-1', name='-1', guid='-1', version=None,
-                  iconUrl=None, XPILocation=None, InstallerLocation=None,
-                  InstallerHash=None, InstallerShowsUI=None,
-                  manualInstallationURL=None, licenseURL=None,
+    plugin = dict(mimetype='-1', name='-1', guid='-1', version='',
+                  iconUrl='', XPILocation='', InstallerLocation='',
+                  InstallerHash='', InstallerShowsUI='',
+                  manualInstallationURL='', licenseURL='',
                   needsRestart='true')
 
     # Special case for mimetype if they are provided.
@@ -104,7 +104,7 @@ def get_output(data):
         if g['clientOS'].startswith('Win'):
             plugin.update(
                 guid='{4cfaef8a-a6c9-41a0-8e6f-967eb8f49143}',
-                XPILocation=None,
+                XPILocation='',
                 iconUrl='http://fpdownload2.macromedia.com/pub/flashplayer/current/fp_win_installer.ico',
                 needsRestart='false',
                 InstallerShowsUI='true')
@@ -137,7 +137,7 @@ def get_output(data):
                 licenseURL='http://www.adobe.com/go/eula_shockwaveplayer_jp')
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
-            XPILocation=None,
+            XPILocation='',
             version='11.6.4.634',
             InstallerHash='sha256:5eeaa6969ad812a827b827b0357dc32bcb8ca77757528cf44631b290cfcb4117',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
