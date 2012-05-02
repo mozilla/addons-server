@@ -1,8 +1,9 @@
-from django.core.validators import MaxLengthValidator
+from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-from django.db.utils import IntegrityError
 from django.contrib.auth.models import User
+from django.core.validators import MaxLengthValidator
+from django.db.utils import IntegrityError
 
 import jingo
 
@@ -12,6 +13,11 @@ from . import forms
 
 
 class BetterDjangoUserAdmin(DjangoUserAdmin):
+
+    # Password is always empty for users registered through BrowserID.
+    if settings.MARKETPLACE:
+        fieldsets = list(DjangoUserAdmin.fieldsets)
+        fieldsets[0] = None, {'fields': ('username',)}
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         """
@@ -27,6 +33,7 @@ class BetterDjangoUserAdmin(DjangoUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, BetterDjangoUserAdmin)
 
+
 class UserAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'email')
     search_fields = ('^email',)
@@ -39,7 +46,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('email', 'username', 'display_name', 'password',
-                       'bio', 'homepage', 'location', 'occupation',),
+                       'bio', 'homepage', 'location', 'occupation'),
         }),
         ('Registration', {
             'fields': ('confirmationcode', 'resetcode',
