@@ -336,7 +336,7 @@ var installButton = function() {
                     params['versions_url'] = versions_url;
                     params['reasons'] = $d2c_reasons.html();
 
-                    $button.addPopup(params['reasons'] ? nocompat : nocompat_noreason);
+                    $button.addPopup(nocompat);
                 } else {
                     // Bad version.
                     $button.addPopup(vmsg);
