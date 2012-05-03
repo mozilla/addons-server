@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import transaction
 from django.shortcuts import redirect
 from django.utils.translation.trans_real import to_language
 
@@ -58,6 +59,7 @@ def terms(request):
 
 @login_required
 @submit_step('manifest')
+@transaction.commit_on_success
 def manifest(request):
     # TODO: Have decorator handle the redirection.
     user = UserProfile.objects.get(pk=request.user.id)
