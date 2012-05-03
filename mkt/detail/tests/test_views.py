@@ -507,6 +507,11 @@ class TestInstall(amo.tests.TestCase):
                                  password='password')
         eq_(self.client.post(self.url).status_code, 200)
 
+    def test_pending_for_developer(self):
+        AddonUser.objects.create(addon=self.addon, user=self.user)
+        self.addon.update(status=amo.STATUS_PENDING)
+        eq_(self.client.post(self.url).status_code, 200)
+
     def test_pending_for_anonymous(self):
         self.addon.update(status=amo.STATUS_PENDING)
         eq_(self.client.post(self.url).status_code, 404)

@@ -25,7 +25,9 @@ def detail(request, addon):
 
 @addon_all_view
 def privacy(request, addon):
-    if not (addon.is_public() or acl.check_reviewer(request)):
+    is_dev = request.check_ownership(addon, require_owner=False,
+                                     ignore_disabled=True)
+    if not (addon.is_public() or acl.check_reviewer(request) or is_dev):
         raise http.Http404
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
@@ -38,7 +40,9 @@ def privacy(request, addon):
 @post_required
 @write
 def record(request, addon):
-    if not (addon.is_public() or acl.check_reviewer(request)):
+    is_dev = request.check_ownership(addon, require_owner=False,
+                                     ignore_disabled=True)
+    if not (addon.is_public() or acl.check_reviewer(request) or is_dev):
         raise http.Http404
     if addon.is_webapp():
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
