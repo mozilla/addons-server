@@ -73,11 +73,17 @@
 {% if waffle.switch('d2c-buttons') %}
   {% with reasons=version.is_compatible[1] %}
     <div class="d2c-reasons-popup popup">
-      <p>{% trans app=APP.pretty %}
-        This add-on is not compatible with your version of {{ app }} because of
-        the following:
-      {% endtrans %}</p>
-      <ul>{% for reason in reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
+      {% if reasons %}
+        <p>{% trans app=APP.pretty %}
+          This add-on is not compatible with your version of {{ app }} because of
+          the following:
+        {% endtrans %}</p>
+        <ul>{% for reason in reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
+      {% else %}
+        <p>{% trans app=APP.pretty %}
+          This add-on is not compatible with your version of {{ app }}.
+        {% endtrans %}</p>
+      {% endif %}
     </div>
   {% endwith %}
 {% endif %}
