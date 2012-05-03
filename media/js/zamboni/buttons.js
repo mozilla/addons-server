@@ -148,7 +148,7 @@ var installButton = function() {
                 if (VersionCompare.compareVersions(z.browserVersion, _min) >= 0 ||
                     VersionCompare.compareVersions(z.browserVersion, _max) <= 0) {
                     compatible = false;
-                    $d2c_reasons.append($('<li>', {text: gettext('This version has been blacklisted for your Firefox version.')}));
+                    $d2c_reasons.append($('<li>', {text: gettext('Mozilla has marked this version as incompatible with your Firefox version.')}));
                     return;
                 }
             });
