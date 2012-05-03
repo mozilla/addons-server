@@ -270,6 +270,9 @@ var installButton = function() {
         var nocompat = addExtra(function() {
             return message('not_compatible')();
         });
+        var nocompat_noreason = addExtra(function() {
+            return message('not_compatible_no_reasons')();
+        });
         var merge = addExtra(function() {
             // Prepend the platform message to the version message.  We only
             // want to move the installer when we're looking at an older
@@ -333,7 +336,7 @@ var installButton = function() {
                     params['versions_url'] = versions_url;
                     params['reasons'] = $d2c_reasons.html();
 
-                    $button.addPopup(nocompat);
+                    $button.addPopup(params['reasons'] ? nocompat : nocompat_noreason);
                 } else {
                     // Bad version.
                     $button.addPopup(vmsg);
