@@ -89,6 +89,7 @@
       {% if not request.user.is_authenticated() %}
         {# We need Persona only for non-authenticated users. #}
         <script async defer src="https://browserid.org/include.js"></script>
+        {{ js('mkt/consumer') }}
       {% endif %}
     {% endblock %}
     {% block js %}{% endblock %}

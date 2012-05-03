@@ -1,13 +1,14 @@
 $(window).bind('login', function() {
     $('#login').addClass('show');
-}).on('click', '.button.browserid', function(e) {
+}).on('click', '.browserid', function(e) {
     e.preventDefault();
-    var $this = $(this);
+    var $this = $(this),
+        href = $this.attr('href'),
+        qs = z.getVars(href.substring(href.indexOf('?')));
     $this.addClass('loading-submit');
-    $.when(z.login())
+    $.when(z.login(qs.to))
      .done(function() {
          $this.removeClass('loading-submit');
-         window.location.reload();
      })
      .fail(function(err) {
          $this.removeClass('loading-submit');

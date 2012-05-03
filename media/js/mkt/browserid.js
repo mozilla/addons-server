@@ -1,10 +1,12 @@
 _.extend(z, (function() {
     var loginUrl = $('body').data('login-url'),
         exports = {},
-        $def;
+        $def,
+        to;
 
-    exports.login = function() {
+    exports.login = function(go_to) {
         $def = $.Deferred();
+        to = go_to;
 
         navigator.id.get(gotVerifiedEmail, {
             privacyURL: 'https://marketplace.mozilla.org/en-US/privacy-policy',
@@ -44,9 +46,9 @@ _.extend(z, (function() {
     function finishLogin() {
         $def.resolve();
         // If we have a `to` query string and it's not outbound, go "to" it.
-        var qs = z.getVars(window.location.search);
-        if (qs.to && qs.to[0] == '/') {
-            window.location = qs.to;
+        to = to || z.getVars(window.location.search).to;
+        if (to && to[0] == '/') {
+            window.location = to;
         } else {
             window.location.reload();
         }
