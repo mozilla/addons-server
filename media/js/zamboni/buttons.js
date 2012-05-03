@@ -312,27 +312,28 @@ var installButton = function() {
                 }
                 $button.closest('div').attr('data-version-supported', false);
                 $button.addClass('concealed');
+
+                var $ishell = $button.closest('.install-shell');
+                if (!compatible && $d2c_reasons.children().length) {
+                    $ishell.find('.d2c-reasons-popup').popup(
+                        $ishell.find('.d2c-reasons-help'), {
+                            callback: function(obj) {
+                                return {pointTo: $(obj.click_target)};
+                            }
+                        }
+                    );
+                }
+
                 if (!opts.addPopup) return;
 
                 if (badPlatform) {
                     $button.addPopup(pmsg);
                 } else if (!compatible) {
                     // Show compatibility message.
-                    var $ishell = $button.closest('.install-shell');
                     params['versions_url'] = versions_url;
                     params['reasons'] = $d2c_reasons.html();
 
                     $button.addPopup(nocompat);
-
-                    if ($d2c_reasons.children().length) {
-                        $ishell.find('.d2c-reasons-popup').popup(
-                            $ishell.find('.d2c-reasons-help'), {
-                                callback: function(obj) {
-                                    return {pointTo: $(obj.click_target)};
-                                }
-                            }
-                        );
-                    }
                 } else {
                     // Bad version.
                     $button.addPopup(vmsg);
