@@ -42,14 +42,14 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 padding-left: 24px;
                 .sprite-pos(3, 64, 3px);
             }
-            &.disabled, &.concealed {
-                span {
-                    .sprite-pos(4, 64, 3px);
-                }
-            }
             &.warning, &.caution {
                 span {
                     .sprite-pos(5, 64, 3px);
+                }
+            }
+            &.disabled, &.concealed, &.caution.concealed {
+                span {
+                    .sprite-pos(4, 64, 3px);
                 }
             }
         }
@@ -64,7 +64,8 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
             }
         }
         &.disabled,
-        &.concealed {
+        &.concealed,
+        &.caution.concealed {
             top: 0;
             span {
                 .sprite-pos(1, 64, 3px);
@@ -127,7 +128,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                     padding: 0 24px 0 0;
                     .sprite-pos-right(3, 64, 3px);
                 }
-                &.disabled, &.concealed {
+                &.disabled, &.concealed, &.caution.concealed {
                     span {
                         .sprite-pos-right(4, 64, 3px);
                     }
@@ -145,7 +146,8 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 }
             }
             &.disabled,
-            &.concealed {
+            &.concealed,
+            &.caution.concealed {
                 span {
                     .sprite-pos-right(1, 64, 3px);
                 }
@@ -287,13 +289,16 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
 
 button[disabled],
 .button.disabled,
-.button.concealed {
+.button.concealed,
+.button.caution.concealed {
     background: #c1c5ca;
     .gradient-two-color(#d1d4d7, #c1c5ca);
     color: #919497;
     .box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset);
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
-button[disabled] {
+button[disabled],
+.button.disabled,
+.button.caution.concealed {
     pointer-events: none;
 }
