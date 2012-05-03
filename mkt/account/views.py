@@ -50,7 +50,7 @@ def payment(request, status=None):
                 pre.update(paypal_key=data.get('key'),
                            paypal_expiry=data.get('expiry'))
                 # Invalidate the user.
-                UserProfile.objects.invalidate(*[request.amo_user])
+                UserProfile.objects.invalidate(request.amo_user)
                 # If there is a target, bounce to it and don't show a message
                 # we'll let whatever set this up worry about that.
                 if data.get('complete'):
