@@ -194,6 +194,14 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
         assert not self.process(True)
         eq_(self.process(False).status_code, 302)
 
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_middleware_marketplace(self):
+        # Middleware returns None if it doesn't need to redirect the user.
+        assert not self.process(True)
+        res = self.process(False)
+        eq_(res.status_code, 302)
+        assert res._headers['location'][1].endswith('?to=%2F')
+
     def test_locale(self):
         eq_(self.process(False)['Location'], '/en-US/firefox/users/login')
         eq_(self.process(False, lang='fr')['Location'],
