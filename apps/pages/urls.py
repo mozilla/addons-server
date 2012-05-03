@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url('^credits$', views.credits, name='pages.credits'),
     url('^faq$', direct_to_template, {'template': 'pages/faq.html'},
         name='pages.faq'),
+    url('^google1f3e37b7351799a5.html$', direct_to_template,
+        {'template': 'pages/google_webmaster_verification.html'}),
 
     url('^compatibility_firstrun$', direct_to_template,
         {'template': 'pages/acr_firstrun.html'}, name='pages.acr_firstrun'),

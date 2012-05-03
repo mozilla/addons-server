@@ -231,14 +231,14 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',
-                     'editors', 'faq', 'img', 'jsi18n', 'localizers', 'media',
-                     'review_guide', 'robots.txt', 'statistics', 'services',
-                     'sunbird')
+                     'editors', 'faq', 'google1f3e37b7351799a5.html', 'img',
+                     'jsi18n', 'localizers', 'media', 'review_guide',
+                     'robots.txt', 'statistics', 'services', 'sunbird')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
-SUPPORTED_NONLOCALES = ('img', 'media', 'robots.txt', 'services', 'downloads',
-                        'blocklist')
+SUPPORTED_NONLOCALES = ('google1f3e37b7351799a5.html', 'img', 'media',
+                        'robots.txt', 'services', 'downloads', 'blocklist')
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
