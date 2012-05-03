@@ -129,7 +129,7 @@ var installButton = function() {
     }
 
     // Default to compatible checking.
-    if (waffle_d2c_buttons) {
+    if (waffle_d2c_buttons && compatible) {
         if (!compatible_app) {
             $d2c_reasons.append($('<li>', {text: gettext('Add-on has not been updated to support default-to-compatible.')}));
             compatible = false;
