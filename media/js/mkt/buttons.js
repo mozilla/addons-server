@@ -7,14 +7,10 @@
     function setButton($button, text, cls) {
         if (cls == 'purchasing' || cls == 'installing') {
             // Save the old text of the button if we know we may revert later.
-            $button.data('old-text', $button.html())
-                   .data('old-font-size', $button.css('font-size'));
+            $button.data('old-text', $button.html());
         }
         $button.html(text);
-        if (cls == 'purchasing' || cls == 'installing') {
-            // The text has changed, so do another linefit.
-            $button.css('font-size', $button.data('old-font-size')).linefit();
-        } else {
+        if (!(cls == 'purchasing' || cls == 'installing')) {
             $button.removeClass('purchasing installing');
         }
         $button.addClass(cls);
@@ -24,9 +20,7 @@
         // Cancelled install/purchase. Roll back button to its previous state.
         $button.removeClass('purchasing installing error');
         if ($button.data('old-text')) {
-            $button.html($button.data('old-text'))
-            // The text has changed, so do another linefit.
-            $button.css('font-size', $button.data('old-font-size')).linefit();
+            $button.html($button.data('old-text'));
         }
     }
 
@@ -85,10 +79,5 @@
         var $button = $('.button.product');
         setButton($button, $button.html(), 'disabled');
         $button.parent().append($('#noApps').html());
-    });
-
-    z.page.on('fragmentloaded', function(e) {
-        // Shrink text in buttons so everything fits on one line.
-        $('.button').linefit();
     });
 })();
