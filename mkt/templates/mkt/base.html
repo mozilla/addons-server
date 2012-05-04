@@ -1,4 +1,4 @@
-{% if request.is_ajax() %}
+{% if request.is_ajax() and not SKIP_FRAGMENT %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
 {% set logged = request.user.is_authenticated() %}
