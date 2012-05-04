@@ -330,3 +330,19 @@ class TestOtherStuff(amo.tests.TestCase):
         doc = pq(r.content)
         link = doc('.account.anonymous a')[1].attrib['href']
         assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25E0%25BD%25A0')
+
+    @mock.patch.object(settings, 'PFS_URL', 'https://pfs.mozilla.org/pfs.py')
+    def test_plugincheck_redirect(self):
+        r = test.Client().get('/services/pfs.php?'
+                              'mimetype=application%2Fx-shockwave-flash&'
+                              'appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&'
+                              'appVersion=20120215223356&'
+                              'clientOS=Windows%20NT%205.1&'
+                              'chromeLocale=en-US&appRelease=10.0.2')
+        self.assertEquals(r.status_code, 302)
+        self.assertEquals(r['Location'], ('https://pfs.mozilla.org/pfs.py?'
+                          'mimetype=application%2Fx-shockwave-flash&'
+                          'appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&'
+                          'appVersion=20120215223356&'
+                          'clientOS=Windows%20NT%205.1&'
+                          'chromeLocale=en-US&appRelease=10.0.2'))

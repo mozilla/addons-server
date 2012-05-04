@@ -5,6 +5,8 @@ import re
 from django import http
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import redirect
+from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -463,3 +465,9 @@ def plugin_check(request):
     # End ridiculously huge and embarrassing if-else block.
 
     return render_xml(request, 'services/plugin_check.xml', {'plugin': plugin})
+
+
+def plugin_check_redirect(request):
+    return redirect('%s?%s' %
+            (settings.PFS_URL,
+             iri_to_uri(request.META.get('QUERY_STRING', ''))))

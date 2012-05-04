@@ -17,7 +17,7 @@ services_patterns = patterns('',
     url('^graphite/(addons|dev|stage|apps-preview|apps-preview-dev)$',
         views.graphite, name='amo.graphite'),
     url('^timing/record$', views.record, name='amo.timing.record'),
-    url('^pfs.php$', views.plugin_check, name='api.plugincheck'),
+    url('^pfs.php$', views.plugin_check_redirect, name='api.plugincheck'),
     url('^install.php$', install.install, name='api.install'),
 )
 

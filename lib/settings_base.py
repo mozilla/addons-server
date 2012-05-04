@@ -937,6 +937,8 @@ PERSONAS_UPDATE_URL = 'https://www.getpersonas.com/update_check/%d'
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
+
+PFS_URL = 'https://pfs.mozilla.org/plugins/PluginFinderService.php'
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
 
