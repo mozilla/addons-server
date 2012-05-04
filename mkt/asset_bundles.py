@@ -227,8 +227,8 @@ JS = {
     ),
     'mkt/in-app-payments': (
         'js/lib/jquery-1.7.1.js',
-        'js/impala/serializers.js',
         'js/mkt/inapp_payments.js',
+        'js/impala/serializers.js',
         'js/mkt/browserid.js',
         'js/mkt/login.js',
     ),
