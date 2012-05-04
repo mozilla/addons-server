@@ -1,14 +1,13 @@
 @import 'lib';
 
 #site-header {
-    background: @taupe;
+    background: url("../../img/mkt/blueprint.png") repeat scroll 0 0 @grain;
     border-top: 2px solid white;
     font-family: @head-sans;
     .upper-header {
         padding: 0 0 7px;
     }
     .menu-nav {
-        padding-left: 252px;
         position: relative;
         max-width: 960px;
     }
@@ -27,62 +26,28 @@
     }
 }
 
-#masthead {
-//    max-width: 600px;
-}
-
-#masthead {
-    font: bold 48px/1.2 @open-stack;
-    padding-top: 24px;
-    text-shadow: 0 1px 1px fadeOut(#fff, 25%);
-    text-transform: uppercase;
-    padding-left: 250px;
-}
-
 #aux-nav {
     float: right;
     a {
-        color: #666;
+        color: #fff;
+    }
+    ul ul {
+        z-index: 999;
+        a {
+            color: #666;
+        }
     }
 }
-.site-title {
-    margin: 0 0 7px;
-    display: block;
-    a {
-        display: block;
-        left: -250px;
-        padding-left: 250px;
-        position: relative;
-        text-decoration: none;
-        color: darken(@red, 10%);
-        width: 100%;
-        &:before {
-            content: url(../../img/developers/hub-logo-footer.png);
+
+#site-header {
+    h1 {
+        padding: 15px 0;
+        a {
+            background-image: url('../../img/ecosystem/developers_logo.png');
+            height: 54px;
+            width: 375px;
             display: block;
-            overflow: hidden;
-            position: absolute;
-            height: 180px;
-            left: -20px;
-            top: -14px;
-            z-index: 1100;
-            width: 245px;
-        }
-        small {
-            color: @medium-gray;
-            display: block;
-            font-size: 15px;
-            padding: 0 2px;
-        }
-        &:hover {
-            color: darken(@red, 20%);
-            small {
-                color: @dark-gray;
-            }
-        }
-        &:focus {
-            text-shadow: 0 0 40px #fff,
-                         0 0 20px #fff,
-                         0 0 10px #fff;
+            text-indent: -90000px;
         }
     }
 }
@@ -194,7 +159,7 @@
     .menu-nav > ul {
         > li {
             border-left: 1px dotted @light-gray;
-            margin: 10px 0;
+            margin: 5px 0;
             > a {
                 color: #484848;
                 display: block;
@@ -234,7 +199,7 @@
                     height: 0;
                     border: 4px solid transparent;
                     border-style: solid;
-                    border-top-color: #666;
+                    border-top-color: #fff;
                 }
             }
             &:hover {
