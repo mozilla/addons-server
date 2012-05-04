@@ -639,6 +639,22 @@ class TestESSearch(SearchBase):
         eq_(r.status_code, 200)
         eq_(self.get_results(r), themes)
 
+    def test_results_respect_appver_filtering(self):
+        r = self.client.get(self.url, dict(appver='9.00'))
+        eq_(self.get_results(r), [])
+
+    def test_results_skip_appver_filtering_for_d2c(self):
+        r = self.client.get(self.url, dict(appver='10.0a1'))
+        eq_(self.get_results(r),
+            sorted(self.addons.values_list('id', flat=True)))
+
+    def test_results_respect_appver_filtering_for_non_extensions(self):
+        self.addons.update(type=amo.ADDON_THEME)
+        r = self.client.get(self.url, dict(appver='10.0a1',
+                                           type=amo.ADDON_THEME))
+        eq_(self.get_results(r),
+            sorted(self.addons.values_list('id', flat=True)))
+
 
 class TestPersonaSearch(SearchBase):
     fixtures = ['base/apps']
