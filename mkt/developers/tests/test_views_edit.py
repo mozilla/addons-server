@@ -260,6 +260,21 @@ class TestEditBasic(TestEdit):
         assert 'manifest_url' in form.errors
         assert 'one app per domain' in form.errors['manifest_url'][0]
 
+        eq_(self.get_webapp().manifest_url, self.webapp.manifest_url,
+            'Manifest URL should not have been changed!')
+
+    @mock.patch('devhub.tasks.urllib2.urlopen')
+    def test_view_manifest_changed_same_domain_diff_path(self, mock_urlopen):
+        mock_urlopen.return_value = response_mock
+        Switch.objects.create(name='webapps-unique-by-domain', active=True)
+        self.client.login(username='admin@mozilla.com', password='password')
+        # POST with the new manifest URL for same domain but w/ different path.
+        data = self.get_dict(manifest_url=self.webapp.manifest_url + 'xxx')
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+        eq_(self.get_webapp().manifest_url, self.webapp.manifest_url + 'xxx',
+            'Manifest URL should have changed!')
+
     def test_view_manifest_url_changed(self):
         new_url = 'http://omg.org/yes'
         self.webapp.manifest_url = new_url

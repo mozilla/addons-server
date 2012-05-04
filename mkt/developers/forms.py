@@ -219,10 +219,13 @@ def trap_duplicate(request, manifest_url):
         return msg % (app.name, error_url)
 
 
-def verify_app_domain(manifest_url):
+def verify_app_domain(manifest_url, exclude=None):
     if waffle.switch_is_active('webapps-unique-by-domain'):
         domain = Webapp.domain_from_url(manifest_url)
-        if Webapp.objects.filter(app_domain=domain).exists():
+        qs = Webapp.objects.filter(app_domain=domain)
+        if exclude:
+            qs = qs.exclude(pk=exclude.pk)
+        if qs.exists():
             raise forms.ValidationError(
                 _('An app already exists on this domain; '
                   'only one app per domain is allowed.'))
@@ -476,7 +479,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
             # Only Admins can edit the manifest_url.
             if not acl.action_allowed(self.request, 'Admin', '%'):
                 return self.instance.manifest_url
-            verify_app_domain(manifest_url)
+            verify_app_domain(manifest_url, exclude=self.instance)
         return manifest_url
 
     def save(self, addon, commit=False):
