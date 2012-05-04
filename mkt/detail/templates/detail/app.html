@@ -72,17 +72,7 @@
               {{ _('Purchased') }}</span>
           {% elif product.can_purchase() %}
             {% if user_data(amo_user)['pre_auth'] %}
-              <span class="approval checkmark">{{ _('PayPal pre-approval') }}
-                </span>
-            {% else %}
-              <form method="post" id="preapproval-shortcut"
-                    action="{{ product.get_detail_url('purchase.preapproval') }}">
-                {{ csrf() }}
-                <input type="hidden" name="currency" value="USD">
-                <a class="approval-pitch" href="#">
-                  {{ _('Set up purchasing') }}
-                </a>
-              </form>
+              <span class="approval checkmark">{{ _('PayPal pre-approval') }}</span>
             {% endif %}
           {% endif %}
         {% endif %}
