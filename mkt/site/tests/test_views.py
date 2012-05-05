@@ -30,7 +30,7 @@ class Test404(amo.tests.TestCase):
                                  password='password')
         r = self._test_404('/developers/xxx')
         eq_(pq(r.content)('#site-header h1').text(),
-            'Marketplace Developer Hub')
+            'Mozilla Marketplace Developers')
 
     def test_404_consumer_legacy(self):
         r = self._test_404('/xxx')
