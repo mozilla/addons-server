@@ -34,6 +34,7 @@
 
     function purchaseSuccess(product, receipt) {
         // Firefox doesn't successfully fetch the manifest unless I do this.
+        $(window).trigger('app_purchase_success', [product]);
         setTimeout(function() {
             install(product);
         }, 0);

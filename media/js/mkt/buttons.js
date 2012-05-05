@@ -27,10 +27,15 @@
     $(window).bind('app_purchase_start', function(e, product) {
         setButton(getButton(product), gettext('Purchasing&hellip;'), 'purchasing');
     }).bind('app_purchase_success', function(e, product) {
-        setButton(getButton(product), gettext('Purchased'), 'purchased');
+        var $button = getButton(product),
+            purchasedMark = '<span class="approval checkmark purchased">';
+        purchasedMark += gettext('Purchased') + '</span>';
+        product['isPurchased'] = true;
+        $button.data('product', product).after(purchasedMark);
+        setButton($button, gettext('Purchased'), 'purchased');
     }).bind('app_install_start', function(e, product) {
-        var $button = getButton(product);
-        setButton(getButton(product), gettext('Installing&hellip;'), 'installing');
+        setButton(getButton(product),
+                  gettext('Installing&hellip;'), 'installing');
     }).bind('app_install_success', function(e, product) {
         setButton(getButton(product), gettext('Installed'), 'installed');
     }).bind('app_purchase_error app_install_error', function(e, product, msg) {
