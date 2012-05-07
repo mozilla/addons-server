@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 import hashlib
 import json
 import uuid
@@ -10,7 +9,6 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
-import jinja2
 from tower import ugettext as _
 import waffle
 
@@ -22,7 +20,6 @@ from addons.decorators import (addon_view_factory, can_be_purchased,
 from market.forms import PriceCurrencyForm
 import paypal
 from stats.models import Contribution
-from waffle.decorators import waffle_flag
 from mkt.account.views import preapproval as user_preapproval
 from mkt.webapps.models import Webapp
 
@@ -59,7 +56,7 @@ def purchase(request, addon):
 
     paykey, status, error = '', '', ''
     preapproval = None
-    if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
+    if request.amo_user:
         preapproval = request.amo_user.get_preapproval()
         # User the users default currency.
         if currency == 'USD' and preapproval and preapproval.currency:
@@ -186,12 +183,8 @@ def purchase_done(request, addon, status):
 @post_required
 @login_required
 @addon_view
-@waffle_flag('allow-pre-auth')
 def preapproval(request, addon):
-    return user_preapproval(request,
-                            # TODO: put something here to trigger purchase.
-                            complete=addon.get_detail_url(),
-                            # TODO: put something else here.
+    return user_preapproval(request, complete=addon.get_detail_url(),
                             cancel=addon.get_detail_url())
 
 

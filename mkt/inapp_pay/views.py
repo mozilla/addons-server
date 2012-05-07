@@ -6,7 +6,6 @@ import commonware.log
 import jingo
 from session_csrf import anonymous_csrf
 from tower import ugettext as _
-import waffle
 from waffle.decorators import waffle_switch
 
 from django.conf import settings
@@ -64,7 +63,7 @@ def pay(request, signed_req, pay_req):
     currency = pay_req['request']['currency']
     source = request.POST.get('source', '')
     product = pay_req['_config'].addon
-    # L10n: {0} is the product name. {1} is the application name
+    # L10n: {0} is the product name. {1} is the application name.
     contrib_for = (_(u'Mozilla Marketplace in-app payment for {0} to {1}')
                    .format(pay_req['request']['name'], product.name))
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()

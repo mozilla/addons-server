@@ -14,7 +14,7 @@ import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
-                           Price, PriceCurrency)
+                           PriceCurrency)
 from mkt.webapps.models import Webapp
 from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
@@ -26,7 +26,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)
-        waffle.models.Flag.objects.create(name='allow-pre-auth', everyone=True)
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -103,7 +102,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                    .returns(('some-pay-key', '')))
         self.client.post_ajax(self.purchase_url, data={'tier': 0})
 
-
     @fudge.patch('paypal.get_paykey')
     def test_paykey_error(self, get_paykey):
         get_paykey.expects_call().raises(PaypalError())
@@ -165,7 +163,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @mock.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')
-    # Turning on the allow-pre-auth flag.
     @mock.patch.object(waffle, 'flag_is_active', lambda x, y: True)
     def test_paykey_pre_approval_used(self, get_paykey, check_purchase):
         check_purchase.return_value = 'COMPLETED'
@@ -177,7 +174,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
 
     @mock.patch('paypal.check_purchase')
     @fudge.patch('paypal._call')
-    # Turning on the allow-pre-auth flag.
     @mock.patch.object(waffle, 'flag_is_active', lambda x, y: True)
     def test_paykey_pre_approval_empty(self, _call, check_purchase):
         check_purchase.return_value = 'COMPLETED'
@@ -277,7 +273,6 @@ class TestPurchaseDetails(amo.tests.TestCase):
         self.url = self.webapp.get_detail_url()
         self.pre_url = reverse('detail.purchase.preapproval',
                                args=[self.webapp.app_slug])
-        waffle.models.Flag.objects.create(name='allow-pre-auth', everyone=True)
 
     @mock.patch('users.models.UserProfile.has_preapproval_key')
     def test_details_no_preauth(self, has_preapproval_key):
@@ -305,7 +300,7 @@ class TestPurchaseDetails(amo.tests.TestCase):
     def test_pre_approval(self, get_preapproval_key):
         get_preapproval_key.return_value = {'preapprovalKey': 'x'}
         self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.post(self.pre_url, {'currency':'USD'})
+        res = self.client.post(self.pre_url, {'currency': 'USD'})
         eq_(res.status_code, 302)
         eq_(res['Location'], get_preapproval_url('x'))
 
