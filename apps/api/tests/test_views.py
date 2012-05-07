@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from decimal import Decimal
 import json
-import os
 from textwrap import dedent
 
 from django.conf import settings
@@ -11,7 +10,6 @@ import jingo
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import api
@@ -29,7 +27,6 @@ from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File
 from files.tests.test_models import UploadTest
 from market.models import AddonPremium, Price
-from search.utils import stop_sphinx
 from tags.models import AddonTag, Tag
 
 
@@ -468,20 +465,6 @@ class APITest(TestCase):
         for needle in needles:
             self.assertContains(response, needle)
 
-    def test_sphinx_off(self):
-        """
-        This tests that if sphinx is turned off that you will get an error.
-        """
-        # Shut down sphinx if it's configured.
-        if settings.SPHINX_SEARCHD and settings.SPHINX_INDEXER:
-            stop_sphinx()
-
-        os.environ['DJANGO_ENVIRONMENT'] = 'test'
-        response = self.client.get("/en-US/firefox/api/1.2/search/foo")
-        self.assertContains(response, "Could not connect to Sphinx search.",
-                            status_code=503)
-    test_sphinx_off.sphinx = True
-
     def test_slug(self):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<slug>%s</slug>' %
@@ -794,9 +777,6 @@ class SearchTest(ESTestCase):
 
         [addon.save() for addon in self.addons]
         self.refresh()
-
-        # TODO(robhudson): Remove when we officially switch.
-        waffle.models.Flag.objects.create(name='new-api-search', everyone=True)
 
     def test_double_escaping(self):
         """

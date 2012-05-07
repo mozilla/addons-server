@@ -20,7 +20,6 @@ import commonware.log
 import jingo
 from piston.utils import rc
 from tower import ugettext as _, ugettext_lazy
-import waffle
 
 import amo
 import api
@@ -34,8 +33,7 @@ from amo.utils import JSONEncoder
 from addons.models import Addon, CompatOverride
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
-from search.client import (Client as SearchClient, SearchError,
-                           SEARCHABLE_STATUSES)
+from search.client import SEARCHABLE_STATUSES
 from search.views import name_query
 from search import utils as search_utils
 
@@ -294,10 +292,6 @@ class SearchView(APIView):
         """
         Query the search backend and serve up the XML.
         """
-        if not waffle.flag_is_active(self.request, 'new-api-search'):
-            return self._sphinx_api_search(query, addon_type, limit, platform,
-                                           version, compat_mode)
-
         limit = min(MAX_LIMIT, int(limit))
 
         filters = {
@@ -339,48 +333,6 @@ class SearchView(APIView):
             'total': qs.count(),
         })
 
-    def _sphinx_api_search(self, query, addon_type='ALL', limit=10,
-                           platform='ALL', version=None, compat_mode='strict'):
-        """
-        This queries sphinx with `query` and serves the results in xml.
-        """
-        sc = SearchClient()
-        limit = min(MAX_LIMIT, int(limit))
-
-        opts = {'app': self.request.APP.id}
-
-        if addon_type.upper() != 'ALL':
-            try:
-                opts['type'] = int(addon_type)
-            except ValueError:
-                # `addon_type` is ALL or a type id. Otherwise we ignore it.
-                pass
-
-        if version:
-            opts['version'] = version
-
-        if platform.upper() != 'ALL':
-            opts['platform'] = platform.lower()
-
-        if self.version < 1.5:
-            # By default we show public addons only for api_version < 1.5
-            opts['status'] = [amo.STATUS_PUBLIC]
-
-            # Fix doubly encoded query strings
-            try:
-                query = urllib.unquote(query.encode('ascii'))
-            except UnicodeEncodeError:
-                # This fails if the string is already UTF-8.
-                pass
-        try:
-            results = sc.query(query, limit=limit, **opts)
-        except SearchError:
-            return self.render_msg('Could not connect to Sphinx search.',
-                                   ERROR, status=503, mimetype=self.mimetype)
-
-        return self.render('api/search.xml',
-                           {'results': results, 'total': sc.total_found})
-
 
 class ListView(APIView):
 
@@ -417,7 +369,8 @@ class ListView(APIView):
             addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
             shuffle = False
 
-        args = (addon_type, limit, APP, platform, version, compat_mode, shuffle)
+        args = (addon_type, limit, APP, platform, version, compat_mode,
+                shuffle)
         f = lambda: self._process(addons, *args)
         return cached_with(addons, f, map(encoding.smart_str, args))
 
