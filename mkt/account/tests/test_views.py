@@ -658,6 +658,12 @@ class TestPurchases(PurchaseBase):
             "Expected '.item' to have 'refunded' class")
         assert item.find('.refund-notice'), 'Expected refund message'
 
+    def test_inapp_not_installed(self):
+        Contribution.objects.all().delete()
+        Installed.objects.all().delete()
+        self.make_contribution(self.apps['t1'], '1.00', amo.CONTRIB_INAPP, 2)
+        eq_(len(self.get_pq()('.item a.request-support')), 1)
+
     def test_repurchased(self):
         app = self.apps['t1']
         c = [
