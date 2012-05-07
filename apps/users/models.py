@@ -379,7 +379,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def has_preapproval_key(self):
         """
-        Returns the pre approval paypal key for this user, or '' if the
+        Returns the pre approval paypal key for this user, or False if the
         pre_approval doesn't exist or the key is blank.
         """
         return bool(getattr(self.get_preapproval(), 'paypal_key', ''))

@@ -45,10 +45,10 @@ def pay_start(request, signed_req, pay_req):
                                     _serializable_req(pay_req))
     if not request.user.is_authenticated():
         return jingo.render(request, 'inapp_pay/login.html', data)
-    preapproval = None
+    has_preapproval = False
     if request.amo_user:
-        preapproval = request.amo_user.get_preapproval()
-    if not preapproval:
+        has_preapproval = request.amo_user.has_preapproval_key()
+    if not has_preapproval:
         return jingo.render(request, 'inapp_pay/nowallet.html', data)
     return jingo.render(request, 'inapp_pay/pay_start.html', data)
 
@@ -71,7 +71,7 @@ def pay(request, signed_req, pay_req):
 
     paykey, status = '', ''
     preapproval = None
-    if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
+    if request.amo_user:
         preapproval = request.amo_user.get_preapproval()
 
     try:

@@ -18,6 +18,7 @@ from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+from market.models import PreApprovalUser
 from paypal import PaypalError
 from stats.models import Contribution
 from users.models import UserProfile
@@ -117,18 +118,28 @@ class PaymentViewTest(PaymentTest):
 @mock.patch('mkt.inapp_pay.tasks.fetch_product_image')
 class TestPayStart(PaymentViewTest):
 
+    def setUp(self):
+        super(TestPayStart, self).setUp()
+        PreApprovalUser.objects.create(user=self.user,
+                                       paypal_key='fantasmic')
+
+    def start(self, req=None):
+        if not req:
+            payload = self.payload()
+            req = self.request(payload=json.dumps(payload))
+        return self.client.get(reverse('inapp_pay.pay_start'),
+                               data=dict(req=req))
+
     def test_missing_pay_request_on_start(self, fetch_prod_im):
         rp = self.client.get(reverse('inapp_pay.pay_start'))
         eq_(rp.status_code, 400)
 
     def test_pay_start(self, fetch_prod_im):
         payload = self.payload()
-        req = self.request(payload=json.dumps(payload))
-        rp = self.client.get(reverse('inapp_pay.pay_start'),
-                             data=dict(req=req))
+        rp = self.start()
         eq_(rp.status_code, 200)
         assert 'x-frame-options' not in rp, "Can't deny with x-frame-options"
-        # TODO(Kumar) UI is still in the works here.
+        self.assertTemplateUsed(rp, 'inapp_pay/pay_start.html')
 
         log = InappPayLog.objects.get()
         eq_(log.action, InappPayLog._actions['PAY_START'])
@@ -136,9 +147,26 @@ class TestPayStart(PaymentViewTest):
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
         assert fetch_prod_im.delay.called, 'product image fetched'
 
+    def test_not_logged_in(self, fetch_prod_im):
+        self.client.logout()
+        rp = self.start()
+        eq_(rp.status_code, 200)
+        self.assertTemplateUsed(rp, 'inapp_pay/login.html')
+
+    def test_no_preapproval(self, fetch_prod_im):
+        self.user.preapprovaluser.delete()
+        rp = self.start()
+        eq_(rp.status_code, 200)
+        self.assertTemplateUsed(rp, 'inapp_pay/nowallet.html')
+
+    def test_empty_preapproval(self, fetch_prod_im):
+        self.user.preapprovaluser.update(paypal_key='')
+        rp = self.start()
+        eq_(rp.status_code, 200)
+        self.assertTemplateUsed(rp, 'inapp_pay/nowallet.html')
+
     def test_pay_start_error(self, fetch_prod_im):
-        rp = self.client.get(reverse('inapp_pay.pay_start'),
-                             data=dict(req=self.request(app_secret='invalid')))
+        rp = self.start(req=self.request(app_secret='invalid'))
         eq_(rp.status_code, 200)
         doc = pq(rp.content)
         eq_(doc('h3').text(), 'Payment Error')
@@ -153,8 +181,7 @@ class TestPayStart(PaymentViewTest):
 
     @mock.patch.object(settings, 'INAPP_VERBOSE_ERRORS', True)
     def test_verbose_error(self, fetch_prod_im):
-        rp = self.client.get(reverse('inapp_pay.pay_start'),
-                             data=dict(req=self.request(app_secret='invalid')))
+        rp = self.start(req=self.request(app_secret='invalid'))
         eq_(rp.status_code, 200)
         self.assertContains(rp, 'RequestVerificationError')
 
