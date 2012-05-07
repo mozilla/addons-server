@@ -325,14 +325,12 @@ class PremiumForm(happyforms.Form):
     free = AddonChoiceField(queryset=Addon.objects.none(), required=False,
                             empty_label='')
     text = forms.CharField(widget=forms.Textarea(), required=False)
-    support_email = forms.EmailField(label=_lazy(u'Support Email'))
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
         self.request = kw.pop('request')
         self.addon = self.extra['addon']
         kw['initial'] = {
-            'support_email': self.addon.support_email,
             'premium_type': self.addon.premium_type,
             'do_upsell': 0,
         }
@@ -409,7 +407,6 @@ class PremiumForm(happyforms.Form):
             upsell.delete()
 
         self.addon.premium_type = self.cleaned_data['premium_type']
-        self.addon.support_email = self.cleaned_data['support_email']
         self.addon.save()
 
         # If they checked later in the wizard and then decided they want

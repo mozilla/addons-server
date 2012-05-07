@@ -27,8 +27,7 @@ class TestPayments(amo.tests.TestCase):
         return Addon.objects.get(pk=337141)
 
     def test_free(self):
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE,
-                                          'support_email': 'foo@bar.com'})
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
 
@@ -42,8 +41,7 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.post(self.url,
                 {'premium_type': amo.ADDON_PREMIUM,
-                 'price': self.price.pk,
-                 'support_email': 'foo@bar.com'})
+                 'price': self.price.pk})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
 
@@ -51,33 +49,22 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.post(self.url,
                 {'premium_type': amo.ADDON_PREMIUM_INAPP,
-                 'price': self.price.pk,
-                 'support_email': 'foo@bar.com'})
+                 'price': self.price.pk})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
-
-    def test_free_in_app_fails(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url,
-                {'premium_type': amo.ADDON_PREMIUM_INAPP,
-                 'price': self.price.pk})
-        eq_(res.status_code, 200)
-        eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
 
     def test_free_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.post(self.url,
                 {'premium_type': amo.ADDON_PREMIUM_INAPP,
-                 'price': self.price.pk,
-                 'support_email': 'foo@bar.com'})
+                 'price': self.price.pk})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
     def test_later_then_free(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            status=amo.STATUS_NULL)
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE,
-                                          'support_email': 'foo@bar.com'})
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
@@ -85,8 +72,7 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            status=amo.STATUS_NULL,
                            paypal_id='a@a.com')
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE,
-                                          'support_email': 'foo@bar.com'})
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
