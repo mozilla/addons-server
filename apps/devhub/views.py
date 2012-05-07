@@ -716,8 +716,7 @@ def upload(request, addon_slug=None, is_standalone=False):
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
     else:
         tasks.validator.delay(fu.pk)
-    if (waffle.flag_is_active(request, 'form-errors-in-validation')
-        and addon_slug):
+    if addon_slug:
         return redirect('devhub.upload_detail_for_addon',
                         addon_slug, fu.pk)
     elif is_standalone:
@@ -920,19 +919,15 @@ def json_upload_detail(request, upload, addon_slug=None):
                 plat_exclude = set(s) - set(supported_platforms)
                 plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
-                if waffle.flag_is_active(request,
-                                         'form-errors-in-validation'):
-                    m = []
-                    for msg in exc.messages:
-                        # Simulate a validation error so the UI displays
-                        # it as such
-                        m.append({'type': 'error',
-                                  'message': msg, 'tier': 1})
-                    v = make_validation_result(
-                            dict(error='', validation=dict(messages=m)))
-                    return json_view.error(v)
-                else:
-                    log.error("XPI parsing error, ignored: %s" % exc)
+                m = []
+                for msg in exc.messages:
+                    # Simulate a validation error so the UI displays
+                    # it as such
+                    m.append({'type': 'error',
+                              'message': msg, 'tier': 1})
+                v = make_validation_result(
+                        dict(error='', validation=dict(messages=m)))
+                return json_view.error(v)
 
     result['platforms_to_exclude'] = plat_exclude
     return result
@@ -951,8 +946,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
 
     validation = json.loads(upload.validation) if upload.validation else ""
     if not url:
-        if (waffle.flag_is_active(request, 'form-errors-in-validation')
-            and addon):
+        if addon:
             url = reverse('devhub.upload_detail_for_addon',
                           args=[addon.slug, upload.uuid])
         else:
