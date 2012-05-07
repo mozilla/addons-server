@@ -21,23 +21,19 @@ import waffle
 
 import amo
 import amo.tests
-from amo.helpers import absolutify, numberfmt, urlparams, shared_url
+from amo.helpers import absolutify, numberfmt, urlparams
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
-from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
-                           Charity)
+from addons.models import Addon, AddonDependency, AddonUser, Charity
 from bandwagon.models import Collection
 from files.models import File
-from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
-                           Price, PriceCurrency)
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
-from mkt.webapps.models import Installed
 
 
 def norm(s):
@@ -319,11 +315,6 @@ class TestContributeEmbedded(amo.tests.TestCase):
     def test_addons_result_page(self):
         self._test_result_page()
 
-    def test_apps_result_page(self):
-        raise SkipTest
-        self.addon.update(type=amo.ADDON_WEBAPP, app_slug='xxx')
-        self._test_result_page()
-
     @fudge.patch('paypal.get_paykey')
     def test_not_split(self, get_paykey):
         def check_call(*args, **kw):
@@ -336,170 +327,6 @@ class TestContributeEmbedded(amo.tests.TestCase):
     def contribute(self):
         url = reverse('addons.contribute', args=[self.addon.slug])
         return self.client.post(urlparams(url, result_type='json'))
-
-    @fudge.patch('paypal.get_paykey')
-    def test_pre_approval(self, get_paykey):
-        waffle.models.Flag.objects.create(name='allow-pre-auth',
-                                          everyone=True)
-
-        user = UserProfile.objects.get(pk=999)
-        pre = PreApprovalUser.objects.create(user=user)
-        self.client.login(username=user.email, password='password')
-
-        (get_paykey.expects_call()
-                   .with_matching_args(preapproval=pre)
-                   .returns((None, None)))
-        self.contribute()
-
-
-def setup_premium(addon):
-    price = Price.objects.create(price='0.99')
-    AddonPremium.objects.create(addon=addon, price=price)
-    addon.update(premium_type=amo.ADDON_PREMIUM)
-    return addon, price
-
-
-class PaypalStart(amo.tests.TestCase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def get_profile(self):
-        return UserProfile.objects.get(id=4043307)
-
-    def setUp(self):
-        self.client.get('/')
-        self.data = {'username': 'jbalogh@mozilla.com',
-                     'password': 'foo'}
-        self.addon = Addon.objects.all()[0]
-        self.url = shared_url('addons.purchase.start', self.addon)
-        self.addon, self.price = setup_premium(self.addon)
-
-
-@patch.object(waffle, 'switch_is_active', lambda x: True)
-@patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
-class TestPaypalStart(PaypalStart):
-
-    def test_loggedout_purchased(self):
-        # "Buy" the add-on
-        self.addon.addonpurchase_set.create(user=self.get_profile())
-
-        # Make sure we get a log in field
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-        assert pq(r.content).find('div.login').length
-
-        # Now, let's log in.
-        res = self.client.post_ajax(self.url, data=self.data)
-        eq_(res.status_code, 200)
-
-        # Are we presented with a link to the download?
-        assert pq(res.content).find('.trigger_download').length
-
-    def test_loggedin_purchased(self):
-        # Log the user in
-        assert self.client.login(**self.data)
-
-        # "Buy" the add-on
-        self.addon.addonpurchase_set.create(user=self.get_profile())
-        self.addon.installed.create(user=self.get_profile())
-
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-
-        # This only happens if we've bought it.
-        assert pq(r.content).find('.trigger_download').length
-
-    def test_loggedout_notpurchased(self):
-        # We don't want any purchases.
-        AddonPurchase.objects.all().delete()
-
-        # Make sure we're presented with a log in form.
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-        assert pq(r.content).find('div.login').length
-
-        # Now, let's log in.
-        res = self.client.post_ajax(self.url, data=self.data)
-        eq_(res.status_code, 200)
-
-        # Make sure we get a link to paypal
-        assert pq(res.content).find('.paypal.button').length
-
-    def test_loggedin_notpurchased(self):
-        # No purchases; logged in.
-        AddonPurchase.objects.all().delete()
-        assert self.client.login(**self.data)
-
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-
-        # Make sure we get a link to paypal.
-        assert pq(r.content).find('.paypal.button').length
-
-    def test_no_receipt_made_yet(self):
-        eq_(Installed.objects.count(), 0)
-        self.test_loggedin_notpurchased()
-        eq_(Installed.objects.count(), 0)
-
-    def test_has_thanksurl(self):
-        assert self.client.login(**self.data)
-        res = self.client.get_ajax(self.url)
-        eq_(pq(res.content).find('button.paypal').attr('data-thanksurl'),
-            shared_url('addons.purchase.thanks', self.addon))
-
-    def test_no_currency(self):
-        res = self.client.get_ajax(self.url)
-        eq_(pq(res.content).find('option').length, 0)
-
-    def test_currency(self):
-        self.brl = PriceCurrency.objects.create(currency='BRL',
-                                                price=Decimal('0.5'),
-                                                tier_id=self.price.pk)
-        res = self.client.get_ajax(self.url)
-        eq_(pq(res.content).find('option').length, 2)
-
-
-@patch.object(waffle, 'switch_is_active', lambda x: True)
-@patch.object(settings, 'LOGIN_RATELIMIT_USER', 10)
-@patch('mkt.webapps.models.create_receipt', lambda x: 'receipt')
-class TestPaypalStartReceipt(PaypalStart):
-
-    def setUp(self):
-        super(TestPaypalStartReceipt, self).setUp()
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                          premium_type=amo.ADDON_PREMIUM,
-                          app_slug='foo', manifest_url='http://fooy.com')
-
-    def test_loggedout_purchased(self):
-        self.addon.addonpurchase_set.create(user=self.get_profile())
-        self.addon.installed.create(user=self.get_profile())
-
-        # Make sure we get a log in field
-        r = self.client.get_ajax(self.url)
-        eq_(r.status_code, 200)
-        assert pq(r.content).find('div.login').length
-
-        # Now, let's log in.
-        res = self.client.post_ajax(self.url, data=self.data)
-        eq_(res.status_code, 200)
-
-        # Are we presented with a link to the download?
-        link = pq(res.content).find('.trigger_app_install')
-        eq_(link.attr('data-receipt'), 'receipt')
-
-    def test_loggedin_purchased(self):
-        # Log the user in
-        assert self.client.login(**self.data)
-
-        # "Buy" the add-on
-        self.addon.addonpurchase_set.create(user=self.get_profile())
-        self.addon.installed.create(user=self.get_profile())
-
-        res = self.client.get_ajax(self.url)
-        eq_(res.status_code, 200)
-
-        # This only happens if we've bought it.
-        link = pq(res.content).find('.trigger_app_install')
-        eq_(link.attr('data-receipt'), 'receipt')
 
 
 class TestDeveloperPages(amo.tests.TestCase):
@@ -981,21 +808,6 @@ class TestDetailPage(amo.tests.TestCase):
         res = self.client.get(url)
         eq_(res.status_code, 404)
 
-    @patch('addons.models.Addon.premium')
-    def test_ready_to_buy(self, premium):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM,
-                          status=amo.STATUS_PUBLIC)
-        self.addon.premium.get_price = '0.99'
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-
-    def test_not_ready_to_buy(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM,
-                          status=amo.STATUS_NOMINATED)
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        eq_(pq(response.content)('.install a').length, 0)
-
     def test_more_url(self):
         response = self.client.get(self.url)
         eq_(pq(response.content)('#more-webpage').attr('data-more-url'),
@@ -1106,20 +918,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(d.find('.install-button a').attr('href')
             .endswith('?src=dp-hc-dependencies'), True)
 
-    def test_upsell(self):
-        eq_(self.get_pq()('.upsell').length, 0)
-        premie = Addon.objects.get(id=592)
-        AddonUpsell.objects.create(free=self.addon, premium=premie, text='XXX')
-        upsell = self.get_pq()('.upsell')
-        eq_(upsell.length, 1)
-        eq_(upsell.find('.prose').text(), 'XXX')
-        hc = upsell.find('.hovercard')
-        eq_(hc.length, 1)
-        eq_(hc.find('h3').text(), unicode(premie.name))
-        eq_(hc.find('a').attr('href').endswith('?src=dp-dl-upsell'), True)
-        eq_(hc.find('.install-button a').attr('href')
-            .endswith('?src=dp-hc-upsell'), True)
-
     def test_no_restart(self):
         f = self.addon.current_version.all_files[0]
         eq_(f.no_restart, False)
@@ -1153,20 +951,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def get_more_pq(self):
         return pq(self.client.get_ajax(self.more_url).content)
 
-    def test_can_review_free(self):
-        self.addon.update(premium_type=amo.ADDON_FREE)
-        eq_(len(self.get_more_pq()('#add-review')), 1)
-
-    def test_can_review_premium(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        self.addon.addonpurchase_set.create(user_id=999)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        eq_(len(self.get_more_pq()('#add-review')), 1)
-
-    def test_not_review_premium(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        eq_(len(self.get_more_pq()('#add-review')), 0)
-
     def test_other_addons(self):
         """Ensure listed add-ons by the same author show up."""
         other = Addon.objects.get(id=592)
@@ -1176,14 +960,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         add_addon_author(other, self.addon)
         doc = self.get_more_pq()('#author-addons')
         test_hovercards(self, doc, [other], src='dp-dl-othersby')
-
-    def test_other_addons_no_webapps(self):
-        """An app by the same author should not show up."""
-        other = Addon.objects.get(id=592)
-        other.update(type=amo.ADDON_WEBAPP)
-
-        add_addon_author(other, self.addon)
-        eq_(self.get_more_pq()('#author-addons').length, 0)
 
     def test_other_addons_no_unlisted(self):
         """An unlisted add-on by the same author should not show up."""
@@ -1201,26 +977,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
     def test_other_addons_none(self):
         eq_(self.get_more_pq()('#author-addons').length, 0)
-
-    def test_author_watermarked(self):
-        # TODO: remove when the marketplace is live.
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-
-        # Test that an author can get a watermarked addon.
-        self.addon, self.price = setup_premium(self.addon)
-        assert self.client.login(username=self.addon.authors.all()[0].email,
-                                 password='password')
-        eq_(self.get_pq()('aside .prominent').eq(1).attr('href'),
-            reverse('downloads.latest', args=[self.addon.slug]))
-
-    def test_not_author(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-
-        # A non-author should not see the download link.
-        self.addon, self.price = setup_premium(self.addon)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        eq_(self.get_pq()('.prominent').length, 1)
 
     def test_categories(self):
         c = self.addon.all_categories[0]
@@ -1374,20 +1130,6 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
 
-    def test_app_disabled(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_DISABLED)
-        # Pull webapp back out for class override to take effect
-        addon = Addon.objects.get(id=3615)
-        eq_(self.client.head(addon.get_url_path()).status_code, 404)
-
-    def test_app_deleted(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        addon = Addon.objects.get(id=3615)
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_DELETED)
-        # Pull webapp back out for class override to take effect
-        eq_(self.client.head(addon.get_url_path()).status_code, 404)
-
     def test_lite(self):
         self.addon.update(status=amo.STATUS_LITE)
         eq_(self.client.get(self.url).status_code, 200)
@@ -1403,13 +1145,6 @@ class TestStatus(amo.tests.TestCase):
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.url).status_code, 404)
-
-    def test_app_disabled_by_user(self):
-        waffle.models.Flag.objects.create(name='accept-webapps', everyone=True)
-        self.addon.update(type=amo.ADDON_WEBAPP, disabled_by_user=True)
-        # Pull webapp back out for class override to take effect
-        addon = Addon.objects.get(id=3615)
-        eq_(self.client.head(addon.get_url_path()).status_code, 404)
 
     def new_version(self, status):
         v = Version.objects.create(addon=self.addon)

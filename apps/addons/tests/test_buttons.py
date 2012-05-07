@@ -575,37 +575,6 @@ class TestButtonHtml(ButtonTest):
         s = big_install_button(self.context, self.addon)
         assert xss not in s, s
 
-    def test_is_webapp(self):
-        self.addon.is_webapp.return_value = True
-        self.addon.can_be_purchased.return_value = True
-        doc = self.render()
-        # Make sure the webapp template is called.
-        eq_(len(doc('.install.webapp')), 1)
-
-        # Webapp buttons are disabled until js runs.
-        assert doc('.webapp .button').hasClass('disabled')
-
-    def test_webapp(self):
-        self.addon.is_webapp.return_value = True
-        self.addon.can_be_purchased.return_value = True
-        self.addon.update(status=1)
-        doc = self.render(impala=True)
-        assert not doc('.warning')
-        eq_(doc('.webapp .button').attr('href'), '#')
-
-    def test_webapp_purchasable(self):
-        self.addon.is_webapp.return_value = True
-        self.addon.can_be_purchased.return_value = True
-        self.addon.update(status=1)
-        doc = self.render(impala=True)
-        assert doc('.webapp').hasClass('premium')
-
-    def test_addon_not_ready(self):
-        self.addon.is_premium.return_value = True
-        self.addon.can_be_purchased.return_value = False
-        doc = self.render(impala=True)
-        assert doc('.install-button').text('Not ready for purchase.')
-
     def test_d2c_attrs(self):
         waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         compat = Mock()
@@ -665,37 +634,6 @@ class TestButtonHtml(ButtonTest):
         eq_(install.attr('data-is-compatible-app'), 'true')
         eq_(install.attr('data-compat-overrides'), '[]')
         eq_(install_shell.find('.d2c-reasons-popup ul li').length, 2)
-
-class TestPremiumWebapp(ButtonTest):
-
-    def render(self, **kwargs):
-        kwargs['impala'] = True
-        return PyQuery(_install_button(self.context, self.addon, **kwargs))
-
-    def setUp(self):
-        super(TestPremiumWebapp, self).setUp()
-        self.addon.is_webapp.return_value = True
-        self.addon.is_premium.return_value = True
-        self.addon.can_be_purchased.return_value = True
-        self.addon.has_purchased.return_value = False
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-
-    def test_is_premium_webapp(self):
-        doc = self.render()
-        assert doc('.install').hasClass('webapp')
-        assert doc('.install').hasClass('premium')
-        eq_(doc('.webapp').attr('data-manifest-url'), '')
-        eq_(doc('.button').attr('data-realurl'), None)
-
-    def test_is_premium_webapp_purchased(self):
-        self.addon.has_purchased.return_value = True
-        self.addon.manifest_url = 'http://foo.com/bar'
-        doc = self.render()
-        eq_(doc('.webapp').attr('data-manifest-url'), self.addon.manifest_url)
-
-    def test_is_premium_webapp_not_purchased(self):
-        doc = self.render()
-        eq_(doc('.webapp').attr('data-manifest-url'), '')
 
 
 class TestBackup(ButtonTest):
