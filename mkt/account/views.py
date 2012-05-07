@@ -32,12 +32,13 @@ log = commonware.log.getLogger('mkt.account')
 paypal_log = commonware.log.getLogger('mkt.paypal')
 
 
+@write
 @login_required
 def payment(request, status=None):
     # Note this is not post required, because PayPal does not reply with a
     # POST but a GET, that's a sad face.
-    pre, created = (PreApprovalUser.uncached
-                        .safer_get_or_create(user=request.amo_user))
+    pre, created = (PreApprovalUser.objects
+                                   .safer_get_or_create(user=request.amo_user))
     if status:
         data = request.session.get('setup-preapproval', {})
 
@@ -49,8 +50,6 @@ def payment(request, status=None):
 
                 pre.update(paypal_key=data.get('key'),
                            paypal_expiry=data.get('expiry'))
-                # Invalidate the user.
-                UserProfile.objects.invalidate(request.amo_user)
                 # If there is a target, bounce to it and don't show a message
                 # we'll let whatever set this up worry about that.
                 if data.get('complete'):
@@ -84,6 +83,7 @@ def payment(request, status=None):
     return jingo.render(request, 'account/payment.html', context)
 
 
+@write
 @post_required
 @login_required
 def currency(request, do_redirect=True):
@@ -102,6 +102,7 @@ def currency(request, do_redirect=True):
                              'currency': currency})
 
 
+@write
 @post_required
 @login_required
 def preapproval(request, complete=None, cancel=None):

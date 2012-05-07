@@ -92,5 +92,4 @@ def user_data(amo_user):
             pre_auth = bool(preapproval.paypal_key)
             currency = preapproval.currency if preapproval.currency else 'USD'
 
-    return {'anonymous': anonymous, 'pre_auth': pre_auth,
-            'currency': currency}
+    return {'anonymous': anonymous, 'currency': currency, 'pre_auth': pre_auth}
