@@ -1,10 +1,5 @@
 (function() {
 
-try {
-    z.hasACR = z.Storage().get('ShowIncompatibleAddons');
-} catch (TypeError) {
-}
-
 /* Call this with something like $('.install').installButton(); */
 z.button = {};
 
@@ -157,10 +152,6 @@ var installButton = function() {
         compatible = false;  // We always assumed not compatible before.
     }
 
-    if (!$body.hasClass('acr-pitch') && newerBrowser && z.hasNightly && !z.hasACR) {
-        $body.addClass('acr-pitch');
-    }
-
     // Helper for dealing with lazy-loaded z.button.messages.
     var message = function(msg) {
         return function(){
@@ -290,15 +281,6 @@ var installButton = function() {
             warn(gettext('Not available for your platform'));
             $button.addClass('concealed');
             $button.first().css('display', 'inherit');
-        } else {
-            if (appSupported && z.hasACR && (newerBrowser || olderBrowser)) {
-                // L10n: {0} is an app name, {1} is the app version.
-                warn(format(gettext('May be incompatible with {0} {1}'),
-                            [z.appName, z.browserVersion]),
-                     incompat);
-                $button.addClass('acr-override');
-                return false;
-            }
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
