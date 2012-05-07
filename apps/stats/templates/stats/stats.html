@@ -4,10 +4,7 @@
 
 {% set c = collection if collection %}
 
-{% block bodyclass %}
-  statistics
-  {{ 'waffle-site-events' if waffle.switch('site-events') else '' }}
-{% endblock %}
+{% block bodyclass %}statistics{% endblock %}
 
 {% block extrahead %}
   {{ css('zamboni/stats') }}

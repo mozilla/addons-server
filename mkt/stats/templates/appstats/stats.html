@@ -2,10 +2,7 @@
 
 {% set range = view.range %}
 
-{% block bodyclass %}
-  statistics
-  {{ 'waffle-site-events' if waffle.switch('site-events') else '' }}
-{% endblock %}
+{% block bodyclass %}statistics{% endblock %}
 
 {% block extrahead %}
   {{ css('mkt/stats') }}
