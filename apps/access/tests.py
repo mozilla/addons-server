@@ -268,11 +268,6 @@ class TestAccessWhitelist(amo.tests.TestCase):
         eq_(amo.tests.close_to_now(u.modified), True)
 
     def test_post_save_skip_amo_users(self):
-        a = AccessWhitelist.objects.create(email='regular@mozilla.*')
-        u = UserProfile.objects.get(email='regular@mozilla.com')
-        eq_(amo.tests.close_to_now(u.modified), False)
-
-        u.update(notes='__market__')
-        a.save()
+        AccessWhitelist.objects.create(email='regular@mozilla.*')
         u = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(amo.tests.close_to_now(u.modified), True)
