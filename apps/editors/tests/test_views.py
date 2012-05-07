@@ -11,13 +11,12 @@ from django.utils.datastructures import SortedDict
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from amo.tests import addon_factory, check_links, formset, initial
+from amo.tests import check_links, formset, initial
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
@@ -25,7 +24,6 @@ from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, EventLog
 from files.models import File
-from mkt.webapps.models import Webapp
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -547,9 +545,7 @@ class TestQueueBasics(QueueTest):
         eq_(doc('.data-grid-bottom .num-results').text(),
             u'Results 1 \u2013 1 of 2')
 
-    @patch('waffle.helpers.flag_is_active')
-    def test_navbar_queue_counts(self, flag):
-        flag.return_value = True
+    def test_navbar_queue_counts(self):
         self.generate_files()
 
         r = self.client.get(reverse('editors.home'))
@@ -557,7 +553,7 @@ class TestQueueBasics(QueueTest):
         doc = pq(r.content)
         eq_(doc('#navbar li.top ul').eq(0).text(),
             'Fast Track (0) Full Reviews (2) Pending Updates (2) '
-            'Preliminary Reviews (2) Moderated Reviews (0) Apps (0)')
+            'Preliminary Reviews (2) Moderated Reviews (0)')
 
     def test_legacy_queue_sort(self):
         sorts = (
@@ -894,49 +890,6 @@ class TestModeratedQueue(QueueTest):
 
         eq_(doc('.no-results').length, 1)
         eq_(doc('.review-saved button').length, 1)  # Show only one button.
-
-
-class TestAppQueue(EditorTest):
-
-    def setUp(self):
-        self.login_as_editor()
-        self.apps = [addon_factory(name='XXX', type=amo.ADDON_WEBAPP,
-                                   status=amo.WEBAPPS_UNREVIEWED_STATUS),
-                     addon_factory(name='YYY', type=amo.ADDON_WEBAPP,
-                                   status=amo.WEBAPPS_UNREVIEWED_STATUS)]
-        self.url = reverse('editors.queue_apps')
-
-    def review_url(self, app, num):
-        return urlparams(reverse('editors.app_review', args=[app.slug]),
-                         num=num)
-
-    def test_restricted_results(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
-        apps = Webapp.objects.pending().order_by('created')
-        expected = [
-            (unicode(apps[0].name), self.review_url(apps[0], '1')),
-            (unicode(apps[1].name), self.review_url(apps[1], '2')),
-        ]
-        check_links(expected, links, verify=False)
-
-    @patch('waffle.flag_is_active')
-    def test_queue_count(self, flag):
-        flag.return_value = True
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.tabnav li a:eq(5)').text(), u'Apps (2)')
-
-    def test_sort(self):
-        r = self.client.get(self.url, {'sort': '-name'})
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
-            str(self.apps[1].id))
-
-    def test_redirect_to_review(self):
-        r = self.client.get(self.url, {'num': 2})
-        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
 
 
 class TestPerformance(QueueTest):
@@ -1890,24 +1843,6 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, links, verify=False)
 
-    def test_show_premium(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
-        for type_ in amo.ADDON_PREMIUMS:
-            self.addon.update(premium_type=type_)
-            res = self.client.get(self.url)
-            premium = pq(res.content)('#premium-type')
-            eq_(premium.length, 1)
-            assert premium.text().startswith('Premium')
-
-    def test_download_watermarked(self):
-        for type_ in amo.ADDON_PREMIUMS:
-            self.addon.update(premium_type=type_)
-            res = self.client.get(self.url)
-            doc = pq(res.content)
-            url = doc('#review-files .file-info .editors-install').attr('href')
-            assert 'watermarked' in url, (
-                'Expected XPI URL to be watermarked: %r' % url)
-
 
 class TestReviewPreliminary(ReviewBase):
 
@@ -2015,49 +1950,6 @@ class TestReviewPending(ReviewBase):
         doc = pq(response.content)
         assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
         assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
-
-
-class TestReviewApp(ReviewBase):
-
-    def setUp(self):
-        super(TestReviewApp, self).setUp()
-        self.url = reverse('editors.app_review', args=[self.addon.slug])
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
-        self.file = File.objects.create(version=self.version,
-                                        status=amo.STATUS_PUBLIC)
-
-    def post(self, data):
-        r = self.client.post(self.url, data)
-        self.assertRedirects(r, reverse('editors.queue_apps'))
-
-    def test_push_public(self):
-        files = list(self.version.files.values_list('id', flat=True))
-        self.post({
-            'action': 'public',
-            'operating_systems': '',
-            'applications': '',
-            'comments': 'something',
-            'addon_files': files,
-        })
-        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0].message().as_string()
-        assert 'Your app' in msg, ('Message not customized for apps: %s' % msg)
-
-    def test_comment(self):
-        self.post({'action': 'comment', 'comments': 'mmm, nice app'})
-        eq_(len(mail.outbox), 0)
-        comment_version = amo.LOG.COMMENT_VERSION
-        eq_(ActivityLog.objects.filter(action=comment_version.id).count(), 1)
-
-    def test_reject(self):
-        self.post({'action': 'reject', 'comments': 'suxor'})
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0].message().as_string()
-        assert 'Your app' in msg, ('Message not customized for apps: %s' % msg)
-        eq_(self.get_addon().status, amo.STATUS_NULL)
-        action = amo.LOG.REJECT_VERSION
-        eq_(ActivityLog.objects.filter(action=action.id).count(), 1)
 
 
 class TestEditorMOTD(EditorTest):
