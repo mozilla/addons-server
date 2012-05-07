@@ -584,6 +584,31 @@ def memoize(prefix, time=60):
     return decorator
 
 
+def cache_ns_key(namespace, increment=False):
+    """
+    Returns a key with namespace value appended. If increment is True, the
+    namespace will be incremented effectively invalidating the cache.
+
+    Memcache doesn't have namespaces, but we can simulate them by storing a
+    "%(key)s_namespace" value. Invalidating the namespace simply requires
+    editing that key. Your application will no longer request the old keys,
+    and they will eventually fall off the end of the LRU and be reclaimed.
+    """
+    ns_key = 'ns:%s' % namespace
+    if increment:
+        try:
+            ns_val = cache.incr(ns_key)
+        except ValueError:
+            ns_val = 0
+            cache.set(ns_key, ns_val, 0)
+    else:
+        ns_val = cache.get(ns_key)
+        if not ns_val:
+            ns_val = 0
+            cache.set(ns_key, ns_val, 0)
+    return '%s:%s' % (ns_val, ns_key)
+
+
 class Message:
     """
     A simple message class for when you don't have a session, but wish

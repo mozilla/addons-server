@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 import os
-import shutil
 import tempfile
 import unittest
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.validators import ValidationError
 from django.utils import translation
 
 from nose.tools import eq_, assert_raises, raises
 
-from amo.utils import (slug_validator, slugify, resize_image, to_language,
-                       no_translation, LocalFileStorage, rm_local_tmp_dir)
+from amo.utils import (cache_ns_key, LocalFileStorage, no_translation,
+                       resize_image, rm_local_tmp_dir, slug_validator, slugify,
+                       to_language)
 from product_details import product_details
 
 
@@ -181,3 +182,24 @@ class TestLocalFileStorage(unittest.TestCase):
         self.stor.delete(fn)
         eq_(os.path.exists(fn), False)
         eq_(os.path.exists(dp), True)
+
+
+class TestCacheNamespaces(unittest.TestCase):
+
+    def setUp(self):
+        cache.clear()
+        self.namespace = 'redis-is-dead'
+
+    def test_no_preexisting_key(self):
+        eq_(cache_ns_key(self.namespace), '0:ns:%s' % self.namespace)
+
+    def test_no_preexisting_key_incr(self):
+        eq_(cache_ns_key(self.namespace, increment=True),
+            '0:ns:%s' % self.namespace)
+
+    def test_key_incr(self):
+        cache_ns_key(self.namespace)  # Sets ns to 0
+        ns_key = cache_ns_key(self.namespace, increment=True)
+        expected = '1:ns:%s' % self.namespace
+        eq_(ns_key, expected)
+        eq_(cache_ns_key(self.namespace), expected)
