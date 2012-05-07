@@ -2,8 +2,6 @@
 from decimal import Decimal
 import json
 
-from django.conf import settings
-
 import fudge
 from fudge.inspector import arg
 import mock
@@ -258,105 +256,6 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         res = self.client.get_ajax('%s?uuid=%s' %
                                    (self.get_url('complete'), 'foo'))
         eq_(res.status_code, 404)
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_pending(self, check_purchase):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
-        check_purchase.return_value = 'PENDING'
-        self.make_contribution()
-        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
-        eq_(Contribution.objects.filter(type=amo.CONTRIB_PURCHASE).count(), 0)
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_pending_error(self, check_purchase):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
-        check_purchase.side_effect = Exception('wtf')
-        self.make_contribution()
-        url = '%s?uuid=%s' % (self.get_url('complete'), '123')
-        res = self.client.get_ajax(url)
-        eq_(res.context['result'], 'ERROR')
-
-    def test_check_thankyou(self):
-        # Fix when we implement payment confirmation.
-        raise SkipTest
-
-        url = self.addon.get_purchase_url('thanks')
-        eq_(self.client.get(url).status_code, 403)
-        self.make_contribution(type=amo.CONTRIB_PURCHASE)
-        eq_(self.client.get(url).status_code, 200)
-
-    @mock.patch('users.models.UserProfile.has_preapproval_key')
-    def test_prompt_preapproval(self, has_preapproval_key):
-        # Fix when we implement pre-auth.
-        raise SkipTest
-
-        url = self.addon.get_purchase_url('thanks')
-        self.make_contribution(type=amo.CONTRIB_PURCHASE)
-        has_preapproval_key.return_value = False
-        res = self.client.get(url)
-        eq_(pq(res.content)('#preapproval').attr('action'),
-            reverse('users.payments.preapproval'))
-
-    @mock.patch('users.models.UserProfile.has_preapproval_key')
-    def test_already_preapproved(self, has_preapproval_key):
-        # Fix when we implement pre-auth.
-        raise SkipTest
-
-        url = self.addon.get_purchase_url('thanks')
-        self.make_contribution(type=amo.CONTRIB_PURCHASE)
-        has_preapproval_key.return_value = True
-        res = self.client.get(url)
-        eq_(pq(res.content)('#preapproval').length, 0)
-
-    def test_trigger(self):
-        # Fix when we implement confirmation/receipt.
-        raise SkipTest
-
-        url = self.addon.get_purchase_url('thanks')
-        self.make_contribution(type=amo.CONTRIB_PURCHASE)
-        dest = reverse('downloads.watermarked', args=[self.file.pk])
-        res = self.client.get('%s?realurl=%s' % (url, dest))
-        eq_(res.status_code, 200)
-        eq_(pq(res.content)('a.trigger_download').attr('href'), dest)
-
-    def test_trigger_nasty(self):
-        # Fix when we implement confirmation/receipt.
-        raise SkipTest
-
-        url = self.addon.get_purchase_url('thanks')
-        self.make_contribution(type=amo.CONTRIB_PURCHASE)
-        res = self.client.get('%s?realurl=%s' % (url, 'http://bad.site/foo'))
-        eq_(res.status_code, 200)
-        eq_(pq(res.content)('a.trigger_download').attr('href'), '/foo')
-
-    @mock.patch('paypal.check_purchase')
-    def test_result_page(self, check_purchase):
-        # Fix when we implement confirmation.
-        raise SkipTest
-
-        check_purchase.return_value = 'COMPLETED'
-        Contribution.objects.create(addon=self.addon, uuid='1',
-                                    user=self.user, paykey='sdf',
-                                    type=amo.CONTRIB_PENDING)
-        url = self.addon.get_purchase_url('done', ['complete'])
-        doc = pq(self.client.get('%s?uuid=1' % url).content)
-        eq_(doc('#paypal-thanks').length, 1)
-
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                       amo.tests.AMOPaths.sample_key())
-    def test_trigger_webapp(self):
-        # Fix when we implement confirmation/receipt.
-        raise SkipTest
-
-        url = self.addon.get_purchase_url('thanks')
-        self.make_contribution(type=amo.CONTRIB_PURCHASE)
-        doc = pq(self.client.get(url).content)
-        eq_(doc('.trigger_app_install').attr('data-manifest-url'),
-            self.addon.manifest_url)
 
     @fudge.patch('paypal.get_paykey')
     def test_split(self, get_paykey):
