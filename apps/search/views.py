@@ -522,7 +522,9 @@ def _filter_search(request, qs, query, filters, sorting,
         qs = qs.query(or_=name_query(query['q']))
     if 'platform' in show and query['platform'] in amo.PLATFORM_DICT:
         ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
-        qs = qs.filter(platform__in=ps)
+        # If we've selected "All Systems" don't filter by platform.
+        if ps[0] != ps[1]:
+            qs = qs.filter(platform__in=ps)
     if 'appver' in show:
         # Get a min version less than X.0.
         low = version_int(query['appver'])

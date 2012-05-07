@@ -655,6 +655,12 @@ class TestESSearch(SearchBase):
         eq_(self.get_results(r),
             sorted(self.addons.values_list('id', flat=True)))
 
+    def test_results_platform_filter_all(self):
+        for platform in ('', 'all'):
+            r = self.client.get(self.url, dict(platform=platform))
+            eq_(self.get_results(r),
+                sorted(self.addons.values_list('id', flat=True)))
+
 
 class TestPersonaSearch(SearchBase):
     fixtures = ['base/apps']
