@@ -49,7 +49,7 @@ class TestCommon(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('home')
-        # TODO: Remove when `accept-webapps` flag is gone.
+        # TODO: Remove when `submit-personas` flag is gone.
         self.patcher = mock.patch('waffle.flag_is_active')
         self.patcher.start().return_value = True
         self.addCleanup(self.patcher.stop)
@@ -66,7 +66,6 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-notice').length, 0)
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
-        eq_(doc('#site-noinstall-apps').length, 0)
 
     @mock.patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
@@ -75,7 +74,6 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-notice').length, 1)
         eq_(doc('#site-nonfx').length, 1)
         eq_(doc('#site-welcome').length, 1)
-        eq_(doc('#site-noinstall-apps').length, 0)
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_thunderbird_balloons_no_readonly(self):
@@ -92,7 +90,6 @@ class TestCommon(amo.tests.TestCase):
         eq_(doc('#site-nonfx').length, 0,
             'This balloon should appear for Firefox only')
         eq_(doc('#site-welcome').length, 1)
-        eq_(doc('#site-noinstall-apps').length, 0)
 
     def test_tools_loggedout(self):
         r = self.client.get(self.url, follow=True)
@@ -106,7 +103,6 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
@@ -124,8 +120,6 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Manage My Apps', reverse('devhub.apps')),
-            ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
@@ -141,7 +135,6 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
@@ -162,8 +155,6 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Manage My Apps', reverse('devhub.apps')),
-            ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
@@ -182,7 +173,6 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
@@ -207,8 +197,6 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Manage My Apps', reverse('devhub.apps')),
-            ('Submit a New App', reverse('devhub.submit_apps.1')),
             ('Submit a New Persona', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),

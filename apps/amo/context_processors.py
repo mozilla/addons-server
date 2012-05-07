@@ -88,28 +88,19 @@ def global_settings(request):
             'href': remora_url('/users/logout?to=' + urlquote(request.path)),
         })
 
-        if not settings.APP_PREVIEW:
-            if request.amo_user.is_developer:
-                tools_links.append({'text': _('Manage My Add-ons'),
-                                    'href': reverse('devhub.addons')})
-            tools_links.append({'text': _('Submit a New Add-on'),
-                                'href': reverse('devhub.submit.1')})
-
-        if waffle.flag_is_active(request, 'accept-webapps'):
-            if settings.APP_PREVIEW or request.amo_user.is_developer:
-                tools_links.append({'text': _('Manage My Apps'),
-                                    'href': reverse('devhub.apps')})
-            tools_links.append({'text': _('Submit a New App'),
-                                'href': reverse('devhub.submit_apps.1')})
+        if request.amo_user.is_developer:
+            tools_links.append({'text': _('Manage My Add-ons'),
+                                'href': reverse('devhub.addons')})
+        tools_links.append({'text': _('Submit a New Add-on'),
+                            'href': reverse('devhub.submit.1')})
 
         if waffle.flag_is_active(request, 'submit-personas'):
             # TODO(cvan)(fligtar): Do we want this here?
             tools_links.append({'text': 'Submit a New Persona',
                                 'href': reverse('devhub.personas.submit')})
 
-        if not settings.APP_PREVIEW:
-            tools_links.append({'text': _('Developer Hub'),
-                                'href': reverse('devhub.index')})
+        tools_links.append({'text': _('Developer Hub'),
+                            'href': reverse('devhub.index')})
 
         if acl.check_reviewer(request):
             tools_links.append({'text': _('Editor Tools'),
