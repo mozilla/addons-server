@@ -88,10 +88,6 @@ class TestEditBasic(TestEdit):
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
         self.assertRedirects(r, self.url, 301)
 
-    def test_addons_context(self):
-        for url in (self.url, self.basic_edit_url):
-            eq_(self.client.get(url).context['webapp'], False)
-
     def test_edit(self):
         old_name = self.addon.name
         data = self.get_dict()

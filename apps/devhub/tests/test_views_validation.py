@@ -4,12 +4,8 @@ import os
 import shutil
 import sys
 import traceback
-import tempfile
-import codecs
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
-from django import forms
 
 import mock
 from nose.plugins.attrib import attr
@@ -26,7 +22,7 @@ from amo.urlresolvers import reverse
 from applications.models import AppVersion, Application
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
-from files.utils import parse_addon, WebAppParser
+from files.utils import parse_addon
 from users.models import UserProfile
 from zadmin.models import ValidationResult
 
@@ -666,76 +662,3 @@ class TestUploadCompatCheck(BaseUploadTest):
         data = self.upload()
         eq_(data['validation']['messages'][0]['type'], 'error')
         eq_(data['validation']['messages'][1]['type'], 'warning')
-
-
-class TestWebApps(amo.tests.TestCase):
-
-    def setUp(self):
-        self.webapp_path = os.path.join(os.path.dirname(__file__),
-                                        'addons', 'mozball.webapp')
-        self.tmp_files = []
-        self.manifest = dict(name=u'Ivan Krsti\u0107', version=u'1.0',
-                             description=u'summary')
-
-    def tearDown(self):
-        for tmp in self.tmp_files:
-            storage.delete(tmp)
-
-    def webapp(self, data=None, contents='', suffix='.webapp'):
-        fp, tmp = tempfile.mkstemp(suffix=suffix)
-        self.tmp_files.append(tmp)
-        with open(tmp, 'w') as f:
-            f.write(json.dumps(data) if data else contents)
-        return tmp
-
-    def test_parse(self):
-        wp = WebAppParser().parse(self.webapp_path)
-        eq_(wp['guid'], None)
-        eq_(wp['type'], amo.ADDON_WEBAPP)
-        eq_(wp['summary']['en-US'], u'Exciting Open Web development action!')
-        eq_(wp['summary']['es'],
-            u'\u9686Acci\u8d38n abierta emocionante del desarrollo del Web!')
-        eq_(wp['summary']['it'],
-            u'Azione aperta emozionante di sviluppo di fotoricettore!')
-        eq_(wp['version'], '1.0')
-        eq_(wp['default_locale'], 'en-US')
-
-    def test_no_locales(self):
-        wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
-                                                   description='summary')))
-        eq_(wp['summary']['en-US'], u'summary')
-
-    def test_no_description(self):
-        wp = WebAppParser().parse(self.webapp(dict(name='foo',
-                                                   version='1.0')))
-        eq_(wp['summary'], {})
-
-    def test_syntax_error(self):
-        with self.assertRaises(forms.ValidationError) as exc:
-            WebAppParser().parse(self.webapp(contents='}]'))
-        m = exc.exception.messages[0]
-        assert m.startswith('Could not parse webapp manifest'), (
-                                                    'Unexpected: %s' % m)
-
-    def test_utf8_bom(self):
-        wm = codecs.BOM_UTF8 + json.dumps(self.manifest, encoding='utf8')
-        wp = WebAppParser().parse(self.webapp(contents=wm))
-        eq_(wp['version'], '1.0')
-
-    def test_utf16_bom(self):
-        data = json.dumps(self.manifest, encoding='utf8')
-        wm = data.decode('utf8').encode('utf16')  # BOM added automatically
-        wp = WebAppParser().parse(self.webapp(contents=wm))
-        eq_(wp['version'], '1.0')
-
-    def test_utf32_bom(self):
-        data = json.dumps(self.manifest, encoding='utf8')
-        wm = data.decode('utf8').encode('utf32')  # BOM added automatically
-        wp = WebAppParser().parse(self.webapp(contents=wm))
-        eq_(wp['version'], '1.0')
-
-    def test_non_ascii(self):
-        wm = json.dumps({'name': u'まつもとゆきひろ', 'version': '1.0'},
-                        encoding='shift-jis')
-        wp = WebAppParser().parse(self.webapp(contents=wm))
-        eq_(wp['name'], {'en-US': u'まつもとゆきひろ'})

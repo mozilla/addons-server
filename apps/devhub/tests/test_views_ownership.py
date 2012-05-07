@@ -9,7 +9,6 @@ from amo.tests import formset
 from addons.models import Addon, AddonUser
 from devhub.forms import LicenseForm
 from devhub.models import ActivityLog
-from users.models import UserProfile
 from versions.models import License, Version
 
 
@@ -186,10 +185,6 @@ class TestEditLicense(TestOwnership):
 
 
 class TestEditAuthor(TestOwnership):
-
-    def test_addons_context(self):
-        r = self.client.get(self.url)
-        eq_(r.context['webapp'], False)
 
     def test_reorder_authors(self):
         """

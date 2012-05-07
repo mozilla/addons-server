@@ -1612,7 +1612,6 @@ class TestProfile(TestProfileBase):
     def test_without_contributions_labels(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(r.context['webapp'], False)
         doc = pq(r.content)
         eq_(doc('label[for=the_reason] .optional').length, 1)
         eq_(doc('label[for=the_future] .optional').length, 1)
@@ -1697,8 +1696,6 @@ class TestSubmitStep1(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert not doc('#site-nav').hasClass('app-nav'), (
-            'Expected add-ons devhub nav')
         eq_(doc('#breadcrumbs a').eq(1).attr('href'), reverse('devhub.addons'))
         links = doc('#agreement-container a')
         assert links

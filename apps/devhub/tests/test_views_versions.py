@@ -41,11 +41,6 @@ class TestVersion(amo.tests.TestCase):
         eq_(res.status_code, 200)
         return pq(res.content)
 
-    def get_addons_context(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(res.context['webapp'], False)
-
     def test_version_status_public(self):
         doc = self.get_doc()
         assert doc('#version-status')
