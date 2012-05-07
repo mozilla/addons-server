@@ -232,6 +232,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         doc = pq(res.content)
         eq_(doc('#paypal-error').length, 1)
         eq_(res.context['status'], 'error')
+        eq_(res.context['error'], amo.PAYMENT_DETAILS_ERROR['ERROR'])
 
     @mock.patch('paypal.check_purchase')
     def test_check_addon_purchase(self, check_purchase):
@@ -241,7 +242,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                                    (self.get_url('complete'), '123'))
         eq_(AddonPurchase.objects.filter(addon=self.addon).count(), 1)
         eq_(res.context['status'], 'complete')
-        # Test that we redirect to app detail page.
+        eq_(res.context['error'], '')
 
     def test_check_cancel(self):
         self.make_contribution()

@@ -175,8 +175,8 @@ def purchase_done(request, addon, status):
             con.update(type=amo.CONTRIB_PURCHASE)
 
     context = {'realurl': request.GET.get('realurl', ''),
-               'status': status, 'result': result,
-               'product': addon}
+               'status': status, 'result': result, 'product': addon,
+               'error': amo.PAYMENT_DETAILS_ERROR.get(result, '')}
 
     response = jingo.render(request, 'purchase/done.html', context)
     response['x-frame-options'] = 'allow'

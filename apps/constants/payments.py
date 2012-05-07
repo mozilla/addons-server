@@ -129,3 +129,12 @@ REFUND_STATUSES = {
     # Declined manually by developer.
     REFUND_DECLINED: _('Declined'),
 }
+
+PAYMENT_DETAILS_ERROR = {
+    'CREATED': _('The payment was received, but not completed.'),
+    'INCOMPLETE': _('The payment was received, but not completed.'),
+    'ERROR': _('The payment failed.'),
+    'REVERSALERROR': _('The reversal failed.'),
+    'PENDING': _('The payment was received, but not completed '
+                 'and is awaiting processing.'),
+}

@@ -11,8 +11,8 @@
 </style>
 {% if status != 'complete' %}
   <section id="purchase-done">
-    <h3>Error</h3>
-    <p>Sorry, payment failed.</p>
+    <h3>{{ _('Error') }}</h3>
+    <p id="purchase-error-msg">{{ error }}</p>
   </section>
   <script src="{{ media('/js/mkt/purchase_error.js') }}"></script>
 {% else %}
