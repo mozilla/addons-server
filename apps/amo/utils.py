@@ -603,7 +603,7 @@ def cache_ns_key(namespace, increment=False):
             cache.set(ns_key, ns_val, 0)
     else:
         ns_val = cache.get(ns_key)
-        if not ns_val:
+        if ns_val == None:
             ns_val = 0
             cache.set(ns_key, ns_val, 0)
     return '%s:%s' % (ns_val, ns_key)
