@@ -4,10 +4,10 @@ import re
 from string import Template
 import sys
 from time import time
-import traceback
 from urlparse import parse_qsl
 
 import commonware.log
+import jinja2
 
 from utils import log_configure
 
@@ -56,7 +56,7 @@ java_re = re.compile(r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;ver
 wmp_re = re.compile(r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
 
 def get_output(data):
-    g = defaultdict(str, [(k, v) for k, v in data.iteritems()])
+    g = defaultdict(str, [(k, jinja2.escape(v)) for k, v in data.iteritems()])
 
     required = ['mimetype', 'appID', 'appVersion', 'clientOS', 'chromeLocale']
 
@@ -369,10 +369,7 @@ def log_exception(data):
 
 
 def application(environ, start_response):
-    start = time()
     status = '200 OK'
-    timing = (environ['REQUEST_METHOD'], '%s?%s' %
-              (environ['SCRIPT_NAME'], environ['QUERY_STRING']))
 
     data = dict(parse_qsl(environ['QUERY_STRING']))
     try:
