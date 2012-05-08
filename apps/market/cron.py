@@ -57,12 +57,9 @@ def mail_pending_refunds():
         log.info('Sending refund emails to: %s about %s' %
                  (email, ', '.join([str(i) for i in addon_ids])))
         addons = Addon.objects.filter(pk__in=addon_ids)
-        is_webapp = addons[0].is_webapp()
-        site_url = ('https://marketplace.mozilla.org/' if is_webapp
-                    else settings.SITE_URL)
-        from_email = ('Mozilla Marketplace <nobody@mozilla.org>' if is_webapp
-                      else settings.NOBODY_EMAIL)
-        ctx = {'addons': addons, 'refunds': pending, 'site_url': site_url}
+        ctx = {'addons': addons, 'refunds': pending,
+               'site_url': settings.SITE_URL}
         send_mail_jinja('Pending refund requests at the Mozilla Marketplace',
                         'market/emails/refund-nag.txt', ctx,
-                        from_email=from_email, recipient_list=[owner])
+                        from_email=settings.NOBODY_EMAIL,
+                        recipient_list=[owner])
