@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.cache import cache
 from django.db import models
 from django.dispatch import receiver
 from django.utils import translation
@@ -8,6 +9,7 @@ from translations.fields import TranslatedField
 import amo
 from amo.decorators import write
 import amo.models
+from amo.utils import memoize_key
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -165,6 +167,8 @@ def create_addon_purchase(sender, instance, **kw):
             log.debug('Changing addon purchase: %s, addon %s, user %s'
                       % (p.pk, instance.addon.pk, instance.user.pk))
             p.update(type=instance.type)
+
+    cache.delete(memoize_key('users:purchase-ids', instance.user.pk))
 
 
 class AddonPremium(amo.models.ModelBase):

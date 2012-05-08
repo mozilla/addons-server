@@ -220,6 +220,17 @@ class TestContribution(ContributionMixin, amo.tests.TestCase):
                                             type=amo.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
 
+    def test_user_cache(self):
+        # Tests that the purchase_ids caches.
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(list(self.user.purchase_ids()), [])
+        self.create(amo.CONTRIB_PURCHASE)
+        eq_(list(self.user.purchase_ids()), [3615L])
+        # This caches.
+        eq_(list(self.user.purchase_ids()), [3615L])
+        self.create(amo.CONTRIB_REFUND)
+        eq_(list(self.user.purchase_ids()), [])
+
 
 class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
