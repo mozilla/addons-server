@@ -14,7 +14,7 @@
       <a href="{{ pager.url|urlparams(page=1)
                   if pager.has_previous() else '#' }}"
          title="{{ _('Jump to first page') }}"
-         {% if not pager.has_previous() %}class="disabled"{% endif %}>
+         class="jump{{ ' disabled' if not pager.has_previous() }}">
         &#x25C2;&#x25C2;</a>
       <a href="{{ pager.url|urlparams(page=pager.previous_page_number())
                   if pager.has_previous() else '#' }}"
@@ -26,8 +26,7 @@
         {{ _('Next') }} &#x25B8;</a>
       <a href="{{ pager.url|urlparams(page=pager.paginator.num_pages)
                   if pager.has_next() else '#' }}"
-         title="{{ _('Jump to last page') }}"
-         {% if not pager.has_next() %}class="disabled"{% endif %}>
+         class="jump{{ ' disabled' if not pager.has_next() }}">
         &#x25B8;&#x25B8;</a>
     </p>
     <p class="pos">
