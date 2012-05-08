@@ -22,5 +22,5 @@ def _invalidate_users(data, **kw):
     from users.models import UserProfile
     log.info('[%s@%s] Invalidating users for access whitelist.' %
              (len(data), _invalidate_users.rate_limit))
-    for pk in data:
-        UserProfile.objects.get(id=pk).save()
+    users = UserProfile.objects.filter(id__in=data)
+    UserProfile.objects.invalidate(*users)
