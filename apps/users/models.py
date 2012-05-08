@@ -452,9 +452,17 @@ class RequestUser(UserProfile):
         # only used by a user attached to a request.
         if not users:
             return
+
+        # Touch this @cached_property so the answer is cached with the object.
+        user = users[0]
+        user.is_developer
+
+        # Until the Marketplace gets collections, these lookups are pointless.
+        if settings.MARKETPLACE:
+            return
+
         from bandwagon.models import CollectionAddon, CollectionWatcher
         SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()
-        user = users[0]
         qs = CollectionAddon.objects.filter(
             collection__author=user, collection__type__in=SPECIAL)
         addons = dict((type_, []) for type_ in SPECIAL)
@@ -464,8 +472,6 @@ class RequestUser(UserProfile):
         user.favorite_addons = addons[amo.COLLECTION_FAVORITES]
         user.watching = list((CollectionWatcher.objects.filter(user=user)
                              .values_list('collection', flat=True)))
-        # Touch this @cached_property so the answer is cached with the object.
-        user.is_developer
 
     def _cache_keys(self):
         # Add UserProfile.cache_key so RequestUser gets invalidated when the
