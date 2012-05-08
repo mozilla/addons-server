@@ -661,378 +661,379 @@ class TestESSearch(SearchBase):
             eq_(self.get_results(r),
                 sorted(self.addons.values_list('id', flat=True)))
 
-
-class TestPersonaSearch(SearchBase):
-    fixtures = ['base/apps']
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestPersonaSearch, cls).setUpClass()
-        cls.setUpIndex()
-
-    def setUp(self):
-        waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
-        self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
-
-    def _generate_personas(self):
-        # Add some public personas.
-        self.personas = []
-        for status in amo.REVIEWED_STATUSES:
-            self.personas.append(
-                amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status))
-
-        # Add some unreviewed personas.
-        for status in set(amo.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
-            amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status)
-
-        # Add a disabled persona.
-        amo.tests.addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
-
-        # NOTE: There are also some add-ons in `setUpIndex` for good measure.
-
-        self.refresh()
-
-    def test_sort_order_default(self):
-        self._generate_personas()
-        self.check_sort_links(None, sort_by='weekly_downloads')
-
-    def test_sort_order_unknown(self):
-        self._generate_personas()
-        self.check_sort_links('xxx')
-
-    def test_sort_order_users(self):
-        self._generate_personas()
-        self.check_sort_links('users', sort_by='average_daily_users')
-
-    def test_sort_order_rating(self):
-        self._generate_personas()
-        self.check_sort_links('rating', sort_by='bayesian_rating')
-
-    def test_sort_order_newest(self):
-        self._generate_personas()
-        self.check_sort_links('created', sort_by='created')
-
-    def test_heading(self):
-        self.check_heading()
-
-    def test_results_blank_query(self):
-        self._generate_personas()
-        personas_ids = sorted(p.id for p in self.personas)  # Not PersonaID ;)
-        r = self.client.get(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(self.get_results(r), personas_ids)
-        doc = pq(r.content)
-        eq_(doc('.personas-grid li').length, len(personas_ids))
-        eq_(doc('.listing-footer').length, 0)
-
-    def test_results_name_query(self):
-        raise SkipTest
-        self._generate_personas()
-
-        p1 = self.personas[0]
-        p1.name = 'Harry Potter'
-        p1.save()
-
-        p2 = self.personas[1]
-        p2.name = 'The Life Aquatic with SeaVan'
-        p2.save()
-        self.refresh()
-
-        # Empty search term should return everything.
-        self.check_name_results({'q': ''}, sorted(p.id for p in self.personas))
-
-        # Garbage search terms should return nothing.
-        for term in ('xxx', 'garbage', '£'):
-            self.check_name_results({'q': term}, [])
-
-        # Try to match 'Harry Potter'.
-        for term in ('harry', 'potter', 'har', 'pot', 'harry pooper'):
-            self.check_name_results({'q': term}, [p1.pk])
-
-        # Try to match 'The Life Aquatic with SeaVan'.
-        for term in ('life', 'aquatic', 'seavan', 'sea van'):
-            self.check_name_results({'q': term}, [p2.pk])
-
-    def test_results_popularity(self):
-        personas = [
-            ('Harry Potter', 2000),
-            ('Japanese Koi Tattoo', 67),
-            ('Japanese Tattoo', 250),
-            ('Japanese Tattoo boop', 50),
-            ('Japanese Tattoo ballin', 200),
-            ('The Japanese Tattooed Girl', 242),
-        ]
-        for name, popularity in personas:
-            amo.tests.addon_factory(name=name, type=amo.ADDON_PERSONA,
-                                    popularity=popularity)
-        self.refresh()
-
-        # Japanese Tattoo should be the #1 most relevant result. Obviously.
-        expected_name, expected_popularity = personas[2]
-        for sort in ('downloads', 'popularity', 'users'):
-            r = self.client.get(urlparams(self.url, q='japanese tattoo',
-                                          sort=sort), follow=True)
-            eq_(r.status_code, 200)
-            results = list(r.context['pager'].object_list)
-            first = results[0]
-            eq_(unicode(first.name), expected_name,
-                'Was not first result for %r. Results: %s' % (sort, results))
-            eq_(first.persona.popularity, expected_popularity,
-                'Incorrect popularity for %r. Got %r. Expected %r.' % (
-                sort, first.persona.popularity, results))
-            eq_(first.average_daily_users, expected_popularity,
-                'Incorrect users for %r. Got %r. Expected %r.' % (
-                sort, first.average_daily_users, results))
-            eq_(first.weekly_downloads, expected_popularity,
-                'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
-                sort, first.weekly_downloads, results))
-
-    def test_results_appver_platform(self):
-        self._generate_personas()
-        self.check_appver_platform_ignored(sorted(p.id for p in self.personas))
-
-    def test_results_other_applications(self):
-        self._generate_personas()
-        # Now ensure we get the same results for Firefox as for Thunderbird.
-        self.url = self.url.replace('firefox', 'thunderbird')
-        self.check_name_results({}, sorted(p.id for p in self.personas))
-
-    def test_pagination(self):
-        # TODO: Figure out why ES wonks out when we index a plethora of junk.
-        raise SkipTest
-
-        # Generate some (22) personas to get us to two pages.
-        left_to_add = DEFAULT_NUM_PERSONAS - len(self.personas) + 1
-        for x in xrange(left_to_add):
-            self.personas.append(
-                amo.tests.addon_factory(type=amo.ADDON_PERSONA))
-        self.refresh()
-
-        # Page one should show 21 personas.
-        r = self.client.get(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.personas-grid li').length, DEFAULT_NUM_PERSONAS)
-
-        # Page two should show 1 persona.
-        r = self.client.get(self.url + '&page=2', follow=True)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.personas-grid li').length, 1)
-
-
-class TestCollectionSearch(SearchBase):
-    fixtures = ['base/apps']
-
-    @classmethod
-    def setUpClass(cls):
-        # Set up the mapping.
-        super(TestCollectionSearch, cls).setUpClass()
-
-    def setUp(self):
-        waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
-        self.url = urlparams(reverse('search.search'), cat='collections')
-
-    def _generate(self):
-        # Add some public collections.
-        self.collections = []
-        for x in xrange(3):
-            self.collections.append(
-                amo.tests.collection_factory(name='Collection %s' % x))
-
-        # Synchronized, favorites, and unlisted collections should be excluded.
-        for type_ in (amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES):
-            amo.tests.collection_factory(type=type_)
-        amo.tests.collection_factory(listed=False)
-
-        self.refresh()
-
-    def test_legacy_redirect(self):
-        # Ensure `sort=newest` redirects to `sort=created`.
-        r = self.client.get(urlparams(self.url, sort='newest'))
-        self.assertRedirects(r, urlparams(self.url, sort='created'), 301)
-
-    def test_sort_order_unknown(self):
-        self._generate()
-        self.check_sort_links('xxx')
-
-    def test_sort_order_default(self):
-        self._generate()
-        self.check_sort_links(None, sort_by='weekly_subscribers')
-
-    def test_sort_order_weekly(self):
-        self._generate()
-        self.check_sort_links('weekly', sort_by='weekly_subscribers')
-
-    def test_sort_order_default_with_term(self):
-        self._generate()
-        self.check_sort_links(None, sort_by='weekly_subscribers',
-                              params={'q': 'collection'})
-
-    def test_sort_order_weekly_with_term(self):
-        self._generate()
-        self.check_sort_links('weekly', sort_by='weekly_subscribers',
-                              params={'q': 'collection'})
-
-    def test_sort_order_monthly(self):
-        self._generate()
-        self.check_sort_links('monthly', sort_by='monthly_subscribers')
-
-    def test_sort_order_all(self):
-        self._generate()
-        self.check_sort_links('all', sort_by='subscribers')
-
-    def test_sort_order_rating(self):
-        self._generate()
-        self.check_sort_links('rating', sort_by='rating')
-
-    def test_sort_order_name(self):
-        self._generate()
-        self.check_sort_links('name', sort_by='name', reverse=False)
-
-    def test_sort_order_created(self):
-        self._generate()
-        self.check_sort_links('created', sort_by='created')
-
-    def test_sort_order_updated(self):
-        self._generate()
-        self.check_sort_links('updated', sort_by='modified')
-
-    def test_created_timestamp(self):
-        self._generate()
-        r = self.client.get(urlparams(self.url, sort='created'))
-        items = pq(r.content)('.primary .item')
-        for idx, c in enumerate(r.context['pager'].object_list):
-            eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
-                'Added %s' % strip_whitespace(datetime_filter(c.created)))
-
-    def test_updated_timestamp(self):
-        self._generate()
-        r = self.client.get(urlparams(self.url, sort='updated'))
-        items = pq(r.content)('.primary .item')
-        for idx, c in enumerate(r.context['pager'].object_list):
-            eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
-                'Updated %s' % strip_whitespace(datetime_filter(c.modified)))
-
-    def check_followers_count(self, sort, column):
-        # Checks that we show the correct type/number of followers.
-        r = self.client.get(urlparams(self.url, sort=sort))
-        items = pq(r.content)('.primary .item')
-        for idx, c in enumerate(r.context['pager'].object_list):
-            eq_(items.eq(idx).find('.followers').text().split()[0],
-                numberfmt(getattr(c, column)))
-
-    def test_followers_all(self):
-        self._generate()
-        for sort in ('', 'all', 'rating', 'created', 'modified', 'name'):
-            self.check_followers_count(sort, column='subscribers')
-
-    def test_followers_monthly(self):
-        self._generate()
-        self.check_followers_count('monthly', column='monthly_subscribers')
-
-    def test_followers_weekly(self):
-        self._generate()
-        self.check_followers_count('weekly', column='weekly_subscribers')
-
-    def test_heading(self):
-        # One is a lonely number. But that's all we need.
-        amo.tests.collection_factory()
-        self.check_heading()
-
-    def test_results_blank_query(self):
-        self._generate()
-        collection_ids = sorted(p.id for p in self.collections)
-        r = self.client.get(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(self.get_results(r), collection_ids)
-        doc = pq(r.content)
-        eq_(doc('.primary .item').length, len(collection_ids))
-        eq_(doc('.listing-footer').length, 0)
-
-    def test_results_name_query(self):
-        # TODO: Figure out why this flakes out on jenkins every so often.
-        raise SkipTest
-
-        self._generate()
-
-        c1 = self.collections[0]
-        c1.name = 'SeaVans: A Collection of Cars at the Beach'
-        c1.save()
-
-        c2 = self.collections[1]
-        c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
-        c2.save()
-
-        self.refresh()
-
-        # These contain terms that are in every result - so return everything.
-        for term in ('', 'collection',
-                     'seavan: a collection of cars at the beach'):
-            self.check_name_results({}, sorted(p.id for p in self.collections))
-
-        # Garbage search terms should return nothing.
-        for term in ('xxx', 'garbage', '£'):
-            self.check_name_results({'q': term}, [])
-
-        # Try to match 'SeaVans: A Collection of Cars at the Beach'.
-        for term in ('cars', 'beach'):
-            self.check_name_results({'q': term}, [c1.pk])
-
-        # Match 'The Life Aquatic with SeaVan: An Underwater Collection'.
-        for term in ('life aquatic', 'life', 'aquatic', 'underwater', 'under'):
-            self.check_name_results({'q': term}, [c2.pk])
-
-        # Match both results above.
-        for term in ('seavan', 'seavans', 'sea van'):
-            self.check_name_results({'q': term}, sorted([c1.pk, c2.pk]))
-
-    def test_results_popularity(self):
-        collections = [
-            ('Traveler Pack', 2000),
-            ('Tools for Developer', 67),
-            ('Web Developer', 250),
-            ('Web Developer Necessities', 50),
-            ('Web Pro', 200),
-            ('Web Developer Pack', 242),
-        ]
-        for name, subscribers in collections:
-            amo.tests.collection_factory(name=name, subscribers=subscribers,
-                                         weekly_subscribers=subscribers)
-        self.refresh()
-
-        # "Web Developer Collection" should be the #1 most relevant result.
-        expected_name, expected_subscribers = collections[2]
-        for sort in ('', 'all'):
-            r = self.client.get(urlparams(self.url, q='web developer',
-                                          sort=sort), follow=True)
-            eq_(r.status_code, 200)
-            results = list(r.context['pager'].object_list)
-            first = results[0]
-            eq_(unicode(first.name), expected_name,
-                'Was not first result for %r. Results: %s' % (sort, results))
-            eq_(first.subscribers, expected_subscribers,
-                'Incorrect subscribers for %r. Got %r. Expected %r.' % (
-                sort, first.subscribers, results))
-
-    def test_results_appver_platform(self):
-        self._generate()
-        self.check_appver_platform_ignored(
-            sorted(c.id for c in self.collections))
-
-    def test_results_other_applications(self):
-        tb_collection = amo.tests.collection_factory(
-            application_id=amo.THUNDERBIRD.id)
-        sm_collection = amo.tests.collection_factory(
-            application_id=amo.SEAMONKEY.id)
-        self.refresh()
-
-        r = self.client.get(self.url)
-        eq_(self.get_results(r), [])
-
-        r = self.client.get(self.url.replace('firefox', 'thunderbird'))
-        eq_(self.get_results(r), [tb_collection.id])
-
-        r = self.client.get(self.url.replace('firefox', 'seamonkey'))
-        eq_(self.get_results(r), [sm_collection.id])
+# TODO: Uncomment when ES tests don't kill Jenkins and when we kill Sphinx
+#       (bug 726788).
+# class TestPersonaSearch(SearchBase):
+#     fixtures = ['base/apps']
+#
+#     @classmethod
+#     def setUpClass(cls):
+#         super(TestPersonaSearch, cls).setUpClass()
+#         cls.setUpIndex()
+#
+#     def setUp(self):
+#         waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
+#         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
+#
+#     def _generate_personas(self):
+#         # Add some public personas.
+#         self.personas = []
+#         for status in amo.REVIEWED_STATUSES:
+#             self.personas.append(
+#                 amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status))
+#
+#         # Add some unreviewed personas.
+#         for status in set(amo.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
+#             amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status)
+#
+#         # Add a disabled persona.
+#         amo.tests.addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
+#
+#         # NOTE: There are also some add-ons in `setUpIndex` for good measure.
+#
+#         self.refresh()
+#
+#     def test_sort_order_default(self):
+#         self._generate_personas()
+#         self.check_sort_links(None, sort_by='weekly_downloads')
+#
+#     def test_sort_order_unknown(self):
+#         self._generate_personas()
+#         self.check_sort_links('xxx')
+#
+#     def test_sort_order_users(self):
+#         self._generate_personas()
+#         self.check_sort_links('users', sort_by='average_daily_users')
+#
+#     def test_sort_order_rating(self):
+#         self._generate_personas()
+#         self.check_sort_links('rating', sort_by='bayesian_rating')
+#
+#     def test_sort_order_newest(self):
+#         self._generate_personas()
+#         self.check_sort_links('created', sort_by='created')
+#
+#     def test_heading(self):
+#         self.check_heading()
+#
+#     def test_results_blank_query(self):
+#         self._generate_personas()
+#         personas_ids = sorted(p.id for p in self.personas)  # Not PersonaID ;)
+#         r = self.client.get(self.url, follow=True)
+#         eq_(r.status_code, 200)
+#         eq_(self.get_results(r), personas_ids)
+#         doc = pq(r.content)
+#         eq_(doc('.personas-grid li').length, len(personas_ids))
+#         eq_(doc('.listing-footer').length, 0)
+#
+#     def test_results_name_query(self):
+#         raise SkipTest
+#         self._generate_personas()
+#
+#         p1 = self.personas[0]
+#         p1.name = 'Harry Potter'
+#         p1.save()
+#
+#         p2 = self.personas[1]
+#         p2.name = 'The Life Aquatic with SeaVan'
+#         p2.save()
+#         self.refresh()
+#
+#         # Empty search term should return everything.
+#         self.check_name_results({'q': ''}, sorted(p.id for p in self.personas))
+#
+#         # Garbage search terms should return nothing.
+#         for term in ('xxx', 'garbage', '£'):
+#             self.check_name_results({'q': term}, [])
+#
+#         # Try to match 'Harry Potter'.
+#         for term in ('harry', 'potter', 'har', 'pot', 'harry pooper'):
+#             self.check_name_results({'q': term}, [p1.pk])
+#
+#         # Try to match 'The Life Aquatic with SeaVan'.
+#         for term in ('life', 'aquatic', 'seavan', 'sea van'):
+#             self.check_name_results({'q': term}, [p2.pk])
+#
+#     def test_results_popularity(self):
+#         personas = [
+#             ('Harry Potter', 2000),
+#             ('Japanese Koi Tattoo', 67),
+#             ('Japanese Tattoo', 250),
+#             ('Japanese Tattoo boop', 50),
+#             ('Japanese Tattoo ballin', 200),
+#             ('The Japanese Tattooed Girl', 242),
+#         ]
+#         for name, popularity in personas:
+#             amo.tests.addon_factory(name=name, type=amo.ADDON_PERSONA,
+#                                     popularity=popularity)
+#         self.refresh()
+#
+#         # Japanese Tattoo should be the #1 most relevant result. Obviously.
+#         expected_name, expected_popularity = personas[2]
+#         for sort in ('downloads', 'popularity', 'users'):
+#             r = self.client.get(urlparams(self.url, q='japanese tattoo',
+#                                           sort=sort), follow=True)
+#             eq_(r.status_code, 200)
+#             results = list(r.context['pager'].object_list)
+#             first = results[0]
+#             eq_(unicode(first.name), expected_name,
+#                 'Was not first result for %r. Results: %s' % (sort, results))
+#             eq_(first.persona.popularity, expected_popularity,
+#                 'Incorrect popularity for %r. Got %r. Expected %r.' % (
+#                 sort, first.persona.popularity, results))
+#             eq_(first.average_daily_users, expected_popularity,
+#                 'Incorrect users for %r. Got %r. Expected %r.' % (
+#                 sort, first.average_daily_users, results))
+#             eq_(first.weekly_downloads, expected_popularity,
+#                 'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
+#                 sort, first.weekly_downloads, results))
+#
+#     def test_results_appver_platform(self):
+#         self._generate_personas()
+#         self.check_appver_platform_ignored(sorted(p.id for p in self.personas))
+#
+#     def test_results_other_applications(self):
+#         self._generate_personas()
+#         # Now ensure we get the same results for Firefox as for Thunderbird.
+#         self.url = self.url.replace('firefox', 'thunderbird')
+#         self.check_name_results({}, sorted(p.id for p in self.personas))
+#
+#     def test_pagination(self):
+#         # TODO: Figure out why ES wonks out when we index a plethora of junk.
+#         raise SkipTest
+#
+#         # Generate some (22) personas to get us to two pages.
+#         left_to_add = DEFAULT_NUM_PERSONAS - len(self.personas) + 1
+#         for x in xrange(left_to_add):
+#             self.personas.append(
+#                 amo.tests.addon_factory(type=amo.ADDON_PERSONA))
+#         self.refresh()
+#
+#         # Page one should show 21 personas.
+#         r = self.client.get(self.url, follow=True)
+#         eq_(r.status_code, 200)
+#         eq_(pq(r.content)('.personas-grid li').length, DEFAULT_NUM_PERSONAS)
+#
+#         # Page two should show 1 persona.
+#         r = self.client.get(self.url + '&page=2', follow=True)
+#         eq_(r.status_code, 200)
+#         eq_(pq(r.content)('.personas-grid li').length, 1)
+#
+#
+# class TestCollectionSearch(SearchBase):
+#     fixtures = ['base/apps']
+#
+#     @classmethod
+#     def setUpClass(cls):
+#         # Set up the mapping.
+#         super(TestCollectionSearch, cls).setUpClass()
+#
+#     def setUp(self):
+#         waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
+#         self.url = urlparams(reverse('search.search'), cat='collections')
+#
+#     def _generate(self):
+#         # Add some public collections.
+#         self.collections = []
+#         for x in xrange(3):
+#             self.collections.append(
+#                 amo.tests.collection_factory(name='Collection %s' % x))
+#
+#         # Synchronized, favorites, and unlisted collections should be excluded.
+#         for type_ in (amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES):
+#             amo.tests.collection_factory(type=type_)
+#         amo.tests.collection_factory(listed=False)
+#
+#         self.refresh()
+#
+#     def test_legacy_redirect(self):
+#         # Ensure `sort=newest` redirects to `sort=created`.
+#         r = self.client.get(urlparams(self.url, sort='newest'))
+#         self.assertRedirects(r, urlparams(self.url, sort='created'), 301)
+#
+#     def test_sort_order_unknown(self):
+#         self._generate()
+#         self.check_sort_links('xxx')
+#
+#     def test_sort_order_default(self):
+#         self._generate()
+#         self.check_sort_links(None, sort_by='weekly_subscribers')
+#
+#     def test_sort_order_weekly(self):
+#         self._generate()
+#         self.check_sort_links('weekly', sort_by='weekly_subscribers')
+#
+#     def test_sort_order_default_with_term(self):
+#         self._generate()
+#         self.check_sort_links(None, sort_by='weekly_subscribers',
+#                               params={'q': 'collection'})
+#
+#     def test_sort_order_weekly_with_term(self):
+#         self._generate()
+#         self.check_sort_links('weekly', sort_by='weekly_subscribers',
+#                               params={'q': 'collection'})
+#
+#     def test_sort_order_monthly(self):
+#         self._generate()
+#         self.check_sort_links('monthly', sort_by='monthly_subscribers')
+#
+#     def test_sort_order_all(self):
+#         self._generate()
+#         self.check_sort_links('all', sort_by='subscribers')
+#
+#     def test_sort_order_rating(self):
+#         self._generate()
+#         self.check_sort_links('rating', sort_by='rating')
+#
+#     def test_sort_order_name(self):
+#         self._generate()
+#         self.check_sort_links('name', sort_by='name', reverse=False)
+#
+#     def test_sort_order_created(self):
+#         self._generate()
+#         self.check_sort_links('created', sort_by='created')
+#
+#     def test_sort_order_updated(self):
+#         self._generate()
+#         self.check_sort_links('updated', sort_by='modified')
+#
+#     def test_created_timestamp(self):
+#         self._generate()
+#         r = self.client.get(urlparams(self.url, sort='created'))
+#         items = pq(r.content)('.primary .item')
+#         for idx, c in enumerate(r.context['pager'].object_list):
+#             eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
+#                 'Added %s' % strip_whitespace(datetime_filter(c.created)))
+#
+#     def test_updated_timestamp(self):
+#         self._generate()
+#         r = self.client.get(urlparams(self.url, sort='updated'))
+#         items = pq(r.content)('.primary .item')
+#         for idx, c in enumerate(r.context['pager'].object_list):
+#             eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
+#                 'Updated %s' % strip_whitespace(datetime_filter(c.modified)))
+#
+#     def check_followers_count(self, sort, column):
+#         # Checks that we show the correct type/number of followers.
+#         r = self.client.get(urlparams(self.url, sort=sort))
+#         items = pq(r.content)('.primary .item')
+#         for idx, c in enumerate(r.context['pager'].object_list):
+#             eq_(items.eq(idx).find('.followers').text().split()[0],
+#                 numberfmt(getattr(c, column)))
+#
+#     def test_followers_all(self):
+#         self._generate()
+#         for sort in ('', 'all', 'rating', 'created', 'modified', 'name'):
+#             self.check_followers_count(sort, column='subscribers')
+#
+#     def test_followers_monthly(self):
+#         self._generate()
+#         self.check_followers_count('monthly', column='monthly_subscribers')
+#
+#     def test_followers_weekly(self):
+#         self._generate()
+#         self.check_followers_count('weekly', column='weekly_subscribers')
+#
+#     def test_heading(self):
+#         # One is a lonely number. But that's all we need.
+#         amo.tests.collection_factory()
+#         self.check_heading()
+#
+#     def test_results_blank_query(self):
+#         self._generate()
+#         collection_ids = sorted(p.id for p in self.collections)
+#         r = self.client.get(self.url, follow=True)
+#         eq_(r.status_code, 200)
+#         eq_(self.get_results(r), collection_ids)
+#         doc = pq(r.content)
+#         eq_(doc('.primary .item').length, len(collection_ids))
+#         eq_(doc('.listing-footer').length, 0)
+#
+#     def test_results_name_query(self):
+#         # TODO: Figure out why this flakes out on jenkins every so often.
+#         raise SkipTest
+#
+#         self._generate()
+#
+#         c1 = self.collections[0]
+#         c1.name = 'SeaVans: A Collection of Cars at the Beach'
+#         c1.save()
+#
+#         c2 = self.collections[1]
+#         c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
+#         c2.save()
+#
+#         self.refresh()
+#
+#         # These contain terms that are in every result - so return everything.
+#         for term in ('', 'collection',
+#                      'seavan: a collection of cars at the beach'):
+#             self.check_name_results({}, sorted(p.id for p in self.collections))
+#
+#         # Garbage search terms should return nothing.
+#         for term in ('xxx', 'garbage', '£'):
+#             self.check_name_results({'q': term}, [])
+#
+#         # Try to match 'SeaVans: A Collection of Cars at the Beach'.
+#         for term in ('cars', 'beach'):
+#             self.check_name_results({'q': term}, [c1.pk])
+#
+#         # Match 'The Life Aquatic with SeaVan: An Underwater Collection'.
+#         for term in ('life aquatic', 'life', 'aquatic', 'underwater', 'under'):
+#             self.check_name_results({'q': term}, [c2.pk])
+#
+#         # Match both results above.
+#         for term in ('seavan', 'seavans', 'sea van'):
+#             self.check_name_results({'q': term}, sorted([c1.pk, c2.pk]))
+#
+#     def test_results_popularity(self):
+#         collections = [
+#             ('Traveler Pack', 2000),
+#             ('Tools for Developer', 67),
+#             ('Web Developer', 250),
+#             ('Web Developer Necessities', 50),
+#             ('Web Pro', 200),
+#             ('Web Developer Pack', 242),
+#         ]
+#         for name, subscribers in collections:
+#             amo.tests.collection_factory(name=name, subscribers=subscribers,
+#                                          weekly_subscribers=subscribers)
+#         self.refresh()
+#
+#         # "Web Developer Collection" should be the #1 most relevant result.
+#         expected_name, expected_subscribers = collections[2]
+#         for sort in ('', 'all'):
+#             r = self.client.get(urlparams(self.url, q='web developer',
+#                                           sort=sort), follow=True)
+#             eq_(r.status_code, 200)
+#             results = list(r.context['pager'].object_list)
+#             first = results[0]
+#             eq_(unicode(first.name), expected_name,
+#                 'Was not first result for %r. Results: %s' % (sort, results))
+#             eq_(first.subscribers, expected_subscribers,
+#                 'Incorrect subscribers for %r. Got %r. Expected %r.' % (
+#                 sort, first.subscribers, results))
+#
+#     def test_results_appver_platform(self):
+#         self._generate()
+#         self.check_appver_platform_ignored(
+#             sorted(c.id for c in self.collections))
+#
+#     def test_results_other_applications(self):
+#         tb_collection = amo.tests.collection_factory(
+#             application_id=amo.THUNDERBIRD.id)
+#         sm_collection = amo.tests.collection_factory(
+#             application_id=amo.SEAMONKEY.id)
+#         self.refresh()
+#
+#         r = self.client.get(self.url)
+#         eq_(self.get_results(r), [])
+#
+#         r = self.client.get(self.url.replace('firefox', 'thunderbird'))
+#         eq_(self.get_results(r), [tb_collection.id])
+#
+#         r = self.client.get(self.url.replace('firefox', 'seamonkey'))
+#         eq_(self.get_results(r), [sm_collection.id])
 
 
 def test_search_redirects():
