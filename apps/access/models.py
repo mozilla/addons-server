@@ -5,6 +5,7 @@ from django import dispatch
 from django.db.models import signals
 
 import amo.models
+from access.tasks import invalidate_users
 
 
 class AccessWhitelist(amo.models.ModelBase):
@@ -32,12 +33,7 @@ class AccessWhitelist(amo.models.ModelBase):
                    dispatch_uid='accesswhitelist.post_save')
 def accesswhitelist_post_save(sender, instance, **kw):
     if not kw.get('raw') and instance.email:
-        from amo.utils import chunked
-        from users.models import UserProfile
-        # Invalidate all users with market emails.
-        for chunk in chunked(UserProfile.objects.all(), 150):
-            for user in chunk:
-                user.save()
+        invalidate_users.delay()
 
 
 class Group(amo.models.ModelBase):
