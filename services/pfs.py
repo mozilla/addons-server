@@ -6,10 +6,18 @@ import sys
 from time import time
 from urlparse import parse_qsl
 
+from django.core.management import setup_environ
+
 import commonware.log
 import jinja2
 
 from utils import log_configure
+
+import settings_local as settings
+setup_environ(settings)
+
+# This has to be imported after the settings so statsd knows where to log to.
+from statsd import statsd
 
 # Go configure the log.
 log_configure()
@@ -54,6 +62,7 @@ flash_re = re.compile(r'^(Win|(PPC|Intel) Mac OS X|Linux.+i\d86)|SunOs', re.IGNO
 quicktime_re = re.compile(r'^(application/(sdp|x-(mpeg|rtsp|sdp))|audio/(3gpp(2)?|AMR|aiff|basic|mid(i)?|mp4|mpeg|vnd\.qcelp|wav|x-(aiff|m4(a|b|p)|midi|mpeg|wav))|image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))|video/(3gpp(2)?|flc|mp4|mpeg|quicktime|sd-video|x-mpeg))$')
 java_re = re.compile(r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;version=(1\.(1(\.[1-3])?|(2|4)(\.[1-2])?|3(\.1)?|5)))?|vm)$')
 wmp_re = re.compile(r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
+
 
 def get_output(data):
     g = defaultdict(str, [(k, jinja2.escape(v)) for k, v in data.iteritems()])
@@ -347,7 +356,6 @@ def get_output(data):
             manualInstallationURL='http://go.divx.com/plugin/download/')
 
     # End ridiculously huge and embarrassing if-else block.
-
     return output.substitute(plugin)
 
 
@@ -371,11 +379,12 @@ def log_exception(data):
 def application(environ, start_response):
     status = '200 OK'
 
-    data = dict(parse_qsl(environ['QUERY_STRING']))
-    try:
-        output = get_output(data)
-        start_response(status, get_headers(len(output)))
-    except:
-        log_exception(data)
-        raise
-    return [output]
+    with statsd.timer('services.pfs'):
+        data = dict(parse_qsl(environ['QUERY_STRING']))
+        try:
+            output = get_output(data)
+            start_response(status, get_headers(len(output)))
+        except:
+            log_exception(data)
+            raise
+        return [output]
