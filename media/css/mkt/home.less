@@ -33,12 +33,17 @@
     text-shadow: 0 1px 0 rgba(0,0,0,.25);
     div {
         .border-box;
-        background: url(../../img/mkt/crate.png) 100% 58px no-repeat;
         min-height: 330px;
-        padding-top: 58px;
+        padding-top: 20px;
         position: relative;
         .width(10);
         margin: 0 auto;
+        &:after {
+            content: url(../../img/mkt/crate.png);
+            position: absolute;
+            top: 20px;
+            right: -97px;
+        }
     }
     p {
         font-size: 14px;
@@ -58,7 +63,7 @@
             .background-size(auto 50%);
         }
         h2, p {
-            .width(3);
+            width: 300px;
         }
     }
 }
