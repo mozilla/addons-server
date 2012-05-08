@@ -7,10 +7,10 @@
     <ul class="content">
       {% for product in products %}
         {# TODO: Replace previews with promo graphics (bug 744648). #}
-        {% set previews = product.previews %}
-        {% if previews.exists() %}
-          {% set preview = previews.order_by('-created')[0].image_url if feature else
-                           previews.order_by('-created')[0].thumbnail_url %}
+        {% set previews = product.all_previews %}
+        {% if previews %}
+          {% set preview = previews[0].image_url if feature else
+                           previews[0].thumbnail_url %}
         {% endif %}
         {% if not preview or preview.filetype != 'video/webm' %}
           <li>
