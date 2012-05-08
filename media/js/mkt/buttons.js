@@ -32,10 +32,15 @@
         purchasedMark += gettext('Purchased') + '</span>';
         product['isPurchased'] = true;
 
-        // Let's show only one button "badge" at a time.
-        if ($button.siblings('.checkmark').length === 0) {
-            $button.data('product', product).after(purchasedMark);
+        // Remove "PayPal pre-approval" badge if it exists.
+        var $aMark = $button.siblings('.checkmark');
+        if ($aMark.length) {
+            $aMark.remove();
         }
+
+        // Add a "Purchased" badge.
+        $button.data('product', product).after(purchasedMark);
+
         setButton($button, gettext('Purchased'), 'purchased');
     }).bind('app_install_start', function(e, product) {
         setButton(getButton(product),
