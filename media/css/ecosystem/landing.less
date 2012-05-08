@@ -30,7 +30,12 @@ body {
         text-transform: uppercase;
         font-size: 13pt;
         text-shadow: 0 1px 1px #444;
-
+        &.loading-submit:after {
+            margin: 0;
+            top: 30px;
+            right: auto;
+            left: -30px;
+        }
     }
     a.external {
         background-image: url('../../img/mkt/arrows/external_menu.gif');
