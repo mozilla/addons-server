@@ -317,13 +317,10 @@ MIDDLEWARE_CLASSES = (
 
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
-    'cake.middleware.CakeCookieMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'commonware.log.ThreadRequestMiddleware',
     'session_csrf.CsrfMiddleware',
-
-    'cake.middleware.CookieCleaningMiddleware',
 
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
