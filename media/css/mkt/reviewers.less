@@ -103,25 +103,44 @@ header {
     }
 }
 
+#aux-nav a {
+    color: @medium-gray;
+}
+
 .site-title {
-    margin: 0 0 7px;
     display: block;
+    font: bold 48px/1.2 @open-stack;
+    margin: 0 0 7px;
+    text-shadow: 0 1px 1px fadeOut(#fff, 25%);
+    text-transform: uppercase;
     a {
+        color: darken(@red, 10%);
         display: block;
-        left: -250px;
         padding-left: 250px;
         position: relative;
+        left: -250px;
         text-decoration: none;
-        color: darken(@red, 10%);
         width: 100%;
-        &:before {
-            display: none;
+        small {
+            color: @medium-gray;
+            display: block;
+            font-size: 12px;
+            padding: 0 2px;
+        }
+        &:hover {
+            color: darken(@red, 20%);
+            small {
+                color: @dark-gray;
+            }
         }
     }
 }
 
-#site-header .menu-nav {
-    padding: 0;
+#site-header {
+    background: @taupe;
+    .menu-nav {
+        padding: 0;
+    }
 }
 
 #masthead {

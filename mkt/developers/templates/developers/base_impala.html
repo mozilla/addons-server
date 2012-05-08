@@ -7,7 +7,7 @@
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}{{ 'apps' if webapp }} gutter {{ editable }}{% endblock %}
+{% block bodyclass %}developer-hub{{ ' apps' if webapp }} gutter {{ editable }}{% endblock %}
 
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
