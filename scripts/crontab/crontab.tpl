@@ -43,7 +43,7 @@ HOME=/tmp
 30 1 * * * {{ z_cron }} update_user_ratings
 40 1 * * * {{ z_cron }} update_weekly_downloads
 50 1 * * * {{ z_cron }} gc
-30 2 * * * {{ z_cron }} mail_pending_refunds
+30 2 * * * {{ z_cron }} mail_pending_refunds --settings=settings_local_mkt
 30 3 * * * {{ django }} cleanup
 30 4 * * * {{ z_cron }} cleanup_synced_collections
 30 5 * * * {{ z_cron }} expired_resetcode
@@ -69,6 +69,6 @@ HOME=/tmp
 
 # Once per week
 45 23 * * 4 {{ z_cron }} unconfirmed
-35 22 * * 3 {{ django }} process_addons --task=check_paypal
+35 22 * * 3 {{ django }} process_addons --task=check_paypal --settings=settings_local_mkt
 
 MAILTO=root
