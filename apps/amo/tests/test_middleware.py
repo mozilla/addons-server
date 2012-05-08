@@ -179,10 +179,11 @@ def allowed_view(request):
 
 class TestLoginRequiredMiddleware(amo.tests.TestCase):
 
-    def process(self, authenticated, view=None, lang='en-US', app='firefox'):
+    def process(self, authenticated, view=None, url='/', lang='en-US',
+                app='firefox'):
         if not view:
             view = normal_view
-        request = RequestFactory().get('/', HTTP_X_PJAX=True)
+        request = RequestFactory().get(url, HTTP_X_PJAX=True)
         request.user = Mock()
         request.APP = amo.APPS[app]
         request.LANG = lang
@@ -195,12 +196,29 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
         eq_(self.process(False).status_code, 302)
 
     @patch.object(settings, 'MARKETPLACE', True)
-    def test_middleware_marketplace(self):
+    def test_middleware_marketplace_home_skip_redirect(self):
         # Middleware returns None if it doesn't need to redirect the user.
         assert not self.process(True)
         res = self.process(False)
         eq_(res.status_code, 302)
-        assert res._headers['location'][1].endswith('?to=%2F')
+        assert '?to=' not in res._headers['location'][1], (
+            '/ should not redirect to /?to=/')
+
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_middleware_marketplace_login_skip_redirect(self):
+        assert not self.process(True, url=settings.LOGIN_URL)
+        res = self.process(False, url=settings.LOGIN_URL)
+        eq_(res.status_code, 302)
+        assert '?to=' not in res._headers['location'][1], (
+            '/users/login should not redirect to /?to=/users/login')
+
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_middleware_marketplace_home_do_redirect(self):
+        assert not self.process(True, url='/developers')
+        res = self.process(False, url='/developers')
+        eq_(res.status_code, 302)
+        assert res._headers['location'][1].endswith('?to=%2Fdevelopers'), (
+            '/developers should redirect to /?to=/developers')
 
     def test_locale(self):
         eq_(self.process(False)['Location'], '/en-US/firefox/users/login')
