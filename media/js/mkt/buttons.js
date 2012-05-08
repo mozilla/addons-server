@@ -31,7 +31,11 @@
             purchasedMark = '<span class="approval checkmark purchased">';
         purchasedMark += gettext('Purchased') + '</span>';
         product['isPurchased'] = true;
-        $button.data('product', product).after(purchasedMark);
+
+        // Let's show only one button "badge" at a time.
+        if ($button.siblings('.checkmark').length === 0) {
+            $button.data('product', product).after(purchasedMark);
+        }
         setButton($button, gettext('Purchased'), 'purchased');
     }).bind('app_install_start', function(e, product) {
         setButton(getButton(product),
