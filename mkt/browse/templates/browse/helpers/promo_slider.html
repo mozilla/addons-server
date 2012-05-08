@@ -6,21 +6,23 @@
     </div>
     <ul class="content">
       {% for product in products %}
-        <li>
-          <a href="{{ product.get_url_path() }}">
-            {# TODO: Replace previews with promo graphics (bug 744648). #}
-            {% set previews = product.previews %}
-            {% if previews.exists() %}
-              {% set preview = previews.order_by('-created')[0].image_url if feature else
-                               previews.order_by('-created')[0].thumbnail_url %}
-            {% endif %}
-            <img src="{{ preview }}">
-            <h3>{{ product.name }}</h3>
-            <p>
-              {{ product.get_price() }}
-            </p>
-          </a>
-        </li>
+        {# TODO: Replace previews with promo graphics (bug 744648). #}
+        {% set previews = product.previews %}
+        {% if previews.exists() %}
+          {% set preview = previews.order_by('-created')[0].image_url if feature else
+                           previews.order_by('-created')[0].thumbnail_url %}
+        {% endif %}
+        {% if not preview or preview.filetype != 'video/webm' %}
+          <li>
+            <a href="{{ product.get_url_path() }}">
+              <img src="{{ preview }}">
+              <h3>{{ product.name }}</h3>
+              <p>
+                {{ product.get_price() }}
+              </p>
+            </a>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>
