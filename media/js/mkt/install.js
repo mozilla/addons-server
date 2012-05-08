@@ -66,7 +66,7 @@
     }
 
     function installSuccess(product) {
-        $(window).trigger('app_install_success', product);
+        $(window).trigger('app_install_success', [product, true]);
     }
 
     function installError(product, msg) {

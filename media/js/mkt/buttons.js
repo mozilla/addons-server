@@ -45,8 +45,21 @@
     }).bind('app_install_start', function(e, product) {
         setButton(getButton(product),
                   gettext('Installing&hellip;'), 'installing');
-    }).bind('app_install_success', function(e, product) {
-        setButton(getButton(product), gettext('Installed'), 'installed');
+    }).bind('app_install_success', function(e, product, installedNow) {
+        var $button = getButton(product);
+        if (installedNow) {
+            var $installed = $('#installed');
+            if (z.nav.platform == 'mac') {
+                $installed.show();
+                $installed.find('.how.mac').show();
+            } else if (z.nav.platform == 'win') {
+                $installed.show();
+                $installed.find('.how.win').show();
+            } else {
+                // Linux? You're on your own, brah.
+            }
+        }
+        setButton($button, gettext('Installed'), 'installed');
     }).bind('app_purchase_error app_install_error', function(e, product, msg) {
         var $button = getButton(product),
             errSummary;

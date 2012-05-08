@@ -66,7 +66,7 @@ z.page.on('fragmentloaded', function() {
         z.apps = r.result;
         _.each(r.result, function(val) {
             $(window).trigger('app_install_success',
-                              {'manifestUrl': val.manifestURL})
+                              [{'manifestUrl': val.manifestURL}, false])
                      .trigger('app_install_mark',
                               {'manifestUrl': val.manifestURL});
         });

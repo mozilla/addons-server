@@ -93,6 +93,19 @@
 
   {{ notification(product, amo, is_dev) }}
 
+  <section id="installed">
+    <div>
+      <p>
+        {{ _('Installed!') }}
+      </p>
+      <p class="how mac">
+        Launch this app from your <b>Applications</b> directory.
+      </p>
+      <p class="how win">
+        Launch this app from your desktop or <b>Start Menu</b>.
+      </p>
+    </div>
+  </section>
   <div id="purchased-message"></div>
 
   {% set upsell = product.upsell %}

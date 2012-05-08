@@ -136,7 +136,7 @@
     }
 }
 
-#purchased {
+#purchased, #installed {
     margin: 20px 0 0;
     color: @dark-gray;
     .border-radius(5px);
@@ -149,6 +149,32 @@
         line-height: 27px;
         a {
             float: right;
+        }
+    }
+}
+
+#installed {
+    display: none;
+    padding: 0;
+    p {
+        padding: 5px 10px;
+    }
+    .how {
+        .border-radius(0 0 5px 5px);
+        background: @white;
+        display: none;
+        font-weight: normal;
+        &.mac {
+            b {
+                background: url(../../img/mkt/icons/mac-applications.jpg) 5px 0 no-repeat;
+                padding: 0 5px 0 35px;
+            }
+        }
+        &.win {
+            b {
+                background: url(../../img/mkt/icons/win-start.jpg) 5px 0 no-repeat;
+                padding: 0 0 0 43px;
+            }
         }
     }
 }
