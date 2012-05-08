@@ -1,177 +1,103 @@
 @import 'lib';
 
-// yeah yeah this is too fancy.
-
-@btn-r: lighten(spin(@btn-b, -200), 4%);
-@btn-r-dark: darken(spin(@btn-r, 3), 8%);
-@btn-r-lite: saturate(spin(@btn-r, 4), 60%);
-
-@btn-g: lighten(spin(@btn-b, -115), 4%);
-@btn-g-dark: darken(spin(@btn-g, 3), 8%);
-@btn-g-lite: saturate(spin(@btn-g, 4), 60%);
-
-@btn-o: lighten(spin(@btn-r, 30), 0%);
-@btn-o-dark: darken(spin(@btn-o, 3), 8%);
-@btn-o-lite: saturate(spin(@btn-o, 4), 60%);
-
 .button, button {
-    .gradient-two-color(@btn-b, @btn-b-dark);
-    .border-radius(4px);
-    .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                inset 0 -2px 0 0 rgba(0,0,0,.1));
-    .transition-property(~'-moz-box-shadow, -webkit-box-shadow, box-shadow, line-height');
-    .transition-duration(.2s);
-    background-color: @gray;
-    color: @white;
+
+    border: 0;
+    color: white;
     display: inline-block;
-    font: 14px/28px @open-stack;
-    font-weight: 600;
-    padding: 0 15px;
+    font: 600 16px/31px @open-stack;
+    height: 32px;
+    background-color: #267cc2;
+    padding: 0 24px;
+    position: relative;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    text-shadow: 0px 1px 0px rgba(0,0,0,0.25);
+    white-space: nowrap;
+    .border-radius(.5em);
+    .box-shadow(0px 2px 1px fadeOut(#000,80%),
+                inset 0px -1px 0px fadeOut(#000, 80%),
+                inset 0px 1px 0px 0px fadeOut(#fff, 80%));
+    .gradient-two-color(#42a5e1, #267cc2);
+    .transition-property(~'-moz-box-shadow, -webkit-box-shadow, box-shadow, line-height');
+    .transition-duration(~'.2s, .2s, .2s, .2s');
+
+    &.product {
+        height: 48px;
+        padding: 0 32px;
+        line-height: 47px;
+        &:hover {
+            line-height: 43px;
+        }
+        &:active, &.purchasing, &.installing {
+            line-height: 49px;
+        }
+    }
+
+
+    &.delete, &.manage, &.product.error {
+
+        background-color: #de4332;
+        .gradient-two-color(#e45d56, #de4332);
+
+    }
+
+    &:hover {
+
+        .box-shadow(0px 4px 1px fadeOut(#000,80%),
+                    inset 0px -3px 0px fadeOut(#000, 80%));
+        line-height: 28px;
+        text-decoration: none;
+
+    }
+
+    &:active {
+
+        .box-shadow(inset 0px 2px 0px 0px fadeOut(#000,80%),
+                    inset 0px 12px 24px 6px fadeOut(#000,80%),
+                    inset 0px 0px 2px 2px fadeOut(#000,80%);
+        .transition-duration(~'.1s, .1s, .1s, .1s');
+        line-height: 34px;
+
+    }
+
+    &[disabled], &.disabled,
+    &.purchasing, &.purchased,
+    &.installing, &.installed {
+
+        color: #919497;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        pointer-events: none;
+        background-color: @light-gray;
+        .gradient-two-color(#ddd, @light-gray);
+
+    }
+
+    &.installed, &.purchased {
+
+        pointer-events: auto;
+
+    }
+
     &.good {
-        .gradient-two-color(@btn-g, @btn-g-dark);
-        &:hover {
-            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                        inset 0 -2px 0 0 rgba(0,0,0,.2),
-                        inset 0 12px 24px 2px @btn-g-lite);
-        }
-    }
-    &.special {
-        .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                    inset 0 -2px 0 0 rgba(0,0,0,.1),
-                    inset 0 12px 24px 2px darken(@btn-o-lite, 10%));
-        .gradient-two-color(@btn-r, @btn-r-dark);
-        &:hover {
-            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                        inset 0 -2px 0 0 rgba(0,0,0,.2),
-                        inset 0 12px 24px 2px @btn-o-lite);
-        }
-    }
-    &.delete, &.manage {
-        .gradient-two-color(@btn-r, @btn-r-dark);
-        &:hover {
-            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                        inset 0 2px 0 0 rgba(0,0,0,.2),
-                        inset 0 12px 24px 2px @btn-r-lite);
-        }
-    }
-    &:hover {
-        .box-shadow(0 2px 1px 0 rgba(0,0,0,.2),
-                    inset 0 -3px 0 0 rgba(0,0,0,.2));
-    }
-}
 
-.button {
-    &.install, &.premium {
-        .gradient-two-color(@btn-b, @btn-b-dark);
-        &:hover {
-            .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                        inset 0 -2px 0 0 rgba(0,0,0,.2),
-                        inset 0 12px 24px 2px @btn-b-lite);
-        }
-    }
-}
+        background-color: #86DE32;
+        .gradient-two-color(#A2E456, #86DE32);
 
-button[disabled],
-.button.disabled,
-.button.purchasing,
-.button.purchased,
-.button.installing,
-.button.installed {
-    color: #919497;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
-}
-
-button[disabled],
-.button.disabled {
-    .gradient-two-color(#ddd, @light-gray);
-}
-
-button[disabled],
-.button.disabled,
-.button.purchasing,
-.button.installing {
-    pointer-events: none;
-}
-
-.button {
-    &.install, &.premium {
-        &.purchasing, &.purchased, &.installing, &.installed {
-            .gradient-two-color(#ddd, @light-gray);
-            &:hover {
-                .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                            inset 0 -2px 0 0 rgba(0,0,0,.2),
-                            inset 0 12px 24px 2px @light-gray);
-                color: @medium-gray;
-            }
-        }
-        &.error {
-            .gradient-two-color(@btn-r, @btn-r-dark);
-            color: @white;
-            &:hover {
-                .box-shadow(0 2px 0 0 rgba(0,0,0,.1),
-                            inset 0 -2px 0 0 rgba(0,0,0,.2),
-                            inset 0 12px 24px 2px @btn-r-lite);
-            }
-        }
     }
-    &:link:active,
-    &.purchasing,
-    &:link:active.purchased,
-    &.installing,
-    &:link:active.installed {
-        /* I'm so depressed. */
-        .box-shadow(inset 0 2px 0 0 rgba(0,0,0,.2),
-                    inset 0 12px 24px 6px rgba(0,0,0,.2),
-                    inset 0 0 2px 2px rgba(0,0,0,.2));
-    }
-    /* Set some good base font-sizes. These'll get clamped to one line anyway. */
-    &.purchasing,
-    &.installing {
-        font-size: 11px;
-    }
-    &.purchased,
-    &.installed {
-        font-size: 13px;
-    }
-}
 
-button {
-    border: 0;
-    display: inline-block;
-    line-height: 36px;
-}
-
-.arrow.button {
-    .border-box;
-    padding-right: 48px;
-    color: lighten(@text, 60%);
-    font-size: 18px;
-    line-height: 35px;
-    position: relative;
-    text-align: left;
-    &:after {
-        background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
-        content: "";
-        display: block;
-        height: 19px;
-        opacity: .7;
-        position: absolute;
-        top: 8px;
-        right: 15px;
-        width: 18px;
-    }
-    &:hover {
-        color: @white;
+    &.arrow {
+        padding-right: 34px;
         &:after {
-            opacity: 1;
+            background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
+            content: "";
+            display: inline-block;
+            height: 19px;
+            opacity: .7;
+            position: relative;
+            width: 18px;
+            top: 3px;
+            left: 14px;
         }
     }
 }
-
-.html-rtl .arrow.button {
-    text-align: right;
-}
-
