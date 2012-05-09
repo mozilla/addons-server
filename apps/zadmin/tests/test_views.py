@@ -1854,6 +1854,21 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(
             reverse('zadmin.oauth-consumer-create')).status_code, 403)
 
+    def test_sr_reviewers_user(self):
+        # Sr Reviewers users have only a few privileges.
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        group = Group.objects.create(name='Sr Reviewer',
+                                     rules='ReviewerAdminTools:View')
+        GroupUser.objects.create(group=group, user=user)
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
+        eq_(self.client.get(
+            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(username='regular@mozilla.com',

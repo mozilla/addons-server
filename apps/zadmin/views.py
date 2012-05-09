@@ -52,7 +52,7 @@ from zadmin.forms import GenerateErrorForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 from . import tasks
-from .decorators import admin_ish_required
+from .decorators import admin_required
 from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
                     DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
                     JetpackUpgradeForm, MonthlyPickFormSet, NotifyForm,
@@ -62,7 +62,7 @@ from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 log = commonware.log.getLogger('z.zadmin')
 
 
-@admin_ish_required
+@admin_required(reviewers=True)
 def flagged(request):
     addons = Addon.objects.filter(admin_review=True).order_by('-created')
 
@@ -138,7 +138,7 @@ def hera(request):
                         {'form': form, 'boxes': boxes})
 
 
-@admin_ish_required
+@admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
 
@@ -159,7 +159,7 @@ def show_settings(request):
                         {'settings_dict': settings_dict})
 
 
-@admin_ish_required
+@admin_required
 def env(request):
     return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
 
@@ -187,7 +187,7 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@admin_ish_required
+@admin_required
 def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
@@ -217,7 +217,7 @@ def find_files(job):
         tasks.add_validation_jobs.delay(pks, job.pk)
 
 
-@admin_ish_required
+@admin_required
 def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
@@ -230,7 +230,7 @@ def start_validation(request):
         return validation(request, form=form)
 
 
-@admin_ish_required
+@admin_required
 @post_required
 @json_view
 def job_status(request):
@@ -255,7 +255,7 @@ def completed_versions_dirty(job):
                    .values_list('pk', flat=True).distinct())
 
 
-@admin_ish_required
+@admin_required
 @post_required
 @json_view
 def notify_syntax(request):
@@ -266,7 +266,7 @@ def notify_syntax(request):
         return {'valid': True, 'error': None}
 
 
-@admin_ish_required
+@admin_required
 @post_required
 def notify_failure(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
@@ -284,7 +284,7 @@ def notify_failure(request, job):
     return redirect(reverse('zadmin.validation'))
 
 
-@admin_ish_required
+@admin_required
 @post_required
 def notify_success(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
@@ -317,7 +317,7 @@ def email_preview_csv(request, topic):
     return resp
 
 
-@admin_ish_required
+@admin_required
 def validation_tally_csv(request, job_id):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -402,7 +402,7 @@ def jetpack_resend(request, file_id):
     return redirect('zadmin.jetpack')
 
 
-@admin_ish_required
+@admin_required
 def compat(request):
     APP = amo.FIREFOX
     VER = settings.COMPAT[0]['main']  # Default: latest Firefox version.
@@ -495,7 +495,7 @@ def es_collections_json(request):
     return data
 
 
-@admin_ish_required
+@admin_required
 @post_required
 def featured_collection(request):
     try:
@@ -507,7 +507,7 @@ def featured_collection(request):
                         dict(collection=c))
 
 
-@admin_ish_required
+@admin_required
 def features(request):
     form = FeaturedCollectionFormSet(request.POST or None)
     if request.method == 'POST' and form.is_valid():
@@ -642,13 +642,13 @@ def addon_name_blocklist(request):
                         dict(rn=rn, addon=addon))
 
 
-@admin_ish_required
+@admin_required(reviewers=True)
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return jingo.render(request, 'zadmin/index.html', {'log': log})
 
 
-@admin_ish_required
+@admin_required(reviewers=True)
 def addon_search(request):
     ctx = {}
     if 'q' in request.GET:
@@ -702,7 +702,7 @@ def general_search(request, app_id, model_id):
             for o in qs[:limit]]
 
 
-@admin_ish_required
+@admin_required(reviewers=True)
 @addon_view
 def addon_manage(request, addon):
 
@@ -814,7 +814,7 @@ def delete_site_event(request, event_id):
     return redirect('zadmin.site_events')
 
 
-@admin_ish_required
+@admin_required
 def generate_error(request):
     form = GenerateErrorForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
