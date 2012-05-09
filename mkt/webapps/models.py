@@ -103,6 +103,8 @@ class Webapp(Addon):
         # I think we can do less than the Addon transformer, so at some point
         # we'll want to copy that over.
         apps_dict = Addon.transformer(apps)
+        if not apps_dict:
+            return
 
         for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
             if not getattr(apps_dict[adt.addon_id], '_device_types', None):
