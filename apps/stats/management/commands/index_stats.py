@@ -8,7 +8,6 @@ from django.db.models import Max, Min
 from celery.task.sets import TaskSet
 
 from amo.utils import chunked
-from mkt.webapps.models import Installed
 from stats.models import CollectionCount, DownloadCount, UpdateCount
 from stats.tasks import (index_collection_counts, index_installed_counts,
                          index_download_counts, index_update_counts)
@@ -51,6 +50,7 @@ class Command(BaseCommand):
         if kw.get('fixup'):
             fixup()
 
+        from mkt.webapps.models import Installed
         addons, dates = kw['addons'], kw['date']
 
         queries = [(UpdateCount.objects, index_update_counts,
