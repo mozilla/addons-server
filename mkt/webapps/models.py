@@ -21,7 +21,8 @@ import amo.models
 from amo.urlresolvers import reverse
 from amo.utils import memoize
 from addons import query
-from addons.models import Addon, update_name_table, update_search_index
+from addons.models import (Addon, AddonDeviceType, update_name_table,
+                           update_search_index)
 from bandwagon.models import Collection
 from files.models import FileUpload, Platform
 from lib.crypto.receipt import sign
@@ -38,7 +39,8 @@ class WebappManager(amo.models.ManagerBase):
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
         qs = qs._clone(klass=query.IndexQuerySet)
-        return qs.filter(type=amo.ADDON_WEBAPP)
+        qs = qs.filter(type=amo.ADDON_WEBAPP)
+        return qs.transform(Webapp.transformer)
 
     def valid(self):
         return self.filter(status__in=amo.LISTED_STATUSES,
@@ -96,6 +98,17 @@ class Webapp(Addon):
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id)
 
+    @staticmethod
+    def transformer(apps):
+        # I think we can do less than the Addon transformer, so at some point
+        # we'll want to copy that over.
+        apps_dict = Addon.transformer(apps)
+
+        for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
+            if not getattr(apps_dict[adt.addon_id], '_device_types', None):
+                apps_dict[adt.addon_id]._device_types = []
+            apps_dict[adt.addon_id]._device_types.append(adt.device_type)
+
     def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
         # but for now pretend you didn't see this.
@@ -139,6 +152,9 @@ class Webapp(Addon):
 
     @property
     def device_types(self):
+        # If the transformer attached something, use it.
+        if hasattr(self, '_device_types'):
+            return self._device_types
         return [d.device_type for d in
                 self.addondevicetype_set.order_by('device_type__id')]
 

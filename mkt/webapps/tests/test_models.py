@@ -13,12 +13,12 @@ import waffle
 from django.conf import settings
 
 import amo
-from addons.models import Addon, BlacklistedSlug
+from addons.models import Addon, AddonDeviceType, BlacklistedSlug, DeviceType
 from mkt.developers.tests.test_views import BaseWebAppTest
+from mkt.webapps.models import create_receipt, get_key, Installed, Webapp
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
-from mkt.webapps.models import create_receipt, get_key, Installed, Webapp
 
 
 class TestWebapp(test_utils.TestCase):
@@ -298,3 +298,29 @@ class TestReceipt(amo.tests.TestCase):
 class TestBrokenReceipt(amo.tests.TestCase):
     def test_get_key(self):
         self.assertRaises(IOError, get_key)
+
+
+class TestTransformer(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    @mock.patch('mkt.webapps.models.Addon.transformer')
+    def test_addon_transformer_called(self, transformer):
+        transformer.return_value = {}
+        list(Webapp.objects.all())
+        assert transformer.called
+
+    def test_device_types(self):
+        dtype = DeviceType.objects.create(name='fligphone', class_name='phone')
+        AddonDeviceType.objects.create(addon_id=337141, device_type=dtype)
+        webapps = list(Webapp.objects.filter(id=337141))
+
+        with self.assertNumQueries(0):
+            for webapp in webapps:
+                assert webapp._device_types
+                eq_(webapp.device_types, [dtype])
+
+    def test_device_type_cache(self):
+        webapp = Webapp.objects.get(id=337141)
+        webapp._device_types = []
+        with self.assertNumQueries(0):
+            eq_(webapp.device_types, [])

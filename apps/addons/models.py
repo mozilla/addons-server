@@ -765,6 +765,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     addon_p.price = price
                     addon_dict[addon_p.addon_id]._premium = addon_p
 
+        return addon_dict
+
     @property
     def show_beta(self):
         return self.status == amo.STATUS_PUBLIC and self.current_beta_version
