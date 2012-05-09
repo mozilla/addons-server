@@ -19,7 +19,6 @@ from lib.crypto.receipt import cef, decode, sign
 
 # This has to be imported after the settings (utils).
 import receipts
-print receipts.__file__
 from receipts import certs
 from statsd import statsd
 
