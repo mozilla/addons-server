@@ -45,6 +45,7 @@ def validator(upload_id, **kw):
     if upload.is_webapp:
         force_validation_type = validator_constants.PACKAGE_WEBAPP
     try:
+        raise RuntimeError('This error inserted for testing purposes')
         result = run_validator(upload.path,
                                force_validation_type=force_validation_type)
         upload.validation = result

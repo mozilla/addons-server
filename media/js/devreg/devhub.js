@@ -80,7 +80,7 @@ $(document).ready(function() {
             var $error_box = $('<div>', {'id': 'upload-status-results', 'class':
                                          'status-' + (success ? 'pass' : 'fail')}).show(),
                 $eb_messages = $("<ul>", {'id': 'upload_errors'}),
-                messages = r.validation.messages;
+                messages = r.validation.messages || [];
 
             $error_box.append($("<strong>", {'text': message}));
             $error_box.append($eb_messages);
@@ -147,7 +147,9 @@ $(document).ready(function() {
         function check_webapp_validation(results) {
             var $upload_field = $('#upload-webapp-url');
             $('#id_upload').val(results.upload);
-            if(! results.validation) {
+            if(results.error) {
+                $upload_field.trigger("upload_finished", [false, results, results.error]);
+            } else if(! results.validation) {
                 setTimeout(function(){
                     $.ajax({
                         url: results.url,
