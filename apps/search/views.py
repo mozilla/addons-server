@@ -17,11 +17,10 @@ import bandwagon.views
 import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
-from amo.helpers import loc, locale_url, urlparams
+from amo.helpers import locale_url, urlparams
 from amo.utils import MenuItem, sorted_groupby
 from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_int, version_dict
-from mkt.webapps.models import Webapp
 
 from . import forms
 from .client import SearchError, CollectionsClient, PersonasClient
@@ -548,11 +547,6 @@ def _filter_search(request, qs, query, filters, sorting,
                 show.remove('cat')
         if 'cat' in show:
             qs = qs.filter(category=query['cat'])
-    if 'price' in show:
-        if query['price'] == 'paid':
-            qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS, price__gt=0)
-        elif query['price'] == 'free':
-            qs = qs.filter(premium_type=amo.ADDON_FREE, price=0)
     if 'tag' in show:
         qs = qs.filter(tag=query['tag'])
     if 'sort' in show:
@@ -562,57 +556,6 @@ def _filter_search(request, qs, query, filters, sorting,
         qs = qs.order_by(sorting_default)
 
     return qs
-
-
-@mobile_template('search/{mobile/}results.html')
-@vary_on_headers('X-PJAX')
-def app_search(request, tag_name=None, template=None):
-    form = ESSearchForm(request.GET.copy() or {}, type=amo.ADDON_WEBAPP)
-    form.is_valid()  # Let the form try to clean data.
-    query = form.cleaned_data
-    # TODO(apps): We should figure out if we really want tags for apps.
-    if tag_name:
-        query['tag'] = tag_name
-
-    qs = (Webapp.search()
-          .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                  is_disabled=False)
-          .facet(tags={'terms': {'field': 'tag'}},
-                 categories={'terms': {'field': 'category', 'size': 200}}))
-
-    filters = ['cat', 'price', 'sort', 'tag']
-    mapping = {'downloads': '-weekly_downloads',
-               'rating': '-bayesian_rating',
-               'created': '-created',
-               'name': 'name_sort',
-               'hotness': '-hotness',
-               'price': 'price'}
-    qs = _filter_search(request, qs, query, filters, mapping,
-                        types=[amo.ADDON_WEBAPP])
-
-    pager = amo.utils.paginate(request, qs)
-    facets = pager.object_list.facets
-
-    sort, extra_sort = split_choices(form.sort_choices, 'price')
-
-    ctx = {
-        'is_pjax': request.META.get('HTTP_X_PJAX'),
-        'pager': pager,
-        'query': query,
-        'form': form,
-        'sorting': sort_sidebar(request, query, form),
-        'sort_opts': sort,
-        'extra_sort_opts': extra_sort,
-        'sort': query.get('sort'),
-        'webapp': True,
-    }
-    if not ctx['is_pjax']:
-        ctx.update({
-            'prices': price_sidebar(request, query, facets),
-            'categories': category_sidebar(request, query, facets),
-            'tags': tag_sidebar(request, query, facets),
-        })
-    return jingo.render(request, template, ctx)
 
 
 @mobile_template('search/{mobile/}results.html')
@@ -661,15 +604,14 @@ def search(request, tag_name=None, template=None):
                               {'field': 'appversion.%s.max' % APP.id}},
                  categories={'terms': {'field': 'category', 'size': 200}}))
 
-    filters = ['atype', 'appver', 'cat', 'price', 'sort', 'tag', 'platform']
+    filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']
     mapping = {'users': '-average_daily_users',
                'rating': '-bayesian_rating',
                'created': '-created',
                'name': 'name_sort',
                'downloads': '-weekly_downloads',
                'updated': '-last_updated',
-               'hotness': '-hotness',
-               'price': 'price'}
+               'hotness': '-hotness'}
     qs = _filter_search(request, qs, query, filters, mapping, types=types)
 
     pager = amo.utils.paginate(request, qs)
@@ -688,7 +630,6 @@ def search(request, tag_name=None, template=None):
         facets = pager.object_list.facets
         ctx.update({
             'tag': tag_name,
-            'prices': price_sidebar(request, query, facets),
             'categories': category_sidebar(request, query, facets),
             'platforms': platform_sidebar(request, query, facets),
             'versions': version_sidebar(request, query, facets),
@@ -710,17 +651,6 @@ def sort_sidebar(request, query, form):
     sort = query.get('sort')
     return [FacetLink(text, dict(sort=key), key == sort)
             for key, text in form.sort_choices]
-
-
-def price_sidebar(request, query, facets):
-    qprice = query.get('price')
-    free = qprice == 'free'
-    paid = qprice == 'paid'
-    return [
-        FacetLink(loc('Free & Premium'), dict(price=None), not (paid or free)),
-        FacetLink(loc('Free Only'), dict(price='free'), free),
-        FacetLink(loc('Premium Only'), dict(price='paid'), paid),
-    ]
 
 
 def category_sidebar(request, query, facets):

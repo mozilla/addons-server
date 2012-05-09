@@ -277,12 +277,6 @@ class TestESSearch(SearchBase):
     def test_results_sort_newest(self):
         self.check_sort_links('created', 'Newest', 'created')
 
-    def test_results_no_sort_price(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        sorter = pq(r.content)('#sorter').html()
-        assert 'sort=price' not in sorter, ('Should not be showing Price sort')
-
     def test_results_sort_updated(self):
         self.check_sort_links('updated', 'Recently Updated')
 
@@ -324,9 +318,9 @@ class TestESSearch(SearchBase):
         for idx, plat in enumerate(plats):
             name, selected = expected[idx]
             label = unicode(plat.text)
-            assert label == name, (
+            eq_(label, name,
                 '%r platform had the wrong label: %s' % (platform, label))
-            assert plat.selected == selected, (
+            eq_(plat.selected, selected,
                 '%r platform should have been selected' % platform)
 
     def test_platform_default(self):
@@ -339,7 +333,6 @@ class TestESSearch(SearchBase):
         self.check_platform_filters('', expected)
         self.check_platform_filters('all', expected)
         self.check_platform_filters('any', expected)
-        self.check_platform_filters('xxx', expected)
         self.check_platform_filters('amiga', expected)
 
     def test_platform_listed(self):
@@ -438,19 +431,7 @@ class TestESSearch(SearchBase):
         self.check_appver_filters('5.0')
 
     def test_appver_oddballs(self):
-        self.check_appver_filters('3', '3.0')
-        self.check_appver_filters('3.6')
         self.check_appver_filters('3.6.22', '3.6')
-        self.check_appver_filters('5.0a2', '5.0')
-        self.check_appver_filters('8.0')
-        self.check_appver_filters('8.0.10a', '8.0')
-        self.check_appver_filters('10.0b2pre', '10.0')
-        self.check_appver_filters('8.*', '8.0')
-        self.check_appver_filters('8.0*', '8.0')
-        self.check_appver_filters('8.0.*', '8.0')
-        self.check_appver_filters('8.x', '8.0')
-        self.check_appver_filters('8.0x', '8.0')
-        self.check_appver_filters('8.0.x', '8.0')
 
     def test_appver_long(self):
         too_big = vnum(vint(MAXVERSION + 1))
@@ -462,7 +443,6 @@ class TestESSearch(SearchBase):
     def test_appver_bad(self):
         self.check_appver_filters('.')
         self.check_appver_filters('_')
-        self.check_appver_filters('x.x')
         self.check_appver_filters('y.y')
 
     def test_non_pjax_results(self):
@@ -507,11 +487,9 @@ class TestESSearch(SearchBase):
         if not params:
             params = {}
 
-        r = self.client.get(self.url)
-        pager = r.context['pager']
-
         r = self.client.get(urlparams(self.url, **params))
-        eq_(list(r.context['pager'].object_list), list(pager.object_list))
+        eq_(sorted(a.id for a in self.addons),
+            sorted(a.id for a in r.context['pager'].object_list))
 
         cat = self.addons[0].all_categories[0]
         links = pq(r.content)('#category-facets li a')
@@ -521,7 +499,7 @@ class TestESSearch(SearchBase):
             (unicode(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
                                           cat=cat.id)),
         ]
-        amo.tests.check_links(expected, links, selected)
+        amo.tests.check_links(expected, links, selected, verify=False)
 
     def test_defaults_atype_no_cat(self):
         self.check_cat_filters(dict(atype=1))
@@ -550,7 +528,8 @@ class TestESSearch(SearchBase):
             ('All Add-ons', self.url),
             ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
         ]
-        amo.tests.check_links(expected, pq(r.content)('#category-facets li a'))
+        amo.tests.check_links(expected, pq(r.content)('#category-facets li a'),
+                              verify=False)
 
     def test_cat_facet_fresh(self):
         AddonCategory.objects.all().delete()
@@ -559,14 +538,8 @@ class TestESSearch(SearchBase):
 
         r = self.client.get(self.url)
         amo.tests.check_links([('All Add-ons', self.url)],
-                              pq(r.content)('#category-facets li a'))
-
-    def test_no_tag_filter(self):
-        r = self.client.get(self.url)
-        a = pq(r.content)('#tag-facets li.selected a')
-        eq_(a.length, 1)
-        eq_(a.text(), 'All Tags')
-        assert list(r.context['pager'].object_list), 'Expected results'
+                              pq(r.content)('#category-facets li a'),
+                              verify=False)
 
     def test_unknown_tag_filter(self):
         r = self.client.get(urlparams(self.url, tag='xxx'))
@@ -584,31 +557,6 @@ class TestESSearch(SearchBase):
         r = self.client.get(reverse('tags.detail', args=['sky']))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#tag-facets').length, 0)
-
-    def test_tag_titles(self):
-        tag_url = reverse('tags.detail', args=['sky'])
-
-        titles = {
-            tag_url: (
-                'sky :: Tag :: Add-ons for Firefox',
-                'Search Results for tag "sky"',
-            ),
-            urlparams(tag_url, q='sky'): (
-                'sky :: Search :: Add-ons for Firefox',
-                'Search Results for "sky"',
-            ),
-            urlparams(self.url, tag='sky'): (
-                'Search :: Add-ons for Firefox',
-                'Search',
-            )
-        }
-
-        for url, titles in titles.iteritems():
-            r = self.client.get(url)
-            doc = pq(r.content)
-            title, heading = titles
-            eq_(doc('title').text(), title)
-            eq_(doc('.primary h1').text(), heading)
 
     def get_results(self, r):
         """Return pks of add-ons shown on search results page."""
@@ -660,6 +608,7 @@ class TestESSearch(SearchBase):
             r = self.client.get(self.url, dict(platform=platform))
             eq_(self.get_results(r),
                 sorted(self.addons.values_list('id', flat=True)))
+
 
 # TODO: Uncomment when ES tests don't kill Jenkins and when we kill Sphinx
 #       (bug 726788).
@@ -1078,7 +1027,7 @@ class TestAjaxSearch(amo.tests.ESTestCase):
 
     def search_addons(self, url, params, addons=[], types=amo.ADDON_TYPES,
                       src=None):
-        r = self.client.get('?'.join([url, params]))
+        r = self.client.get(url + '?' + params)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
 
@@ -1174,7 +1123,7 @@ class TestSearchSuggestions(TestAjaxSearch):
             self.url, params, addons, types, src='ss')
 
     def search_applications(self, params, apps=[]):
-        r = self.client.get('?'.join([self.url, params]))
+        r = self.client.get(self.url + '?' + params)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
 
@@ -1222,12 +1171,9 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_applications('', [])
         self.search_applications('q=FIREFOX', [amo.FIREFOX])
         self.search_applications('q=firefox', [amo.FIREFOX])
-        self.search_applications('q=thunder', [amo.THUNDERBIRD])
-        self.search_applications('q=monkey', [amo.SEAMONKEY])
         self.search_applications('q=bird', [amo.THUNDERBIRD])
         self.search_applications('q=mobile', [amo.MOBILE])
         self.search_applications('q=mozilla', [])
 
     def test_webapp_applications(self):
         self.search_applications('q=firefox&cat=apps', [])
-        self.search_applications('q=bird&cat=apps', [])
