@@ -123,12 +123,12 @@ class Webapp(Addon):
                                                     add_prefix=add_prefix)
 
     def get_detail_url(self, action=None):
-        # Reverse URLs for 'detail', 'details.record', etc.
+        """Reverse URLs for 'detail', 'details.record', etc."""
         return reverse(('detail.%s' % action) if action else 'detail',
                        args=[self.app_slug])
 
     def get_purchase_url(self, action=None, args=None):
-        # Reverse URLs for 'purchase', 'purchase.done', etc.
+        """Reverse URLs for 'purchase', 'purchase.done', etc."""
         return reverse(('purchase.%s' % action) if action else 'purchase',
                        args=[self.app_slug] + (args or []))
 
@@ -140,6 +140,11 @@ class Webapp(Addon):
         view_name = ('%s.%s' if prefix_only else '%s.apps.%s')
         return reverse(view_name % (prefix, action),
                        args=[self.app_slug] + args)
+
+    def get_stats_url(self, action='overview', args=None):
+        """Reverse URLs for 'stats', 'stats.overview', etc."""
+        return reverse(('mkt.stats.%s' % action),
+                       args=[self.app_slug] + (args or []))
 
     @staticmethod
     def domain_from_url(url):

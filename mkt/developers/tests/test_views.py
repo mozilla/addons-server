@@ -158,14 +158,32 @@ class TestAppDashboard(AppHubTest):
             'Expected message about incompleted add-on')
         eq_(doc('.more-actions-popup').length, 0)
 
+    def test_action_links(self):
+        waffle.models.Switch.objects.create(name='app-stats', active=True)
+        app = self.get_app()
+        app.update(public_stats=True)
+        self.make_mine()
+        doc = pq(self.client.get(self.url).content)
+        expected = [
+            ('Edit Listing', app.get_dev_url()),
+            ('Manage Authors', app.get_dev_url('owner')),
+            ('Manage Payments', app.get_dev_url('payments')),
+            ('View Listing', app.get_url_path()),
+            ('View Statistics', app.get_stats_url()),
+        ]
+        amo.tests.check_links(expected, doc('a.action-link'))
+
     def test_action_links_with_payments(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
+        waffle.models.Switch.objects.create(name='in-app-payments',
+            active=True)
         app = self.get_app()
-        app.update(premium_type=amo.ADDON_PREMIUM)
+        app.update(premium_type=amo.ADDON_PREMIUM_INAPP)
         self.make_mine()
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Manage Developer Profile', app.get_dev_url('profile')),
+            ('Manage In-App Payments', app.get_dev_url('in_app_config')),
             ('Manage PayPal', app.get_dev_url('paypal_setup')),
             ('Manage Refunds', app.get_dev_url('refunds')),
             ('Manage Status', app.get_dev_url('versions')),

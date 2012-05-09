@@ -55,6 +55,23 @@ class TestWebapp(test_utils.TestCase):
         webapp = Webapp(app_slug='woo')
         eq_(webapp.get_url_path(), '/en-US/app/woo/')
 
+    def test_get_stats_url(self):
+        webapp = Webapp(app_slug='woo')
+
+        eq_(webapp.get_stats_url(), '/en-US/app/woo/statistics/')
+
+        eq_(
+            webapp.get_stats_url(action='sales'),
+            '/en-US/app/woo/statistics/sales/'
+        )
+
+        eq_(
+            webapp.get_stats_url(
+                action='overview_series',
+                args=['day', '20120101', '20120201', 'json']),
+            '/en-US/app/woo/statistics/app_overview-day-20120101-20120201.json'
+        )
+
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
         webapp = Webapp(manifest_url=url)

@@ -20,21 +20,26 @@
 {% else %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
-      <a href="{{ addon.get_dev_url() }}" class="tooltip"
+      <a href="{{ addon.get_dev_url() }}" class="action-link tooltip"
          title="{{ loc("Edit details for this app's listing page.") }}">
         {{ _('Edit Listing') }}</a>
     </li>
   {% endif %}
   <li>
-    <a href="{{ addon.get_dev_url('owner') }}">{{ loc('Manage Authors') }}</a>
+    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ loc('Manage Authors') }}</a>
   </li>
   <li>
-    <a href="{{ addon.get_dev_url('payments') }}">
+    <a class="action-link" href="{{ addon.get_dev_url('payments') }}">
       {{ _('Manage Payments') }}</a>
   </li>
   {% if request.can_view_consumer %}
     <li>
-      <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+      <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+    </li>
+  {% endif %}
+  {% if waffle.switch('app-stats') %}
+    <li>
+      <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
     </li>
   {% endif %}
   <li>
