@@ -197,8 +197,19 @@ h1 .num {
             font-size: 14px;
             margin-top: 7px;
         }
+        .cats {
+            display: inline-block;
+            margin: 5px 0 5px;
+            &:after {
+                color: @note-gray;
+                content: "\00B7";
+                margin-left: 3px;
+                padding-right: 3px;
+            }
+        }
         .downloads {
-            margin-top: 5px;
+            display: inline-block;
+            margin: 5px 0 0;
         }
     }
     .visual {

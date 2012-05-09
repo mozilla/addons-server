@@ -54,7 +54,7 @@ class TestDetail(DetailBase):
         cat = Category.objects.create(name='Lifestyle', slug='lifestyle',
                                       type=amo.ADDON_WEBAPP)
         AddonCategory.objects.create(addon=self.webapp, category=cat)
-        links = self.get_pq()('.categories a')
+        links = self.get_pq()('.cats a')
         eq_(links.length, 1)
         eq_(links.attr('href'), cat.get_url_path())
         eq_(links.text(), cat.name)

@@ -15,13 +15,8 @@
 
 {% block content %}
   {% include 'purchase/error.html' %}
-
-  {% if first_cat %}
-    {{ mkt_breadcrumbs(items=[(first_cat.get_url_path(), first_cat),
-                              (None, product.name)]) }}
-  {% else %}
-    {{ mkt_breadcrumbs(product=product) }}
-  {% endif %}
+  {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
+                            (None, product.name)]) }}
 {% if not (is_dev or is_admin) and not product.is_public() %}
   <section class="product-details">
     <h1>
@@ -45,23 +40,20 @@
         {{ product.name }}
       </h1>
       <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
+      {% set categories = product.all_categories %}
+      {% if categories %}
+        <p class="cats">
+          {% for category in categories %}
+            <a href="{{ category.get_url_path() }}">
+              {{ category }}
+            </a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
       <p class="downloads">
         {{ product|weekly_downloads }}
       </p>
       {{ device_list(product) }}
-      {% set categories = product.all_categories %}
-      {% if categories %}
-        <h3 class="hidden">{{ _('Categories') }}</h3>
-        <ul class="categories hidden">
-          {% for category in categories %}
-          <li>
-            <a href="{{ category.get_url_path() }}">
-              {{ category }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
     </div>
     <div class="actions">
       {% if product.is_public() %}
