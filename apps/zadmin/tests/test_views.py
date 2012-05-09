@@ -88,11 +88,11 @@ class TestSiteEvents(amo.tests.TestCase):
 
 
 class TestFlagged(amo.tests.TestCase):
-    fixtures = ['zadmin/tests/flagged']
+    fixtures = ['base/users', 'zadmin/tests/flagged']
 
     def setUp(self):
         super(TestFlagged, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(username='admin@mozilla.com', password='password')
 
     def test_get(self):
         url = reverse('zadmin.flagged')
@@ -1528,7 +1528,7 @@ class TestJetpack(amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(r.context['upgrader'].version(), None)
 
-    @mock.patch('zadmin.views.files.tasks.start_upgrade.delay')
+    @mock.patch('zadmin.views.start_upgrade_task.delay')
     def test_resend(self, start_upgrade):
         self.set_range('1.2', '1.2.1')
         self.submit_upgrade()
@@ -1761,12 +1761,12 @@ class TestElastic(amo.tests.ESTestCase):
             reverse('users.login') + '?to=/en-US/admin/elastic')
 
     @mock.patch('zadmin.views.elasticutils')
-    @mock.patch('zadmin.views.addons.search')
-    def test_recreate_index(self, search, es):
+    @mock.patch('zadmin.views.setup_mapping')
+    def test_recreate_index(self, setup_mapping, es):
         self.client.post(self.url, {'recreate': 1})
         index = settings.ES_INDEXES['default']
         index in es.get_es().delete_index_if_exists.call_args_list[0][0]
-        assert search.setup_mapping.called
+        assert setup_mapping.called
         index in es.get_es().create_index_if_missing.call_args_list[0][0]
 
     def test_reindex_addons(self):
@@ -1827,49 +1827,44 @@ class TestEmailDevs(amo.tests.TestCase):
 
 
 class TestPerms(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        user = UserProfile.objects.get(email='clouserw@gmail.com')
-        group = Group.objects.create(name='Developers',
-                                     rules='AdminTools:View')
-        GroupUser.objects.create(user=user, group=group)
+    fixtures = ['base/users', 'zadmin/tests/flagged']
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
-        self.client.login(username='admin@mozilla.com',
-                          password='password')
-        # Uses @admin.site.admin_view.
-        r = self.client.get(reverse('zadmin.settings'))
-        eq_(r.status_code, 200)
-        # Uses any_permission_required.
-        r = self.client.get(reverse('zadmin.settings'))
-        eq_(r.status_code, 200)
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
+        eq_(self.client.get(
+            reverse('zadmin.oauth-consumer-create')).status_code, 200)
 
-    def test_admin_settings(self):
+    def test_staff_user(self):
+        # Staff users have some privileges.
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        group = Group.objects.create(name='Staff', rules='AdminTools:View')
+        GroupUser.objects.create(group=group, user=user)
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
+        eq_(self.client.get(
+            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+
+    def test_unprivileged_user(self):
         # Unprivileged user.
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
-        r = self.client.get(reverse('zadmin.settings'))
-        eq_(r.status_code, 403)
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        eq_(self.client.get(reverse('zadmin.index')).status_code, 403)
+        eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
+        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 403)
+        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
+        eq_(self.client.get(
+            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+        # Anonymous users should also get a 403.
         self.client.logout()
-
-        # Privileged user.
-        self.client.login(username='clouserw@gmail.com',
-                          password='password')
-        r = self.client.get(reverse('zadmin.settings'))
-        eq_(r.status_code, 200)
-
-    def test_generate_error(self):
-        # Unprivileged user.
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
-        r = self.client.get(reverse('zadmin.generate-error'))
-        eq_(r.status_code, 403)
-        self.client.logout()
-
-        # Privileged user.
-        self.client.login(username='clouserw@gmail.com',
-                          password='password')
-        r = self.client.get(reverse('zadmin.generate-error'))
-        eq_(r.status_code, 200)
+        self.assertRedirects(self.client.get(reverse('zadmin.index')),
+                             reverse('users.login') + '?to=/en-US/admin/')

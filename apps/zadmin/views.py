@@ -6,12 +6,11 @@ from decimal import Decimal
 from urlparse import urlparse
 
 from django import http
-# I'm so glad we named a function in here settings...
-from django.conf import settings as site_settings
+from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
 from django.db.models.loading import cache as app_cache
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import smart_str
 from django.views import debug
 from django.views.decorators.cache import never_cache
@@ -25,45 +24,45 @@ from hera.contrib.django_utils import get_hera, flush_urls
 import redisutils
 from tower import ugettext as _
 
-import amo.mail
-import amo.models
-import amo.tasks
-import addons.cron
-import addons.search
-import bandwagon.cron
-import files.tasks
-import files.utils
-import users.cron
+import amo
+from addons.cron import reindex_addons, reindex_apps
+from addons.search import setup_mapping
+from addons.decorators import addon_view
+from addons.models import Addon, AddonUser, CompatOverride
+from addons.utils import ReverseNameLookup
 from amo import messages, get_user
-from amo.decorators import (any_permission_required, json_view,
-                            login_required, post_required)
+from amo.decorators import json_view, login_required, post_required
+from amo.mail import FakeEmailBackend
+from amo.tasks import task_stats
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
-from addons.decorators import addon_view
-from addons.models import Addon, CompatOverride, AddonUser
-from addons.utils import ReverseNameLookup
+from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
 from compat.cron import compatibility_report
 from compat.models import AppCompat
 from devhub.models import ActivityLog
 from files.models import Approval, File
-import stats.search
+from files.tasks import start_upgrade as start_upgrade_task
+from files.utils import find_jetpacks, JetpackUpgrader
+from stats.search import setup_indexes
+from users.cron import reindex_users
 from versions.compare import version_int as vint
 from versions.models import Version
 from zadmin.forms import GenerateErrorForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 from . import tasks
-from .forms import (BulkValidationForm, FeaturedCollectionFormSet, NotifyForm,
-                    OAuthConsumerForm, MonthlyPickFormSet, AddonStatusForm,
-                    FileFormSet, JetpackUpgradeForm, YesImSure, DevMailerForm,
-                    CompatForm)
-from .models import ValidationJob, EmailPreviewTopic, ValidationJobTally
+from .decorators import admin_ish_required
+from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
+                    DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
+                    JetpackUpgradeForm, MonthlyPickFormSet, NotifyForm,
+                    OAuthConsumerForm, YesImSure)
+from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
 
 
-@admin.site.admin_view
+@admin_ish_required
 def flagged(request):
     addons = Addon.objects.filter(admin_review=True).order_by('-created')
 
@@ -107,11 +106,11 @@ def flagged(request):
 
 @admin.site.admin_view
 def hera(request):
-    form = FlushForm(initial={'flushprefix': site_settings.SITE_URL})
+    form = FlushForm(initial={'flushprefix': settings.SITE_URL})
 
     boxes = []
     configured = False  # Default to not showing the form.
-    for i in site_settings.HERA:
+    for i in settings.HERA:
         hera = get_hera(i)
         r = {'location': urlparse(i['LOCATION'])[1], 'stats': False}
         if hera:
@@ -139,21 +138,20 @@ def hera(request):
                         {'form': form, 'boxes': boxes})
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View')])
-def settings(request):
+@admin_ish_required
+def show_settings(request):
     settings_dict = debug.get_safe_settings()
 
     # sigh
     settings_dict['HERA'] = []
-    for i in site_settings.HERA:
+    for i in settings.HERA:
         settings_dict['HERA'].append(debug.cleanse_setting('HERA', i))
 
     # Retain this so that legacy PAYPAL_CGI_AUTH variables in settings_local
     # are not exposed.
     for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH']:
         settings_dict[i] = debug.cleanse_setting(i,
-                                                 getattr(site_settings, i, {}))
+                                                 getattr(settings, i, {}))
 
     settings_dict['WEBAPPS_RECEIPT_KEY'] = '********************'
 
@@ -161,7 +159,7 @@ def settings(request):
                         {'settings_dict': settings_dict})
 
 
-@admin.site.admin_view
+@admin_ish_required
 def env(request):
     return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
 
@@ -189,7 +187,7 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@admin.site.admin_view
+@admin_ish_required
 def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
@@ -219,7 +217,7 @@ def find_files(job):
         tasks.add_validation_jobs.delay(pks, job.pk)
 
 
-@admin.site.admin_view
+@admin_ish_required
 def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
@@ -232,7 +230,7 @@ def start_validation(request):
         return validation(request, form=form)
 
 
-@login_required
+@admin_ish_required
 @post_required
 @json_view
 def job_status(request):
@@ -257,8 +255,8 @@ def completed_versions_dirty(job):
                    .values_list('pk', flat=True).distinct())
 
 
+@admin_ish_required
 @post_required
-@admin.site.admin_view
 @json_view
 def notify_syntax(request):
     notify_form = NotifyForm(request.POST)
@@ -268,8 +266,8 @@ def notify_syntax(request):
         return {'valid': True, 'error': None}
 
 
+@admin_ish_required
 @post_required
-@admin.site.admin_view
 def notify_failure(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
     notify_form = NotifyForm(request.POST, text='failure')
@@ -286,8 +284,8 @@ def notify_failure(request, job):
     return redirect(reverse('zadmin.validation'))
 
 
+@admin_ish_required
 @post_required
-@admin.site.admin_view
 def notify_success(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
     notify_form = NotifyForm(request.POST, text='success')
@@ -319,7 +317,7 @@ def email_preview_csv(request, topic):
     return resp
 
 
-@admin.site.admin_view
+@admin_ish_required
 def validation_tally_csv(request, job_id):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -341,7 +339,7 @@ def validation_tally_csv(request, job_id):
 
 @admin.site.admin_view
 def jetpack(request):
-    upgrader = files.utils.JetpackUpgrader()
+    upgrader = JetpackUpgrader()
     minver, maxver = upgrader.jetpack_versions()
     form = JetpackUpgradeForm(request.POST)
     if request.method == 'POST':
@@ -358,8 +356,7 @@ def jetpack(request):
         else:
             messages.error(request, form.errors.as_text())
 
-    jetpacks = files.utils.find_jetpacks(minver, maxver,
-                                         from_builder_only=True)
+    jetpacks = find_jetpacks(minver, maxver, from_builder_only=True)
 
     upgrading = upgrader.version()    # Current Jetpack version upgrading to.
     repack_status = upgrader.files()  # The files being repacked.
@@ -391,25 +388,24 @@ def jetpack(request):
 
 
 def start_upgrade(minver, maxver):
-    jetpacks = files.utils.find_jetpacks(minver, maxver,
-                                         from_builder_only=True)
+    jetpacks = find_jetpacks(minver, maxver, from_builder_only=True)
     ids = [f.id for f in jetpacks if f.needs_upgrade]
     log.info('Starting a jetpack upgrade to %s [%s files].'
              % (maxver, len(ids)))
-    files.tasks.start_upgrade.delay(ids, sdk_version=maxver)
+    start_upgrade_task.delay(ids, sdk_version=maxver)
 
 
 def jetpack_resend(request, file_id):
-    maxver = files.utils.JetpackUpgrader().version()
+    maxver = JetpackUpgrader().version()
     log.info('Starting a jetpack upgrade to %s [1 file].' % maxver)
-    files.tasks.start_upgrade.delay([file_id], sdk_version=maxver)
+    start_upgrade_task.delay([file_id], sdk_version=maxver)
     return redirect('zadmin.jetpack')
 
 
-@admin.site.admin_view
+@admin_ish_required
 def compat(request):
     APP = amo.FIREFOX
-    VER = site_settings.COMPAT[0]['main']  # Default: latest Firefox version.
+    VER = settings.COMPAT[0]['main']  # Default: latest Firefox version.
     minimum = 10
     ratio = .8
     binary = None
@@ -499,8 +495,8 @@ def es_collections_json(request):
     return data
 
 
+@admin_ish_required
 @post_required
-@admin.site.admin_view
 def featured_collection(request):
     try:
         pk = int(request.POST.get('collection', 0))
@@ -511,7 +507,7 @@ def featured_collection(request):
                         dict(collection=c))
 
 
-@admin.site.admin_view
+@admin_ish_required
 def features(request):
     form = FeaturedCollectionFormSet(request.POST or None)
     if request.method == 'POST' and form.is_valid():
@@ -533,20 +529,20 @@ def monthly_pick(request):
 
 @admin.site.admin_view
 def elastic(request):
-    INDEX = site_settings.ES_INDEXES['default']
+    INDEX = settings.ES_INDEXES['default']
     es = elasticutils.get_es()
-    mappings = {'addons': addons.cron.reindex_addons,
-                'apps': addons.cron.reindex_apps,
-                'collections': bandwagon.cron.reindex_collections,
+    mappings = {'addons': reindex_addons,
+                'apps': reindex_apps,
+                'collections': reindex_collections,
                 'compat': compatibility_report,
-                'users': users.cron.reindex_users,
+                'users': reindex_users,
                }
     if request.method == 'POST':
         if request.POST.get('recreate'):
             es.delete_index_if_exists(INDEX)
             # We must set up the mappings before we create the index again.
-            addons.search.setup_mapping()
-            stats.search.setup_indexes()
+            setup_mapping()
+            setup_indexes()
             es.create_index_if_missing(INDEX)
             messages.info(request, 'Deleting %s index.' % INDEX)
         if request.POST.get('reindex') in mappings:
@@ -557,7 +553,7 @@ def elastic(request):
             messages.info(request, 'Reindexing %s.' % name)
         return redirect('zadmin.elastic')
 
-    indexes = set(site_settings.ES_INDEXES.values())
+    indexes = set(settings.ES_INDEXES.values())
     mappings = es.get_mapping(None, indexes)
     ctx = {
         'index': INDEX,
@@ -571,7 +567,7 @@ def elastic(request):
 
 @admin.site.admin_view
 def mail(request):
-    backend = amo.mail.FakeEmailBackend()
+    backend = FakeEmailBackend()
     if request.method == 'POST':
         backend.clear()
         return redirect('zadmin.mail')
@@ -622,10 +618,10 @@ def email_devs(request):
 @admin.site.admin_view
 def celery(request):
     if request.method == 'POST' and 'reset' in request.POST:
-        amo.tasks.task_stats.clear()
+        task_stats.clear()
         return redirect('zadmin.celery')
 
-    pending, failures, totals = amo.tasks.task_stats.stats()
+    pending, failures, totals = task_stats.stats()
     ctx = dict(pending=pending, failures=failures, totals=totals,
                now=datetime.now())
     return jingo.render(request, 'zadmin/celery.html', ctx)
@@ -646,13 +642,13 @@ def addon_name_blocklist(request):
                         dict(rn=rn, addon=addon))
 
 
-@admin.site.admin_view
+@admin_ish_required
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return jingo.render(request, 'zadmin/index.html', {'log': log})
 
 
-@admin.site.admin_view
+@admin_ish_required
 def addon_search(request):
     ctx = {}
     if 'q' in request.GET:
@@ -706,7 +702,7 @@ def general_search(request, app_id, model_id):
             for o in qs[:limit]]
 
 
-@admin.site.admin_view
+@admin_ish_required
 @addon_view
 def addon_manage(request, addon):
 
@@ -818,8 +814,7 @@ def delete_site_event(request, event_id):
     return redirect('zadmin.site_events')
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View')])
+@admin_ish_required
 def generate_error(request):
     form = GenerateErrorForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
