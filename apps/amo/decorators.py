@@ -70,6 +70,7 @@ def any_permission_required(pairs):
     """
     def decorator(f):
         @functools.wraps(f)
+        @login_required
         def wrapper(request, *args, **kw):
             from access import acl
             for app, action in pairs:

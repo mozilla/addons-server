@@ -31,7 +31,8 @@ from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
 from addons.utils import ReverseNameLookup
 from amo import messages, get_user
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import (any_permission_required, json_view, login_required,
+                            post_required)
 from amo.mail import FakeEmailBackend
 from amo.tasks import task_stats
 from amo.urlresolvers import reverse
@@ -187,7 +188,10 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
@@ -217,7 +221,10 @@ def find_files(job):
         tasks.add_validation_jobs.delay(pks, job.pk)
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
@@ -230,7 +237,10 @@ def start_validation(request):
         return validation(request, form=form)
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 @post_required
 @json_view
 def job_status(request):
@@ -255,7 +265,10 @@ def completed_versions_dirty(job):
                    .values_list('pk', flat=True).distinct())
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 @post_required
 @json_view
 def notify_syntax(request):
@@ -266,7 +279,10 @@ def notify_syntax(request):
         return {'valid': True, 'error': None}
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 @post_required
 def notify_failure(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
@@ -284,7 +300,10 @@ def notify_failure(request, job):
     return redirect(reverse('zadmin.validation'))
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 @post_required
 def notify_success(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
@@ -317,7 +336,10 @@ def email_preview_csv(request, topic):
     return resp
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 def validation_tally_csv(request, job_id):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -642,7 +664,10 @@ def addon_name_blocklist(request):
                         dict(rn=rn, addon=addon))
 
 
-@admin_required(reviewers=True)
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View'),
+                          ('BulkValidationAdminTools', 'View')])
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return jingo.render(request, 'zadmin/index.html', {'log': log})
