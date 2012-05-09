@@ -6,8 +6,7 @@
     </div>
     <ul class="content">
       {% for product in products %}
-        {# TODO: Replace previews with promo graphics (bug 744648). #}
-        {% set previews = product.all_previews %}
+        {% set previews = [product.promo] if product.promo else product.all_previews %}
         {% if previews %}
           {% set preview = previews[0].image_url if feature else
                            previews[0].thumbnail_url %}

@@ -190,7 +190,7 @@ $(document).ready(function() {
     $('.invisible-upload a').click(_pd);
 
     // when to start and stop image polling
-    var $media = $('#edit-addon-media');
+    var $media = $('.edit-media');
     if ($media.length && $media.attr('data-checkurl') !== undefined) {
         imageStatus.start(true, true);
     }
@@ -254,7 +254,7 @@ $(document).ready(function() {
             hideSameSizedIcons();
             z.refreshL10n();
         });
-        if (parent_div.is('#edit-addon-media')) {
+        if (parent_div.is('.edit-media')) {
             imageStatus.start(true, true);
         }
     }));
@@ -310,7 +310,7 @@ function addonFormSubmit() {
                 $document.scrollTop($document.height() - scrollBottom);
                 truncateFields();
                 annotateLocalizedErrors(parent_div);
-                if (parent_div.is('#edit-addon-media')) {
+                if (parent_div.is('.edit-media')) {
                     imageStatus.start(true, true);
                     hideSameSizedIcons();
                 }
@@ -392,11 +392,22 @@ function create_new_preview_field() {
 }
 
 function renumberPreviews() {
-    previews = $("#file-list").children(".preview:visible");
-    previews.each(function(i, el) {
-        $(this).find(".position input").val(i);
+    var $files = $('#file-list'),
+        maxPreviews = $files.attr('data-max'),
+        $previews = $files.children('.preview:visible');
+    $previews.each(function(i, el) {
+        $(this).find('.position input').val(i);
     });
-    $(previews).find(".handle").toggle(previews.length > 1);
+    $previews.find('.handle').toggle($previews.length > 1);
+    // Limit to some number of previews.
+    if (maxPreviews) {
+        $files.siblings('.invisible-upload').toggle(
+            $previews.length < parseInt(maxPreviews, 10));
+    }
+    // If there's an error expose the invisible upload.
+    if ($files.find('.error-loading:visible').length) {
+        $files.siblings('.invisible-upload').show();
+    }
 }
 
 function reorderPreviews() {
@@ -417,21 +428,19 @@ function reorderPreviews() {
 
 function initUploadPreview() {
     var forms = {},
-        $f = $('#edit-addon-media, #submit-media');
+        $f = $('.edit-media, #submit-media');
 
     function upload_start_all(e) {
         // Remove old errors.
         $('.edit-addon-media-screenshot-error').hide();
 
         // Don't let users submit a form.
-        $('.edit-media-button button').attr('disabled', true);
-        $('#submit-media button.prominent').attr('disabled', true);
+        $('.edit-media-button button, #submit-media button.prominent').attr('disabled', true);
     }
 
     function upload_finished_all(e) {
         // They can submit again
-        $('.edit-media-button button').attr('disabled', false);
-        $('#submit-media button.prominent').attr('disabled', false);
+        $('.edit-media-button button, #submit-media button.prominent').attr('disabled', false);
     }
 
     function upload_start(e, file) {
@@ -497,10 +506,11 @@ function initUploadPreview() {
           });
     }
 
-    $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
+    $(".edit-media, .submit-media").delegate("#file-list .remove", "click", function(e){
         e.preventDefault();
         var row = $(this).closest(".preview");
         row.find(".delete input").attr("checked", "checked");
+        console.log("Marking as selected!!");
         row.slideUp(300, renumberPreviews);
     });
 
@@ -532,7 +542,7 @@ function initInvisibleUploads() {
 function initUploadIcon() {
     initInvisibleUploads();
 
-    $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
+    $('.edit-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
 
         var $error_list = $('#icon_preview').parent().find(".errorlist"),
@@ -553,7 +563,7 @@ function initUploadIcon() {
     });
 
     // Upload an image!
-    var $f = $('#edit-addon-media, #submit-media'),
+    var $f = $('.edit-media, #submit-media'),
 
         upload_errors = function(e, file, errors){
             var $error_list = $('#icon_preview').parent().find(".errorlist");
@@ -905,11 +915,11 @@ var imageStatus = {
         this.preview = new imagePoller();
         this.icon.check = function() {
             var self = imageStatus,
-                node = $('#edit-addon-media, #submit-media');
+                node = $('.edit-media, .submit-media');
             $.getJSON(node.attr('data-checkurl'),
                 function(json) {
                     if (json !== null && json.icons) {
-                        $('#edit-addon-media, #submit-media').find('img').each(function() {
+                        $('.edit-media, .submit-media').find('img').each(function() {
                             var $this = $(this);
                             $this.attr('src', self.newurl($this.attr('src')));
                         });
@@ -959,7 +969,7 @@ var imageStatus = {
     polling: function() {
         if (this.icon.poll || this.preview.poll) {
             // I don't want this to show up for submission.
-            var node = $('#edit-addon-media');
+            var node = $('.edit-media');
             if (!node.find('b.image-message').length) {
                 $(format('<b class="save-badge image-message">{0}</b>',
                   [gettext('Image changes being processed')]))
@@ -983,7 +993,7 @@ var imageStatus = {
     },
     stopping: function() {
         if (!this.icon.poll && !this.preview.poll) {
-            $('#edit-addon-media b.image-message').remove();
+            $('.edit-media b.image-message').remove();
         }
         if (!this.icon.poll) {
             $('#submit-media #icon_preview_64, table #icon_preview_readonly').removeClass('loading');

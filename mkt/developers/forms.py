@@ -273,6 +273,37 @@ class PreviewForm(happyforms.ModelForm):
         fields = ('caption', 'file_upload', 'upload_hash', 'id', 'position')
 
 
+class PromoForm(PreviewForm):
+    DELETE = forms.BooleanField(required=False)
+
+    class Meta:
+        model = Preview
+        fields = ('caption', 'file_upload', 'upload_hash', 'position')
+
+    def __init__(self, *args, **kw):
+        # Get the object for the app's promo `Preview` and pass it to the form.
+        if kw.get('instance'):
+            self.promo = self.instance = kw.pop('instance').get_promo()
+
+        # Just consume the request - we don't care.
+        kw.pop('request', None)
+
+        super(PromoForm, self).__init__(*args, **kw)
+
+    def clean_caption(self):
+        return '__promo__'
+
+    def clean_position(self):
+        return -1
+
+    def save(self, addon, commit=True):
+        if self.cleaned_data.get('DELETE') and self.promo.id:
+            self.promo.delete()
+        else:
+            super(PromoForm, self).save(addon, True)
+        return addon
+
+
 class BasePreviewFormSet(BaseModelFormSet):
 
     def clean(self):

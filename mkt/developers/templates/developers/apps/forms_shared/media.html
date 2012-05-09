@@ -179,7 +179,7 @@
               </div>
             {% endif %}
           {% else %}
-            {% set previews = addon.previews.all() %}
+            {% set previews = addon.get_previews() %}
             {% call empty_unless(previews) %}
               {% for preview in previews %}
                 <div class="preview-thumb" data-url="{{ preview.thumbnail_url }}"

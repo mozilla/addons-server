@@ -13,7 +13,8 @@ import waffle
 from django.conf import settings
 
 import amo
-from addons.models import Addon, AddonDeviceType, BlacklistedSlug, DeviceType
+from addons.models import (Addon, AddonDeviceType, BlacklistedSlug, DeviceType,
+                           Preview)
 from mkt.developers.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import create_receipt, get_key, Installed, Webapp
 from files.models import File
@@ -75,9 +76,36 @@ class TestWebapp(test_utils.TestCase):
     def test_reviewed(self):
         assert not Webapp().is_unreviewed()
 
-    def can_be_purchased(self):
-        assert Webapp(premium_type=True).can_be_purchased()
-        assert not Webapp(premium_type=False).can_be_purchased()
+    def test_cannot_be_purchased(self):
+        eq_(Webapp(premium_type=True).can_be_purchased(), False)
+        eq_(Webapp(premium_type=False).can_be_purchased(), False)
+
+    def test_can_be_purchased(self):
+        w = Webapp(status=amo.STATUS_PUBLIC, premium_type=True)
+        eq_(w.can_be_purchased(), True)
+
+        w = Webapp(status=amo.STATUS_PUBLIC, premium_type=False)
+        eq_(w.can_be_purchased(), False)
+
+    def test_get_previews(self):
+        w = Webapp.objects.create()
+        eq_(w.get_promo(), None)
+
+        p = Preview.objects.create(addon=w, position=0)
+        eq_(list(w.get_previews()), [p])
+
+        p.update(position=-1)
+        eq_(list(w.get_previews()), [])
+
+    def test_get_promo(self):
+        w = Webapp.objects.create()
+        eq_(w.get_promo(), None)
+
+        p = Preview.objects.create(addon=w, position=0)
+        eq_(w.get_promo(), None)
+
+        p.update(position=-1)
+        eq_(w.get_promo(), p)
 
     def test_mark_done_pending(self):
         w = Webapp()

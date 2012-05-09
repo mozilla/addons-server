@@ -243,6 +243,16 @@ class Webapp(Addon):
             return self.premium.get_price_locale()
         return _(u'FREE')
 
+    @amo.cached_property
+    def promo(self):
+        return self.get_promo()
+
+    def get_promo(self):
+        try:
+            return self.previews.filter(position=-1)[0]
+        except IndexError:
+            pass
+
     @classmethod
     def featured_collection(cls, group):
         try:

@@ -29,7 +29,7 @@
       {% include 'developers/apps/edit/basic.html' %}
     </div>
 
-    <div class="edit-addon-section" id="edit-addon-media"
+    <div class="edit-addon-section edit-media" id="edit-addon-media"
          data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
       {% include 'developers/apps/edit/media.html' %}
     </div>
@@ -46,6 +46,12 @@
       {% include 'developers/apps/edit/technical.html' %}
     </div>
 
+    {% if action_allowed('Addons', 'Configure') %}
+      <div class="edit-addon-section edit-media" id="edit-addon-admin"
+           data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
+        {% include 'developers/apps/edit/admin.html' %}
+      </div>
+    {% endif %}
   </div>
 </section>
 

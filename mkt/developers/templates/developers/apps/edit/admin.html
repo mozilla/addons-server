@@ -1,0 +1,77 @@
+{% from 'developers/includes/macros.html' import empty_unless, flags, some_html_tip, tip %}
+<form action="{{ addon.get_dev_url('section', args=['admin', 'edit']) }}"
+      enctype="multipart/form-data" method="post">
+  {{ csrf() }}
+  <h2>
+    Admin Settings
+    {% if not editable %}
+      <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['admin', 'edit']) }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h2>
+  <div class="item island">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            <span class="label">
+              Large Promo Graphic
+              <span class="hint">(264px &times; 184px)</span>
+            </span>
+          </th>
+          <td>
+            {% set preview = addon.get_promo() %}
+            {% if editable and form %}
+              {{ form.non_field_errors() }}
+              <div id="file-list" data-max="1">
+                <div class="preview{{ ' extra' if not preview }}">
+                  <span class="handle">&nbsp;</span>
+                  {% if preview %}
+                    <div class="preview-thumb"
+                         style="background-image:url({{ preview.thumbnail_url }})">
+                    </div>
+                  {% else %}
+                    <div class="preview-thumb"></div>
+                  {% endif %}
+                  <span class="js-hidden delete">
+                    {{ form.DELETE }}{{ form.DELETE.label_tag() }}
+                  </span>
+                  <div class="edit-previews-text">
+                    <a href="#" class="remove">x</a>
+                  </div>
+                  <div class="js-hidden position">
+                    <input id="id_position" type="hidden" value="-1" name="position">
+                  </div>
+                  <div class="preview_extra">
+                    {{ form.upload_hash }}
+                    {{ form.unsaved_image_type }}
+                    {{ form.unsaved_image_data }}
+                  </div>
+                  {{ form.errors }}
+                </div>
+              </div>
+              <div class="invisible-upload">
+                <a class="button" href="#">{{ _('Add a Promo') }}</a>
+                <input type="file" id="screenshot_upload" name="uploads"
+                       data-allowed-types="image/jpeg|image/png"
+                       data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
+              </div>
+            {% else %}
+              {% call empty_unless(preview) %}
+                <div class="preview-thumb" data-url="{{ preview.thumbnail_url }}"
+                     style="background-image:url({{ preview.thumbnail_url }})"></div>
+              {% endcall %}
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% if editable %}
+      <div class="edit-media-button listing-footer">
+        <button>{{ _('Save Changes') }}</button> {{ _('or') }}
+        <a href="{{ addon.get_dev_url('section', ['admin']) }}"
+           class="addon-edit-cancel">{{ _('Cancel') }}</a>
+      </div>
+    {% endif %}
+  </div>
+</form>

@@ -1150,7 +1150,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @amo.cached_property(writable=True)
     def all_previews(self):
-        return list(self.previews.all())
+        return list(self.get_previews())
+
+    def get_previews(self):
+        """Exclude promo graphics."""
+        return self.previews.exclude(position=-1)
 
     @property
     def app_categories(self):

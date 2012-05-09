@@ -22,10 +22,9 @@
     max-height: 115px;
     overflow: auto;
     padding-bottom: 15px;
-}
-
-#file-list > div:last-child {
-    display: none;
+    + .preview:last-child {
+        display: none;
+    }
 }
 
 #file-list .preview .preview-delete {
@@ -101,6 +100,23 @@
         line-height: 94px;
         text-align: center;
         width: 100%;
+    }
+}
+
+#edit-addon-admin {
+    .preview-thumb, .preview-error {
+        height: 184px;
+        width: 264px;
+    }
+    .error-loading:before {
+        line-height: 184px;
+    }
+    #file-list .preview {
+        display: block;
+        max-height: inherit;
+        &.extra {
+            display: none;
+        }
     }
 }
 

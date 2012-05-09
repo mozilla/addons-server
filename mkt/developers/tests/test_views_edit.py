@@ -83,6 +83,7 @@ class TestEdit(amo.tests.TestCase):
     def check_form_url(self, section):
         # Check form destinations and "Edit" button.
         r = self.client.get(self.url)
+        eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('form').attr('action'), self.edit_url)
         eq_(doc('h2 .button').attr('data-editurl'), self.edit_url)
@@ -1106,3 +1107,79 @@ class TestEditTechnical(TestEdit):
                         site_specific=True,
                         view_source=True)
         self.compare(expected)
+
+
+class TestAdmin(TestEdit):
+
+    def setUp(self):
+        super(TestAdmin, self).setUp()
+        self.url = self.get_url('admin')
+        self.edit_url = self.get_url('admin', edit=True)
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def log_in_user(self):
+        assert self.client.login(username=self.user.email, password='password')
+
+
+class TestAdminSettings(TestAdmin):
+
+    def test_form_url(self):
+        self.check_form_url('admin')
+
+    def test_overview_visible_as_admin(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('form').length, 1)
+        assert not r.context.get('form'), (
+            'Admin Settings form should not be in context')
+
+    def test_overview_forbidden_for_nonadmin(self):
+        self.log_in_user()
+        eq_(self.client.head(self.url).status_code, 403)
+
+    def test_edit_get_as_admin(self):
+        r = self.client.get(self.edit_url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('form').length, 1)
+        assert r.context.get('form'), 'Admin Settings form expected in context'
+
+    def test_edit_post_as_admin(self):
+        # There are errors, but I don't care. I just want to see if I can POST.
+        eq_(self.client.post(self.edit_url).status_code, 200)
+
+    def test_edit_no_get_as_nonadmin(self):
+        self.log_in_user()
+        eq_(self.client.get(self.edit_url).status_code, 403)
+
+    def test_edit_no_post_as_nonadmin(self):
+        self.log_in_user()
+        eq_(self.client.post(self.edit_url).status_code, 403)
+
+
+class TestPromoUpload(TestAdmin):
+
+    def post(self, **kw):
+        data = {'caption': 'ball so hard that ish cray',
+                'position': '1'}
+        data.update(kw)
+        r = self.client.post(self.edit_url, data)
+
+    def test_add(self):
+        self.post()
+
+        webapp = self.get_webapp()
+
+        eq_(webapp.previews.count(), 1)
+        eq_(list(webapp.get_previews()), [])
+
+        promo = webapp.get_promo()
+        eq_(promo.caption, '__promo__')
+        eq_(promo.position, -1)
+
+    def test_delete(self):
+        self.post()
+        assert self.get_webapp().get_promo()
+
+        self.post(DELETE=True)
+        assert not self.get_webapp().get_promo()

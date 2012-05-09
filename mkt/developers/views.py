@@ -20,6 +20,7 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
 from waffle.decorators import waffle_switch
 
+from access import acl
 from applications.models import Application, AppVersion
 import amo
 import amo.utils
@@ -50,7 +51,7 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CurrencyForm,
                                   InappConfigForm, PaypalSetupForm,
-                                  PreviewFormSet, trap_duplicate)
+                                  PreviewForm, PreviewFormSet, trap_duplicate)
 from mkt.inapp_pay.models import InappConfig
 from mkt.webapps.tasks import update_manifests
 from mkt.webapps.models import Webapp
@@ -126,10 +127,12 @@ def edit(request, addon_id, addon, webapp=False):
        'webapp': webapp,
        'valid_slug': addon.app_slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
-       'previews': addon.previews.all(),
+       'previews': addon.get_previews(),
        'device_type_form': addon_forms.DeviceTypeForm(request.POST or None,
                                                       addon=addon),
     }
+    if acl.action_allowed(request, 'Addons', 'Configure'):
+        data['promo_form'] = forms.PromoForm(instance=addon)
     return jingo.render(request, 'developers/apps/edit.html', data)
 
 
@@ -824,13 +827,14 @@ def addons_section(request, addon_id, addon, section, editable=False,
               'media': AppFormMedia,
               'details': AppFormDetails,
               'support': AppFormSupport,
-              'technical': addon_forms.AddonFormTechnical}
+              'technical': addon_forms.AddonFormTechnical,
+              'admin': forms.PromoForm}
 
     if section not in models:
         raise http.Http404()
 
     tags = previews = restricted_tags = []
-    cat_form = dependency_form = device_type_form = None
+    cat_form = device_type_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
@@ -842,13 +846,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     elif section == 'media':
         previews = PreviewFormSet(request.POST or None, prefix='files',
-            queryset=addon.previews.all())
+            queryset=addon.get_previews())
 
-    elif section == 'technical':
-        if not webapp:
-            dependency_form = forms.DependencyFormSet(request.POST or None,
-                queryset=addon.addons_dependencies.all(), addon=addon,
-                prefix='dependencies')
+    elif (section == 'admin' and
+          not acl.action_allowed(request, 'Addons', 'Configure')):
+        return http.HttpResponseForbidden()
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug
@@ -888,11 +890,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     addon.save()
                 else:
                     editable = True
-            if dependency_form:
-                if dependency_form.is_valid():
-                    dependency_form.save()
-                else:
-                    editable = True
         else:
             form = models[section](instance=addon, request=request)
     else:
@@ -906,7 +903,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'restricted_tags': restricted_tags,
             'cat_form': cat_form,
             'preview_form': previews,
-            'dependency_form': dependency_form,
             'valid_slug': valid_slug,
             'device_type_form': device_type_form}
 
@@ -929,7 +925,7 @@ def image_status(request, addon_id, addon, icon_size=64):
                                             '%s-%s.png' %
                                             (addon.id, icon_size)))
     previews = all(os.path.exists(p.thumbnail_path)
-                   for p in addon.previews.all())
+                   for p in addon.get_previews())
     return {'overall': icons and previews,
             'icons': icons,
             'previews': previews}

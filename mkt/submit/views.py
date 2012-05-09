@@ -107,7 +107,7 @@ def details(request, addon_id, addon):
     form_icon = AppFormMedia(request.POST or None, request.FILES or None,
                              instance=addon, request=request)
     form_previews = PreviewFormSet(request.POST or None, prefix='files',
-                                   queryset=addon.previews.all())
+                                   queryset=addon.get_previews())
 
     # For empty webapp-locale (or no-locale) fields that have
     # form-locale values, duplicate them to satisfy the requirement.
