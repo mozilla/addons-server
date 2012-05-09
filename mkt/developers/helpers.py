@@ -29,11 +29,11 @@ def hub_addon_listing_items(context, addons, src=None, notes=None):
 @register.function
 @jinja2.contextfunction
 def hub_page_title(context, title=None, addon=None):
-    """Wrapper for devhub page titles."""
+    """Wrapper for developer page titles."""
     if addon:
         title = u'%s | %s' % (title, addon.name)
     else:
-        devhub = _('Developer Hub')
+        devhub = _('Developers')
         title = '%s | %s' % (title, devhub) if title else devhub
     return mkt_page_title(context, title)
 
@@ -48,18 +48,9 @@ def mkt_page_title(context, title, force_webapps=False):
 
 @register.function
 @jinja2.contextfunction
-def docs_page_title(context, title=None):
-    """Wrapper for docs page titles."""
-    devhub = _('Add-on Documentation | Developer Hub')
-    title = '%s :: %s' % (title, devhub) if title else devhub
-    return mkt_page_title(context, title)
-
-
-@register.function
-@jinja2.contextfunction
 def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
-    Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
+    Wrapper function for ``breadcrumbs``. Prepends 'Marketplace Developers'
     breadcrumbs.
 
     **items**
@@ -74,7 +65,7 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     can_view = getattr(context['request'], 'can_view_consumer', True)
     if can_view:
-        crumbs = [(reverse('mkt.developers.index'), _('Developer Hub'))]
+        crumbs = [(reverse('mkt.developers.index'), _('Developers'))]
     else:
         crumbs = [(reverse('mkt.developers.apps'), _('My Submissions'))]
     if can_view:
@@ -103,21 +94,6 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
         crumbs = []
 
     return mkt_breadcrumbs(context, items=crumbs, add_default=can_view)
-
-
-@register.function
-@jinja2.contextfunction
-def mkt_doc_breadcrumbs(context, items=None):
-    """
-    Wrapper function for `breadcrumbs` for developer docs.
-    """
-    crumbs = [(reverse('mkt.developers.index'), _('Developer Hub')),
-              (None, _('Developer Docs'))]
-
-    if items:
-        crumbs.extend(items)
-
-    return breadcrumbs(context, crumbs, True)
 
 
 @register.inclusion_tag('developers/versions/add_file_modal.html')

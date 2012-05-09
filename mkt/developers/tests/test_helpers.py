@@ -28,11 +28,11 @@ def test_hub_page_title():
 
     title = 'Oh hai!'
     s1 = render('{{ hub_page_title("%s") }}' % title, ctx)
-    s2 = render('{{ mkt_page_title("%s | Developer Hub") }}' % title, ctx)
+    s2 = render('{{ mkt_page_title("%s | Developers") }}' % title, ctx)
     eq_(s1, s2)
 
     s1 = render('{{ hub_page_title() }}', ctx)
-    s2 = render('{{ mkt_page_title("Developer Hub") }}', ctx)
+    s2 = render('{{ mkt_page_title("Marketplace Developers") }}', ctx)
     eq_(s1, s2)
 
     s1 = render('{{ hub_page_title("%s", addon) }}' % title, ctx)
@@ -57,7 +57,7 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
-            ('Developer Hub', reverse('mkt.developers.index')),
+            ('Developers', reverse('mkt.developers.index')),
             ('foo', '/foo'),
             ('bar', '/bar'),
         ]
@@ -74,7 +74,7 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
-            ('Developer Hub', reverse('mkt.developers.index')),
+            ('Developers', reverse('mkt.developers.index')),
             ('My Submissions', reverse('mkt.developers.apps')),
             ('Steamcube', None),
         ]
@@ -95,7 +95,7 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
-            ('Developer Hub', reverse('mkt.developers.index')),
+            ('Developers', reverse('mkt.developers.index')),
             ('My Submissions', reverse('mkt.developers.apps')),
             ('Steamcube', product.get_dev_url()),
             ('foo', '/foo'),
