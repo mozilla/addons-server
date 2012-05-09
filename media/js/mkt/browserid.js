@@ -40,6 +40,9 @@ _.extend(z, (function() {
                     $def.reject(err);
                 }
             });
+        } else {
+          // user clicked 'cancel', don't do anything
+          $('.loading-submit').removeClass('loading-submit');
         }
     }
 
