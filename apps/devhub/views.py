@@ -785,6 +785,10 @@ def make_validation_result(data, is_compatibility=False):
             # Just expose the message, not the traceback
             data['error'] = data['error'].strip().split('\n')[-1].strip()
     if data['validation']:
+        lim = settings.VALIDATOR_MESSAGE_LIMIT
+        if lim:
+            del (data['validation']['messages']
+                 [settings.VALIDATOR_MESSAGE_LIMIT:])
         ending_tier = data['validation'].get('ending_tier', 0)
         for msg in data['validation']['messages']:
             if msg['tier'] > ending_tier:
@@ -795,6 +799,23 @@ def make_validation_result(data, is_compatibility=False):
                 msg['tier'] = 1
             for k, v in msg.items():
                 msg[k] = escape_all(v)
+        if lim:
+            compatibility_count = 0
+            if data.get('compatibility_summary'):
+                compatibility_count = (data['compatibility_summary']['errors']
+                                     + data['compatibility_summary']['warnings'])
+            leftover_count = (data['validation']['errors']
+                            + data['validation']['warnings']
+                            + compatibility_count
+                            - lim)
+            data['validation']['messages'].append(
+                {'tier': 1,
+                 'type': 'error' if data['validation']['errors'] else 'warning',
+                 'message': (_('Validation generated too many errors/warnings '
+                               'so %s messages were truncated. After '
+                               "addressing the visible messages, you'll be"
+                               " able to see the others.") % (leftover_count,))
+                 })
         if is_compatibility:
             compat = data['validation']['compatibility_summary']
             for k in ('errors', 'warnings', 'notices'):
