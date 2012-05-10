@@ -24,4 +24,4 @@ class TestCommand(amo.tests.TestCase):
 
     @raises(CommandError)
     def test_gen_key_existing(self):
-        Command().handle(dest=settings.INAPP_KEY_PATH)
+        Command().handle(dest=settings.INAPP_KEY_PATHS.values()[0])

@@ -28,6 +28,11 @@ class InappConfig(amo.models.ModelBase):
         help_text=_lazy(u'Relative URL in your app that the marketplace will '
                         u'post a confirmed transaction to. For example: '
                         u'/payments/postback'))
+    key_timestamp = models.CharField(max_length=10, blank=True, null=True,
+                                     db_index=True,
+                                     help_text='Timestamp of the disk key '
+                                               'used to encrypt the private '
+                                               'key in the db.')
     _encrypted_private_key = BlobField(blank=True, null=True,
                                        db_column='private_key')
     public_key = models.CharField(max_length=255, unique=True, db_index=True)
@@ -51,9 +56,10 @@ class InappConfig(amo.models.ModelBase):
 
     def get_private_key(self):
         """Get the real private key from the database."""
+        timestamp, key = _get_key(timestamp=self.key_timestamp)
         cursor = connection.cursor()
         cursor.execute('select AES_DECRYPT(private_key, %s) '
-                       'from addon_inapp where id=%s', [_get_key(), self.id])
+                       'from addon_inapp where id=%s', [key, self.id])
         secret = cursor.fetchone()[0]
         if not secret:
             raise ValueError('Secret was empty! It either was not set or '
@@ -67,10 +73,12 @@ class InappConfig(amo.models.ModelBase):
         """Store the private key in the database."""
         if isinstance(raw_value, unicode):
             raw_value = raw_value.encode('ascii')
+        timestamp, key = _get_key()
         cursor = connection.cursor()
-        cursor.execute('update addon_inapp set '
-                       'private_key = AES_ENCRYPT(%s, %s)',
-                       [raw_value, _get_key()])
+        cursor.execute('UPDATE addon_inapp SET '
+                       'private_key = AES_ENCRYPT(%s, %s), '
+                       'key_timestamp = %s WHERE id=%s',
+                       [raw_value, key, timestamp, self.id])
 
     @classmethod
     def any_active(cls, addon, exclude_config=None):
@@ -108,11 +116,12 @@ class InappConfig(amo.models.ModelBase):
     def generate_private_key(cls, max_tries=40):
         """Generate a random 43 character secret key."""
 
+        timestamp, enc_key = _get_key()
         for key in limited_keygen(lambda: generate_key(43), max_tries):
             cursor = connection.cursor()
             cursor.execute('select count(*) from addon_inapp where '
                            'private_key = AES_ENCRYPT(%s, %s) ',
-                           [key, _get_key()])
+                           [key, enc_key])
             if cursor.fetchone()[0] == 0:
                 return key
 
@@ -131,14 +140,23 @@ def limited_keygen(gen_key, max_tries):
                                 % max_tries)
 
 
-def _get_key():
-    """Get the key used to encrypt data in the db."""
+def _get_key(timestamp=None):
+    """Get (timestamp, key) used to encrypt data in the db."""
+    try:
+        if not timestamp:
+            # Get the most recent date in settings.
+            timestamp = sorted(settings.INAPP_KEY_PATHS.keys())[-1]
+        keypath = settings.INAPP_KEY_PATHS[timestamp]
+    except (IndexError, KeyError), exc:
+        ms = 'key %r not in INAPP_KEY_PATHS (%s)' % (timestamp, exc)
+        exc.args = (ms,) + exc.args[1:]
+        raise
     if (not settings.DEBUG and
-        settings.INAPP_KEY_PATH.endswith('inapp-sample-pay.key')):
+        keypath.endswith('inapp-sample-pay.key')):
         raise EnvironmentError('encryption key looks like the one we '
                                'committed to the repo!')
-    with open(settings.INAPP_KEY_PATH, 'rb') as fp:
-        return fp.read()
+    with open(keypath, 'rb') as fp:
+        return timestamp, fp.read()
 
 
 class InappPayLog(amo.models.ModelBase):

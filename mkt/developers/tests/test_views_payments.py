@@ -11,6 +11,21 @@ import amo.tests
 from mkt.inapp_pay.models import InappConfig
 
 
+def create_inapp_config(public_key='pub-key', private_key='priv-key',
+                        status=amo.INAPP_STATUS_ACTIVE, addon=None,
+                        postback_url='/postback',
+                        chargeback_url='/chargeback'):
+    if not addon:
+        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+    cfg = InappConfig.objects.create(public_key=public_key,
+                                     addon=addon,
+                                     status=status,
+                                     postback_url=postback_url,
+                                     chargeback_url=chargeback_url)
+    cfg.set_private_key(private_key)
+    return cfg
+
+
 @mock.patch.object(settings, 'DEBUG', True)
 class TestInappConfig(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
@@ -25,15 +40,16 @@ class TestInappConfig(amo.tests.TestCase):
         self.url = self.webapp.get_dev_url('in_app_config')
 
     def config(self, public_key='pub-key', private_key='priv-key',
-               status=amo.INAPP_STATUS_ACTIVE,
+               status=amo.INAPP_STATUS_ACTIVE, addon=None,
                postback_url='/postback', chargeback_url='/chargeback'):
-        cfg = InappConfig.objects.create(public_key=public_key,
-                                         addon=self.webapp,
-                                         status=status,
-                                         postback_url=postback_url,
-                                         chargeback_url=chargeback_url)
-        cfg.set_private_key(private_key)
-        return cfg
+        if not addon:
+            addon = self.webapp
+        return create_inapp_config(public_key=public_key,
+                                   private_key=private_key,
+                                   status=status,
+                                   postback_url=postback_url,
+                                   addon=addon,
+                                   chargeback_url=chargeback_url)
 
     def post(self, data, expect_error=False):
         resp = self.client.post(self.url, data, follow=True)
@@ -50,6 +66,17 @@ class TestInappConfig(amo.tests.TestCase):
         eq_(inapp.status, amo.INAPP_STATUS_ACTIVE)
         assert inapp.public_key, 'public key was not generated'
         assert inapp.has_private_key(), 'private key was not generated'
+
+    def test_key_gen_is_per_app(self):
+        # Sigh. Don't ask why this test is here.
+        self.config(public_key='first', private_key='first', addon=self.webapp)
+        first = InappConfig.objects.get(addon=self.webapp)
+        addon2 = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        self.config(public_key='second', private_key='second', addon=addon2)
+        second = InappConfig.objects.get(addon=addon2)
+        key1 = first.get_private_key()
+        key2 = second.get_private_key()
+        assert key1 != key2, ('keys cannot be the same: %r' % key1)
 
     def test_hide_inactive_keys(self):
         self.config(status=amo.INAPP_STATUS_INACTIVE)

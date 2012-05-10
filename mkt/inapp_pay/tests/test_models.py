@@ -12,6 +12,7 @@ import amo.tests
 from mkt.inapp_pay.models import (InappConfig, TooManyKeyGenAttempts,
                                   InappPayLog)
 from mkt.inapp_pay import verify
+from mkt.inapp_pay.tests import resource
 from mkt.inapp_pay.verify import InappPaymentError
 from mkt.webapps.models import Webapp
 
@@ -106,11 +107,48 @@ class TestInapp(amo.tests.TestCase):
     def test_wrong_key(self):
         sk = 'your coat is hidden under the stairs'
         self.inapp.set_private_key(sk)
-        with mock.patch.object(settings, 'INAPP_KEY_PATH',
-                               os.path.join(os.path.dirname(__file__),
-                                            'resources',
-                                            'inapp-sample-pay-alt.key')):
+        altkey = resource('inapp-sample-pay-alt.key')
+        with mock.patch.object(settings, 'INAPP_KEY_PATHS',
+                               {'2012-05-09': altkey}):
             self.inapp.get_private_key()
+
+    @mock.patch.object(settings, 'DEBUG', True)
+    def test_encrypt_with_latest_key(self):
+        badkey = resource('__nonexistant__.key')
+        goodkey = resource('inapp-sample-pay.key')
+        with mock.patch.object(settings, 'INAPP_KEY_PATHS',
+                               {'2012-05-09': badkey,
+                                '2012-05-10': goodkey}):
+            sk = 'your coat is hidden under the stairs'
+            self.inapp.set_private_key(sk)
+            eq_(self.inapp.get_private_key(), sk)
+
+    @mock.patch.object(settings, 'DEBUG', True)
+    def test_pin_to_corect_key(self):
+        sk = 'your coat is hidden under the stairs'
+        altkey = resource('inapp-sample-pay-alt.key')
+        goodkey = resource('inapp-sample-pay.key')
+        with mock.patch.object(settings, 'INAPP_KEY_PATHS',
+                               {'2012-05-09': altkey}):
+            self.inapp.set_private_key(sk)
+            eq_(self.inapp.get_private_key(), sk)
+        self.inapp = InappConfig.objects.get(pk=self.inapp.pk)
+        with mock.patch.object(settings, 'INAPP_KEY_PATHS',
+                               {'2012-05-09': altkey,
+                                '2012-05-10': goodkey}):
+            eq_(self.inapp.get_private_key(), sk)
+
+    @raises(IndexError)
+    @mock.patch.object(settings, 'DEBUG', True)
+    def test_missing_date_str(self):
+        sk = 'your coat is hidden under the stairs'
+        altkey = resource('inapp-sample-pay-alt.key')
+        with mock.patch.object(settings, 'INAPP_KEY_PATHS',
+                               {'2012-05-09': altkey}):
+            self.inapp.set_private_key(sk)
+            eq_(self.inapp.get_private_key(), sk)
+        with mock.patch.object(settings, 'INAPP_KEY_PATHS', {}):
+            eq_(self.inapp.get_private_key(), sk)
 
 
 def test_exception_mapping():

@@ -192,9 +192,14 @@ INAPP_VERBOSE_ERRORS = False
 # This is useful for development and testing.
 INAPP_REQUIRE_HTTPS = True
 
-# Path to key for local AES encrypt/decrypt.
-INAPP_KEY_PATH = os.path.join(ROOT, 'mkt', 'inapp_pay', 'tests', 'resources',
-                              'inapp-sample-pay.key')
+# Paths to key files for local AES encrypt/decrypt.
+# Each dict key is a YYYY-MM-DD timestamp that we use to find the latest key.
+INAPP_KEY_PATHS = {
+    # This is a scratch key for local development.
+    '2012-05-09': os.path.join(ROOT, 'mkt', 'inapp_pay', 'tests', 'resources',
+                               'inapp-sample-pay.key')
+}
+
 STATSD_RECORD_KEYS = [
     'window.performance.timing.domComplete',
     'window.performance.timing.domInteractive',
