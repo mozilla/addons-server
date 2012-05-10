@@ -129,19 +129,19 @@ def setup_indexes():
         except pyes.ElasticSearchException:
             pass
 
-    mapping = {
-            'properties': {
-                'id': {'type': 'long'},
-                'count': {'type': 'long'},
-                'data': {'dynamic': 'true',
-                         'properties': {
-                            'v': {'type': 'long'},
-                            'k': {'type': 'string'}
-                        }
-                },
-                'date': {'format': 'dateOptionalTime',
-                         'type': 'date'}
-            }
-    }
-    es.put_mapping(CollectionCount._meta.db_table, mapping,
-                   CollectionCount._get_index())
+        mapping = {
+                'properties': {
+                    'id': {'type': 'long'},
+                    'count': {'type': 'long'},
+                    'data': {'dynamic': 'true',
+                             'properties': {
+                                'v': {'type': 'long'},
+                                'k': {'type': 'string'}
+                            }
+                    },
+                    'date': {'format': 'dateOptionalTime',
+                             'type': 'date'}
+                }
+        }
+        es.put_mapping(model._meta.db_table, mapping,
+                       model._get_index())
