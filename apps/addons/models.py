@@ -767,8 +767,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     addon_p.price = price
                     addon_dict[addon_p.addon_id]._premium = addon_p
 
-        # Attach counts for add-on compatibility reports.
-        CompatReport.transformer(non_apps)
+        # This isn't cheating, right? I don't want to add `compat` to
+        # market's INSTALLED_APPS.
+        if not settings.MARKETPLACE:
+            # Attach counts for add-on compatibility reports.
+            CompatReport.transformer(non_apps)
 
         return addon_dict
 
