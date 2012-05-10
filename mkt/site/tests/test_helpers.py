@@ -77,6 +77,8 @@ class TestMarketButton(amo.tests.TestCase):
 
         self.webapp.name = nasty
         self.webapp.save()
+        Webapp.transformer([self.webapp])  # Transform `listed_authors`, etc.
+
         doc = pq(market_button(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['name'], escaped)
