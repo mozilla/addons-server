@@ -41,7 +41,7 @@
     }
 
     function purchaseError(product, msg) {
-        $(window).trigger('app_purchase_error', product, msg);
+        $(window).trigger('app_purchase_error', [product, msg]);
     }
 
     function install(product, receipt) {

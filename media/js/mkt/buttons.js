@@ -64,6 +64,9 @@
         var $button = getButton(product),
             errSummary;
 
+        // TODO: We should remove this eventually.
+        console.log('Error code:', msg);
+
         // From the old apps.js
         switch (msg) {
             case 'DENIED':
