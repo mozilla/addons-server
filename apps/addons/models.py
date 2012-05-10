@@ -30,6 +30,7 @@ from amo.helpers import absolutify, shared_url
 from amo.utils import (chunked, JSONEncoder, send_mail, slugify,
                        sorted_groupby, to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
+from compat.models import CompatReport
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
@@ -701,6 +702,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return
 
         addon_dict = dict((a.id, a) for a in addons)
+        non_apps = [a for a in addons if a.type != amo.ADDON_WEBAPP]
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
@@ -764,6 +766,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 if price:
                     addon_p.price = price
                     addon_dict[addon_p.addon_id]._premium = addon_p
+
+        # Attach counts for add-on compatibility reports.
+        CompatReport.transformer(non_apps)
 
         return addon_dict
 

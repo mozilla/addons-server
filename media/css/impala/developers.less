@@ -485,3 +485,32 @@
 .edit-addon-section #icons_default {
     margin-bottom: 1em;
 }
+
+.compat-reports {
+    text-decoration: none;
+    span {
+        float: left;
+    }
+    &:hover {
+        span {
+            text-decoration: underline;
+        }
+    }
+    .success, .failure {
+        color: #fff;
+        float: right;
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 15px;
+        margin: 4px 0 0;
+        padding: 0 5px;
+    }
+    .success {
+        .border-radius(5px 0 0 5px);
+        background: #080;
+    }
+    .failure {
+         .border-radius(0 5px 5px 0);
+        background: #800;
+    }
+}

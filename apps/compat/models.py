@@ -20,6 +20,16 @@ class CompatReport(amo.models.ModelBase):
     class Meta:
         db_table = 'compatibility_reports'
 
+    @staticmethod
+    def transformer(addons):
+        qs = CompatReport.uncached
+        for addon in addons:
+            works_ = dict(qs.filter(guid=addon.guid)
+                            .values_list('works_properly')
+                            .annotate(models.Count('id')))
+            addon._compat_counts = {'success': works_.get(True, 0),
+                                    'failure': works_.get(False, 0)}
+
 
 class AppCompat(amo.models.ModelBase):
     """

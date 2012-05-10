@@ -28,12 +28,19 @@
     <ul class="refinements">
       <li><a href="{{ addon.get_url_path() }}">
         {{ _('View Listing') }}</a></li>
-      {% if not webapp %}
-        <li><a href="{{ url('devhub.feed', addon.slug) }}">
-          {{ _('View Recent Changes') }}</a></li>
-        <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
-          {{ _('View Statistics Dashboard') }}</a></li>
-      {% endif %}
+      <li><a href="{{ url('devhub.feed', addon.slug) }}">
+        {{ _('View Recent Changes') }}</a></li>
+      <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
+        {{ _('View Statistics Dashboard') }}</a></li>
+      <li class="compat-reports">
+        <a href="{{ url('compat.reporter_detail', addon.guid) }}">
+          <span>{{ _('Compatibility Reports') }}</span>
+          <b class="failure" title="{{ _('{0} success reports')|f(addon._compat_counts.failure) }}">
+            {{ addon._compat_counts.failure|numberfmt }}</b>
+          <b class="success" title="{{ _('{0} problem reports')|f(addon._compat_counts.success) }}">
+            {{ addon._compat_counts.success|numberfmt }}</b>
+        </a>
+      </li>
     </ul>
   </div>
 </section>
