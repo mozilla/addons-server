@@ -52,7 +52,7 @@
             if (z.nav.platform == 'mac') {
                 $installed.show();
                 $installed.find('.how.mac').show();
-            } else if (z.nav.platform == 'win') {
+            } else if (z.nav.platform == 'windows') {
                 $installed.show();
                 $installed.find('.how.win').show();
             } else {
