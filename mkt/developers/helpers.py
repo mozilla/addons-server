@@ -11,7 +11,6 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 from amo.urlresolvers import reverse
-from amo.helpers import breadcrumbs
 from access import acl
 from addons.helpers import new_context
 
@@ -50,8 +49,7 @@ def mkt_page_title(context, title, force_webapps=False):
 @jinja2.contextfunction
 def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
-    Wrapper function for ``breadcrumbs``. Prepends 'Marketplace Developers'
-    breadcrumbs.
+    Wrapper function for ``breadcrumbs``. Prepends 'Developers' breadcrumb.
 
     **items**
         list of [(url, label)] to be inserted after Add-on.

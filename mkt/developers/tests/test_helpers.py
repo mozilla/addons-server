@@ -32,7 +32,7 @@ def test_hub_page_title():
     eq_(s1, s2)
 
     s1 = render('{{ hub_page_title() }}', ctx)
-    s2 = render('{{ mkt_page_title("Marketplace Developers") }}', ctx)
+    s2 = render('{{ mkt_page_title("Developers") }}', ctx)
     eq_(s1, s2)
 
     s1 = render('{{ hub_page_title("%s", addon) }}' % title, ctx)
