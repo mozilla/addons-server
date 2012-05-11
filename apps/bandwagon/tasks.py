@@ -101,11 +101,6 @@ def collection_watchers(*ids, **kw):
             log.error('Updating collection watchers failed: %s, %s' % (pk, e))
 
 
-@task(rate_limit='10/m')
-def cron_collection_meta(*addons, **kw):
-    collection_meta(*addons)
-
-
 @task
 def index_collections(ids, **kw):
     es = elasticutils.get_es()
