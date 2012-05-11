@@ -801,18 +801,28 @@ def make_validation_result(data, is_compatibility=False):
                 msg[k] = escape_all(v)
         if lim:
             compatibility_count = 0
-            if data.get('compatibility_summary'):
-                compatibility_count = (data['compatibility_summary']['errors']
-                                     + data['compatibility_summary']['warnings'])
+            if data['validation'].get('compatibility_summary'):
+                cs = data['validation']['compatibility_summary']
+                compatibility_count = (cs['errors']
+                                     + cs['warnings']
+                                     + cs['notices'])
+            else:
+                cs = {}
             leftover_count = (data['validation'].get('errors', 0)
                             + data['validation'].get('warnings', 0)
+                            + data['validation'].get('notices', 0)
                             + compatibility_count
                             - lim)
             if leftover_count > 0:
+                if data['validation']['errors'] or cs.get('errors'):
+                    msgtype = 'error'
+                elif data['validation']['warnings'] or cs.get('warnings'):
+                    msgtype = 'warning'
+                else:
+                    msgtype = 'notice'
                 data['validation']['messages'].append(
                     {'tier': 1,
-                     'type': ('error' if data['validation']['errors']
-                              else 'warning'),
+                     'type': msgtype,
                      'message': (_('Validation generated too many errors/'
                                    'warnings so %s messages were truncated. '
                                    'After addressing the visible messages, '
