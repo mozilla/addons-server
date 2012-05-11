@@ -814,7 +814,8 @@ def make_validation_result(data, is_compatibility=False):
                  'message': (_('Validation generated too many errors/warnings '
                                'so %s messages were truncated. After '
                                "addressing the visible messages, you'll be"
-                               " able to see the others.") % (leftover_count,))
+                               " able to see the others.") % (leftover_count,)),
+                 'compatibility_type': None
                  })
         if is_compatibility:
             compat = data['validation']['compatibility_summary']
