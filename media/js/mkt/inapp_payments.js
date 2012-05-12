@@ -15,11 +15,27 @@ var escape_ = function(s) {
             .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
 };
 
+var preauth_window;
+
 (function() {
     var win_top = window.top;
     if (win_top.opener) {
         win_top = win_top.opener;
     }
+    $('#setup-preauth').click(function(e) {
+        e.preventDefault();
+        if (preauth_window) {
+            preauth_window.close();
+        }
+        preauth_window = window.open($(this).attr('href'));
+        window.addEventListener('message', function(msg) {
+            var result = msg.data;
+            if (result == 'complete' || result == 'cancel') {
+                preauth_window.close();
+                window.location.reload();
+            }
+        }, false);
+    });
     $('.close').click(function() {
         if ($('body').hasClass('success')) {
             win_top.postMessage('moz-pay-success', '*');

@@ -4,6 +4,7 @@ from django import http
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
+from commonware.response.decorators import xframe_allow
 import jingo
 from tower import ugettext as _, ugettext_lazy as _lazy
 import waffle
@@ -34,13 +35,21 @@ paypal_log = commonware.log.getLogger('mkt.paypal')
 
 @write
 @login_required
+@xframe_allow
 def payment(request, status=None):
     # Note this is not post required, because PayPal does not reply with a
     # POST but a GET, that's a sad face.
     pre, created = (PreApprovalUser.objects
                                    .safer_get_or_create(user=request.amo_user))
+
+    context = {'preapproval': pre,
+               'currency': CurrencyForm(initial={'currency':
+                                                 pre.currency or 'USD'})}
+
     if status:
         data = request.session.get('setup-preapproval', {})
+
+        context['status'] = status
 
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
@@ -77,9 +86,6 @@ def payment(request, status=None):
                 paypal_log.info(u'Preapproval key removed for user: %s'
                                 % request.amo_user)
 
-    context = {'preapproval': pre,
-               'currency': CurrencyForm(initial={'currency':
-                                                 pre.currency or 'USD'})}
     return jingo.render(request, 'account/payment.html', context)
 
 
@@ -103,7 +109,6 @@ def currency(request, do_redirect=True):
 
 
 @write
-@post_required
 @login_required
 def preapproval(request, complete=None, cancel=None):
     if waffle.switch_is_active('currencies'):
@@ -128,9 +133,11 @@ def preapproval(request, complete=None, cancel=None):
         'key': result['preapprovalKey'],
         'expiry': data['endDate'],
         'complete': complete,
-        'cancel': cancel
+        'cancel': cancel,
     }
-    return redirect(paypal.get_preapproval_url(result['preapprovalKey']))
+
+    url = paypal.get_preapproval_url(result['preapprovalKey'])
+    return redirect(url)
 
 
 class PurchasesFilter(BaseFilter):

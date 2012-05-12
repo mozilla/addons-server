@@ -176,6 +176,7 @@ JS = {
         'js/lib/format.js',
         'js/common/tracking.js',
         'js/mkt/utils.js',
+        'js/lib/csrf.js',
         'js/zamboni/browser.js',
         'js/mkt/init.js',
         'js/mkt/browserid.js',
@@ -228,6 +229,7 @@ JS = {
     'mkt/in-app-payments': (
         'js/lib/jquery-1.7.1.js',
         'js/mkt/inapp_payments.js',
+        'js/lib/csrf.js',
         'js/impala/serializers.js',
         'js/mkt/browserid.js',
         'js/mkt/login.js',

@@ -2,6 +2,9 @@
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
+    {% if request.user.is_authenticated() %}
+      <meta name="csrf" content="{{ csrf_token }}">
+    {% endif %}
     {{ css('mkt/in-app-payments') }}
   </head>
   <body data-user="{{ user_data(amo_user)|json }}"

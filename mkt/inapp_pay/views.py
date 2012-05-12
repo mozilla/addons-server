@@ -53,6 +53,12 @@ def pay_start(request, signed_req, pay_req):
 
 
 @xframe_allow
+def preauth(request):
+    from mkt.account.views import preapproval
+    return preapproval(request)
+
+
+@xframe_allow
 @require_inapp_request
 @login_required
 @post_required

@@ -1,4 +1,17 @@
 (function() {
+    var el = $('[data-preauth-results]');
+    if (!el.exists() || !window.opener) {
+        return;
+    }
+    var opener = window.opener,
+        l = window.location,
+        origin = l.protocol + '//' + l.host + (l.port && (':' + l.port));
+    if (opener) {
+        opener.postMessage(el.data('preauth-results'), origin);
+    }
+})();
+
+(function() {
     if (!$('#account-settings').length) {
         return;
     }
