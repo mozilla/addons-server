@@ -204,10 +204,10 @@ $(document).ready(function() {
     // Server side checks are incompatible.
     module('D2C Install Button', $.extend({}, installButtonFixture, {
         setup: function() {
-            installButtonFixture.setup.call(this, '#button-d2c-not-compatible');
+            installButtonFixture.setup.call(this, '#button-d2c-older-browser');
         }
     }));
-    test('d2c, not is_compatible', function() {
+    test('d2c, is_compatible, older browser', function() {
         this.expected['class'] = 'button add concealed';
         this.check(this.expected);
         equal($('.extra', this.sandbox).length, 1);

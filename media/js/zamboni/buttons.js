@@ -121,6 +121,10 @@ var installButton = function() {
         // The user *has* an older/newer browser.
         olderBrowser = VersionCompare.compareVersions(z.browserVersion, min) < 0;
         newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;
+        if (olderBrowser) {
+            // Make sure we show the "Not available for ..." messaging.
+            compatible = false;
+        }
     }
 
     // Default to compatible checking.
