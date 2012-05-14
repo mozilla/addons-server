@@ -208,3 +208,5 @@ STATSD_RECORD_KEYS = [
     'window.performance.navigation.redirectCount',
     'window.performance.navigation.type',
 ]
+
+PISTON_DISPLAY_ERRORS = False

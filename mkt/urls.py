@@ -95,6 +95,8 @@ urlpatterns = patterns('',
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),
 
+    url('^api/', include('mkt.api.urls')),
+
     # Try and keep urls without a prefix at the bottom of the list for
     # minor performance reasons.
 

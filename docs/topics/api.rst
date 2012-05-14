@@ -49,23 +49,14 @@ can be multiple errors per field. Example::
           }
         }
 
-Authentication error
---------------------
+Other errors
+------------
 
-If there is an error with authentication via OAuth, a 401 status
-code will be returned::
+The appropriate HTTP status code will be returned. The body may contain JSON
+and it may contain a useful error message. Example::
 
         {
           "error": "Invalid OAuthToken."
-        }
-
-Server error
---------------------
-
-If there is an error on the server, a 500 status will be returned::
-
-        {
-          "error": "Server error. Please try again later."
         }
 
 Verbs
@@ -103,11 +94,27 @@ with a status of 202::
 
 To see how it's doing, poll for a result::
 
-        GET /api/apps/validation?id=123
+        GET /api/apps/validation/123
 
-This will return the status of the validation::
+This will return the status of the validation. Validation not processed yet::
 
-        # *TODO* fill this out, this can get quite complicated for errors.
+        {"processed": false}
+
+Validation processed and good::
+
+        {"valid": true, "processed": true}
+
+Validation processed and an error::
+
+        {"valid": false,
+         "processed": true,
+         "validation": {
+           "errors": 1, "messages": [{
+             "tier": 1,
+             "message": "Your manifest must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". We saw \"text/html; charset=utf-8\".",
+             "type": "error"
+           }],
+         "success": false}}
 
 Create
 ------
