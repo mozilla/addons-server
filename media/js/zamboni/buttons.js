@@ -17,6 +17,13 @@ var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
     noappsupport = '<div class="extra"><span class="notsupported">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
+// The lowest maxVersion an app has to support to allow default-to-compatible.
+var D2C_MAX_VERSIONS = {
+    firefox: '4.0',
+    mobile: '11.0',
+    seamonkey: '2.1',
+    thunderbird: '5.0'
+};
 
 var webappButton = function() {
     var $this = $(this),
@@ -116,6 +123,21 @@ var installButton = function() {
     var badPlatform = ($button.find('.os').length &&
                        !$button.hasClass(z.platform));
 
+    // Only show default-to-compatible reasons if the add-on has the minimum
+    // required maxVersion to support it.
+    var is_d2c = false;
+    if (max) {
+        if (z.browser.firefox && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.firefox) >= 0) {
+            is_d2c = true;
+        } else if (z.browser.mobile && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.mobile) >= 0) {
+            is_d2c = true;
+        } else if (z.browser.seamonkey && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.seamonkey) >= 0) {
+            is_d2c = true;
+        } else if (z.browser.thunderbird && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.thunderbird) >= 0) {
+            is_d2c = true;
+        }
+    }
+
     // min and max only exist if the add-on is compatible with request[APP].
     if (appSupported) {
         // The user *has* an older/newer browser.
@@ -128,7 +150,7 @@ var installButton = function() {
     }
 
     // Default to compatible checking.
-    if (waffle_d2c_buttons && compatible) {
+    if (waffle_d2c_buttons && is_d2c && compatible) {
         if (!compatible_app) {
             $d2c_reasons.append($('<li>', {text: gettext('Add-on has not been updated to support default-to-compatible.')}));
             compatible = false;
@@ -288,7 +310,7 @@ var installButton = function() {
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
-            if (waffle_d2c_buttons) {
+            if (waffle_d2c_buttons && is_d2c) {
                 // If it's a bad platform, don't bother also showing the
                 // incompatible reasons.
                 if (!badPlatform) {

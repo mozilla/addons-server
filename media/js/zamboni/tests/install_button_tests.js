@@ -204,6 +204,19 @@ $(document).ready(function() {
     // Server side checks are incompatible.
     module('D2C Install Button', $.extend({}, installButtonFixture, {
         setup: function() {
+            installButtonFixture.setup.call(this, '#button-d2c-not-compatible');
+        }
+    }));
+    test('d2c, is_compatible, older browser', function() {
+        this.expected['class'] = 'button add concealed';
+        this.check(this.expected);
+        equal($('.extra', this.sandbox).length, 1);
+        equal($('.notavail', this.sandbox).text().substr(0, 13), 'Not available');
+    });
+
+    // Browser version is < the minimum supported app version.
+    module('D2C Install Button', $.extend({}, installButtonFixture, {
+        setup: function() {
             installButtonFixture.setup.call(this, '#button-d2c-older-browser');
         }
     }));
@@ -214,4 +227,17 @@ $(document).ready(function() {
         equal($('.notavail', this.sandbox).text().substr(0, 13), 'Not available');
     });
 
+    // Max version isn't high enough to support d2c.
+    module('D2C Install Button', $.extend({}, installButtonFixture, {
+        setup: function() {
+            installButtonFixture.setup.call(this, '#button-d2c-old-max');
+        }
+    }));
+    test('d2c, not is_compatible, max version', function() {
+        this.expected['class'] = 'button add concealed';
+        this.check(this.expected);
+        equal($('.d2c-reasons-popup', this.sandbox).length, 0);
+        equal($('.d2c-reasons-help', this.sandbox).length, 0);
+        equal($('.notavail', this.sandbox).text().substr(0, 13), 'Not available');
+    });
 });

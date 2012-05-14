@@ -41,28 +41,26 @@
   <div id="buttons">
     <h2 class="addon"><span class="version"></span></h2>
     <div id="addon-summary">
-        <table>
-            <tr class="addon-compatible"><td></td></tr>
-            <tr class="addon-updated"><td><time></time></td></tr>
-        </table>
+      <table>
+        <tr class="addon-compatible"><td></td></tr>
+        <tr class="addon-updated"><td></td></tr>
+      </table>
     </div>
     <div class="install-shell">
-        <div class="install featuredaddon"
-             data-version-supported="false">
-        </div>
+      <div class="install featuredaddon" data-version-supported="false"></div>
     </div>
     <div class="backup-button hidden">
-        <div class="install-shell">
-            <div class="install featuredaddon"
-                 data-min=""
-                 data-max=""
-                 data-version="0.2"
-                 data-compatible-apps="Fx 1.0"
-                 data-lastupdated-isotime="today"
-                 data-lastupdated-datetime="today"
-                 data-version-supported="true">
-            </div>
+      <div class="install-shell">
+        <div class="install featuredaddon"
+             data-min=""
+             data-max=""
+             data-version="0.2"
+             data-compatible-apps="Fx 1.0"
+             data-lastupdated-isotime="today"
+             data-lastupdated-datetime="today"
+             data-version-supported="true">
         </div>
+      </div>
     </div>
   </div>
 
@@ -131,34 +129,45 @@
     </div>
   </div>
 
-    <div id="files-wrapper">
-      <div id="files">
+  <div id="button-d2c-old-max">
+    <div class="install-shell">
+      <div class="install"
+           data-min="3.0"
+           data-max="3.5"
+           data-waffle-d2c-buttons="true"
+           data-is-compatible="true"
+           data-is-compatible-app="true"
+           data-compat-overrides="[]">
+        <p class="install-button">
+        <a class="button download" data-hash="1337" href="http://testurl.com">Foo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="files-wrapper">
+    <div id="files">
       <ul>
-        <li>
-            <a class="file" href="">someurl</a>
-        </li>
-        <li>
-            <a class="directory closed" href="">foo</a>
-        </li>
+        <li><a class="file" href="">someurl</a></li>
+        <li><a class="directory closed" href="">foo</a></li>
         <ul class="js-hidden">
-            <li>
-                <a class="file" href="someurl">foo/bar.txt</a>
-            </li>
+          <li><a class="file" href="someurl">foo/bar.txt</a></li>
         </ul>
       </ul>
       <input type="checkbox" id="toggle-known">
-      </div>
     </div>
-    <div id="paypal">
-        <div class="contribute">
-            <a href="/paykey?src=direct" class="suggested-amount">Contribute</a>
-        </div>
+  </div>
+  <div id="paypal">
+    <div class="contribute">
+      <a href="/paykey?src=direct" class="suggested-amount">Contribute</a>
     </div>
-    <div id="password-strength">
-        <input type="password" data-min-length="8" />
-    </div>
+  </div>
+  <div id="password-strength">
+    <input type="password" data-min-length="8" />
+  </div>
 
   <div id="personas">
+    <fieldset>
     <legend>Persona License</legend>
     <input type="hidden" name="license" id="id_license">
     <div id="cc-chooser">
@@ -198,25 +207,29 @@
         <li><label><input type="radio" name="license" value="13"> Creative Commons Attribution-ShareAlike 3.0</label></li>
       </ul>
     </div>
+    </fieldset>
   </div>
 
   <div id="browserid-test">
     <section class="primary"></section>
-      <a class="browserid-login" href="#"
-         data-url="/nowhere">BrowserID Login</a>
+    <a class="browserid-login" href="#" data-url="/nowhere">BrowserID Login</a>
   </div>
+
   <div id="upsell-test">
     <form action="/en-US/developers/addon/status-watch/payments" method="post">
       <div class="brform">
-        <div><ul>
+        <div>
+          <ul>
             <li><label for="id_do_upsell_0"><input type="radio" name="do_upsell" value="0" id="id_do_upsell_0" checked="checked"> I don't have a free add-on to associate.</label></li>
             <li><label for="id_do_upsell_1"><input type="radio" name="do_upsell" value="1" id="id_do_upsell_1"> This is a premium upgrade to:</label></li>
-        </ul>
+          </ul>
         </div>
         <div class="indent">
-          <div><select id="id_free" name="free">
+          <div>
+            <select id="id_free" name="free">
               <option selected="selected" value=""></option>
-          </select></div>
+            </select>
+          </div>
           <div><textarea name="text" cols="40" rows="10" id="id_text"></textarea></div>
         </div>
       </div>
@@ -655,9 +668,8 @@
           <div class="edit-previews-text">
             <label class="above-the-field" data-for="files-0-caption" for="id_files-0-caption_0">
               Please provide a caption for this screenshot:
-              <span class="locale">
-                English (US)
-            </span></label>
+              <span class="locale">English (US)</span>
+            </label>
             <div data-name="files-0-caption" class="trans" id="trans-files-0-caption"><textarea lang="en-us" id="id_files-0-caption_0" cols="40" name="files-0-caption_en-us" rows="10" class="unsaved"></textarea><textarea lang="init" class="trans-init" cols="40" name="files-0-caption_init" rows="10" style="display: none;"></textarea></div>
             <a class="remove" href="#">x</a>
           </div>
@@ -667,7 +679,6 @@
           <div class="preview_extra">
             <input type="text" id="id_files-0-upload_hash" name="files-0-upload_hash">
           </div>
-          </p>
         </div>
       </div>
     </div>
@@ -675,7 +686,7 @@
 
   <div id="addon-platform-chooser">
     <!-- TODO(Kumar) create faux form objects and include add_file_modal.html here -->
-    <form method="post" id="create-addon" class="item" action="">
+    <form method="post" id="create-addon" class="item">
       <div class="platform">
         <div class="desktop-platforms">
           <label>Which desktop platforms is this file compatible with?</label>
