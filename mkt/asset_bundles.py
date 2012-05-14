@@ -66,6 +66,7 @@ CSS = {
         'css/devreg-legacy/developers.less',  # Legacy galore.
     ),
     'mkt/reviewers': (
+        'css/mkt/buttons.less',
         'css/mkt/reviewers.less',
     ),
     'mkt/consumer': (
@@ -113,7 +114,7 @@ CSS = {
 
 JS = {
     'mkt/devreg': (
-        'js/lib/jquery-1.6.4.js',
+        'js/lib/jquery-1.7.1.js',
         'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
@@ -209,6 +210,11 @@ JS = {
 
         # Stick.
         'js/lib/stick.js',
+    ),
+    'mkt/reviewers': (
+        'js/mkt/apps.js',
+        'js/mkt/install.js',
+        'js/mkt/buttons.js',
     ),
     'mkt/stats': (
         'js/zamboni/storage.js',

@@ -13,14 +13,6 @@
 {% block content %}
 
 <header class="c">
-  <ul id="actions">
-    <li><a href="{{ product.get_url_path() }}" class="button">
-        {{ _('View Listing / Install') }}</a></li>
-    {% if is_admin %}
-      <li><a href="{{ product.get_dev_url() }}" class="button manage">
-        {{ _('Edit') }}</a></li>
-    {% endif %}
-  </ul>
   <h1 class="addon"{{ product.name|locale_html }}>
     <img src="{{ product.icon_url }}" class="icon">
     <span>{{ product.name }}</span>
@@ -41,6 +33,19 @@
       {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}" class="button concealed">&raquo;</a>{% endif %}
     </div>
     {% endif %}
+    <ul id="actions">
+      <li>
+        {{ market_button(product) }}
+        <div class="noApps">You need to be using<br>
+          <a href="https://wiki.mozilla.org/Marketplace/Mozillian_Preview">
+          Firefox Nightly</a><br>to install this app.
+        </div>
+      </li>
+      {% if is_admin %}
+        <li><a href="{{ product.get_dev_url() }}" class="button manage">
+          {{ _('Edit') }}</a></li>
+      {% endif %}
+    </ul>
     <strong>{{ _('Review This App') }}</strong>
     <ul>
       <li><a href="#more-about">{{ _('More Information') }}</a></li>
@@ -233,4 +238,9 @@
 
 </div> {# /#primary #}
 
+{% endblock %}
+
+{% block js %}
+  {{ js('zamboni/editors') }}
+  {{ js('mkt/reviewers') }}
 {% endblock %}

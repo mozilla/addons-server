@@ -106,8 +106,15 @@
         revertButton($('.button.error'));
     }).bind('app_install_disabled', function(e, product) {
         // You're not using a compatible browser.
-        var $button = $('.button.product');
+        var $button = $('.button.product'),
+            $noApps = $('.noApps'); // Reviewers page.
+
         setButton($button, $button.html(), 'disabled');
-        $button.parent().append($('#noApps').html());
+
+        if ($noApps.length) {
+            $noApps.show();
+        } else {
+            $button.parent().append($('#noApps').html());
+        }
     });
 })();

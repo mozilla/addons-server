@@ -1,4 +1,15 @@
-var z = {};
+var z = {
+    page: $('#page'),
+    canInstallApps: true
+};
+
+(function() {
+    _.extend(z, {'nav': BrowserUtils()});
+    if (!z.nav.browser.firefox || z.nav.browser.mobile ||
+        VersionCompare.compareVersions(z.nav.browserVersion, '15.0a1') < 0) {
+        z.canInstallApps = false;
+    }
+})();
 
 $(document).ready(function() {
     // Initialize email links.
@@ -26,6 +37,10 @@ $(document).ready(function() {
         anonymous: data_user.anonymous,
         pre_auth: data_user.pre_auth
     });
+
+    if (!z.canInstallApps) {
+        $(window).trigger('app_install_disabled');
+    }
 });
 
 

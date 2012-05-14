@@ -1,5 +1,7 @@
 @import '../devreg/lib';
 
+@maroon: #800;
+
 h2, h3 {
     margin: 10px 0 0;
 }
@@ -52,7 +54,6 @@ header {
         float: right;
         margin-top: 15px;
         li {
-            display: inline-block;
             margin-left: 10px;
         }
     }
@@ -998,6 +999,7 @@ div.editor-stats-table > div.editor-stats-dark {
     border-bottom: 1px dotted #ccc;
     margin-bottom: 2em;
     padding-bottom: 1em;
+    text-align: center;
 }
 
 #editor-motd textarea {
@@ -1042,5 +1044,67 @@ span.currently_viewing_warning {
     &:hover {
         .gradient-two-color(#ccc, #bbb);
         color: @dark-gray;
+    }
+}
+
+#actions {
+    li {
+        display: inline-block;
+        max-width: 264px;
+        min-width: 192px;
+        margin-bottom: 20px;
+    }
+    .button {
+        position: relative;
+        z-index: 1;
+        display: block;
+    }
+    .faked-purchase,
+    .approval {
+        .border-radius(0 0 5px 5px);
+        display: block;
+        margin-top: -5px;
+        padding: 15px 15px 10px;
+        position: relative;
+        z-index: 0;
+    }
+    .noApps {
+        text-align: center;
+        margin-top: 10px;
+        line-height: 20px;
+        display: none;
+        a {
+            background: url(../../img/mkt/icons/nightly.png) 5px 0 no-repeat;
+            padding: 0 5px 0 30px;
+            display: inline-block;
+        }
+    }
+    .faked-purchase {
+        .border-radius(0 0 5px 5px);
+        background: fadeOut(@red, 90%);
+        font-size: 12px;
+        text-align: center;
+        b {
+            color: @maroon;
+            display: block;
+            text-transform: uppercase;
+        }
+    }
+    .approval {
+        background: fadeOut(@green, 90%);
+    }
+    .faked-purchase + .approval {
+        margin-top: -15px;
+    }
+    .approval-pitch {
+        display: block;
+        color: @dark-gray;
+        font-size: 12px;
+        font-weight: bold;
+        padding-top: 8px;
+        text-align: center;
+        &:hover {
+            color: @medium-gray;
+        }
     }
 }
