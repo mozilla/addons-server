@@ -89,7 +89,21 @@ def modal_view(f):
     return wrapper
 
 
-def json_view(f=None, has_trans=False):
+def json_response(response, has_trans=False, status_code=200):
+    """
+    Return a response as JSON. If you are just wrapping a view,
+    then use the json_view decorator.
+    """
+    if has_trans:
+        response = json.dumps(response, cls=JSONEncoder)
+    else:
+        response = json.dumps(response)
+    return http.HttpResponse(response,
+                             content_type='application/json',
+                             status=status_code)
+
+
+def json_view(f=None, has_trans=False, status_code=200):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kw):
@@ -97,12 +111,8 @@ def json_view(f=None, has_trans=False):
             if isinstance(response, http.HttpResponse):
                 return response
             else:
-                if has_trans:
-                    response = json.dumps(response, cls=JSONEncoder)
-                else:
-                    response = json.dumps(response)
-                return http.HttpResponse(response,
-                                         content_type='application/json')
+                return json_response(response, has_trans=has_trans,
+                                     status_code=status_code)
         return wrapper
     if f:
         return decorator(f)

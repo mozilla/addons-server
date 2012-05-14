@@ -31,6 +31,7 @@ def test_json_view():
     assert isinstance(response, http.HttpResponse)
     eq_(response.content, '{"x": 1}')
     eq_(response['Content-Type'], 'application/json')
+    eq_(response.status_code, 200)
 
 
 def test_json_view_normal_response():
@@ -48,6 +49,19 @@ def test_json_view_error():
     assert isinstance(response, http.HttpResponseBadRequest)
     eq_(response.content, '{"msg": "error"}')
     eq_(response['Content-Type'], 'application/json')
+
+
+def test_json_view_status():
+    f = lambda r: {'x': 1}
+    response = decorators.json_view(f, status_code=202)(mock.Mock())
+    eq_(response.status_code, 202)
+
+
+def test_json_view_response_status():
+    response = decorators.json_response({'msg': 'error'}, status_code=202)
+    eq_(response.content, '{"msg": "error"}')
+    eq_(response['Content-Type'], 'application/json')
+    eq_(response.status_code, 202)
 
 
 @mock.patch('django.db.transaction.commit_on_success')
