@@ -218,7 +218,7 @@ MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
 
 # Icon upload sizes
-ADDON_ICON_SIZES = [32, 48, 64, 128]
+ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
