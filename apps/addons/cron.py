@@ -16,6 +16,7 @@ import path
 from lib import recommend
 from celery.task.sets import TaskSet
 from celeryutils import task
+import waffle
 
 import amo
 import cronjobs
@@ -73,6 +74,10 @@ def _build_reverse_name_lookup(data, **kw):
 # delete it.
 @cronjobs.register
 def fast_current_version():
+
+    # Candidate for deletion - Bug 750510
+    if not waffle.switch_is_active('current_version_crons'):
+        return
     # Only find the really recent versions; this is called a lot.
     t = datetime.now() - timedelta(minutes=5)
     qs = Addon.objects.values_list('id')
@@ -90,6 +95,11 @@ def fast_current_version():
 @cronjobs.register
 def update_addons_current_version():
     """Update the current_version field of the addons."""
+
+    # Candidate for deletion - Bug 750510
+    if not waffle.switch_is_active('current_version_crons'):
+        return
+
     d = (Addon.objects.filter(disabled_by_user=False,
                               status__in=amo.VALID_STATUSES)
          .exclude(type=amo.ADDON_PERSONA).values_list('id'))
@@ -103,6 +113,11 @@ def update_addons_current_version():
 # delete it.
 @task(rate_limit='20/m')
 def _update_addons_current_version(data, **kw):
+
+    # Candidate for deletion - Bug 750510
+    if not waffle.switch_is_active('current_version_crons'):
+        return
+
     task_log.info("[%s@%s] Updating addons current_versions." %
                    (len(data), _update_addons_current_version.rate_limit))
     for pk in data:

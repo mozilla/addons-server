@@ -80,17 +80,6 @@ def _update_collections_subscribers(data, **kw):
     transaction.commit_unless_managed()
 
 
-# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
-# delete it.
-@cronjobs.register
-def collection_meta():
-    from . import tasks
-    collections = Collection.objects.values_list('id', flat=True)
-    ts = [tasks.cron_collection_meta.subtask(args=chunk)
-          for chunk in chunked(collections, 1000)]
-    TaskSet(ts).apply_async()
-
-
 @cronjobs.register
 def update_collections_votes():
     """Update collection's votes."""
