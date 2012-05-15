@@ -1,7 +1,6 @@
-{% set amo_user = request.amo_user %}
 {% if user.is_authenticated() %}
   <li class="account">
-    <a href="#" class="user" title="{{ amo_user.email }}">
+    <a href="{{ amo_user.get_url_path() }}" class="user" title="{{ amo_user.email }}">
       {{ amo_user.welcome_name }}</a>
     {% if account_links %}
       <ul>
