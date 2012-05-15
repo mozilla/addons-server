@@ -1,9 +1,9 @@
 import json
+import urlparse
 
 from jingo import register, env
 import jinja2
 from tower import ugettext as _
-import urlparse
 import waffle
 
 from amo.helpers import urlparams
