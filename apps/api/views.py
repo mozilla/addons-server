@@ -36,7 +36,7 @@ from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
 from search.client import SEARCHABLE_STATUSES
 from search.views import name_query
-from search import utils as search_utils
+from versions.compare import version_int
 
 
 ERROR = 'error'
@@ -145,13 +145,28 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
                   if f(a.current_version.supported_platforms)]
 
     if version is not None:
-        v = search_utils.convert_version(version)
-        if compat_mode == 'strict':
-            f = lambda app: app.min.version_int <= v <= app.max.version_int
-        else:
-            f = lambda app: app.min.version_int <= v
+        vint = version_int(version)
+        f_strict = lambda app: (app.min.version_int <= vint
+                                                    <= app.max.version_int)
+        f_ignore = lambda app: app.min.version_int <= vint
         xs = [(a, a.compatible_apps) for a in addons]
-        addons = [a for a, apps in xs if apps.get(APP) and f(apps[APP])]
+
+        # Iterate over addons, checking compatibility depending on compat_mode.
+        addons = []
+        for addon, apps in xs:
+            app = apps.get(APP)
+            if compat_mode == 'strict':
+                if app and f_strict(app):
+                    addons.append(addon)
+            elif compat_mode == 'ignore':
+                if app and f_ignore(app):
+                    addons.append(addon)
+            elif compat_mode == 'normal':
+                # This does a db hit but it's cached. This handles the cases
+                # for strict opt-in, binary components, and compat overrides.
+                v = addon.compatible_version(APP.id, version, compat_mode)
+                if v:  # There's a compatible version.
+                    addons.append(addon)
 
     # Put personas back in.
     addons.extend(personas)
@@ -343,8 +358,8 @@ class SearchView(APIView):
                     addon.compat_version = compat_version
                     results.append(addon)
                 else:
-                    # We're excluding this addon because there are no compatible
-                    # versions. Decrement the total.
+                    # We're excluding this addon because there are no
+                    # compatible versions. Decrement the total.
                     total -= 1
         else:
             is_d2c = False

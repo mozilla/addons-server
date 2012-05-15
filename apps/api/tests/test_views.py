@@ -5,6 +5,7 @@ from textwrap import dedent
 
 from django.conf import settings
 from django.test.client import Client
+from django.utils import translation
 
 import jingo
 from mock import patch
@@ -12,19 +13,20 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-import api
-import api.utils
-from amo import helpers
-from amo.tests import ESTestCase, TestCase
-from amo.urlresolvers import reverse
-from amo.views import handler500
 from addons.cron import reset_featured_addons
 from addons.models import (Addon, AppSupport, CompatOverride,
                            CompatOverrideRange, Preview)
 from addons.utils import FeaturedManager
+from amo import helpers
+from amo.tests import addon_factory, ESTestCase, TestCase
+from amo.urlresolvers import reverse
+from amo.views import handler500
+import api
+from api.views import addon_filter
+from api.utils import addon_to_dict
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from files.models import File
+from files.models import File, Platform
 from files.tests.test_models import UploadTest
 from market.models import AddonPremium, Price
 from tags.models import AddonTag, Tag
@@ -50,15 +52,14 @@ class UtilsTest(TestCase):
 
     def test_dict(self):
         """Verify that we're getting dict."""
-        d = api.utils.addon_to_dict(self.a)
+        d = addon_to_dict(self.a)
         assert d, 'Add-on dictionary not found'
         assert d['learnmore'].endswith('/addon/a3615/?src=api'), (
             'Add-on details URL does not end with "?src=api"')
 
     def test_dict_disco(self):
         """Check for correct add-on detail URL for discovery pane."""
-        d = api.utils.addon_to_dict(self.a, disco=True,
-                                    src='discovery-personalrec')
+        d = addon_to_dict(self.a, disco=True, src='discovery-personalrec')
         u = '%s%s?src=discovery-personalrec' % (settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
@@ -67,7 +68,7 @@ class UtilsTest(TestCase):
         """Check that tags are stripped for summary and description."""
         self.a.summary = self.a.description = 'i <3 <a href="">amo</a>!'
         self.a.save()
-        d = api.utils.addon_to_dict(self.a)
+        d = addon_to_dict(self.a)
         eq_(d['summary'], 'i &lt;3 amo!')
         eq_(d['description'], 'i &lt;3 amo!')
 
@@ -76,7 +77,7 @@ class UtilsTest(TestCase):
         self.a.suggested_amount = 5
         self.a.paypal_id = 'alice@example.com'
         self.a.save()
-        d = api.utils.addon_to_dict(self.a)
+        d = addon_to_dict(self.a)
         eq_(d['contribution']['suggested_amount'], 5)
 
     def test_no_contrib_info_until_approved(self):
@@ -85,7 +86,7 @@ class UtilsTest(TestCase):
         self.a.status = amo.STATUS_LITE
         self.a.paypal_id = 'alice@example.com'
         self.a.save()
-        d = api.utils.addon_to_dict(self.a)
+        d = addon_to_dict(self.a)
         assert 'contribution' not in d
 
 
@@ -640,6 +641,118 @@ class ListTest(TestCase):
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
+
+
+class AddonFilterTest(TestCase):
+    """Tests the addon_filter, including the various d2c cases."""
+    fixtures = ['base/apps', 'base/appversion']
+
+    def setUp(self):
+        # Start with 2 compatible add-ons.
+        self.addon1 = addon_factory(version_kw=dict(max_app_version='5.0'))
+        self.addon2 = addon_factory(version_kw=dict(max_app_version='6.0'))
+        self.addons = [self.addon1, self.addon2]
+
+    def _defaults(self, **kwargs):
+        # Default args for addon_filter.
+        defaults = {
+            'addons': self.addons,
+            'addon_type': 'ALL',
+            'limit': 0,
+            'app': amo.FIREFOX,
+            'platform': 'all',
+            'version': '5.0',
+            'compat_mode': 'strict',
+            'shuffle': False,
+        }
+        defaults.update(kwargs)
+        return defaults
+
+    def test_basic(self):
+        addons = addon_filter(**self._defaults())
+        eq_(addons, self.addons)
+
+    def test_limit(self):
+        addons = addon_filter(**self._defaults(limit=1))
+        eq_(addons, [self.addon1])
+
+    def test_app_filter(self):
+        self.addon1.update(type=amo.ADDON_DICT)
+        addons = addon_filter(
+            **self._defaults(addon_type=str(amo.ADDON_EXTENSION)))
+        eq_(addons, [self.addon2])
+
+    def test_platform_filter(self):
+        platform, _ = Platform.objects.get_or_create(pk=amo.PLATFORM_WIN.id)
+        file = self.addon1.current_version.files.all()[0]
+        file.update(platform=platform)
+        addons = addon_filter(
+            **self._defaults(platform=amo.PLATFORM_LINUX.shortname))
+        eq_(addons, [self.addon2])
+
+    def test_version_filter_strict(self):
+        addons = addon_filter(**self._defaults(version='6.0'))
+        eq_(addons, [self.addon2])
+
+    def test_version_filter_ignore(self):
+        addons = addon_filter(**self._defaults(version='6.0',
+                                               compat_mode='ignore'))
+        eq_(addons, self.addons)
+
+    def test_version_version_less_than_min(self):
+        # Ensure we filter out addons with a higher min than our app.
+        addon3 = addon_factory(version_kw=dict(min_app_version='12.0',
+                                               max_app_version='14.0'))
+        addons = self.addons + [addon3]
+        addons = addon_filter(**self._defaults(addons=addons, version='11.0',
+                                               compat_mode='ignore'))
+        eq_(addons, self.addons)
+
+    def test_version_filter_normal_strict_opt_in(self):
+        # Ensure we filter out strict opt-in addons in normal mode.
+        addon3 = addon_factory(version_kw=dict(max_app_version='7.0'),
+                               file_kw=dict(strict_compatibility=True))
+        addons = self.addons + [addon3]
+        addons = addon_filter(**self._defaults(addons=addons, version='11.0',
+                                               compat_mode='normal'))
+        eq_(addons, self.addons)
+
+    def test_version_filter_normal_binary_components(self):
+        # Ensure we filter out strict opt-in addons in normal mode.
+        addon3 = addon_factory(version_kw=dict(max_app_version='7.0'),
+                               file_kw=dict(binary_components=True))
+        addons = self.addons + [addon3]
+        addons = addon_filter(**self._defaults(addons=addons, version='11.0',
+                                               compat_mode='normal'))
+        eq_(addons, self.addons)
+
+    def test_version_filter_normal_compat_override(self):
+        # Ensure we filter out strict opt-in addons in normal mode.
+        addon3 = addon_factory()
+        addons = self.addons + [addon3]
+
+        # Add override for this add-on.
+        compat = CompatOverride.objects.create(guid='three', addon=addon3)
+        CompatOverrideRange.objects.create(
+            compat=compat, app=Application.objects.get(pk=1),
+            min_version=addon3.current_version.version, max_version='*')
+
+        addons = addon_filter(**self._defaults(addons=addons, version='11.0',
+                                               compat_mode='normal'))
+        eq_(addons, self.addons)
+
+    def test_locale_preferencing(self):
+        # Add-ons matching the current locale get prioritized.
+        addon3 = addon_factory()
+        addon3.description = {'de': 'Unst Unst'}
+        addon3.save()
+
+        addons = self.addons + [addon3]
+
+        translation.activate('de')
+        addons = addon_filter(**self._defaults(addons=addons))
+        eq_(addons, [addon3] + self.addons)
+        translation.deactivate()
 
 
 class SeamonkeyFeaturedTest(TestCase):

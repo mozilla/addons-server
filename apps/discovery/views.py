@@ -88,7 +88,10 @@ def promos(request, context, version, platform, compat_mode='strict'):
                         {'modules': modules, 'module_context': context})
 
 
-def pane_promos(request, version, platform, compat_mode='strict'):
+def pane_promos(request, version, platform, compat_mode=None):
+    if not compat_mode:
+        compat_mode = get_compat_mode(version)
+
     return promos(request, 'discovery', version, platform, compat_mode)
 
 

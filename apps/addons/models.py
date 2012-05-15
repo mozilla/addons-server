@@ -683,7 +683,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             version_id = 0
 
         log.info(u'Caching compat version %s => %s' % (cache_key, version_id))
-        cache.set(cache_key, version_id)
+        cache.set(cache_key, version_id, 0)
 
         return version
 

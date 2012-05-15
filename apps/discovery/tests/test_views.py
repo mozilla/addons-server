@@ -12,7 +12,8 @@ import amo.tests
 from amo.tests import addon_factory
 import addons.signals
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonDependency, AddonUpsell, Preview
+from addons.models import (Addon, AddonDependency, AddonUpsell, CompatOverride,
+                           CompatOverrideRange, Preview)
 from applications.models import Application, AppVersion
 from bandwagon.models import MonthlyPick, SyncedCollection
 from bandwagon.tests.test_models import TestRecommendations as Recs
@@ -613,5 +614,44 @@ class TestPaneMoreAddons(amo.tests.TestCase):
                                             active=True)
         # Defaults to ignore compat mode for Fx v10, both are compatible.
         res = self.client.get(self._url(version='10.0'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('.featured-addons').length, 2)
+
+    def test_hotness_normal_strict_opt_in(self):
+        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
+                                            active=True)
+        # Add a 3rd add-on that should get filtered out b/c of compatibility.
+        addon_factory(hotness=50, version_kw=dict(max_app_version='7.0'),
+                      file_kw=dict(strict_compatibility=True))
+
+        res = self.client.get(self._url(version='12.0', compat_mode='normal'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('.featured-addons').length, 2)
+
+    def test_hotness_normal_binary_components(self):
+        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
+                                            active=True)
+        # Add a 3rd add-on that should get filtered out b/c of compatibility.
+        addon_factory(hotness=50, version_kw=dict(max_app_version='7.0'),
+                      file_kw=dict(binary_components=True))
+
+        res = self.client.get(self._url(version='12.0', compat_mode='normal'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('.featured-addons').length, 2)
+
+    def test_hotness_normal_compat_override(self):
+        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
+                                            active=True)
+        # Add a 3rd add-on that should get filtered out b/c of compatibility.
+        addon3 = addon_factory(hotness=50,
+                               version_kw=dict(max_app_version='7.0'))
+
+        # Add override for this add-on.
+        compat = CompatOverride.objects.create(guid='three', addon=addon3)
+        CompatOverrideRange.objects.create(
+            compat=compat, app=Application.objects.get(pk=1),
+            min_version=addon3.current_version.version, max_version='*')
+
+        res = self.client.get(self._url(version='12.0', compat_mode='normal'))
         eq_(res.status_code, 200)
         eq_(pq(res.content)('.featured-addons').length, 2)
