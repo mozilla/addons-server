@@ -13,7 +13,8 @@ var z = {
 
 (function() {
     _.extend(z, {'nav': BrowserUtils()});
-    if (!z.nav.browser.firefox || z.nav.browser.mobile ||
+    if (!z.nav.browser.firefox ||
+        z.nav.browser.mobile || z.nav.browser.android || z.nav.browser.maemo ||
         VersionCompare.compareVersions(z.nav.browserVersion, '15.0a1') < 0) {
         z.canInstallApps = false;
     }
