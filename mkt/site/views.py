@@ -2,6 +2,7 @@ import json
 
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 
 from django_statsd.views import record as django_statsd_record
@@ -9,7 +10,7 @@ import jingo
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 from amo.context_processors import get_collect_timings
-from amo.decorators import post_required
+from amo.decorators import post_required, no_login_required
 from amo.helpers import media
 import api.views
 
@@ -83,3 +84,12 @@ def record(request):
     if get_collect_timings():
         return django_statsd_record(request)
     return http.HttpResponseForbidden()
+
+
+# Cache this for an hour so that newly deployed changes are available within
+# an hour. This will be served from the CDN which mimics these headers.
+@cache_page(60 * 60)
+@no_login_required
+def mozmarket_js(request):
+    return jingo.render(request, 'site/mozmarket.js',
+                        content_type='text/javascript')

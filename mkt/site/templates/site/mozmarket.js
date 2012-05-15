@@ -1,9 +1,10 @@
 /*
-JS included by any *remote* web app to enable in-app payments via Mozilla Marketplace
+JS included by any *remote* web app to enable interaction
+with the Mozilla Marketplace.
 
-To use this script in your app, read the docs here:
+This currently supports in-app payments.
+Check out the documentation to learn more:
 https://developer.mozilla.org/en/Apps/In-app_payments
-
 */
 (function(exports) {
 "use strict";

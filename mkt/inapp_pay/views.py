@@ -204,13 +204,6 @@ def _payment_done(request, payment, action='PAY_COMPLETE'):
     log.debug('in-app payment %s for payment %s' % (action, payment.pk))
 
 
-# @cache_page(60 * 60 * 24 * 365)
-@no_login_required
-def mozmarket_lib(request):
-    return jingo.render(request, 'inapp_pay/library.js',
-                        content_type='text/javascript')
-
-
 def _serializable_req(pay_req):
     """
     Convert payment request json (from signed JWT)

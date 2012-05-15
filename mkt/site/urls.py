@@ -6,6 +6,7 @@ from . import views
 
 
 urlpatterns = patterns('',
+    url('^mozmarket.js$', views.mozmarket_js, name='site.mozmarket_js'),
     url('^privacy-policy$', direct_to_template,
         {'template': 'site/privacy-policy.html'}, name='site.privacy'),
     url('^terms-of-use$', direct_to_template,
