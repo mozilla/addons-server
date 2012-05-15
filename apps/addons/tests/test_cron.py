@@ -22,14 +22,14 @@ class TestBuildReverseNameLookup(amo.tests.TestCase):
 class CurrentVersionTestCase(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
-    @patch('waffle.switch_is_active', lambda x: True)
+    @mock.patch('waffle.switch_is_active', lambda x: True)
     def test_addons(self):
         Addon.objects.filter(pk=3615).update(_current_version=None)
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 1)
         cron._update_addons_current_version(((3615,),))
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
-    @patch('waffle.switch_is_active', lambda x: True)
+    @mock.patch('waffle.switch_is_active', lambda x: True)
     def test_cron(self):
         Addon.objects.filter(pk=3615).update(_current_version=None)
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 1)
