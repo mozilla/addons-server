@@ -188,16 +188,16 @@
             var xFormatter,
                 yFormatter;
             function dayFormatter(d) { return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d)); }
-            function weekFormatter(d) { return "Week of " + Highcharts.dateFormat('%b %e, %Y', new Date(d)); }
+            function weekFormatter(d) { return format(gettext('Week of {0}'), Highcharts.dateFormat('%b %e, %Y', new Date(d))); }
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
-            function downloadFormatter(n) { return gettext('{0} downloads', Highcharts.numberFormat(n, 0)); }
-            function userFormatter(n) { return gettext('{0} users', Highcharts.numberFormat(n, 0)); }
-            function addonsFormatter(n) { return gettext('{0} addons', Highcharts.numberFormat(n, 0)); }
-            function collectionsFormatter(n) { return gettext('{0} collections', Highcharts.numberFormat(n, 0)); }
-            function reviewsFormatter(n) { return gettext('{0} reviews', Highcharts.numberFormat(n, 0)); }
+            function downloadFormatter(n) { return gettext(Highcharts.numberFormat(n, 0) + 'downloads'); }
+            function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
+            function addonsFormatter(n) { return format(gettext('{0} addons'), Highcharts.numberFormat(n, 0)); }
+            function collectionsFormatter(n) { return format(gettext('{0} collections'), Highcharts.numberFormat(n, 0)); }
+            function reviewsFormatter(n) { return format(gettext('{0} reviews'), Highcharts.numberFormat(n, 0)); }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
-            function salesFormatter(n) { return gettext('{0} sales', Highcharts.numberFormat(n, 0)); }
-            function refundsFormatter(n) { return gettext('{0} refunds', Highcharts.numberFormat(n, 0)); }
+            function salesFormatter(n) { return format(gettext('{0} sales'), Highcharts.numberFormat(n, 0)); }
+            function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
             function addEventData(s, date) {
                 var e = events[date];
                 if (e) {
@@ -261,8 +261,6 @@
                         break;
                     case "addons":
                         yFormatter = addonsFormatter;
-                        break;
-                        yFormatter = currencyFormatter;
                         break;
                     case "sales":
                         yFormatter = salesFormatter;
