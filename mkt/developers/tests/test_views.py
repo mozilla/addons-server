@@ -159,7 +159,8 @@ class TestAppDashboard(AppHubTest):
         eq_(doc('.more-actions-popup').length, 0)
 
     def test_action_links(self):
-        waffle.models.Switch.objects.create(name='app-stats', active=True)
+        waffle.models.Switch.objects.get_or_create(name='app-stats',
+            active=True)
         app = self.get_app()
         app.update(public_stats=True)
         self.make_mine()
@@ -169,9 +170,10 @@ class TestAppDashboard(AppHubTest):
             ('Manage Authors', app.get_dev_url('owner')),
             ('Manage Payments', app.get_dev_url('payments')),
             ('View Listing', app.get_url_path()),
-            ('View Statistics', app.get_stats_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
+        amo.tests.check_links([('View Statistics', app.get_stats_url())],
+            doc('a.stats-link'), verify=False)
 
     def test_action_links_with_payments(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)

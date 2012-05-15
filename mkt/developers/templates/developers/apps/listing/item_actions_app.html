@@ -39,7 +39,7 @@
   {% endif %}
   {% if waffle.switch('app-stats') %}
     <li>
-      <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
+      <a class="action-link stats-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
     </li>
   {% endif %}
   <li>
