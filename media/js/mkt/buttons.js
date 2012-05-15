@@ -89,7 +89,7 @@
                 break;
         }
 
-        if (msg) {
+        if (msg && msg != 'cancelled') {
             var $btnContainer = $('.app-install');
             setButton($button, gettext('Error'), 'error');
 
