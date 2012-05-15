@@ -6,6 +6,7 @@ from types import GeneratorType
 from datetime import date, timedelta
 
 from django import http
+from django.conf import settings
 from django.db import connection
 from django.db.models import Avg, Count, Sum, Q
 from django.utils import simplejson

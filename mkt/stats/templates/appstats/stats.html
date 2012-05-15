@@ -39,20 +39,31 @@
       </ul>
     </div>
 
-    <div class="criteria group island">
+    <div class="criteria stat-type island">
+      {% set links = [
+        (addon.get_stats_url(action='overview'), _('Overview')),
+        (addon.get_stats_url(action='installs'), _('Installs')),
+        (addon.get_stats_url(action='usage'), _('Usage'))
+      ] %}
       <ul>
-        <li>{{ _('Group by:') }}</li>
-        <li data-group="day">
-            <a href="#">{{ _('day') }}</a>
-        </li>
-        <li data-group="week">
-            <a href="#">{{ _('week') }}</a>
-        </li>
-        <li data-group="month">
-            <a href="#">{{ _('month') }}</a>
-        </li>
+        <li>{{ _('Statistics Type') }}</li>
+        {% for link, title in links %}
+          <li{% if request.path == link %} class="selected"{% endif %}>
+            <a href="{{ link }}">{{ title }}</a>
+          </li>
+        {% endfor %}
+        {% if addon.is_premium() and can_view_sales %}
+          <li{%block sales_select %}
+               {% if request.path == link %} class="selected"{% endif %}
+             {% endblock %}>
+            <a href="{{ addon.get_stats_url(action='revenue') }}">{{ _('Sales') }}</a>
+        {% endif %}
       </ul>
     </div>
+
+    {% block sales_filters %}{% endblock %}
+
+    <div class="c"></div>
 
     <div class="criteria range island">
       <ul>
@@ -74,6 +85,22 @@
             <a id="custom-date-range" href="#">{{ _('Custom&hellip;') }}</a></li>
       </ul>
     </div>
+
+    <div class="criteria group island">
+      <ul>
+        <li>{{ _('Group by:') }}</li>
+        <li data-group="day">
+            <a href="#">{{ _('Day') }}</a>
+        </li>
+        <li data-group="week">
+            <a href="#">{{ _('Week') }}</a>
+        </li>
+        <li data-group="month">
+            <a href="#">{{ _('Month') }}</a>
+        </li>
+      </ul>
+    </div>
+
   </header>
 
   <div id="lm" class="loadmessage">
