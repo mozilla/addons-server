@@ -61,11 +61,6 @@ class TestWebapp(test_utils.TestCase):
         eq_(webapp.get_stats_url(), '/en-US/app/woo/statistics/')
 
         eq_(
-            webapp.get_stats_url(action='sales'),
-            '/en-US/app/woo/statistics/sales/'
-        )
-
-        eq_(
             webapp.get_stats_url(
                 action='overview_series',
                 args=['day', '20120101', '20120201', 'json']),
