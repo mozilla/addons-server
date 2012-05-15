@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import include, patterns, url
 
 import addons.views
+from mkt.ratings.urls import review_patterns
 from . import views
+
 
 urlpatterns = patterns('',
     url('^$', views.detail, name='detail'),
@@ -11,8 +13,11 @@ urlpatterns = patterns('',
     # Submission.
     ('^purchase/', include('mkt.purchase.urls')),
 
-    # Statistics
+    # Statistics.
     ('^statistics/', include('mkt.stats.urls')),
+
+    # Ratings.
+    ('^reviews/', include(review_patterns)),
 
     # TODO: Port abuse.
     url('^abuse$', addons.views.report_abuse, name='detail.abuse'),
