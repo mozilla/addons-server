@@ -6,15 +6,18 @@
 </header>
 <div>
   <div class="product-details">
+    <div class="icon">
+      <img src="{{ img }}">
+    </div>
     <h2>{{ item }}</h2>
     <p>{{ description }}</p>
   </div>
+</div>
+<footer>
   <form method="post" action="{{ url('inapp_pay.pay') }}">
     {{ csrf() }}
     <input type="hidden" name="req" value="{{ signed_request }}">
-    <div class="actions">
-      <button href="#" class="button purchase">{{ currency }} {{ price }}</button>
-    </div>
+    <button href="#" class="button purchase">{{ currency }} {{ price }}</button>
   </form>
-</div>
+</footer>
 {% endblock %}

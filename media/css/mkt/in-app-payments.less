@@ -51,8 +51,28 @@ section {
         overflow: hidden;
     }
     .product-details {
-        float: left;
-        width: 270px;
+        height: 130px;
+        .icon {
+            height: 120px;
+            width: 120px;
+            float: left;
+            position: relative;
+            background: #fff;
+            margin-right: 15px;
+            .box-shadow(0px 1px 2px 0px fade(#000, 30%),
+                        0px 2px 1px 0px fade(#000, 10%),
+                        0px 0px 12px 0px fade(#000, 5%));
+        }
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            max-width: 120px;
+            max-height: 120px;
+        }
     }
     .actions {
         float: right;
@@ -64,6 +84,7 @@ section {
         }
     }
     footer {
+        clear: both;
         .border-box;
         font-size: 12px;
         position: absolute;

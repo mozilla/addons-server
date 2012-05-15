@@ -3,6 +3,7 @@ import json
 from jingo import register, env
 import jinja2
 from tower import ugettext as _
+import urlparse
 import waffle
 
 from amo.helpers import urlparams
@@ -197,3 +198,9 @@ def admin_site_links():
             ('Site Status', reverse('amo.monitor')),
         ],
     }
+
+
+def webapp_url(webapp, url):
+    if not urlparse.urlparse(url).scheme:
+        url = webapp.origin + url
+    return url
