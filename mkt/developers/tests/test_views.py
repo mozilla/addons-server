@@ -160,7 +160,7 @@ class TestAppDashboard(AppHubTest):
 
     def test_action_links(self):
         waffle.models.Switch.objects.get_or_create(name='app-stats',
-            active=True)
+                                                   active=True)
         app = self.get_app()
         app.update(public_stats=True)
         self.make_mine()

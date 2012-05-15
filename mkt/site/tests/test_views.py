@@ -57,6 +57,15 @@ class TestManifest(amo.tests.TestCase):
         assert 'en-US' not in url and 'firefox' not in url
 
 
+class TestMozmarketJS(amo.tests.TestCase):
+
+    @mock.patch.object(settings, 'SITE_URL', 'https://secure-mkt.com/')
+    def test_render(self):
+        resp = self.client.get(reverse('site.mozmarket_js'))
+        self.assertContains(resp, "var server = 'https://secure-mkt.com/'")
+        eq_(resp['Content-Type'], 'text/javascript')
+
+
 class TestRobots(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'ENGAGE_ROBOTS', True)

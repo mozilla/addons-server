@@ -63,6 +63,7 @@ INSTALLED_APPS += (
 
 SUPPORTED_NONLOCALES += (
     'manifest.webapp',
+    'mozmarket.js',
     'csrf',
 )
 
