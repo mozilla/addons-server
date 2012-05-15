@@ -47,11 +47,7 @@ exports.install = function(product, opt) {
         };
         installRequest.onerror = function() {
             // The JS shim still uses this.error instead of this.error.name.
-            if (!this.error.name) {
-                $def.reject(product, this.error);
-            } else {
-                $def.reject(product, this.error.name);
-            }
+            $def.reject(product, this.error.name || this.error);
         };
     } else {
         $def.reject();

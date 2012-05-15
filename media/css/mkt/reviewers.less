@@ -1049,14 +1049,15 @@ span.currently_viewing_warning {
 
 #actions {
     li {
-        display: inline-block;
         max-width: 264px;
         min-width: 192px;
         margin-bottom: 20px;
     }
-    .button {
+    .button.product {
         position: relative;
         z-index: 1;
+    }
+    .button {
         display: block;
     }
     .faked-purchase,
@@ -1068,7 +1069,7 @@ span.currently_viewing_warning {
         position: relative;
         z-index: 0;
     }
-    .noApps {
+    .no-apps {
         text-align: center;
         margin-top: 10px;
         line-height: 20px;
@@ -1088,23 +1089,6 @@ span.currently_viewing_warning {
             color: @maroon;
             display: block;
             text-transform: uppercase;
-        }
-    }
-    .approval {
-        background: fadeOut(@green, 90%);
-    }
-    .faked-purchase + .approval {
-        margin-top: -15px;
-    }
-    .approval-pitch {
-        display: block;
-        color: @dark-gray;
-        font-size: 12px;
-        font-weight: bold;
-        padding-top: 8px;
-        text-align: center;
-        &:hover {
-            color: @medium-gray;
         }
     }
 }

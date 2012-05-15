@@ -90,13 +90,22 @@
         }
 
         if (msg) {
+            var $btnContainer = $('.app-install');
             setButton($button, gettext('Error'), 'error');
-            var $overlay = $('<div id="install-error" class="overlay"></div>');
-            $overlay.append('<section><h3>' + gettext('Error') + '</h3><p>' +
-                            errSummary + '</p></section>');
-            $('#install-error').remove();
-            $('body').append($overlay);
-            $overlay.addClass('show');
+
+            if ($btnContainer.length) { // Reviewers page.
+                var $errList = $('<ul class="errorlist"></ul>');
+                $errList.append(format('<li>{0}</li>', errSummary));
+                $btnContainer.find('.errorlist').remove();
+                $btnContainer.append($errList);
+            } else {
+                var $overlay = $('<div id="install-error" class="overlay"></div>');
+                $overlay.append('<section><h3>' + gettext('Error') + '</h3><p>' +
+                                errSummary + '</p></section>');
+                $('#install-error').remove();
+                $('body').append($overlay);
+                $overlay.addClass('show');
+            }
         } else {
             // Cancelled install. Roll back.
             revertButton($button);
@@ -107,7 +116,7 @@
     }).bind('app_install_disabled', function(e, product) {
         // You're not using a compatible browser.
         var $button = $('.button.product'),
-            $noApps = $('.noApps'); // Reviewers page.
+            $noApps = $('.no-apps'); // Reviewers page.
 
         setButton($button, $button.html(), 'disabled');
 
