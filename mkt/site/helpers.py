@@ -1,5 +1,4 @@
 import json
-import urlparse
 
 from jingo import register, env
 import jinja2
@@ -198,9 +197,3 @@ def admin_site_links():
             ('Site Status', reverse('amo.monitor')),
         ],
     }
-
-
-def webapp_url(webapp, url):
-    if not urlparse.urlparse(url).scheme:
-        url = webapp.origin + url
-    return url

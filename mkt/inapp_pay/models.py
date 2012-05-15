@@ -1,4 +1,3 @@
-import posixpath
 import random
 import urlparse
 
@@ -132,6 +131,19 @@ class InappConfig(amo.models.ModelBase):
         else:
             return 'https' if self.is_https else 'http'
 
+    def image_url(self, product_img_url=None):
+        """URL for the cached product image at product_img_url.
+
+        The product_img_url is the optional JWT key at
+        jwt['request']['imageURL']
+        """
+        qs = self.images.filter(config=self, image_url=product_img_url,
+                                valid=True)
+        if product_img_url and qs.count():
+            return qs.get().url()
+        else:
+            return InappImage.default_image_url()
+
 
 def limited_keygen(gen_key, max_tries):
     for try_ in range(max_tries):
@@ -235,7 +247,7 @@ class InappPayNotice(amo.models.ModelBase):
 
 
 class InappImage(amo.models.ModelBase):
-    config = models.ForeignKey(InappConfig)
+    config = models.ForeignKey(InappConfig, related_name='images')
     image_url = models.CharField(max_length=255, db_index=True)
     image_format = models.CharField(max_length=4)
     valid = models.BooleanField(default=False, db_index=True)
@@ -254,7 +266,16 @@ class InappImage(amo.models.ModelBase):
                                         self.image_url, '', '', ''))
 
     def path(self):
-        dp = posixpath.join(settings.INAPP_IMAGE_PATH,
-                            str(self.config.addon.pk),
-                            '%s.%s' % (self.pk, self.image_format.lower()))
+        dp = '/'.join((settings.INAPP_IMAGE_PATH, self._base_path()))
         return storage.path(dp)
+
+    @classmethod
+    def default_image_url(cls):
+        return '/'.join((settings.MEDIA_URL, 'img/mkt/glyphs/rocket.png'))
+
+    def url(self):
+        return '/'.join((settings.INAPP_IMAGE_URL, self._base_path()))
+
+    def _base_path(self):
+        return '/'.join((str(self.config.addon.pk),
+                         '%s.%s' % (self.pk, self.image_format.lower())))

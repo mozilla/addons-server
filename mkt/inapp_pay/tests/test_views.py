@@ -23,7 +23,8 @@ from paypal import PaypalError
 from stats.models import Contribution
 from users.models import UserProfile
 
-from mkt.inapp_pay.models import InappPayment, InappConfig, InappPayLog
+from mkt.inapp_pay.models import (InappPayment, InappConfig, InappPayLog,
+                                  InappImage)
 
 
 class InappPaymentUtil:
@@ -115,27 +116,32 @@ class PaymentViewTest(PaymentTest):
 
 
 @mock.patch.object(settings, 'DEBUG', True)
-@mock.patch('mkt.inapp_pay.tasks.fetch_product_image')
-class TestPayStart(PaymentViewTest):
+class PayFlowTest(PaymentViewTest):
 
     def setUp(self):
-        super(TestPayStart, self).setUp()
+        super(PayFlowTest, self).setUp()
         PreApprovalUser.objects.create(user=self.user,
                                        paypal_key='fantasmic')
 
-    def start(self, req=None):
+    def start(self, req=None, extra_request=None):
         if not req:
             payload = self.payload()
+            if extra_request:
+                payload['request'].update(extra_request)
             req = self.request(payload=json.dumps(payload))
         return self.client.get(reverse('inapp_pay.pay_start'),
                                data=dict(req=req))
+
+
+@mock.patch.object(settings, 'DEBUG', True)
+@mock.patch('mkt.inapp_pay.tasks.fetch_product_image')
+class TestPayStart(PayFlowTest):
 
     def test_missing_pay_request_on_start(self, fetch_prod_im):
         rp = self.client.get(reverse('inapp_pay.pay_start'))
         eq_(rp.status_code, 400)
 
     def test_pay_start(self, fetch_prod_im):
-        payload = self.payload()
         rp = self.start()
         eq_(rp.status_code, 200)
         assert 'x-frame-options' not in rp, "Can't deny with x-frame-options"
@@ -315,3 +321,43 @@ class TestPay(PaymentViewTest):
     def test_missing_uuid(self):
         res = self.client.get(self.complete_url)
         self.assertContains(res, 'Payment Error')
+
+
+@mock.patch.object(settings, 'DEBUG', True)
+@mock.patch('mkt.inapp_pay.tasks.fetch_product_image')
+class TestProductImage(PayFlowTest):
+
+    def setUp(self):
+        super(TestProductImage, self).setUp()
+        self.image_url = '/my/image.jpg'
+        InappImage.objects.create(config=self.inapp_config,
+                                  image_url=self.image_url,
+                                  valid=True)
+
+    def start(self, req=None, extra_request=None):
+        if not extra_request:
+            extra_request = {'imageURL': self.image_url}
+        return super(TestProductImage, self).start(req=req,
+                                                   extra_request=extra_request)
+
+    def test_show_image(self, fetch_image):
+        resp = self.start()
+        doc = pq(resp.content)
+        eq_(doc('.product-details img').attr('src'),
+            self.inapp_config.image_url(self.image_url))
+
+    def test_show_default(self, fetch_image):
+        InappImage.objects.all().delete()
+        resp = self.start()
+        doc = pq(resp.content)
+        eq_(doc('.product-details img').attr('src'),
+            InappImage.default_image_url())
+
+    def test_handle_multiple(self, fetch_image):
+        InappImage.objects.create(config=self.inapp_config,
+                                  image_url='/some/other.jpg',
+                                  valid=True)
+        resp = self.start()
+        doc = pq(resp.content)
+        eq_(doc('.product-details img').attr('src'),
+            self.inapp_config.image_url(self.image_url))

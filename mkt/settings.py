@@ -174,6 +174,9 @@ ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
 # Directory path to where product images for in-app payments are stored.
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 
+# Base URL root to serve in-app product images from.
+INAPP_IMAGE_URL = INAPP_IMAGE_PATH
+
 # Tuple of (x, y) pixel sizes that an in-app product image should be
 # resized to for display on the payment screen.
 INAPP_IMAGE_SIZE = (150, 150)

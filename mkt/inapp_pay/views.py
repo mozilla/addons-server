@@ -15,7 +15,6 @@ from django.shortcuts import redirect, get_object_or_404
 import amo
 from amo.decorators import (login_required, no_login_required,
                             post_required, write)
-from mkt.site.helpers import webapp_url
 
 import paypal
 from stats.models import Contribution
@@ -35,22 +34,19 @@ log = commonware.log.getLogger('z.inapp_pay')
 @write
 @waffle_switch('in-app-payments-ui')
 def pay_start(request, signed_req, pay_req):
-    webapp = pay_req['_config'].addon
-    InappPayLog.log(request, 'PAY_START', config=pay_req['_config'])
+    cfg = pay_req['_config']
+    webapp = cfg.addon
+    InappPayLog.log(request, 'PAY_START', config=cfg)
+    tasks.fetch_product_image.delay(cfg.pk,
+                                    _serializable_req(pay_req))
     data = dict(price=pay_req['request']['price'],
                 product=webapp,
                 currency=pay_req['request']['currency'],
                 item=pay_req['request']['name'],
-                img=pay_req['request'].get('imageURL'),
+                img=cfg.image_url(pay_req['request'].get('imageURL')),
                 description=pay_req['request']['description'],
                 signed_request=signed_req)
-    if data['img']:
-        data['img'] = webapp_url(webapp, data['img'])
-    else:
-        data['img'] = settings.MEDIA_URL + '/img/mkt/glyphs/rocket.png'
 
-    tasks.fetch_product_image.delay(pay_req['_config'].pk,
-                                    _serializable_req(pay_req))
     if not request.user.is_authenticated():
         return jingo.render(request, 'inapp_pay/login.html', data)
     has_preapproval = False
