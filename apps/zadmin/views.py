@@ -539,7 +539,7 @@ def features(request):
     return jingo.render(request, 'zadmin/features.html', dict(form=form))
 
 
-@admin.site.admin_view
+@admin_required
 def monthly_pick(request):
     form = MonthlyPickFormSet(request.POST or None)
     if request.method == 'POST' and form.is_valid():

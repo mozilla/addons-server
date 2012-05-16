@@ -108,7 +108,8 @@ def global_settings(request):
         if acl.action_allowed(request, 'L10nTools', 'View'):
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
-        if acl.action_allowed(request, 'Admin', '%'):
+        if (acl.action_allowed(request, 'Admin', '%') or
+                acl.action_allowed(request, 'Admin', 'View')):
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 

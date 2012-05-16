@@ -31,6 +31,7 @@ from discovery.modules import PromoVideoCollection
 from reviews.models import Review
 from stats.models import GlobalStat
 from versions.compare import version_int
+from zadmin.decorators import admin_required
 
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
@@ -144,7 +145,7 @@ def api_view(request, platform, version, list_type, api_version=1.5,
     return json.loads(r.content)
 
 
-@admin.site.admin_view
+@admin_required
 def module_admin(request):
     APP = request.APP
     # Custom sorting to drop ordering=NULL objects to the bottom.
