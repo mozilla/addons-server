@@ -3,7 +3,7 @@
     <nav class="menu-nav app-nav no-img">
       <ul class="c">
         {% if request.user.is_authenticated() and request.amo_user.is_developer %}
-          <li class="top">
+          <li id="submssions" class="top">
             <a href="{{ url('mkt.developers.apps') }}">
               {{ _('My Submissions') }}</a>
             <ul>
@@ -22,11 +22,11 @@
             </ul>
           </li>
         {% endif %}
-        <li class="slim">
+        <li id="documentation" class="slim">
           <a href="http://developer.mozilla.org/en-US/apps">
             {{ _('Documentation') }}</a>
         </li>
-        <li class="slim">
+        <li id="submit-app" class="slim">
           <a href="{{ url('submit.app') }}">
             {{ loc('Submit an App') }}</a>
         </li>
