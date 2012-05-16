@@ -31,7 +31,7 @@ class Rating(amo.models.ModelBase):
 
     score = models.PositiveSmallIntegerField(null=True)
     body = TranslatedField(require_locale=False)
-    ip_address = models.IPAddressField()
+    ip_address = models.IPAddressField(default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
