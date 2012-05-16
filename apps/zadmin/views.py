@@ -608,14 +608,16 @@ def email_devs(request):
         preview_csv = None
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
+        listed = amo.LISTED_STATUSES
+        qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
+                                                 amo.AUTHOR_ROLE_OWNER),
+                                       addon__status__in=listed)
+                               .exclude(user__email=None)
+                               .distinct(['user__email']))
         if data['recipients'] == 'eula':
-            listed = amo.LISTED_STATUSES
-            qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
-                                                     amo.AUTHOR_ROLE_OWNER),
-                                           addon__status__in=listed)
-                                   .exclude(addon__eula=None)
-                                   .exclude(user__email=None)
-                                   .distinct(['user__email']))
+            qs = qs.exclude(addon__eula=None)
+        elif data['recipients'] == 'sdk':
+            qs = qs.exclude(addon__versions__files__jetpack_version=None)
         else:
             raise NotImplementedError('If you want to support emailing other '
                                       'types of developers, do it here!')

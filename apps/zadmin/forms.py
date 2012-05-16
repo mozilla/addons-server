@@ -30,7 +30,8 @@ log = commonware.log.getLogger('z.zadmin')
 
 class DevMailerForm(happyforms.Form):
     _choices = [('eula',
-                 'Developers who have set up EULAs for active add-ons')]
+                 'Developers who have set up EULAs for active add-ons'),
+                ('sdk', 'Developers of active SDK add-ons')]
     recipients = forms.ChoiceField(choices=_choices, required=True)
     subject = forms.CharField(widget=forms.TextInput(attrs=dict(size='100')),
                               required=True)
