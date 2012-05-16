@@ -1864,6 +1864,7 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
         eq_(self.client.get(
             reverse('zadmin.oauth-consumer-create')).status_code, 403)
 

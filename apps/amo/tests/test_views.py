@@ -14,6 +14,7 @@ from pyquery import PyQuery as pq
 
 import amo.tests
 from access import acl
+from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.helpers import locale_url, urlparams
 from amo.pyquery_wrapper import PyQuery
@@ -112,6 +113,9 @@ class TestCommon(amo.tests.TestCase):
         # Make them a developer.
         user = self.login('regular')
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
+
+        group = Group.objects.create(name='Staff', rules='AdminTools:View')
+        GroupUser.objects.create(group=group, user=user)
 
         r = self.client.get(self.url, follow=True)
         eq_(r.context['request'].amo_user.is_developer, True)
