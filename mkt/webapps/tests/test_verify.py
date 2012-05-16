@@ -145,6 +145,7 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(3615, user_data)
         eq_(res['status'], 'expired')
 
+    @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_EXPIRED_SEND', True)
     @mock.patch('services.verify.sign')
     def test_expired_has_receipt(self, sign):
         sign.return_value = ''
@@ -154,6 +155,7 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(3615, user_data)
         assert 'receipt' in res
 
+    @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_EXPIRED_SEND', True)
     @mock.patch('services.verify.sign')
     def test_new_expiry(self, sign):
         user_data = self.user_data.copy()
@@ -162,6 +164,13 @@ class TestVerify(amo.tests.TestCase):
         sign.return_value = ''
         self.get(3615, user_data)
         assert sign.call_args[0][0]['exp'] > old
+
+    def test_expired_not_signed(self):
+        user_data = self.user_data.copy()
+        user_data['exp'] = calendar.timegm(time.gmtime()) - 10000
+        self.make_install()
+        res = self.get(3615, user_data)
+        eq_(res['status'], 'expired')
 
     def test_premium_addon_not_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)

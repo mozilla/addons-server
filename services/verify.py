@@ -169,10 +169,12 @@ class Verify:
         return json.dumps({'status': 'refunded'})
 
     def expired(self, receipt):
-        receipt['exp'] = (calendar.timegm(gmtime()) +
-                          settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
-        cef(self.environ, self.addon_id, 'sign', 'Expired signing request')
-        return json.dumps({'status': 'expired', 'receipt': sign(receipt)})
+        if settings.WEBAPPS_RECEIPT_EXPIRED_SEND:
+            receipt['exp'] = (calendar.timegm(gmtime()) +
+                              settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
+            cef(self.environ, self.addon_id, 'sign', 'Expired signing request')
+            return json.dumps({'status': 'expired', 'receipt': sign(receipt)})
+        return json.dumps({'status': 'expired'})
 
 
 def decode_receipt(receipt):

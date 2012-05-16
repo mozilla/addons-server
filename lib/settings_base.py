@@ -1381,6 +1381,8 @@ WEBAPPS_RECEIPT_KEY = ''
 # The expiry that we will add into the receipt.
 # Set to 6 months for the next little while.
 WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
+# Send a new receipt back when it expires.
+WEBAPPS_RECEIPT_EXPIRED_SEND = False
 
 # How long a watermarked addon should be re-used for, after this
 # time it will be regenerated.
