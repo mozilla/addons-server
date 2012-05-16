@@ -23,7 +23,7 @@
         });
 
         function markScrollTop() {
-            var path = window.location.pathname + window.location.search;
+            var path = window.location.pathname + window.location.search + window.location.hash;
             var state = {path: path, scrollTop: $(document).scrollTop()};
             history.replaceState(state, false, path);
         }
@@ -79,7 +79,7 @@
         });
 
         $(function() {
-            var path = window.location.pathname + window.location.search;
+            var path = window.location.pathname + window.location.search + window.location.hash;
             history.replaceState({path: path}, false, path);
             page.trigger('fragmentloaded');
         });
