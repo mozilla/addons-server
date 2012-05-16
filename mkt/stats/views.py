@@ -1,46 +1,25 @@
-import time
-from datetime import date, timedelta
+from datetime import date
 
 import jingo
 
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
-
-import amo
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
-from market.models import Refund
 from mkt.webapps.models import Installed
-
-# Reuse Potch's box of magic.
-from stats.models import Contribution, DownloadCount
+from stats.models import Contribution, UpdateCount
 from stats.views import (check_series_params_or_404, check_stats_permission,
-                         daterange, get_report_view, get_series, render_csv,
-                         render_json, SERIES_GROUPS, SERIES_GROUPS_DATE,
-                         SERIES_FORMATS)
+                         get_report_view, render_csv, render_json, daterange)
 
-# Most of these are not yet available.
-SERIES = (
-    'app_overview',
-    'installs',
-    'usage',
-
-    'revenue',
-    'sales',
-    'refunds',
-
-    'active',
-    'devices',
-    'referrers',
-)
+SERIES = ('installs', 'usage', 'revenue', 'sales', 'refunds')
+SERIES_GROUPS = ('day', 'week', 'month')
+SERIES_GROUPS_DATE = ('date', 'week', 'month')
+SERIES_FORMATS = ('json', 'csv')
 
 
 @addon_view_factory(Addon.objects.valid)
 def stats_report(request, addon, report):
     check_stats_permission(request, addon)
-    can_view_sales = check_stats_permission(
-        request, addon, for_contributions=True
-    )
     stats_base_url = reverse('mkt.stats.overview', args=[addon.app_slug])
     view = get_report_view(request)
     return jingo.render(request, 'appstats/reports/%s.html' % report,
@@ -48,23 +27,46 @@ def stats_report(request, addon, report):
                          'report': report,
                          'view': view,
                          'stats_base_url': stats_base_url,
-                         'can_view_sales': can_view_sales,
                         })
 
 
-#TODO: This view will require some complex JS logic similar to apps/stats.
+def get_series(model, primary_field=None, extra_fields=[], **filters):
+    """
+    Get a generator of dicts for the stats model given by the filters.
+
+    primary_field takes a field name that can be referenced by the key 'count'
+    extra_fields takes a list of fields that can be found in the index
+    on top of date and count and can be seen in the output
+    """
+    # Put a slice on it so we get more than 10 (the default), but limit to 365.
+    qs = (model.search().order_by('-date').filter(**filters)
+          .values_dict('date', 'count', primary_field, *extra_fields))[:365]
+    for val in qs:
+        # Convert the datetimes to a date.
+        date_ = date(*val['date'].timetuple()[:3])
+
+        if primary_field:
+            rv = dict(count=val[primary_field], date=date_, end=date_)
+        else:
+            rv = dict(count=val['count'], date=date_, end=date_)
+
+        for extra_field in extra_fields:
+            rv[extra_field] = val[extra_field]
+        yield rv
+
+
+#TODO: complex JS logic similar to apps/stats, real stats data
 @addon_view
 def overview_series(request, addon, group, start, end, format):
     """Combines installs_series and usage_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    dls = get_series(DownloadCount, addon=addon.id, date__range=date_range)
+    return fake_app_stats(request, addon, group, start, end, format)
 
-    # Uncomment the line below to return fake stats.
-    # return fake_app_stats(request, addon, group, start, end, format)
+    series = get_series(Installed, addon=addon.id, date__range=date_range)
 
-    return render_json(request, addon, dls)
+    return render_json(request, addon, series)
 
 
 @addon_view
@@ -72,10 +74,8 @@ def installs_series(request, addon, group, start, end, format):
     """Generate install counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
-    series = get_series(Installed, addon=addon.id, date__range=date_range)
 
-    # Uncomment the line below to return fake stats.
-    # return fake_app_stats(request, addon, group, start, end, format)
+    series = get_series(Installed, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -83,15 +83,12 @@ def installs_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-#TODO: Real stats data needs to be plugged in.
 @addon_view
 def usage_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
-
-    return fake_app_stats(request, addon, group, start, end, format)
+    series = get_series(UpdateCount, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -99,15 +96,13 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-#TODO: Real stats data needs to be plugged in.
 @addon_view
 def revenue_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
 
-    return fake_app_stats(request, addon, group, start, end, format)
-
-    series = get_series(Contribution, addon=addon.id, date__range=date_range)
+    series = get_series(Contribution, primary_field='revenue',
+        addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -115,14 +110,14 @@ def revenue_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-#TODO: Real stats data needs to be plugged in.
 @addon_view
 def sales_series(request, addon, group, start, end, format):
+    """
+    Sequel to contribution series
+    """
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
 
-    return fake_app_stats(request, addon, group, start, end, format)
-
     series = get_series(Contribution, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
@@ -131,15 +126,13 @@ def sales_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-#TODO: Real stats data needs to be plugged in.
 @addon_view
 def refunds_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
 
-    return fake_app_stats(request, addon, group, start, end, format)
-
-    series = get_series(Refund, addon=addon.id, date__range=date_range)
+    series = get_series(Contribution, primary_field='refunds',
+        addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])

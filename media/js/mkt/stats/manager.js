@@ -45,7 +45,7 @@ z.StatsManager = (function() {
 
     var currencyMetrics = {
         "revenue": true,
-        "contributions": true,
+        "contributions": true
     };
 
     // is a metric an average or a sum?

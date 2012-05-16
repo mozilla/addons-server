@@ -52,7 +52,7 @@
             <a href="{{ link }}">{{ title }}</a>
           </li>
         {% endfor %}
-        {% if addon.is_premium() and can_view_sales %}
+        {% if addon.is_premium() and check_contrib_stats_perms(addon) %}
           <li{%block sales_select %}
                {% if request.path == link %} class="selected"{% endif %}
              {% endblock %}>

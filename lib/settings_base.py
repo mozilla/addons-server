@@ -1336,6 +1336,7 @@ ES_HOSTS = ['127.0.0.1:9200']
 ES_INDEXES = {'default': 'amo',
               'update_counts': 'amo_stats',
               'download_counts': 'amo_stats',
+              'stats_contributions': 'amo_stats',
               'stats_collections_counts': 'amo_stats',
               'users_install': 'amo_stats'}
 ES_TIMEOUT = 30

@@ -2,15 +2,17 @@ import logging
 from datetime import date, timedelta
 from optparse import make_option
 
+from django.core.exceptions import FieldError
 from django.core.management.base import BaseCommand
 from django.db.models import Max, Min
 
 from celery.task.sets import TaskSet
 
+from addons.models import Addon
 from amo.utils import chunked
-from stats.models import CollectionCount, DownloadCount, UpdateCount
-from stats.tasks import (index_collection_counts, index_download_counts,
-                         index_update_counts)
+from stats.models import Contribution
+from mkt.stats.tasks import (index_installed_counts, index_contribution_counts,
+                             index_addon_aggregate_contributions)
 
 log = logging.getLogger('z.stats')
 
@@ -50,20 +52,17 @@ class Command(BaseCommand):
         if kw.get('fixup'):
             fixup()
 
+        from mkt.webapps.models import Installed
         addons, dates = kw['addons'], kw['date']
 
         queries = [
-            (UpdateCount.objects, index_update_counts,
-                {'date': 'date'}),
-            (DownloadCount.objects, index_download_counts,
-                {'date': 'date'}),
+            (Contribution.objects, index_contribution_counts,
+                {'date': 'created'}),
+            (Addon.objects, index_addon_aggregate_contributions,
+                {'date': 'created'}),
+            (Installed.objects, index_installed_counts,
+                {'date': 'created'}),
         ]
-
-        if not addons:
-            # We can't filter this by addons, so if that is specified,
-            # we'll skip that.
-            queries.append((CollectionCount.objects, index_collection_counts,
-                            {'date': 'date'}))
 
         for qs, task, fields in queries:
             date_field = fields['date']
@@ -71,14 +70,17 @@ class Command(BaseCommand):
             qs = qs.order_by('-%s' % date_field).values_list('id', flat=True)
             if addons:
                 pks = [int(a.strip()) for a in addons.split(',')]
-                qs = qs.filter(addon__in=pks)
+                try:
+                    qs = qs.filter(addon__in=pks)
+                except FieldError:
+                    qs = qs.filter(id__in=pks)
 
             if dates:
                 if ':' in dates:
                     qs = qs.filter(**{'%s__range' % date_field:
                                       dates.split(':')})
                 else:
-                    qs = qs.filter(**{date_field: dates})
+                    qs = qs.filter({date_field: dates})
 
             if not (dates or addons):
                 # We're loading the whole world. Do it in stages so we get most
@@ -110,8 +112,8 @@ def create_tasks(task, qs):
 
 
 def fixup():
-    queries = [(UpdateCount, index_update_counts),
-               (DownloadCount, index_download_counts)]
+    # TODO: fixup for contributions
+    queries = []
 
     for model, task in queries:
         all_addons = model.objects.distinct().values_list('addon', flat=True)
