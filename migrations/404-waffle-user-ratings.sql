@@ -1,2 +1,2 @@
-INSERT INTO waffle_switch (name, active) VALUES ('user-ratings', 0);
+INSERT INTO waffle_switch_mkt (name, active) VALUES ('ratings', 0);
 
