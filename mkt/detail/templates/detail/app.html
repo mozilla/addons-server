@@ -231,5 +231,26 @@
     </ul>
   </section>
 
+  {% if waffle.switch('ratings') %}
+    <section class="reviews c" id="reviews">
+      <div class="thumbs-up">
+        <h3>Positive Reviews <b>(100)</b></h3>
+        <ul>
+          {% for x in range(5) %}
+            {% include 'ratings/rating.html' %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="thumbs-down">
+        <h3>Negative Reviews <b>(95)</b></h3>
+        <ul>
+          {% for x in range(5) %}
+            {% include 'ratings/rating.html' %}
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  {% endif %}
+
 {% endif %}
 {% endblock %}

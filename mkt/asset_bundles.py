@@ -80,6 +80,7 @@ CSS = {
         'css/mkt/breadcrumbs.less',
         'css/mkt/buttons.less',
         'css/mkt/detail.less',
+        'css/mkt/ratings.less',
         'css/mkt/slider.less',
         'css/mkt/promo-grid.less',
         'css/mkt/overlay.less',
