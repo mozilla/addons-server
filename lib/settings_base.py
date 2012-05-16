@@ -986,6 +986,10 @@ PAYPAL_CHAINS = ()
 # If the refund request is under this amount of seconds, it will be instant.
 PAYPAL_REFUND_INSTANT = 30 * 60
 
+# The PayPal cert that we'll use for checking.
+# When None, the Mozilla CA bundle is used to look it up.
+PAYPAL_CERT = None
+
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000
 

@@ -1,7 +1,6 @@
 from decimal import Decimal
 import random
 import re
-import urllib2
 
 from django import http
 from django.conf import settings
@@ -11,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import commonware.log
 from django_statsd.clients import statsd
 import phpserialize as php
+import requests
 
 import amo
 from amo.decorators import no_login_required, post_required, write
@@ -131,13 +131,13 @@ def _paypal(request):
     # The order of the params has to match the original request.
     data = u'cmd=_notify-validate&' + raw
     with statsd.timer('paypal.validate-ipn'):
-        paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
-                                          data, 20).readline()
+        paypal_response = requests.post(settings.PAYPAL_CGI_URL, data,
+                                        verify=settings.PAYPAL_CERT)
 
     post, transactions = _parse(post)
 
     # If paypal doesn't like us, fail.
-    if paypal_response != 'VERIFIED':
+    if paypal_response.text != 'VERIFIED':
         msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
                "Failing." % paypal_response)
         _log_error_with_data(msg, post)

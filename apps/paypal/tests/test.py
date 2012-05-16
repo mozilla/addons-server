@@ -56,24 +56,24 @@ class TestPayKey(amo.tests.TestCase):
         data['amount'] = 'some random text'
         self.assertRaises(paypal.PaypalDataError, paypal.get_paykey, data)
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_auth_fails(self, opener):
-        opener.return_value = StringIO(auth_error)
+        opener.return_value.text = auth_error
         self.assertRaises(paypal.AuthError, paypal.get_paykey, self.data)
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_get_key(self, opener):
-        opener.return_value = StringIO(good_response)
+        opener.return_value.text = good_response
         eq_(paypal.get_paykey(self.data), ('AP-9GD76073HJ780401K', 'CREATED'))
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_error_is_paypal(self, opener):
         opener.side_effect = ZeroDivisionError
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_error_raised(self, opener):
-        opener.return_value = StringIO(other_error.replace('520001', '589023'))
+        opener.return_value.text = other_error.replace('520001', '589023')
         try:
             paypal.get_paykey(self.data)
         except paypal.PaypalError as error:
@@ -82,9 +82,9 @@ class TestPayKey(amo.tests.TestCase):
         else:
             raise ValueError('No PaypalError was raised')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_error_one_currency(self, opener):
-        opener.return_value = StringIO(other_error.replace('520001', '559044'))
+        opener.return_value.text = other_error.replace('520001', '559044')
         try:
             data = self.data.copy()
             data['currency'] = 'BRL'
@@ -95,9 +95,9 @@ class TestPayKey(amo.tests.TestCase):
         else:
             raise ValueError('No PaypalError was raised')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_error_no_currency(self, opener):
-        opener.return_value = StringIO(other_error.replace('520001', '559044'))
+        opener.return_value.text = other_error.replace('520001', '559044')
         try:
             data = self.data.copy()
             paypal.get_paykey(data)
@@ -106,9 +106,9 @@ class TestPayKey(amo.tests.TestCase):
         else:
             raise ValueError('No PaypalError was raised')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_other_fails(self, opener):
-        opener.return_value = StringIO(other_error)
+        opener.return_value.text = other_error
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
 
     @mock.patch('paypal._call')
@@ -270,14 +270,14 @@ class TestPayKey(amo.tests.TestCase):
 
 class TestPurchase(amo.tests.TestCase):
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_check_purchase(self, opener):
-        opener.return_value = StringIO(good_check_purchase)
+        opener.return_value.text = good_check_purchase
         eq_(paypal.check_purchase('some-paykey'), 'CREATED')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_check_purchase_fails(self, opener):
-        opener.return_value = StringIO(other_error)
+        opener.return_value.text = other_error
         eq_(paypal.check_purchase('some-paykey'), False)
 
 
@@ -419,29 +419,29 @@ class TestRefund(amo.tests.TestCase):
     Tests for making refunds.
     """
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_refund_success(self, opener):
         """
         Making refund requests returns the refund info.
         """
-        opener.return_value = StringIO(good_refund_string)
+        opener.return_value.text = good_refund_string
         eq_(paypal.refund('fake-paykey'), good_refund_data)
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_refund_no_refund_token(self, opener):
-        opener.return_value = StringIO(no_token_refund_string)
+        opener.return_value.text = no_token_refund_string
         d = paypal.refund('fake-paykey')
         eq_(d[0]['refundStatus'], 'NO_API_ACCESS_TO_RECEIVER')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_refund_processing_failed(self, opener):
-        opener.return_value = StringIO(processing_failed_refund_string)
+        opener.return_value.text = processing_failed_refund_string
         d = paypal.refund('fake-paykey')
         eq_(d[0]['refundStatus'], 'NO_API_ACCESS_TO_RECEIVER')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_refund_wrong_status(self, opener):
-        opener.return_value = StringIO(error_refund_string)
+        opener.return_value.text = error_refund_string
         with self.assertRaises(paypal.PaypalError):
             paypal.refund('fake-paykey')
 
@@ -451,9 +451,9 @@ class TestRefund(amo.tests.TestCase):
         with self.assertRaises(paypal.PaypalError):
             paypal.refund('fake-paykey')
 
-    @mock.patch('urllib2.OpenerDirector.open')
+    @mock.patch('paypal.requests.post')
     def test_refunded_already(self, opener):
-        opener.return_value = StringIO(already_refunded_string)
+        opener.return_value.text = already_refunded_string
         eq_(paypal.refund('fake-paykey')[0]['refundStatus'],
             'ALREADY_REVERSED_OR_REFUNDED')
 
@@ -562,17 +562,17 @@ class TestPersonalLookup(amo.tests.TestCase):
         self.assertRaises(paypal.PaypalError, paypal.get_personal_data, 'foo')
 
 
-@mock.patch('urllib2.OpenerDirector.open')
+@mock.patch('paypal.requests.post')
 @mock.patch.object(settings, 'PAYPAL_EMBEDDED_AUTH',
                    {'USER': 'a', 'PASSWORD': 'b', 'SIGNATURE': 'c'})
 class TestAuthWithToken(amo.tests.TestCase):
 
     def test_token_header(self, opener):
-        opener.return_value = StringIO(good_response)
+        opener.return_value.text = good_response
         paypal._call('http://some.url', {}, token=good_token)
-        assert opener.call_args[0][0].has_header('X-paypal-authorization')
+        assert 'X-PAYPAL-AUTHORIZATION' in opener.call_args[1]['headers']
 
     def test_normal_header(self, opener):
-        opener.return_value = StringIO(good_response)
+        opener.return_value.text = good_response
         paypal._call('http://some.url', {})
-        assert opener.call_args[0][0].has_header('X-paypal-security-password')
+        assert 'X-PAYPAL-SECURITY-PASSWORD' in opener.call_args[1]['headers']

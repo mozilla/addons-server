@@ -4,7 +4,6 @@ from datetime import date
 from decimal import Decimal, InvalidOperation
 import socket
 import urllib
-import urllib2
 import urlparse
 import re
 
@@ -14,9 +13,10 @@ from django.utils.http import urlencode, urlquote
 import commonware.log
 from django_statsd.clients import statsd
 from paypalx.getPermissionsAuthHeader import getAuthHeader as get_auth_header
+import requests
 
 import amo
-from amo.helpers import absolutify, loc, urlparams
+from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import log_cef
 from tower import ugettext as _
@@ -464,7 +464,7 @@ def _nvp_dump(data):
 
 
 def _call(url, paypal_data, ip=None, token=None):
-    request = urllib2.Request(url)
+    headers = {}
     auth = settings.PAYPAL_EMBEDDED_AUTH
     if 'requestEnvelope.errorLanguage' not in paypal_data:
         paypal_data['requestEnvelope.errorLanguage'] = 'en_US'
@@ -474,7 +474,7 @@ def _call(url, paypal_data, ip=None, token=None):
             ('application-id', settings.PAYPAL_APP_ID),
             ('request-data-format', 'NV'),
             ('response-data-format', 'NV')]:
-        request.add_header('X-PAYPAL-%s' % key.upper(), value)
+        headers['X-PAYPAL-%s' % key.upper()] = value
 
     # If we've got a token, we need to auth using the token which uses the
     # paypalx lib. This is primarily for the GetDetails API.
@@ -483,9 +483,9 @@ def _call(url, paypal_data, ip=None, token=None):
         ts, sig = get_auth_header(auth['USER'], auth['PASSWORD'],
                                   token['token'], token['secret'],
                                   'POST', url)
-        request.add_header('X-PAYPAL-AUTHORIZATION',
-                           'timestamp=%s,token=%s,signature=%s'
-                           % (ts, token['token'], sig))
+        headers['X-PAYPAL-AUTHORIZATION'] = ('timestamp=%s,token=%s,'
+                                             'signature=%s' %
+                                             (ts, token['token'], sig))
 
     else:
         # Otherwise, we just authenticate the normal way.
@@ -494,17 +494,19 @@ def _call(url, paypal_data, ip=None, token=None):
                 ('security-userid', auth['USER']),
                 ('security-password', auth['PASSWORD']),
                 ('security-signature', auth['SIGNATURE'])]:
-            request.add_header('X-PAYPAL-%s' % key.upper(), value)
+            headers['X-PAYPAL-%s' % key.upper()] = value
 
     if ip:
-        request.add_header('X-PAYPAL-DEVICE-IPADDRESS', ip)
+        headers['X-PAYPAL-DEVICE-IPADDRESS'] = ip
 
     # Warning, a urlencode will not work with chained payments, it must
     # be sorted and the key should not be escaped.
-    opener = urllib2.build_opener()
     try:
-        with socket_timeout(10):
-            feeddata = opener.open(request, _nvp_dump(paypal_data)).read()
+        data = _nvp_dump(paypal_data)
+        feeddata = requests.post(url, headers=headers, timeout=10,
+                                 data=data,
+                                 verify=True,
+                                 cert=settings.PAYPAL_CERT)
     except AuthError, error:
         paypal_log.error('Authentication error: %s' % error)
         raise
@@ -516,7 +518,7 @@ def _call(url, paypal_data, ip=None, token=None):
         # method.
         raise PaypalError
 
-    response = dict(urlparse.parse_qsl(feeddata))
+    response = dict(urlparse.parse_qsl(feeddata.text))
 
     if 'error(0).errorId' in response:
         id_, msg = response['error(0).errorId'], response['error(0).message']

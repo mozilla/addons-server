@@ -178,11 +178,11 @@ class PaypalTest(amo.tests.TestCase):
 
     def urlopener(self, status):
         m = Mock()
-        m.readline.return_value = status
+        m.text = status
         return m
 
 
-@patch('paypal.views.urllib2.urlopen')
+@patch('paypal.views.requests.post')
 class TestPaypal(PaypalTest):
 
     def test_not_verified(self, urlopen):
@@ -236,7 +236,7 @@ class TestPaypal(PaypalTest):
         response = self.client.post(self.url, data=query,
                                     content_type=URL_ENCODED)
         eq_(response.status_code, 403)
-        _, path, _ = urlopen.call_args[0]
+        _, path = urlopen.call_args[0]
         eq_(path, 'cmd=_notify-validate&%s' % query)
 
     @patch.object(settings, 'IN_TEST_SUITE', False)
@@ -280,7 +280,7 @@ class TestPaypal(PaypalTest):
             eq_(response.content, 'Transaction already processed')
 
 
-@patch('paypal.views.urllib2.urlopen')
+@patch('paypal.views.requests.post')
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
     uuid = 'e76059abcf747f5b4e838bf47822e6b2'
@@ -291,7 +291,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
 
     def urlopener(self, status):
         m = Mock()
-        m.readline.return_value = status
+        m.text = status
         return m
 
     def test_parse_post(self, urlopen):

@@ -52,8 +52,10 @@ class TestPurchaseIPNOrder(amo.tests.TestCase):
                 and con.post_data)
 
     def urlopener(self, status):
+        # Pretend to be requests or ullib2. Hot.
         m = Mock()
         m.readline.return_value = status
+        m.text = status
         return m
 
     @patch('paypal.check_purchase')
@@ -62,7 +64,7 @@ class TestPurchaseIPNOrder(amo.tests.TestCase):
         response = self.client.get(self.finished)
         eq_(response.status_code, 200)
 
-    @patch('paypal.views.urllib2.urlopen')
+    @patch('paypal.views.requests.post')
     def get_ipn(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
         response = self.client.post(self.ipn, sample_ipn)
