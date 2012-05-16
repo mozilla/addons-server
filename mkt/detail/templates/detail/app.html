@@ -225,10 +225,7 @@
       <li class="published">
         <h3>{{ _('Published') }}</h3>
         <p>
-          <time isotime="{{ product.created|isotime }}"
-                title="{{ product.created|isotime }}">
-            {{ product.created|timesince }}
-          </time>
+          {{ product.created|timelabel }}
         </p>
       </li>
     </ul>

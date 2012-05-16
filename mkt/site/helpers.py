@@ -166,6 +166,13 @@ def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
                       cc_startswith, cc_maxlength, grid=True, attrs=attrs)
 
 
+@register.filter
+@jinja2.contextfilter
+def timelabel(context, time):
+    t = env.get_template('site/helpers/timelabel.html').render(time=time)
+    return jinja2.Markup(t)
+
+
 @register.function
 def admin_site_links():
     return {
