@@ -5,17 +5,17 @@ from . import views
 
 # These all start with /apps/<app_slug>/reviews/<review_id>/.
 detail_patterns = patterns('',
-    url('^$', views.review_list, name='reviews.detail'),
-    url('^flag$', views.flag, name='reviews.flag'),
-    url('^delete$', views.delete, name='reviews.delete'),
-    url('^edit$', views.edit, name='reviews.edit'),
+    url('^$', views.review_list, name='ratings.detail'),
+    url('^flag$', views.flag, name='ratings.flag'),
+    url('^delete$', views.delete, name='ratings.delete'),
+    url('^edit$', views.edit, name='ratings.edit'),
 )
 
 
 review_patterns = patterns('',
-    url('^$', views.review_list, name='reviews.list'),
-    url('^add$', views.add, name='reviews.add'),
+    url('^$', views.review_list, name='ratings.list'),
+    url('^add$', views.add, name='ratings.add'),
     url('^(?P<review_id>\d+)/', include(detail_patterns)),
-    url('^format:rss$', ReviewsRss(), name='reviews.list.rss'),
-    url('^user:(?P<user_id>\d+)$', views.review_list, name='reviews.user'),
+    url('^format:rss$', ReviewsRss(), name='ratings.list.rss'),
+    url('^user:(?P<user_id>\d+)$', views.review_list, name='ratings.user'),
 )

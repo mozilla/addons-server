@@ -141,6 +141,12 @@ class Webapp(Addon):
         return reverse(view_name % (prefix, action),
                        args=[self.app_slug] + args)
 
+    def get_ratings_url(self, action, args=None, add_prefix=True):
+        """Reverse URLs for 'ratings.add', 'ratings.detail', etc."""
+        return reverse(('ratings.%s' % action),
+                       args=[self.app_slug] + (args or []),
+                       add_prefix=add_prefix)
+
     def get_stats_url(self, action='overview', args=None):
         """Reverse URLs for 'stats', 'stats.overview', etc."""
         return reverse(('mkt.stats.%s' % action),
