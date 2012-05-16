@@ -128,10 +128,10 @@
                   <label for="id_username">Email address</label>
                 </div>
                 <div class="form-col">
-                  <input id="id_username" name="username" maxlength="50" type="text">
+                  <input id="id_username" name="username" maxlength="50" type="email">
                 </div>
               </div>
-              <div class="simple-field row c">
+              <div class="simple-field row c password">
                 <div class="form-label">
                   <label for="id_password">Password</label>
                 </div>
@@ -154,7 +154,7 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
+      {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
       {% if not logged %}
         {# We need Persona only for non-authenticated users. #}
         <script async defer src="https://browserid.org/include.js"></script>

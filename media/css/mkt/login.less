@@ -121,7 +121,61 @@
     }
 }
 
+@media (max-width: @7col) {
+    #login {
+        &.old {
+            section {
+                .max-width(6);
+                max-height: 150px;
+                overflow-y: hidden;
+                h2 {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+                .password {
+                    .max-width(4);
+                }
+                .simple-field.row {
+                    position: relative;
+                    z-index: 10;
+                }
+                .listing-footer {
+                    z-index: 5;
+                    background-image: none;
+                }
+                input {
+                    .width(3);
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: @4col) {
+    #login {
+        &.old {
+            section {
+                .max-width(4);
+                max-height: 206px;
+                overflow-y: hidden;
+                h2 {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+                .password {
+                    .max-width(2);
+                }
+                .simple-field.row {
+                    position: relative;
+                    z-index: 10;
+                }
+                .listing-footer {
+                    z-index: 5;
+                    background-image: none;
+                }
+            }
+        }
+    }
     .login {
         #page {
             margin: 0;
