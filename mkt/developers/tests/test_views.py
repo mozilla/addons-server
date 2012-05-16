@@ -180,17 +180,18 @@ class TestAppDashboard(AppHubTest):
         waffle.models.Switch.objects.create(name='in-app-payments',
             active=True)
         app = self.get_app()
-        app.update(premium_type=amo.ADDON_PREMIUM_INAPP)
-        self.make_mine()
-        doc = pq(self.client.get(self.url).content)
-        expected = [
-            ('Manage Developer Profile', app.get_dev_url('profile')),
-            ('Manage In-App Payments', app.get_dev_url('in_app_config')),
-            ('Manage PayPal', app.get_dev_url('paypal_setup')),
-            ('Manage Refunds', app.get_dev_url('refunds')),
-            ('Manage Status', app.get_dev_url('versions')),
-        ]
-        amo.tests.check_links(expected, doc('.more-actions-popup a'))
+        for status in [amo.ADDON_PREMIUM_INAPP, amo.ADDON_FREE_INAPP]:
+            app.update(premium_type=status)
+            self.make_mine()
+            doc = pq(self.client.get(self.url).content)
+            expected = [
+                ('Manage Developer Profile', app.get_dev_url('profile')),
+                ('Manage In-App Payments', app.get_dev_url('in_app_config')),
+                ('Manage PayPal', app.get_dev_url('paypal_setup')),
+                ('Manage Refunds', app.get_dev_url('refunds')),
+                ('Manage Status', app.get_dev_url('versions')),
+            ]
+            amo.tests.check_links(expected, doc('.more-actions-popup a'))
 
 
 class TestManageLinks(AppHubTest):
@@ -201,29 +202,35 @@ class TestManageLinks(AppHubTest):
 
     def test_refunds_link_support(self):
         app = self.get_app()
-        app.update(premium_type=amo.ADDON_PREMIUM)
+        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
+                       amo.ADDON_FREE_INAPP]:
+            app.update(premium_type=status)
 
-        AddonUser.objects.update(role=amo.AUTHOR_ROLE_SUPPORT)
-        assert self.client.login(username=self.user.email, password='password')
+            AddonUser.objects.update(role=amo.AUTHOR_ROLE_SUPPORT)
+            assert self.client.login(username=self.user.email,
+                                     password='password')
 
-        for url in [self.url, app.get_dev_url()]:
-            r = self.client.get(self.url)
-            eq_(r.status_code, 200)
-            assert 'Manage Refunds' in r.content, (
-                'Expected "Manage Refunds" link')
+            for url in [self.url, app.get_dev_url()]:
+                r = self.client.get(self.url)
+                eq_(r.status_code, 200)
+                assert 'Manage Refunds' in r.content, (
+                    'Expected "Manage Refunds" link')
 
     def test_refunds_link_viewer(self):
         app = self.get_app()
-        app.update(premium_type=amo.ADDON_PREMIUM)
+        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
+                       amo.ADDON_FREE_INAPP]:
+            app.update(premium_type=status)
 
-        AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
-        assert self.client.login(username=self.user.email, password='password')
+            AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
+            assert self.client.login(username=self.user.email,
+                                     password='password')
 
-        for url in [self.url, app.get_dev_url()]:
-            r = self.client.get(self.url)
-            eq_(r.status_code, 200)
-            assert 'Manage Refunds' not in r.content, (
-                '"Manage Refunds" link should be hidden')
+            for url in [self.url, app.get_dev_url()]:
+                r = self.client.get(self.url)
+                eq_(r.status_code, 200)
+                assert 'Manage Refunds' not in r.content, (
+                    '"Manage Refunds" link should be hidden')
 
 
 class TestAppDashboardSorting(AppHubTest):
@@ -782,10 +789,19 @@ class TestRefunds(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_not_premium(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#enable-payments').length, 1)
+        for status in [amo.ADDON_FREE, amo.ADDON_PREMIUM_OTHER]:
+            self.webapp.update(premium_type=status)
+            r = self.client.get(self.url)
+            eq_(r.status_code, 200)
+            eq_(pq(r.content)('#enable-payments').length, 1)
+
+    def test_is_premium(self):
+        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
+                       amo.ADDON_FREE_INAPP]:
+            self.webapp.update(premium_type=status)
+            r = self.client.get(self.url)
+            eq_(r.status_code, 200)
+            eq_(pq(r.content)('#enable-payments').length, 0)
 
     def test_empty_queues(self):
         r = self.client.get(self.url)

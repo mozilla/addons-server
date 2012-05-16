@@ -69,7 +69,7 @@
     <h1>{{ title }}</h1>
   </header>
   <section id="refunds" class="primary payments devhub-form" role="main">
-    {% if not addon.is_premium() %}
+    {% if not addon.needs_paypal() %}
       <div id="enable-payments" class="error item">
         {{ _('Your app is not currently accepting payments.') }}
         <p class="item-actions">

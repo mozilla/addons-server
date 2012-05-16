@@ -49,7 +49,7 @@
         (addon.get_dev_url('profile'), _('Manage Developer Profile')),
         (addon.get_dev_url('versions'), _('Manage Status')),
       ] %}
-      {% if waffle.switch('allow-refund') and addon.is_premium() and
+      {% if waffle.switch('allow-refund') and addon.needs_paypal() and
             check_addon_ownership(request, addon, support=True) %}
         {% do manage_urls.insert(1,
           (addon.get_dev_url('refunds'), _('Manage Refunds'))
