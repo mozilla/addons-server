@@ -477,7 +477,8 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                      type=amo.CONTRIB_PURCHASE)
 
     if (hasattr(contribution, 'refund') and
-        contribution.refund.status != amo.REFUND_PENDING):
+        contribution.refund.status not in (amo.REFUND_PENDING,
+                                           amo.REFUND_FAILED)):
         # If it's not pending, we've already taken action.
         messages.error(request, _('Refund already processed.'))
         form_enabled = False
@@ -486,7 +487,8 @@ def issue_refund(request, addon_id, addon, webapp=False):
         if 'issue' in request.POST:
             try:
                 results = paypal.refund(contribution.paykey)
-            except PaypalError:
+            except PaypalError, e:
+                record_failed_refund(e, contribution)
                 paypal_log.error('Refund failed for: %s' % txn_id,
                                  exc_info=True)
                 messages.error(request, _('There was an error with '
@@ -543,6 +545,7 @@ def refunds(request, addon_id, addon, webapp=False):
         'approved': Refund.objects.approved(addon),
         'instant': Refund.objects.instant(addon),
         'declined': Refund.objects.declined(addon),
+        'failed': Refund.objects.failed(addon),
     }
     # For now set the limit to something stupid so this is stupid easy to QA.
     for status, refunds in queues.iteritems():

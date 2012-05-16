@@ -104,6 +104,12 @@
             <em>({{ declined.paginator.count }})</em>
           </a>
         </li>
+        <li>
+          <a href="#">
+            {{ amo.REFUND_STATUSES[amo.REFUND_FAILED] }}
+            <em>({{ failed.paginator.count }})</em>
+          </a>
+        </li>
       </ul>
 
       <div id="wrapper-pending" class="island tabcontent">
@@ -228,6 +234,47 @@
         {% endif %}
         {{ declined|impala_paginator }}
       </div>
+
+      <div id="wrapper-failed" class="island tabcontent hidden">
+        {% if not failed.paginator.count %}
+          <p id="queue-failed" class="no-results">
+            {{ loc('No failed refunds.') }}
+          </p>
+        {% else %}
+          <table id="queue-failed">
+            <thead>
+              <tr>
+                {{ base_th() }}
+                <th>{{ _('Failed') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for refund in failed.object_list %}
+                <tr data-refundid="{{ refund.id }}"
+                  class="refund{% if loop.index % 2 != 0 %} stripe{% endif %}">
+                  {{ base_td(refund, amo) }}
+                  <td class="action">
+                    {{ action_form(refund) }}
+                  </td>
+                  <td class="long failed-date">
+                    {{ refund.failed|babel_datetime }}
+                  </td>
+                </tr>
+                {% if refund.rejection_reason %}
+                  <tr data-refundid="{{ refund.id }}" class="reason">
+                    <td colspan="0">
+                      <b>{{ _('Failure Reason:') }}</b>
+                      {{ refund.rejection_reason }}
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{ failed|paginator }}
+      </div>
+
     {% endif %}
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}

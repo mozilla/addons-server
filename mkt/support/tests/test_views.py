@@ -162,12 +162,19 @@ class TestRequestSupport(PurchaseBase):
         eq_(enqueue_refund.call_args_list[0][0],
             (amo.REFUND_APPROVED_INSTANT,))
 
+    @mock.patch('stats.models.Contribution.record_failed_refund')
     @mock.patch('stats.models.Contribution.is_instant_refund')
     @mock.patch('mkt.support.views.paypal')
-    def test_request_instant_fails(self, refund, is_instant_refund):
-        refund.refund.side_effect = PaypalError
+    def test_request_instant_fails(self, refund, is_instant_refund, record):
+        err = []
+        def save_err(msg):
+            e = PaypalError(msg)
+            err.append(e)
+            raise e
+        refund.refund.side_effect = save_err
         is_instant_refund.return_value = True
         self.client.post(self.get_support_url('request'), {'remove': 1})
         res = self.client.post(self.get_support_url('reason'), {}, follow=True)
         eq_(res.status_code, 200)
         eq_(len(pq(res.content)('.notification-box')), 1)
+        record.assert_called_once_with(err[0])

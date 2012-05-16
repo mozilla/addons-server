@@ -255,6 +255,9 @@ class RefundManager(amo.models.ManagerBase):
     def declined(self, addon):
         return self.by_addon(addon).filter(status=amo.REFUND_DECLINED)
 
+    def failed(self, addon):
+        return self.by_addon(addon).filter(status=amo.REFUND_FAILED)
+
 
 class Refund(amo.models.ModelBase):
     # This refers to the original object with `type=amo.CONTRIB_PURCHASE`.
@@ -264,6 +267,7 @@ class Refund(amo.models.ModelBase):
     # Approved => 1
     # Instantly Approved => 2
     # Declined => 3
+    # Failed => 4
     status = models.PositiveIntegerField(default=amo.REFUND_PENDING,
         choices=do_dictsort(amo.REFUND_STATUSES), db_index=True)
 

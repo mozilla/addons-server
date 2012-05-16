@@ -122,10 +122,11 @@ def refund_reason(request, contribution, wizard):
     if contribution.is_instant_refund():
         try:
             paypal.refund(contribution.paykey)
-        except PaypalError:
+        except PaypalError, e:
             paypal_log.error('Paypal error with refund', exc_info=True)
             messages.error(request, _('There was an error with your instant '
                                       'refund.'))
+            contribution.record_failed_refund(e)
             return redirect('account.purchases')
 
         refund = contribution.enqueue_refund(amo.REFUND_APPROVED_INSTANT)

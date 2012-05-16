@@ -16,7 +16,7 @@ import amo
 from amo.helpers import absolutify, urlparams
 from amo.models import ModelBase, SearchMixin
 from amo.fields import DecimalCharField
-from amo.utils import send_mail
+from amo.utils import send_mail, send_mail_jinja
 
 from .db import StatsDictField
 
@@ -217,6 +217,21 @@ class Contribution(amo.models.ModelBase):
                    _(u'%s payment reversal' % self.addon.name),
                    {'name': self.addon.name, 'amount': amt})
 
+    def record_failed_refund(self, e):
+        refund = self.enqueue_refund(amo.REFUND_FAILED,
+                                     rejection_reason=str(e))
+        self._switch_locale()
+        self._mail('users/support/emails/refund-failed.txt',
+                   # L10n: the addon name.
+                   _(u'%s refund failed' % self.addon.name),
+                   {'name': self.addon.name})
+        send_mail_jinja(
+            'Refund failed', 'devhub/email/refund-failed.txt',
+            {'name': self.user.email,
+             'error': str(e)},
+            settings.MARKETPLACE_EMAIL,
+            [str(self.addon.support_email)], fail_silently=True)
+
     def mail_approved(self):
         """The developer has approved a refund."""
         locale = self._switch_locale()
@@ -305,7 +320,8 @@ class Contribution(amo.models.ModelBase):
 
         # Determine which timestamps to update.
         timestamps = []
-        if status in (amo.REFUND_PENDING, amo.REFUND_APPROVED_INSTANT):
+        if status in (amo.REFUND_PENDING, amo.REFUND_APPROVED_INSTANT,
+                      amo.REFUND_FAILED):
             timestamps.append('requested')
         if status in (amo.REFUND_APPROVED, amo.REFUND_APPROVED_INSTANT):
             timestamps.append('approved')

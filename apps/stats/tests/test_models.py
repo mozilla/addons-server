@@ -16,7 +16,7 @@ from addons.models import Addon
 from stats.models import Contribution
 from stats.db import StatsDictField
 from users.models import UserProfile
-
+from market.models import Refund
 
 class TestStatsDictField(amo.tests.TestCase):
 
@@ -158,3 +158,17 @@ class TestEmail(amo.tests.TestCase):
         self.addon.save()
         email = self.notification_email('10', 'en-US', 'mail_declined')
         eq_(email.subject, u'%s refund declined' % self.addon.name)
+
+    def test_failed_email(self):
+        cont = self.make_contribution('10', 'en-US', amo.CONTRIB_PURCHASE)
+        msg = 'oh no'
+        cont.record_failed_refund(msg)
+        eq_(Refund.objects.count(), 1)
+        rf = Refund.objects.get(contribution=cont)
+        eq_(rf.status, amo.REFUND_FAILED)
+        eq_(rf.rejection_reason, msg)
+        eq_(len(mail.outbox), 2)
+        usermail, devmail = mail.outbox
+        eq_(usermail.to, [self.user.email])
+        eq_(devmail.to, [self.addon.support_email])
+        assert msg in devmail.body

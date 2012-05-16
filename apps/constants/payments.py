@@ -115,6 +115,7 @@ REFUND_PENDING = 0  # Just to irritate you I didn't call this REFUND_REQUESTED.
 REFUND_APPROVED = 1
 REFUND_APPROVED_INSTANT = 2
 REFUND_DECLINED = 3
+REFUND_FAILED = 4
 
 REFUND_STATUSES = {
     # Refund pending (purchase > 30 min ago).
@@ -128,6 +129,9 @@ REFUND_STATUSES = {
 
     # Declined manually by developer.
     REFUND_DECLINED: _('Declined'),
+
+    #Refund didn't work somehow.
+    REFUND_FAILED: _('Failed'),
 }
 
 PAYMENT_DETAILS_ERROR = {

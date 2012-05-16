@@ -1296,6 +1296,19 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
         assert 'previously issued' in r.cookies['messages'].value
 
+    @mock.patch('stats.models.Contribution.record_failed_refund')
+    @mock.patch('paypal.refund')
+    def test_refund_failed(self, refund, record):
+        err = paypal.PaypalError('transaction died in a fire')
+        def fail(*args, **kwargs):
+            raise err
+        refund.side_effect = fail
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'})
+        record.assert_called_once_with(err)
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
+
 
 class TestRefunds(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -1408,7 +1421,7 @@ class TestRefunds(amo.tests.TestCase):
 
         # All other timestamps should be absolute.
         table = doc('table')
-        others = Refund.objects.exclude(status=amo.REFUND_PENDING)
+        others = Refund.objects.exclude(status__in=(amo.REFUND_PENDING, amo.REFUND_FAILED))
         for refund in others:
             tr = table.find('.refund[data-refundid=%s]' % refund.id)
             eq_(tr.find('.purchased-date').text(),
