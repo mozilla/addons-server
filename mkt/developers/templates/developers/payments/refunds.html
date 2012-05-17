@@ -141,7 +141,7 @@
             </tbody>
           </table>
         {% endif %}
-        {{ pending|paginator }}
+        {{ pending|impala_paginator }}
       </div>
 
       <div id="wrapper-approved" class="island tabcontent hidden">
@@ -165,7 +165,7 @@
             </tbody>
           </table>
         {% endif %}
-        {{ approved|paginator }}
+        {{ approved|impala_paginator }}
       </div>
 
       <div id="wrapper-instant" class="island tabcontent hidden">
@@ -189,7 +189,7 @@
             </tbody>
           </table>
         {% endif %}
-        {{ instant|paginator }}
+        {{ instant|impala_paginator }}
       </div>
 
       <div id="wrapper-declined" class="island tabcontent hidden">
@@ -226,7 +226,7 @@
             </tbody>
           </table>
         {% endif %}
-        {{ declined|paginator }}
+        {{ declined|impala_paginator }}
       </div>
     {% endif %}
   </section>
