@@ -5,7 +5,6 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
 
-from elasticutils import S
 import jingo
 from tower import ugettext as _
 
@@ -18,7 +17,6 @@ from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
-from apps.search.views import name_query
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
@@ -194,14 +192,8 @@ def app_review(request, addon):
 
 @permission_required('Apps', 'Review')
 def queue_apps(request):
-    sqs = S(Webapp).filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING,
-                           is_disabled=False)
-
-    q = request.GET.get('q', None)
-    if q:
-        sqs = sqs.query(or_=name_query(q))
-    ids = sqs.values()
-    qs = Webapp.objects.filter(id__in=ids).order_by('created')
+    qs = (Webapp.objects.pending().filter(disabled_by_user=False)
+                        .order_by('created'))
 
     review_num = request.GET.get('num', None)
     if review_num:
