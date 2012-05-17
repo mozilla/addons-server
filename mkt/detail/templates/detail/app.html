@@ -205,29 +205,31 @@
           </p>
         </li>
       {% endif %}
-      <li class="more-info">
-        <h3>{{ _('More Info') }}</h3>
-        {% if product.privacy_policy and (product.is_public() or is_reviewer) %}
-          <p class="privacy">
-            <a href="{{ product.get_detail_url('privacy') }}">
-              {{ _('Privacy Policy') }}
-            </a>
+      {% if product.is_public() or is_reviewer %}
+        <li class="more-info">
+          <h3>{{ _('More Info') }}</h3>
+          {% if product.privacy_policy %}
+            <p class="privacy">
+              <a href="{{ product.get_detail_url('privacy') }}">
+                {{ _('Privacy Policy') }}
+              </a>
+            </p>
+          {% endif %}
+          {% if waffle.switch('app-stats') and product.public_stats %}
+            <p class="view-stats">
+              <a href="{{ url('mkt.stats.overview', product.app_slug) }}">
+                {{ _('Statistics') }}
+              </a>
+            </p>
+          {% endif %}
+        </li>
+        <li class="published">
+          <h3>{{ _('Published') }}</h3>
+          <p>
+            {{ product.created|timelabel }}
           </p>
-        {% endif %}
-        {% if waffle.switch('app-stats') and product.public_stats %}
-          <p class="view-stats">
-            <a href="{{ url('mkt.stats.overview', product.app_slug) }}">
-              {{ _('Statistics') }}
-            </a>
-          </p>
-        {% endif %}
-      </li>
-      <li class="published">
-        <h3>{{ _('Published') }}</h3>
-        <p>
-          {{ product.created|timelabel }}
-        </p>
-      </li>
+        </li>
+      {% endif %}
     </ul>
   </section>
 
