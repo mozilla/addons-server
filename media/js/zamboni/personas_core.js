@@ -7,23 +7,24 @@ function dispatchPersonaEvent(aType, aNode, callback, forceHttps)
                    'ResetPersona': 'ResetBrowserThemePreview',
                    'SelectPersona': 'InstallBrowserTheme'};
     try {
-        if (!aNode.hasAttribute("data-browsertheme"))
+        if (!aNode.hasAttribute('data-browsertheme')) {
             return;
+        }
 
-        var browsertheme = $(aNode).attr("data-browsertheme");
+        var browsertheme = $(aNode).attr('data-browsertheme');
 
-        if(forceHttps) {
+        if (forceHttps) {
             browsertheme = browsertheme.replace(/http:\/\//g, 'https://')
         }
 
-        $(aNode).attr("persona", browsertheme);
+        $(aNode).attr('persona', browsertheme);
 
         var aliasEvent = aliases[aType];
         var events = [aType, aliasEvent];
 
         for (var i=0; i<events.length; i++) {
           var event = events[i];
-          var eventObject = document.createEvent("Events");
+          var eventObject = document.createEvent('Events');
           eventObject.initEvent(event, true, false);
           aNode.dispatchEvent(eventObject);
         }
@@ -43,12 +44,12 @@ $.hasPersonas = function() {
         return true;
     }
 
-    var body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName('body')[0];
     try {
-        var event = document.createEvent("Events");
-        event.initEvent("CheckPersonas", true, false);
+        var event = document.createEvent('Events');
+        event.initEvent('CheckPersonas', true, false);
         body.dispatchEvent(event);
     } catch(e) {}
 
-    return body.getAttribute("personas") == "true";
+    return body.getAttribute('personas') == 'true';
 };

@@ -65,6 +65,7 @@ INSTALLED_APPS += (
     'mkt.stats',
     'mkt.submit',
     'mkt.support',
+    'mkt.themes',
     'mkt.zadmin',
     'mkt.webapps',
 )

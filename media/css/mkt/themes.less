@@ -1,0 +1,196 @@
+@import 'lib';
+
+.product-details {
+    font-size: 14px;
+    text-shadow: 0 1px 0 @white;
+    .actions {
+        .min-width(3);
+        .max-width(4);
+        float: right;
+        margin-bottom: 16px;
+        .button {
+            display: block;
+        }
+        .theme-details {
+            margin-top: 20px;
+            p {
+                margin: 0;
+            }
+        }
+    }
+    .vitals {
+        float: left;
+        margin-left: 0;
+        .max-width(9);
+        h1 {
+            font-size: 32px;
+            font-weight: 100;
+            margin: 0 0 0 -1px;
+        }
+        .authors {
+            font-weight: normal;
+            font-size: 14px;
+            margin-top: 7px;
+        }
+        .cats {
+            display: inline-block;
+            margin: 5px 0;
+            &:after {
+                color: @note-gray;
+                content: "\00B7";
+                margin-left: 3px;
+                padding-right: 3px;
+            }
+        }
+        .downloads {
+            display: inline-block;
+            margin: 5px 0 0;
+        }
+        p {
+            font-size: 14px;
+            &.more {
+                display: block;
+                a {
+                    display: block;
+                    text-align: right;
+                    margin-bottom: 10px;
+                    line-height: 20px;
+                    background-image: -moz-linear-gradient(to right, rgba(255,255,255,0), @white);
+                    .border-radius(5px);
+                    padding: 2px 6px;
+                }
+            }
+        }
+    }
+    .theme-details {
+        clear: both;
+        .theme {
+            .users {
+                color: #390;
+            }
+        }
+        .theme-inner {
+            position: relative;
+            .border-radius(5px);
+        }
+        .theme-small {
+            .theme-inner {
+                float: left;
+                width: 200px;
+                margin-right: 11px;
+            }
+            .theme-preview [data-browsertheme] {
+                height: 67px;
+                .border-radius(5px);
+                em {
+                    line-height: 67px;
+                    width: 100px;
+                }
+            }
+        }
+        .theme-large {
+            .theme-inner {
+                width: 680px;
+            }
+            .theme-preview {
+                padding: 8px 0 4px;
+                [data-browsertheme] {
+                    height: 100px;
+                    .border-radius(5px);
+                }
+            }
+        }
+        .theme-preview {
+            position: relative;
+            display: block;
+            line-height: 1;
+            [data-browsertheme] {
+                display: block;
+                background: transparent no-repeat right top;
+                .box-shadow(0 0 4px 1px #000);
+                &:hover {
+                    .box-shadow(0 0 4px 2px #055887);
+                }
+                em {
+                    display: inline-block;
+                    line-height: 100px;
+                    width: 150px;
+                    text-align: center;
+                    font-size: 14px;
+                    font-style: normal;
+                    color: @white;
+                    background-color: rgba(0,0,0,0.5);
+                    .border-radius(5px 0 0 5px);
+                    text-shadow: none;
+                    font-weight: bold;
+                    &.hidden {
+                        display: none;
+                    }
+                    &::-moz-selection {
+                        background: transparent;
+                    }
+                }
+
+            }
+            div {
+                cursor: pointer;
+            }
+        }
+        .license-info {
+            h3 {
+                font-size: 14px;
+                font-weight: bold;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin-top: 4px;
+                li {
+                    float: left;
+                    margin: 0;
+                    font-size: 12px;
+                    // Pirated from the old zamboni.css.
+                    &.icon {
+                        width: 20px;
+                        height: 15px;
+                        background: url("../../img/zamboni/licenses.png") no-repeat;
+                    }
+                    &.cc-attrib { background-position: 0 0; }
+                    &.cc-noderiv { background-position: 0 -65px; }
+                    &.cc-noncom { background-position: 0 -130px; }
+                    &.cc-share { background-position: 0 -195px; }
+                    &.copyr { background-position: 0 -260px; }
+                }
+            }
+        }
+    }
+}
+.html-rtl .product-details .vitals p.more a {
+    text-align: left;
+    background-image: -moz-linear-gradient(to left, rgba(255,255,255,0), @white);
+}
+.theme-list {
+    float: left;
+    margin-bottom: 20px;
+    h3 {
+        font-size: 18px;
+        margin: 8px 0 6px;
+    }
+    .more-link {
+        display: block;
+        clear: both;
+        font-size: 14px;
+    }
+    &.three-col {
+        width: 635px;
+    }
+    &.two-col {
+        width: 425px;
+    }
+}
+#more-artist {
+    float: right;
+}
+#more-themes {
+    width: 691px;
+}

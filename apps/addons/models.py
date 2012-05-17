@@ -445,6 +445,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def get_url_path(self, more=False, add_prefix=True):
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
+        if settings.MARKETPLACE and self.type == amo.ADDON_PERSONA:
+            return reverse('themes.detail', args=[self.slug])
         view = 'addons.detail_more' if more else 'addons.detail'
         return reverse(view, args=[self.slug], add_prefix=add_prefix)
 
@@ -1702,6 +1704,9 @@ class Category(amo.models.ModelBase):
             type = amo.ADDON_SLUGS[self.type]
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
+        if settings.MARKETPLACE and self.type == amo.ADDON_PERSONA:
+            #TODO: (davor) this is a temp stub. Return category URL when done.
+            return reverse('browse.themes', args=[self.slug])
         return reverse('browse.%s' % type, args=[self.slug])
 
     @staticmethod

@@ -117,6 +117,9 @@ CSS = {
     'mkt/acct_lookup': (
         'css/mkt/account-lookup.less',
     ),
+    'mkt/themes': (
+        'css/mkt/themes.less',
+    ),
 }
 
 JS = {
@@ -247,6 +250,11 @@ JS = {
         'js/mkt/stats/chart.js',
         'js/mkt/stats/table.js',
         'js/mkt/stats/stats.js',
+    ),
+    'mkt/themes': (
+        'js/zamboni/personas_core.js',
+        'js/zamboni/personas.js',
+        'js/mkt/themes.js',
     ),
     'mkt/in-app-payments': (
         'js/lib/jquery-1.7.1.js',

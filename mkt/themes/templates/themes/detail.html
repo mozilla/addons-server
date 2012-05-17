@@ -1,0 +1,130 @@
+{% extends 'detail/protected_app.html' %}
+
+{% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/themes') }}
+{% endblock %}
+
+{% block content %}
+  {{ mkt_breadcrumbs(items=[(url('browse.themes'), _('Themes')),
+                            (None, product.name)]) }}
+  {% if not (is_dev or is_admin) and not product.is_public() %}
+    <section class="product-details">
+      <h1>
+        {% if 'id' in request.GET %}
+          <b class="num">#{{ product.id }}</b>
+        {% endif %}
+        {{ product.name }}
+      </h1>
+    </section>
+    {{ notification(product, amo, is_dev) }}
+  {% else %}
+    <section class="product-details">
+      <div class="vitals">
+        <h1>
+          {% if 'id' in request.GET and (is_dev or is_admin) %}
+            <b class="num">#{{ product.id }}</b>
+          {% endif %}
+          {{ product.name }}
+        </h1>
+        <h2 class="authors">{{ users_list(theme.listed_authors, size=3) }}</h2>
+        {% set categories = product.all_categories %}
+        {% if categories %}
+          <p class="cats">
+            {% for category in categories %}
+              <a href="{{ category.get_url_path() }}">
+                {{ category }}
+              </a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+        {% endif %}
+        <p class="downloads">
+          {{ product|weekly_downloads }}
+        </p>
+        <div class="theme-details" role="main" data-id="{{ theme.id }}">
+          {{ theme_preview(theme, linked=False) }}
+          <p{{ product.description|locale_html }}>
+            {{ product.description|nl2br }}
+          </p>
+        </div>
+        <div id="more-themes" class="theme-details c">
+          {% cache category_themes %}
+            {% if category_themes %}
+            <div id="more-category" class="theme-list {{ 'three-col' if not author_themes else 'two-col' }}">
+              {# L10n: {0} is a category name, such as Nature #}
+              <h3>{{ _('More {0} Themes')|f(categories[0].name) }}</h3>
+              <div class="article">
+                {% for other in category_themes %}
+                  {{ theme_preview(other.persona, size='small') }}
+                {% endfor %}
+              </div>
+              {# L10n: {0} is a category name, such as Nature #}
+              <a href="{{ categories[0].get_url_path() }}" class="more-link">{{ _('See all {0} Themes')|f(categories[0].name) }}</a>
+            </div>
+            {% endif %}
+          {% endcache %}
+
+          {% cache author_themes %}
+            {% if author_themes %}
+            <div id="more-artist" class="theme-list">
+              <h3>{{ _('More by this Artist') }}</h3>
+              <div class="article">
+                {% for other in author_themes %}
+                  {{ theme_preview(other.persona, size='small') }}
+                {% endfor %}
+              </div>
+              {% if author_gallery %}
+                <a href="{{ author_gallery }}" class="more-link">{{ _('See all Themes by this Artist') }}</a>
+              {% endif %}
+            </div>
+            {% endif %}
+          {% endcache %}
+        </div>
+      </div>
+      <div class="actions">
+        {% if product.is_public() %}
+          <a class="button theme-install" href="#">{{ _('Add to Firefox') }}</a>
+        {% endif %}
+        {# TODO: Enable this when available. #}
+        {# if is_dev }
+          <p><a href="{{ product.get_dev_url() }}" class="button manage">
+            {{ _('Manage') }}</a></p>
+        {% endif #}
+        <div class="theme-details">
+          <dl>
+            <dt>{{ _('Updated') }}</dt>
+            <dd>
+              <time datetime="{{ product.modified|isotime }}">
+                {{ product.modified|datetime }}
+              </time>
+            </dd>
+          </dl>
+          <dl>
+            <dt>{{ _('Artist') }}</dt>
+            <dd>
+              {{ users_list(product.listed_authors) or
+                  theme.display_username }}
+            </dd>
+            {# TODO: re-enable this once ratings are done.
+            <dt>{{ _('Rating', 'advanced_search_form_rating') }}</dt>
+            <dd>{{ reviews_link(product) }}</dd> #}
+            <dt>{{ _('Daily Users') }}</dt>
+            <dd>
+              <strong class="downloads">
+                {{ theme.popularity|numberfmt }}
+              </strong>
+            </dd>
+            {% if theme.license %}
+              <div class="license-info">
+                <h3>{{ _('License') }}</h3>
+                {{ license_link(theme.license) }}
+              </div>
+            {% endif %}
+          </dl>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}
+{% block js %}{{ js('mkt/themes') }}{% endblock %}

@@ -1,0 +1,35 @@
+<div class="theme theme-{{ size }}">
+  <div class="theme-inner">
+    <div class="theme-preview">
+      {% set addon_url = url_ or addon.get_url_path() %}
+      <div style="background-image:url('{{ preview }}')"
+           data-browsertheme="{{ persona.json_data }}">
+        {% if extra == 'created' %}
+          <span class="created">
+            {{ _('Added {0}')|f(addon.created|datetime) }}
+          </span>
+        {% elif extra == 'popular' %}
+          <span class="users">
+            {# L10n: {0} is the number of users. #}
+            {{ ngettext("<strong>{0}</strong> user",
+                        "<strong>{0}</strong> users",
+                        addon.persona.popularity)|f(addon.persona.popularity|numberfmt)|safe }}
+          </span>
+        {% elif extra == 'rating' %}
+          {# TODO(jbalogh): call this rating when remora is gone. #}
+          <span class="reviews">
+            {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
+          </span>
+        {% endif %}
+        {% if title %}
+          <span class="addon-title"><b>{{ addon.name }}</b></span>
+        {% endif %}
+        <em class="hidden">{{ _('Reset') }}</em>
+      </div>
+
+      {% if linked %}
+        <p class="more"><a href="{{ addon_url }}">{{ _('More') }}</a></p>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -56,3 +56,11 @@ def browse_apps(request, category=None):
         return _search(request, category)
     else:
         return _landing(request, category)
+
+
+# TODO: Real browse themes page - this is a stub.
+def browse_themes(request, category=None):
+    if request.GET.get('sort'):
+        return _search(request, category)
+    else:
+        return _landing(request, category)

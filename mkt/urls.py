@@ -20,6 +20,7 @@ admin.autodiscover()
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
+ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 urlpatterns = patterns('',
     # Home.
@@ -34,6 +35,12 @@ urlpatterns = patterns('',
     # Dev Ecosystem
     ('^developers/', include('mkt.ecosystem.urls')),
     ('^ecosystem/', lambda r: redirect('ecosystem.landing', permanent=True)),
+
+    # Theme detail pages.
+    ('^theme/%s/' % ADDON_ID, include('mkt.themes.urls')),
+
+    # Theme browse pages.
+    url('^themes/', include('mkt.browse.urls')),
 
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),

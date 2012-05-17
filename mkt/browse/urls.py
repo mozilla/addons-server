@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = patterns('',
     url('^(?P<category>[^ /]+)?$', views.browse_apps, name='browse.apps'),
+    url('^(?P<category>[^ /]+)?$', views.browse_themes, name='browse.themes'),
 )
