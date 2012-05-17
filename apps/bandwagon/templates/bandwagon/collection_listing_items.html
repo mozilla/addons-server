@@ -51,9 +51,9 @@
     </a>
     <span>
       {% if c.type == amo.ADDON_PERSONA %}
-        <span>{{ users_list(c.persona.listed_authors) or c.persona.display_username }}</span>
+        {{ users_list(c.persona.listed_authors) or c.persona.display_username }}
       {% else %}
-        <span>{{ _('by {0}')|f(c.author|user_link)|safe }}</span>
+        {{ _('by {0}')|f(c.author|user_link)|safe }}
       {% endif %}
     </span>
   </h3>
