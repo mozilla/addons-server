@@ -1,7 +1,7 @@
 var z = {
     page: $('#page'),
     prefix: (function() {
-        var s = window.getComputedStyle(document.body,"");
+        var s = window.getComputedStyle(document.body, '');
         return (Array.prototype.slice.call(s).join('').match(/moz|webkit|ms|khtml/)||(s.OLink===''&&['o']))[0];
     })(),
     prefixed: function(property) {
@@ -61,17 +61,21 @@ $(document).ready(function() {
 
 
 z.page.on('fragmentloaded', function() {
-    // Get list of installed apps and mark as such.
-    r = window.navigator.mozApps.getInstalled();
-    r.onsuccess = function() {
-        z.apps = r.result;
-        _.each(r.result, function(val) {
-            $(window).trigger('app_install_success',
-                              [{'manifestUrl': val.manifestURL}, false])
-                     .trigger('app_install_mark',
-                              {'manifestUrl': val.manifestURL});
-        });
-    };
+    if (z.capabilities.webApps) {
+        // Get list of installed apps and mark as such.
+        r = window.navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            z.apps = r.result;
+            _.each(r.result, function(val) {
+                $(window).trigger('app_install_success',
+                                  [{'manifestUrl': val.manifestURL}, false])
+                         .trigger('app_install_mark',
+                                  {'manifestUrl': val.manifestURL});
+            });
+        };
+    } else {
+        z.apps = {};
+    }
 
     if (!z.canInstallApps) {
         $(window).trigger('app_install_disabled');
