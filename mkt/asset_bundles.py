@@ -129,6 +129,7 @@ JS = {
         'js/lib/jquery.cookie.js',
         'js/zamboni/storage.js',
         'js/zamboni/tabs.js',
+        'js/impala/serializers.js',
 
         # jQuery UI.
         'js/lib/jquery-ui/jquery.ui.core.js',

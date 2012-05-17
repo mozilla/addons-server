@@ -2,6 +2,12 @@ $(document).ready(function() {
     // Edit Add-on
     $("#edit-addon").exists(initEditAddon);
 
+    // Save manifest if passed in
+    var params = z.getVars();
+    if('manifest' in params && z.capabilities.sessionStorage) {
+        window.sessionStorage['manifest_url'] = params['manifest'];
+    }
+
     //Ownership
     $("#author_list").exists(function() {
         initAuthorFields();
@@ -47,8 +53,9 @@ $(document).ready(function() {
         $('#upload-addon').addonUploader(opt);
     }
 
-    if($('#upload-webapp-url').exists()) {
-        $('#upload-webapp-url').bind("keyup change paste blur", function(e) {
+    var $webapp_url = $('#upload-webapp-url');
+    if($webapp_url.exists()) {
+        $webapp_url.bind("keyup change paste blur", function(e) {
             var $this = $(this),
                 $button = $('#validate_app'),
                 // Ensure it's at least "protocol://host/something".
@@ -171,6 +178,12 @@ $(document).ready(function() {
                     $upload_field.trigger("upload_success", [results]);
                 }
             }
+        }
+
+        if(z.capabilities.sessionStorage && window.sessionStorage['manifest_url'] && !$webapp_url.val()) {
+            $webapp_url.val(window.sessionStorage['manifest_url']);
+            $webapp_url.trigger('change');
+            $('#validate_app').trigger('click');
         }
     }
 
@@ -1113,3 +1126,4 @@ function initInAppConfig($dom) {
 
     setProtocol();
 }
+

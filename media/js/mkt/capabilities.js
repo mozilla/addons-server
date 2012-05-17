@@ -5,6 +5,7 @@ z.capabilities = {
     'console': window.console && (typeof window.console.log == 'function'),
     'replaceState': typeof history.replaceState === 'function',
     'localStorage': false,
+    'sessionStorage': false,
     'webApps': !!(navigator.mozApps && navigator.mozApps.install),
     'app_runtime': !!(
         navigator.mozApps &&
@@ -18,6 +19,13 @@ z.capabilities = {
 try {
     if ('localStorage' in window && window['localStorage'] !== null) {
         z.capabilities.localStorage = true;
+    }
+} catch (e) {
+}
+
+try {
+    if ('sessionStorage' in window && window['sessionStorage'] !== null) {
+        z.capabilities.sessionStorage = true;
     }
 } catch (e) {
 }
