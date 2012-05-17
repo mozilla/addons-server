@@ -153,10 +153,13 @@ def pay(request, signed_req, pay_req):
     # Payment was completed using pre-auth. Woo!
     _payment_done(request, payment)
 
+    cfg = pay_req['_config']
+
     c = dict(price=pay_req['request']['price'],
-             product=pay_req['_config'].addon,
+             product=cfg.addon,
              currency=pay_req['request']['currency'],
              item=pay_req['request']['name'],
+             img=cfg.image_url(pay_req['request'].get('imageURL')),
              description=pay_req['request']['description'],
              signed_request=signed_req)
     return jingo.render(request, 'inapp_pay/complete.html', c)

@@ -17,7 +17,10 @@
   <form method="post" action="{{ url('inapp_pay.pay') }}">
     {{ csrf() }}
     <input type="hidden" name="req" value="{{ signed_request }}">
-    <button href="#" class="button purchase">{{ currency }} {{ price }}</button>
+    <button href="#" class="button purchase"
+            data-purchasing-label="{{ _('Purchasing&hellip;') }}">
+              {{ currency }} {{ price }}
+    </button>
   </form>
 </footer>
 {% endblock %}

@@ -8,12 +8,12 @@
 </header>
 <div>
   <div class="product-details">
-    <h2>{{ item }}</h2>
-    <p>{{ description }}</p>
-  </div>
-    <div class="actions">
-      <button href="#" class="button disabled">{{ _('purchased') }}</button>
+    <div class="icon">
+      <img src="{{ img }}">
     </div>
+    <h2>{{ item }}</h2>
+    <p>{{ _('Purchased successfully') }}</p>
+  </div>
 </div>
 <footer>
   <button class="button close">{{ loc('Close window') }}</button>

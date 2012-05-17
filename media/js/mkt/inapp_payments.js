@@ -22,6 +22,9 @@ var preauth_window;
     if (win_top.opener) {
         win_top = win_top.opener;
     }
+    $('.purchase').click(function(e) {
+        $(this).addClass('purchasing').html($(this).data('purchasing-label'));
+    });
     $('#setup-preauth').click(function(e) {
         e.preventDefault();
         if (preauth_window) {
