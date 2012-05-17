@@ -57,7 +57,7 @@ def users_list(users, size=None):
 @jinja2.contextfunction
 def addon_users_list(context, addon):
     ctx = dict(context.items())
-    ctx['addon'] = addon
+    ctx.update(addon=addon, amo=amo)
     return ctx
 
 
