@@ -120,7 +120,7 @@
           </table>
         {% endif %}
       </div>
-      {{ pending|paginator }}
+      {{ pending|impala_paginator }}
 
       <h3>
         {{ amo.REFUND_STATUSES[amo.REFUND_APPROVED] }}
