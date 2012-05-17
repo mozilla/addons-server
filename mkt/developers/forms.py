@@ -385,7 +385,8 @@ class PremiumForm(happyforms.Form):
                                     .filter(premium_type__in=amo.ADDON_FREES,
                                             status__in=amo.VALID_STATUSES,
                                             type=self.addon.type))
-        if len(self.fields['price'].choices) > 1:
+        if (not self.initial.get('price') and
+            len(list(self.fields['price'].choices)) > 1):
             # Tier 0 (Free) should not be the default selection.
             self.initial['price'] = (Price.objects.active()
                                      .exclude(price='0.00')[0])

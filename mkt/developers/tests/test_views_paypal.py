@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -8,7 +6,7 @@ from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from market.models import AddonPaymentData, AddonPremium, Price, PriceCurrency
+from market.models import AddonPaymentData, AddonPremium, Price
 from users.models import UserProfile
 
 
@@ -75,6 +73,19 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
+
+    def test_premium_price_initial_already_set(self):
+        Price.objects.create(price='0.00')  # Make a free tier for measure.
+        self.make_premium(self.webapp)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('select[name=price] option[selected]').attr('value'),
+            str(self.webapp.premium.price.id))
+
+    def test_premium_price_initial_use_default(self):
+        Price.objects.create(price='10.00')  # Make one more tier.
+        r = self.client.get(self.url, {'poop': True})
+        eq_(pq(r.content)('select[name=price] option[selected]').attr('value'),
+            str(Price.objects.get(price='0.99').id))
 
 
 class TestPaypal(amo.tests.TestCase):
