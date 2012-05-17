@@ -1,0 +1,51 @@
+{% from 'includes/forms.html' import required_note %}
+
+{% extends 'detail/protected_app.html' %}
+
+{% set title = _('Add a review for {0}')|f(product.name) %}
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+
+{% block content %}
+  {{ mkt_breadcrumbs(product, [(product.get_ratings_url(), _('Reviews')),
+                               (None, _('Add'))]) }}
+  <section id="submit-rating" class="friendly">
+    <h1>{{ title }}</h1>
+    <p>
+      {% trans %}
+        Please do not post bug reports in reviews. We do not make your email
+        address available to app developers and they may need to contact
+        you to help resolve your issue.
+      {% endtrans %}
+    </p>
+    {% if product.support_email or product.support_url %}
+      <p>
+        {% trans support=product.get_detail_url() + '#support' %}
+          See the <a href="{{ support }}">support section</a> to find out
+          where to get assistance for this app.
+        {% endtrans %}
+      </p>
+    {% endif %}
+    <p>
+      {% trans %}
+        Please keep reviews clean, avoid the use of improper language, and do
+        not post any personal information.
+      {% endtrans %}
+    </p>
+    <form method="post">
+      {{ csrf() }}
+      {{ form_field(form.score, label=_('How would you rate this?'), tag='p') }}
+      <div class="barometer c">
+        <span id="thumbs-up" class="upvotes">{{ _('Good') }}</span>
+        <span id="thumbs-down" class="downvotes">{{ _('Bad') }}</span>
+      </div>
+      {{ form_field(form.body, label=_('Your review'), hint=True,
+                    cc_for=form.body.auto_id,
+                    cc_maxlength=form.body.field.max_length, tag='p') }}
+      {{ required_note() }}
+      <p class="form-footer">
+        <button type="submit">{{ _('Submit') }}</button> {{ _('or') }}
+        <a href="{{ product.get_detail_url() }}">{{ _('Cancel') }}</a>
+      </p>
+    </form>
+  </section>
+{% endblock %}

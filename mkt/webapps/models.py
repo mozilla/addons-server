@@ -117,6 +117,14 @@ class Webapp(Addon):
                 apps_dict[adt.addon_id]._device_types = []
             apps_dict[adt.addon_id]._device_types.append(adt.device_type)
 
+        # TODO: This may need to be its own column.
+        for app in apps:
+            #if not hasattr(apps_dict[adt.addon_id], '_rating_counts'):
+            scores = dict(app._ratings.values_list('score')
+                             .annotate(models.Count('id')))
+            app._rating_counts = {'positive': scores.get(1, 0),
+                                  'negative': scores.get(-1, 0)}
+
     def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
         # but for now pretend you didn't see this.
@@ -147,8 +155,8 @@ class Webapp(Addon):
         return reverse(view_name % (prefix, action),
                        args=[self.app_slug] + args)
 
-    def get_ratings_url(self, action, args=None, add_prefix=True):
-        """Reverse URLs for 'ratings.add', 'ratings.detail', etc."""
+    def get_ratings_url(self, action='list', args=None, add_prefix=True):
+        """Reverse URLs for 'ratings.list', 'ratings.add', etc."""
         return reverse(('ratings.%s' % action),
                        args=[self.app_slug] + (args or []),
                        add_prefix=add_prefix)

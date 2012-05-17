@@ -77,7 +77,7 @@ def product_as_dict(request, product, purchased=None):
         'author_url': author_url,
         'iconUrl': product.get_icon_url(64)
     }
-    if product.is_premium():
+    if product.is_premium() and product.premium:
         ret.update({
             'price': product.premium.get_price() or '0',
             'priceLocale': product.premium.get_price_locale(),
@@ -134,7 +134,8 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
         else:
             # The Product is the end of the trail.
             url_ = None
-        crumbs.append((url_, product.name))
+        crumbs += [(reverse('browse.apps'), _('Apps')),
+                   (url_, product.name)]
     if items:
         crumbs.extend(items)
 
@@ -149,10 +150,10 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
 
 @register.function
 def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
-               some_html=False, cc_startswith=None, cc_maxlength=None,
-               grid=False, **attrs):
+               some_html=False, cc_startswith=None, cc_for=None,
+               cc_maxlength=None, grid=False, **attrs):
     c = dict(field=field, label=label, tag=tag, req=req, opt=opt, hint=hint,
-             some_html=some_html, cc_startswith=cc_startswith,
+             some_html=some_html, cc_startswith=cc_startswith, cc_for=cc_for,
              cc_maxlength=cc_maxlength, grid=grid, attrs=attrs)
     t = env.get_template('site/helpers/simple_field.html').render(**c)
     return jinja2.Markup(t)

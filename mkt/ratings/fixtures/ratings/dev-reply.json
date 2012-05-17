@@ -127,6 +127,7 @@
         "pk": 1865,
         "model": "addons.addon",
         "fields": {
+            "app_slug": "a1865",
             "slug": "a1865",
             "dev_agreement": true,
             "eula": null,
@@ -239,7 +240,6 @@
             "score": 4,
             "editorreview": false,
             "created": "2010-04-21 12:36:48",
-            "title": 1043704,
             "modified": "2010-06-15 15:21:14",
             "flag": false,
             "addon": 1865,

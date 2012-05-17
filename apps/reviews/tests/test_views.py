@@ -280,9 +280,10 @@ class TestCreate(ReviewTest):
         eq_(r.status_code, 403)
 
     def test_no_body(self):
-        r = self.client.post(self.add, {'body': ''})
-        self.assertFormError(r, 'form', 'body', 'This field is required.')
-        eq_(len(mail.outbox), 0)
+        for body in ('', ' \t \n '):
+            r = self.client.post(self.add, {'body': body})
+            self.assertFormError(r, 'form', 'body', 'This field is required.')
+            eq_(len(mail.outbox), 0)
 
     def test_no_rating(self):
         r = self.client.post(self.add, {'body': 'no rating'})

@@ -1,3 +1,5 @@
+@import 'lib';
+
 .reviews {
     ul {
         padding: 0;
@@ -8,11 +10,95 @@
     }
     h3 {
         text-align: center;
+        span {
+            background: url(../../img/icons/thumbs.png) no-repeat;
+            display: inline-block;
+            line-height: 16px;
+            padding-left: 30px;
+        }
+        &.upvotes {
+            color: #00b960;
+        }
+        &.downvotes {
+            color: #d93a40;
+            span {
+                background-position: 100% -86px;
+                padding: 0 30px 0 0;
+            }
+        }
     }
     .review {
         list-style-type: none;
         p {
             font-size: 120%;
+        }
+    }
+    #submit-review {
+        margin: 10px 0;
+        text-align: center;
+    }
+}
+
+#submit-rating {
+    form {
+        margin-top: 25px;
+        .simple-field {
+            margin: 0;
+        }
+    }
+    select {
+        display: none;
+    }
+    .barometer {
+        font-size: 120%;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    .form-footer {
+        margin-top: 20px;
+    }
+}
+
+.barometer {
+    span {
+        display: inline-block;
+        .width(1.5);
+        &:before {
+            background: url(../../img/icons/thumbs.png) no-repeat;
+            content: "";
+            display: block;
+            float: left;
+            margin-right: 10px;
+            height: 20px;
+            width: 15px;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+        &.voted {
+            font-weight: bold;
+        }
+    }
+    .upvotes {
+        color: #00b960;
+        &:before {
+            background-position: 0 -42px;
+        }
+        &:hover, &.voted {
+            &:before {
+                background-position: 0 0;
+            }
+        }
+    }
+    .downvotes {
+        color: #d93a40;
+        &:before {
+            background-position: 100% 100%;
+        }
+        &:hover, &.voted {
+            &:before {
+                background-position: 100% -82px;
+            }
         }
     }
 }

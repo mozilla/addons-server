@@ -42,7 +42,7 @@
   {% if hint and tooltip %}
     <span class="hint">{{ field.help_text }}</span>
   {% endif %}
-  {{ field.errors }}
+
   {% if some_html %}
     {{ some_html_tip() }}
   {% endif %}
@@ -51,8 +51,13 @@
     <div class="char-count" data-maxlength="{{ cc_maxlength }}"
       {% if cc_startswith %}
         data-for-startswith="{{ cc_startswith }}"
+      {% endif %}
+      {% if cc_for %}
+        data-for="{{ cc_for }}"
       {% endif %}></div>
   {% endif %}
+
+  {{ field.errors }}
 
   {% if grid %}</div>{% endif %}
 {% if tag %}

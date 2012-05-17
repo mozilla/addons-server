@@ -1,5 +1,29 @@
 @import 'lib';
 
+.friendly {
+    p, ul {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .req,
+    .errorlist {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .char-count, .html-support, .errorlist {
+        margin: 5px 0;
+    }
+    .char-count {
+        float: right;
+        b {
+            color: @dark-gray;
+        }
+        &.error b {
+            color: @maroon;
+        }
+    }
+}
+
 button, input, select, textarea {
     font: 100% @open-stack;
     margin: 0;
@@ -247,7 +271,7 @@ form {
 
 .form-footer {
     button {
-        margin-right: 5px;
+        margin-right: 8px;
     }
     a {
         display: inline-block;

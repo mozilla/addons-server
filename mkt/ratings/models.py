@@ -29,7 +29,7 @@ class Rating(amo.models.ModelBase):
     reply_to = models.ForeignKey('self', null=True, unique=True,
                                  related_name='replies', db_column='reply_to')
 
-    score = models.PositiveSmallIntegerField(null=True)
+    score = models.IntegerField(null=True)
     body = TranslatedField(require_locale=False)
     ip_address = models.IPAddressField(default='0.0.0.0')
 

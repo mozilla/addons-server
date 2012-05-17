@@ -4,23 +4,31 @@ from tower import ugettext as _
 from django import http
 
 from access import acl
-from addons.models import Addon
 from addons.decorators import addon_view_factory
 from amo.decorators import json_view, login_required, post_required, write
 from amo.utils import memoize_get
 from lib.metrics import send_request
 from lib.crypto.receipt import cef, SigningError
-from mkt.webapps.models import create_receipt, Installed
 
-addon_view = addon_view_factory(qs=Addon.objects.valid)
-addon_enabled_view = addon_view_factory(qs=Addon.objects.enabled)
-addon_all_view = addon_view_factory(qs=Addon.objects.all)
+from mkt.ratings.models import Rating
+from mkt.webapps.models import create_receipt, Installed, Webapp
+
+addon_view = addon_view_factory(qs=Webapp.objects.valid)
+addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 
 
 @addon_all_view
 def detail(request, addon):
     """Product details page."""
-    return jingo.render(request, 'detail/app.html', {'product': addon})
+    ratings = Rating.objects.latest().filter(addon=addon).order_by('-created')
+    positive_ratings = ratings.filter(score=1)[:5]
+    negative_ratings = ratings.filter(score=-1)[:5]
+    return jingo.render(request, 'detail/app.html', {
+        'product': addon,
+        'ratings': ratings,
+        'positive_ratings': positive_ratings,
+        'negative_ratings': negative_ratings,
+    })
 
 
 @addon_all_view

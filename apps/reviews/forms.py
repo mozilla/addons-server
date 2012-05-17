@@ -7,6 +7,7 @@ from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
 import amo
+from amo.utils import raise_required
 import reviews
 from .models import ReviewFlag, Review
 
@@ -14,6 +15,13 @@ from .models import ReviewFlag, Review
 class ReviewReplyForm(forms.Form):
     title = forms.CharField(required=False)
     body = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
+
+    def clean_body(self):
+        body = self.cleaned_data.get('body', '')
+        # Whitespace is not a review!
+        if not body.strip():
+            raise_required()
+        return body
 
 
 class ReviewForm(ReviewReplyForm):

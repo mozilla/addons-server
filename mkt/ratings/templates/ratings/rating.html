@@ -1,6 +1,11 @@
-<li class="review positive">
-  <p>It Stinks!</p>
+<li class="review {{ 'positive' if rating.score == 1 else 'negative' }}">
+  <p>{{ rating.body }}</p>
   <div class="byline">
-    by <a href="#">Jay Sherman</a> on <span>January 26, 1994</span>
+    {% trans user_url=rating.user.get_url_path(),
+             user_name=rating.user.name,
+             timestamp=rating.created|timelabel %}
+      by <a href="{{ user_url  }}">{{ user_name }}</a> {{ timestamp }}
+    {% endtrans %}
   </div>
+  <a href="{{ rating.get_url_path() }}" title="Permalink">Permalink</a>
 </li>

@@ -212,6 +212,9 @@ JS = {
         'js/mkt/detail.js',
         'js/mkt/lightbox.js',
 
+        # Ratings.
+        'js/mkt/ratings.js',
+
         # Stick.
         'js/lib/stick.js',
     ),
