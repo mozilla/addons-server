@@ -201,12 +201,12 @@ class TestPay(PaymentViewTest):
                                     args=[self.inapp_config.pk, 'complete'])
         self.cancel_url = reverse('inapp_pay.pay_status',
                                   args=[self.inapp_config.pk, 'cancel'])
-        self.upatch = mock.patch('mkt.inapp_pay.tasks.urlopen')
-        self.upatch.start()
+        self.netreq = mock.patch('mkt.inapp_pay.tasks.requests')
+        self.netreq.start()
 
     def tearDown(self):
         super(TestPay, self).tearDown()
-        self.upatch.stop()
+        self.netreq.stop()
 
     def assert_payment_done(self, payload, contrib_type):
         cnt = Contribution.objects.get(addon=self.app)

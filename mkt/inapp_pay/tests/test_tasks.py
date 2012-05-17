@@ -1,9 +1,7 @@
 import calendar
 from datetime import datetime, timedelta
 import os
-import httplib
 import json
-import socket
 from cStringIO import StringIO
 import time
 import urllib2
@@ -15,6 +13,7 @@ from fudge.inspector import arg
 import jwt
 import mock
 from nose.tools import eq_
+from requests.exceptions import RequestException, Timeout
 
 import amo
 from users.models import UserProfile
@@ -57,8 +56,8 @@ class TestNotifyApp(TalkToAppTest):
     def notify(self):
         tasks.payment_notify(self.payment.pk)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_notify_pay(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_notify_pay(self, fake_req):
         url = self.url(self.postback)
         payload = self.payload(typ='mozilla/payments/pay/postback/v1')
 
@@ -69,12 +68,11 @@ class TestNotifyApp(TalkToAppTest):
             jwt.decode(req, self.inapp_config.get_private_key(), verify=True)
             return True
 
-        (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
-                                          timeout=5)
-                               .returns_fake()
-                               .expects('read')
-                               .returns(str(self.contrib.pk))
-                               .expects('close'))
+        (fake_req.expects('post').with_args(url, arg.passes_test(req_ok),
+                                            timeout=5)
+                                 .returns_fake()
+                                 .has_attr(text=str(self.contrib.pk))
+                                 .expects('raise_for_status'))
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.notice, amo.INAPP_NOTICE_PAY)
@@ -82,8 +80,8 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_notify_refund_chargeback(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_notify_refund_chargeback(self, fake_req):
         url = self.url(self.chargeback)
         payload = self.payload(typ='mozilla/payments/pay/chargeback/v1')
 
@@ -96,12 +94,11 @@ class TestNotifyApp(TalkToAppTest):
             jwt.decode(req, self.inapp_config.get_private_key(), verify=True)
             return True
 
-        (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
-                                          timeout=5)
-                               .returns_fake()
-                               .expects('read')
-                               .returns(str(self.contrib.pk))
-                               .expects('close'))
+        (fake_req.expects('post').with_args(url, arg.passes_test(req_ok),
+                                            timeout=5)
+                                 .returns_fake()
+                                 .has_attr(text=str(self.contrib.pk))
+                                 .expects('raise_for_status'))
         self.do_chargeback('refund')
         notice = InappPayNotice.objects.get()
         eq_(notice.notice, amo.INAPP_NOTICE_CHARGEBACK)
@@ -109,8 +106,8 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_notify_reversal_chargeback(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_notify_reversal_chargeback(self, fake_req):
         url = self.url(self.chargeback)
 
         def req_ok(req):
@@ -118,122 +115,102 @@ class TestNotifyApp(TalkToAppTest):
             eq_(dd['response']['reason'], 'reversal')
             return True
 
-        (urlopen.expects_call().with_args(url, arg.passes_test(req_ok),
-                                          timeout=5)
-                               .returns_fake()
-                               .expects('read')
-                               .returns(str(self.contrib.pk))
-                               .expects('close'))
+        (fake_req.expects('post').with_args(url, arg.passes_test(req_ok),
+                                            timeout=5)
+                                 .returns_fake()
+                                 .has_attr(text=str(self.contrib.pk))
+                                 .expects('raise_for_status'))
         self.do_chargeback('reversal')
         notice = InappPayNotice.objects.get()
         eq_(notice.notice, amo.INAPP_NOTICE_CHARGEBACK)
+        eq_(notice.last_error, '')
         eq_(notice.success, True)
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', True)
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_force_https(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_force_https(self, fake_req):
         self.inapp_config.update(is_https=False)
         url = self.url(self.postback, protocol='https')
-        (urlopen.expects_call().with_args(url, arg.any(), timeout=arg.any())
-                               .returns_fake()
-                               .is_a_stub())
+        (fake_req.expects('post').with_args(url, arg.any(), timeout=arg.any())
+                                 .returns_fake()
+                                 .is_a_stub())
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.last_error, '')
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_configurable_https(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_configurable_https(self, fake_req):
         self.inapp_config.update(is_https=True)
         url = self.url(self.postback, protocol='https')
-        (urlopen.expects_call().with_args(url, arg.any(), timeout=arg.any())
-                               .returns_fake()
-                               .is_a_stub())
+        (fake_req.expects('post').with_args(url, arg.any(), timeout=arg.any())
+                                 .returns_fake()
+                                 .is_a_stub())
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.last_error, '')
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_configurable_http(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_configurable_http(self, fake_req):
         self.inapp_config.update(is_https=False)
         url = self.url(self.postback, protocol='http')
-        (urlopen.expects_call().with_args(url, arg.any(), timeout=arg.any())
-                               .returns_fake()
-                               .is_a_stub())
+        (fake_req.expects('post').with_args(url, arg.any(), timeout=arg.any())
+                                 .returns_fake()
+                                 .is_a_stub())
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.last_error, '')
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_notify_timeout(self, urlopen):
-        reason = socket.timeout('too slow')
-        urlopen.expects_call().raises(urllib2.URLError(reason))
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_notify_timeout(self, fake_req):
+        fake_req.expects('post').raises(Timeout())
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.success, False)
         er = notice.last_error
-        assert er.startswith('URLError:'), 'Unexpected: %s' % er
+        assert er.startswith('Timeout:'), 'Unexpected: %s' % er
 
     @mock.patch('mkt.inapp_pay.tasks.payment_notify.retry')
-    @mock.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_retry_http_error(self, retry, urlopen):
-        urlopen.side_effect = urllib2.HTTPError('url', 500, 'Error', [], None)
+    @mock.patch('mkt.inapp_pay.tasks.requests.post')
+    def test_retry_http_error(self, post, retry):
+        post.side_effect = RequestException('500 error')
         self.notify()
+        assert post.called, 'notification not sent'
         assert retry.called, 'task was not retried after error'
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_http_error(self, urlopen):
-        urlopen.expects_call().raises(urllib2.HTTPError('url', 404,
-                                                        'Not Found', [], None))
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_any_error(self, fake_req):
+        fake_req.expects('post').raises(RequestException('some http error'))
+        self.notify()
+        notice = InappPayNotice.objects.get()
+        eq_(notice.success, False)
+        er = notice.last_error
+        assert er.startswith('RequestException:'), 'Unexpected: %s' % er
+
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_bad_status(self, fake_req):
+        (fake_req.expects('post').returns_fake()
+                                 .has_attr(text='')
+                                 .expects('raise_for_status')
+                                 .raises(urllib2.HTTPError('url', 500, 'Error',
+                                                           [], None)))
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.success, False)
         er = notice.last_error
         assert er.startswith('HTTPError:'), 'Unexpected: %s' % er
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_invalid_url_error(self, urlopen):
-        (urlopen.expects_call()
-                .raises(httplib.InvalidURL("nonnumeric port: ''")))
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_invalid_app_response(self, fake_req):
+        (fake_req.expects('post').returns_fake()
+                                 .has_attr(text='<not a valid response>'))
         self.notify()
         notice = InappPayNotice.objects.get()
         eq_(notice.success, False)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_bad_socket(self, urlopen):
-        (urlopen.expects_call()
-                .returns_fake().expects('read').raises(socket.error))
-        self.notify()
-        notice = InappPayNotice.objects.get()
-        eq_(notice.success, False)
-
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_bad_socket_on_open(self, urlopen):
-        urlopen.expects_call().raises(socket.error)
-        self.notify()
-        notice = InappPayNotice.objects.get()
-        eq_(notice.success, False)
-
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_bad_status_line(self, urlopen):
-        urlopen.expects_call().raises(httplib.BadStatusLine(None))
-        self.notify()
-        notice = InappPayNotice.objects.get()
-        eq_(notice.success, False)
-
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_invalid_app_response(self, urlopen):
-        (urlopen.expects_call().returns_fake()
-                               .expects('read')
-                               .returns('<not a valid response>')
-                               .expects('close'))
-        self.notify()
-        notice = InappPayNotice.objects.get()
-        eq_(notice.success, False)
-
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_signed_app_response(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_signed_app_response(self, fake_req):
         app_payment = self.payload()
 
         # Ensure that the JWT sent to the app for payment notification
@@ -259,12 +236,10 @@ class TestNotifyApp(TalkToAppTest):
                                 'Expected exp to be about an hour from now')
             return True
 
-        (urlopen.expects_call().with_args(arg.any(), arg.passes_test(is_valid),
-                                          timeout=arg.any())
-                               .returns_fake()
-                               .expects('read')
-                               .returns('<not a valid response>')
-                               .expects('close'))
+        (fake_req.expects('post').with_args(arg.any(),
+                                            arg.passes_test(is_valid),
+                                            timeout=arg.any())
+                                 .has_attr(text='<not a valid response>'))
         self.notify()
 
 
@@ -284,28 +259,32 @@ class TestFetchProductImage(TalkToAppTest):
         self.addCleanup(img.close)
         return img
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_ignore_error(self, urlopen):
-        (urlopen.expects_call()
-                .raises(urllib2.HTTPError('url', 500, 'Error', [], None)))
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_ignore_error(self, fake_req):
+        (fake_req.expects('get')
+                 .raises(RequestException('some error')))
         self.fetch()
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_ignore_read_error(self, urlopen):
-        (urlopen.expects_call()
-                .returns_fake().expects('read').raises(socket.error))
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_ignore_bad_status(self, fake_req):
+        (fake_req.expects('get')
+                 .returns_fake()
+                 .expects('raise_on_status')
+                 .raises(urllib2.HTTPError('url', 404, 'Not Found',
+                                           [], None)))
         self.fetch()
+        eq_(InappImage.objects.get().valid, False)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_ignore_valid_image(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_ignore_valid_image(self, fake_req):
         url = '/media/my.jpg'
         InappImage.objects.create(image_url=url,
                                   config=self.inapp_config,
                                   valid=True)
         self.fetch(url=url)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_refetch_old_image(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_refetch_old_image(self, fake_req):
         url = '/media/my.jpg'
         now = datetime.now()
         old = now - timedelta(days=6)
@@ -313,46 +292,52 @@ class TestFetchProductImage(TalkToAppTest):
                                          config=self.inapp_config,
                                          valid=True)
         prod.update(modified=old)
-        urlopen.expects_call().returns(self.open_img())
+        fake_req.expects('get').returns_fake().has_attr(raw=self.open_img())
         self.fetch(url=url)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_update_existing_image(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_update_existing_image(self, fake_req):
         url = '/media/my.jpg'
         InappImage.objects.create(image_url=url,
                                   config=self.inapp_config,
                                   processed=False,
                                   valid=False)
-        urlopen.expects_call().returns(self.open_img())
+        (fake_req.expects('get').returns_fake().has_attr(raw=self.open_img())
+                                               .expects('raise_on_status'))
         self.fetch(url=url)
         prod = InappImage.objects.get()
         eq_(prod.processed, True)
         eq_(prod.valid, True)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_absolute_url(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_absolute_url(self, fake_req):
         url = 'http://mycdn-somewhere.com/media/my.jpg'
-        (urlopen.expects_call()
-                .with_args(url, timeout=arg.any())
-                .returns(self.open_img()))
+        (fake_req.expects('get')
+                 .with_args(url, timeout=arg.any())
+                 .returns_fake()
+                 .has_attr(raw=self.open_img())
+                 .expects('raise_on_status'))
         self.fetch(url=url)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_ignore_non_image(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_ignore_non_image(self, fake_req):
         im = StringIO('<not an image>')
-        urlopen.expects_call().returns(im)
+        (fake_req.expects('get').returns_fake().has_attr(raw=im)
+                                               .expects('raise_on_status'))
         self.fetch()
         prod = InappImage.objects.get()
         assert not os.path.exists(prod.path()), 'Image ignored'
         eq_(prod.valid, False)
         eq_(prod.processed, True)
 
-    @fudge.patch('mkt.inapp_pay.tasks.urlopen')
-    def test_fetch_ok(self, urlopen):
+    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    def test_fetch_ok(self, fake_req):
         url = '/media/my.jpg'
-        (urlopen.expects_call()
-                .with_args(self.url(url), timeout=arg.any())
-                .returns(self.open_img()))
+        (fake_req.expects('get')
+                 .with_args(self.url(url), timeout=arg.any())
+                 .returns_fake()
+                 .has_attr(raw=self.open_img())
+                 .expects('raise_on_status'))
         self.fetch(url=url)
         prod = InappImage.objects.get()
         assert os.path.exists(prod.path()), 'Image not created'

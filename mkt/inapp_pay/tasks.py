@@ -1,11 +1,9 @@
 import calendar
 from datetime import datetime, timedelta
-import json
 import logging
 import os
 import tempfile
 import time
-from urllib2 import urlopen
 import urlparse
 
 from django.conf import settings
@@ -14,6 +12,7 @@ from django.db import transaction
 
 from celeryutils import task
 import jwt
+import requests
 
 import amo
 from amo.decorators import write
@@ -87,8 +86,9 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
                                config.get_private_key(),
                                algorithm='HS256')
     try:
-        res = urlopen(url, signed_notice, timeout=5)
-        res_content = res.read().strip()
+        res = requests.post(url, signed_notice, timeout=5)
+        res.raise_for_status()  # raise exception for non-200s
+        res_content = res.text
     except AssertionError:
         raise  # Raise test-related exceptions.
     except Exception, exception:
@@ -108,7 +108,6 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
             log.error('app config %s did not respond with contribution ID %s '
                       'for in-app payment %s' % (config.pk, contrib.pk,
                                                  payment.pk))
-        res.close()
 
     if exception:
         last_error = u'%s: %s' % (exception.__class__.__name__, exception)
@@ -149,7 +148,9 @@ def fetch_product_image(config_id, app_req, read_size=100000, **kw):
     abs_url = product.absolute_image_url()
     tmp_dest = tempfile.NamedTemporaryFile(delete=False)
     try:
-        im_src = urlopen(abs_url, timeout=5)
+        res = requests.get(abs_url, timeout=5)
+        res.raise_on_status()
+        im_src = res.raw
         done = False
         while not done:
             chunk = im_src.read(read_size)
@@ -157,12 +158,12 @@ def fetch_product_image(config_id, app_req, read_size=100000, **kw):
                 done = True
             else:
                 tmp_dest.write(chunk)
-    except (AssertionError, RuntimeError):
+    except AssertionError:
         raise  # Raise test-related exceptions.
     except:
         tmp_dest.close()
         os.unlink(tmp_dest.name)
-        log.error('fetch_product_image urlopen error with '
+        log.error('fetch_product_image error with '
                   '%s for config %s' % (abs_url, config.pk),
                   exc_info=True)
         return
