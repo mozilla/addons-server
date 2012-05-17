@@ -3,13 +3,18 @@ import re
 
 from django.contrib.auth.models import AnonymousUser
 
-import mock
 from nose.tools import eq_
+from pyquery import PyQuery as pq
+import waffle
 
+from addons.models import Addon
+from addons.tests.test_views import TestPersonas
+import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from market.models import PreApprovalUser
-from users.helpers import emaillink, user_link, users_list, user_data
+from users.helpers import (addon_users_list, emaillink, user_data, user_link,
+                           users_list)
 from users.models import UserProfile, RequestUser
 
 
@@ -50,7 +55,7 @@ def test_user_link_xss():
     u = UserProfile(username='jconnor',
                     display_name='<script>alert(1)</script>', pk=1)
     url = reverse('users.profile', args=[1])
-    html =  "&lt;script&gt;alert(1)&lt;/script&gt;"
+    html = "&lt;script&gt;alert(1)&lt;/script&gt;"
     eq_(user_link(u), '<a href="%s">%s</a>' % (url, html))
 
 
@@ -85,6 +90,21 @@ def test_user_link_unicode():
         u'<a href="%s">%s</a>' % (url, u.username))
 
 
+class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=15663)
+        self.persona = self.addon.persona
+        waffle.models.Switch.objects.create(
+            name='personas-migration-completed', active=True)
+        self.create_addon_user(self.addon)
+
+    def test_by(self):
+        """Test that the by... bit works."""
+        content = addon_users_list({'amo': amo}, self.addon)
+        eq_(pq(content).text(), 'by %s' % self.addon.authors.all()[0].name)
+
+
 def test_user_data():
     u = user_data(RequestUser(username='foo', pk=1))
     eq_(u['anonymous'], False)
@@ -109,7 +129,8 @@ class TestUserData(amo.tests.TestCase):
 
     def test_preapproval_user_data(self):
         up = UserProfile.objects.create(email='aq@a.com', username='foo')
-        PreApprovalUser.objects.create(user=up, paypal_key='asd', currency='EUR')
+        PreApprovalUser.objects.create(user=up, paypal_key='asd',
+                                       currency='EUR')
         u = user_data(RequestUser.objects.get(pk=up.pk))
         eq_(u['anonymous'], False)
         eq_(u['pre_auth'], True)

@@ -53,6 +53,14 @@ def users_list(users, size=None):
     return jinja2.Markup(', '.join(map(_user_link, users) + tail))
 
 
+@register.inclusion_tag('users/helpers/addon_users_list.html')
+@jinja2.contextfunction
+def addon_users_list(context, addon):
+    ctx = dict(context.items())
+    ctx['addon'] = addon
+    return ctx
+
+
 def _user_link(user):
     if isinstance(user, basestring):
         return user
