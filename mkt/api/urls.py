@@ -1,14 +1,11 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls.defaults import include, patterns, url
 
-from mkt.api.authentication import MarketplaceAuth
-from mkt.api.handlers import ValidationHandler
-from mkt.api.resources import MarketplaceResource
+from tastypie.api import Api
+from mkt.api.resources import ValidationResource
 
-
-extra = {'authentication': MarketplaceAuth(two_legged=True)}
-validation = MarketplaceResource(handler=ValidationHandler, **extra)
+validation = Api(api_name='apps')
+validation.register(ValidationResource())
 
 urlpatterns = patterns('',
-    url(r'^apps/validation(?:/(?P<id>\w+))?$', validation,
-        name='api.validation'),
+    url(r'^', include(validation.urls)),
 )
