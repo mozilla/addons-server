@@ -66,8 +66,9 @@
                 _.extend(view, newView);
                 var metric = view.metric,
                     range = normalizeRange(view.range),
-                    url = baseURL + ([metric,'day',range.start.pretty(''),range.end.pretty('')]).join('-') + '.csv';
-                $('#export_data').attr('href', url);
+                    url = baseURL + ([metric,'day',range.start.pretty(''),range.end.pretty('')]).join('-');
+                $('#export_data_csv').attr('href', url + '.csv');
+                $('#export_data_json').attr('href', url + '.json');
             });
         })();
 

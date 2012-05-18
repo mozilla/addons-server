@@ -1,0 +1,9 @@
+{% extends 'stats/stats.html' %}
+
+{% block csvtitle %}
+  <h2>
+    {{ title }}
+    <a id="export_data_csv" href="">{{ _('Export as CSV') }}</a>
+    <a id="export_data_json" href="">{{ _('Export as JSON') }}</a>
+  </h2>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "appstats/stats.html" %}
+{% extends 'appstats/report.html' %}
 
 {% block sales_select %}
     class="selected"
@@ -22,6 +22,4 @@
   </div>
 {% endblock %}
 
-{% block csvtitle %}
-  <h2>{{_('Sales by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
-{% endblock %}
+{% set title =  _('Sales by Date') %}

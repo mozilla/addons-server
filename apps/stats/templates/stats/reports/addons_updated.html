@@ -1,5 +1,3 @@
-{% extends "stats/stats.html" %}
+{% extends 'stats/report.html' %}
 
-{% block csvtitle %}
-<h2>{{_('Add-ons Updated by Date')}}<a id="export_data" href=''>{{_('Export as CSV')}}</a></h2>
-{% endblock %}
+{% set title = _('Add-ons Updated by Date') %}
