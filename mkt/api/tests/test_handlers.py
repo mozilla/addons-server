@@ -1,5 +1,7 @@
 import json
 
+from django.conf import settings
+
 from mock import patch
 from nose.tools import eq_
 
@@ -34,6 +36,7 @@ class ValidationHandler(BaseOAuth):
         return json.loads(response.content)['error_message']
 
 
+@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAddValidationHandler(ValidationHandler):
 
     def test_good(self):
@@ -59,6 +62,7 @@ class TestAddValidationHandler(ValidationHandler):
         eq_(self.get_error(res)['manifest'], ['Enter a valid URL.'])
 
 
+@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestGetValidationHandler(ValidationHandler):
 
     def create(self):

@@ -23,12 +23,13 @@ import time
 import urllib
 import urlparse
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.test.client import (encode_multipart, Client, FakePayload,
                                 BOUNDARY, MULTIPART_CONTENT)
 
 import oauth2 as oauth
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from piston.models import Consumer
 
@@ -141,6 +142,7 @@ class BaseOAuth(TestCase):
         self.client = OAuthClient(self.accepted_consumer)
 
 
+@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestBaseOAuth(BaseOAuth):
     # Note: these tests are using the validation api to test authentication
     # using oquth. Ideally those tests would be done seperately.
