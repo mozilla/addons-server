@@ -73,18 +73,19 @@ class Rating(amo.models.ModelBase):
         if created:
             Rating.post_delete(sender, instance)
             # Avoid slave lag with the delay.
-            check_spam.apply_async(args=[instance.id], countdown=600)
+            #check_spam.apply_async(args=[instance.id], countdown=600)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
         if kwargs.get('raw'):
             return
-        from . import tasks
-        pair = instance.addon_id, instance.user_id
+        #from . import tasks
+        #pair = instance.addon_id, instance.user_id
         # Do this immediately so is_latest is correct. Use default to avoid
         # slave lag.
-        tasks.update_denorm(pair, using='default')
-        tasks.addon_review_aggregates.delay(instance.addon_id, using='default')
+        #tasks.update_denorm(pair, using='default')
+        #tasks.addon_review_aggregates.delay(instance.addon_id,
+        #                                    using='default')
 
     @staticmethod
     def transformer(reviews):
