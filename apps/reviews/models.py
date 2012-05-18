@@ -4,9 +4,9 @@ import logging
 
 from django.conf import settings
 from django.db import models
+from django.core.cache import cache
 
 import bleach
-import redisutils
 from celeryutils import task
 from tower import ugettext_lazy as _
 
@@ -145,13 +145,9 @@ class GroupedRating(object):
 
     SELECT rating, COUNT(rating) FROM reviews where addon=:id
     """
-    # Non-critical data, so we always leave it in redis. Numbers are updated
+    # Non-critical data, so we always leave it in memcache. Numbers are updated
     # when a new review comes in.
     prefix = 'addons:grouped:rating'
-
-    @classmethod
-    def redis(cls):
-        return redisutils.connections['master']
 
     @classmethod
     def key(cls, addon):
@@ -160,8 +156,7 @@ class GroupedRating(object):
     @classmethod
     def get(cls, addon):
         try:
-            d = cls.redis().get(cls.key(addon))
-            return json.loads(d) if d else None
+            return cache.get(cls.key(addon))
         except Exception:
             # Don't worry about failures, especially timeouts.
             return
@@ -172,21 +167,29 @@ class GroupedRating(object):
              .values_list('rating').annotate(models.Count('rating')))
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
-        cls.redis().set(cls.key(addon), json.dumps(ratings))
+        cache.set(cls.key(addon), ratings)
 
 
 class Spam(object):
 
-    def __init__(self):
-        self.redis = redisutils.connections['master']
-
     def add(self, review, reason):
         reason = 'amo:review:spam:%s' % reason
-        self.redis.sadd(reason, review.id)
-        self.redis.sadd('amo:review:spam:reasons', reason)
+        try:
+            reasonset = cache.get('amo:review:spam:reasons')
+        except KeyError:
+            reasonset = set()
+        try:
+            idset = cache.get(reason)
+        except KeyError:
+            idset = set()
+        reasonset.add(reason)
+        cache.set('amo:review:spam:reasons', reasonset)
+        idset.add(review.id)
+        cache.set(reason, idset)
+
 
     def reasons(self):
-        return self.redis.smembers('amo:review:spam:reasons')
+        return cache.get('amo:review:spam:reasons')
 
 
 @task

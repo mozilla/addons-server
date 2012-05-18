@@ -42,12 +42,12 @@ class TestGroupedRating(amo.tests.TestCase):
     def test_set(self):
         eq_(GroupedRating.get(1865), None)
         GroupedRating.set(1865)
-        eq_(GroupedRating.get(1865), [[1, 0], [2, 0], [3, 0], [4, 1], [5, 0]])
+        eq_(GroupedRating.get(1865), [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)])
 
     def test_cron(self):
         eq_(GroupedRating.get(1865), None)
         tasks.addon_grouped_rating(1865)
-        eq_(GroupedRating.get(1865), [[1, 0], [2, 0], [3, 0], [4, 1], [5, 0]])
+        eq_(GroupedRating.get(1865), [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)])
 
 
 class TestSpamTest(amo.tests.TestCase):
