@@ -1,1 +1,1 @@
-ALTER TABLE ratings CHANGE COLUMN score score smallint;
+ALTER TABLE ratings CHANGE COLUMN score score tinyint(1);
