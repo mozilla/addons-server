@@ -36,10 +36,15 @@ log = commonware.log.getLogger('z.addons')
 
 class WebappManager(amo.models.ManagerBase):
 
+    def __init__(self, include_deleted=False):
+        amo.models.ManagerBase.__init__(self)
+        self.include_deleted = include_deleted
+
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet)
-        qs = qs.filter(type=amo.ADDON_WEBAPP)
+        qs = qs._clone(klass=query.IndexQuerySet).filter(type=amo.ADDON_WEBAPP)
+        if not self.include_deleted:
+            qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Webapp.transformer)
 
     def valid(self):
@@ -84,6 +89,7 @@ class WebappManager(amo.models.ManagerBase):
 class Webapp(Addon):
 
     objects = WebappManager()
+    with_deleted = WebappManager(include_deleted=True)
 
     class Meta:
         proxy = True

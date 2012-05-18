@@ -6,7 +6,6 @@ import unittest
 
 import test_utils
 import mock
-from nose import SkipTest
 from nose.tools import eq_, raises
 import waffle
 
@@ -23,6 +22,41 @@ from versions.models import Version
 
 
 class TestWebapp(test_utils.TestCase):
+
+    def test_hard_deleted(self):
+        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        # Until bug 755214 is fixed, `len` that ish.
+        eq_(len(Webapp.objects.all()), 1)
+        eq_(len(Webapp.with_deleted.all()), 1)
+
+        w.delete('boom shakalakalaka')
+        eq_(len(Webapp.objects.all()), 0)
+        eq_(len(Webapp.with_deleted.all()), 0)
+
+    def test_soft_deleted(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+
+        w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
+                                  app_domain='http://omg.org/yes',
+                                  status=amo.STATUS_PENDING)
+        eq_(len(Webapp.objects.all()), 1)
+        eq_(len(Webapp.with_deleted.all()), 1)
+
+        w.delete('boom shakalakalaka')
+        eq_(len(Webapp.objects.all()), 0)
+        eq_(len(Webapp.with_deleted.all()), 1)
+
+        # When an app is deleted its slugs and domain should get relinquished.
+        post_mortem = Webapp.with_deleted.filter(id=w.id)
+        eq_(post_mortem.count(), 1)
+        for attr in ('slug', 'app_slug', 'app_domain'):
+            eq_(getattr(post_mortem[0], attr), None)
+
+    def test_soft_deleted_valid(self):
+        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        Webapp.objects.create(status=amo.STATUS_DELETED)
+        eq_(list(Webapp.objects.valid()), [w])
+        eq_(sorted(Webapp.with_deleted.valid()), [w])
 
     def test_webapp_type(self):
         webapp = Webapp()
@@ -124,22 +158,6 @@ class TestWebapp(test_utils.TestCase):
         webapp = Webapp()
         get_manifest_json.return_value = {'icons': {}}
         eq_(webapp.has_icon_in_manifest(), True)
-
-    def test_delete_app_domain(self):
-        # Uncomment when redis gets fixed on ci.mozilla.org.
-        raise SkipTest
-
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
-        # When an app is deleted its slugs and domain should get relinquished.
-        webapp = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
-                                       app_domain='http://omg.org/yes',
-                                       status=amo.STATUS_PENDING)
-        webapp.delete()
-
-        post_mortem = Addon.with_deleted.filter(id=webapp.id)
-        eq_(post_mortem.count(), 1)
-        for attr in ['slug', 'app_slug', 'app_domain']:
-            eq_(getattr(post_mortem[0], attr), None)
 
 
 class TestWebappVersion(amo.tests.TestCase):
