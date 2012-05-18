@@ -288,6 +288,13 @@ class AMOPaths(object):
             os.makedirs(os.path.dirname(file.file_path))
         shutil.copyfile(self.xpi_path(name), file.file_path)
 
+    def manifest_path(self, name):
+        return os.path.join(settings.ROOT,
+                            'mkt/submit/tests/webapps/%s' % name)
+
+    def manifest_copy_over(self, dest, name):
+        shutil.copyfile(self.manifest_path(name), dest)
+
     @staticmethod
     def sample_key():
         path = 'mkt/webapps/tests/sample.key'

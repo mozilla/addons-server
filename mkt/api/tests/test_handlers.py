@@ -1,12 +1,16 @@
 import json
+import tempfile
 
 from django.conf import settings
 
 from mock import patch
 from nose.tools import eq_
 
+from addons.models import Addon
+from amo.tests import AMOPaths
 from files.models import FileUpload
 from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 
@@ -113,3 +117,67 @@ class TestGetValidationHandler(ValidationHandler):
         eq_(data['processed'], True)
         eq_(data['valid'], False)
         eq_(data['validation'], json.loads(error))
+
+
+class CreateHandler(BaseOAuth):
+    fixtures = ['base/user_2519', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(CreateHandler, self).setUp()
+        self.list_url = ('api_dispatch_list', {'resource_name': 'app'})
+        self.user = UserProfile.objects.get(pk=2519)
+        self.file = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
+        self.manifest_copy_over(self.file, 'mozball-nice-slug.webapp')
+
+    def create(self):
+        return FileUpload.objects.create(user=self.user, path=self.file,
+                                         name=self.file, valid=True)
+
+    def get_error(self, response):
+        return json.loads(response.content)['error_message']
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestAppCreateHandler(CreateHandler, AMOPaths):
+
+    def count(self):
+        return Addon.objects.count()
+
+    def test_not_valid(self):
+        obj = self.create()
+        obj.update(valid=False)
+        res = self.client.post(self.list_url,
+                               body=json.dumps({'manifest': obj.uuid}))
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['manifest'], ['Upload not valid.'])
+        eq_(self.count(), 0)
+
+    def test_not_there(self):
+        res = self.client.post(self.list_url,
+                               body=json.dumps({'manifest':
+                                   'some-random-32-character-stringy'}))
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['manifest'], ['No upload found.'])
+        eq_(self.count(), 0)
+
+    def test_not_yours(self):
+        obj = self.create()
+        obj.update(user=UserProfile.objects.get(email='admin@mozilla.com'))
+        res = self.client.post(self.list_url,
+                               body=json.dumps({'manifest': obj.uuid}))
+        eq_(res.status_code, 401)
+        eq_(self.count(), 0)
+
+    def test_create(self):
+        obj = self.create()
+        res = self.client.post(self.list_url,
+                               body=json.dumps({'manifest': obj.uuid}))
+        eq_(res.status_code, 201)
+        content = json.loads(res.content)
+        eq_(content['status'], 0)
+        eq_(content['slug'], u'mozillaball')
+        eq_(content['support_email'], None)
+        eq_(self.count(), 1)
+
+        app = Webapp.objects.get(app_slug=content['slug'])
+        eq_(set(app.authors.all()), set([self.user]))

@@ -1,17 +1,23 @@
 import json
 
+from django.db import transaction
 from django.forms import ValidationError
 
 import commonware.log
 from tastypie import http
 from tastypie.exceptions import ImmediateHttpResponse
 
-from files.models import FileUpload
-from mkt.developers import tasks
-from mkt.developers.forms import NewManifestForm
+from addons.models import AddonUser
+import amo
+from amo.decorators import write
+from files.models import FileUpload, Platform
 from mkt.api.authentication import (OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
+from mkt.api.forms import UploadForm
+from mkt.developers import tasks
+from mkt.developers.forms import NewManifestForm
+from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.api')
 
@@ -30,6 +36,8 @@ class ValidationResource(MarketplaceResource):
         authorization = OwnerAuthorization()
         resource_name = 'validation'
 
+    @write
+    @transaction.commit_on_success
     def obj_create(self, bundle, request=None, **kwargs):
         form = NewManifestForm(bundle.data)
         if not form.is_valid():
@@ -64,4 +72,43 @@ class ValidationResource(MarketplaceResource):
         bundle.data['id'] = bundle.obj.pk
         bundle.data['processed'] = (bool(bundle.obj.valid or
                                          bundle.obj.validation))
+        return bundle
+
+
+class AppResource(MarketplaceResource):
+
+    class Meta:
+        queryset = Webapp.objects.valid().no_transforms()
+        fields = ['name', 'description', 'homepage', 'status', 'summary',
+                  'support_email', 'support_url']
+        list_allowed_methods = ['post']
+        allowed_methods = []
+        always_return_data = True
+        authentication = MarketplaceAuthentication()
+        authorization = OwnerAuthorization()
+        resource_name = 'app'
+
+    @write
+    @transaction.commit_on_success
+    def obj_create(self, bundle, request, **kwargs):
+        form = UploadForm(bundle.data)
+        if not form.is_valid():
+            raise ValidationError(self.form_errors(form))
+
+        if not (OwnerAuthorization()
+                .is_authorized(request, object=form.obj)):
+            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+
+        plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+
+        # Create app, user and fetch the icon.
+        bundle.obj = Webapp.from_upload(form.obj, plats)
+        AddonUser(addon=bundle.obj, user=request.amo_user).save()
+        tasks.fetch_icon.delay(bundle.obj,)
+        return bundle
+
+    def dehydrate(self, bundle):
+        obj = bundle.obj
+        bundle.data['slug'] = obj.app_slug
+        bundle.data['premium_type'] = amo.ADDON_PREMIUM_API[obj.premium_type]
         return bundle

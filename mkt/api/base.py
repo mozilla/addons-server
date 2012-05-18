@@ -5,8 +5,11 @@ from tastypie.bundle import Bundle
 from tastypie.resources import ModelResource
 from tastypie.utils import dict_strip_unicode_keys
 
+from translations.fields import PurifiedField, TranslatedField
+
 
 class MarketplaceResource(ModelResource):
+
     def get_resource_uri(self, bundle_or_obj):
         # Fix until my pull request gets pulled into tastypie.
         # https://github.com/toastdriven/django-tastypie/pull/490
@@ -48,6 +51,14 @@ class MarketplaceResource(ModelResource):
             return self.create_response(request, updated_bundle,
                     response_class=http.HttpCreated,
                     location=location)
+
+    @classmethod
+    def should_skip_field(cls, field):
+        # We don't want to skip translated fields.
+        if isinstance(field, (PurifiedField, TranslatedField)):
+            return False
+
+        return True if getattr(field, 'rel') else False
 
     def form_errors(self, form):
         return json.dumps({'error_message': dict(form.errors.items())})
