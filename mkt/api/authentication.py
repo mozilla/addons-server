@@ -1,3 +1,6 @@
+from urlparse import urljoin
+
+from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 import commonware.log
@@ -88,10 +91,7 @@ def initialize_oauth_server_request(request):
     if 'HTTP_AUTHORIZATION' in request.META:
         auth_header = {'Authorization': request.META.get('HTTP_AUTHORIZATION')}
 
-    absolute_uri = request.build_absolute_uri()
-    url = absolute_uri
-    if absolute_uri.find('?') != -1:
-        url = absolute_uri[:absolute_uri.find('?')]
+    url = urljoin(settings.SITE_URL, request.path)
 
     oauth_request = oauth2.Request.from_request(
             request.method, url, headers=auth_header)

@@ -27,7 +27,8 @@ class MarketplaceResource(ModelResource):
     def post_list(self, request, **kwargs):
         # TODO: This has to be request.META['body'] because otherwise this
         # will be empty and all the tests will fail. Boo!
-        deserialized = self.deserialize(request, request.META['body'],
+        deserialized = self.deserialize(request,
+                request.META.get('body', request.raw_post_data),
                 format=request.META.get('CONTENT_TYPE', 'application/json'))
         # The rest is the same.
         deserialized = self.alter_deserialized_detail_data(request,
