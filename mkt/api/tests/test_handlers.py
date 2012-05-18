@@ -42,7 +42,7 @@ class TestAddValidationHandler(ValidationHandler):
         content = json.loads(res.content)
         eq_(FileUpload.objects.filter(uuid=content['id']).count(), 1)
 
-    @patch('mkt.api.handlers.tasks.fetch_manifest.delay')
+    @patch('mkt.api.resources.tasks.fetch_manifest.delay')
     def test_fetch(self, fetch):
         self.create()
         assert fetch.called
