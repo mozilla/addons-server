@@ -151,6 +151,7 @@ NO_LOGIN_REQUIRED_MODULES = (
     'mkt.zadmin.views',
     # in-app views have their own login protection.
     'mkt.inapp_pay.views',
+    'tastypie.resources.wrapper',
 )
 
 # Extend the bundles.
