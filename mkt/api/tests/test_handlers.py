@@ -181,3 +181,25 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
         app = Webapp.objects.get(app_slug=content['slug'])
         eq_(set(app.authors.all()), set([self.user]))
+
+    def create_app(self):
+        obj = self.create()
+        res = self.client.post(self.list_url,
+                               body=json.dumps({'manifest': obj.uuid}))
+        pk = json.loads(res.content)['id']
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'app', 'pk': pk})
+        return Webapp.objects.get(pk=pk)
+
+    def test_get(self):
+        self.create_app()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(content['status'], 0)
+
+    def test_get_not_mine(self):
+        obj = self.create_app()
+        obj.authors.clear()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 401)

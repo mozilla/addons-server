@@ -3,6 +3,8 @@ from django import forms
 import happyforms
 
 from files.models import FileUpload
+from mkt.submit.forms import AppDetailsBasicForm
+from addons.forms import AddonFormBase
 
 
 class UploadForm(happyforms.Form):
@@ -19,5 +21,3 @@ class UploadForm(happyforms.Form):
 
         self.obj = upload
         return uuid
-
-

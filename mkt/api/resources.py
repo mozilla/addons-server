@@ -11,7 +11,7 @@ from addons.models import AddonUser
 import amo
 from amo.decorators import write
 from files.models import FileUpload, Platform
-from mkt.api.authentication import (OwnerAuthorization,
+from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
 from mkt.api.forms import UploadForm
@@ -78,14 +78,14 @@ class ValidationResource(MarketplaceResource):
 class AppResource(MarketplaceResource):
 
     class Meta:
-        queryset = Webapp.objects.valid().no_transforms()
-        fields = ['name', 'description', 'homepage', 'status', 'summary',
+        queryset = Webapp.objects.all().no_transforms()
+        fields = ['id', 'name', 'description', 'homepage', 'status', 'summary',
                   'support_email', 'support_url']
         list_allowed_methods = ['post']
-        allowed_methods = []
+        allowed_methods = ['get']
         always_return_data = True
         authentication = MarketplaceAuthentication()
-        authorization = OwnerAuthorization()
+        authorization = AppOwnerAuthorization()
         resource_name = 'app'
 
     @write
@@ -106,6 +106,14 @@ class AppResource(MarketplaceResource):
         AddonUser(addon=bundle.obj, user=request.amo_user).save()
         tasks.fetch_icon.delay(bundle.obj,)
         return bundle
+
+    def obj_get(self, request=None, **kwargs):
+        obj = super(AppResource, self).obj_get(request=request, **kwargs)
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+
+        log.info('App retreived: %s' % obj.pk)
+        return obj
 
     def dehydrate(self, bundle):
         obj = bundle.obj
