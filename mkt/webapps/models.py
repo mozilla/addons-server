@@ -119,11 +119,11 @@ class Webapp(Addon):
 
         # TODO: This may need to be its own column.
         for app in apps:
-            #if not hasattr(apps_dict[adt.addon_id], '_rating_counts'):
-            scores = dict(app._ratings.values_list('score')
-                             .annotate(models.Count('id')))
-            app._rating_counts = {'positive': scores.get(1, 0),
-                                  'negative': scores.get(-1, 0)}
+            if not hasattr(app, '_rating_counts') and hasattr(app, '_ratings'):
+                scores = dict(app._ratings.values_list('score')
+                                 .annotate(models.Count('id')))
+                app._rating_counts = {'positive': scores.get(1, 0),
+                                      'negative': scores.get(-1, 0)}
 
     def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
