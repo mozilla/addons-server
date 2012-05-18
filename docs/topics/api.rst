@@ -44,7 +44,7 @@ If there is an error in your data, a 400 status code will be returned. There
 can be multiple errors per field. Example::
 
         {
-          "error": {
+          "error_message": {
             "manifest": ["This field is required."]
           }
         }
@@ -52,17 +52,12 @@ can be multiple errors per field. Example::
 Other errors
 ------------
 
-The appropriate HTTP status code will be returned. The body may contain JSON
-and it may contain a useful error message. Example::
-
-        {
-          "error": "Invalid OAuthToken."
-        }
+The appropriate HTTP status code will be returned.
 
 Verbs
 =====
 
-This follows the order of the `django-piston`_ REST verbs, a PUT for an update and POST for create.
+This follows the order of the `django-tastypie`_ REST verbs, a PUT for an update and POST for create.
 
 Response
 ========
@@ -81,40 +76,55 @@ Validate
 
 To validate an app::
 
-        POST /api/apps/validate
+        POST /en-US/api/apps/validation/
 
 Body data should contain the manifest in JSON::
 
         {"manifest": "http://test.app.com/manifest"}
 
 Validations are done async on the marketplace. The call will return immediately
-with a status of 202::
+with a status of 201::
 
-        {"id": "123"}
+        {"id": "123",
+         "manifest": "http://foo.com",
+         "processed": false,
+         "resource_uri": "/en-US/api/apps/validation/123/",
+         "valid": false,
+         "validation": ""}
 
-To see how it's doing, poll for a result::
+To see how it's doing, poll for a result using the `resource_uri`::
 
-        GET /api/apps/validation/123
+        GET /en-US/api/apps/validation/123/
 
 This will return the status of the validation. Validation not processed yet::
 
-        {"processed": false}
+        {"id": "123",
+         "processed": false,
+         "resource_uri": "/en-US/api/apps/validation/123/",
+         "valid": false,
+         "validation": ""}
 
 Validation processed and good::
 
-        {"valid": true, "processed": true}
+        {"id": "123",
+         "processed": true,
+         "resource_uri": "/en-US/api/apps/validation/123/",
+         "valid": true,
+         "validation": ""}
 
 Validation processed and an error::
 
-        {"valid": false,
+        {"id": "123",
          "processed": true,
+         "resource_uri": "/en-US/api/apps/validation/123/",
+         "valid": false,
          "validation": {
            "errors": 1, "messages": [{
              "tier": 1,
              "message": "Your manifest must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". We saw \"text/html; charset=utf-8\".",
              "type": "error"
            }],
-         "success": false}}
+        }}
 
 Create
 ------
@@ -244,5 +254,5 @@ This will return a 200 if the screenshot has been deleted.
 
 .. _`MDN`: https://developer.mozilla.org
 .. _`marketplace team`: marketplace-team@mozilla.org
-.. _`django-piston`: https://bitbucket.org/jespern/django-piston/wiki/Documentation
+.. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
 .. _`AMO api on MDN`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
