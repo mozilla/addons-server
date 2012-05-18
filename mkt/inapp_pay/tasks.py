@@ -149,7 +149,7 @@ def fetch_product_image(config_id, app_req, read_size=100000, **kw):
     tmp_dest = tempfile.NamedTemporaryFile(delete=False)
     try:
         res = requests.get(abs_url, timeout=5)
-        res.raise_on_status()
+        res.raise_for_status()
         im_src = res.raw
         done = False
         while not done:

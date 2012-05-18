@@ -269,7 +269,7 @@ class TestFetchProductImage(TalkToAppTest):
     def test_ignore_bad_status(self, fake_req):
         (fake_req.expects('get')
                  .returns_fake()
-                 .expects('raise_on_status')
+                 .expects('raise_for_status')
                  .raises(urllib2.HTTPError('url', 404, 'Not Found',
                                            [], None)))
         self.fetch()
@@ -303,7 +303,7 @@ class TestFetchProductImage(TalkToAppTest):
                                   processed=False,
                                   valid=False)
         (fake_req.expects('get').returns_fake().has_attr(raw=self.open_img())
-                                               .expects('raise_on_status'))
+                                               .expects('raise_for_status'))
         self.fetch(url=url)
         prod = InappImage.objects.get()
         eq_(prod.processed, True)
@@ -316,14 +316,14 @@ class TestFetchProductImage(TalkToAppTest):
                  .with_args(url, timeout=arg.any())
                  .returns_fake()
                  .has_attr(raw=self.open_img())
-                 .expects('raise_on_status'))
+                 .expects('raise_for_status'))
         self.fetch(url=url)
 
     @fudge.patch('mkt.inapp_pay.tasks.requests')
     def test_ignore_non_image(self, fake_req):
         im = StringIO('<not an image>')
         (fake_req.expects('get').returns_fake().has_attr(raw=im)
-                                               .expects('raise_on_status'))
+                                               .expects('raise_for_status'))
         self.fetch()
         prod = InappImage.objects.get()
         assert not os.path.exists(prod.path()), 'Image ignored'
@@ -337,7 +337,7 @@ class TestFetchProductImage(TalkToAppTest):
                  .with_args(self.url(url), timeout=arg.any())
                  .returns_fake()
                  .has_attr(raw=self.open_img())
-                 .expects('raise_on_status'))
+                 .expects('raise_for_status'))
         self.fetch(url=url)
         prod = InappImage.objects.get()
         assert os.path.exists(prod.path()), 'Image not created'
