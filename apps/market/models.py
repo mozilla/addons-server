@@ -320,3 +320,11 @@ class AddonPaymentData(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.addon)
+
+
+class PaypalCheckStatus(amo.models.ModelBase):
+    addon = models.ForeignKey('addons.Addon')
+    failure_data = models.TextField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'paypal_checkstatus'

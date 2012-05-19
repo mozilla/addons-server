@@ -3,10 +3,11 @@ import logging
 import time
 
 from django.conf import settings
+from django.core.cache import cache
+from django.db import models
 
 from addons.models import Addon
 import amo
-from amo.decorators import redis
 from amo.helpers import absolutify, loc
 from amo.utils import send_mail
 from paypal.check import Check
@@ -16,14 +17,15 @@ from celeryutils import task
 from jingo import env
 from waffle import Sample, switch_is_active
 
+from market.models import PaypalCheckStatus
+
 log = logging.getLogger('z.market.task')
 key = 'amo:market:check_paypal'
 failures = '%s:failure' % key
 passes = '%s:passes' % key
 
 
-@redis
-def check_paypal_multiple(redis, ids, limit=None):
+def check_paypal_multiple(ids, limit=None):
     """
     Setup redis so that we can store the count of addons tested and failed
     and spot when the test is completed.
@@ -38,31 +40,32 @@ def check_paypal_multiple(redis, ids, limit=None):
         limit = Sample.objects.get(name='paypal-disabled-limit').percent
 
     log.info('Starting run of paypal addon checks: %s' % len(ids))
-    redis.hmset(key, {'started': time.time(), 'count': len(ids),
-                      'limit': float(limit)})
-    for k in [failures, passes]:
-        redis.delete(k)
-
+    cache.set(key, [time.time(), len(ids), float(limit)])
+    PaypalCheckStatus.objects.all().delete()
     return ids
 
 
-@redis
-def _check_paypal_completed(redis):
-    started, count, limit = redis.hmget(key, ['started', 'count', 'limit'])
+def _check_paypal_completed():
+    started, count, limit = cache.get(key)
     limit, count = float(limit), int(count)
-    failed, passed = redis.llen(failures), redis.llen(passes)
-    if (failed + passed) < count:
+    if PaypalCheckStatus.objects.count() < count:
         return False
-
-    context = {'checked': count, 'failed': failed, 'passed': passed,
-               'limit': limit, 'rate': (failed / float(count)) * 100,
+    failed = (PaypalCheckStatus.objects
+              .filter(failure_data__isnull=False))
+    passed = (PaypalCheckStatus.objects
+              .filter(failure_data__isnull=True)
+              .count())
+    context = {'checked': count,
+               'failed_addons': failed,
+               'failed': len(failed),
+               'passed': passed,
+               'limit': limit, 'rate': (len(failed) / float(count)) * 100,
                'do_disable': switch_is_active('paypal-disable')}
     _notify(context)
     return True
 
 
-@redis
-def _notify(redis, context):
+def _notify(context):
     """
     Notify the admins or the developers what happened. Performing a sanity
     check in case something went wrong.
@@ -77,10 +80,8 @@ def _notify(redis, context):
         #
         # It would really suck if one errant current job disabled every app
         # on the Marketplace. So this is an attempt to sanity check this.
-        for k in xrange(context['failed']):
-            data = json.loads(redis.lindex(failures, k))
-            addon = Addon.objects.get(pk=data[0])
-            failure_list.append(absolutify(addon.get_url_path()))
+        for f in context['failed_addons']:
+            failure_list.append(absolutify(f.addon.get_url_path()))
 
         context['failure_list'] = failure_list
         log.info('Too many failed: %s%%, aborting.' % context['limit'])
@@ -91,12 +92,12 @@ def _notify(redis, context):
                   from_email=settings.NOBODY_EMAIL)
 
     else:
-        if not context['failed']:
+        if not context['failed_addons']:
             return
 
-        for k in xrange(context['failed']):
-            data = json.loads(redis.lindex(failures, k))
-            addon = Addon.objects.get(pk=data[0])
+        for f in context['failed_addons']:
+
+            addon = f.addon
             url = absolutify(addon.get_url_path())
             # Add this to a list so we can tell the admins who got disabled.
             failure_list.append(url)
@@ -107,7 +108,6 @@ def _notify(redis, context):
             # the status of the addon.
             amo.log(amo.LOG.PAYPAL_FAILED, addon, user=get_task_user())
             addon.update(status=amo.STATUS_DISABLED)
-
             authors = [u.email for u in addon.authors.all()]
             if addon.is_webapp():
                 template = 'market/emails/check_developer_app.txt'
@@ -120,7 +120,7 @@ def _notify(redis, context):
             send_mail(subject,
                       env.get_template(template).render({
                           'addon': addon,
-                          'errors': data[1:]
+                          'errors': json.loads(f.failure_data)
                       }),
                       recipient_list=authors,
                       from_email=settings.NOBODY_EMAIL)
@@ -135,8 +135,7 @@ def _notify(redis, context):
 
 
 @task(rate_limit='4/m')
-@redis
-def check_paypal(redis, ids, check=None, **kw):
+def check_paypal(ids, check=None, **kw):
     """
     Checks an addon against PayPal for the following things:
     - that the refund token is still there
@@ -151,7 +150,6 @@ def check_paypal(redis, ids, check=None, **kw):
 
     if check is None:
         check = Check
-
     for id in ids:
         try:
             addon = Addon.objects.get(pk=id)
@@ -159,10 +157,12 @@ def check_paypal(redis, ids, check=None, **kw):
             result = check(addon=addon)
             result.all()
             if result.passed:
-                redis.rpush(passes, id)
+                PaypalCheckStatus.objects.create(addon=addon)
                 log.info('Paypal checks all passed for: %s' % id)
             else:
-                redis.rpush(failures, json.dumps([id, ] + result.errors))
+                PaypalCheckStatus.objects.create(
+                    addon=addon,
+                    failure_data=json.dumps(result.errors))
                 log.info('Paypal checks failed for: %s' % id)
 
         except:
@@ -170,7 +170,7 @@ def check_paypal(redis, ids, check=None, **kw):
             # would cause the app to be marked as disabled and I think that's
             # the wrong thing to do.
             log.error('Paypal check failed: %s' % id, exc_info=True)
-            redis.rpush(passes, id)
+            PaypalCheckStatus.objects.create(addon__id=id)
 
         # Finally call to see if we've finished.
         _check_paypal_completed()
