@@ -7,6 +7,14 @@ z.page.on('fragmentloaded', function() {
                 theme: 'red',
                 callback: Recaptcha.focus_response_field
             });
+            var RecaptchaOptions = {theme: 'custom'};
+            z.page.on('click', '#recaptcha_different', _pd(function() {
+                Recaptcha.reload();
+            })).on('click', '#recaptcha_audio', _pd(function() {
+                Recaptcha.switch_type('audio');
+            })).on('click', '#recaptcha_help', _pd(function() {
+                Recaptcha.showhelp();
+            }));
         }
     }
 });

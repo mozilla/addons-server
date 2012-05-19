@@ -5,16 +5,16 @@
 }
 
 #abuse {
-    ol {
-        list-style: none;
+    form, form .simple-field {
         margin: 0;
-        padding: 0;
-        position: relative;
+    }
+    form label[for=id_text] {
+        display: none;
     }
     #recap-container {
         margin-top: 15px;
     }
-    #label {
+    #recap-label {
         display: block;
         font-weight: normal;
         margin-bottom: 15px;
@@ -47,8 +47,10 @@
     display: none !important;
 }
 
-
 @media (max-width: @4col) {
+    #recaptcha_area,
+    #recaptcha_table,
+    #recaptcha_div,
     #recaptcha_image {
         width: 100% !important;
     }

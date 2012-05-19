@@ -199,7 +199,6 @@ JS = {
         'js/mkt/buttons.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
-        'js/mkt/abuse.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
         'js/impala/serializers.js',
