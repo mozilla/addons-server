@@ -25,8 +25,7 @@ import urlparse
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.test.client import (encode_multipart, Client, FakePayload,
-                                BOUNDARY, MULTIPART_CONTENT)
+from django.test.client import Client
 
 import oauth2 as oauth
 from mock import Mock, patch
@@ -87,42 +86,34 @@ class OAuthClient(Client):
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('DELETE', url))
 
-    def post(self, url, body=None):
+    def post(self, url, body=''):
         url = get_absolute_url(url)
         return super(OAuthClient, self).post(url, body=body,
                         content_type='application/json',
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('POST', url))
 
-    def put(self, url, consumer=None, token=None, callback=False,
-            verifier=None, data={}, content_type=MULTIPART_CONTENT, **kwargs):
-        """
-        Send a resource to the server using PUT.
-        """
-        # TODO: clean this up like the other verbs.
-        # If data has come from JSON remove unicode keys.
-        data = dict([(str(k), v) for k, v in data.items()])
+    def put(self, url, body=''):
         url = get_absolute_url(url)
-        params = _get_args(consumer)
-        params.update(data_keys(data))
+        # Note the processing of data for a PUT is different from a POST
+        # And this works around some odd support in PUT.
+        return super(OAuthClient, self).put(url, data=str({}), body=body,
+                        content_type='application/json',
+                        HTTP_HOST='api',
+                        HTTP_AUTHORIZATION=self.header('PUT', url))
 
-        req = oauth.Request(method='PUT', url=url, parameters=params)
-        req.sign_request(self.signature_method, consumer, token)
-        post_data = encode_multipart(BOUNDARY, data)
-
+    def patch(self, url, body=''):
+        url = get_absolute_url(url)
         parsed = urlparse.urlparse(url)
-        query_string = urllib.urlencode(req, doseq=True)
         r = {
-            'CONTENT_LENGTH': len(post_data),
-            'CONTENT_TYPE':   content_type,
-            'PATH_INFO':      urllib.unquote(parsed[2]),
-            'QUERY_STRING':   query_string,
-            'REQUEST_METHOD': 'PUT',
-            'wsgi.input':     FakePayload(post_data),
-            'HTTP_HOST':      'api',
+            'CONTENT_LENGTH': len(body),
+            'CONTENT_TYPE': 'application/json',
+            'PATH_INFO': urllib.unquote(parsed[2]),
+            'REQUEST_METHOD': 'PATCH',
+            'wsgi.input': body,
+            'HTTP_HOST': 'api',
+            'HTTP_AUTHORIZATION': self.header('PATCH', url)
         }
-        r.update(req)
-
         response = self.request(**r)
         return response
 
@@ -140,6 +131,19 @@ class BaseOAuth(TestCase):
             setattr(self, '%s_consumer' % status, c)
 
         self.client = OAuthClient(self.accepted_consumer)
+
+    def _allowed_verbs(self, url, allowed):
+        """
+        Will run through all the verbs except the ones specified in allowed
+        and ensure that hitting those produces a 405. Otherwise the test will
+        fail.
+        """
+        verbs = ['get', 'post', 'put', 'patch', 'delete']
+        for verb in verbs:
+            if verb in allowed:
+                continue
+            res = getattr(self.client, verb)(url)
+            eq_(res.status_code, 405)
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

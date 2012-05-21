@@ -171,9 +171,8 @@ Fields:
 
 * name (required): the title of the app. Maximum length 127 characters.
 * summary (required): the summary of the app. Maximum length 255 characters.
-* categories (required): a list of the categories, at least two of:
-  'entertainment', 'finance', 'games', 'music', 'news', 'productivity',
-  'social networking', 'travel'.
+* categories (required): a list of the categories, at least two of the
+  category ids provided from the category api (see below).
 * description (optional): long description. Some HTML supported.
 * privacy_policy (required): your privacy policy. Some HTML supported.
 * homepage (optional): a URL to your apps homepage.
@@ -210,6 +209,25 @@ The app will only be hard deleted if it is incomplete. Otherwise it will be
 soft deleted. A soft deleted app will not appear publicly in any listings
 pages, but it will remain so that receipts, purchasing and other components
 work.
+
+Categories
+----------
+
+To find a list of categories available on the marketplace::
+
+        GET /en-US/api/categories/
+
+Returns the list of categories::
+
+        {"meta":
+            {"limit": 20, "next": null, "offset": 0,
+             "previous": null, "total_count": 1},
+         "objects":
+            [{"id": 1, "name": "Webapp",
+              "resource_uri": "/en-US/api/apps/category/1/"}]
+        }
+
+Use the `id` of the category in your app updating.
 
 Screenshots or video
 --------------------

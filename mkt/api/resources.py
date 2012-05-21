@@ -7,7 +7,7 @@ import commonware.log
 from tastypie import http
 from tastypie.exceptions import ImmediateHttpResponse
 
-from addons.models import AddonUser
+from addons.models import AddonUser, Category
 import amo
 from amo.decorators import write
 from files.models import FileUpload, Platform
@@ -120,3 +120,15 @@ class AppResource(MarketplaceResource):
         bundle.data['slug'] = obj.app_slug
         bundle.data['premium_type'] = amo.ADDON_PREMIUM_API[obj.premium_type]
         return bundle
+
+
+class CategoryResource(MarketplaceResource):
+
+    class Meta:
+        queryset = Category.objects.filter(type=amo.ADDON_WEBAPP)
+        list_allowed_methods = ['get']
+        allowed_methods = ['get']
+        fields = ['name', 'id']
+        always_return_data = True
+        authentication = MarketplaceAuthentication()
+        resource_name = 'category'

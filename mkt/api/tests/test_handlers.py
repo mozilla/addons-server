@@ -6,7 +6,8 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon
+from addons.models import Addon, Category
+import amo
 from amo.tests import AMOPaths
 from files.models import FileUpload
 from mkt.api.tests.test_oauth import BaseOAuth
@@ -43,6 +44,9 @@ class ValidationHandler(BaseOAuth):
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAddValidationHandler(ValidationHandler):
 
+    def test_verbs(self):
+        self._allowed_verbs(self.list_url, ['post'])
+
     def test_good(self):
         res = self.create()
         eq_(res.status_code, 201)  # Note! This should be a 202.
@@ -74,6 +78,10 @@ class TestGetValidationHandler(ValidationHandler):
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'validation', 'pk': res.pk})
         return res
+
+    def test_verbs(self):
+        self.create()
+        self._allowed_verbs(self.get_url, ['get'])
 
     def test_check(self):
         self.create()
@@ -143,6 +151,12 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def count(self):
         return Addon.objects.count()
 
+    def test_verbs(self):
+        obj = self.create()
+        self._allowed_verbs(self.list_url, ['post'])
+        obj = self.create_app()
+        self._allowed_verbs(self.get_url, ['get'])
+
     def test_not_valid(self):
         obj = self.create()
         obj.update(valid=False)
@@ -203,3 +217,47 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         obj.authors.clear()
         res = self.client.get(self.get_url)
         eq_(res.status_code, 401)
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestCategoryHandler(BaseOAuth):
+
+    def setUp(self):
+        super(TestCategoryHandler, self).setUp()
+        self.cat = Category.objects.create(name='Webapp',
+                                           type=amo.ADDON_WEBAPP)
+        self.cat.name = {'fr': 'Le Webapp'}
+        self.cat.save()
+        self.other = Category.objects.create(name='other',
+                                             type=amo.ADDON_EXTENSION)
+
+        self.list_url = ('api_dispatch_list', {'resource_name': 'category'})
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'category', 'pk': self.cat.pk})
+
+    def test_verbs(self):
+        self._allowed_verbs(self.list_url, ['get'])
+        self._allowed_verbs(self.get_url, ['get'])
+
+    def test_get_categories(self):
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['name'], 'Webapp')
+
+    def test_get_category(self):
+        res = self.client.get(self.get_url)
+        data = json.loads(res.content)
+        eq_(data['name'], 'Webapp')
+
+    def test_get_category_localised(self):
+        with self.activate(locale='fr'):
+            res = self.client.get(self.get_url)
+            data = json.loads(res.content)
+            eq_(data['name'], 'Le Webapp')
+
+    def test_get_other_category(self):
+        res = self.client.get(('api_dispatch_detail',
+                              {'resource_name': 'category',
+                               'pk': self.other.pk}))
+        eq_(res.status_code, 404)
