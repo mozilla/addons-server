@@ -259,7 +259,7 @@
       {% endif %}
       <div class="thumbs-up">
         <h3 class="upvotes">
-          <span>Positive Reviews <b>({{ product._rating_counts.positive }})</b></span>
+          <span>Positive Reviews <b>({{ product.rating_counts.positive }})</b></span>
         </h3>
         {% if positive_ratings %}
           <ul>
@@ -275,7 +275,7 @@
       </div>
       <div class="thumbs-down">
         <h3 class="downvotes">
-          <span>Negative Reviews <b>({{ product._rating_counts.negative }})</b></span>
+          <span>Negative Reviews <b>({{ product.rating_counts.negative }})</b></span>
         </h3>
         {% if negative_ratings %}
           <ul>
