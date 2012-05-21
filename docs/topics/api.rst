@@ -132,7 +132,7 @@ Create
 This requires a successfully validated manifest. To create an app with your
 validated manifest::
 
-        POST /api/apps/create
+        POST /en-US/api/apps/
 
 Body data should contain the manifest id from the validate call and other data
 in JSON::
@@ -141,30 +141,40 @@ in JSON::
 
 If the creation succeeded you'll get a 201 status back. This will return the id
 of the app on the marketplace as a slug. The marketplace will complete some of
-the data using ::
+the data using the manifest and return values so far::
 
-        {"slug": "your-test-app",
-         "status": ...}
-
-All future calls for the app should use the slug.
+        {"categories": [],
+         "description": null,
+         "device_types": [],
+         "homepage": null,
+         "id": 1,
+         "manifest": "0a650e5e4c434b5cb60c5495c0d88a89",
+         "name": "MozillaBall",
+         "premium_type": "free",
+         "privacy_policy": null,
+         "resource_uri": "/en-US/api/apps/app/1/",
+         "slug": "mozillaball",
+         "status": 0,
+         "summary": "Exciting Open Web development action!",
+         "support_email": null,
+         "support_url": null
+        }
 
 Fields:
 
 * manifest_id (required): the id of the manifest returned from verfication.
-
-All other fields are detailed in update.
 
 Update
 ------
 
 Updates an app::
 
-        PUT /api/apps/<slug>
+        PUT /en-US/apps/app/<app id>/
 
 The body contains JSON for the data to be posted.
 
 These are the fields for the creation and update of an app. These will be
-populated from the manifest if specified in the manifest. Will return a 200
+populated from the manifest if specified in the manifest. Will return a 202
 status if the app was successfully updated.
 
 Fields:
@@ -181,6 +191,16 @@ Fields:
 * device_types (required): a list of the device types at least one of:
   'desktop', 'phone', 'tablet'.
 * payment_type (required): only choice at this time is 'free'.
+
+Example body data::
+
+        {"privacy_policy": "wat",
+         "name": "mozball",
+         "device_types": ["desktop-1"],
+         "summary": "wat...",
+         "support_email": "a@a.com",
+         "categories": [1L, 2L]
+         }
 
 *TODO*: should screenshot re-ordering be added here.
 

@@ -7,9 +7,11 @@ import commonware.log
 from tastypie import http
 from tastypie.exceptions import ImmediateHttpResponse
 
-from addons.models import AddonUser, Category
+from addons.forms import DeviceTypeForm
+from addons.models import AddonUser, Category, DeviceType
 import amo
 from amo.decorators import write
+from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
@@ -81,8 +83,10 @@ class AppResource(MarketplaceResource):
 
     class Meta:
         queryset = Webapp.objects.all().no_transforms()
-        fields = ['id', 'name', 'description', 'homepage', 'status', 'summary',
-                  'support_email', 'support_url', 'categories']
+        fields = ['id', 'name', 'description', 'device_types',
+                  'homepage', 'privacy_policy',
+                  'status', 'summary', 'support_email', 'support_url',
+                  'categories']
         list_allowed_methods = ['post']
         allowed_methods = ['get', 'put']
         always_return_data = True
@@ -118,6 +122,13 @@ class AppResource(MarketplaceResource):
         log.info('App retreived: %s' % obj.pk)
         return obj
 
+    def devices(self, data):
+        with no_translation():
+            names = dict([(str(n.name).lower(), n.pk)
+                          for n in DeviceType.objects.all()])
+        filtered = [names.get(n, n) for n in data.get('device_types', [])]
+        return {'device_types': filtered}
+
     def formset(self, data):
         cats = data.pop('categories', [])
         return {'form-TOTAL_FORMS': 1,
@@ -128,28 +139,32 @@ class AppResource(MarketplaceResource):
     @write
     @transaction.commit_on_success
     def obj_update(self, bundle, request, **kwargs):
+        data = bundle.data
         try:
-            bundle.obj = self.get_object_list(bundle.request).get(**kwargs)
+            obj = self.get_object_list(bundle.request).get(**kwargs)
         except Webapp.DoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
-        if not (AppOwnerAuthorization()
-                .is_authorized(request, object=bundle.obj)):
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
             raise ImmediateHttpResponse(response=http.HttpUnauthorized())
 
-        bundle.data['slug'] = bundle.data.get('slug', bundle.obj.app_slug)
-        bundle.data.update(self.formset(bundle.data))
+        data['slug'] = data.get('slug', obj.app_slug)
+        data.update(self.formset(data))
+        data.update(self.devices(data))
 
-        forms = [AppDetailsBasicForm(bundle.data, instance=bundle.obj,
-                                     request=request),
-                 CategoryFormSet(bundle.data, addon=bundle.obj,
-                                 request=request)]
+        forms = [AppDetailsBasicForm(data, instance=obj, request=request),
+                 DeviceTypeForm(data, addon=obj),
+                 CategoryFormSet(data, addon=obj, request=request)]
+
         valid = all([f.is_valid() for f in forms])
         if not valid:
             raise ValidationError(self.form_errors(forms))
 
-        forms[0].save(bundle.obj)
-        forms[1].save()
+        forms[0].save(obj)
+        forms[1].save(obj)
+        forms[2].save()
+        log.info('App updated: %s' % obj.pk)
+        bundle.obj = obj
         return bundle
 
     def dehydrate(self, bundle):
@@ -157,6 +172,9 @@ class AppResource(MarketplaceResource):
         bundle.data['slug'] = obj.app_slug
         bundle.data['premium_type'] = amo.ADDON_PREMIUM_API[obj.premium_type]
         bundle.data['categories'] = [c.pk for c in obj.categories.all()]
+        with no_translation():
+            bundle.data['device_types'] = [str(n.name).lower()
+                                            for n in obj.device_types]
         return bundle
 
 
