@@ -97,6 +97,8 @@ urlpatterns = patterns('',
 
     url('^api/', include('mkt.api.urls')),
 
+    url('^appcache/', include('django_appcache.urls')),
+
     # Try and keep urls without a prefix at the bottom of the list for
     # minor performance reasons.
 

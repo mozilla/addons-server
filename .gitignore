@@ -13,6 +13,7 @@ lib/product_json/.last_update
 lib/product_json/regions/*.json
 lib/product_json/regions/.last_update
 build.py
+media/manifest.appcache
 .DS_Store
 /media/img/uploads
 *-min.css

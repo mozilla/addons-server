@@ -3,7 +3,11 @@
 {% endif %}
 {% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}">
+<html lang="{{ LANG }}" dir="{{ DIR }}"
+  {% if settings.USE_APPCACHE %}
+    {{ appcache_manifest_link()|safe }}
+  {% endif %}
+  >
   <head>
     <meta charset="utf-8">
     {% if not settings.ENGAGE_ROBOTS %}
