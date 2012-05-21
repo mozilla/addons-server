@@ -657,6 +657,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                           files.binary_components = 1
                 THEN appmax.version_int >= %(version_int)s ELSE 1 END
             """)
+            # Filter out versions that don't have the minimum maxVersion
+            # requirement to qualify for default-to-compatible.
+            d2c_max = amo.D2C_MAX_VERSIONS.get(app_id)
+            if d2c_max:
+                data['d2c_max_version'] = version_int(d2c_max)
+                raw_sql.append(
+                    "AND appmax.version_int >= %(d2c_max_version)s ")
+
             # Filter out versions found in compat overrides
             raw_sql.append("""AND
                 NOT versions.id IN (

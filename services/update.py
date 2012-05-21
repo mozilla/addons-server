@@ -23,7 +23,7 @@ try:
 except ImportError:
     from apps.versions.compare import version_int
 
-from constants import base
+from constants import applications, base
 from utils import (get_mirror, log_configure, APP_GUIDS, PLATFORMS,
                    STATUSES_PUBLIC)
 
@@ -236,6 +236,13 @@ class Update(object):
                           files.binary_components = 1
                 THEN appmax.version_int >= %(version_int)s ELSE 1 END
             """)
+            # Filter out versions that don't have the minimum maxVersion
+            # requirement to qualify for default-to-compatible.
+            d2c_max = applications.D2C_MAX_VERSIONS.get(data['app_id'])
+            if d2c_max:
+                data['d2c_max_version'] = version_int(d2c_max)
+                sql.append("AND appmax.version_int >= %(d2c_max_version)s ")
+
             # Filter out versions found in compat overrides
             sql.append("""AND
                 NOT versions.id IN (

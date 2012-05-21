@@ -453,7 +453,8 @@ class TestDefaultToCompat(amo.tests.TestCase):
         for version in versions:
             for mode in modes:
                 eq_(self.get(app_version=version, compat_mode=mode),
-                    expected['-'.join([version, mode])])
+                    expected['-'.join([version, mode])],
+                    'Unexpected version for "%s-%s"' % (version, mode))
 
     def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
@@ -546,6 +547,25 @@ class TestDefaultToCompat(amo.tests.TestCase):
         eq_(cr.max_version, 'ver1')
         eq_(cr.min_version_int, '')
         eq_(cr.max_version_int, '')
+
+    def test_min_max_version(self):
+        # Tests the minimum requirement of the app maxVersion.
+        av = self.addon.current_version.apps.all()[0]
+        av.min_id = 233  # Firefox 3.0.
+        av.max_id = 268  # Firefox 3.5.
+        av.save()
+        self.expected.update({
+            '3.0-strict': self.ver_1_3,
+            '3.0-ignore': self.ver_1_3,
+            '4.0-ignore': self.ver_1_3,
+            '5.0-ignore': self.ver_1_3,
+            '6.0-strict': self.ver_1_2,
+            '6.0-normal': self.ver_1_2,
+            '7.0-strict': self.ver_1_2,
+            '7.0-normal': self.ver_1_2,
+            '8.0-normal': self.ver_1_2,
+        })
+        self.check(self.expected)
 
 
 class TestResponse(amo.tests.TestCase):

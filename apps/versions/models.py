@@ -238,9 +238,9 @@ class Version(amo.models.ModelBase):
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
         appversion = self.compatible_apps.get(app)
-        if appversion and app in amo.D2C_MAX_VERSIONS:
+        if appversion and app.id in amo.D2C_MAX_VERSIONS:
             return (version_int(appversion.max.version) >=
-                    version_int(amo.D2C_MAX_VERSIONS.get(app, '*')))
+                    version_int(amo.D2C_MAX_VERSIONS.get(app.id, '*')))
         return False
 
     def compat_override_app_versions(self):

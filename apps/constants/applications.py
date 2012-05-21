@@ -152,10 +152,10 @@ for _app in APP_USAGE:
 
 # The lowest maxVersion an app has to support to allow default-to-compatible.
 D2C_MAX_VERSIONS = {
-    FIREFOX: '4.0',
-    MOBILE: '11.0',
-    SEAMONKEY: '2.1',
-    THUNDERBIRD: '5.0',
+    FIREFOX.id: '4.0',
+    MOBILE.id: '11.0',
+    SEAMONKEY.id: '2.1',
+    THUNDERBIRD.id: '5.0',
 }
 
 for _app in APPS_ALL.values():

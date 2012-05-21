@@ -24,7 +24,7 @@ from amo.views import handler500
 import api
 from api.views import addon_filter
 from api.utils import addon_to_dict
-from applications.models import Application
+from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
@@ -876,8 +876,8 @@ class TestGuidSearch(TestCase):
 
 
 class SearchTest(ESTestCase):
-    fixtures = ('base/apps', 'base/addon_6113', 'base/addon_40',
-                'base/addon_3615', 'base/addon_6704_grapple',
+    fixtures = ('base/apps', 'base/appversion', 'base/addon_6113',
+                'base/addon_40', 'base/addon_3615', 'base/addon_6704_grapple',
                 'base/addon_4664_twitterbar', 'base/addon_10423_youtubesearch')
 
     no_results = """<searchresults total_results="0">"""
@@ -1062,6 +1062,38 @@ class SearchTest(ESTestCase):
         self.assertContains(response, self.no_results)
 
         # Make sure we find it with compat_mode=ignore
+        self.defaults.update(compat_mode='ignore')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+    def test_compat_mode_normal_max_version(self):
+        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
+        # We ignore versions that don't qualify for d2c by not having the
+        # minimum maxVersion support (e.g. Firefox >= 4.0).
+        app = Application.objects.get(id=1)
+        fx30 = AppVersion.objects.get(application=app, version="3.0")
+        fx35 = AppVersion.objects.get(application=app, version="3.5")
+        addon = Addon.objects.get(pk=3615)
+        av = addon.current_version.apps.filter(application=app)[0]
+        av.min = fx30
+        av.max = fx35
+        av.save()
+        addon.save()
+
+        # Make sure compat_mode=strict doesn't find it. This won't find it
+        # because app version doesn't fall within supported app range.
+        self.defaults.update(query='delicious')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure compat_mode=normal doesn't find it. This shouldn't find it
+        # because the min maxVersion isn't >= 4.0 so it's not deemed
+        # compatible.
+        self.defaults.update(compat_mode='normal')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure compat_mode=normal finds it since 3.0 <= 4.0.
         self.defaults.update(compat_mode='ignore')
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, 'Delicious Bookmarks')

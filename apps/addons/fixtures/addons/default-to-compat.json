@@ -9,6 +9,28 @@
         }
     },
     {
+        "pk": 233,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3000000200100,
+            "application": 1,
+            "version": "3.0",
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
+        }
+    },
+    {
+        "pk": 268,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3050000200100,
+            "application": 1,
+            "version": "3.5",
+            "modified": "2010-01-02 12:34:56",
+            "created": "2010-01-02 12:34:56"
+        }
+    },
+    {
         "pk": 364,
         "model": "applications.appversion",
         "fields": {
