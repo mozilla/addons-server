@@ -132,7 +132,8 @@ def _paypal(request):
     data = u'cmd=_notify-validate&' + raw
     with statsd.timer('paypal.validate-ipn'):
         paypal_response = requests.post(settings.PAYPAL_CGI_URL, data,
-                                        verify=settings.PAYPAL_CERT)
+                                        verify=True,
+                                        cert=settings.PAYPAL_CERT)
 
     post, transactions = _parse(post)
 
