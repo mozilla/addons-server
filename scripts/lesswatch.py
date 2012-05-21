@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+import os, time, sys, re
+
+towatch = []
+includes = {}
+
+def render_list(files):
+    for f in files:
+        os.system('lessc %s %s.css' % (f, f))
+        if (f in includes):
+            print 're-compiling %d dependencies' % len(includes[f])
+            render_list(includes[f])
+
+
+def watch():
+    print 'watching %d files...' % len(towatch)
+    before = set([(f, os.stat(f).st_mtime) for f in towatch])
+    while 1:
+        after = set([(f, os.stat(f).st_mtime) for f in towatch])
+        changed = [f for (f, d) in before.difference(after)]
+        if len(changed):
+            print 're-compiling %d files' % len(changed)
+            render_list(changed)
+        before = after
+        time.sleep(.5)
+
+
+for root, dirs, files in os.walk('./media'):
+    less = filter(lambda x: re.search('\.less$', x), files)
+    less = [(root + '/' + f) for f in less]
+    for f in less:
+        body = post_file = open(f, 'r').read()
+        m = re.search('@import \'([a-zA-Z0-9_-]+)\';', body)
+        if m:
+            k = root + '/' + m.group(1) + '.less'
+            if not k in includes:
+                includes[k] = []
+            includes[k].append(f)
+    if '.git' in dirs:
+        dirs.remove('.git')
+    towatch += less
+
+
+watch()
