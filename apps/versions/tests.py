@@ -483,7 +483,7 @@ class TestDownloadsBase(amo.tests.TestCase):
 
     def assert_served_internally(self, response):
         eq_(response.status_code, 200)
-        eq_(response['X-SENDFILE'], self.file.guarded_file_path)
+        eq_(response[settings.XSENDFILE_HEADER], self.file.guarded_file_path)
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         host = settings.LOCAL_MIRROR_URL

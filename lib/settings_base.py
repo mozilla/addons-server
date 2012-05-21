@@ -1233,6 +1233,7 @@ UNLINK_SITE_STATS = True
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
+XSENDFILE_HEADER = 'X-SENDFILE'
 
 MOBILE_COOKIE = 'mamo'
 
