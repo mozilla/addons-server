@@ -488,7 +488,7 @@ def issue_refund(request, addon_id, addon, webapp=False):
             try:
                 results = paypal.refund(contribution.paykey)
             except PaypalError, e:
-                record_failed_refund(e, contribution)
+                contribution.record_failed_refund(e)
                 paypal_log.error('Refund failed for: %s' % txn_id,
                                  exc_info=True)
                 messages.error(request, _('There was an error with '

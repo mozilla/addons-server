@@ -638,7 +638,7 @@ class TestIssueRefund(amo.tests.TestCase):
         c = self.make_purchase()
         ref = Refund.objects.create(contribution=c)
         # Any other status means we've already taken action.
-        for status in sorted(amo.REFUND_STATUSES.keys())[1:]:
+        for status in sorted(amo.REFUND_STATUSES.keys())[1:3]:
             ref.update(status=status)
             r = self.client.get(self.url, {'transaction_id': c.transaction_id})
             eq_(r.status_code, 200)
