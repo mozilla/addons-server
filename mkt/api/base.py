@@ -1,9 +1,7 @@
 import json
 
-from tastypie import http
 from tastypie.bundle import Bundle
 from tastypie.resources import ModelResource
-from tastypie.utils import dict_strip_unicode_keys
 
 from translations.fields import PurifiedField, TranslatedField
 
@@ -27,31 +25,6 @@ class MarketplaceResource(ModelResource):
 
         return self._build_reverse_url("api_dispatch_detail", kwargs=kwargs)
 
-    def post_list(self, request, **kwargs):
-        # TODO: This has to be request.META['body'] because otherwise this
-        # will be empty and all the tests will fail. Boo!
-        deserialized = self.deserialize(request,
-                request.META.get('body', request.raw_post_data),
-                format=request.META.get('CONTENT_TYPE', 'application/json'))
-        # The rest is the same.
-        deserialized = self.alter_deserialized_detail_data(request,
-                deserialized)
-        bundle = self.build_bundle(data=dict_strip_unicode_keys(deserialized),
-                                   request=request)
-        updated_bundle = self.obj_create(bundle, request=request,
-                **self.remove_api_resource_names(kwargs))
-        location = self.get_resource_uri(updated_bundle)
-
-        if not self._meta.always_return_data:
-            return http.HttpCreated(location=location)
-        else:
-            updated_bundle = self.full_dehydrate(updated_bundle)
-            updated_bundle = self.alter_detail_data_to_serialize(request,
-                updated_bundle)
-            return self.create_response(request, updated_bundle,
-                    response_class=http.HttpCreated,
-                    location=location)
-
     @classmethod
     def should_skip_field(cls, field):
         # We don't want to skip translated fields.
@@ -60,5 +33,15 @@ class MarketplaceResource(ModelResource):
 
         return True if getattr(field, 'rel') else False
 
-    def form_errors(self, form):
-        return json.dumps({'error_message': dict(form.errors.items())})
+    def form_errors(self, forms):
+        errors = {}
+        if not isinstance(forms, list):
+            forms = [forms]
+        for f in forms:
+            if isinstance(f.errors, list):  # Cope with formsets.
+                for e in f.errors:
+                    errors.update(e)
+                continue
+            errors.update(dict(f.errors.items()))
+
+        return json.dumps({'error_message': errors})

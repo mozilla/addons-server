@@ -27,7 +27,7 @@ class ValidationHandler(BaseOAuth):
 
     def create(self):
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest':
+                               data=json.dumps({'manifest':
                                                 'http://foo.com'}))
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'validation',
@@ -59,13 +59,13 @@ class TestAddValidationHandler(ValidationHandler):
         assert fetch.called
 
     def test_missing(self):
-        res = self.client.post(self.list_url, body=json.dumps({}))
+        res = self.client.post(self.list_url, data=json.dumps({}))
         eq_(res.status_code, 400)
         eq_(self.get_error(res)['manifest'], ['This field is required.'])
 
     def test_bad(self):
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest': 'blurgh'}))
+                               data=json.dumps({'manifest': 'blurgh'}))
         eq_(res.status_code, 400)
         eq_(self.get_error(res)['manifest'], ['Enter a valid URL.'])
 
@@ -136,6 +136,11 @@ class CreateHandler(BaseOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.file = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
         self.manifest_copy_over(self.file, 'mozball-nice-slug.webapp')
+        self.categories = []
+        for x in range(0, 2):
+            self.categories.append(Category.objects.create(
+                name='cat-%s' % x,
+                type=amo.ADDON_WEBAPP))
 
     def create(self):
         return FileUpload.objects.create(user=self.user, path=self.file,
@@ -152,23 +157,23 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         return Addon.objects.count()
 
     def test_verbs(self):
-        obj = self.create()
+        self.create()
         self._allowed_verbs(self.list_url, ['post'])
-        obj = self.create_app()
-        self._allowed_verbs(self.get_url, ['get'])
+        self.create_app()
+        self._allowed_verbs(self.get_url, ['get', 'put'])
 
     def test_not_valid(self):
         obj = self.create()
         obj.update(valid=False)
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest': obj.uuid}))
+                               data=json.dumps({'manifest': obj.uuid}))
         eq_(res.status_code, 400)
         eq_(self.get_error(res)['manifest'], ['Upload not valid.'])
         eq_(self.count(), 0)
 
     def test_not_there(self):
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest':
+                               data=json.dumps({'manifest':
                                    'some-random-32-character-stringy'}))
         eq_(res.status_code, 400)
         eq_(self.get_error(res)['manifest'], ['No upload found.'])
@@ -178,14 +183,14 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         obj = self.create()
         obj.update(user=UserProfile.objects.get(email='admin@mozilla.com'))
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest': obj.uuid}))
+                               data=json.dumps({'manifest': obj.uuid}))
         eq_(res.status_code, 401)
         eq_(self.count(), 0)
 
     def test_create(self):
         obj = self.create()
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest': obj.uuid}))
+                               data=json.dumps({'manifest': obj.uuid}))
         eq_(res.status_code, 201)
         content = json.loads(res.content)
         eq_(content['status'], 0)
@@ -199,7 +204,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def create_app(self):
         obj = self.create()
         res = self.client.post(self.list_url,
-                               body=json.dumps({'manifest': obj.uuid}))
+                               data=json.dumps({'manifest': obj.uuid}))
         pk = json.loads(res.content)['id']
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'app', 'pk': pk})
@@ -217,6 +222,57 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         obj.authors.clear()
         res = self.client.get(self.get_url)
         eq_(res.status_code, 401)
+
+    def base_data(self):
+        return {'support_email': 'a@a.com',
+                'privacy_policy': 'wat',
+                'name': 'mozball',
+                'categories': [c.pk for c in self.categories],
+                'summary': 'wat...'}
+
+    def test_put(self):
+        app = self.create_app()
+        res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
+        eq_(res.status_code, 202)
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(app.privacy_policy, 'wat')
+
+    def test_put_categories_worked(self):
+        app = self.create_app()
+        res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
+        eq_(res.status_code, 202)
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(set([c.pk for c in app.categories.all()]),
+            set([c.pk for c in self.categories]))
+
+    def test_dehydrate(self):
+        self.create_app()
+        res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
+        eq_(res.status_code, 202)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(set(data['categories']), set([c.pk for c in self.categories]))
+        eq_(data['premium_type'], 'free')
+
+    def test_put_no_categories(self):
+        self.create_app()
+        data = self.base_data()
+        del data['categories']
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['categories'], ['This field is required.'])
+
+    def test_put_not_mine(self):
+        obj = self.create_app()
+        obj.authors.clear()
+        res = self.client.put(self.get_url, data='{}')
+        eq_(res.status_code, 401)
+
+    def test_put_not_there(self):
+        url = ('api_dispatch_detail', {'resource_name': 'app', 'pk': 123})
+        res = self.client.put(url, data='{}')
+        eq_(res.status_code, 404)
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

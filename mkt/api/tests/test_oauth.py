@@ -86,31 +86,29 @@ class OAuthClient(Client):
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('DELETE', url))
 
-    def post(self, url, body=''):
+    def post(self, url, data=''):
         url = get_absolute_url(url)
-        return super(OAuthClient, self).post(url, body=body,
+        return super(OAuthClient, self).post(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('POST', url))
 
-    def put(self, url, body=''):
+    def put(self, url, data=''):
         url = get_absolute_url(url)
-        # Note the processing of data for a PUT is different from a POST
-        # And this works around some odd support in PUT.
-        return super(OAuthClient, self).put(url, data=str({}), body=body,
+        return super(OAuthClient, self).put(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('PUT', url))
 
-    def patch(self, url, body=''):
+    def patch(self, url, data=''):
         url = get_absolute_url(url)
         parsed = urlparse.urlparse(url)
         r = {
-            'CONTENT_LENGTH': len(body),
+            'CONTENT_LENGTH': len(data),
             'CONTENT_TYPE': 'application/json',
             'PATH_INFO': urllib.unquote(parsed[2]),
             'REQUEST_METHOD': 'PATCH',
-            'wsgi.input': body,
+            'wsgi.input': data,
             'HTTP_HOST': 'api',
             'HTTP_AUTHORIZATION': self.header('PATCH', url)
         }

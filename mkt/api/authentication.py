@@ -32,8 +32,8 @@ class OwnerAuthorization(Authorization):
         # If the user on the object and the amo_user match, we are golden.
         return object.user.pk == request.amo_user.pk
 
-class AppOwnerAuthorization(OwnerAuthorization):
 
+class AppOwnerAuthorization(OwnerAuthorization):
 
     def check_owner(self, request, object):
         # If the user on the object and the amo_user match, we are golden.
