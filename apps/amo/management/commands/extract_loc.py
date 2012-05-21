@@ -10,7 +10,7 @@ from amo.storage_utils import walk_storage
 _loc_re = re.compile(r"""\\?(loc)\(.*?\)""", (re.M | re.S))
 _exts = ('.py', '.html')
 _root = settings.ROOT
-_subs = tuple([os.path.join(_root, s) for s in ['apps']])
+_subs = tuple([os.path.join(_root, s) for s in ['mkt']])
 
 
 class Command(BaseCommand):
