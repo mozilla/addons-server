@@ -102,20 +102,20 @@ class TestCreate(ReviewTest):
         self.enable_waffle()
         self.client.logout()
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 1)
+        eq_(pq(r.content)('#add-first-review').length, 1)
 
     def test_add_link_logged(self):
         """Ensure logged user can see Add Review links."""
         self.enable_waffle()
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 1)
+        eq_(pq(r.content)('#add-first-review').length, 1)
 
     def test_add_link_dev(self):
         # Ensure developer cannot see Add Review links.
         self.enable_waffle()
         self.log_in_dev()
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_no_add_review_link_visitor(self):
         # Check for no review link for premium apps for non-logged user.
@@ -123,14 +123,14 @@ class TestCreate(ReviewTest):
         self.client.logout()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_no_add_review_link_logged(self):
         self.enable_waffle()
         # Check for no review link for premium apps for logged users.
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_add_review_link_dev(self):
         # Check for no review link for premium apps for app owners.
@@ -139,14 +139,14 @@ class TestCreate(ReviewTest):
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_no_add_review_link(self):
         # Check for review link for non-purchased premium apps.
         self.enable_waffle()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_add_review_link(self):
         # Check for review link for owners of purchased premium apps.
@@ -154,7 +154,7 @@ class TestCreate(ReviewTest):
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 1)
+        eq_(pq(r.content)('#add-first-review').length, 1)
 
     def test_no_reviews_premium_no_add_review_link(self):
         # Ensure no 'Review this App' link for non-purchased premium apps.
@@ -162,7 +162,7 @@ class TestCreate(ReviewTest):
         Rating.objects.all().delete()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 0)
+        eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_no_reviews_premium_add_review_link(self):
         # Ensure 'Review this App' link exists for purchased premium apps.
@@ -171,7 +171,7 @@ class TestCreate(ReviewTest):
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#submit-review').length, 1)
+        eq_(pq(r.content)('#add-first-review').length, 1)
 
     def test_add_logged_out(self):
         self.client.logout()
