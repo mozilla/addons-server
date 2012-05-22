@@ -924,7 +924,7 @@ class TestDelete(amo.tests.TestCase):
         # Update this test when BrowserID re-auth is available.
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(),
-            'App cannot be deleted. Disable this app instead.')
+            'Paid apps cannot be deleted. Disable this app instead.')
 
     def test_post(self):
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
