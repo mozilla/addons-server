@@ -74,6 +74,9 @@ urlpatterns = patterns('',
     # Editor tools.
     ('^editors/', include('editors.urls')),
 
+    # Account lookup.
+    ('^account-lookup/', include('mkt.acct_lookup.urls')),
+
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),

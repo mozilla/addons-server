@@ -1,0 +1,30 @@
+{% extends 'developers/skeleton_impala.html' %}
+
+{% block title %}{{ _('Account Lookup') }}{% endblock %}
+
+{% block bodyclass %}account-lookup{% endblock %}
+
+{% block masthead %}
+<h1 id="masthead" class="site-title prominent">
+  <a href="{{ url('acct_lookup.home') }}">
+    {% trans %}
+      <small>Marketplace</small> Account Lookup
+    {% endtrans %}
+  </a>
+</h1>
+{% endblock %}
+
+{% block extrahead %}
+{# {{ css('mkt/acct_lookup') }} #}
+{% endblock %}
+
+{% block site_header_title %}
+{% endblock %}
+
+{% block js %}
+{#  {{ js('zamboni/acct_lookup') }} #}
+{% endblock %}
+
+{# Hiding these for the Marketplace Editor Tools until consumer pages are done. #}
+{% block header_search %}{{ super() if not settings.MARKETPLACE }}{% endblock %}
+{% block footer %}{{ super() if not settings.MARKETPLACE }}{% endblock %}
