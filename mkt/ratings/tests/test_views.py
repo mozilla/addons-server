@@ -79,7 +79,8 @@ class TestCreate(ReviewTest):
         eq_(qs.count(), old_cnt + 1)
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected ADD_REVIEW entry')
-        eq_(self.get_webapp()._rating_counts, {'positive': 1, 'negative': 0})
+        eq_(self.get_webapp()._rating_counts,
+            {'total': 1, 'positive': 1, 'negative': 0})
 
     def test_can_review_purchased(self):
         self.webapp.addonpurchase_set.create(user=self.user)

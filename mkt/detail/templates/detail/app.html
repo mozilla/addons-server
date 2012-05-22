@@ -1,5 +1,8 @@
 {% extends 'detail/protected_app.html' %}
 
+{% set amouser = request.amo_user if request.user.is_authenticated() else None %}
+{% set can_review = product.can_review(amouser) %}
+
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
 {% block bodyclass %}detail{% endblock %}
@@ -265,8 +268,7 @@
             Negative Reviews <b>({{ product.rating_counts.negative }})</b>
           </h3>
         </a>
-        {% if product.can_review(request.amo_user if
-                                 request.user.is_authenticated() else None) %}
+        {% if can_review %}
           <p id="submit-review">
             <a href="{{ product.get_ratings_url('add') }}" class="button good">
               {{ _('Review This App') }}</a></p>
@@ -282,7 +284,7 @@
           <p><a href="{{ product.get_ratings_url() }}" class="button">
             {{ _('Read More') }}</a></p>
         {% else %}
-          {% if product.can_review(amo_user) %}
+          {% if can_review %}
             <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">
               {{ _('Be the first to write a review.') }}</a><p>
           {% else %}
