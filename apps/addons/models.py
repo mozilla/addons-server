@@ -854,7 +854,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         # Attach previews.
         qs = Preview.objects.filter(addon__in=addons,
-                                    position__gt=0).order_by()
+                                    position__gte=0).order_by()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
         for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
             addon_dict[addon].all_previews = list(previews)
