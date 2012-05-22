@@ -30,13 +30,14 @@ def detail(request, addon):
     """Product details page."""
 
     ratings = Rating.objects.latest().filter(addon=addon).order_by('-created')
-    positive_ratings = ratings.filter(score=1)[:5]
-    negative_ratings = ratings.filter(score=-1)[:5]
+    positive_ratings = list(ratings.filter(score=1)[:5])
+    negative_ratings = list(ratings.filter(score=-1)[:5])
+    sorted_ratings = sorted(positive_ratings + negative_ratings, key=lambda x: x.created, reverse=True)
     ctx = {
         'product': addon,
         'ratings': ratings,
-        'positive_ratings': positive_ratings,
-        'negative_ratings': negative_ratings,
+        'ratings': sorted_ratings,
+        'review_history': [[2,1],[50,2],[3,0],[4,1]]
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)

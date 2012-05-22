@@ -213,6 +213,7 @@ JS = {
         # Detail page.
         'js/mkt/detail.js',
         'js/mkt/lightbox.js',
+        'js/mkt/reviewsparks.js',
 
         # Ratings.
         'js/mkt/ratings.js',

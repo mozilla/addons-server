@@ -250,36 +250,35 @@
   </section>
 
   {% if waffle.switch('ratings') %}
-    <section class="reviews c" id="reviews">
-      {% if product.can_review(request.amo_user if
-                               request.user.is_authenticated() else None) %}
-        <p id="submit-review">
-          <a href="{{ product.get_ratings_url('add') }}" class="button good">
-            {{ _('Review This App') }}</a></p>
-      {% endif %}
-      <div class="thumbs-up">
-        <h3 class="upvotes">
-          <span>Positive Reviews <b>({{ product.rating_counts.positive }})</b></span>
-        </h3>
-        {% if positive_ratings %}
-          <ul>
-            {% for rating in positive_ratings %}
-              {% include 'ratings/rating.html' %}
-            {% endfor %}
-          </ul>
-        {% else %}
-          {{ no_results() }}
+    <section class="reviews c" id="reviews"
+             data-review-history="{{ review_history|json }}">
+      <div id="reviews-info">
+        <a href="#" class="selected" data-review-filter="all">
+          <h3 class="all">
+            All Reviews <b>({{ product._ratings.count() }})</b>
+          </h3>
+        </a>
+        <a href="#" data-review-filter="positive">
+          <h3 class="upvotes">
+            Positive Reviews <b>({{ product.rating_counts.positive }})</b>
+          </h3>
+        </a>
+        <a href="#" data-review-filter="negative">
+          <h3 class="downvotes">
+            Negative Reviews <b>({{ product.rating_counts.negative }})</b>
+          </h3>
+        </a>
+        {% if product.can_review(request.amo_user if
+                                 request.user.is_authenticated() else None) %}
+          <p id="submit-review">
+            <a href="{{ product.get_ratings_url('add') }}" class="button good">
+              {{ _('Review This App') }}</a></p>
         {% endif %}
-        <p><a href="{{ product.get_ratings_url() }}" class="button">
-          {{ _('Read More') }}</a></p>
       </div>
-      <div class="thumbs-down">
-        <h3 class="downvotes">
-          <span>Negative Reviews <b>({{ product.rating_counts.negative }})</b></span>
-        </h3>
-        {% if negative_ratings %}
-          <ul>
-            {% for rating in negative_ratings %}
+      <div class="thumbs-up">
+        {% if ratings %}
+          <ul id="review-list" class="filter-all">
+            {% for rating in ratings %}
               {% include 'ratings/rating.html' %}
             {% endfor %}
           </ul>
