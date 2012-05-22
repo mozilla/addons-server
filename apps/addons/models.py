@@ -853,7 +853,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
         # Attach previews.
-        qs = Preview.objects.filter(addon__in=addons).order_by()
+        qs = Preview.objects.filter(addon__in=addons,
+                                    position__gt=0).order_by()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
         for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
             addon_dict[addon].all_previews = list(previews)
