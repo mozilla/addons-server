@@ -474,7 +474,8 @@ def issue_refund(request, addon_id, addon, webapp=False):
         raise http.Http404
     form_enabled = True
     contribution = get_object_or_404(Contribution, transaction_id=txn_id,
-                                     type=amo.CONTRIB_PURCHASE)
+                                     type__in=[amo.CONTRIB_PURCHASE,
+                                               amo.CONTRIB_INAPP])
 
     if (hasattr(contribution, 'refund') and
         contribution.refund.status not in (amo.REFUND_PENDING,

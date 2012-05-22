@@ -591,6 +591,12 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(doc('#issue-refund input[name=transaction_id]').val(),
             self.transaction_id)
 
+    def test_request_issue_inapp(self):
+        c = self.make_purchase()
+        c.update(type=amo.CONTRIB_INAPP)
+        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
+        eq_(r.status_code, 200)
+
     def test_nonexistent_txn(self):
         r = self.client.get(self.url, {'transaction_id': 'none'})
         eq_(r.status_code, 404)
