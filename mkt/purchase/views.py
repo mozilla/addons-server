@@ -169,6 +169,7 @@ def purchase_done(request, addon, status):
         log.debug('Paypal returned: %s for paykey: %s'
                   % (result, con.paykey[:10]))
         if result == 'COMPLETED' and con.type == amo.CONTRIB_PENDING:
+            amo.log(amo.LOG.PURCHASE_ADDON, addon)
             con.update(type=amo.CONTRIB_PURCHASE)
 
     context = {'realurl': request.GET.get('realurl', ''),

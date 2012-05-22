@@ -8,12 +8,17 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+from devhub.models import UserLog
 import users.notifications as email
 from mkt.account.tests.test_views import PurchaseBase
 from paypal import PaypalError
 
 
 class TestRequestSupport(PurchaseBase):
+
+    def logged(self, status):
+        return (UserLog.objects.filter(user=self.user,
+                                       activity_log__action=status.id))
 
     def test_support_not_logged_in(self):
         self.client.logout()
@@ -121,6 +126,7 @@ class TestRequestSupport(PurchaseBase):
         res = self.client.post(self.get_support_url('reason'),
                                {'text': 'something'})
         self.assertRedirects(res, self.get_support_url('refund-sent'), 302)
+        eq_(self.logged(status=amo.LOG.REFUND_REQUESTED).count(), 1)
 
     def test_no_txnid_request(self):
         self.con.transaction_id = None
@@ -181,6 +187,7 @@ class TestRequestSupport(PurchaseBase):
         # There should be one instant refund added.
         eq_(enqueue_refund.call_args_list[0][0],
             (amo.REFUND_APPROVED_INSTANT,))
+        eq_(self.logged(status=amo.LOG.REFUND_INSTANT).count(), 1)
 
     @mock.patch('stats.models.Contribution.record_failed_refund')
     @mock.patch('stats.models.Contribution.is_instant_refund')

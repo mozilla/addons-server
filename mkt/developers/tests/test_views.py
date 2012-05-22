@@ -25,6 +25,7 @@ from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from addons.models import Addon, AddonUpsell, AddonUser
 from browse.tests import test_listing_sort, test_default_sort
+from devhub.models import UserLog
 from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.developers import tasks
@@ -542,6 +543,10 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 class TestIssueRefund(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
+    def logged(self, user, status):
+        return (UserLog.objects.filter(user=user,
+                                       activity_log__action=status.id)).count()
+
     def setUp(self):
         waffle.models.Switch.objects.create(name='allow-refund', active=True)
         self.addon = Addon.objects.no_cache().get(id=337141)
@@ -549,6 +554,7 @@ class TestIssueRefund(amo.tests.TestCase):
         self.paykey = u'fake-paykey'
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
+        self.owner = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.user = UserProfile.objects.get(username='clouserw')
         self.url = self.addon.get_dev_url('issue_refund')
 
@@ -621,6 +627,13 @@ class TestIssueRefund(amo.tests.TestCase):
     @mock.patch('paypal.refund')
     def test_apps_issue(self, refund, enqueue_refund):
         self._test_issue(refund, enqueue_refund)
+
+    @mock.patch('stats.models.Contribution.enqueue_refund')
+    @mock.patch('paypal.refund')
+    def test_apps_issue_logs(self, refund, enqueue_refund):
+        self._test_issue(refund, enqueue_refund)
+        eq_(self.logged(user=self.owner, status=amo.LOG.REFUND_GRANTED), 1)
+        eq_(self.logged(user=self.user, status=amo.LOG.REFUND_GRANTED), 1)
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
@@ -705,6 +718,14 @@ class TestIssueRefund(amo.tests.TestCase):
     @mock.patch('paypal.refund')
     def test_apps_decline(self, refund, enqueue_refund):
         self._test_decline(refund, enqueue_refund)
+
+    @mock.patch('stats.models.Contribution.enqueue_refund')
+    @mock.patch('paypal.refund')
+    def test_apps_decline_logs(self, refund, enqueue_refund):
+        self._test_decline(refund, enqueue_refund)
+        eq_(self.logged(user=self.owner, status=amo.LOG.REFUND_DECLINED), 1)
+        eq_(self.logged(user=self.user, status=amo.LOG.REFUND_DECLINED), 1)
+
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')

@@ -140,6 +140,7 @@ def refund_reason(request, contribution, wizard):
         # Note: we have to wait for PayPal to issue an IPN before it's
         # completely refunded.
         messages.success(request, _('Refund is being processed.'))
+        amo.log(amo.LOG.REFUND_INSTANT, addon)
         return redirect('account.purchases')
 
     form = forms.ContactForm(request.POST or None)
@@ -162,6 +163,7 @@ def refund_reason(request, contribution, wizard):
 
         # Add this refund request to the queue.
         contribution.enqueue_refund(amo.REFUND_PENDING, reason)
+        amo.log(amo.LOG.REFUND_REQUESTED, addon)
         return redirect(reverse('support',
                                 args=[contribution.pk, 'refund-sent']))
 

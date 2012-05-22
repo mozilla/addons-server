@@ -13,6 +13,7 @@ import waffle
 import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
+from devhub.models import AppLog
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
                            PriceCurrency)
 from mkt.webapps.models import Webapp
@@ -213,6 +214,15 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(cons.count(), 1)
         eq_(cons[0].type, amo.CONTRIB_PURCHASE)
         assert cons[0].uuid
+
+    @mock.patch('paypal.check_purchase')
+    def test_check_purchase_logs(self, check_purchase):
+        check_purchase.return_value = 'COMPLETED'
+        self.make_contribution()
+        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
+        eq_(AppLog.objects.filter(addon=self.addon,
+                            activity_log__action=amo.LOG.PURCHASE_ADDON.id,
+                            activity_log__user=self.user).count(), 1)
 
     @mock.patch('paypal.check_purchase')
     def test_check_addon_purchase_error(self, check_purchase):

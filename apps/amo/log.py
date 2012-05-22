@@ -384,6 +384,36 @@ class APPROVE_VERSION_WAITING(_LOG):
     review_queue = True
 
 
+class PURCHASE_ADDON(_LOG):
+    id = 54
+    format = _(u'{addon} purchased.')
+
+
+class INSTALL_ADDON(_LOG):
+    id = 55
+    format = _(u'{addon} installed.')
+
+
+class REFUND_REQUESTED(_LOG):
+    id = 56
+    format = _(u'Refund requested for {addon}')
+
+
+class REFUND_DECLINED(_LOG):
+    id = 57
+    format = _(u'Refund declined for {addon} for {0}.')
+
+
+class REFUND_GRANTED(_LOG):
+    id = 58
+    format = _(u'Refund granted for {addon} for {0}.')
+
+
+class REFUND_INSTANT(_LOG):
+    id = 59
+    format = _(u'Instant refund granted for {addon}.')
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

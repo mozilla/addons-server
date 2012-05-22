@@ -17,6 +17,7 @@ from amo.helpers import external_url, numberfmt
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from devhub.models import AppLog, UserLog
 from market.models import PreApprovalUser
 from users.models import UserProfile
 
@@ -545,6 +546,14 @@ class TestInstall(amo.tests.TestCase):
         self.client.logout()
         res = self.client.post(self.url)
         eq_(res.status_code, 302)
+
+    @mock.patch('mkt.detail.views.cef')
+    def test_log_metrics(self, cef):
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        logs = AppLog.objects.filter(addon=self.addon)
+        eq_(logs.count(), 1)
+        eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
 
     @mock.patch('mkt.detail.views.send_request')
     @mock.patch('mkt.detail.views.cef')

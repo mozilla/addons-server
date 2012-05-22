@@ -8,6 +8,8 @@ from tower import ugettext as _
 from abuse.models import send_abuse_report
 from access import acl
 from addons.decorators import addon_view_factory
+import amo
+import amo.log
 from amo.decorators import json_view, login_required, post_required, write
 from amo.forms import AbuseForm
 from amo.utils import memoize_get
@@ -95,6 +97,7 @@ def record(request, addon):
 
     installed, c = Installed.objects.safer_get_or_create(addon=addon,
                                                          user=request.amo_user)
+    amo.log(amo.LOG.INSTALL_ADDON, addon)
     send_request('install', request, {
                     'app-domain': addon.domain_from_url(addon.origin),
                     'app-id': addon.pk})

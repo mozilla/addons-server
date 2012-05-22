@@ -276,6 +276,9 @@ def paypal_completed(request, post, transaction):
         # This is a purchase that has failed to hit the completed page.
         # But this ok, this IPN means that it all went through.
         update['type'] = amo.CONTRIB_PURCHASE
+        # If they failed to hit the completed page, they also failed
+        # to get it logged properly. This will add the log in.
+        amo.log(amo.LOG.PURCHASE_ADDON, original.addon)
 
     if 'mc_gross' in post:
         update['amount'] = post['mc_gross']
