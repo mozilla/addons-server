@@ -352,3 +352,13 @@ def send_notifications(signal=None, sender=None, **kw):
 
 
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
+
+
+class ReviewerScore(amo.models.ModelBase):
+    user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
+    score = models.SmallIntegerField()
+    note = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'reviewer_scores'
+        ordering = ('-created',)

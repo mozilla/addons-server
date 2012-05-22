@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from translations.helpers import truncate
 
-from .models import CannedResponse, EventLog
+from .models import CannedResponse, EventLog, ReviewerScore
 
 
 class CannedResponseAdmin(admin.ModelAdmin):
@@ -12,9 +12,6 @@ class CannedResponseAdmin(admin.ModelAdmin):
 
     list_display = ('name', truncate_response)
     list_filter = ('type',)
-
-
-admin.site.register(CannedResponse, CannedResponseAdmin)
 
 
 class EventLogAdmin(admin.ModelAdmin):
@@ -31,4 +28,12 @@ class EventLogAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
+class ReviewerScoreAdmin(admin.ModelAdmin):
+    list_display = ('user', 'score', 'note', 'created')
+    raw_id_fields = ('user',)
+
+
+admin.site.register(CannedResponse, CannedResponseAdmin)
 admin.site.register(EventLog, EventLogAdmin)
+admin.site.register(ReviewerScore, ReviewerScoreAdmin)
