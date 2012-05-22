@@ -2,7 +2,7 @@
 {% set req_if_edit = required() if editable %}
 <form method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
   <h2>
-    {{ loc('App Details') }}
+    {{ _('App Details') }}
     {% if not editable %}
       <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['details', 'edit']) }}" class="button">
       {{ _('Edit') }}</a>

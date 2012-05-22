@@ -14,12 +14,12 @@
       {{ csrf() }}
       <div class="brform island swagger c paypal-inline">
         {{ csrf() }}
-        <p>{{ loc("Next, we'll set up your PayPal account so you can
-                   receive payments. If you don't have one, we can help
-                   you create one.") }}</p>
+        <p>{{ _("Next, we'll set up your PayPal account so you can
+                 receive payments. If you don't have one, we can help
+                 you create one.") }}</p>
         {{ form_field(form.business_account) }}
         {{ form_field(form.email) }}
-        <p>{{ loc('Learn about <a href="{0}">different PayPal account types</a>.')|f("https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/general/PayPalAccountTypes-outside")|xssafe }}</p>
+        <p>{{ _('Learn about <a href="{0}">different PayPal account types</a>.')|f("https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/general/PayPalAccountTypes-outside")|xssafe }}</p>
       </div>
       <button class="prominent continue c" type="submit">
         {{ _('Continue') }}

@@ -6,14 +6,14 @@
       {{ dev_heading(addon, amo) }}
       {% if addon.is_incomplete() %}
         <p class="incomplete">
-          {{ loc('This app will be deleted automatically after a few days if
-                  the submission process is not completed.') }}
+          {{ _('This app will be deleted automatically after a few days if
+                the submission process is not completed.') }}
         </p>
       {% else %}
         <ul class="item-details">
           {# L10n: {0} is a date. #}
           <li class="date-created">
-            <strong>{{ loc('Created:') }}</strong>
+            <strong>{{ _('Created:') }}</strong>
             {{ addon.created|datetime }}
           </li>
           <li id="version-status-item">
@@ -29,7 +29,7 @@
           </li>
           {% if waffle.switch('marketplace') %}
             <li>
-              <strong>{{ loc('Price:') }}</strong>
+              <strong>{{ _('Price:') }}</strong>
               {{ price(addon) }}
             </li>
           {% endif %}

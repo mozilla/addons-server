@@ -2,7 +2,7 @@
 {% from 'includes/forms.html' import required %}
 {% extends 'developers/base_impala.html' %}
 
-{% set title = loc('Edit App Details') %}
+{% set title = _('Edit App Details') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
@@ -18,8 +18,8 @@
   <section id="submit-details" class="primary">
     <h2>{{ title }}</h2>
     <p>
-      {{ loc("Please review your listing information below. We've pre-filled "
-             "as much as we can from your manifest.") }}
+      {{ _("Please review your listing information below. We've pre-filled "
+           "as much as we can from your manifest.") }}
     </p>
     <form enctype="multipart/form-data" method="post" class="devhub-form"
           id="submit-media" data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
@@ -39,15 +39,12 @@
           <div class="before">
             <!-- {{ addon.name }} -->
             <h2 class="output">{{ addon.name }}</h2>
-            <b>{{ loc('Details page:') }}</b>
             {# The URL for the details page hasn't been finalized,
                so let's not reverse it just yet. #}
             {{ settings.SITE_URL }}/&hellip;/
             {{ addon.app_slug }}
             {% if request.can_view_consumer %}
-              <a class="view" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
-            {% else %}
-              <em class="edit-addon-details">{{ loc('(Not Available Yet)') }}</em>
+              <a class="view" href="{{ addon.get_url_path() }}">{{ _('Open details page') }}</a>
             {% endif %}
           </div>
           <div class="after">
@@ -115,7 +112,7 @@
         <div id="show-privacy" class="{{ 'error' if form_details.form_basic.errors else 'ready' }} brform simple-field">
           <label class="checkbox">
             <input type="checkbox" name="show_privacy">
-            {{ _('This app has a privacy policy') }}
+            This app has a privacy policy
           </label>
           {{ form_field(form_basic.privacy_policy) }}
         </div>
@@ -133,12 +130,13 @@
       <div>
         <label>
           {% if waffle.switch('video-upload') %}
-            {{ _('Please provide at least one screenshot or video of your app:') }}
+            {{ _('Screenshot or video of your app:') }}
           {% else %}
-            {{ loc('Please provide at least one screenshot of your app:') }}
+            {{ _('Screenshot of your app:') }}
           {% endif %}
         </label>
         {{ required() }}
+        <span class="hint-inline">{{ _('You must provide at least one.') }}</span>
       </div>
       <div class="brform simple-field island" id="screenshots">
         {{ form_previews.management_form }}
@@ -185,12 +183,9 @@
         </div>
         <div>
           <span class="hint">
+            {{ _('PNG and JPG supported. Large images will be resized to fit 700 x 520 px.') }}
             {% if waffle.switch('video-upload') %}
-              {{ loc('PNG and JPG supported. Large images will be resized to fit
-                      700 x 520 px. WEBM supported for video.') }}
-            {% else %}
-              {{ loc('PNG and JPG supported. Large images will be resized to fit
-                    700 x 520 px.') }}
+              {{ _('WEBM supported for video.') }}
             {% endif %}
           </span>
         </div>

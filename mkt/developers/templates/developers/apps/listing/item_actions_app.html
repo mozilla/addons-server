@@ -21,12 +21,12 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="action-link tooltip"
-         title="{{ loc("Edit details for this app's listing page.") }}">
+         title="{{ _("Edit details for this app's listing page.") }}">
         {{ _('Edit Listing') }}</a>
     </li>
   {% endif %}
   <li>
-    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ loc('Manage Authors') }}</a>
+    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Manage Authors') }}</a>
   </li>
   <li>
     <a class="action-link" href="{{ addon.get_dev_url('payments') }}">
@@ -57,7 +57,7 @@
       {% endif %}
       {% if addon.is_premium() or addon.premium_type == amo.ADDON_FREE_INAPP %}
         {% do manage_urls.insert(1,
-          (addon.get_dev_url('paypal_setup'), loc('Manage PayPal'))) %}
+          (addon.get_dev_url('paypal_setup'), _('Manage PayPal'))) %}
       {% endif %}
       {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
             and waffle.switch('in-app-payments') %}

@@ -22,21 +22,20 @@
         </div>
       {% else %}
         {% if form %}
-          {# TODO(reviews): Add back this.
+          <form method="post">
+            {{ csrf() }}
             <div class="notification-box error prose">
+              {% trans %}
               By clicking "delete" your account is going
               to be <strong>permanently removed</strong>.
               That means:
                 <ul>
+                  <li>You are deleting your account on both <strong>Mozilla Marketplace</strong> and <strong>addons.mozilla.org</strong>.</li>
                   <li>Your reviews and ratings will not be deleted, but they
                       will no longer be associated with you.</li>
                 </ul>
+                {% endtrans %}
             </div>
-          #}
-          <form method="post">
-            {{ csrf() }}
-            <p>{{ loc('By clicking "delete" your account is going '
-                      'to be <strong>permanently removed</strong>.')|safe }}</p>
             <p>
               {{ form_field(form.confirm) }}
             </p>

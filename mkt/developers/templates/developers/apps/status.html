@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = loc('Manage Status') %}
+{% set title = _('Manage Status') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
@@ -18,10 +18,10 @@
       <p class="status">
         {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
           {{ status(_('You have <b>disabled</b> this app.')|safe) }}
-          {{ loc("Your app's listing is disabled and will not appear in the
-                  Mozilla Marketplace. You may re-enable it at any time below.") }}
+          {{ _("Your app's listing is disabled and will not appear in the
+                Mozilla Marketplace. You may re-enable it at any time below.") }}
         {% elif addon.status == amo.STATUS_NULL %}
-          {{ status(loc('This app is <b>incomplete</b>.')|safe) }}
+          {{ status(_('This app is <b>incomplete</b>.')|safe) }}
           <a href="{{ url('submit.app.resume', addon.app_slug) }}">
             {{ _('Please complete your app.') -}}
           </a>
@@ -32,8 +32,8 @@
           {{ status(_('This app is <b>public</b>.')|safe) }}
         {% elif addon.status == amo.STATUS_DISABLED %}
           {{ status(_('This app has been <b>disabled by Mozilla</b>.')|safe) }}
-          {{ loc("Your app was disabled by a site administrator. If you have any
-                  questions, please email app-reviews@mozilla.org.") }}
+          {{ _("Your app was disabled by a site administrator. If you have any
+                questions, please email app-reviews@mozilla.org.") }}
         {% elif addon.status == amo.STATUS_REJECTED %}
           {{ status(_('This app has been <b>rejected</b> by a Mozilla Marketplace reviewer.')|safe) }}
         {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}

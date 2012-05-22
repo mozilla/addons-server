@@ -106,8 +106,6 @@ def home(request):
 def index(request):
     # This is a temporary redirect.
     return redirect('mkt.developers.apps')
-    # R.I.P. Landing Page. I barely knew ye'.
-    #return jingo.render(request, 'developers/index.html')
 
 
 @login_required
@@ -140,7 +138,7 @@ def edit(request, addon_id, addon, webapp=False):
 def delete(request, addon_id, addon, webapp=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
-        msg = loc('App cannot be deleted. Disable this app instead.')
+        msg = _('Paid apps cannot be deleted. Disable this app instead.')
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
@@ -150,7 +148,7 @@ def delete(request, addon_id, addon, webapp=False):
     form = forms.DeleteForm(request)
     if True or form.is_valid():
         addon.delete('Removed via devhub')
-        messages.success(request, loc('App deleted.'))
+        messages.success(request, _('App deleted.'))
         # Preserve query-string parameters if we were directed from Dashboard.
         return redirect(request.GET.get('to') or
                         reverse('mkt.developers.apps'))
@@ -329,7 +327,7 @@ def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
     # wizardy stuff.
     else:
         msg = _('Changes saved.')
-        title = loc('Contact Details')
+        title = _('Contact Details')
         button = _('Save')
 
     adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)

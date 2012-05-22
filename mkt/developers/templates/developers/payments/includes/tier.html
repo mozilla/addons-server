@@ -3,9 +3,10 @@
   <label for="id_price">{{ form.price.label }} {{ required() }}</label>
   <div class="extra">
     <p>
-          {{ loc('Select a price tier for your app below. Price tiers are based
-                  on US Dollars and are fixed for all supported countries.') }}
-          {{ loc('For more information <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers">view our pricing matrix</a>.'|xssafe) }}
+      {% trans doc_url='https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers' %}
+        Select a price tier below. Price tiers are based on US Dollars and are fixed for all supported countries.
+        For more information <a href="{{ doc_url }}">view our pricing matrix</a>.
+      {% endtrans %}
     </p>
   </div>
   {{ form.price.errors }}

@@ -9,11 +9,11 @@
   <h1>{{ title }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payment" class="primary">
-    <h2>Success! What happens now?</h2>
+    <h2>{{ _('Success! What happens now?') }}</h2>
     <div class="island devhub-form c">
-      <p>{{ loc("We've got your app saved and ready to go for our
-                 Marketplace Beta coming soon. Until then, feel free to
-                 look around and tweak your app's metadata and settings.") }}</p>
+      <p>{{ _("We've got your app saved and ready to go! Your app is currently
+               awaiting review, and will show up on listing pages and in search once it is reviewed.
+               Until then, feel free to tweak your app's details and settings.") }}</p>
       <footer class="listing-footer button-wrapper">
         <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">Manage My App</a>
         <a href="{{ url('submit.app.manifest') }}" class="button prominent">Submit Another App</a>

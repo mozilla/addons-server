@@ -177,7 +177,7 @@
       <div id="wrapper-instant" class="island tabcontent hidden">
         {% if not instant.paginator.count %}
           <p id="queue-instant" class="no-results">
-            {{ loc('No instantly approved refunds.') }}
+            {{ _('No instantly approved refunds.') }}
           </p>
         {% else %}
           <table id="queue-instant">
@@ -201,7 +201,7 @@
       <div id="wrapper-declined" class="island tabcontent hidden">
         {% if not declined.paginator.count %}
           <p id="queue-declined" class="no-results">
-            {{ loc('No declined refunds.') }}
+            {{ _('No declined refunds.') }}
           </p>
         {% else %}
           <table id="queue-declined">
@@ -238,7 +238,7 @@
       <div id="wrapper-failed" class="island tabcontent hidden">
         {% if not failed.paginator.count %}
           <p id="queue-failed" class="no-results">
-            {{ loc('No failed refunds.') }}
+            {{ _('No failed refunds.') }}
           </p>
         {% else %}
           <table id="queue-failed">

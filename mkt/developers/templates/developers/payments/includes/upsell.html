@@ -8,9 +8,11 @@
       <p>{{ form.free }}</p>
       <p class="extra">
         {% if webapp %}
-          {{ loc("Pitch your premium app, describing the added benefits
-                  and functionality over the free version. This will appear
-                  on the free app's details page.") }}
+          {% trans %}
+            Pitch your premium app, describing the added benefits
+            and functionality over the free version. This will appear
+            on the free app's details page.
+          {% endtrans %}
         {% else %}
           {% trans %}
             Pitch your premium add-on, describing the added benefits
@@ -24,7 +26,7 @@
       {{ some_html_tip() }}
     </div>
   {% else %}
-    <label>{{ loc('App upsell') if webapp else _('Add-on upsell') }}</label>
+    <label>{{ _('App upsell') if webapp else _('Add-on upsell') }}</label>
     <div class="extra">
       {% if webapp %}
         {% trans %}

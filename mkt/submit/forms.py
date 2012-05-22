@@ -171,31 +171,31 @@ class AppDetailsBasicForm(AddonFormBasic):
     slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(max_length=250,
-        label=_lazy(u"Provide a brief summary of your app's functionality:"),
+        label=_lazy(u"Brief summary:"),
         help_text=_lazy(u'This summary will be shown in listings and '
                          'searches.'),
         widget=TransTextarea(attrs={'rows': 2, 'class': 'full'}))
     description = TransField(required=False,
-        label=_lazy(u'Provide a more detailed description of your app:'),
+        label=_lazy(u'Additional Information:'),
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
     privacy_policy = TransField(widget=TransTextarea(attrs={'rows': 6}),
-         label=_lazy("Please specify your app's Privacy Policy:"),
-         help_text=_lazy(u"A privacy policy is required that explains what "
+         label=_lazy("Privacy Policy:"),
+         help_text=_lazy(u"A privacy policy that explains what "
                           "data is transmitted from a user's computer and how "
-                          "it is used."))
+                          "it is used is required."))
     homepage = TransField.adapt(forms.URLField)(required=False,
-        verify_exists=False, label=_lazy(u'Homepage'),
+        verify_exists=False, label=_lazy(u'Homepage:'),
         help_text=_(u'If your app has another homepage, enter its address '
                      'here.'),
         widget=TransInput(attrs={'class': 'full'}))
     support_url = TransField.adapt(forms.URLField)(required=False,
-       verify_exists=False, label=_lazy(u'Support Website'),
+       verify_exists=False, label=_lazy(u'Support Website:'),
        help_text=_(u'If your app has a support website or forum, enter '
                     'its address here.'),
         widget=TransInput(attrs={'class': 'full'}))
     support_email = TransField.adapt(forms.EmailField)(
-        label=_lazy(u'Support Email'),
+        label=_lazy(u'Support Email:'),
         help_text=_(u'The email address used by end users to contact you with '
                      'support issues and refund requests.'),
         widget=TransInput(attrs={'class': 'full'}))

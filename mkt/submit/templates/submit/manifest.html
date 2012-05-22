@@ -9,7 +9,7 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=None, step=step) }}
   <section id="submit-manifest" class="primary">
-    <h2>{{ loc("Where's Your Manifest?") }}</h2>
+    <h2>{{ _("Where's Your Manifest?") }}</h2>
     <p>
       Kick off things by creating your app's manifest and entering its URL
       below. <a href="https://developer.mozilla.org/en/Apps/The_Manifest" target="_blank">
@@ -18,7 +18,7 @@
     <section id="upload-file" class="island">
       <div class="upload-status">
         <label>
-          {{ loc('Submit your app manifest by URL:') }}
+          {{ _('Submit your app manifest URL:') }}
           <form id="validate-field">
             <div class="vf-text">
               <input type="text" id="upload-webapp-url" name="manifest" class="large"
@@ -36,9 +36,9 @@
             </span>
           </div>
           <div class="hint">
-            {{ loc('Manifest URLs must start with a protocol (for example, '
-                   '<code>http://</code> or <code>https://</code>) and '
-                   'typically use the <code>.webapp</code> extension.')|safe }}
+            {{ _('Manifest URLs must start with a protocol (for example, '
+                 '<code>http://</code> or <code>https://</code>) and '
+                 'typically use the <code>.webapp</code> extension.')|safe }}
           </div>
         </div>
       </div>

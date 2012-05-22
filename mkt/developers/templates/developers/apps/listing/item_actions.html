@@ -48,7 +48,7 @@
       ] %}
       {% if addon.needs_paypal() and waffle.switch('allow-refund') %}
         {% do manage_urls.insert(3,
-          (addon.get_dev_url('refunds'), loc('Manage Refunds'))
+          (addon.get_dev_url('refunds'), _('Manage Refunds'))
         ) %}
       {% endif %}
       <ul>
