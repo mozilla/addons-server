@@ -209,7 +209,7 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 
 class DeviceTypeForm(forms.Form):
     device_types = forms.ModelMultipleChoiceField(
-        label=loc('Device Types:'),
+        label=_('Device Types:'),
         queryset=DeviceType.objects.all(),
         initial=DeviceType.objects.all(),
         widget=forms.CheckboxSelectMultiple)
@@ -266,7 +266,7 @@ class CategoryForm(forms.Form):
 
         if getattr(self, 'disabled', False) and total:
             if categories[0].type == amo.ADDON_WEBAPP:
-                raise forms.ValidationError(loc('Categories cannot be changed '
+                raise forms.ValidationError(_('Categories cannot be changed '
                     'while your app is featured for this application.'))
             else:
                 raise forms.ValidationError(_('Categories cannot be changed '
