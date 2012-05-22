@@ -521,7 +521,8 @@ class TestInstall(amo.tests.TestCase):
 
     def test_not_record_addon(self):
         self.addon.update(type=amo.ADDON_EXTENSION)
-        self.client.post(self.url)
+        res = self.client.post(self.url)
+        eq_(res.status_code, 404)
         eq_(self.user.installed_set.count(), 0)
 
     def test_record_logged_out(self):

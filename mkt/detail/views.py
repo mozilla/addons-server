@@ -86,25 +86,26 @@ def abuse_recaptcha(request, addon):
 def record(request, addon):
     is_dev = request.check_ownership(addon, require_owner=False,
                                      ignore_disabled=True)
-    if not (addon.is_public() or acl.check_reviewer(request) or is_dev):
+    if (not (addon.is_public() or acl.check_reviewer(request)
+        or is_dev or not addon.is_webapp())):
         raise http.Http404
-    if addon.is_webapp():
-        installed, c = Installed.objects.safer_get_or_create(addon=addon,
-            user=request.amo_user)
-        send_request('install', request, {
-                        'app-domain': addon.domain_from_url(addon.origin),
-                        'app-id': addon.pk})
 
-        # Look up to see if its in the receipt cache and log if we have
-        # to recreate it.
-        receipt = memoize_get('create-receipt', installed.pk)
-        error = ''
-        cef(request, addon, 'request', 'Receipt requested')
-        if not receipt:
-            cef(request, addon, 'sign', 'Receipt signing')
-            try:
-                receipt = create_receipt(installed.pk)
-            except SigningError:
-                error = _('There was a problem installing the app.')
+    installed, c = Installed.objects.safer_get_or_create(addon=addon,
+                                                         user=request.amo_user)
+    send_request('install', request, {
+                    'app-domain': addon.domain_from_url(addon.origin),
+                    'app-id': addon.pk})
 
-        return {'addon': addon.pk, 'receipt': receipt, 'error': error}
+    # Look up to see if its in the receipt cache and log if we have
+    # to recreate it.
+    receipt = memoize_get('create-receipt', installed.pk)
+    error = ''
+    cef(request, addon, 'request', 'Receipt requested')
+    if not receipt:
+        cef(request, addon, 'sign', 'Receipt signing')
+        try:
+            receipt = create_receipt(installed.pk)
+        except SigningError:
+            error = _('There was a problem installing the app.')
+
+    return {'addon': addon.pk, 'receipt': receipt, 'error': error}
