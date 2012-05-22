@@ -248,34 +248,44 @@
   {% if waffle.switch('ratings') %}
     <section class="reviews c" id="reviews"
              data-review-history="{{ review_history|json }}">
-      <div id="reviews-info">
-        <figure>
-          <figcaption>Reviews, last 30 days</figcaption>
-          <canvas id="review-spark"></canvas>
-        </figure>
-        <a href="#" class="selected" data-review-filter="all">
-          <h3 class="all">
-            All Reviews <b>({{ product.rating_counts.total }})</b>
-          </h3>
-        </a>
-        <a href="#" data-review-filter="positive">
-          <h3 class="upvotes">
-            Positive Reviews <b>({{ product.rating_counts.positive }})</b>
-          </h3>
-        </a>
-        <a href="#" data-review-filter="negative">
-          <h3 class="downvotes">
-            Negative Reviews <b>({{ product.rating_counts.negative }})</b>
-          </h3>
-        </a>
+      {% if not ratings %}
+        <h2>{{ _('Reviews') }}</h2>
         {% if can_review %}
-          <p id="submit-review">
-            <a href="{{ product.get_ratings_url('add') }}" class="button good">
-              {{ _('Review This App') }}</a></p>
+          <p id="add-first-review">
+            <a href="{{ product.get_ratings_url('add') }}" class="button go">
+              {{ _('Be the first to write a review.') }}</a><p>
+        {% else %}
+          <p id="no-add-first-review">
+            {{ _('This app has not yet been reviewed.') }}</p>
         {% endif %}
-      </div>
-      <div class="thumbs-up">
-        {% if ratings %}
+      {% else %}
+        <div id="reviews-info">
+          <figure>
+            <figcaption>Reviews, last 30 days</figcaption>
+            <canvas id="review-spark"></canvas>
+          </figure>
+          <a href="#" class="selected" data-review-filter="all">
+            <h3 class="all">
+              All Reviews <b>({{ product.rating_counts.total }})</b>
+            </h3>
+          </a>
+          <a href="#" data-review-filter="positive">
+            <h3 class="upvotes">
+              Positive Reviews <b>({{ product.rating_counts.positive }})</b>
+            </h3>
+          </a>
+          <a href="#" data-review-filter="negative">
+            <h3 class="downvotes">
+              Negative Reviews <b>({{ product.rating_counts.negative }})</b>
+            </h3>
+          </a>
+          {% if can_review %}
+            <p id="submit-review">
+              <a href="{{ product.get_ratings_url('add') }}" class="button good">
+                {{ _('Review This App') }}</a></p>
+          {% endif %}
+        </div>
+        <div>
           <ul id="review-list" class="filter-all">
             {% for rating in ratings %}
               {% include 'ratings/rating.html' %}
@@ -283,16 +293,8 @@
           </ul>
           <p><a href="{{ product.get_ratings_url() }}" class="button">
             {{ _('Read More') }}</a></p>
-        {% else %}
-          {% if can_review %}
-            <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">
-              {{ _('Be the first to write a review.') }}</a><p>
-          {% else %}
-            <p id="no-add-first-review">
-              {{ _('This app has not yet been reviewed.') }}</p>
-          {% endif %}
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
     </section>
   {% endif %}
 
