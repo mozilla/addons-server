@@ -43,7 +43,7 @@
         data-media-url="{{ MEDIA_URL }}"
         data-login-url="{{ url('users.browserid_login') }}"
         data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
-        data-recaptcha="{{ settings.RECAPTCHA_PUBLIC_KEY }}"
+        {% if not logged %}data-recaptcha="{{ settings.RECAPTCHA_PUBLIC_KEY }}"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     {% block siteheader %}

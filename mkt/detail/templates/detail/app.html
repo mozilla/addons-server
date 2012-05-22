@@ -230,17 +230,8 @@
           <p>
             {{ product.created|timelabel }}
           </p>
-        {% endif %}
-      </li>
-      <li class="published">
-        <h3>{{ _('Published') }}</h3>
-        <p>
-          <time isotime="{{ product.created|isotime }}"
-                title="{{ product.created|isotime }}">
-            {{ product.created|timesince }}
-          </time>
-        </p>
-      </li>
+        </li>
+      {% endif %}
       {% if abuse_form %}
         <li class="abuse">
           <h3>{{ _('Report Abuse') }}</h3>
