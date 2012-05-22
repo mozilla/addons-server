@@ -82,7 +82,7 @@ class TestPackager(amo.tests.TestCase):
                               args=[pkg_name]))
         eq_(pkg.status_code, 200)
         eq_(pkg['content-type'], 'application/zip')
-        eq_(pkg['X-SENDFILE'], packager_path(pkg_name))
+        eq_(pkg[settings.XSENDFILE_HEADER], packager_path(pkg_name))
 
     def test_name_required(self):
         r = self.client.post(self.url, self._form_data({'package_name': ''}))
@@ -271,7 +271,7 @@ class TestPackagerDownload(amo.tests.TestCase):
         pkg = self.client.get(data['download_url'])
         eq_(pkg.status_code, 200)
         eq_(pkg['content-type'], 'application/zip')
-        eq_(pkg['X-SENDFILE'], dst)
+        eq_(pkg[settings.XSENDFILE_HEADER], dst)
 
         self._unprep_package('foobar')
 

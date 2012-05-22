@@ -529,7 +529,7 @@ class HttpResponseSendFile(http.HttpResponse):
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
         if settings.XSENDFILE:
-            self['X-SENDFILE'] = path
+            self[settings.XSENDFILE_HEADER] = path 
 
     def __iter__(self):
         if settings.XSENDFILE:

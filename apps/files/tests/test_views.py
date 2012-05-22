@@ -352,7 +352,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.files_redirect(binary), follow=True)
         eq_(res.status_code, 200)
-        eq_(res['X-SENDFILE'],
+        eq_(res[settings.XSENDFILE_HEADER],
             self.file_viewer.get_files().get(binary)['full'])
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
@@ -523,7 +523,7 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_get_watermarked(self):
         res = self.client.get(self.url)
-        assert os.path.exists(res['X-SENDFILE'])
+        assert os.path.exists(res[settings.XSENDFILE_HEADER])
 
     def test_get_headers(self):
         res = self.client.get(self.url)
@@ -561,4 +561,4 @@ class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
         self.client.logout()
         self.client.login(username=self.author.email, password='password')
         res = self.client.get(self.url)
-        assert os.path.exists(res['X-SENDFILE'])
+        assert os.path.exists(res[settings.XSENDFILE_HEADER])
