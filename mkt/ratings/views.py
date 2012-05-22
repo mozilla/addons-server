@@ -5,12 +5,14 @@ import commonware.log
 import jingo
 from tower import ugettext as _
 
+from access import acl
 import amo
 import amo.log
 from addons.decorators import addon_view_factory, has_purchased
 from addons.models import Addon
 from amo.decorators import json_view, login_required, post_required
 from reviews.helpers import user_can_delete_review
+from reviews.views import get_flags
 
 from mkt.site import messages
 from mkt.ratings.models import Rating
@@ -30,8 +32,45 @@ def _review_details(request, addon, form):
 
 
 @addon_view
-def review_list(request, addon, review_id=None, user_id=None):
-    return http.HttpResponse()
+def review_list(request, addon, review_id=None, user_id=None, rating=None):
+    qs = Rating.objects.valid().filter(addon=addon).order_by('-created')
+
+    ctx = {'product': addon, 'score': rating, 'review_perms': {}}
+
+    # If we want to filter by only positive or only negative.
+    score = {'positive': 1, 'negative': -1}.get(rating)
+    if score:
+        qs = qs.filter(score=score)
+
+    if review_id is not None:
+        qs = qs.filter(pk=review_id)
+        ctx['page'] = 'detail'
+        # If this is a dev reply, find the first msg for context.
+        review = get_object_or_404(Rating, pk=review_id)
+        if review.reply_to_id:
+            review_id = review.reply_to_id
+            ctx['reply'] = review
+    elif user_id is not None:
+        qs = qs.filter(user=user_id)
+        ctx['page'] = 'user'
+        if not qs:
+            raise http.Http404()
+    else:
+        ctx['page'] = 'list'
+        qs = qs.filter(is_latest=True)
+
+    ctx['ratings'] = ratings = amo.utils.paginate(request, qs)
+    ctx['replies'] = Rating.get_replies(ratings.object_list)
+    ctx['review_history'] = [[2, 12], [50, 2], [3, 0], [4, 1]]
+    if request.user.is_authenticated():
+        ctx['review_perms'] = {
+            'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
+            'is_editor': acl.check_reviewer(request),
+            'is_author': acl.check_addon_ownership(request, addon, viewer=True,
+                                                   dev=True, support=True),
+        }
+        ctx['flags'] = get_flags(request, ratings.object_list)
+    return jingo.render(request, 'ratings/listing.html', ctx)
 
 
 @addon_view

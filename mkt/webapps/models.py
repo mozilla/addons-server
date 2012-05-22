@@ -189,7 +189,10 @@ class Webapp(Addon):
             return self._rating_counts
         scores = dict(self._ratings.values_list('score')
                           .annotate(models.Count('id')))
-        return {'positive': scores.get(1, 0), 'negative': scores.get(-1, 0)}
+        positive, negative = scores.get(1, 0), scores.get(-1, 0)
+        return {'total': positive + negative,
+                'positive': positive,
+                'negative': negative}
 
     @property
     def origin(self):

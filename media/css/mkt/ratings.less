@@ -1,5 +1,48 @@
 @import 'lib';
 
+.detail {
+    .reviews {
+        margin-bottom: 15px;
+        > div {
+            float: left;
+            width: 50%;
+        }
+    }
+    #submit-review {
+        bottom: 15px;
+    }
+}
+
+.listing {
+    header img {
+        float: left;
+        margin-right: 10px;
+    }
+    .reviews {
+        margin-bottom: 5px;
+        #reviews-info {
+            position: relative;
+            margin-top: 20px;
+        }
+        figure,
+        figure + div {
+            float: left;
+        }
+        figure {
+            width: 40%;
+            + div {
+                width: 25%;
+            }
+        }
+        #submit-review {
+            bottom: 20px;
+        }
+    }
+    .paginator {
+        margin-top: 15px;
+    }
+}
+
 .reviews {
     position: relative;
     ul {
@@ -8,8 +51,6 @@
     }
     > div {
         .border-box;
-        width: 50%;
-        float: left;
     }
     figure {
         display: block;
@@ -29,14 +70,16 @@
     }
     a[data-review-filter] {
         display: block;
-        color: #666;
+        color: @medium-gray;
+        padding: 5px 0;
         &:hover {
+            background: fade(#fff, 25%);
             text-decoration: none;
         }
         &.selected {
             background: fade(#fff, 50%);
+            pointer-events: none;
         }
-        padding: 5px 0;
     }
     h3 {
         padding-left: 36px;
@@ -62,18 +105,41 @@
         background: fade(#fff, 50%);
     }
     .review {
-        padding: @spacing;
         list-style-type: none;
+        padding: @spacing;
         p {
-            font-size: 120%;
             margin: 0 0 10px;
         }
-        margin: 0 0 @spacing;
+        .byline, .timestamp {
+            font-size: 11px;
+        }
+        .byline {
+            color: @medium-gray;
+            a {
+                color: darken(@link, 15%);
+                &:hover {
+                    color: darken(@link, 30%);
+                }
+            }
+        }
+        .timestamp {
+            color: @note-gray;
+            &:hover {
+                color: @gray;
+            }
+            &:before {
+                color: @light-gray;
+                content: "\00b7";
+                margin: 0 2px;
+            }
+        }
+        + .review {
+            border-top: 1px dotted @light-gray;
+        }
     }
     #submit-review {
-        margin: 10px 0;
         position: absolute;
-        bottom: 0;
+        margin: 10px 0;
     }
 }
 

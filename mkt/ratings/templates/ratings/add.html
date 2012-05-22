@@ -1,6 +1,6 @@
 {% from 'includes/forms.html' import required_note %}
 
-{% extends 'detail/protected_app.html' %}
+{% extends 'mkt/base.html' %}
 
 {% set title = _('Add a review for {0}')|f(product.name) %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}

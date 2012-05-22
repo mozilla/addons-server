@@ -2,6 +2,8 @@
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
+{% block bodyclass %}detail{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   {% for preview in product.all_previews %}
@@ -253,9 +255,13 @@
     <section class="reviews c" id="reviews"
              data-review-history="{{ review_history|json }}">
       <div id="reviews-info">
+        <figure>
+          <figcaption>Reviews, last 30 days</figcaption>
+          <canvas id="review-spark"></canvas>
+        </figure>
         <a href="#" class="selected" data-review-filter="all">
           <h3 class="all">
-            All Reviews <b>({{ product._ratings.count() }})</b>
+            All Reviews <b>({{ product.rating_counts.total }})</b>
           </h3>
         </a>
         <a href="#" data-review-filter="positive">
@@ -282,11 +288,17 @@
               {% include 'ratings/rating.html' %}
             {% endfor %}
           </ul>
+          <p><a href="{{ product.get_ratings_url() }}" class="button">
+            {{ _('Read More') }}</a></p>
         {% else %}
-          {{ no_results() }}
+          {% if product.can_review(amo_user) %}
+            <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">
+              {{ _('Be the first to write a review.') }}</a><p>
+          {% else %}
+            <p id="no-add-first-review">
+              {{ _('This app has not yet been reviewed.') }}</p>
+          {% endif %}
         {% endif %}
-        <p><a href="{{ product.get_ratings_url() }}" class="button">
-          {{ _('Read More') }}</a></p>
       </div>
     </section>
   {% endif %}

@@ -1,10 +1,7 @@
-import jingo
-from tower import ugettext as _
-
 from django import http
 from django.shortcuts import redirect
 
-from commonware.response.decorators import xframe_sameorigin
+import jingo
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
@@ -28,16 +25,16 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 @addon_all_view
 def detail(request, addon):
     """Product details page."""
-
     ratings = Rating.objects.latest().filter(addon=addon).order_by('-created')
     positive_ratings = list(ratings.filter(score=1)[:5])
     negative_ratings = list(ratings.filter(score=-1)[:5])
-    sorted_ratings = sorted(positive_ratings + negative_ratings, key=lambda x: x.created, reverse=True)
+    sorted_ratings = sorted(positive_ratings + negative_ratings,
+                            key=lambda x: x.created, reverse=True)
     ctx = {
         'product': addon,
         'ratings': ratings,
         'ratings': sorted_ratings,
-        'review_history': [[2,1],[50,2],[3,0],[4,1]]
+        'review_history': [[2, 12], [50, 2], [3, 0], [4, 1]]
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)

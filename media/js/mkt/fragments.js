@@ -67,6 +67,8 @@
                 $('html, body').scrollTop(state.scrollTop || 0);
                 stick.custom({'window.performance.timing.fragment.loaded':
                               new Date().getTime() - start});
+            }).error(function() {
+                window.location = href;
             });
         }
 

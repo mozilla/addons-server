@@ -1,11 +1,13 @@
 <li class="review {{ 'positive' if rating.score == 1 else 'negative' }}">
   <p>{{ rating.body }}</p>
-  <div class="byline">
+  <span class="byline">
     {% trans user_url=rating.user.get_url_path(),
-             user_name=rating.user.name,
-             timestamp=rating.created|timelabel %}
-      by <a href="{{ user_url  }}">{{ user_name }}</a> {{ timestamp }}
+             user_name=rating.user.name %}
+      by <a href="{{ user_url }}">{{ user_name }}</a>
     {% endtrans %}
-  </div>
-  <a href="{{ rating.get_url_path() }}" title="Permalink">Permalink</a>
+  </span>
+  <a href="{{ rating.get_url_path() }}" class="timestamp"
+     title="{{ _('Permalink') }}">
+    {{ rating.created|timelabel }}
+  </a>
 </li>

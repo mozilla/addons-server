@@ -4,7 +4,7 @@ function ratingHistory(el, history) {
     el.height = el.offsetHeight;
     var ctx = el.getContext('2d'),
         size = el.height / 2,
-        i, row, x, y;
+        i, row, x, y, ox, oy;
 
     // normalize values
     var max = 0;
@@ -52,22 +52,21 @@ function ratingHistory(el, history) {
 (function() {
     z.page.on('fragmentloaded', function() {
         var $reviewEl = $('#reviews'),
-            data = $reviewEl.data('review-history');
-        if ($reviewEl.exists() && data) {
-            $reviewEl.find('div:first-child')
-                     .prepend('<figure><figcaption>Reviews, last 30 days</figcaption>' +
-                              '<canvas id="review-spark"></canvas></figure>');
-            ratingHistory($('#review-spark')[0], data);
+            data = $reviewEl.data('review-history'),
+            $spark = $('#review-spark');
+        if ($reviewEl.length && $spark.length && data) {
+            ratingHistory($spark[0], data);
         }
     });
 })();
 
 z.page.on('click', '[data-review-filter]', function(e) {
     e.preventDefault();
-    var filter = $(this).data('review-filter');
-    $('#review-list').removeClass('filter-positive filter-negative filter-all');
-    $('#review-list').addClass('filter-' + filter);
-    $('[data-review-filter]').removeClass('selected');
-    $(this).addClass('selected');
-
+    if ($('.detail').length) {
+        var $this = $(this),
+            filter = $this.data('review-filter');
+        $('#review-list').removeClass('filter-positive filter-negative filter-all').addClass('filter-' + filter);
+        $('[data-review-filter]').removeClass('selected');
+        $this.addClass('selected');
+    }
 });
