@@ -289,6 +289,10 @@ Then make yourself a superuser like this::
 
     mysql> update auth_user set is_superuser=1, is_staff=1 where id=<id from above>;
 
+Additionally, add yourself to the admin group::
+
+    mysql> insert into groups_users (group_id, user_id) values (1, <id from above>);
+
 Next, you'll need to set a password. Do that by clicking "I forgot my password"
 on the login screen then go back to the shell you started your dev server in.
 You'll see the email message with the password reset link in stdout.
