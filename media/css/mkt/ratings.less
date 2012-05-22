@@ -21,8 +21,9 @@
     .reviews {
         margin-bottom: 5px;
         #reviews-info {
-            position: relative;
             margin-top: 20px;
+            min-height: 400px;
+            position: relative;
         }
         figure,
         figure + div {
@@ -103,6 +104,7 @@
     }
     #review-list {
         background: fade(#fff, 50%);
+        min-height: 400px;
     }
     .review {
         list-style-type: none;
@@ -121,16 +123,16 @@
                     color: darken(@link, 30%);
                 }
             }
+            &:after {
+                color: @light-gray;
+                content: "\00b7";
+                margin: 0 2px;
+            }
         }
         .timestamp {
             color: @note-gray;
             &:hover {
                 color: @gray;
-            }
-            &:before {
-                color: @light-gray;
-                content: "\00b7";
-                margin: 0 2px;
             }
         }
         + .review {
