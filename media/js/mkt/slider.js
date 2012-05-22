@@ -71,7 +71,7 @@ z.page.on('fragmentloaded', function() {
         if (!contWidth) {
             contWidth = $li.closest('.alt-slider').width();
         }
-        return Math.floor(contWidth / $li.outerWidth(true));
+        return 1 || Math.floor(contWidth / $li.outerWidth(true));
     }
 
     function numPages($li, perPage) {
