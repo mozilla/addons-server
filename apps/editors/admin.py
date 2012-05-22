@@ -30,8 +30,14 @@ class EventLogAdmin(admin.ModelAdmin):
 
 
 class ReviewerScoreAdmin(admin.ModelAdmin):
-    list_display = ('user', 'score', 'note', 'created')
-    raw_id_fields = ('user',)
+    list_display = ('user', 'score', 'note_key', 'note', 'created')
+    raw_id_fields = ('user', 'addon')
+    fieldsets = (
+        (None, {
+            'fields': ('user', 'addon', 'score', 'note'),
+        }),
+    )
+    list_filter = ('note_key',)
 
 
 admin.site.register(CannedResponse, CannedResponseAdmin)

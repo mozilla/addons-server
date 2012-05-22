@@ -9,6 +9,7 @@ from elasticutils import S
 import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 from abuse.models import AbuseReport
@@ -18,7 +19,7 @@ from amo.tests import app_factory, check_links
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import AppLog
-from editors.models import CannedResponse
+from editors.models import CannedResponse, ReviewerScore
 from editors.tests.test_views import EditorTest
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
@@ -257,7 +258,15 @@ class TestReviewApp(AppReviewerTest, EditorTest):
                         activity_log__action=action.id).exists(), (
             "Didn't find `%s` action in logs." % action.short)
 
+    def _check_score(self, reviewed_type):
+        scores = ReviewerScore.objects.all()
+        assert len(scores) > 0
+        eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
+        eq_(scores[0].note_key, reviewed_type)
+
     def test_push_public(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         files = list(self.version.files.values_list('id', flat=True))
         self.post({
             'action': 'public',
@@ -273,8 +282,11 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP)
 
     def test_push_public_waiting(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         files = list(self.version.files.values_list('id', flat=True))
         self.get_app().update(make_public=amo.PUBLIC_WAIT)
         self.post({
@@ -291,6 +303,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP)
 
     def test_comment(self):
         self.post({'action': 'comment', 'comments': 'mmm, nice app'})

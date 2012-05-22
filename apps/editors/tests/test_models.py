@@ -11,9 +11,10 @@ from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import Platform, File
 from applications.models import Application, AppVersion
-from editors.models import (EditorSubscription, send_notifications,
-                            ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue, ViewFastTrackQueue)
+from editors.models import (EditorSubscription, ReviewerScore,
+                            send_notifications, ViewFastTrackQueue,
+                            ViewFullReviewQueue, ViewPendingQueue,
+                            ViewPreliminaryQueue)
 from users.models import UserProfile
 
 
@@ -320,3 +321,45 @@ class TestEditorSubscription(amo.tests.TestCase):
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
         eq_(len(mail.outbox), 0)
+
+
+class TestReviewerScore(amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = amo.tests.addon_factory()
+
+    def test_get_event_by_type(self):
+        self.addon.type = amo.ADDON_EXTENSION
+        eq_(ReviewerScore.get_event_by_type(self.addon),
+            amo.REVIEWED_ADDON_UPDATED)
+        eq_(ReviewerScore.get_event_by_type(self.addon, 'nominated'),
+            amo.REVIEWED_ADDON_FULL)
+        eq_(ReviewerScore.get_event_by_type(self.addon, 'preliminary'),
+            amo.REVIEWED_ADDON_PRELIM)
+
+        self.addon.type = amo.ADDON_THEME
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_THEME)
+
+        self.addon.type = amo.ADDON_DICT
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_DICT)
+
+        self.addon.type = amo.ADDON_SEARCH
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_SEARCH)
+
+        self.addon.type = amo.ADDON_LPAPP
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_LP)
+
+        self.addon.type = amo.ADDON_LPADDON
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_LP)
+
+        self.addon.type = amo.ADDON_PLUGIN
+        eq_(ReviewerScore.get_event_by_type(self.addon), None)
+
+        self.addon.type = amo.ADDON_API
+        eq_(ReviewerScore.get_event_by_type(self.addon), None)
+
+        self.addon.type = amo.ADDON_PERSONA
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_PERSONA)
+
+        self.addon.type = amo.ADDON_WEBAPP
+        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_WEBAPP)

@@ -1,5 +1,7 @@
 import copy
 
+import waffle
+
 from django.conf import settings
 from django.db import models
 from django.template import Context, loader
@@ -356,9 +358,56 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 
 class ReviewerScore(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
+    addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
     score = models.SmallIntegerField()
+    # For automated point rewards.
+    note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
+                                        default=0)
+    # For manual point rewards with a note.
     note = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'reviewer_scores'
         ordering = ('-created',)
+
+    @classmethod
+    def get_event_by_type(cls, addon, review_type=None):
+        if addon.type == amo.ADDON_EXTENSION:
+            # Special case for addons depending on review_type.
+            if review_type == 'nominated':
+                return amo.REVIEWED_ADDON_FULL
+            elif review_type == 'preliminary':
+                return amo.REVIEWED_ADDON_PRELIM
+            else:
+                return amo.REVIEWED_ADDON_UPDATED
+        elif addon.type == amo.ADDON_DICT:
+            return amo.REVIEWED_DICT
+        elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON]:
+            return amo.REVIEWED_LP
+        elif addon.type == amo.ADDON_PERSONA:
+            return amo.REVIEWED_PERSONA
+        elif addon.type == amo.ADDON_SEARCH:
+            return amo.REVIEWED_SEARCH
+        elif addon.type == amo.ADDON_THEME:
+            return amo.REVIEWED_THEME
+        elif addon.type == amo.ADDON_WEBAPP:
+            return amo.REVIEWED_WEBAPP
+        else:
+            return None
+
+    @classmethod
+    def award_points(cls, user, addon, event):
+        """Awards points to user based on an event.
+
+        `event` is one of the `REVIEWED_` keys in constants.
+
+        """
+        if not waffle.switch_is_active('reviewer-incentive-points'):
+            return
+        score = amo.REVIEWED_SCORES.get(event)
+        if score:
+            cls.objects.create(user=user, addon=addon, score=score,
+                               note_key=event)
+            user_log.info(u'Awarding %s points to user %s for "%s" for addon'
+                           '%s' % (score, user, amo.REVIEWED_CHOICES[event],
+                                   addon.id))

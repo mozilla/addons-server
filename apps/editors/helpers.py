@@ -15,8 +15,9 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
 
 import commonware.log
-from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue, ViewFastTrackQueue)
+from editors.models import (ReviewerScore, ViewFastTrackQueue,
+                            ViewFullReviewQueue, ViewPendingQueue,
+                            ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
 from mkt.webapps.models import Webapp
 
@@ -641,6 +642,10 @@ class ReviewAddon(ReviewBase):
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
 
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon, self.review_type)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+
     def process_sandbox(self):
         """Set an addon back to sandbox."""
         self.set_addon(status=amo.STATUS_NULL)
@@ -680,6 +685,10 @@ class ReviewAddon(ReviewBase):
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
 
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon, 'preliminary')
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+
     def process_super_review(self):
         """Give an addon super review."""
         self.addon.update(admin_review=True)
@@ -715,6 +724,10 @@ class ReviewFiles(ReviewBase):
                   ', '.join([f.filename for f in self.data['addon_files']])))
         log.info(u'Sending email for %s' % (self.addon))
 
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon, self.review_type)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+
     def process_sandbox(self):
         """Set an addons files to sandbox."""
         self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
@@ -745,6 +758,10 @@ class ReviewFiles(ReviewBase):
                  (self.addon,
                   ', '.join([f.filename for f in self.data['addon_files']])))
         log.info(u'Sending email for %s' % (self.addon))
+
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon, self.review_type)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""

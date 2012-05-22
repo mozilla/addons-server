@@ -8,6 +8,7 @@ from django.conf import settings
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -15,6 +16,7 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import helpers
+from editors.models import ReviewerScore
 from files.models import File
 from translations.models import Translation
 from users.models import UserProfile
@@ -213,7 +215,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
     def setUp(self):
         class FakeRequest:
-            user = UserProfile.objects.get(pk=10482).user
+            amo_user = UserProfile.objects.get(pk=10482)
+            user = amo_user.user
 
         self.request = FakeRequest()
         self.addon = Addon.objects.get(pk=3615)
@@ -225,6 +228,12 @@ class TestReviewHelper(amo.tests.TestCase):
         self.old_normal = settings.ADDONS_PATH
 
         self.create_paths()
+
+    def _check_score(self, reviewed_type):
+        scores = ReviewerScore.objects.all()
+        assert len(scores) > 0
+        eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
+        eq_(scores[0].note_key, reviewed_type)
 
     def create_paths(self):
         for dr in [os.path.dirname(self.file.mirror_file_path),
@@ -428,6 +437,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
     def test_nomination_to_public_new_addon(self):
         """ Make sure new add-ons can be made public (bug 637959) """
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
 
@@ -453,7 +464,11 @@ class TestReviewHelper(amo.tests.TestCase):
 
         eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
+        self._check_score(amo.REVIEWED_ADDON_FULL)
+
     def test_nomination_to_public(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_public()
@@ -470,6 +485,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
+            self._check_score(amo.REVIEWED_ADDON_FULL)
+
     def to_preliminary_premium(self, statuses):
         for type_ in amo.ADDON_PREMIUMS:
             self.addon.update(premium_type=type_)
@@ -482,6 +499,8 @@ class TestReviewHelper(amo.tests.TestCase):
         self.to_preliminary_premium(helpers.NOMINATED_STATUSES)
 
     def test_nomination_to_preliminary(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -499,6 +518,8 @@ class TestReviewHelper(amo.tests.TestCase):
             assert os.path.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
+
+            self._check_score(amo.REVIEWED_ADDON_PRELIM)
 
     def test_nomination_to_sandbox(self):
         for status in helpers.NOMINATED_STATUSES:
@@ -558,6 +579,8 @@ class TestReviewHelper(amo.tests.TestCase):
         self.to_preliminary_premium(helpers.PRELIMINARY_STATUSES)
 
     def test_preliminary_to_preliminary(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -571,6 +594,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
             assert os.path.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
+
+            self._check_score(amo.REVIEWED_ADDON_PRELIM)
 
     def test_preliminary_to_sandbox(self):
         for status in helpers.PRELIMINARY_STATUSES:
@@ -621,6 +646,8 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_pending_to_public(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
             self.create_paths()
@@ -634,6 +661,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
             assert os.path.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
+
+            self._check_score(amo.REVIEWED_ADDON_UPDATED)
 
     def test_pending_to_sandbox(self):
         for status in helpers.PENDING_STATUSES:

@@ -10,6 +10,7 @@ import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
+from editors.models import ReviewerScore
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -24,7 +25,7 @@ def send_mail(subject, template, context, emails, perm_setting=None):
                     headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
 
 
-class ReviewBase:
+class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type):
         self.request = request
@@ -136,6 +137,10 @@ class ReviewApp(ReviewBase):
         log.info(u'Making %s public but pending' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
 
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+
     def process_public_immediately(self):
         """Approve an app."""
         # Save files first, because set_addon checks to make sure there
@@ -150,6 +155,10 @@ class ReviewApp(ReviewBase):
 
         log.info(u'Making %s public' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
+
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
 
     def process_sandbox(self):
         """Reject an app."""

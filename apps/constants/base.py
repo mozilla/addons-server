@@ -342,3 +342,42 @@ CANNED_RESPONSE_CHOICES = {
 }
 
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
+
+# Reviewer Incentive Scores.
+# Note: Don't change these since they're used as keys in the database.
+REVIEWED_MANUAL = 0
+REVIEWED_ADDON_FULL = 1
+REVIEWED_ADDON_PRELIM = 2
+REVIEWED_ADDON_UPDATED = 3
+REVIEWED_DICT = 4
+REVIEWED_LP = 5
+REVIEWED_PERSONA = 6
+REVIEWED_SEARCH = 7
+REVIEWED_THEME = 8
+REVIEWED_WEBAPP = 9
+
+REVIEWED_CHOICES = {
+    REVIEWED_MANUAL: _('Manual Reviewer Points'),
+    REVIEWED_ADDON_FULL: _('Full Add-on Review'),
+    REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
+    REVIEWED_ADDON_UPDATED: _('Updated Add-on Review'),
+    REVIEWED_DICT: _('Dictionary Review'),
+    REVIEWED_LP: _('Language Pack Review'),
+    REVIEWED_PERSONA: _('Persona Review'),
+    REVIEWED_SEARCH: _('Search Provider Review'),
+    REVIEWED_THEME: _('Theme Review'),
+    REVIEWED_WEBAPP: _('App Review'),
+}
+
+REVIEWED_SCORES = {
+    REVIEWED_MANUAL: 0,
+    REVIEWED_ADDON_FULL: 120,
+    REVIEWED_ADDON_PRELIM: 60,
+    REVIEWED_ADDON_UPDATED: 80,
+    REVIEWED_DICT: 30,
+    REVIEWED_LP: 30,
+    REVIEWED_PERSONA: 2,
+    REVIEWED_SEARCH: 60,
+    REVIEWED_THEME: 80,
+    REVIEWED_WEBAPP: 60,
+}
