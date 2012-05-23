@@ -41,9 +41,11 @@
           Firefox Nightly</a><br>to install this app.
         </div>
       </li>
+      <li><a href="{{ product.get_detail_url() }}" class="button">
+        {{ _('View Listing') }}</a></li>
       {% if is_admin %}
         <li><a href="{{ product.get_dev_url() }}" class="button manage">
-          {{ _('Edit') }}</a></li>
+          {{ _('Manage') }}</a></li>
       {% endif %}
     </ul>
     <strong>{{ _('Review This App') }}</strong>
