@@ -29,10 +29,11 @@ from django.core.mail import EmailMessage
 from django.forms.fields import Field
 from django.http import HttpRequest
 from django.template import Context, loader
-from django.utils.translation import trans_real
+from django.utils import translation
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
+from babel import Locale
 import bleach
 from cef import log_cef as _log_cef
 from easy_thumbnails import processors
@@ -511,13 +512,22 @@ def to_language(locale):
     """Like django's to_language, but en_US comes out as en-US."""
     # A locale looks like en_US or fr.
     if '_' in locale:
-        return to_language(trans_real.to_language(locale))
+        return to_language(translation.trans_real.to_language(locale))
     # Django returns en-us but we want to see en-US.
     elif '-' in locale:
         lang, region = locale.split('-')
         return '%s-%s' % (lang, region.upper())
     else:
-        return trans_real.to_language(locale)
+        return translation.trans_real.to_language(locale)
+
+
+def get_locale_from_lang(lang):
+    """Pass in a language (u'en-US') get back a Locale object courtesy of
+    Babel.  Use this to figure out currencies, bidi, names, etc."""
+    # Special fake language can just act like English for formatting and such
+    if lang == 'dbg':
+        lang = 'en'
+    return Locale(translation.to_locale(lang))
 
 
 class HttpResponseSendFile(http.HttpResponse):
@@ -529,7 +539,7 @@ class HttpResponseSendFile(http.HttpResponse):
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
         if settings.XSENDFILE:
-            self[settings.XSENDFILE_HEADER] = path 
+            self[settings.XSENDFILE_HEADER] = path
 
     def __iter__(self):
         if settings.XSENDFILE:
@@ -769,10 +779,10 @@ def log_cef(name, severity, env, *args, **kwargs):
 
 @contextlib.contextmanager
 def no_translation():
-    lang = trans_real.get_language()
-    trans_real.deactivate()
+    lang = translation.trans_real.get_language()
+    translation.trans_real.deactivate()
     yield
-    trans_real.activate(lang)
+    translation.trans_real.activate(lang)
 
 
 def escape_all(v):

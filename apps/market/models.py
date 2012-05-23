@@ -9,11 +9,11 @@ from translations.fields import TranslatedField
 import amo
 from amo.decorators import write
 import amo.models
-from amo.utils import memoize_key
+from amo.utils import get_locale_from_lang, memoize_key
 from stats.models import Contribution
 from users.models import UserProfile
 
-from babel import Locale, numbers
+from babel import numbers
 import commonware.log
 from jinja2.filters import do_dictsort
 import json_field
@@ -63,7 +63,7 @@ class Price(amo.models.ModelBase):
             Price.transformer([])
 
         lang = translation.get_language()
-        locale = Locale(translation.to_locale(lang))
+        locale = get_locale_from_lang(lang)
         currency = amo.LOCALE_CURRENCY.get(locale.language)
         if currency:
             price_currency = Price._currencies.get((currency, self.id), None)
@@ -107,7 +107,7 @@ class PriceCurrency(amo.models.ModelBase):
     def get_price_locale(self):
         """Return the price as a nicely localised string for the locale."""
         lang = translation.get_language()
-        locale = Locale(translation.to_locale(lang))
+        locale = get_locale_from_lang(lang)
         return numbers.format_currency(self.price, self.currency,
                                        locale=locale)
 

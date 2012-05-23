@@ -10,7 +10,6 @@ from django.utils import translation
 from django.utils.encoding import smart_unicode
 from django.template import defaultfilters
 
-from babel import Locale
 from babel.support import Format
 import caching.base as caching
 import jinja2
@@ -216,10 +215,7 @@ class Paginator(object):
 
 def _get_format():
     lang = translation.get_language()
-    if lang == 'dbg':
-        lang = 'en'
-    locale = Locale(translation.to_locale(lang))
-    return Format(locale)
+    return Format(utils.get_locale_from_lang(lang))
 
 
 @register.filter
