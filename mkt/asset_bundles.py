@@ -17,7 +17,7 @@ CSS = {
 
         # Item rows (used on Dashboard).
         'css/devreg/listing.less',
-        'css/devreg/paginator.less',
+        'css/mkt/paginator.less',
 
         # Buttons (used for paginator, "Edit" buttons, Refunds page).
         'css/devreg/buttons.less',
