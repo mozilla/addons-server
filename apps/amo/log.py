@@ -30,7 +30,6 @@ class EDIT_DESCRIPTIONS(_LOG):
     format = _(u'{addon} description edited.')
 
 
-# TODO(gkoberger): Log this type
 class EDIT_CATEGORIES(_LOG):
     id = 4
     action_class = 'edit'
@@ -84,7 +83,6 @@ class UNSET_PUBLIC_STATS(_LOG):
     keep = True
 
 
-# TODO(gkoberger): Log these types when editing statuses
 class CHANGE_STATUS(_LOG):
     id = 12
     # L10n: {0} is the status
@@ -92,21 +90,18 @@ class CHANGE_STATUS(_LOG):
     keep = True
 
 
-# TODO(gkoberger): Do this in 604152
 class ADD_PREVIEW(_LOG):
     id = 13
     action_class = 'add'
     format = _(u'Preview added to {addon}.')
 
 
-# TODO(gkoberger): Do this in 604152
 class EDIT_PREVIEW(_LOG):
     id = 14
     action_class = 'edit'
     format = _(u'Preview edited for {addon}.')
 
 
-# TODO(gkoberger): Do this in 604152
 class DELETE_PREVIEW(_LOG):
     id = 15
     action_class = 'delete'
