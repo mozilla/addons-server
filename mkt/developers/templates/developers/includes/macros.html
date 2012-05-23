@@ -65,7 +65,6 @@
   <div class="addon-app-cats">
     <label>
       {% if webapp %}
-        {{ _('Categories:') }}
         <span class="hint-inline">Pick one or two categories.</span>
       {% else %}
         {# L10n: {0} is the maximum number of add-on categories allowed.
@@ -74,9 +73,18 @@
                     'Select <b>up to {0}</b> {1} categories for this add-on:',
                     max)|f(max, form.app.pretty if form.app else '')|safe }}
       {% endif %}
-      {% if req %}
-        {{ required() }}
-      {% endif %}
+    </label>
+    {{ form.application }}
+    {{ form.categories }}
+    {{ form.categories.errors }}
+  </div>
+{% endmacro %}
+
+{% macro select_cats_submission(max, form) %}
+  <div class="addon-app-cats">
+    <label>
+      {{ _('Categories:') }} {{ required() }}
+      <span class="hint-inline">Pick one or two categories.</span>
     </label>
     {{ form.application }}
     {{ form.categories }}

@@ -1,4 +1,4 @@
-{% from 'developers/includes/macros.html' import select_cats, tip %}
+{% from 'developers/includes/macros.html' import select_cats_submission, tip %}
 {% from 'includes/forms.html' import required %}
 {% extends 'developers/base_impala.html' %}
 
@@ -100,7 +100,7 @@
         {{ form_cats.management_form }}
         {% for form in form_cats.initial_forms %}
           {% if not form.disabled %}
-            {{ select_cats(amo.MAX_CATEGORIES, form, webapp=True, req=True) }}
+            {{ select_cats_submission(amo.MAX_CATEGORIES, form) }}
           {% endif %}
         {% endfor %}
       </div>
