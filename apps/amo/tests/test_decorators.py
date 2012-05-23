@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django import http
 
 import mock
@@ -129,7 +129,10 @@ class TestSetModifiedOn(amo.tests.TestCase):
                 datetime.today().date())
 
     def test_not_set_modified_on(self):
-        users = list(UserProfile.objects.all()[:3])
+        yesterday = datetime.today() - timedelta(days=1)
+        qs = UserProfile.objects.all()
+        qs.update(modified=yesterday)
+        users = list(qs[:3])
         self.some_method(False, set_modified_on=users)
         for user in users:
             date = UserProfile.objects.get(pk=user.pk).modified.date()
