@@ -8,6 +8,7 @@ from mkt import asset_bundles
 APP_PREVIEW = True
 
 WAFFLE_TABLE_SUFFIX = 'mkt'
+LOG_TABLE_SUFFIX = '_mkt'
 
 # So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
 # Also used to determine if we add the /<app>/ to URLs.

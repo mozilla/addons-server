@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import string
 
+from django.conf import settings
 from django.db import models
 
 import commonware.log
@@ -90,8 +91,12 @@ class AddonLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
+        # This table is addons only and not in use by the marketplace.
         db_table = 'log_activity_addon'
         ordering = ('-created',)
+
+
+table_name = lambda n: n + settings.LOG_TABLE_SUFFIX
 
 
 class AppLog(amo.models.ModelBase):
@@ -102,7 +107,7 @@ class AppLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
-        db_table = 'log_activity_app'
+        db_table = table_name('log_activity_app')
         ordering = ('-created',)
 
 
@@ -114,7 +119,7 @@ class CommentLog(amo.models.ModelBase):
     comments = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'log_activity_comment'
+        db_table = table_name('log_activity_comment')
         ordering = ('-created',)
 
 
@@ -126,7 +131,7 @@ class VersionLog(amo.models.ModelBase):
     version = models.ForeignKey(Version)
 
     class Meta:
-        db_table = 'log_activity_version'
+        db_table = table_name('log_activity_version')
         ordering = ('-created',)
 
 
@@ -139,7 +144,7 @@ class UserLog(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
 
     class Meta:
-        db_table = 'log_activity_user'
+        db_table = table_name('log_activity_user')
         ordering = ('-created',)
 
 
@@ -366,7 +371,7 @@ class ActivityLog(amo.models.ModelBase):
         return self
 
     class Meta:
-        db_table = 'log_activity'
+        db_table = table_name('log_activity')
         ordering = ('-created',)
 
 
