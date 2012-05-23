@@ -17,12 +17,13 @@ import amo
 import amo.tests
 from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonCategory, Category, Persona
+from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
 from search import views
 from search.tests import SphinxTestCase
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS
 from tags.models import Tag
+from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
 
@@ -608,6 +609,36 @@ class TestESSearch(SearchBase):
             r = self.client.get(self.url, dict(platform=platform))
             eq_(self.get_results(r),
                 sorted(self.addons.values_list('id', flat=True)))
+
+    def test_slug_indexed(self):
+        a = self.addons[0]
+
+        r = self.client.get(self.url, dict(q='omgyes'))
+        eq_(self.get_results(r), [])
+
+        a.update(slug='omgyes')
+        self.refresh()
+        r = self.client.get(self.url, dict(q='omgyes'))
+        eq_(self.get_results(r), [a.id])
+
+    def test_authors_indexed(self):
+        a = self.addons[0]
+
+        r = self.client.get(self.url, dict(q='boop'))
+        eq_(self.get_results(r), [])
+
+        AddonUser.objects.create(addon=a,
+            user=UserProfile.objects.create(username='boop'))
+        AddonUser.objects.create(addon=a,
+            user=UserProfile.objects.create(username='ponypet'))
+        a.save()
+        self.refresh()
+        r = self.client.get(self.url, dict(q='garbage'))
+        eq_(self.get_results(r), [])
+        r = self.client.get(self.url, dict(q='boop'))
+        eq_(self.get_results(r), [a.id])
+        r = self.client.get(self.url, dict(q='pony'))
+        eq_(self.get_results(r), [a.id])
 
 
 # TODO: Uncomment when ES tests don't kill Jenkins and when we kill Sphinx

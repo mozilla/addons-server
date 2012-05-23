@@ -17,9 +17,9 @@ log = logging.getLogger('z.es')
 
 def extract(addon):
     """Extract indexable attributes from an add-on."""
-    attrs = ('id', 'created', 'last_updated', 'weekly_downloads',
-             'bayesian_rating', 'average_daily_users', 'status', 'type',
-             'hotness', 'is_disabled', 'premium_type')
+    attrs = ('id', 'slug', 'app_slug', 'created', 'last_updated',
+             'weekly_downloads', 'bayesian_rating', 'average_daily_users',
+             'status', 'type', 'hotness', 'is_disabled', 'premium_type')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
@@ -29,6 +29,7 @@ def extract(addon):
                                 in translations[addon.description_id]))
     d['summary'] = list(set(string for _, string
                             in translations[addon.summary_id]))
+    d['authors'] = [a.name for a in addon.listed_authors]
     d['device'] = getattr(addon, 'device_ids', [])
     # This is an extra query, not good for perf.
     d['category'] = getattr(addon, 'category_ids', [])
