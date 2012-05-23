@@ -4,9 +4,3 @@
     class="{{ classes }}">
         {{ label }}
 </a>
-{% if faked_purchase and product.is_premium() and product.premium %}
-  <p class="faked-purchase">
-    This would've cost you
-    <span class="price">{{ product.premium.get_price_locale() }}</span>
-  </p>
-{% endif %}

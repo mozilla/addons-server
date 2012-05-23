@@ -33,18 +33,25 @@ def action_allowed(request, app, action):
 
 def action_allowed_user(user, app, action):
     """Similar to action_allowed, but takes user instead of request."""
-    allowed =  any(match_rules(group.rules, app, action) for group in
-                   user.groups.all())
+    allowed = any(match_rules(group.rules, app, action) for group in
+                  user.groups.all())
     return allowed
 
 
-def check_ownership(request, obj, require_owner=False, ignore_disabled=False):
+def check_ownership(request, obj, require_owner=False, require_author=False,
+                    ignore_disabled=False, admin=True):
     """
     A convenience function.  Check if request.user has permissions
     for the object.
     """
     if isinstance(obj, Addon):
+        # This checks if user has correct permissions but is NOT an admin.
+        if require_author:
+            require_owner = False
+            ignore_disabled = True
+            admin = False
         return check_addon_ownership(request, obj, viewer=not require_owner,
+                                     admin=admin,
                                      ignore_disabled=ignore_disabled)
     elif isinstance(obj, Collection):
         return check_collection_ownership(request, obj, require_owner)
@@ -69,7 +76,7 @@ def check_collection_ownership(request, collection, require_owner=False):
 
 
 def check_addon_ownership(request, addon, viewer=False, dev=False,
-                          support=False, ignore_disabled=False):
+                          support=False, admin=True, ignore_disabled=False):
     """
     Check request.amo_user's permissions for the addon.
 
@@ -86,7 +93,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
-    if action_allowed(request, 'Addons', 'Edit'):
+    if admin and action_allowed(request, 'Addons', 'Edit'):
         return True
     # Only admins can edit admin-disabled addons.
     if addon.status == amo.STATUS_DISABLED and not ignore_disabled:

@@ -55,6 +55,7 @@ h1 .num {
     .faked-purchase,
     .approval {
         .border-radius(0 0 5px 5px);
+        color: @black;
         display: block;
         margin-top: -5px;
         padding: 15px 15px 10px;
@@ -69,33 +70,21 @@ h1 .num {
             padding: 0 5px 0 30px;
         }
     }
-    .faked-purchase {
-        .border-radius(0 0 5px 5px);
+    .faked-purchase.vitals {
+        .border-radius(0 0 0 0);
         background: fadeOut(@red, 90%);
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        float: none;
+        margin-left: 0;
         text-align: center;
-        b {
-            color: @maroon;
-            display: block;
-            text-transform: uppercase;
-        }
     }
     .approval {
         background: fadeOut(@green, 90%);
     }
     .faked-purchase + .approval {
-        margin-top: -15px;
-    }
-    .approval-pitch {
-        display: block;
-        color: @dark-gray;
-        font-size: 12px;
-        font-weight: bold;
-        padding-top: 8px;
-        text-align: center;
-        &:hover {
-            color: @medium-gray;
-        }
+        margin-top: -10px;
+        padding-top: 10px;
     }
 }
 
@@ -191,9 +180,7 @@ h1 .num {
             font-size: 14px;
             margin-top: 7px;
         }
-        .cats {
-            display: inline-block;
-            margin: 5px 0 5px;
+        .pricetag, .cats {
             &:after {
                 color: @note-gray;
                 content: "\00B7";
@@ -201,9 +188,15 @@ h1 .num {
                 padding-right: 3px;
             }
         }
-        .downloads {
+        .price {
+            text-shadow: 0 1px 0 @black;
+            &:after {
+                text-shadow: 0 1px 0 @white;
+            }
+        }
+        p {
             display: inline-block;
-            margin: 5px 0 0;
+            margin: 10px 0 5px;
         }
     }
     .visual {

@@ -32,10 +32,9 @@ def market_button(context, product):
         faked_purchase = False
         purchased = (request.amo_user and
                      product.pk in request.amo_user.purchase_ids())
-        is_dev = request.check_ownership(product, require_owner=False,
-                                         ignore_disabled=True)
-        if (not purchased and is_dev or product.is_pending() and
-            (context['is_reviewer'] or context['is_admin'])):
+        # App authors are able to install their apps free of charge.
+        if (not purchased and
+            request.check_ownership(product, require_author=True)):
             purchased = faked_purchase = True
         classes = ['button', 'product']
         label = product.get_price()

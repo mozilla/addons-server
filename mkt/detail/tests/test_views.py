@@ -117,7 +117,8 @@ class TestDetail(DetailBase):
         eq_(doc('.faked-purchase').length, 1)
         eq_(doc('.manage').length, 1)
 
-    def test_paid_public_install_button_for_reviewer(self):
+    def test_no_paid_public_install_button_for_reviewer(self):
+        # Too bad. Reviewers can review the app from the Reviewer Tools.
         self.make_premium(self.webapp)
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
@@ -126,14 +127,15 @@ class TestDetail(DetailBase):
         eq_(doc('.faked-purchase').length, 0)
         eq_(doc('.manage').length, 0)
 
-    def test_paid_pending_install_button_for_reviewer(self):
+    def test_no_paid_pending_install_button_for_reviewer(self):
+        # Too bad. Reviewers can review the app from the Reviewer Tools.
         self.webapp.update(status=amo.STATUS_PENDING)
         self.make_premium(self.webapp)
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         doc = self.get_pq()
-        eq_(doc('.product.install.premium').length, 1)
-        eq_(doc('.faked-purchase').length, 1)
+        eq_(doc('.product.premium').length, 1)
+        eq_(doc('.faked-purchase').length, 0)
         eq_(doc('.manage').length, 0)
 
     def test_manage_button_for_owner(self):

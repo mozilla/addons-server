@@ -11,7 +11,8 @@ from addons.models import Addon, AddonUser
 from cake.models import Session
 from users.models import UserProfile
 
-from .acl import match_rules, action_allowed, check_addon_ownership
+from .acl import (action_allowed, check_addon_ownership, check_ownership,
+                  match_rules)
 
 
 def test_match_rules():
@@ -117,6 +118,19 @@ class TestHasPerm(TestCase):
         self.request.amo_user = self.login_admin()
         self.request.groups = self.request.amo_user.groups.all()
         assert check_addon_ownership(self.request, self.addon)
+        assert check_addon_ownership(self.request, self.addon, admin=True)
+        assert not check_addon_ownership(self.request, self.addon, admin=False)
+
+    def test_require_author(self):
+        assert check_ownership(self.request, self.addon, require_author=True)
+
+    def test_require_author_when_admin(self):
+        self.request.amo_user = self.login_admin()
+        self.request.groups = self.request.amo_user.groups.all()
+        assert check_ownership(self.request, self.addon, require_author=False)
+
+        assert not check_ownership(self.request, self.addon,
+                                   require_author=True)
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
