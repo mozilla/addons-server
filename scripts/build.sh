@@ -82,6 +82,7 @@ TEST_SPHINX_PORT = 341${EXECUTOR_NUMBER}
 SETTINGS
 
 # Update product details to pull in any changes (namely, 'dbg' locale)
+echo "Updating product details..."
 python manage.py update_product_details
 
 
