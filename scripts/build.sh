@@ -81,6 +81,9 @@ TEST_SPHINX_PORT = 341${EXECUTOR_NUMBER}
 
 SETTINGS
 
+# Update product details to pull in any changes (namely, 'dbg' locale)
+python manage.py update_product_details
+
 
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'

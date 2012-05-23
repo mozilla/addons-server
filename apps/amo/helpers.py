@@ -216,6 +216,8 @@ class Paginator(object):
 
 def _get_format():
     lang = translation.get_language()
+    if lang == 'dbg':
+        lang = 'en'
     locale = Locale(translation.to_locale(lang))
     return Format(locale)
 
