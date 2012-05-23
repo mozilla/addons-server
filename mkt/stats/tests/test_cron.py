@@ -50,7 +50,7 @@ class TestIndexContributionCounts(amo.tests.ESTestCase):
                          'revenue': 0, 'count': 5, 'refunds': 2}
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
-                amount=random.randint(0, 10) + .99,
+                amount=str(random.randint(0, 10) + .99),
                 type=amo.CONTRIB_PURCHASE)
             self.expected['revenue'] += c.amount
             self.ids.append(c.id)
