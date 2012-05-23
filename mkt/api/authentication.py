@@ -96,25 +96,31 @@ def initialize_oauth_server_request(request):
     """
 
     # Since 'Authorization' header comes through as 'HTTP_AUTHORIZATION',
-    # convert it back
+    # convert it back.
     auth_header = {}
     if 'HTTP_AUTHORIZATION' in request.META:
         auth_header = {'Authorization': request.META.get('HTTP_AUTHORIZATION')}
 
     url = urljoin(settings.SITE_URL, request.path)
 
+    # Note: we are only signing using the QUERY STRING. We are not signing the
+    # body yet. According to the spec we should be including an oauth_body_hash
+    # as per:
+    #
+    # http://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/drafts/1/spec.html
+    #
+    # There is no support in python-oauth2 for this yet. There is an
+    # outstanding pull request for this:
+    #
+    # https://github.com/simplegeo/python-oauth2/pull/110
+    #
+    # Or time to move to a better OAuth implementation.
     oauth_request = oauth2.Request.from_request(
-            request.method, url, headers=auth_header)
-
-    if oauth_request:
-        oauth_server = oauth2.Server(signature_methods={
-            # Supported signature methods
-            'HMAC-SHA1': oauth2.SignatureMethod_HMAC_SHA1()
-            })
-
-    else:
-        oauth_server = None
-
+            request.method, url, headers=auth_header,
+            query_string=request.META['QUERY_STRING'])
+    oauth_server = oauth2.Server(signature_methods={
+        'HMAC-SHA1': oauth2.SignatureMethod_HMAC_SHA1()
+        })
     return oauth_server, oauth_request
 
 

@@ -300,6 +300,10 @@ class AMOPaths(object):
         path = 'mkt/webapps/tests/sample.key'
         return os.path.join(settings.ROOT, path)
 
+    def mozball_image(self):
+        return os.path.join(settings.ROOT,
+                            'mkt/developers/tests/addons/mozball-128.png')
+
 
 def close_to_now(dt):
     """

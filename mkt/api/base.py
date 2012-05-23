@@ -1,12 +1,13 @@
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from tastypie import http
 from tastypie.bundle import Bundle
-from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.exceptions import ImmediateHttpResponse, NotFound
 from tastypie.resources import ModelResource
 
 from translations.fields import PurifiedField, TranslatedField
-
 
 class MarketplaceResource(ModelResource):
 
@@ -49,3 +50,25 @@ class MarketplaceResource(ModelResource):
         response = http.HttpBadRequest(json.dumps({'error_message': errors}),
                                        content_type='application/json')
         return ImmediateHttpResponse(response=response)
+
+    def get_object_or_404(self, cls, **filters):
+        """
+        A wrapper around our more familiar get_object_or_404, for when we need
+        to get access to an object that isn't covered by get_obj.
+        """
+        if not filters:
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+        try:
+            return cls.objects.get(**filters)
+        except (cls.DoesNotExist, cls.MultipleObjectsReturned):
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+
+    def get_by_resource_or_404(self, request, **kwargs):
+        """
+        A wrapper around the obj_get to just get the object.
+        """
+        try:
+            obj = self.obj_get(request, **kwargs)
+        except ObjectDoesNotExist:
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+        return obj

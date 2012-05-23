@@ -1,14 +1,16 @@
 from django.conf.urls.defaults import include, patterns, url
 
 from tastypie.api import Api
-from mkt.api.resources import AppResource, CategoryResource, ValidationResource
 from mkt.search.api import SearchResource
+from mkt.api.resources import (AppResource, CategoryResource,
+                               PreviewResource, ValidationResource)
 
 api = Api(api_name='apps')
 api.register(ValidationResource())
 api.register(AppResource())
 api.register(CategoryResource())
 api.register(SearchResource())
+api.register(PreviewResource())
 
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),

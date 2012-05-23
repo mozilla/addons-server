@@ -19,7 +19,7 @@ With headers:
     oauth_nonce="1008F707-37E6-4ABF-8322-C6B658771D88",
     oauth_version="1.0"
 """
-import time
+import json
 import urllib
 import urlparse
 
@@ -38,16 +38,6 @@ from amo.urlresolvers import reverse
 from files.models import FileUpload
 
 
-def _get_args(consumer):
-    return dict(
-        oauth_consumer_key=consumer.key,
-        oauth_nonce=oauth.generate_nonce(),
-        oauth_signature_method='HMAC-SHA1',
-        oauth_timestamp=int(time.time()),
-        oauth_version='1.0',
-    )
-
-
 def get_absolute_url(url):
     # TODO (andym): make this more standard.
     url[1]['api_name'] = 'apps'
@@ -56,13 +46,6 @@ def get_absolute_url(url):
     if len(url) > 2:
         res = urlparams(res, **url[2])
     return res
-
-
-def data_keys(d):
-    # Form keys and values MUST be part of the signature.
-    # File keys MUST be part of the signature.
-    # But file values MUST NOT be included as part of the signature.
-    return dict([k, '' if isinstance(v, file) else v] for k, v in d.items())
 
 
 class OAuthClient(Client):
@@ -80,8 +63,15 @@ class OAuthClient(Client):
     def header(self, method, url):
         if not self.consumer:
             return None
-        req = oauth.Request(method=method, url=url,
-                            parameters=_get_args(self.consumer))
+
+        parsed = urlparse.urlparse(url)
+        args = dict(urlparse.parse_qs(parsed.query))
+
+        req = oauth.Request.from_consumer_and_token(self.consumer,
+            token=None, http_method=method,
+            http_url=urlparse.urlunparse(parsed._replace(query='')),
+            parameters=args)
+
         req.sign_request(self.signature_method, self.consumer, None)
         return req.to_header()['Authorization']
 
@@ -152,8 +142,11 @@ class BaseOAuth(TestCase):
             if verb in allowed:
                 continue
             res = getattr(self.client, verb)(url)
-            assert (res.status_code in (401, 405),
-                    '%s: %s not 401 or 405' % (verb.upper(), res.status_code))
+            assert res.status_code in (401, 405), (
+                   '%s: %s not 401 or 405' % (verb.upper(), res.status_code))
+
+    def get_error(self, response):
+        return json.loads(response.content)['error_message']
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

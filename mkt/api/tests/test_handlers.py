@@ -1,3 +1,4 @@
+import base64
 import json
 import tempfile
 
@@ -6,7 +7,7 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon, Category, DeviceType
+from addons.models import Addon, AddonUser, Category, DeviceType
 import amo
 from amo.tests import AMOPaths
 from files.models import FileUpload
@@ -92,7 +93,7 @@ class TestGetValidationHandler(ValidationHandler):
         obj = self.create()
         obj.update(user=UserProfile.objects.get(email='admin@mozilla.com'))
         res = self.client.get(self.get_url)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def test_not_found(self):
         url = ('api_dispatch_detail',
@@ -150,9 +151,6 @@ class CreateHandler(BaseOAuth):
         return FileUpload.objects.create(user=self.user, path=self.file,
                                          name=self.file, valid=True)
 
-    def get_error(self, response):
-        return json.loads(response.content)['error_message']
-
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppCreateHandler(CreateHandler, AMOPaths):
@@ -188,7 +186,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         obj.update(user=UserProfile.objects.get(email='admin@mozilla.com'))
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest': obj.uuid}))
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
         eq_(self.count(), 0)
 
     def test_create(self):
@@ -225,7 +223,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         obj = self.create_app()
         obj.authors.clear()
         res = self.client.get(self.get_url)
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def base_data(self):
         return {'support_email': 'a@a.com',
@@ -299,7 +297,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         obj = self.create_app()
         obj.authors.clear()
         res = self.client.put(self.get_url, data='{}')
-        eq_(res.status_code, 401)
+        eq_(res.status_code, 403)
 
     def test_put_not_there(self):
         url = ('api_dispatch_detail', {'resource_name': 'app', 'pk': 123})
@@ -355,4 +353,89 @@ class TestCategoryHandler(BaseOAuth):
         res = self.client.get(('api_dispatch_detail',
                               {'resource_name': 'category',
                                'pk': self.other.pk}))
+        eq_(res.status_code, 404)
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestPreviewHandler(BaseOAuth, AMOPaths):
+    fixtures = ['base/users', 'base/user_2519', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestPreviewHandler, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=2519)
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        self.file = base64.b64encode(open(self.mozball_image(), 'r').read())
+        self.list_url = ('api_dispatch_list', {'resource_name': 'preview'},
+                         {'addon__exact': self.app.pk})
+        self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
+                     'position': 1}
+
+    def test_no_addon(self):
+        list_url = ('api_dispatch_list', {'resource_name': 'preview'})
+        res = self.client.post(list_url, data=json.dumps(self.good))
+        eq_(res.status_code, 404)
+
+    def test_post_preview(self):
+        res = self.client.post(self.list_url, data=json.dumps(self.good))
+        eq_(res.status_code, 201)
+        previews = self.app.previews
+        eq_(previews.count(), 1)
+        eq_(previews.all()[0].position, 1)
+
+    def test_not_mine(self):
+        self.app.authors.clear()
+        res = self.client.post(self.list_url, data=json.dumps(self.good))
+        eq_(res.status_code, 403)
+
+    def test_position_missing(self):
+        data = {'file': {'data': self.file, 'type': 'image/jpg'}}
+        res = self.client.post(self.list_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['position'], ['This field is required.'])
+
+    def test_preview_missing(self):
+        res = self.client.post(self.list_url, data=json.dumps({}))
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['position'], ['This field is required.'])
+
+    def create(self):
+        self.client.post(self.list_url, data=json.dumps(self.good))
+        self.preview = self.app.previews.all()[0]
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'preview', 'pk': self.preview.pk})
+
+    def test_delete(self):
+        self.create()
+        res = self.client.delete(self.get_url)
+        eq_(res.status_code, 204)
+        eq_(self.app.previews.count(), 0)
+
+    def test_delete_not_mine(self):
+        self.create()
+        self.app.authors.clear()
+        res = self.client.delete(self.get_url)
+        eq_(res.status_code, 403)
+
+    def test_delete_not_there(self):
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'preview', 'pk': 123})
+        res = self.client.delete(self.get_url)
+        eq_(res.status_code, 404)
+
+    def test_get(self):
+        self.create()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+
+    def test_get_not_mine(self):
+        self.create()
+        self.app.authors.clear()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 403)
+
+    def test_get_not_there(self):
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'preview', 'pk': 123})
+        res = self.client.get(self.get_url)
         eq_(res.status_code, 404)

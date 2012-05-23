@@ -2,10 +2,8 @@ import json
 import os
 import sys
 import traceback
-import uuid
 
 from django import http
-from django.core.files.storage import default_storage as storage
 from django.conf import settings
 from django import forms as django_forms
 from django.db import models, transaction
@@ -26,7 +24,6 @@ import amo
 import amo.utils
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import loc
 from amo.utils import escape_all
 from amo.urlresolvers import reverse
 from addons import forms as addon_forms
@@ -34,7 +31,6 @@ from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import AppLog
-from lib.video import library as video_library
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import AddonPaymentData, AddonPremium, Refund
@@ -51,7 +47,8 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CurrencyForm,
                                   InappConfigForm, PaypalSetupForm,
-                                  PreviewForm, PreviewFormSet, trap_duplicate)
+                                  PreviewFormSet, trap_duplicate)
+from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
 from mkt.webapps.tasks import update_manifests
 from mkt.webapps.models import Webapp
@@ -943,52 +940,10 @@ def ajax_upload_media(request, upload_type):
     if 'upload_image' in request.FILES:
         upload_preview = request.FILES['upload_image']
         upload_preview.seek(0)
+        content_type = upload_preview.content_type
+        errors, upload_hash = check_upload(upload_preview, upload_type,
+                                           content_type)
 
-        is_icon = upload_type == 'icon'
-        is_video = (upload_preview.content_type in amo.VIDEO_TYPES and
-                    waffle.switch_is_active('video-upload'))
-
-        # By pushing the type onto the instance hash, we can easily see what
-        # to do with the file later.
-        ext = upload_preview.content_type.replace('/', '-')
-        upload_hash = '%s.%s' % (uuid.uuid4().hex, ext)
-        loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
-
-        with storage.open(loc, 'wb') as fd:
-            for chunk in upload_preview:
-                fd.write(chunk)
-
-        if is_video:
-            if not video_library:
-                errors.append(_('Video support not enabled.'))
-            else:
-                video = video_library(loc)
-                video.get_meta()
-                if not video.is_valid():
-                    errors.extend(video.errors)
-
-        else:
-            check = amo.utils.ImageCheck(upload_preview)
-            if (not check.is_image() or
-                upload_preview.content_type not in amo.IMG_TYPES):
-                if is_icon:
-                    errors.append(_('Icons must be either PNG or JPG.'))
-                else:
-                    errors.append(_('Images must be either PNG or JPG.'))
-
-            if check.is_animated():
-                if is_icon:
-                    errors.append(_('Icons cannot be animated.'))
-                else:
-                    errors.append(_('Images cannot be animated.'))
-
-        max_size = (settings.MAX_ICON_UPLOAD_SIZE if is_icon else
-                    settings.MAX_VIDEO_UPLOAD_SIZE if is_video else None)
-
-        if max_size and upload_preview.size > max_size:
-            if is_icon or is_video:
-                errors.append(_('Please use files smaller than %dMB.') % (
-                    max_size / 1024 / 1024 - 1))
     else:
         errors.append(_('There was an error uploading your preview.'))
 

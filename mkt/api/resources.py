@@ -5,10 +5,12 @@ from django.db import transaction
 import commonware.log
 from tastypie import http
 from tastypie.exceptions import ImmediateHttpResponse
+from tastypie import fields
 from tastypie.serializers import Serializer
+from tastypie.resources import ALL_WITH_RELATIONS
 
 from addons.forms import CategoryFormSet, DeviceTypeForm
-from addons.models import AddonUser, Category, DeviceType
+from addons.models import AddonUser, Category, DeviceType, Preview
 import amo
 from amo.decorators import write
 from amo.utils import no_translation
@@ -19,9 +21,10 @@ from mkt.api.base import MarketplaceResource
 from mkt.api.forms import UploadForm
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
+from mkt.developers.forms import PreviewForm
+from mkt.api.forms import PreviewJSONForm
 from mkt.webapps.models import Webapp
 from mkt.submit.forms import AppDetailsBasicForm
-
 
 log = commonware.log.getLogger('z.api')
 
@@ -64,7 +67,7 @@ class ValidationResource(MarketplaceResource):
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
         if not OwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
 
         log.info('Validation retreived: %s' % obj.pk)
         return obj
@@ -105,7 +108,7 @@ class AppResource(MarketplaceResource):
 
         if not (OwnerAuthorization()
                 .is_authorized(request, object=form.obj)):
-            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
 
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
@@ -119,7 +122,7 @@ class AppResource(MarketplaceResource):
     def obj_get(self, request=None, **kwargs):
         obj = super(AppResource, self).obj_get(request=request, **kwargs)
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
 
         log.info('App retreived: %s' % obj.pk)
         return obj
@@ -148,7 +151,7 @@ class AppResource(MarketplaceResource):
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
 
         data['slug'] = data.get('slug', obj.app_slug)
         data.update(self.formset(data))
@@ -191,3 +194,62 @@ class CategoryResource(MarketplaceResource):
         always_return_data = True
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
+
+
+class PreviewResource(MarketplaceResource):
+    addon = fields.ForeignKey(AppResource, 'addon')
+
+    class Meta:
+        queryset = Preview.objects.all()
+        list_allowed_methods = ['post']
+        allowed_methods = ['get', 'delete']
+        always_return_data = True
+        fields = ['id']
+        authentication = MarketplaceAuthentication()
+        authorization = OwnerAuthorization()
+        resource_name = 'preview'
+        filtering = {'addon': ALL_WITH_RELATIONS}
+
+    def obj_create(self, bundle, request, **kwargs):
+        filters = self.build_filters(filters=request.GET.copy())
+        addon = self.get_object_or_404(Webapp,
+                                       pk=filters.get('addon__exact'))
+        if not AppOwnerAuthorization().is_authorized(request, object=addon):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        data_form = PreviewJSONForm(bundle.data)
+        if not data_form.is_valid():
+            raise self.form_errors(data_form)
+
+        form = PreviewForm(data_form.cleaned_data)
+        if not form.is_valid():
+            raise self.form_errors(form)
+
+        form.save(addon)
+        bundle.obj = form.instance
+        log.info('Preview created: %s' % bundle.obj.pk)
+        return bundle
+
+    def obj_delete(self, request, **kwargs):
+        obj = self.get_by_resource_or_404(request, **kwargs)
+        if not AppOwnerAuthorization().is_authorized(request,
+                                                     object=obj.addon):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        log.info('Preview deleted: %s' % obj.pk)
+        return super(PreviewResource, self).obj_delete(request, **kwargs)
+
+    def obj_get(self, request=None, **kwargs):
+        obj = super(PreviewResource, self).obj_get(request=request, **kwargs)
+        if not AppOwnerAuthorization().is_authorized(request,
+                                                     object=obj.addon):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        log.info('Preview retreived: %s' % obj.pk)
+        return obj
+
+    def dehydrate(self, bundle):
+        # Returning an image back to the user isn't useful, let's stop that.
+        if 'file' in bundle.data:
+            del bundle.data['file']
+        return bundle
