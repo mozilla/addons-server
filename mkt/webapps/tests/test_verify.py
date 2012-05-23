@@ -7,10 +7,8 @@ import time
 from django.db import connection
 from django.conf import settings
 
-import jwt
 import M2Crypto
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import amo
@@ -124,6 +122,18 @@ class TestVerify(amo.tests.TestCase):
 
     def test_user_addon(self):
         self.make_install()
+        res = self.get(3615, self.user_data)
+        eq_(res['status'], 'ok')
+
+    def test_user_deleted(self):
+        self.make_install()
+        self.user.delete()
+        res = self.get(3615, self.user_data)
+        eq_(res['status'], 'invalid')
+
+    def test_user_anonymise(self):
+        self.make_install()
+        self.user.anonymize()
         res = self.get(3615, self.user_data)
         eq_(res['status'], 'ok')
 
