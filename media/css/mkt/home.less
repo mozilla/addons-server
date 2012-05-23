@@ -69,10 +69,100 @@
 }
 
 @media (max-width: @4col) {
-    .home #site-header:after {
-        display: none;
+    .home {
+        #site-header:after,
+        .homepage-promo,
+        .popular,
+        .categories,
+        .promo-slider p,
+        h2 {
+            display: none;
+        }
+        .featured {
+            &.slider {
+                .controls {
+                    .next-page, .prev-page {
+                        top: 13px;
+                        height: 120px;
+                    }
+                }
+                .promo-slider {
+                    height: 155px;
+                }
+            }
+        }
+        .promo-slider {
+            ul {
+                li,
+                li .img {
+                    width: 120px;
+                }
+                li {
+                    .img {
+                        background-position: 25% 50%;
+                        height: 120px;
+                        margin-bottom: 2px;
+                    }
+                    h3 {
+                        color: lighten(@text, 60%);
+                        font-size: 12px;
+                        margin: 0;
+                        max-width: 100%;
+                        text-shadow: .5px .5px 0 @navy-gray;
+                    }
+                }
+            }
+        }
+        .home #site-header:after {
+            display: none;
+        }
+        .homepage-promo div {
+            background-position: 150% 58px;
+        }
     }
-    .homepage-promo div {
-        background-position: 150% 58px;
+    #site-header .menu-button {
+        margin-left: 20px;
+    }
+    #search {
+        // TODO: Expose search results when clicking on magnifying-glass icon.
+        #search-q {
+            display: none;
+        }
+        button {
+            background: none;
+        }
+        #find {
+            .border-radius(15px);
+            background-color: darken(@navy-gray, 20%);
+            height: 18px;
+            margin-top: 3px;
+            position: relative;
+            width: 18px;
+            &:before {
+                .border-radius(15px);
+                .box-shadow(0 1px 0 rgba(255,255,255,.2) inset);
+                .grain;
+                background-color: @navy-gray;
+                content: "";
+                display: block;
+                font-weight: bold;
+                font-size: 36px;
+                position: absolute;
+                top: 3px;
+                left: 3px;
+                height: 12px;
+                width: 12px;
+            }
+            &:after {
+                .transform(~'rotate(-45deg)');
+                border-right: 3px solid darken(@navy-gray, 20%);
+                content: "";
+                height: 10px;
+                position: absolute;
+                right: -4px;
+                bottom: -10px;
+                width: 12px;
+            }
+        }
     }
 }

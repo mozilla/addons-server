@@ -14,7 +14,7 @@
         {% if not preview or preview.filetype != 'video/webm' %}
           <li>
             <a href="{{ product.get_url_path() }}">
-              <img src="{{ preview }}">
+              <div class="img" style="background-image:url({{ preview }})"></div>
               <h3>{{ product.name }}</h3>
               <p>
                 {{ product.get_price() }}

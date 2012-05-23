@@ -96,6 +96,13 @@ z.page.on('fragmentloaded', function() {
         $nav.addClass('active');
         $('.nav-overlay').addClass('show');
     });
+
+    // $header.on('focus.search', '#search-q', function() {
+    //     $('#search-go').show();
+    // }).blur('blur.search', '#search-q', function() {
+    //     $('#search-go').hide();
+    // });
+
     $(window).bind('overlay_dismissed', function() {
        $nav.removeClass('active');
     }).bind('app_install_mark', function(e, product) {
