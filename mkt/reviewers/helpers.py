@@ -1,6 +1,6 @@
 from jingo import register
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
 from amo.helpers import impala_breadcrumbs
@@ -64,4 +64,5 @@ def queue_tabnav(context):
     """
     counts = queue_counts()
     return [('apps', 'queue_pending',
-             _('Apps ({0})').format(counts['pending']))]
+             ngettext('Apps ({0})', 'Apps ({0})', counts['pending'])
+             .format(counts['pending']))]
