@@ -14,4 +14,4 @@ class TestViews(TestCase):
     def test_authorization(self):
         self.client.logout()
         res = self.client.get(reverse('acct_lookup.home'))
-        eq_(res.status_code, 302)
+        self.assertLoginRedirects(res, reverse('acct_lookup.home'))
