@@ -427,6 +427,12 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_template'),
         ('templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
+        ('mkt/**.py',
+            'tower.management.commands.extract.extract_tower_python'),
+        ('mkt/**/templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('mkt/templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
     ],
     'lhtml': [
         ('**/templates/**.lhtml',
@@ -440,6 +446,7 @@ DOMAIN_METHODS = {
         ('media/js/amo2009/**.js', 'javascript'),
         ('media/js/impala/**.js', 'javascript'),
         ('media/js/zamboni/**.js', 'javascript'),
+        ('media/js/mkt/**.js', 'javascript'),
     ],
 }
 
