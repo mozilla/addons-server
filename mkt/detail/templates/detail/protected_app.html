@@ -6,7 +6,8 @@
   {% endif %}
 {% endblock %}
 
-{% set is_dev = check_ownership(product, require_author=True) %}
+{% set is_dev = check_ownership(product) %}
+{% set is_author = check_ownership(product, require_author=True) %}
 
 {# Reviewers should be able to see pending apps. #}
 {% if not is_admin and is_reviewer and product.is_pending() %}

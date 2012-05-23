@@ -138,6 +138,11 @@ class TestDetail(DetailBase):
         eq_(doc('.faked-purchase').length, 0)
         eq_(doc('.manage').length, 0)
 
+    def test_manage_button_for_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        eq_(self.get_pq()('.manage').length, 1)
+
     def test_manage_button_for_owner(self):
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')

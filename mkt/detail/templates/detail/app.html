@@ -46,7 +46,7 @@
       </h1>
       <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
       {% set categories = product.all_categories %}
-      {% if is_dev and product.is_premium() and product.premium %}
+      {% if is_author and product.is_premium() and product.premium %}
         <p class="pricetag faked-purchase">
           <span class="price">{{ product.premium.get_price_locale() }}</span>
         </p>
