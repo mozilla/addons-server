@@ -67,8 +67,8 @@ exports.check_with_paypal = function() {
                 $paypal_verify.find('p').eq(0).hide();
                 target = d.valid ? '.paypal-pass' : '.paypal-fail';
                 $paypal_verify.find(target).show();
-                $.each(d.message, function() {
-                    $paypal_verify.find('ul').append('<li class="status-fail"><strong>' + d.message + '</strong></li>');
+                $.each(d.message, function(index, value) {
+                    $paypal_verify.find('ul').append(format('<li class="status-fail"><strong>{0}</strong></li>', value));
                 })
             }
         );
