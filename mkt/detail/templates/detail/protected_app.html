@@ -19,78 +19,72 @@
     <section id="product-status" class="full notification-box">
       <div>
         {% if is_dev or is_admin %}
-          {% set status_url = product.get_dev_url('versions') %}
-          {% if product.status == amo.STATUS_NULL %}
-            {% trans resume_url=url('submit.app.resume', product.app_slug) %}
-              This app is currently incomplete and invisible to other users.
-              <a href="{{ resume_url }}">Please complete your submission.</a>
+          {% if product.status in (amo.STATUS_NULL, amo.STATUS_REJECTED) or
+                product.disabled_by_user %}
+            {% trans %}
+              This app is currently <b>invisible</b> to other users.
             {% endtrans %}
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
-              This app is awaiting review.
+              This app is <b>awaiting review</b>.
             {% endtrans %}
             {{ _('You will receive an email when the review is complete.') }}
           {% elif product.status == amo.STATUS_PUBLIC_WAITING %}
             {% trans %}
-              Your app has been approved but is not public. It is waiting your
-              approval to make public. To enable it, visit its
-              <a href="{{ status_url }}">Manage Status page</a>.
+              This app has been <b>approved but is not public</b>.
             {% endtrans %}
-          {% elif product.status == amo.STATUS_REJECTED %}
-            {% trans %}
-              This app is currently rejected and invisible to other users.
-              To complete your submission, visit its
-              <a href="{{ status_url }}">Manage Status page</a>.
-            {% endtrans %}
+            {{ _('It is awaiting your approval to make public.') }}
           {% elif product.status == amo.STATUS_DISABLED %}
-            {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
-              This app has been disabled by Mozilla. If you have any questions
-              about this, please email {{ email }}.
-            {% endtrans %}
-          {% elif product.disabled_by_user %}
             {% trans %}
-              This app has been disabled by its developer and is invisible to
-              other users. To re-enable it, visit its
-              <a href="{{ status_url }}">Manage Status page</a>.
+              This app has been <b>disabled by Mozilla</b>.
+            {% endtrans %}
+            {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
+              If you have any questions about this, please email {{ email }}.
             {% endtrans %}
           {% endif %}
+          {% trans status_url=product.get_dev_url('versions') %}
+            Visit its
+            <a href="{{ status_url }}" target="_blank">Manage Status page</a>
+            to learn more.
+          {% endtrans %}
         {% else %}
           {% if product.status == amo.STATUS_NULL %}
             {% trans %}
-              This app is incomplete.
+              This app is <b>incomplete</b>.
             {% endtrans %}
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
-              This app is awaiting review.
+              This app is <b>awaiting review</b>.
             {% endtrans %}
           {% elif product.status == amo.STATUS_PENDING %}
             {% trans %}
-              This app is approved but is not public.
+              This app is <b>approved but is not public</b>.
             {% endtrans %}
           {% elif product.status == amo.STATUS_PUBLIC_WAITING %}
             {% trans %}
-              This has has been approved but is unavailable until its developer
-              makes it public.
+              This has has been <b>approved</b> but is unavailable until its
+              developer makes it public.
             {% endtrans %}
           {% elif product.status == amo.STATUS_REJECTED %}
             {% trans %}
-              This app has been rejected and is unavailable until its developer
-              submits a new version.
+              This app has been <b>rejected</b> and is unavailable until its
+              developer submits a new version.
             {% endtrans %}
           {% elif product.status == amo.STATUS_DISABLED %}
             {% trans %}
-              This app has been disabled by Mozilla and is no longer available.
+              This app has been <b>disabled by Mozilla</b> and is no longer
+              available.
             {% endtrans %}
           {% elif product.disabled_by_user %}
             {% trans %}
-              This app has been disabled by its developer and is no longer
-              available.
+              This app has been <b>disabled by its developer</b> and is no
+              longer available.
             {% endtrans %}
           {% endif %}
-        {% endif %}
-        {% if not (product.is_disabled or product.is_incomplete()) %}
-          <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
-             target="_blank">{{ _('Learn more') }}</a>
+          {% if not (product.is_disabled or product.is_incomplete()) %}
+            <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
+               target="_blank">{{ _('Learn more') }}</a>
+          {% endif %}
         {% endif %}
       </div>
     </section>

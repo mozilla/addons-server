@@ -6,7 +6,6 @@ from django.core import mail
 from django.utils.html import strip_tags
 
 import mock
-from nose.plugins.skip import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -392,18 +391,17 @@ class TestDetailPagePermissions(DetailBase):
         # I'm a developer or admin.
         msg = self.get_msg(visible=True, status=amo.STATUS_NULL)
         txt = msg.text()
-        assert 'incomplete' in txt, (
+        assert 'invisible' in txt, (
             'Expected something about it being incomplete: %s' % txt)
-        eq_(msg.find('a').attr('href'),
-            reverse('submit.app.resume', args=[self.webapp.app_slug]),
-            'Expected a Resume App link')
+        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+            'Expected a Manage Status link')
 
     def _test_dev_rejected(self):
         # I'm a developer or admin.
         msg = self.get_msg(visible=True, status=amo.STATUS_REJECTED)
         txt = msg.text()
-        assert 'rejected' in txt, (
-            'Expected something about it being rejected: %s' % txt)
+        assert 'invisible' in txt, (
+            'Expected something about it being invisible: %s' % txt)
         eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
             'Expected a Manage Status link')
 
@@ -413,15 +411,14 @@ class TestDetailPagePermissions(DetailBase):
         txt = msg.text()
         assert 'awaiting review' in txt, (
             'Expected something about it being pending: %s' % txt)
-        url = self.webapp.get_dev_url('versions')
-        eq_(msg.find('a[href="%s"]' % url).length, 0,
-            'There should be no Manage Status link')
+        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+            'Expected a Manage Status link')
 
     def _test_dev_public_waiting(self):
         # I'm a developer or an admin.
         msg = self.get_msg(visible=True, status=amo.STATUS_PUBLIC_WAITING)
         txt = msg.text()
-        assert ' approved ' and ' waiting ' in txt, (
+        assert ' approved ' and ' awaiting ' in txt, (
             'Expected something about it being approved and waiting: %s' % txt)
         eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
             'Expected a Manage Status link')
@@ -439,8 +436,8 @@ class TestDetailPagePermissions(DetailBase):
         # I'm a developer or an admin.
         msg = self.get_msg(visible=True, disabled_by_user=True)
         txt = msg.text()
-        assert 'disabled by its developer' in txt, (
-            'Expected something about it being disabled: %s' % txt)
+        assert 'invisible' in txt, (
+            'Expected something about it being invisible: %s' % txt)
         eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
             'Expected a Manage Status link')
 
@@ -628,7 +625,6 @@ class TestPrivacy(amo.tests.TestCase):
             '<ul><li>papparapara</li> <li>todotodotodo</li> </ul>')
         eq_(get_clean(doc('ol a').text()), 'firefox')
         eq_(get_clean(doc('ol li:first')), '<li>papparapara2</li>')
-
 
 
 @mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')

@@ -38,7 +38,7 @@
           {{ status(_('This app has been <b>rejected</b> by a Mozilla Marketplace reviewer.')|safe) }}
         {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
           {{ status(_('Your app has been <b>approved but is not public</b>.')|safe) }}
-          {{ _('It is waiting your approval to make public.') }}
+          {{ _('It is awaiting your approval to make public.') }}
         {% endif %}
         {% if not (addon.is_disabled or addon.is_incomplete()) %}
           <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review"
