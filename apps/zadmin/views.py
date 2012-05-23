@@ -45,6 +45,7 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
+from mkt.stats.search import setup_mkt_indexes
 from stats.search import setup_indexes
 from users.cron import reindex_users
 from versions.compare import version_int as vint
@@ -565,6 +566,7 @@ def elastic(request):
             # We must set up the mappings before we create the index again.
             setup_mapping()
             setup_indexes()
+            setup_mkt_indexes()
             es.create_index_if_missing(INDEX)
             messages.info(request, 'Deleting %s index.' % INDEX)
         if request.POST.get('reindex') in mappings:

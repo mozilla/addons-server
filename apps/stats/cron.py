@@ -5,8 +5,8 @@ from django.db.models import Sum, Max
 
 import commonware.log
 from celery.task.sets import TaskSet
-
 import cronjobs
+
 from amo.utils import chunked
 from addons.models import Addon
 from .models import (AddonCollectionCount, CollectionCount,

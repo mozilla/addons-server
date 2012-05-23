@@ -416,7 +416,7 @@ def collection_factory(**kw):
 
 
 # Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
-@nottest
+# @nottest
 class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
@@ -471,8 +471,8 @@ class ESTestCase(TestCase):
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod
-    def refresh(cls, index='default'):
-        cls.es.refresh(settings.ES_INDEXES[index], timesleep=0)
+    def refresh(cls, index='default', timesleep=0):
+        cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
 
     @classmethod
     def reindex(cls, model):

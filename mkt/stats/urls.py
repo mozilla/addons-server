@@ -25,17 +25,17 @@ urlpatterns = patterns('',
 
     # time series URLs following this pattern:
     # /app/{app_slug}/statistics/{series}-{group}-{start}-{end}.{format}
-    url(series['app_overview'], views.overview_series,
-        name='mkt.stats.overview_series'),
+    #url(series['app_overview'], views.overview_series,
+    #    name='mkt.stats.overview_series'),
     url(series['installs'], views.installs_series,
         name='mkt.stats.installs_series'),
     url(series['usage'], views.usage_series,
         name='mkt.stats.usage_series'),
 
-    url(series['revenue'], views.sales_series,
+    url(series['revenue'], views.revenue_series,
         name='mkt.stats.revenue_series'),
     url(series['sales'], views.sales_series,
         name='mkt.stats.sales_series'),
-    url(series['refunds'], views.sales_series,
+    url(series['refunds'], views.refunds_series,
         name='mkt.stats.refunds_series'),
 )

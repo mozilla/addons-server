@@ -79,7 +79,6 @@
         "versions"           : "users",
         "statuses"           : "users",
         "users_created"      : "users",
-        "installs"           : "users",
         "downloads"          : "downloads",
         "sources"            : "downloads",
         "contributions"      : "currency",
@@ -93,7 +92,8 @@
         "subscribers"        : "collections",
         "ratings"            : "collections",
         "sales"              : "sales",
-        "refunds"            : "refunds"
+        "refunds"            : "refunds",
+        "installs"           : "installs"
     };
 
     var acceptedGroups = {
@@ -198,6 +198,7 @@
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
             function salesFormatter(n) { return format(gettext('{0} sales'), Highcharts.numberFormat(n, 0)); }
             function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
+            function installsFormatter(n) { return format(gettext('{0} installs'), Highcharts.numberFormat(n, 0)); }
             function addEventData(s, date) {
                 var e = events[date];
                 if (e) {
@@ -267,6 +268,9 @@
                         break;
                     case "refunds":
                         yFormatter = refundsFormatter;
+                        break;
+                    case "installs":
+                        yFormatter = installsFormatter;
                         break;
                 }
                 return function() {
