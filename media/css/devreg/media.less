@@ -22,7 +22,7 @@
     max-height: 115px;
     overflow: auto;
     padding-bottom: 15px;
-    + .preview:last-child {
+    &:last-child {
         display: none;
     }
 }
@@ -114,7 +114,8 @@
     #file-list .preview {
         display: block;
         max-height: inherit;
-        &.extra {
+        &.extra,
+        + .preview:last-child {
             display: none;
         }
     }
