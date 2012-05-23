@@ -31,6 +31,16 @@ class TestRequestSupport(PurchaseBase):
         eq_(doc('#support-start').find('a').eq(0).attr('href'),
             self.get_support_url('author'))
 
+    def test_refund_link(self):
+        doc = pq(self.client.get(self.get_support_url()).content)
+        eq_(len(doc('#support-start').find('a')), 4)
+
+    @mock.patch('apps.stats.models.Contribution.is_refunded')
+    def test_no_refund_link(self, is_refunded):
+        is_refunded.return_value = True
+        doc = pq(self.client.get(self.get_support_url()).content)
+        eq_(len(doc('#support-start').find('a')), 3)
+
     def test_support_page_external_link(self):
         self.app.support_url = 'http://omg.org/yes'
         self.app.save()
@@ -119,6 +129,16 @@ class TestRequestSupport(PurchaseBase):
         res = self.client.post(self.get_support_url('reason'),
                                {'text': 'something'})
         assert 'cannot be applied for yet' in res.cookies['messages'].value
+        eq_(len(mail.outbox), 0)
+        self.assertRedirects(res, reverse('account.purchases'), 302)
+
+    @mock.patch('apps.stats.models.Contribution.is_refunded')
+    def test_already_refunded_request(self, is_refunded):
+        is_refunded.return_value = True
+        self.client.post(self.get_support_url('request'), {'remove': 1})
+        res = self.client.post(self.get_support_url('reason'),
+                               {'text': 'something'})
+        assert 'refunded' in res.cookies['messages'].value
         eq_(len(mail.outbox), 0)
         self.assertRedirects(res, reverse('account.purchases'), 302)
 

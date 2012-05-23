@@ -22,7 +22,7 @@
                 {% endtrans %}
               {% endif %}
             </span>
-            {% if get_support %}
+            {% if get_support or contribution.type == amo.CONTRIB_INAPP %}
               <a class="request-support"
                  href="{{ url('support', contribution.pk) }}">
                 {{ _('Request Support') }}</a>

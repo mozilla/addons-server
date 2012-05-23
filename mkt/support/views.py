@@ -119,6 +119,11 @@ def refund_reason(request, contribution, wizard):
                         'transaction_id: %r' % contribution.pk)
         return redirect('account.purchases')
 
+    if contribution.is_refunded():
+        messages.error(request, _('This has already been refunded.'))
+        paypal_log.info('Already refunded: %s' % contribution.pk)
+        return redirect('account.purchases')
+
     if contribution.is_instant_refund():
         try:
             paypal.refund(contribution.paykey)

@@ -64,6 +64,14 @@ class TestContributionModel(amo.tests.TestCase):
         self.con.update(created=datetime.now() - diff)
         assert not self.con.is_instant_refund(), "Refund shouldn't be instant"
 
+    def test_refunded(self):
+        user = UserProfile.objects.create(username='foo@bar.com')
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+
+        assert not self.con.is_refunded()
+        Contribution.objects.create(user=user, addon=addon, related=self.con,
+                                    type=amo.CONTRIB_REFUND)
+        assert self.con.is_refunded()
 
     def test_refund_inapp_instant(self):
         for ctype in ('CONTRIB_INAPP', 'CONTRIB_INAPP_PENDING'):

@@ -364,6 +364,17 @@ class Contribution(amo.models.ModelBase):
         limit = datetime.timedelta(seconds=settings.PAYPAL_REFUND_INSTANT)
         return datetime.datetime.now() < (self.created + limit)
 
+    def is_refunded(self):
+        """
+        If related has been set, then this transaction has been refunded or
+        charged back. This is a bit expensive, so refrain from using on listing
+        pages.
+        """
+        return (Contribution.objects.filter(related=self,
+                                            type__in=[amo.CONTRIB_REFUND,
+                                                      amo.CONTRIB_CHARGEBACK])
+                                    .exists())
+
 
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
 
