@@ -38,8 +38,7 @@
     <dd class="meta-stats">
       <b class="total-downloads">{{ product.total_downloads|numberfmt }}</b>
       {% if product.public_stats %}
-        <a href="{{ url('stats.overview', product.slug) }}">
-          {{ _('View Statistics') }}</a>
+        <a href="{{ product.get_stats_url() }}">{{ _('View Statistics') }}</a>
       {% endif %}
     </dd>
     <dt>{{ _('Weekly Downloads') }}</dt>
