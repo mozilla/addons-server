@@ -70,13 +70,13 @@ class TestIndexStats(amo.tests.TestCase):
         eq_(download[0], tasks.index_download_counts)
         eq_(download[1], list(qs))
 
-    def test_called_four(self, tasks_mock):
-        call_command('index_stats', addons=None, date='2009-06-01')
-        eq_(tasks_mock.call_count, 4)
-
     def test_called_three(self, tasks_mock):
-        call_command('index_stats', addons='5', date='2009-06-01')
+        call_command('index_stats', addons=None, date='2009-06-01')
         eq_(tasks_mock.call_count, 3)
+
+    def test_called_two(self, tasks_mock):
+        call_command('index_stats', addons='5', date='2009-06-01')
+        eq_(tasks_mock.call_count, 2)
 
     def test_by_date_range(self, tasks_mock):
         call_command('index_stats', addons=None,
