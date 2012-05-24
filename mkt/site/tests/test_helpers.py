@@ -9,6 +9,8 @@ import amo.tests
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from market.models import AddonPremium, AddonPurchase
+from users.models import UserProfile
+
 from mkt.webapps.models import Webapp
 from mkt.site.helpers import market_button
 
@@ -17,7 +19,6 @@ class TestMarketButton(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
     def setUp(self):
-        from users.models import UserProfile
         self.webapp = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=999)
         request = mock.Mock()

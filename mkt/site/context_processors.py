@@ -36,8 +36,12 @@ def global_settings(request):
             {'text': _('Log out'), 'href': reverse('users.logout')},
         ]
         if '/developers/' not in request.path:
+            if amo_user.is_app_developer:
+                dev_url = reverse('mkt.developers.index')
+            else:
+                dev_url = reverse('ecosystem.landing')
             tools_links.append({'text': _('Developers'),
-                                'href': reverse('ecosystem.landing')})
+                                'href': dev_url})
         if '/reviewers/' not in request.path and context['is_reviewer']:
             tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('reviewers.home')})

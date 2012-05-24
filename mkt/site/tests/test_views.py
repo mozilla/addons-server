@@ -82,6 +82,24 @@ class TestRobots(amo.tests.TestCase):
 class TestFooter(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
+    def test_developers_links_to_dashboard(self):
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        r = self.client.get(reverse('home'))
+        eq_(r.status_code, 200)
+        f = pq(r.content)('#site-footer')
+        eq_(f.find('a[href="%s"]' % reverse('mkt.developers.index')).length, 1)
+        eq_(f.find('a[href="%s"]' % reverse('ecosystem.landing')).length, 0)
+
+    def test_developers_links_to_landing(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        r = self.client.get(reverse('home'))
+        eq_(r.status_code, 200)
+        f = pq(r.content)('#site-footer')
+        eq_(f.find('a[href="%s"]' % reverse('mkt.developers.index')).length, 0)
+        eq_(f.find('a[href="%s"]' % reverse('ecosystem.landing')).length, 1)
+
     def test_language_selector(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
