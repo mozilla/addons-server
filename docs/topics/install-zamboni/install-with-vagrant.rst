@@ -27,13 +27,16 @@ To get started on Mac OS X or Linux you'll need:
 
    * The desktop installer walks you through it.
 
- * `vagrant <http://vagrantup.com/>`_ 0.8.10 (not 0.9.*)
+ * `vagrant <http://vagrantup.com/>`_ 1.0 or greater.
 
    * gem is included with Mac OS X. Otherwise you may need to install
      `Ruby <http://www.ruby-lang.org/>`_ and `gem <http://rubygems.org/>`_.
    * If it's your first time using Ruby you should probably run
      ``sudo gem update --system``
-   * To install vagrant 0.8 run ``sudo gem install vagrant -v '= 0.8.10'``
+   * If you run into vagrant bugs, you could try downgrading to 0.8.
+     You'll have to edit a line in the Vagrantfile which is commented out for that
+     to work though.
+     To install vagrant 0.8 run ``sudo gem install vagrant -v '= 0.8.10'``
 
 If you get stuck, see the Troubleshooting section below.
 
@@ -143,19 +146,6 @@ Your ``custom.pp`` file is ignored by git.
 Troubleshooting
 ---------------
 
-If you're using vagrant 0.9 you need to downgrade to 0.8.10 because of
-`this bug <https://github.com/mitchellh/vagrant/issues/516>`_.
-
-You might see an error like this when first running vagrant::
-
-    /Library/Ruby/Gems/1.8/gems/net-ssh-2.1.4/lib/net/ssh/key_factory.rb:38:in `read': Permission denied - /Library/Ruby/Gems/1.8/gems/vagrant-0.8.
-
-It was fixed in `issue 580 <https://github.com/mitchellh/vagrant/issues/580>`_
-but until we can run vagrant 0.9 you can fix it with this::
-
-    sudo chmod 644 /Library/Ruby/Gems/1.8/gems/vagrant-0.8.10/keys/vagrant
-
-
 If you have already set up Zamboni with a custom ``settings_local.py`` file
 then be sure your database credentials match the defaults::
 
@@ -165,3 +155,17 @@ then be sure your database credentials match the defaults::
     ...
 
 Otherwise you'll probably see database errors.
+
+If you have redis problems, they were fixed in
+`bug 736673 <https://bugzilla.mozilla.org/show_bug.cgi?id=736673>`_
+but be sure your settings point to the right redis connection.
+
+If you're using vagrant 0.8,
+you might see an error like this when first running vagrant::
+
+    /Library/Ruby/Gems/1.8/gems/net-ssh-2.1.4/lib/net/ssh/key_factory.rb:38:in `read': Permission denied - /Library/Ruby/Gems/1.8/gems/vagrant-0.8.
+
+It was fixed in `issue 580 <https://github.com/mitchellh/vagrant/issues/580>`_
+but you can fix it with this::
+
+    sudo chmod 644 /Library/Ruby/Gems/1.8/gems/vagrant-0.8.10/keys/vagrant
