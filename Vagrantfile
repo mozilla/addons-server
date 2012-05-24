@@ -39,8 +39,8 @@ Vagrant::Config.run do |config|
     end
 
     # For convenience add something like this to /etc/hosts: 33.33.33.24 z.local
-    # config.vm.network :hostonly, "33.33.33.24"
-    config.vm.network "33.33.33.24"  # old 0.8.* way
+    config.vm.network :hostonly, "33.33.33.24"
+    #config.vm.network "33.33.33.24"  # old 0.8.* way
 
     config.vm.provision :puppet do |puppet|
         puppet.manifests_path = "vagrant/manifests"
