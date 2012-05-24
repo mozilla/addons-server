@@ -33,6 +33,7 @@ from nose.tools import eq_
 from piston.models import Consumer
 
 from amo.tests import TestCase
+from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from files.models import FileUpload
 
@@ -51,7 +52,10 @@ def get_absolute_url(url):
     # TODO (andym): make this more standard.
     url[1]['api_name'] = 'apps'
     rev = reverse(url[0], kwargs=url[1])
-    return 'http://%s%s' % ('api', rev)
+    res = 'http://%s%s' % ('api', rev)
+    if len(url) > 2:
+        res = urlparams(res, **url[2])
+    return res
 
 
 def data_keys(d):
@@ -148,7 +152,8 @@ class BaseOAuth(TestCase):
             if verb in allowed:
                 continue
             res = getattr(self.client, verb)(url)
-            eq_(res.status_code, 405)
+            assert (res.status_code in (401, 405),
+                    '%s: %s not 405' % (verb.upper(), res.status_code))
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

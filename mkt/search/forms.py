@@ -3,6 +3,9 @@ from django.forms.util import ErrorDict
 
 from tower import ugettext_lazy as _lazy
 
+from addons.models import Category
+import amo
+
 
 SORT_CHOICES = [
     (None, _lazy(u'Relevance')),
@@ -89,3 +92,17 @@ class AppSearchForm(forms.Form):
 
 class AppListForm(AppSearchForm):
     sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
+
+
+class ApiSearchForm(forms.Form):
+    # Like App search form, but just filtering on categories for now
+    # and bit more strict about the filtering.
+    sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
+    cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
+                                 choices=[])
+
+    def __init__(self, *args, **kw):
+        super(ApiSearchForm, self).__init__(*args, **kw)
+        CATS = (Category.objects.filter(type=amo.ADDON_WEBAPP)
+                         .values_list('id', flat=True))
+        self.fields['cat'].choices = [(pk, pk) for pk in CATS]

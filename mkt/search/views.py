@@ -24,10 +24,23 @@ class FacetLink(object):
         self.null_urlparams['page'] = None
 
 
-def _filter_search(qs, query, filters, sorting,
+DEFAULT_FILTERS = ['cat', 'price', 'device', 'sort']
+DEFAULT_SORTING = {
+    'downloads': '-weekly_downloads',
+    'rating': '-bayesian_rating',
+    'created': '-created',
+    'name': 'name_sort',
+    'hotness': '-hotness',
+    'price': 'price'
+}
+
+
+def _filter_search(qs, query, filters=None, sorting=None,
                    sorting_default='-weekly_downloads'):
     """Filter an ES queryset based on a list of filters."""
     # Intersection of the form fields present and the filters we want to apply.
+    filters = filters or DEFAULT_FILTERS
+    sorting = sorting or DEFAULT_SORTING
     show = [f for f in filters if query.get(f)]
 
     if query.get('q'):
@@ -87,6 +100,13 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
+def _get_query(request, form, query):
+    return (Webapp.search()
+            .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
+                    is_disabled=False)
+            .facet(categories={'terms': {'field': 'category', 'size': 200}}))
+
+
 def _app_search(request, category=None, browse=None):
     form = forms.AppSearchForm(request.GET)
     form.is_valid()  # Let the form try to clean data.
@@ -97,19 +117,8 @@ def _app_search(request, category=None, browse=None):
         return {'redirect': amo.utils.urlparams(request.get_full_path(),
                                                 sort=None)}
 
-    qs = (Webapp.search()
-          .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                  is_disabled=False)
-          .facet(categories={'terms': {'field': 'category', 'size': 200}}))
-
-    filters = ['cat', 'price', 'device', 'sort']
-    sorting = {'downloads': '-weekly_downloads',
-               'rating': '-bayesian_rating',
-               'created': '-created',
-               'name': 'name_sort',
-               'hotness': '-hotness',
-               'price': 'price'}
-    qs = _filter_search(qs, query, filters, sorting)
+    qs = _get_query(request, form, query)
+    qs = _filter_search(qs, query)
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facets

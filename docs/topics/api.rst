@@ -137,7 +137,7 @@ Create
 This API requires authentication and a successfully validated manifest. To
 create an app with your validated manifest::
 
-        POST /en-US/api/apps/
+        POST /en-US/api/apps/app/
 
 Body data should contain the manifest id from the validate call and other data
 in JSON::
@@ -174,7 +174,7 @@ Update
 
 This API requires authentication and a successfully created app::
 
-        PUT /en-US/apps/app/<app id>/
+        PUT /en-US/api/apps/app/<app id>/
 
 The body contains JSON for the data to be posted.
 
@@ -216,7 +216,7 @@ This API requires authentication and a successfully created app.
 
 To view details of an app, including its review status::
 
-        GET /api/apps/<slug>
+        GET /en-US/api/apps/app/<app id>/
 
 Returns the status of the app::
 
@@ -231,7 +231,7 @@ This API requires authentication and a successfully created app.
 
 Deletes an app::
 
-        DELETE /api/apps/<slug>
+        DELETE /en-US/api/apps/app/<app id>/
 
 The app will only be hard deleted if it is incomplete. Otherwise it will be
 soft deleted. A soft deleted app will not appear publicly in any listings
@@ -296,7 +296,7 @@ No authentication required.
 
 To find a list of categories available on the marketplace::
 
-        GET /en-US/api/categories/
+        GET /en-US/api/apps/categories/
 
 Returns the list of categories::
 
@@ -309,6 +309,37 @@ Returns the list of categories::
         }
 
 Use the `id` of the category in your app updating.
+
+Search
+======
+
+No authentication required.
+
+To find a list of apps in a category on the marketplace::
+
+        GET /en-US/api/apps/search/
+
+Returns a list of the apps sorted by relevance::
+
+        {"meta": {},
+         "objects":
+            [{"absolute_url": "http://../en-US/app/marble-run-1/",
+              "premium_type": 3, "slug": "marble-run-1", id="26",
+              "icon_url": "http://../addon_icons/0/26-32.png",
+              "resource_uri": null
+             }
+         ...
+
+Arguments:
+
+* `cat` (optional): use the category API to find the ids of the categories
+* `sort` (optional): one of 'downloads', 'rating', 'price', 'created'
+
+Example, to specify a category sorted by rating::
+
+        GET /en-US/api/apps/search/?cat=1&sort=rating
+
+Sorting options:
 
 .. _`MDN`: https://developer.mozilla.org
 .. _`marketplace team`: marketplace-team@mozilla.org
