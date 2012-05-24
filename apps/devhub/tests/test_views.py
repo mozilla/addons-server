@@ -1300,6 +1300,7 @@ class TestIssueRefund(amo.tests.TestCase):
     @mock.patch('paypal.refund')
     def test_refund_failed(self, refund, record):
         err = paypal.PaypalError('transaction died in a fire')
+
         def fail(*args, **kwargs):
             raise err
         refund.side_effect = fail
@@ -1421,7 +1422,8 @@ class TestRefunds(amo.tests.TestCase):
 
         # All other timestamps should be absolute.
         table = doc('table')
-        others = Refund.objects.exclude(status__in=(amo.REFUND_PENDING, amo.REFUND_FAILED))
+        others = Refund.objects.exclude(status__in=(amo.REFUND_PENDING,
+                                                    amo.REFUND_FAILED))
         for refund in others:
             tr = table.find('.refund[data-refundid=%s]' % refund.id)
             eq_(tr.find('.purchased-date').text(),
@@ -2953,7 +2955,7 @@ class TestUploadErrors(UploadTest):
             [u'Duplicate UUID found.'])
 
 
-class TestAddVersion(UploadTest):
+class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
                    expected_status=200):
@@ -2965,8 +2967,11 @@ class TestAddVersion(UploadTest):
         return r
 
     def setUp(self):
-        super(TestAddVersion, self).setUp()
+        super(AddVersionTest, self).setUp()
         self.url = reverse('devhub.versions.add', args=[self.addon.slug])
+
+
+class TestAddVersion(AddVersionTest):
 
     def test_unique_version_num(self):
         self.version.update(version='0.1')
@@ -2996,6 +3001,42 @@ class TestAddVersion(UploadTest):
         eq_(r.status_code, 200)
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
+
+
+class TestAddBetaVersion(AddVersionTest):
+    fixtures = ['base/apps', 'base/users', 'base/appversion',
+                'base/addon_3615', 'base/platforms']
+
+    def setUp(self):
+        super(TestAddBetaVersion, self).setUp()
+
+        self.do_upload()
+
+    def do_upload(self):
+        self.upload = self.get_upload('extension-0.2b1.xpi')
+
+    def post_additional(self, version, platform=amo.PLATFORM_MAC):
+        url = reverse('devhub.versions.add_file',
+                      args=[self.addon.slug, version.id])
+        return self.client.post(url, dict(upload=self.upload.pk,
+                                          platform=platform.id))
+
+    def test_add_multi_file_beta(self):
+        r = self.post(desktop_platforms=[amo.PLATFORM_MAC])
+
+        version = self.addon.versions.all().order_by('-id')[0]
+
+        # Make sure that the first file is beta
+        fle = File.objects.all().order_by('-id')[0]
+        eq_(fle.status, amo.STATUS_BETA)
+
+        self.do_upload()
+        r = self.post_additional(version, platform=amo.PLATFORM_LINUX)
+        eq_(r.status_code, 200)
+
+        # Make sure that the additional files are beta
+        fle = File.objects.all().order_by('-id')[0]
+        eq_(fle.status, amo.STATUS_BETA)
 
 
 class TestVersionXSS(UploadTest):
