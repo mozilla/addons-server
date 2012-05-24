@@ -147,9 +147,12 @@ body {
     padding: 16px;
     text-align: center;
     .footer-links {
+        .max-width(5);
+        margin: 0 auto;
         a:before {
             content: "\00b7";
-            margin: 0 4px;
+            display: inline-block;
+            margin: 0 5px 0 3px;
             color: @gray;
         }
         a:hover:before {

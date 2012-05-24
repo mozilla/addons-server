@@ -76,7 +76,6 @@
             <a href="{{ url('users.logout') }}">Log out</a>
             {% for link in tools_links %}
               <a href="{{ link.href }}">{{ link.text }}</a>
-              {% if not loop.last %}{% endif %}
             {% endfor %}
             {% if request.can_view_consumer %}
               <a href="{{ url('account.purchases') }}">
