@@ -21,7 +21,7 @@
       {{ _("Please review your listing information below. We've pre-filled "
            "as much as we can from your manifest.") }}
     </p>
-    <form enctype="multipart/form-data" method="post" class="devhub-form"
+    <form enctype="multipart/form-data" method="post" class="devhub-form submit-media"
           id="submit-media" data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
       {{ csrf() }}
       <header id="general-details" class="island swagger c">
