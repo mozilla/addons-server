@@ -308,6 +308,9 @@ class TestFetchProductImage(TalkToAppTest):
         prod = InappImage.objects.get()
         eq_(prod.processed, True)
         eq_(prod.valid, True)
+        for fn in (prod.path, prod.url):
+            assert fn().endswith('.jpg'), (
+                'The CDN only whitelists .jpg not .jpeg. Got: %s' % fn())
 
     @fudge.patch('mkt.inapp_pay.tasks.requests')
     def test_absolute_url(self, fake_req):

@@ -277,5 +277,8 @@ class InappImage(amo.models.ModelBase):
         return '/'.join((settings.INAPP_IMAGE_URL, self._base_path()))
 
     def _base_path(self):
-        return '/'.join((str(self.config.addon.pk),
-                         '%s.%s' % (self.pk, self.image_format.lower())))
+        ext = self.image_format.lower()
+        if ext == 'jpeg':
+            # The CDN only whitelists this extension.
+            ext = 'jpg'
+        return '%s/%s.%s' % (self.config.addon.pk, self.pk, ext)
