@@ -7,6 +7,8 @@ import amo
 from amo.decorators import login_required, permission_required, json_view
 from amo.urlresolvers import reverse
 from market.models import Refund
+from amo.utils import paginate
+
 from users.models import UserProfile
 
 
@@ -27,7 +29,10 @@ def summary(request, user_id):
     appr = req.filter(status=amo.REFUND_APPROVED_INSTANT)
     refund_summary = {'approved': appr.count(),
                       'requested': req.count()}
-    user_addons = user.addons.all().order_by('-created')
+    # TODO: This should return all `addon` types and not just webapps.
+    # -- currently get_details_url() fails on non-webapps so this is a temp fix.
+    user_addons = user.addons.filter(type=amo.ADDON_WEBAPP).order_by('-created')
+    user_addons = paginate(request, user_addons, per_page=15)
     return jingo.render(request, 'acct_lookup/summary.html',
                         {'account': user,
                          'app_summary': app_summary,

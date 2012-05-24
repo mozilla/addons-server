@@ -650,6 +650,7 @@ MINIFY_BUNDLES = {
             'js/impala/forms.js',
             'js/impala/ajaxcache.js',
             'js/impala/suggestions.js',
+            'js/impala/site_suggestions.js',
         ),
 
         # Impala: Things to be loaded at the top of the page
@@ -736,6 +737,7 @@ MINIFY_BUNDLES = {
             'js/impala/serializers.js',
             'js/impala/search.js',
             'js/impala/suggestions.js',
+            'js/impala/site_suggestions.js',
 
             # Login
             'js/impala/login.js',

@@ -114,6 +114,9 @@ CSS = {
     'mkt/stats': (
         'css/mkt/stats.less',
     ),
+    'mkt/acct_lookup': (
+        'css/mkt/account-lookup.less',
+    ),
 }
 
 JS = {
@@ -252,5 +255,11 @@ JS = {
         'js/impala/serializers.js',
         'js/mkt/browserid.js',
         'js/mkt/login.js',
+    ),
+    'mkt/acct_lookup': (
+        'js/common/keys.js',
+        'js/impala/ajaxcache.js',
+        'js/impala/suggestions.js',
+        'js/mkt/account-lookup.js',
     ),
 }

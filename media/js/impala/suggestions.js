@@ -1,8 +1,3 @@
-$(document).ready(function() {
-    $('#search #search-q').searchSuggestions($('#site-search-suggestions'));
-});
-
-
 $.fn.highlightTerm = function(val) {
     // If an item starts with `val`, wrap the matched text with boldness.
     val = val.replace(/[^\w\s]/gi, '');
@@ -17,8 +12,18 @@ $.fn.highlightTerm = function(val) {
     });
 };
 
-
-$.fn.searchSuggestions = function($results) {
+/*
+ * searchSuggestions
+ * Grants search suggestions to an input of type text/search.
+ * Required:
+ * $results - a container for the search suggestions, typically UL.
+ * processCallback - callback function that deals with the XHR call & populates
+                   - the $results element.
+ * Optional:
+ * siteSearch - boolean of whether this is a site-search suggestions box which
+              - deals with multiple types of search results (apps/personas/etc)
+*/
+$.fn.searchSuggestions = function($results, processCallback, siteSearch) {
     var $self = this,
         $form = $self.closest('form');
 
@@ -26,20 +31,22 @@ $.fn.searchSuggestions = function($results) {
         return;
     }
 
-    // Some base elements that we don't want to keep creating on the fly.
-    var cat = $results.attr('data-cat'),
-        msg;
-    if (cat == 'personas') {
-        msg = gettext('Search personas for <b>{0}</b>');
-    } else if (cat == 'apps') {
-        msg = gettext('Search apps for <b>{0}</b>');
-    } else {
-        msg = gettext('Search add-ons for <b>{0}</b>');
+    if (siteSearch) {
+        // Some base elements that we don't want to keep creating on the fly.
+        var cat = $results.attr('data-cat'),
+            msg;
+        if (cat == 'personas') {
+            msg = gettext('Search personas for <b>{0}</b>');
+        } else if (cat == 'apps') {
+            msg = gettext('Search apps for <b>{0}</b>');
+        } else {
+            msg = gettext('Search add-ons for <b>{0}</b>');
+        }
+        var base = template('<div class="wrap">' +
+                            '<p><a class="sel" href="#"><span>{msg}</span></a></p><ul></ul>' +
+                            '</div>');
+        $results.html(base({'msg': msg}));
     }
-    var base = template('<div class="wrap">' +
-                        '<p><a class="sel" href="#"><span>{msg}</span></a></p><ul></ul>' +
-                        '</div>');
-    $results.html(base({'msg': msg}));
 
     // Control keys that shouldn't trigger new requests.
     var ignoreKeys = [
@@ -117,59 +124,24 @@ $.fn.searchSuggestions = function($results) {
             return;
         }
 
+        // Required data to send to the callback.
+        var settings = {
+            '$results': $results,
+            '$form': $form,
+            'searchTerm': val,
+        };
+
+        // Optional data for callback.
+        if (siteSearch) {
+            settings['category'] = cat;
+        }
+
         if ((e.type === 'keyup' && typeof e.which === 'undefined') ||
             $.inArray(e.which, ignoreKeys) >= 0) {
             $results.trigger('inputIgnored');
         } else {
-            // Update the 'Search add-ons for <b>"{addon}"</b>' text.
-            $results.find('p b').html(format('"{0}"', val));
-
-            var li_item = template(
-                '<li><a href="{url}"><span {cls} {icon}>{name}</span>{subtitle}</a></li>'
-            );
-
-            $.ajaxCache({
-                url: $results.attr('data-src'),
-                data: $form.serialize() + '&cat=' + cat,
-                newItems: function(formdata, items) {
-                    var eventName;
-                    if (items !== undefined) {
-                        var ul = '';
-                        $.each(items, function(i, item) {
-                            var d = {
-                                url: escape_(item.url) || '#',
-                                icon: '',
-                                cls: '',
-                                subtitle: '',
-                            };
-                            if (item.icon) {
-                                d.icon = format(
-                                    'style="background-image:url({0})"',
-                                    escape_(item.icon)
-                                );
-                            }
-                            if (item.cls) {
-                                d.cls = format('class="{0}"',
-                                               escape_(item.cls));
-                                if (item.cls == 'cat') {
-                                    d.subtitle = format(
-                                        ' <em class="subtitle">{0}</em>',
-                                        gettext('Category')
-                                    );
-                                }
-                            }
-                            if (item.name) {
-                                d.name = escape_(item.name);
-                                // Append the item only if it has a name.
-                                ul += li_item(d);
-                            }
-                        });
-                        $results.find('ul').html(ul);
-                    }
-                    $results.trigger('highlight', [val])
-                            .trigger('resultsUpdated', [items]);
-                }
-            });
+            // XHR call and populate suggestions.
+            processCallback(settings);
         }
     }
 

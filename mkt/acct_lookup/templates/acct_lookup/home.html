@@ -4,11 +4,5 @@
 {% endblock %}
 
 {% block content %}
-  <section class="island">
-  {{ _('Account Lookup') }}
-  </section>
-
-  <section class="island c">
-  </section>
-
+  {% include 'acct_lookup/includes/search.html' %}
 {% endblock %}

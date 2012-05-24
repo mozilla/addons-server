@@ -1,0 +1,9 @@
+<section class="island">
+  <form action="#" method="post" id="account-search-form">
+    <label for="account-search">{{ _('Account Lookup') }}</label>
+    <input type="search" id="account-search" name="q" autocomplete="off">
+    <button>{{ _('Search') }}</button>
+    <ul id="account-search-suggestions"
+        data-src="{{ url('acct_lookup.search') }}"></ul>
+  </form>
+</section>
