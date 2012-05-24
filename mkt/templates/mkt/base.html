@@ -70,10 +70,12 @@
           {% else %}
             {{ request.amo_user.email }}
           {% endif %}
+          <a href="{{ url('users.logout') }}">(log out)</a>
+        {% else %}
+          <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
         {% endif %}
         <nav class="footer-links">
           {% if logged %}
-            <a href="{{ url('users.logout') }}">Log out</a>
             {% for link in tools_links %}
               <a href="{{ link.href }}">{{ link.text }}</a>
             {% endfor %}
@@ -87,9 +89,6 @@
           <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
         <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
         </nav>
-        {% if not logged %}
-          <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
-        {% endif %}
         {% include 'site/includes/languages.html' %}
       </footer>
     {% endblock %}
