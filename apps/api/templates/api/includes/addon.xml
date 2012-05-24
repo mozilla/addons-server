@@ -40,7 +40,9 @@
     </url>
   </license>
   {%- endif -%}
-  <icon>{{ addon.get_icon_url(32, use_default=False) }}</icon>
+  {# The 32px icon must be the last icon specified. #}
+  <icon size="64">{{ addon.get_icon_url(64, use_default=False) }}</icon>
+  <icon size="32">{{ addon.get_icon_url(32, use_default=False) }}</icon>
   <compatible_applications>
     {%- if version -%}
     {%- for app in version.compatible_apps.values() %}
