@@ -275,7 +275,7 @@ class APITest(TestCase):
         self.assertContains(response, "<description>This extension integrates")
 
         icon_url = settings.ADDON_ICON_URL % (3, 3615, 32, '')
-        self.assertContains(response, "<icon>" + icon_url)
+        self.assertContains(response, '<icon size="32">' + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
         self.assertContains(response, "<application_id>1</application_id>")
@@ -493,7 +493,7 @@ class APITest(TestCase):
     def test_default_icon(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(icon_type='')
-        self.assertContains(make_call('addon/5299'), '<icon></icon>')
+        self.assertContains(make_call('addon/5299'), '<icon size="32"></icon>')
 
     def test_thumbnail_size(self):
         addon = Addon.objects.get(pk=5299)
