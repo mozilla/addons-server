@@ -48,6 +48,7 @@ def _get_args(consumer):
 
 
 def get_absolute_url(url):
+    # TODO (andym): make this more standard.
     url[1]['api_name'] = 'apps'
     rev = reverse(url[0], kwargs=url[1])
     return 'http://%s%s' % ('api', rev)
@@ -61,7 +62,11 @@ def data_keys(d):
 
 
 class OAuthClient(Client):
-    """OauthClient can make magically signed requests."""
+    """
+    OAuthClient can do all the requests the Django test client,
+    but even more. And it can magically sign requests.
+    TODO (andym): this could be cleaned up and split out, it's useful.
+    """
     signature_method = oauth.SignatureMethod_HMAC_SHA1()
 
     def __init__(self, consumer):
@@ -69,6 +74,8 @@ class OAuthClient(Client):
         self.consumer = consumer
 
     def header(self, method, url):
+        if not self.consumer:
+            return None
         req = oauth.Request(method=method, url=url,
                             parameters=_get_args(self.consumer))
         req.sign_request(self.signature_method, self.consumer, None)
@@ -114,6 +121,7 @@ class OAuthClient(Client):
         }
         response = self.request(**r)
         return response
+
 
 
 class BaseOAuth(TestCase):

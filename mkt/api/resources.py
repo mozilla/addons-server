@@ -22,6 +22,7 @@ from mkt.developers.forms import NewManifestForm
 from mkt.webapps.models import Webapp
 from mkt.submit.forms import AppDetailsBasicForm
 from addons.forms import CategoryFormSet
+from tastypie.serializers import Serializer
 
 log = commonware.log.getLogger('z.api')
 
@@ -39,6 +40,7 @@ class ValidationResource(MarketplaceResource):
         # don't always get passed the authorization handler.
         authorization = OwnerAuthorization()
         resource_name = 'validation'
+        serializer = Serializer(formats=['json'])
 
     @write
     @transaction.commit_on_success
@@ -93,6 +95,7 @@ class AppResource(MarketplaceResource):
         authentication = MarketplaceAuthentication()
         authorization = AppOwnerAuthorization()
         resource_name = 'app'
+        serializer = Serializer(formats=['json'])
 
     @write
     @transaction.commit_on_success
@@ -186,5 +189,5 @@ class CategoryResource(MarketplaceResource):
         allowed_methods = ['get']
         fields = ['name', 'id']
         always_return_data = True
-        authentication = MarketplaceAuthentication()
         resource_name = 'category'
+        serializer = Serializer(formats=['json'])

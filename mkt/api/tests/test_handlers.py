@@ -8,9 +8,10 @@ from nose.tools import eq_
 
 from addons.models import Addon, Category, DeviceType
 import amo
-from amo.tests import AMOPaths
+from amo.tests import AMOPaths, TestCase
+from amo.urlresolvers import reverse
 from files.models import FileUpload
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
@@ -307,7 +308,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 404)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestCategoryHandler(BaseOAuth):
 
     def setUp(self):
@@ -322,6 +322,8 @@ class TestCategoryHandler(BaseOAuth):
         self.list_url = ('api_dispatch_list', {'resource_name': 'category'})
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'category', 'pk': self.cat.pk})
+
+        self.client = OAuthClient(None)
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ['get'])

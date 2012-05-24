@@ -18,6 +18,9 @@ Overall notes
 Authentication
 ==============
 
+Not all APIs require authentication. Each API will note if it needs
+authentication.
+
 Currently only two legged OAuth authentication is supported. This is focused on
 clients who would like to create multiple apps on the app store from an end
 point.
@@ -38,7 +41,7 @@ Errors
 Marketplace will return errors as JSON with the appropriate status code.
 
 Data errors
------------
++++++++++++
 
 If there is an error in your data, a 400 status code will be returned. There
 can be multiple errors per field. Example::
@@ -50,7 +53,7 @@ can be multiple errors per field. Example::
         }
 
 Other errors
-------------
+++++++++++++
 
 The appropriate HTTP status code will be returned.
 
@@ -72,7 +75,9 @@ Basically, validate your app, add it in, update it with the various data and
 then request review.
 
 Validate
---------
+========
+
+This API requires authentication.
 
 To validate an app::
 
@@ -127,10 +132,10 @@ Validation processed and an error::
         }}
 
 Create
-------
+======
 
-This requires a successfully validated manifest. To create an app with your
-validated manifest::
+This API requires authentication and a successfully validated manifest. To
+create an app with your validated manifest::
 
         POST /en-US/api/apps/
 
@@ -165,9 +170,9 @@ Fields:
 * manifest_id (required): the id of the manifest returned from verfication.
 
 Update
-------
+======
 
-Updates an app::
+This API requires authentication and a successfully created app::
 
         PUT /en-US/apps/app/<app id>/
 
@@ -179,18 +184,18 @@ status if the app was successfully updated.
 
 Fields:
 
-* name (required): the title of the app. Maximum length 127 characters.
-* summary (required): the summary of the app. Maximum length 255 characters.
-* categories (required): a list of the categories, at least two of the
+* `name` (required): the title of the app. Maximum length 127 characters.
+* `summary` (required): the summary of the app. Maximum length 255 characters.
+* `categories` (required): a list of the categories, at least two of the
   category ids provided from the category api (see below).
-* description (optional): long description. Some HTML supported.
-* privacy_policy (required): your privacy policy. Some HTML supported.
-* homepage (optional): a URL to your apps homepage.
-* support_url (optional): a URL to your support homepage.
-* support_email (required): the email address for support.
-* device_types (required): a list of the device types at least one of:
+* `description` (optional): long description. Some HTML supported.
+* `privacy_policy` (required): your privacy policy. Some HTML supported.
+* `homepage` (optional): a URL to your apps homepage.
+* `support_url` (optional): a URL to your support homepage.
+* `support_email` (required): the email address for support.
+* `device_types` (required): a list of the device types at least one of:
   'desktop', 'phone', 'tablet'.
-* payment_type (required): only choice at this time is 'free'.
+* `payment_type` (required): only choice at this time is 'free'.
 
 Example body data::
 
@@ -205,7 +210,9 @@ Example body data::
 *TODO*: should screenshot re-ordering be added here.
 
 Status
-------
+======
+
+This API requires authentication and a successfully created app.
 
 To view details of an app, including its review status::
 
@@ -215,11 +222,12 @@ Returns the status of the app::
 
         {"slug": "your-test-app",
          "name": "My cool app",
-         "screenshots": [1 , 2, 3]
          ...}
 
 Delete
-------
+======
+
+This API requires authentication and a successfully created app.
 
 Deletes an app::
 
@@ -230,8 +238,61 @@ soft deleted. A soft deleted app will not appear publicly in any listings
 pages, but it will remain so that receipts, purchasing and other components
 work.
 
-Categories
+*TODO*: implement this.
+
+Screenshots or videos
+=====================
+
+These can be added as seperate API calls. There are limits in the marketplace
+for what screenshots and videos can be accepted.
+
+*TODO*: implement this.
+
+Create
+++++++
+
+Create a screenshot or video::
+
+        PUT /api/apps/<slug>/screenshot
+
+The body should contain the screenshot or video to be uploaded.
+
+This will return a 201 if the screenshot or video is successfully created. If
+not we'll return the reason for the error.
+
+Returns the screenshot id::
+
+        {"id": "12"}
+
+Update
+++++++
+
+Update a screenshot or video::
+
+        POST /api/apps/<slug>/screenshot/<id>
+
+This will return a 200 if the screenshot or video is succesfully updated.
+
+Delete
+++++++
+
+Delete a screenshot of video::
+
+        DELETE /api/apps/<slug>/screenshot/<id>
+
+This will return a 200 if the screenshot has been deleted.
+
+
+Other APIs
 ----------
+
+These APIs are not directly about updating Apps. They do not require any
+authentication.
+
+Categories
+==========
+
+No authentication required.
 
 To find a list of categories available on the marketplace::
 
@@ -248,47 +309,6 @@ Returns the list of categories::
         }
 
 Use the `id` of the category in your app updating.
-
-Screenshots or video
---------------------
-
-These can be added as seperate API calls. There are limits in the marketplace
-for what screenshots and videos can be accepted.
-
-Create
-------
-
-Create a screenshot or video::
-
-        PUT /api/apps/<slug>/screenshot
-
-The body should contain the screenshot or video to be uploaded.
-
-This will return a 201 if the screenshot or video is successfully created. If
-not we'll return the reason for the error.
-
-Returns the screenshot id::
-
-        {"id": "12"}
-
-Update
-------
-
-Update a screenshot or video::
-
-        POST /api/apps/<slug>/screenshot/<id>
-
-This will return a 200 if the screenshot or video is succesfully updated.
-
-Delete
-------
-
-Delete a screenshot of video::
-
-        DELETE /api/apps/<slug>/screenshot/<id>
-
-This will return a 200 if the screenshot has been deleted.
-
 
 .. _`MDN`: https://developer.mozilla.org
 .. _`marketplace team`: marketplace-team@mozilla.org
