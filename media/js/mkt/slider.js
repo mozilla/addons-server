@@ -95,8 +95,8 @@ z.page.on('fragmentloaded', function() {
                 perPage = itemsPerPage($li),
                 maxPage = numPages($li, perPage);
 
-            $prevLink.on('touchstart', _pd(prevPage));
-            $nextLink.on('touchstart', _pd(nextPage));
+            $prevLink.on('click', _pd(prevPage));
+            $nextLink.on('click', _pd(nextPage));
 
             var showNext = false,
                 $window = $(window),
