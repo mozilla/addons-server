@@ -385,7 +385,7 @@ function create_new_preview_field() {
             }
         });
     });
-    $(last).after(last_clone);
+    last.after(last_clone);
     $('#id_files-TOTAL_FORMS').val(parseInt(forms_count, 10) + 1);
 
     return last;
@@ -428,6 +428,7 @@ function reorderPreviews() {
 
 function initUploadPreview() {
     var forms = {},
+        form,
         $f = $('.edit-media, #submit-media');
 
     function upload_start_all(e) {
@@ -444,10 +445,16 @@ function initUploadPreview() {
     }
 
     function upload_start(e, file) {
-        form = create_new_preview_field();
+        if ($f.is('#edit-addon-admin')) {
+            // No formsets here, so easy peasy!
+            form = $('.preview');
+            form.find('.delete input').removeAttr('checked');
+        } else {
+            form = create_new_preview_field();
+        }
         forms['form_' + file.instance] = form;
 
-        var $thumb = $(form).show().find('.preview-thumb');
+        var $thumb = form.show().find('.preview-thumb');
         $thumb.addClass('loading');
         if (file.type.indexOf('video') > -1) {
             $thumb.replaceWith(format(
@@ -510,7 +517,6 @@ function initUploadPreview() {
         e.preventDefault();
         var row = $(this).closest(".preview");
         row.find(".delete input").attr("checked", "checked");
-        console.log("Marking as selected!!");
         row.slideUp(300, renumberPreviews);
     });
 

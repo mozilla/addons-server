@@ -297,9 +297,12 @@ class PromoForm(PreviewForm):
         return -1
 
     def save(self, addon, commit=True):
-        if self.cleaned_data.get('DELETE') and self.promo.id:
+        if (self.cleaned_data.get('DELETE') and
+            'upload_hash' not in self.changed_data and self.promo.id):
             self.promo.delete()
         else:
+            if self.promo and 'upload_hash' in self.changed_data:
+                self.promo.delete()
             super(PromoForm, self).save(addon, True)
         return addon
 
