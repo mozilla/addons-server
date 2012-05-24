@@ -123,7 +123,6 @@ class OAuthClient(Client):
         return response
 
 
-
 class BaseOAuth(TestCase):
     fixtures = ['base/user_2519', 'base/users']
 
