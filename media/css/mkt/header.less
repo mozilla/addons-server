@@ -274,9 +274,15 @@
             margin-top: 14px;
         }
         nav #flyout {
-            top: 115px;
+            right: 0;
+            left: 0;
+            width: auto;
             &.active {
-                top: 150px;
+                top: 55px;
+            }
+            li:first-child a:before {
+                top: -6px;
+                right: 7px;
             }
         }
     }
