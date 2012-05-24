@@ -182,18 +182,22 @@
         }
         #welcome {
             min-height: 230px;
+//            margin: 0 10px;
             &:before {
-                background-position: 50% 50%;
-                opacity: .2;
+                content: none;
             }
             > div {
-                width: 100%;
+                width: auto;
+            }
+            .proceed {
+                padding-top: 10px;
+                text-align: center;
             }
         }
         #site-footer {
             text-align: center;
             > div {
-                .width(4);
+                width: 100%;
             }
         }
         #access-devhub,
@@ -202,9 +206,12 @@
             float: none;
         }
         #access-devhub {
-            border-bottom: 1px dotted @light-gray;
             text-align: center;
-            padding-bottom: 15px;
+            padding: 0 10px 15px;
+            a {
+                display: block;
+                padding: 5px;
+            }
         }
     }
 }

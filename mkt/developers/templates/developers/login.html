@@ -42,12 +42,12 @@
         <a href="{{ url('ecosystem.landing') }}">Upload your app &raquo;</a>
       </p>
       <div>
-        <ul>
-          <li><a href="{{ url('site.privacy') }}">
-            {{ _('Privacy Policy') }}</a></li>
-          <li><a href="{{ url('site.terms') }}">
-            {{ _('Terms of Use') }}</a></li>
-        </ul>
+        <nav class="footer-links">
+          <a href="{{ url('site.privacy') }}">
+            {{ _('Privacy Policy') }}</a>
+          <a href="{{ url('site.terms') }}">
+            {{ _('Terms of Use') }}</a>
+        </nav>
         {% include 'site/includes/languages.html' %}
       </div>
     </div>

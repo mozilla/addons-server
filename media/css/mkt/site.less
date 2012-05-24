@@ -133,7 +133,8 @@ body {
     position: relative;
     > section {
         &:only-child {
-            padding: 24px 0 12px;
+            padding-top: 24px;
+            padding-bottom: 12px;
         }
         &:last-child {
             padding-bottom: 12px;
@@ -182,11 +183,14 @@ body {
 @media (max-width: @4col) {
     #site-header, #page {
         > section, > section.full > div {
-            .width(5.5);
+            .border-box;
+            width: 100%;
+            min-width: 320px;
         }
-    }
-    #site-header section {
-        .width(5.5);
+        > section {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
     }
     #search {
         display: none;
@@ -213,17 +217,6 @@ body {
 
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
-    #site-header, #page {
-        > section, > section.full > div {
-            .border-box;
-            width: 100%;
-            min-width: 320px;
-        }
-        > section {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    }
 }
 
 .row {
