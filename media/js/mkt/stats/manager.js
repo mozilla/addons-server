@@ -243,7 +243,9 @@ z.StatsManager = (function() {
                 forEachISODate(range, '1 day', ds, function(row, date) {
                     var d = date.iso();
                     if (row) {
-                        if (!firstIndex) firstIndex = d;
+                        if (!firstIndex) {
+                            firstIndex = range.start;
+                        }
                         if (metric == 'apps') {
                             row = collapseVersions(row, PRECISION);
                         }
@@ -289,6 +291,7 @@ z.StatsManager = (function() {
             range = normalizeRange(view.range),
             group = view.group || 'day',
             groupedData = {};
+
         // if grouping is by day, do nothing.
         if (group == 'day') return data;
         var groupKey = false,

@@ -37,6 +37,7 @@
                         return Highcharts.numberFormat(this.value, 0);
                     }
                 },
+                min: 0,
                 minPadding: 0.05,
                 startOnTick: false,
                 showFirstLabel: false
@@ -52,7 +53,7 @@
                     shadow: false,
                     marker: {
                         enabled: true,
-                        radius: 0,
+                        radius: 3,
                         states: {
                            hover: {
                               enabled: true,
@@ -145,7 +146,7 @@
         var step = '1 ' + group,
             point,
             dataSum = 0;
-
+        dbg(data);
         forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
@@ -163,6 +164,18 @@
             baseConfig.yAxis.max = null;
         }
 
+        // Transform xAxis based on time grouping (day, week, month) and range
+        var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
+        baseConfig.xAxis.min = start - dayMsecs;
+        baseConfig.xAxis.max = end;
+        if (group == 'month') {
+            pointInterval = 30 * dayMsecs;
+            baseConfig.xAxis.tickInterval = pointInterval;
+        } else if (group == 'week') {
+            pointInterval = 7 * dayMsecs;
+            baseConfig.xAxis.tickInterval = pointInterval;
+        }
+
         // Populate the chart config object.
         var chartData = [], id;
         for (i = 0; i < fields.length; i++) {
@@ -172,9 +185,9 @@
                 'type'  : 'line',
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
-                'pointInterval' : 1000 * 3600 * 24,
+                'pointInterval' : pointInterval,
                 // compensate for timezone offsets from UTC.
-                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
+                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000 + dayMsecs,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
