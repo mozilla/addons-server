@@ -141,6 +141,26 @@ body {
     }
 }
 
+#site-footer {
+    background-color: @pale-bg;
+    .grain;
+    padding: 16px;
+    text-align: center;
+    .footer-links {
+        a:before {
+            content: "\00b7";
+            margin: 0 4px;
+            color: @gray;
+        }
+        a:hover:before {
+            text-decoration: none;
+        }
+        a:first-child:before {
+            content: none;
+        }
+    }
+}
+
 // 10 columns (portrait tablet)
 @media (max-width: @10col) {
     #site-header, #page {
@@ -163,19 +183,40 @@ body {
     #site-header section {
         .width(5.5);
     }
+    #search {
+        display: none;
+    }
+    #site-footer {
+        padding: 0;
+        .footer-links {
+            text-align: left;
+            a {
+                display: block;
+                padding: 10px;
+                font-size: 18px;
+                border-bottom: 1px solid black;
+                &:first-child {
+                    border-top: 1px solid black;
+                }
+                &:before {
+                    content: none;
+                }
+            }
+        }
+    }
 }
 
 // 3 columns (portrait smartphone)
 @media (max-width: @3col) {
     #site-header, #page {
         > section, > section.full > div {
-            .width(3);
+            .border-box;
+            width: 100%;
+            min-width: 320px;
         }
-    }
-    #site-header {
-        margin-bottom: 20px;
         > section {
-            .width(3);
+            padding-left: 10px;
+            padding-right: 10px;
         }
     }
 }
@@ -224,13 +265,6 @@ body {
     &.expand {
         display: block;
     }
-}
-
-#site-footer {
-    background-color: @pale-bg;
-    .grain;
-    padding: 16px;
-    text-align: center;
 }
 
 // Fixes z-index footer issue on login page.

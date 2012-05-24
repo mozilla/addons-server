@@ -81,6 +81,9 @@ z.page.on('fragmentloaded', function() {
     }
 
     function initSliders() {
+        if (z.capabilities.touch) {
+            return;
+        }
         $('.categories h3').linefit();
         $('.promo-grid h3').lineclamp(2);
         $('.slider').each(function() {
@@ -92,8 +95,8 @@ z.page.on('fragmentloaded', function() {
                 perPage = itemsPerPage($li),
                 maxPage = numPages($li, perPage);
 
-            $prevLink.click(_pd(prevPage));
-            $nextLink.click(_pd(nextPage));
+            $prevLink.on('touchstart', _pd(prevPage));
+            $nextLink.on('touchstart', _pd(nextPage));
 
             var showNext = false,
                 $window = $(window),

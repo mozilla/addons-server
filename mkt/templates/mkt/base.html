@@ -14,6 +14,7 @@
       <meta name="robots" content="noindex">
     {% endif %}
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ _('Mozilla Marketplace') }}{% endblock %}</title>
 
@@ -69,32 +70,28 @@
           {% else %}
             {{ request.amo_user.email }}
           {% endif %}
-          <a href="{{ url('users.logout') }}">(log out)</a>
-          <p>
+        {% endif %}
+        <nav class="footer-links">
+          {% if logged %}
+            <a href="{{ url('users.logout') }}">Log out</a>
             {% for link in tools_links %}
               <a href="{{ link.href }}">{{ link.text }}</a>
-              {% if not loop.last %}&middot;{% endif %}
+              {% if not loop.last %}{% endif %}
             {% endfor %}
-            {% if tools_links|length > 2 %}
-              <br>
-            {% elif request.can_view_consumer %}
-              &middot;
-            {% endif %}
             {% if request.can_view_consumer %}
               <a href="{{ url('account.purchases') }}">
                 {{ _('Account History') }}</a>
-              &middot;
               <a href="{{ url('account.settings') }}">
                 {{ _('Account Settings') }}</a>
             {% endif %}
-          </p>
-        {% else %}
+          {% endif %}
+          <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
+        <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
+        </nav>
+        {% if not logged %}
           <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
         {% endif %}
-          {% include 'site/includes/languages.html' %}
-        <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
-        &middot;
-        <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
+        {% include 'site/includes/languages.html' %}
       </footer>
     {% endblock %}
 

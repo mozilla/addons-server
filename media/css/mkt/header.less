@@ -255,7 +255,24 @@
             }
         }
     }
+    .featured.slider {
+        background-image: url(../../img/mkt/grain.png),
+                          linear-gradient(#394C58, #60747F);
+        background-image: url(../../img/mkt/grain.png),
+                          -moz-linear-gradient(#394C58, #60747F);
+        background-image: url(../../img/mkt/grain.png),
+                          -webkit-linear-gradient(#394C58, #60747F);
+        background-image: url(../../img/mkt/grain.png),
+                          -webkit-gradient(linear, left bottom, left top, from(#60747F), to(#394C58));
+    }
     #site-header {
+        height: 53px;
+        h1 {
+            padding: 1px 0 0;
+        }
+        .menu-button {
+            margin-top: 14px;
+        }
         nav #flyout {
             top: 115px;
             &.active {
