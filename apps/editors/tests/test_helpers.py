@@ -23,6 +23,7 @@ from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
 
+from . test_models import create_addon_file
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                          amo.STATUS_UNREVIEWED)
@@ -609,6 +610,25 @@ class TestReviewHelper(amo.tests.TestCase):
 
             assert not storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
+
+    def test_preliminary_upgrade_to_sandbox(self):
+        self.setup_data(amo.STATUS_LITE)
+        eq_(self.addon.status, amo.STATUS_LITE)
+        eq_(self.file.status, amo.STATUS_LITE)
+
+        a = create_addon_file(self.addon.name, '2.2', amo.STATUS_LITE,
+                              amo.STATUS_UNREVIEWED)
+        self.version = a['version']
+
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        self.helper.handler.process_sandbox()
+        eq_(self.addon.status, amo.STATUS_LITE)
+        eq_(self.file.status, amo.STATUS_LITE)
+        f = File.objects.get(pk=a['file'].id)
+        eq_(f.status, amo.STATUS_DISABLED)
 
     def test_preliminary_to_super_review(self):
         for status in helpers.PRELIMINARY_STATUSES:
