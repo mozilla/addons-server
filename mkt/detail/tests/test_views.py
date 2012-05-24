@@ -529,6 +529,18 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 404)
         eq_(self.user.installed_set.count(), 0)
 
+    @mock.patch('mkt.webapps.models.Webapp.has_purchased')
+    def test_paid(self, has_purchased):
+        has_purchased.return_value = True
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(self.client.post(self.url).status_code, 200)
+
+    @mock.patch('mkt.webapps.models.Webapp.has_purchased')
+    def test_not_paid(self, has_purchased):
+        has_purchased.return_value = False
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(self.client.post(self.url).status_code, 403)
+
     def test_record_logged_out(self):
         self.client.logout()
         res = self.client.post(self.url)

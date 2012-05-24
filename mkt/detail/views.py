@@ -90,6 +90,9 @@ def record(request, addon):
         or is_dev or not addon.is_webapp())):
         raise http.Http404
 
+    if addon.is_premium() and not addon.has_purchased(request.amo_user):
+        return http.HttpResponseForbidden()
+
     installed, c = Installed.objects.safer_get_or_create(addon=addon,
                                                          user=request.amo_user)
     send_request('install', request, {
