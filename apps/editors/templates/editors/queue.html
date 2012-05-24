@@ -6,6 +6,12 @@
 
 {% block content %}
 
+{% if waffle.switch('reviewer-incentive-points') %}
+<div id="reviewers-score-bar" class="c">
+  {{ reviewers_score_bar() }}
+</div>
+{% endif %}
+
 <ul class="tabnav">
   {% for this, loc, text in queue_tabnav() %}
   <li class="{% if tab==this %}selected{% endif %}"><a href="{{ url('editors.%s' % loc) }}">{{ text }}</a></li>

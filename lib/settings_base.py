@@ -1232,7 +1232,8 @@ VALIDATOR_TIMEOUT = 90
 # When True include full tracebacks in JSON. This is useful for QA on preview.
 EXPOSE_VALIDATOR_TRACEBACKS = False
 
-# Max number of warnings/errors to show from validator. Set to None for no limit.
+# Max number of warnings/errors to show from validator. Set to None for no
+# limit.
 VALIDATOR_MESSAGE_LIMIT = 500
 
 # Feature flags

@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.core.validators import ValidationError
 from django.utils import translation
 
+import mock
 from nose.tools import eq_, assert_raises, raises
 
 from amo.utils import (cache_ns_key, LocalFileStorage, no_translation,
@@ -190,16 +191,22 @@ class TestCacheNamespaces(unittest.TestCase):
         cache.clear()
         self.namespace = 'redis-is-dead'
 
-    def test_no_preexisting_key(self):
-        eq_(cache_ns_key(self.namespace), '0:ns:%s' % self.namespace)
+    @mock.patch('amo.utils.epoch')
+    def test_no_preexisting_key(self, epoch_mock):
+        epoch_mock.return_value = 123456
+        eq_(cache_ns_key(self.namespace), '123456:ns:%s' % self.namespace)
 
-    def test_no_preexisting_key_incr(self):
+    @mock.patch('amo.utils.epoch')
+    def test_no_preexisting_key_incr(self, epoch_mock):
+        epoch_mock.return_value = 123456
         eq_(cache_ns_key(self.namespace, increment=True),
-            '0:ns:%s' % self.namespace)
+            '123456:ns:%s' % self.namespace)
 
-    def test_key_incr(self):
-        cache_ns_key(self.namespace)  # Sets ns to 0
+    @mock.patch('amo.utils.epoch')
+    def test_key_incr(self, epoch_mock):
+        epoch_mock.return_value = 123456
+        cache_ns_key(self.namespace)  # Sets ns to 123456
         ns_key = cache_ns_key(self.namespace, increment=True)
-        expected = '1:ns:%s' % self.namespace
+        expected = '123457:ns:%s' % self.namespace
         eq_(ns_key, expected)
         eq_(cache_ns_key(self.namespace), expected)

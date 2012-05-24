@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 from django.conf import settings
 from django.template import Context, loader
@@ -10,7 +10,8 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 import waffle
 
 import amo
-from amo.helpers import breadcrumbs, page_title, absolutify, timesince
+from addons.helpers import new_context
+from amo.helpers import absolutify, breadcrumbs, page_title, timesince
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
 
@@ -147,6 +148,18 @@ def queue_tabnav(context):
                        (ngettext('Apps ({0})', 'Apps ({0})', counts['apps'])
                         .format(counts['apps']))))
     return tabnav
+
+
+@register.inclusion_tag('editors/includes/reviewers_score_bar.html')
+@jinja2.contextfunction
+def reviewers_score_bar(context):
+    user = context.get('amo_user')
+
+    return new_context(dict(
+        amo=amo,
+        points=ReviewerScore.get_recent(user),
+        total=ReviewerScore.get_total(user),
+        **ReviewerScore.get_leaderboards(user)))
 
 
 class ItemStateTable(object):
@@ -525,7 +538,7 @@ class ReviewHelper:
         return self.actions[action]['method']()
 
 
-class ReviewBase:
+class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type):
         self.request = request
@@ -538,15 +551,15 @@ class ReviewBase:
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
         self.addon.update(**kw)
-        self.version.update(reviewed=datetime.now())
+        self.version.update(reviewed=datetime.datetime.now())
 
     def set_files(self, status, files, copy_to_mirror=False,
                   hide_disabled_file=False):
         """Change the files to be the new status
         and copy, remove from the mirror as appropriate."""
         for file in files:
-            file.datestatuschanged = datetime.now()
-            file.reviewed = datetime.now()
+            file.datestatuschanged = datetime.datetime.now()
+            file.reviewed = datetime.datetime.now()
             if copy_to_mirror:
                 file.copy_to_mirror()
             if hide_disabled_file:
@@ -561,7 +574,7 @@ class ReviewBase:
             details['files'] = [f.id for f in self.files]
 
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
-                created=datetime.now(), details=details)
+                created=datetime.datetime.now(), details=details)
 
     def notify_email(self, template, subject):
         """Notify the authors that their addon has been reviewed."""

@@ -1,9 +1,12 @@
 import copy
+import datetime
 
 import waffle
 
 from django.conf import settings
+from django.core.cache import cache
 from django.db import models
+from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 
@@ -11,7 +14,7 @@ import amo
 import amo.models
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import send_mail
+from amo.utils import cache_ns_key, send_mail
 from addons.models import Addon
 from editors.sql_model import RawSQLModel
 from translations.fields import TranslatedField
@@ -371,6 +374,17 @@ class ReviewerScore(amo.models.ModelBase):
         ordering = ('-created',)
 
     @classmethod
+    def get_key(cls, key=None, invalidate=False):
+        namespace = 'riscore'
+        if not key:  # Assuming we're invalidating the namespace.
+            cache_ns_key(namespace, invalidate)
+            return
+        else:
+            # Using cache_ns_key so each cache val is invalidated together.
+            ns_key = cache_ns_key(namespace, invalidate)
+            return '%s:%s' % (ns_key, key)
+
+    @classmethod
     def get_event_by_type(cls, addon, review_type=None):
         if addon.type == amo.ADDON_EXTENSION:
             # Special case for addons depending on review_type.
@@ -408,6 +422,95 @@ class ReviewerScore(amo.models.ModelBase):
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event)
+            cls.get_key(invalidate=True)
             user_log.info(u'Awarding %s points to user %s for "%s" for addon'
                            '%s' % (score, user, amo.REVIEWED_CHOICES[event],
                                    addon.id))
+
+    @classmethod
+    def get_total(cls, user):
+        """Returns total points by user."""
+        key = cls.get_key('get_total:%s' % user.id)
+        val = cache.get(key)
+        if val is not None:
+            return val
+
+        val = (ReviewerScore.uncached.filter(user=user)
+                                     .aggregate(total=Sum('score'))
+                                     .values())[0]
+        cache.set(key, val, 0)
+        return val
+
+    @classmethod
+    def get_recent(cls, user, limit=5):
+        """Returns most recent ReviewerScore records."""
+        key = cls.get_key('get_recent:%s' % user.id)
+        val = cache.get(key)
+        if val is not None:
+            return val
+
+        val = list(ReviewerScore.uncached.filter(user=user)[:limit])
+        cache.set(key, val, 0)
+        return val
+
+    @classmethod
+    def get_leaderboards(cls, user, days=7):
+        """Returns leaderboards with ranking for the past given days.
+
+        This will return a dict of 3 items::
+
+            {'leader_top': [...],
+             'leader_near: [...],
+             'user_rank': (int)}
+
+        If the user is not in the leaderboard, or if the user is in the top 5,
+        'leader_near' will be an empty list and 'leader_top' will contain 5
+        elements instead of the normal 3.
+
+        """
+        key = cls.get_key('get_leaderboards:%s' % user.id)
+        val = cache.get(key)
+        if val is not None:
+            return val
+
+        week_ago = datetime.date.today() - datetime.timedelta(days=days)
+
+        # I'd normally use Django's ORM aggregation but bug 17144 scared me
+        # away.
+        leader_top = []
+        leader_near = []
+        in_leaderboard = (ReviewerScore.uncached.filter(created__gte=week_ago,
+                                                        user=user)
+                                                .exists())
+
+        sql = """SELECT *, SUM(`reviewer_scores`.`score`) AS `total`
+                 FROM `reviewer_scores`
+                 WHERE `created` >= %s
+                 GROUP BY `user_id`
+                 ORDER BY `total` DESC"""
+
+        rank = 0
+        if not in_leaderboard:
+            sql += ' LIMIT 5'  # Top 5 if not in leaderboard.
+            leader_top = list(ReviewerScore.uncached.raw(sql, [week_ago]))
+        else:
+            scores = list(ReviewerScore.uncached.raw(sql, [week_ago]))
+            for i, score in enumerate(scores, 1):
+                score.rank = i
+                if user.id == score.user_id:
+                    rank = i
+
+            if rank <= 5:  # User is in top 5, show top 5.
+                leader_top = scores[:5]
+            else:
+                leader_top = scores[:3]
+                leader_near = [scores[rank - 2], scores[rank - 1],
+                               scores[rank]]
+
+        val = {
+            'leader_top': leader_top,
+            'leader_near': leader_near,
+            'user_rank': rank,
+        }
+        cache.set(key, val, 0)
+        return val

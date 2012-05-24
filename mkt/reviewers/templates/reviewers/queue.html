@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block content %}
+
+{% if waffle.switch('reviewer-incentive-points') %}
+<section id="reviewers-score-bar" class="island full c">
+  {{ reviewers_score_bar() }}
+</section>
+{% endif %}
+
   <ul class="tabnav">
     {% for this, loc, text in queue_tabnav() %}
       <li class="{% if tab == this %}selected{% endif %}">

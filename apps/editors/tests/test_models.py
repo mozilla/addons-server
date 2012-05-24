@@ -1,9 +1,11 @@
 # -*- coding: utf8 -*-
-from datetime import datetime
+import datetime
+import time
 
 from django.core import mail
 
 from nose.tools import eq_
+import waffle
 
 import amo
 import amo.tests
@@ -134,7 +136,7 @@ class TestPendingQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(created=datetime.utcnow())
+        Version.objects.update(created=datetime.datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone will be off, hard to test this.
@@ -171,7 +173,7 @@ class TestFullReviewQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(nomination=datetime.utcnow())
+        Version.objects.update(nomination=datetime.datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone will be off, hard to test this.
@@ -202,7 +204,7 @@ class TestPreliminaryQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(created=datetime.utcnow())
+        Version.objects.update(created=datetime.datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone might be off due to your MySQL install, hard to test this.
@@ -324,9 +326,17 @@ class TestEditorSubscription(amo.tests.TestCase):
 
 
 class TestReviewerScore(amo.tests.TestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         self.addon = amo.tests.addon_factory()
+        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+
+    def _give_points(self, user=None, addon=None, event=None):
+        user = user or self.user
+        addon = addon or self.addon
+        event = event or amo.REVIEWED_ADDON_FULL
+        ReviewerScore.award_points(user, addon, event)
 
     def test_get_event_by_type(self):
         self.addon.type = amo.ADDON_EXTENSION
@@ -363,3 +373,86 @@ class TestReviewerScore(amo.tests.TestCase):
 
         self.addon.type = amo.ADDON_WEBAPP
         eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_WEBAPP)
+
+    def test_award_points(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        self._give_points()
+        eq_(ReviewerScore.objects.all()[0].score,
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_get_total(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        user2 = UserProfile.objects.get(email='admin@mozilla.com')
+        self._give_points()
+        self._give_points(event=amo.REVIEWED_ADDON_PRELIM)
+        self._give_points(user=user2)
+        eq_(ReviewerScore.get_total(self.user),
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+        eq_(ReviewerScore.get_total(user2),
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_get_recent(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        user2 = UserProfile.objects.get(email='admin@mozilla.com')
+        self._give_points()
+        time.sleep(1)  # Wait 1 sec so ordering by created is checked.
+        self._give_points(event=amo.REVIEWED_ADDON_PRELIM)
+        self._give_points(user=user2)
+        scores = ReviewerScore.get_recent(self.user)
+        eq_(len(scores), 2)
+        eq_(scores[0].score, amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+        eq_(scores[1].score, amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_get_leaderboards(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        user2 = UserProfile.objects.get(email='admin@mozilla.com')
+        self._give_points()
+        self._give_points(event=amo.REVIEWED_ADDON_PRELIM)
+        self._give_points(user=user2)
+        leaders = ReviewerScore.get_leaderboards(self.user)
+        eq_(leaders['user_rank'], 1)
+        eq_(leaders['leader_near'], [])
+        eq_(leaders['leader_top'][0].rank, 1)
+        eq_(leaders['leader_top'][0].user, self.user)
+        eq_(leaders['leader_top'][0].total,
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+        eq_(leaders['leader_top'][1].rank, 2)
+        eq_(leaders['leader_top'][1].user, user2)
+        eq_(leaders['leader_top'][1].total,
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_caching(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        self._give_points()
+
+        with self.assertNumQueries(1):
+            ReviewerScore.get_total(self.user)
+        with self.assertNumQueries(0):
+            ReviewerScore.get_total(self.user)
+
+        with self.assertNumQueries(1):
+            ReviewerScore.get_recent(self.user)
+        with self.assertNumQueries(0):
+            ReviewerScore.get_recent(self.user)
+
+        with self.assertNumQueries(2):
+            ReviewerScore.get_leaderboards(self.user)
+        with self.assertNumQueries(0):
+            ReviewerScore.get_leaderboards(self.user)
+
+        # New points invalidates all caches.
+        self._give_points()
+
+        with self.assertNumQueries(1):
+            ReviewerScore.get_total(self.user)
+        with self.assertNumQueries(1):
+            ReviewerScore.get_recent(self.user)
+        with self.assertNumQueries(2):
+            ReviewerScore.get_leaderboards(self.user)

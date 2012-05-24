@@ -924,3 +924,51 @@ span.currently_viewing_warning {
 h2.addon {
     word-wrap: break-word;
 }
+
+#reviewers-score-bar {
+  background: #FCFDFE;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#fcfdfe), to(#f4f8fc));
+  background-image: linear-gradient(#fcfdfe, #f4f8fc);
+  background-image: -moz-linear-gradient(#fcfdfe, #f4f8fc);
+  background-image: -webkit-linear-gradient(#fcfdfe, #f4f8fc);
+  border: 1px solid #c9ddf2;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin-bottom: 15px;
+  padding: 14px 14px 16px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#reviewers-score-bar ul li {
+    float: left;
+    width: 32%;
+    margin: 0 0.5%;
+}
+
+.html-rtl #reviewers-score-bar ul li {
+    float: right;
+}
+
+#reviewers-score-bar h3 {
+    margin-top: 0;
+}
+
+#reviewers-score-bar tr.you-are-here {
+    font-weight: bold;
+}
+
+#reviewers-score-bar td.number {
+    text-align: right;
+}
+
+.html-trl #reviewers-score-bar td.number {
+    text-align: left;
+}
