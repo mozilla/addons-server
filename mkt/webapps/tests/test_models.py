@@ -104,9 +104,9 @@ class TestWebapp(test_utils.TestCase):
 
         eq_(
             webapp.get_stats_url(
-                action='overview_series',
+                action='installs_series',
                 args=['day', '20120101', '20120201', 'json']),
-            '/en-US/app/woo/statistics/app_overview-day-20120101-20120201.json'
+                '/en-US/app/woo/statistics/installs-day-20120101-20120201.json'
         )
 
     def test_get_origin(self):

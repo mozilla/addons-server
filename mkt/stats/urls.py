@@ -25,8 +25,6 @@ urlpatterns = patterns('',
 
     # time series URLs following this pattern:
     # /app/{app_slug}/statistics/{series}-{group}-{start}-{end}.{format}
-    #url(series['app_overview'], views.overview_series,
-    #    name='mkt.stats.overview_series'),
     url(series['installs'], views.installs_series,
         name='mkt.stats.installs_series'),
     url(series['usage'], views.usage_series,

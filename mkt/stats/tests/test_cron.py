@@ -10,7 +10,7 @@ from mkt.stats import tasks
 from stats.models import Contribution
 
 
-class TestIndexAddonAggregateContributions(amo.tests.ESTestCase):
+class TestIndexAggregateContributions(amo.tests.ESTestCase):
 
     def setUp(self):
         self.app = amo.tests.app_factory()
@@ -34,7 +34,9 @@ class TestIndexAddonAggregateContributions(amo.tests.ESTestCase):
         document = Contribution.search().filter(addon=self.app.pk
             ).values_dict('revenue', 'count', 'refunds')[0]
 
-        document['revenue'] = int(document['revenue'])
+        document = {'count': document['count'],
+                    'revenue': int(document['revenue']),
+                    'refunds': document['refunds']}
         self.expected['revenue'] = int(self.expected['revenue'])
 
         eq_(document, self.expected)
@@ -73,9 +75,11 @@ class TestIndexContributionCounts(amo.tests.ESTestCase):
         ex_date = self.expected['date']
         eq_((date.year, date.month, date.day),
             (ex_date.year, ex_date.month, ex_date.day))
-        del(document['date'])
+
+        document = {'count': document['count'],
+                    'revenue': int(document['revenue']),
+                    'refunds': document['refunds']}
         del(self.expected['date'])
 
-        document['revenue'] = int(document['revenue'])
         self.expected['revenue'] = int(self.expected['revenue'])
         eq_(document, self.expected)
