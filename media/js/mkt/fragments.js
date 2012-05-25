@@ -7,6 +7,7 @@ function fragmentFilter(el) {
             href.substr(0,11) === 'javascript:' ||
             href.substr(0,1) === '#' ||
             href.indexOf('/developers/') !== -1 ||
+            href.indexOf('/ecosystem/') !== -1 ||
             href.indexOf('/statistics/') !== -1 ||
             href.indexOf('?modified=') !== -1 ||
             el.getAttribute('target') === '_blank';
