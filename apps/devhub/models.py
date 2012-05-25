@@ -217,10 +217,12 @@ class ActivityLogManager(amo.models.ManagerBase):
 
     def _by_type(self, webapp=False):
         qs = super(ActivityLogManager, self).get_query_set()
-        table = 'log_activity_app' if webapp else 'log_activity_addon'
+        table = (table_name('log_activity_app') if webapp
+                 else 'log_activity_addon')
         return qs.extra(
             tables=[table],
-            where=['%s.activity_log_id=log_activity.id' % table])
+            where=['%s.activity_log_id=%s.id'
+                   % (table, table_name('log_activity'))])
 
 
 class SafeFormatter(string.Formatter):
