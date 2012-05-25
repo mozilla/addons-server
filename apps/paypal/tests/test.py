@@ -281,9 +281,9 @@ class TestPurchase(amo.tests.TestCase):
         eq_(paypal.check_purchase('some-paykey'), False)
 
 
-@mock.patch('paypal.urllib.urlopen')
-def test_check_paypal_id(urlopen_mock):
-    urlopen_mock.return_value = StringIO('ACK=Success')
+@mock.patch('paypal.requests.get')
+def test_check_paypal_id(get):
+    get.return_value.text = 'ACK=Success'
     val = paypal.check_paypal_id(u'\u30d5\u30a9\u30af\u3059\u3051')
     eq_(val, (True, None))
 

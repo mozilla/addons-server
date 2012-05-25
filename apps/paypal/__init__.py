@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-import contextlib
 from datetime import date
 from decimal import Decimal, InvalidOperation
-import socket
 import urllib
 import urlparse
 import re
 
 from django.conf import settings
-from django.utils.http import urlencode, urlquote
+from django.utils.http import urlquote
 
 import commonware.log
 from django_statsd.clients import statsd
@@ -542,22 +540,11 @@ def check_paypal_id(name):
     d['user'] = settings.PAYPAL_EMBEDDED_AUTH['USER']
     d['pwd'] = settings.PAYPAL_EMBEDDED_AUTH['PASSWORD']
     d['signature'] = settings.PAYPAL_EMBEDDED_AUTH['SIGNATURE']
-    with socket_timeout(10):
-        r = urllib.urlopen(settings.PAYPAL_API_URL, urlencode(d))
-    response = dict(urlparse.parse_qsl(r.read()))
+    r = requests.get(settings.PAYPAL_API_URL, params=d, timeout=10)
+    response = dict(urlparse.parse_qsl(r.text))
     valid = response['ACK'] == 'Success'
     msg = None if valid else response['L_LONGMESSAGE0']
     return valid, msg
-
-
-@contextlib.contextmanager
-def socket_timeout(timeout):
-    """Context manager to temporarily set the default socket timeout."""
-    old = socket.getdefaulttimeout()
-    try:
-        yield
-    finally:
-        socket.setdefaulttimeout(old)
 
 
 def paypal_log_cef(request, addon, uuid, msg, caps, longer):
