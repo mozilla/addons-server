@@ -329,6 +329,12 @@ class TestCategoryHandler(BaseOAuth):
         self._allowed_verbs(self.list_url, ['get'])
         self._allowed_verbs(self.get_url, ['get'])
 
+    def test_weight(self):
+        self.cat.update(weight=-1)
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 0)
+
     def test_get_categories(self):
         res = self.client.get(self.list_url)
         data = json.loads(res.content)

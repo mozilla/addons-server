@@ -11,14 +11,12 @@ from mkt.webapps.models import Webapp
 
 
 class TestApi(BaseOAuth, ESTestCase):
-    fixtures = fixtures = ['webapps/337141-steamcube']
+    fixtures = ['webapps/337141-steamcube']
 
     def setUp(self):
         self.client = OAuthClient(None)
         self.list_url = ('api_dispatch_list', {'resource_name': 'search'})
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.update(status=amo.STATUS_PUBLIC)
-        self.webapp.save()
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
         self.webapp.save()
@@ -34,6 +32,11 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_wrong_category(self):
         res = self.client.get(self.list_url + ({'cat': self.category.pk + 1},))
+        eq_(res.status_code, 400)
+
+    def test_wrong_weight(self):
+        self.category.update(weight=-1)
+        res = self.client.get(self.list_url + ({'cat': self.category.pk},))
         eq_(res.status_code, 400)
 
     def test_wrong_sort(self):

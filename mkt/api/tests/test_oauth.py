@@ -153,7 +153,7 @@ class BaseOAuth(TestCase):
                 continue
             res = getattr(self.client, verb)(url)
             assert (res.status_code in (401, 405),
-                    '%s: %s not 405' % (verb.upper(), res.status_code))
+                    '%s: %s not 401 or 405' % (verb.upper(), res.status_code))
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

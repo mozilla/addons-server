@@ -26,7 +26,7 @@ class SearchResource(MarketplaceResource):
         return None
 
     def get_list(self, request=None, **kwargs):
-        form = ApiSearchForm(request.GET)
+        form = ApiSearchForm(request.GET if request else None)
         if not form.is_valid():
             raise ValidationError(self.form_errors(form))
 

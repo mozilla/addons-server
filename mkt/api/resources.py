@@ -184,7 +184,8 @@ class AppResource(MarketplaceResource):
 class CategoryResource(MarketplaceResource):
 
     class Meta:
-        queryset = Category.objects.filter(type=amo.ADDON_WEBAPP)
+        queryset = Category.objects.filter(type=amo.ADDON_WEBAPP,
+                                           weight__gte=0)
         list_allowed_methods = ['get']
         allowed_methods = ['get']
         fields = ['name', 'id']
