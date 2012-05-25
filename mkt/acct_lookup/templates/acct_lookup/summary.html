@@ -1,0 +1,72 @@
+{% extends 'acct_lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  <section class="island">
+  {{ _('Summary') }}
+  </section>
+
+  <section class="island c">
+    <h2>{{ account.email }} ({{ account.pk }})</h2>
+    <dl>
+      <dt>{{ _('Display Name') }}:</dt>
+      <dd>{{ account.display_name }}</dd>
+      <dt>{{ _('Username') }}:</dt>
+      <dd>{{ account.username }}</dd>
+      <dt>{{ _('Registered') }}:</dt>
+      <dd>{{ account.created|babel_datetime }}</dd>
+      <dt>UGC:</dt>
+      <dd>?</dd>
+      <dt>{{ _('Groups') }}:</dt>
+      <dd>
+      {% for group in account.groups.all() %}
+        <div>{{ group }}</div>
+      {% endfor %}
+      </dd>
+    </dl>
+    <h2>{{ _('Payments') }}</h2>
+    <dl>
+      <dt>{{ _('PayPal linked') }}:</dt>
+      <dd>TODO</dd>
+      <dt>{{ _('Marketplace Credit') }}:</dt>
+      <dd>TODO</dd>
+      <dt>{{ _('Payments') }}:</dt>
+      <dd>{{ _('apps purchased') }}: {{ app_summary['app_total'] }}
+                          {{ app_summary['app_amount']|format_currencies }}</dd>
+      <dd>{{ _('in-app payments') }}: {{ app_summary['inapp_total'] }}
+                          {{ app_summary['inapp_amount']|format_currencies }}</dd>
+      <dt>{{ _('Refunds') }}:</dt>
+      <dd>{{ refund_summary['requested'] }} {{ _('requested' ) }}</dd>
+      <dd>{{ refund_summary['approved'] }} {{ _('auto-approved') }}</dd>
+    </dl>
+    <h2>{{ _('Developer Program') }}</h2>
+    <dl>
+      <dt>{{ _('Read agreement') }}:</dt>
+      <dd>
+        {% if account.read_dev_agreement %}
+          {{ _('Yes') }}
+        {% else %}
+          {{ _('No') }}
+        {% endif %}
+      </dd>
+      <dt>{{ _('Address') }}:</dt>
+      <dd>TODO</dd>
+      <dt>{{ _('Submissions') }}:</dt>
+      <dd>
+        {% for addon in user_addons %}
+        <div><a href="{{ addon.get_detail_url() }}">
+                {% if addon.name %}
+                  {{ addon.name }}
+                {% else %}
+                  {{ _('Unnamed') }}
+                {% endif %}
+             </a>
+              ({{ amo.ADDON_TYPE[addon.type] }})</div>
+        {% endfor %}
+      </dd>
+    </dl>
+  </section>
+
+{% endblock %}
