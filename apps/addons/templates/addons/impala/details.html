@@ -17,11 +17,21 @@
 {% block content %}
 {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
-<aside class="secondary addon-vitals"
-       itemscope itemtype="http://schema.org/SoftwareApplication">
-  <div itemprop="aggregateRating" itemscope
-       itemtype="http://schema.org/AggregateRating">
+<div itemscope itemtype="http://schema.org/SoftwareApplication">
+  <link itemprop="SoftwareApplicationCategory" href="http://schema.org/OtherApplication" />
+  <aside class="secondary addon-vitals">
+
+  {# This assumes we'll never charge for add-ons. Ha. #}
+  <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    <meta itemprop="price" content="$0" />
+    <meta itemprop="priceCurrency" content="USD" />
+    <link itemprop="availability" href="http://schema.org/InStock" />
+  </span>
+
+  <div itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+    <meta content="{{ addon.average_rating }}" itemprop="ratingValue">
     {{ addon.average_rating|stars(large=True) }}
+
     <div>
       <a id="reviews-link" href="{{ addon.reviews_url }}">
       {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
@@ -32,6 +42,7 @@
       </a>
     </div>
   </div>
+
   {% if addon.show_adu() %}
     {% set cnt = addon.average_daily_users %}
     {% if cnt %}
@@ -56,6 +67,7 @@
       {% else %}
         {{ cnt_pretty }}
       {% endif %}
+      <meta itemprop="interactionCount" content="UserDownloads:{{ addon.total_downloads }}" />
     </div>
   {% endif %}
 
@@ -72,7 +84,7 @@
         <p><a href="{{ url('downloads.latest', addon.slug) }}" class="button developer prominent"><span>{{ _('Download') }}</span></a></p>
     {% endif %}
   {% endif %}
-</aside>
+  </aside>
 
 {% set version = addon.current_version if not addon.is_webapp() else None %}
 
@@ -82,11 +94,11 @@
 <section class="primary">
   <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
     <hgroup>
-      <img id="addon-icon" src="{{ addon.get_icon_url(64) }}" class="icon">
+      <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon">
       <h1 class="addon"{{ addon.name|locale_html }}>
-        {{ addon.name }}
+        <span itemprop="name">{{ addon.name }}</span>
         {% if version %}
-          <span class="version-number">{{ version.version }}</span>
+          <span class="version-number" itemprop="version">{{ version.version }}</span>
         {% endif %}
         {% if addon.is_no_restart() %}
           &nbsp;<span class="no-restart">{{ _('No Restart') }}</span>
@@ -326,3 +338,4 @@
     </div>
   {% endif %}
 {% endblock %}
+</div>

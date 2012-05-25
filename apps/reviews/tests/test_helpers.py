@@ -32,7 +32,6 @@ def test_stars():
 def test_stars_details_page():
     doc = pq(render('{{ num|stars(large=True) }}', {'num': 2}))
     eq_(doc('.stars').attr('class'), 'stars large stars-2')
-    eq_(doc('span[itemprop="ratingValue"]').text(), '2')
 
 
 def test_stars_max():
