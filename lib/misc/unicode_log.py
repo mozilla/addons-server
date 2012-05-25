@@ -8,7 +8,15 @@ class UnicodeHandler(logging.handlers.SysLogHandler):
         if hasattr(self, '_fmt') and not isinstance(self._fmt, unicode):
             # Ensure that the formatter does not coerce to str. bug 734422.
             self._fmt = unicode(self._fmt)
-        msg = self.format(record) + '\000'
+
+        try:
+            msg = self.format(record) + '\000'
+        except UnicodeDecodeError:
+            # At the very least, an error in logging should never propogate
+            # up to the site and give errors for our users. This should still
+            # be fixed.
+            msg =  u'A unicode error occured in logging \000'
+
         prio = '<%d>' % self.encodePriority(self.facility,
                                             self.mapPriority(record.levelname))
         if type(msg) is unicode:

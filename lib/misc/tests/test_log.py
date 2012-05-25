@@ -39,6 +39,26 @@ cfg = {
 }
 
 
+class TestUnicodeLog(amo.tests.TestCase):
+
+    def setUp(self):
+        dictconfig.dictConfig(cfg)
+        self.log = logging.getLogger('test.lib.misc.logging')
+
+    @patch('logging.Handler.format')
+    @patch('socket._socketobject.sendto')
+    def test_unicode_error(self, sendto, _format):
+        def blowup(*args, **kwargs):
+            if args[0].__dict__['msg'] == 'blowup':
+                raise UnicodeDecodeError('ascii', 'bytes', 0, 1, 'ouch')
+            return args[0].__dict__['msg']
+        _format.side_effect = blowup
+        self.log.error('blowup')
+        self.log.error('dont blowup')
+        assert 'A unicode error occured' in sendto.call_args_list[0][0][0]
+        assert 'dont' in sendto.call_args_list[1][0][0]
+
+
 class TestErrorLog(amo.tests.TestCase):
 
     def setUp(self):
