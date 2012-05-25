@@ -1,13 +1,13 @@
 import json
 
 from django.db import transaction
-from django.forms import ValidationError
 
 import commonware.log
 from tastypie import http
 from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.serializers import Serializer
 
-from addons.forms import DeviceTypeForm
+from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import AddonUser, Category, DeviceType
 import amo
 from amo.decorators import write
@@ -21,8 +21,7 @@ from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
 from mkt.webapps.models import Webapp
 from mkt.submit.forms import AppDetailsBasicForm
-from addons.forms import CategoryFormSet
-from tastypie.serializers import Serializer
+
 
 log = commonware.log.getLogger('z.api')
 
@@ -47,7 +46,7 @@ class ValidationResource(MarketplaceResource):
     def obj_create(self, bundle, request=None, **kwargs):
         form = NewManifestForm(bundle.data)
         if not form.is_valid():
-            raise ValidationError(self.form_errors(form))
+            raise self.form_errors(form)
 
         bundle.obj = FileUpload.objects.create()
         tasks.fetch_manifest.delay(form.cleaned_data['manifest'],
@@ -102,7 +101,7 @@ class AppResource(MarketplaceResource):
     def obj_create(self, bundle, request, **kwargs):
         form = UploadForm(bundle.data)
         if not form.is_valid():
-            raise ValidationError(self.form_errors(form))
+            raise self.form_errors(form)
 
         if not (OwnerAuthorization()
                 .is_authorized(request, object=form.obj)):
@@ -161,7 +160,7 @@ class AppResource(MarketplaceResource):
 
         valid = all([f.is_valid() for f in forms])
         if not valid:
-            raise ValidationError(self.form_errors(forms))
+            raise self.form_errors(forms)
 
         forms[0].save(obj)
         forms[1].save(obj)

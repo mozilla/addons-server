@@ -33,6 +33,7 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_wrong_category(self):
         res = self.client.get(self.list_url + ({'cat': self.category.pk + 1},))
         eq_(res.status_code, 400)
+        eq_(res['Content-Type'], 'application/json')
 
     def test_wrong_weight(self):
         self.category.update(weight=-1)

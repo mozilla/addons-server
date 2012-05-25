@@ -1,7 +1,5 @@
 from tastypie.serializers import Serializer
 
-from django.forms import ValidationError
-
 import amo
 from amo.helpers import absolutify
 from mkt.api.base import MarketplaceResource
@@ -28,7 +26,7 @@ class SearchResource(MarketplaceResource):
     def get_list(self, request=None, **kwargs):
         form = ApiSearchForm(request.GET if request else None)
         if not form.is_valid():
-            raise ValidationError(self.form_errors(form))
+            raise self.form_errors(form)
 
         # Search specific processing of the results.
         qs = _get_query(request, form, form.cleaned_data)

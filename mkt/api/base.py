@@ -1,6 +1,8 @@
 import json
 
+from tastypie import http
 from tastypie.bundle import Bundle
+from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ModelResource
 
 from translations.fields import PurifiedField, TranslatedField
@@ -44,4 +46,6 @@ class MarketplaceResource(ModelResource):
                 continue
             errors.update(dict(f.errors.items()))
 
-        return json.dumps({'error_message': errors})
+        response = http.HttpBadRequest(json.dumps({'error_message': errors}),
+                                       content_type='application/json')
+        return ImmediateHttpResponse(response=response)

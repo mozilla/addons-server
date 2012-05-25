@@ -8,8 +8,7 @@ from nose.tools import eq_
 
 from addons.models import Addon, Category, DeviceType
 import amo
-from amo.tests import AMOPaths, TestCase
-from amo.urlresolvers import reverse
+from amo.tests import AMOPaths
 from files.models import FileUpload
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.webapps.models import Webapp
