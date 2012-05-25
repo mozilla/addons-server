@@ -609,6 +609,7 @@ def cache_ns_key(namespace, increment=False):
         try:
             ns_val = cache.incr(ns_key)
         except ValueError:
+            log.info('Cache increment failed for key: %s. Resetting.' % ns_key)
             ns_val = 0
             cache.set(ns_key, ns_val, 0)
     else:
