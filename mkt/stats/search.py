@@ -31,20 +31,21 @@ def extract_contribution_counts(contribution):
             addon__id=addon_id,
             created__year=date.year,
             created__month=date.month,
-            created__day=date.day).count(),
+            created__day=date.day).count() or 0,
         'revenue': Contribution.objects.filter(
             addon__id=addon_id,
             type=amo.CONTRIB_PURCHASE,
             created__year=date.year,
             created__month=date.month,
-            created__day=date.day).aggregate(Sum('amount'))['amount__sum'],
+            created__day=date.day).aggregate(Sum('amount'))['amount__sum']
+            or 0,
         'refunds': Contribution.objects.filter(
             addon__id=addon_id,
             refund__isnull=False,
             uuid__isnull=False,
             created__year=date.year,
             created__month=date.month,
-            created__day=date.day).count()
+            created__day=date.day).count() or 0
     }
 
 

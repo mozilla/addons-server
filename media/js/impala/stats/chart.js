@@ -53,7 +53,7 @@
                     shadow: false,
                     marker: {
                         enabled: true,
-                        radius: 3,
+                        radius: 0,
                         states: {
                            hover: {
                               enabled: true,
@@ -146,7 +146,6 @@
         var step = '1 ' + group,
             point,
             dataSum = 0;
-        dbg(data);
         forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
@@ -166,6 +165,7 @@
 
         // Transform xAxis based on time grouping (day, week, month) and range
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
+        baseConfig.xAxis.tickInterval = (end - start) / 7;
         baseConfig.xAxis.min = start - dayMsecs;
         baseConfig.xAxis.max = end;
         if (group == 'month') {

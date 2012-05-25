@@ -53,7 +53,7 @@
                     shadow: false,
                     marker: {
                         enabled: true,
-                        radius: 3,
+                        radius: 0,
                         states: {
                            hover: {
                               enabled: true,
@@ -160,6 +160,20 @@
             }
         }, this);
 
+        // Display marker if only one data point.
+        baseConfig.plotOptions.line.marker.radius = 3;
+        var count = 0,
+            dateRegex = /\d{4}-\d{2}-\d{2}/;
+        for (var key in data) {
+            if (dateRegex.exec(key) && data.hasOwnProperty(key)) {
+                count++;
+            }
+            if (count > 1) {
+                baseConfig.plotOptions.line.marker.radius = 0;
+                break;
+            }
+        }
+
         // highCharts seems to dislike 0 and null data when determining a yAxis range
         if (dataSum === 0) {
             baseConfig.yAxis.max = 10;
@@ -169,7 +183,8 @@
 
         // Transform xAxis based on time grouping (day, week, month) and range
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
-        baseConfig.xAxis.min = start - dayMsecs;
+        baseConfig.xAxis.tickInterval = (end - start) / 7;
+        baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
         if (group == 'month') {
             pointInterval = 30 * dayMsecs;
@@ -191,7 +206,7 @@
                 'pointInterval' : pointInterval,
                 // Compensate for timezone offsets from UTC.
                 // + dayMsecs to line up points with X-axis on week grouping
-                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000 + dayMsecs,
+                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });

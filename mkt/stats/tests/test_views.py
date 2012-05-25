@@ -11,6 +11,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from mkt.webapps.models import Installed
 from mkt.stats import views, search
+from mkt.stats.views import pad_missing_stats
 from users.models import UserProfile
 
 
@@ -177,13 +178,61 @@ class TestInstalled(amo.tests.ESTestCase):
         data = json.loads(res.content)
         eq_(data[0]['count'], 1)
 
-    def tests_installed_anon(self):
+    def test_installed_anon(self):
         self.client.logout()
         res = self.client.get(self.get_url(self.today, self.today))
         eq_(res.status_code, 403)
 
-    def tests_installed_anon_public(self):
+    def test_installed_anon_public(self):
         self.client.logout()
         self.webapp.update(public_stats=True)
         res = self.client.get(self.get_url(self.today, self.today))
         eq_(res.status_code, 200)
+
+
+class TestPadMissingStats(amo.tests.ESTestCase):
+
+    def test_basic(self):
+        days = [datetime.date(2012, 4, 29), datetime.date(2012, 5, 1),
+                datetime.date(2012, 5, 3), datetime.date(2012, 5, 5)]
+        expected_days = [datetime.date(2012, 4, 30), datetime.date(2012, 5, 2),
+                         datetime.date(2012, 5, 4)]
+
+        dummies = pad_missing_stats(days, 'day')
+        for day in expected_days:
+            assert day in [dummy['date'] for dummy in dummies]
+
+    def test_with_date_range(self):
+        date_range = (datetime.date(2012, 5, 1), datetime.date(2012, 5, 5))
+
+        days = [datetime.date(2012, 5, 3)]
+        expected_days = [datetime.date(2012, 5, 2), datetime.date(2012, 5, 4)]
+
+        dummies = pad_missing_stats(days, 'day', date_range=date_range)
+        for day in expected_days:
+            assert day in [dummy['date'] for dummy in dummies]
+
+    def test_with_fields(self):
+        fields = ['test_field', 'fest_tield']
+
+        days = [datetime.date(2012, 5, 1), datetime.date(2012, 5, 3)]
+        dummies = pad_missing_stats(days, 'day', fields=fields)
+        for dummy in dummies:
+            for field in fields:
+                assert field in dummy
+
+    def test_group_week(self):
+        days = [datetime.date(2012, 5, 1), datetime.date(2012, 5, 15)]
+        expected_days = [datetime.date(2012, 5, 8)]
+
+        dummies = pad_missing_stats(days, 'week')
+        for day in expected_days:
+            assert day in [dummy['date'] for dummy in dummies]
+
+    def test_group_month(self):
+        days = [datetime.date(2012, 5, 1), datetime.date(2012, 7, 1)]
+        expected_days = [datetime.date(2012, 6, 1)]
+
+        dummies = pad_missing_stats(days, 'month')
+        for day in expected_days:
+            assert day in [dummy['date'] for dummy in dummies]

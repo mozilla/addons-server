@@ -239,7 +239,7 @@ z.StatsManager = (function() {
                     var d = date.iso();
                     if (row) {
                         if (!firstIndex) {
-                          firstIndex = range.start;
+                            firstIndex = range.start;
                         }
                         if (metric == 'apps') {
                             row = collapseVersions(row, PRECISION);
