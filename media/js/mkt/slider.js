@@ -85,7 +85,6 @@ z.page.on('fragmentloaded', function() {
             return;
         }
         $('.categories h3').linefit();
-        $('.promo-grid h3').lineclamp(2);
         $('.slider').each(function() {
             var currentPage,
                 $this = $(this),

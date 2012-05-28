@@ -62,18 +62,18 @@
 
     {% block sitefooter %}
       <footer id="site-footer">
-        {% if logged %}
-          signed in as
-          {% if request.can_view_consumer %}
-            <a href="{{ request.user.get_profile().get_url_path() }}">
-              {{ request.amo_user.email }}</a>
+        <div class="account{{ ' authenticated' if logged }}">
+          {% if logged %}
+            {% trans profile_url=request.user.get_profile().get_url_path(),
+                     user=request.amo_user.email %}
+              signed in as <a href="{{ profile_url }}">{{ user }}</a>
+            {% endtrans %}
+            <a href="{{ url('users.logout') }}" class="logout">
+              ({{ _('Log Out') }})</a>
           {% else %}
-            {{ request.amo_user.email }}
+            <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
           {% endif %}
-          <a href="{{ url('users.logout') }}">(log out)</a>
-        {% else %}
-          <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
-        {% endif %}
+        </div>
         <nav class="footer-links">
           {% if logged %}
             {% for link in tools_links %}

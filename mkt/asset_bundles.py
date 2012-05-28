@@ -210,6 +210,9 @@ JS = {
         # Account settings.
         'js/mkt/account.js',
 
+        # Homepage.
+        'js/mkt/home.js',
+
         # Detail page.
         'js/mkt/detail.js',
         'js/mkt/lightbox.js',

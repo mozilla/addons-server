@@ -2,7 +2,7 @@
 
 #site-header {
     .border-box;
-    background: #394C58 url(../../img/mkt/grain.png);
+    background: @grain-src @navy-gray;
     height: 82px;
     h1, form {
         line-height: 30px;
@@ -20,6 +20,7 @@
     }
     form {
         float: right;
+        position: relative;
     }
     .menu-button {
         height: 28px;
@@ -256,22 +257,26 @@
         }
     }
     .featured.slider {
-        background-image: url(../../img/mkt/grain.png),
+        background-image: @grain-src,
                           linear-gradient(#394C58, #60747F);
-        background-image: url(../../img/mkt/grain.png),
+        background-image: @grain-src,
                           -moz-linear-gradient(#394C58, #60747F);
-        background-image: url(../../img/mkt/grain.png),
+        background-image: @grain-src,
                           -webkit-linear-gradient(#394C58, #60747F);
-        background-image: url(../../img/mkt/grain.png),
+        background-image: @grain-src,
                           -webkit-gradient(linear, left bottom, left top, from(#60747F), to(#394C58));
     }
     #site-header {
-        height: 53px;
+        height: 50px;
         h1 {
-            padding: 1px 0 0;
+            padding: 3px 7px 0 0;
+            a {
+                height: 43px;
+                width: 50px;
+            }
         }
         .menu-button {
-            margin-top: 14px;
+            margin-top: 17px;
         }
         nav #flyout {
             right: 0;
@@ -284,6 +289,14 @@
                 top: -6px;
                 right: 7px;
             }
+        }
+        #search {
+            float: left;
+            margin: 14px 0 0;
+        }
+        #search-q {
+            .width(5);
+            .max-width(3);
         }
     }
 }

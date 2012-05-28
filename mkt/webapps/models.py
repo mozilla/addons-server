@@ -297,12 +297,20 @@ class Webapp(Addon):
             return cls.objects.none()
 
     @classmethod
+    def from_search(cls):
+        return cls.search().filter(type=amo.ADDON_WEBAPP,
+                                   status=amo.STATUS_PUBLIC,
+                                   is_disabled=False)
+
+    @classmethod
     def popular(cls):
         """Elastically grab the most popular apps."""
-        return (cls.search().filter(type=amo.ADDON_WEBAPP,
-                                    status=amo.STATUS_PUBLIC,
-                                    is_disabled=False)
-                .order_by('-weekly_downloads'))
+        return cls.from_search().order_by('-weekly_downloads')
+
+    @classmethod
+    def latest(cls):
+        """Elastically grab the most recent apps."""
+        return cls.from_search().order_by('-created')
 
 
 # Pull all translated_fields from Addon over to Webapp.

@@ -1,5 +1,30 @@
 @import 'lib';
 
+.item-arrows() {
+    &:after {
+        .arrow;
+        content: "";
+        display: block;
+        opacity: .7;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        height: 18px;
+        width: 18px;
+    }
+    &:hover,
+    &:active {
+        background: @faint-gray;
+        .box-shadow(none);
+        &:after {
+            opacity: 1;
+        }
+    }
+    &:active {
+        .depressed;
+    }
+}
+
 .promo-grid, .slider {
     h3 {
         font-size: 18px;
@@ -26,13 +51,14 @@
         .light-text-shadow;
         background: fadeOut(@light-gray, 50%);
         display: block;
-        height: 100px;
+        height: 64px;
         padding: 10px 10px 10px 90px;
         position: relative;
         text-decoration: none;
         &:hover {
             background: @faint-gray;
             .box-shadow(0 1px 2px fadeOut(@black, 50%));
+            color: darken(@text, 10%);
         }
         &:active {
             background: @light-gray;
@@ -46,13 +72,18 @@
         top: 10px;
         left: 10px;
     }
-    .author {
+    h3, .author {
         .ellipsis;
+        padding-bottom: 1px;
+    }
+    .author {
         display: block;
         margin: 5px 0;
         font-style: normal;
     }
     .price {
+        position: absolute;
+        bottom: 7px;
         font-size: 15px;
         line-height: 17px;
         font-weight: bold;
@@ -63,5 +94,169 @@
 .html-rtl .promo-grid {
     a {
         padding: 10px 90px 10px 10px;
+    }
+}
+
+@media (max-width: @4col) {
+    #page > section.popular {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .popular {
+        &.tabbed {
+            background: @grain-src @header-bg;
+            &:after {
+                background: @bg;
+                border-top: 1px solid @medium-gray;
+                height: 6px;
+                content: "";
+                display: block;
+                position: relative;
+                top: -5px;
+                z-index: 2;
+            }
+        }
+        .tabnav {
+            float: left;
+            position: relative;
+            width: 100%;
+            span, span:before {
+                background: @tab-bg;
+            }
+            span {
+                color: @faint-gray;
+                cursor: pointer;
+                float: left;
+                font-size: 17px;
+                line-height: 19px;
+                margin: 0;
+                padding: 10px;
+                position: relative;
+                text-shadow: .5px .5px 0 @text;
+                z-index: 2;
+                width: 70px;
+                &:before {
+                    .border-radius(0 25px 0 0);
+                    content: "";
+                    display: block;
+                    float: right;
+                    position: absolute;
+                    top: 0;
+                    right: -40px;
+                    height: 100%;
+                    width: 40px;
+                }
+                &:after {
+                    .border-radius(20px 0 0 30px);
+                    border: 10px solid @tab-bg;
+                    border-width: 30px 10px 5px;
+                    border-color: transparent transparent @tab-bg @tab-bg;
+                    content: "";
+                    display: block;
+                    float: right;
+                    position: absolute;
+                    bottom: -2px;
+                    right: -50px;
+                    height: 0;
+                    width: 0;
+                    z-index: 0;
+                }
+                &[data-shown] {
+                    color: @text;
+                    font-weight: bold;
+                    outline: none;
+                    text-shadow: .5px .5px 0 @white;
+                    z-index: 3;
+                    &:after {
+                        border-color: transparent transparent @bg @bg;
+                    }
+                }
+                &[data-shown],
+                &[data-shown]:before {
+                    background: @bg;
+                }
+                + span {
+                    padding-left: 55px;
+                    &[data-shown] {
+                        margin-left: 45px;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .view-more a {
+        .item-arrows;
+        background: @faint-gray;
+        border-top: 1px solid @light-gray;
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        opacity: .8;
+        padding: 15px 10px;
+        position: relative;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .promo-grid {
+        h3 {
+            font-size: 14px;
+            line-height: 16px;
+            margin: 0;
+            text-shadow: .2px .2px 0 @barely-gray;
+        }
+        .author {
+            color: @gray;
+            margin: 0;
+        }
+        a:hover {
+            .author {
+                color: @medium-gray;
+            }
+        }
+        .price {
+            font-size: 13px;
+            bottom: 7px;
+        }
+        ul {
+            background: @bg;
+            margin: 0 0 -9px;
+            position: relative;
+            top: -9px;
+            z-index: 3;
+        }
+        li {
+            .border-box;
+            border-bottom: 1px solid @light-gray;
+            float: none;
+            margin: 0;
+            width: 100%;
+            + li {
+                border-top: 1px solid @faint-gray;
+            }
+            &:last-child {
+                border-bottom: 0;
+            }
+            &:nth-child(2n) {
+                a {
+                    background: none;
+                }
+            }
+            img {
+                top: 5px;
+            }
+            a {
+                background: fadeOut(@light-gray, 75%);
+                padding: 10px 40px 0 100px;
+                .item-arrows;
+            }
+        }
+    }
+    .html-rtl .promo-grid {
+        li a {
+            padding: 10px 100px 10px 40px;
+        }
     }
 }

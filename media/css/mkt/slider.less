@@ -50,7 +50,7 @@
             right: 0;
             bottom: 0;
             margin: auto;
-            background: url(../../img/mkt/arrows/plain-lrg-go.png) 0 0 no-repeat;
+            background: url(../../img/mkt/arrows/plain-lrg-go.png) no-repeat;
         }
         &:hover:after {
             background-position: 0 -19px;
@@ -124,6 +124,9 @@
             vertical-align: top;
             width: 264px;
             .img {
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: contain;
                 width: 264px;
                 height: 184px;
                 display: block;
@@ -257,8 +260,16 @@
 }
 
 @media (max-width: @4col) {
-    .promo-slider ul li {
-        margin-right: 11px;
+    .promo-slider ul {
+        a:after {
+            bottom: 5px;
+            right: 5px;
+        }
+        li {
+            margin-right: 11px;
+        }
     }
-
+    .featured.slider {
+        border-bottom: 0;
+    }
 }

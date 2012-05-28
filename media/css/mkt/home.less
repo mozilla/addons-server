@@ -7,7 +7,7 @@
 .home {
     /* Cover the box-shadow from #page */
     #site-header:after {
-        background: url(../../img/mkt/grain.png) #394C58;
+        background: @grain-src @navy-gray;
         content: "";
         display: block;
         height: 4px;
@@ -19,15 +19,15 @@
 }
 
 .homepage-promo {
-    background-image: url(../../img/mkt/grain.png),
-                      linear-gradient(#394C58, #60747F);
-    background-image: url(../../img/mkt/grain.png),
-                      -moz-linear-gradient(#394C58, #60747F);
-    background-image: url(../../img/mkt/grain.png),
-                      -webkit-linear-gradient(#394C58, #60747F);
-    background-image: url(../../img/mkt/grain.png),
-                      -webkit-gradient(linear, left bottom, left top, from(#60747F), to(#394C58));
-    /*.gradient-two-color(#394C58, #60747F);*/
+    background-image: @grain-src,
+                      linear-gradient(@navy-gray, @header-bg);
+    background-image: @grain-src,
+                      -moz-linear-gradient(@navy-gray, @header-bg);
+    background-image: @grain-src,
+                      -webkit-linear-gradient(@navy-gray, @header-bg);
+    background-image: @grain-src,
+                      -webkit-gradient(linear, left bottom, left top, from(@header-bg), to(@navy-gray));
+    /*.gradient-two-color(@navy-gray, @header-bg);*/
     min-height: 320px;
     overflow: hidden;
     color: @white;
@@ -59,6 +59,11 @@
     }
 }
 
+/* Hide narrow-specific stuff. (For "Popular" and "New" tabbed sections.) */
+.narrow {
+    display: none;
+}
+
 @media (max-width: @10col) {
     .homepage-promo {
         div {
@@ -74,10 +79,9 @@
     .home {
         #site-header:after,
         .homepage-promo,
-        .popular,
         .categories,
         .promo-slider p,
-        h2 {
+        .featured h2 {
             display: none;
         }
         .featured {
@@ -127,15 +131,10 @@
     }
     #search {
         // TODO: Expose search results when clicking on magnifying-glass icon.
-        #search-q {
-            display: none;
-        }
-        button {
-            background: none;
-        }
         #find {
             .border-radius(15px);
             background-color: darken(@navy-gray, 20%);
+            display: none;
             height: 18px;
             margin-top: 3px;
             position: relative;
@@ -166,5 +165,21 @@
                 width: 12px;
             }
         }
+    }
+
+    /* Show narrow-specific stuff. */
+    .wide {
+        display: none;
+    }
+    .narrow {
+        display: block;
+    }
+
+    /* Toggle tabbed content. */
+    [data-group], .narrow[data-group] {
+        display: none;
+    }
+    [data-shown], .narrow[data-shown] {
+        display: block;
     }
 }

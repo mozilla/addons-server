@@ -27,14 +27,41 @@
     {{ featured|promo_slider(feature=True) }}
   </section>
   {% if popular %}
-    <section id="home-popular" class="popular full">
+    <section class="popular tabbed narrow full">
+      <div>
+        <div class="tabnav c">
+          <span data-show="popular" data-shown class="popular">{{ _('Popular') }}</span>
+          <span data-show="new" class="new">{{ _('New') }}</span>
+        </div>
+      </div>
+    </section>
+    <section id="home-popular" class="popular tabbed wide full">
       <div>
         <h2><a href="{{ url('browse.apps')|urlparams(sort='popular') }}">
           {{ _('Popular') }}</a></h2>
       </div>
     </section>
-    <section class="popular slider full">
-      {{ popular|promo_slider }}
+    <section data-group="popular" data-shown class="popular grid full">
+      {{ popular|promo_grid }}
+    </section>
+    <section data-group="popular" data-shown class="narrow popular view-more full">
+      <div>
+        <a href="{{ url('browse.apps')|urlparams(sort='popular') }}">
+          {{ _('View more') }}</a>
+      </div>
+    </section>
+    <section class="hidden">
+      <h2><a href="{{ url('browse.apps')|urlparams(sort='created') }}">
+        {{ _('New') }}</a></h2>
+    </section>
+    <section data-group="new" class="narrow popular grid full">
+      {{ latest|promo_grid }}
+    </section>
+    <section data-group="new" class="narrow popular view-more full">
+      <div>
+        <a href="{{ url('browse.apps')|urlparams(sort='created') }}">
+          {{ _('View more') }}</a>
+      </div>
     </section>
   {% endif %}
   {{ category_slider() }}
