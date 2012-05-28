@@ -84,17 +84,15 @@
         .featured h2 {
             display: none;
         }
-        .featured {
-            &.slider {
-                .controls {
-                    .next-page, .prev-page {
-                        top: 13px;
-                        height: 120px;
-                    }
+        .featured.slider {
+            .controls {
+                .next-page, .prev-page {
+                    top: 13px;
+                    height: 120px;
                 }
-                .promo-slider {
-                    height: 155px;
-                }
+            }
+            .promo-slider {
+                height: 155px;
             }
         }
         .promo-slider {
@@ -125,7 +123,19 @@
         .homepage-promo div {
             background-position: 150% 58px;
         }
+        // Until we have gallery icons (bug 744648), let's use promo graphics.
+        .promo-slider ul li .img {
+            height: 83px;
+        }
+        .featured.slider .controls .next-page,
+        .featured.slider .controls .prev-page {
+            height: 108px;
+        }
+        .featured.slider .promo-slider {
+            height: 118px;
+        }
     }
+
     #site-header .menu-button {
         margin-left: 20px;
     }
