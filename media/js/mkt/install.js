@@ -16,7 +16,10 @@
             $(window).trigger('login');
             return;
         }
-        if (product.isPurchased || !product.price) {
+        // Show "Install" button if I'm installing from the Reviewer Tools,
+        // I already purchased this, or if it's free!
+        if (location.pathname.indexOf('/reviewers/') > -1 ||
+            $product.isPurchased || !product.price) {
             install(product);
             return;
         }
