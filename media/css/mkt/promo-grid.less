@@ -34,15 +34,16 @@
 
 .promo-grid {
     ul {
+        float: left;
         list-style: none;
         padding: 0;
     }
     li {
         .border-box;
-        .width(4.5);
+        .width(4.7);
         float: left;
-        margin-bottom: 42px;
-        margin-right: 42px;
+        margin-bottom: 20px;
+        margin-right: 20px;
         &:nth-of-type(3n) {
             margin-right: 0;
         }
@@ -56,9 +57,12 @@
         position: relative;
         text-decoration: none;
         &:hover {
-            background: @faint-gray;
             .box-shadow(0 1px 2px fadeOut(@black, 50%));
+            background: @faint-gray;
             color: darken(@text, 10%);
+            .author {
+                color: @medium-gray;
+            }
         }
         &:active {
             background: @light-gray;
@@ -82,6 +86,7 @@
         padding-bottom: 1px;
     }
     .author {
+        color: @gray;
         display: block;
         margin: 5px 0;
         font-style: normal;
@@ -99,6 +104,20 @@
 .html-rtl .promo-grid {
     a {
         padding: 10px 90px 10px 10px;
+    }
+}
+
+@media (max-width: @10col) {
+    .promo-grid {
+        li {
+            .width(5.025);
+            &:nth-of-type(2n) {
+                margin-right: 0;
+            }
+            &:nth-of-type(2n + 1) {
+                margin-right: 20px;
+            }
+        }
     }
 }
 
@@ -213,13 +232,7 @@
             text-shadow: .2px .2px 0 @barely-gray;
         }
         .author {
-            color: @gray;
             margin: 0;
-        }
-        a:hover {
-            .author {
-                color: @medium-gray;
-            }
         }
         .price {
             font-size: 13px;
