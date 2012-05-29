@@ -32,6 +32,9 @@ ABUSE_EMAIL = 'Mozilla Marketplace <marketplace-abuse@mozilla.org>'
 NOBODY_EMAIL = 'Mozilla Marketplace <nobody@mozilla.org>'
 DEFAULT_FROM_EMAIL = 'Mozilla Marketplace <nobody@mozilla.org>'
 
+# Default app name for our webapp as specified in `manifest.webapp`.
+WEBAPP_MANIFEST_NAME = 'Mozilla Marketplace'
+
 ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)

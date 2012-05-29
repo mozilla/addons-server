@@ -56,6 +56,13 @@ class TestManifest(amo.tests.TestCase):
         url = reverse('manifest.webapp')
         assert 'en-US' not in url and 'firefox' not in url
 
+    @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Mozilla Fruitstand')
+    def test_manifest_name(self):
+        response = self.client.get(reverse('manifest.webapp'))
+        eq_(response.status_code, 200)
+        content = json.loads(response.content)
+        eq_(content['name'], 'Mozilla Fruitstand')
+
 
 class TestMozmarketJS(amo.tests.TestCase):
 

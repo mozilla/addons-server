@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
@@ -38,7 +39,8 @@ def csrf_failure(request, reason=''):
 def manifest(request):
     ctx = RequestContext(request)
     data = {
-        'name': 'Mozilla Marketplace',
+        'name': getattr(settings, 'WEBAPP_MANIFEST_NAME',
+                        'Mozilla Marketplace'),
         'description': 'The Mozilla Marketplace',
         'developer': {
             'name': 'Mozilla',
@@ -83,7 +85,7 @@ def record(request):
     # we can just turn the percentage down to zero.
     if get_collect_timings():
         return django_statsd_record(request)
-    return http.HttpResponseForbidden()
+    return HttpResponseForbidden()
 
 
 # Cache this for an hour so that newly deployed changes are available within
