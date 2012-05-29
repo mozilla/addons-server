@@ -7,17 +7,7 @@ import amo
 from stats.models import Contribution
 
 
-def extract_installed_count(installed):
-    date = installed.created.date()
-    return {'date': date,
-            'addon': installed.addon_id,
-            'count': installed.__class__.objects.filter(
-                created__year=date.year,
-                created__month=date.month,
-                created__day=date.day).count()}
-
-
-def extract_contribution_counts(contribution):
+def extract_contributions_daily(contribution):
     """
     number of contributions (sales) per app/day
     revenue per app/day
@@ -47,6 +37,16 @@ def extract_contribution_counts(contribution):
             created__month=date.month,
             created__day=date.day).count() or 0
     }
+
+
+def extract_installed_daily(installed):
+    date = installed.created.date()
+    return {'date': date,
+            'addon': installed.addon_id,
+            'count': installed.__class__.objects.filter(
+                created__year=date.year,
+                created__month=date.month,
+                created__day=date.day).count()}
 
 
 def setup_mkt_indexes():

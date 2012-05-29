@@ -11,8 +11,9 @@ from celery.task.sets import TaskSet
 from addons.models import Addon
 from amo.utils import chunked
 from stats.models import Contribution
-from mkt.stats.tasks import (index_installed_counts, index_contribution_counts,
-                             index_addon_aggregate_contributions)
+from mkt.stats.tasks import (index_finance_daily,
+                             index_finance_total, index_finance_total_by_src,
+                             index_installed_daily)
 
 log = logging.getLogger('z.stats')
 
@@ -56,11 +57,13 @@ class Command(BaseCommand):
         addons, dates = kw['addons'], kw['date']
 
         queries = [
-            (Contribution.objects, index_contribution_counts,
+            (Contribution.objects, index_finance_daily,
                 {'date': 'created'}),
-            (Addon.objects, index_addon_aggregate_contributions,
+            (Addon.objects, index_finance_total,
                 {'date': 'created'}),
-            (Installed.objects, index_installed_counts,
+            (Addon.objects, index_finance_total_by_src,
+                {'date': 'created'}),
+            (Installed.objects, index_installed_daily,
                 {'date': 'created'}),
         ]
 
