@@ -4,22 +4,27 @@ import os, time, sys, re
 towatch = []
 includes = {}
 
+def say(s):
+    t = time.strftime('%X')
+    print '[%s] %s' % (t, s)
+
+
 def render_list(files):
     for f in files:
         os.system('lessc %s %s.css' % (f, f))
         if (f in includes):
-            print 're-compiling %d dependencies' % len(includes[f])
+            say('re-compiling %d dependencies' % len(includes[f]))
             render_list(includes[f])
+    say('re-compiled %d files' % len(files))
 
 
 def watch():
-    print 'watching %d files...' % len(towatch)
+    say('watching %d files...' % len(towatch))
     before = set([(f, os.stat(f).st_mtime) for f in towatch])
     while 1:
         after = set([(f, os.stat(f).st_mtime) for f in towatch])
         changed = [f for (f, d) in before.difference(after)]
         if len(changed):
-            print 're-compiling %d files' % len(changed)
             render_list(changed)
         before = after
         time.sleep(.5)
