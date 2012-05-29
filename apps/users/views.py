@@ -89,8 +89,8 @@ def ajax(request):
         user = user.filter(read_dev_agreement=True)
 
     msg = _('A user with that email address does not exist.')
-    msg_dev = loc('A user with that email address does not exist, or the user '
-                  'has not yet accepted the developer agreement.')
+    msg_dev = _('A user with that email address does not exist, or the user '
+                'has not yet accepted the developer agreement.')
 
     if user:
         data.update(status=1, id=user[0].id, name=user[0].name)

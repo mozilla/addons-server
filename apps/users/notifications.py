@@ -1,6 +1,5 @@
 from inspect import isclass
 
-from amo.helpers import loc
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
 
@@ -30,7 +29,7 @@ class reply(_NOTIFICATION):
 class app_reply(reply):
     app = True
     short = 'app_reply'
-    label = loc('an app developer replies to my review')
+    label = _('an app developer replies to my review')
 
 
 class new_features(_NOTIFICATION):
@@ -72,7 +71,7 @@ class new_review(_NOTIFICATION):
 class app_new_review(new_review):
     app = True
     short = 'app_new_review'
-    label = loc('someone writes a review of my app')
+    label = _('someone writes a review of my app')
 
 
 class announcements(_NOTIFICATION):
