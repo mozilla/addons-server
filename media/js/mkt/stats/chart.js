@@ -26,7 +26,8 @@
                 title: {
                     text: null
                 },
-                tickmarkPlacement: 'on'
+                tickmarkPlacement: 'on',
+                startOfWeek: 0
             },
             yAxis: {
                 title: {
@@ -174,14 +175,14 @@
             }
         }
 
-        // highCharts seems to dislike 0 and null data when determining a yAxis range
+        // highCharts seems to dislike 0 and null data when determining a yAxis range.
         if (dataSum === 0) {
             baseConfig.yAxis.max = 10;
         } else {
             baseConfig.yAxis.max = null;
         }
 
-        // Transform xAxis based on time grouping (day, week, month) and range
+        // Transform xAxis based on time grouping (day, week, month) and range.
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 7;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
@@ -192,6 +193,18 @@
         } else if (group == 'week') {
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
+        }
+
+        // Set minimum max value for yAxis to prevent duplicate yAxis values.
+        var max = 0;
+        for (var key in data) {
+            if (data[key].count > max) {
+                max = data[key].count;
+            }
+        }
+        // Chart has minimum 5 ticks so set max to 5 to avoid pigeonholing.
+        if (max < 5) {
+            baseConfig.yAxis.max = 5;
         }
 
         // Populate the chart config object.
@@ -205,7 +218,6 @@
                 'id'    : id,
                 'pointInterval' : pointInterval,
                 // Compensate for timezone offsets from UTC.
-                // + dayMsecs to line up points with X-axis on week grouping
                 'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
