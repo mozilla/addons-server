@@ -508,19 +508,37 @@ class TestInstall(amo.tests.TestCase):
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         assert self.client.login(username=self.user.email, password='password')
 
-    def test_pending_for_reviewer(self):
+    def test_pending_free_for_reviewer(self):
         self.addon.update(status=amo.STATUS_PENDING)
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         eq_(self.client.post(self.url).status_code, 200)
 
-    def test_pending_for_developer(self):
+    def test_pending_free_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.user)
         self.addon.update(status=amo.STATUS_PENDING)
         eq_(self.client.post(self.url).status_code, 200)
 
-    def test_pending_for_anonymous(self):
+    def test_pending_free_for_anonymous(self):
         self.addon.update(status=amo.STATUS_PENDING)
+        eq_(self.client.post(self.url).status_code, 404)
+
+    def test_pending_paid_for_reviewer(self):
+        self.addon.update(status=amo.STATUS_PENDING,
+                          premium_type=amo.ADDON_PREMIUM)
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        eq_(self.client.post(self.url).status_code, 200)
+
+    def test_pending_paid_for_developer(self):
+        AddonUser.objects.create(addon=self.addon, user=self.user)
+        self.addon.update(status=amo.STATUS_PENDING,
+                          premium_type=amo.ADDON_PREMIUM)
+        eq_(self.client.post(self.url).status_code, 200)
+
+    def test_pending_paid_for_anonymous(self):
+        self.addon.update(status=amo.STATUS_PENDING,
+                          premium_type=amo.ADDON_PREMIUM)
         eq_(self.client.post(self.url).status_code, 404)
 
     def test_not_record_addon(self):

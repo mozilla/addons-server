@@ -86,11 +86,13 @@ def abuse_recaptcha(request, addon):
 def record(request, addon):
     is_dev = request.check_ownership(addon, require_owner=False,
                                      ignore_disabled=True)
-    if (not (addon.is_public() or acl.check_reviewer(request)
-        or is_dev or not addon.is_webapp())):
+    is_reviewer = acl.check_reviewer(request)
+    if not (addon.is_public() or is_reviewer or is_dev or
+            not addon.is_webapp()):
         raise http.Http404
 
-    if addon.is_premium() and not addon.has_purchased(request.amo_user):
+    if (addon.is_premium() and not addon.has_purchased(request.amo_user) and
+        not is_reviewer and not is_dev):
         return http.HttpResponseForbidden()
 
     installed, c = Installed.objects.safer_get_or_create(addon=addon,
