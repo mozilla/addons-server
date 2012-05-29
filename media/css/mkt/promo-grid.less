@@ -136,61 +136,35 @@
     .popular {
         &.tabbed {
             background: @grain-src @header-bg;
-            &:after {
-                background: @bg;
-                border-top: 1px solid @medium-gray;
-                height: 6px;
-                content: "";
-                display: block;
-                position: relative;
-                top: -5px;
-                z-index: 2;
-            }
         }
         .tabnav {
-            float: left;
             position: relative;
             width: 100%;
-            span, span:before {
+            span, span:before, span:after {
                 background: @tab-bg;
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                height: 100%;
+                min-width: 40px;
             }
             span {
                 color: @faint-gray;
                 cursor: pointer;
-                float: left;
+                display: inline-block;
                 font-size: 17px;
                 line-height: 19px;
                 margin: 0;
-                padding: 10px;
+                padding: 10px 20px;
                 position: relative;
                 text-shadow: .5px .5px 0 @text;
                 z-index: 2;
-                width: 70px;
                 &:before {
-                    .border-radius(0 25px 0 0);
-                    content: "";
-                    display: block;
-                    float: right;
-                    position: absolute;
-                    top: 0;
-                    right: -40px;
-                    height: 100%;
-                    width: 40px;
+                    left: -39px;
                 }
                 &:after {
-                    .border-radius(20px 0 0 30px);
-                    border: 10px solid @tab-bg;
-                    border-width: 30px 10px 5px;
-                    border-color: transparent transparent @tab-bg @tab-bg;
-                    content: "";
-                    display: block;
-                    float: right;
-                    position: absolute;
-                    bottom: -2px;
-                    right: -50px;
-                    height: 0;
-                    width: 0;
-                    z-index: 0;
+                    right: -39px;
                 }
                 &[data-shown] {
                     color: @text;
@@ -198,20 +172,14 @@
                     outline: none;
                     text-shadow: .5px .5px 0 @white;
                     z-index: 3;
-                    &:after {
-                        border-color: transparent transparent @bg @bg;
-                    }
                 }
                 &[data-shown],
-                &[data-shown]:before {
+                &[data-shown]:before,
+                &[data-shown]:after {
                     background: @bg;
                 }
                 + span {
-                    padding-left: 55px;
-                    &[data-shown] {
-                        margin-left: 45px;
-                        padding-left: 10px;
-                    }
+                    margin-left: 35px;
                 }
             }
         }
@@ -247,7 +215,6 @@
         }
         ul {
             background: @bg;
-            margin: 0 0 -9px;
             overflow: hidden;
             position: relative;
             top: -9px;
