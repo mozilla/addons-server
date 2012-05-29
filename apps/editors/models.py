@@ -438,6 +438,9 @@ class ReviewerScore(amo.models.ModelBase):
         val = (ReviewerScore.uncached.filter(user=user)
                                      .aggregate(total=Sum('score'))
                                      .values())[0]
+        if val is None:
+            val = 0
+
         cache.set(key, val, 0)
         return val
 
