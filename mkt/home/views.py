@@ -9,8 +9,8 @@ def home(request):
     if not getattr(request, 'can_view_consumer', True):
         return jingo.render(request, 'home/home_walled.html')
     featured = Webapp.featured('home')[:6]
-    popular = Webapp.popular()[:9]
-    latest = Webapp.latest()[:9]
+    popular = Webapp.popular()[:10]
+    latest = Webapp.latest()[:10]
     return jingo.render(request, 'home/home.html', {
         'featured': featured,
         'popular': popular,
