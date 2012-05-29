@@ -198,101 +198,85 @@ asyncTest('Hide results upon escape/blur', function() {
 });
 
 
-asyncTest('Key bindings: Hijacked: page up', function() {
-    this.testRowSelector($.ui.keyCode.PAGE_UP, 0);
-});
 asyncTest('Key bindings: Hijacked: arrow up', function() {
-    this.testRowSelector($.ui.keyCode.UP, 0);
+    this.testRowSelector(z.keys.UP, 0);
 });
 asyncTest('Key bindings: Hijacked: arrow down', function() {
-    this.testRowSelector($.ui.keyCode.DOWN, 1);
-});
-asyncTest('Key bindings: Hijacked: page down', function() {
-    this.testRowSelector($.ui.keyCode.PAGE_DOWN, 3);
+    this.testRowSelector(z.keys.DOWN, 1);
 });
 
 
 asyncTest('Key bindings: Ignored: home', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.HOME});
 });
 asyncTest('Key bindings: Ignored: end', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.END});
+});
+asyncTest('Key bindings: Ignored: page up', function() {
+    this.testKeyIgnored({type: 'keydown', which: z.keys.PAGE_UP});
+});
+asyncTest('Key bindings: Ignored: page down', function() {
+    this.testKeyIgnored({type: 'keydown', which: z.keys.PAGE_DOWN});
 });
 
 
 asyncTest('Key bindings: Ignored: alt + home', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
-                         altKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.HOME, altKey: true});
 });
 asyncTest('Key bindings: Ignored: ctrl + home', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
-                         ctrlKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.HOME, ctrlKey: true});
 });
 asyncTest('Key bindings: Ignored: meta + home', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
-                         metaKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.HOME, metaKey: true});
 });
 asyncTest('Key bindings: Ignored: shift + home', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.HOME,
-                         shiftKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.HOME, shiftKey: true});
 });
 
 
 asyncTest('Key bindings: Ignored: alt + end', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
-                         altKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.END, altKey: true});
 });
 asyncTest('Key bindings: Ignored: ctrl + end', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
-                         ctrlKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.END, ctrlKey: true});
 });
 asyncTest('Key bindings: Ignored: meta + end', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
-                         metaKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.END, metaKey: true});
 });
 asyncTest('Key bindings: Ignored: shift + end', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.END,
-                         shiftKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.END, shiftKey: true});
 });
 
 
 asyncTest('Key bindings: Ignored: alt + left', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
-                         altKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.LEFT, altKey: true});
 });
 asyncTest('Key bindings: Ignored: alt + right', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
-                         altKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.RIGHT, altKey: true});
 });
 
 
 asyncTest('Key bindings: Ignored: ctrl + left', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
-                         ctrlKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.LEFT, ctrlKey: true});
 });
 asyncTest('Key bindings: Ignored: ctrl + right', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
-                         ctrlKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.RIGHT, ctrlKey: true});
 });
 
 
 asyncTest('Key bindings: Ignored: meta + left', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
-                         metaKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.LEFT, metaKey: true});
 });
 asyncTest('Key bindings: Ignored: meta + right', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
-                         metaKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.RIGHT, metaKey: true});
 });
 
 
 asyncTest('Key bindings: Ignored: shift + left', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.LEFT,
-                         shiftKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.LEFT, shiftKey: true});
 });
 asyncTest('Key bindings: Ignored: shift + right', function() {
-    this.testKeyIgnored({type: 'keydown', which: $.ui.keyCode.RIGHT,
-                         shiftKey: true});
+    this.testKeyIgnored({type: 'keydown', which: z.keys.RIGHT, shiftKey: true});
 });
 
 

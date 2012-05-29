@@ -52,10 +52,7 @@ $.fn.searchSuggestions = function($results) {
         z.keys.WINDOWS_LEFT_OPERA, z.keys.WINDOWS_RIGHT_OPERA, z.keys.APPLE,
     ];
 
-    var gestureKeys = [
-        z.keys.ESCAPE, z.keys.UP, z.keys.DOWN,
-        z.keys.PAGE_UP, z.keys.PAGE_DOWN
-    ];
+    var gestureKeys = [z.keys.ESCAPE, z.keys.UP, z.keys.DOWN];
 
     function pageUp() {
         // Select the first element.
@@ -110,13 +107,6 @@ $.fn.searchSuggestions = function($results) {
             $sel.removeClass('sel');
             $elems.eq(i).addClass('sel');
             $results.addClass('sel').trigger('selectedRowUpdate', [i]);
-        } else if (e.which == z.keys.PAGE_UP) {
-            pageUp();
-            $results.addClass('sel').trigger('selectedRowUpdate', [0]);
-        } else if (e.which == z.keys.PAGE_DOWN) {
-            pageDown();
-            $results.addClass('sel').trigger('selectedRowUpdate',
-                                             [$results.find('a').length - 1]);
         }
     }
 
