@@ -187,7 +187,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     password2 = forms.CharField(max_length=255,
                                 widget=forms.PasswordInput(render_value=False))
     recaptcha = captcha.fields.ReCaptchaField()
-    homepage = forms.CharField(label=_lazy('Homepage'), required=False)
+    homepage = forms.URLField(label=_lazy('Homepage'), required=False)
 
     class Meta:
         model = UserProfile
