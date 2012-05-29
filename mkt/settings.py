@@ -150,6 +150,7 @@ NO_LOGIN_REQUIRED_MODULES = (
     'mkt.reviewers',
     'mkt.acct_lookup',
     'mkt.submit',
+    'django_appcache.views.manifest',
     'django.views.i18n.javascript_catalog',
     'django.contrib.auth.views.password_reset',
     'django.contrib.auth.views.password_reset_done',
