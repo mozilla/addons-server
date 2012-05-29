@@ -283,6 +283,17 @@
   </div>
 
   <!-- Install button tests - it's possible not all combinations are being tested here -->
+
+  <div id="install-button">
+    <div class="install-shell">
+      <div class="install" data-min="3.0" data-max="4.0">
+        <p class="install-button">
+        <a class="button download" data-hash="1337" href="http://testurl.com">Foo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- app, warning, mobile -->
   <div id="install-button-warning">
     {% with addon={'is_premium': Mock(return_value=False),

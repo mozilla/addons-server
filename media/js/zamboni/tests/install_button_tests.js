@@ -19,6 +19,27 @@ $(document).ready(function() {
 
     module('Install Button', $.extend({}, installButtonFixture, {
         setup: function() {
+            installButtonFixture.setup.call(this, '#install-button');
+        }
+    }));
+    test('add-on', function() {
+        // Patch user agent as Firefox 3.6.
+        var _browserVersion = z.browserVersion;
+        z.app = 'firefox';
+        z.browser.firefox = true;
+        z.browserVersion = '3.6';
+        z.platform = 'mac';
+
+        var installer = $('.install', this.sandbox).installButton();
+        equal(installer.length, 1);
+        equal(installer.attr('data-version-supported'), 'true');
+        equal(installer.find('a.installer').attr('href'), 'http://testurl.com');
+
+        _browserVersion = z.browserVersion;
+    });
+
+    module('Install Button', $.extend({}, installButtonFixture, {
+        setup: function() {
             installButtonFixture.setup.call(this, '#install-button-warning');
         }
     }));
@@ -183,7 +204,6 @@ $(document).ready(function() {
         this.expected['class'] = 'button add installer';
         this.check(this.expected);
         equal($('.extra', this.sandbox).length, 0);
-
     });
 
     // Compatible, but with an override.

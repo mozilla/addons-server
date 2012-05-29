@@ -122,7 +122,7 @@
                 if (self.classes.persona) {
                     return;
                 }
-                var href = activeInstaller.href,
+                var href = activeInstaller[0].href,
                     hash = hashes[href],
                     attr = self.attr,
                     processing_text = gettext('Installing...'),

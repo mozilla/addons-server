@@ -9,14 +9,6 @@
         "js/zamboni/validator.js",
         "js/zamboni/editors.js",
         "js/zamboni/files.js",
-        "js/zamboni/password-strength.js",
-        "js/zamboni/browserid_support.js",
-        "js/zamboni/buttons.js",
-        "js/zamboni/l10n.js",
-        "js/zamboni/truncation.js",
-        "js/zamboni/storage.js",
-        "js/zamboni/editors.js",
-        "js/zamboni/contributions.js",
-        "js/impala/persona_creation.js"
+        "js/zamboni/password-strength.js"
     ]
 }
