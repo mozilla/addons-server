@@ -37,15 +37,15 @@
         float: left;
         list-style: none;
         padding: 0;
+        width: 100%;
     }
     li {
         .border-box;
-        .width(4.7);
         float: left;
-        margin-bottom: 20px;
-        margin-right: 20px;
+        padding: 0 20px 20px 0;
+        width: 33.33%;
         &:nth-of-type(3n) {
-            margin-right: 0;
+            padding-right: 0;
         }
         // We can have up to 10 apps (so we have two equal columns of five on tablet).
         &:nth-of-type(10n) {
@@ -114,12 +114,12 @@
 @media (max-width: @10col) {
     .promo-grid {
         li {
-            .width(5.025);
+            width: 50%;
             &:nth-of-type(2n) {
-                margin-right: 0;
+                padding-right: 0;
             }
             &:nth-of-type(2n + 1) {
-                margin-right: 20px;
+                padding-right: 20px;
             }
             &:nth-of-type(10n) {
                 display: block;
@@ -259,6 +259,7 @@
             border-bottom: 1px solid @light-gray;
             float: none;
             margin: 0;
+            padding: 0;
             width: 100%;
             + li {
                 border-top: 1px solid @faint-gray;
@@ -270,6 +271,9 @@
                 a {
                     background: none;
                 }
+            }
+            &:nth-of-type(2n + 1) {
+                padding-right: 0;
             }
             .img {
                 top: 5px;
