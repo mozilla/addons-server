@@ -100,7 +100,6 @@ PAYPAL_PERSONAL = {
     'company': 'http://openid.net/schema/company/name',
     'country': 'http://axschema.org/contact/country/home',
     'payerID': 'https://www.paypal.com/webapps/auth/schema/payerID',
-    'date_of_birth': 'http://axschema.org/birthDate',
     'post_code': 'http://axschema.org/contact/postalCode/home',
     'address_one': 'http://schema.openid.net/contact/street1',
     'address_two': 'http://schema.openid.net/contact/street2',

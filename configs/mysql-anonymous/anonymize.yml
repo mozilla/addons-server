@@ -111,7 +111,6 @@ database:
                 - business_name
                 - country
                 - payerID
-                - date_of_birth
                 - address_one
                 - address_two
                 - post_code

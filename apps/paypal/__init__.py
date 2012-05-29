@@ -311,7 +311,7 @@ def get_personal_data(token):
         'GetAdvancedPersonalData':
             {'attributeList.attribute':
                 [amo.PAYPAL_PERSONAL[k] for k in
-                    ['date_of_birth', 'post_code', 'address_one',
+                    ['post_code', 'address_one',
                      'address_two', 'city', 'state', 'phone']]}
         }
 
@@ -324,15 +324,6 @@ def get_personal_data(token):
                 v_ = amo.PAYPAL_PERSONAL_LOOKUP[v]
                 # If the value isn't present the value won't be there.
                 result[v_] = data.get(k_ + '.personalDataValue', '')
-
-    if result.get('date_of_birth'):
-        dob = result['date_of_birth']
-        try:
-            result['date_of_birth'] = date(int(dob[0:4]), int(dob[7:8]),
-                                           int(dob[5:6]))
-        except (TypeError, ValueError):
-            paypal_log.debug('Could not parse date_of_birth: %s' % dob)
-            del result['date_of_birth']
 
     return result
 
