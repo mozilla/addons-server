@@ -12,7 +12,10 @@ z.capabilities = {
         typeof navigator.mozApps.html5Implementation === 'undefined'
     ),
     'fileAPI': !!window.FileReader,
-    'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch
+    'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
+    'nativeScroll': (function() {
+        return 'WebkitOverflowScrolling' in document.createElement('div').style;
+    })()
 };
 
 

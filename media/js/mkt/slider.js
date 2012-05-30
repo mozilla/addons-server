@@ -81,7 +81,12 @@ z.page.on('fragmentloaded', function() {
     }
 
     function initSliders() {
+        // Is this a finger-friendly device?
         if (z.capabilities.touch) {
+            // is overflow-scrolling: touch supported?
+            if (!z.capabilities.nativeScroll) {
+                $('.slider').each(slider);
+            }
             return;
         }
         $('.categories h3').linefit();
