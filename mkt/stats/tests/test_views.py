@@ -10,8 +10,9 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from mkt.webapps.models import Installed
-from mkt.stats import views, search
-from mkt.stats.views import pad_missing_stats
+from mkt.stats import search, tasks, views
+from mkt.stats.views import get_series, pad_missing_stats
+from stats.models import Contribution
 from users.models import UserProfile
 
 
@@ -188,6 +189,43 @@ class TestInstalled(amo.tests.ESTestCase):
         self.webapp.update(public_stats=True)
         res = self.client.get(self.get_url(self.today, self.today))
         eq_(res.status_code, 200)
+
+
+class TestGetSeries(amo.tests.ESTestCase):
+
+    def setUp(self):
+        # Create apps and contributions to index.
+        self.app = amo.tests.app_factory()
+
+        # Create a sale for each day in the expected range.
+        self.expected_days = (1, 2, 3, 4, 5)
+        for x in self.expected_days:
+            c = Contribution.objects.create(addon_id=self.app.pk,
+                amount=5)
+            c.update(created=datetime.datetime(2012, 5, x, 0, 0, 0))
+        tasks.index_contribution_counts(Contribution.objects.all())
+        self.refresh(timesleep=1)
+
+    def test_basic(self):
+        """
+        Check a sale (count) is found for each day in the expected range.
+        """
+        d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 15))
+        stats = list(get_series(Contribution, 'day', addon=self.app.pk,
+                                date__range=d_range))
+        dates_with_sales = [c['date'] for c in stats if c['count'] > 0]
+        for day in self.expected_days:
+            assert(day in [d.day for d in dates_with_sales], '%s not in data' %
+                   day)
+
+    def test_desc_order(self):
+        """
+        Check the returned data is in descending order by date.
+        """
+        d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 15))
+        stats = list(get_series(Contribution, 'day', addon=self.app.pk,
+                                date__range=d_range))
+        eq_(stats, sorted(stats, key=lambda x: x['date'], reverse=True))
 
 
 class TestPadMissingStats(amo.tests.ESTestCase):

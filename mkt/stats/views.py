@@ -1,3 +1,4 @@
+import datetime
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 
@@ -54,6 +55,7 @@ def get_series(model, group, primary_field=None, extra_fields=None, **filters):
     if extra_fields:
         fields += extra_fields
     data += pad_missing_stats(days, group, filters.get('date__range'), fields)
+    data = sorted(data, key=lambda document: document['date'], reverse=True)
 
     # Generate dictionary with options from ES document
     for val in data:
@@ -220,14 +222,18 @@ def pad_missing_stats(days, group, date_range=None, fields=None):
             # Pad based on the group (e.g don't insert days in a week view).
             if days[day[0] + 1] - day[1] > max_delta:
                 dummy_date = day[1] + group_delta
-                dummy_dict = {'date': dummy_date, 'count': 0}
+                dummy_dict = {
+                    'date': datetime.datetime.combine(dummy_date,
+                                                      datetime.time(0, 0)),
+                    'count': 0
+                }
 
                 for field in fields:
                     dummy_dict[field] = 0
 
                 # Insert dummy day into current iterated list to find more
                 # empty spots.
-                days.insert(day[0] + 1, dummy_dict['date'])
+                days.insert(day[0] + 1, dummy_date)
                 dummy_dicts.append(dummy_dict)
         except IndexError:
             break
