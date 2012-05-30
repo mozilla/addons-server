@@ -4,10 +4,11 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from tastypie import http
 from tastypie.bundle import Bundle
-from tastypie.exceptions import ImmediateHttpResponse, NotFound
+from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ModelResource
 
 from translations.fields import PurifiedField, TranslatedField
+
 
 class MarketplaceResource(ModelResource):
 

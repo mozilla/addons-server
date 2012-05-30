@@ -26,7 +26,8 @@
                 title: {
                     text: null
                 },
-                tickmarkPlacement: 'on'
+                tickmarkPlacement: 'on',
+                startOfWeek: 0
             },
             yAxis: {
                 title: {
@@ -65,7 +66,8 @@
                         hover: {
                             lineWidth: 2
                         }
-                    }
+                    },
+                    connectNulls: true
                 }
             }
         };
@@ -80,19 +82,21 @@
         "versions"           : "users",
         "statuses"           : "users",
         "users_created"      : "users",
-        "installs"           : "users",
         "downloads"          : "downloads",
         "sources"            : "downloads",
         "contributions"      : "currency",
-        "sales"              : "currency",
+        "revenue"            : "currency",
         "reviews_created"    : "reviews",
         "addons_in_use"      : "addons",
         "addons_created"     : "addons",
         "addons_updated"     : "addons",
         "addons_downloaded"  : "addons",
-        "collections_created" : "collections",
+        "collections_created": "collections",
         "subscribers"        : "collections",
-        "ratings"            : "collections"
+        "ratings"            : "collections",
+        "sales"              : "sales",
+        "refunds"            : "refunds",
+        "installs"           : "installs"
     };
 
     var acceptedGroups = {
@@ -146,6 +150,7 @@
         var step = '1 ' + group,
             point,
             dataSum = 0;
+
         forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
@@ -156,17 +161,31 @@
             }
         }, this);
 
-        // highCharts seems to dislike 0 and null data when determining a yAxis range
+        // Display marker if only one data point.
+        baseConfig.plotOptions.line.marker.radius = 3;
+        var count = 0,
+            dateRegex = /\d{4}-\d{2}-\d{2}/;
+        for (var key in data) {
+            if (dateRegex.exec(key) && data.hasOwnProperty(key)) {
+                count++;
+            }
+            if (count > 1) {
+                baseConfig.plotOptions.line.marker.radius = 0;
+                break;
+            }
+        }
+
+        // highCharts seems to dislike 0 and null data when determining a yAxis range.
         if (dataSum === 0) {
             baseConfig.yAxis.max = 10;
         } else {
             baseConfig.yAxis.max = null;
         }
 
-        // Transform xAxis based on time grouping (day, week, month) and range
+        // Transform xAxis based on time grouping (day, week, month) and range.
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 7;
-        baseConfig.xAxis.min = start - dayMsecs;
+        baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
         if (group == 'month') {
             pointInterval = 30 * dayMsecs;
@@ -174,6 +193,18 @@
         } else if (group == 'week') {
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
+        }
+
+        // Set minimum max value for yAxis to prevent duplicate yAxis values.
+        var max = 0;
+        for (var key in data) {
+            if (data[key].count > max) {
+                max = data[key].count;
+            }
+        }
+        // Chart has minimum 5 ticks so set max to 5 to avoid pigeonholing.
+        if (max < 5) {
+            baseConfig.yAxis.max = 5;
         }
 
         // Populate the chart config object.
@@ -186,8 +217,8 @@
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
                 'pointInterval' : pointInterval,
-                // compensate for timezone offsets from UTC.
-                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000 + dayMsecs,
+                // Compensate for timezone offsets from UTC.
+                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
@@ -199,14 +230,17 @@
             var xFormatter,
                 yFormatter;
             function dayFormatter(d) { return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d)); }
-            function weekFormatter(d) { return "Week of " + Highcharts.dateFormat('%b %e, %Y', new Date(d)); }
+            function weekFormatter(d) { return format(gettext('Week of {0}'), Highcharts.dateFormat('%b %e, %Y', new Date(d))); }
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
-            function downloadFormatter(n) { return Highcharts.numberFormat(n, 0) + ' downloads'; }
-            function userFormatter(n) { return Highcharts.numberFormat(n, 0) + ' users'; }
-            function addonsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' addons'; }
-            function collectionsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' collections'; }
-            function reviewsFormatter(n) { return Highcharts.numberFormat(n, 0) + ' reviews'; }
+            function downloadFormatter(n) { return gettext(Highcharts.numberFormat(n, 0) + 'downloads'); }
+            function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
+            function addonsFormatter(n) { return format(gettext('{0} add-ons'), Highcharts.numberFormat(n, 0)); }
+            function collectionsFormatter(n) { return format(gettext('{0} collections'), Highcharts.numberFormat(n, 0)); }
+            function reviewsFormatter(n) { return format(gettext('{0} reviews'), Highcharts.numberFormat(n, 0)); }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
+            function salesFormatter(n) { return format(gettext('{0} sales'), Highcharts.numberFormat(n, 0)); }
+            function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
+            function installsFormatter(n) { return format(gettext('{0} installs'), Highcharts.numberFormat(n, 0)); }
             function addEventData(s, date) {
                 var e = events[date];
                 if (e) {
@@ -259,7 +293,7 @@
                     case "downloads":
                         yFormatter = downloadFormatter;
                         break;
-                    case "currency":
+                    case "currency": case "revenue":
                         yFormatter = currencyFormatter;
                         break;
                     case "collections":
@@ -270,6 +304,15 @@
                         break;
                     case "addons":
                         yFormatter = addonsFormatter;
+                        break;
+                    case "sales":
+                        yFormatter = salesFormatter;
+                        break;
+                    case "refunds":
+                        yFormatter = refundsFormatter;
+                        break;
+                    case "installs":
+                        yFormatter = installsFormatter;
                         break;
                 }
                 return function() {
