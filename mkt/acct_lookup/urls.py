@@ -11,5 +11,6 @@ detail_patterns = patterns('',
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='acct_lookup.home'),
+    url(r'^search\.json$', views.search, name='acct_lookup.search'),
     (r'''^(?P<user_id>[^/<>"']+)/''', include(detail_patterns)),
 )

@@ -4,7 +4,8 @@ from django.shortcuts import get_object_or_404
 import jingo
 
 import amo
-from amo.decorators import login_required, permission_required
+from amo.decorators import login_required, permission_required, json_view
+from amo.urlresolvers import reverse
 from market.models import Refund
 from users.models import UserProfile
 
@@ -32,6 +33,29 @@ def summary(request, user_id):
                          'app_summary': app_summary,
                          'refund_summary': refund_summary,
                          'user_addons': user_addons})
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+@json_view
+def search(request):
+    results = []
+    query = request.GET.get('q', '').lower()
+    fields = ('username', 'display_name', 'email')
+    if query.isnumeric():
+        # id is added implictly by the ES filter. Add it explicitly:
+        fields = ['id'] + list(fields)
+        qs = UserProfile.objects.filter(pk=query).values(*fields)
+    else:
+        qs = (UserProfile.search()
+                         .query(or_=dict(username__startswith=query,
+                                         display_name__fuzzy=query,
+                                         email__fuzzy=query))
+                         .values_dict(*fields))
+    for user in qs:
+        user['url'] = reverse('acct_lookup.summary', args=[user['id']])
+        results.append(user)
+    return {'results': results}
 
 
 def _app_summary(user_id):
