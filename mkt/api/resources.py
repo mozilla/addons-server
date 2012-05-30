@@ -84,6 +84,8 @@ class ValidationResource(MarketplaceResource):
 
 
 class AppResource(MarketplaceResource):
+    previews = fields.ToManyField('mkt.api.resources.PreviewResource',
+                                  'previews', readonly=True)
 
     class Meta:
         queryset = Webapp.objects.all().no_transforms()
@@ -197,23 +199,22 @@ class CategoryResource(MarketplaceResource):
 
 
 class PreviewResource(MarketplaceResource):
-    addon = fields.ForeignKey(AppResource, 'addon')
+    image_url = fields.CharField(attribute='image_url', readonly=True)
+    thumbnail_url = fields.CharField(attribute='thumbnail_url', readonly=True)
 
     class Meta:
         queryset = Preview.objects.all()
         list_allowed_methods = ['post']
         allowed_methods = ['get', 'delete']
         always_return_data = True
-        fields = ['id']
+        fields = ['id', 'filetype']
         authentication = MarketplaceAuthentication()
         authorization = OwnerAuthorization()
         resource_name = 'preview'
         filtering = {'addon': ALL_WITH_RELATIONS}
 
     def obj_create(self, bundle, request, **kwargs):
-        filters = self.build_filters(filters=request.GET.copy())
-        addon = self.get_object_or_404(Webapp,
-                                       pk=filters.get('addon__exact'))
+        addon = self.get_object_or_404(Webapp, pk=request.GET.get('app'))
         if not AppOwnerAuthorization().is_authorized(request, object=addon):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
 

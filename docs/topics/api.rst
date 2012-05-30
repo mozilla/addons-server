@@ -204,10 +204,11 @@ Example body data::
          "device_types": ["desktop-1"],
          "summary": "wat...",
          "support_email": "a@a.com",
-         "categories": [1L, 2L]
+         "categories": [1L, 2L],
+         "previews": [],
          }
 
-*TODO*: should screenshot re-ordering be added here.
+Previews will be list of URLs pointing to the screenshot API.
 
 Status
 ======
@@ -244,43 +245,61 @@ Screenshots or videos
 =====================
 
 These can be added as seperate API calls. There are limits in the marketplace
-for what screenshots and videos can be accepted.
-
-*TODO*: implement this.
+for what screenshots and videos can be accepted. There is a 5MB limit on file
+uploads.
 
 Create
 ++++++
 
 Create a screenshot or video::
 
-        PUT /api/apps/<slug>/screenshot
+        PUT /en-US/api/apps/preview/?app=<app id>
 
-The body should contain the screenshot or video to be uploaded.
+The body should contain the screenshot or video to be uploaded in the following
+format::
+
+        {"position": 1, "file": {"type": "image/jpg", "data": "iVBOR..."}}
+
+Fields:
+
+* `file`: a dictionary containing two fields:
+  * `type`: the content type
+  * `data`: base64 encoded string of the preview to be added
+* `position`: the position of the preview on the app. We show the previews in
+  order
 
 This will return a 201 if the screenshot or video is successfully created. If
 not we'll return the reason for the error.
 
 Returns the screenshot id::
 
-        {"id": "12"}
+        {"position": 1, "thumbnail_url": "/img/uploads/...",
+         "image_url": "/img/uploads/...", "filetype": "image/png",
+         "resource_uri": "/en-US/api/apps/preview/1/"}
 
-Update
-++++++
+Get
++++
 
-Update a screenshot or video::
+Get information about the screenshot or video::
 
-        POST /api/apps/<slug>/screenshot/<id>
 
-This will return a 200 if the screenshot or video is succesfully updated.
+        GET /en-US/api/apps/preview/<preview id>/
+
+Returns::
+
+        {"addon": "/en-US/api/apps/app/1/", "id": 1, "position": 1,
+         "thumbnail_url": "/img/uploads/...", "image_url": "/img/uploads/...",
+         "filetype": "image/png", "resource_uri": "/en-US/api/apps/preview/1/"}
+
 
 Delete
 ++++++
 
 Delete a screenshot of video::
 
-        DELETE /api/apps/<slug>/screenshot/<id>
+        DELETE /en-US/api/apps/previe/<preview id>/
 
-This will return a 200 if the screenshot has been deleted.
+This will return a 204 if the screenshot has been deleted.
 
 
 Other APIs

@@ -7,7 +7,7 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon, AddonUser, Category, DeviceType
+from addons.models import Addon, AddonUser, Category, DeviceType, Preview
 import amo
 from amo.tests import AMOPaths
 from files.models import FileUpload
@@ -219,6 +219,14 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         content = json.loads(res.content)
         eq_(content['status'], 0)
 
+    def test_get_previews(self):
+        app = self.create_app()
+        res = self.client.get(self.get_url)
+        eq_(len(json.loads(res.content)['previews']), 0)
+        Preview.objects.create(addon=app)
+        res = self.client.get(self.get_url)
+        eq_(len(json.loads(res.content)['previews']), 1)
+
     def test_get_not_mine(self):
         obj = self.create_app()
         obj.authors.clear()
@@ -367,7 +375,7 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.file = base64.b64encode(open(self.mozball_image(), 'r').read())
         self.list_url = ('api_dispatch_list', {'resource_name': 'preview'},
-                         {'addon__exact': self.app.pk})
+                         {'app': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
                      'position': 1}
 
