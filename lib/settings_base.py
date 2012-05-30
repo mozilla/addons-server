@@ -1466,3 +1466,7 @@ SIGNING_SERVER_TIMEOUT = 10
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
+
+# Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
+# Flip this on in your local settings to experience the joy of ES tests.
+RUN_ES_TESTS = False

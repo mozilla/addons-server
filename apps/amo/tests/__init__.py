@@ -16,6 +16,7 @@ from django.utils import translation
 import elasticutils
 import nose
 import mock
+from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 import pyes.exceptions as pyes
 from redisutils import mock_redis, reset_redis
@@ -419,8 +420,6 @@ def collection_factory(**kw):
     return c
 
 
-# Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
-@nottest
 class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
@@ -432,6 +431,8 @@ class ESTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        if not settings.RUN_ES_TESTS:
+            raise SkipTest('ES disabled')
         super(ESTestCase, cls).setUpClass()
         cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
 
