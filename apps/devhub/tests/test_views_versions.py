@@ -649,7 +649,7 @@ class TestVersionEditCompat(TestVersionEdit):
             url = self.url
         av = self.version.apps.get()
         eq_(av.min.version, '2.0')
-        eq_(av.max.version, '3.7a1pre')
+        eq_(av.max.version, '4.0')
         f = self.client.get(url).context['compat_form'].initial_forms[0]
         return initial(f)
 

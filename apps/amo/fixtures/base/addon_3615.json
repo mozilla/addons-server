@@ -318,6 +318,17 @@
         }
     },
     {
+        "pk": 364,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "4.0",
+            "created": "2007-03-05 13:09:26",
+            "version_int": 4000000200100,
+            "modified": "2007-03-05 13:09:26"
+        }
+    },
+    {
         "pk": 97,
         "model": "applications.appversion",
         "fields": {
@@ -346,7 +357,7 @@
             "application": 1,
             "version": 81551,
             "min": 97,
-            "max": 282
+            "max": 364
         }
     },
     {

@@ -164,7 +164,8 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
             elif compat_mode == 'normal':
                 # This does a db hit but it's cached. This handles the cases
                 # for strict opt-in, binary components, and compat overrides.
-                v = addon.compatible_version(APP.id, version, compat_mode)
+                v = addon.compatible_version(APP.id, version, platform,
+                                             compat_mode)
                 if v:  # There's a compatible version.
                     addons.append(addon)
 
@@ -351,12 +352,15 @@ class SearchView(APIView):
         if waffle.switch_is_active('d2c-api-search'):
             is_d2c = True
             results = []
-            for addon in addons:
+            for addon in qs:
                 compat_version = addon.compatible_version(app_id, version,
+                                                          platform,
                                                           compat_mode)
                 if compat_version:
                     addon.compat_version = compat_version
                     results.append(addon)
+                    if len(results) == limit:
+                        break
                 else:
                     # We're excluding this addon because there are no
                     # compatible versions. Decrement the total.

@@ -593,16 +593,25 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return self._latest_version
 
-    def compatible_version(self, app_id, app_version=None,
+    def compatible_version(self, app_id, app_version=None, platform=None,
                            compat_mode='strict'):
         """Returns the newest compatible version given the input."""
         if not app_id:
             return None
 
-        log.info(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s,'
-                  ' Mode:%s' % (self.id, app_id, app_version, compat_mode))
+        if platform:
+            # We include platform_id=1 always in the SQL so we skip it here.
+            platform = platform.lower()
+            if platform != 'all' and platform in amo.PLATFORM_DICT:
+                platform = amo.PLATFORM_DICT[platform].id
+            else:
+                platform = None
+
+        log.info(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
+                  'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
+                                      compat_mode))
         valid_file_statuses = ','.join(map(str, amo.REVIEWED_STATUSES))
-        data = dict(id=self.id, app_id=app_id,
+        data = dict(id=self.id, app_id=app_id, platform=platform,
                     valid_file_statuses=valid_file_statuses)
         if app_version:
             data.update(version_int=version_int(app_version))
@@ -612,7 +621,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             compat_mode = 'ignore'
 
         ns_key = cache_ns_key('d2c-versions:%s' % self.id)
-        cache_key = '%s:%s:%s:%s' % (ns_key, app_id, app_version, compat_mode)
+        cache_key = '%s:%s:%s:%s:%s' % (ns_key, app_id, app_version, platform,
+                                        compat_mode)
         version_id = cache.get(cache_key)
         if version_id != None:
             log.info(u'Found compatible version in cache: %s => %s' % (
@@ -640,10 +650,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             INNER JOIN appversions appmax
                 ON appmax.id = applications_versions.max
             INNER JOIN files
-                ON files.version_id = versions.id
-            WHERE
-            files.status IN (%(valid_file_statuses)s)
-        """]
+                ON files.version_id = versions.id AND
+                   (files.platform_id = 1"""]
+
+        if platform:
+            raw_sql.append(' OR files.platform_id = %(platform)s')
+
+        raw_sql.append(') WHERE files.status IN (%(valid_file_statuses)s) ')
 
         if app_version:
             raw_sql.append('AND appmin.version_int <= %(version_int)s ')

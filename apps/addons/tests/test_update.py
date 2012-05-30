@@ -655,7 +655,7 @@ class TestResponse(amo.tests.TestCase):
         up.get_update()
         assert up.data['row']['hash'].startswith('sha256:3808b13e')
         eq_(up.data['row']['min'], '2.0')
-        eq_(up.data['row']['max'], '3.7a1pre')
+        eq_(up.data['row']['max'], '4.0')
 
     def test_beta_version(self):
         file = File.objects.get(pk=67442)
@@ -694,7 +694,7 @@ class TestResponse(amo.tests.TestCase):
         up.get_update()
         assert up.data['row']['hash'].startswith('sha256:3808b13e')
         eq_(up.data['row']['min'], '2.0')
-        eq_(up.data['row']['max'], '3.7a1pre')
+        eq_(up.data['row']['max'], '4.0')
 
     def test_content_type(self):
         up = self.get(self.good_data)

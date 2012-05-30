@@ -876,9 +876,10 @@ class TestGuidSearch(TestCase):
 
 
 class SearchTest(ESTestCase):
-    fixtures = ('base/apps', 'base/appversion', 'base/addon_6113',
-                'base/addon_40', 'base/addon_3615', 'base/addon_6704_grapple',
-                'base/addon_4664_twitterbar', 'base/addon_10423_youtubesearch')
+    fixtures = ('base/apps', 'base/platforms', 'base/appversion',
+                'base/addon_6113', 'base/addon_40', 'base/addon_3615',
+                'base/addon_6704_grapple', 'base/addon_4664_twitterbar',
+                'base/addon_10423_youtubesearch')
 
     no_results = """<searchresults total_results="0">"""
 
@@ -1007,7 +1008,8 @@ class SearchTest(ESTestCase):
         # Delicious currently supports Firefox 2.0 - 3.7a1pre. Strict mode will
         # not find it. Ignore mode should include it if the appversion is
         # specified as higher.
-        self.defaults.update(query='delicious')  # Defaults to strict.
+        self.defaults.update(query='delicious',
+                             app_version='5.0')  # Defaults to strict.
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, self.no_results)
         self.defaults.update(query='delicious', compat_mode='ignore')
@@ -1019,7 +1021,9 @@ class SearchTest(ESTestCase):
         # Under normal compat mode we ignore max version unless the add-on has
         # opted into strict mode. Test before and after search queries.
         addon = Addon.objects.get(pk=3615)
-        self.defaults.update(query='delicious', compat_mode='normal')
+        self.defaults.update(query='delicious', app_version='5.0')
+
+        self.defaults.update(compat_mode='normal')
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, 'Delicious Bookmarks')
 
@@ -1045,7 +1049,9 @@ class SearchTest(ESTestCase):
         # We ignore max version as long as the add-on has no binary components.
         # Test before and after search queries.
         addon = Addon.objects.get(pk=3615)
-        self.defaults.update(query='delicious', compat_mode='normal')
+        self.defaults.update(query='delicious', app_version='5.0')
+
+        self.defaults.update(compat_mode='normal')
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, 'Delicious Bookmarks')
 
@@ -1053,6 +1059,45 @@ class SearchTest(ESTestCase):
         file = addon.current_version.files.all()[0]
         file.update(binary_components=True)
         eq_(File.objects.get(pk=file.id).binary_components, True)
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure compat_mode=strict also doesn't find it.
+        self.defaults.update(compat_mode='strict')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, self.no_results)
+
+        # Make sure we find it with compat_mode=ignore
+        self.defaults.update(compat_mode='ignore')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+    def test_compat_mode_normal_and_binary_components_multi_file(self):
+        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
+        # This checks that versions with multiple files uses the platform to
+        # pick the right file for checking binary_components.
+        addon = Addon.objects.get(pk=3615)
+
+        file1 = addon.current_version.files.all()[0]
+        file1.update(platform=Platform(id=amo.PLATFORM_LINUX.id))
+
+        # Make a 2nd file just like the 1st, but with a different platform that
+        # uses binary_components.
+        file2 = file1
+        file2.id = None
+        file2.platform = Platform(id=amo.PLATFORM_WIN.id)
+        file2.binary_components = True
+        file2.save()
+
+        self.defaults.update(query='delicious', app_version='5.0')
+
+        # Linux doesn't use binary components.
+        self.defaults.update(compat_mode='normal')
+        response = self.client.get(self.url % self.defaults)
+        self.assertContains(response, 'Delicious Bookmarks')
+
+        # Windows does use binary components, so it should find no results.
+        self.defaults.update(platform='WINNT')
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, self.no_results)
 
@@ -1102,7 +1147,9 @@ class SearchTest(ESTestCase):
         waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # Under normal compat mode we ignore add-ons with a compat override.
         addon = Addon.objects.get(pk=3615)
-        self.defaults.update(query='delicious', compat_mode='normal')
+        self.defaults.update(query='delicious', app_version='5.0')
+
+        self.defaults.update(compat_mode='normal')
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, 'Delicious Bookmarks')
 
@@ -1131,11 +1178,11 @@ class SearchTest(ESTestCase):
     def test_cache(self):
         addon = Addon.objects.get(pk=3615)
         with self.assertNumQueries(1):
-            addon.compatible_version(amo.FIREFOX.id, '4.0', 'strict')
+            addon.compatible_version(amo.FIREFOX.id, '4.0', 'all', 'strict')
         # 2nd call to this should hit cache and not perform any queries since
         # we stored that there are no compatible versions.
         with self.assertNumQueries(0):
-            addon.compatible_version(amo.FIREFOX.id, '4.0', 'strict')
+            addon.compatible_version(amo.FIREFOX.id, '4.0', 'all', 'strict')
 
 
 class LanguagePacks(UploadTest):
