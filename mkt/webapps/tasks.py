@@ -54,18 +54,20 @@ def update_manifests(ids, **kw):
         try:
             hash_ = _get_content_hash(temp, webapp.manifest_url)
         except:
-            task_log.info('Failed to get manifest for: %s' % id,
-                          exc_info=True)
+            task_log.info('Failed to get manifest for: %s, %s' %
+                          (id, webapp.manifest_url), exc_info=True)
             rm_local_tmp_file(temp)
             continue
 
         # Try to create a new version, if needed.
         try:
             if file_.hash != hash_:
-                task_log.info('Webapp manifest different for: %s' % id)
+                task_log.info('Webapp manifest different for: %s, %s' %
+                              (id, webapp.manifest_url))
                 webapp.manifest_updated(temp)
             else:
-                task_log.info('Webapp manifest the same for: %s' % id)
+                task_log.info('Webapp manifest the same for: %s, %s' %
+                              (id, webapp.manifest_url))
         except:
             task_log.info('Failed to create version for: %s' % id,
                           exc_info=True)
