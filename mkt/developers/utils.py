@@ -58,7 +58,7 @@ def check_upload(file_obj, upload_type, content_type):
 
     if max_size and file_obj.size > max_size:
         if is_icon or is_video:
-            errors.append(_('Please use files smaller than %dMB.') %
+            errors.append(_('Please use files smaller than %s.') %
                 filesizeformat(max_size))
 
     return errors, upload_hash
