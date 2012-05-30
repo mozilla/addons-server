@@ -215,9 +215,9 @@
         }
         ul {
             background: @bg;
+            margin: 0;
             overflow: hidden;
             position: relative;
-            top: -9px;
             z-index: 3;
             width: 100%;
         }
@@ -234,7 +234,7 @@
             &:last-child {
                 border-bottom: 0;
             }
-            &:nth-child(2n) {
+            &:nth-child(2n + 1) {
                 a {
                     background: none;
                 }
@@ -247,14 +247,14 @@
             }
             a {
                 background: fadeOut(@light-gray, 75%);
-                padding: 10px 40px 0 100px;
+                padding: 10px 40px 0 85px;
                 .item-arrows;
             }
         }
     }
     .html-rtl .promo-grid {
         li a {
-            padding: 10px 100px 10px 40px;
+            padding: 10px 85px 10px 40px;
         }
     }
 }
