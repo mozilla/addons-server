@@ -162,6 +162,7 @@ class ViewQueue(RawSQLModel):
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
+                'addons.addontype_id <> 11',  # No webapps for AMO.
             ],
             'group_by': 'id'}
 

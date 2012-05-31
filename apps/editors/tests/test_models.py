@@ -119,6 +119,11 @@ class TestQueue(amo.tests.TestCase):
         self.new_file(name='Addon 2', version=u'0.2')
         eq_(self.Queue.objects.all().count(), 2)
 
+    def test_no_apps(self):
+        self.new_file(name='Addon 1', version=u'0.1',
+                      addon_type=amo.ADDON_WEBAPP)
+        eq_(self.Queue.objects.count(), 0)
+
 
 class TestPendingQueue(TestQueue):
     __test__ = True
