@@ -280,7 +280,7 @@ class APITest(TestCase):
         self.assertContains(response, "<name>Firefox</name>")
         self.assertContains(response, "<application_id>1</application_id>")
         self.assertContains(response, "<min_version>2.0</min_version>")
-        self.assertContains(response, "<max_version>3.7a1pre</max_version>")
+        self.assertContains(response, "<max_version>4.0</max_version>")
         self.assertContains(response, "<os>ALL</os>")
         self.assertContains(response, "<eula>")
         self.assertContains(response, "/icons/no-preview.png</thumbnail>")
