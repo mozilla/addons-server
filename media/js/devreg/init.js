@@ -95,7 +95,7 @@ function _pd(func) {
 
 
 function escape_(s) {
-    if (typeof s === undefined) {
+    if (typeof s === 'undefined') {
         return;
     }
     return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
