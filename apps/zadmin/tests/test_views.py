@@ -149,6 +149,9 @@ class BulkValidationTest(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.creator = UserProfile.objects.get(username='editor')
         self.version = self.addon.get_version()
+        ApplicationsVersions.objects.filter(application=1,
+                                            version=self.version).update(
+            max=AppVersion.objects.get(application=1, version='3.7a1pre'))
         self.application_version = self.version.apps.all()[0]
         self.application = self.application_version.application
         self.min = self.application_version.min
