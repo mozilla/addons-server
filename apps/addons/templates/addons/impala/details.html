@@ -308,10 +308,12 @@
     </section>
   {% endif %}
 </section>
+
 {% endif %}
 
 {% endcache %} {# cache addon #}
 
+</div>
 {# The rest of the detail page content is in details-more.html.
    We want above-the-fold to return and render really fast so we pull
    in reviews and links to other add-ons with js. #}
@@ -338,4 +340,3 @@
     </div>
   {% endif %}
 {% endblock %}
-</div>
