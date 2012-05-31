@@ -13,8 +13,7 @@ from django.db import transaction
 from django.shortcuts import redirect, get_object_or_404
 
 import amo
-from amo.decorators import (login_required, no_login_required,
-                            post_required, write)
+from amo.decorators import login_required, post_required, write
 
 import paypal
 from stats.models import Contribution
@@ -179,10 +178,10 @@ def pay_status(request, config_pk, status):
             uuid_ = str(request.GET['uuid'])
             cnt = Contribution.objects.get(uuid=uuid_)
         except (KeyError, UnicodeEncodeError, ValueError,
-                Contribution.DoesNotExist):
+                Contribution.DoesNotExist), exc:
             log.error('PayPal returned invalid uuid %r from in-app payment'
                       % uuid_, exc_info=True)
-            return jingo.render(request, 'inapp_pay/error.html')
+            return render_error(request, exc)
         payment = InappPayment.objects.get(config=cfg, contribution=cnt)
         if status == 'complete':
             cnt.update(type=amo.CONTRIB_INAPP)

@@ -172,10 +172,15 @@ class TestPayStart(PayFlowTest):
         self.assertTemplateUsed(rp, 'inapp_pay/nowallet.html')
 
     def test_pay_start_error(self, fetch_prod_im):
+        self.inapp_config.addon.support_url = 'http://friendlyapp.org/support'
+        self.inapp_config.addon.support_email = 'help@friendlyapp.org'
+        self.inapp_config.addon.save()
         rp = self.start(req=self.request(app_secret='invalid'))
         eq_(rp.status_code, 200)
         doc = pq(rp.content)
         eq_(doc('h3').text(), 'Payment Error')
+        self.assertContains(rp, 'mailto:help@friendlyapp.org')
+        self.assertContains(rp, 'friendlyapp.org/support')
 
         log = InappPayLog.objects.get()
         eq_(log.action, InappPayLog._actions['EXCEPTION'])
@@ -184,6 +189,24 @@ class TestPayStart(PayFlowTest):
         assert log.session_key, 'Unexpected session_key: %r' % log.session_key
         assert not fetch_prod_im.delay.called, (
                     'product image not fetched on error')
+
+    def test_pay_error_no_app_id(self, fetch_prod_im):
+        self.inapp_config.addon.support_url = 'http://friendlyapp.org/support'
+        self.inapp_config.addon.support_email = 'help@friendlyapp.org'
+        self.inapp_config.addon.save()
+        rp = self.start(req='<garbage>')
+        eq_(rp.status_code, 200)
+        self.assertNotContains(rp, 'mailto:help@friendlyapp.org')
+        self.assertNotContains(rp, 'friendlyapp.org/support')
+
+    def test_pay_error_no_support(self, fetch_prod_im):
+        self.inapp_config.addon.support_url = None
+        self.inapp_config.addon.support_email = None
+        self.inapp_config.addon.save()
+        rp = self.start(req=self.request(app_secret='invalid'))
+        eq_(rp.status_code, 200)
+        self.assertNotContains(rp, 'mailto:help@friendlyapp.org')
+        self.assertNotContains(rp, 'friendlyapp.org/support')
 
     @mock.patch.object(settings, 'INAPP_VERBOSE_ERRORS', True)
     def test_verbose_error(self, fetch_prod_im):
