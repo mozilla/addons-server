@@ -20,7 +20,6 @@ import waffle
 
 import amo
 import amo.tests
-import addons.search
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -30,6 +29,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            Category, Charity, CompatOverride,
                            CompatOverrideRange, DeviceType, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
+from addons.search import setup_mapping
 from applications.models import Application, AppVersion
 from compat.models import CompatReport
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
@@ -89,8 +89,7 @@ class TestAddonManager(amo.tests.TestCase):
                 a.id, 3, 'public() must not return unreviewed add-ons')
 
     def test_reviewed(self):
-        addons = Addon.objects.reviewed()
-        for a in addons:
+        for a in Addon.objects.reviewed():
             assert a.status in amo.REVIEWED_STATUSES, (a.id, a.status)
 
     def test_unreviewed(self):
@@ -1767,7 +1766,7 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()
-        addons.search.setup_mapping()
+        setup_mapping()
         self.addCleanup(self.cleanup)
 
     def cleanup(self):
@@ -2174,83 +2173,6 @@ class TestCompatOverride(amo.tests.TestCase):
         eq_(len(r[1].apps), 1)
         self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
 
-    def test_addon_version_ints(self):
-        # Test that the `version_int`s are created on save.
-        one = CompatOverride.objects.get(guid='one')
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='1.0',
-                                                max_version='1.1')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version_int, str(version_int(c.min_version)))
-        eq_(c.max_version_int, str(version_int(c.max_version)))
-
-        # Test that the `version_int`s are not created for wildcards.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='0',
-                                                max_version='*')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version_int, '')
-        eq_(c.max_version_int, '')
-
-        # Test one sided wildcards are handled correctly.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='0',
-                                                max_version='1.1')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version_int, '0')
-        eq_(c.max_version_int, str(version_int(c.max_version)))
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='1.0',
-                                                max_version='*')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version_int, str(version_int(c.min_version)))
-        eq_(c.max_version_int, str(version_int('99999')))
-
-    def test_invalid_addon_versions(self):
-        # Test how we handle addon versions that aren't compliant:
-        # https://developer.mozilla.org/en/Extension_Versioning%2C_Update_and_Compatibility
-        one = CompatOverride.objects.get(guid='one')
-
-        # If both invalid, set max to min.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='ver1',
-                                                max_version='ver2')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version, 'ver1')
-        eq_(c.max_version, 'ver1')
-
-        # If min invalid, set min to max.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='ver1',
-                                                max_version='1.1')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version, '1.1')
-        eq_(c.max_version, '1.1')
-
-        # If max invalid, set max to min.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='1.0',
-                                                max_version='ver2')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version, '1.0')
-        eq_(c.max_version, '1.0')
-
-        # If min invalid and max is wildcard, set max to min.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='ver1',
-                                                max_version='*')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version, 'ver1')
-        eq_(c.max_version, 'ver1')
-
-        # If max invalid and min is wildcard, set min to max.
-        cr = CompatOverrideRange.objects.create(compat=one, app=self.app,
-                                                min_version='0',
-                                                max_version='ver2')
-        c = CompatOverrideRange.objects.get(pk=cr.id)
-        eq_(c.min_version, 'ver2')
-        eq_(c.max_version, 'ver2')
-
 
 class TestIncompatibleVersions(amo.tests.TestCase):
 
@@ -2258,26 +2180,54 @@ class TestIncompatibleVersions(amo.tests.TestCase):
         self.app = Application.objects.create(id=amo.FIREFOX.id)
         self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
 
-    def test_signals(self):
+    def test_signals_min(self):
+        eq_(IncompatibleVersions.objects.count(), 0)
+
+        c = CompatOverride.objects.create(guid='r@b')
+        CompatOverrideRange.objects.create(compat=c, app=self.app,
+                                           min_version='0',
+                                           max_version='1.0')
+
+        # Test the max version matched.
+        version1 = Version.objects.create(id=2, addon=self.addon,
+                                          version='1.0')
+        eq_(IncompatibleVersions.objects.filter(version=version1).count(), 1)
+        eq_(IncompatibleVersions.objects.count(), 1)
+
+        # Test the lower range.
+        version2 = Version.objects.create(id=1, addon=self.addon,
+                                          version='0.5')
+        eq_(IncompatibleVersions.objects.filter(version=version2).count(), 1)
+        eq_(IncompatibleVersions.objects.count(), 2)
+
+        # Test delete signals.
+        version1.delete()
+        eq_(IncompatibleVersions.objects.count(), 1)
+
+        version2.delete()
+        eq_(IncompatibleVersions.objects.count(), 0)
+
+    def test_signals_max(self):
         eq_(IncompatibleVersions.objects.count(), 0)
 
         c = CompatOverride.objects.create(guid='r@b')
         CompatOverrideRange.objects.create(compat=c, app=self.app,
                                            min_version='1.0',
-                                           max_version='1.*')
+                                           max_version='*')
 
         # Test the min_version matched.
-        version = Version.objects.create(addon=self.addon, version='1.0')
-        eq_(IncompatibleVersions.objects.filter(version=version).count(), 1)
+        version1 = Version.objects.create(addon=self.addon, version='1.0')
+        eq_(IncompatibleVersions.objects.filter(version=version1).count(), 1)
         eq_(IncompatibleVersions.objects.count(), 1)
 
-        # Test the max_version wildcard matched.
-        version = Version.objects.create(addon=self.addon, version='1.3')
-        eq_(IncompatibleVersions.objects.filter(version=version).count(), 1)
+        # Test the upper range.
+        version2 = Version.objects.create(addon=self.addon, version='99.0')
+        eq_(IncompatibleVersions.objects.filter(version=version2).count(), 1)
         eq_(IncompatibleVersions.objects.count(), 2)
 
-        version.delete()
+        # Test delete signals.
+        version1.delete()
         eq_(IncompatibleVersions.objects.count(), 1)
 
-        Version.objects.all().delete()
+        version2.delete()
         eq_(IncompatibleVersions.objects.count(), 0)

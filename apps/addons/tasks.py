@@ -236,22 +236,50 @@ def update_incompatible_appversions(data, **kw):
             if range.min == '0' and range.max == '*':
                 # Wildcard range, add all app ranges
                 app_ranges.extend(range.apps)
-            elif not range.min_int or not range.max_int:
-                if range.min == version.version:
-                    app_ranges.extend(range.apps)
             else:
-                if (int(range.min_int) <= version.version_int <=
-                    int(range.max_int)):
-                    app_ranges.extend(range.apps)
+                # Since we can't rely on add-on version numbers, get the min
+                # and max ID values and find versions whose ID is within those
+                # ranges, being careful with wildcards.
+                min_id = max_id = None
 
-        for range in app_ranges:
+                if range.min == '0':
+                    versions = (Version.objects.filter(addon=version.addon_id)
+                                .order_by('id')
+                                .values_list('id', flat=True)[:1])
+                    if versions:
+                        min_id = versions[0]
+                else:
+                    try:
+                        min_id = Version.objects.get(addon=version.addon_id,
+                                                     version=range.min).id
+                    except Version.DoesNotExist:
+                        pass
+
+                if range.max == '*':
+                    versions = (Version.objects.filter(addon=version.addon_id)
+                                .order_by('-id')
+                                .values_list('id', flat=True)[:1])
+                    if versions:
+                        max_id = versions[0]
+                else:
+                    try:
+                        max_id = Version.objects.get(addon=version.addon_id,
+                                                     version=range.max).id
+                    except Version.DoesNotExist:
+                        pass
+
+                if min_id and max_id:
+                    if min_id <= version.id <= max_id:
+                        app_ranges.extend(range.apps)
+
+        for app_range in app_ranges:
             IncompatibleVersions.objects.create(version=version,
-                                                app_id=range.app.id,
-                                                min_app_version=range.min,
-                                                max_app_version=range.max)
+                                                app_id=app_range.app.id,
+                                                min_app_version=app_range.min,
+                                                max_app_version=app_range.max)
             log.info('Added incompatible version for version ID [%d]: '
-                     'app:%d, %s -> %s' % (version_id, range.app.id, range.min,
-                                           range.max))
+                     'app:%d, %s -> %s' % (version_id, app_range.app.id,
+                                           app_range.min, app_range.max))
 
     # Increment namespace cache of compat versions.
     for addon_id in addon_ids:

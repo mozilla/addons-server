@@ -11,7 +11,8 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon, CompatOverride, CompatOverrideRange
+from addons.models import (Addon, CompatOverride, CompatOverrideRange,
+                           IncompatibleVersions)
 from applications.models import Application, AppVersion
 from files.models import File
 from services import update
@@ -471,7 +472,7 @@ class TestDefaultToCompat(amo.tests.TestCase):
     def test_extension_compat_override(self):
         # Tests simple add-on (non-binary-components, non-strict) with a compat
         # override.
-        self.create_override(min_version='1.3', max_version='1.4')
+        self.create_override(min_version='1.3', max_version='1.3')
         self.expected.update({
             '6.0-normal': self.ver_1_2,
             '7.0-normal': self.ver_1_2,
@@ -483,7 +484,7 @@ class TestDefaultToCompat(amo.tests.TestCase):
         # Tests simple add-on (non-binary-components, non-strict) with a compat
         # override.
         self.update_files(binary_components=True)
-        self.create_override(min_version='1.3', max_version='1.4')
+        self.create_override(min_version='1.3', max_version='1.3')
         self.expected.update({
             '6.0-normal': self.ver_1_2,
             '7.0-normal': self.ver_1_2,
@@ -502,7 +503,7 @@ class TestDefaultToCompat(amo.tests.TestCase):
     def test_compat_override_max_addon_wildcard(self):
         # Tests simple add-on (non-binary-components, non-strict) with a compat
         # override that contains a max wildcard.
-        self.create_override(min_version='1.2', max_version='1.*',
+        self.create_override(min_version='1.2', max_version='1.3',
                              min_app_version='5.0', max_app_version='6.*')
         self.expected.update({
             '5.0-normal': self.ver_1_1,
@@ -537,16 +538,10 @@ class TestDefaultToCompat(amo.tests.TestCase):
 
     def test_compat_override_invalid_version(self):
         # Tests compat override range where version doesn't match our
-        # versioning scheme. This results in the version_int fields to not be
-        # populated and the underlying SQL needs to accomodate.
-
+        # versioning scheme. This results in no versions being written to the
+        # incompatible_versions table.
         self.create_override(min_version='ver1', max_version='ver2')
-        cr = CompatOverrideRange.objects.all()[0]
-        eq_(cr.min_version, 'ver1')
-        # Max is set to min since we can't calculate a range
-        eq_(cr.max_version, 'ver1')
-        eq_(cr.min_version_int, '')
-        eq_(cr.max_version_int, '')
+        eq_(IncompatibleVersions.objects.all().count(), 0)
 
     def test_min_max_version(self):
         # Tests the minimum requirement of the app maxVersion.
