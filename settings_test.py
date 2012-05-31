@@ -76,3 +76,17 @@ DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 VIDEO_LIBRARIES = ['lib.video.dummy']
 INAPP_VERBOSE_ERRORS = False
 INAPP_REQUIRE_HTTPS = True
+
+# Make sure debug toolbar output is disabled so it doesn't interfere with any
+# html tests.
+
+def custom_show_toolbar(request):
+    return False
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+    'HIDE_DJANGO_SQL': True,
+    'TAG': 'div',
+    'ENABLE_STACKTRACES' : False,
+}
