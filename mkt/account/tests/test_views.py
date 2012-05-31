@@ -84,7 +84,8 @@ class TestAccountSettings(amo.tests.TestCase):
         r = self.client.post(self.url, self.data, follow=True)
         self.assertRedirects(r, self.url)
         doc = pq(r.content)
-
+        eq_((ActivityLog.objects.filter(action=amo.LOG.USER_EDITED.id)
+                                .count()), 1)
         # Check that the values got updated appropriately.
         user = self.get_user()
         for field, expected in self.extra_data.iteritems():
@@ -274,6 +275,8 @@ class TestPreapproval(amo.tests.TestCase):
         eq_(self.client.post(self.currency_url,
                              {'currency': 'USD'}).status_code, 302)
         eq_(self.user.get_preapproval().currency, 'USD')
+        eq_((ActivityLog.objects.filter(action=amo.LOG.CURRENCY_UPDATED.id)
+                                .count()), 1)
 
     def test_extra_currency(self):
         price = Price.objects.create(price='1')
@@ -339,6 +342,8 @@ class TestPreapproval(amo.tests.TestCase):
         # Check that re-loading doesn't error.
         res = self.client.post(self.get_url('complete'))
         eq_(res.status_code, 200)
+        eq_((ActivityLog.objects.filter(action=amo.LOG.PREAPPROVAL_ADDED.id)
+                                .count()), 1)
 
     def test_preapproval_cancel(self):
         PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
@@ -371,6 +376,8 @@ class TestPreapproval(amo.tests.TestCase):
         eq_(self.user.preapprovaluser.paypal_key, '')
         eq_(pq(res.content)('#preapproval').attr('action'),
             reverse('account.payment.preapproval'))
+        eq_((ActivityLog.objects.filter(action=amo.LOG.PREAPPROVAL_REMOVED.id)
+                                .count()), 1)
 
 
 class TestProfileLinks(amo.tests.TestCase):

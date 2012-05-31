@@ -56,7 +56,7 @@ def payment(request, status=None):
             if 'setup-preapproval' in request.session:
                 paypal_log.info(u'Preapproval key created for user: %s, %s.' %
                                 (request.amo_user.pk, data['key'][:5]))
-
+                amo.log(amo.LOG.PREAPPROVAL_ADDED)
                 pre.update(paypal_key=data.get('key'),
                            paypal_expiry=data.get('expiry'))
 
@@ -82,6 +82,7 @@ def payment(request, status=None):
             # The user has an pre approval key set and chooses to remove it
             if pre.paypal_key:
                 pre.update(paypal_key='')
+                amo.log(amo.LOG.PREAPPROVAL_REMOVED)
                 messages.success(request,
                     _('Your payment pre-approval has been disabled.'))
                 paypal_log.info(u'Preapproval key removed for user: %s'
@@ -102,6 +103,7 @@ def currency(request, do_redirect=True):
         pre.update(currency=currency.cleaned_data['currency'])
         if do_redirect:
             messages.success(request, _('Currency saved.'))
+            amo.log(amo.LOG.CURRENCY_UPDATED)
             return redirect(reverse('account.payment'))
     else:
         return jingo.render(request, 'account/payment.html',
@@ -216,6 +218,7 @@ def account_settings(request):
         if form.is_valid():
             form.save()
             messages.success(request, _('Profile Updated'))
+            amo.log(amo.LOG.USER_EDITED)
             return redirect('account.settings')
         else:
             messages.form_errors(request)
@@ -257,6 +260,7 @@ def delete_photo(request):
     delete_photo_task.delay(request.amo_user.picture_path)
     log.debug(u'User (%s) deleted photo' % request.amo_user)
     messages.success(request, _('Photo Deleted'))
+    amo.log(amo.LOG.ACCOUNT_UPDATED)
     return http.HttpResponse()
 
 
