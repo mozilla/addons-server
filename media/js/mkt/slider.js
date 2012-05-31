@@ -20,12 +20,14 @@
     function touchSlider() {
         var $el = $(this),
             $ul = $('ul', $el).eq(0),
+            ulRaw = $ul[0],
             startX,
             newX,
             prevX,
             currentX = 0;
             lastMove = 0;
             contentWidth = 0,
+            prop = z.prefixUpper + 'Transform',
             sliderWidth = $el.outerWidth();
         $ul.find('li').each(function() {
             contentWidth += $(this).outerWidth();
@@ -44,13 +46,10 @@
         });
         $el.bind('touchmove', function(e) {
             // e.preventDefault();
-            var oe = e.originalEvent;
-            var eX = oe.targetTouches[0].pageX;
             prevX = newX;
-            newX = currentX + (eX - startX);
-            $ul.css('-moz-transform', 'translate3d(' + newX + 'px, 0, 0)');
-            $ul.css('-webkit-transform', 'translate3d(' + newX + 'px, 0, 0)');
-            lastMove = oe.timeStamp;
+            newX = currentX + (e.originalEvent.targetTouches[0].pageX - startX);
+            ulRaw.style[prop] = 'translate3d(' + newX + 'px, 0, 0)';
+            lastMove = e.originalEvent.timeStamp;
         });
         $el.bind('touchend', function(e) {
             var oe = e.originalEvent;

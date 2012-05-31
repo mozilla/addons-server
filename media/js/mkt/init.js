@@ -11,6 +11,9 @@ var z = {
     canInstallApps: true
 };
 
+z.prefixUpper= z.prefix[0].toUpperCase() + z.prefix.substr(1);
+
+
 (function() {
     _.extend(z, {'nav': BrowserUtils()});
     if (!z.nav.browser.firefox ||
@@ -19,8 +22,6 @@ var z = {
         z.canInstallApps = false;
     }
 })();
-
-
 
 // Initialize webtrends tracking.
 z.page.on('fragmentloaded', webtrendsAsyncInit);

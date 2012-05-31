@@ -231,15 +231,6 @@ h1 .num {
             background: white;
             padding: 8px;
             margin: 0 16px;
-            display: table;
-            em {
-                display: table-row;
-                width: 100%;
-            }
-            span {
-                display: table-cell;
-                vertical-align: middle;
-            }
             img {
                 display: block;
                 margin: auto;
@@ -394,19 +385,35 @@ h1 .num {
 
 //4 columns
 @media (max-width: @4col) {
-    .description {
+    #page > .description {
         border-width: 1px 0;
-        padding: 16px;
+        padding: 15px 40px 15px 10px;
+    }
+    #upsell {
+        display: none;
+    }
+    #reviews {
+        display: none;
     }
     .product-details {
+        .visual {
+            margin: 0 10px 10px 0;
+        }
         .vitals,
         .actions {
             float: none;
             width: 100%;
         }
+        .actions {
+            margin: 10px auto;
+        }
         .vitals {
             margin: 0;
             max-width: 100%;
+            h1 {
+                font-size: 24px;
+                line-height: 24px;
+            }
         }
     }
     .support ul {
@@ -435,16 +442,4 @@ h1 .num {
 
 // 3 columns
 @media (max-width: @3col) {
-    .product-details {
-        .visual {
-        }
-        .vitals {
-            float: none;
-        }
-        .actions {
-            float: none;
-            clear: both;
-            .width(3);
-        }
-    }
 }
