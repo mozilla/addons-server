@@ -87,10 +87,13 @@
     }
     h3, .author {
         .ellipsis;
-        padding-bottom: 1px;
+        // Because `overflow: hidden` is required for `text-overflow: ellipsis`
+        // and the letter 'g' gets clipped, my g.
+        margin-bottom: -6px;
+        padding-bottom: 2px;
     }
     .author {
-        color: @gray;
+        color: @medium-gray;
         display: block;
         margin: 5px 0;
         font-style: normal;
@@ -161,10 +164,10 @@
                 text-shadow: .5px .5px 0 @text;
                 z-index: 2;
                 &:before {
-                    left: -39px;
+                    left: -40px;
                 }
                 &:after {
-                    right: -39px;
+                    right: -40px;
                 }
                 &[data-shown] {
                     color: @text;
@@ -176,7 +179,7 @@
                 &[data-shown],
                 &[data-shown]:before,
                 &[data-shown]:after {
-                    background: @bg;
+                    background: lighten(@bg, 2%);
                 }
                 + span {
                     margin-left: 35px;
@@ -200,21 +203,26 @@
         }
     }
     .promo-grid {
+        h3, .author {
+            margin-bottom: -9px;
+            padding-bottom: 5px;
+            font-size: 1.2em;
+        }
         h3 {
-            font-size: 14px;
-            line-height: 16px;
-            margin: 0;
+            font-weight: bold;
+            line-height: 1;
             text-shadow: .2px .2px 0 @barely-gray;
         }
         .author {
-            margin: 0;
+            font-size: .8em;
+            padding-top: 2px;
         }
         .price {
-            font-size: 13px;
-            bottom: 7px;
+            font-size: .75em;
+            bottom: 10px;
         }
         ul {
-            background: @bg;
+            background: lighten(@bg, 2%);
             margin: 0;
             overflow: hidden;
             position: relative;
@@ -223,13 +231,13 @@
         }
         li {
             .border-box;
-            border-bottom: 1px solid @light-gray;
+            border-bottom: 1px solid darken(@light-gray, 2%);
             float: none;
             margin: 0;
             padding: 0;
             width: 100%;
             + li {
-                border-top: 1px solid @faint-gray;
+                border-top: 1px solid lighten(@faint-gray, 4%);
             }
             &:last-child {
                 border-bottom: 0;
@@ -243,10 +251,11 @@
                 padding-right: 0;
             }
             .img {
-                top: 5px;
+                top: 10px;
             }
             a {
                 background: fadeOut(@light-gray, 75%);
+                height: 74px;
                 padding: 10px 40px 0 85px;
                 .item-arrows;
             }

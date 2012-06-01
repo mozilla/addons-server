@@ -78,61 +78,14 @@
 @media (max-width: @4col) {
     .home {
         #site-header:after,
-        .homepage-promo,
-        .categories,
-        .promo-slider p,
-        .featured h2 {
+        .homepage-promo {
             display: none;
-        }
-        .featured.slider {
-            .controls {
-                .next-page, .prev-page {
-                    top: 13px;
-                    height: 120px;
-                }
-            }
-            .promo-slider {
-                height: 155px;
-            }
-        }
-        .promo-slider {
-            ul {
-                li,
-                li .img {
-                    width: 120px;
-                }
-                li {
-                    .img {
-                        background-position: 25% 50%;
-                        height: 120px;
-                        margin-bottom: 2px;
-                    }
-                    h3 {
-                        color: lighten(@text, 60%);
-                        font-size: 12px;
-                        margin: 0;
-                        max-width: 100%;
-                        text-shadow: .5px .5px 0 @navy-gray;
-                    }
-                }
-            }
         }
         .home #site-header:after {
             display: none;
         }
         .homepage-promo div {
             background-position: 150% 58px;
-        }
-        // Until we have gallery icons (bug 744648), let's use promo graphics.
-        .promo-slider ul li .img {
-            height: 83px;
-        }
-        .featured.slider .controls .next-page,
-        .featured.slider .controls .prev-page {
-            height: 108px;
-        }
-        .featured.slider .promo-slider {
-            height: 118px;
         }
     }
 
