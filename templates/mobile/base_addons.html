@@ -18,6 +18,8 @@
     {% block site_css %}
       {{ css('zamboni/mobile') }}
     {% endblock %}
+    <!-- Workaround for waiting for CSS to load before DOMContentLoaded fires (bug 721523, bug 759678) -->
+    <script src=""></script>
 
     {% include "mobile/head_debug.html" %}
 
