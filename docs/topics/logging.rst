@@ -53,7 +53,7 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
             'z.paypal': {
                 'level': logging.DEBUG,
             },
-            'z.sphinx': {
+            'z.es': {
                 'handlers': ['null'],
             },
         })

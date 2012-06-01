@@ -5,7 +5,6 @@ from django.conf import settings
 from django.forms.util import ErrorDict
 
 from tower import ugettext as _, ugettext_lazy as _lazy
-import waffle
 
 import amo
 from amo import helpers
@@ -211,9 +210,8 @@ class SecondarySearchForm(forms.Form):
 
     def __init__(self, *args, **kw):
         super(SecondarySearchForm, self).__init__(*args, **kw)
-        if waffle.switch_is_active('replace-sphinx'):
-            # This adds the "Name" sort option for ES results.
-            self.fields['sort'].choices = es_collection_sort_by
+        # This adds the "Name" sort option for ES results.
+        self.fields['sort'].choices = es_collection_sort_by
 
     def clean_pp(self):
         d = self.cleaned_data['pp']

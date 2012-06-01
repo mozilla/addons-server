@@ -10,7 +10,6 @@ import commonware.log
 import jingo
 from mobility.decorators import mobile_template
 from tower import ugettext as _
-import waffle
 
 import amo
 import bandwagon.views
@@ -22,9 +21,8 @@ from amo.utils import MenuItem, sorted_groupby
 from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_int, version_dict
 
-from . import forms
-from .client import SearchError, CollectionsClient, PersonasClient
-from .forms import SecondarySearchForm, ESSearchForm
+from .forms import ESSearchForm, SecondarySearchForm, sort_by
+
 
 DEFAULT_NUM_COLLECTIONS = 20
 DEFAULT_NUM_PERSONAS = 21  # Results appear in a grid of 3 personas x 7 rows.
@@ -159,12 +157,11 @@ def _get_tags(request, tags, selected):
 
 def _get_sort_menu(request, sort):
     items = []
-    sorts = forms.sort_by
 
     item = (None, _('Keyword Match'))
     items.append(item)
 
-    for key, val in sorts:
+    for key, val in sort_by:
         if key == '':
             continue
         item = (key, val)
@@ -177,8 +174,6 @@ def _get_sorts(request, sort):
     items = []
     url = request.get_full_path()
 
-    sorts = forms.sort_by
-
     item = MenuItem()
     (item.text, item.url) = (_('Keyword Match'), urlparams(url, sort=None))
 
@@ -187,7 +182,7 @@ def _get_sorts(request, sort):
 
     items.append(item)
 
-    for key, val in sorts:
+    for key, val in sort_by:
         if key == '':
             continue
 
@@ -207,31 +202,25 @@ def _personas(request):
 
     initial = dict(request.GET.items())
 
-    if waffle.switch_is_active('replace-sphinx'):
-        # Ignore these filters since return the same results for Firefox
-        # as for Thunderbird, etc.
-        initial.update(appver=None, platform=None)
+    # Ignore these filters since return the same results for Firefox
+    # as for Thunderbird, etc.
+    initial.update(appver=None, platform=None)
 
-        form = ESSearchForm(initial, type=amo.ADDON_PERSONA)
-        form.is_valid()
+    form = ESSearchForm(initial, type=amo.ADDON_PERSONA)
+    form.is_valid()
 
-        qs = Addon.search().filter(status__in=amo.REVIEWED_STATUSES,
-                                   is_disabled=False)
-        filters = ['sort']
-        mapping = {'downloads': '-weekly_downloads',
-                   'users': '-average_daily_users',
-                   'rating': '-bayesian_rating',
-                   'created': '-created',
-                   'name': 'name_sort',
-                   'updated': '-last_updated',
-                   'hotness': '-hotness'}
-        results = _filter_search(request, qs, form.cleaned_data, filters,
-                                 sorting=mapping, types=[amo.ADDON_PERSONA])
-    else:
-        # Set the default number of personas per page.
-        initial.update(pp=DEFAULT_NUM_PERSONAS)
-        form = SecondarySearchForm(initial)
-        form.is_valid()
+    qs = Addon.search().filter(status__in=amo.REVIEWED_STATUSES,
+                               is_disabled=False)
+    filters = ['sort']
+    mapping = {'downloads': '-weekly_downloads',
+               'users': '-average_daily_users',
+               'rating': '-bayesian_rating',
+               'created': '-created',
+               'name': 'name_sort',
+               'updated': '-last_updated',
+               'hotness': '-hotness'}
+    results = _filter_search(request, qs, form.cleaned_data, filters,
+                             sorting=mapping, types=[amo.ADDON_PERSONA])
 
     query = form.cleaned_data.get('q', '')
 
@@ -239,12 +228,6 @@ def _personas(request):
     search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_PERSONAS)
     page = form.cleaned_data.get('page') or 1
     search_opts['offset'] = (page - 1) * search_opts['limit']
-
-    if not waffle.switch_is_active('replace-sphinx'):
-        try:
-            results = PersonasClient().query(query, **search_opts)
-        except SearchError:
-            return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
     categories, filter, _, _ = browse.views.personas_listing(request)
@@ -266,20 +249,19 @@ def _collections(request):
     form = SecondarySearchForm(initial)
     form.is_valid()
 
-    if waffle.switch_is_active('replace-sphinx'):
-        qs = Collection.search().filter(listed=True, app=request.APP.id)
-        filters = ['sort']
-        mapping = {'weekly': '-weekly_subscribers',
-                   'monthly': '-monthly_subscribers',
-                   'all': '-subscribers',
-                   'rating': '-rating',
-                   'created': '-created',
-                   'name': 'name_sort',
-                   'updated': '-modified'}
-        results = _filter_search(request, qs, form.cleaned_data, filters,
-                                 sorting=mapping,
-                                 sorting_default='-weekly_subscribers',
-                                 types=amo.COLLECTION_SEARCH_CHOICES)
+    qs = Collection.search().filter(listed=True, app=request.APP.id)
+    filters = ['sort']
+    mapping = {'weekly': '-weekly_subscribers',
+               'monthly': '-monthly_subscribers',
+               'all': '-subscribers',
+               'rating': '-rating',
+               'created': '-created',
+               'name': 'name_sort',
+               'updated': '-modified'}
+    results = _filter_search(request, qs, form.cleaned_data, filters,
+                             sorting=mapping,
+                             sorting_default='-weekly_subscribers',
+                             types=amo.COLLECTION_SEARCH_CHOICES)
 
     query = form.cleaned_data.get('q', '')
 
@@ -288,15 +270,6 @@ def _collections(request):
     page = form.cleaned_data.get('page') or 1
     search_opts['offset'] = (page - 1) * search_opts['limit']
     search_opts['sort'] = form.cleaned_data.get('sort')
-
-    if not waffle.switch_is_active('replace-sphinx'):
-        # The new hotness calls this `created`. Sphinx still calls it `newest`.
-        if search_opts['sort'] == 'created':
-            search_opts['sort'] = 'newest'
-        try:
-            results = CollectionsClient().query(query, **search_opts)
-        except SearchError:
-            return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
     c = dict(pager=pager, form=form, query=query, opts=search_opts,

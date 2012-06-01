@@ -53,20 +53,6 @@ If you're setting up Rabbit and want to use ``celeryd``, make sure you remove
 that line from your ``settings_local.py``.
 
 
-------
-Sphinx
-------
-
-On OS X the package is called ``sphinx``.  Once you have it installed, run
-these two commands from the zamboni root to get it running::
-
-    indexer -c configs/sphinx/sphinx.conf --all
-    searchd -c configs/sphinx/sphinx.conf
-
-There will probably be warnings and lots of verbose output because Sphinx sucks
-like that, but it usually works.
-
-
 -------------
 elasticsearch
 -------------

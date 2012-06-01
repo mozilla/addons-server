@@ -1,40 +1,39 @@
 """
 API views
 """
-from datetime import date, timedelta
 import hashlib
 import itertools
 import json
 import random
 import urllib
+from datetime import date, timedelta
 
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
-from django.utils import translation, encoding
+from django.utils import encoding, translation
 from django.utils.encoding import smart_str
 from django.views.decorators.csrf import csrf_exempt
 
-from caching.base import cached_with
 import commonware.log
 import jingo
+import waffle
+from caching.base import cached_with
 from piston.utils import rc
 from tower import ugettext as _, ugettext_lazy
-import waffle
 
 import amo
 import api
+from addons.models import Addon, CompatOverride
 from amo.decorators import post_required
-from api.authentication import AMOOAuthAuthentication
-from api.forms import PerformanceForm
-from api.utils import addon_to_dict, extract_filters
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
-from addons.models import Addon, CompatOverride
+from api.authentication import AMOOAuthAuthentication
+from api.forms import PerformanceForm
+from api.utils import addon_to_dict, extract_filters
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
-from search.client import SEARCHABLE_STATUSES
 from search.views import name_query
 from versions.compare import version_int
 
@@ -43,6 +42,8 @@ ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
     u"The API version, {0:.1f}, you are using is not valid.  "
     u"Please upgrade to the current version {1:.1f} API.")
+SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
+                       amo.STATUS_LITE_AND_NOMINATED)
 
 xml_env = jingo.env.overlay()
 old_finalize = xml_env.finalize

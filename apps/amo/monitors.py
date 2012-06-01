@@ -1,10 +1,9 @@
 import os
-from PIL import Image
 import socket
 import StringIO
 import traceback
 import urllib2
-from urlparse import urlparse
+from PIL import Image
 
 from django.conf import settings
 
@@ -113,8 +112,6 @@ def path():
           settings.PREVIEWS_PATH,
           settings.PERSONAS_PATH,
           settings.USERPICS_PATH,
-          settings.SPHINX_CATALOG_PATH,
-          settings.SPHINX_LOG_PATH,
           settings.WATERMARKED_ADDONS_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),

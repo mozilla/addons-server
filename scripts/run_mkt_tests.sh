@@ -59,7 +59,6 @@ git submodule --quiet sync && git submodule update --init --recursive
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *
 LOG_LEVEL = logging.ERROR
-# Database name has to be set because of sphinx
 DATABASES['default']['NAME'] = 'zamboni_$1'
 DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'

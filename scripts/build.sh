@@ -61,7 +61,6 @@ from lib.settings_base import *
 from ${SETTINGS}.settings import *
 ROOT_URLCONF = 'lib.urls_base'
 LOG_LEVEL = logging.ERROR
-# Database name has to be set because of sphinx
 DATABASES['default']['NAME'] = 'zamboni_$1'
 DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'
@@ -74,11 +73,6 @@ CELERY_ALWAYS_EAGER = True
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
 
-TEST_SPHINX_CATALOG_PATH = TMP_PATH + '/$1/data/sphinx'
-TEST_SPHINX_LOG_PATH = TMP_PATH + '/$1/log/serachd'
-TEST_SPHINXQL_PORT = 340${EXECUTOR_NUMBER}
-TEST_SPHINX_PORT = 341${EXECUTOR_NUMBER}
-
 SETTINGS
 
 # Update product details to pull in any changes (namely, 'dbg' locale)
@@ -89,9 +83,8 @@ python manage.py update_product_details
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
-# with-coverage excludes sphinx so it doesn't conflict with real builds.
 if [[ $3 = 'with-coverage' ]]; then
-    coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit -a'!sphinx'
+    coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
     coverage xml $(find apps lib -name '*.py')
 else
     python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit

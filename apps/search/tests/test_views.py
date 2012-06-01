@@ -3,15 +3,12 @@ import json
 import urlparse
 
 from django.http import QueryDict
-from django.test import client
 
 from jingo.helpers import datetime as datetime_filter
-from mock import Mock
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
-import waffle
 
 import amo
 import amo.tests
@@ -19,101 +16,11 @@ from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
 from search import views
-from search.tests import SphinxTestCase
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS
-from tags.models import Tag
 from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
-
-
-def test_parse_bad_type():
-    """
-    Given a type that doesn't exist, we should not throw a KeyError.
-
-    Note: This does not require sphinx to be running.
-    """
-    c = client.Client()
-    try:
-        c.get("/en-US/firefox/api/1.2/search/firebug%20type:dict")
-    except KeyError:  # pragma: no cover
-        assert False, ("We should not throw a KeyError just because we had a "
-                       "nonexistent addon type.")
-
-
-class TestSphinxFunctions(amo.tests.TestCase):
-    """Tests some of the functions used in building the view."""
-    fixtures = ['base/category']
-
-    def setUp(self):
-        self.fake_request = Mock()
-        self.fake_request.get_full_path = lambda: 'http://fatgir.ls/'
-
-    def test_get_categories(self):
-        cats = Category.objects.all()
-        cat = cats[0].id
-
-        # Select a category.
-        items = views._get_categories(self.fake_request, cats, category=cat)
-        eq_(len(cats), len(items[1].children))
-        assert any(i.selected for i in items[1].children)
-
-        # Select an addon type.
-        atype = cats[0].type
-        items = views._get_categories(self.fake_request, cats,
-                                      addon_type=atype)
-        assert any(i.selected for i in items)
-
-    def test_get_tags(self):
-        t = Tag(tag_text='yermom')
-        assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
-
-
-class TestSphinxResults(SphinxTestCase):
-
-    def test_personas(self):
-        # ES doesn't serve Personas results (yet).
-        r = self.client.get(reverse('search.search'), dict(atype=9),
-                            follow=True)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'search/personas.html')
-
-
-class TestAdminDisabledAddons(SphinxTestCase):
-    fixtures = ('base/addon_3615',)
-
-    def setUp(self):
-        Addon.objects.get(pk=3615).update(status=amo.STATUS_DISABLED)
-        super(TestAdminDisabledAddons, self).setUp()
-
-
-class TestSphinxSearchboxTarget(SphinxTestCase):
-    fixtures = ['base/addon_3615']
-
-    def check(self, params):
-        r = self.client.get(reverse('search.search'), params, follow=True)
-        form = pq(r.content)('#search')
-
-        cat = params['cat']
-        eq_(form('input[name=cat]').val(), cat)
-
-        q_field = form('input[name=q]')
-        eq_(q_field.attr('placeholder'), 'search for %s' % cat)
-        if 'q' in params:
-            eq_(q_field.val(), params['q'])
-
-    def test_collections_default(self):
-        self.check({'cat': 'collections'})
-
-    def test_collections_term(self):
-        self.check({'cat': 'collections', 'q': 'harry'})
-
-    def test_personas(self):
-        self.check({'cat': 'personas'})
-
-    def test_personas_term(self):
-        self.check({'cat': 'personas', 'q': 'harry'})
 
 
 class TestSearchboxTarget(amo.tests.ESTestCase):
@@ -650,7 +557,6 @@ class TestPersonaSearch(SearchBase):
         cls.setUpIndex()
 
     def setUp(self):
-        waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
 
     def _generate_personas(self):
@@ -807,7 +713,6 @@ class TestCollectionSearch(SearchBase):
         super(TestCollectionSearch, cls).setUpClass()
 
     def setUp(self):
-        waffle.models.Switch.objects.create(name='replace-sphinx', active=True)
         self.url = urlparams(reverse('search.search'), cat='collections')
 
     def _generate(self):

@@ -69,7 +69,7 @@ Running Tests
 
   * ``--noinput`` tells Django not to ask about creating or destroying test
     databases.
-  * ``--loggging-clear-handlers`` tells nose that you don't want to see any
+  * ``--logging-clear-handlers`` tells nose that you don't want to see any
     logging output.  Without this, our debug logging will spew all over your
     console during test runs.  This can be useful for debugging, but it's not that
     great most of the time.  See the docs for more stuff you can do with

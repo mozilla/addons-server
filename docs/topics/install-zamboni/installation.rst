@@ -352,8 +352,8 @@ See the :ref:`contributing` page.
 Advanced Installation
 ---------------------
 
-In production we use things like memcached, rabbitmq + celery, sphinx, redis,
-and LESS.  Learn more about installing these on the
+In production we use things like memcached, rabbitmq + celery,
+elasticsearch, and LESS.  Learn more about installing these on the
 :doc:`./advanced-installation` page.
 
 .. note::
