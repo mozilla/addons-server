@@ -13,4 +13,4 @@ def run():
     cursor.execute('insert into log_activity_app_mkt '
                    'select * from log_activity_app;')
     cursor.execute('set foreign_key_checks = 1')
-    transaction.commit()
+    transaction.commit_unless_managed()
