@@ -8,68 +8,94 @@ https://developer.mozilla.org/en/Apps/In-app_payments
 */
 (function(exports) {
 "use strict";
-// embedded https://github.com/potch/picolib
-var $ = (function(win, doc, undefined) {
+// embedded https://github.com/potch/mu.js
+var $ = (function(win, doc) {
 
-    function pico(sel) {
-        var ret,
-            p,
-            forEach = Array.prototype.forEach;
+    var call = 'call',
+        obj = 'object',
+        length = 'length',
+        qsa = 'querySelectorAll',
+        forEach = 'forEach',
+        parentNode = 'parentNode';
 
-        ret = sel.nodeType ? [sel] : doc.querySelectorAll(sel);
+    function mu(sel) {
+        var i,
+            ret = sel.nodeType ? [sel] : arr(doc[qsa](sel));
 
-        ret.each = function(fn) {
-            forEach.call(ret, function(item) {
-                fn.call(item);
-            });
-            return ret;
-        };
-
-
-        ret.on = function(type, handler) {
-            ret.each(function() {
-                on(this, type, handler)
-            });
-            return ret;
-        };
-
-
-        ret.css = function(o) {
-            if (typeof o == 'object') {
-                for (p in o) {
-                    ret.each(function() {
-                        this.style[p] = o[p];
-                    });
+        function prop(css_if_true) {
+            return function(o) {
+                if (typeof o == obj) {
+                    for (i in o) {
+                        ret[forEach](function(el) {
+                            if (css_if_true) {
+                                el.style.setProperty(i, o[i]);
+                            } else {
+                                el.setAttribute(i, o[i]);
+                            }
+                        });
+                    }
+                    return ret;
                 }
-                return ret;
-            }
-            return win.getComputedStyle(ret[0]).getPropertyValue(o);
-        };
-
-
-        ret.attr = function(o) {
-            if (typeof o == 'object') {
-                for (p in o) {
-                    ret.each(function() {
-                        this.setAttribute(p, o[p]);
-                    });
+                if (css_if_true) {
+                    return win.getComputedStyle(ret[0]).getPropertyValue(o);
+                } else {
+                    return ret[0].getAttribute(o);
                 }
-                return ret;
-            }
-            return ret[0].getAttribute(o);
-        };
+            };
+        }
 
+        extend(ret, {
+            on : function(type, handler) {
+                ret[forEach](function(el) {
+                    on(el, type, handler)
+                });
+                return ret;
+            },
+            delegate : function(type, sel, handler) {
+                ret[forEach](function(dEl) {
+                    on(dEl, type, function(e,t) {
+                        var matches = dEl[qsa](sel);
+                        for (var el = t; el[parentNode] && el != dEl; el = el[parentNode]) {
+                            for (i=0;i<matches[length];i++) {
+                                if (matches[i] == el) {
+                                    handler[call](el, e);
+                                    return;
+                                }
+                            }
+                        }
+                    });
+                });
+                return ret;
+            },
+            css : prop(1),
+            attr : prop()
+        });
 
         return ret;
     };
 
-    var on = pico.on = function(el, type, handler) {
-        el.addEventListener(type, function(e) {
-            handler.call(e.target, e);
-        }, false);
-    };
+    var fmt_re = /\{([^}]+)\}/g,
+        arr = mu.arr = function(a, i) {
+            return Array.prototype.slice[call](a,i||0);
+        },
+        extend = mu.extend = function(d, s) {
+            for (p in s) {
+                d[p] = s[p];
+            }
+        },
+        on = mu.on = function(obj, type, handler) {
+            obj.addEventListener(type, function(e) {
+                handler(e, e.target);
+            }, false);
+        };
 
-    return pico;
+        mu.fmt = function(s, vals) {
+            if (!(vals instanceof Array || vals instanceof Object))
+                vals = arr(arguments, 1);
+            return s.replace(fmt_re, function(_, match){ return vals[match]; });
+        };
+
+    return mu;
 })(window, document);
 
 var format = (function() {
@@ -129,8 +155,6 @@ function handleMessage(msg) {
 }
 
 function showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
-    // check cookie for marketplace session?
-    // _popup_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure);
     _overlay_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure);
 }
 
@@ -147,15 +171,6 @@ function _overlay_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
         'style': overlayStyle
     });
     $('body').css({'z-index': '-1'})[0].appendChild($overlay[0]);
-}
-
-function _popup_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
-    if (payWindow == null || payWindow.closed) {
-        payWindow = window.open(server + '/inapp-pay/pay_start?req=' + signedRequest, 'moz-payment-screen',
-                                'menubar=0,location=1,resizable=1,scrollbars=1,status=0,close=1,width=450,height=250,dialog=1');
-    } else {
-        payWindow.focus();
-    }
 }
 
 })(typeof exports === 'undefined' ? (this.mozmarket = {}) : exports);
