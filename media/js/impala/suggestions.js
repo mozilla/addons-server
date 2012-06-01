@@ -173,9 +173,24 @@ $.fn.searchSuggestions = function($results) {
         }
     }
 
-    $self.blur(function() { _.delay(dismissHandler, 250); })
-         .keydown(gestureHandler)
-         .bind('keyup paste', _.throttle(inputHandler, 250));
+    var pollVal;
+
+    if (z.capabilities.touch) {
+        $self.focus(function() {
+            pollVal = setInterval(function() {
+                gestureHandler($self);
+                inputHandler($self);
+                return;
+            }, 250);
+        });
+    }
+
+    $self.keydown(gestureHandler)
+         .bind('keyup paste', _.throttle(inputHandler, 250))
+         .blur(function() {
+           clearInterval(pollVal);
+           _.delay(dismissHandler, 250);
+       });
 
     $results.delegate('li, p', 'hover', function() {
         $results.find('.sel').removeClass('sel');
