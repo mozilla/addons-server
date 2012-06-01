@@ -66,9 +66,6 @@
 
 @media (max-width: @10col) {
     .homepage-promo {
-        div {
-            .background-size(auto 50%);
-        }
         h2, p {
             width: 300px;
         }
@@ -80,6 +77,40 @@
         #site-header:after,
         .homepage-promo {
             display: none;
+        }
+        .featured.slider {
+            .controls {
+                .next-page, .prev-page {
+                    top: 13px;
+                    height: 120px;
+                }
+            }
+            .promo-slider {
+                height: 145px;
+            }
+        }
+        .promo-slider {
+            ul {
+                li,
+                li .img {
+                    width: 120px;
+                }
+                li {
+                    .img {
+                        background-position: center center;
+                        height: 120px;
+                        margin-bottom: 2px;
+                        background-color: #fff;
+                    }
+                    h3 {
+                        color: lighten(@text, 60%);
+                        font-size: 12px;
+                        margin: 0;
+                        max-width: 100%;
+                        text-shadow: .5px .5px 0 @navy-gray;
+                    }
+                }
+            }
         }
         .home #site-header:after {
             display: none;

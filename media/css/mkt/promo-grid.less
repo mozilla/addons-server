@@ -150,28 +150,26 @@
                 position: absolute;
                 top: 0;
                 height: 100%;
-                min-width: 40px;
+                min-width: 36px;
             }
             span {
                 .dark-text-shadow;
                 color: @faint-gray;
                 cursor: pointer;
                 display: inline-block;
-                font-size: 17px;
                 line-height: 19px;
                 margin: 0;
                 padding: 10px 20px;
                 position: relative;
                 z-index: 2;
                 &:before {
-                    left: -40px;
+                    left: -35px;
                 }
                 &:after {
-                    right: -40px;
+                    right: -35px;
                 }
                 &[data-shown] {
                     color: @text;
-                    font-weight: bold;
                     outline: none;
                     text-shadow: .5px .5px 0 @white;
                     z-index: 3;
@@ -193,8 +191,6 @@
         border-top: 1px solid @light-gray;
         display: block;
         font-weight: 600;
-        font-size: 14px;
-        line-height: 16px;
         opacity: .8;
         padding: 15px 10px;
         position: relative;
@@ -206,15 +202,12 @@
         h3, .author {
             margin-bottom: -9px;
             padding-bottom: 5px;
-            font-size: 1.2em;
         }
         h3 {
-            font-weight: bold;
             line-height: 1;
             text-shadow: .2px .2px 0 @barely-gray;
         }
         .author {
-            font-size: .8em;
             padding-top: 2px;
         }
         .price {
