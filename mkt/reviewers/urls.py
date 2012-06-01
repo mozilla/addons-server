@@ -13,4 +13,6 @@ urlpatterns = (
         name='reviewers.apps.review'),
     url(r'^apps/logs$', views.logs, name='reviewers.apps.logs'),
     url(r'^apps/motd$', views.motd, name='reviewers.apps.motd'),
+    url(r'^apps/receipt/%s$' % amo.APP_SLUG, views.receipt,
+        name='reviewers.apps.receipt'),
 )

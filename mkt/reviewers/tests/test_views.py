@@ -1,5 +1,6 @@
 import datetime
 from itertools import cycle
+import json
 import time
 
 from django.core import mail
@@ -585,3 +586,26 @@ class TestMotd(EditorTest):
         req = self.client.post(self.url, dict(motd='new motd'))
         self.assertRedirects(req, self.url)
         eq_(get_config(self.key), u'new motd')
+
+
+class TestReviewerReceipt(amo.tests.TestCase):
+
+    def setUp(self):
+        super(TestReviewerReceipt, self).setUp()
+        self.app = Webapp.objects.create(app_slug='foo')
+        self.url = reverse('reviewers.apps.receipt', args=[self.app.app_slug])
+
+    def test_post_required(self):
+        eq_(self.client.get(self.url).status_code, 405)
+
+    def test_empty(self):
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['status'], 'invalid')
+
+    @mock.patch('mkt.reviewers.views.Verify.__call__')
+    def test_good(self, verify):
+        verify.return_value = json.dumps({'status': 'ok'})
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['status'], 'ok')

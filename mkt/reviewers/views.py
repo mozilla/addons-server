@@ -4,6 +4,7 @@ from django import http
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 from tower import ugettext as _
@@ -11,6 +12,7 @@ from tower import ugettext as _
 from access import acl
 import amo
 from amo import messages
+from amo.decorators import post_required
 from amo.utils import urlparams
 from addons.decorators import addon_view
 from addons.models import Version
@@ -21,6 +23,7 @@ from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from reviews.models import Review
+from services.verify import Verify
 from zadmin.models import get_config, set_config
 
 from mkt.developers.models import ActivityLog
@@ -262,3 +265,14 @@ def motd(request):
             return redirect(reverse('reviewers.apps.motd'))
     data = context(form=form)
     return jingo.render(request, 'reviewers/motd.html', data)
+
+
+@csrf_exempt
+@addon_view
+@post_required
+def receipt(request, addon):
+    # TODO: There is much more to come here.
+    receipt = request.raw_post_data
+    verify = Verify(addon.pk, receipt, request)
+    output = verify()
+    return http.HttpResponse(output, verify.get_headers(len(output)))
