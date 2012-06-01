@@ -227,14 +227,8 @@
     }
 }
 
-.desktop {
-    #site-header #flyout {
-        .transition-property(~'top, opacity, visibility');
-        .transition-duration(.2s);
-        a:after {
-            .transition(.2s right);
-        }
-    }
+.desktop #site-header #flyout a:after {
+    .transition(.2s right);
 }
 
 @media (max-width: @4col) {
