@@ -645,3 +645,12 @@ class TestReviewerReceipt(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(self.log.count(), 1)
         eq_(res.status_code, 200)
+
+    @mock.patch('mkt.reviewers.views.Verify')
+    def test_logs(self, verify):
+        author = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=self.app, user=author)
+        verify.return_value = self.get_mock(user=author, status='ok')
+        res = self.client.post(self.url)
+        eq_(self.log.count(), 1)
+        eq_(res.status_code, 200)

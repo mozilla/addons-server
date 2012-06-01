@@ -276,7 +276,7 @@ def receipt(request, addon):
     verify = Verify(addon.pk, receipt, request)
     output = verify()
 
-    # Only reviewers are allowed to use this which is different
+    # Only reviewers or the authors can use this which is different
     # from the standard receipt verification. The user is contained in the
     # receipt.
     if verify.user_id:
@@ -285,7 +285,8 @@ def receipt(request, addon):
         except UserProfile.DoesNotExist:
             user = None
 
-        if user and acl.action_allowed_user(user, 'Apps', 'Review'):
+        if user and (acl.action_allowed_user(user, 'Apps', 'Review')
+            or addon.has_author(user)):
             amo.log(amo.LOG.RECEIPT_CHECKED, addon, user=user)
             return http.HttpResponse(output, verify.get_headers(len(output)))
 

@@ -13,13 +13,19 @@ import waffle
 from django.conf import settings
 
 import amo
-from addons.models import (Addon, AddonDeviceType, BlacklistedSlug, DeviceType,
-                           Preview)
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+from addons.models import (Addon, AddonDeviceType, AddonUser, BlacklistedSlug,
+                           DeviceType, Preview)
 from mkt.developers.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import create_receipt, get_key, Installed, Webapp
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
+
+# We are testing times down to the second. To make sure we don't fail, this
+# is the amount of leeway in seconds we are giving the timing tests.
+TEST_LEEWAY = 100
 
 
 class TestWebapp(test_utils.TestCase):
@@ -346,8 +352,41 @@ class TestReceipt(amo.tests.TestCase):
         eq_(receipt['product']['storedata'], 'id=%s' % int(ins.addon.pk))
         assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
                                  settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS -
-                                 100)
+                                 TEST_LEEWAY)
         eq_(receipt['reissue'], self.webapp.get_purchase_url('reissue'))
+
+    def test_receipt_not_reviewer(self):
+        ins = self.create_install(self.user, self.webapp)
+        self.assertRaises(ValueError,
+                          create_receipt, ins.pk, flavour='reviewer')
+
+    def test_receipt_other(self):
+        ins = self.create_install(self.user, self.webapp)
+        self.assertRaises(AssertionError,
+                          create_receipt, ins.pk, flavour='wat')
+
+    @mock.patch('jwt.encode')
+    def for_user(self, ins, flavour, encode):
+        encode.return_value = 'tmp-to-keep-memoize-happy'
+        create_receipt(ins.pk, flavour=flavour)
+        receipt = encode.call_args[0][0]
+        eq_(receipt['product']['type'], flavour)
+        eq_(receipt['verify'],
+            absolutify(reverse('reviewers.apps.receipt',
+                               args=[self.webapp.app_slug])))
+        assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
+                                 (60 * 60 * 24) - TEST_LEEWAY)
+
+    def test_receipt_data_author(self):
+        user = UserProfile.objects.get(pk=5497308)
+        ins = self.create_install(user, self.webapp)
+        self.for_user(ins, 'author')
+
+    def test_receipt_data_reviewer(self):
+        user = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=self.webapp, user=user)
+        ins = self.create_install(user, self.webapp)
+        self.for_user(ins, 'reviewer')
 
     @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
     @mock.patch('mkt.webapps.models.sign')

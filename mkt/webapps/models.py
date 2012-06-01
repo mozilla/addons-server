@@ -14,6 +14,7 @@ from django.dispatch import receiver
 import commonware.log
 from tower import ugettext as _
 
+from access import acl
 import amo
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
@@ -350,25 +351,40 @@ def add_uuid(sender, **kw):
 
 
 @memoize(prefix='create-receipt', time=60 * 10)
-def create_receipt(installed_pk):
+def create_receipt(installed_pk, flavour=None):
+    assert flavour in [None, 'author', 'reviewer'], (
+           'Invalid flavour: %s' % flavour)
+
     installed = Installed.objects.get(pk=installed_pk)
     addon_pk = installed.addon.pk
-    verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
+    time_ = calendar.timegm(time.gmtime())
+    product = {'url': installed.addon.origin,
+               'storedata': urlencode({'id': int(addon_pk)})}
+
+    # Generate different receipts for reviewers or authors.
+    if flavour in ['author', 'reviewer']:
+        if not (acl.action_allowed_user(installed.user, 'Apps', 'Review') or
+                installed.addon.has_author(installed.user)):
+            raise ValueError('User %s is not a reviewer or author' %
+                             installed.user.pk)
+
+        expiry = time_ + (60 * 60 * 24)
+        product['type'] = flavour
+        verify = absolutify(reverse('reviewers.apps.receipt',
+                                    args=[installed.addon.app_slug]))
+    else:
+        expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
+        verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
+
     detail = reverse('account.purchases.receipt', args=[addon_pk])
     reissue = installed.addon.get_purchase_url('reissue')
-    time_ = calendar.timegm(time.gmtime())
-    receipt = dict(typ='purchase-receipt',
-                   product={'url': installed.addon.origin,
-                            'storedata': urlencode({'id': int(addon_pk)})},
+    receipt = dict(detail=absolutify(detail), exp=expiry, iat=time_,
+                   iss=settings.SITE_URL, nbf=time_, product=product,
+                   reissue=absolutify(reissue), typ='purchase-receipt',
                    user={'type': 'directed-identifier',
                          'value': installed.uuid},
-                   iss=settings.SITE_URL,
-                   nbf=time_,
-                   iat=time_,
-                   exp=(time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS),
-                   detail=absolutify(detail),
-                   verify=absolutify(verify),
-                   reissue=absolutify(reissue))
+                   verify=absolutify(verify))
+
     if settings.SIGNING_SERVER_ACTIVE:
         # The shiny new code.
         return sign(receipt)
