@@ -43,6 +43,7 @@
 @black: #000;
 @dark-gray: #333;
 @navy-gray: #394C58;
+@overlay-gray: #2a353c;
 @text: #424f5a;
 @medium-gray: #666;
 @gray: #888;
@@ -80,8 +81,21 @@
     background: @arrow-src no-repeat;
 }
 
+@arrow-big-src: url(../../img/mkt/arrows/plain-lrg-go.png);
+.arrow-big() {
+    background: @arrow-big-src no-repeat;
+}
+
 .light-text-shadow() {
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.medium-text-shadow() {
+    text-shadow: .5px .5px 0 @text;
+}
+
+.dark-text-shadow() {
+    text-shadow: 0 1px 0 @black;
 }
 
 .border-radius(@radius) {
