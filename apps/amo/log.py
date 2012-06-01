@@ -431,7 +431,12 @@ class PREAPPROVAL_REMOVED(_LOG):
 
 class CURRENCY_UPDATED(_LOG):
     id = 64
-    format = _('Account currency changed')
+    format = _(u'Account currency changed')
+
+
+class RECEIPT_CHECKED(_LOG):
+    id = 65
+    format = _(u'Valid receipt was checked for {addon}.')
 
 
 class CUSTOM_TEXT(_LOG):

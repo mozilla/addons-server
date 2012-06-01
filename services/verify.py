@@ -34,6 +34,9 @@ class Verify:
         self.addon_id = int(addon_id)
         self.receipt = receipt
         self.environ = environ
+        # These will be extracted from the receipt.
+        self.user_id = None
+        self.premium = None
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
 
@@ -95,11 +98,11 @@ class Verify:
             self.log('No entry in users_install for uuid: %s' % uuid)
             return self.invalid()
 
-        rid, user_id, premium = result
+        rid, self.user_id, self.premium = result
 
         # If it's a premium addon, then we need to get that the purchase
         # information.
-        if premium != ADDON_PREMIUM:
+        if self.premium != ADDON_PREMIUM:
             self.log('Valid receipt, not premium')
             return self.ok_or_expired(receipt)
 
@@ -108,7 +111,7 @@ class Verify:
                      WHERE addon_id = %(addon_id)s
                      AND user_id = %(user_id)s LIMIT 1;"""
             self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                      'user_id': user_id})
+                                      'user_id': self.user_id})
             result = self.cursor.fetchone()
             if not result:
                 self.log('Invalid receipt, no purchase')

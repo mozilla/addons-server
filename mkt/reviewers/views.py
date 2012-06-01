@@ -24,6 +24,7 @@ from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from reviews.models import Review
 from services.verify import Verify
+from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 from mkt.developers.models import ActivityLog
@@ -271,8 +272,22 @@ def motd(request):
 @addon_view
 @post_required
 def receipt(request, addon):
-    # TODO: There is much more to come here.
     receipt = request.raw_post_data
     verify = Verify(addon.pk, receipt, request)
     output = verify()
-    return http.HttpResponse(output, verify.get_headers(len(output)))
+
+    # Only reviewers are allowed to use this which is different
+    # from the standard receipt verification. The user is contained in the
+    # receipt.
+    if verify.user_id:
+        try:
+            user = UserProfile.objects.get(pk=verify.user_id)
+        except UserProfile.DoesNotExist:
+            user = None
+
+        if user and acl.action_allowed_user(user, 'Apps', 'Review'):
+            amo.log(amo.LOG.RECEIPT_CHECKED, addon, user=user)
+            return http.HttpResponse(output, verify.get_headers(len(output)))
+
+    return http.HttpResponse(verify.invalid(),
+                             verify.get_headers(verify.invalid()))

@@ -589,11 +589,21 @@ class TestMotd(EditorTest):
 
 
 class TestReviewerReceipt(amo.tests.TestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         super(TestReviewerReceipt, self).setUp()
         self.app = Webapp.objects.create(app_slug='foo')
         self.url = reverse('reviewers.apps.receipt', args=[self.app.app_slug])
+        self.log = AppLog.objects.filter(addon=self.app)
+        self.reviewer = UserProfile.objects.get(pk=5497308)
+
+    def get_mock(self, user=None, **kwargs):
+        self.verify = mock.Mock()
+        self.verify.return_value = json.dumps(kwargs)
+        self.verify.invalid.return_value = json.dumps({'status': 'invalid'})
+        self.verify.user_id = user.pk if user else self.reviewer.pk
+        return self.verify
 
     def test_post_required(self):
         eq_(self.client.get(self.url).status_code, 405)
@@ -601,11 +611,37 @@ class TestReviewerReceipt(amo.tests.TestCase):
     def test_empty(self):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
+        eq_(self.log.count(), 0)
         eq_(json.loads(res.content)['status'], 'invalid')
 
-    @mock.patch('mkt.reviewers.views.Verify.__call__')
+    @mock.patch('mkt.reviewers.views.Verify')
     def test_good(self, verify):
-        verify.return_value = json.dumps({'status': 'ok'})
+        verify.return_value = self.get_mock(user=self.reviewer, status='ok')
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
+        eq_(self.log.count(), 1)
         eq_(json.loads(res.content)['status'], 'ok')
+
+    @mock.patch('mkt.reviewers.views.Verify')
+    def test_not_reviewer(self, verify):
+        self.reviewer.groups.clear()
+        verify.return_value = self.get_mock(user=self.reviewer, status='ok')
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(self.log.count(), 0)
+        eq_(json.loads(res.content)['status'], 'invalid')
+
+    @mock.patch('mkt.reviewers.views.Verify')
+    def test_not_there(self, verify):
+        verify.return_value = self.get_mock(user=self.reviewer, status='ok')
+        self.reviewer.delete()
+        res = self.client.post(self.url)
+        eq_(json.loads(res.content)['status'], 'invalid')
+
+    @mock.patch('mkt.reviewers.views.Verify')
+    def test_logs(self, verify):
+        verify.return_value = self.get_mock(user=self.reviewer, status='ok')
+        eq_(self.log.count(), 0)
+        res = self.client.post(self.url)
+        eq_(self.log.count(), 1)
+        eq_(res.status_code, 200)
