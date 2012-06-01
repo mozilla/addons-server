@@ -8,7 +8,8 @@ var z = {
         if (!z.prefix) return property;
         return '-' + z.prefix + '-' + property;
     },
-    canInstallApps: true
+    canInstallApps: true,
+    allowAnonInstalls: !!$('body').data('allow-anon-installs')
 };
 
 z.prefixUpper= z.prefix[0].toUpperCase() + z.prefix.substr(1);

@@ -11,7 +11,7 @@
     }
 
     function startInstall(product) {
-        if (z.anonymous) {
+        if (z.anonymous || (z.allowAnonInstalls && product.price)) {
             localStorage.setItem('toInstall', product.manifestUrl);
             $(window).trigger('login');
             return;

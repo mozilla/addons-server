@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 import jingo
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
+import waffle
 
 from abuse.models import send_abuse_report
 from access import acl
@@ -12,6 +13,7 @@ import amo
 import amo.log
 from amo.decorators import json_view, login_required, post_required, write
 from amo.forms import AbuseForm
+from amo.urlresolvers import reverse
 from amo.utils import memoize_get
 from lib.metrics import send_request
 from lib.crypto.receipt import cef, SigningError
@@ -82,38 +84,51 @@ def abuse_recaptcha(request, addon):
 
 @json_view
 @addon_all_view
-@login_required
 @post_required
 @write
 def record(request, addon):
-    is_dev = request.check_ownership(addon, require_owner=False,
+    logged = request.user.is_authenticated()
+    premium = addon.is_premium()
+    allow_anon_install = waffle.switch_is_active('anonymous-free-installs')
+
+    # Require login for premium.
+    if not logged and (premium or not allow_anon_install):
+        return redirect(reverse('users.login'))
+
+    # Don't generate receipts if we're allowing logged-out install.
+    if logged or not allow_anon_install:
+        is_dev = request.check_ownership(addon, require_owner=False,
                                      ignore_disabled=True)
-    is_reviewer = acl.check_reviewer(request)
-    if not (addon.is_public() or is_reviewer or is_dev or
-            not addon.is_webapp()):
-        raise http.Http404
+        is_reviewer = acl.check_reviewer(request)
+        if not (addon.is_public() or is_reviewer or is_dev or
+                not addon.is_webapp()):
+            raise http.Http404
 
-    if (addon.is_premium() and not addon.has_purchased(request.amo_user) and
-        not is_reviewer and not is_dev):
-        return http.HttpResponseForbidden()
+        if (premium and
+            not addon.has_purchased(request.amo_user) and
+            not is_reviewer and not is_dev):
+            return http.HttpResponseForbidden()
 
-    installed, c = Installed.objects.safer_get_or_create(addon=addon,
-                                                         user=request.amo_user)
+        installed, c = Installed.objects.safer_get_or_create(addon=addon,
+                                                             user=request.amo_user)
+        # Look up to see if its in the receipt cache and log if we have
+        # to recreate it.
+        receipt = memoize_get('create-receipt', installed.pk)
+        error = ''
+        cef(request, addon, 'request', 'Receipt requested')
+        if not receipt:
+            cef(request, addon, 'sign', 'Receipt signing')
+            try:
+                receipt = create_receipt(installed.pk)
+            except SigningError:
+                error = _('There was a problem installing the app.')
+    else:
+        if not addon.is_public() or not addon.is_webapp():
+            raise http.Http404
+
     amo.log(amo.LOG.INSTALL_ADDON, addon)
     send_request('install', request, {
                     'app-domain': addon.domain_from_url(addon.origin),
                     'app-id': addon.pk})
-
-    # Look up to see if its in the receipt cache and log if we have
-    # to recreate it.
-    receipt = memoize_get('create-receipt', installed.pk)
-    error = ''
-    cef(request, addon, 'request', 'Receipt requested')
-    if not receipt:
-        cef(request, addon, 'sign', 'Receipt signing')
-        try:
-            receipt = create_receipt(installed.pk)
-        except SigningError:
-            error = _('There was a problem installing the app.')
 
     return {'addon': addon.pk, 'receipt': receipt, 'error': error}

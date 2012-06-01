@@ -39,6 +39,7 @@
     {% endif %}
   </head>
   <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+        {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
