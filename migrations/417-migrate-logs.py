@@ -11,6 +11,7 @@ def run():
                    'select * from log_activity where id IN %(ids)s;',
                    {'ids':ids})
     cursor.execute('insert into log_activity_app_mkt '
-                   'select * from log_activity_app;')
+                   'select id, created, modified, addon_id, activity_log_id '
+                   'from log_activity_app;')
     cursor.execute('set foreign_key_checks = 1')
     transaction.commit_unless_managed()
