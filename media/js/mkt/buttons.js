@@ -43,8 +43,20 @@
 
         setButton($button, gettext('Purchased'), 'purchased');
     }).bind('app_install_start', function(e, product) {
-        setButton(getButton(product),
-                  gettext('Installing&hellip;'), 'installing');
+        var $button = getButton(product);
+        setButton($button, gettext('Installing&hellip;'), 'installing');
+
+        // Reset button if we've clicked outside of the doorhanger (albeit twice).
+        $(document.body).on('click', function() {
+            revertButton($button);
+        });
+
+        // Reset button if it's been 30 seconds without user action.
+        setTimeout(function() {
+            if ($button.hasClass('installing')) {
+                revertButton($button);
+            }
+        }, 30000);
     }).bind('app_install_success', function(e, product, installedNow) {
         var $button = getButton(product);
         if (installedNow) {
