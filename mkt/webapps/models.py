@@ -222,17 +222,11 @@ class Webapp(Addon):
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])
 
-    def manifest_updated(self, manifest):
+    def manifest_updated(self, manifest, upload):
         """The manifest has updated, create a version and file."""
-        with open(manifest) as fh:
-            chunks = fh.read()
 
-        # We'll only create a file upload when we detect that the manifest
-        # has changed, otherwise we'll be creating an awful lot of these.
-        upload = FileUpload.from_post(chunks, manifest, len(chunks))
         # This does most of the heavy work.
-        Version.from_upload(upload, self,
-                            [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
+        Version.from_upload(upload, self, [])
         # Triggering this ensures that the current_version gets updated.
         self.update_version()
         amo.log(amo.LOG.MANIFEST_UPDATED, self)

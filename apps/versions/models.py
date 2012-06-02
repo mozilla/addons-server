@@ -82,7 +82,7 @@ class Version(amo.models.ModelBase):
         for app in data.get('apps', []):
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
-        if addon.type == amo.ADDON_SEARCH:
+        if addon.type in [amo.ADDON_SEARCH, amo.ADDON_WEBAPP]:
             # Search extensions are always for all platforms.
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         else:

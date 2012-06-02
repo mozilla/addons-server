@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import base64
-from datetime import date
 import json
 import logging
 import os
@@ -10,25 +9,26 @@ import traceback
 import urllib2
 import urlparse
 import uuid
+from datetime import date
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.utils.http import urlencode
 
+import validator.constants as validator_constants
 from celeryutils import task
 from django_statsd.clients import statsd
 from PIL import Image
 from tower import ugettext as _
-import validator.constants as validator_constants
 
 import amo
-from amo.decorators import write, set_modified_on
-from amo.utils import resize_image, remove_icons, strip_bom
 from addons.models import Addon
+from amo.decorators import set_modified_on, write
+from amo.utils import remove_icons, resize_image, strip_bom
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
-from files.models import FileUpload, File, FileValidation
+from files.models import File, FileUpload, FileValidation
 
 
 log = logging.getLogger('z.mkt.developers.task')
@@ -363,6 +363,25 @@ def fetch_icon(webapp, **kw):
     save_icon(webapp, content)
 
 
+def _fetch_manifest(url):
+    response = _fetch_content(url)
+
+    no_ct_message = _('Your manifest must be served with the HTTP '
+                      'header "Content-Type: %s".')
+    wrong_ct_message = _('Your manifest must be served with the HTTP '
+                         'header "Content-Type: %s". We saw "%s".')
+    check_content_type(response, 'application/x-web-app-manifest+json',
+                       no_ct_message, wrong_ct_message)
+
+    size_error_message = _('Your manifest must be less than %s bytes.')
+    content = get_content_and_check_size(response,
+                                         settings.MAX_WEBAPP_UPLOAD_SIZE,
+                                         size_error_message)
+    content = strip_bom(content)
+    check_manifest_encoding(url, content)
+    return content
+
+
 @task
 @write
 def fetch_manifest(url, upload_pk=None, **kw):
@@ -370,21 +389,7 @@ def fetch_manifest(url, upload_pk=None, **kw):
     upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
-        response = _fetch_content(url)
-
-        no_ct_message = _('Your manifest must be served with the HTTP '
-                          'header "Content-Type: %s".')
-        wrong_ct_message = _('Your manifest must be served with the HTTP '
-                             'header "Content-Type: %s". We saw "%s".')
-        check_content_type(response, 'application/x-web-app-manifest+json',
-                           no_ct_message, wrong_ct_message)
-
-        size_error_message = _('Your manifest must be less than %s bytes.')
-        content = get_content_and_check_size(response,
-                                             settings.MAX_WEBAPP_UPLOAD_SIZE,
-                                             size_error_message)
-        content = strip_bom(content)
-        check_manifest_encoding(url, content)
+        content = _fetch_manifest(url)
     except Exception, e:
         # Drop a message in the validation slot and bail.
         upload.update(validation=failed_validation(e.message))

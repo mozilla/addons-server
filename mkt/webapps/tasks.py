@@ -1,14 +1,17 @@
+import hashlib
+import json
 import logging
-from tempfile import mkstemp
 
 from celeryutils import task
 
-from amo import set_user
-from amo.utils import rm_local_tmp_file
-from devhub.tasks import _fetch_content
-from files.utils import get_sha256
-from users.utils import get_task_user
+from django.core.files.storage import default_storage as storage
+
+import amo
+from files.models import FileUpload
+from mkt.developers.tasks import _fetch_manifest, validator
+from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import Webapp
+from users.utils import get_task_user
 
 task_log = logging.getLogger('z.task')
 
@@ -23,12 +26,32 @@ def webapp_update_weekly_downloads(data, **kw):
         webapp.update(weekly_downloads=line['count'])
 
 
-def _get_content_hash(temp, url):
-    # Fetch the webapp, write it to a file and return the hash of that.
-    data = _fetch_content(url).read()
-    with open(temp, 'w') as fp:
-        fp.write(data)
-    return 'sha256:%s' % get_sha256(temp)
+def _get_content_hash(content):
+    return 'sha256:%s' % hashlib.sha256(content).hexdigest()
+
+
+def _log(webapp, message, exc_info=False):
+    task_log.info(u'[Webapp:%s] %s' % (webapp, message), exc_info=exc_info)
+
+
+def _flag_for_review(webapp, message):
+    RereviewQueue.objects.create(addon=webapp)
+    amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, webapp,
+            webapp.current_version, details={'comments': message})
+
+
+def _open_manifest(webapp, file_):
+    try:
+        if file_.status == amo.STATUS_DISABLED:
+            path = file_.guarded_file_path
+        else:
+            path = file_.file_path
+        with storage.open(path, 'r') as fh:
+            manifest_json = fh.read()
+        return json.loads(manifest_json)
+    except IOError:
+        _log(webapp, u'Original manifest could not be found at: %s' % path,
+             exc_info=True)
 
 
 @task
@@ -38,38 +61,61 @@ def update_manifests(ids, **kw):
 
     # Since we'll be logging the updated manifest change to the users log,
     # we'll need to log in as user.
-    set_user(get_task_user())
+    amo.set_user(get_task_user())
 
     for id in ids:
-        task_log.info('Fetching webapp manifest for: %s' % id)
-
         webapp = Webapp.objects.get(pk=id)
         file_ = webapp.get_latest_file()
+
+        _log(webapp, u'Fetching webapp manifest')
         if not file_:
-            task_log.info('Ignoring, no existing file for: %s' % id)
+            _log(webapp, u'Ignoring, no existing file')
             continue
 
-        # Fetch the data.
-        temp = mkstemp(suffix='.webapp')[1]
+        # Fetch manifest, catching and logging any exception.
         try:
-            hash_ = _get_content_hash(temp, webapp.manifest_url)
-        except:
-            task_log.info('Failed to get manifest for: %s, %s' %
-                          (id, webapp.manifest_url), exc_info=True)
-            rm_local_tmp_file(temp)
+            content = _fetch_manifest(webapp.manifest_url)
+        except Exception, e:
+            msg = u'Failed to get manifest from %s. Error: %s' % (
+                webapp.manifest_url, e.message)
+            _log(webapp, msg, exc_info=True)
+            _flag_for_review(webapp, msg)
             continue
 
-        # Try to create a new version, if needed.
+        # Check hash.
+        hash_ = _get_content_hash(content)
+        if file_.hash == hash_:
+            _log(webapp, u'Manifest the same')
+            continue
+
+        _log(webapp, u'Manifest different')
+
+        # Validate the new manifest.
+        upload = FileUpload.objects.create()
+        upload.add_file([content], webapp.manifest_url, len(content),
+                        is_webapp=True)
+        validator(upload.pk)
+        upload = FileUpload.objects.get(pk=upload.pk)
+        v8n = json.loads(upload.validation)
+        if v8n['errors']:
+            msg = u'Validation errors: %s' % (
+                ' '.join([m['description'] for m in v8n['messages']]),)
+            _log(webapp, msg)
+            _flag_for_review(webapp, msg)
+            continue
+
+        # New manifest is different and validates, create a new version.
         try:
-            if file_.hash != hash_:
-                task_log.info('Webapp manifest different for: %s, %s' %
-                              (id, webapp.manifest_url))
-                webapp.manifest_updated(temp)
-            else:
-                task_log.info('Webapp manifest the same for: %s, %s' %
-                              (id, webapp.manifest_url))
+            webapp.manifest_updated(content, upload)
         except:
-            task_log.info('Failed to create version for: %s' % id,
-                          exc_info=True)
-        finally:
-            rm_local_tmp_file(temp)
+            _log(webapp, u'Failed to create version', exc_info=True)
+
+        # Check for any name changes for re-review.
+        new = json.loads(content)
+        old = _open_manifest(webapp, file_)
+
+        if (old and old.get('name') and old.get('name') != new.get('name')):
+            msg = u'Manifest name changed from "%s" to "%s"' % (
+                old.get('name'), new.get('name'))
+            _log(webapp, msg)
+            _flag_for_review(webapp, msg)

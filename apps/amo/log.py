@@ -471,6 +471,14 @@ class ESCALATED_HIGH_REFUNDS(_LOG):
     review_queue = True
 
 
+class REREVIEW_MANIFEST_CHANGE(_LOG):
+    id = 70
+    format = _(u'{addon} re-reviewed because of manifest change.')
+    short = _(u'Manifest Change')
+    keep = True
+    review_queue = True
+
+
 # TODO(robhudson): Escalation log for editor escalation..
 
 
@@ -513,10 +521,12 @@ class ADMIN_USER_ANONYMIZED(_LOG):
     format = _(u'User {user} anonymized.')
     admin_event = True
 
+
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
     format = _(u'User {user} restricted.')
     admin_event = True
+
 
 class ADMIN_VIEWED_LOG(_LOG):
     id = 106

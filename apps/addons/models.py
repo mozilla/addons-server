@@ -515,8 +515,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def get_version(self, backup_version=False):
         """
         Retrieves the latest version of an addon.
-        firefox_limit: if specified the highest file up to but *not* including
-                       this version will be found.
+        backup_version: if specified the highest file up to but *not* including
+                        this version will be found.
         """
         if self.type == amo.ADDON_PERSONA:
             return

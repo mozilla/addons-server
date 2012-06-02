@@ -158,7 +158,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if version.addon.status == amo.STATUS_PUBLIC:
+        if version.addon.is_webapp():
+            # Files don't really matter for webapps, just make them public.
+            f.status = amo.STATUS_PUBLIC
+        elif version.addon.status == amo.STATUS_PUBLIC:
             if amo.VERSION_BETA.search(parse_data.get('version', '')):
                 f.status = amo.STATUS_BETA
             elif version.addon.trusted:
@@ -166,9 +169,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
-        elif version.addon.is_webapp():
-            # Files don't really matter for webapps, just make them public.
-            f.status = amo.STATUS_PUBLIC
         f.hash = (f.generate_hash(upload.path)
                   if waffle.switch_is_active('file-hash-paranoia')
                   else upload.hash)
@@ -635,9 +635,9 @@ class FileUpload(amo.models.ModelBase):
         self.save()
 
     @classmethod
-    def from_post(cls, chunks, filename, size):
+    def from_post(cls, chunks, filename, size, is_webapp=False):
         fu = FileUpload()
-        fu.add_file(chunks, filename, size)
+        fu.add_file(chunks, filename, size, is_webapp)
         return fu
 
 
