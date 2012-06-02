@@ -82,11 +82,7 @@ def abuse_recaptcha(request, addon):
                             {'product': addon, 'abuse_form': form})
 
 
-@json_view
-@addon_all_view
-@post_required
-@write
-def record(request, addon):
+def _record(request, addon):
     logged = request.user.is_authenticated()
     premium = addon.is_premium()
     allow_anon_install = waffle.switch_is_active('anonymous-free-installs')
@@ -95,13 +91,15 @@ def record(request, addon):
     if not logged and (premium or not allow_anon_install):
         return redirect(reverse('users.login'))
 
+    ctx = {'addon': addon.pk}
+
     # Don't generate receipts if we're allowing logged-out install.
     if logged or not allow_anon_install:
         is_dev = request.check_ownership(addon, require_owner=False,
                                      ignore_disabled=True)
         is_reviewer = acl.check_reviewer(request)
-        if not (addon.is_public() or is_reviewer or is_dev or
-                not addon.is_webapp()):
+        if (not addon.is_webapp() or not addon.is_public() and
+            not (is_reviewer or is_dev)):
             raise http.Http404
 
         if (premium and
@@ -110,7 +108,7 @@ def record(request, addon):
             return http.HttpResponseForbidden()
 
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
-                                                             user=request.amo_user)
+            user=request.amo_user)
         # Look up to see if its in the receipt cache and log if we have
         # to recreate it.
         receipt = memoize_get('create-receipt', installed.pk)
@@ -122,13 +120,33 @@ def record(request, addon):
                 receipt = create_receipt(installed.pk)
             except SigningError:
                 error = _('There was a problem installing the app.')
+
+        ctx.update(receipt=receipt, error=error)
     else:
         if not addon.is_public() or not addon.is_webapp():
             raise http.Http404
 
     amo.log(amo.LOG.INSTALL_ADDON, addon)
     send_request('install', request, {
-                    'app-domain': addon.domain_from_url(addon.origin),
-                    'app-id': addon.pk})
+        'app-domain': addon.domain_from_url(addon.origin),
+        'app-id': addon.pk
+    })
 
-    return {'addon': addon.pk, 'receipt': receipt, 'error': error}
+    return ctx
+
+
+@anonymous_csrf_exempt
+@json_view
+@addon_all_view
+@post_required
+@write
+def record_anon(request, addon):
+    return _record(request, addon)
+
+
+@json_view
+@addon_all_view
+@post_required
+@write
+def record(request, addon):
+    return _record(request, addon)
