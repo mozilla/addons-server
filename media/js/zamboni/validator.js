@@ -324,9 +324,9 @@ function initValidator($doc) {
 
         if (z.apps) {
             if (validation.errors > 0) {
-                summaryTxt = loc('App failed validation.');
+                summaryTxt = gettext('App failed validation.');
             } else {
-                summaryTxt = loc('App passed validation.');
+                summaryTxt = gettext('App passed validation.');
             }
         } else {
             if (validation.errors > 0) {
