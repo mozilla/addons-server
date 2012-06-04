@@ -370,7 +370,7 @@ def create_receipt(installed_pk, flavour=None):
 
         expiry = time_ + (60 * 60 * 24)
         product['type'] = flavour
-        verify = absolutify(reverse('reviewers.apps.receipt',
+        verify = absolutify(reverse('reviewers.receipt.verify',
                                     args=[installed.addon.app_slug]))
     else:
         expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS

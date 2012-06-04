@@ -588,13 +588,14 @@ class TestMotd(EditorTest):
         eq_(get_config(self.key), u'new motd')
 
 
-class TestReviewerReceipt(amo.tests.TestCase):
+class TestReceiptVerify(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestReviewerReceipt, self).setUp()
+        super(TestReceiptVerify, self).setUp()
         self.app = Webapp.objects.create(app_slug='foo')
-        self.url = reverse('reviewers.apps.receipt', args=[self.app.app_slug])
+        self.url = reverse('reviewers.receipt.verify',
+                           args=[self.app.app_slug])
         self.log = AppLog.objects.filter(addon=self.app)
         self.reviewer = UserProfile.objects.get(pk=5497308)
 
@@ -654,3 +655,41 @@ class TestReviewerReceipt(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(self.log.count(), 1)
         eq_(res.status_code, 200)
+
+
+class TestReceiptIssue(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestReceiptIssue, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.url = reverse('reviewers.receipt.issue',
+                           args=[self.app.app_slug])
+        self.reviewer = UserProfile.objects.get(pk=5497308)
+        self.user = UserProfile.objects.get(pk=999)
+
+    @mock.patch('mkt.reviewers.views.create_receipt')
+    def test_issued(self, create_receipt):
+        create_receipt.return_value = 'foo'
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(create_receipt.call_args[1]['flavour'], 'reviewer')
+
+    def test_issued_anon(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
+
+    def test_issued_not_reviewer(self):
+        self.client.login(username=self.user, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
+
+    @mock.patch('mkt.reviewers.views.create_receipt')
+    def test_issued_author(self, create_receipt):
+        create_receipt.return_value = 'foo'
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        self.client.login(username=self.user.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(create_receipt.call_args[1]['flavour'], 'developer')

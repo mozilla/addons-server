@@ -12,7 +12,7 @@ from tower import ugettext as _
 from access import acl
 import amo
 from amo import messages
-from amo.decorators import post_required
+from amo.decorators import json_view, post_required
 from amo.utils import urlparams
 from addons.decorators import addon_view
 from addons.models import Version
@@ -22,13 +22,13 @@ from amo.utils import paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
+from lib.crypto.receipt import cef, SigningError
+from mkt.developers.models import ActivityLog
+from mkt.webapps.models import create_receipt, Installed, Webapp
 from reviews.models import Review
 from services.verify import Verify
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
-
-from mkt.developers.models import ActivityLog
-from mkt.webapps.models import Webapp
 
 from . import forms
 from .models import AppCannedResponse
@@ -271,7 +271,7 @@ def motd(request):
 @csrf_exempt
 @addon_view
 @post_required
-def receipt(request, addon):
+def verify(request, addon):
     receipt = request.raw_post_data
     verify = Verify(addon.pk, receipt, request)
     output = verify()
@@ -292,3 +292,25 @@ def receipt(request, addon):
 
     return http.HttpResponse(verify.invalid(),
                              verify.get_headers(verify.invalid()))
+
+
+@json_view
+@addon_view
+def issue(request, addon):
+    user = request.amo_user
+    review = acl.action_allowed_user(user, 'Apps', 'Review') if user else None
+    author = addon.has_author(user)
+    if not user or not (review or author):
+        return http.HttpResponseForbidden()
+
+    installed, c = Installed.objects.safer_get_or_create(addon=addon,
+                                                         user=request.amo_user)
+    error = ''
+    flavour = 'reviewer' if review else 'developer'
+    cef(request, addon, 'sign', 'Receipt signing for %s' % flavour)
+    try:
+        receipt = create_receipt(installed.pk, flavour=flavour)
+    except SigningError:
+        error = _('There was a problem installing the app.')
+
+    return {'addon': addon.pk, 'receipt': receipt, 'error': error}

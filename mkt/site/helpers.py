@@ -26,7 +26,7 @@ def no_results():
 
 @jinja2.contextfunction
 @register.function
-def market_button(context, product):
+def market_button(context, product, receipt_type=None):
     request = context['request']
     if product.is_webapp():
         faked_purchase = False
@@ -38,7 +38,8 @@ def market_button(context, product):
             purchased = faked_purchase = True
         classes = ['button', 'product']
         label = product.get_price()
-        product_dict = product_as_dict(request, product, purchased=purchased)
+        product_dict = product_as_dict(request, product, purchased=purchased,
+                                       receipt_type=receipt_type)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
             'manifestUrl': product.manifest_url
@@ -55,7 +56,7 @@ def market_button(context, product):
     return jinja2.Markup(t.render(c))
 
 
-def product_as_dict(request, product, purchased=None):
+def product_as_dict(request, product, purchased=None, receipt_type=None):
 
     # Dev environments might not have authors set.
     author = ''
@@ -64,18 +65,20 @@ def product_as_dict(request, product, purchased=None):
         author = product.listed_authors[0].name
         author_url = product.listed_authors[0].get_url_path()
 
+    url = (reverse('reviewers.receipt.issue', args=[product.app_slug])
+           if receipt_type else product.get_detail_url('record'))
     ret = {
         'id': product.id,
         'name': product.name,
         'manifestUrl': product.manifest_url,
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
-        'recordUrl': urlparams(product.get_detail_url('record'),
-                               src=request.GET.get('src', '')),
+        'recordUrl': urlparams(url, src=request.GET.get('src', '')),
         'author': author,
         'author_url': author_url,
         'iconUrl': product.get_icon_url(64)
     }
+
     if product.is_premium() and product.premium:
         ret.update({
             'price': product.premium.get_price() or '0',

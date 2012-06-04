@@ -101,3 +101,10 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('a').attr('data-product'))
         eq_(json.loads(data['currencies'])['USD'], '$1.00')
         eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
+
+    def test_reviewers(self):
+        doc = pq(market_button(self.context, self.webapp, 'reviewer'))
+        data = json.loads(doc('a').attr('data-product'))
+        issue = urlparams(reverse('reviewers.receipt.issue',
+                                  args=[self.webapp.app_slug]), src='foo')
+        eq_(data['recordUrl'], issue)

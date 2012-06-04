@@ -372,7 +372,7 @@ class TestReceipt(amo.tests.TestCase):
         receipt = encode.call_args[0][0]
         eq_(receipt['product']['type'], flavour)
         eq_(receipt['verify'],
-            absolutify(reverse('reviewers.apps.receipt',
+            absolutify(reverse('reviewers.receipt.verify',
                                args=[self.webapp.app_slug])))
         assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
                                  (60 * 60 * 24) - TEST_LEEWAY)
