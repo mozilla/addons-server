@@ -126,8 +126,8 @@ def edit(request, addon_id, addon, webapp=False):
        'device_type_form': addon_forms.DeviceTypeForm(request.POST or None,
                                                       addon=addon),
     }
-    if acl.action_allowed(request, 'Addons', 'Configure'):
-        data['promo_form'] = forms.PromoForm(instance=addon)
+    if acl.action_allowed(request, 'Apps', 'Configure'):
+        data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
     return jingo.render(request, 'developers/apps/edit.html', data)
 
 
@@ -820,7 +820,7 @@ def upload_detail(request, uuid, format='html'):
                              timestamp=upload.created))
 
 
-@dev_required(webapp=True)
+@dev_required(webapp=True, staff=True)
 def addons_section(request, addon_id, addon, section, editable=False,
                    webapp=False):
     basic = AppFormBasic if webapp else addon_forms.AddonFormBasic
@@ -829,7 +829,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
               'details': AppFormDetails,
               'support': AppFormSupport,
               'technical': addon_forms.AddonFormTechnical,
-              'admin': forms.PromoForm}
+              'admin': forms.AdminSettingsForm}
 
     if section not in models:
         raise http.Http404()
@@ -850,13 +850,19 @@ def addons_section(request, addon_id, addon, section, editable=False,
             queryset=addon.get_previews())
 
     elif (section == 'admin' and
-          not acl.action_allowed(request, 'Addons', 'Configure')):
+          not acl.action_allowed(request, 'Apps', 'Configure') and
+          not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
         return http.HttpResponseForbidden()
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug
     if editable:
         if request.method == 'POST':
+
+            if (section == 'admin' and
+                not acl.action_allowed(request, 'Apps', 'Configure')):
+                return http.HttpResponseForbidden()
+
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
             if form.is_valid() and (not previews or previews.is_valid()):

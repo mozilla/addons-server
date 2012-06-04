@@ -273,8 +273,9 @@ class PreviewForm(happyforms.ModelForm):
         fields = ('caption', 'file_upload', 'upload_hash', 'id', 'position')
 
 
-class PromoForm(PreviewForm):
+class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
+    mozilla_contact = forms.EmailField(required=False)
 
     class Meta:
         model = Preview
@@ -283,12 +284,17 @@ class PromoForm(PreviewForm):
     def __init__(self, *args, **kw):
         # Get the object for the app's promo `Preview` and pass it to the form.
         if kw.get('instance'):
-            self.promo = self.instance = kw.pop('instance').get_promo()
+            addon = kw.pop('instance')
+            self.instance = addon
+            self.promo = addon.get_promo()
 
         # Just consume the request - we don't care.
         kw.pop('request', None)
 
-        super(PromoForm, self).__init__(*args, **kw)
+        super(AdminSettingsForm, self).__init__(*args, **kw)
+
+        if self.instance:
+            self.initial['mozilla_contact'] = addon.mozilla_contact
 
     def clean_caption(self):
         return '__promo__'
@@ -300,10 +306,15 @@ class PromoForm(PreviewForm):
         if (self.cleaned_data.get('DELETE') and
             'upload_hash' not in self.changed_data and self.promo.id):
             self.promo.delete()
-        else:
-            if self.promo and 'upload_hash' in self.changed_data:
-                self.promo.delete()
-            super(PromoForm, self).save(addon, True)
+        elif self.promo and 'upload_hash' in self.changed_data:
+            self.promo.delete()
+        elif self.cleaned_data.get('upload_hash'):
+            super(AdminSettingsForm, self).save(addon, True)
+
+        contact = self.cleaned_data.get('mozilla_contact')
+        if contact:
+            addon.update(mozilla_contact=contact)
+
         return addon
 
 

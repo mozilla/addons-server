@@ -26,8 +26,6 @@ def action_allowed(request, app, action):
     """
     allowed = any(match_rules(group.rules, app, action) for group in
                   getattr(request, 'groups', ()))
-    user = (hasattr(request, 'amo_user') and request.amo_user and
-            request.amo_user.id or 'Anonymous')
     return allowed
 
 

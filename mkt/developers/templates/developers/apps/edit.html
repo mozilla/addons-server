@@ -46,7 +46,7 @@
       {% include 'developers/apps/edit/technical.html' %}
     </div>
 
-    {% if action_allowed('Addons', 'Configure') %}
+    {% if action_allowed('Apps', 'Configure') or action_allowed('Apps', 'ViewConfiguration') %}
       <div class="edit-addon-section edit-media" id="edit-addon-admin"
            data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
         {% include 'developers/apps/edit/admin.html' %}

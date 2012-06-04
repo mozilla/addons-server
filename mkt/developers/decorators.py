@@ -9,10 +9,13 @@ from addons.decorators import addon_view
 
 
 def dev_required(owner_for_post=False, allow_editors=False, support=False,
-                 webapp=False, skip_submit_check=False):
+                 webapp=False, skip_submit_check=False, staff=False):
     """Requires user to be add-on owner or admin.
 
     When allow_editors is True, an editor can view the page.
+
+    When `staff` is True, users in the Staff or Support Staff groups are
+    allowed. Users in the Developers group are allowed read-only.
     """
     def decorator(f):
         @addon_view
@@ -24,9 +27,14 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
                 kw['webapp'] = addon.is_webapp()
             fun = lambda: f(request, addon_id=addon.id, addon=addon,
                             *args, **kw)
-            if allow_editors:
-                if acl.check_reviewer(request):
-                    return fun()
+
+            if allow_editors and acl.check_reviewer(request):
+                return fun()
+
+            if staff and (acl.action_allowed(request, 'Apps', 'Configure') or
+                          acl.action_allowed(request, 'Apps',
+                                             'ViewConfiguration')):
+                return fun()
 
             if support:
                 # Let developers and support people do their thangs.
@@ -36,9 +44,11 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
             else:
                 # Require an owner or dev for POST requests.
                 if request.method == 'POST':
+
                     if acl.check_addon_ownership(request, addon,
                                                  dev=not owner_for_post):
                         return fun()
+
                 # Ignore disabled so they can view their add-on.
                 elif acl.check_addon_ownership(request, addon, viewer=True,
                                                ignore_disabled=True):
@@ -54,6 +64,7 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
                         if not getattr(f, 'submitting', False) and step:
                             return _resume(addon, step)
                     return fun()
+
             return http.HttpResponseForbidden()
         return wrapper
     # The arg will be a function if they didn't pass owner_for_post.

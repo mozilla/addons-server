@@ -47,7 +47,7 @@
                     {{ form.unsaved_image_type }}
                     {{ form.unsaved_image_data }}
                   </div>
-                  {{ form.errors }}
+                  {{ form.file_upload.errors }}
                 </div>
               </div>
               <div class="invisible-upload">
@@ -61,6 +61,24 @@
                 <div class="preview-thumb" data-url="{{ preview.thumbnail_url }}"
                      style="background-image:url({{ preview.thumbnail_url }})"></div>
               {% endcall %}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="id_mozilla_contact">
+              {{ _('Mozilla Contact') }}
+              {{ tip(None,
+                     _("An e-mail address of this app's Mozilla Contact that
+                        will be CC'd on any reviewer emails.")) }}
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.mozilla_contact }}
+              {{ form.mozilla_contact.errors }}
+            {% else %}
+              {{ addon.mozilla_contact }}
             {% endif %}
           </td>
         </tr>

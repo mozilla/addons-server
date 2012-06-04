@@ -42,7 +42,7 @@ from translations.fields import (TranslatedField, PurifiedField,
 from translations.query import order_by_translation
 from users.models import UserProfile, UserForeignKey
 from users.utils import find_users
-from versions.compare import version_int, version_re
+from versions.compare import version_int
 from versions.models import Version
 
 from . import query, signals
@@ -286,6 +286,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
     make_public = models.DateTimeField(null=True)
+    mozilla_contact = models.EmailField()
 
     class Meta:
         db_table = 'addons'

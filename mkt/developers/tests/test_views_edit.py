@@ -13,6 +13,7 @@ from waffle.models import Switch
 
 import amo
 import amo.tests
+from access.models import GroupUser, Group
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -1121,6 +1122,12 @@ class TestAdmin(TestEdit):
     def log_in_user(self):
         assert self.client.login(username=self.user.email, password='password')
 
+    def log_in_with(self, rules):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        group = Group.objects.create(name='Whatever', rules=rules)
+        GroupUser.objects.create(group=group, user=user)
+        assert self.client.login(username=user.email, password='password')
+
 
 class TestAdminSettings(TestAdmin):
 
@@ -1156,14 +1163,62 @@ class TestAdminSettings(TestAdmin):
         self.log_in_user()
         eq_(self.client.post(self.edit_url).status_code, 403)
 
+    def post_contact(self, **kw):
+        data = {'caption': 'ball so hard that ish cray',
+                'position': '1',
+                'upload_hash': 'abcdef',
+                'mozilla_contact': 'a@mozilla.com'}
+        data.update(kw)
+        return self.client.post(self.edit_url, data)
+
+    def test_mozilla_contact(self):
+        self.post_contact()
+        webapp = self.get_webapp()
+        eq_(webapp.mozilla_contact, 'a@mozilla.com')
+
+    def test_mozilla_contact_invalid(self):
+        r = self.post_contact(
+            mozilla_contact='<script>alert("xss")</script>@mozilla.com')
+        webapp = self.get_webapp()
+        self.assertFormError(r, 'form', 'mozilla_contact',
+                             'Enter a valid e-mail address.')
+        eq_(webapp.mozilla_contact, '')
+
+    def test_staff(self):
+        # Staff and Support Staff should have Apps:Configure.
+        self.log_in_with('Apps:Configure')
+
+        # Test GET.
+        r = self.client.get(self.edit_url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('form').length, 1)
+        assert r.context.get('form'), 'Admin Settings form expected in context'
+
+        # Test POST. Ignore errors.
+        eq_(self.client.post(self.edit_url).status_code, 200)
+
+    def test_developer(self):
+        # Developers have read-only on admin section.
+        self.log_in_with('Apps:ViewConfiguration')
+
+        # Test GET.
+        r = self.client.get(self.edit_url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('form').length, 1)
+        assert r.context.get('form'), 'Admin Settings form expected in context'
+
+        # Test POST. Ignore errors.
+        eq_(self.client.post(self.edit_url).status_code, 403)
+
 
 class TestPromoUpload(TestAdmin):
 
     def post(self, **kw):
         data = {'caption': 'ball so hard that ish cray',
-                'position': '1'}
+                'position': '1',
+                'upload_hash': 'abcdef'}
         data.update(kw)
-        r = self.client.post(self.edit_url, data)
+        self.client.post(self.edit_url, data)
 
     def test_add(self):
         self.post()
