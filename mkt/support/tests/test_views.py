@@ -45,6 +45,7 @@ class TestRequestSupport(PurchaseBase):
         is_refunded.return_value = True
         doc = pq(self.client.get(self.get_support_url()).content)
         eq_(len(doc('#support-start').find('a')), 3)
+        assert 'refunded' in doc('#support-start').find('li').eq(3).text()
 
     def test_support_page_external_link(self):
         self.app.support_url = 'http://omg.org/yes'
