@@ -15,8 +15,10 @@
                awaiting review, and will show up on listing pages and in search once it is reviewed.
                Until then, feel free to tweak your app's details and settings.") }}</p>
       <footer class="listing-footer button-wrapper">
-        <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">Manage My App</a>
-        <a href="{{ url('submit.app.manifest') }}" class="button prominent">Submit Another App</a>
+        <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">
+          {{ _('Manage My App') }}</a>
+        <a href="{{ url('submit.app.manifest') }}" class="button prominent">
+          {{ _('Submit Another App') }}</a>
       </footer>
     </div>
   </section>

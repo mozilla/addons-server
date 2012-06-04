@@ -64,20 +64,11 @@
           <th>
             <label data-for="homepage">
               {{ _("Homepage") }}
-              {% if webapp %}
-                {# TODO(apps): Finalize copy. #}
-                {{ tip(None,
-                       "If your app has another homepage, enter its
+              {{ tip(None,
+                     _("If your app has another homepage, enter its
                         address here. If your website is localized into other
                         languages multiple translations of this field can be
-                        added.") }}
-              {% else %}
-                {{ tip(None,
-                       _("If your add-on has another homepage, enter its
-                          address here. If your website is localized into other
-                          languages multiple translations of this field can be
-                          added.")) }}
-              {% endif %}
+                        added.")) }}
             </label>
           </th>
           <td>

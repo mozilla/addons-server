@@ -9,11 +9,10 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payments" class="primary">
-    <h2>App Payments</h2>
+    <h2>{{ title }}</h2>
     <form method="post" class="devhub-form">
       {{ csrf() }}
       <div class="brform island swagger c paypal-inline">
-        {{ csrf() }}
         <p>{{ _("Next, we'll set up your PayPal account so you can
                  receive payments. If you don't have one, we can help
                  you create one.") }}</p>

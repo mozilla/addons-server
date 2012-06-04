@@ -10,15 +10,18 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payments" class="primary">
-    <h2>App Payments</h2>
+    <h2>{{ title }}</h2>
     <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}
-        <p>To sell your app in the Marketplace, you'll first need to set its
-        price tier below. Price tiers are based on US Dollars and are fixed
-        for all supported currencies.
+        <p>
+          {% trans %}
+            To sell your app in the Marketplace, you'll first need to set its
+            price tier below. Price tiers are based on US Dollars and are fixed
+            for all supported currencies.
+          {% endtrans %}
         <a href="https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers"
-           target="_blank">Learn more about price tiers</a></p>
+           target="_blank">{{ _('Learn more about price tiers') }}</a></p>
         {{ form_field(form.price) }}
         {{ form_field(form.make_public) }}
         {% if form.fields['free'].queryset.count() %}

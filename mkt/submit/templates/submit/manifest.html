@@ -11,9 +11,10 @@
   <section id="submit-manifest" class="primary">
     <h2>{{ _("Where's Your Manifest?") }}</h2>
     <p>
-      Kick off things by creating your app's manifest and entering its URL
-      below. <a href="https://developer.mozilla.org/en/Apps/The_Manifest" target="_blank">
-      Learn about manifests.</a>
+      {% trans doc_url='https://developer.mozilla.org/en/Apps/The_Manifest' %}
+        Kick off things by creating your app's manifest and entering its URL
+        below. <a href="{{ doc_url }}" target="_blank">Learn about manifests.</a>
+      {% endtrans %}
     </p>
     <section id="upload-file" class="island">
       <div class="upload-status">
@@ -32,7 +33,11 @@
         <div class="upload-details">
           <div id="validate-error-protocol" class="pretty-tooltip tl">
             <span class="protocol">
-              <strong>Don't forget a protocol!</strong> Try adding either <a href="#">http://</a> or <a href="#">https://</a>.
+              {% trans http='http://', https='https://' %}
+                <strong>Don't forget a protocol!</strong>
+                Try adding either <a href="#">{{ http }}</a> or
+                <a href="#">{{ https }}</a>.
+              {% endtrans %}
             </span>
           </div>
           <div class="hint">
