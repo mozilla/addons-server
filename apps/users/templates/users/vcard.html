@@ -77,11 +77,7 @@
     </tr>
     <tr>
       <th>
-        {% if webapp %}
-          {{ _('Average rating for their apps') }}
-        {% else %}
-          {{ _('Average rating for their add-ons') }}
-        {% endif %}
+        {{ _("Average rating of developer's add-ons") }}
       </th>
       <td>{{ profile.averagerating|float|stars }}</td>
     </tr>
