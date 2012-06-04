@@ -44,7 +44,8 @@
             {{ settings.SITE_URL }}/&hellip;/
             {{ addon.app_slug }}
             {% if request.can_view_consumer %}
-              <a class="view" href="{{ addon.get_url_path() }}">{{ _('Open details page') }}</a>
+              <a class="view" href="{{ addon.get_url_path() }}"
+                 target="_blank">{{ _('Open details page') }}</a>
             {% endif %}
           </div>
           <div class="after">
