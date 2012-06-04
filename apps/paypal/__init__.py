@@ -416,6 +416,9 @@ def get_preapproval_key(data):
         'startingDate': data['startDate'].strftime('%Y-%m-%d'),
         'endingDate': data['endDate'].strftime('%Y-%m-%d'),
         'maxTotalAmountOfAllPayments': str(data.get('maxAmount', '2000')),
+        'maxAmountPerPayment': 15,
+        'maxNumberOfPaymentsPerPeriod': 15,
+        'paymentPeriod': 'DAILY',
         'returnUrl': absolutify(reverse(data['pattern'], args=['complete'])),
         'cancelUrl': absolutify(reverse(data['pattern'], args=['cancel'])),
     }
