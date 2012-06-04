@@ -39,16 +39,10 @@
         </tr>
         <tr>
           <th>
-            {% if webapp %}
-              {# TODO(apps): Finalize copy. #}
-              {{ tip(_("Default Locale"),
-                     "Information about your app is displayed in this locale
-                      unless you override it with a locale-specific translation.") }}
-            {% else %}
-              {{ tip(_("Default Locale"),
-                     _("Information about your add-on is displayed in this locale
-                        unless you override it with a locale-specific translation.")) }}
-            {% endif %}
+            {{ tip(_("Default Locale"),
+                   _("Information about your app is displayed in this locale "
+                     "unless you override it with a locale-specific "
+                     "translation.")) }}
             {{ req_if_edit }}
           </th>
           <td class="addon_edit_locale">

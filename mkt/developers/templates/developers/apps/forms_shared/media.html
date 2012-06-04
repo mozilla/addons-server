@@ -10,31 +10,17 @@
       <tr>
         {% if context == 'edit' %}
         <th>
-          {% if webapp %}
-            {# TODO(apps): Finalize copy. #}
-            {{ tip('App Icon',
-                   "Upload an icon for your app or choose from one of ours. The
-                    icon is displayed nearly everywhere your app is. Uploaded images
-                    must be one of the following image types: .png, .jpg") }}
-          {% else %}
-            {{ tip(_("Add-on icon"),
-                   _("Upload an icon for your add-on or choose from one of ours. The
-                      icon is displayed nearly everywhere your add-on is. Uploaded images
-                      must be one of the following image types: .png, .jpg")) }}
-          {% endif %}
+          {{ tip(_('App Icon'),
+                 _("Upload an icon for your app or choose from one of ours. "
+                   "The icon is displayed nearly everywhere your app is. "
+                   "Uploaded images must be one of the following image "
+                   "types: .png, .jpg")) }}
         </th>
         {% endif %}
         <td>
         {% if context == 'submit' %}
           <label>
-            {% if webapp %}
-              {# TODO(apps): Finalize copy. #}
-                Select an icon for your app:
-            {% else %}
-              {% trans %}
-                Select an icon for your add-on:
-              {% endtrans %}
-            {% endif %}
+            {{ _('Select an icon for your app:') }}
           </label>
           {% endif %}
           {% if editable %}
@@ -46,12 +32,7 @@
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
                   {{ _('64x64px') }}
-                  {% if webapp %}
-                    {# TODO(apps): Finalize copy. #}
-                    {{ tip(None, 'Used in app detail pages.') }}
-                  {% else %}
-                    {{ tip(None, _("Used in add-on detail pages.")) }}
-                  {% endif %}
+                  {{ tip(None, _('Used in app detail pages.')) }}
                 </div>
               </div>
               <div class="icon_preview_box">
@@ -61,16 +42,9 @@
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
                   {{ _('32x32px') }}
-                  {% if webapp %}
-                    {# TODO(apps): Finalize copy. #}
-                    {{ tip(None,
-                           'Used in listings of apps, like search results
-                            and featured apps.') }}
-                  {% else %}
-                    {{ tip(None,
-                           _("Used in listings of add-ons, like search results
-                              and featured add-ons.")) }}
-                  {% endif %}
+                  {{ tip(None,
+                         _('Used in listings of apps, like search results '
+                           'and featured apps.')) }}
                 </div>
               </div>
             </div>
