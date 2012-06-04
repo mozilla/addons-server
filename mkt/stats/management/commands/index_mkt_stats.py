@@ -12,8 +12,11 @@ from addons.models import Addon
 from amo.utils import chunked
 from stats.models import Contribution
 from mkt.stats.tasks import (index_finance_daily,
-                             index_finance_total, index_finance_total_by_src,
+                             index_finance_total,
+                             index_finance_total_by_src,
                              index_finance_total_by_currency,
+                             index_finance_total_inapp,
+                             index_finance_total_inapp_by_currency,
                              index_installed_daily)
 
 log = logging.getLogger('z.stats')
@@ -65,6 +68,10 @@ class Command(BaseCommand):
             (Addon.objects, index_finance_total_by_src,
                 {'date': 'created'}),
             (Addon.objects, index_finance_total_by_currency,
+                {'date': 'created'}),
+            (Addon.objects, index_finance_total_inapp,
+                {'date': 'created'}),
+            (Addon.objects, index_finance_total_inapp_by_currency,
                 {'date': 'created'}),
             (Installed.objects, index_installed_daily,
                 {'date': 'created'}),
