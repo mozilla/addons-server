@@ -31,6 +31,10 @@
 
     {% block extrahead %}{% endblock %}
 
+    <!-- Wait for CSS to load before DOMContentLoaded fires
+         (Workaround for Fennec bug: 759678. Also see 721523 and 758934.) -->
+    <script src=""></script>
+
     {% block debug %}
       {% include "mobile/head_debug.html" %}
     {% endblock %}
