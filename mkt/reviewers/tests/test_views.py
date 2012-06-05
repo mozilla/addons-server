@@ -213,7 +213,7 @@ class TestAppQueue(AppReviewerTest, EditorTest):
 
 
 class TestReviewApp(AppReviewerTest, EditorTest):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
@@ -342,6 +342,15 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
+
+    def test_receipt_no_node(self):
+        res = self.client.get(self.url)
+        eq_(len(pq(res.content)('#receipt-check-result')), 0)
+
+    def test_receipt_has_node(self):
+        self.get_app().update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        eq_(len(pq(res.content)('#receipt-check-result')), 1)
 
 
 class TestCannedResponses(EditorTest):
@@ -648,7 +657,7 @@ class TestReceiptVerify(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     @mock.patch('mkt.reviewers.views.Verify')
-    def test_logs(self, verify):
+    def test_logs_author(self, verify):
         author = UserProfile.objects.get(pk=999)
         AddonUser.objects.create(addon=self.app, user=author)
         verify.return_value = self.get_mock(user=author, status='ok')
@@ -672,17 +681,22 @@ class TestReceiptIssue(amo.tests.TestCase):
     def test_issued(self, create_receipt):
         create_receipt.return_value = 'foo'
         self.client.login(username=self.reviewer.email, password='password')
-        res = self.client.get(self.url)
+        res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'reviewer')
 
-    def test_issued_anon(self):
+    def test_get(self):
+        self.client.login(username=self.reviewer.email, password='password')
         res = self.client.get(self.url)
+        eq_(res.status_code, 405)
+
+    def test_issued_anon(self):
+        res = self.client.post(self.url)
         eq_(res.status_code, 403)
 
     def test_issued_not_reviewer(self):
         self.client.login(username=self.user, password='password')
-        res = self.client.get(self.url)
+        res = self.client.post(self.url)
         eq_(res.status_code, 403)
 
     @mock.patch('mkt.reviewers.views.create_receipt')
@@ -690,6 +704,38 @@ class TestReceiptIssue(amo.tests.TestCase):
         create_receipt.return_value = 'foo'
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.client.login(username=self.user.email, password='password')
-        res = self.client.get(self.url)
+        res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'developer')
+
+
+class TestReceiptCheck(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestReceiptCheck, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.url = reverse('reviewers.receipt.check',
+                           args=[self.app.app_slug])
+        self.reviewer = UserProfile.objects.get(pk=5497308)
+        self.user = UserProfile.objects.get(pk=999)
+
+    def test_anon(self):
+        eq_(self.client.get(self.url).status_code, 302)
+
+    def test_not_reviewer(self):
+        self.client.login(username=self.user.email, password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_not_there(self):
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['status'], False)
+
+    def test_there(self):
+        self.client.login(username=self.reviewer.email, password='password')
+        amo.log(amo.LOG.RECEIPT_CHECKED, self.app, user=self.reviewer)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['status'], True)

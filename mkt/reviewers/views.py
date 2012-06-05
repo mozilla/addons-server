@@ -19,6 +19,7 @@ from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from devhub.models import AppLog
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
@@ -294,8 +295,9 @@ def verify(request, addon):
                              verify.get_headers(verify.invalid()))
 
 
-@json_view
 @addon_view
+@json_view
+@post_required
 def issue(request, addon):
     user = request.amo_user
     review = acl.action_allowed_user(user, 'Apps', 'Review') if user else None
@@ -314,3 +316,13 @@ def issue(request, addon):
         error = _('There was a problem installing the app.')
 
     return {'addon': addon.pk, 'receipt': receipt, 'error': error}
+
+
+@addon_view
+@json_view
+@reviewer_required
+def check(request, addon):
+    qs = (AppLog.objects.order_by('-created')
+                .filter(addon=addon,
+                        activity_log__action=amo.LOG.RECEIPT_CHECKED.id))
+    return {'status': qs.exists()}
