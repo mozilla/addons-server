@@ -7,6 +7,9 @@ def run():
     ids = [r[0] for r in cursor.fetchall()]
 
     cursor.execute('set foreign_key_checks = 0')
+    if not ids:
+        return
+
     cursor.execute('insert into log_activity_mkt '
                    'select * from log_activity where id IN %(ids)s;',
                    {'ids':ids})
