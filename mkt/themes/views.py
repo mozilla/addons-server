@@ -1,10 +1,10 @@
-import jingo
-
 from django.conf import settings
 
-from addons.models import Addon
 from addons.decorators import addon_view_factory
+from addons.models import Addon
 from addons.views import _category_personas as _category_themes
+
+import jingo
 
 addon_all_view = addon_view_factory(qs=Addon.objects.all)
 
@@ -14,7 +14,7 @@ def detail(request, addon):
     """Theme details page."""
     theme = addon.persona
 
-    categories = addon.categories.all()
+    categories = addon.all_categories
     if categories:
         qs = Addon.objects.public().filter(categories=categories[0])
         category_themes = _category_themes(qs, limit=6)

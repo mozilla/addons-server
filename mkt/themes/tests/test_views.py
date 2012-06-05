@@ -1,10 +1,11 @@
 import amo.tests
 from amo.tests import addon_factory
+from addons.models import Addon, AddonUser
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
 
-from addons.models import Addon, AddonUser
 
 class TestPersonas(object):
     fixtures = ['addons/persona', 'base/users']
@@ -25,7 +26,6 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
 
-        # Is this still needed?
         (waffle.models.Switch.objects
                .create(name='personas-migration-completed', active=True))
         self.create_addon_user(self.addon)
@@ -71,7 +71,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
 
         r = self.client.get(self.url)
         eq_(list(r.context['author_themes']), [other])
-        a = pq(r.content)('#more-artist a[data-browsertheme]')
+        a = pq(r.content)('#more-artist .more a')
         eq_(a.length, 1)
         eq_(a.attr('href'), other.get_url_path())
 

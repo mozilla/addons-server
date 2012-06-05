@@ -42,7 +42,7 @@
         <p class="downloads">
           {{ product|weekly_downloads }}
         </p>
-        <div class="theme-details" role="main" data-id="{{ theme.id }}">
+        <div class="theme-details" data-id="{{ theme.id }}">
           {{ theme_preview(theme, linked=False) }}
           <p{{ product.description|locale_html }}>
             {{ product.description|nl2br }}
