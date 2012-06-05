@@ -15,7 +15,8 @@ function fragmentFilter(el) {
 
 (function(page, nodeFilter) {
     var threshold = 250,
-        timeout = false;
+        timeout = false,
+        fragmentCache = {};
     if (z.capabilities['replaceState']) {
         var $loading = $('<div>', {'class': 'loading balloon',
                                    'html': gettext('Loading&hellip;')})
@@ -59,6 +60,7 @@ function fragmentFilter(el) {
         function markScrollTop() {
             var path = window.location.pathname + window.location.search + window.location.hash;
             var state = {path: path, scrollTop: $(document).scrollTop()};
+            console.log(format('setting the scrolltop for {0}', path));
             history.replaceState(state, false, path);
         }
 
@@ -84,34 +86,45 @@ function fragmentFilter(el) {
 
         // handle link clicking and state popping.
         function fetchFragment(state, popped) {
+            console.log('fetchFragment');
             var href = state.path;
             startLoading();
             markScrollTop();
-            console.log(format('fetching {0} at {1}', href, state.scrollTop));
-            $.get(href, function(d, textStatus, xhr) {
-                // Bail if this is not HTML.
-                if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
+
+            //caching!
+            if (fragmentCache[href]) {
+                console.log(format('cached {0} at {1}', href, state.scrollTop));
+                updateContent(fragmentCache[href], href, popped, {scrollTop: state.scrollTop});
+            } else {
+                console.log(format('fetching {0} at {1}', href, state.scrollTop));
+                $.get(href, function(d, textStatus, xhr) {
+                    // Bail if this is not HTML.
+                    if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
+                        window.location = href;
+                        return;
+                    }
+                    console.log('caching fragment');
+                    fragmentCache[href] = d;
+                    updateContent(d, href, popped, {scrollTop: state.scrollTop});
+                }).error(function() {
                     window.location = href;
-                    return;
-                }
-                updateContent(d, href, popped);
-                $('html, body').scrollTop(state.scrollTop || 0);
-            }).error(function() {
-                window.location = href;
-            });
+                });
+            }
+
         }
 
         // pump content into our page, clean up after ourselves.
-        function updateContent(content, href, popped) {
+        function updateContent(content, href, popped, opts) {
             endLoading();
             var newState = {path: href, scrollTop: $(document).scrollTop()};
             if (!popped) history.pushState(newState, false, href);
-            page.html(content).trigger('fragmentloaded');
 
+            page.html(content);
+            $('html, body').scrollTop(opts.scrollTop || 0);
+            page.trigger('fragmentloaded');
             // We so sneaky.
             var $title = page.find('title');
             document.title = $title.text();
-            $title.remove();
 
             // We so classy.
             var $body = $('body');
@@ -121,7 +134,34 @@ function fragmentFilter(el) {
                                     $newclass.attr('content'));
                 $newclass.remove();
             }
+            $title.remove();
         }
+
+        z.page.on('fragmentloaded', function() {
+            console.log('get ready...');
+            setTimeout(prefetch, 1000);
+        });
+        function prefetch() {
+            var links = z.page.find('[data-prefetch]'),
+                href;
+            for (var i=0; i<links.length; i++) {
+                href = links[i].getAttribute('href');
+                if (!fragmentCache[href]) {
+                    fetch(href);
+                }
+            }
+        }
+
+        function fetch(href) {
+            $.get(href, function(d, textStatus, xhr) {
+                // Bail if this is not HTML.
+                if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
+                    return;
+                }
+                fragmentCache[href] = d;
+            });
+        }
+
 
         $(window).on('popstate', function(e) {
             var state = e.originalEvent.state;
@@ -136,6 +176,7 @@ function fragmentFilter(el) {
             var path = window.location.pathname + window.location.search + window.location.hash;
             history.replaceState({path: path}, false, path);
             page.trigger('fragmentloaded');
+            fetch(path);
         });
         console.log("fragments enabled");
     } else {
