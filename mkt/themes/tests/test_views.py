@@ -28,6 +28,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
 
         (waffle.models.Switch.objects
                .create(name='personas-migration-completed', active=True))
+        waffle.models.Switch.objects.create(name='mkt-themes', active=True)
         self.create_addon_user(self.addon)
 
     def test_theme_images(self):

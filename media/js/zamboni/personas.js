@@ -19,14 +19,15 @@ function bindPreviewListeners($themes) {
     $themes.each(function() {
         var $theme = $(this).find('div[data-browsertheme]');
         $theme.unbind('click').click(_pd(function(e) {
-            var $this = $(this);
+            var $this = $(this),
+                elm = e.target.nodeName == 'EM' ? e.target.parentNode : e.target;
             $('.theme-preview').find('em').addClass('hidden');
             if ($this.attr('data-clicktoreset') == 'true') {
-                dispatchPersonaEvent('ResetPersona', e.target);
+                dispatchPersonaEvent('ResetPersona', elm);
                 $this.attr('data-clicktoreset', 'false');
                 $this.find('em').addClass('hidden');
             } else {
-                dispatchPersonaEvent('PreviewPersona', e.target);
+                dispatchPersonaEvent('PreviewPersona', elm);
                 $this.attr('data-clicktoreset', 'true');
                 $this.find('em').removeClass('hidden');
             }

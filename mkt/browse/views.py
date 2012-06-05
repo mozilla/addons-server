@@ -1,5 +1,3 @@
-import jingo
-
 from django.shortcuts import get_object_or_404, redirect
 
 import amo
@@ -7,6 +5,9 @@ from addons.models import Category
 
 from mkt.search.views import _app_search
 from mkt.webapps.models import Webapp
+
+import jingo
+from waffle.decorators import waffle_switch
 
 
 def _landing(request, category=None):
@@ -59,6 +60,7 @@ def browse_apps(request, category=None):
 
 
 # TODO: Real browse themes page - this is a stub.
+@waffle_switch('mkt-themes')
 def browse_themes(request, category=None):
     if request.GET.get('sort'):
         return _search(request, category)
