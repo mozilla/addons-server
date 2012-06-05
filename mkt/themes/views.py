@@ -5,10 +5,11 @@ from addons.models import Addon
 from addons.views import _category_personas as _category_themes
 
 import jingo
+from waffle.decorators import waffle_switch
 
 addon_all_view = addon_view_factory(qs=Addon.objects.all)
 
-
+@waffle_switch('mkt-themes')
 @addon_all_view
 def detail(request, addon):
     """Theme details page."""

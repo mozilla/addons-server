@@ -29,7 +29,6 @@
           {{ product.name }}
         </h1>
         <h2 class="authors">{{ users_list(theme.listed_authors, size=3) }}</h2>
-        {% set categories = product.all_categories %}
         {% if categories %}
           <p class="cats">
             {% for category in categories %}
