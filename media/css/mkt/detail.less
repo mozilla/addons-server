@@ -223,16 +223,25 @@ h1 .num {
         padding: 0;
         a {
             .border-box;
+            background: @black;
             display: block;
             .border-radius(3px);
-            .box-shadow(0 1px 2px #000);
-            width: 216px;
+            .box-shadow(0 1px 2px @black);
             height: 166px;
-            background: white;
             padding: 8px;
+            position: relative;
             margin: 0 16px;
-            img {
+            width: 216px;
+            .img {
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: contain;
                 display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
                 margin: auto;
                 max-height: 150px;
                 text-align: center;
