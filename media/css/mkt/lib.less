@@ -208,6 +208,16 @@
     background-image: -webkit-linear-gradient(@color1, @color2);
 }
 
+.h-gradient-two-color(@color1, @color2) {
+    // The background-color fallback is bad for opacity gradients.
+    background-image: -webkit-gradient(linear, left center, right center, from(@color1), to(@color2));
+    background-image: -webkit-linear-gradient(to right, @color1, @color2);
+    background-image:    -moz-linear-gradient(to right, @color1, @color2);
+    background-image:     -ms-linear-gradient(to right, @color1, @color2);
+    background-image:      -o-linear-gradient(to right, @color1, @color2);
+    background-image:         linear-gradient(to right, @color1, @color2);
+}
+
 // Vertical sprite
 .vsprite(@url, @pos, @spacing, @offset:0) {
     background: ~'url(@{url}) no-repeat';
