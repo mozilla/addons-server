@@ -1,4 +1,14 @@
 (function() {
+    // Because bug 673873 kills me.
+    $('input[placeholder]').on('focus', function() {
+        var $this = $(this);
+        $this.data('placeholder', $this.attr('placeholder'))
+             .removeAttr('placeholder');
+    }).on('blur', function() {
+        var $this = $(this);
+        $this.attr('placeholder', $this.data('placeholder'));
+    });
+
     z.page.on('click', '#search-facets li.facet', function(e) {
         var $this = $(this);
         if ($this.hasClass('active')) {

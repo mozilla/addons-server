@@ -23,6 +23,10 @@
     padding: 0 32px 0 15px;
     z-index: 2;
     font: 17px/30px @open-stack;
+    &:focus {
+        .box-shadow(0 1px 1px rgba(0, 0, 0, 0.06) inset,
+                    0 0 8px rgba(80, 160, 220, 0.6));
+    }
 }
 #search-go {
     border: 0;
