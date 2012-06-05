@@ -248,3 +248,32 @@ class TestIndexFinanceTotalInappByCurrency(amo.tests.ESTestCase):
                 int(self.expected[currency]['revenue'])
             )
             eq_(document, self.expected[currency])
+
+
+class TestAlreadyIndexed(amo.tests.ESTestCase):
+
+    def setUp(self):
+        self.app = amo.tests.app_factory()
+
+        self.ids = []
+        self.expected = {'addon': self.app.pk,
+                         'date': datetime.datetime.today(),
+                         'revenue': 0, 'count': 3,
+                         'refunds': 1}
+
+        for x in range(self.expected['count']):
+            c = Contribution.objects.create(addon_id=self.app.pk,
+                amount=str(random.randint(0, 10)))
+            self.refresh(timesleep=1)
+            self.ids.append(c.id)
+
+        c = Contribution.objects.get(id=1)
+        c.update(uuid=123)
+        Refund.objects.create(contribution=c,
+                              status=amo.REFUND_APPROVED)
+
+    def test_basic(self):
+        eq_(tasks.already_indexed(Contribution, self.expected), False)
+        tasks.index_finance_daily.delay(self.ids)
+        self.refresh(timesleep=1)
+        eq_(tasks.already_indexed(Contribution, self.expected), True)

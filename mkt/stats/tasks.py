@@ -1,7 +1,5 @@
 from collections import defaultdict
 
-from django.db.models import Sum, Count
-
 from celeryutils import task
 import commonware.log
 import elasticutils
@@ -23,24 +21,15 @@ def index_finance_total(addons, **kw):
               len(addons))
 
     for addon in addons:
+        # Get all contributions for given add-on.
         qs = Contribution.objects.filter(addon=addon, uuid=None)
         if not qs.exists():
             continue
-
-        # Get total revenue, sales, refunds per app.
-        revenue = qs.values('addon').annotate(revenue=Sum('amount'))[0]
-        sales = qs.values('addon').annotate(sales=Count('id'))[0]
-        refunds = (qs.filter(refund__isnull=False).
-                   values('addon').annotate(refunds=Count('id')))[0]
-        data = {
-            'addon': addon,
-            'count': sales['sales'],
-            'revenue': revenue['revenue'],
-            'refunds': refunds['refunds'],
-        }
         try:
             key = ord_word('tot' + str(addon))
-            Contribution.index(data, bulk=True, id=key)
+            data = search.get_finance_total(qs, addon)
+            if not already_indexed(Contribution, data):
+                Contribution.index(data, bulk=True, id=key)
             es.flush_bulk(forced=True)
         except Exception, exc:
             index_finance_total.retry(args=[addons], exc=exc)
@@ -58,6 +47,7 @@ def index_finance_total_by_src(addons, **kw):
               len(addons))
 
     for addon in addons:
+        # Get all contributions for given add-on.
         qs = Contribution.objects.filter(addon=addon, uuid=None)
         if not qs:
             continue
@@ -65,24 +55,13 @@ def index_finance_total_by_src(addons, **kw):
         # Get list of distinct sources.
         sources = [src[0] for src in
                    qs.distinct('source').values_list('source')]
-        # Get revenue, sales, refunds by source.
+
         for source in sources:
-            revenues = (qs.filter(source=source).values('addon').
-                        annotate(revenue=Sum('amount'))[0])
-            sales = (qs.filter(source=source).values('addon').
-                     annotate(sales=Count('id'))[0])
-            refunds = (qs.filter(source=source, refund__isnull=False).
-                       values('addon').annotate(refunds=Count('id'))[0])
-            data = {
-                'addon': addon,
-                'source': source,
-                'count': sales['sales'],
-                'revenue': revenues['revenue'],
-                'refunds': refunds['refunds'],
-            }
             try:
                 key = ord_word('src' + str(source) + str(addon))
-                Contribution.index(data, bulk=True, id=key)
+                data = search.get_finance_total_by_src(qs, addon, source)
+                if not already_indexed(Contribution, data):
+                    Contribution.index(data, bulk=True, id=key)
                 es.flush_bulk(forced=True)
             except Exception, exc:
                 index_finance_total_by_src.retry(args=[addons], exc=exc)
@@ -100,6 +79,7 @@ def index_finance_total_by_currency(addons, **kw):
               len(addons))
 
     for addon in addons:
+        # Get all contributions for given add-on.
         qs = Contribution.objects.filter(addon=addon, uuid=None)
         if not qs.exists():
             continue
@@ -107,24 +87,14 @@ def index_finance_total_by_currency(addons, **kw):
         # Get list of distinct currencies.
         currencies = [currency[0] for currency in
                       qs.distinct('currency').values_list('currency')]
-        # Get revenue, sales, refunds by currency.
+
         for currency in currencies:
-            revenues = (qs.filter(currency=currency).values('addon').
-                        annotate(revenue=Sum('amount'))[0])
-            sales = (qs.filter(currency=currency).values('addon').
-                     annotate(sales=Count('id'))[0])
-            refunds = (qs.filter(currency=currency, refund__isnull=False).
-                       values('addon').annotate(refunds=Count('id'))[0])
-            data = {
-                'addon': addon,
-                'currency': currency,
-                'count': sales['sales'],
-                'revenue': revenues['revenue'],
-                'refunds': refunds['refunds'],
-            }
             try:
                 key = ord_word('cur' + currency.lower() + str(addon))
-                Contribution.index(data, bulk=True, id=key)
+                data = search.get_finance_total_by_currency(
+                    qs, addon, currency)
+                if not already_indexed(Contribution, data):
+                    Contribution.index(data, bulk=True, id=key)
                 es.flush_bulk(forced=True)
             except Exception, exc:
                 index_finance_total_by_currency.retry(args=[addons], exc=exc)
@@ -149,28 +119,30 @@ def index_finance_daily(ids, **kw):
     ids -- ids of apps.stats.Contribution objects
     """
     es = elasticutils.get_es()
+
+    # Get contributions.
     qs = (Contribution.objects.filter(id__in=ids)
           .order_by('created').values('addon', 'created'))
+    log.info('[%s] Indexing %s contributions for daily stats.' %
+             (qs[0]['created'], len(ids)))
 
     addons_dates = defaultdict(lambda: defaultdict(dict))
     for contribution in qs:
         addon = contribution['addon']
         date = contribution['created'].strftime('%Y%m%d')
 
-    try:
-        # Date for add-on not processed, index it and give it key.
-        if not date in addons_dates[addon]:
-            data = search.extract_contributions_daily(contribution)
-            key = ord_word('fin' + str(date))
-            Contribution.index(data, bulk=True, id=key)
-            addons_dates[addon][date] = 0
-        if qs:
-            log.info('[%s] Indexing %s contributions for daily stats.' %
-                     (qs[0]['created'], len(addons_dates)))
-        es.flush_bulk(forced=True)
-    except Exception, exc:
-        index_finance_daily.retry(args=[ids], exc=exc)
-        raise
+        try:
+            # Date for add-on not processed, index it and give it key.
+            if not date in addons_dates[addon]:
+                key = ord_word('fin' + str(date))
+                data = search.get_finance_daily(contribution)
+                if not already_indexed(Contribution, data):
+                    Contribution.index(data, bulk=True, id=key)
+                addons_dates[addon][date] = 0
+            es.flush_bulk(forced=True)
+        except Exception, exc:
+            index_finance_daily.retry(args=[ids], exc=exc)
+            raise
 
 
 @task
@@ -194,23 +166,11 @@ def index_finance_total_inapp(addons, **kw):
             if not qs.exists():
                 continue
 
-            # Get total revenue, sales, refunds for given in-app.
-            revenue = (qs.values('config__addon').annotate(
-                       revenue=Sum('contribution__amount')))[0]
-            sales = qs.values('config__addon').annotate(sales=Count('id'))[0]
-            refunds = (qs.filter(contribution__refund__isnull=False).
-                       values('config__addon').
-                       annotate(refunds=Count('id')))[0]
-            data = {
-                'addon': addon,
-                'inapp': inapp.id,
-                'count': sales['sales'],
-                'revenue': revenue['revenue'],
-                'refunds': refunds['refunds'],
-            }
             try:
                 key = ord_word('totinapp' + str(inapp))
-                InappPayment.index(data, bulk=True, id=key)
+                data = search.get_finance_total_inapp(qs, inapp)
+                if not already_indexed(InappPayment, data):
+                    InappPayment.index(data, bulk=True, id=key)
                 es.flush_bulk(forced=True)
             except Exception, exc:
                 index_finance_total_inapp.retry(args=[addons], exc=exc)
@@ -237,34 +197,18 @@ def index_finance_total_inapp_by_currency(addons, **kw):
                                              contribution__uuid=None)
             if not qs.exists():
                 continue
-
             # Get a list of distinct currencies for given in-app.
             currencies = [currency[0] for currency in
                           qs.distinct('contribution__currency').
                           values_list('contribution__currency')]
 
             for currency in currencies:
-                revenues = (qs.filter(contribution__currency=currency).
-                            values('config__addon').
-                            annotate(revenue=Sum('contribution__amount')))[0]
-                sales = (qs.filter(contribution__currency=currency).
-                         values('config__addon').
-                         annotate(sales=Count('id')))[0]
-                refunds = (qs.filter(contribution__currency=currency,
-                                     contribution__refund__isnull=False).
-                           values('config__addon').
-                           annotate(refunds=Count('id')))[0]
-                data = {
-                    'addon': addon,
-                    'inapp': inapp.id,
-                    'currency': currency,
-                    'count': sales['sales'],
-                    'revenue': revenues['revenue'],
-                    'refunds': refunds['refunds'],
-                }
                 try:
                     key = ord_word('curinapp' + currency.lower() + str(addon))
-                    InappPayment.index(data, bulk=True, id=key)
+                    data = search.get_finance_total_inapp_by_currency(
+                        qs, inapp, currency)
+                    if not already_indexed(InappPayment, data):
+                        InappPayment.index(data, bulk=True, id=key)
                     es.flush_bulk(forced=True)
                 except Exception, exc:
                     index_finance_total_by_currency.retry(args=[addons],
@@ -282,20 +226,28 @@ def index_installed_daily(ids, **kw):
     """
     from mkt.webapps.models import Installed
     es = elasticutils.get_es()
+    # Get Installed's
+    qs = (Installed.objects.filter(id__in=set(ids)).
+        order_by('-created').values('addon', 'created'))
+    log.info('[%s] Indexing %s installed counts for daily stats.' %
+             (qs[0]['created'], len(qs)))
 
-    qs = Installed.objects.filter(id__in=set(ids))
-    if qs.exists():
-        log.info('[%s] Indexing %s installed counts for daily stats.' %
-                 (qs[0].created, len(qs)))
-    try:
-        for installed in qs:
-            data = search.extract_installed_daily(installed)
-            key = ord_word('ins' + str(installed.created))
-            Installed.index(data, bulk=True, id=key)
-        es.flush_bulk(forced=True)
-    except Exception, exc:
-        index_installed_daily.retry(args=[ids], exc=exc)
-        raise
+    addons_dates = defaultdict(lambda: defaultdict(dict))
+    for installed in qs:
+        addon = installed['addon']
+        date = installed['created'].strftime('%Y%m%d')
+
+        try:
+            if not date in addons_dates[addon]:
+                key = ord_word('ins' + str(date))
+                data = search.get_installed_daily(installed)
+                if not already_indexed(Installed, data):
+                    Installed.index(data, bulk=True, id=key)
+                addons_dates[addon][date] = 0
+            es.flush_bulk(forced=True)
+        except Exception, exc:
+            index_installed_daily.retry(args=[ids], exc=exc)
+            raise
 
 
 def ord_word(word):
@@ -303,3 +255,27 @@ def ord_word(word):
     Convert an alphanumeric string to its ASCII values, used for ES keys.
     """
     return ''.join([str(ord(letter)) for letter in word])
+
+
+def already_indexed(model, data):
+    """
+    Bug 759924
+    Checks that data is not being indexed twice.
+    """
+    # Handle the weird 'have to query in lower-case for ES' thing.
+    for k, v in data.iteritems():
+        try:
+            data[k] = v.lower()
+        except AttributeError:
+            continue
+
+    # Cast any datetimes to date.
+    if 'date' in data:
+        try:
+            data['date'] = data['date'].date()
+        except AttributeError:
+            pass
+
+    if list(model.search().filter(**data).values_dict(data.keys()[0])):
+        return True
+    return False

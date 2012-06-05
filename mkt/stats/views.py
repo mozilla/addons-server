@@ -55,6 +55,12 @@ def get_series(model, group, primary_field=None, extra_fields=None, **filters):
     if extra_fields:
         fields += extra_fields
     data += pad_missing_stats(days, group, filters.get('date__range'), fields)
+
+    # Remove duplicates, just in case (bug 759924).
+    data = [dict(tupleized) for tupleized in set(
+            tuple(item.items()) for item in data)]
+
+    # Sort in descending order.
     data = sorted(data, key=lambda document: document['date'], reverse=True)
 
     # Generate dictionary with options from ES document

@@ -1,19 +1,128 @@
-from django.db.models import Sum
+from django.db.models import Sum, Count
 
 import elasticutils
 import pyes.exceptions as pyes
 
 import amo
 from stats.models import Contribution
+from mkt.webapps.models import Installed
 
 
-def extract_contributions_daily(contribution):
+def get_finance_total(qs, addon):
     """
-    number of contributions (sales) per app/day
-    revenue per app/day
+    sales per app
+    revenue per app
+    refunds per app
+    """
+    revenue = qs.values('addon').annotate(revenue=Sum('amount'))[0]
+    sales = qs.values('addon').annotate(sales=Count('id'))[0]
+    refunds = (qs.filter(refund__isnull=False).
+               values('addon').annotate(refunds=Count('id')))[0]
+    return {
+        'addon': addon,
+        'count': sales['sales'],
+        'revenue': revenue['revenue'],
+        'refunds': refunds['refunds'],
+    }
+
+
+def get_finance_total_by_src(qs, addon, source):
+    """
+    sales per app by src
+    revenue per app by src
+    refunds per app by src
+    """
+    revenues = (qs.filter(source=source).values('addon').
+                annotate(revenue=Sum('amount'))[0])
+    sales = (qs.filter(source=source).values('addon').
+             annotate(sales=Count('id'))[0])
+    refunds = (qs.filter(source=source, refund__isnull=False).
+               values('addon').annotate(refunds=Count('id'))[0])
+    return {
+        'addon': addon,
+        'source': source,
+        'count': sales['sales'],
+        'revenue': revenues['revenue'],
+        'refunds': refunds['refunds'],
+    }
+
+
+def get_finance_total_by_currency(qs, addon, currency):
+    """
+    sales per app by currency
+    revenue per app by currency
+    refunds per app by currency
+    """
+    revenues = (qs.filter(currency=currency).values('addon').
+                annotate(revenue=Sum('amount'))[0])
+    sales = (qs.filter(currency=currency).values('addon').
+             annotate(sales=Count('id'))[0])
+    refunds = (qs.filter(currency=currency, refund__isnull=False).
+               values('addon').annotate(refunds=Count('id'))[0])
+    return {
+        'addon': addon,
+        'currency': currency,
+        'count': sales['sales'],
+        'revenue': revenues['revenue'],
+        'refunds': refunds['refunds'],
+    }
+
+
+def get_finance_total_inapp(qs, inapp):
+    """
+    sales per in-app
+    revenue per in-app
+    refunds per in-app
+    """
+    revenue = (qs.values('config__addon').annotate(
+               revenue=Sum('contribution__amount')))[0]
+    sales = qs.values('config__addon').annotate(sales=Count('id'))[0]
+    refunds = (qs.filter(contribution__refund__isnull=False).
+               values('config__addon').
+               annotate(refunds=Count('id')))[0]
+    return {
+        'addon': inapp.addon.id,
+        'inapp': inapp.id,
+        'count': sales['sales'],
+        'revenue': revenue['revenue'],
+        'refunds': refunds['refunds'],
+    }
+
+
+def get_finance_total_inapp_by_currency(qs, inapp, currency):
+    """
+    sales per in-app by currency
+    revenue per in-app by currency
+    refunds per in-app by currency
+    """
+    revenues = (qs.filter(contribution__currency=currency).
+                values('config__addon').
+                annotate(revenue=Sum('contribution__amount')))[0]
+    sales = (qs.filter(contribution__currency=currency).
+             values('config__addon').
+             annotate(sales=Count('id')))[0]
+    refunds = (qs.filter(contribution__currency=currency,
+                         contribution__refund__isnull=False).
+               values('config__addon').
+               annotate(refunds=Count('id')))[0]
+    return {
+        'addon': inapp.addon.id,
+        'inapp': inapp.id,
+        'currency': currency,
+        'count': sales['sales'],
+        'revenue': revenues['revenue'],
+        'refunds': refunds['refunds'],
+    }
+
+
+def get_finance_daily(contribution):
+    """
+    sales per day
+    revenue per day
+    refunds per day
     """
     addon_id = contribution['addon']
-    date = contribution['created']
+    date = contribution['created'].date()
     return {
         'date': date,
         'addon': addon_id,
@@ -39,14 +148,20 @@ def extract_contributions_daily(contribution):
     }
 
 
-def extract_installed_daily(installed):
-    date = installed.created.date()
-    return {'date': date,
-            'addon': installed.addon_id,
-            'count': installed.__class__.objects.filter(
-                created__year=date.year,
-                created__month=date.month,
-                created__day=date.day).count()}
+def get_installed_daily(installed):
+    """
+    installs per day
+    """
+    addon_id = installed['addon']
+    date = installed['created'].date()
+    return {
+        'date': date,
+        'addon': addon_id,
+        'count': Installed.objects.filter(
+            created__year=date.year,
+            created__month=date.month,
+            created__day=date.day).count()
+    }
 
 
 def setup_mkt_indexes():

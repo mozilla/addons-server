@@ -203,7 +203,7 @@ class TestGetSeries(amo.tests.ESTestCase):
             c = Contribution.objects.create(addon_id=self.app.pk,
                 amount=5)
             c.update(created=datetime.datetime(2012, 5, x, 0, 0, 0))
-        tasks.index_contribution_counts(Contribution.objects.all())
+        tasks.index_finance_daily(Contribution.objects.all())
         self.refresh(timesleep=1)
 
     def test_basic(self):
@@ -226,6 +226,18 @@ class TestGetSeries(amo.tests.ESTestCase):
         stats = list(get_series(Contribution, 'day', addon=self.app.pk,
                                 date__range=d_range))
         eq_(stats, sorted(stats, key=lambda x: x['date'], reverse=True))
+
+    def test_no_duplicates(self):
+        """
+        Check for no duplicate (dates) in returned data (bug 759924).
+        """
+        range_delta = 90
+        start = datetime.date(2012, 06, 01)
+        d_range = (start, start + datetime.timedelta(range_delta))
+        stats = list(get_series(Contribution, 'day', addon=self.app.pk,
+                                date__range=d_range))
+        assert(len(stats) <= range_delta,
+               "Duplicate data, more data returned than expected.")
 
 
 class TestPadMissingStats(amo.tests.ESTestCase):
