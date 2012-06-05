@@ -101,7 +101,7 @@ class TestAppBreadcrumbs(AppHubTest):
         eq_(r.status_code, 200)
         expected = [
             ('Home', reverse('home')),
-            ('Developers', reverse('mkt.developers.index')),
+            ('Developers', reverse('ecosystem.landing')),
             ('Submit App', None),
         ]
         amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
@@ -113,7 +113,7 @@ class TestAppBreadcrumbs(AppHubTest):
         eq_(r.status_code, 200)
         expected = [
             ('Home', reverse('home')),
-            ('Developers', reverse('mkt.developers.index')),
+            ('Developers', reverse('ecosystem.landing')),
             ('My Submissions', reverse('mkt.developers.apps')),
             (unicode(webapp.name), None),
         ]

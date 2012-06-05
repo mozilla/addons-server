@@ -6,7 +6,7 @@
 
 {% block content %}
   {% set dst = request.GET.get('to') %}
-  {% if dst and dst not in (url('mkt.developers.index'), url('mkt.developers.apps')) %}
+  {% if dst and dst not in (url('ecosystem.landing'), url('mkt.developers.apps')) %}
     <section class="notification-box error full">
       <div>
         {{ _('You must log in to access that page.') }}

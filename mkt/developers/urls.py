@@ -88,8 +88,6 @@ ajax_patterns = patterns('',
 )
 
 urlpatterns = decorate(write, patterns('',
-    url('^$', views.index, name='mkt.developers.index'),
-
     # Redirect people who have /apps/ instead of /app/.
     ('^apps/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),

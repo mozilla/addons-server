@@ -90,22 +90,24 @@ class TestFooter(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def test_developers_links_to_dashboard(self):
+        # I've already submitted an app.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
         r = self.client.get(reverse('home'))
         eq_(r.status_code, 200)
-        f = pq(r.content)('#site-footer')
-        eq_(f.find('a[href="%s"]' % reverse('mkt.developers.index')).length, 1)
-        eq_(f.find('a[href="%s"]' % reverse('ecosystem.landing')).length, 0)
+        links = pq(r.content)('#site-footer a[rel=external]')
+        eq_(links.length, 1)
+        eq_(links.attr('href'), reverse('mkt.developers.apps'))
 
     def test_developers_links_to_landing(self):
+        # I've ain't got no apps.
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         r = self.client.get(reverse('home'))
         eq_(r.status_code, 200)
-        f = pq(r.content)('#site-footer')
-        eq_(f.find('a[href="%s"]' % reverse('mkt.developers.index')).length, 0)
-        eq_(f.find('a[href="%s"]' % reverse('ecosystem.landing')).length, 1)
+        links = pq(r.content)('#site-footer a[rel=external]')
+        eq_(links.length, 1)
+        eq_(links.attr('href'), reverse('ecosystem.landing'))
 
     def test_language_selector(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.

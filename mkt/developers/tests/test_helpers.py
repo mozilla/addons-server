@@ -57,7 +57,7 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
-            ('Developers', reverse('mkt.developers.index')),
+            ('Developers', reverse('ecosystem.landing')),
             ('foo', '/foo'),
             ('bar', '/bar'),
         ]
@@ -74,7 +74,7 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
-            ('Developers', reverse('mkt.developers.index')),
+            ('Developers', reverse('ecosystem.landing')),
             ('My Submissions', reverse('mkt.developers.apps')),
             ('Steamcube', None),
         ]
@@ -95,7 +95,7 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
-            ('Developers', reverse('mkt.developers.index')),
+            ('Developers', reverse('ecosystem.landing')),
             ('My Submissions', reverse('mkt.developers.apps')),
             ('Steamcube', product.get_dev_url()),
             ('foo', '/foo'),

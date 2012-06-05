@@ -6,7 +6,22 @@ from amo.urlresolvers import reverse
 from mkt.ecosystem.models import MdnCache
 
 
-class TutorialsHome(amo.tests.TestCase):
+class TestLanding(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('ecosystem.landing')
+
+    def test_legacy_redirect(self):
+        r = self.client.get('/en-US/ecosystem/')
+        self.assertRedirects(r, '/en-US/developers/', 301)
+
+    def test_tutorials_default(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/landing.html')
+
+
+class TestTutorialsHome(amo.tests.TestCase):
     fixtures = ['ecosystem/mdncache-item']
 
     def setUp(self):
@@ -44,14 +59,3 @@ class TutorialsHome(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#nav strong').text(), 'pizza')
-
-
-class LandingTests(amo.tests.TestCase):
-
-    def setUp(self):
-        self.url = reverse('ecosystem.landing')
-
-    def test_tutorials_default(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/landing.html')

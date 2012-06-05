@@ -63,7 +63,7 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     can_view = getattr(context['request'], 'can_view_consumer', True)
     if can_view:
-        crumbs = [(reverse('mkt.developers.index'), _('Developers'))]
+        crumbs = [(reverse('ecosystem.landing'), _('Developers'))]
     else:
         crumbs = [(reverse('mkt.developers.apps'), _('My Submissions'))]
     if can_view:

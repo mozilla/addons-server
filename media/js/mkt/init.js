@@ -120,4 +120,9 @@ z.page.on('fragmentloaded', function() {
             $purchased.prepend(installed);
         }
     });
+
+    // Hijack external links if we're on mobile.
+    if (z.capabilities.touch) {
+        $('a[rel=external]').attr('target', '_blank');
+    }
 });

@@ -82,7 +82,7 @@
         <nav class="footer-links">
           {% if logged %}
             {% for link in tools_links %}
-              <a href="{{ link.href }}">{{ link.text }}</a>
+              <a href="{{ link.href }}" rel="external">{{ link.text }}</a>
             {% endfor %}
             {% if request.can_view_consumer %}
               <a href="{{ url('account.purchases') }}">

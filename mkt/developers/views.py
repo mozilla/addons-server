@@ -1065,6 +1065,6 @@ def docs(request, doc_name=None, doc_page=None):
             filename = None
 
     if not filename:
-        return redirect('mkt.developers.index')
+        return redirect('ecosystem.landing')
 
     return jingo.render(request, 'developers/docs/%s' % filename)

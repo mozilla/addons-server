@@ -31,14 +31,15 @@ urlpatterns = patterns('',
     # Browse pages.
     ('^apps/', include('mkt.browse.urls')),
 
+    # Dev Ecosystem
+    ('^developers/', include('mkt.ecosystem.urls')),
+    ('^ecosystem/', lambda r: redirect('ecosystem.landing', permanent=True)),
+
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
 
     # Submission.
     ('^developers/submit/app/', include('mkt.submit.urls')),
-
-    # Dev Ecosystem
-    ('^ecosystem/', include('mkt.ecosystem.urls')),
 
     # In-app payments.
     ('^inapp-pay/', include('mkt.inapp_pay.urls')),
