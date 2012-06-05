@@ -40,7 +40,7 @@ class Verify:
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
 
-    def __call__(self):
+    def __call__(self, check_purchase=True):
         if not self.cursor:
             self.conn = mypool.connect()
             self.cursor = self.conn.cursor()
@@ -104,6 +104,9 @@ class Verify:
         # information.
         if self.premium != ADDON_PREMIUM:
             self.log('Valid receipt, not premium')
+            return self.ok_or_expired(receipt)
+
+        elif self.premium and not check_purchase:
             return self.ok_or_expired(receipt)
 
         else:

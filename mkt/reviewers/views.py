@@ -275,7 +275,7 @@ def motd(request):
 def verify(request, addon):
     receipt = request.raw_post_data
     verify = Verify(addon.pk, receipt, request)
-    output = verify()
+    output = verify(check_purchase=False)
 
     # Only reviewers or the authors can use this which is different
     # from the standard receipt verification. The user is contained in the

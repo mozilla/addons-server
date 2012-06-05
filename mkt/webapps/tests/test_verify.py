@@ -67,16 +67,16 @@ class TestVerify(amo.tests.TestCase):
                                       'storedata': urlencode({'id': 3615})},
                           'exp': calendar.timegm(time.gmtime()) + 1000}
 
-    def get_decode(self, addon_id, receipt):
+    def get_decode(self, addon_id, receipt, check_purchase=True):
         # Ensure that the verify code is using the test database cursor.
         v = verify.Verify(addon_id, receipt, {})
         v.cursor = connection.cursor()
-        return json.loads(v())
+        return json.loads(v(check_purchase=check_purchase))
 
     @mock.patch.object(verify, 'decode_receipt')
-    def get(self, addon_id, receipt, decode_receipt):
+    def get(self, addon_id, receipt, decode_receipt, check_purchase=True):
         decode_receipt.return_value = receipt
-        return self.get_decode(addon_id, '')
+        return self.get_decode(addon_id, '', check_purchase=check_purchase)
 
     def make_install(self):
         install = Installed.objects.create(addon=self.addon, user=self.user)
@@ -187,6 +187,12 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(3615, self.user_data)
         eq_(res['status'], 'invalid')
+
+    def test_premium_dont_check(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.make_install()
+        res = self.get(3615, self.user_data, check_purchase=False)
+        eq_(res['status'], 'ok')
 
     def test_premium_addon_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
