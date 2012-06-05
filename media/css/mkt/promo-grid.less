@@ -63,7 +63,6 @@
         &:hover {
             .box-shadow(0 1px 2px fadeOut(@black, 50%));
             background: @faint-gray;
-            color: darken(@text, 10%);
             .author {
                 color: @medium-gray;
             }
@@ -178,7 +177,7 @@
                 &[data-shown],
                 &[data-shown]:before,
                 &[data-shown]:after {
-                    background: lighten(@bg, 2%);
+                    background: @bg-lite;
                 }
                 + span {
                     margin-left: 35px;
@@ -188,7 +187,7 @@
     }
     .view-more a {
         .item-arrows;
-        background: @faint-gray;
+        background: @bg;
         border-top: 1px solid @light-gray;
         display: block;
         font-weight: 600;
@@ -216,7 +215,7 @@
             bottom: 10px;
         }
         ul {
-            background: lighten(@bg, 2%);
+            background: @bg-lite;
             margin: 0;
             overflow: hidden;
             position: relative;
@@ -236,9 +235,9 @@
             &:last-child {
                 border-bottom: 0;
             }
-            &:nth-child(2n + 1) {
+            &:nth-child(2n) {
                 a {
-                    background: none;
+                    background: darken(@bg, 1%);
                 }
             }
             &:nth-of-type(2n + 1) {
@@ -248,7 +247,7 @@
                 top: 10px;
             }
             a {
-                background: fadeOut(@light-gray, 75%);
+                background: @bg-lite;
                 height: 74px;
                 padding: 10px 40px 0 85px;
                 .item-arrows;
