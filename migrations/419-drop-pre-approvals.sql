@@ -1,1 +1,1 @@
-UPDATE users_preapproval SET paypal_key = '', paypal_expiry = '';
+--UPDATE users_preapproval SET paypal_key = '', paypal_expiry = '';
