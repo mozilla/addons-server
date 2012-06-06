@@ -298,7 +298,7 @@ class AddonPaymentData(amo.models.ModelBase):
     #
     # I've no idea what the biggest lengths of these are, so making
     # up some aribtrary lengths.
-    addon = models.OneToOneField('addons.Addon')
+    addon = models.OneToOneField('addons.Addon', related_name='payment_data')
     # Basic.
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)

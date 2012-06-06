@@ -30,14 +30,23 @@ def summary(request, user_id):
     refund_summary = {'approved': appr.count(),
                       'requested': req.count()}
     # TODO: This should return all `addon` types and not just webapps.
-    # -- currently get_details_url() fails on non-webapps so this is a temp fix.
-    user_addons = user.addons.filter(type=amo.ADDON_WEBAPP).order_by('-created')
+    # -- currently get_details_url() fails on non-webapps so this is a
+    # temp fix.
+    user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
+                              .order_by('-created'))
     user_addons = paginate(request, user_addons, per_page=15)
+    paypal_ids = (user.addons.exclude(paypal_id='').distinct('paypal_id')
+                             .values_list('paypal_id', flat=True))
+    payment_data = []
+    for ad in user.addons.exclude(payment_data=None):
+        payment_data.append(ad.payment_data)
     return jingo.render(request, 'acct_lookup/summary.html',
                         {'account': user,
                          'app_summary': app_summary,
                          'refund_summary': refund_summary,
-                         'user_addons': user_addons})
+                         'user_addons': user_addons,
+                         'payment_data': payment_data,
+                         'paypal_ids': paypal_ids})
 
 
 @login_required

@@ -7,7 +7,7 @@ from addons.models import Addon
 import amo
 from amo.urlresolvers import reverse
 from amo.tests import TestCase, ESTestCase, app_factory
-from market.models import Refund
+from market.models import Refund, AddonPaymentData
 from stats.models import Contribution
 from users.cron import reindex_users
 from users.models import UserProfile
@@ -25,11 +25,11 @@ class TestAcctSummary(AcctLookupTest, TestCase):
 
     def setUp(self):
         super(TestAcctSummary, self).setUp()
-        self.user_id = 31337  # steamcube
+        self.user = UserProfile.objects.get(pk=31337)  # steamcube
         self.steamcube = Addon.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.summary_url = reverse('acct_lookup.summary', args=[self.user_id])
+        self.summary_url = reverse('acct_lookup.summary', args=[self.user.pk])
 
     def buy_stuff(self, contrib_type):
         for i in range(3):
@@ -42,7 +42,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
                                         type=contrib_type,
                                         currency=curr,
                                         amount=amount,
-                                        user_id=self.user_id)
+                                        user_id=self.user.pk)
 
     def summary(self, expected_status=200):
         res = self.client.get(self.summary_url)
@@ -66,7 +66,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
 
     def test_basic_summary(self):
         res = self.summary()
-        eq_(res.context['account'].pk, self.user_id)
+        eq_(res.context['account'].pk, self.user.pk)
 
     def test_app_counts(self):
         self.buy_stuff(amo.CONTRIB_PURCHASE)
@@ -84,7 +84,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
 
     def test_requested_refunds(self):
         contrib = Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
-                                              user_id=self.user_id,
+                                              user_id=self.user.pk,
                                               addon=self.steamcube,
                                               currency='USD',
                                               amount='0.99')
@@ -95,7 +95,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
 
     def test_approved_refunds(self):
         contrib = Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
-                                              user_id=self.user_id,
+                                              user_id=self.user.pk,
                                               addon=self.steamcube,
                                               currency='USD',
                                               amount='0.99')
@@ -108,6 +108,42 @@ class TestAcctSummary(AcctLookupTest, TestCase):
     def test_app_created(self):
         res = self.summary()
         eq_(len(res.context['user_addons']), 1)
+
+    def test_paypal_ids(self):
+        self.user.addons.update(paypal_id='somedev@app.com')
+        res = self.summary()
+        eq_(list(res.context['paypal_ids']), [u'somedev@app.com'])
+
+    def test_no_paypal(self):
+        self.user.addons.update(paypal_id='')
+        res = self.summary()
+        eq_(list(res.context['paypal_ids']), [])
+
+    def test_payment_data(self):
+        AddonPaymentData.objects.create(addon=self.steamcube,
+                                        full_name='Ed Peabody Jr.',
+                                        business_name='Mr. Peabody',
+                                        phone='(1) 773-111-2222',
+                                        address_one='1111 W Leland Ave',
+                                        address_two='Apt 1W',
+                                        city='Chicago',
+                                        post_code='60640',
+                                        country='USA',
+                                        state='Illinois')
+        res = self.summary()
+        pd = res.context['payment_data'][0]
+        eq_(pd.full_name, 'Ed Peabody Jr.')
+        eq_(pd.business_name, 'Mr. Peabody')
+        eq_(pd.address_one, '1111 W Leland Ave')
+        eq_(pd.address_two, 'Apt 1W')
+        eq_(pd.city, 'Chicago')
+        eq_(pd.state, 'Illinois')
+        eq_(pd.post_code, '60640')
+        eq_(pd.country, 'USA')
+
+    def test_no_payment_data(self):
+        res = self.summary()
+        eq_(res.context['payment_data'], [])
 
 
 class TestAcctSearch(AcctLookupTest, ESTestCase):

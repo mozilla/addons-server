@@ -55,7 +55,13 @@
       <h2>{{ _('Payments') }}</h2>
       <dl>
         <dt>{{ _('PayPal linked') }}:</dt>
-        <dd>TODO</dd>
+        <dd>
+          {% for email in paypal_ids %}
+            <div>{{ email }}</div>
+          {% else %}
+            <div>{{ _('None') }}</div>
+          {% endfor %}
+        </dd>
         <dt>{{ _('Marketplace Credit') }}:</dt>
         <dd>TODO</dd>
         <dt>{{ _('Payments') }}:</dt>
@@ -80,8 +86,23 @@
             {{ _('No') }}
           {% endif %}
         </dd>
-        <dt>{{ _('Address') }}:</dt>
-        <dd>TODO</dd>
+        <dt>{{ _('Addresses') }}:</dt>
+        <dd>
+          {% for pd in payment_data %}
+            <div>{{ pd.full_name }}</div>
+            {% if pd.business_name %}
+              <div>{{ pd.business_name }}</div>
+            {% endif %}
+            <div>{{ pd.address_one }}</div>
+            {% if pd.address_two %}
+              <div>{{ pd.address_two }}</div>
+            {% endif %}
+            <div>{{ pd.city }}, {{ pd.state }} {{ pd.post_code }}</div>
+            <div>{{ pd.country }}</div>
+          {% else %}
+            {{ _('None') }}
+          {% endfor %}
+        </dd>
         <dt>{{ _('Submissions') }}:</dt>
         <dd class="submissions">
           {% for addon in user_addons %}
