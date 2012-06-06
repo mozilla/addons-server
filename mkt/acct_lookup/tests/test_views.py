@@ -214,7 +214,7 @@ class TestPurchases(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
         self.user = UserProfile.objects.get(pk=999)
-        self.url = reverse('acct_lookup.summary', args=[self.user.pk])
+        self.url = reverse('acct_lookup.purchases', args=[self.user.pk])
 
     def test_not_allowed(self):
         self.client.logout()
