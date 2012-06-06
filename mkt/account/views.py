@@ -260,7 +260,7 @@ def delete_photo(request):
     delete_photo_task.delay(request.amo_user.picture_path)
     log.debug(u'User (%s) deleted photo' % request.amo_user)
     messages.success(request, _('Photo Deleted'))
-    amo.log(amo.LOG.ACCOUNT_UPDATED)
+    amo.log(amo.LOG.USER_EDITED)
     return http.HttpResponse()
 
 
