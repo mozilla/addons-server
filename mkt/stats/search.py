@@ -1,4 +1,4 @@
-from django.db.models import Sum, Count
+from django.db.models import Count, Sum
 
 import elasticutils
 import pyes.exceptions as pyes
@@ -14,8 +14,10 @@ def get_finance_total(qs, addon):
     revenue per app
     refunds per app
     """
-    revenue = qs.values('addon').annotate(revenue=Sum('amount'))[0]
-    sales = qs.values('addon').annotate(sales=Count('id'))[0]
+    revenue = (qs.values('addon').filter(refund=None).
+               annotate(revenue=Sum('amount')))[0]
+    sales = (qs.values('addon').filter(refund=None).
+             annotate(sales=Count('id')))[0]
     refunds = (qs.filter(refund__isnull=False).
                values('addon').annotate(refunds=Count('id')))[0]
     return {
@@ -32,9 +34,9 @@ def get_finance_total_by_src(qs, addon, source):
     revenue per app by src
     refunds per app by src
     """
-    revenues = (qs.filter(source=source).values('addon').
+    revenues = (qs.filter(source=source, refund=None).values('addon').
                 annotate(revenue=Sum('amount'))[0])
-    sales = (qs.filter(source=source).values('addon').
+    sales = (qs.filter(source=source, refund=None).values('addon').
              annotate(sales=Count('id'))[0])
     refunds = (qs.filter(source=source, refund__isnull=False).
                values('addon').annotate(refunds=Count('id'))[0])
@@ -53,10 +55,10 @@ def get_finance_total_by_currency(qs, addon, currency):
     revenue per app by currency
     refunds per app by currency
     """
-    revenues = (qs.filter(currency=currency).values('addon').
-                annotate(revenue=Sum('amount'))[0])
-    sales = (qs.filter(currency=currency).values('addon').
-             annotate(sales=Count('id'))[0])
+    revenues = (qs.filter(currency=currency, refund=None).
+                values('addon').annotate(revenue=Sum('amount'))[0])
+    sales = (qs.filter(currency=currency, refund=None)
+             .values('addon').annotate(sales=Count('id'))[0])
     refunds = (qs.filter(currency=currency, refund__isnull=False).
                values('addon').annotate(refunds=Count('id'))[0])
     return {
@@ -68,46 +70,49 @@ def get_finance_total_by_currency(qs, addon, currency):
     }
 
 
-def get_finance_total_inapp(qs, inapp):
+def get_finance_total_inapp(qs, addon, inapp_name):
     """
     sales per in-app
     revenue per in-app
     refunds per in-app
     """
-    revenue = (qs.values('config__addon').annotate(
+    revenue = (qs.filter(contribution__refund=None).
+               values('config__addon').annotate(
                revenue=Sum('contribution__amount')))[0]
-    sales = qs.values('config__addon').annotate(sales=Count('id'))[0]
+    sales = (qs.filter(contribution__refund=None).
+             values('config__addon').
+             annotate(sales=Count('id')))[0]
     refunds = (qs.filter(contribution__refund__isnull=False).
-               values('config__addon').
-               annotate(refunds=Count('id')))[0]
+               values('config__addon').annotate(refunds=Count('id')))[0]
     return {
-        'addon': inapp.addon.id,
-        'inapp': inapp.id,
+        'addon': addon,
+        'inapp': inapp_name,
         'count': sales['sales'],
         'revenue': revenue['revenue'],
         'refunds': refunds['refunds'],
     }
 
 
-def get_finance_total_inapp_by_currency(qs, inapp, currency):
+def get_finance_total_inapp_by_currency(qs, addon, inapp_name, currency):
     """
     sales per in-app by currency
     revenue per in-app by currency
     refunds per in-app by currency
     """
-    revenues = (qs.filter(contribution__currency=currency).
+    revenues = (qs.filter(contribution__currency=currency,
+                          contribution__refund=None).
                 values('config__addon').
                 annotate(revenue=Sum('contribution__amount')))[0]
-    sales = (qs.filter(contribution__currency=currency).
-             values('config__addon').
-             annotate(sales=Count('id')))[0]
+    sales = (qs.filter(contribution__currency=currency,
+                       contribution__refund=None).
+             values('config__addon').annotate(sales=Count('id')))[0]
     refunds = (qs.filter(contribution__currency=currency,
                          contribution__refund__isnull=False).
                values('config__addon').
                annotate(refunds=Count('id')))[0]
     return {
-        'addon': inapp.addon.id,
-        'inapp': inapp.id,
+        'addon': addon,
+        'inapp': inapp_name,
         'currency': currency,
         'count': sales['sales'],
         'revenue': revenues['revenue'],
@@ -128,11 +133,13 @@ def get_finance_daily(contribution):
         'addon': addon_id,
         'count': Contribution.objects.filter(
             addon__id=addon_id,
+            refund=None,
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).count() or 0,
         'revenue': Contribution.objects.filter(
             addon__id=addon_id,
+            refund=None,
             type=amo.CONTRIB_PURCHASE,
             created__year=date.year,
             created__month=date.month,
@@ -141,10 +148,9 @@ def get_finance_daily(contribution):
         'refunds': Contribution.objects.filter(
             addon__id=addon_id,
             refund__isnull=False,
-            uuid__isnull=False,
             created__year=date.year,
             created__month=date.month,
-            created__day=date.day).count() or 0
+            created__day=date.day).count() or 0,
     }
 
 

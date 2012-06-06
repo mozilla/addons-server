@@ -8,16 +8,10 @@ from django.db.models import Max, Min
 
 from celery.task.sets import TaskSet
 
-from addons.models import Addon
 from amo.utils import chunked
 from stats.models import Contribution
-from mkt.stats.tasks import (index_finance_daily,
-                             index_finance_total,
-                             index_finance_total_by_src,
-                             index_finance_total_by_currency,
-                             index_finance_total_inapp,
-                             index_finance_total_inapp_by_currency,
-                             index_installed_daily)
+from mkt.stats import tasks
+from mkt.webapps.models import Webapp
 
 log = logging.getLogger('z.stats')
 
@@ -61,19 +55,19 @@ class Command(BaseCommand):
         addons, dates = kw['addons'], kw['date']
 
         queries = [
-            (Contribution.objects, index_finance_daily,
+            (Webapp.objects, tasks.index_finance_total,
                 {'date': 'created'}),
-            (Addon.objects, index_finance_total,
+            (Webapp.objects, tasks.index_finance_total_by_src,
                 {'date': 'created'}),
-            (Addon.objects, index_finance_total_by_src,
+            (Webapp.objects, tasks.index_finance_total_by_currency,
                 {'date': 'created'}),
-            (Addon.objects, index_finance_total_by_currency,
+            (Contribution.objects, tasks.index_finance_daily,
                 {'date': 'created'}),
-            (Addon.objects, index_finance_total_inapp,
+            (Installed.objects, tasks.index_installed_daily,
                 {'date': 'created'}),
-            (Addon.objects, index_finance_total_inapp_by_currency,
+            (Webapp.objects, tasks.index_finance_total_inapp,
                 {'date': 'created'}),
-            (Installed.objects, index_installed_daily,
+            (Webapp.objects, tasks.index_finance_total_inapp_by_currency,
                 {'date': 'created'}),
         ]
 

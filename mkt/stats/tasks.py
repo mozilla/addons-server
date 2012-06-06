@@ -5,7 +5,7 @@ import commonware.log
 import elasticutils
 
 from . import search
-from mkt.inapp_pay.models import InappConfig, InappPayment
+from mkt.inapp_pay.models import InappPayment
 from stats.models import Contribution
 
 log = commonware.log.getLogger('z.task')
@@ -49,16 +49,15 @@ def index_finance_total_by_src(addons, **kw):
     for addon in addons:
         # Get all contributions for given add-on.
         qs = Contribution.objects.filter(addon=addon, uuid=None)
-        if not qs:
+        if not qs.exists():
             continue
 
         # Get list of distinct sources.
-        sources = [src[0] for src in
-                   qs.distinct('source').values_list('source')]
+        sources = set(qs.values_list('source', flat=True))
 
         for source in sources:
             try:
-                key = ord_word('src' + str(source) + str(addon))
+                key = ord_word('src' + str(addon) + str(source))
                 data = search.get_finance_total_by_src(qs, addon, source)
                 if not already_indexed(Contribution, data):
                     Contribution.index(data, bulk=True, id=key)
@@ -85,12 +84,11 @@ def index_finance_total_by_currency(addons, **kw):
             continue
 
         # Get list of distinct currencies.
-        currencies = [currency[0] for currency in
-                      qs.distinct('currency').values_list('currency')]
+        currencies = set(qs.values_list('currency', flat=True))
 
         for currency in currencies:
             try:
-                key = ord_word('cur' + currency.lower() + str(addon))
+                key = ord_word('cur' + str(addon) + currency.lower())
                 data = search.get_finance_total_by_currency(
                     qs, addon, currency)
                 if not already_indexed(Contribution, data):
@@ -134,7 +132,7 @@ def index_finance_daily(ids, **kw):
         try:
             # Date for add-on not processed, index it and give it key.
             if not date in addons_dates[addon]:
-                key = ord_word('fin' + str(date))
+                key = ord_word('fin' + str(addon) + str(date))
                 data = search.get_finance_daily(contribution)
                 if not already_indexed(Contribution, data):
                     Contribution.index(data, bulk=True, id=key)
@@ -153,22 +151,23 @@ def index_finance_total_inapp(addons, **kw):
     """
     es = elasticutils.get_es()
     log.info('Indexing total financial in-app stats for %s apps.' %
-              len(addons))
+             len(addons))
 
     for addon in addons:
-        # Get all in-apps for given addon.
-        inapps = InappConfig.objects.filter(addon=addon)
+        # Get all in-app names for given addon.
+        inapps = set(InappPayment.objects.filter(config__addon=addon).
+            values_list('name', flat=True))
 
-        for inapp in inapps:
+        for inapp_name in inapps:
             # Get all in-app payments for given in-app.
-            qs = InappPayment.objects.filter(config=inapp,
+            qs = InappPayment.objects.filter(name=inapp_name,
                                              contribution__uuid=None)
             if not qs.exists():
                 continue
 
             try:
-                key = ord_word('totinapp' + str(inapp))
-                data = search.get_finance_total_inapp(qs, inapp)
+                key = ord_word('totinapp' + str(addon) + inapp_name)
+                data = search.get_finance_total_inapp(qs, addon, inapp_name)
                 if not already_indexed(InappPayment, data):
                     InappPayment.index(data, bulk=True, id=key)
                 es.flush_bulk(forced=True)
@@ -185,28 +184,29 @@ def index_finance_total_inapp_by_currency(addons, **kw):
     """
     es = elasticutils.get_es()
     log.info('Indexing total financial in-app stats by currency for %s apps.' %
-              len(addons))
+             len(addons))
 
     for addon in addons:
-        # Get all in-apps for given addon.
-        inapps = InappConfig.objects.filter(addon=addon)
+        # Get all in-app names for given addon.
+        inapps = set(InappPayment.objects.filter(config__addon=addon).
+            values_list('name', flat=True))
 
-        for inapp in inapps:
+        for inapp_name in inapps:
             # Get all in-app payments for given in-app.
-            qs = InappPayment.objects.filter(config=inapp,
+            qs = InappPayment.objects.filter(name=inapp_name,
                                              contribution__uuid=None)
             if not qs.exists():
                 continue
             # Get a list of distinct currencies for given in-app.
-            currencies = [currency[0] for currency in
-                          qs.distinct('contribution__currency').
-                          values_list('contribution__currency')]
+            currencies = set(qs.values_list('contribution__currency',
+                flat=True))
 
             for currency in currencies:
                 try:
-                    key = ord_word('curinapp' + currency.lower() + str(addon))
+                    key = ord_word('curinapp' + str(addon) + inapp_name +
+                                   currency.lower())
                     data = search.get_finance_total_inapp_by_currency(
-                        qs, inapp, currency)
+                        qs, addon, inapp_name, currency)
                     if not already_indexed(InappPayment, data):
                         InappPayment.index(data, bulk=True, id=key)
                     es.flush_bulk(forced=True)
@@ -220,8 +220,7 @@ def index_finance_total_inapp_by_currency(addons, **kw):
 def index_installed_daily(ids, **kw):
     """
     Takes a list of Installed ids and uses its addon and date fields to index
-    stats for that day. Should probably check it's not indexing a day multiple
-    times redundantly.
+    stats for that day.
     ids -- ids of mkt.webapps.Installed objects
     """
     from mkt.webapps.models import Installed
@@ -239,7 +238,7 @@ def index_installed_daily(ids, **kw):
 
         try:
             if not date in addons_dates[addon]:
-                key = ord_word('ins' + str(date))
+                key = ord_word('ins' + str(addon) + str(date))
                 data = search.get_installed_daily(installed)
                 if not already_indexed(Installed, data):
                     Installed.index(data, bulk=True, id=key)
@@ -276,6 +275,4 @@ def already_indexed(model, data):
         except AttributeError:
             pass
 
-    if list(model.search().filter(**data).values_dict(data.keys()[0])):
-        return True
-    return False
+    return list(model.search().filter(**data).values_dict(data.keys()[0]))

@@ -164,7 +164,8 @@ class TestInstalled(amo.tests.ESTestCase):
         self.user = UserProfile.objects.get(pk=999)
         self.client.login(username='admin@mozilla.com', password='password')
         self.in_ = Installed.objects.create(addon=self.webapp, user=self.user)
-        Installed.index(search.extract_installed_count(self.in_),
+        installed = {'addon': self.in_.addon.id, 'created': self.in_.created}
+        Installed.index(search.get_installed_daily(installed),
                         id=self.in_.pk)
         self.refresh('users_install')
 
@@ -214,9 +215,9 @@ class TestGetSeries(amo.tests.ESTestCase):
         stats = list(get_series(Contribution, 'day', addon=self.app.pk,
                                 date__range=d_range))
         dates_with_sales = [c['date'] for c in stats if c['count'] > 0]
+        days = [d.day for d in dates_with_sales]
         for day in self.expected_days:
-            assert(day in [d.day for d in dates_with_sales], '%s not in data' %
-                   day)
+            eq_(day in days, True)
 
     def test_desc_order(self):
         """
@@ -226,18 +227,6 @@ class TestGetSeries(amo.tests.ESTestCase):
         stats = list(get_series(Contribution, 'day', addon=self.app.pk,
                                 date__range=d_range))
         eq_(stats, sorted(stats, key=lambda x: x['date'], reverse=True))
-
-    def test_no_duplicates(self):
-        """
-        Check for no duplicate (dates) in returned data (bug 759924).
-        """
-        range_delta = 90
-        start = datetime.date(2012, 06, 01)
-        d_range = (start, start + datetime.timedelta(range_delta))
-        stats = list(get_series(Contribution, 'day', addon=self.app.pk,
-                                date__range=d_range))
-        assert(len(stats) <= range_delta,
-               "Duplicate data, more data returned than expected.")
 
 
 class TestPadMissingStats(amo.tests.ESTestCase):
@@ -249,8 +238,9 @@ class TestPadMissingStats(amo.tests.ESTestCase):
                          datetime.date(2012, 5, 4)]
 
         dummies = pad_missing_stats(days, 'day')
+        days = [dummy['date'].date() for dummy in dummies]
         for day in expected_days:
-            assert day in [dummy['date'] for dummy in dummies]
+            eq_(day in days, True)
 
     def test_with_date_range(self):
         date_range = (datetime.date(2012, 5, 1), datetime.date(2012, 5, 5))
@@ -259,8 +249,9 @@ class TestPadMissingStats(amo.tests.ESTestCase):
         expected_days = [datetime.date(2012, 5, 2), datetime.date(2012, 5, 4)]
 
         dummies = pad_missing_stats(days, 'day', date_range=date_range)
+        days = [dummy['date'].date() for dummy in dummies]
         for day in expected_days:
-            assert day in [dummy['date'] for dummy in dummies]
+            eq_(day in days, True)
 
     def test_with_fields(self):
         fields = ['test_field', 'fest_tield']
@@ -269,20 +260,22 @@ class TestPadMissingStats(amo.tests.ESTestCase):
         dummies = pad_missing_stats(days, 'day', fields=fields)
         for dummy in dummies:
             for field in fields:
-                assert field in dummy
+                eq_(field in dummy, True)
 
     def test_group_week(self):
         days = [datetime.date(2012, 5, 1), datetime.date(2012, 5, 15)]
         expected_days = [datetime.date(2012, 5, 8)]
 
         dummies = pad_missing_stats(days, 'week')
+        days = [dummy['date'].date() for dummy in dummies]
         for day in expected_days:
-            assert day in [dummy['date'] for dummy in dummies]
+            eq_(day in days, True)
 
     def test_group_month(self):
         days = [datetime.date(2012, 5, 1), datetime.date(2012, 7, 1)]
         expected_days = [datetime.date(2012, 6, 1)]
 
         dummies = pad_missing_stats(days, 'month')
+        days = [dummy['date'].date() for dummy in dummies]
         for day in expected_days:
-            assert day in [dummy['date'] for dummy in dummies]
+            eq_(day in days, True)
