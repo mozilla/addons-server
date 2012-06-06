@@ -12,7 +12,7 @@ var z = {
     allowAnonInstalls: !!$('body').data('allow-anon-installs')
 };
 
-z.prefixUpper= z.prefix[0].toUpperCase() + z.prefix.substr(1);
+z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
 
 (function() {

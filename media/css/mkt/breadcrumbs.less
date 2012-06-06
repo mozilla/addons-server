@@ -64,3 +64,16 @@
         }
     }
 }
+
+@media (max-width: @4col) {
+    #breadcrumbs {
+        li + li {
+            display: none;
+        }
+        // Show the last two breadcrumbs only.
+        li:nth-last-child(2),
+        li:last-child {
+            display: inline-block;
+        }
+    }
+}

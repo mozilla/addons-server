@@ -276,7 +276,22 @@ body {
     }
 }
 
+// max-width sniffing so we can do z.capabilities.mobile, etc.
+#is-desktop-width {
+    display: block;
+}
+#is-tablet-width,
+#is-mobile-width {
+    display: none;
+}
+
 @media (max-width: @7col) {
+    #is-desktop-width {
+        display: none;
+    }
+    #is-tablet-width {
+        display: block;
+    }
     .col {
         float: none;
         margin: 0 auto;
@@ -284,6 +299,13 @@ body {
 }
 
 @media (max-width: @4col) {
+    #is-desktop-width,
+    #is-tablet-width {
+        display: none;
+    }
+    #is-mobile-width {
+        display: block;
+    }
     body {
         color: @darker_text;
     }

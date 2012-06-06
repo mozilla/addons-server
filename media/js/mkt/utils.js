@@ -21,6 +21,26 @@ var escape_ = function(s) {
 };
 
 
+String.prototype.startsWith = function(str) {
+    return this.slice(0, str.length) == str;
+};
+String.prototype.endsWith = function(str) {
+    return this.slice(-str.length) == str;
+};
+
+
+// Sample usage:
+// ['/en-US/apps/', '/ja/search/', '/fr/contact/'].startsWith('/en-US/')
+Array.prototype.startsWith = function(str) {
+    for (var i = 0; i < this.length; i++) {
+        if (str.startsWith(this[i])) {
+            return true;
+        }
+    };
+    return false;
+};
+
+
 // .exists()
 // This returns true if length > 0.
 $.fn.exists = function(callback, args) {

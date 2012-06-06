@@ -17,6 +17,9 @@
   {{ mkt_breadcrumbs(product, crumbs, cls='dark') }}
   <section id="browse-featured" class="featured full">
     <div>
+      {% if not category %}
+        <h1 class="hidden">{{ _('Apps') }}</h1>
+      {% endif %}
       <h2>{{ title if category else _('Featured') }}</h2>
     </div>
   </section>

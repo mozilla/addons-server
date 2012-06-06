@@ -121,10 +121,12 @@ function fragmentFilter(el) {
 
             page.html(content);
             $('html, body').scrollTop(opts.scrollTop || 0);
-            page.trigger('fragmentloaded');
+            page.trigger('fragmentloaded', [href, popped]);
+
             // We so sneaky.
             var $title = page.find('title');
             document.title = $title.text();
+            $title.remove();
 
             // We so classy.
             var $body = $('body');
@@ -134,7 +136,6 @@ function fragmentFilter(el) {
                                     $newclass.attr('content'));
                 $newclass.remove();
             }
-            $title.remove();
         }
 
         z.page.on('fragmentloaded', function() {
@@ -175,7 +176,7 @@ function fragmentFilter(el) {
         $(function() {
             var path = window.location.pathname + window.location.search + window.location.hash;
             history.replaceState({path: path}, false, path);
-            page.trigger('fragmentloaded');
+            page.trigger('fragmentloaded', [path, false]);
             fetch(path);
         });
         console.log("fragments enabled");
