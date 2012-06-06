@@ -20,14 +20,14 @@
       {% if not category %}
         <h1 class="hidden">{{ _('Apps') }}</h1>
       {% endif %}
-      <h2>{{ title if category else _('Featured') }}</h2>
+      <h2 class="sticky">{{ title if category else _('Featured') }}</h2>
     </div>
   </section>
   <section class="featured full slider">
     {{ featured|promo_slider(feature=True) }}
   </section>
   {% if popular %}
-    <section class="popular full">
+    <section class="popular subheading full">
       <div>
         <h2 class="see-all c">
           <a href="{{ request.path|urlparams(category=category.slug or None,
