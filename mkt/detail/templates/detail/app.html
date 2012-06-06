@@ -45,15 +45,14 @@
         {{ product.name }}
       </h1>
       <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
-      {% set categories = product.all_categories %}
       {% if is_author and product.is_premium() and product.premium %}
         <p class="pricetag faked-purchase">
           <span class="price">{{ product.premium.get_price_locale() }}</span>
         </p>
       {% endif %}
-      {% if categories %}
+      {% if cats %}
         <p class="cats">
-          {% for category in categories %}
+          {% for category in cats %}
             <a href="{{ category.get_url_path() }}">
               {{ category }}
             </a>{% if not loop.last %}, {% endif %}
