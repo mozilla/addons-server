@@ -6,6 +6,7 @@ from . import views
 # These views all start with user ID.
 detail_patterns = patterns('',
     url(r'^summary$', views.summary, name='acct_lookup.summary'),
+    url(r'^purchases$', views.purchases, name='acct_lookup.summary'),
 )
 
 

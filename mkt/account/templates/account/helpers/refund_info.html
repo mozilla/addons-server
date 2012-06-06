@@ -6,7 +6,7 @@
     {% for contribution in contributions %}
       {# Show "Request Support" link if this is the last contribution
          and is a purchase. #}
-      {% set get_support = contribution.id == last_contrib %}
+      {% set get_support = (contribution.id == last_contrib) and show_link %}
       <li>
           {% if contribution.type in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP] %}
             <span class="purchase{{ ' supportable' if get_support }}">
@@ -22,7 +22,7 @@
                 {% endtrans %}
               {% endif %}
             </span>
-            {% if get_support or contribution.type == amo.CONTRIB_INAPP %}
+            {% if get_support or (show_link and contribution.type == amo.CONTRIB_INAPP) %}
               <a class="request-support"
                  href="{{ url('support', contribution.pk) }}">
                 {{ _('Request Support') }}</a>

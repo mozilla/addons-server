@@ -6,28 +6,24 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 from commonware.response.decorators import xframe_allow
 import jingo
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _
 import waffle
 
 from access import acl
-from addons.views import BaseFilter
 import amo
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
-from amo.models import manual_order
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from market.models import PreApprovalUser
 import paypal
-from stats.models import Contribution
-from translations.query import order_by_translation
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
 from users.views import logout
 from mkt.account.forms import CurrencyForm
 from mkt.site import messages
-from mkt.webapps.models import Webapp
 from . import forms
+from .utils import purchase_list
 
 log = commonware.log.getLogger('mkt.account')
 paypal_log = commonware.log.getLogger('mkt.paypal')
@@ -143,69 +139,17 @@ def preapproval(request, complete=None, cancel=None):
     return redirect(url)
 
 
-class PurchasesFilter(BaseFilter):
-    opts = (('purchased', _lazy(u'Purchase Date')),
-            ('price', _lazy(u'Price')),
-            ('name', _lazy(u'Name')))
-
-    def __init__(self, *args, **kwargs):
-        self.ids = kwargs.pop('ids')
-        self.uids = kwargs.pop('uids')
-        super(PurchasesFilter, self).__init__(*args, **kwargs)
-
-    def filter(self, field):
-        qs = self.base_queryset
-        if field == 'purchased':
-            # Id's are in created order, so let's invert them for this query.
-            # According to my testing we don't actually need to dedupe this.
-            ids = list(reversed(self.ids[0])) + self.ids[1]
-            return manual_order(qs.filter(id__in=ids), ids)
-        elif field == 'price':
-            return (qs.filter(id__in=self.uids)
-                      .order_by('addonpremium__price__price', 'id'))
-        elif field == 'name':
-            return order_by_translation(qs.filter(id__in=self.uids), 'name')
-
-
 def purchases(request, product_id=None, template=None):
     """A list of purchases that a user has made through the Marketplace."""
-    cs = (Contribution.objects
-          .filter(user=request.amo_user,
-                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP,
-                            amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK])
-          .order_by('created'))
-    if product_id:
-        cs = cs.filter(addon=product_id)
-
-    ids = list(cs.values_list('addon_id', flat=True))
-    product_ids = []
-    # If you are asking for a receipt for just one item, show only that.
-    # Otherwise, we'll show all apps that have a contribution or are free.
-    if not product_id:
-        product_ids = list(request.amo_user.installed_set
-                           .exclude(addon__in=ids)
-                           .values_list('addon_id', flat=True))
-
-    contributions = {}
-    for c in cs:
-        contributions.setdefault(c.addon_id, []).append(c)
-
-    unique_ids = set(ids + product_ids)
-    listing = PurchasesFilter(request, Webapp.objects.all(),
-                              key='sort', default='purchased',
-                              ids=[ids, product_ids],
-                              uids=unique_ids)
-
-    if product_id and not listing.qs:
-        # User has requested a receipt for an app he ain't got.
-        raise http.Http404
-
-    products = paginate(request, listing.qs, count=len(unique_ids))
+    products, contributions, listing = purchase_list(request,
+                                                     request.amo_user,
+                                                     product_id)
     return jingo.render(request, 'account/purchases.html',
                         {'pager': products,
                          'listing_filter': listing,
                          'contributions': contributions,
-                         'single': bool(product_id)})
+                         'single': bool(product_id),
+                         'show_link': True})
 
 
 @write

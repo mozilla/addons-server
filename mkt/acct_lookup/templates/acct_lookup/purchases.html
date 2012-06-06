@@ -1,0 +1,11 @@
+{% extends 'acct_lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  <section class="island">
+  {{ _('Purchases') }}
+  </section>
+  {% include 'account/includes/purchases.html' %}
+{% endblock %}

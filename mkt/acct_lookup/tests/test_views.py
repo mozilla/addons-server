@@ -1,6 +1,7 @@
 from decimal import Decimal
 import json
 
+from pyquery import PyQuery as pq
 from nose.tools import eq_
 
 from addons.models import Addon
@@ -8,6 +9,7 @@ import amo
 from amo.urlresolvers import reverse
 from amo.tests import TestCase, ESTestCase, app_factory
 from market.models import Refund, AddonPaymentData
+from mkt.webapps.models import Webapp
 from stats.models import Contribution
 from users.cron import reindex_users
 from users.models import UserProfile
@@ -203,3 +205,46 @@ class TestAcctSearch(AcctLookupTest, ESTestCase):
     def test_no_results(self):
         data = self.search('__garbage__', expect_results=False)
         eq_(data['results'], [])
+
+
+class TestPurchases(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.reviewer = UserProfile.objects.get(username='admin')
+        self.user = UserProfile.objects.get(pk=999)
+        self.url = reverse('acct_lookup.summary', args=[self.user.pk])
+
+    def test_not_allowed(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_not_even_mine(self):
+        self.client.login(username=self.user.email, password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_access(self):
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('p.no-results')), 1)
+
+    def test_purchase_shows_up(self):
+        Contribution.objects.create(user=self.user, addon=self.app,
+                                    amount=1, type=amo.CONTRIB_PURCHASE)
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('div.info a').attr('href'), self.app.get_detail_url())
+
+    def test_no_support_link(self):
+        for type_ in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]:
+            Contribution.objects.create(user=self.user, addon=self.app,
+                                        amount=1, type=type_)
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(len(doc('.item a.request-support')), 0)

@@ -6,6 +6,7 @@ import os
 import random
 import shutil
 import time
+from urlparse import urlsplit
 
 from django import forms
 from django.conf import settings
@@ -23,6 +24,7 @@ from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
+from amo.helpers import urlparams
 from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
 from addons.models import Addon, Category, DeviceType, Persona
 import addons.search
@@ -259,7 +261,21 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     def assertLoginRedirects(self, response, to, status_code=302):
         self.assertRedirects(response,
-            '%s?to=%s' % (reverse('users.login'), to), status_code)
+            urlparams(reverse('users.login'), to=to), status_code)
+
+    def assertLoginRequired(self, response, status_code=302):
+        """
+        A simpler version of assertLoginRedirects that just checks that we
+        get the matched status code and bounced to the correct login page.
+        """
+        assert response.status_code == status_code, (
+                'Response returned: %s, expected: %s'
+                % (response.status_code, status_code))
+
+        path = urlsplit(response['Location'])[2]
+        assert path == reverse('users.login'), (
+                'Redirected to: %s, expected: %s'
+                % (path, reverse('users.login')))
 
     def make_premium(self, addon, currencies=None):
         price = Price.objects.create(price='1.00')

@@ -6,9 +6,9 @@ import jingo
 import amo
 from amo.decorators import login_required, permission_required, json_view
 from amo.urlresolvers import reverse
-from market.models import Refund
 from amo.utils import paginate
-
+from market.models import Refund
+from mkt.account.utils import purchase_list
 from users.models import UserProfile
 
 
@@ -47,6 +47,20 @@ def summary(request, user_id):
                          'user_addons': user_addons,
                          'payment_data': payment_data,
                          'paypal_ids': paypal_ids})
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+def purchases(request, user_id):
+    """Shows the purchase page for another user."""
+    user = get_object_or_404(UserProfile, pk=user_id)
+    products, contributions, listing = purchase_list(request, user, None)
+    return jingo.render(request, 'acct_lookup/purchases.html',
+                        {'pager': products,
+                         'listing_filter': listing,
+                         'contributions': contributions,
+                         'single': bool(None),
+                         'show_link': False})
 
 
 @login_required
