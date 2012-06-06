@@ -13,6 +13,8 @@ from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_views import PaidAppMixin
 
+from search.tests.test_views import TestAjaxSearch
+
 
 class SearchBase(amo.tests.ESTestCase):
 
@@ -258,3 +260,39 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             # `sort=price` should be removed if `price=free` is in querystring.
             r = self.client.get(url, {'price': 'free', 'sort': 'price'})
             self.assertRedirects(r, urlparams(url, price='free'))
+
+
+class SuggestionsTests(TestAjaxSearch):
+
+    def check_suggestions(self, url, params, addons=()):
+        r = self.client.get(url + '?' + params)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        data.sort(key=lambda x: x['id'])
+        addons.sort(key=lambda x: x.id)
+        eq_(len(data), len(addons))
+        for got, expected in zip(data, addons):
+            eq_(int(got['id']), expected.id)
+            eq_(got['name'], unicode(expected.name))
+
+    def test_webapp_search(self):
+        url = reverse('search.apps_ajax')
+        c1 = Category.objects.create(name='groovy',
+                                     type=amo.ADDON_WEBAPP)
+        c2 = Category.objects.create(name='awesome',
+                                     type=amo.ADDON_WEBAPP)
+        g1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                   name='groovy app 1',
+                                   type=amo.ADDON_WEBAPP)
+        a2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                   name='awesome app 2',
+                                   type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.create(category=c1, addon=g1)
+        AddonCategory.objects.create(category=c2, addon=a2)
+        self.client.login(username='admin@mozilla.com', password='password')
+        for a in Webapp.objects.all():
+            a.save()
+        self.refresh()
+        self.check_suggestions(url, "q=app&category=", addons=[g1, a2])
+        self.check_suggestions(url, "q=app&category=%d" % c1.id, addons=[g1])
+        self.check_suggestions(url, "q=app&category=%d" % c2.id, addons=[a2])

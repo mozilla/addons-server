@@ -1,0 +1,28 @@
+{% block content %}
+{% for row in apps -%}
+<tr>
+  <td>
+    <table>
+      <tr>
+        <td><img src="{{ row.app.icon_url }}"></td>
+        <td>{{ row.app.name }}</td>
+        <td>{% for dt in row.app.device_types %}
+          {{ dt }}
+          {% endfor %}</td>
+      </tr>
+      <tr>
+        <td>{% if row.app.promo %}
+          <a href="{{ row.app.get_dev_url() }}">Manage featured graphics</a>
+          {% else %}
+          <a href="{{ row.app.get_dev_url() }}">No featured graphics</a>
+          {% endif %}
+        </td>
+        <td>{% if row.is_sponsor %}Sponsored{% else %}Not sponsored{% endif %}</td>
+        <td>Locale etc</td>
+      </tr>
+    </table>
+  </td>
+  <td><input type="hidden"><a class="remove" data-id="{{ row.app.id }}">×</a></td>
+</tr>
+{% endfor %}
+{% endblock %}

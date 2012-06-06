@@ -4,56 +4,52 @@
 {% block js %}
 {{ super() }}
 <script src="{{ media('js/mkt/admin_featuredapp.js') }}"></script>
+<script type="text/template" id="featured-app-template">
+      <tr><td>
+        <div class="current-webapp js-hidden" style="display: block;">
+          <div>
+            <a target="_blank" href="<%= app_url %>">
+              <img src="<%= featured_graphic %>"><span><%= _.escape(app_name) %></span></a><%= format_support %>
+            </div>
+          <div>
+            <span class="sponsor"><%= is_sponsor %></span> <span class="localepicker"><%= locale %></span>
+          </div>
+        <a class="remove">×</a>
+        </div>
+      </td></tr>
+</script>
 {% endblock %}
 
 {% set title = 'Feature Manager' %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
-
-{% macro appsform(id, apps) %}
-  <table>
-    <thead>
-      <th>App</th>
-      <th class="js-hidden">Delete</th>
-    </thead>
-    <tbody id="{{ id }}-webapps">
-      {% for idx, app in apps %}
-      <tr><td>
-        <div class="current-webapp js-hidden" style="display: block;">
-          <a target="_blank" href="{{ app.get_url_path() }}">
-            <img src="{{ app.icon_url }}"> {{ app.name }}</a>
-        </div>
-        <input type="hidden" name="{{ idx }}-{{ id }}-webapp" value="{{ app.id }}">
-        <a class="remove">×</a>
-      </td></tr>
-      {% endfor %}
-    </tbody>
-    <tfoot class="hidden">
-      <tr><td>
-        <div class="current-webapp js-hidden" style="display: block;"></div>
-        <input placeholder="{{ _('Enter the name of the webapp to include') }}"
-               class="placeholder addon-ac large" data-src="{{ url('search.apps_ajax') }}">
-        <input type="hidden"><a class="remove">×</a>
-      </td></tr>
-    </tfoot>
-  </table>
-{% endmacro %}
 
 {% block content %}
 <h2>{{ title }}</h2>
 
 <form method="post">
   {{ csrf() }}
-  <h3>Home Featured</h3>
-  {{ appsform('home', home_featured) }}
-  <p><a href="#" id="home-add">Add an app</a></p>
-  <p>
-    <button type="submit" name="home_submit">Save Changes</button> or <a href="">Cancel</a>
-  </p>
-  <h3>Category Featured</h3>
-  {{ appsform('category', category_featured) }}
-  <p><a href="#" id="category-add">Add an app</a></p>
-  <p>
-    <button type="submit" name="category_submit">Save Changes</button> or <a href="">Cancel</a>
-  </p>
+  <h3>Featured Apps</h3>
+  Section: <select id="categories"
+                   data-src="{{ url('zadmin.featured_categories_ajax') }}"
+                   ></select>
+  <table>
+    <thead>
+      <th>App</th>
+      <th>Delete</th>
+    </thead>
+    <tbody id="featured-webapps"
+           data-src="{{ url('zadmin.featured_apps_ajax') }}">
+    </tbody>
+    <tfoot class="hidden">
+      <tr><td>
+        <div class="current-webapp js-hidden" style="display: block;"></div>
+        <input placeholder="{{ _('Enter the name of the webapp to include') }}"
+               class="placeholder addon-ac large"
+               data-src="{{ url('search.apps_ajax') }}">
+        <input type="hidden"><a class="remove">×</a>
+      </td></tr>
+    </tfoot>
+  </table>
+  <p><a href="#" id="featured-add">Add an app</a></p>
 </form>
 {% endblock %}

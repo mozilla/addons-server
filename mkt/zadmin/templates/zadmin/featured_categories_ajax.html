@@ -1,0 +1,6 @@
+{% block content %}
+<option value="">Home Page ({{ homecount }})</option>
+{% for opt in categories -%}
+<option value="{{ opt['id'] }}">{{ opt['name'] }} ({{ opt['count'] }})</option>
+{%- endfor %}
+{% endblock %}

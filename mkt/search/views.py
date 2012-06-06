@@ -191,4 +191,7 @@ def app_search(request):
 
 @json_view
 def ajax_search(request):
-    return WebappSuggestionsAjax(request).items
+    category = request.GET.get('category', None) or None
+    if category:
+        category = int(category)
+    return WebappSuggestionsAjax(request, category=category).items

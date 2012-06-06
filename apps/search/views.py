@@ -295,7 +295,7 @@ class BaseAjaxSearch(object):
 
     """
 
-    def __init__(self, request, excluded_ids=[]):
+    def __init__(self, request, excluded_ids=()):
         self.request = request
         self.excluded_ids = excluded_ids
         self.src = getattr(self, 'src', None)
@@ -369,6 +369,19 @@ class PersonaSuggestionsAjax(SearchSuggestionsAjax):
 
 class WebappSuggestionsAjax(SearchSuggestionsAjax):
     types = [amo.ADDON_WEBAPP]
+    fields = {'id': 'id',
+              'name': 'name'
+              }
+
+    def __init__(self, request, excluded_ids=(), category=None):
+        self.category = category
+        SearchSuggestionsAjax.__init__(self, request, excluded_ids)
+
+    def queryset(self):
+        res = SearchSuggestionsAjax.queryset(self)
+        if self.category:
+            res = res.filter(category__in=[self.category])
+        return res
 
 
 @json_view

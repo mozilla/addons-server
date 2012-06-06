@@ -5,7 +5,8 @@ function registerAddonAutocomplete(node) {
     width: 300,
     source: function(request, response) {
       $.getJSON($(node).attr('data-src'), {
-          q: request.term
+          q: request.term,
+          category: $("#categories").val()
       }, response);
     },
     focus: function(event, ui) {
@@ -13,17 +14,8 @@ function registerAddonAutocomplete(node) {
       return false;
     },
     select: function(event, ui) {
-        $(node).val(ui.item.name).attr('data-id', ui.item.id);
-        var current = template(
-            '<a href="{url}" target="_blank"><img src="{icon}"> {name}</a>');
-            $td.find('.current-webapp').show().html(current({
-                url: ui.item.url,
-                icon: ui.item.icon,
-                name: ui.item.name
-            }));
-        $td.find('input[type=hidden]').val(ui.item.id);
-        node.val('');
-        node.hide();
+        updateAppsList($("#categories"),
+                       ui.item.id);
         return false;
         }
     }).data('autocomplete')._renderItem = function(ul, item) {
@@ -33,19 +25,55 @@ function registerAddonAutocomplete(node) {
 }
 
 function newAddonSlot(id) {
-    var $tbody = $("#" + id + "-webapps");
+    var $tbody = $("#featured-webapps");
     var $form = $tbody.next().children("tr").clone();
     var $input = $form.find('input.placeholder');
     registerAddonAutocomplete($input);
-    $form.find('input[type=hidden]').attr(
-        "name", $tbody.children().length + "-" + id +"-webapp");
     $tbody.append($form);
 }
 
-$(document).ready(function(){
-    $("#home-webapps, #category-webapps").delegate(
-        '.remove', 'click', _pd(function() {$(this).closest('tr').remove();}));
+function showAppsList(cat) {
+    return appslistXHR('GET', {
+        category: cat.val()
+    })};
 
-    $('#home-add').click(_pd(function() { newAddonSlot("home"); }));
-    $('#category-add').click(_pd(function() { newAddonSlot("category"); }));
+function updateAppsList(cat, newItem) {
+    return appslistXHR('POST', {
+        category: cat.val(),
+        add: newItem
+    })};
+
+function deleteFromAppsList(cat, oldItem) {
+    return appslistXHR('POST', {
+        category: cat.val(),
+        delete: oldItem
+    })};
+
+function appslistXHR(verb, data) {
+    var appslist = $("#featured-webapps");
+    var q = $.ajax({type: verb, url: appslist.data("src"), data: data});
+    q.then(function (data) {
+        appslist.html(data);
+    });
+    return q;
+};
+
+$(document).ready(function(){
+    $("#featured-webapps").delegate(
+        '.remove', 'click', _pd(function() {
+            deleteFromAppsList($("#categories"),
+                               $(this).data("id"));
+                              }));
+    var categories = $("#categories");
+    var appslist = $("#featured-webapps");
+    var p = $.ajax({type: 'GET',
+                    url: categories.data("src")});
+    p.then(function(data) {
+        categories.html(data);
+        showAppsList(categories);
+    });
+    categories.change(function (e) {
+        showAppsList(categories);
+    });
+    $('#featured-add').click(_pd(function() { newAddonSlot(); }));
 });
