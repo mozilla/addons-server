@@ -131,6 +131,41 @@
 }
 
 @media (max-width: @4col) {
+    .featured.slider {
+        .controls {
+            .next-page, .prev-page {
+                top: 15px;
+                height: 120px;
+            }
+        }
+        .promo-slider {
+            height: 145px;
+        }
+    }
+    .promo-slider {
+        ul {
+            li,
+            li .img {
+                width: 120px;
+            }
+            li {
+                .img {
+                    background-position: 50% 50%;
+                    height: 120px;
+                    margin-bottom: 2px;
+                    background-color: #fff;
+                }
+                h3 {
+                    color: lighten(@text, 60%);
+                    font-size: 15px;
+                    margin: 2px 0 0;
+                    max-width: 100%;
+                    text-shadow: .5px .5px 0 @navy-gray;
+                }
+            }
+        }
+    }
+
     #page > section.popular {
         padding-left: 0;
         padding-right: 0;
@@ -152,16 +187,19 @@
                 min-width: 36px;
             }
             span {
+                .border-box;
                 .dark-text-shadow;
                 color: @faint-gray;
                 cursor: pointer;
                 display: inline-block;
+                font-size: 16px;
                 line-height: 19px;
                 margin: 0;
-                padding: 10px 20px;
+                padding: 10px;
                 position: relative;
                 z-index: 2;
                 top: 1px;
+                width: 110px;
                 &:before {
                     left: -35px;
                 }
@@ -179,8 +217,13 @@
                 &[data-shown]:after {
                     background: @bg-lite;
                 }
+                &[data-shown]:before,
+                &[data-shown]:after {
+                    pointer-events: none;
+                }
                 + span {
-                    margin-left: 35px;
+                    margin-left: 0;
+                    padding-left: 30px;
                 }
             }
         }
@@ -204,14 +247,18 @@
             padding-bottom: 5px;
         }
         h3 {
+            font-size: 18px;
+            font-weight: 400;
             line-height: 1;
             text-shadow: .2px .2px 0 @barely-gray;
         }
         .author {
+            font-size: 15px;
             padding-top: 2px;
         }
         .price {
-            font-size: .75em;
+            color: darken(@green, 15%);
+            font-size: 13px;
             bottom: 10px;
         }
         ul {
