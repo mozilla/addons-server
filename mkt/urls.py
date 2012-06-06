@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     ('^theme/%s/' % ADDON_ID, include('mkt.themes.urls')),
 
     # Theme browse pages.
-    url('^themes/', include('mkt.browse.urls')),
+    #url('^themes/', include('mkt.browse.urls')),
 
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),
