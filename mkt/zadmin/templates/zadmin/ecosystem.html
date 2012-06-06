@@ -14,7 +14,7 @@
 <h3 id="tutorials">Tutorials</h3>
 <ul>
 {% for t in tutorials %}
-  <li>{{ t.title }} - <a href="{{ t.mdn % 'en' }}">MDN Link</a></li>
+  <li>{{ t.title }} - <a href="{{ t.mdn % {'locale': 'en'} }}">MDN Link</a></li>
 {% endfor %}
 </ul>
 <h3 id="refresh">Refresh MDN doc cache</h3>
