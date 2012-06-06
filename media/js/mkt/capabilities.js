@@ -12,15 +12,24 @@ z.capabilities = {
         typeof navigator.mozApps.html5Implementation === 'undefined'
     ),
     'fileAPI': !!window.FileReader,
-    'desktop': !!$('#is-desktop-width:visible').length,
-    'tablet': !!$('#is-tablet-width:visible').length,
-    'mobile': !!$('#is-mobile-width:visible').length,
+    'desktop': window.matchMedia('(max-width: 1024px)').matches,
+    'tablet': window.matchMedia('(max-width: 672px)').matches,
+    'mobile': window.matchMedia('(max-width: 600px)').matches,
     'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
     'nativeScroll': (function() {
         return 'WebkitOverflowScrolling' in document.createElement('div').style;
     })()
 };
 
+if (z.capabilities.tablet) {
+    // If we're on tablet, then we're not on desktop.
+    z.capabilities.desktop = false;
+}
+
+if (z.capabilities.mobile) {
+    // If we're on mobile, then we're not on desktop nor tablet.
+    z.capabilities.desktop = z.capabilities.tablet = false;
+}
 
 try {
     if ('localStorage' in window && window['localStorage'] !== null) {
