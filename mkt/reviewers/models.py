@@ -1,4 +1,7 @@
+from django.db import models
+
 import amo
+from apps.addons.models import Addon
 from apps.editors.models import CannedResponse
 
 
@@ -13,3 +16,10 @@ class AppCannedResponse(CannedResponse):
 
     class Meta:
         proxy = True
+
+
+class RereviewQueue(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon, related_name='+')
+
+    class Meta:
+        db_table = 'rereview_queue'

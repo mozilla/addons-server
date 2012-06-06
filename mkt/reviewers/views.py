@@ -33,7 +33,7 @@ from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 from . import forms
-from .models import AppCannedResponse
+from .models import AppCannedResponse, RereviewQueue
 
 
 QUEUE_PER_PAGE = 100
@@ -61,7 +61,8 @@ def home(request):
 
 def queue_counts(type=None, **kw):
     counts = {
-        'pending': Webapp.objects.pending().count()
+        'pending': Webapp.objects.pending().count(),
+        'rereview': RereviewQueue.objects.count(),
     }
     rv = {}
     if isinstance(type, basestring):
@@ -118,9 +119,8 @@ def _review(request, addon):
     form = forms.get_review_form(request.POST or None, request=request,
                                  addon=addon, version=version)
 
-    queue_type = (form.helper.review_type if form.helper.review_type
-                  != 'preliminary' else 'prelim')
-    redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
+    tab = request.GET.get('tab', 'pending')
+    redirect_url = reverse('reviewers.apps.queue_%s' % tab)
 
     num = request.GET.get('num')
     paging = {}
@@ -129,11 +129,11 @@ def _review(request, addon):
             num = int(num)
         except (ValueError, TypeError):
             raise http.Http404
-        total = queue_counts(queue_type)
+        total = queue_counts(tab)
         paging = {'current': num, 'total': total,
                   'prev': num > 1, 'next': num < total,
-                  'prev_url': '%s?num=%s' % (redirect_url, num - 1),
-                  'next_url': '%s?num=%s' % (redirect_url, num + 1)}
+                  'prev_url': urlparams(redirect_url, num=num - 1, tab=tab),
+                  'next_url': urlparams(redirect_url, num=num + 1, tab=tab)}
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
@@ -179,13 +179,14 @@ def _review(request, addon):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
-    ctx = context(version=version, product=addon,
-                  pager=pager, num_pages=num_pages, count=count,
+    ctx = context(version=version, product=addon, pager=pager,
+                  num_pages=num_pages, count=count,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal)
+                  actions=actions, actions_minimal=actions_minimal,
+                  tab=tab)
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 
@@ -197,11 +198,8 @@ def app_review(request, addon):
 
 
 @permission_required('Apps', 'Review')
-def queue_apps(request):
-    qs = (Webapp.objects.pending().filter(disabled_by_user=False)
-                        .order_by('created'))
-
-    review_num = request.GET.get('num', None)
+def _queue(request, qs, tab, pager_processor=None):
+    review_num = request.GET.get('num')
     if review_num:
         try:
             review_num = int(review_num)
@@ -212,17 +210,43 @@ def queue_apps(request):
                 # Force a limit query for efficiency:
                 start = review_num - 1
                 row = qs[start:start + 1][0]
-                return redirect(
-                    urlparams(reverse('reviewers.apps.review',
-                                      args=[row.app_slug]),
-                              num=review_num))
+                # Get the addon if the instance is one of the *Queue models.
+                if not isinstance(row, Webapp):
+                    row = row.addon
+                return redirect(urlparams(
+                    reverse('reviewers.apps.review', args=[row.app_slug]),
+                    num=review_num, tab=tab))
             except IndexError:
                 pass
 
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, qs, per_page)
 
-    return jingo.render(request, 'reviewers/queue.html', {'pager': pager})
+    if pager_processor:
+        addons = pager_processor(pager)
+    else:
+        addons = pager.object_list
+
+    return jingo.render(request, 'reviewers/queue.html', context(**{
+        'addons': addons,
+        'pager': pager,
+        'tab': tab,
+    }))
+
+
+@permission_required('Apps', 'Review')
+def queue_apps(request):
+    qs = (Webapp.objects.pending().filter(disabled_by_user=False)
+                        .order_by('created'))
+    return _queue(request, qs, 'pending')
+
+
+@permission_required('Apps', 'Review')
+def queue_rereview(request):
+    qs = (RereviewQueue.objects.filter(addon__disabled_by_user=False)
+                        .order_by('created'))
+    return _queue(request, qs, 'rereview',
+                  lambda p: [r.addon for r in p.object_list])
 
 
 @permission_required('Apps', 'Review')

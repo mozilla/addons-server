@@ -9,6 +9,8 @@ urlpatterns = (
     url(r'^$', views.home, name='reviewers.home'),
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
+    url(r'^apps/queue/rereview/$', views.queue_rereview,
+        name='reviewers.apps.queue_rereview'),
     url(r'^apps/review/%s$' % amo.APP_SLUG, views.app_review,
         name='reviewers.apps.review'),
     url(r'^apps/logs$', views.logs, name='reviewers.apps.logs'),

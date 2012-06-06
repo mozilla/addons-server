@@ -10,8 +10,8 @@
       <div class="listing-header">
         <div class="editor-stats-title">
           <a href="{{ url('reviewers.apps.queue_pending') }}">
-            {{ ngettext('{num} App Review',
-                        '{num} App Reviews',
+            {{ ngettext('{num} Pending App Review',
+                        '{num} Pending App Reviews',
                         queue_counts['pending'])|f(num=queue_counts['pending']) }}
           </a>
         </div>

@@ -6,7 +6,6 @@ import time
 from django.core import mail
 from django.conf import settings
 
-from elasticutils import S
 import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -25,6 +24,7 @@ from editors.tests.test_views import EditorTest
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
+from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import Webapp
 
 
@@ -41,6 +41,21 @@ class AppReviewerTest(object):
     def test_403_for_anonymous(self, *args, **kwargs):
         self.client.logout()
         eq_(self.client.head(self.url).status_code, 403)
+
+    def check_actions(self, expected, elements):
+        """Check the action buttons on the review page.
+
+        `expected` is a list of tuples containing
+        action name and action form value.  `elements`
+        is a PyQuery list of input elements.
+
+        """
+        for idx, item in enumerate(expected):
+            text, form_value = item
+            e = elements.eq(idx)
+            eq_(e.parent().text(), text)
+            eq_(e.attr('name'), 'action')
+            eq_(e.val(), form_value)
 
 
 class TestReviewersHome(EditorTest):
@@ -67,7 +82,7 @@ class TestReviewersHome(EditorTest):
         doc = pq(self.client.get(self.url).content)
 
         # Total unreviewed apps.
-        eq_(doc('.editor-stats-title a').text(), '3 App Reviews')
+        eq_(doc('.editor-stats-title a').text(), '3 Pending App Reviews')
         # Unreviewed submissions in the past week.
         ok_('2 unreviewed app submissions' in
             doc('.editor-stats-table > div').text())
@@ -112,22 +127,19 @@ class TestAppQueue(AppReviewerTest, EditorTest):
         self.apps = [app_factory(name='XXX',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='YYY',
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)]
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                     app_factory(name='ZZZ')]
         self.apps[0].update(created=days_ago(2))
         self.apps[1].update(created=days_ago(1))
+
+        RereviewQueue.objects.create(addon=self.apps[2])
 
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_pending')
 
-        # Mock S(...).values() so we don't touch ES.
-        patcher = mock.patch.object(S, 'values')
-        self.s_mock = patcher.start()
-        self.s_mock.return_value = [a.id for a in self.apps]
-        self.addCleanup(patcher.stop)
-
     def review_url(self, app, num):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         num=num)
+                         num=num, tab='pending')
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -139,6 +151,19 @@ class TestAppQueue(AppReviewerTest, EditorTest):
             (unicode(apps[1].name), self.review_url(apps[1], '2')),
         ]
         check_links(expected, links, verify=False)
+
+    def test_action_buttons(self):
+        r = self.client.get(self.review_url(self.apps[0], '1'))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Reject', 'reject'),
+            (u'Request more information', 'info'),
+            (u'Request super-review', 'super'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
 
     def test_flag_super_review(self):
         self.apps[0].update(admin_review=True)
@@ -199,6 +224,7 @@ class TestAppQueue(AppReviewerTest, EditorTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.tabnav li a:eq(0)').text(), u'Apps (2)')
+        eq_(pq(r.content)('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
 
     # TODO(robhudson): Add sorting back in.
     #def test_sort(self):
@@ -206,6 +232,75 @@ class TestAppQueue(AppReviewerTest, EditorTest):
     #    eq_(r.status_code, 200)
     #    eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
     #        str(self.apps[1].id))
+
+    def test_redirect_to_review(self):
+        r = self.client.get(self.url, {'num': 2})
+        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
+
+
+class TestRereviewQueue(AppReviewerTest, EditorTest):
+    fixtures = ['base/devicetypes', 'base/users']
+
+    def setUp(self):
+        now = datetime.datetime.now()
+        days_ago = lambda n: now - datetime.timedelta(days=n)
+
+        self.apps = [app_factory(name='XXX'),
+                     app_factory(name='YYY'),
+                     app_factory(name='ZZZ')]
+
+        rq1 = RereviewQueue.objects.create(addon=self.apps[0])
+        rq1.created = days_ago(5)
+        rq2 = RereviewQueue.objects.create(addon=self.apps[1])
+        rq2.created = days_ago(3)
+        rq3 = RereviewQueue.objects.create(addon=self.apps[2])
+        rq3.created = days_ago(1)
+
+        self.login_as_editor()
+        self.url = reverse('reviewers.apps.queue_rereview')
+
+    def review_url(self, app, num):
+        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
+                         num=num, tab='rereview')
+
+    def test_template_links(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
+        apps = [rq.addon for rq in
+                RereviewQueue.objects.all().order_by('created')]
+        expected = [
+            (unicode(apps[0].name), self.review_url(apps[0], '1')),
+            (unicode(apps[1].name), self.review_url(apps[1], '2')),
+            (unicode(apps[2].name), self.review_url(apps[2], '3')),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_action_buttons(self):
+        r = self.client.get(self.review_url(self.apps[0], '1'))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Reject', 'reject'),
+            (u'Request more information', 'info'),
+            (u'Request super-review', 'super'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    # TODO: Test actions.
+
+    def test_invalid_page(self):
+        r = self.client.get(self.url, {'page': 999})
+        eq_(r.status_code, 200)
+        eq_(r.context['pager'].number, 1)
+
+    def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(pq(r.content)('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
 
     def test_redirect_to_review(self):
         r = self.client.get(self.url, {'num': 2})

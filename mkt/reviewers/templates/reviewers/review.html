@@ -7,7 +7,7 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block breadcrumbs %}
-  {{ reviewers_breadcrumbs(addon_queue=product, items=[(None, product.name)]) }}
+  {{ reviewers_breadcrumbs(queue=tab, items=[(None, product.name)]) }}
 {% endblock %}
 
 {% block content %}

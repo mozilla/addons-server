@@ -1,8 +1,7 @@
-from jingo import register
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
+from jingo import register
+from tower import ugettext as _, ugettext_lazy as _lazy
 
-import amo
 from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
@@ -12,27 +11,23 @@ from .views import queue_counts
 
 @register.function
 @jinja2.contextfunction
-def reviewers_breadcrumbs(context, queue=None, addon_queue=None, items=None):
+def reviewers_breadcrumbs(context, queue=None, items=None):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Editor Tools'
     breadcrumbs.
 
-    **items**
-        list of [(url, label)] to be inserted after Add-on.
-    **addon_queue**
-        Addon object. This sets the queue by addon type or addon status.
     **queue**
         Explicit queue type to set.
+    **items**
+        list of [(url, label)] to be inserted after Add-on.
     """
     crumbs = [(reverse('reviewers.home'), _('Reviewer Tools'))]
 
-    if addon_queue and addon_queue.type == amo.ADDON_WEBAPP:
-        queue = 'pending'
-
     if queue:
-        queues = {'pending': _('Apps')}
+        queues = {'pending': _('Apps'),
+                  'rereview': _('Re-reviews')}
 
-        if items and not queue == 'queue':
+        if items:
             url = reverse('reviewers.apps.queue_%s' % queue)
         else:
             # The Addon is the end of the trail.
@@ -63,6 +58,9 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = queue_counts()
-    return [('apps', 'queue_pending',
-             ngettext('Apps ({0})', 'Apps ({0})', counts['pending'])
-             .format(counts['pending']))]
+    return [
+        ('pending', 'queue_pending',
+         _('Apps ({0})', counts['pending']).format(counts['pending'])),
+        ('rereview', 'queue_rereview',
+         _('Re-reviews ({0})', counts['rereview']).format(counts['rereview'])),
+    ]

@@ -29,6 +29,8 @@
               <ul>
                 <li><a href="{{ url('reviewers.apps.queue_pending') }}">
                   {{ _('Apps') }} ({{ queue_counts['pending'] }})</a></li>
+                <li><a href="{{ url('reviewers.apps.queue_rereview') }}">
+                  {{ _('Re-reviews') }} ({{ queue_counts['rereview'] }})</a></li>
               </ul>
             {% endif %}
           </li>
