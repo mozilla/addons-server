@@ -184,6 +184,21 @@ class TestAccountSettings(amo.tests.TestCase):
         r = self.client.post(self.url, self.data)
         assert r.context['form'].errors['notifications']
 
+    def test_delete_photo_not(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client
+                                     .post(reverse('account.delete_photo')))
+
+    @mock.patch('mkt.account.views.delete_photo_task')
+    def test_delete_photo(self, delete_photo_task):
+        res = self.client.post(reverse('account.delete_photo'))
+        log = ActivityLog.objects.filter(user=self.user,
+                                         action=amo.LOG.USER_EDITED.id)
+        eq_(res.status_code, 200)
+        eq_(log.count(), 1)
+        eq_(self.get_user().picture_type, '')
+        assert delete_photo_task.delay.called
+
 
 class TestAdminAccountSettings(amo.tests.TestCase):
     fixtures = ['base/users']
