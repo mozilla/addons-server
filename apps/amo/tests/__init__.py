@@ -24,7 +24,6 @@ from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
-from amo.helpers import urlparams
 from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
 from addons.models import Addon, Category, DeviceType, Persona
 import addons.search
@@ -260,8 +259,10 @@ class TestCase(RedisTest, test_utils.TestCase):
                         self.assertEquals(v.non_form_errors(), [])
 
     def assertLoginRedirects(self, response, to, status_code=302):
+        # Not using urlparams, because that escapes the variables, which
+        # is good, but bad for assertRedirects which will fail.
         self.assertRedirects(response,
-            urlparams(reverse('users.login'), to=to), status_code)
+            '%s?to=%s' % (reverse('users.login'), to), status_code)
 
     def assertLoginRequired(self, response, status_code=302):
         """
