@@ -102,8 +102,8 @@ def sort_sidebar(query, form):
 
 def _get_query(request, form, query):
     return (Webapp.search()
-            .filter(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                    is_disabled=False)
+            .query(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
+                   is_disabled=False)
             .facet(categories={'terms': {'field': 'category', 'size': 200}}))
 
 

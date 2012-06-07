@@ -132,6 +132,19 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         r = self.client.get(self.url, {'cat': '999'})
         self.assertRedirects(r, self.url)
 
+    def test_cat_from_unreviewed_app(self):
+        # Create an unreviewed app and assign to a category.
+        cat = Category.objects.create(name='Bad Cats', type=amo.ADDON_WEBAPP)
+        app = amo.tests.app_factory()
+        AddonCategory.objects.create(addon=app, category=cat)
+        app.update(status=amo.STATUS_PENDING)
+        self.refresh()
+        # Make sure category isn't listed in the results.
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        assert 'Bad Cats' not in res.content, (
+            'Category of unreviewed apps should not show up in facets.')
+
     def check_price_filter(self, price, selected, type_=None):
         self.setup_paid(type_=type_)
         self.refresh()
