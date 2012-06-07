@@ -148,9 +148,6 @@ body {
     text-align: center;
     .account {
         width: auto;
-        .logout {
-            text-transform: lowercase;
-        }
     }
     .footer-links {
         margin: 15px auto;
@@ -193,55 +190,72 @@ body {
         > section, > section.full > div {
             .border-box;
             width: 100%;
-            min-width: 320px;
+            min-width: 300px;
         }
         > section {
             padding-left: 10px;
             padding-right: 10px;
         }
     }
+    #page > section:last-child {
+        padding-bottom: 0;
+    }
     #site-footer {
-        background: @grain-src @pale-bg;
-        padding: 0;
+        .box-shadow(inset 0 1px 2px rgba(0,0,0,.15));
+        background: @grain-src darken(@header-dark-bg, 3%);
+        float: left;
+        font-size: 14px;
+        font-weight: 300;
+        text-align: left;
+        width: 100%;
+        padding: 10px 0 0;
+        .logout {
+            display: block;
+        }
+        form {
+            background: @grain-src @pale-bg;
+            margin: 10px 0 0;
+            padding: 15px 10px 10px;
+        }
+        label {
+            display: none;
+        }
+        select {
+            width: 100%;
+        }
+        .account.authenticated a.logout, .footer-links a {
+            color: lighten(@link-bright, 10%);
+            &:hover {
+                color: lighten(@link-bright, 25%);
+            }
+        }
+        .account.authenticated a {
+            color: lighten(@link-bright, 25%);
+            &:hover {
+                color: lighten(@link-bright, 30%);
+            }
+        }
         .account {
-            .box-shadow(inset 0 1px 2px rgba(0,0,0,.15));
-            .header-dark-gradient;
-            background: @grain-src darken(@header-dark-bg, 3%);
-            border-top: @navy-gray 1px solid;
+            .border-box;
+            margin: 15px 10px;
             color: @white;
-            padding: 15px 0;
             text-shadow: 0 1px 0 rgba(0,0,0,.5);
-            &.authenticated {
-                a {
-                    color: lighten(@link-bright, 10%);
-                    &:hover {
-                        color: lighten(@link-bright, 25%);
-                    }
-                }
+            .button {
+                padding: 5px 0;
+                width: 100%;
             }
         }
         .footer-links {
-            background: @grain-src @pale-bg;
-            margin: 0;
+            margin: 0 0 15px;
             text-align: left;
             a {
-                background: @bg;
-                border-bottom: 1px solid @light-gray;
-                border-top: 1px solid @white;
+                .border-box;
                 display: block;
-                padding: 7px 10px;
-                font-size: 16px;
-                &:first-child {
-                    border-top-color: @navy-gray;
-                }
-                &:last-child {
-                    border-bottom-color: @note-gray;
-                }
+                float: left;
+                padding: 6px 10px;
+                width: 50%;
                 &:before {
                     display: none;
-                }
-                &:hover {
-                    background: rgba(255,255,255,.5);
                 }
                 &:active {
                     .depressed;

@@ -123,19 +123,19 @@
         }
     }
 
-    /* Show narrow-specific stuff. */
-    .wide {
-        display: none;
-    }
-    .narrow {
-        display: block;
-    }
-
     /* Toggle tabbed content. */
     [data-group], .narrow[data-group] {
         display: none;
     }
     [data-shown], .narrow[data-shown] {
+        display: block;
+    }
+
+    /* Show narrow-specific stuff. */
+    .wide {
+        display: none !important;
+    }
+    .narrow {
         display: block;
     }
 }

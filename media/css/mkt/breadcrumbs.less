@@ -67,13 +67,49 @@
 
 @media (max-width: @4col) {
     #breadcrumbs {
-        li + li {
-            display: none;
+        border-bottom-color: @barely-gray;
+        margin-bottom: 10px;
+        li {
+            float: left;
+            line-height: 30px;
+            padding: 5px 0 0;
+            &:first-child + li:before {
+                content: "";
+            }
+            + li {
+                display: none;
+                &:before {
+                    content: '\00a0\00a0\/\00a0';
+                }
+            }
+            // Show the last two breadcrumbs only.
+            &:nth-last-child(2),
+            &:last-child {
+                display: inline-block;
+            }
+            a.home {
+                .border-radius(4px);
+                .box-shadow(0 1px 0 fadeOut(@white, 40%),
+                            0 1px 0 @gray inset,
+                            0 1px 0 @white inset);
+                background: url(../../img/zamboni/discovery_pane/arrow-left.png) 50% 50% rgba(0,0,0,.08) no-repeat;
+                border-width: 1px 0 0;
+                height: 30px;
+                margin: 0 10px 0 1px;
+                top: 0;
+                width: 42px;
+            }
         }
-        // Show the last two breadcrumbs only.
-        li:nth-last-child(2),
-        li:last-child {
-            display: inline-block;
+        &.dark {
+            a {
+                &.home {
+                    .box-shadow(0 1px 0 fadeOut(@gray, 40%),
+                                0 1px 0 darken(@navy-gray, 10%) inset,
+                                0 1px 0 @gray inset);
+                    background-color: @navy-gray;
+                    background-position: 50% 50%;
+                }
+            }
         }
     }
 }

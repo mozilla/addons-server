@@ -93,7 +93,6 @@ h1 .num {
 }
 
 #upsell {
-    display: block;
     background: @yellow;
     margin-top: 30px;
     h3 {
@@ -160,6 +159,7 @@ h1 .num {
     .actions {
         .min-width(3);
         .max-width(4);
+        clear: both;
         float: right;
         margin-bottom: 16px;
         .button {
@@ -223,7 +223,7 @@ h1 .num {
         padding: 0;
         a {
             .border-box;
-            background: @black;
+            background: @faint-gray;
             display: block;
             .border-radius(3px);
             .box-shadow(0 1px 2px @black);
@@ -308,7 +308,7 @@ h1 .num {
             display: block;
         }
     }
-    a.collapse {
+    a.collapse.wide {
         .transition(~'.2s opacity');
         background: url(../../img/mkt/arrows/collapse.png) no-repeat 100% 50%;
         display: block;
@@ -397,13 +397,83 @@ h1 .num {
 @media (max-width: @4col) {
     #page > .description {
         border-width: 1px 0;
-        padding: 15px 40px 15px 10px;
+        padding: 10px;
+        .summary {
+            max-width: 100%;
+            width: 100%;
+        }
+        a.collapse.narrow {
+            .transition(none);
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            opacity: .9;
+            text-align: right;
+            &:hover,
+            &.expanded {
+                opacity: 1;
+            }
+            &.expanded {
+                display: none;
+                .transform(none);
+            }
+        }
     }
-    #upsell {
-        display: none;
+    #upsell.narrow {
+        .fat-button;
+        margin: 20px 10px 0;
+        padding: 10px 33px 10px 52px;
+        position: relative;
+        &:after {
+            background: @arrow-src 100% 50% no-repeat;
+            content: "";
+            display: block;
+            height: 14px;
+            opacity: .8;
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            width: 13px;
+        }
+        .avail, .name, .icon {
+            opacity: .85;
+        }
+        &:hover {
+            border-color: @bg-gray;
+            text-decoration: none;
+            &:after, .avail, .name, .icon {
+                opacity: 1;
+            }
+        }
+        .avail, .name {
+            .ellipsis;
+            display: block;
+        }
+        .avail {
+            color: @green;
+            font-weight: 400;
+            line-height: 12px;
+            margin-bottom: -4px;
+            padding-bottom: 5px;
+        }
+        .name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: -4px;
+            padding-bottom: 0;
+        }
+        .icon {
+            top: 10px;
+            left: 10px;
+            max-height: 32px;
+            max-width: 32px;
+        }
     }
     #reviews {
         display: none;
+    }
+    .downloads {
+        font-size: 12px;
     }
     .product-details {
         .visual {
@@ -415,38 +485,117 @@ h1 .num {
             width: 100%;
         }
         .actions {
+            clear: both;
             margin: 10px auto;
+            max-width: 100%;
+            width: 100%;
+            .button {
+                .border-box;
+                .border-radius(4px);
+                font-size: 14px;
+                width: 50%;
+                &.product {
+                    height: 38px;
+                    line-height: 37px;
+                    &:hover {
+                        line-height: 33px;
+                    }
+                    &:active, &.purchasing, &.installing {
+                        line-height: 39px;
+                    }
+                }
+            }
         }
         .vitals {
             margin: 0;
+            height: 64px;
             max-width: 100%;
+            position: relative;
+            h1, .authors, .downloads {
+                .ellipsis;
+            }
             h1 {
-                font-size: 24px;
+                font-size: 21px;
+                font-weight: 400;
                 line-height: 24px;
+                padding-bottom: 4px;
+            }
+            .authors {
+                color: @medium-gray;
+                font-weight: 400;
+                margin: 0;
+                padding-bottom: 2px;
+            }
+            .device-list {
+                position: absolute;
+                right: 0;
+                bottom: -47px;
+                width: 105px;
+            }
+            p {
+                display: block;
+                margin: 0;
             }
         }
     }
     .support ul {
-        margin: 0;
         li {
-            float: none;
             margin-bottom: 15px;
             min-height: inherit;
-            width: 100%;
         }
     }
-    /* Big click targets. */
     .support {
-        a, time {
-            display: inline-block;
-            padding: 5px 20px 5px 0;
+        a {
+            .fat-button;
+            color: lighten(@text, 10%);
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px;
+            text-align: center;
+            &:hover {
+                background: rgba(255,255,255,.5);
+                border-color: @bg-gray;
+                color: @text;
+                text-decoration: none;
+            }
+        }
+        .overall-reviews {
+            text-align: left;
+            margin: 25px 0 0;
+            + ul {
+                margin: 0;
+            }
+        }
+        ul {
+            margin: 15px 0 0;
+            li {
+                .border-box;
+                float: left;
+                margin: 10px 0 0;
+                padding-right: 5px;
+                width: 50%;
+                &:nth-child(2n) {
+                    padding: 0 0 0 5px;
+                }
+            }
+        }
+        dl {
+            margin: 20px 0 15px;
+            dt, dd {
+                color: @text;
+                display: inline-block;
+            }
+            dt {
+                margin-right: 5px;
+            }
         }
     }
-    .html-rtl .support {
-        a, time {
-            display: inline-block;
-            padding: 5px 0 5px 20px;
-        }
+    .previews.slider {
+        background: @grain-src darken(@light-gray, 0%);
+        .box-shadow(inset 0 2px 4px rgba(0,0,0,.2));
+        border-top-color: @note-gray;
+        border-bottom-color: @barely-gray;
     }
 }
 

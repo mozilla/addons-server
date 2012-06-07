@@ -1,7 +1,7 @@
 (function() {
     function toggle($e) {
         // Toggle description + developer comments.
-        $e.toggleClass('expanded').siblings('.collapse').toggleClass('show');
+        $e.toggleClass('expanded').closest('section').find('.collapse').toggleClass('show');
     }
     z.page.on('click', 'a.collapse', _pd(function() {
         toggle($(this));

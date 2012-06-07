@@ -250,3 +250,16 @@
 .header-dark-gradient() {
     .gradient-two-color(rgba(176,186,192,.33), rgba(187,195,199,.33));
 }
+
+.fat-button() {
+    .border-box;
+    .border-radius(4px);
+    .box-shadow(0 1px 0 fadeOut(@white, 40%),
+                0 1px 0 @white inset);
+    background: rgba(255,255,255,.8);
+    border: 1px solid @light-gray;
+    color: @text;
+    &:active {
+        .depressed;
+    }
+}

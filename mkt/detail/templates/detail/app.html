@@ -2,6 +2,7 @@
 
 {% set amouser = request.amo_user if request.user.is_authenticated() else None %}
 {% set can_review = product.can_review(amouser) %}
+{% set purchased = amouser and product.pk in amouser.purchase_ids() %}
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
@@ -37,25 +38,28 @@
     <div class="visual">
       <img src="{{ product.get_icon_url(64) }}">
     </div>
-    <div class="vitals">
+    <div class="vitals c">
       <h1>
         {% if 'id' in request.GET %}
           <b class="num">#{{ product.id }}</b>
         {% endif %}
         {{ product.name }}
       </h1>
-      <h2 class="authors">{{ users_list(product.listed_authors, size=3) }}</h2>
+      {% if product.listed_authors %}
+        <h2 class="authors wide">{{ users_list(product.listed_authors, size=3) }}</h2>
+        <h2 class="authors narrow">{{ product.listed_authors[0]|user_link }}</h2>
+      {% endif %}
+      {% set categories = product.all_categories %}
       {% if is_author and product.is_premium() and product.premium %}
         <p class="pricetag faked-purchase">
           <span class="price">{{ product.premium.get_price_locale() }}</span>
         </p>
       {% endif %}
       {% if cats %}
-        <p class="cats">
+        <p class="cats wide">
           {% for category in cats %}
             <a href="{{ category.get_url_path() }}">
-              {{ category }}
-            </a>{% if not loop.last %}, {% endif %}
+              {{ category }}</a>{% if not loop.last %}, {% endif %}
           {% endfor %}
         </p>
       {% endif %}
@@ -68,7 +72,7 @@
       {% if product.is_public() %}
         {{ market_button(product) }}
         {% if request.amo_user %}
-          {% if product.pk in request.amo_user.purchase_ids() %}
+          {% if purchased %}
             <span class="approval checkmark purchased">
               {{ _('Purchased') }}</span>
           {% elif product.can_purchase() %}
@@ -81,7 +85,7 @@
         {{ market_button(product) }}
       {% endif %}
       {% if is_dev %}
-        <p><a href="{{ product.get_dev_url() }}" class="button manage">
+        <p><a href="{{ product.get_dev_url() }}" class="button manage wide">
           {{ _('Manage') }}</a></p>
       {% endif %}
       {% if is_reviewer and product.is_pending() %}
@@ -114,14 +118,14 @@
   </section>
   <div id="purchased-message"></div>
 
-  {% set upsell = product.upsell %}
   {% if upsell %}
-    {% set prm = upsell.premium %}
-    <section id="upsell" class="notification-box c">
+    {% set prm = product %}
+    <section id="upsell" class="notification-box wide c">
       <div class="upsell">
         <h3>{{ _('Premium version available') }}</h3>
         <a href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-          <img class="icon" src="{{ prm.get_icon_url(64) }}">
+          <img class="icon" src="https://marketplace-dev-cdn.allizom.org/img/uploads/addon_icons/369/369868-16.png?modified=1337848853">
+          <!--src="{{ prm.get_icon_url(64) }}">-->
           <span class="name">{{ prm.name }}</span>
         </a>
       </div>
@@ -138,13 +142,24 @@
         </div>
       </div>
     </section>
+    <a id="upsell" class="narrow"
+       href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+       <span class="avail">{{ _('Premium version available') }}</span>
+       <img class="icon" src="{{ prm.get_icon_url(16) }}">
+       <span class="name">{{ prm.name }}</span>
+    </a>
   {% endif %}
 
   <section class="description">
     {% if product.description %}
-      <a href="#" class="collapse">{{ _('Read More') }}</a>
+      <a href="#" class="collapse wide">{{ _('More&hellip;') }}</a>
     {% endif %}
-    <p class="summary">{{ product.summary|nl2br }}</p>
+    <p class="summary">
+      {{ product.summary|nl2br }}
+      {% if product.description %}
+        <a href="#" class="collapse narrow">{{ _('More&hellip;') }}</a>
+      {% endif %}
+    </p>
     {% if product.description or product.developer_comments %}
       <div class="collapse">
         {% if product.description %}
@@ -191,8 +206,114 @@
     </div>
   {% endif %}
 
+  {% if waffle.switch('ratings') %}
+    <section class="reviews c" id="reviews"
+             data-review-history="{{ review_history|json }}">
+      {% if not ratings %}
+        <h2>{{ _('Reviews') }}</h2>
+        {% if can_review %}
+          <p id="add-first-review">
+            <a href="{{ product.get_ratings_url('add') }}" class="button go">
+              {{ _('Be the first to write a review.') }}</a><p>
+        {% else %}
+          <p id="no-add-first-review">
+            {{ _('This app has not yet been reviewed.') }}</p>
+        {% endif %}
+      {% else %}
+        <div id="reviews-info">
+          <figure>
+            <figcaption>Reviews, last 30 days</figcaption>
+            <canvas id="review-spark"></canvas>
+          </figure>
+          <a href="#" class="selected" data-review-filter="all">
+            <h3 class="all">
+              All Reviews <b>({{ product.rating_counts.total }})</b>
+            </h3>
+          </a>
+          <a href="#" data-review-filter="positive">
+            <h3 class="upvotes">
+              Positive Reviews <b>({{ product.rating_counts.positive }})</b>
+            </h3>
+          </a>
+          <a href="#" data-review-filter="negative">
+            <h3 class="downvotes">
+              Negative Reviews <b>({{ product.rating_counts.negative }})</b>
+            </h3>
+          </a>
+          {% if can_review %}
+            <p id="submit-review">
+              <a href="{{ product.get_ratings_url('add') }}" class="button good">
+                {{ _('Review This App') }}</a></p>
+          {% endif %}
+        </div>
+        <div>
+          <ul id="review-list" class="filter-all">
+            {% for rating in ratings %}
+              {% include 'ratings/rating.html' %}
+            {% endfor %}
+          </ul>
+          <p><a href="{{ product.get_ratings_url() }}" class="button">
+            {{ _('Read More') }}</a></p>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+
   <section id="support" class="support c">
-    <ul>
+
+    {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
+             pare this down. But until then... code duplication :( #}
+    <div class="narrow">
+      {% if reviews %}
+        <a href="{{ product.get_ratings_url() }}">{{ _('Reviews') }}</a>
+      {% elif can_review %}
+        <a class="overall-reviews"
+            href="{{ product.get_ratings_url('add') }}" class="button go">
+            {{ _('Submit a Review') }}</a><p>
+      {% endif %}
+      <ul class="c">
+        {% if False %}
+          {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
+                   https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
+          <li><a href="">{{ _('Support') }}</a></li>
+        {% endif %}
+        {% if product.support_email %}
+          <li class="support-email">
+            {{ emaillink(product.support_email.localized_string,
+                         _('Support Email')) }}
+          </li>
+        {% endif %}
+        {% if product.support_url %}
+          <li class="support-url">
+            <a href="{{ product.support_url|external_url }}">
+              {{ _('Support Site') }}</a>
+          </li>
+        {% endif %}
+        {% if product.homepage %}
+          <li><a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a></li>
+        {% endif %}
+        {% if product.is_public() or is_reviewer %}
+          {% if product.privacy_policy %}
+            <li><a href="{{ product.get_detail_url('privacy') }}">
+              {{ _('Privacy Policy') }}</a></li>
+          {% endif %}
+          {% if waffle.switch('app-stats') and product.public_stats %}
+            <li><a href="{{ url('mkt.stats.overview', product.app_slug) }}">
+              {{ _('Statistics') }}</a></li>
+          {% endif %}
+        {% endif %}
+        {% if abuse_form %}
+          <li><a href="{{ product.get_detail_url('abuse') }}">
+            {{ _('Report Abuse') }}</a></li>
+        {% endif %}
+      </ul>
+      <dl>
+        <dt>{{ _('Published') }}</dt>
+        <dd>{{ product.created|timelabel }}</dd>
+      </dl>
+    </div>
+
+    <ul class="wide">
       {% if product.support_email or product.support_url %}
         <li class="contact-support">
           <h3>{{ _('Contact Support') }}</h3>
@@ -253,59 +374,6 @@
       {% endif %}
     </ul>
   </section>
-
-  {% if waffle.switch('ratings') %}
-    <section class="reviews c" id="reviews"
-             data-review-history="{{ review_history|json }}">
-      {% if not ratings %}
-        <h2>{{ _('Reviews') }}</h2>
-        {% if can_review %}
-          <p id="add-first-review">
-            <a href="{{ product.get_ratings_url('add') }}" class="button go">
-              {{ _('Be the first to write a review.') }}</a><p>
-        {% else %}
-          <p id="no-add-first-review">
-            {{ _('This app has not yet been reviewed.') }}</p>
-        {% endif %}
-      {% else %}
-        <div id="reviews-info">
-          <figure>
-            <figcaption>Reviews, last 30 days</figcaption>
-            <canvas id="review-spark"></canvas>
-          </figure>
-          <a href="#" class="selected" data-review-filter="all">
-            <h3 class="all">
-              All Reviews <b>({{ product.rating_counts.total }})</b>
-            </h3>
-          </a>
-          <a href="#" data-review-filter="positive">
-            <h3 class="upvotes">
-              Positive Reviews <b>({{ product.rating_counts.positive }})</b>
-            </h3>
-          </a>
-          <a href="#" data-review-filter="negative">
-            <h3 class="downvotes">
-              Negative Reviews <b>({{ product.rating_counts.negative }})</b>
-            </h3>
-          </a>
-          {% if can_review %}
-            <p id="submit-review">
-              <a href="{{ product.get_ratings_url('add') }}" class="button good">
-                {{ _('Review This App') }}</a></p>
-          {% endif %}
-        </div>
-        <div>
-          <ul id="review-list" class="filter-all">
-            {% for rating in ratings %}
-              {% include 'ratings/rating.html' %}
-            {% endfor %}
-          </ul>
-          <p><a href="{{ product.get_ratings_url() }}" class="button">
-            {{ _('Read More') }}</a></p>
-        </div>
-      {% endif %}
-    </section>
-  {% endif %}
 
 {% endif %}
 {% endblock %}
