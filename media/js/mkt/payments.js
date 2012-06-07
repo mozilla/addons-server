@@ -20,8 +20,9 @@
         product = prod;
         oneTimePayClicked = false;
 
-        // If the user is pre-authed, just call PayPal right away.
-        if (z.pre_auth) {
+        // If the user is pre-authed or the app has zero price, just call
+        // the purchase method right away.
+        if (z.pre_auth || product.price === '0') {
             startPayment();
             return $def.promise();
         }

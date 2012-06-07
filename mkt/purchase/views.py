@@ -18,6 +18,7 @@ from amo.decorators import login_required, post_required, write
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
 from market.forms import PriceCurrencyForm
+from market.models import AddonPurchase
 import paypal
 from stats.models import Contribution
 from mkt.account.views import preapproval as user_preapproval
@@ -53,6 +54,18 @@ def purchase(request, addon):
             tier = form.get_tier()
             if tier:
                 amount, currency = tier.price, tier.currency
+
+    if not amount:
+        # We won't write a contribution row for this because there
+        # will not be a valid Paypal transaction. But we have to write the
+        # Purchase row, something that writing to the contribution normally
+        # does for us.
+        AddonPurchase.objects.safer_get_or_create({'addon': addon,
+                                                   'user': request.amo_user})
+        return http.HttpResponse(json.dumps({'url': '', 'paykey': '',
+                                             'error': '',
+                                             'status': 'COMPLETED'}),
+                                 content_type='application/json')
 
     paykey, status, error = '', '', ''
     preapproval = None

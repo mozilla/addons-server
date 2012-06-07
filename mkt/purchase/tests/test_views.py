@@ -15,7 +15,7 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
-                           PriceCurrency)
+                           Price, PriceCurrency)
 from mkt.webapps.models import Webapp
 from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
@@ -30,7 +30,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        AddonPremium.objects.create(addon=self.addon, price_id=1,
+        self.price = Price.objects.get(pk=1)
+        AddonPremium.objects.create(addon=self.addon, price=self.price,
                                     currencies=['BRL'])
         self.purchase_url = self.addon.get_purchase_url()
         self.client.login(username='regular@mozilla.com', password='password')
@@ -197,6 +198,14 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         has_purchased.return_value = False
         res = self.client.post_ajax(self.purchase_url)
         eq_(res.status_code, 200)
+
+    def test_zero(self):
+        self.price.update(price=Decimal('0.00'))
+        res = self.client.post_ajax(self.purchase_url)
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['status'], 'COMPLETED')
+        eq_(Contribution.objects.all().count(), 0)
+        eq_(AddonPurchase.objects.filter(addon=self.addon).count(), 1)
 
     def make_contribution(self, type=amo.CONTRIB_PENDING):
         return Contribution.objects.create(type=type,
