@@ -8,6 +8,7 @@ from django.db.models import Max, Min
 
 from celery.task.sets import TaskSet
 
+from addons.models import Addon
 from amo.utils import chunked
 from stats.models import Contribution
 from mkt.stats import tasks

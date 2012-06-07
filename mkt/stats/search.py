@@ -4,8 +4,8 @@ import elasticutils
 import pyes.exceptions as pyes
 
 import amo
-from stats.models import Contribution
 from mkt.webapps.models import Installed
+from stats.models import Contribution
 
 
 def get_finance_total(qs, addon):
