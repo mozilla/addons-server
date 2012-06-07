@@ -113,10 +113,10 @@ class InappConfig(amo.models.ModelBase):
 
     @classmethod
     def generate_private_key(cls, max_tries=40):
-        """Generate a random 43 character secret key."""
+        """Generate a random 64 character secret key."""
 
         timestamp, enc_key = _get_key()
-        for key in limited_keygen(lambda: generate_key(43), max_tries):
+        for key in limited_keygen(lambda: generate_key(32), max_tries):
             cursor = connection.cursor()
             cursor.execute('select count(*) from addon_inapp where '
                            'private_key = AES_ENCRYPT(%s, %s) ',
