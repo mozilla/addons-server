@@ -8,7 +8,7 @@ function initPreviewTheme(mktTheme) {
         return;
     }
 
-    if (mktTheme) {
+    if (mktTheme === true) {
         bindPreviewListeners($themes);
     } else {
         $themes.previewPersona();
