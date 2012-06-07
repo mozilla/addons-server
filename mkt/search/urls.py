@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 
-from search.views import ajax_search_suggestions, WebappSuggestionsAjax
+from search.views import ajax_search_suggestions
 from . import views
 
 

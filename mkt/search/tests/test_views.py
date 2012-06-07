@@ -4,11 +4,12 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-from amo.helpers import numberfmt
 import amo.tests
-from amo.utils import urlparams
-from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonDeviceType, Category, DeviceType
+from amo.helpers import numberfmt
+from amo.urlresolvers import reverse
+from amo.utils import urlparams
+from market.models import AddonPremium, Price
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_views import PaidAppMixin
@@ -169,14 +170,31 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
     def test_free_and_inapp_only(self):
         eq_(self.check_price_filter('free', 'Free Only',
-                                     amo.ADDON_FREE_INAPP), self.free)
+                                    amo.ADDON_FREE_INAPP), self.free)
+
+    def test_free_and_premium_other(self):
+        eq_(self.check_price_filter('', 'Any Price', amo.ADDON_PREMIUM_OTHER),
+            self.both)
 
     def test_premium_only(self):
         eq_(self.check_price_filter('paid', 'Premium Only'), self.paid)
 
     def test_premium_inapp_only(self):
         eq_(self.check_price_filter('paid', 'Premium Only',
-                                     amo.ADDON_PREMIUM_INAPP), self.paid)
+                                    amo.ADDON_PREMIUM_INAPP), self.paid)
+
+    def test_premium_other(self):
+        eq_(self.check_price_filter('paid', 'Premium Only',
+                                    amo.ADDON_PREMIUM_OTHER), self.paid)
+
+    def test_premium_other_zero(self):
+        price = Price.objects.create(price=0)
+        app = amo.tests.app_factory(weekly_downloads=1)
+        AddonPremium.objects.create(price=price, addon=app)
+        app.update(premium_type=amo.ADDON_PREMIUM_OTHER)
+        eq_(self.check_price_filter('paid', 'Premium Only',
+                                    amo.ADDON_PREMIUM_OTHER),
+            self.paid + [app])
 
     def setup_devices(self):
         self._generate(3)
