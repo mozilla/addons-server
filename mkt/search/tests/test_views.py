@@ -171,20 +171,12 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(self.check_price_filter('free', 'Free Only',
                                      amo.ADDON_FREE_INAPP), self.free)
 
-    def test_free_and_premium_other(self):
-        eq_(self.check_price_filter('', 'Any Price', amo.ADDON_PREMIUM_OTHER),
-            self.both)
-
     def test_premium_only(self):
         eq_(self.check_price_filter('paid', 'Premium Only'), self.paid)
 
     def test_premium_inapp_only(self):
         eq_(self.check_price_filter('paid', 'Premium Only',
                                      amo.ADDON_PREMIUM_INAPP), self.paid)
-
-    def test_premium_other(self):
-        eq_(self.check_price_filter('paid', 'Premium Only',
-                                     amo.ADDON_PREMIUM_OTHER), self.paid)
 
     def setup_devices(self):
         self._generate(3)
