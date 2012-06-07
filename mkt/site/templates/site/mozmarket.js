@@ -79,7 +79,7 @@ var $ = (function(win, doc) {
             return Array.prototype.slice[call](a,i||0);
         },
         extend = mu.extend = function(d, s) {
-            for (p in s) {
+            for (var p in s) {
                 d[p] = s[p];
             }
         },
