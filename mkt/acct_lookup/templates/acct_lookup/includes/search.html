@@ -1,5 +1,6 @@
 <section class="island">
-  <form action="#" method="post" id="account-search-form">
+  <form action="" method="post" id="account-search-form">
+    {{ csrf() }}
     <label for="account-search">{{ _('Account Lookup') }}</label>
     <input type="search" id="account-search" name="q" autocomplete="off">
     <button>{{ _('Search') }}</button>
