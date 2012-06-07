@@ -30,9 +30,9 @@
           {% endif %}
         </div>
       </li>
-      {{ pager|impala_paginator }}
     {% else %}
       {{ no_results() }}
     {% endfor %}
   </ol>
+  {{ pager|impala_paginator }}
 </section>
