@@ -60,8 +60,8 @@ def purchase(request, addon):
         # will not be a valid Paypal transaction. But we have to write the
         # Purchase row, something that writing to the contribution normally
         # does for us.
-        AddonPurchase.objects.safer_get_or_create({'addon': addon,
-                                                   'user': request.amo_user})
+        AddonPurchase.objects.safer_get_or_create(addon=addon,
+                                                  user=request.amo_user)
         return http.HttpResponse(json.dumps({'url': '', 'paykey': '',
                                              'error': '',
                                              'status': 'COMPLETED'}),
