@@ -98,36 +98,54 @@ var $ = (function(win, doc) {
     return mu;
 })(window, document);
 
-var format = (function() {
-    var re = /\{([^}]+)\}/g;
-    return function(s, args) {
-        if (!args) return;
-        if (!(args instanceof Array || args instanceof Object))
-            args = Array.prototype.slice.call(arguments, 1);
-        return s.replace(re, function(_, match){ return args[match]; });
+(function(mu, len) {
+    mu.def = function() {
+        var fn = {},
+            that = this;
+        ['pass','fail'].forEach(function(m) {
+            fn[m] = [];
+            that['on'+m] = function(f) {
+                fn[m].push(f);
+                return that;
+            };
+            that[m] = function(params) {
+                if (that.result) return;
+                params = mu.arr(arguments);
+                fn[m].forEach(function(f) {
+                    f.apply(false,params);
+                });
+                that.result = m;
+            };
+        });
     };
-})();
+})($, 'length');
 
 var server = '{{ settings.SITE_URL }}',
-    onPaySuccess, onPayFailure,
-    $overlay,
-    overlayStyle = 'position:absolute;top:0;left:0;right:0;bottom:0;' +
-                   'width:100%;max-width:450px;height:100%;max-height:350px;' +
-                   'z-index:2001;margin:auto;border:0';
+    overlay,
+    def,
+    inappRequest;
 
-exports.buy = function(signedRequest, _onPaySuccess, _onPayFailure) {
-    onPaySuccess = _onPaySuccess;
-    onPayFailure = _onPayFailure;
+exports.buy = function(_onPaySuccess, _onPayFailure) {
     if (typeof navigator.showPaymentScreen == 'undefined') {
         // Define our stub for prototyping.
         navigator.showPaymentScreen = showPaymentScreen;
     }
-    navigator.showPaymentScreen(signedRequest, _onPaySuccess, _onPayFailure);
+    navigator.showPaymentScreen(_onPaySuccess, _onPayFailure);
+    inappRequest = {
+        success: _onPaySuccess,
+        failure: _onPayFailure,
+        sign: function(_signedRequest) {
+            signTransaction(_signedRequest);
+        },
+        cancel: function() {
+            cancelTransaction();
+        }
+    };
+    return inappRequest;
 };
 
 function closeFlow() {
-    var overlay = $overlay[0]
-    overlay.parentNode.removeChild(overlay);
+    overlay.close();
 }
 
 $.on(window, 'message', handleMessage);
@@ -139,14 +157,14 @@ function handleMessage(msg) {
     switch (msg.data) {
         case 'moz-pay-cancel':
             closeFlow();
-            if (onPayFailure) {
-                onPayFailure();
+            if ("failure" in inappRequest) {
+                inappRequest.failure();
             }
             break;
         case 'moz-pay-success':
             closeFlow();
-            if (onPaySuccess) {
-                onPaySuccess();
+            if ("success" in inappRequest) {
+                inappRequest.success();
             }
             break;
         default:
@@ -154,23 +172,28 @@ function handleMessage(msg) {
     }
 }
 
-function showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
-    _overlay_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure);
+function cancelTransaction() {
+    inappRequest.failure();
+    closeFlow();
 }
 
-function _overlay_showPaymentScreen(signedRequest, onPaySuccess, onPayFailure) {
-    var overlay = $('#moz-payment-overlay')[0];
+function signTransaction(signedRequest) {
+    var flowURL = $.fmt('{0}/inapp-pay/pay_start?req={1}',
+                        server, signedRequest);
+    overlay.location = flowURL;
+}
+
+function showPaymentScreen(onPaySuccess, onPayFailure) {
     if (overlay) {
-        overlay.parentNode.removeChild(overlay);
+        cancelTransaction();
     }
-    $overlay = $(document.createElement('iframe'));
-    $overlay.attr({
-        'id': 'moz-payment-overlay',
-        'type': 'text/html',
-        'src': format('{0}/inapp-pay/pay_start?req={1}', server, signedRequest),
-        'style': overlayStyle
-    });
-    $('body').css({'z-index': '-1'})[0].appendChild($overlay[0]);
+    var lobbyURL = $.fmt('{0}/inapp-pay/lobby', server);
+    var options = "menubar=no,width={2},innerHeight=200,toolbar=no," +
+                  "status=no,resizable=no,left={0},top={1}";
+    var width = Math.min(window.outerHeight, 384),
+        left = (window.screenX + window.outerWidth - width) / 2,
+        top = (window.screenY + window.outerHeight - 200) * .382;
+    overlay = window.open(lobbyURL, 'foo', $.fmt(options, ~~left, ~~top, width));
 }
 
 })(typeof exports === 'undefined' ? (this.mozmarket = {}) : exports);

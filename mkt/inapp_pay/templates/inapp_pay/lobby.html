@@ -1,0 +1,15 @@
+{% extends "inapp_pay/base.html" %}
+
+{% block screen_content %}
+<header>
+  {{ _('Marketplace') }} &mdash; {{ _('Loading in-app purchase') }}
+</header>
+<div>
+  <p class="no-wallet">
+    {{ _('Waiting for secure request&hellip;') }}
+  </p>
+</div>
+<footer>
+  <a class="button close" href="#">{{ _('Cancel') }}</a>
+</footer>
+{% endblock %}

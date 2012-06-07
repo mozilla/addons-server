@@ -28,6 +28,13 @@ log = commonware.log.getLogger('z.inapp_pay')
 
 
 @xframe_allow
+@anonymous_csrf
+@waffle_switch('in-app-payments-ui')
+def lobby(request):
+    return jingo.render(request, 'inapp_pay/lobby.html')
+
+
+@xframe_allow
 @require_inapp_request
 @anonymous_csrf
 @write
