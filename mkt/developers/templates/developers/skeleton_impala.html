@@ -1,3 +1,4 @@
+{% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -128,11 +129,13 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      {% if waffle.switch('browserid-login') %}
+      {% if not logged and waffle.switch('browserid-login') %}
         <script async defer src="https://browserid.org/include.js"></script>
       {% endif %}
       {{ js('mkt/devreg') }}
-      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+      {% if logged %}
+        <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+      {% endif %}
     {% endblock %}
     {% block js %}{% endblock %}
     {# Webtrends Stats Tracking #}
