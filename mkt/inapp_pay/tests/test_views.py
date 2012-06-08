@@ -144,7 +144,7 @@ class TestPayStart(PayFlowTest):
     def test_pay_start(self, fetch_prod_im):
         rp = self.start()
         eq_(rp.status_code, 200)
-        assert 'x-frame-options' not in rp, "Can't deny with x-frame-options"
+        assert 'x-frame-options' in rp, "Must deny with x-frame-options"
         self.assertTemplateUsed(rp, 'inapp_pay/pay_start.html')
 
         log = InappPayLog.objects.get()
