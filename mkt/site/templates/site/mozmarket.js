@@ -98,28 +98,6 @@ var $ = (function(win, doc) {
     return mu;
 })(window, document);
 
-(function(mu, len) {
-    mu.def = function() {
-        var fn = {},
-            that = this;
-        ['pass','fail'].forEach(function(m) {
-            fn[m] = [];
-            that['on'+m] = function(f) {
-                fn[m].push(f);
-                return that;
-            };
-            that[m] = function(params) {
-                if (that.result) return;
-                params = mu.arr(arguments);
-                fn[m].forEach(function(f) {
-                    f.apply(false,params);
-                });
-                that.result = m;
-            };
-        });
-    };
-})($, 'length');
-
 var server = '{{ settings.SITE_URL }}',
     overlay,
     def,
@@ -190,10 +168,12 @@ function showPaymentScreen(onPaySuccess, onPayFailure) {
     var lobbyURL = $.fmt('{0}/inapp-pay/lobby', server);
     var options = "menubar=no,width={2},innerHeight=200,toolbar=no," +
                   "status=no,resizable=no,left={0},top={1}";
+
+    // center the window!
     var width = Math.min(window.outerHeight, 384),
         left = (window.screenX + window.outerWidth - width) / 2,
         top = (window.screenY + window.outerHeight - 200) * .382;
-    overlay = window.open(lobbyURL, 'foo', $.fmt(options, ~~left, ~~top, width));
+    overlay = window.open(lobbyURL, 'paymentWindow', $.fmt(options, ~~left, ~~top, width));
 }
 
 })(typeof exports === 'undefined' ? (this.mozmarket = {}) : exports);

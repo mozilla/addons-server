@@ -1,11 +1,12 @@
 var z = {},
+    // pretend to be underscore without the page weight
     _ = {
-    extend: function(obj, ext) {
-        for (var p in ext) {
-            obj[p] = ext[p];
+        extend: function(obj, ext) {
+            for (var p in ext) {
+                obj[p] = ext[p];
+            }
         }
-    }
-};
+    };
 
 var escape_ = function(s) {
     if (s === undefined) {

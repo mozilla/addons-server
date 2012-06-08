@@ -27,14 +27,12 @@ from . import tasks
 log = commonware.log.getLogger('z.inapp_pay')
 
 
-@xframe_allow
 @anonymous_csrf
 @waffle_switch('in-app-payments-ui')
 def lobby(request):
     return jingo.render(request, 'inapp_pay/lobby.html')
 
 
-@xframe_allow
 @require_inapp_request
 @anonymous_csrf
 @write
@@ -63,13 +61,11 @@ def pay_start(request, signed_req, pay_req):
     return jingo.render(request, 'inapp_pay/pay_start.html', data)
 
 
-@xframe_allow
 def preauth(request):
     from mkt.account.views import preapproval
     return preapproval(request)
 
 
-@xframe_allow
 @require_inapp_request
 @login_required
 @post_required
@@ -171,7 +167,6 @@ def pay(request, signed_req, pay_req):
     return jingo.render(request, 'inapp_pay/complete.html', c)
 
 
-@xframe_allow
 @anonymous_csrf
 @login_required
 @write
