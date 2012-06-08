@@ -164,11 +164,11 @@ class TestDetail(DetailBase):
         eq_(self.get_pq()('.manage').length, 0)
 
     def test_upsell(self):
-        eq_(self.get_pq()('#upsell').length, 0)
+        eq_(self.get_pq()('#upsell.wide').length, 0)
         premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
         AddonUpsell.objects.create(free=self.webapp, premium=premie,
                                    text='XXX')
-        upsell = self.get_pq()('#upsell')
+        upsell = self.get_pq()('#upsell.wide')
         eq_(upsell.length, 1)
         eq_(upsell.find('.upsell').find('.name').text(), unicode(premie.name))
         eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(64))
@@ -199,7 +199,7 @@ class TestDetail(DetailBase):
         self.webapp.description = 'a whole lotta text'
         self.webapp.save()
         description = self.get_pq()('.description')
-        eq_(description.find('.summary').text(), '')
+        eq_(description.find('.summary').remove('.collapse').text(), '')
         eq_(description.find('.more').text(), self.webapp.description)
 
     def test_no_developer_comments(self):
@@ -217,7 +217,7 @@ class TestDetail(DetailBase):
     def test_has_support_email(self):
         self.webapp.support_email = 'gkoberger@mozilla.com'
         self.webapp.save()
-        email = self.get_pq()('.support .support-email')
+        email = self.get_pq()('.support .wide .support-email')
         eq_(email.length, 1)
         eq_(email.remove('a').remove('span.i').text().replace(' ', ''),
             'moc.allizom@regrebokg', 'Email should be reversed')
@@ -225,7 +225,7 @@ class TestDetail(DetailBase):
     def test_has_support_url(self):
         self.webapp.support_url = 'http://omg.org/yes'
         self.webapp.save()
-        url = self.get_pq()('.support .support-url')
+        url = self.get_pq()('.support .wide .support-url')
         eq_(url.length, 1)
         eq_(url.find('a').attr('href'), external_url(self.webapp.support_url))
 
@@ -233,7 +233,7 @@ class TestDetail(DetailBase):
         self.webapp.support_email = 'gkoberger@mozilla.com'
         self.webapp.support_url = 'http://omg.org/yes'
         self.webapp.save()
-        li = self.get_pq()('.support .contact-support')
+        li = self.get_pq()('.support .wide .contact-support')
         eq_(li.find('.support-email').length, 1)
         eq_(li.find('.support-url').length, 1)
 
@@ -243,7 +243,7 @@ class TestDetail(DetailBase):
     def test_has_homepage(self):
         self.webapp.homepage = 'http://omg.org/yes'
         self.webapp.save()
-        url = self.get_pq()('.support .homepage')
+        url = self.get_pq()('.support .wide .homepage')
         eq_(url.length, 1)
         eq_(url.find('a').text(), self.webapp.homepage)
         eq_(url.find('a').attr('href'), external_url(self.webapp.homepage))
