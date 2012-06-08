@@ -20,6 +20,12 @@
 </form>
 <form method="post" action="">
   {{ csrf() }}
+  <b>Choices:</b>
+  <ul>
+    {% for choice in choices|sort %}
+      <li>{{ choice }}</li>
+    {% endfor %}
+  </ul>
   <input name="reindex" placeholder="mapping name">
   <button>Reindex</button>
 </form>

@@ -45,7 +45,9 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
+from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
 from mkt.stats.search import setup_mkt_indexes
+from stats.cron import index_latest_stats
 from stats.search import setup_indexes
 from users.cron import reindex_users
 from versions.compare import version_int as vint
@@ -559,7 +561,9 @@ def elastic(request):
                 'collections': reindex_collections,
                 'compat': compatibility_report,
                 'users': reindex_users,
-               }
+                'stats_latest': index_latest_stats,
+                'mkt_stats': index_mkt_stats,
+                'mkt_stats_latest': index_latest_mkt_stats}
     if request.method == 'POST':
         if request.POST.get('recreate'):
             es.delete_index_if_exists(INDEX)
@@ -578,13 +582,14 @@ def elastic(request):
         return redirect('zadmin.elastic')
 
     indexes = set(settings.ES_INDEXES.values())
-    mappings = es.get_mapping(None, indexes)
+    es_mappings = es.get_mapping(None, indexes)
     ctx = {
         'index': INDEX,
         'nodes': es.cluster_nodes(),
         'health': es.cluster_health(),
         'state': es.cluster_state(),
-        'mappings': [(index, mappings.get(index, {})) for index in indexes],
+        'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
+        'choices': mappings,
     }
     return jingo.render(request, 'zadmin/elastic.html', ctx)
 
