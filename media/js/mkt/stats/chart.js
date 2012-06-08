@@ -229,8 +229,7 @@
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
                 'pointInterval' : pointInterval,
-                // Compensate for timezone offsets from UTC.
-                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
+                'pointStart' : start.getTime(),
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
