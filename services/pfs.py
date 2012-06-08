@@ -116,18 +116,11 @@ def get_output(data):
                 XPILocation='',
                 iconUrl='http://fpdownload2.macromedia.com/pub/flashplayer/current/fp_win_installer.ico',
                 needsRestart='false',
-                InstallerShowsUI='true')
+                InstallerShowsUI='true',
+                version='11.3.300.257',
+                InstallerHash='sha256:cdf874975b56e89f184a3a834b77daaaab6eab9a507c4d0be7fd2c6188fc43c2',
+                InstallerLocation='http://download.macromedia.com/pub/flashplayer/pdc/11.3.300.257/FP_PL_PFS_INSTALLER.exe')
 
-            if re.match(r'^(?!.*(Win64|x64))Win.*$', g['clientOS']):
-                plugin.update(
-                    version='11.2.202.235',
-                    InstallerHash='sha256:d63ddcf41a26d578a2132101c0abbed69205333578277ab5590f64cb7ffd3c74',
-                    InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_32bit.exe')
-            else:
-                plugin.update(
-                    version='11.2.202.235 64-bit',
-                    InstallerHash='sha256:6229535acdc1cd07013bb9d2833c612fbec6cbee001182ec099ab5d6651d62d7',
-                    InstallerLocation='http://download.macromedia.com/pub/flashplayer/current/FP_PL_PFS_INSTALLER_64bit.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
           g['clientOS'].startswith('Win')):
