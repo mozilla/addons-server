@@ -1,25 +1,3 @@
-{% extends 'appstats/report.html' %}
+{% extends 'appstats/reports/finance.html' %}
 
-{% block sales_select %}
-    class="selected"
-{% endblock %}
-
-{% block sales_filters %}
-  <div class="criteria sales-filters island">
-    {% set links = [
-      (addon.get_stats_url(action='revenue'), _('Revenue')),
-      (addon.get_stats_url(action='sales'), _('Sales')),
-      (addon.get_stats_url(action='refunds'), _('Refunds'))
-    ] %}
-    <ul>
-      <li>{{ _('Sales Type') }}</li>
-      {% for link, title in links %}
-        <li{% if request.path == link %} class="selected"{% endif %}>
-          <a href="{{ link }}">{{ title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endblock %}
-
-{% set title =  _('Sales by Date') %}
+{% set title = _('Sales by Date') %}

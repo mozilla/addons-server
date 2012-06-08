@@ -1,5 +1,6 @@
 import datetime
 import json
+import random
 
 from nose.tools import eq_
 import waffle
@@ -11,7 +12,8 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from mkt.webapps.models import Installed
 from mkt.stats import search, tasks, views
-from mkt.stats.views import get_series, pad_missing_stats
+from mkt.stats.views import (get_series_column, get_series_line,
+                             pad_missing_stats)
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -20,7 +22,9 @@ class StatsTest(amo.tests.ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.CONTRIBUTION_SERIES = ('revenue', 'sales', 'refunds')
+        self.CONTRIBUTION_SERIES = ('revenue', 'sales', 'refunds',
+                                    'currency_revenue', 'currency_sales',
+                                    'currency_refunds')
 
         # set up apps
         waffle.models.Switch.objects.create(name='app-stats', active=True)
@@ -192,7 +196,7 @@ class TestInstalled(amo.tests.ESTestCase):
         eq_(res.status_code, 200)
 
 
-class TestGetSeries(amo.tests.ESTestCase):
+class TestGetSeriesLine(amo.tests.ESTestCase):
 
     def setUp(self):
         # Create apps and contributions to index.
@@ -212,7 +216,7 @@ class TestGetSeries(amo.tests.ESTestCase):
         Check a sale (count) is found for each day in the expected range.
         """
         d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 15))
-        stats = list(get_series(Contribution, 'day', addon=self.app.pk,
+        stats = list(get_series_line(Contribution, 'day', addon=self.app.pk,
                                 date__range=d_range))
         dates_with_sales = [c['date'] for c in stats if c['count'] > 0]
         days = [d.day for d in dates_with_sales]
@@ -224,9 +228,50 @@ class TestGetSeries(amo.tests.ESTestCase):
         Check the returned data is in descending order by date.
         """
         d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 15))
-        stats = list(get_series(Contribution, 'day', addon=self.app.pk,
+        stats = list(get_series_line(Contribution, 'day', addon=self.app.pk,
                                 date__range=d_range))
         eq_(stats, sorted(stats, key=lambda x: x['date'], reverse=True))
+
+
+class TestGetSeriesColumn(amo.tests.ESTestCase):
+
+    def setUp(self):
+        # Create apps and contributions to index.
+        self.app = amo.tests.app_factory()
+
+        # Create a sale for each day in the expected range.
+        self.expected = [
+            {'currency': 'CAD', 'count': 0},
+            {'currency': 'EUR', 'count': 0},
+            {'currency': 'USD', 'count': 0}
+        ]
+        for expected in self.expected:
+            for x in range(random.randint(1, 4)):
+                c = Contribution.objects.create(addon_id=self.app.pk,
+                                                amount=random.randint(1, 10),
+                                                currency=expected['currency'])
+                expected['count'] += c.amount
+        tasks.index_finance_total_by_currency([self.app.pk])
+        self.refresh(timesleep=1)
+
+    def test_basic(self):
+        stats = list(get_series_column(Contribution, addon=self.app.pk,
+                                       primary_field='revenue',
+                                       category_field='currency'))
+
+        for stat in stats:
+            stat['currency'] = stat['currency'].upper()
+            stat['count'] = int(stat['count'])
+        stats = sorted(stats, key=lambda stat: stat['currency'])
+        eq_(stats, self.expected)
+
+    def test_desc_order(self):
+        stats = list(get_series_column(Contribution, addon=self.app.pk,
+                                       primary_field='revenue',
+                                       category_field='currency'))
+        for stat in stats:
+            stat['count'] = int(stat['count'])
+        eq_(stats, sorted(stats, key=lambda stat: stat['count'], reverse=True))
 
 
 class TestPadMissingStats(amo.tests.ESTestCase):

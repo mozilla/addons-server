@@ -239,6 +239,7 @@ JS = {
         'js/mkt/buttons.js',
     ),
     'mkt/stats': (
+        'js/lib/jquery-1.6.4.js',
         'js/zamboni/storage.js',
         'js/mkt/modal.js',
         'js/lib/jquery-datepicker.js',
@@ -252,6 +253,7 @@ JS = {
         'js/mkt/stats/topchart.js',
         'js/mkt/stats/chart.js',
         'js/mkt/stats/table.js',
+        'js/mkt/stats/chart_column.js',
         'js/mkt/stats/stats.js',
     ),
     'mkt/themes': (

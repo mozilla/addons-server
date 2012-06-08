@@ -10,7 +10,10 @@
                 pageSize    = 14,
                 pages       = {},
                 metric      = $('.primary').attr('data-report'),
+                metricKeys  = z.StatsManager.metricKeys,
+                nonDateMetrics = z.StatsManager.nonDateMetrics,
                 currentPage;
+
 
             $(document).ready(init);
             function init() {
@@ -29,7 +32,7 @@
                 if (page < 0) {
                     page = 0;
                 }
-                $paginator.find('.prev').toggleClass('disabled', page==0);
+                $paginator.find('.prev').toggleClass('disabled', page == 0);
                 if (pages[page]) {
                     showPage(page);
                 } else {
@@ -41,6 +44,10 @@
                          getPage(page+1);
                          getPage(page-1);
                      });
+                }
+                // nonDateMetrics don't need pages (yet).
+                if (metric in nonDateMetrics) {
+                    $paginator.find('.next').toggleClass('disabled');
                 }
             }
 
@@ -68,12 +75,20 @@
                     };
                 $.when(z.StatsManager.getDataRange(view))
                  .then(function(data) {
-                     var fields     = z.StatsManager.getAvailableFields(view),
+                     var fields = z.StatsManager.getAvailableFields(view),
                          currencyMetrics = z.StatsManager.currencyMetrics,
-                         newBody    = '<tbody>',
-                         newPage    = {},
-                         newHead    = '<tr><th>' + gettext('Date') + '</th>',
+                         newBody = '<tbody>',
+                         newHead = 'Date',
+                         newPage = {},
                          row;
+
+                     // Handle headers other than 'Date'.
+                     switch(metricKeys[metric]) {
+                         case 'currency':
+                             newHead = 'Currency';
+                             break;
+                     }
+                     newHead = '<tr><th>' + gettext(newHead) + '</th>';
 
                      _.each(fields, function(f) {
                          var id = f.split('|').pop(),
@@ -83,29 +98,53 @@
                          newHead += '</th>';
                      });
 
-                     var d = range.end.clone().backward('1 day'),
-                         lastRowDate = range.start.clone().backward('1 day');
-                     for (; lastRowDate.isBefore(d); d.backward('1 day')) {
-                         row = data[d.iso()] || {};
+                     // Manually create a table for nonDateMetrics with
+                     // breakdown field on left and data on right.
+                     if (metric in nonDateMetrics) {
+                        _.each(data, function(datum) {
+                            newBody += '<tr>';
+                            newBody += '<th>' + gettext(datum[metricKeys[metric]]) + "</th>";
 
-                         newBody += '<tr>';
-                         newBody += '<th>' + Highcharts.dateFormat('%a, %b %e, %Y', Date.iso(d)) + "</th>";
-                         _.each(fields, function(f) {
-                             newBody += '<td>';
-                             if (metric in currencyMetrics) {
-                                 newBody += '$' + Highcharts.numberFormat(z.StatsManager.getField(row, f), 2);
-                             } else {
-                                 newBody += Highcharts.numberFormat(z.StatsManager.getField(row, f), 0);
-                             }
-                             newBody += '</td>';
-                         });
-                        newBody += '</tr>';
+                            // Insert data (supports multiple fields).
+                            _.each(fields, function(f) {
+                                newBody += '<td>';
+                                if (metric in currencyMetrics) {
+                                    newBody += '$' + Highcharts.numberFormat(z.StatsManager.getField(datum, f), 2);
+                                } else {
+                                    newBody += Highcharts.numberFormat(z.StatsManager.getField(datum, f), 0);
+                                }
+                                newBody += '</td>';
+                            });
+                            newBody += '</tr>';
+                        });
                      }
-                     newBody += '</tbody>';
+                     // Manually create a table for date-related metrics with
+                     // date on left and data on right.
+                     else {
+                         var d = range.end.clone().backward('1 day'),
+                             lastRowDate = range.start.clone().backward('1 day');
+                         for (; lastRowDate.isBefore(d); d.backward('1 day')) {
+                             row = data[d.iso()] || {};
+                             newBody += '<tr>';
+                             newBody += '<th>' + Highcharts.dateFormat('%a, %b %e, %Y', Date.iso(d)) + "</th>";
 
+                            // Insert data (supports multiple fields).
+                             _.each(fields, function(f) {
+                                 newBody += '<td>';
+                                 if (metric in currencyMetrics) {
+                                     newBody += '$' + Highcharts.numberFormat(z.StatsManager.getField(row, f), 2);
+                                 } else {
+                                     newBody += Highcharts.numberFormat(z.StatsManager.getField(row, f), 0);
+                                 }
+                                 newBody += '</td>';
+                             });
+                            newBody += '</tr>';
+                         }
+                     }
+
+                     newBody += '</tbody>';
                      newPage.el = $(newBody);
                      newPage.head = newHead;
-
                      $table.append(newPage.el);
                      pages[page] = newPage;
 

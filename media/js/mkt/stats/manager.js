@@ -13,9 +13,7 @@ z.StatsManager = (function() {
     // If you increment this number, you cache-bust everyone!
     var STATS_VERSION = '2011-12-12';
     var PRECISION = 2;
-
-    var storage         = z.Storage("stats"),
-        storageCache    = z.SessionStorage("statscache"),
+var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("statscache"),
         dataStore       = {},
         currentView     = {},
         siteEvents      = [],
@@ -45,7 +43,15 @@ z.StatsManager = (function() {
 
     var currencyMetrics = {
         "revenue": true,
+        "currency_revenue": true,
         "contributions": true
+    };
+
+    // For non-date metrics, determine which key is breakdown field.
+    var metricKeys = {
+        'currency_revenue': 'currency',
+        'currency_sales': 'currency',
+        'currency_refunds': 'currency'
     };
 
     // is a metric an average or a sum?
@@ -59,6 +65,14 @@ z.StatsManager = (function() {
         "downloads"     : "sum",
         "sources"       : "sum",
         "contributions" : "sum"
+    };
+
+    // Handle non-datetime-line-graph metrics. There
+    // is also a check for this in chart.js.
+    var nonDateMetrics = {
+        'currency_revenue': true,
+        'currency_sales': true,
+        'currency_refunds': true
     };
 
     // Initialize from localStorage when dom is ready.
@@ -239,7 +253,14 @@ z.StatsManager = (function() {
         function finished() {
             var ds = dataStore[metric],
                 ret = {}, row, firstIndex;
-            if (ds) {
+
+            // Return if metric isn't datetime-based.
+            if (metric in nonDateMetrics) {
+                if (ds.length == 0) {
+                    ds.empty = true;
+                }
+                $def.resolve(ds);
+            } else if (ds) {
                 forEachISODate(range, '1 day', ds, function(row, date) {
                     var d = date.iso();
                     if (row) {
@@ -429,15 +450,19 @@ z.StatsManager = (function() {
                 var ds = dataStore[metric],
                     data = JSON.parse(raw_data);
 
-                var i, datekey;
-                for (i=0; i<data.length; i++) {
-                    datekey = data[i].date;
-                    maxdate = String.max(datekey, maxdate);
-                    mindate = String.min(datekey, mindate);
-                    ds[datekey] = data[i];
+                if (metric in nonDateMetrics) {
+                    dataStore[metric] = data;
+                } else {
+                    var i, datekey;
+                    for (i=0; i<data.length; i++) {
+                        datekey = data[i].date;
+                        maxdate = String.max(datekey, maxdate);
+                        mindate = String.min(datekey, mindate);
+                        ds[datekey] = data[i];
+                    }
+                    ds.maxdate = String.max(maxdate, ds.maxdate);
+                    ds.mindate = String.min(mindate, ds.mindate);
                 }
-                ds.maxdate = String.max(maxdate, ds.maxdate);
-                ds.mindate = String.min(mindate, ds.mindate);
                 clearTimeout(writeInterval);
                 writeInterval = setTimeout(writeLocalStorage, 1000);
                 $def.resolve();
@@ -542,7 +567,6 @@ z.StatsManager = (function() {
         return field;
     }
 
-
     // Expose some functionality to the z.StatsManager api.
     return {
         'getDataRange'      : getDataRange,
@@ -553,6 +577,8 @@ z.StatsManager = (function() {
         'clearLocalStorage' : clearLocalStorage,
         'getAvailableFields': getAvailableFields,
         'currencyMetrics'   : currencyMetrics,
+        'nonDateMetrics'    : nonDateMetrics,
+        'metricKeys'        : metricKeys,
         'getCurrentView'    : function() { return currentView; }
     };
 })();

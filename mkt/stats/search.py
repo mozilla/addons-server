@@ -15,16 +15,16 @@ def get_finance_total(qs, addon):
     refunds per app
     """
     revenue = (qs.values('addon').filter(refund=None).
-               annotate(revenue=Sum('amount')))[0]
+               annotate(revenue=Sum('amount')))
     sales = (qs.values('addon').filter(refund=None).
-             annotate(sales=Count('id')))[0]
+             annotate(sales=Count('id')))
     refunds = (qs.filter(refund__isnull=False).
-               values('addon').annotate(refunds=Count('id')))[0]
+               values('addon').annotate(refunds=Count('id')))
     return {
         'addon': addon,
-        'count': sales['sales'],
-        'revenue': revenue['revenue'],
-        'refunds': refunds['refunds'],
+        'count': sales[0]['sales'] if len(sales) > 0 else 0,
+        'revenue': revenue[0]['revenue'] if len(revenue) > 0 else 0,
+        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
     }
 
 
@@ -34,18 +34,21 @@ def get_finance_total_by_src(qs, addon, source):
     revenue per app by src
     refunds per app by src
     """
+    if not source:
+        source = ''
+
     revenues = (qs.filter(source=source, refund=None).values('addon').
-                annotate(revenue=Sum('amount'))[0])
+                annotate(revenue=Sum('amount')))
     sales = (qs.filter(source=source, refund=None).values('addon').
-             annotate(sales=Count('id'))[0])
+             annotate(sales=Count('id')))
     refunds = (qs.filter(source=source, refund__isnull=False).
-               values('addon').annotate(refunds=Count('id'))[0])
+               values('addon').annotate(refunds=Count('id')))
     return {
         'addon': addon,
         'source': source,
-        'count': sales['sales'],
-        'revenue': revenues['revenue'],
-        'refunds': refunds['refunds'],
+        'count': sales[0]['sales'] if len(sales) > 0 else 0,
+        'revenue': revenues[0]['revenue'] if len(revenues) > 0 else 0,
+        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
     }
 
 
@@ -55,18 +58,21 @@ def get_finance_total_by_currency(qs, addon, currency):
     revenue per app by currency
     refunds per app by currency
     """
+    if not currency:
+        currency = ''
+
     revenues = (qs.filter(currency=currency, refund=None).
-                values('addon').annotate(revenue=Sum('amount'))[0])
+                values('addon').annotate(revenue=Sum('amount')))
     sales = (qs.filter(currency=currency, refund=None)
-             .values('addon').annotate(sales=Count('id'))[0])
+             .values('addon').annotate(sales=Count('id')))
     refunds = (qs.filter(currency=currency, refund__isnull=False).
-               values('addon').annotate(refunds=Count('id'))[0])
+               values('addon').annotate(refunds=Count('id')))
     return {
         'addon': addon,
         'currency': currency,
-        'count': sales['sales'],
-        'revenue': revenues['revenue'],
-        'refunds': refunds['refunds'],
+        'count': sales[0]['sales'] if len(sales) > 0 else 0,
+        'revenue': revenues[0]['revenue'] if len(revenues) > 0 else 0,
+        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
     }
 
 
@@ -76,20 +82,23 @@ def get_finance_total_inapp(qs, addon, inapp_name):
     revenue per in-app
     refunds per in-app
     """
+    if not inapp_name:
+        inapp_name = ''
+
     revenue = (qs.filter(contribution__refund=None).
                values('config__addon').annotate(
-               revenue=Sum('contribution__amount')))[0]
+               revenue=Sum('contribution__amount')))
     sales = (qs.filter(contribution__refund=None).
              values('config__addon').
-             annotate(sales=Count('id')))[0]
+             annotate(sales=Count('id')))
     refunds = (qs.filter(contribution__refund__isnull=False).
-               values('config__addon').annotate(refunds=Count('id')))[0]
+               values('config__addon').annotate(refunds=Count('id')))
     return {
         'addon': addon,
         'inapp': inapp_name,
-        'count': sales['sales'],
-        'revenue': revenue['revenue'],
-        'refunds': refunds['refunds'],
+        'count': sales[0]['sales'] if len(sales) > 0 else 0,
+        'revenue': revenue[0]['revenue'] if len(revenue) > 0 else 0,
+        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
     }
 
 
@@ -99,24 +108,29 @@ def get_finance_total_inapp_by_currency(qs, addon, inapp_name, currency):
     revenue per in-app by currency
     refunds per in-app by currency
     """
+    if not inapp_name:
+        inapp_name = ''
+    if not currency:
+        currency = ''
+
     revenues = (qs.filter(contribution__currency=currency,
                           contribution__refund=None).
                 values('config__addon').
-                annotate(revenue=Sum('contribution__amount')))[0]
+                annotate(revenue=Sum('contribution__amount')))
     sales = (qs.filter(contribution__currency=currency,
                        contribution__refund=None).
-             values('config__addon').annotate(sales=Count('id')))[0]
+             values('config__addon').annotate(sales=Count('id')))
     refunds = (qs.filter(contribution__currency=currency,
                          contribution__refund__isnull=False).
                values('config__addon').
-               annotate(refunds=Count('id')))[0]
+               annotate(refunds=Count('id')))
     return {
         'addon': addon,
         'inapp': inapp_name,
         'currency': currency,
-        'count': sales['sales'],
-        'revenue': revenues['revenue'],
-        'refunds': refunds['refunds'],
+        'count': sales[0]['sales'] if len(sales) > 0 else 0,
+        'revenue': revenues[0]['revenue'] if len(revenues) > 0 else 0,
+        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
     }
 
 

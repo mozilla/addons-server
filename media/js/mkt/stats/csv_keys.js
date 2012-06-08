@@ -14,6 +14,15 @@ var csv_keys = {
     refunds: {
         'count': gettext('Refunds')
     },
+    currency_revenue: {
+        'count': gettext('Revenue')
+    },
+    currency_sales: {
+        'count': gettext('Sales')
+    },
+    currency_refunds: {
+        'count': gettext('Refunds')
+    },
     downloads: {
         "count": gettext('Downloads')
     },
@@ -271,6 +280,21 @@ var csv_keys = {
             gettext("Refunds, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Refunds from {0} to {1}")
+        ],
+        "currency_sales" : [
+            // L10n: {0} is a currency.
+            gettext("Total Sales by Currency"),
+            gettext("Total Sales by Currency")
+        ],
+        "currency_revenue" : [
+            // L10n: {0} is a currency.
+            gettext("Total Revenue by Currency"),
+            gettext("Total Revenue by Currency")
+        ],
+        "currency_refunds" : [
+            // L10n: {0} is a currency.
+            gettext("Total Refunds by Currency"),
+            gettext("Total Refunds by Currency")
         ]
     },
     aggregateLabel: {

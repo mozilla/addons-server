@@ -1,0 +1,40 @@
+{% extends 'appstats/report.html' %}
+
+{% block sales_select %}
+    class="selected"
+{% endblock %}
+
+{% block sales_filters %}
+  <div class="criteria sales-filters island">
+    {% set links = [
+      (addon.get_stats_url(action='revenue'), _('Revenue')),
+      (addon.get_stats_url(action='sales'), _('Sales')),
+      (addon.get_stats_url(action='refunds'), _('Refunds'))
+    ] %}
+    <ul>
+      <li>{{ _('Sales Type') }}</li>
+      {% for link, title in links %}
+        <li{% if request.path == link %} class="selected"{% endif %}>
+          <a href="{{ link }}">{{ title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+
+{% block metric_filters %}
+  <div class="criteria metric-filters island">
+    {% set links = [
+      (addon.get_stats_url(action=report), _('Date')),
+      (addon.get_stats_url(action='currency_' + report), _('Currency')),
+    ] %}
+    <ul>
+      <li>{{ _('Metric Type') }}</li>
+      {% for link, title in links %}
+        <li{% if request.path == link %} class="selected"{% endif %}>
+          <a href="{{ link }}">{{ title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -8,9 +8,10 @@ from stats.urls import series_re
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 
 urlpatterns = patterns('',
-    # This will eventually be kwargs={'report': 'app_overview'}
+    # This will eventually be kwargs={'report': 'app_overview'}.
     url('^$', views.stats_report, name='mkt.stats.overview',
         kwargs={'report': 'installs'}),
+
     url('^installs/$', views.stats_report, name='mkt.stats.installs',
         kwargs={'report': 'installs'}),
     url('^usage/$', views.stats_report, name='mkt.stats.usage',
@@ -23,12 +24,32 @@ urlpatterns = patterns('',
     url('^sales/refunds/$', views.stats_report, name='mkt.stats.refunds',
         kwargs={'report': 'refunds'}),
 
-    # time series URLs following this pattern:
+    url('^sales/currency/$', views.stats_report,
+        name='mkt.stats.currency_revenue',
+        kwargs={'report': 'currency_revenue'}),
+    url('^sales/currency/sales/$', views.stats_report,
+        name='mkt.stats.currency_sales',
+        kwargs={'report': 'currency_sales'}),
+    url('^sales/currency/refunds/$', views.stats_report,
+        name='mkt.stats.currency_refunds',
+        kwargs={'report': 'currency_refunds'}),
+
+    # Time series URLs following this pattern:
     # /app/{app_slug}/statistics/{series}-{group}-{start}-{end}.{format}
     url(series['installs'], views.installs_series,
         name='mkt.stats.installs_series'),
     url(series['usage'], views.usage_series,
         name='mkt.stats.usage_series'),
+
+    url(series['currency_revenue'], views.currency_series,
+        name='mkt.stats.currency_revenue_series',
+        kwargs={'primary_field': 'revenue'}),
+    url(series['currency_sales'], views.currency_series,
+        name='mkt.stats.currency_sales_series',
+        kwargs={'primary_field': 'sales'}),
+    url(series['currency_refunds'], views.currency_series,
+        name='mkt.stats.currency_refunds_series',
+        kwargs={'primary_field': 'refunds'}),
 
     url(series['revenue'], views.revenue_series,
         name='mkt.stats.revenue_series'),

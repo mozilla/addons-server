@@ -49,7 +49,7 @@
             tooltip: { },
             plotOptions: {
                 line: {
-                    lineWidth: 1,
+                    lineWidth: 1.5,
                     animation: false,
                     shadow: false,
                     marker: {
@@ -73,30 +73,15 @@
         };
     Highcharts.setOptions({ lang: { resetZoom: '' } });
     var chart;
-    // which unit do we use for a given metric?
+
+    // Determine unit used for a given metric.
     var metricTypes = {
-        "usage"              : "users",
-        "apps"               : "users",
-        "locales"            : "users",
-        "os"                 : "users",
-        "versions"           : "users",
-        "statuses"           : "users",
-        "users_created"      : "users",
-        "downloads"          : "downloads",
-        "sources"            : "downloads",
-        "contributions"      : "currency",
         "revenue"            : "currency",
-        "reviews_created"    : "reviews",
-        "addons_in_use"      : "addons",
-        "addons_created"     : "addons",
-        "addons_updated"     : "addons",
-        "addons_downloaded"  : "addons",
-        "collections_created": "collections",
-        "subscribers"        : "collections",
-        "ratings"            : "collections",
         "sales"              : "sales",
         "refunds"            : "refunds",
-        "installs"           : "installs"
+        "installs"           : "installs",
+        "usage"              : "users",
+        "reviews_created"    : "reviews"
     };
 
     var acceptedGroups = {
@@ -130,6 +115,16 @@
             chartRange = {},
             t, row, i, field, val,
             is_overview = metric == 'overview' || metric == 'app_overview';
+
+        // Let different function handle if metrics aren't a Highcharts
+        // datetime line graph.
+        if (metric in z.StatsManager.nonDateMetrics) {
+            return;
+        }
+
+        // Re-enable date controls (was possibly disabled for column chart).
+        $('.range li a').removeClass('inactive').unbind('click');
+        $('.group li a').removeClass('inactive').unbind('click');
 
         if (!(group in acceptedGroups)) {
             group = 'day';
@@ -183,6 +178,8 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
+        var inactive = function() { return false; };
+        var offset = 0;
         var date_range_days = parseInt((end - start) / 1000 / 3600 / 24);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 16;
@@ -190,16 +187,20 @@
         baseConfig.xAxis.max = end;
         // Set sensible spacing between ticks (so text doesn't overlap).
         if (group == 'day') {
+            offset = dayMsecs / 1.25;
             if (date_range_days <= 7) {
                 baseConfig.xAxis.tickInterval = (end - start) / 7;
             }
         } else if (group == 'week') {
+            $('.range li a.week').addClass('inactive').bind('click', inactive);
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 90) {
                 baseConfig.xAxis.tickInterval = (end - start) / 16;
             }
         } else if (group == 'month') {
+            $('.range li a.week').addClass('inactive').bind('click', inactive);
+            $('.range li a.month').addClass('inactive').bind('click', inactive);
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 365 * 2) {
@@ -229,7 +230,8 @@
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
                 'pointInterval' : pointInterval,
-                'pointStart' : start.getTime(),
+                // Add offset to line up points and ticks on day grouping.
+                'pointStart' : start.getTime() - offset,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
@@ -243,15 +245,12 @@
             function dayFormatter(d) { return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d)); }
             function weekFormatter(d) { return format(gettext('Week of {0}'), Highcharts.dateFormat('%b %e, %Y', new Date(d))); }
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
-            function downloadFormatter(n) { return gettext(Highcharts.numberFormat(n, 0) + 'downloads'); }
-            function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
-            function addonsFormatter(n) { return format(gettext('{0} add-ons'), Highcharts.numberFormat(n, 0)); }
-            function collectionsFormatter(n) { return format(gettext('{0} collections'), Highcharts.numberFormat(n, 0)); }
-            function reviewsFormatter(n) { return format(gettext('{0} reviews'), Highcharts.numberFormat(n, 0)); }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
             function salesFormatter(n) { return format(gettext('{0} sales'), Highcharts.numberFormat(n, 0)); }
             function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
             function installsFormatter(n) { return format(gettext('{0} installs'), Highcharts.numberFormat(n, 0)); }
+            function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
+            function reviewsFormatter(n) { return format(gettext('{0} reviews'), Highcharts.numberFormat(n, 0)); }
             function addEventData(s, date) {
                 var e = events[date];
                 if (e) {
@@ -262,160 +261,53 @@
 
             // Determine x-axis formatter.
             if (group == "week") {
+                baseConfig.xAxis.title.text = 'Week';
                 xFormatter = weekFormatter;
             } else if (group == "month") {
+                baseConfig.xAxis.title.text = 'Month';
                 xFormatter = monthFormatter;
             } else {
+                baseConfig.xAxis.title.text = 'Day';
                 xFormatter = dayFormatter;
             }
 
-            if (is_overview) {
-                return function() {
-                    var ret = "<b>" + xFormatter(this.x) + "</b>",
-                        p;
-                    for (var i=0; i < this.points.length; i++) {
-                        p = this.points[i];
-                        ret += '<br>' + p.series.name + ': ';
-                        ret += Highcharts.numberFormat(p.y, 0);
-                    }
-                    return addEventData(ret, this.x);
-                };
-            } else if (metric == 'contributions') {
-                return function() {
-                    var ret = "<b>" + xFormatter(this.x) + "</b>",
-                        p;
-                    for (var i=0; i < this.points.length; i++) {
-                        p = this.points[i];
-                        ret += '<br>' + p.series.name + ': ';
-                        if (p.series.options.yAxis > 0) {
-                            ret += Highcharts.numberFormat(p.y, 0);
-                        } else {
-                            ret += currencyFormatter(p.y);
-                        }
-                    }
-                    return addEventData(ret, this.x);
-                };
-            } else {
-                // Determine y-axis formatter.
-                switch (metricTypes[metric]) {
-                    case "users":
-                        yFormatter = userFormatter;
-                        break;
-                    case "downloads":
-                        yFormatter = downloadFormatter;
-                        break;
-                    case "currency": case "revenue":
-                        yFormatter = currencyFormatter;
-                        break;
-                    case "collections":
-                        yFormatter = collectionsFormatter;
-                        break;
-                    case "reviews":
-                        yFormatter = reviewsFormatter;
-                        break;
-                    case "addons":
-                        yFormatter = addonsFormatter;
-                        break;
-                    case "sales":
-                        yFormatter = salesFormatter;
-                        break;
-                    case "refunds":
-                        yFormatter = refundsFormatter;
-                        break;
-                    case "installs":
-                        yFormatter = installsFormatter;
-                        break;
-                }
-                return function() {
-                    var ret = "<b>" + this.series.name + "</b><br>" +
-                              xFormatter(this.x) + "<br>" +
-                              yFormatter(this.y);
-                    return addEventData(ret, this.x);
-                };
+            // Determine y-axis formatter.
+            switch (metricTypes[metric]) {
+                case "currency": case "revenue":
+                    baseConfig.yAxis.title.text = 'Revenue';
+                    yFormatter = currencyFormatter;
+                    break;
+                case "sales":
+                    baseConfig.yAxis.title.text = 'Sales';
+                    yFormatter = salesFormatter;
+                    break;
+                case "refunds":
+                    baseConfig.yAxis.title.text = 'Refunds';
+                    yFormatter = refundsFormatter;
+                    break;
+                case "installs":
+                    baseConfig.yAxis.title.text = 'Installs';
+                    yFormatter = installsFormatter;
+                    break;
+                case "users":
+                    baseConfig.yAxis.title.text = 'Users';
+                    yFormatter = userFormatter;
+                    break;
+                case "reviews":
+                    yFormatter = reviewsFormatter;
+                    break;
             }
+            return function() {
+                var ret = "<b>" + this.series.name + "</b><br>" +
+                          xFormatter(this.x) + "<br>" +
+                          yFormatter(this.y);
+                return addEventData(ret, this.x);
+            };
         })();
 
         // Set up the new chart's configuration.
         var newConfig = $.extend(baseConfig, { series: chartData });
-        // set up dual-axes for the overview chart.
-        if (is_overview && newConfig.series.length) {
-            _.extend(newConfig, {
-                yAxis : [
-                    { // Downloads
-                        title: {
-                           text: gettext('Downloads')
-                        },
-                        min: 0,
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 0);
-                            }
-                        }
-                    }, { // Daily Users
-                        title: {
-                            text: gettext('Daily Users')
-                        },
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 0);
-                            }
-                        },
-                        min: 0,
-                        opposite: true
-                    }
-                ],
-                tooltip: {
-                    shared : true,
-                    crosshairs : true
-                }
-            });
-            // set Daily Users series to use the right yAxis.
-            if (metric == 'overview') {
-                _.find(newConfig.series,
-                   function(s) { return s.id == 'updates'; }).yAxis = 1;
-            } else {
-                _.find(newConfig.series,
-                   function(s) { return s.id == 'usage'; }).yAxis = 1;
-            }
-
-        }
-        if (metric == "contributions" && newConfig.series.length) {
-            _.extend(newConfig, {
-                yAxis : [
-                    { // Amount
-                        title: {
-                            text: gettext('Amount, in USD')
-                        },
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 2);
-                            }
-                        },
-                        min: 0
-                    },
-                    { // Number of Contributions
-                        title: {
-                           text: gettext('Number of Contributions')
-                        },
-                        min: 0,
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 0);
-                            }
-                        },
-                        opposite: true
-                    }
-                ],
-                tooltip: {
-                    shared : true,
-                    crosshairs : true
-                }
-            });
-            // set Daily Users series to use the right yAxis.
-            newConfig.series[0].yAxis = 1;
-        }
         newConfig.tooltip.formatter = tooltipFormatter;
-
 
         function makeSiteEventHandler(e) {
             return function() {
@@ -466,6 +358,7 @@
         newConfig.title = {
             text: title
         };
+
         if (chart && chart.destroy) chart.destroy();
         chart = new Highcharts.Chart(newConfig);
 
