@@ -190,7 +190,11 @@ class Contribution(amo.models.ModelBase):
 
         reason is either 'reversal' or 'refund'
         """
-        if hasattr(self, 'inapp_payment') and self.inapp_payment.count():
+        # Sigh. AMO does not have inapp_pay installed and it does not have
+        # the database tables. Since both mkt and AMO share this code we
+        # need to hide it from AMO.
+        if ('mkt.inapp_pay' in settings.INSTALLED_APPS
+            and self.inapp_payment.count()):
             self.inapp_payment.get().handle_chargeback(reason)
 
     def _switch_locale(self):
