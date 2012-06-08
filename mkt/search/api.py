@@ -45,6 +45,7 @@ class SearchResource(MarketplaceResource):
         return bundle.obj.app_slug
 
     def dehydrate(self, bundle):
-        bundle.data['icon_url'] = bundle.obj.get_icon_url(32)
+        for size in amo.ADDON_ICON_SIZES:
+            bundle.data['icon_url_%s' % size] = bundle.obj.get_icon_url(size)
         bundle.data['absolute_url'] = absolutify(bundle.obj.get_detail_url())
         return bundle
