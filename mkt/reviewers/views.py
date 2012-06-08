@@ -23,7 +23,8 @@ from devhub.models import AppLog
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
-from lib.crypto.receipt import cef, SigningError
+from lib.crypto.receipt import SigningError
+from lib.cef_loggers import receipt_cef
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import create_receipt, Installed, Webapp
 from reviews.models import Review
@@ -309,7 +310,7 @@ def issue(request, addon):
                                                          user=request.amo_user)
     error = ''
     flavour = 'reviewer' if review else 'developer'
-    cef(request, addon, 'sign', 'Receipt signing for %s' % flavour)
+    receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
     try:
         receipt = create_receipt(installed.pk, flavour=flavour)
     except SigningError:

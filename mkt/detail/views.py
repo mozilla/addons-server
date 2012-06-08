@@ -11,12 +11,13 @@ from access import acl
 from addons.decorators import addon_view_factory
 import amo
 import amo.log
-from amo.decorators import json_view, login_required, post_required, write
+from amo.decorators import json_view, post_required, write
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
 from amo.utils import memoize_get
 from lib.metrics import send_request
-from lib.crypto.receipt import cef, SigningError
+from lib.crypto.receipt import SigningError
+from lib.cef_loggers import receipt_cef
 
 from mkt.ratings.models import Rating
 from mkt.site import messages
@@ -113,9 +114,9 @@ def _record(request, addon):
         # to recreate it.
         receipt = memoize_get('create-receipt', installed.pk)
         error = ''
-        cef(request, addon, 'request', 'Receipt requested')
+        receipt_cef.log(request, addon, 'request', 'Receipt requested')
         if not receipt:
-            cef(request, addon, 'sign', 'Receipt signing')
+            receipt_cef.log(request, addon, 'sign', 'Receipt signing')
             try:
                 receipt = create_receipt(installed.pk)
             except SigningError:

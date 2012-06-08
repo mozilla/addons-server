@@ -14,69 +14,98 @@
   {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
   <h1>{{ title }}</h1>
 </header>
-<section id="in-app-config" class="primary devhub-form island" role="main">
-  <form class="item in-app-config" method="post" action="{{ request.path }}">
-    <p>
-      {{ _('The Mozilla Marketplace allows your app to take in-app payments.
-            The <a href="{guide}">in-app payment guide</a> explains how to
-            configure your app for payments with the parameters below.
-            ')|f(guide='https://developer.mozilla.org/en/Apps/In-app_payments')|safe }}
-    </p>
-    {{ csrf() }}
-    <table>
-      <tr>
-        <th class="label">{{ _('Application Domain') }}</th>
-        <td><span class="inapp-domain-protocol">https://</span>{{ addon.app_domain }}</td>
-      </tr>
-      <tr>
-        <th><label for="id_is_https">{{ _("SSL") }} {{ required() }}</label></th>
-        <td>
-          {{ inapp_form.is_https }}
-          {{ inapp_form.is_https.errors }}
-          <span class="is-https hint">{{ inapp_form.is_https.help_text }}</span>
-        </td>
-      </tr>
-      <tr>
-        <th><label for="id_postback_url">{{ _("Postback URL") }} {{ required() }}</label></th>
-        <td>
-          {{ inapp_form.postback_url }}
-          {{ inapp_form.postback_url.errors }}
-          <span class="hint">{{ inapp_form.postback_url.help_text }}</span>
-        </td>
-      </tr>
-      <tr>
-        <th><label for="id_chargeback_url">{{ _("Chargeback URL") }} {{ required() }}</label></th>
-        <td>
-          {{ inapp_form.chargeback_url }}
-          {{ inapp_form.chargeback_url.errors }}
-          <span class="hint">{{ inapp_form.chargeback_url.help_text }}</span>
-        </td>
-      </tr>
-      <tr id="in-app-public-key">
-        <th class="label">{{ _('Application Key') }}</th>
-        {% if inapp_config %}
-          <td><input type="text" value="{{ inapp_config.public_key }}" readonly></td>
-        {% else %}
-          <td class="not-generated">({{ _('Not yet generated.') }})</td>
-        {% endif %}
-      </tr>
-      <tr id="in-app-private-key">
-        <th class="label">{{ _('Application Secret') }}</th>
-        {% if inapp_config %}
+<section class="primary manage" role="main">
+  <div id="in-app-config" class="devhub-form island">
+    <form class="item in-app-config" method="post" action="{{ request.path }}">
+      <p>
+        {{ _('The Mozilla Marketplace allows your app to take in-app payments.
+              The <a href="{guide}">in-app payment guide</a> explains how to
+              configure your app for payments with the parameters below.
+              ')|f(guide='https://developer.mozilla.org/en/Apps/In-app_payments')|safe }}
+      </p>
+      {{ csrf() }}
+      <table>
+        <tr>
+          <th class="label">{{ _('Application Domain') }}</th>
+          <td><span class="inapp-domain-protocol">https://</span>{{ addon.app_domain }}</td>
+        </tr>
+        <tr>
+          <th><label for="id_is_https">{{ _("SSL") }} {{ required() }}</label></th>
           <td>
-            <button data-url="{{ addon.get_dev_url('in_app_secret') }}"
-                    class="generator">{{ _('Show secret') }}</button>
-            <input type="text" class="secret" type="text" value="" readonly>
+            {{ inapp_form.is_https }}
+            {{ inapp_form.is_https.errors }}
+            <span class="is-https hint">{{ inapp_form.is_https.help_text }}</span>
           </td>
-        {% else %}
-          <td class="not-generated">({{ _('Not yet generated.') }})</td>
+        </tr>
+        <tr>
+          <th><label for="id_postback_url">{{ _("Postback URL") }} {{ required() }}</label></th>
+          <td>
+            {{ inapp_form.postback_url }}
+            {{ inapp_form.postback_url.errors }}
+            <span class="hint">{{ inapp_form.postback_url.help_text }}</span>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="id_chargeback_url">{{ _("Chargeback URL") }} {{ required() }}</label></th>
+          <td>
+            {{ inapp_form.chargeback_url }}
+            {{ inapp_form.chargeback_url.errors }}
+            <span class="hint">{{ inapp_form.chargeback_url.help_text }}</span>
+          </td>
+        </tr>
+        <tr id="in-app-public-key">
+          <th class="label">{{ _('Application Key') }}</th>
+          {% if inapp_config %}
+            <td><input type="text" value="{{ inapp_config.public_key }}" readonly></td>
+          {% else %}
+            <td class="not-generated">({{ _('Not yet generated.') }})</td>
+          {% endif %}
+        </tr>
+        <tr id="in-app-private-key">
+          <th class="label">{{ _('Application Secret') }}</th>
+          {% if inapp_config %}
+            <td>
+              <button data-url="{{ addon.get_dev_url('in_app_secret') }}"
+                      class="generator">{{ _('Show secret') }}</button>
+              <input type="text" class="secret" type="text" value="" readonly>
+            </td>
+          {% else %}
+            <td class="not-generated">({{ _('Not yet generated.') }})</td>
+          {% endif %}
+        </tr>
+      </table>
+      <div class="listing-footer">
+        {% if inapp_config %}
         {% endif %}
-      </tr>
-    </table>
-    <div class="listing-footer">
-      <button type="submit">{{ _('Save Changes') }}</button>
-    </div>
-  </form>
+        <button type="submit">{{ _('Save Changes') }}</button>
+      </div>
+    </form>
+  </div>
+  <h2>{{ _('Reset credentials') }}</h2>
+  <div class="devhub-form island">
+    {% if inapp_config %}
+      {% set reset = addon.get_dev_url('reset_in_app_config', [inapp_config.pk]) %}
+    {% else %}
+      {% set reset = '' %}
+    {% endif %}
+    <form method="post" action="{{ reset }}">
+      {{ csrf() }}
+      <p>
+      {% trans %}
+      In case your <b>Application Key</b> or <b>Application Secret</b>
+      ever gets compromised, you can reset them here to stop all payments.
+      After the reset, your app can no longer make payments with the
+      old credentials.
+      You will be granted new credentials that you can use to
+      accept in-app payments immediately.
+      {% endtrans %}
+      </p>
+      <div class="listing-footer">
+        <button {% if not inapp_config %}disabled{% endif %}
+                type="submit">{{ _('Reset credentials') }}</button>
+      </div>
+    </form>
+  </div>
 </section>
 {% include "developers/includes/addons_edit_nav.html" %}
 {% endblock %}
