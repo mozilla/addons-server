@@ -155,7 +155,7 @@ def payments(request, addon_id, addon):
     if request.POST and form.is_valid():
         addon.update(premium_type=form.cleaned_data['premium_type'])
 
-        if addon.premium_type in amo.ADDON_PREMIUMS:
+        if addon.premium_type in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP]:
             return redirect('submit.app.payments.upsell', addon.app_slug)
         if addon.premium_type == amo.ADDON_FREE_INAPP:
             return redirect('submit.app.payments.paypal', addon.app_slug)
