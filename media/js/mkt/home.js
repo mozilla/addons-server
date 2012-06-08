@@ -19,3 +19,11 @@
         }
     });
 })();
+
+(function() {
+    var $logo = $('#site-header h1 a'),
+        href = $logo.attr('href');
+    $logo.on('click', function() {
+        $(window).trigger('loadfragment', href);
+    })
+})();
