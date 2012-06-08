@@ -171,10 +171,22 @@ class TestPayStart(PayFlowTest):
         eq_(rp.status_code, 200)
         self.assertTemplateUsed(rp, 'inapp_pay/nowallet.html')
 
-    def test_pay_start_error(self, fetch_prod_im):
+    @fudge.patch('mkt.inapp_pay.models.inapp_cef.log')
+    def test_pay_start_error(self, fetch_prod_im, cef):
         self.inapp_config.addon.support_url = 'http://friendlyapp.org/support'
         self.inapp_config.addon.support_email = 'help@friendlyapp.org'
         self.inapp_config.addon.save()
+
+        def inspect_msg(msg):
+            assert 'RequestVerificationError' in msg, (
+                                    'CEF log should have exception message')
+            return True
+
+        cef.expects_call().with_args(arg.any(), 'unknown',
+                                     'inapp_pay_error',
+                                     arg.passes_test(inspect_msg),
+                                     severity=arg.any())
+
         rp = self.start(req=self.request(app_secret='invalid'))
         eq_(rp.status_code, 200)
         doc = pq(rp.content)
@@ -333,7 +345,11 @@ class TestPay(PaymentViewTest):
         eq_(InappPayLog.objects.get().action,
             InappPayLog._actions['PAY_COMPLETE'])
 
-    def test_invalid_contrib_uuid(self):
+    @fudge.patch('mkt.inapp_pay.views.inapp_cef.log')
+    def test_invalid_contrib_uuid(self, cef):
+        cef.expects_call().with_args(arg.any(), self.inapp_config.addon,
+                                     'inapp_pay_status', arg.any(),
+                                     severity=arg.any())
         res = self.client.get(self.complete_url, {'uuid': 'invalid-uuid'})
         self.assertContains(res, 'Payment Error')
 

@@ -1,7 +1,6 @@
 import hashlib
 import uuid
 
-from commonware.response.decorators import xframe_allow
 import commonware.log
 import jingo
 from session_csrf import anonymous_csrf
@@ -14,7 +13,7 @@ from django.shortcuts import redirect, get_object_or_404
 
 import amo
 from amo.decorators import login_required, post_required, write
-
+from lib.cef_loggers import inapp_cef
 import paypal
 from stats.models import Contribution
 
@@ -183,6 +182,11 @@ def pay_status(request, config_pk, status):
                 Contribution.DoesNotExist), exc:
             log.error('PayPal returned invalid uuid %r from in-app payment'
                       % uuid_, exc_info=True)
+            inapp_cef.log(request, cfg.addon, 'inapp_pay_status',
+                          'PayPal or someone sent invalid uuid %r for '
+                          'in-app pay config %r; exception: %s: %s'
+                          % (uuid_, cfg.pk, exc.__class__.__name__, exc),
+                          severity=4)
             return render_error(request, exc)
         payment = InappPayment.objects.get(config=cfg, contribution=cnt)
         if status == 'complete':
