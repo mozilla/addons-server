@@ -92,12 +92,11 @@
       {{ csrf() }}
       <p>
       {% trans %}
-      In case your <b>Application Key</b> or <b>Application Secret</b>
-      ever gets compromised, you can reset them here to stop all payments.
-      After the reset, your app can no longer make payments with the
-      old credentials.
-      You will be granted new credentials that you can use to
-      accept in-app payments immediately.
+      In case your <b>Application Secret</b>
+      ever gets compromised, you can reset it here to stop all payments.
+      After the reset, your app can no longer make payments with the old credentials.
+      You will be granted a new <b>Application Key</b> and <b>Application Secret</b>
+      that you can use to accept in-app payments with immediately.
       {% endtrans %}
       </p>
       <div class="listing-footer">
