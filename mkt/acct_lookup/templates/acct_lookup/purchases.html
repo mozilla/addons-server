@@ -4,8 +4,37 @@
 {% endblock %}
 
 {% block content %}
-  <section class="island">
-  {{ _('Purchases') }}
+  {% include 'acct_lookup/includes/search.html' %}
+
+  <section class="island c">
+    <h1>
+      {{ _('Purchase results for') }}
+      <a href="{{ account.get_url_path() }}"
+         title="{{ _('Public Profile') }}">{{ account.display_name }}</a>
+      ({{ account.pk }})
+    </h1>
+
+    <section id="avatar">
+      <img class="avatar" src="{{ account.picture_url }}">
+      <nav class="shortcuts">
+        <ul>
+          <li>
+            <a href="{{ account.get_url_path() }}" class="button">
+              {{ _('Public Profile') }}
+            </a>
+          </li>
+          <li><a href="#" class="button">{{ _('Activity') }}</a></li>
+          <li>
+            <a href="{{ url('acct_lookup.purchases', account.id) }}"
+               class="button">
+              {{ _('Purchases') }}
+            </a>
+          </li>
+          <li><a href="#" class="button">{{ _('Edit Account') }}</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    {% include 'account/includes/purchases.html' %}
   </section>
-  {% include 'account/includes/purchases.html' %}
 {% endblock %}

@@ -57,6 +57,7 @@ def purchases(request, user_id):
     products, contributions, listing = purchase_list(request, user, None)
     return jingo.render(request, 'acct_lookup/purchases.html',
                         {'pager': products,
+                         'account': user,
                          'listing_filter': listing,
                          'contributions': contributions,
                          'single': bool(None),

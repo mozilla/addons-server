@@ -114,6 +114,57 @@ h1 {
     padding-left: 20px;
     width: 300px;
 }
+#purchases {
+    float: left;
+    width: 680px;
+    #sorter {
+        h3 {
+            color: @medium-gray;
+        }
+    }
+    .item {
+        position: relative;
+        color: @medium-gray;
+        .actions {
+            position: absolute;
+            right: 10px;
+            top: 27px;
+            .checkmark.purchased {
+                color: @green;
+            }
+        }
+        h3 {
+            margin-right: 110px;
+            word-wrap: break-word;
+        }
+        &:hover {
+            background-color: transparent;
+        }
+        &:nth-child(2n) {
+            background-color: lighten(#eee, 4%);
+        }
+        .vitals.contributions {
+            margin-top: 10px;
+            .border-radius(5px);
+            .box-shadow(0 1px 1px rgba(0,0,0,0.4));
+            li {
+                padding: 5px;
+                &:first-child {
+                    .border-radius(5px 5px 0 0);
+                }
+                &:last-child {
+                    .border-radius(0 0 5px 5px);
+                }
+                &:nth-child(2n) {
+                    background-color: lighten(@link, 47%);
+                }
+                &:nth-child(2n+1) {
+                    background-color: @white;
+                }
+            }
+        }
+    }
+}
 #developer-info {
     float: right;
     width: 668px;

@@ -24,7 +24,12 @@
             </a>
           </li>
           <li><a href="#" class="button">{{ _('Activity') }}</a></li>
-          <li><a href="#" class="button">{{ _('Purchases') }}</a></li>
+          <li>
+            <a href="{{ url('acct_lookup.purchases', account.id) }}"
+               class="button">
+              {{ _('Purchases') }}
+            </a>
+          </li>
           <li><a href="#" class="button">{{ _('Edit Account') }}</a></li>
         </ul>
       </nav>

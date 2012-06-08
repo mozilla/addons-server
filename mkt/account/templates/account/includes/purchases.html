@@ -21,7 +21,7 @@
         </div>
         <div class="actions">
           {% if product.is_purchased(request.amo_user) %}
-            <span class="checkmark purchased">{{ _('Purchased') }}</a>
+            <span class="checkmark purchased">{{ _('Purchased') }}</span>
           {% endif %}
           {% if is_refunded %}
             <div class="purchase refund-notice">
