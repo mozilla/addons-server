@@ -74,10 +74,11 @@
         {% if request.amo_user %}
           {% if purchased %}
             <span class="approval checkmark purchased">
-              {{ _('Purchased') }}</span>
+              <b>{{ _('Purchased') }}</b></span>
           {% elif product.can_purchase() %}
             {% if user_data(amo_user)['pre_auth'] %}
-              <span class="approval checkmark">{{ _('PayPal pre-approval') }}</span>
+              <span class="approval checkmark">
+                <b>{{ _('PayPal pre-approval') }}</b></span>
             {% endif %}
           {% endif %}
         {% endif %}

@@ -505,6 +505,25 @@ h1 .num {
                     }
                 }
             }
+            .purchased {
+                display: none;
+            }
+            .checkmark {
+                .border-box;
+                background: none;
+                margin-top: -45px;
+                pointer-events: none;
+                z-index: 1;
+                width: 50%;
+                &:before {
+                    background-color: lighten(@green, 10%);
+                    .box-shadow(0 1px 1px @btn-b-dark,
+                                inset 0 1px 1px rgba(0,0,0,.7));
+                }
+                b {
+                    .hidetext;
+                }
+            }
         }
         .vitals {
             margin: 0;
@@ -532,8 +551,12 @@ h1 .num {
                 bottom: -47px;
                 width: 105px;
             }
+            .pricetag {
+                display: none;
+            }
             p {
                 display: block;
+                float: left;
                 margin: 0;
             }
         }
