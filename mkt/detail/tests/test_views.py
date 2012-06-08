@@ -565,7 +565,7 @@ class TestInstall(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 302)
 
-    @mock.patch('mkt.detail.views.cef')
+    @mock.patch('mkt.detail.views.receipt_cef.log')
     def test_log_metrics(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
@@ -574,7 +574,7 @@ class TestInstall(amo.tests.TestCase):
         eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
 
     @mock.patch('mkt.detail.views.send_request')
-    @mock.patch('mkt.detail.views.cef')
+    @mock.patch('mkt.detail.views.receipt_cef.log')
     def test_record_metrics(self, cef, send_request):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
@@ -582,7 +582,7 @@ class TestInstall(amo.tests.TestCase):
         eq_(send_request.call_args[0][2], {'app-domain': u'cbc.ca',
                                            'app-id': self.addon.pk})
 
-    @mock.patch('mkt.detail.views.cef')
+    @mock.patch('mkt.detail.views.receipt_cef.log')
     def test_cef_logs(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
@@ -596,13 +596,13 @@ class TestInstall(amo.tests.TestCase):
         eq_([x[0][2] for x in cef.call_args_list],
             ['request', 'sign', 'request'])
 
-    @mock.patch('mkt.detail.views.cef')
+    @mock.patch('mkt.detail.views.receipt_cef.log')
     def test_record_install(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
 
-    @mock.patch('mkt.detail.views.cef')
+    @mock.patch('mkt.detail.views.receipt_cef.log')
     def test_record_multiple_installs(self, cef):
         self.client.post(self.url)
         res = self.client.post(self.url)
@@ -611,7 +611,7 @@ class TestInstall(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                        amo.tests.AMOPaths.sample_key())
-    @mock.patch('mkt.detail.views.cef')
+    @mock.patch('mkt.detail.views.receipt_cef.log')
     def test_record_receipt(self, cef):
         res = self.client.post(self.url)
         content = json.loads(res.content)

@@ -1,3 +1,5 @@
+import fudge
+from fudge.inspector import arg
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -26,8 +28,7 @@ def create_inapp_config(public_key='pub-key', private_key='priv-key',
     return cfg
 
 
-@mock.patch.object(settings, 'DEBUG', True)
-class TestInappConfig(amo.tests.TestCase):
+class InappTest(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
@@ -37,7 +38,6 @@ class TestInappConfig(amo.tests.TestCase):
                                  password='password')
         self.webapp = Addon.objects.get(id=337141)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM_INAPP)
-        self.url = self.webapp.get_dev_url('in_app_config')
 
     def config(self, public_key='pub-key', private_key='priv-key',
                status=amo.INAPP_STATUS_ACTIVE, addon=None,
@@ -50,6 +50,14 @@ class TestInappConfig(amo.tests.TestCase):
                                    postback_url=postback_url,
                                    addon=addon,
                                    chargeback_url=chargeback_url)
+
+
+@mock.patch.object(settings, 'DEBUG', True)
+class TestInappConfig(InappTest):
+
+    def setUp(self):
+        super(TestInappConfig, self).setUp()
+        self.url = self.webapp.get_dev_url('in_app_config')
 
     def post(self, data, expect_error=False):
         resp = self.client.post(self.url, data, follow=True)
@@ -85,7 +93,7 @@ class TestInappConfig(amo.tests.TestCase):
         assert doc('#in-app-public-key').hasClass('not-generated')
         assert doc('#in-app-private-key').hasClass('not-generated')
 
-    def test_when_not_configured(self):
+    def test_view_state_when_not_configured(self):
         resp = self.client.get(self.url)
         doc = pq(resp.content)
         assert doc('#in-app-public-key').hasClass('not-generated')
@@ -150,3 +158,67 @@ class TestInappConfig(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         eq_(res.status_code, 302)
+
+
+@mock.patch.object(settings, 'DEBUG', True)
+class TestInappConfigReset(InappTest):
+
+    def setUp(self):
+        super(TestInappConfigReset, self).setUp()
+
+    def get_url(self, config_id):
+        return self.webapp.get_dev_url('reset_in_app_config', [config_id])
+
+    @fudge.patch('mkt.developers.views.inapp_cef.log')
+    def test_reset(self, cef):
+        cfg = self.config(public_key='old-key',
+                          private_key='old-secret')
+
+        def inspect_msg(msg):
+            assert 'old-key' in msg, 'CEF should log old key'
+            return True
+
+        cef.expects_call().with_args(arg.any(),
+                                     cfg.addon,
+                                     'inapp_reset',
+                                     arg.passes_test(inspect_msg),
+                                     severity=6)
+        res = self.client.post(self.get_url(cfg.pk))
+        self.assertRedirects(res, self.webapp.get_dev_url('in_app_config'))
+        old_cfg = InappConfig.objects.get(pk=cfg.pk)
+        eq_(old_cfg.status, amo.INAPP_STATUS_REVOKED)
+        inapp = InappConfig.objects.get(addon=self.webapp,
+                                        status=amo.INAPP_STATUS_ACTIVE)
+        eq_(inapp.chargeback_url, cfg.chargeback_url)
+        eq_(inapp.postback_url, cfg.postback_url)
+        assert inapp.public_key != cfg.public_key, (
+                                    'Unexpected: %s' % inapp.public_key)
+        pk = inapp.get_private_key()
+        assert pk != cfg.get_private_key, ('Unexpected: %s' % pk)
+
+    def test_reset_requires_auth(self):
+        cfg = self.config()
+        self.client.logout()
+        self.assertLoginRequired(self.client.post(self.get_url(cfg.pk)))
+
+    def test_reset_requires_owner(self):
+        cfg = self.config()
+        self.client.logout()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        url = self.get_url(cfg.pk)
+        res = self.client.post(url)
+        eq_(res.status_code, 403)
+
+    def test_reset_requires_app_with_payments(self):
+        cfg = self.config()
+        for st in (amo.ADDON_FREE, amo.ADDON_PREMIUM):
+            self.webapp.update(premium_type=st)
+            url = self.get_url(cfg.pk)
+            res = self.client.post(url)
+            self.assertRedirects(res, self.webapp.get_dev_url('payments'))
+
+    def test_reset_non_existant_config(self):
+        url = self.get_url(9999)
+        res = self.client.post(url)
+        eq_(res.status_code, 404)

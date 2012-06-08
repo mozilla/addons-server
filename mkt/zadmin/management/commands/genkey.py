@@ -13,8 +13,10 @@ class Command(BaseCommand):
                     help='Location for key file. Default: %default',
                     default='./encryption.key'),
         make_option('--length', action='store', type=int,
-                    help='Key length in bytes. Default: %default',
-                    default=128),
+                    help='Number of random bytes. Actual key length will be '
+                         'double, i.e. 32 yields a 64 byte key. '
+                         'Default: %default',
+                    default=32),
     )
 
     def handle(self, *args, **options):
@@ -25,4 +27,4 @@ class Command(BaseCommand):
         with open(options['dest'], 'wb') as fp:
             fp.write(generate_key(options['length']))
         os.chmod(options['dest'], 0600)
-        print 'Wrote in-app payment key: %s' % options['dest']
+        print 'Wrote cryptography key: %s' % options['dest']

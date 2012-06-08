@@ -33,6 +33,7 @@ from addons.views import BaseFilter
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
+from lib.cef_loggers import inapp_cef
 from market.models import AddonPaymentData, AddonPremium, Refund
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
@@ -435,6 +436,36 @@ def in_app_config(request, addon_id, addon, webapp=True):
     return jingo.render(request, 'developers/payments/in-app-config.html',
                         dict(addon=addon, inapp_form=inapp_form,
                              inapp_config=inapp_config))
+
+
+@waffle_switch('in-app-payments')
+@dev_required(owner_for_post=True, webapp=True)
+@post_required
+@transaction.commit_on_success
+def reset_in_app_config(request, addon_id, addon, config_id, webapp=True):
+    if addon.premium_type not in amo.ADDON_INAPPS:
+        messages.error(request, 'Your app does not use payments.')
+        return redirect(addon.get_dev_url('payments'))
+
+    cfg = get_object_or_404(InappConfig, addon=addon,
+                            status=amo.INAPP_STATUS_ACTIVE)
+    msg = ('user reset in-app payment config %s; '
+           'key: %r; app: %s' % (cfg.pk, cfg.public_key, addon.pk))
+    log.info(msg)
+    inapp_cef.log(request, addon, 'inapp_reset', msg,
+                  severity=6)
+    cfg.update(status=amo.INAPP_STATUS_REVOKED)
+    kw = dict(addon=cfg.addon,
+              status=amo.INAPP_STATUS_ACTIVE,
+              postback_url=cfg.postback_url,
+              chargeback_url=cfg.chargeback_url,
+              public_key=InappConfig.generate_public_key())
+    new_cfg = InappConfig.objects.create(**kw)
+    new_cfg.set_private_key(InappConfig.generate_private_key())
+    messages.success(request,
+                     _('Old credentials revoked; '
+                       'new credentials were generated successfully.'))
+    return redirect(addon.get_dev_url('in_app_config'))
 
 
 @waffle_switch('in-app-payments')

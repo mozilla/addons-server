@@ -43,9 +43,12 @@ app_detail_patterns = patterns('',
     url('^paypal/', include(paypal_patterns('apps'))),
     url('^paypal/', include(paypal_patterns('addons'))),
 
-    # PayPal in-app stuff.
+    # in-app payments.
     url('^in-app-config$', views.in_app_config,
         name='mkt.developers.apps.in_app_config'),
+    url('^in-app-config/(?P<config_id>[^/]+)/reset$',
+        views.reset_in_app_config,
+        name='mkt.developers.apps.reset_in_app_config'),
     url('^in-app-secret$', views.in_app_secret,
         name='mkt.developers.apps.in_app_secret'),
     # Response from paypal.

@@ -14,11 +14,11 @@ from utils import (log_configure, log_exception, log_info, mypool,
 log_configure()
 
 import jwt
-import M2Crypto
-from lib.crypto.receipt import cef, decode, sign
+from lib.crypto.receipt import sign
+from lib.cef_loggers import receipt_cef
 
 # This has to be imported after the settings (utils).
-import receipts
+import receipts  # used for patching in the tests
 from receipts import certs
 from statsd import statsd
 
@@ -178,7 +178,8 @@ class Verify:
         if settings.WEBAPPS_RECEIPT_EXPIRED_SEND:
             receipt['exp'] = (calendar.timegm(gmtime()) +
                               settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
-            cef(self.environ, self.addon_id, 'sign', 'Expired signing request')
+            receipt_cef.log(self.environ, self.addon_id, 'sign',
+                            'Expired signing request')
             return json.dumps({'status': 'expired', 'receipt': sign(receipt)})
         return json.dumps({'status': 'expired'})
 
@@ -223,11 +224,13 @@ def application(environ, start_response):
             verify = Verify(addon_id, data, environ)
             output = verify()
             start_response(status, verify.get_headers(len(output)))
-            cef(environ, addon_id, 'verify', 'Receipt verification')
+            receipt_cef.log(environ, addon_id, 'verify',
+                            'Receipt verification')
         except:
             output = ''
             log_exception({'receipt': '%s...' % data[:10], 'addon': addon_id})
-            cef(environ, addon_id, 'verify', 'Receipt verification error')
+            receipt_cef.log(environ, addon_id, 'verify',
+                            'Receipt verification error')
             start_response('500 Internal Server Error', [])
 
     return [output]
