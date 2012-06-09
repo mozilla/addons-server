@@ -11,6 +11,8 @@ import amo.log
 from addons.decorators import addon_view_factory, has_purchased
 from addons.models import Addon
 from amo.decorators import json_view, login_required, post_required
+from amo.helpers import absolutify
+from reviews.models import Review
 from reviews.helpers import user_can_delete_review
 from reviews.views import get_flags
 
@@ -110,13 +112,24 @@ def add(request, addon):
     data = request.POST or None
     form = forms.RatingForm(data)
     if data and form.is_valid():
-        rating = Rating.objects.create(**_review_details(request, addon, form))
-        amo.log(amo.LOG.ADD_REVIEW, addon, rating)
-        log.debug('New rating: %s' % rating.id)
+        review = Review.objects.create(**_review_details(request, addon, form))
+        amo.log(amo.LOG.ADD_REVIEW, addon, review)
+        log.debug('New review: %s' % review.id)
         messages.success(request, _('Your review was successfully added!'))
-        return redirect(addon.get_detail_url() + '#reviews')
-        # TODO: When rating list is done uncomment this (bug 755954).
-        #return redirect(addon.get_ratings_url('list'))
+
+        reply_url = addon.get_ratings_url('reply', args=[addon, review.id],
+                                          add_prefix=False)
+        data = {'name': addon.name,
+                'rating': '%s out of 5 stars' % details['rating'],
+                'review': details['body'],
+                'reply_url': absolutify(reply_url)}
+
+        # emails = addon.values_list('email', flat=True)
+        # send_mail('reviews/emails/add_review.ltxt',
+        #           u'Mozilla Marketplace User Review: %s' % addon.name,
+        #           emails, Context(data), 'new_review')
+
+        return redirect(addon.get_ratings_url('list'))
 
     return jingo.render(request, 'ratings/add.html',
                         {'product': addon, 'form': form})
