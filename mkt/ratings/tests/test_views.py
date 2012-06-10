@@ -7,6 +7,8 @@ import amo
 from amo.helpers import numberfmt
 import amo.tests
 from reviews.models import Review
+from access.models import Group, GroupUser
+
 from users.models import UserProfile
 
 from mkt.developers.models import ActivityLog
@@ -45,6 +47,12 @@ class TestCreate(ReviewTest):
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         assert self.client.login(username=self.user.email, password='password')
         self.detail = self.webapp.get_detail_url()
+
+    def test_restrict(self):
+        g = Group.objects.get(rules='Restricted:UGC')
+        GroupUser.objects.create(group=g, user=self.user)
+        r = self.client.post(self.add, {'body': 'x', 'score': 1})
+        self.assertEqual(r.status_code, 403)
 
     def test_add_logged(self):
         r = self.client.get(self.add)

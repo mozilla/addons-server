@@ -10,8 +10,10 @@ import amo
 import amo.log
 from addons.decorators import addon_view_factory, has_purchased
 from addons.models import Addon
-from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify
+from amo.decorators import (json_view, login_required, post_required,
+                            restricted_content)
+
 from reviews.models import Review
 from reviews.helpers import user_can_delete_review
 from reviews.views import get_flags
@@ -97,6 +99,7 @@ def edit(request, addon, review_id):
 
 @addon_view
 @login_required
+@restricted_content
 @has_purchased
 def add(request, addon):
     if addon.has_author(request.user):

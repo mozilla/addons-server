@@ -290,6 +290,18 @@ class TestCreate(ReviewTest):
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
         eq_(len(mail.outbox), 0)
 
+    def test_restrict(self):
+        g = Group.objects.get(rules='Restricted:UGC')
+        GroupUser.objects.create(group=g, user=self.user)
+        r = self.client.post(self.add, {'body': 'x', 'rating': 1})
+        eq_(r.status_code, 403)
+
+    def test_review_success(self):
+        old_cnt = self.qs.count()
+        log_count = self.log_count()
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
+        eq_(r.status_code, 200)
+
     def test_review_success(self):
         old_cnt = self.qs.count()
         log_count = self.log_count()

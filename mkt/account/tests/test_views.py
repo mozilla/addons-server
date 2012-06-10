@@ -239,6 +239,12 @@ class TestAdminAccountSettings(amo.tests.TestCase):
         self.assertRedirects(r, reverse('zadmin.index'))
         eq_(self.get_user().password, 'sha512$Anonymous$Password')
 
+    def test_restrict(self):
+        Group.objects.create(name='Restricted', rules='Restricted:UGC')
+        r = self.client.post(self.url, self.get_data(restricted=True))
+        self.assertRedirects(r, reverse('zadmin.index'))
+        assert self.get_user().groups.filter(rules='Restricted:UGC').exists()
+
     def test_anonymize_fails_with_other_changed_fields(self):
         # We don't let an admin change a field whilst anonymizing.
         data = self.get_data(anonymize=True, display_name='something@else.com')

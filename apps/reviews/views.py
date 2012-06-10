@@ -9,7 +9,8 @@ from mobility.decorators import mobile_template
 
 import amo
 from amo import messages
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import (json_view, login_required, post_required,
+                            restricted_content)
 from amo.helpers import absolutify, shared_url
 import amo.utils
 from access import acl
@@ -169,6 +170,7 @@ def reply(request, addon, review_id):
 @addon_view
 @mobile_template('reviews/{mobile/}add.html')
 @login_required
+@restricted_content
 @has_purchased
 def add(request, addon, template=None):
     if addon.has_author(request.user):

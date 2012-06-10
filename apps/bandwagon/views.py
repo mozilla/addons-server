@@ -13,7 +13,8 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 import amo
 from amo import messages
 import sharing.views
-from amo.decorators import json_view, login_required, post_required, write
+from amo.decorators import (json_view, login_required, post_required, write,
+                            restricted_content)
 from amo.urlresolvers import reverse
 from amo.utils import paginate, urlparams
 from access import acl
@@ -295,6 +296,7 @@ def collection_message(request, collection, option):
 
 @write
 @login_required
+@restricted_content
 def add(request):
     "Displays/processes a form to create a collection."
     data = {}

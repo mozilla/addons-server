@@ -12,6 +12,7 @@ from . import models as context
 from .urlresolvers import reverse
 from .utils import JSONEncoder
 
+
 task_log = commonware.log.getLogger('z.task')
 
 
@@ -79,6 +80,22 @@ def any_permission_required(pairs):
             return http.HttpResponseForbidden()
         return wrapper
     return decorator
+
+def restricted_content(f):
+    """
+    Prevent access to a view function for accounts restricted from
+    posting user-generated content.
+    """
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        from access import acl
+        if (acl.action_allowed(request, '*', '*')
+            or not acl.action_allowed(request, 'Restricted', 'UGC')):
+            return f(request, *args, **kw)
+        else:
+            return http.HttpResponseForbidden()
+    return wrapper
+
 
 
 def modal_view(f):

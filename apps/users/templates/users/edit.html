@@ -223,6 +223,12 @@
                   {{ form.anonymize }}
                   {{ form.anonymize.errors }}
                 </li>
+                <li>
+                  <label for="id_restricted">{{ form.restricted.label }}</label>
+                  {{ form.restricted }}
+                  {{ form.restricted.errors }}
+                </li>
+
               </ul>
             </fieldset>
         {% endif %}

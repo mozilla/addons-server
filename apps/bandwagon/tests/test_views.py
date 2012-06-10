@@ -307,6 +307,16 @@ class TestCRUD(amo.tests.TestCase):
         eq_(r.status_code, 200)
         return r
 
+    def test_restricted(self, **kw):
+        g, created = Group.objects.get_or_create(rules='Restricted:UGC')
+        self.client.login(username='clouserw@gmail.com',
+                          password='password')
+        user = UserProfile.objects.get(id='10482')
+        GroupUser.objects.create(group=g, user=user)
+        self.data.update(kw)
+        r = self.client.post(self.add_url, self.data, follow=True)
+        eq_(r.status_code, 403)
+
     def test_listing_xss(self):
         c = Collection.objects.get(id=80)
         assert self.client.login(username='clouserw@gmail.com',

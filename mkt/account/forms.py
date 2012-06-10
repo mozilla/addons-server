@@ -120,6 +120,8 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
     notes = forms.CharField(required=False, label='Notes',
                             widget=forms.Textarea(attrs={'rows': 4}))
     anonymize = forms.BooleanField(required=False)
+    restricted = forms.BooleanField(required=False)
+
 
     def save(self, *args, **kw):
         profile = super(UserEditForm, self).save()
@@ -128,10 +130,15 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
                     self.cleaned_data['admin_log'])
             profile.anonymize()  # This also logs.
         else:
-            amo.log(amo.LOG.ADMIN_USER_EDITED, self.instance,
-                    self.cleaned_data['admin_log'], details=self.changes())
-            log.info('Admin edit user: %s changed fields: %s' %
-                     (self.instance, self.changed_fields()))
+            if 'restricted' in self.changed_data and self.cleaned_data['restricted']:
+                amo.log(amo.LOG.ADMIN_USER_RESTRICTED, self.instance,
+                        self.cleaned_data['admin_log'])
+                profile.restrict()
+            else:
+                amo.log(amo.LOG.ADMIN_USER_EDITED, self.instance,
+                        self.cleaned_data['admin_log'], details=self.changes())
+                log.info('Admin edit user: %s changed fields: %s' %
+                         (self.instance, self.changed_fields()))
         return profile
 
 

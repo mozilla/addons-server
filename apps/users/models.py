@@ -12,7 +12,7 @@ from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist
-from django.db import models
+from django.db import models, transaction
 from django.template import Context, loader
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import lazy
@@ -24,6 +24,7 @@ from tower import ugettext as _
 from access.models import AccessWhitelist
 import amo
 import amo.models
+from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
 from translations.fields import PurifiedField
 from translations.query import order_by_translation
@@ -257,6 +258,27 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.deleted = True
         self.picture_type = ""
         self.save()
+
+
+    @transaction.commit_on_success
+    def restrict(self):
+        from amo.utils import send_mail
+        log.info(u'User (%s: <%s>) is being restricted and '
+                 'its user-generated content removed.' % (self, self.email))
+        g = Group.objects.get(rules='Restricted:UGC')
+        GroupUser.objects.create(user=self, group=g)
+        self.reviews.all().delete()
+        self.collections.all().delete()
+        self._ratings_all.all().delete()
+
+        t = loader.get_template('users/email/restricted.ltxt')
+        send_mail(_('Your account has been restricted'),
+                  t.render(Context({})), None, [self.email],
+                  use_blacklist=False)
+
+    def unrestrict(self):
+        log.info(u'User (%s: <%s>) is being unrestricted.' % (self, self.email))
+        GroupUser.objects.filter(user=self, group__rules='Restricted:UGC').delete()
 
     def generate_confirmationcode(self):
         if not self.confirmationcode:

@@ -478,6 +478,11 @@ class ADMIN_USER_ANONYMIZED(_LOG):
     format = _(u'User {user} anonymized.')
     admin_event = True
 
+class ADMIN_USER_RESTRICTED(_LOG):
+    id = 105
+    format = _(u'User {user} restricted.')
+    admin_event = True
+
 
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
