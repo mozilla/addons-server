@@ -14,8 +14,7 @@ $.fn.ratingwidget = function() {
         }
         var rating = 0;
         // Existing rating found so initialize the widget.
-console.log($el.val());
-        if ($el.val()) { //{$('option[selected]', $el).length) {
+        if ($('option[selected]', $el).length) {
             rating = $el.val();
             showStars(rating);
         }
