@@ -570,15 +570,14 @@ def issue_refund(request, addon_id, addon, webapp=False):
 def refunds(request, addon_id, addon, webapp=False):
     ctx = {'addon': addon, 'webapp': webapp}
     queues = {
-        'pending': Refund.objects.pending(addon),
-        'approved': Refund.objects.approved(addon),
-        'instant': Refund.objects.instant(addon),
-        'declined': Refund.objects.declined(addon),
-        'failed': Refund.objects.failed(addon),
+        'pending': Refund.objects.pending(addon).order_by('requested'),
+        'approved': Refund.objects.approved(addon).order_by('-requested'),
+        'instant': Refund.objects.instant(addon).order_by('-requested'),
+        'declined': Refund.objects.declined(addon).order_by('-requested'),
+        'failed': Refund.objects.failed(addon).order_by('-requested'),
     }
-    # For now set the limit to something stupid so this is stupid easy to QA.
     for status, refunds in queues.iteritems():
-        ctx[status] = amo.utils.paginate(request, refunds, per_page=5)
+        ctx[status] = amo.utils.paginate(request, refunds, per_page=50)
     return jingo.render(request, 'developers/payments/refunds.html', ctx)
 
 

@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-from contextlib import contextmanager
+import datetime
 import json
 import os
+from contextlib import contextmanager
 from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
 
 import mock
+import waffle
+from dateutil.parser import parse as parse_dt
 from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -726,7 +728,6 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(self.logged(user=self.owner, status=amo.LOG.REFUND_DECLINED), 1)
         eq_(self.logged(user=self.user, status=amo.LOG.REFUND_DECLINED), 1)
 
-
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
     def test_non_refundable_txn(self, refund, enqueue_refund):
@@ -779,12 +780,15 @@ class TestRefunds(amo.tests.TestCase):
         }
 
     def generate_refunds(self):
+        days_ago = lambda days: (datetime.datetime.today() -
+                                 datetime.timedelta(days=days))
         self.expected = {}
         for status in amo.REFUND_STATUSES.keys():
-            for x in xrange(status + 1):
+            for x in xrange(status + 2):
                 c = Contribution.objects.create(addon=self.webapp,
                     user=self.user, type=amo.CONTRIB_PURCHASE)
-                r = Refund.objects.create(contribution=c, status=status)
+                r = Refund.objects.create(contribution=c, status=status,
+                                          requested=days_ago(x))
                 self.expected.setdefault(status, []).append(r)
 
     def test_anonymous(self):
@@ -841,7 +845,7 @@ class TestRefunds(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         for key, status in self.queues.iteritems():
-            eq_(list(r.context[key]), list(self.expected[status]))
+            eq_(set(r.context[key]), set(self.expected[status]))
 
     def test_empty_tables(self):
         r = self.client.get(self.url)
@@ -880,6 +884,7 @@ class TestRefunds(amo.tests.TestCase):
                 babel_datetime(refund.contribution.created).strip())
             eq_(requested.attr('title'),
                 babel_datetime(refund.requested).strip())
+
         # Remove pending table.
         table.remove()
 
@@ -892,6 +897,32 @@ class TestRefunds(amo.tests.TestCase):
                 babel_datetime(refund.contribution.created).strip())
             eq_(tr.find('.requested-date').text(),
                 babel_datetime(refund.requested).strip())
+
+    def test_refunds_sorting(self):
+        self.generate_refunds()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        for queue in self.queues.keys():
+            prev_dt = None
+            for req in doc('#queue-%s .requested-date' % queue):
+                req = pq(req)
+                if queue == 'pending':
+                    # Pending queue is sorted by requested ascending.
+                    req_dt = parse_dt(req.attr('title'))
+                    if prev_dt:
+                        assert req_dt > prev_dt, (
+                            'Requested date should be sorted ascending for the'
+                            ' pending refund queue')
+                else:
+                    # The other tables are sorted by requested descending.
+                    req_dt = parse_dt(req.text())
+                    if prev_dt:
+                        assert req_dt < prev_dt, (
+                            'Requested date should be sorted descending for '
+                            'all queues except for pending refunds.')
+                prev_dt = req_dt
 
 
 class TestPublicise(amo.tests.TestCase):
