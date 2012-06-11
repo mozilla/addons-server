@@ -1,4 +1,5 @@
 import json
+from markupsafe import Markup
 
 import jingo
 from django.http import HttpResponsePermanentRedirect, HttpResponseNotFound
@@ -149,7 +150,7 @@ def install(request):
         try:
             addon_id = int(addon_id)
         except ValueError:
-            pass
+            addon_id = Markup.escape(addon_id)
     addon_key = request.GET.get('addon_key', None)
     addon_name = request.GET.get('addon_name', None)
     if addon_id in addons:
