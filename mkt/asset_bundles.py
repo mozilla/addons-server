@@ -225,6 +225,7 @@ JS = {
         'js/mkt/reviewsparks.js',
 
         # Ratings.
+        'js/common/ratingwidget.js',
         'js/mkt/ratings.js',
 
         # Stick.

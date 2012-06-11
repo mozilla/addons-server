@@ -17,9 +17,8 @@ from reviews.helpers import user_can_delete_review
 from reviews.views import get_flags
 
 from mkt.site import messages
+from mkt.ratings.forms import ReviewForm
 from mkt.ratings.models import Rating
-
-from . import forms
 
 
 log = commonware.log.getLogger('mkt.ratings')
@@ -35,14 +34,9 @@ def _review_details(request, addon, form):
 
 @addon_view
 def review_list(request, addon, review_id=None, user_id=None, rating=None):
-    qs = Rating.objects.valid().filter(addon=addon).order_by('-created')
+    qs = Review.objects.valid().filter(addon=addon).order_by('-created')
 
     ctx = {'product': addon, 'score': rating, 'review_perms': {}}
-
-    # If we want to filter by only positive or only negative.
-    score = {'positive': 1, 'negative': -1}.get(rating)
-    if score:
-        qs = qs.filter(score=score)
 
     if review_id is not None:
         qs = qs.filter(pk=review_id)
@@ -62,7 +56,7 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
         qs = qs.filter(is_latest=True)
 
     ctx['ratings'] = ratings = amo.utils.paginate(request, qs)
-    ctx['replies'] = Rating.get_replies(ratings.object_list)
+    ctx['replies'] = Review.get_replies(ratings.object_list)
     ctx['review_history'] = [[2, 12], [50, 2], [3, 0], [4, 1]]
     if request.user.is_authenticated():
         ctx['review_perms'] = {
@@ -110,19 +104,19 @@ def add(request, addon):
         return http.HttpResponseForbidden()
 
     data = request.POST or None
-    form = forms.RatingForm(data)
+    form = ReviewForm(data)
     if data and form.is_valid():
         review = Review.objects.create(**_review_details(request, addon, form))
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
         messages.success(request, _('Your review was successfully added!'))
 
-        reply_url = addon.get_ratings_url('reply', args=[addon, review.id],
-                                          add_prefix=False)
-        data = {'name': addon.name,
-                'rating': '%s out of 5 stars' % details['rating'],
-                'review': details['body'],
-                'reply_url': absolutify(reply_url)}
+        # reply_url = addon.get_ratings_url('reply', args=[addon, review.id],
+        #                                   add_prefix=False)
+        # data = {'name': addon.name,
+        #         'rating': '%s out of 5 stars' % details['rating'],
+        #         'review': details['body'],
+        #         'reply_url': absolutify(reply_url)}
 
         # emails = addon.values_list('email', flat=True)
         # send_mail('reviews/emails/add_review.ltxt',

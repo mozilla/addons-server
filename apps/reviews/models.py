@@ -2,6 +2,7 @@ import json
 from datetime import datetime, timedelta
 import logging
 
+from django.conf import settings
 from django.db import models
 
 import bleach
@@ -11,6 +12,7 @@ from tower import ugettext_lazy as _
 
 import amo.models
 from amo.helpers import shared_url
+from amo.urlresolvers import reverse
 from translations.fields import TranslatedField
 from users.models import UserProfile
 
@@ -60,6 +62,9 @@ class Review(amo.models.ModelBase):
         ordering = ('-created',)
 
     def get_url_path(self):
+        if 'mkt.ratings' in settings.INSTALLED_APPS:
+            return reverse('ratings.detail',
+                           args=[self.addon.app_slug, self.id])
         return shared_url('reviews.detail', self.addon, self.id)
 
     def flush_urls(self):

@@ -118,11 +118,6 @@ class Webapp(Addon):
                 apps_dict[adt.addon_id]._device_types = []
             apps_dict[adt.addon_id]._device_types.append(adt.device_type)
 
-        # TODO: This may need to be its own column.
-        for app in apps:
-            if not hasattr(app, '_rating_counts') and hasattr(app, '_ratings'):
-                app._rating_counts = app.rating_counts
-
     def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
         # but for now pretend you didn't see this.
@@ -182,18 +177,6 @@ class Webapp(Addon):
             return self._device_types
         return [d.device_type for d in
                 self.addondevicetype_set.order_by('device_type__id')]
-
-    @property
-    def rating_counts(self):
-        # If the transformer attached something, use it.
-        if hasattr(self, '_rating_counts'):
-            return self._rating_counts
-        scores = dict(self._ratings.values_list('score')
-                          .annotate(models.Count('id')))
-        positive, negative = scores.get(1, 0), scores.get(-1, 0)
-        return {'total': positive + negative,
-                'positive': positive,
-                'negative': negative}
 
     @property
     def origin(self):

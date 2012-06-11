@@ -11,10 +11,6 @@
     #submit-review {
         bottom: 15px;
     }
-    #reviews-info,
-    #review-list {
-        min-height: 400px;
-    }
 }
 
 .listing {
@@ -85,77 +81,111 @@
             pointer-events: none;
         }
     }
-    h3 {
-        padding-left: 36px;
-        &.upvotes {
-            background: url(../../img/icons/thumbs.png) no-repeat;
-            background-position: 8px 8px;
-            color: #00b960;
-        }
-        &.downvotes {
-            background: url(../../img/icons/thumbs.png) no-repeat;
-            color: #d93a40;
-            background-position: 8px -78px;
-        }
-    }
-    .filter-all .review:nth-child(5) ~ .review {
-        display: none;
-    }
-    .filter-positive .review.negative,
-    .filter-negative .review.positive {
-        display: none;
-    }
     #review-list {
-        background: fade(#fff, 50%);
+        background: @bg-lite;
+        border-top: 1px solid darken(@light-gray, 2%);
+        border-bottom: 1px solid lighten(@faint-gray, 4%);
     }
     .review {
+        border: 1px solid darken(@light-gray, 2%);
+        border-width: 0 1px;
+        border-bottom: 1px solid darken(@light-gray, 2%);
         list-style-type: none;
-        padding: @spacing;
-        p {
-            margin: 0 0 10px;
+        padding: 10px;
+        + .review {
+            border-top: 1px solid @white;
+        }
+        &:nth-child(2n) {
+            background: lighten(@bg, 5%);
         }
         .byline, .timestamp {
-            font-size: 11px;
+            font-size: 12px;
         }
         .byline {
             color: @medium-gray;
-            a {
-                color: darken(@link, 15%);
-                &:hover {
-                    color: darken(@link, 30%);
-                }
-            }
             &:after {
                 color: @light-gray;
                 content: "\00b7";
                 margin: 0 2px;
             }
         }
+        .body {
+            margin: 10px 0;
+        }
+        ul {
+            float: left;
+            list-style: none;
+            li {
+                display: inline-block;
+                + li:before {
+                    color: @note-gray;
+                    content: "\00a0\2022\00a0\00a0";
+                }
+            }
+        }
         .timestamp {
             color: @note-gray;
+            float: right;
             &:hover {
                 color: @gray;
             }
-        }
-        + .review {
-            border-top: 1px dotted @light-gray;
         }
     }
     #submit-review {
         position: absolute;
         margin: 10px 0;
     }
+    .more-reviews {
+        .fat-button;
+        margin: 20px 0 15px;
+    }
 }
 
-#submit-rating {
+header.product {
+    margin-bottom: 10px;
+    position: relative;
+    .visual {
+        margin-right: 15px;
+        height: 64px;
+        width: 64px;
+        + div {
+            float: left;
+        }
+    }
+    h1 {
+        color: @navy-gray;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.2;
+        &.multi {
+            font-size: 22px;
+            small, span {
+                .ellipsis;
+                display: block;
+                margin-bottom: -8px;
+                padding-bottom: 6px;
+            }
+            small {
+                color: lighten(@navy-gray, 10%);
+                display: block;
+                font-size: 14px;
+                font-weight: 600;
+            }
+        }
+    }
+    p {
+        font-size: 14px;
+        line-height: 1;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+#submit-review {
     form {
-        margin-top: 25px;
         .simple-field {
             margin: 0;
         }
-    }
-    select {
-        display: none;
     }
     .barometer {
         font-size: 120%;
@@ -163,7 +193,24 @@
         margin-bottom: 20px;
     }
     .form-footer {
-        margin-top: 20px;
+        margin-top: 30px;
+    }
+    &.friendly {
+        header .errorlist {
+            margin: 0;
+        }
+        p.reminder {
+            clear: both;
+            color: @medium-gray;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18px;
+            margin-top: 20px;
+        }
+    }
+    .req,
+    label[for=id_rating] {
+        display: none;
     }
 }
 
@@ -206,6 +253,96 @@
         &:hover, &.voted {
             &:before {
                 background-position: 100% -82px;
+            }
+        }
+    }
+}
+
+
+
+.stars {
+    background: url(../../img/impala/stars.png) no-repeat left top;
+    display: inline-block;
+    height: 12px;
+    margin-right: 4px;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 63px;
+    &.stars-4 { background-position: -13px 0; }
+    &.stars-3 { background-position: -26px 0; }
+    &.stars-2 { background-position: -39px 0; }
+    &.stars-1 { background-position: -52px 0; }
+    &.stars-0 { background-position: -65px 0; }
+    &.large {
+        display: block;
+        background: url(../../img/impala/stars-16.png) no-repeat left top;
+        width: 89px;
+        height: 16px;
+        &.stars-4 { background-position: -18px 0; }
+        &.stars-3 { background-position: -36px 0; }
+        &.stars-2 { background-position: -54px 0; }
+        &.stars-1 { background-position: -70px 0; }
+    }
+}
+
+.html-rtl .stars {
+    margin: 0 0 0 4px;
+}
+
+.no-rating strong {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.average-rating {
+    strong {
+        display: none;
+    }
+    span {
+        color: @green;
+        vertical-align: middle;
+    }
+}
+
+.ratingwidget {
+    display: block;
+    float: none;
+    width: 65px;
+    input {
+        display: none;
+    }
+    label {
+        cursor: pointer;
+        display: block;
+        float: left;
+        margin: 0;
+        text-indent: -9999px;
+        width: 13px;
+    }
+}
+
+#add-review {
+    margin: 20px 0 15px;
+}
+
+@media (max-width: @4col) {
+    #add-review {
+        margin: 0 0 -7px;
+    }
+    #submit-review .form-footer {
+        margin-top: 40px;
+    }
+    #review-list {
+        margin: 0 -10px;
+        .review {
+            border-left: 0;
+            border-right: 0;
+            .byline, .timestamp {
+                font-size: 12px;
+            }
+            .body {
+                font-size: 14px;
+                line-height: 1.2;
             }
         }
     }

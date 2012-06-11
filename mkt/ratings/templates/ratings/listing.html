@@ -1,18 +1,47 @@
 {% extends 'mkt/base.html' %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
-{% set title = _('Reviews for {0}')|f(product.name) %}
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+{% set title = _('Reviews') %}
+{% set page_title = _('Reviews for {0}')|f(product.name) %}
+{% block title %}{{ mkt_page_title(page_title) }}{% endblock %}
 
 {% block bodyclass %}listing{% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(product.get_ratings_url(), _('Reviews'))]) }}
-  <section id="review-list">
+  {{ mkt_breadcrumbs(product, [(None, _('Reviews'))]) }}
+  <section id="review-listing">
 
   {% block review_header %}
-    <header>
-      <hgroup>
+    <header class="product c">
+      <div class="visual">
+        <img src="{{ product.get_icon_url(64) }}">
+      </div>
+      <div>
+        <h1 class="hidden">{{ page_title }}</h1>
+        <h1 class="multi">
+          <small>{{ title }}</small>
+          <span>{{ product.name }}</span>
+        </h1>
+        <p class="average-rating">
+          {% if product.average_rating %}
+            {{ product.average_rating|float|stars }}
+            <span>
+              {% trans num=product.total_reviews|numberfmt %}
+                {{ num }} review
+              {% pluralize %}
+                {{ num }} reviews
+              {% endtrans %}
+            </span>
+          {% else %}
+            {{ _('Not yet rated') }}
+          {% endif %}
+        </p>
+      </div>
+    </header>
+    <p id="add-review">
+      <a href="{{ product.get_ratings_url('add') }}" class="button fat">
+        {{ _('Add a review') }}</a></p>
+<!--
         {% if page == 'list' %}
           <img src="{{ product.get_icon_url(64) }}">
           <h1>{{ title }}</h1>
@@ -31,58 +60,27 @@
         {% else %}
           <h1>{{ _('No reviews found.') }}</h1>
         {% endif %}
-      </hgroup>
-    </header>
+-->
   {% endblock %}
 
-  <section class="reviews c" id="reviews"
-           data-review-history="{{ review_history|json }}">
+  <section class="reviews c" id="reviews">
     {% if ratings.object_list %}
       <div class="c" id="reviews-info">
-        <figure>
-          <figcaption>Reviews, last 30 days</figcaption>
-          <canvas id="review-spark"></canvas>
-        </figure>
-        <div>
-          <a href="{{ product.get_ratings_url() }}"
-             {% if not score %} class="selected"{% endif %}
-             data-review-filter="all">
-            <h3 class="all">
-              All Reviews <b>({{ product.rating_counts.total }})</b>
-            </h3>
-          </a>
-          <a href="{{ product.get_ratings_url('list.positive') }}"
-             {% if score == 'positive' %} class="selected"{% endif %}
-             data-review-filter="positive">
-            <h3 class="upvotes">
-              Positive Reviews <b>({{ product.rating_counts.positive }})</b>
-            </h3>
-          </a>
-          <a href="{{ product.get_ratings_url('list.negative') }}"
-             {% if score == 'negative' %} class="selected"{% endif %}
-             data-review-filter="negative">
-            <h3 class="downvotes">
-              Negative Reviews <b>({{ product.rating_counts.negative }})</b>
-            </h3>
-          </a>
-          {% if product.can_review(amo_user) %}
-            <p id="submit-review">
-              <a href="{{ product.get_ratings_url('add') }}" class="button good">
-                {{ _('Review This App') }}</a></p>
-          {% endif %}
-        </div>
       </div>
       <ul id="review-list">
         {% for rating in ratings.object_list %}
           {% include 'ratings/rating.html' %}
           {% if rating.id in replies %}
+            <a href="#" class="view-reply">{{ _('1 reply') }}</a>
             {% with rating=replies[rating.id] %}
-              {% include 'reviews/review.html' %}
+              {% include 'ratings/rating.html' %}
             {% endwith %}
           {% endif %}
         {% endfor %}
       </ul>
-      {{ ratings|impala_paginator }}
+      {# TODO: Show only if more reviews to be shown. #}
+      <a href="#" class="more-reviews">{{ _('More reviews') }}</a>
+      <!--{{ ratings|impala_paginator }}-->
     {% else %}
       {% if product.can_review(amo_user) %}
         <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">

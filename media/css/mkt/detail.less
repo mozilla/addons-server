@@ -150,6 +150,16 @@ h1 .num {
     }
 }
 
+.visual {
+    float: left;
+    max-width: 128px;
+    max-height: 128px;
+    img {
+        max-width: 128px;
+        max-height: 128px;
+    }
+}
+
 .product-details {
     font-size: 14px;
     text-shadow: 0 1px 0 @white;
@@ -197,15 +207,6 @@ h1 .num {
         p {
             display: inline-block;
             margin: 10px 0 5px;
-        }
-    }
-    .visual {
-        float: left;
-        max-width: 128px;
-        max-height: 128px;
-        img {
-            max-width: 128px;
-            max-height: 128px;
         }
     }
 }
@@ -420,7 +421,7 @@ h1 .num {
         }
     }
     #upsell.narrow {
-        .fat-button;
+        .highlight;
         margin: 20px 10px 0;
         padding: 10px 33px 10px 52px;
         position: relative;
@@ -468,9 +469,6 @@ h1 .num {
             max-height: 32px;
             max-width: 32px;
         }
-    }
-    #reviews {
-        display: none;
     }
     .downloads {
         font-size: 12px;
@@ -576,18 +574,6 @@ h1 .num {
     .support {
         a {
             .fat-button;
-            color: lighten(@text, 10%);
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 10px;
-            text-align: center;
-            &:hover {
-                background: rgba(255,255,255,.5);
-                border-color: @bg-gray;
-                color: @text;
-                text-decoration: none;
-            }
         }
         .overall-reviews {
             text-align: left;
@@ -628,6 +614,6 @@ h1 .num {
     }
 }
 
-// 3 columns
-@media (max-width: @3col) {
+.detail #reviews {
+    margin-top: 40px;
 }

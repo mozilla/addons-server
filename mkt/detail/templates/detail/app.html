@@ -222,23 +222,9 @@
         {% endif %}
       {% else %}
         <div id="reviews-info">
-          <figure>
-            <figcaption>Reviews, last 30 days</figcaption>
-            <canvas id="review-spark"></canvas>
-          </figure>
           <a href="#" class="selected" data-review-filter="all">
             <h3 class="all">
-              All Reviews <b>({{ product.rating_counts.total }})</b>
-            </h3>
-          </a>
-          <a href="#" data-review-filter="positive">
-            <h3 class="upvotes">
-              Positive Reviews <b>({{ product.rating_counts.positive }})</b>
-            </h3>
-          </a>
-          <a href="#" data-review-filter="negative">
-            <h3 class="downvotes">
-              Negative Reviews <b>({{ product.rating_counts.negative }})</b>
+              {{ product.average_rating|stars }}
             </h3>
           </a>
           {% if can_review %}

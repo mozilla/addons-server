@@ -73,14 +73,15 @@
             float: left;
             line-height: 30px;
             padding: 5px 0 0;
-            &:first-child + li:before {
-                content: "";
-            }
             + li {
                 display: none;
                 &:before {
                     content: '\00a0\00a0\/\00a0';
                 }
+            }
+            &:first-child + li:before,
+            &:nth-last-child(2):before {
+                display: none;
             }
             // Show the last two breadcrumbs only.
             &:nth-last-child(2),

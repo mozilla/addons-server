@@ -251,15 +251,37 @@
     .gradient-two-color(rgba(176,186,192,.33), rgba(187,195,199,.33));
 }
 
-.fat-button() {
+.slick() {
     .border-box;
     .border-radius(4px);
+    background: rgba(255,255,255,.8);
+    color: @text;
+}
+
+.highlight() {
     .box-shadow(0 1px 0 fadeOut(@white, 40%),
                 0 1px 0 @white inset);
-    background: rgba(255,255,255,.8);
+    .slick();
     border: 1px solid @light-gray;
-    color: @text;
     &:active {
         .depressed;
+    }
+}
+
+// Fat buttons for mobile (used for Support links, etc.)
+.fat-button() {
+    .highlight;
+    color: lighten(@text, 10%);
+    display: block;
+    .light-text-shadow;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    &:hover {
+        background: rgba(255,255,255,.5);
+        border-color: @bg-gray;
+        color: @text;
+        text-decoration: none;
     }
 }
