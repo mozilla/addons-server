@@ -252,13 +252,24 @@ class Webapp(Addon):
             pass
 
     @classmethod
-    def featured(cls, cat):
-        return [fa.app for fa in
-                (models.get_model('zadmin', 'FeaturedApp').objects.filter(
-                    category=cat,
-                    app__status=amo.STATUS_PUBLIC,
-                    app__disabled_by_user=False).
-                 order_by('-app__weekly_downloads'))[:6]]
+    def featured_collection(cls, group):
+        try:
+            featured = Collection.objects.get(author__username='mozilla',
+                                              slug='featured_apps_%s' % group,
+                                              type=amo.COLLECTION_FEATURED)
+        except Collection.DoesNotExist:
+            featured = None
+        return featured
+
+    @classmethod
+    def featured(cls, group):
+        featured = cls.featured_collection(group)
+        if featured:
+            return (featured.addons.filter(status=amo.STATUS_PUBLIC,
+                                           disabled_by_user=False)
+                    .order_by('-weekly_downloads'))
+        else:
+            return cls.objects.none()
 
     @classmethod
     def from_search(cls):
