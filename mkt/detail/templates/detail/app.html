@@ -207,58 +207,29 @@
     </div>
   {% endif %}
 
-  {% if waffle.switch('ratings') %}
-    <section class="reviews c" id="reviews"
-             data-review-history="{{ review_history|json }}">
-      {% if not ratings %}
-        <h2>{{ _('Reviews') }}</h2>
-        {% if can_review %}
-          <p id="add-first-review">
-            <a href="{{ product.get_ratings_url('add') }}" class="button go">
-              {{ _('Be the first to write a review.') }}</a><p>
-        {% else %}
-          <p id="no-add-first-review">
-            {{ _('This app has not yet been reviewed.') }}</p>
-        {% endif %}
-      {% else %}
-        <div id="reviews-info">
-          <a href="#" class="selected" data-review-filter="all">
-            <h3 class="all">
-              {{ product.average_rating|stars }}
-            </h3>
-          </a>
-          {% if can_review %}
-            <p id="submit-review">
-              <a href="{{ product.get_ratings_url('add') }}" class="button good">
-                {{ _('Review This App') }}</a></p>
-          {% endif %}
-        </div>
-        <div>
-          <ul id="review-list" class="filter-all">
-            {% for rating in ratings %}
-              {% include 'ratings/rating.html' %}
-            {% endfor %}
-          </ul>
-          <p><a href="{{ product.get_ratings_url() }}" class="button">
-            {{ _('Read More') }}</a></p>
-        </div>
-      {% endif %}
-    </section>
-  {% endif %}
-
   <section id="support" class="support c">
+
+    {% if waffle.switch('ratings') %}
+      <div id="reviews">
+        <h3 class="wide">{{ _('Reviews') }}</h3>
+      {% if reviews %}
+        <a href="{{ product.get_ratings_url() }}">{{ _('Reviews') }}</a>
+      {% else %}
+        {% if can_review %}
+          <a class="overall-reviews button go"
+              href="{{ product.get_ratings_url('add') }}">
+              {{ _('Submit a Review') }}</a><p>
+        {% else %}
+          <span class="not-rated">
+            {{ _('This app is not yet rated.') }}</span>
+        {% endif %}
+      {% endif %}
+      </div>
+    {% endif %}
 
     {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
              pare this down. But until then... code duplication :( #}
-    <div class="narrow">
-      {% if reviews %}
-        <a href="{{ product.get_ratings_url() }}">{{ _('Reviews') }}</a>
-      {% elif can_review %}
-        <a class="overall-reviews"
-            href="{{ product.get_ratings_url('add') }}" class="button go">
-            {{ _('Submit a Review') }}</a><p>
-      {% endif %}
-      <ul class="c">
+      <ul class="narrow c">
         {% if False %}
           {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
                    https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
@@ -294,11 +265,10 @@
             {{ _('Report Abuse') }}</a></li>
         {% endif %}
       </ul>
-      <dl>
+      <dl class="narrow">
         <dt>{{ _('Published') }}</dt>
         <dd>{{ product.created|timelabel }}</dd>
       </dl>
-    </div>
 
     <ul class="wide">
       {% if product.support_email or product.support_url %}

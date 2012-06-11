@@ -19,7 +19,6 @@ from lib.metrics import send_request
 from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
 
-from mkt.ratings.models import Rating
 from mkt.site import messages
 from mkt.webapps.models import create_receipt, Installed, Webapp
 
@@ -30,16 +29,8 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 @addon_all_view
 def detail(request, addon):
     """Product details page."""
-    ratings = Rating.objects.latest().filter(addon=addon).order_by('-created')
-    positive_ratings = list(ratings.filter(score=1)[:5])
-    negative_ratings = list(ratings.filter(score=-1)[:5])
-    sorted_ratings = sorted(positive_ratings + negative_ratings,
-                            key=lambda x: x.created, reverse=True)
     ctx = {
-        'product': addon,
-        'ratings': ratings,
-        'ratings': sorted_ratings,
-        'review_history': [[2, 12], [50, 2], [3, 0], [4, 1]]
+        'product': addon
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)
