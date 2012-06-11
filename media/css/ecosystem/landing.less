@@ -167,14 +167,22 @@ body {
     }
 }
 
+#page {
+    &:before {
+        content: ".";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
 .marketing-block {
+    .box-shadow(0 1px 5px -3px @black);
     overflow: hidden;
     background-color: white;
     padding: 25px;
-    margin: 25px auto 0 auto;
-    border: 1px solid #BBBBBB;
-    box-shadow: 0 1px 5px -3px #000000;
-
+    margin: -1px auto 0 auto;
+    border: 1px solid #bbb;
     p {
         margin-bottom: 20px;
     }
@@ -206,9 +214,6 @@ body {
     }
     a {
         color: #667990;
-        display: block;
-        margin-left: 15px;
-        text-indent: -15px;
     }
     pre {
         border: dashed 2px #ddd;
@@ -236,9 +241,13 @@ body {
         padding: 25px 0 25px 25px;
         font-size: 15px;
         color: #667990;
-
+        a {
+            display: block;
+            margin-left: 15px;
+            text-indent: -15px;
+        }
         a.external {
-            background: url(../../img/mkt/arrows/external_sidebar.gif) 7px 100% no-repeat;
+            background: url(../../img/mkt/arrows/external_sidebar.gif) 100% 50% no-repeat;
             padding-right: 12px;
         }
     }
