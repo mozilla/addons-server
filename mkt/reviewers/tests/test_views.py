@@ -618,7 +618,13 @@ class TestReceiptVerify(amo.tests.TestCase):
     def test_post_required(self):
         eq_(self.client.get(self.url).status_code, 405)
 
-    def test_empty(self):
+    @mock.patch('mkt.reviewers.views.Verify')
+    def test_empty(self, verify):
+        vfy = self.get_mock(user=self.reviewer, status='invalid')
+        # Because the receipt was empty, this never got set and so
+        # we didn't log it.
+        vfy.user_id = None
+        verify.return_value = vfy
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(self.log.count(), 0)
