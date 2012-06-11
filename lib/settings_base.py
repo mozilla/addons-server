@@ -692,7 +692,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
-            'js/impala/ratingwidget.js',
+            'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
@@ -837,7 +837,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/mobile/personas.js',
             'js/zamboni/helpers.js',
             'js/zamboni/mobile/general.js',
-            'js/impala/ratingwidget.js',
+            'js/common/ratingwidget.js',
             'js/zamboni/browserid_support.js',
         ),
         'zamboni/stats': (
