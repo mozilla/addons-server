@@ -216,9 +216,9 @@
         <a href="{{ product.get_ratings_url() }}">{{ _('Reviews') }}</a>
       {% else %}
         {% if can_review %}
-          <a class="overall-reviews button go"
-              href="{{ product.get_ratings_url('add') }}">
-              {{ _('Submit a Review') }}</a><p>
+          <a class="overall-reviews button go" id="add-first-review"
+             href="{{ product.get_ratings_url('add') }}">
+            {{ _('Submit a Review') }}</a><p>
         {% else %}
           <span class="not-rated">
             {{ _('This app is not yet rated.') }}</span>

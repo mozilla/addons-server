@@ -30,6 +30,18 @@
         }
     },
     {
+        "pk": 1107723,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-04-21 12:36:47",
+            "locale": "ru",
+            "modified": "2010-04-21 12:36:47",
+            "id": 1043704,
+            "localized_string": "I have weak komputer :("
+        }
+    },
+    {
         "pk": 5293223,
         "model": "users.userprofile",
         "fields": {
@@ -96,6 +108,18 @@
         }
     },
     {
+        "pk": 1110931,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-04-22 22:42:44",
+            "locale": "en-US",
+            "modified": "2010-04-22 22:42:44",
+            "id": 1046852,
+            "localized_string": "Don't use Firefox 2.0!"
+        }
+    },
+    {
         "pk": 346,
         "model": "users.userprofile",
         "fields": {
@@ -127,8 +151,8 @@
         "pk": 1865,
         "model": "addons.addon",
         "fields": {
-            "app_slug": "a1865",
             "slug": "a1865",
+            "app_slug": "a1865",
             "dev_agreement": true,
             "eula": null,
             "_current_version": 90149,
@@ -234,14 +258,17 @@
     },
     {
         "pk": 218207,
-        "model": "ratings.rating",
+        "model": "reviews.review",
         "fields": {
             "body": 1043705,
-            "score": 4,
+            "rating": 4,
             "editorreview": false,
             "created": "2010-04-21 12:36:48",
+            "title": 1043704,
             "modified": "2010-06-15 15:21:14",
+            "sandbox": false,
             "flag": false,
+            "version": 90149,
             "addon": 1865,
             "user": 5293223,
             "reply_to": null,
@@ -250,14 +277,17 @@
     },
     {
         "pk": 218468,
-        "model": "ratings.rating",
+        "model": "reviews.review",
         "fields": {
             "body": 1046853,
-            "score": null,
+            "rating": null,
             "editorreview": false,
             "created": "2010-04-22 22:42:45",
+            "title": 1046852,
             "modified": "2010-04-22 22:42:45",
+            "sandbox": false,
             "flag": false,
+            "version": 90149,
             "addon": 1865,
             "user": 346,
             "reply_to": 218207,

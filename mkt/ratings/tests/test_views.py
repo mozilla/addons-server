@@ -1,13 +1,14 @@
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
 import waffle
 
+import amo
+import amo.tests
+from reviews.models import Review
 from users.models import UserProfile
 
 from mkt.developers.models import ActivityLog
-from mkt.ratings.models import Rating
 from mkt.webapps.models import Webapp
 
 
@@ -27,7 +28,7 @@ class ReviewTest(amo.tests.TestCase):
         self.client.login(username='jbalogh@mozilla.com', password='password')
 
     def make_it_my_review(self, review_id=218468):
-        r = Rating.objects.get(id=review_id)
+        r = Review.objects.get(id=review_id)
         r.user = UserProfile.objects.get(username='jbalogh')
         r.save()
 
@@ -66,33 +67,33 @@ class TestCreate(ReviewTest):
 
     def test_no_rating(self):
         r = self.client.post(self.add, {'body': 'no rating'})
-        self.assertFormError(r, 'form', 'score', 'This field is required.')
+        self.assertFormError(r, 'form', 'rating', 'This field is required.')
 
     def test_review_success(self):
-        qs = Rating.objects.filter(addon=1865)
+        qs = Review.objects.filter(addon=1865)
         old_cnt = qs.count()
         log_count = ActivityLog.objects.count()
 
-        r = self.client.post(self.add, {'body': 'xx', 'score': 1})
-        self.assertRedirects(r, self.webapp.get_detail_url() + '#reviews',
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 1})
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
                              status_code=302)
         eq_(qs.count(), old_cnt + 1)
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected ADD_REVIEW entry')
-        eq_(self.get_webapp()._rating_counts,
-            {'total': 1, 'positive': 1, 'negative': 0})
+        eq_(self.get_webapp().total_reviews, 1)
 
     def test_can_review_purchased(self):
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        data = {'body': 'x', 'score': 1}
+        data = {'body': 'x', 'rating': 1}
         eq_(self.client.get(self.add, data).status_code, 200)
         r = self.client.post(self.add, data)
-        self.assertRedirects(r, self.detail + '#reviews')
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
+                             status_code=302)
 
     def test_not_review_purchased(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        data = {'body': 'x', 'score': 1}
+        data = {'body': 'x', 'rating': 1}
         eq_(self.client.get(self.add, data).status_code, 403)
         eq_(self.client.post(self.add, data).status_code, 403)
 
@@ -159,7 +160,7 @@ class TestCreate(ReviewTest):
     def test_no_reviews_premium_no_add_review_link(self):
         # Ensure no 'Review this App' link for non-purchased premium apps.
         self.enable_waffle()
-        Rating.objects.all().delete()
+        Review.objects.all().delete()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 0)
@@ -167,7 +168,7 @@ class TestCreate(ReviewTest):
     def test_no_reviews_premium_add_review_link(self):
         # Ensure 'Review this App' link exists for purchased premium apps.
         self.enable_waffle()
-        Rating.objects.all().delete()
+        Review.objects.all().delete()
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
