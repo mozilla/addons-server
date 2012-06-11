@@ -11,15 +11,15 @@ from waffle.decorators import waffle_switch
 
 
 def _landing(request, category=None):
-    featured = Webapp.featured('category')
-    popular = Webapp.popular()
-
     if category:
         category = get_object_or_404(
             Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0),
             slug=category)
-        featured = featured.filter(category=category)[:6]
-        popular = popular.filter(category=category.id)
+        featured = Webapp.featured(category)
+        popular = Webapp.popular().filter(category=category.id)
+    else:
+        popular = Webapp.popular()
+        featured = Webapp.featured(None)
 
     return jingo.render(request, 'browse/landing.html', {
         'category': category,

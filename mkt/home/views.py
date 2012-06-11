@@ -8,7 +8,7 @@ def home(request):
     """The home page."""
     if not getattr(request, 'can_view_consumer', True):
         return jingo.render(request, 'home/home_walled.html')
-    featured = Webapp.featured('home')[:6]
+    featured = Webapp.featured(None)
     popular = Webapp.popular()[:10]
     latest = Webapp.latest()[:10]
     return jingo.render(request, 'home/home.html', {
