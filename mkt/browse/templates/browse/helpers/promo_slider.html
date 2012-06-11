@@ -6,20 +6,9 @@
     </div>
     <ul class="content">
       {% for product in products %}
-        {% set previews = [product.promo] if product.promo else product.all_previews %}
-        {% if previews %}
-          {% set preview = previews[0].image_url if feature else
-                           previews[0].thumbnail_url %}
-        {% endif %}
         {% if not preview or preview.filetype != 'video/webm' %}
           <li>
-            <a href="{{ product.get_url_path() }}">
-              <div class="img" style="background-image:url({{ preview }})"></div>
-              <h3>{{ product.name }}</h3>
-              <p>
-                {{ product.get_price() }}
-              </p>
-            </a>
+            {{ market_tile(product) }}
           </li>
         {% endif %}
       {% endfor %}

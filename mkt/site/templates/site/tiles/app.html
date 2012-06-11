@@ -1,0 +1,16 @@
+{% set previews = [product.promo] if product.promo else product.all_previews %}
+{% if previews %}
+  {% set preview = previews[0].image_url if feature else
+                   previews[0].thumbnail_url %}
+{% endif %}
+<a class="{{ classes }}" href="{{ product.get_url_path() }}" data-prefetch="1"
+   {% for k, v in data_attrs.items() -%}
+      data-{{ k }}="{{ v }}" {% endfor %}>
+  <div class="img icon" style="background-image:url({{ product.get_icon_url(64) }})"></div>
+  <div class="img preview" style="background-image:url({{ preview }})"></div>
+  <h3>{{ product.name }}</h3>
+  {% if product.listed_authors %}
+    <em class="author">{{ product.listed_authors[0].name }}</em>
+  {% endif %}
+  <p class="price">{{ product.get_price() }}</p>
+</a>

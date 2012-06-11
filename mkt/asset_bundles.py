@@ -80,6 +80,7 @@ CSS = {
         'css/mkt/header.less',
         'css/mkt/breadcrumbs.less',
         'css/mkt/buttons.less',
+        'css/mkt/tile.less',
         'css/mkt/detail.less',
         'css/mkt/ratings.less',
         'css/mkt/device.less',

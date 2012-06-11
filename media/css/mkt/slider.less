@@ -98,7 +98,7 @@
         margin: 15px 0 0;
         padding: 0;
         white-space: nowrap;
-        a {
+        .mkt-tile {
             display: block;
             opacity: .8;
             position: relative;
@@ -117,14 +117,7 @@
             &:hover:after {
                 opacity: 1;
             }
-        }
-        li {
-            clear: both;
-            margin-right: 24px;
-            display: inline-block;
-            vertical-align: top;
-            width: 264px;
-            .img {
+            .img.preview {
                 background-position: 50% 50%;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -133,6 +126,10 @@
                 display: block;
                 .box-shadow(0 1px 2px rgba(0,0,0,.5));
                 margin-bottom: 10px;
+            }
+            .img.icon {
+                background: none !important;
+                display: none;
             }
             h3, p {
                 line-height: 22px;
@@ -146,6 +143,13 @@
             p {
                 float: right;
             }
+        }
+        li {
+            clear: both;
+            margin-right: 24px;
+            display: inline-block;
+            vertical-align: top;
+            width: 264px;
         }
     }
 }
@@ -284,24 +288,26 @@
                 bottom: 5px;
                 right: 5px;
             }
-            li,
-            li .img {
+            li {
                 width: 120px;
             }
             li {
                 margin-right: 11px;
-                .img {
-                    background-position: 25% 50%;
-                    height: 120px;
-                    margin-bottom: 2px;
-                }
-                h3 {
-                    color: lighten(@text, 60%);
-                    font-size: .9em;
-                    margin: 2px 0 -4px;
-                    max-width: 100%;
-                    padding-bottom: 4px;
-                    text-shadow: .5px .5px 0 @navy-gray;
+                .mkt-tile {
+                    .img.icon {
+                        background-position: 25% 50%;
+                        height: 120px;
+                        width: 120px;
+                        margin-bottom: 2px;
+                    }
+                    h3 {
+                        color: lighten(@text, 60%);
+                        font-size: .9em;
+                        margin: 2px 0 -4px;
+                        max-width: 100%;
+                        padding-bottom: 4px;
+                        text-shadow: .5px .5px 0 @navy-gray;
+                    }
                 }
             }
         }

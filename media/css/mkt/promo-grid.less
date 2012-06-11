@@ -52,7 +52,7 @@
             display: none;
         }
     }
-    a {
+    .mkt-tile {
         .light-text-shadow;
         background: fadeOut(@light-gray, 50%);
         display: block;
@@ -73,37 +73,41 @@
                         inset 0 12px 24px 6px rgba(0,0,0,.2),
                         inset 0 0 2px 2px rgba(0,0,0,.2));
         }
-    }
-    .img {
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 64px;
-        height: 64px;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-    }
-    h3, .author {
-        .ellipsis;
-        // Because `overflow: hidden` is required for `text-overflow: ellipsis`
-        // and the letter 'g' gets clipped, my g.
-        margin-bottom: -6px;
-        padding-bottom: 2px;
-    }
-    .author {
-        color: @medium-gray;
-        display: block;
-        margin: 5px 0;
-        font-style: normal;
-    }
-    .price {
-        position: absolute;
-        bottom: 7px;
-        font-size: 15px;
-        line-height: 17px;
-        font-weight: bold;
-        margin: 0;
+        .img.icon {
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 64px;
+            height: 64px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .img.preview {
+            background-image: none !important;
+            display: none;
+        }
+        h3, .author {
+            .ellipsis;
+            // Because `overflow: hidden` is required for `text-overflow: ellipsis`
+            // and the letter 'g' gets clipped, my g.
+            margin-bottom: -6px;
+            padding-bottom: 2px;
+        }
+        .author {
+            color: @medium-gray;
+            display: block;
+            margin: 5px 0;
+            font-style: normal;
+        }
+        .price {
+            position: absolute;
+            bottom: 7px;
+            font-size: 15px;
+            line-height: 17px;
+            font-weight: bold;
+            margin: 0;
+        }
     }
 }
 

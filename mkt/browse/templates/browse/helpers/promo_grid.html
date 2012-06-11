@@ -3,14 +3,7 @@
     <ul class="content">
       {% for product in products %}
         <li>
-          <a href="{{ product.get_url_path() }}" data-prefetch="1">
-            <div class="img" style="background-image:url({{ product.get_icon_url(64) }})"></div>
-            <h3>{{ product.name }}</h3>
-            {% if product.listed_authors %}
-              <em class="author">{{ product.listed_authors[0].name }}</em>
-            {% endif %}
-            <p class="price">{{ product.get_price() }}</p>
-          </a>
+          {{ market_tile(product) }}
         </li>
       {% endfor %}
     </ul>

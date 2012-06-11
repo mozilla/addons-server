@@ -99,12 +99,32 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
                 for k, v in ret.items())
 
 
+@jinja2.contextfunction
+@register.function
+def market_tile(context, product):
+    request = context['request']
+    if product.is_webapp():
+        classes = ['product','mkt-tile']
+        product_dict = product_as_dict(request, product)
+        data_attrs = {
+            'product': json.dumps(product_dict, cls=JSONEncoder),
+            'manifestUrl': product.manifest_url
+        }
+        if product.is_premium() and product.premium:
+            classes.append('premium')
+        c = dict(product=product, data_attrs=data_attrs,
+                 classes=' '.join(classes))
+        t = env.get_template('site/tiles/app.html')
+    return jinja2.Markup(t.render(c))
+
+
 @register.filter
 @jinja2.contextfilter
 def promo_slider(context, products, feature=False):
     c = {
         'products': products,
         'feature': feature,
+        'request': request,
     }
     t = env.get_template('site/promo_slider.html')
     return jinja2.Markup(t.render(c))
