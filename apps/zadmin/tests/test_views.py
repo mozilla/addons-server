@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import csv
+import json
 from cStringIO import StringIO
 from datetime import datetime
-import json
 
 from django.conf import settings
 from django.core import mail
@@ -18,9 +18,10 @@ import amo
 import amo.tests
 from amo.tests import (formset, initial, close_to_now, assert_required,
                        assert_no_validation_errors)
-from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
 from addons.models import Addon, CompatOverride, CompatOverrideRange
+from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from applications.models import AppVersion
 from bandwagon.models import FeaturedCollection, MonthlyPick
 from compat.cron import compatibility_report
@@ -31,10 +32,9 @@ from stats.models import UpdateCount
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
-from zadmin import forms
+from zadmin import forms, tasks
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
 from zadmin.views import completed_versions_dirty, find_files
-from zadmin import tasks
 
 
 no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
@@ -1341,19 +1341,44 @@ class TestLookup(amo.tests.TestCase):
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        self.url = reverse('zadmin.search', args=['auth', 'user'])
+        self.user = UserProfile.objects.get(pk=999)
+        self.url = reverse('zadmin.search', args=['users', 'userprofile'])
 
     def test_logged_out(self):
         self.client.logout()
         eq_(self.client.get('%s?q=admin' % self.url).status_code, 403)
 
-    def test_search(self):
-        for q, c in [('', 6), ('admin@mozilla.com', 1)]:
-            res = self.client.get('%s?q=%s' % (self.url, q))
-            eq_(res.status_code, 200)
-            content = json.loads(res.content)
-            eq_(len(content), c)
-            eq_(content[0], {u'value': 4043307, u'label': u'admin'})
+    def check_results(self, q, expected):
+        res = self.client.get(urlparams(self.url, q=q))
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(len(content), len(expected))
+        ids = [int(c['value']) for c in content]
+        emails = [u'%s' % c['label'] for c in content]
+        for d in expected:
+            id = d['value']
+            email = u'%s' % d['label']
+            assert id in ids, (
+                'Expected user ID "%s" not found' % id)
+            assert email in emails, (
+                'Expected username "%s" not found' % email)
+
+    def test_lookup_empty(self):
+        users = UserProfile.objects.values('id', 'email')
+        self.check_results('', [dict(
+            value=u['id'], label=u['email']) for u in users])
+
+    def test_lookup_by_id(self):
+        self.check_results(self.user.id, [dict(value=self.user.id,
+                                               label=self.user.email)])
+
+    def test_lookup_by_email(self):
+        self.check_results(self.user.email, [dict(value=self.user.id,
+                                                  label=self.user.email)])
+
+    def test_lookup_by_username(self):
+        self.check_results(self.user.username, [dict(value=self.user.id,
+                                                     label=self.user.email)])
 
 
 class TestAddonManagement(amo.tests.TestCase):

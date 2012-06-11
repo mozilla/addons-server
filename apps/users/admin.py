@@ -36,7 +36,7 @@ admin.site.register(User, BetterDjangoUserAdmin)
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'email')
-    search_fields = ('^email',)
+    search_fields = ('id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
     inlines = (GroupUserInline,)
