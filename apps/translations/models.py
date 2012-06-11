@@ -73,18 +73,21 @@ class Translation(amo.models.ModelBase):
         If ``id`` is not given a new id will be created using
         ``translations_seq``.  Otherwise, the id will be used to add strings to
         an existing translation.
+
+        To increment IDs we use a setting on MySQL. This is to support multiple
+        database masters -- it's just crazy enough to work! See bug 756242.
         """
         if id is None:
             # Get a sequence key for the new translation.
             cursor = connection.cursor()
             cursor.execute("""UPDATE translations_seq
-                              SET id=LAST_INSERT_ID(id + 1)""")
+                              SET id=LAST_INSERT_ID(id + @@global.auto_increment_increment)""")
 
             # The sequence table should never be empty. But alas, if it is,
             # let's fix it.
             if not cursor.rowcount > 0:
                 cursor.execute("""INSERT INTO translations_seq (id)
-                                  VALUES(LAST_INSERT_ID(id + 1))""")
+                                  VALUES(LAST_INSERT_ID(id + @@global.auto_increment_increment))""")
 
             cursor.execute('SELECT LAST_INSERT_ID()')
             id = cursor.fetchone()[0]
