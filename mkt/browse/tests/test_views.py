@@ -11,6 +11,7 @@ from bandwagon.models import Collection, CollectionAddon
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
+from mkt.zadmin.models import FeaturedApp
 
 
 class BrowseBase(amo.tests.ESTestCase):
@@ -30,28 +31,20 @@ class BrowseBase(amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         return sorted(x.id for x in r.context[key])
 
-    def make_featured(self, webapp, group):
-        a, yay = UserProfile.objects.get_or_create(username='mozilla')
-        c, yay = Collection.objects.get_or_create(author=a,
-            slug='featured_apps_%s' % group, type=amo.COLLECTION_FEATURED)
-        CollectionAddon.objects.create(collection=c, addon=webapp)
 
     def setup_featured(self):
         amo.tests.addon_factory()
 
         # Category featured.
         a = amo.tests.app_factory()
-        self.make_featured(webapp=a, group='category')
-        AddonCategory.objects.create(addon=a, category=self.cat)
+        FeaturedApp.objects.create(app=a, category=self.cat)
 
         b = amo.tests.app_factory()
-        self.make_featured(webapp=b, group='category')
-        AddonCategory.objects.create(addon=b, category=self.cat)
+        FeaturedApp.objects.create(app=b, category=self.cat)
 
         # Home featured.
         c = amo.tests.app_factory()
-        self.make_featured(webapp=c, group='home')
-        AddonCategory.objects.create(addon=c, category=self.cat)
+        FeaturedApp.objects.create(app=c, category=None)
 
         return a, b, c
 
@@ -114,7 +107,7 @@ class TestIndexLanding(BrowseBase):
     def test_featured(self):
         a, b, c = self.setup_featured()
         # Check that these apps are featured on the category landing page.
-        eq_(self.get_pks('featured', self.url), sorted([a.id, b.id]))
+        eq_(self.get_pks('featured', self.url), sorted([c.id]))
 
     def test_popular(self):
         a, b = self.setup_popular()
