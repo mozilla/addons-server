@@ -249,3 +249,9 @@ class TestAccessWhitelist(amo.tests.TestCase):
         with self.assertNumQueries(1):
             # Exit post-save.
             AccessWhitelist.objects.create(email='')
+
+    def test_empty(self):
+        for value in ['', ' ']:
+            AccessWhitelist.objects.all().delete()
+            AccessWhitelist.objects.create(email=value)
+            eq_(AccessWhitelist.matches('any@email.com'), False)
