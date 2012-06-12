@@ -200,13 +200,3 @@ def purchase_done(request, addon, status):
 def preapproval(request, addon):
     return user_preapproval(request, complete=addon.get_detail_url(),
                             cancel=addon.get_detail_url())
-
-
-@login_required
-@addon_view
-def reissue(request, addon):
-    reissue = not addon.is_premium()
-    if addon.is_premium() and addon.has_purchased(request.amo_user):
-        reissue = True
-    return jingo.render(request, 'purchase/reissue.html',
-                        {'reissue': reissue, 'app': addon})

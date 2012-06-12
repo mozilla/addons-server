@@ -65,7 +65,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
         author = product.listed_authors[0].name
         author_url = product.listed_authors[0].get_url_path()
 
-    url = (reverse('reviewers.receipt.issue', args=[product.app_slug])
+    url = (reverse('receipt.issue', args=[product.app_slug])
            if receipt_type else product.get_detail_url('record'))
     ret = {
         'id': product.id,

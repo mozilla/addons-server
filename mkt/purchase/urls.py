@@ -10,7 +10,6 @@ urlpatterns = patterns('',
         name='detail.purchase.preapproval'),
     url('^(?P<status>cancel|complete)$', views.purchase_done,
         name='purchase.done'),
-    url('^reissue$', views.reissue, name='purchase.reissue'),
 
     # TODO: Port these views.
     #url('^thanks/$', views.purchase_thanks, name='purchase.thanks'),

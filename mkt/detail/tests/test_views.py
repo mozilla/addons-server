@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from django.conf import settings
 from django.core import mail
 from django.utils.html import strip_tags
@@ -17,7 +15,6 @@ from amo.helpers import external_url, numberfmt
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
-from devhub.models import AppLog
 from market.models import PreApprovalUser
 from users.models import UserProfile
 
@@ -498,124 +495,6 @@ class TestDetailPagePermissions(DetailBase):
         self._test_dev_disabled_by_user()
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
-class TestInstall(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.addon = amo.tests.app_factory(manifest_url='http://cbc.ca/man')
-        self.url = self.addon.get_detail_url('record')
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        assert self.client.login(username=self.user.email, password='password')
-
-    def test_pending_free_for_reviewer(self):
-        self.addon.update(status=amo.STATUS_PENDING)
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
-        eq_(self.client.post(self.url).status_code, 200)
-
-    def test_pending_free_for_developer(self):
-        AddonUser.objects.create(addon=self.addon, user=self.user)
-        self.addon.update(status=amo.STATUS_PENDING)
-        eq_(self.client.post(self.url).status_code, 200)
-
-    def test_pending_free_for_anonymous(self):
-        self.addon.update(status=amo.STATUS_PENDING)
-        eq_(self.client.post(self.url).status_code, 404)
-
-    def test_pending_paid_for_reviewer(self):
-        self.addon.update(status=amo.STATUS_PENDING,
-                          premium_type=amo.ADDON_PREMIUM)
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
-        eq_(self.client.post(self.url).status_code, 200)
-
-    def test_pending_paid_for_developer(self):
-        AddonUser.objects.create(addon=self.addon, user=self.user)
-        self.addon.update(status=amo.STATUS_PENDING,
-                          premium_type=amo.ADDON_PREMIUM)
-        eq_(self.client.post(self.url).status_code, 200)
-
-    def test_pending_paid_for_anonymous(self):
-        self.addon.update(status=amo.STATUS_PENDING,
-                          premium_type=amo.ADDON_PREMIUM)
-        eq_(self.client.post(self.url).status_code, 404)
-
-    def test_not_record_addon(self):
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        res = self.client.post(self.url)
-        eq_(res.status_code, 404)
-        eq_(self.user.installed_set.count(), 0)
-
-    @mock.patch('mkt.webapps.models.Webapp.has_purchased')
-    def test_paid(self, has_purchased):
-        has_purchased.return_value = True
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        eq_(self.client.post(self.url).status_code, 200)
-
-    @mock.patch('mkt.webapps.models.Webapp.has_purchased')
-    def test_not_paid(self, has_purchased):
-        has_purchased.return_value = False
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        eq_(self.client.post(self.url).status_code, 403)
-
-    def test_record_logged_out(self):
-        self.client.logout()
-        res = self.client.post(self.url)
-        eq_(res.status_code, 302)
-
-    @mock.patch('mkt.detail.views.receipt_cef.log')
-    def test_log_metrics(self, cef):
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        logs = AppLog.objects.filter(addon=self.addon)
-        eq_(logs.count(), 1)
-        eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
-
-    @mock.patch('mkt.detail.views.send_request')
-    @mock.patch('mkt.detail.views.receipt_cef.log')
-    def test_record_metrics(self, cef, send_request):
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        eq_(send_request.call_args[0][0], 'install')
-        eq_(send_request.call_args[0][2], {'app-domain': u'cbc.ca',
-                                           'app-id': self.addon.pk})
-
-    @mock.patch('mkt.detail.views.receipt_cef.log')
-    def test_cef_logs(self, cef):
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        eq_(len(cef.call_args_list), 2)
-        eq_([x[0][2] for x in cef.call_args_list],
-            ['request', 'sign'])
-
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        eq_(len(cef.call_args_list), 3)
-        eq_([x[0][2] for x in cef.call_args_list],
-            ['request', 'sign', 'request'])
-
-    @mock.patch('mkt.detail.views.receipt_cef.log')
-    def test_record_install(self, cef):
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        eq_(self.user.installed_set.count(), 1)
-
-    @mock.patch('mkt.detail.views.receipt_cef.log')
-    def test_record_multiple_installs(self, cef):
-        self.client.post(self.url)
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        eq_(self.user.installed_set.count(), 1)
-
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                       amo.tests.AMOPaths.sample_key())
-    @mock.patch('mkt.detail.views.receipt_cef.log')
-    def test_record_receipt(self, cef):
-        res = self.client.post(self.url)
-        content = json.loads(res.content)
-        assert content.get('receipt'), content
 
 
 class TestPrivacy(amo.tests.TestCase):

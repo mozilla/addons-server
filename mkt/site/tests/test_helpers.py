@@ -105,6 +105,6 @@ class TestMarketButton(amo.tests.TestCase):
     def test_reviewers(self):
         doc = pq(market_button(self.context, self.webapp, 'reviewer'))
         data = json.loads(doc('a').attr('data-product'))
-        issue = urlparams(reverse('reviewers.receipt.issue',
+        issue = urlparams(reverse('receipt.issue',
                                   args=[self.webapp.app_slug]), src='foo')
         eq_(data['recordUrl'], issue)

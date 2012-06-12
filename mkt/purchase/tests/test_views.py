@@ -322,38 +322,3 @@ class TestPurchaseDetails(amo.tests.TestCase):
         res = self.client.post(self.pre_url, {'currency': 'USD'})
         eq_(res.status_code, 302)
         eq_(res['Location'], get_preapproval_url('x'))
-
-
-class TestReissue(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        self.url = self.webapp.get_purchase_url('reissue')
-
-    def test_reissue_logout(self):
-        self.client.logout()
-        res = self.client.get(self.url)
-        eq_(res.status_code, 302)
-
-    def test_reissue(self):
-        res = self.client.get(self.url)
-        eq_(res.context['reissue'], True)
-
-    @mock.patch('addons.models.Addon.has_purchased')
-    def test_reissue_premium_not_purchased(self, has_purchased):
-        self.make_premium(self.webapp)
-        has_purchased.return_value = False
-        res = self.client.get(self.url)
-        eq_(res.context['reissue'], False)
-        eq_(len(pq(res.content)('a.install')), 0)
-
-    @mock.patch('addons.models.Addon.has_purchased')
-    def test_reissue_premium_purchased(self, has_purchased):
-        self.make_premium(self.webapp)
-        has_purchased.return_value = True
-        res = self.client.get(self.url)
-        eq_(res.context['reissue'], True)
-        eq_(len(pq(res.content)('a.install')), 1)

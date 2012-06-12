@@ -4,7 +4,6 @@ from django import http
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 from tower import ugettext as _
@@ -12,24 +11,18 @@ from tower import ugettext as _
 from access import acl
 import amo
 from amo import messages
-from amo.decorators import json_view, post_required
 from amo.utils import urlparams
 from addons.decorators import addon_view
 from addons.models import Version
 from amo.decorators import permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
-from devhub.models import AppLog
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
-from lib.crypto.receipt import SigningError
-from lib.cef_loggers import receipt_cef
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import create_receipt, Installed, Webapp
+from mkt.webapps.models import Webapp
 from reviews.models import Review
-from services.verify import Verify
-from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 from . import forms
@@ -292,62 +285,3 @@ def motd(request):
             return redirect(reverse('reviewers.apps.motd'))
     data = context(form=form)
     return jingo.render(request, 'reviewers/motd.html', data)
-
-
-@csrf_exempt
-@addon_view
-@post_required
-def verify(request, addon):
-    receipt = request.raw_post_data
-    verify = Verify(addon.pk, receipt, request)
-    output = verify(check_purchase=False)
-
-    # Only reviewers or the authors can use this which is different
-    # from the standard receipt verification. The user is contained in the
-    # receipt.
-    if verify.user_id:
-        try:
-            user = UserProfile.objects.get(pk=verify.user_id)
-        except UserProfile.DoesNotExist:
-            user = None
-
-        if user and (acl.action_allowed_user(user, 'Apps', 'Review')
-            or addon.has_author(user)):
-            amo.log(amo.LOG.RECEIPT_CHECKED, addon, user=user)
-            return http.HttpResponse(output, verify.get_headers(len(output)))
-
-    return http.HttpResponse(verify.invalid(),
-                             verify.get_headers(verify.invalid()))
-
-
-@addon_view
-@json_view
-@post_required
-def issue(request, addon):
-    user = request.amo_user
-    review = acl.action_allowed_user(user, 'Apps', 'Review') if user else None
-    author = addon.has_author(user)
-    if not user or not (review or author):
-        return http.HttpResponseForbidden()
-
-    installed, c = Installed.objects.safer_get_or_create(addon=addon,
-                                                         user=request.amo_user)
-    error = ''
-    flavour = 'reviewer' if review else 'developer'
-    receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
-    try:
-        receipt = create_receipt(installed.pk, flavour=flavour)
-    except SigningError:
-        error = _('There was a problem installing the app.')
-
-    return {'addon': addon.pk, 'receipt': receipt, 'error': error}
-
-
-@addon_view
-@json_view
-@reviewer_required
-def check(request, addon):
-    qs = (AppLog.objects.order_by('-created')
-                .filter(addon=addon,
-                        activity_log__action=amo.LOG.RECEIPT_CHECKED.id))
-    return {'status': qs.exists()}

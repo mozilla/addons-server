@@ -60,6 +60,7 @@ INSTALLED_APPS += (
     'mkt.inapp_pay',
     'mkt.purchase',
     'mkt.ratings',
+    'mkt.receipts',
     'mkt.reviewers',
     'mkt.search',
     'mkt.stats',

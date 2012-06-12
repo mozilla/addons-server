@@ -1,6 +1,7 @@
-from django.conf.urls.defaults import url
+from django.conf.urls.defaults import include, url
 
 import amo
+from mkt.receipts.urls import receipt_patterns
 from . import views
 
 
@@ -15,10 +16,6 @@ urlpatterns = (
         name='reviewers.apps.review'),
     url(r'^apps/logs$', views.logs, name='reviewers.apps.logs'),
     url(r'^apps/motd$', views.motd, name='reviewers.apps.motd'),
-    url(r'^receipt/verify/%s$' % amo.APP_SLUG, views.verify,
-        name='reviewers.receipt.verify'),
-    url(r'^receipt/issue/%s$' % amo.APP_SLUG, views.issue,
-        name='reviewers.receipt.issue'),
-    url(r'^receipt/check/%s$' % amo.APP_SLUG, views.check,
-        name='reviewers.receipt.check'),
+
+    url(r'^receipt/', include(receipt_patterns))
 )

@@ -16,7 +16,8 @@ import amo.tests
 from addons.models import Addon
 from services import verify
 from services import utils
-from mkt.webapps.models import create_receipt, Installed
+from mkt.receipts.utils import create_receipt
+from mkt.webapps.models import Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution
