@@ -424,6 +424,15 @@ class TestReviewLog(EditorTest):
         eq_(rows.filter(':not(.hide)').length, 2)
         eq_(rows.filter('.hide').eq(0).text(), 'youwin')
 
+    def test_search_app_soft_deleted(self):
+        self.make_approvals()
+        self.apps[0].update(status=amo.STATUS_DELETED)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#log-listing tbody tr').eq(0).attr('data-addonid'),
+            str(self.apps[0].pk))
+
     def test_xss(self):
         a = self.apps[0]
         a.name = '<script>alert("xss")</script>'
