@@ -236,10 +236,10 @@ class TestReceiptVerify(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     @mock.patch('mkt.receipts.views.Verify')
-    def test_logs_author(self, verify):
-        author = UserProfile.objects.get(pk=999)
-        AddonUser.objects.create(addon=self.app, user=author)
-        verify.return_value = self.get_mock(user=author, status='ok')
+    def test_logs_developer(self, verify):
+        developer = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=self.app, user=developer)
+        verify.return_value = self.get_mock(user=developer, status='ok')
         res = self.client.post(self.url)
         eq_(self.log.count(), 1)
         eq_(res.status_code, 200)
@@ -278,7 +278,7 @@ class TestReceiptIssue(amo.tests.TestCase):
         eq_(res.status_code, 403)
 
     @mock.patch('mkt.receipts.views.create_receipt')
-    def test_issued_author(self, create_receipt):
+    def test_issued_developer(self, create_receipt):
         create_receipt.return_value = 'foo'
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.client.login(username=self.user.email, password='password')

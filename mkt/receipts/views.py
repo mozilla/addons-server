@@ -122,7 +122,7 @@ def verify(request, addon):
     verify = Verify(addon.pk, receipt, request)
     output = verify(check_purchase=False)
 
-    # Only reviewers or the authors can use this which is different
+    # Only reviewers or the developers can use this which is different
     # from the standard receipt verification. The user is contained in the
     # receipt.
     if verify.user_id:
@@ -146,8 +146,8 @@ def verify(request, addon):
 def issue(request, addon):
     user = request.amo_user
     review = acl.action_allowed_user(user, 'Apps', 'Review') if user else None
-    author = addon.has_author(user)
-    if not user or not (review or author):
+    developer = addon.has_author(user)
+    if not (review or developer):
         return http.HttpResponseForbidden()
 
     installed, c = Installed.objects.safer_get_or_create(addon=addon,

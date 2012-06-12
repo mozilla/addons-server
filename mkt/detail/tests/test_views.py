@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from django.conf import settings
 from django.core import mail
 from django.utils.html import strip_tags
@@ -11,7 +13,7 @@ import waffle
 
 from abuse.models import AbuseReport
 import amo
-from amo.helpers import external_url, numberfmt
+from amo.helpers import external_url, numberfmt, urlparams
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
@@ -96,11 +98,17 @@ class TestDetail(DetailBase):
         eq_(doc('.product.premium').length, 1)
         eq_(doc('.faked-purchase').length, 0)
 
+    def dev_receipt_url(self):
+        return urlparams(reverse('receipt.issue',
+                                 args=[self.webapp.app_slug]), src='')
+
     def test_paid_install_button_for_owner(self):
         self.make_premium(self.webapp)
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
         doc = self.get_pq()
+        eq_(json.loads(doc('a.install').attr('data-product'))['recordUrl'],
+            self.dev_receipt_url())
         eq_(doc('.product.install.premium').length, 1)
         eq_(doc('.faked-purchase').length, 1)
         eq_(doc('.manage').length, 1)
@@ -111,6 +119,8 @@ class TestDetail(DetailBase):
         assert self.client.login(username=user.email, password='password')
         AddonUser.objects.create(addon=self.webapp, user=user)
         doc = self.get_pq()
+        eq_(json.loads(doc('a.install').attr('data-product'))['recordUrl'],
+            self.dev_receipt_url())
         eq_(doc('.product.install.premium').length, 1)
         eq_(doc('.faked-purchase').length, 1)
         eq_(doc('.manage').length, 1)
@@ -493,8 +503,6 @@ class TestDetailPagePermissions(DetailBase):
     def test_admin_disabled_by_user(self):
         self.log_in_as('admin')
         self._test_dev_disabled_by_user()
-
-
 
 
 class TestPrivacy(amo.tests.TestCase):

@@ -8,12 +8,12 @@ from nose.tools import eq_
 
 from addons.models import AddonUser
 import amo
+import amo.tests
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from mkt.receipts.utils import create_receipt, get_key
 from mkt.webapps.models import Installed, Webapp
 from users.models import UserProfile
-
 
 
 # We are testing times down to the second. To make sure we don't fail, this
@@ -117,19 +117,23 @@ class TestReceipt(amo.tests.TestCase):
         eq_(receipt['product']['type'], flavour)
         eq_(receipt['verify'],
             absolutify(reverse('receipt.verify', args=[self.webapp.app_slug])))
-        assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
-                                 (60 * 60 * 24) - TEST_LEEWAY)
+        return receipt
 
-    def test_receipt_data_author(self):
+    def test_receipt_data_developer(self):
         user = UserProfile.objects.get(pk=5497308)
         ins = self.create_install(user, self.webapp)
-        self.for_user(ins, 'author')
+        receipt = self.for_user(ins, 'developer')
+        assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
+                                 settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS -
+                                 TEST_LEEWAY)
 
     def test_receipt_data_reviewer(self):
         user = UserProfile.objects.get(pk=999)
         AddonUser.objects.create(addon=self.webapp, user=user)
         ins = self.create_install(user, self.webapp)
-        self.for_user(ins, 'reviewer')
+        receipt = self.for_user(ins, 'reviewer')
+        assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
+                                 (60 * 60 * 24) - TEST_LEEWAY)
 
     @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
     @mock.patch('mkt.receipts.utils.sign')

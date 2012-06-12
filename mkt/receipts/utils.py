@@ -17,7 +17,7 @@ from mkt.webapps.models import Installed
 
 @memoize(prefix='create-receipt', time=60 * 10)
 def create_receipt(installed_pk, flavour=None):
-    assert flavour in [None, 'author', 'reviewer'], (
+    assert flavour in [None, 'developer', 'reviewer'], (
            'Invalid flavour: %s' % flavour)
 
     installed = Installed.objects.get(pk=installed_pk)
@@ -26,19 +26,20 @@ def create_receipt(installed_pk, flavour=None):
     product = {'url': installed.addon.origin,
                'storedata': urlencode({'id': int(addon_pk)})}
 
-    # Generate different receipts for reviewers or authors.
-    if flavour in ['author', 'reviewer']:
+    # Generate different receipts for reviewers or developers.
+    expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
+    if flavour:
         if not (acl.action_allowed_user(installed.user, 'Apps', 'Review') or
                 installed.addon.has_author(installed.user)):
-            raise ValueError('User %s is not a reviewer or author' %
+            raise ValueError('User %s is not a reviewer or developer' %
                              installed.user.pk)
 
-        expiry = time_ + (60 * 60 * 24)
+        if flavour == 'reviewer':
+            expiry = time_ + (60 * 60 * 24)
         product['type'] = flavour
         verify = absolutify(reverse('receipt.verify',
                                     args=[installed.addon.app_slug]))
     else:
-        expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
         verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
 
     detail = reverse('account.purchases.receipt', args=[addon_pk])
