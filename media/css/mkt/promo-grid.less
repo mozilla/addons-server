@@ -1,7 +1,7 @@
 @import 'lib';
 
 .view-more a,
-.mkt-tile {
+.promo-grid .mkt-tile {
     &:hover,
     &:active {
         background: @faint-gray;
@@ -79,13 +79,16 @@
             // Because `overflow: hidden` is required for `text-overflow: ellipsis`
             // and the letter 'g' gets clipped, my g.
             margin-bottom: -6px;
-            padding-bottom: 2px;
+        }
+        h3 {
+            padding: 0 25px 2px 0;
         }
         .author {
             color: @medium-gray;
             display: block;
             margin: 5px 0;
             font-style: normal;
+            padding-bottom: 2px;
         }
         .price {
             position: absolute;
