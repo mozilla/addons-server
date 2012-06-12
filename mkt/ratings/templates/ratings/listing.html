@@ -26,7 +26,8 @@
           {% if product.average_rating %}
             {{ product.average_rating|float|stars }}
             <span>
-              {% trans num=product.total_reviews|numberfmt %}
+              {% trans cnt=product.total_reviews,
+                       num=product.total_reviews|numberfmt %}
                 {{ num }} review
               {% pluralize %}
                 {{ num }} reviews

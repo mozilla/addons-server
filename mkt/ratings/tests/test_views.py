@@ -185,6 +185,15 @@ class TestCreate(ReviewTest):
         eq_(pq(r.content)('.average-rating').text(),
             'Rated %s out of 5 stars %s reviews' % (rating, total))
 
+    def test_review_link_singular(self):
+        # We have reviews.
+        self.enable_waffle()
+        self.webapp.update(total_reviews=1)
+        r = self.client.get(self.detail)
+        rating = int(round(self.webapp.average_rating))
+        eq_(pq(r.content)('.average-rating').text(),
+            'Rated %s out of 5 stars 1 review' % rating)
+
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.
         self.enable_waffle()
