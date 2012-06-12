@@ -450,6 +450,59 @@
     #search-results, #search-facets {
         .width(4);
     }
+    #search-facets {
+        > p {
+            font-size: 12px;
+            margin: 4px 0;
+        }
+        li {
+            font-size: 12px;
+            text-align: center;
+            ul {
+                padding-left: 0;
+            }
+            h3 {
+                display: none;
+            }
+        }
+        h2 {
+            line-height: 22px;
+            min-height: 22px;
+            margin-bottom: 7px;
+        }
+        .facets {
+            .facet {
+                padding: 5px 6px 6px;
+                li a, li a:hover {
+                    padding: 3px 0;
+                    .border-radius(5px);
+                    background-color: #eee;
+                }
+                .selected a, .selected a:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    #page #search-results {
+        width: 100%;
+        h1 {
+            font-size: 15px;
+        }
+        #sorter {
+            h3 {
+                color: @dark-gray;
+            }
+            li {
+                a {
+                    border-right: 0;
+                }
+            }
+        }
+    }
+    #page #search-facets {
+        width: 100%;
+    }
 }
 
 @media (max-width: @3col) {
