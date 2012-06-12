@@ -4,6 +4,7 @@ from pyquery import PyQuery as pq
 import waffle
 
 import amo
+from amo.helpers import numberfmt
 import amo.tests
 from reviews.models import Review
 from users.models import UserProfile
@@ -106,10 +107,11 @@ class TestCreate(ReviewTest):
         eq_(pq(r.content)('#add-first-review').length, 1)
 
     def test_add_link_logged(self):
-        """Ensure logged user can see Add Review links."""
+        # Ensure logged user can see Add Review links.
         self.enable_waffle()
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#add-first-review').length, 1)
+        doc = pq(r.content)('#review')
+        eq_(doc('#add-first-review').length, 0)
 
     def test_add_link_dev(self):
         # Ensure developer cannot see Add Review links.
@@ -173,6 +175,23 @@ class TestCreate(ReviewTest):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 1)
+
+    def test_review_link(self):
+        # We have reviews.
+        self.enable_waffle()
+        r = self.client.get(self.detail)
+        rating = int(round(self.webapp.average_rating))
+        total = numberfmt(self.webapp.total_reviews)
+        eq_(pq(r.content)('.average-rating').text(),
+            'Rated %s out of 5 stars %s reviews' % (rating, total))
+
+    def test_not_rated(self):
+        # We don't have any reviews, and I'm not allowed to submit a review.
+        self.enable_waffle()
+        Review.objects.all().delete()
+        self.log_in_dev()
+        r = self.client.get(self.detail)
+        eq_(pq(r.content)('.not-rated').length, 1)
 
     def test_add_logged_out(self):
         self.client.logout()

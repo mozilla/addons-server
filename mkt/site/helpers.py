@@ -104,7 +104,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
 def market_tile(context, product):
     request = context['request']
     if product.is_webapp():
-        classes = ['product','mkt-tile']
+        classes = ['product', 'mkt-tile', 'arrow']
         product_dict = product_as_dict(request, product)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),

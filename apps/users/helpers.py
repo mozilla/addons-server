@@ -10,7 +10,7 @@ import amo
 
 
 @register.function
-def emaillink(email, title=None):
+def emaillink(email, title=None, klass=None):
     if not email:
         return ""
 
@@ -28,8 +28,8 @@ def emaillink(email, title=None):
     else:
         title = '<span class="emaillink">%s</span>' % fallback
 
-    node = u'<a href="#">%s</a><span class="emaillink js-hidden">%s</span>' % (
-        title, fallback)
+    node = (u'<a%s href="#">%s</a><span class="emaillink js-hidden">%s</span>'
+            % ((' class="%s"' % klass) if klass else '', title, fallback))
     return jinja2.Markup(node)
 
 

@@ -182,15 +182,8 @@ header.product {
 }
 
 #submit-review {
-    form {
-        .simple-field {
-            margin: 0;
-        }
-    }
-    .barometer {
-        font-size: 120%;
-        line-height: 1.2;
-        margin-bottom: 20px;
+    form .simple-field {
+        margin: 0;
     }
     .form-footer {
         margin-top: 30px;
@@ -213,52 +206,6 @@ header.product {
         display: none;
     }
 }
-
-.barometer {
-    span {
-        display: inline-block;
-        .width(1.5);
-        &:before {
-            background: url(../../img/icons/thumbs.png) no-repeat;
-            content: "";
-            display: block;
-            float: left;
-            margin-right: 10px;
-            height: 20px;
-            width: 15px;
-        }
-        &:hover {
-            cursor: pointer;
-        }
-        &.voted {
-            font-weight: bold;
-        }
-    }
-    .upvotes {
-        color: #00b960;
-        &:before {
-            background-position: 0 -42px;
-        }
-        &:hover, &.voted {
-            &:before {
-                background-position: 0 0;
-            }
-        }
-    }
-    .downvotes {
-        color: #d93a40;
-        &:before {
-            background-position: 100% 100%;
-        }
-        &:hover, &.voted {
-            &:before {
-                background-position: 100% -82px;
-            }
-        }
-    }
-}
-
-
 
 .stars {
     background: url(../../img/impala/stars.png) no-repeat left top;
@@ -301,6 +248,9 @@ header.product {
     span {
         color: @green;
         vertical-align: middle;
+    }
+    &:hover span {
+        text-decoration: none;
     }
 }
 

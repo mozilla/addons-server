@@ -1,5 +1,25 @@
 @import 'lib';
 
+a.arrow {
+    position: relative;
+    &:after {
+        .arrow;
+        content: "";
+        display: block;
+        opacity: .7;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        height: 18px;
+        width: 18px;
+    }
+    &:hover, &:active {
+        &:after {
+            opacity: 1;
+        }
+    }
+}
+
 .button, button {
 
     border: 0;

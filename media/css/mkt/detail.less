@@ -331,34 +331,51 @@ h1 .num {
     }
 }
 
-.support ul {
-    margin-top: 47px;
-    list-style-type: none;
-    padding: 0;
+.developer-comments {
+    margin-bottom: 10px;
+}
+
+.support {
     font-size: 14px;
-    li {
-        float: left;
-        margin-bottom: 10px;
-        min-height: 100px;
-        .width(7);
-        h3 {
-            font-size: 22px;
-        }
-        p {
-            margin: 0;
-            a, time {
-                display: inline-block;
-                padding: 5px 20px 5px 0;
-            }
-            a {
-                background: url(../../img/mkt/arrows/support.png) no-repeat 100% 50%;
+    .average-rating {
+        .fat-button;
+        .width(4);
+        margin: 10px 0;
+    }
+    .overall-reviews {
+        text-align: left;
+        &:hover {
+            span {
+                color: darken(@green, 5%);
+                text-decoration: none;
             }
         }
     }
+    a, time {
+        display: inline-block;
+        padding: 5px 20px 5px 0;
+    }
+    ul {
+        margin: 0;
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        .width(7);
+        float: left;
+        margin-bottom: 10px;
+        min-height: 100px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    p {
+        margin: 0;
+    }
 }
 
-.html-rtl .support ul {
-    a, time {
+.html-rtl .support {
+    p a, time {
         padding: 5px 0 5px 20px;
     }
 }
@@ -383,25 +400,44 @@ h1 .num {
     }
 }
 
-// 7 columns
-@media (max-width: @7col) {
-    .product-details {
-        .actions {
+// Anything larger than mobile.
+@media (min-width: @4col) {
+    #reviews {
+        margin: 40px 0 20px;
+    }
+    .support li {
+        margin-top: 20px;
+    }
+    .not-rated {
+        font-size: 16px;
+    }
+    .support {
+        p a.arrow:after {
+            background-image: url(../../img/mkt/arrows/support.png);
+            background-position: 100% 0;
+            right: 0;
+            top: 8px;
         }
     }
-    .support ul li {
+}
+
+@media (max-width: @7col) {
+    .support li {
         .width(2);
     }
 }
 
-//4 columns
 @media (max-width: @4col) {
     #page > .description {
         border-width: 1px 0;
         padding: 10px;
         .summary {
+            margin: 0 0 5px;
             max-width: 100%;
             width: 100%;
+        }
+        .show .more {
+            margin-top: 15px;
         }
         a.collapse.narrow {
             .transition(none);
@@ -565,45 +601,43 @@ h1 .num {
             }
         }
     }
-    .support ul {
-        li {
-            margin-bottom: 15px;
-            min-height: inherit;
-        }
+    #add-first-review {
+        display: none;
     }
     .support {
+        .not-rated,
+        .average-rating {
+            margin: 20px 0 10px;
+        }
+        .not-rated {
+            color: @medium-gray;
+        }
+        .average-rating {
+            width: 100%;
+        }
         a {
             .fat-button;
         }
-        .overall-reviews {
-            text-align: left;
-            margin: 25px 0 0;
-            + ul {
-                margin: 0;
-            }
-        }
-        ul {
-            margin: 15px 0 0;
-            li {
-                .border-box;
-                float: left;
-                margin: 10px 0 0;
-                padding-right: 5px;
-                width: 50%;
-                &:nth-child(2n) {
-                    padding: 0 0 0 5px;
-                }
+        li {
+            .border-box;
+            float: left;
+            margin: 10px 0 0;
+            min-height: inherit;
+            padding-right: 5px;
+            width: 50%;
+            &:nth-child(2n) {
+                padding: 0 0 0 5px;
             }
         }
         dl {
-            margin: 20px 0 15px;
-            dt, dd {
-                color: @text;
-                display: inline-block;
-            }
-            dt {
-                margin-right: 5px;
-            }
+            margin: 15px 0 0;
+        }
+        dt, dd {
+            color: @text;
+            display: inline-block;
+        }
+        dt {
+            margin-right: 5px;
         }
     }
     .previews.slider {
@@ -614,12 +648,3 @@ h1 .num {
     }
 }
 
-.detail #reviews {
-    margin-top: 45px;
-    h3 {
-        margin-bottom: 10px;
-    }
-    .not-rated {
-        font-size: 16px;
-    }
-}

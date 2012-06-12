@@ -47,8 +47,8 @@
     </section>
     <section data-group="popular" data-shown class="narrow popular view-more full">
       <div>
-        <a href="{{ url('browse.apps')|urlparams(sort='popular') }}">
-          {{ _('View more') }}</a>
+        <a href="{{ url('browse.apps')|urlparams(sort='popular') }}"
+           class="arrow">{{ _('View more') }}</a>
       </div>
     </section>
     <section class="hidden">
@@ -60,8 +60,8 @@
     </section>
     <section data-group="new" class="narrow popular view-more full">
       <div>
-        <a href="{{ url('browse.apps')|urlparams(sort='created') }}">
-          {{ _('View more') }}</a>
+        <a href="{{ url('browse.apps')|urlparams(sort='created') }}"
+           class="arrow">{{ _('View more') }}</a>
       </div>
     </section>
   {% endif %}

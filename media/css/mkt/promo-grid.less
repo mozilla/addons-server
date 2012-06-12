@@ -1,24 +1,11 @@
 @import 'lib';
 
-.item-arrows() {
-    &:after {
-        .arrow;
-        content: "";
-        display: block;
-        opacity: .7;
-        position: absolute;
-        top: 15px;
-        right: 10px;
-        height: 18px;
-        width: 18px;
-    }
+.view-more a,
+.mkt-tile {
     &:hover,
     &:active {
         background: @faint-gray;
         .box-shadow(none);
-        &:after {
-            opacity: 1;
-        }
     }
     &:active {
         .depressed;
@@ -233,7 +220,6 @@
         }
     }
     .view-more a {
-        .item-arrows;
         background: @bg;
         border-top: 1px solid @light-gray;
         display: block;
@@ -301,7 +287,6 @@
                 background: @bg-lite;
                 height: 74px;
                 padding: 10px 40px 0 85px;
-                .item-arrows;
             }
         }
     }

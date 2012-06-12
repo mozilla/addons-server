@@ -18,6 +18,7 @@ from amo.utils import memoize_get
 from lib.metrics import send_request
 from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
+from reviews.models import Review
 
 from mkt.site import messages
 from mkt.webapps.models import create_receipt, Installed, Webapp
@@ -30,7 +31,8 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 def detail(request, addon):
     """Product details page."""
     ctx = {
-        'product': addon
+        'product': addon,
+        'reviews': Review.objects.latest().filter(addon=addon),
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)
