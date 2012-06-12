@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
+    {% block site_css %}
+      {{ css('zamboni/mobile') }}
+    {% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
@@ -14,10 +17,6 @@
     <link title="{{ _('{0} Add-ons')|f(APP.pretty) }}"
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
-
-    {% block site_css %}
-      {{ css('zamboni/mobile') }}
-    {% endblock %}
 
     {% include "mobile/head_debug.html" %}
 
