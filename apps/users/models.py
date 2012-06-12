@@ -143,6 +143,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
 
+    def is_anonymous(self):
+        return False
+
     def get_url_path(self):
         if settings.MARKETPLACE:
             return reverse('users.profile', args=[self.username or self.id])
@@ -494,9 +497,6 @@ class RequestUser(UserProfile):
         # UserProfile is changed.
         keys = super(RequestUser, self)._cache_keys()
         return keys + (UserProfile(id=self.id).cache_key,)
-
-    def is_anonymous(self):
-        return False
 
 
 class BlacklistedUsername(amo.models.ModelBase):
