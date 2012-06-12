@@ -439,6 +439,27 @@ class RECEIPT_CHECKED(_LOG):
     format = _(u'Valid receipt was checked for {addon}.')
 
 
+class ESCALATION_CLEARED(_LOG):
+    id = 66
+    format = _(u'Escalation cleared for {addon}.')
+    short = _(u'Escalation cleared')
+    keep = True
+    review_queue = True
+
+
+class APP_DISABLED(_LOG):
+    id = 67
+    format = _(u'{addon} disabled.')
+    short = _(u'App disabled')
+    keep = True
+    review_queue = True
+
+
+# TODO(robhudson): Escalation log for high abuse reports.
+# TODO(robhudson): Escalation log for high refunds.
+# TODO(robhudson): Escalation log for editor escalation..
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

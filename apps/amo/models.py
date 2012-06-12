@@ -1,10 +1,8 @@
-from collections import defaultdict
 import contextlib
 import threading
 
 from django.conf import settings
-from django.db import models
-from django.db import transaction
+from django.db import models, transaction
 from django.utils import translation
 
 import caching.base
@@ -13,7 +11,8 @@ import multidb.pinning
 import pyes.exceptions
 import queryset_transform
 
-from . import signals, search
+from . import search
+from . import signals  # Needed to set up url prefix signals.
 
 
 _locals = threading.local()

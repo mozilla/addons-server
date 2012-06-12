@@ -19,34 +19,32 @@ from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import AppLog
 from editors.models import CannedResponse, ReviewerScore
-from editors.tests.test_views import EditorTest
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
-from mkt.reviewers.models import RereviewQueue
+from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.webapps.models import Webapp
 
 
-class AppReviewerTest(object):
+class AppReviewerTest(amo.tests.TestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         self.login_as_editor()
 
-    def test_403_for_non_editor(self, *args, **kwargs):
-        assert self.client.login(username='regular@mozilla.com',
+    def login_as_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        eq_(self.client.head(self.url).status_code, 403)
 
-    def test_403_for_anonymous(self, *args, **kwargs):
-        self.client.logout()
-        eq_(self.client.head(self.url).status_code, 403)
+    def login_as_editor(self):
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
 
     def check_actions(self, expected, elements):
         """Check the action buttons on the review page.
 
-        `expected` is a list of tuples containing
-        action name and action form value.  `elements`
-        is a PyQuery list of input elements.
+        `expected` is a list of tuples containing action name and action form
+        value.  `elements` is a PyQuery list of input elements.
 
         """
         for idx, item in enumerate(expected):
@@ -57,7 +55,19 @@ class AppReviewerTest(object):
             eq_(e.val(), form_value)
 
 
-class TestReviewersHome(EditorTest):
+class AccessMixin(object):
+
+    def test_403_for_non_editor(self, *args, **kwargs):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        eq_(self.client.head(self.url).status_code, 403)
+
+    def test_302_for_anonymous(self, *args, **kwargs):
+        self.client.logout()
+        eq_(self.client.head(self.url).status_code, 302)
+
+
+class TestReviewersHome(AppReviewerTest, AccessMixin):
 
     def setUp(self):
         self.login_as_editor()
@@ -115,7 +125,7 @@ class TestReviewersHome(EditorTest):
         eq_(table.find('td').eq(3).text(), u'1')
 
 
-class TestAppQueue(AppReviewerTest, EditorTest):
+class TestAppQueue(AppReviewerTest, AccessMixin):
     fixtures = ['base/devicetypes', 'base/users']
 
     def setUp(self):
@@ -222,8 +232,10 @@ class TestAppQueue(AppReviewerTest, EditorTest):
     def test_queue_count(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.tabnav li a:eq(0)').text(), u'Apps (2)')
-        eq_(pq(r.content)('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
 
     # TODO(robhudson): Add sorting back in.
     #def test_sort(self):
@@ -237,7 +249,7 @@ class TestAppQueue(AppReviewerTest, EditorTest):
         self.assertRedirects(r, self.review_url(self.apps[1], num=2))
 
 
-class TestRereviewQueue(AppReviewerTest, EditorTest):
+class TestRereviewQueue(AppReviewerTest, AccessMixin):
     fixtures = ['base/devicetypes', 'base/users']
 
     def setUp(self):
@@ -275,19 +287,7 @@ class TestRereviewQueue(AppReviewerTest, EditorTest):
         ]
         check_links(expected, links, verify=False)
 
-    def test_action_buttons(self):
-        r = self.client.get(self.review_url(self.apps[0], '1'))
-        eq_(r.status_code, 200)
-        actions = pq(r.content)('#review-actions input')
-        expected = [
-            (u'Push to public', 'public'),
-            (u'Reject', 'reject'),
-            (u'Request more information', 'info'),
-            (u'Request super-review', 'super'),
-            (u'Comment', 'comment'),
-        ]
-        self.check_actions(expected, actions)
-
+    # TODO: Test actions buttons.
     # TODO: Test actions.
 
     def test_invalid_page(self):
@@ -298,15 +298,103 @@ class TestRereviewQueue(AppReviewerTest, EditorTest):
     def test_queue_count(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(pq(r.content)('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
 
     def test_redirect_to_review(self):
         r = self.client.get(self.url, {'num': 2})
         self.assertRedirects(r, self.review_url(self.apps[1], num=2))
 
 
-class TestReviewApp(AppReviewerTest, EditorTest):
+class TestEscalationQueue(AppReviewerTest, AccessMixin):
+    fixtures = ['base/devicetypes', 'base/users']
+
+    def setUp(self):
+        now = datetime.datetime.now()
+        days_ago = lambda n: now - datetime.timedelta(days=n)
+
+        self.apps = [app_factory(name='XXX'),
+                     app_factory(name='YYY'),
+                     app_factory(name='ZZZ')]
+
+        rq1 = EscalationQueue.objects.create(addon=self.apps[0])
+        rq1.created = days_ago(5)
+        rq2 = EscalationQueue.objects.create(addon=self.apps[1])
+        rq2.created = days_ago(3)
+        rq3 = EscalationQueue.objects.create(addon=self.apps[2])
+        rq3.created = days_ago(1)
+
+        self.login_as_editor()
+        self.url = reverse('reviewers.apps.queue_escalated')
+
+    def review_url(self, app, num):
+        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
+                         num=num, tab='escalated')
+
+    def test_template_links(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
+        apps = [rq.addon for rq in
+                EscalationQueue.objects.all().order_by('created')]
+        expected = [
+            (unicode(apps[0].name), self.review_url(apps[0], '1')),
+            (unicode(apps[1].name), self.review_url(apps[1], '2')),
+            (unicode(apps[2].name), self.review_url(apps[2], '3')),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_action_buttons(self):
+        r = self.client.get(self.review_url(self.apps[0], '1'))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Clear Escalation', 'clear_escalation'),
+            (u'Disable app', 'disable'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    # TODO: Test actions.
+
+    def test_flag_info(self):
+        self.apps[0].current_version.update(has_info_request=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.ed-sprite-info')
+        eq_(flags.length, 1)
+
+    def test_flag_comment(self):
+        self.apps[0].current_version.update(has_editor_comment=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.ed-sprite-editor')
+        eq_(flags.length, 1)
+
+    def test_invalid_page(self):
+        r = self.client.get(self.url, {'page': 999})
+        eq_(r.status_code, 200)
+        eq_(r.context['pager'].number, 1)
+
+    def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (3)')
+
+    def test_redirect_to_review(self):
+        r = self.client.get(self.url, {'num': 2})
+        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
+
+
+class TestReviewApp(AppReviewerTest, AccessMixin):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
@@ -315,12 +403,15 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         self.app.update(status=amo.STATUS_PENDING)
         self.version = self.app.current_version
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+        self.escalated_url = urlparams(
+            reverse('reviewers.apps.review', args=[self.app.app_slug]),
+            tab='escalated')
 
     def get_app(self):
         return Webapp.objects.get(id=337141)
 
-    def post(self, data):
-        r = self.client.post(self.url, data)
+    def post(self, data, url=None):
+        r = self.client.post(url or self.url, data)
         # Purposefully not using assertRedirects to avoid having to mock ES.
         eq_(r.status_code, 302)
         ok_(reverse('reviewers.apps.queue_pending') in r['Location'])
@@ -437,6 +528,27 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
 
+    def test_clear_escalation(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        EscalationQueue.objects.create(addon=self.app)
+        self.post({'action': 'clear_escalation', 'comments': 'all clear'},
+                  url=self.escalated_url)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+        self._check_log(amo.LOG.ESCALATION_CLEARED)
+        # Ensure we don't send email on clearing escalations.
+        eq_(len(mail.outbox), 0)
+
+    def test_disable_app(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        EscalationQueue.objects.create(addon=self.app)
+        self.post({'action': 'disable', 'comments': 'disabled ur app'},
+                  url=self.escalated_url)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+        eq_(self.get_app().status, amo.STATUS_DISABLED)
+        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
     def test_receipt_no_node(self):
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('#receipt-check-result')), 0)
@@ -447,7 +559,7 @@ class TestReviewApp(AppReviewerTest, EditorTest):
         eq_(len(pq(res.content)('#receipt-check-result')), 1)
 
 
-class TestCannedResponses(EditorTest):
+class TestCannedResponses(AppReviewerTest):
 
     def setUp(self):
         super(TestCannedResponses, self).setUp()
@@ -477,7 +589,7 @@ class TestCannedResponses(EditorTest):
         assert self.cr_addon.response not in choices[0]
 
 
-class TestReviewLog(EditorTest):
+class TestReviewLog(AppReviewerTest, AccessMixin):
 
     def setUp(self):
         self.login_as_editor()
@@ -651,7 +763,7 @@ class TestReviewLog(EditorTest):
             'Super review requested')
 
 
-class TestMotd(EditorTest):
+class TestMotd(AppReviewerTest, AccessMixin):
 
     def setUp(self):
         super(TestMotd, self).setUp()
@@ -660,6 +772,7 @@ class TestMotd(EditorTest):
         set_config(self.key, u'original value')
 
     def test_perms_not_editor(self):
+        self.client.logout()
         req = self.client.get(self.url, follow=True)
         self.assertRedirects(req, '%s?to=%s' % (reverse('users.login'),
                                                 self.url))

@@ -25,14 +25,13 @@
         <ul class="c">
           <li>
             <a href="#" class="controller">{{ _('Queues') }}</a>
-            {% if queue_counts %}
-              <ul>
-                <li><a href="{{ url('reviewers.apps.queue_pending') }}">
-                  {{ _('Apps') }} ({{ queue_counts['pending'] }})</a></li>
-                <li><a href="{{ url('reviewers.apps.queue_rereview') }}">
-                  {{ _('Re-reviews') }} ({{ queue_counts['rereview'] }})</a></li>
-              </ul>
-            {% endif %}
+            <ul>
+              {% for this, loc, text in queue_tabnav() %}
+                <li>
+                  <a href="{{ url('reviewers.apps.%s' % loc) }}">{{ text }}</a>
+                </li>
+              {% endfor %}
+            </ul>
           </li>
           <li class="slim">
             <a href="{{ url('reviewers.apps.logs') }}">{{ _('Logs') }}</a>

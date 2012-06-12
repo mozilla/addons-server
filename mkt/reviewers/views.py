@@ -26,7 +26,7 @@ from reviews.models import Review
 from zadmin.models import get_config, set_config
 
 from . import forms
-from .models import AppCannedResponse, RereviewQueue
+from .models import AppCannedResponse, EscalationQueue, RereviewQueue
 
 
 QUEUE_PER_PAGE = 100
@@ -56,6 +56,7 @@ def queue_counts(type=None, **kw):
     counts = {
         'pending': Webapp.objects.pending().count(),
         'rereview': RereviewQueue.objects.count(),
+        'escalated': EscalationQueue.objects.count(),
     }
     rv = {}
     if isinstance(type, basestring):
@@ -109,10 +110,10 @@ def _review(request, addon):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
-    form = forms.get_review_form(request.POST or None, request=request,
-                                 addon=addon, version=version)
-
     tab = request.GET.get('tab', 'pending')
+    form = forms.get_review_form(request.POST or None, request=request,
+                                 addon=addon, version=version, queue=tab)
+
     redirect_url = reverse('reviewers.apps.queue_%s' % tab)
 
     num = request.GET.get('num')
@@ -190,7 +191,6 @@ def app_review(request, addon):
     return _review(request, addon)
 
 
-@permission_required('Apps', 'Review')
 def _queue(request, qs, tab, pager_processor=None):
     review_num = request.GET.get('num')
     if review_num:
@@ -239,6 +239,14 @@ def queue_rereview(request):
     qs = (RereviewQueue.objects.filter(addon__disabled_by_user=False)
                         .order_by('created'))
     return _queue(request, qs, 'rereview',
+                  lambda p: [r.addon for r in p.object_list])
+
+
+@permission_required('Apps', 'Review')
+def queue_escalated(request):
+    qs = (EscalationQueue.objects.filter(addon__disabled_by_user=False)
+                         .order_by('created'))
+    return _queue(request, qs, 'escalated',
                   lambda p: [r.addon for r in p.object_list])
 
 

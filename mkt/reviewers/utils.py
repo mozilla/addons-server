@@ -12,6 +12,8 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from editors.models import ReviewerScore
 
+from .models import EscalationQueue
+
 
 log = commonware.log.getLogger('z.mailer')
 
@@ -95,7 +97,7 @@ class ReviewBase(object):
 
     def request_information(self):
         """Send a request for information to the authors."""
-        emails = [a.email for a in self.addon.authors.all()]
+        emails = list(self.addon.authors.values_list('email', flat=True))
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
@@ -184,6 +186,24 @@ class ReviewApp(ReviewBase):
         self.version.update(has_editor_comment=True)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
+    def process_clear_escalation(self):
+        """Clear app from escalation queue."""
+        EscalationQueue.objects.filter(addon=self.addon).delete()
+        self.log_action(amo.LOG.ESCALATION_CLEARED)
+        log.info(u'Escalation cleared for app: %s' % self.addon)
+
+    def process_disable(self):
+        """Disables app."""
+        self.addon.update(status=amo.STATUS_DISABLED)
+        EscalationQueue.objects.filter(addon=self.addon).delete()
+        emails = list(self.addon.authors.values_list('email', flat=True))
+        send_mail(u'App disabled by reviewer: %s' % self.addon.name,
+                  'reviewers/emails/decisions/disabled.txt',
+                  self.get_context_data(), emails,
+                  perm_setting='app_individual_contact')
+        self.log_action(amo.LOG.APP_DISABLED)
+        log.info(u'App %s has been disabled by a reviewer.' % self.addon)
+
 
 class ReviewHelper(object):
     """
@@ -191,53 +211,79 @@ class ReviewHelper(object):
     process off to the correct handler.
     """
 
-    def __init__(self, request=None, addon=None, version=None):
+    def __init__(self, request=None, addon=None, version=None, queue=None):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.all_files = version.files.all()
-        self.get_review_type(request, addon, version)
+        self.get_review_type(request, addon, version, queue)
         self.actions = self.get_actions()
 
     def set_data(self, data):
         self.handler.set_data(data)
 
-    def get_review_type(self, request, addon, version):
-        if self.addon.type == amo.ADDON_WEBAPP:
-            self.review_type = 'pending'
-            self.handler = ReviewApp(request, addon, version, 'pending')
+    def get_review_type(self, request, addon, version, queue):
+        self.review_type = queue
+        self.handler = ReviewApp(request, addon, version, queue)
 
     def get_actions(self):
+        public = {
+            'method': self.handler.process_public,
+            'minimal': False,
+            'label': _lazy('Push to public'),
+            'details': _lazy('This will approve the sandboxed app so it '
+                             'appears on the public side.')}
+        reject = {
+            'method': self.handler.process_sandbox,
+            'label': _lazy('Reject'),
+            'minimal': False,
+            'details': _lazy('This will reject the app and remove it from the '
+                             'review queue.')}
+        info = {
+            'method': self.handler.request_information,
+            'label': _lazy('Request more information'),
+            'minimal': True,
+            'details': _lazy('This will send the author(s) an email '
+                             'requesting more information.')}
+        super = {
+            'method': self.handler.process_super_review,
+            'label': _lazy('Request super-review'),
+            'minimal': True,
+            'details': _lazy('Flag this app for an admin to review')}
+        comment = {
+            'method': self.handler.process_comment,
+            'label': _lazy('Comment'),
+            'minimal': True,
+            'details': _lazy('Make a comment on this app.  The author won\'t '
+                             'be able to see this.')}
+        clear_escalation = {
+            'method': self.handler.process_clear_escalation,
+            'label': _lazy('Clear Escalation'),
+            'minimal': True,
+            'details': _lazy('Clear this app from the escalation queue. The '
+                             'author will get no email or see comments here.')}
+        disable = {
+            'method': self.handler.process_disable,
+            'label': _lazy('Disable app'),
+            'minimal': True,
+            'details': _lazy('Disable the app, removing it from public '
+                             'results. Sends comments to author.')}
+
         actions = SortedDict()
-        actions['public'] = {'method': self.handler.process_public,
-                             'minimal': False,
-                             'label': _lazy('Push to public'),
-                             'details': _lazy(
-                                'This will approve the sandboxed app so it '
-                                'appears on the public side.')}
-        actions['reject'] = {'method': self.handler.process_sandbox,
-                             'label': _lazy('Reject'),
-                             'minimal': False,
-                             'details': _lazy(
-                                'This will reject the app and remove it '
-                                'from the review queue.')}
-        actions['info'] = {'method': self.handler.request_information,
-                           'label': _lazy('Request more information'),
-                           'minimal': True,
-                           'details': _lazy(
-                               'This will send the author(s) an email '
-                               'requesting more information.')}
-        actions['super'] = {'method': self.handler.process_super_review,
-                            'label': _lazy('Request super-review'),
-                            'minimal': True,
-                            'details': _lazy(
-                                'Flag this app for an admin to review')}
-        actions['comment'] = {'method': self.handler.process_comment,
-                              'label': _lazy('Comment'),
-                              'minimal': True,
-                              'details': _lazy(
-                                    'Make a comment on this app.  The '
-                                    'author won\'t be able to see this.')}
+        if self.review_type == 'pending':
+            actions['public'] = public
+            actions['reject'] = reject
+            actions['info'] = info
+            actions['super'] = super
+            actions['comment'] = comment
+        elif self.review_type == 'rereview':
+            pass  # TODO(robhudson)
+        elif self.review_type == 'escalated':
+            actions['clear_escalation'] = clear_escalation
+            actions['disable'] = disable
+            actions['info'] = info
+            actions['comment'] = comment
+
         return actions
 
     def process(self):

@@ -23,3 +23,10 @@ class RereviewQueue(amo.models.ModelBase):
 
     class Meta:
         db_table = 'rereview_queue'
+
+
+class EscalationQueue(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon, related_name='+')
+
+    class Meta:
+        db_table = 'escalation_queue'

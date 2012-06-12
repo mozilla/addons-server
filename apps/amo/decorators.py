@@ -55,6 +55,7 @@ def post_required(f):
 def permission_required(app, action):
     def decorator(f):
         @functools.wraps(f)
+        @login_required
         def wrapper(request, *args, **kw):
             from access import acl
             if acl.action_allowed(request, app, action):
