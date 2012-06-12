@@ -1121,7 +1121,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
         not specified, has_author will return true if the user has any role.
         """
-        if user is None:
+        if user is None or user.is_anonymous():
             return False
         if roles is None:
             roles = dict(amo.AUTHOR_CHOICES).keys()
