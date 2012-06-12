@@ -1,0 +1,43 @@
+{% extends 'acct_lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  {% include 'acct_lookup/includes/search.html' %}
+
+  <section class="island c">
+    {{ lookup_header(account, _('Account Activity results for')) }}
+
+    <section id="activity-info">
+      <h2>{{ _('Account Updates') }}</h2>
+      <ol class="simple-log">
+        {# TODO: Iterate over Account Updates log info below #}
+        <li>profile image updated</li>
+        <li>reviewed app <a href="#">super maria sisters</a></li>
+        <li>etc...</li>
+      </ol>
+      {# Show this if the account belongs to an admin/reviewer #}
+      <h2>{{ _('Administrative Actions') }}</h2>
+      <ol class="simple-log">
+        {# TODO: Iterate over log info below #}
+        <li>profile image updated</li>
+        <li>reviewed app <a href="#">super maria sisters</a></li>
+        <li>etc...</li>
+      </ol>
+      {% if collections %}
+      <h2>{{ _('Collections Created') }}</h2>
+      <ul class="product-lookup-list">
+      {% for collection in collections %}
+        <li>
+          {# TODO: fix get_url_path() #}
+          <a href="#{# collection.get_url_path() #}">
+            {{ collection.name }}
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+  </section>
+{% endblock %}

@@ -8,6 +8,7 @@ import amo
 from amo.decorators import login_required, permission_required, json_view
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from apps.bandwagon.models import Collection
 from market.models import Refund
 from mkt.account.utils import purchase_list
 from users.models import UserProfile
@@ -66,6 +67,25 @@ def user_purchases(request, user_id):
                         {'pager': products,
                          'account': user,
                          'listing_filter': listing,
+                         'contributions': contributions,
+                         'single': bool(None),
+                         'show_link': False})
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+def activity(request, user_id):
+    """Shows the user activity page for another user."""
+    user = get_object_or_404(UserProfile, pk=user_id)
+    products, contributions, listing = purchase_list(request, user, None)
+
+    collections = Collection.objects.filter(author=user_id)
+
+    return jingo.render(request, 'acct_lookup/activity.html',
+                        {'pager': products,
+                         'account': user,
+                         'listing_filter': listing,
+                         'collections': collections,
                          'contributions': contributions,
                          'single': bool(None),
                          'show_link': False})

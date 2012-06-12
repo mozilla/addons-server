@@ -1,4 +1,4 @@
-from jingo import register
+from jingo import env, register
 import jinja2
 
 
@@ -11,3 +11,9 @@ def format_currencies(context, currencies):
     if cs:
         cs = '(%s)' % cs
     return jinja2.Markup(cs)
+
+
+@register.function
+def lookup_header(account, title):
+    t = env.get_template('acct_lookup/helpers/lookup_header.html')
+    return jinja2.Markup(t.render(account=account, title=title))
