@@ -31,6 +31,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
 from market.models import AddonPremium, Price, PriceCurrency
+import mkt.stats.search
 import stats.search
 from translations.models import Translation
 from versions.models import Version, ApplicationsVersions
@@ -476,6 +477,7 @@ class ESTestCase(TestCase):
 
         addons.search.setup_mapping()
         stats.search.setup_indexes()
+        mkt.stats.search.setup_mkt_indexes()
 
     @classmethod
     def setUpIndex(cls):

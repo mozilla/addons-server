@@ -34,6 +34,16 @@ urlpatterns = patterns('',
         name='mkt.stats.currency_refunds',
         kwargs={'report': 'currency_refunds'}),
 
+    url('^sales/source/$', views.stats_report,
+        name='mkt.stats.source_revenue',
+        kwargs={'report': 'source_revenue'}),
+    url('^sales/source/sales/$', views.stats_report,
+        name='mkt.stats.source_sales',
+        kwargs={'report': 'source_sales'}),
+    url('^sales/source/refunds/$', views.stats_report,
+        name='mkt.stats.source_refunds',
+        kwargs={'report': 'source_refunds'}),
+
     # Time series URLs following this pattern:
     # /app/{app_slug}/statistics/{series}-{group}-{start}-{end}.{format}
     url(series['installs'], views.installs_series,
@@ -41,14 +51,25 @@ urlpatterns = patterns('',
     url(series['usage'], views.usage_series,
         name='mkt.stats.usage_series'),
 
+    # Currency breakdown.
     url(series['currency_revenue'], views.currency_series,
         name='mkt.stats.currency_revenue_series',
         kwargs={'primary_field': 'revenue'}),
     url(series['currency_sales'], views.currency_series,
-        name='mkt.stats.currency_sales_series',
-        kwargs={'primary_field': 'sales'}),
+        name='mkt.stats.currency_sales_series'),
     url(series['currency_refunds'], views.currency_series,
         name='mkt.stats.currency_refunds_series',
+        kwargs={'primary_field': 'refunds'}),
+
+    # Source breakdown.
+    url(series['source_revenue'], views.source_series,
+        name='mkt.stats.source_revenue_series',
+        kwargs={'primary_field': 'revenue'}),
+    url(series['source_sales'], views.source_series,
+        name='mkt.stats.source_sales_series',
+        kwargs={'primary_field': 'count'}),
+    url(series['source_refunds'], views.source_series,
+        name='mkt.stats.source_refunds_series',
         kwargs={'primary_field': 'refunds'}),
 
     url(series['revenue'], views.revenue_series,

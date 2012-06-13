@@ -4,21 +4,22 @@ function dbg() {
     }
 }
 
-z.hasPushState = (typeof history.replaceState === "function");
+z.hasPushState = (typeof history.replaceState === 'function');
 
 z.StatsManager = (function() {
-    "use strict";
+    'use strict';
 
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
     var STATS_VERSION = '2011-12-12';
     var PRECISION = 2;
-var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("statscache"),
+    var storage         = z.Storage('stats'),
+        storageCache    = z.SessionStorage('statscache'),
         dataStore       = {},
         currentView     = {},
         siteEvents      = [],
-        addonId         = parseInt($(".primary").attr("data-addon_id"), 10),
-        baseURL         = $(".primary").attr("data-base_url"),
+        addonId         = parseInt($('.primary').attr('data-addon_id'), 10),
+        baseURL         = $('.primary').attr('data-base_url'),
         pendingFetches  = 0,
         siteEventsEnabled = true,
         writeInterval   = false,
@@ -31,57 +32,53 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
     // It's a bummer, but we need to know which metrics have breakdown fields.
     // check by saying `if (metric in breakdownMetrics)`
     var breakdownMetrics = {
-        "apps": true,
-        "locales": true,
-        "os": true,
-        "sources": true,
-        "versions": true,
-        "statuses": true,
-        "overview": true,
-        "site": true
+        'apps': true,
+        'locales': true,
+        'os': true,
+        'sources': true,
+        'versions': true,
+        'statuses': true,
+        'overview': true,
+        'site': true
     };
 
     var currencyMetrics = {
-        "revenue": true,
-        "currency_revenue": true,
-        "contributions": true
+        'revenue': true,
+        'currency_revenue': true,
+        'source_revenue': true,
+        'contributions': true
     };
 
     // For non-date metrics, determine which key is breakdown field.
-    var metricKeys = {
+    var nonDateMetrics = {
         'currency_revenue': 'currency',
         'currency_sales': 'currency',
-        'currency_refunds': 'currency'
+        'currency_refunds': 'currency',
+        'source_revenue': 'source',
+        'source_sales': 'source',
+        'source_refunds': 'source'
     };
 
     // is a metric an average or a sum?
     var metricTypes = {
-        "usage"         : "mean",
-        "apps"          : "mean",
-        "locales"       : "mean",
-        "os"            : "mean",
-        "versions"      : "mean",
-        "statuses"      : "mean",
-        "downloads"     : "sum",
-        "sources"       : "sum",
-        "contributions" : "sum"
-    };
-
-    // Handle non-datetime-line-graph metrics. There
-    // is also a check for this in chart.js.
-    var nonDateMetrics = {
-        'currency_revenue': true,
-        'currency_sales': true,
-        'currency_refunds': true
+        'usage'         : 'mean',
+        'apps'          : 'mean',
+        'locales'       : 'mean',
+        'os'            : 'mean',
+        'versions'      : 'mean',
+        'statuses'      : 'mean',
+        'downloads'     : 'sum',
+        'sources'       : 'sum',
+        'contributions' : 'sum'
     };
 
     // Initialize from localStorage when dom is ready.
     function init() {
-        dbg("looking for local data");
+        dbg('looking for local data');
         if (verifyLocalStorage()) {
             var cacheObject = storageCache.get(addonId);
             if (cacheObject) {
-                dbg("found local data, loading...");
+                dbg('found local data, loading...');
                 cacheObject = JSON.parse(cacheObject);
                 if (cacheObject) {
                     dataStore = cacheObject;
@@ -94,27 +91,27 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
     // These functions deal with our localStorage cache.
 
     function writeLocalStorage() {
-        dbg("saving local data");
+        dbg('saving local data');
         try {
             storageCache.set(addonId, JSON.stringify(dataStore));
-            storage.set("version", STATS_VERSION);
+            storage.set('version', STATS_VERSION);
         } catch (e) {
             console.log(e);
         }
-        dbg("saved local data");
+        dbg('saved local data');
     }
 
     function clearLocalStorage() {
         storageCache.remove(addonId);
-        storage.remove("version");
-        dbg("cleared local data");
+        storage.remove('version');
+        dbg('cleared local data');
     }
 
     function verifyLocalStorage() {
-        if (storage.get("version") == STATS_VERSION) {
+        if (storage.get('version') == STATS_VERSION) {
             return true;
         } else {
-            dbg("wrong offline data version");
+            dbg('wrong offline data version');
             clearLocalStorage();
             return false;
         }
@@ -137,7 +134,7 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
         $.when( getDataRange(currentView), getSiteEvents(currentView) )
          .then( function(data, events) {
             setTimeout(function() {
-                $(window).trigger("dataready", {
+                $(window).trigger('dataready', {
                     'view'  : currentView,
                     'fields': getAvailableFields(currentView),
                     'data'  : data,
@@ -203,10 +200,10 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
 
         // Non-breakdown metrics only have one field.
         if (metric == 'contributions') return ['count', 'total', 'average'];
-        if (!(metric in breakdownMetrics)) return ["count"];
+        if (!(metric in breakdownMetrics)) return ['count'];
 
         ds = dataStore[metric];
-        if (!ds) throw "Expected metric with valid data!";
+        if (!ds) throw 'Expected metric with valid data!';
 
         // Locate all unique fields.
         forEachISODate(range, '1 day', ds, function(row) {
@@ -233,7 +230,7 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
                 }
             ),
             function(f) {
-                return "data|" + f;
+                return 'data|' + f;
             }
         );
     }
@@ -290,7 +287,7 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
         }
 
         if (ds) {
-            dbg("range", range.start.iso(), range.end.iso());
+            dbg('range', range.start.iso(), range.end.iso());
             if (ds.maxdate < range.end.iso()) {
                 reqs.push(fetchData(metric, Date.iso(ds.maxdate), range.end));
             }
@@ -423,8 +420,6 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
             seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
             seriesURL = baseURL + ([metric,'day',seriesURLStart,seriesURLEnd]).join('-') + '.json';
 
-        dbg("GET", seriesURLStart, seriesURLEnd);
-
         $.ajax({ url:       seriesURL,
                  dataType:  'text',
                  success:   fetchHandler,
@@ -471,8 +466,8 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
 
                 var retry_delay = 30000;
 
-                if (xhr.getResponseHeader("Retry-After")) {
-                    retry_delay = parseInt(xhr.getResponseHeader("Retry-After"), 10) * 1000;
+                if (xhr.getResponseHeader('Retry-After')) {
+                    retry_delay = parseInt(xhr.getResponseHeader('Retry-After'), 10) * 1000;
                 }
 
                 setTimeout(function () {
@@ -578,7 +573,6 @@ var storage         = z.Storage("stats"), storageCache    = z.SessionStorage("st
         'getAvailableFields': getAvailableFields,
         'currencyMetrics'   : currencyMetrics,
         'nonDateMetrics'    : nonDateMetrics,
-        'metricKeys'        : metricKeys,
         'getCurrentView'    : function() { return currentView; }
     };
 })();

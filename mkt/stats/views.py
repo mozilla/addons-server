@@ -14,7 +14,8 @@ from stats.views import (check_series_params_or_404, check_stats_permission,
                          get_report_view, render_csv, render_json, daterange)
 
 SERIES = ('installs', 'usage', 'revenue', 'sales', 'refunds',
-          'currency_revenue', 'currency_sales', 'currency_refunds')
+          'currency_revenue', 'currency_sales', 'currency_refunds',
+          'source_revenue', 'source_sales', 'source_refunds')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')
 SERIES_FORMATS = ('json', 'csv')
@@ -87,18 +88,21 @@ def get_series_column(model, primary_field=None, category_field=None,
                       values.
     """
     categories = list(set(model.objects.filter(**filters).values_list(
-                  category_field, flat=True)))
+                          category_field, flat=True)))
 
     data = []
     for category in categories:
-        try:
-            category = category.lower()
-        except AttributeError:
-            pass
+        # Have to query ES in lower-case.
+        category = category.lower()
 
         filters[category_field] = category
-        data += list((model.search().filter(**filters)
-                    .values_dict(category_field, 'count', primary_field)))
+        if primary_field:
+            data += list((model.search().filter(**filters)
+                          .values_dict(category_field, 'count',
+                                       primary_field)))
+        else:
+            data += list((model.search().filter(**filters)
+                          .values_dict(category_field, 'count')))
         del(filters[category_field])
 
     # Sort descending.
@@ -110,12 +114,15 @@ def get_series_column(model, primary_field=None, category_field=None,
 
     # Generate dictionary.
     for val in data:
-        if primary_field and primary_field != 'count':
+        if primary_field:
             rv = dict(count=val[primary_field])
         else:
             rv = dict(count=val['count'])
         if category_field:
             rv[category_field] = val[category_field]
+            # Represent empty strings as 'N/A' in the frontend.
+            if not rv[category_field]:
+                rv[category_field] = 'N/A'
         yield rv
 
 
@@ -228,6 +235,20 @@ def currency_series(request, addon, group, start, end, format,
 
     if format == 'csv':
         return render_csv(request, addon, series, ['currency', 'count'])
+    elif format == 'json':
+        return render_json(request, addon, series)
+
+
+@addon_view
+def source_series(request, addon, group, start, end, format,
+                  primary_field=None):
+    check_stats_permission(request, addon, for_contributions=True)
+
+    series = get_series_column(Contribution, primary_field=primary_field,
+                               category_field='source', addon=addon.id)
+
+    if format == 'csv':
+        return render_csv(request, addon, series, ['source', 'count'])
     elif format == 'json':
         return render_json(request, addon, series)
 

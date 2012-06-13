@@ -10,7 +10,6 @@
                 pageSize    = 14,
                 pages       = {},
                 metric      = $('.primary').attr('data-report'),
-                metricKeys  = z.StatsManager.metricKeys,
                 nonDateMetrics = z.StatsManager.nonDateMetrics,
                 currentPage;
 
@@ -78,17 +77,20 @@
                      var fields = z.StatsManager.getAvailableFields(view),
                          currencyMetrics = z.StatsManager.currencyMetrics,
                          newBody = '<tbody>',
-                         newHead = 'Date',
+                         newHead = gettext('Date'),
                          newPage = {},
                          row;
 
                      // Handle headers other than 'Date'.
-                     switch(metricKeys[metric]) {
+                     switch(nonDateMetrics[metric]) {
                          case 'currency':
-                             newHead = 'Currency';
+                             newHead = gettext('Currency');
+                             break;
+                         case 'source':
+                             newHead = gettext('Source');
                              break;
                      }
-                     newHead = '<tr><th>' + gettext(newHead) + '</th>';
+                     newHead = '<tr><th>' + newHead + '</th>';
 
                      _.each(fields, function(f) {
                          var id = f.split('|').pop(),
@@ -103,7 +105,7 @@
                      if (metric in nonDateMetrics) {
                         _.each(data, function(datum) {
                             newBody += '<tr>';
-                            newBody += '<th>' + gettext(datum[metricKeys[metric]]) + "</th>";
+                            newBody += '<th>' + gettext(datum[nonDateMetrics[metric]]) + '</th>';
 
                             // Insert data (supports multiple fields).
                             _.each(fields, function(f) {

@@ -50,10 +50,10 @@ class TestIndexFinanceTotalBySrc(amo.tests.ESTestCase):
     def setUp(self):
         self.app = amo.tests.app_factory()
 
-        self.sources = ['home', 'search', 'featured']
+        self.sources = ['mkt-home', 'front-search', 'featured']
         self.expected = {
-            'home': {'revenue': 0, 'count': 2, 'refunds': 1},
-            'search': {'revenue': 0, 'count': 3, 'refunds': 1},
+            'mkt-home': {'revenue': 0, 'count': 2, 'refunds': 1},
+            'front-search': {'revenue': 0, 'count': 3, 'refunds': 1},
             'featured': {'revenue': 0, 'count': 4, 'refunds': 1}
         }
         for source in self.sources:

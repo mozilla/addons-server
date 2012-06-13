@@ -22,21 +22,18 @@ def get_finance_total(qs, addon):
                values('addon').annotate(refunds=Count('id')))
     return {
         'addon': addon,
-        'count': sales[0]['sales'] if len(sales) > 0 else 0,
-        'revenue': revenue[0]['revenue'] if len(revenue) > 0 else 0,
-        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
+        'count': sales[0]['sales'] if sales.count() else 0,
+        'revenue': revenue[0]['revenue'] if revenue.count() else 0,
+        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
 
-def get_finance_total_by_src(qs, addon, source):
+def get_finance_total_by_src(qs, addon, source=''):
     """
     sales per app by src
     revenue per app by src
     refunds per app by src
     """
-    if not source:
-        source = ''
-
     revenues = (qs.filter(source=source, refund=None).values('addon').
                 annotate(revenue=Sum('amount')))
     sales = (qs.filter(source=source, refund=None).values('addon').
@@ -46,21 +43,18 @@ def get_finance_total_by_src(qs, addon, source):
     return {
         'addon': addon,
         'source': source,
-        'count': sales[0]['sales'] if len(sales) > 0 else 0,
-        'revenue': revenues[0]['revenue'] if len(revenues) > 0 else 0,
-        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
+        'count': sales[0]['sales'] if sales.count() else 0,
+        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
 
-def get_finance_total_by_currency(qs, addon, currency):
+def get_finance_total_by_currency(qs, addon, currency=''):
     """
     sales per app by currency
     revenue per app by currency
     refunds per app by currency
     """
-    if not currency:
-        currency = ''
-
     revenues = (qs.filter(currency=currency, refund=None).
                 values('addon').annotate(revenue=Sum('amount')))
     sales = (qs.filter(currency=currency, refund=None)
@@ -70,21 +64,18 @@ def get_finance_total_by_currency(qs, addon, currency):
     return {
         'addon': addon,
         'currency': currency,
-        'count': sales[0]['sales'] if len(sales) > 0 else 0,
-        'revenue': revenues[0]['revenue'] if len(revenues) > 0 else 0,
-        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
+        'count': sales[0]['sales'] if sales.count() else 0,
+        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
 
-def get_finance_total_inapp(qs, addon, inapp_name):
+def get_finance_total_inapp(qs, addon, inapp_name=''):
     """
     sales per in-app
     revenue per in-app
     refunds per in-app
     """
-    if not inapp_name:
-        inapp_name = ''
-
     revenue = (qs.filter(contribution__refund=None).
                values('config__addon').annotate(
                revenue=Sum('contribution__amount')))
@@ -96,23 +87,18 @@ def get_finance_total_inapp(qs, addon, inapp_name):
     return {
         'addon': addon,
         'inapp': inapp_name,
-        'count': sales[0]['sales'] if len(sales) > 0 else 0,
-        'revenue': revenue[0]['revenue'] if len(revenue) > 0 else 0,
-        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
+        'count': sales[0]['sales'] if sales.count() else 0,
+        'revenue': revenue[0]['revenue'] if revenue.count() else 0,
+        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
 
-def get_finance_total_inapp_by_currency(qs, addon, inapp_name, currency):
+def get_finance_total_inapp_by_currency(qs, addon, inapp_name='', currency=''):
     """
     sales per in-app by currency
     revenue per in-app by currency
     refunds per in-app by currency
     """
-    if not inapp_name:
-        inapp_name = ''
-    if not currency:
-        currency = ''
-
     revenues = (qs.filter(contribution__currency=currency,
                           contribution__refund=None).
                 values('config__addon').
@@ -128,9 +114,9 @@ def get_finance_total_inapp_by_currency(qs, addon, inapp_name, currency):
         'addon': addon,
         'inapp': inapp_name,
         'currency': currency,
-        'count': sales[0]['sales'] if len(sales) > 0 else 0,
-        'revenue': revenues[0]['revenue'] if len(revenues) > 0 else 0,
-        'refunds': refunds[0]['refunds'] if len(refunds) > 0 else 0,
+        'count': sales[0]['sales'] if sales.count() else 0,
+        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
 
@@ -185,6 +171,11 @@ def get_installed_daily(installed):
 
 
 def setup_mkt_indexes():
+    """
+    Define explicit ES mappings for models. If a field is not explicitly
+    defined and a field is inserted, ES will dynamically guess the type and
+    insert it, in a schemaless manner.
+    """
     es = elasticutils.get_es()
     for model in [Contribution]:
         index = model._get_index()
@@ -196,16 +187,21 @@ def setup_mkt_indexes():
         mapping = {
             'properties': {
                 'id': {'type': 'long'},
-                'count': {'type': 'long'},
-                'data': {'dynamic': 'true',
-                         'properties': {
-                            'v': {'type': 'long'},
-                            'k': {'type': 'string'}
-                        }
-                },
                 'date': {'format': 'dateOptionalTime',
-                         'type': 'date'}
+                         'type': 'date'},
+                'count': {'type': 'long'},
             }
         }
+
+        # Try to tell ES not to 'analyze' the field to querying with hyphens
+        # and lowercase letters.
+        if model == Contribution:
+            mapping['properties']['currency'] = {'type': 'string',
+                                                 'index': 'not_analyzed'}
+            mapping['properties']['source'] = {'type': 'string',
+                                               'index': 'not_analyzed'}
+            mapping['properties']['inapp'] = {'type': 'string',
+                                              'index': 'not_analyzed'}
+
         es.put_mapping(model._meta.db_table, mapping,
                        model._get_index())

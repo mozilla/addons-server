@@ -46,11 +46,14 @@
         chart;
 
     // Determines unit used for a given metric.
-    var xMetricTypes = z.StatsManager.metricKeys;
+    var xMetricTypes = z.StatsManager.nonDateMetrics;
     var yMetricTypes = {
         'currency_revenue' : 'currency',
         'currency_sales'   : 'sales',
-        'currency_refunds' : 'refunds'
+        'currency_refunds' : 'refunds',
+        'source_revenue'   : 'currency',
+        'source_sales'     : 'sales',
+        'source_refunds'   : 'refunds'
     };
 
     function showNoDataOverlay() {
@@ -65,33 +68,34 @@
     });
 
     $win.bind('dataready', function(e, obj) {
-        var view    = obj.view,
-            metric  = view.metric,
-            data    = obj.data,
+        var view = obj.view,
+            metric = view.metric,
+            data = obj.data,
             t, row, i, field, val;
-        z.data  = data;
+        z.data = data;
 
         if (!(metric in z.StatsManager.nonDateMetrics)) {
-            return;
-        }
-        if (obj.data.empty) {
-            showNoDataOverlay();
-            $chart.removeClass('loading');
             return;
         }
 
         // Disable irrelevant links and controls.
         var inactive = function() { return false; };
-        $('.range li a').addClass('inactive').bind('click', inactive);
-        $('.group li a').addClass('inactive').bind('click', inactive);
+        $('.group a, .range a').addClass('inactive').bind('click', inactive);
+
+        if (data.empty || obj.data.length == 0) {
+            showNoDataOverlay();
+            $chart.removeClass('loading');
+            return;
+        }
 
         // Populate chart with categories (xAxis values) and data points.
         var categories = [],
             dataPoints = [];
         _.each(data, function(datum) {
-            // xMetricTypes doubles for metricKeys.
-            categories.push(datum[xMetricTypes[metric]]);
-            dataPoints.push(datum.count);
+            if (datum.count > 0) {
+                categories.push(datum[xMetricTypes[metric]]);
+                dataPoints.push(datum.count);
+            }
         });
         baseConfig.xAxis.categories = categories;
         baseConfig.series[0].data = dataPoints;
@@ -115,38 +119,43 @@
                 yFormatter;
 
             function currencyFormatter(currency) { return format(gettext('by currency {0}'), currency); }
+            function sourceFormatter(source) { return format(gettext('by source {0}'), source); }
             function moneyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
             function salesFormatter(n) { return format(gettext('{0} sales'), Highcharts.numberFormat(n, 0)); }
             function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
 
             // Determine y-axis formatter.
-            switch(xMetricTypes[metric]) {
+            switch (xMetricTypes[metric]) {
                 case 'currency':
-                    baseConfig.xAxis.title.text = 'Currency';
+                    baseConfig.xAxis.title.text = gettext('Currency');
                     xFormatter = currencyFormatter;
+                    break;
+                case 'source':
+                    baseConfig.xAxis.title.text = gettext('Source');
+                    xFormatter = sourceFormatter;
                     break;
             }
 
             // Determine y-axis formatter.
             switch (yMetricTypes[metric]) {
                 case 'currency':
-                    baseConfig.yAxis.title.text = 'Revenue';
+                    baseConfig.yAxis.title.text = gettext('Revenue');
                     yFormatter = moneyFormatter;
                     break;
                 case 'sales':
-                    baseConfig.yAxis.title.text = 'Sales';
+                    baseConfig.yAxis.title.text = gettext('Sales');
                     yFormatter = salesFormatter;
                     break;
                 case 'refunds':
-                    baseConfig.yAxis.title.text = 'Refunds';
+                    baseConfig.yAxis.title.text = gettext('Refunds');
                     yFormatter = refundsFormatter;
                     break;
             }
 
             return function() {
                 var ret = '<b>' + z.StatsManager.getPrettyName(metric, 'count') + '</b><br>' +
-                          xFormatter(this.x) + '<br>' +
-                          yFormatter(this.y);
+                          '<p>' + xFormatter(this.x) + '</p>' + '<br>' +
+                          '<p>' + yFormatter(this.y) + '</p>';
                 return ret;
             };
         })();

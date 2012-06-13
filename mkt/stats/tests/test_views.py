@@ -24,7 +24,8 @@ class StatsTest(amo.tests.ESTestCase):
     def setUp(self):
         self.CONTRIBUTION_SERIES = ('revenue', 'sales', 'refunds',
                                     'currency_revenue', 'currency_sales',
-                                    'currency_refunds')
+                                    'currency_refunds', 'source_revenue',
+                                    'source_sales', 'source_refunds')
 
         # set up apps
         waffle.models.Switch.objects.create(name='app-stats', active=True)

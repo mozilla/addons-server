@@ -23,35 +23,14 @@ var csv_keys = {
     currency_refunds: {
         'count': gettext('Refunds')
     },
-    downloads: {
-        "count": gettext('Downloads')
+    source_revenue: {
+        'count': gettext('Revenue')
     },
-    collections_created: {
-        'count': gettext('Collections Created')
+    source_sales: {
+        'count': gettext('Sales')
     },
-    addons_in_use: {
-        'count': gettext('Add-ons in Use')
-    },
-    addons_created: {
-        'count': gettext('Add-ons Created')
-    },
-    addons_downloaded: {
-        'count': gettext('Add-ons Downloaded')
-    },
-    addons_updated: {
-        'count': gettext('Add-ons Updated')
-    },
-    reviews_created: {
-        'count': gettext('Reviews Written')
-    },
-    users_created: {
-        'count': gettext('User Signups')
-    },
-    subscribers: {
-        'count': gettext('Subscribers')
-    },
-    ratings: {
-        'count': gettext('Ratings')
+    source_refunds: {
+        'count': gettext('Refunds')
     },
     sources: {
         'null'                  : gettext('Unknown'),
@@ -131,137 +110,17 @@ var csv_keys = {
         '{a23983c0-fd0e-11dc-95ff-0800200c9a66}' : gettext('Fennec')
     },
     chartTitle: {
-        "overview"  : [
+        "installs" : [
             // L10n: {0} is an integer.
-            gettext("Downloads and Daily Users, last {0} days"),
+            gettext("Installs, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Downloads and Daily Users from {0} to {1}")
-        ],
-        "app_overview"  : [
-            // L10n: {0} is an integer.
-            gettext("Installs and Daily Users, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Installs and Daily Users from {0} to {1}")
-        ],
-        "downloads" : [
-            // L10n: {0} is an integer.
-            gettext("Downloads, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Downloads from {0} to {1}")
+            gettext("Installs from {0} to {1}")
         ],
         "usage"  : [
             // L10n: {0} is an integer.
             gettext("Daily Users, last {0} days"),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Daily Users from {0} to {1}")
-        ],
-        "apps"  : [
-            // L10n: {0} is an integer.
-            gettext("Applications, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Applications from {0} to {1}")
-        ],
-        "os"  : [
-            // L10n: {0} is an integer.
-            gettext("Platforms, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Platforms from {0} to {1}")
-        ],
-        "locales"  : [
-            // L10n: {0} is an integer.
-            gettext("Languages, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Languages from {0} to {1}")
-        ],
-        "versions"  : [
-            // L10n: {0} is an integer.
-            gettext("Add-on Versions, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Add-on Versions from {0} to {1}")
-        ],
-        "statuses"  : [
-            // L10n: {0} is an integer.
-            gettext("Add-on Status, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Add-on Status from {0} to {1}")
-        ],
-        "sources"  : [
-            // L10n: {0} is an integer.
-            gettext("Download Sources, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Download Sources from {0} to {1}")
-        ],
-        "contributions"  : [
-            // L10n: {0} is an integer.
-            gettext("Contributions, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Contributions from {0} to {1}")
-        ],
-        "site"  : [
-            // L10n: {0} is an integer.
-            gettext("Site Metrics, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Site Metrics from {0} to {1}")
-        ],
-        "addons_in_use" : [
-            // L10n: {0} is an integer.
-            gettext("Add-ons in Use, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Add-ons in Use from {0} to {1}")
-        ],
-        "addons_downloaded" : [
-            // L10n: {0} is an integer.
-            gettext("Add-ons Downloaded, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Add-ons Downloaded from {0} to {1}")
-        ],
-        "addons_created" : [
-            // L10n: {0} is an integer.
-            gettext("Add-ons Created, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Add-ons Created from {0} to {1}")
-        ],
-        "addons_updated" : [
-            // L10n: {0} is an integer.
-            gettext("Add-ons Updated, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Add-ons Updated from {0} to {1}")
-        ],
-        "reviews_created" : [
-            // L10n: {0} is an integer.
-            gettext("Reviews Written, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Reviews Written from {0} to {1}")
-        ],
-        "users_created" : [
-            // L10n: {0} is an integer.
-            gettext("User Signups, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("User Signups from {0} to {1}")
-        ],
-        "collections_created" : [
-            // L10n: {0} is an integer.
-            gettext("Collections Created, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Collections Created from {0} to {1}")
-        ],
-        "subscribers" : [
-            // L10n: {0} is an integer.
-            gettext("Subscribers, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Subscribers from {0} to {1}")
-        ],
-        "ratings" : [
-            // L10n: {0} is an integer.
-            gettext("Ratings, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Ratings from {0} to {1}")
-        ],
-        "installs" : [
-            // L10n: {0} is an integer.
-            gettext("Installs, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Installs from {0} to {1}")
         ],
         "sales" : [
             // L10n: {0} is an integer.
@@ -282,19 +141,28 @@ var csv_keys = {
             gettext("Refunds from {0} to {1}")
         ],
         "currency_sales" : [
-            // L10n: {0} is a currency.
             gettext("Total Sales by Currency"),
             gettext("Total Sales by Currency")
         ],
         "currency_revenue" : [
-            // L10n: {0} is a currency.
             gettext("Total Revenue by Currency"),
             gettext("Total Revenue by Currency")
         ],
         "currency_refunds" : [
-            // L10n: {0} is a currency.
             gettext("Total Refunds by Currency"),
             gettext("Total Refunds by Currency")
+        ],
+        "source_sales" : [
+            gettext("Total Sales by Source"),
+            gettext("Total Sales by Source")
+        ],
+        "source_revenue" : [
+            gettext("Total Revenue by Source"),
+            gettext("Total Revenue by Source")
+        ],
+        "source_refunds" : [
+            gettext("Total Refunds by Source"),
+            gettext("Total Refunds by Source")
         ]
     },
     aggregateLabel: {

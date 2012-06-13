@@ -23,6 +23,7 @@
     {% set links = [
       (addon.get_stats_url(action=report.replace('currency_', '')), _('Date')),
       (addon.get_stats_url(action=report), _('Currency')),
+      (addon.get_stats_url(action=report.replace('currency_', 'source_')), _('Source')),
     ] %}
     <ul>
       <li>{{ _('Metric Type') }}</li>

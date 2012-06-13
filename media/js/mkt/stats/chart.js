@@ -50,7 +50,6 @@
             plotOptions: {
                 line: {
                     lineWidth: 1.5,
-                    animation: false,
                     shadow: false,
                     marker: {
                         enabled: true,
@@ -123,8 +122,7 @@
         }
 
         // Re-enable date controls (was possibly disabled for column chart).
-        $('.range li a').removeClass('inactive').unbind('click');
-        $('.group li a').removeClass('inactive').unbind('click');
+        $('.group a, .range a').removeClass('inactive').unbind('click');
 
         if (!(group in acceptedGroups)) {
             group = 'day';
@@ -192,15 +190,14 @@
                 baseConfig.xAxis.tickInterval = (end - start) / 7;
             }
         } else if (group == 'week') {
-            $('.range li a.week').addClass('inactive').bind('click', inactive);
+            $('a.week').addClass('inactive').bind('click', inactive);
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 90) {
                 baseConfig.xAxis.tickInterval = (end - start) / 16;
             }
         } else if (group == 'month') {
-            $('.range li a.week').addClass('inactive').bind('click', inactive);
-            $('.range li a.month').addClass('inactive').bind('click', inactive);
+            $('a.week, a.month').addClass('inactive').bind('click', inactive);
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 365 * 2) {
@@ -261,36 +258,36 @@
 
             // Determine x-axis formatter.
             if (group == "week") {
-                baseConfig.xAxis.title.text = 'Week';
+                baseConfig.xAxis.title.text = gettext('Week');
                 xFormatter = weekFormatter;
             } else if (group == "month") {
-                baseConfig.xAxis.title.text = 'Month';
+                baseConfig.xAxis.title.text = gettext('Month');
                 xFormatter = monthFormatter;
             } else {
-                baseConfig.xAxis.title.text = 'Day';
+                baseConfig.xAxis.title.text = gettext('Day');
                 xFormatter = dayFormatter;
             }
 
             // Determine y-axis formatter.
             switch (metricTypes[metric]) {
                 case "currency": case "revenue":
-                    baseConfig.yAxis.title.text = 'Revenue';
+                    baseConfig.yAxis.title.text = gettext('Revenue');
                     yFormatter = currencyFormatter;
                     break;
                 case "sales":
-                    baseConfig.yAxis.title.text = 'Sales';
+                    baseConfig.yAxis.title.text = gettext('Sales');
                     yFormatter = salesFormatter;
                     break;
                 case "refunds":
-                    baseConfig.yAxis.title.text = 'Refunds';
+                    baseConfig.yAxis.title.text = gettext('Refunds');
                     yFormatter = refundsFormatter;
                     break;
                 case "installs":
-                    baseConfig.yAxis.title.text = 'Installs';
+                    baseConfig.yAxis.title.text = gettext('Installs');
                     yFormatter = installsFormatter;
                     break;
                 case "users":
-                    baseConfig.yAxis.title.text = 'Users';
+                    baseConfig.yAxis.title.text = gettext('Users');
                     yFormatter = userFormatter;
                     break;
                 case "reviews":
