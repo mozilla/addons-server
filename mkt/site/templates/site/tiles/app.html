@@ -13,4 +13,5 @@
     <em class="author">{{ product.listed_authors[0].name }}</em>
   {% endif %}
   <p class="price">{{ product.get_price() }}</p>
+  {{ product.average_rating|float|stars }}
 </a>

@@ -12,33 +12,7 @@
   <section id="review-listing">
 
   {% block review_header %}
-    <header class="product c">
-      <div class="visual">
-        <img src="{{ product.get_icon_url(64) }}">
-      </div>
-      <div>
-        <h1 class="hidden">{{ page_title }}</h1>
-        <h1 class="multi">
-          <small>{{ title }}</small>
-          <span>{{ product.name }}</span>
-        </h1>
-        <p class="average-rating">
-          {% if product.average_rating %}
-            {{ product.average_rating|float|stars }}
-            <span>
-              {% trans cnt=product.total_reviews,
-                       num=product.total_reviews|numberfmt %}
-                {{ num }} review
-              {% pluralize %}
-                {{ num }} reviews
-              {% endtrans %}
-            </span>
-          {% else %}
-            {{ _('Not yet rated') }}
-          {% endif %}
-        </p>
-      </div>
-    </header>
+    {{ rating_header(product, title) }}
     <p id="add-review">
       <a href="{{ product.get_ratings_url('add') }}" class="button fat">
         {{ _('Add a review') }}</a></p>

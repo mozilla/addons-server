@@ -11,17 +11,7 @@
   <section id="submit-review" class="friendly">
     <form method="post">
       {{ csrf() }}
-      <header class="product c">
-        <div class="visual">
-          <img src="{{ product.get_icon_url(64) }}">
-        </div>
-        <div>
-          <h1 class="multi">
-            <small>{{ title }}</small>
-            <span>{{ product.name }}</span>
-          </h1>
-        </div>
-      </header>
+      {{ rating_header(product, title) }}
       <p class="reminder">
         {% trans %}
           Please keep reviews clean, avoid the use of improper language, and do
