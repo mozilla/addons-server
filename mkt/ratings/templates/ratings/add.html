@@ -16,8 +16,10 @@
           <img src="{{ product.get_icon_url(64) }}">
         </div>
         <div>
-          <h1>{{ title }}</h1>
-          {{ form_field(form.rating, label=_('How would you rate this?'), tag='p') }}
+          <h1 class="multi">
+            <small>{{ title }}</small>
+            <span>{{ product.name }}</span>
+          </h1>
         </div>
       </header>
       <p class="reminder">
@@ -26,9 +28,11 @@
           not post any personal information.
         {% endtrans %}
       </p>
+      {{ form_field(form.rating, label=_('How would you rate this?'),
+                    tag='div', cls='rating') }}
       {{ form_field(form.body, label=_('Your review'), hint=True,
                     cc_for=form.body.auto_id,
-                    cc_maxlength=form.body.field.max_length, tag='p') }}
+                    cc_maxlength=form.body.field.max_length, tag='div') }}
       {{ required_note() }}
       <p class="form-footer">
         <button type="submit" class="fat">

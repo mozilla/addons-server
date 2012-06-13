@@ -173,11 +173,11 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
 @register.function
 def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
                some_html=False, cc_startswith=None, cc_for=None,
-               cc_maxlength=None, grid=False, **attrs):
+               cc_maxlength=None, grid=False, cls=None, **attrs):
     c = dict(field=field, label=label or field.label, tag=tag, req=req,
              opt=opt, hint=hint, some_html=some_html,
              cc_startswith=cc_startswith, cc_for=cc_for,
-             cc_maxlength=cc_maxlength, grid=grid, attrs=attrs)
+             cc_maxlength=cc_maxlength, grid=grid, cls=cls, attrs=attrs)
     t = env.get_template('site/helpers/simple_field.html').render(**c)
     return jinja2.Markup(t)
 

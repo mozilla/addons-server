@@ -1,7 +1,7 @@
 @import 'lib';
 
 .friendly {
-    p, ul {
+    p, ul, label {
         font-size: 18px;
         line-height: 24px;
     }
@@ -18,9 +18,10 @@
         b {
             color: @dark-gray;
         }
-        &.error b {
-            color: @maroon;
-        }
+    }
+    .error .char-count b,
+    .char-count.error b {
+        color: @maroon;
     }
     input, textarea {
         color: @note-gray;
@@ -331,6 +332,9 @@ form {
 }
 
 @media (max-width: @4col) {
+    p.form-footer {
+        margin: 10px 0 15px;
+    }
     .form-footer .or {
         display: none;
     }

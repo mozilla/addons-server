@@ -13,7 +13,7 @@
 {% endmacro %}
 
 {% if tag %}
-  <{{ tag }} class="brform simple-field c {{ class }}{{ ' error' if field.errors }}">
+  <{{ tag }} class="brform simple-field c {{ cls }}{{ ' error' if field.errors }}">
 {% endif %}
 {% set choice = field|is_choice_field %}
   {% if not tooltip %}{% set tooltip = field.help_text %}{% endif %}
