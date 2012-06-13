@@ -223,19 +223,27 @@ h1 .num {
         padding: 0;
         a {
             .border-box;
+            .border-radius(3px);
+            .box-shadow(0 1px 2px @medium-gray);
             background: @faint-gray;
             display: block;
-            .border-radius(3px);
-            .box-shadow(0 1px 2px @black);
-            height: 166px;
+            height: 120px;
             padding: 8px;
             position: relative;
             margin: 0 16px;
-            width: 216px;
+            width: 120px;
+            &:hover {
+                .box-shadow(0 1px 2px @dark-gray);
+            }
+            &:after {
+                background-image: url(../../img/mkt/icons/zoom.png);
+                opacity: .9;
+                bottom: 10px;
+                top: auto;
+            }
             .img {
                 background-position: 50% 50%;
                 background-repeat: no-repeat;
-                background-size: contain;
                 display: block;
                 position: absolute;
                 top: 0;
@@ -243,8 +251,8 @@ h1 .num {
                 bottom: 0;
                 left: 0;
                 margin: auto;
-                max-height: 150px;
-                max-width: 215px;
+                max-height: 120px;
+                max-width: 120px;
                 text-align: center;
             }
             &.video {
@@ -281,7 +289,6 @@ h1 .num {
         }
     }
     &.slider {
-        height: 195px;
         border-top: 1px solid #a0a4a7;
         border-bottom: 1px solid #babec0;
         .gradient-two-color(rgba(203, 210, 214, .33), rgba(216, 221, 223, .33))
@@ -395,10 +402,8 @@ h1 .num {
 }
 
 // Slider next/prev page controls are smaller here.
-.alt-slider {
-    .controls .next-page, .controls .prev-page {
-        height: 166px;
-    }
+.alt-slider .controls a {
+    height: 120px;
 }
 
 // Anything larger than mobile.
