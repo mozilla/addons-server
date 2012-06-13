@@ -87,18 +87,6 @@ Body data should contain the manifest in JSON::
 
         {"manifest": "http://test.app.com/manifest"}
 
-Validations are done async on the marketplace. The call will return immediately
-with a status of 201::
-
-        {"id": "123",
-         "manifest": "http://foo.com",
-         "processed": false,
-         "resource_uri": "/en-US/api/apps/validation/123/",
-         "valid": false,
-         "validation": ""}
-
-To see how it's doing, poll for a result using the `resource_uri`::
-
         GET /en-US/api/apps/validation/123/
 
 This will return the status of the validation. Validation not processed yet::
@@ -130,6 +118,10 @@ Validation processed and an error::
              "type": "error"
            }],
         }}
+
+You can always check the validation later::
+
+        GET /en-US/api/apps/validation/123/
 
 Create
 ======

@@ -52,8 +52,7 @@ class ValidationResource(MarketplaceResource):
             raise self.form_errors(form)
 
         bundle.obj = FileUpload.objects.create()
-        tasks.fetch_manifest.delay(form.cleaned_data['manifest'],
-                                   bundle.obj.pk)
+        tasks.fetch_manifest(form.cleaned_data['manifest'], bundle.obj.pk)
         log.info('Validation created: %s' % bundle.obj.pk)
         return bundle
 
