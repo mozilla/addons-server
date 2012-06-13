@@ -257,30 +257,31 @@ h1 .num {
             }
             &.video {
                 background: @black;
-                position: relative;
-                &:after,
-                img {
+                &:before,
+                .img {
                     .transition-property(~'opacity, visibility');
                     .transition-duration(.3s);
                 }
-                &:after {
+                &:before {
                     background: url(../../img/mkt/icons/video.png) 50% 50% no-repeat;
                     content: "";
                     display: block;
                     height: 100%;
+                    opacity: .9;
                     position: absolute;
                     top: 0;
                     left: 0;
+                    z-index: 1;
                     width: 100%;
                 }
-                img {
+                .img {
                     opacity: .8;
                 }
                 &:hover {
-                    img {
+                    .img {
                         opacity: 1;
                     }
-                    &:after {
+                    &:before {
                         opacity: 0;
                         visibility: hidden;
                     }
