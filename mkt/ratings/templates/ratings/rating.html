@@ -1,24 +1,56 @@
-<li class="review c">
+{% set perms = review_perms or {} %}
+{% set is_reply = review.reply_to_id is not none %}
+{% set has_reply = review.id in replies %}
+{% if flags %}
+  {% set is_flagged = flags[review.id] %}
+{% endif %}
+
+<li id="review-{{ review.id }}" data-rating="{{ review.rating }}"
+    class="review{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }} c">
   {% if not is_reply %}
-    {{ rating.rating|stars }}
+    {{ review.rating|stars }}
   {% endif %}
   <span class="byline">
-    {% trans user_url=rating.user.get_url_path(),
-             user_name=rating.user.name %}
+    {% trans user_url=review.user.get_url_path(),
+             user_name=review.user.name %}
       by <a href="{{ user_url }}">{{ user_name }}</a>
     {% endtrans %}
+    {% if (perms.is_admin or perms.is_editor) and review.ip_address != '0.0.0.0' %}
+      <span>[{{ review.ip_address }}]</span>
+    {% endif %}
     {% if is_reply %}
       {{ _('(Developer)') }}
     {% endif %}
   </span>
-  <div class="body">{{ rating.body }}</div>
-  <ul class="actions">
-    <li><a href="#">{{ _('Report') }}</a></li>
-    <li><a href="#">{{ _('Edit') }}</a></li>
-    <li><a href="#">{{ _('Delete') }}</a></li>
-  </ul>
-  <a href="{{ rating.get_url_path() }}" class="timestamp"
+  <div class="body">{{ review.body|nl2br }}</div>
+  {% if request.user.is_authenticated() %}
+    <ul class="actions">
+      {% if is_flagged %}
+        <li class="flagged">{{ _('Flagged for review') }}</li>
+      {% elif review.user_id != request.user.id %}
+        <li>
+          <a class="flag post" href="{{ product.get_ratings_url('flag', args=[review.id]) }}">{{ _('Report') }}</a>
+        </li>
+      {% endif %}
+      {% if not (is_reply or has_reply) and (perms.is_author or perms.is_admin) %}
+        <li>
+          <a class="reply post" href="{{ product.get_ratings_url('reply', args=[review.id]) }}">
+            {{ _('Reply') }}</a>
+        </li>
+      {% endif %}
+      {% if review.user_id == request.user.id %}
+        <li>
+          <a class="edit" href="#">{{ _('Edit') }}</a>
+        </li>
+      {% endif %}
+      {% if check_review_delete(review) %}
+        <li><a href="{{ product.get_ratings_url('delete', args=[review.id]) }}"
+               class="delete post">{{ _('Delete') }}</a></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+  <a href="{{ review.get_url_path() }}" class="timestamp"
      title="{{ _('Permalink') }}">
-    {{ rating.created|timelabel }}
+    {{ review.created|timelabel }}
   </a>
 </li>

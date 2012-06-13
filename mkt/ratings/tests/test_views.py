@@ -194,7 +194,7 @@ class TestCreate(ReviewTest):
             'Rated %s out of 5 stars %s reviews' % (rating, total))
 
     def test_review_link_singular(self):
-        # We have reviews.
+        # We have one review.
         self.enable_waffle()
         self.webapp.update(total_reviews=1)
         r = self.client.get(self.detail)
@@ -214,3 +214,93 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get(self.add)
         self.assertLoginRedirects(r, self.add, 302)
+
+
+class TestListing(ReviewTest):
+
+    def setUp(self):
+        super(TestListing, self).setUp()
+        self.user = UserProfile.objects.get(email='root_x@ukr.net')
+        assert self.client.login(username=self.user.email, password='password')
+        self.listing = self.webapp.get_ratings_url('list')
+
+    def test_items(self):
+        r = self.client.get(self.listing)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        reviews = doc('#reviews .review')
+        eq_(Review.objects.count(), 2)
+        eq_(reviews.length, Review.objects.count())
+        eq_(doc('.average-rating').length, 1)
+        eq_(doc('.no-rating').length, 0)
+
+        # A review.
+        r = Review.objects.get(id=218207)
+        item = reviews.filter('#review-218207')
+        eq_(r.reply_to_id, None)
+        eq_(item.hasClass('reply'), False)
+        eq_(item.length, 1)
+        eq_(item.attr('data-rating'), str(r.rating))
+
+        # A reply.
+        r = Review.objects.get(id=218468)
+        item = reviews.filter('#review-218468')
+        eq_(item.length, 1)
+        eq_(r.reply_to_id, 218207)
+        eq_(item.hasClass('reply'), True)
+        eq_(r.rating, None)
+        eq_(item.attr('data-rating'), '')
+
+    def test_empty_list(self):
+        Review.objects.all().delete()
+        eq_(Review.objects.count(), 0)
+        r = self.client.get(self.listing)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#reviews .item').length, 0)
+        eq_(doc('#add-first-review').length, 1)
+        eq_(doc('.average-rating.no-rating').length, 1)
+
+    def get_flags(self, actions):
+        return sorted(c.get('class').replace(' post', '')
+                      for c in actions.find('li a'))
+
+    def test_actions_as_author(self):
+        r = self.client.get(self.listing)
+        reviews = pq(r.content)('#reviews')
+
+        # My own review.
+        eq_(self.get_flags(reviews.find('#review-218207 .actions')),
+            ['delete', 'edit'])
+
+        # A reply.
+        eq_(self.get_flags(reviews.find('#review-218468 .actions')), ['flag'])
+
+    def test_actions_as_admin(self):
+        assert self.client.login(username='jbalogh@mozilla.com',
+                                 password='password')
+
+        r = self.client.get(self.listing)
+        reviews = pq(r.content)('#reviews')
+
+        eq_(self.get_flags(reviews.find('#review-218207 .actions')),
+            ['delete', 'flag'])
+
+        eq_(self.get_flags(reviews.find('#review-218468 .actions')),
+            ['delete', 'flag'])
+
+    def test_actions_as_admin_and_author(self):
+        assert self.client.login(username='jbalogh@mozilla.com',
+                                 password='password')
+
+        # Now I own the reply.
+        self.make_it_my_review()
+
+        r = self.client.get(self.listing)
+        reviews = pq(r.content)('#reviews')
+
+        eq_(self.get_flags(reviews.find('#review-218207 .actions')),
+            ['delete', 'flag'])
+
+        eq_(self.get_flags(reviews.find('#review-218468 .actions')),
+            ['delete', 'edit'])

@@ -115,9 +115,9 @@ def delete(request, addon, review_id):
     if not user_can_delete_review(request, review):
         return http.HttpResponseForbidden()
     review.delete()
-    log.info('Review deleted: %s deleted id:%s by %s ("%s": "%s")' %
-             (request.amo_user.name, review_id,
-              review.user.name, review.title, review.body))
+    log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")' %
+             (request.amo_user.name, review_id, review.user.name, review.title,
+              review.body))
     return http.HttpResponse()
 
 

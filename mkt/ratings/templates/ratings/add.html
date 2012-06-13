@@ -6,6 +6,8 @@
 {% set page_title = _('Add a review for {0}')|f(product.name) %}
 {% block title %}{{ mkt_page_title(page_title) }}{% endblock %}
 
+{% block bodyclass %}reviews{% endblock %}
+
 {% block content %}
   {{ mkt_breadcrumbs(product, [(None, title)]) }}
   <section id="submit-review" class="friendly">

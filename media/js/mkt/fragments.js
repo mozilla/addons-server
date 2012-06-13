@@ -10,7 +10,8 @@ function fragmentFilter(el) {
             href.indexOf('/ecosystem/') !== -1 ||
             href.indexOf('/statistics/') !== -1 ||
             href.indexOf('?modified=') !== -1 ||
-            el.getAttribute('target') === '_blank';
+            el.getAttribute('target') === '_blank' ||
+            $(el).hasClass('post');
 }
 
 (function(page, nodeFilter) {

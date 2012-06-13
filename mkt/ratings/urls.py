@@ -1,5 +1,8 @@
 from django.conf.urls.defaults import patterns, url, include
+
+from reviews.views import delete as amo_delete
 from reviews.feeds import ReviewsRss
+
 from . import views
 
 
@@ -7,17 +10,13 @@ from . import views
 detail_patterns = patterns('',
     url('^$', views.review_list, name='ratings.detail'),
     url('^flag$', views.flag, name='ratings.flag'),
-    url('^delete$', views.delete, name='ratings.delete'),
+    url('^delete$', amo_delete, name='ratings.delete'),
     url('^edit$', views.edit, name='ratings.edit'),
 )
 
 
 review_patterns = patterns('',
     url('^$', views.review_list, name='ratings.list'),
-    url('^positive$', views.review_list, kwargs={'rating': 'positive'},
-        name='ratings.list.positive'),
-    url('^negative$', views.review_list, kwargs={'rating': 'negative'},
-        name='ratings.list.negative'),
     url('^add$', views.add, name='ratings.add'),
     url('^(?P<review_id>\d+)/', include(detail_patterns)),
     url('^format:rss$', ReviewsRss(), name='ratings.list.rss'),

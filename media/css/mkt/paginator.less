@@ -10,6 +10,7 @@
 }
 
 .paginator {
+    margin-top: 10px;
     width: 100%;
     .disabled {
         opacity: 0.25;
@@ -67,7 +68,20 @@
     }
 }
 
+@media (min-width: @4col) {
+    .load-more {
+        display: none;
+    }
+}
+
 @media (max-width: @4col) {
+    .reviews .paginator {
+        display: none;
+    }
+    .load-more {
+        .fat-button;
+        margin: 20px 0 0;
+    }
     .paginator {
         .pos, .num, .rel {
             float: none;

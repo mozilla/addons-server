@@ -8,7 +8,7 @@
       <small>{{ title }}</small>
       <span>{{ product.name }}</span>
     </h1>
-    <p class="average-rating">
+    <p class="average-rating{{ ' no-rating' if not product.average_rating }}">
       {% if product.average_rating %}
         {{ product.average_rating|float|stars }}
         <span>

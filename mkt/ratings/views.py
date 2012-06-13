@@ -20,7 +20,6 @@ from reviews.views import get_flags
 
 from mkt.site import messages
 from mkt.ratings.forms import ReviewForm
-from mkt.ratings.models import Rating
 
 
 log = commonware.log.getLogger('mkt.ratings')
@@ -44,7 +43,7 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
         qs = qs.filter(pk=review_id)
         ctx['page'] = 'detail'
         # If this is a dev reply, find the first msg for context.
-        review = get_object_or_404(Rating, pk=review_id)
+        review = get_object_or_404(Review, pk=review_id)
         if review.reply_to_id:
             review_id = review.reply_to_id
             ctx['reply'] = review
@@ -59,7 +58,6 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
 
     ctx['ratings'] = ratings = amo.utils.paginate(request, qs)
     ctx['replies'] = Review.get_replies(ratings.object_list)
-    ctx['review_history'] = [[2, 12], [50, 2], [3, 0], [4, 1]]
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
@@ -76,16 +74,6 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
 @login_required(redirect=False)
 @json_view
 def flag(request, addon, review_id):
-    return http.HttpResponse()
-
-
-@addon_view
-@post_required
-@login_required(redirect=False)
-def delete(request, addon, review_id):
-    review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    if not user_can_delete_review(request, review):
-        return http.HttpResponseForbidden()
     return http.HttpResponse()
 
 
@@ -110,6 +98,7 @@ def add(request, addon):
     form = ReviewForm(data)
     if data and form.is_valid():
         review = Review.objects.create(**_review_details(request, addon, form))
+        Addon.objects.invalidate(*[addon])
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
         messages.success(request, _('Your review was successfully added!'))

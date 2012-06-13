@@ -217,7 +217,7 @@ class TestDelete(ReviewTest):
         eq_(Review.objects.filter(pk=218468).exists(), False)
 
     def test_reviewer_can_delete(self):
-        # Test an editor can delete a review if they aren't listed as an author.
+        # Test an editor can delete a review if not listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Remove user from authors.
         AddonUser.objects.filter(addon=self.addon).delete()
@@ -236,7 +236,7 @@ class TestDelete(ReviewTest):
         eq_(Review.objects.filter(pk=218207).exists(), False)
 
     def test_editor_own_addon_cannot_delete(self):
-        # Test an editor cannot delete a review if they are listed as an author.
+        # Test an editor cannot delete a review if listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Make user an add-on reviewer.
         group = Group.objects.create(name='Reviewer', rules='Addons:Review')

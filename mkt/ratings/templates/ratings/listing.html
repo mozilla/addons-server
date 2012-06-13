@@ -5,7 +5,7 @@
 {% set page_title = _('Reviews for {0}')|f(product.name) %}
 {% block title %}{{ mkt_page_title(page_title) }}{% endblock %}
 
-{% block bodyclass %}listing{% endblock %}
+{% block bodyclass %}reviews listing{% endblock %}
 
 {% block content %}
   {{ mkt_breadcrumbs(product, [(None, _('Reviews'))]) }}
@@ -43,19 +43,19 @@
       <div class="c" id="reviews-info">
       </div>
       <ul id="review-list">
-        {% for rating in ratings.object_list %}
+        {% for review in ratings.object_list %}
           {% include 'ratings/rating.html' %}
-          {% if rating.id in replies %}
+          {% if review.id in replies %}
             <a href="#" class="view-reply">{{ _('1 reply') }}</a>
-            {% with rating=replies[rating.id] %}
+            {% with review=replies[review.id] %}
               {% include 'ratings/rating.html' %}
             {% endwith %}
           {% endif %}
         {% endfor %}
       </ul>
-      {# TODO: Show only if more reviews to be shown. #}
-      <a href="#" class="more-reviews">{{ _('More reviews') }}</a>
-      <!--{{ ratings|impala_paginator }}-->
+      {# TODO: Show only if more reviews to be shown (bug 764078). #}
+      <a href="#" class="load-more">{{ _('More reviews') }}</a>
+      {{ ratings|impala_paginator }}
     {% else %}
       {% if product.can_review(amo_user) %}
         <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">
