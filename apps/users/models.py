@@ -275,8 +275,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                   use_blacklist=False)
 
     def unrestrict(self):
-        log.info(u'User (%s: <%s>) is being unrestricted.' % (self, self.email))
-        GroupUser.objects.filter(user=self, group__rules='Restricted:UGC').delete()
+        log.info(u'User (%s: <%s>) is being unrestricted.' % (self,
+                                                              self.email))
+        GroupUser.objects.filter(user=self,
+                                 group__rules='Restricted:UGC').delete()
 
     def generate_confirmationcode(self):
         if not self.confirmationcode:
@@ -398,6 +400,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Circular import
         from amo.utils import memoize
         from market.models import AddonPurchase
+
         @memoize(prefix='users:purchase-ids')
         def ids(pk):
             return (AddonPurchase.objects.filter(user=pk)
