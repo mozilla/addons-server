@@ -443,7 +443,6 @@ class ESTestCase(TestCase):
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
     es = True
-    use_es = None
     mock_es = False
     exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
 
@@ -454,18 +453,15 @@ class ESTestCase(TestCase):
         super(ESTestCase, cls).setUpClass()
         cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
 
-        if ESTestCase.use_es is None:
-            for key, index in settings.ES_INDEXES.items():
-                settings.ES_INDEXES[key] = 'test_%s' % index
-            try:
-                cls.es.cluster_health()
-                ESTestCase.use_es = True
-            except Exception, e:
-                print 'Disabling elasticsearch tests.\n%s' % e
-                ESTestCase.use_es = False
-
-        if not ESTestCase.use_es:
-            raise nose.SkipTest()
+        for key, index in settings.ES_INDEXES.items():
+            settings.ES_INDEXES[key] = 'test_%s' % index
+        try:
+            cls.es.cluster_health()
+        except Exception, e:
+            e.args = tuple([u'%s (it looks like ES is not running, '
+                            'try starting it or set RUN_ES_TESTS=False)'
+                            % e.args[0]] + list(e.args[1:]))
+            raise
 
         for index in settings.ES_INDEXES.values():
             try:
