@@ -94,10 +94,10 @@ z.page.on('fragmentloaded', function() {
     // Navigation toggle.
     var $header = $('#site-header'),
         $nav = $header.find('nav ul');
-    $header.on('click', '.menu-button', function() {
+    $header.on('click', '.menu-button', _pd(function() {
         $nav.addClass('active');
         $('.nav-overlay').addClass('show');
-    });
+    }));
 
     // $header.on('focus.search', '#search-q', function() {
     //     $('#search-go').show();
