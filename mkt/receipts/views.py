@@ -163,7 +163,7 @@ def issue(request, addon):
     return {'addon': addon.pk, 'receipt': receipt, 'error': error}
 
 
-@addon_view
+@addon_all_view
 @json_view
 @reviewer_required
 def check(request, addon):

@@ -293,6 +293,7 @@ class TestReceiptCheck(amo.tests.TestCase):
     def setUp(self):
         super(TestReceiptCheck, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
+        self.app.update(status=amo.STATUS_PENDING)
         self.url = reverse('receipt.check',
                            args=[self.app.app_slug])
         self.reviewer = UserProfile.objects.get(pk=5497308)
