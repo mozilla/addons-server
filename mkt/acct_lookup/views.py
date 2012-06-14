@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 
 import jingo
 
+from addons.models import Addon
 import amo
 from amo.decorators import login_required, permission_required, json_view
 from amo.urlresolvers import reverse
@@ -20,7 +21,7 @@ def home(request):
 
 @login_required
 @permission_required('AccountLookup', 'View')
-def summary(request, user_id):
+def user_summary(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     app_summary = _app_summary(user.pk)
     # All refunds that this user has requested (probably as a consumer).
@@ -40,7 +41,7 @@ def summary(request, user_id):
     payment_data = []
     for ad in user.addons.exclude(payment_data=None):
         payment_data.append(ad.payment_data)
-    return jingo.render(request, 'acct_lookup/summary.html',
+    return jingo.render(request, 'acct_lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,
                          'refund_summary': refund_summary,
@@ -51,11 +52,17 @@ def summary(request, user_id):
 
 @login_required
 @permission_required('AccountLookup', 'View')
-def purchases(request, user_id):
+def app_summary(request, app_slug):
+    app = get_object_or_404(Addon, app_slug=app_slug)
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+def user_purchases(request, user_id):
     """Shows the purchase page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
     products, contributions, listing = purchase_list(request, user, None)
-    return jingo.render(request, 'acct_lookup/purchases.html',
+    return jingo.render(request, 'acct_lookup/user_purchases.html',
                         {'pager': products,
                          'account': user,
                          'listing_filter': listing,
@@ -67,7 +74,7 @@ def purchases(request, user_id):
 @login_required
 @permission_required('AccountLookup', 'View')
 @json_view
-def search(request):
+def user_search(request):
     results = []
     query = request.GET.get('q', '').lower()
     fields = ('username', 'display_name', 'email')
@@ -82,8 +89,35 @@ def search(request):
                                          email__fuzzy=query))
                          .values_dict(*fields))
     for user in qs:
-        user['url'] = reverse('acct_lookup.summary', args=[user['id']])
+        user['url'] = reverse('acct_lookup.user_summary', args=[user['id']])
+        user['name'] = user['username']
         results.append(user)
+    return {'results': results}
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+@json_view
+def app_search(request):
+    results = []
+    query = request.GET.get('q', '').lower()
+    fields = ['name', 'app_slug']
+    non_es_fields = ['id', 'name__localized_string'] + fields
+    if query.isnumeric():
+        qs = Addon.objects.filter(pk=query).values(*non_es_fields)
+    elif query.startswith('{'):
+        qs = Addon.objects.filter(guid=query).values(*non_es_fields)
+    else:
+        qs = Addon.search().query(name__fuzzy=query).values_dict(*fields)
+    for app in qs:
+        app['url'] = reverse('acct_lookup.app_summary', args=[app['app_slug']])
+        # ES returns a list of localized names but database queries do not.
+        if type(app['name']) != list:
+            app['name'] = [app['name__localized_string']]
+        for name in app['name']:
+            dd = app.copy()
+            dd['name'] = name
+            results.append(dd)
     return {'results': results}
 
 

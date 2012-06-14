@@ -4,6 +4,7 @@ import json
 from pyquery import PyQuery as pq
 from nose.tools import eq_
 
+from addons.cron import reindex_addons
 from addons.models import Addon
 import amo
 from amo.urlresolvers import reverse
@@ -31,7 +32,8 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         self.steamcube = Addon.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.summary_url = reverse('acct_lookup.summary', args=[self.user.pk])
+        self.summary_url = reverse('acct_lookup.user_summary',
+                                   args=[self.user.pk])
 
     def buy_stuff(self, contrib_type):
         for i in range(3):
@@ -148,7 +150,26 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         eq_(res.context['payment_data'], [])
 
 
-class TestAcctSearch(AcctLookupTest, ESTestCase):
+class SearchTest(AcctLookupTest):
+
+    def search(self, q, expect_results=True):
+        res = self.client.get(self.url, {'q': q})
+        data = json.loads(res.content)
+        if expect_results:
+            assert len(data['results']), 'should be more than 0 results'
+        return data
+
+    def test_auth_required(self):
+        self.client.logout()
+        res = self.client.get(self.url)
+        self.assertLoginRedirects(res, self.url)
+
+    def test_no_results(self):
+        data = self.search('__garbage__', expect_results=False)
+        eq_(data['results'], [])
+
+
+class TestAcctSearch(SearchTest, ESTestCase):
     fixtures = ['base/users']
 
     @classmethod
@@ -158,27 +179,16 @@ class TestAcctSearch(AcctLookupTest, ESTestCase):
 
     def setUp(self):
         super(TestAcctSearch, self).setUp()
+        self.url = reverse('acct_lookup.user_search')
         self.user = UserProfile.objects.get(username='clouserw')
 
-    def search(self, q, expect_results=True):
-        res = self.client.get(reverse('acct_lookup.search'), {'q': q})
-        data = json.loads(res.content)
-        if expect_results:
-            assert len(data['results']), 'should be more than 0 results'
-        return data
-
     def verify_result(self, data):
-        eq_(data['results'][0]['username'], self.user.username)
+        eq_(data['results'][0]['name'], self.user.username)
         eq_(data['results'][0]['display_name'], self.user.display_name)
         eq_(data['results'][0]['email'], self.user.email)
         eq_(data['results'][0]['id'], self.user.pk)
-        eq_(data['results'][0]['url'], reverse('acct_lookup.summary',
+        eq_(data['results'][0]['url'], reverse('acct_lookup.user_summary',
                                                args=[self.user.pk]))
-
-    def test_auth_required(self):
-        self.client.logout()
-        res = self.client.get(reverse('acct_lookup.search'))
-        self.assertLoginRedirects(res, reverse('acct_lookup.search'))
 
     def test_by_username(self):
         self.user.update(username='newusername')
@@ -202,9 +212,51 @@ class TestAcctSearch(AcctLookupTest, ESTestCase):
         data = self.search('fonzih')
         self.verify_result(data)
 
-    def test_no_results(self):
-        data = self.search('__garbage__', expect_results=False)
-        eq_(data['results'], [])
+
+class TestAppSearch(SearchTest, ESTestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube',
+                'base/addon_3615.json']
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestAppSearch, cls).setUpClass()
+        reindex_addons()
+
+    def setUp(self):
+        super(TestAppSearch, self).setUp()
+        self.url = reverse('acct_lookup.app_search')
+        self.app = Addon.objects.get(pk=337141)
+
+    def verify_result(self, data):
+        eq_(data['results'][0]['name'], self.app.name.localized_string)
+        eq_(data['results'][0]['id'], self.app.pk)
+        eq_(data['results'][0]['url'], reverse('acct_lookup.app_summary',
+                                               args=[self.app.app_slug]))
+
+    def test_by_name_part(self):
+        self.app.name = 'This is Steamcube'
+        self.app.save()
+        self.refresh()
+        data = self.search('steamcube')
+        self.verify_result(data)
+
+    def test_by_stem_name(self):
+        self.app.name = 'Instigation'
+        self.app.save()
+        self.refresh()
+        data = self.search('instigate')
+        self.verify_result(data)
+
+    def test_by_guid(self):
+        self.app = Addon.objects.get(pk=3615)
+        assert self.app.guid, 'Expected this addon to have a guid'
+        self.app = Addon.objects.get(guid=self.app.guid)
+        data = self.search(self.app.guid)
+        self.verify_result(data)
+
+    def test_by_id(self):
+        data = self.search(self.app.pk)
+        self.verify_result(data)
 
 
 class TestPurchases(amo.tests.TestCase):
@@ -214,7 +266,7 @@ class TestPurchases(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
         self.user = UserProfile.objects.get(pk=999)
-        self.url = reverse('acct_lookup.purchases', args=[self.user.pk])
+        self.url = reverse('acct_lookup.user_purchases', args=[self.user.pk])
 
     def test_not_allowed(self):
         self.client.logout()
