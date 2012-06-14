@@ -60,15 +60,12 @@
     }).bind('app_install_success', function(e, product, installedNow) {
         var $button = getButton(product);
         if (installedNow) {
-            var $installed = $('#installed');
-            if (z.nav.platform == 'mac') {
+            var $installed = $('#installed'),
+                $how = $installed.find('.' + z.nav.platform);
+            // Supported: Mac, Windows, or Linux.
+            if ($how.length) {
                 $installed.show();
-                $installed.find('.how.mac').show();
-            } else if (z.nav.platform == 'windows') {
-                $installed.show();
-                $installed.find('.how.win').show();
-            } else {
-                // Linux? You're on your own, brah.
+                $how.show();
             }
         }
         setButton($button, gettext('Installed'), 'installed');
