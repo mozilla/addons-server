@@ -12,13 +12,16 @@ from hera.contrib.django_utils import flush_urls
 from django_statsd.clients import statsd
 
 import amo
+from abuse.models import AbuseReport
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, LegacyAddonLog
+from devhub.models import ActivityLog, AppLog, LegacyAddonLog
 from editors.models import EventLog
+from mkt.reviewers.models import EscalationQueue
 from reviews.models import Review
 from stats.models import Contribution
+from users.utils import get_task_user
 
 
 log = commonware.log.getLogger('z.task')
@@ -175,3 +178,42 @@ task_stats = TaskStats()
 celery.signals.task_sent.connect(task_stats.on_sent)
 celery.signals.task_postrun.connect(task_stats.on_postrun)
 celery.signals.task_failure.connect(task_stats.on_failure)
+
+
+@task
+def find_abuse_escalations(addon_id, **kw):
+    amo.set_user(get_task_user())
+    weekago = datetime.date.today() - datetime.timedelta(days=7)
+
+    for abuse in AbuseReport.recent_high_abuse_reports(1, weekago, addon_id):
+        if EscalationQueue.objects.filter(addon=abuse.addon).exists():
+            # App is already in the queue, no need to re-add it.
+            # TODO: If not in queue b/c of abuse reports, add an
+            #       amo.LOG.ESCALATED_HIGH_ABUSE for reviewers.
+            log.info(u'[addon:%s] High abuse reports, but already escalated' %
+                     (abuse.addon,))
+            continue
+
+        # We have an abuse report and this add-on isn't currently in the
+        # escalated queue... let's see if it has been detected and dealt with
+        # already.
+        logs = (AppLog.objects.filter(
+            activity_log__action=amo.LOG.ESCALATED_HIGH_ABUSE.id,
+            addon=abuse.addon).order_by('-created'))
+        if logs:
+            abuse_since_log = AbuseReport.recent_high_abuse_reports(
+                1, logs[0].created, addon_id)
+            # If no abuse reports have happened since the last logged abuse
+            # report, do not add to queue.
+            if not abuse_since_log:
+                log.info(u'[addon:%s] High abuse reports, but none since last '
+                          'escalation' % abuse.addon)
+                continue
+
+        # If we haven't bailed out yet, escalate this app.
+        msg = u'High number of abuse reports detected on %s' % (
+            datetime.datetime.now())
+        EscalationQueue.objects.create(addon=abuse.addon)
+        amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
+                abuse.addon.current_version, details={'comments': msg})
+        log.info(u'[addon:%s] %s' % (abuse.addon, msg))

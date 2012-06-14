@@ -244,6 +244,10 @@ class ActivityLog(amo.models.ModelBase):
 
     formatter = SafeFormatter()
 
+    class Meta:
+        db_table = table_name('log_activity')
+        ordering = ('-created',)
+
     def f(self, *args, **kw):
         """Calls SafeFormatter.format and returns a Markup string."""
         # SafeFormatter escapes everything so this is safe.
@@ -375,10 +379,6 @@ class ActivityLog(amo.models.ModelBase):
 
     def __html__(self):
         return self
-
-    class Meta:
-        db_table = table_name('log_activity')
-        ordering = ('-created',)
 
 
 # TODO(davedash): Remove after we finish the import.

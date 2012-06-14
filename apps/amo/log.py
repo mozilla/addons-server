@@ -455,7 +455,14 @@ class APP_DISABLED(_LOG):
     review_queue = True
 
 
-# TODO(robhudson): Escalation log for high abuse reports.
+class ESCALATED_HIGH_ABUSE(_LOG):
+    id = 68
+    format = _(u'{addon} escalated because of high number of abuse reports.')
+    short = _(u'High Abuse Reports')
+    keep = True
+    review_queue = True
+
+
 # TODO(robhudson): Escalation log for high refunds.
 # TODO(robhudson): Escalation log for editor escalation..
 
