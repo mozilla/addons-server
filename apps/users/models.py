@@ -259,7 +259,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.picture_type = ""
         self.save()
 
-
     @transaction.commit_on_success
     def restrict(self):
         from amo.utils import send_mail
@@ -269,7 +268,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         GroupUser.objects.create(user=self, group=g)
         self.reviews.all().delete()
         self.collections.all().delete()
-        self._ratings_all.all().delete()
 
         t = loader.get_template('users/email/restricted.ltxt')
         send_mail(_('Your account has been restricted'),
