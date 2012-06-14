@@ -3,25 +3,28 @@ from pyquery import PyQuery as pq
 
 import waffle
 
+from access.models import Group, GroupUser
+from addons.models import Addon
 import amo
 from amo.helpers import numberfmt
 import amo.tests
 from reviews.models import Review
-from access.models import Group, GroupUser
-
 from users.models import UserProfile
 
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
 
-
 class ReviewTest(amo.tests.TestCase):
-    fixtures = ['base/admin', 'base/apps', 'ratings/dev-reply']
+    fixtures = ['base/admin', 'base/apps', 'reviews/dev-reply']
 
     def setUp(self):
         self.webapp = self.get_webapp()
 
     def get_webapp(self):
+        # Because django hates my new fixture.
+        addon = Addon.objects.get(id=1865)
+        if not addon.is_webapp():
+            addon.update(type=amo.ADDON_WEBAPP)
         return Webapp.objects.get(id=1865)
 
     def log_in_dev(self):
