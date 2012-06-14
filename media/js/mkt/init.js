@@ -117,7 +117,7 @@ z.page.on('fragmentloaded', function() {
         if ($purchased.length) {
             $purchased.replaceWith(installed);
         } else {
-            $purchased.prepend(installed);
+            $actions.prepend(installed);
         }
     });
 
