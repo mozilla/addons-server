@@ -261,11 +261,11 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
                      app_factory(name='ZZZ')]
 
         rq1 = RereviewQueue.objects.create(addon=self.apps[0])
-        rq1.created = days_ago(5)
+        rq1.update(created=days_ago(5))
         rq2 = RereviewQueue.objects.create(addon=self.apps[1])
-        rq2.created = days_ago(3)
+        rq2.update(created=days_ago(3))
         rq3 = RereviewQueue.objects.create(addon=self.apps[2])
-        rq3.created = days_ago(1)
+        rq3.update(created=days_ago(1))
 
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_rereview')
@@ -319,12 +319,12 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
-        rq1 = EscalationQueue.objects.create(addon=self.apps[0])
-        rq1.created = days_ago(5)
-        rq2 = EscalationQueue.objects.create(addon=self.apps[1])
-        rq2.created = days_ago(3)
-        rq3 = EscalationQueue.objects.create(addon=self.apps[2])
-        rq3.created = days_ago(1)
+        eq1 = EscalationQueue.objects.create(addon=self.apps[0])
+        eq1.update(created=days_ago(5))
+        eq2 = EscalationQueue.objects.create(addon=self.apps[1])
+        eq2.update(created=days_ago(3))
+        eq3 = EscalationQueue.objects.create(addon=self.apps[2])
+        eq3.update(created=days_ago(1))
 
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_escalated')
