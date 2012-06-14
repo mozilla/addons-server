@@ -59,16 +59,18 @@
     }
 }
 
-/* Hide narrow-specific stuff. (For "Popular" and "New" tabbed sections.) */
-.narrow {
-    display: none;
-}
-
 @media (max-width: @10col) {
     .homepage-promo {
         h2, p {
             width: 300px;
         }
+    }
+}
+
+@media (min-width: @4col) {
+    /* Hide narrow-specific stuff. (e.g., "Popular" and "New" tabbed sections.) */
+    .narrow {
+        display: none !important;
     }
 }
 
