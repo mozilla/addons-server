@@ -62,9 +62,12 @@
         }
         a {
             font-size: 11px;
-        }
-        a {
-            display: block;
+            display: inline-block;
+            &.button {
+                color: @white;
+                width: auto;
+                padding: 0 10px;
+            }
         }
     }
     .form-footer {
