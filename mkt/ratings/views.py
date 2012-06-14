@@ -87,6 +87,12 @@ def edit(request, addon, review_id):
 
 @addon_view
 @login_required
+def reply(request, addon, review_id):
+    return http.HttpResponse()
+
+
+@addon_view
+@login_required
 @restricted_content
 @has_purchased
 def add(request, addon):

@@ -12,6 +12,7 @@ detail_patterns = patterns('',
     url('^flag$', views.flag, name='ratings.flag'),
     url('^delete$', amo_delete, name='ratings.delete'),
     url('^edit$', views.edit, name='ratings.edit'),
+    url('^reply$', views.reply, name='ratings.reply'),
 )
 
 
