@@ -219,36 +219,47 @@
             height: 120px;
             width: 120px;
         }
+        .img {
+            background: #D9DDE0 url(../../img/mkt/glyphs/rocket.png) 50% 50% no-repeat;
+            .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 2px 1px 0 rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05) inset');
+            &:after {
+                top: auto;
+                right: 5px;
+                bottom: 5px;
+            }
+        }
         li {
             h3 {
-                margin: 0;
+                .ellipsis;
+                // Because `overflow: hidden` is required for `text-overflow: ellipsis`
+                // and the letter 'g' gets clipped, my g.
+                margin: 10px 0 -6px;
                 text-align: center;
                 width: 100%;
             }
             a {
-                .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 2px 1px 0 rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05) inset');
                 .transition-duration(0.1s);
                 .transition-property(~'background-color,'
                                       '-moz-box-shadow, -webkit-box-shadow,'
                                       'box-shadow, line-height');
-                background-color: #D9DDE0;
                 display: block;
                 line-height: 120px;
                 margin: 0 auto;
                 text-align: center;
                 &:hover {
-                    .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 4px 1px 0 rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 48px 0 #fff inset, 0 -3px 0 0 rgba(0,0,0,.15) inset');
-                    line-height: 118px;
+                    .img {
+                        .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 4px 1px 0 rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 48px 0 #fff inset, 0 -3px 0 0 rgba(0,0,0,.15) inset');
+                        line-height: 118px;
+                    }
                 }
                 &:active {
-                    background-color: rgba(0,0,0,0.1);
-                    .box-shadow(~'0 2px 0 0 rgba(0,0,0,.2) inset, 0 12px 24px 6px rgba(0,0,0,.2) inset, 0 2px 2px 2px rgba(0,0,0,.2) inset');
-                    line-height: 124px;
+                    .img {
+                        .box-shadow(~'0 2px 0 0 rgba(0,0,0,.2) inset, 0 12px 24px 6px rgba(0,0,0,.2) inset, 0 2px 2px 2px rgba(0,0,0,.2) inset');
+                        background-color: rgba(0,0,0,0.1);
+                        line-height: 124px;
+                    }
                 }
             }
-        }
-        .img {
-            background: url(../../img/mkt/glyphs/rocket.png) 50% 50% no-repeat;
         }
     }
     .promo-slider ul a:after {
