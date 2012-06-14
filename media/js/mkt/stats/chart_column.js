@@ -77,6 +77,8 @@
         if (!(metric in z.StatsManager.nonDateMetrics)) {
             return;
         }
+        // Allows reuse of non-in-app code.
+        metric = metric.replace('_inapp', '');
 
         // Disable irrelevant links and controls.
         $('.group a, .range a').addClass('inactive').bind('click', false);

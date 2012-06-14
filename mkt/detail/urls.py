@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import include, patterns, url
 
+import addons.views
+import amo
 from mkt.ratings.urls import review_patterns
 from mkt.receipts.urls import purchase_patterns
 from . import views

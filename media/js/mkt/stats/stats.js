@@ -45,6 +45,12 @@
             initView.group = ssView.group || initView.group;
         }
 
+        // In-app drop-down selector.
+        var dropdown = $('.product');
+        dropdown.change(function() {
+            window.location = $('.product option:selected').val();
+        });
+
         // Update sessionStorage with our current view state.
         (function() {
             if (!z.capabilities.localStorage) return;

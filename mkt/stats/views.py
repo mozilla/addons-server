@@ -12,36 +12,72 @@ from addons.models import Addon
 import amo
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
+from mkt.inapp_pay.models import InappPayment
+from mkt.webapps.decorators import app_view, app_view_factory
 from mkt.webapps.models import Installed, Webapp
 from stats.models import Contribution, UpdateCount
 from stats.views import (check_series_params_or_404, daterange,
                          get_report_view, render_csv, render_json)
 
-SERIES = ('installs', 'usage', 'revenue', 'sales', 'refunds',
-          'currency_revenue', 'currency_sales', 'currency_refunds',
-          'source_revenue', 'source_sales', 'source_refunds')
+FINANCE_SERIES = (
+    'sales', 'refunds', 'revenue',
+    'currency_revenue', 'currency_sales', 'currency_refunds',
+    'source_revenue', 'source_sales', 'source_refunds',
+    'revenue_inapp', 'sales_inapp', 'refunds_inapp',
+    'currency_revenue_inapp', 'currency_sales_inapp',
+    'currency_refunds_inapp', 'source_revenue_inapp',
+    'source_sales_inapp', 'source_refunds_inapp'
+)
+SERIES = FINANCE_SERIES + ('installs', 'usage')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')
 SERIES_FORMATS = ('json', 'csv')
 
 
-@addon_view_factory(Webapp.objects.all)
-def stats_report(request, addon, report):
-    # Redirect to detail page for non-public/pending apps if not author.
+@app_view_factory(Webapp.objects.all)
+def stats_report(request, addon, report, inapp=None, category_field=None):
+    """
+    Stats page. Passes in context variables into template which is read by the
+    JS to build a URL. The URL calls a *_series view which determines
+    necessary arguments for get_series_*. get_series_* queries ES for the data,
+    which is later formatted into .json or .csv and made available to the JS.
+    """
     if (addon.status is not amo.STATUS_PUBLIC and
         not check_stats_permission(request, addon, for_contributions=True,
                                    no_raise=True)):
         return redirect(addon.get_detail_url())
-
     check_stats_permission(request, addon)
-    stats_base_url = reverse('mkt.stats.overview', args=[addon.app_slug])
+
+    # For inapp, point template to same as non-inapp, but still use
+    # different report names.
+    template_name = 'appstats/reports/%s.html' % report.replace('_inapp', '')
+    if inapp:
+        stats_base_url = addon.get_stats_inapp_url(action='revenue',
+                                                   inapp=inapp)
+    else:
+        stats_base_url = reverse('mkt.stats.overview', args=[addon.app_slug])
     view = get_report_view(request)
-    return jingo.render(request, 'appstats/reports/%s.html' % report,
-                        {'addon': addon,
-                         'report': report,
-                         'view': view,
-                         'stats_base_url': stats_base_url,
-                        })
+
+    # Get list of in-apps for drop-down in-app selector.
+    inapps = []
+    # Until we figure out why ES stores strings in lowercase despite
+    # the field being set to not analyze, we grab the lowercase version
+    # from ES and do a case-insensitive query to the ORM to un-lowercase.
+    inapps_lower = list(set(payment['inapp'] for payment in list(
+        InappPayment.search().filter(
+        addon=addon.id).values_dict('inapp'))))
+    for inapp_name in inapps_lower:
+        inapps.append(InappPayment.objects.filter(
+            name__iexact=inapp_name)[0].name)
+
+    return jingo.render(request, template_name, {
+        'addon': addon,
+        'report': report,
+        'view': view,
+        'stats_base_url': stats_base_url,
+        'inapp': inapp,
+        'inapps': inapps,
+    })
 
 
 def get_series_line(model, group, primary_field=None, extra_fields=None,
@@ -97,13 +133,30 @@ def get_series_column(model, primary_field=None, category_field=None,
                       is a Highcharts term where categories are the xAxis
                       values.
     """
+    # Differentiates what we query the ORM and ES with. Set up ORM query.
+    if model == InappPayment and 'name' in filters:
+        category_field = 'contribution__' + category_field
+
     categories = list(set(model.objects.filter(**filters).values_list(
                           category_field, flat=True)))
+
+    # Set up ES query.
+    if model == InappPayment and filters['name']:
+        category_field = category_field.replace('contribution__', '')
+    if 'name' in filters:
+        filters['inapp'] = filters['name']
+        del(filters['name'])
+    if 'config__addon' in filters:
+        filters['addon'] = filters['config__addon']
+        del(filters['config__addon'])
 
     data = []
     for category in categories:
         # Have to query ES in lower-case.
-        category = category.lower()
+        try:
+            category = category.lower()
+        except AttributeError:
+            pass
 
         filters[category_field] = category
         if primary_field:
@@ -137,7 +190,7 @@ def get_series_column(model, primary_field=None, category_field=None,
 
 
 #TODO: complex JS logic similar to apps/stats, real stats data
-@addon_view
+@app_view
 def overview_series(request, addon, group, start, end, format):
     """
     Combines installs_series and usage_series into one payload.
@@ -154,9 +207,11 @@ def overview_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@app_view
 def installs_series(request, addon, group, start, end, format):
-    """Generate install counts grouped by ``group`` in ``format``."""
+    """
+    Generate install counts grouped by ``group`` in ``format``.
+    """
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
@@ -170,7 +225,7 @@ def installs_series(request, addon, group, start, end, format):
 
 
 #TODO: real data
-@addon_view
+@app_view
 def usage_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -184,30 +239,25 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
-def revenue_series(request, addon, group, start, end, format):
-    date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, for_contributions=True)
-
-    series = get_series_line(Contribution, group, primary_field='revenue',
-                             addon=addon.id, date__range=date_range)
-
-    if format == 'csv':
-        return render_csv(request, addon, series, ['date', 'count'])
-    elif format == 'json':
-        return render_json(request, addon, series)
-
-
-@addon_view
-def sales_series(request, addon, group, start, end, format):
+@app_view
+def finance_line_series(request, addon, group, start, end, format,
+                        primary_field=None, inapp=None):
     """
-    Sequel to contribution series
+    Date-based contribution series.
+    primary_field -- revenue/count/refunds
+    inapp -- inapp name, which shows stats for a certain inapp
     """
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
 
-    series = get_series_line(Contribution, group, addon=addon.id,
-                             date__range=date_range)
+    if inapp:
+        series = get_series_line(InappPayment, group,
+            primary_field=primary_field, addon=addon.id,
+            date__range=date_range, inapp=inapp.lower())
+    else:
+        series = get_series_line(Contribution, group,
+            primary_field=primary_field, addon=addon.id,
+            date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -215,50 +265,35 @@ def sales_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
-def refunds_series(request, addon, group, start, end, format):
-    date_range = check_series_params_or_404(group, start, end, format)
+@app_view
+def finance_column_series(request, addon, group, start, end, format,
+                          primary_field=None, category_field=None,
+                          inapp=None):
+    """
+    Non-date-based contribution series, column graph.
+    primary_field -- revenue/count/refunds
+    category_field -- breakdown field, currency/source
+    inapp -- inapp name, which shows stats for a certain inapp
+    """
     check_stats_permission(request, addon, for_contributions=True)
 
-    series = get_series_line(Contribution, group, primary_field='refunds',
-                             addon=addon.id, date__range=date_range)
-
-    if format == 'csv':
-        return render_csv(request, addon, series, ['date', 'count'])
-    elif format == 'json':
-        return render_json(request, addon, series)
-
-
-@addon_view
-def currency_series(request, addon, group, start, end, format,
-                    primary_field=None):
-    check_stats_permission(request, addon, for_contributions=True)
-
-    series = get_series_column(Contribution, primary_field=primary_field,
-                               category_field='currency', addon=addon.id)
+    if not inapp:
+        series = get_series_column(Contribution, primary_field=primary_field,
+            category_field=category_field, addon=addon.id)
+    else:
+        series = get_series_column(InappPayment, primary_field=primary_field,
+            category_field=category_field, config__addon=addon.id,
+            name=inapp.lower())
 
     # Since we're currently storing everything in lower-case in ES,
     # re-capitalize the currency.
-    series = list(series)
-    for datum in series:
-        datum['currency'] = datum['currency'].upper()
+    if category_field == 'currency':
+        series = list(series)
+        for datum in series:
+            datum['currency'] = datum['currency'].upper()
 
     if format == 'csv':
-        return render_csv(request, addon, series, ['currency', 'count'])
-    elif format == 'json':
-        return render_json(request, addon, series)
-
-
-@addon_view
-def source_series(request, addon, group, start, end, format,
-                  primary_field=None):
-    check_stats_permission(request, addon, for_contributions=True)
-
-    series = get_series_column(Contribution, primary_field=primary_field,
-                               category_field='source', addon=addon.id)
-
-    if format == 'csv':
-        return render_csv(request, addon, series, ['source', 'count'])
+        return render_csv(request, addon, series, [category_field, 'count'])
     elif format == 'json':
         return render_json(request, addon, series)
 

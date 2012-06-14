@@ -112,7 +112,7 @@ def index_finance_daily(ids, **kw):
     level key with a dict as its value. And it stores the date in the
     add-on's dict as a second level key. To check if an addon-date pair has
     been already index, it looks up the dict[addon][date] to see if the
-    key exists.
+    key exists. This adds some speed up when batch processing.
 
     ids -- ids of apps.stats.Contribution objects
     """
@@ -214,6 +214,84 @@ def index_finance_total_inapp_by_currency(addons, **kw):
                     index_finance_total_by_currency.retry(args=[addons],
                                                           exc=exc)
                     raise
+
+
+@task
+def index_finance_total_inapp_by_src(addons, **kw):
+    """
+    Total finance in-app stats, src breakdown.
+    """
+    es = elasticutils.get_es()
+    log.info('Indexing total financial in-app stats by src for %s apps.' %
+             len(addons))
+
+    for addon in addons:
+        # Get all in-app names for given addon.
+        inapps = set(InappPayment.objects.filter(config__addon=addon).
+            values_list('name', flat=True))
+
+        for inapp_name in inapps:
+            # Get all in-app payments for given in-app.
+            qs = InappPayment.objects.filter(name=inapp_name,
+                                             contribution__uuid=None)
+            if not qs.exists():
+                continue
+            # Get a list of distinct sources for given in-app.
+            sources = set(qs.values_list('contribution__source',
+                flat=True))
+
+            for source in sources:
+                try:
+                    key = ord_word('srcinapp' + str(addon) + inapp_name +
+                                   source.lower())
+                    data = search.get_finance_total_inapp_by_src(
+                        qs, addon, inapp_name, source)
+                    if not already_indexed(InappPayment, data):
+                        InappPayment.index(data, bulk=True, id=key)
+                    es.flush_bulk(forced=True)
+                except Exception, exc:
+                    index_finance_total_by_src.retry(args=[addons],
+                                                     exc=exc)
+                    raise
+
+
+@task
+def index_finance_daily_inapp(ids, **kw):
+    """
+    Similar to index_finance_daily, except for InappPayments.
+
+    ids -- ids of mkt.stats.webapps.InappPayment objects
+    """
+    es = elasticutils.get_es()
+
+    # Get contributions.
+    qs = (InappPayment.objects.filter(id__in=ids)
+          .order_by('created').values('name',
+                                      'config__addon',
+                                      'created'))
+    log.info('[%s] Indexing %s in-app payments for daily stats.' %
+             (qs[0]['created'], len(ids)))
+
+    # It's defaultdicts all the way down.
+    addons_inapps_dates = defaultdict(lambda: defaultdict(
+        lambda: defaultdict(int)))
+    for payment in qs:
+        addon = payment['config__addon']
+        inapp = payment['name']
+        date = payment['created'].strftime('%Y%m%d')
+
+        # Date for add-on not processed, index it and give it key.
+        if not date in addons_inapps_dates[addon][inapp]:
+            key = ord_word('fin%s%s%s' % (str(addon), str(inapp), str(date)))
+            data = search.get_finance_daily_inapp(payment)
+            try:
+                if not already_indexed(InappPayment, data):
+                    InappPayment.index(data, bulk=True, id=key)
+                addons_inapps_dates[addon][inapp][date] = 0
+                es.flush_bulk(forced=True)
+            except Exception, exc:
+                index_finance_daily_inapp.retry(args=[ids], exc=exc)
+                raise
 
 
 @task

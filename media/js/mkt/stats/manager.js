@@ -19,7 +19,9 @@ z.StatsManager = (function() {
         currentView     = {},
         siteEvents      = [],
         addonId         = parseInt($('.primary').attr('data-addon_id'), 10),
-        baseURL         = $('.primary').attr('data-base_url'),
+        primary         = $('.primary'),
+        inapp           = primary.attr('data-inapp'),
+        baseURL         = primary.attr('data-base_url'),
         pendingFetches  = 0,
         siteEventsEnabled = true,
         writeInterval   = false,
@@ -46,6 +48,9 @@ z.StatsManager = (function() {
         'revenue': true,
         'currency_revenue': true,
         'source_revenue': true,
+        'revenue_inapp': true,
+        'currency_revenue_inapp': true,
+        'source_revenue_inapp': true,
         'contributions': true
     };
 
@@ -54,9 +59,15 @@ z.StatsManager = (function() {
         'currency_revenue': 'currency',
         'currency_sales': 'currency',
         'currency_refunds': 'currency',
+        'currency_revenue_inapp': 'currency',
+        'currency_sales_inapp': 'currency',
+        'currency_refunds_inapp': 'currency',
         'source_revenue': 'source',
         'source_sales': 'source',
-        'source_refunds': 'source'
+        'source_refunds': 'source',
+        'source_revenue_inapp': 'source',
+        'source_sales_inapp': 'source',
+        'source_refunds_inapp': 'source'
     };
 
     // is a metric an average or a sum?
@@ -76,7 +87,7 @@ z.StatsManager = (function() {
     function init() {
         dbg('looking for local data');
         if (verifyLocalStorage()) {
-            var cacheObject = storageCache.get(addonId);
+            var cacheObject = storageCache.get(addonId + inapp);
             if (cacheObject) {
                 dbg('found local data, loading...');
                 cacheObject = JSON.parse(cacheObject);
@@ -93,7 +104,7 @@ z.StatsManager = (function() {
     function writeLocalStorage() {
         dbg('saving local data');
         try {
-            storageCache.set(addonId, JSON.stringify(dataStore));
+            storageCache.set(addonId + inapp, JSON.stringify(dataStore));
             storage.set('version', STATS_VERSION);
         } catch (e) {
             console.log(e);
@@ -102,7 +113,7 @@ z.StatsManager = (function() {
     }
 
     function clearLocalStorage() {
-        storageCache.remove(addonId);
+        storageCache.remove(addonId + inapp);
         storage.remove('version');
         dbg('cleared local data');
     }
@@ -554,6 +565,7 @@ z.StatsManager = (function() {
             key = parts[0];
         parts = parts.slice(1);
 
+        metric = metric.replace('_inapp', '');
         if (metric in csv_keys) {
             if (key in csv_keys[metric]) {
                 return csv_keys[metric][key] + ' ' + parts.join(' ');

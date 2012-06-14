@@ -13,7 +13,6 @@
                 nonDateMetrics = z.StatsManager.nonDateMetrics,
                 currentPage;
 
-
             $(document).ready(init);
             function init() {
                 gotoPage(0);

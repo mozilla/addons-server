@@ -115,6 +115,9 @@
             t, row, i, field, val,
             is_overview = metric == 'overview' || metric == 'app_overview';
 
+        // Allows reuse of non-in-app code.
+        metric = metric.replace('_inapp', '');
+
         // Let different function handle if metrics aren't a Highcharts
         // datetime line graph.
         if (metric in z.StatsManager.nonDateMetrics) {

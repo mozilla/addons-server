@@ -3,14 +3,14 @@
 {% block sales_filters %}
   <div class="criteria sales-filters island">
     {% set links = [
-      (addon.get_stats_url(action='currency_revenue'), _('Revenue')),
-      (addon.get_stats_url(action='currency_sales'), _('Sales')),
-      (addon.get_stats_url(action='currency_refunds'), _('Refunds'))
+      (addon.get_stats_url(action='currency_revenue', inapp=inapp), _('Revenue')),
+      (addon.get_stats_url(action='currency_sales', inapp=inapp), _('Sales')),
+      (addon.get_stats_url(action='currency_refunds', inapp=inapp), _('Refunds'))
     ] %}
     <ul>
       <li>{{ _('Sales Type') }}</li>
       {% for link, title in links %}
-        <li{% if request.path == link %} class="selected"{% endif %}>
+        <li{% if url_quote(request.path) == link %} class="selected"{% endif %}>
           <a href="{{ link }}">{{ title }}</a>
         </li>
       {% endfor %}
@@ -21,14 +21,15 @@
 {% block metric_filters %}
   <div class="criteria metric-filters island">
     {% set links = [
-      (addon.get_stats_url(action=report.replace('currency_', '')), _('Date')),
-      (addon.get_stats_url(action=report), _('Currency')),
-      (addon.get_stats_url(action=report.replace('currency_', 'source_')), _('Source')),
+      (addon.get_stats_url(action=report.replace('currency_', ''), inapp=inapp), _('Date')),
+      (addon.get_stats_url(action=report, inapp=inapp), _('Currency')),
+      (addon.get_stats_url(action=report.replace('currency_', 'source_'),
+                           inapp=inapp), _('Source')),
     ] %}
     <ul>
       <li>{{ _('Metric Type') }}</li>
       {% for link, title in links %}
-        <li{% if request.path == link %} class="selected"{% endif %}>
+        <li{% if url_quote(request.path) == link %} class="selected"{% endif %}>
           <a href="{{ link }}">{{ title }}</a>
         </li>
       {% endfor %}

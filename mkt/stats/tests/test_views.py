@@ -10,10 +10,12 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
+from mkt.inapp_pay.models import InappConfig, InappPayment
 from mkt.webapps.models import Installed
 from mkt.stats import search, tasks, views
-from mkt.stats.views import (get_series_column, get_series_line,
-                             pad_missing_stats)
+from mkt.stats.search import cut
+from mkt.stats.views import (FINANCE_SERIES, get_series_column,
+                             get_series_line, pad_missing_stats)
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -22,11 +24,6 @@ class StatsTest(amo.tests.ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.CONTRIBUTION_SERIES = ('revenue', 'sales', 'refunds',
-                                    'currency_revenue', 'currency_sales',
-                                    'currency_refunds', 'source_revenue',
-                                    'source_sales', 'source_refunds')
-
         # set up apps
         waffle.models.Switch.objects.create(name='app-stats', active=True)
         self.public_app = amo.tests.app_factory(name='public',
@@ -35,6 +32,21 @@ class StatsTest(amo.tests.ESTestCase):
             app_slug='priv', type=1, status=4, public_stats=False)
         self.url_args = {'start': '20090601', 'end': '20090930',
             'app_slug': self.private_app.app_slug}
+
+        # set up inapps
+        self.inapp_name = 'test_inapp'
+        self.public_config = InappConfig.objects.create(
+            addon=self.public_app, public_key='asd')
+        self.private_config = InappConfig.objects.create(
+            addon=self.private_app, public_key='fgh')
+        c = Contribution.objects.create(addon_id=self.public_app.pk,
+                                        amount=5)
+        InappPayment.objects.create(config=self.public_config, contribution=c,
+                                    name=self.inapp_name)
+        c = Contribution.objects.create(addon_id=self.private_app.pk,
+                                        amount=5)
+        InappPayment.objects.create(config=self.private_config, contribution=c,
+                                    name=self.inapp_name)
 
         # normal user
         self.user_profile = UserProfile.objects.get(username='regularuser')
@@ -46,6 +58,8 @@ class StatsTest(amo.tests.ESTestCase):
         view_args = self.url_args.copy()
         head = kwargs.pop('head', False)
         view_args.update(kwargs)
+        if '_inapp' in view:
+            view_args['inapp'] = self.inapp_name
         url = reverse(view, kwargs=view_args)
         if head:
             return self.client.head(url, follow=True)
@@ -64,14 +78,14 @@ class StatsTest(amo.tests.ESTestCase):
         # all views are potentially public, except for contributions
         for view, args in self.views_gen(**kwargs):
             if not view in ['mkt.stats.%s_series' % series for series in
-                            self.CONTRIBUTION_SERIES]:
+                            FINANCE_SERIES]:
                 yield (view, args)
 
     def private_views_gen(self, **kwargs):
         # only contributions views are always private
         for view, args in self.views_gen(**kwargs):
             if view in ['mkt.stats.%s_series' % series for series in
-                        self.CONTRIBUTION_SERIES]:
+                        FINANCE_SERIES]:
                 yield (view, args)
 
 

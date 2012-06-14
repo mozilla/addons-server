@@ -4,6 +4,7 @@ import elasticutils
 import pyes.exceptions as pyes
 
 import amo
+from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Installed
 from stats.models import Contribution
 
@@ -120,6 +121,33 @@ def get_finance_total_inapp_by_currency(qs, addon, inapp_name='', currency=''):
     }
 
 
+def get_finance_total_inapp_by_src(qs, addon, inapp_name='', source=''):
+    """
+    sales per in-app by source
+    revenue per in-app by source
+    refunds per in-app by source
+    """
+    revenues = (qs.filter(contribution__source=source,
+                          contribution__refund=None).
+                values('config__addon').
+                annotate(revenue=Sum('contribution__amount')))
+    sales = (qs.filter(contribution__source=source,
+                       contribution__refund=None).
+             values('config__addon').annotate(sales=Count('id')))
+    refunds = (qs.filter(contribution__source=source,
+                         contribution__refund__isnull=False).
+               values('config__addon').
+               annotate(refunds=Count('id')))
+    return {
+        'addon': addon,
+        'inapp': inapp_name,
+        'source': source,
+        'count': sales[0]['sales'] if sales.count() else 0,
+        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
+    }
+
+
 def get_finance_daily(contribution):
     """
     sales per day
@@ -154,6 +182,43 @@ def get_finance_daily(contribution):
     }
 
 
+def get_finance_daily_inapp(payment):
+    """
+    sales per day for inapp
+    revenue per day for inapp
+    refunds per day for inapp
+    """
+    addon_id = payment['config__addon']
+    inapp = payment['name']
+    date = payment['created'].date()
+    return {
+        'date': date,
+        'addon': addon_id,
+        'inapp': inapp,
+        'count': InappPayment.objects.filter(
+            config__addon__id=addon_id,
+            contribution__refund=None,
+            created__year=date.year,
+            created__month=date.month,
+            created__day=date.day).count() or 0,
+        'revenue': InappPayment.objects.filter(
+            config__addon__id=addon_id,
+            contribution__refund=None,
+            contribution__type=amo.CONTRIB_PURCHASE,
+            created__year=date.year,
+            created__month=date.month,
+            created__day=date.day).aggregate(
+            Sum('contribution__amount'))['contribution__amount__sum']
+            or 0,
+        'refunds': InappPayment.objects.filter(
+            contribution__addon__id=addon_id,
+            contribution__refund__isnull=False,
+            created__year=date.year,
+            created__month=date.month,
+            created__day=date.day).count() or 0,
+    }
+
+
 def get_installed_daily(installed):
     """
     installs per day
@@ -177,7 +242,7 @@ def setup_mkt_indexes():
     insert it, in a schemaless manner.
     """
     es = elasticutils.get_es()
-    for model in [Contribution]:
+    for model in [Contribution, InappPayment]:
         index = model._get_index()
         try:
             es.create_index_if_missing(index)
@@ -195,7 +260,7 @@ def setup_mkt_indexes():
 
         # Try to tell ES not to 'analyze' the field to querying with hyphens
         # and lowercase letters.
-        if model == Contribution:
+        if model == Contribution or model == InappPayment:
             mapping['properties']['currency'] = {'type': 'string',
                                                  'index': 'not_analyzed'}
             mapping['properties']['source'] = {'type': 'string',

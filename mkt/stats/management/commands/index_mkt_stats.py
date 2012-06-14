@@ -11,6 +11,7 @@ from celery.task.sets import TaskSet
 from addons.models import Addon
 from amo.utils import chunked
 from stats.models import Contribution
+from mkt.inapp_pay.models import InappPayment
 from mkt.stats import tasks
 from mkt.webapps.models import Webapp
 
@@ -70,6 +71,10 @@ class Command(BaseCommand):
                 {'date': 'created'}),
             (Webapp.objects, tasks.index_finance_total_inapp_by_currency,
                 {'date': 'created'}),
+            (Webapp.objects, tasks.index_finance_total_inapp_by_src,
+                {'date': 'created'}),
+            (InappPayment.objects, tasks.index_finance_daily_inapp,
+                {'date': 'created'}),
         ]
 
         for qs, task, fields in queries:
@@ -79,9 +84,12 @@ class Command(BaseCommand):
             if addons:
                 pks = [int(a.strip()) for a in addons.split(',')]
                 try:
-                    qs = qs.filter(addon__in=pks)
+                    qs = qs.filter(config__addon__in=pks)
                 except FieldError:
-                    qs = qs.filter(id__in=pks)
+                    try:
+                        qs = qs.filter(addon__in=pks)
+                    except FieldError:
+                        qs = qs.filter(id__in=pks)
 
             if dates:
                 if ':' in dates:

@@ -117,27 +117,19 @@ var csv_keys = {
             gettext("Installs from {0} to {1}")
         ],
         "usage"  : [
-            // L10n: {0} is an integer.
             gettext("Daily Users, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Daily Users from {0} to {1}")
         ],
         "sales" : [
-            // L10n: {0} is an integer.
             gettext("Sales, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Sales from {0} to {1}")
         ],
         "revenue" : [
-            // L10n: {0} is an integer.
             gettext("Revenue, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Revenue {0} to {1}")
         ],
         "refunds" : [
-            // L10n: {0} is an integer.
             gettext("Refunds, last {0} days"),
-            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Refunds from {0} to {1}")
         ],
         "currency_sales" : [

@@ -183,7 +183,7 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
-        var date_range_days = parseInt((end - start) / 1000 / 3600 / 24);
+        var date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 16;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.

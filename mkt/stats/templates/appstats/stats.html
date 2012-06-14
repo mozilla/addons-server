@@ -20,7 +20,8 @@
 {% block content %}
 {{ mkt_breadcrumbs(items=[(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                           (addon.get_url_path(), addon.name),
-                          (link, _('Statistics'))]) }}
+                          (None, _('Statistics'))
+                         ])}}
 <section id="stats">
   <header class="c">
     <hgroup class="c">
@@ -32,6 +33,26 @@
           {{ _('Statistics for {0}')|f(inapp) }}
         {% endif %}
       </h1>
+
+      {# In-app dropdown selector #}
+      {% if inapps and check_contrib_stats_perms(addon) %}
+        <form class="product-select" method="get">
+          <select class="product">
+            <option value="{{ addon.get_stats_url(action=report) }}">{{ addon.name }}</option>
+            {% for inapp_name in inapps %}
+              <option
+                  {% if inapp_name == inapp %}
+                    selected="selected"
+                  {% endif %}
+                  value="{{ addon.get_stats_inapp_url(
+                         action=report, inapp=inapp_name) }}">
+                {{ inapp_name }}
+              </option>
+            {% endfor %}
+          </select>
+          <noscript><button type="submit">{{ _('Go') }}</button></noscript>
+        </form>
+      {% endif %}
     </hgroup>
 
     <div class="criteria island">
@@ -54,15 +75,16 @@
       <ul>
         <li>{{ _('Statistics Type') }}</li>
         {% for link, title in links %}
-          <li{% if request.path == link %} class="selected"{% endif %}>
+          <li{% if url_quote(request.path) == link %} class="selected"{% endif %}>
             <a href="{{ link }}">{{ title }}</a>
           </li>
         {% endfor %}
-        {% if addon.is_premium() and check_contrib_stats_perms(addon) %}
-          <li{%block sales_select %}
-               {% if request.path == link %} class="selected"{% endif %}
+        {% if (addon.is_premium() and check_contrib_stats_perms(addon)) or
+               inapp %}
+          <li{% block sales_select %}
+               {% if url_quote(request.path) == link %} class="selected"{% endif %}
              {% endblock %}>
-            <a href="{{ addon.get_stats_url(action='revenue') }}">{{ _('Sales') }}</a>
+            <a href="{{ addon.get_stats_url(action='revenue', inapp=inapp) }}">{{ _('Sales') }}</a>
         {% endif %}
       </ul>
     </div>
@@ -126,6 +148,7 @@
       data-min-date="{{ addon.created|isotime }}"
       data-addon_id="{{ addon.id }}"
     {% endif %}
+    data-inapp="{{ inapp }}"
     data-report="{{ report }}"
     {% if view.last %}
     data-range="{{ view.last }}"
