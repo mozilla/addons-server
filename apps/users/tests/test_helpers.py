@@ -116,22 +116,20 @@ class TestUserData(amo.tests.TestCase):
     def test_user_data_approved(self):
         up = UserProfile.objects.create(email='aq@a.com', username='foo')
         PreApprovalUser.objects.create(user=up, paypal_key='asd')
-        u = user_data(RequestUser.objects.get(pk=up.pk))
-        eq_(u['anonymous'], False)
-        eq_(u['pre_auth'], True)
-        eq_(u['currency'], 'USD')
+        eq_(user_data(RequestUser.objects.get(pk=up.pk)),
+            {'anonymous': False, 'pre_auth': True, 'currency': 'USD'})
+
+    def test_no_user_data(self):
+        eq_(user_data(None),
+            {'anonymous': True, 'pre_auth': False, 'currency': 'USD'})
 
     def test_anonymous_user_data(self):
-        u = user_data(AnonymousUser())
-        eq_(u['anonymous'], True)
-        eq_(u['pre_auth'], False)
-        eq_(u['currency'], 'USD')
+        eq_(user_data(AnonymousUser()),
+            {'anonymous': True, 'pre_auth': False, 'currency': 'USD'})
 
     def test_preapproval_user_data(self):
         up = UserProfile.objects.create(email='aq@a.com', username='foo')
         PreApprovalUser.objects.create(user=up, paypal_key='asd',
                                        currency='EUR')
-        u = user_data(RequestUser.objects.get(pk=up.pk))
-        eq_(u['anonymous'], False)
-        eq_(u['pre_auth'], True)
-        eq_(u['currency'], 'EUR')
+        eq_(user_data(RequestUser.objects.get(pk=up.pk)),
+            {'anonymous': False, 'pre_auth': True, 'currency': 'EUR'})

@@ -93,7 +93,9 @@ def contribution_type(type):
 
 @register.function
 def user_data(amo_user):
-    anonymous, currency, pre_auth = amo_user.is_anonymous(), 'USD', False
+    anonymous, currency, pre_auth = True, 'USD', False
+    if hasattr(amo_user, 'is_anonymous'):
+        anonymous = amo_user.is_anonymous()
     if not anonymous:
         preapproval = amo_user.get_preapproval()
         if preapproval:
