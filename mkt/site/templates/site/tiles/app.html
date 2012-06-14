@@ -13,5 +13,7 @@
     <em class="author">{{ product.listed_authors[0].name }}</em>
   {% endif %}
   <p class="price">{{ product.get_price() }}</p>
-  <div class="rating">{{ product.average_rating|float|stars }}</div>
+  {% if waffle.switch('ratings') %}
+    <div class="rating">{{ product.average_rating|float|stars }}</div>
+  {% endif %}
 </a>
