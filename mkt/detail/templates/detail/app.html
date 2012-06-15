@@ -39,19 +39,19 @@
       <img src="{{ product.get_icon_url(64) }}">
     </div>
     <div class="vitals c">
-      <h1>
+      <h1 class="oneline">
         {% if 'id' in request.GET %}
           <b class="num">#{{ product.id }}</b>
         {% endif %}
         {{ product.name }}
       </h1>
       {% if product.listed_authors %}
-        <h2 class="authors wide">{{ users_list(product.listed_authors, size=3) }}</h2>
-        <h2 class="authors narrow">{{ product.listed_authors[0]|user_link }}</h2>
+        <h2 class="authors oneline wide">{{ users_list(product.listed_authors, size=3) }}</h2>
+        <h2 class="authors oneline narrow">{{ product.listed_authors[0]|user_link }}</h2>
       {% endif %}
       {% set categories = product.all_categories %}
       {% if is_author and product.is_premium() and product.premium %}
-        <p class="pricetag faked-purchase">
+        <p class="pricetag oneline faked-purchase">
           <span class="price">{{ product.premium.get_price_locale() }}</span>
         </p>
       {% endif %}
@@ -63,7 +63,7 @@
           {% endfor %}
         </p>
       {% endif %}
-      <p class="downloads">
+      <p class="downloads oneline">
         {{ product|weekly_downloads }}
       </p>
       {{ device_list(product) }}

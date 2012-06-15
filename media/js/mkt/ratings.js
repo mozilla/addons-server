@@ -20,6 +20,15 @@
                     $r.addClass('deleted');
                 });
             }));
+
+            // Toggle rating breakdown.
+            var $breakdown = $('.grouped-ratings');
+            $('.average-rating').on('click', _pd(function() {
+                $breakdown.toggle();
+            }));
+            $breakdown.on('click', _pd(function() {
+                $breakdown.hide();
+            }));
         }, 0);
     });
 })();

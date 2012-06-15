@@ -230,6 +230,8 @@ header.product {
 }
 
 .average-rating {
+    // Clicking on this will expose the rating breakdown.
+    cursor: pointer;
     strong {
         display: none;
     }
@@ -273,6 +275,111 @@ header.product {
         margin: 0;
         text-indent: -9999px;
         width: 13px;
+    }
+}
+
+.grouped-ratings {
+    .border-box;
+    .border-radius(4px);
+    background: rgb(226,230,233);
+    border: 1px solid @bg-gray;
+    color: @medium-gray;
+    display: none;
+    padding: 17px 15px;
+    position: relative;
+    top: -5px;
+    width: 100%;
+    z-index: 0;
+    // The arrow.
+    &:before {
+        .transform(~'rotate(45deg)');
+        background: rgb(226,230,233);
+        border: 1px solid @bg-gray;
+        border-width: 1px 0 0 1px;
+        content: "";
+        height: 12px;
+        position: absolute;
+        top: -8px;
+        left: 116px;
+        right: 22px;
+        width: 12px;
+        z-index: 0;
+    }
+    .rating-bar {
+        height: 22px;
+        float: left;
+        overflow: visible;
+        width: 96px;
+        // OMFG.
+        &:before {
+            .box-shadow(0 3px 6px @dark-gray);
+            content: "";
+            display: block;
+            height: 22px;
+            position: absolute;
+            top: 0;
+            left: 96px;
+            width: 2px;
+            z-index: 0;
+        }
+        &:after {
+            content: "";
+            background: rgb(226,230,233);
+            height: 36px;
+            position: absolute;
+            top: -5px;
+            left: 89px;
+            width: 9px;
+            z-index: 1;
+        }
+        .bar {
+            background: rgb(205,210,214);
+            border-top: rgb(183,188,192) 1px solid;
+            border-bottom: rgb(234,238,239) 1px solid;
+            display: block;
+            height: 4px;
+            position: relative;
+            margin: 5px 10px 0 3px;
+            &:before {
+                background: @barely-gray;
+                content: "";
+                display: block;
+                height: 22px;
+                position: absolute;
+                top: -6px;
+                left: -2px;
+                width: 1px;
+            }
+        }
+    }
+    li {
+        position: relative;
+        &:first-child,
+        &:last-child {
+            .rating-bar:before {
+                .box-shadow(0 3px 6px @medium-gray);
+            }
+            .bar:before {
+                height: 26px;
+            }
+        }
+        &:first-child .bar:before {
+            top: -10px;
+        }
+    }
+    .num-ratings {
+        color: lighten(@navy-gray, 10%);
+        font-size: 11px;
+        line-height: 8px;
+        position: absolute;
+        top: -2px;
+        right: -5px;
+        width: 1px;
+        word-wrap: normal;
+    }
+    .stars {
+        float: left;
+        margin: 4px 8px 0 0;
     }
 }
 
