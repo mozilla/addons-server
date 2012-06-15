@@ -56,7 +56,7 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
         ctx['page'] = 'list'
         qs = qs.filter(is_latest=True)
 
-    ctx['ratings'] = ratings = amo.utils.paginate(request, qs)
+    ctx['ratings'] = ratings = amo.utils.paginate(request, qs, 20)
     ctx['replies'] = Review.get_replies(ratings.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {

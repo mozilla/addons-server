@@ -53,8 +53,9 @@
           {% endif %}
         {% endfor %}
       </ul>
-      {# TODO: Show only if more reviews to be shown (bug 764078). #}
-      <a href="#" class="load-more">{{ _('More reviews') }}</a>
+      {% if ratings.object_list|length > 5 %}
+        <a href="{{ ratings.next_page_number() if ratings.has_next() else '#' }}" class="load-more post">{{ _('More reviews') }}</a>
+      {% endif %}
       {{ ratings|impala_paginator }}
     {% else %}
       {% if product.can_review(amo_user) %}
