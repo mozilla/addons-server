@@ -117,7 +117,9 @@ z.page.on('fragmentloaded', function() {
         if ($purchased.length) {
             $purchased.replaceWith(installed);
         } else {
-            $actions.prepend(installed);
+            if (!$actions.find('.checkmark.installed').length) {
+                $actions.prepend(installed);
+            }
         }
     });
 
