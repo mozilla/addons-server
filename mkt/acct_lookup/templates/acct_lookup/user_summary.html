@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-  {% include 'acct_lookup/includes/search.html' %}
+  {% include 'acct_lookup/includes/user_search.html' %}
 
   <section class="island c">
     <h1>
@@ -25,7 +25,7 @@
           </li>
           <li><a href="#" class="button">{{ _('Activity') }}</a></li>
           <li>
-            <a href="{{ url('acct_lookup.purchases', account.id) }}"
+            <a href="{{ url('acct_lookup.user_purchases', account.id) }}"
                class="button">
               {{ _('Purchases') }}
             </a>
