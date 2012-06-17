@@ -52,6 +52,16 @@ $.fn.exists = function(callback, args) {
     return !!len;
 };
 
+function makeOrGetOverlay(id) {
+    var el = document.getElementById(id);
+    if (!el) {
+        el = $('<div class="overlay">', {
+            id: id
+        });
+        $('body').append(el);
+    }
+    return $(el);
+}
 
 // Initializes character counters for textareas.
 function initCharCount() {

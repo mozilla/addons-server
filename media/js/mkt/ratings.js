@@ -48,4 +48,38 @@
             }));
         }, 0);
     });
+
+    z.page.on('click', '.review .actions a', function(e) {
+        var action = $(this).data('action');
+        if (!action) return;
+        e.stopPropagation();
+        e.preventDefault();
+        switch (action) {
+            case 'delete':
+            break;
+            case 'edit':
+                editReview($(this).closest('.review'));
+            break;
+            case 'report':
+            break;
+        }
+    });
+
+    var editTemplate = $('#edit-review-template').html();
+
+    function editReview(reviewEl) {
+        var overlay = makeOrGetOverlay('edit-review'),
+            body = reviewEl.find('.body').html(),
+            rating = reviewEl.data('rating'),
+            action = reviewEl.data('edit-url');
+        overlay.html(format(editTemplate, {action: action, body: body}));
+        overlay.find('select[name="rating"]').ratingwidget();
+        overlay.find('.ratingwidget')
+               .removeClass('stars-0').addClass('stars-' + rating);
+        overlay.addClass('show');
+        overlay.find('.cancel').on('click', _pd(function() {
+            overlay.removeClass('show');
+        }));
+    }
+
 })();
