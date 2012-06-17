@@ -1,0 +1,28 @@
+<script type="text/template" id="edit-review-template">
+  <section>
+    <form method="post" action="{action}">
+      {{ csrf() }}
+      <h2>Edit Review</h2>
+      <p class="brform simple-field rating c ">
+        <select name="rating" id="id_rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </p>
+      <p class="brform simple-field c ">
+        <textarea id="id_body" rows="2" cols="40" name="body">{body}</textarea>
+      </p>
+      <footer class="form-footer">
+        <button type="submit" class="fat">
+          {{ _('Submit review') }}
+        </button>
+        <button class="button cancel fat">
+          {{ _('Cancel') }}
+        </a>
+      </footer>
+    </form>
+  </section>
+</script>
