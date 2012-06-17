@@ -1,5 +1,5 @@
 import json
-from markupsafe import Markup
+from jinja2 import Markup
 
 import jingo
 from django.http import HttpResponsePermanentRedirect, HttpResponseNotFound
