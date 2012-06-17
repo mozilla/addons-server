@@ -38,38 +38,42 @@
         display: block;
     }
     section {
-        .border-box();
+        .border-box;
         .box-shadow(0 2px 2px fadeOut(#000, 50%));
         border: 2px solid @text;
         .border-radius(5px);
         .gradient-two-color(#dee3e6, #fff);
+        .transform(~'translate(-50%, -50%)');
         padding: 1em;
         position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        top: 50%;
+        left: 50%;
         margin: auto;
-        width: 100%;
-        height: 100%;
+        height: auto;
+        width: auto;
+        min-width: 300px;
+        max-width: 100%;
+        max-height: 100%;
         overflow-x: hidden;
         overflow-y: auto;
-        max-width: 500px;
-        max-height: 500px;
         -moz-transition: .5s all ease;
         -webkit-transition: .5s all ease;
         color: @text;
         footer {
             backround-color: #ccc;
             .grain;
-            .border-box();
-            position: absolute;
-            bottom: 0;
-            text-align: right;
-            left: 0;
+            .border-box;
             width: 100%;
             display: block;
-            padding: 1em;
+        }
+    }
+}
+
+@media (max-width: @4col) {
+    .overlay section {
+        padding: 10px;
+        form {
+            margin: 0;
         }
     }
 }
