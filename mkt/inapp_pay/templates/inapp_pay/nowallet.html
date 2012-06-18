@@ -2,12 +2,14 @@
 
 {% block screen_content %}
 <header>
-  {{ _('Marketplace') }} &mdash; {{ _('Couldn&quot;t complete purchase') }}
+  {{ _('Marketplace') }} &mdash; {{ _("Couldn't complete purchase") }}
 </header>
 <div>
   <p class="no-wallet">
-    In-app purchases require payment pre-authorization. Would you like to
-    set up now?
+    {% trans %}
+      In-app purchases require payment pre-approval. Would you like to
+      set this up now?
+    {% endtrans %}
   </p>
 </div>
 <footer>
