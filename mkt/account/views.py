@@ -15,6 +15,7 @@ from amo.decorators import (login_required, permission_required, post_required,
                             write)
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from devhub.views import _get_items
 from market.models import PreApprovalUser
 import paypal
 from users.models import UserProfile
@@ -228,3 +229,9 @@ def profile(request, username):
             'submissions': submissions, 'own_profile': own_profile}
 
     return jingo.render(request, 'account/profile.html', data)
+
+
+@login_required
+def activity_log(request, userid):
+    all_apps = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
+    return jingo.render(request, 'account/activity.html', {'log': _get_items(None, all_app)})

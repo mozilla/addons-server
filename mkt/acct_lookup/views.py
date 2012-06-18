@@ -13,6 +13,9 @@ from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
+from devhub.views import _get_items
+from devhub import helpers
+from devhub.models import ActivityLog
 from market.models import Refund
 from mkt.account.utils import purchase_list
 from mkt.webapps.models import Installed
@@ -131,7 +134,11 @@ def user_activity(request, user_id):
     products, contributions, listing = purchase_list(request, user, None)
 
     collections = Collection.objects.filter(author=user_id)
-
+    user_items = ActivityLog.objects.for_user(user).exclude(
+        action__in=amo.LOG_HIDE_DEVELOPER)
+    admin_items = ActivityLog.objects.for_user(user).filter(
+        action__in=amo.LOG_HIDE_DEVELOPER)
+    amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.amo_user, user=user)
     return jingo.render(request, 'acct_lookup/user_activity.html',
                         {'pager': products,
                          'account': user,
@@ -139,6 +146,8 @@ def user_activity(request, user_id):
                          'collections': collections,
                          'contributions': contributions,
                          'single': bool(None),
+                         'user_items': user_items,
+                         'admin_items': admin_items,
                          'show_link': False})
 
 
