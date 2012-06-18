@@ -139,7 +139,7 @@ def paginate(request, queryset, per_page=20, count=None):
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
-              manage_url=None, headers=None, connection=None):
+              manage_url=None, headers=None, connection=None, cc=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -206,12 +206,13 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
                         result = EmailMessage(subject, send_message,
                                               from_email, [recipient],
+                                              cc=cc and [cc] or None,
                                               connection=connection,
                                               headers=headers or {},
                                               ).send(fail_silently=False)
             else:
                 result = EmailMessage(subject, message, from_email,
-                                      white_list,
+                                      white_list, cc=cc and [cc] or None,
                                       connection=connection,
                                       headers=headers or {},
                                       ).send(fail_silently=False)

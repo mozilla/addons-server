@@ -18,13 +18,13 @@ from .models import EscalationQueue
 log = commonware.log.getLogger('z.mailer')
 
 
-def send_mail(subject, template, context, emails, perm_setting=None):
+def send_mail(subject, template, context, emails, perm_setting=None, cc=None):
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify(reverse('account.settings')) + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
                     from_email=settings.NOBODY_EMAIL, use_blacklist=False,
                     perm_setting=perm_setting, manage_url=manage_url,
-                    headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
+                    headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL}, cc=cc)
 
 
 class ReviewBase(object):
@@ -68,6 +68,7 @@ class ReviewBase(object):
     def notify_email(self, template, subject):
         """Notify the authors that their app has been reviewed."""
         emails = list(self.addon.authors.values_list('email', flat=True))
+        cc_email = self.addon.mozilla_contact or None
         data = self.data.copy()
         data.update(self.get_context_data())
         data['tested'] = ''
@@ -80,7 +81,7 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % app
         send_mail(subject % self.addon.name,
                   'reviewers/emails/decisions/%s.txt' % template, data,
-                  emails, perm_setting='app_reviewed')
+                  emails, perm_setting='app_reviewed', cc=cc_email)
 
     def get_context_data(self):
         return {'name': self.addon.name,
@@ -98,6 +99,7 @@ class ReviewBase(object):
     def request_information(self):
         """Send a request for information to the authors."""
         emails = list(self.addon.authors.values_list('email', flat=True))
+        cc_email = self.addon.mozilla_contact or None
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
@@ -105,7 +107,7 @@ class ReviewBase(object):
         send_mail(u'Submission Update: %s' % self.addon.name,
                   'reviewers/emails/decisions/info.txt',
                   self.get_context_data(), emails,
-                  perm_setting='app_individual_contact')
+                  perm_setting='app_individual_contact', cc=cc_email)
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
@@ -197,10 +199,11 @@ class ReviewApp(ReviewBase):
         self.addon.update(status=amo.STATUS_DISABLED)
         EscalationQueue.objects.filter(addon=self.addon).delete()
         emails = list(self.addon.authors.values_list('email', flat=True))
+        cc_email = self.addon.mozilla_contact or None
         send_mail(u'App disabled by reviewer: %s' % self.addon.name,
                   'reviewers/emails/decisions/disabled.txt',
                   self.get_context_data(), emails,
-                  perm_setting='app_individual_contact')
+                  perm_setting='app_individual_contact', cc=cc_email)
         self.log_action(amo.LOG.APP_DISABLED)
         log.info(u'App %s has been disabled by a reviewer.' % self.addon)
 

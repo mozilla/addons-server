@@ -400,7 +400,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
     def setUp(self):
         super(TestReviewApp, self).setUp()
         self.app = self.get_app()
-        self.app.update(status=amo.STATUS_PENDING)
+        self.mozilla_contact = 'contact@mozilla.com'
+        self.app.update(status=amo.STATUS_PENDING,
+                        mozilla_contact=self.mozilla_contact)
         self.version = self.app.current_version
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.escalated_url = urlparams(
@@ -422,8 +424,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
             user=UserProfile.objects.get(username='editor'))
         eq_(self.client.head(self.url).status_code, 302)
 
-    def _check_email(self, msg, subject):
+    def _check_email(self, msg, subject, with_mozilla_contact=True):
         eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
+        if with_mozilla_contact:
+            eq_(msg.cc, [self.mozilla_contact])
+        else:
+            eq_(msg.cc, [])
         eq_(msg.subject, '%s: %s' % (subject, self.app.name))
         eq_(msg.from_email, settings.NOBODY_EMAIL)
         eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
@@ -467,6 +473,27 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
+        self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP)
+
+    def test_push_public_no_mozilla_contact(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        files = list(self.version.files.values_list('id', flat=True))
+        self.app.update(mozilla_contact='')
+        self.post({
+            'action': 'public',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        })
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        self._check_log(amo.LOG.APPROVE_VERSION)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'App Approved', with_mozilla_contact=False)
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP)
 
