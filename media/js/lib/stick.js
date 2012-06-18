@@ -11,7 +11,7 @@ var perf = window.performance || window.msPerformance ||
            window.webkitPerformance || window.mozPerformance;
 
 var send = function(data) {
-    if (perf) {
+    if (z.capabilities.performance) {
         var timings = $('body').attr('data-collect-timings');
         if (timings) {
             timings = timings.split(':', 2);
@@ -25,14 +25,16 @@ var send = function(data) {
 
 exports.basic = function() {
     /* Sends the timing data to the given URL */
-    send({
-        'window.performance.timing.navigationStart': perf.timing.navigationStart,
-        'window.performance.timing.domComplete': perf.timing.domComplete,
-        'window.performance.timing.domInteractive': perf.timing.domInteractive,
-        'window.performance.timing.domLoading': perf.timing.domLoading,
-        'window.performance.navigation.redirectCount': perf.navigation.redirectCount,
-        'window.performance.navigation.type': perf.navigation.type,
-    });
+    if (z.capabilities.performance) {
+        send({
+            'window.performance.timing.navigationStart': perf.timing.navigationStart,
+            'window.performance.timing.domComplete': perf.timing.domComplete,
+            'window.performance.timing.domInteractive': perf.timing.domInteractive,
+            'window.performance.timing.domLoading': perf.timing.domLoading,
+            'window.performance.navigation.redirectCount': perf.navigation.redirectCount,
+            'window.performance.navigation.type': perf.navigation.type,
+        });
+    }
 };
 
 exports.custom = function(data) {

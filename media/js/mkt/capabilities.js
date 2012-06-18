@@ -18,7 +18,8 @@ z.capabilities = {
     'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
     'nativeScroll': (function() {
         return 'WebkitOverflowScrolling' in document.createElement('div').style;
-    })()
+    })(),
+    'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance)
 };
 
 if (z.capabilities.tablet) {
