@@ -74,8 +74,7 @@
             action = reviewEl.data('edit-url');
         overlay.html(format(editTemplate, {action: action, body: body}));
         overlay.find('select[name="rating"]').ratingwidget();
-        overlay.find('.ratingwidget')
-               .removeClass('stars-0').addClass('stars-' + rating);
+        overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
         overlay.addClass('show');
         overlay.find('.cancel').on('click', _pd(function() {
             overlay.removeClass('show');
