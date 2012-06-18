@@ -239,8 +239,6 @@ JS = {
         'js/mkt/buttons.js',
     ),
     'mkt/stats': (
-        'js/lib/jquery-1.6.4.js',
-        'js/zamboni/storage.js',
         'js/mkt/modal.js',
         'js/lib/jquery-datepicker.js',
         'js/lib/highcharts.src.js',
