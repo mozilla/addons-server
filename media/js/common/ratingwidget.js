@@ -25,20 +25,20 @@ $.fn.ratingwidget = function() {
             rating = $el.val();
             showStars(rating);
         }
-        $widget.on('click', function(evt) {
+        $widget.click(function(evt) {
             var t = $(evt.target);
             if (t.val()) {
                 showStars(t.val());
             }
             rating = t.val();
-        }).on('mouseover', function(evt) {
+        }).mouseover(function(evt) {
             var t = $(evt.target);
             if (t.attr('data-stars')) {
                 showStars(t.attr('data-stars'));
             }
         }).mouseout(function(evt) {
             showStars(rating);
-        }).on('touchmove touchend', function(e) {
+        }).bind('touchmove touchend', function(e) {
             var wid = $widget.width();
             var left = $widget.offset().left;
             var r = (e.originalEvent.touches[0].clientX - left) / wid * 5 + 1;
