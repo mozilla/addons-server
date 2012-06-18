@@ -22,7 +22,7 @@ class TestPurchaseIPNOrder(amo.tests.TestCase):
     # Specific tests that cross a few boundaries of purchase and
     # IPN processing to make sure that a few of the more complicated
     # scenarios don't break things.
-    fixtures = ['base/apps', 'base/addon_592', 'base/users', 'prices']
+    fixtures = ['base/apps', 'base/addon_592', 'base/users', 'market/prices']
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)

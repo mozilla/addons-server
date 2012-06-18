@@ -1,4 +1,7 @@
+from datetime import datetime, timedelta
+
 from django.db import connection
+from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 
 import jingo
@@ -11,6 +14,8 @@ from amo.utils import paginate
 from apps.bandwagon.models import Collection
 from market.models import Refund
 from mkt.account.utils import purchase_list
+from mkt.webapps.models import Installed
+from stats.models import DownloadCount
 from users.models import UserProfile
 
 
@@ -53,8 +58,51 @@ def user_summary(request, user_id):
 
 @login_required
 @permission_required('AccountLookup', 'View')
-def app_summary(request, app_slug):
-    app = get_object_or_404(Addon, app_slug=app_slug)
+def app_summary(request, addon_id):
+    app = get_object_or_404(Addon, pk=addon_id)
+    authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
+                                                       amo.AUTHOR_ROLE_OWNER))
+                          .order_by('display_name'))
+    if app.premium and app.premium.price:
+        price = app.premium.price
+    else:
+        price = None
+    return jingo.render(request, 'acct_lookup/app_summary.html',
+                        {'app': app,
+                         'price': price,
+                         'abuse_reports': app.abuse_reports.count(),
+                         'downloads': _app_downloads(app),
+                         'authors': authors})
+
+
+def _app_downloads(app):
+    stats = {'last_7_days': 0,
+             'last_24_hours': 0,
+             'alltime': 0}
+    if app.is_webapp():
+        Data = Installed
+    else:
+        Data = DownloadCount
+    _7_days_ago = datetime.now() - timedelta(days=7)
+    qs = Data.objects.filter(addon=app)
+    if app.is_webapp():
+        _24_hr_ago = datetime.now() - timedelta(hours=24)
+        stats['last_24_hours'] = (qs.filter(created__gte=_24_hr_ago)
+                                    .count())
+        stats['last_7_days'] = (qs.filter(created__gte=_7_days_ago)
+                                  .count())
+        stats['alltime'] = qs.count()
+    else:
+        # Non-app add-ons.
+
+        def sum_(qs):
+            return qs.aggregate(total=Sum('count'))['total'] or 0
+
+        yesterday = datetime.now().date() - timedelta(days=1)
+        stats['last_24_hours'] = sum_(qs.filter(date__gt=yesterday))
+        stats['last_7_days'] = sum_(qs.filter(date__gte=_7_days_ago.date()))
+        stats['alltime'] = sum_(qs)
+    return stats
 
 
 @login_required
@@ -130,7 +178,7 @@ def app_search(request):
     else:
         qs = Addon.search().query(name__fuzzy=query).values_dict(*fields)
     for app in qs:
-        app['url'] = reverse('acct_lookup.app_summary', args=[app['app_slug']])
+        app['url'] = reverse('acct_lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
         if type(app['name']) != list:
             app['name'] = [app['name__localized_string']]

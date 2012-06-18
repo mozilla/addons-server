@@ -1,17 +1,20 @@
+from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 
 from pyquery import PyQuery as pq
+from nose.exc import SkipTest
 from nose.tools import eq_
 
+from abuse.models import AbuseReport
 from addons.cron import reindex_addons
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 import amo
 from amo.urlresolvers import reverse
-from amo.tests import TestCase, ESTestCase, app_factory
-from market.models import Refund, AddonPaymentData
-from mkt.webapps.models import Webapp
-from stats.models import Contribution
+from amo.tests import TestCase, ESTestCase, app_factory, addon_factory
+from market.models import Refund, AddonPaymentData, Price, AddonPremium
+from mkt.webapps.models import Webapp, Installed
+from stats.models import Contribution, DownloadCount
 from users.cron import reindex_users
 from users.models import UserProfile
 
@@ -24,7 +27,8 @@ class AcctLookupTest:
 
 
 class TestAcctSummary(AcctLookupTest, TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users', 'base/addon_3615',
+                'webapps/337141-steamcube']
 
     def setUp(self):
         super(TestAcctSummary, self).setUp()
@@ -111,6 +115,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
 
     def test_app_created(self):
         res = self.summary()
+        # Number of apps/add-ons belonging to this user.
         eq_(len(res.context['user_addons']), 1)
 
     def test_paypal_ids(self):
@@ -215,7 +220,7 @@ class TestAcctSearch(SearchTest, ESTestCase):
 
 class TestAppSearch(SearchTest, ESTestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube',
-                'base/addon_3615.json']
+                'base/addon_3615']
 
     @classmethod
     def setUpClass(cls):
@@ -231,7 +236,7 @@ class TestAppSearch(SearchTest, ESTestCase):
         eq_(data['results'][0]['name'], self.app.name.localized_string)
         eq_(data['results'][0]['id'], self.app.pk)
         eq_(data['results'][0]['url'], reverse('acct_lookup.app_summary',
-                                               args=[self.app.app_slug]))
+                                               args=[self.app.pk]))
 
     def test_by_name_part(self):
         self.app.name = 'This is Steamcube'
@@ -257,6 +262,203 @@ class TestAppSearch(SearchTest, ESTestCase):
     def test_by_id(self):
         data = self.search(self.app.pk)
         self.verify_result(data)
+
+
+class AppSummaryTest(AcctLookupTest):
+    fixtures = ['base/users', 'webapps/337141-steamcube',
+                'base/addon_3615', 'market/prices']
+
+    def _setUp(self):
+        self.app = Addon.objects.get(pk=337141)
+        self.url = reverse('acct_lookup.app_summary',
+                           args=[self.app.pk])
+
+    def summary(self, expected_status=200):
+        res = self.client.get(self.url)
+        eq_(res.status_code, expected_status)
+        return res
+
+
+class TestAppSummary(AppSummaryTest, TestCase):
+
+    def setUp(self):
+        super(TestAppSummary, self).setUp()
+        self._setUp()
+
+    def test_authors(self):
+        user = UserProfile.objects.get(username='admin')
+        role = AddonUser.objects.create(user=user,
+                                        addon=self.app,
+                                        role=amo.AUTHOR_ROLE_DEV)
+        self.app.addonuser_set.add(role)
+        res = self.summary()
+        eq_(res.context['authors'][0].display_name,
+            user.display_name)
+
+    def test_visible_authors(self):
+        for role in (amo.AUTHOR_ROLE_DEV,
+                     amo.AUTHOR_ROLE_OWNER,
+                     amo.AUTHOR_ROLE_VIEWER,
+                     amo.AUTHOR_ROLE_SUPPORT):
+            user = UserProfile.objects.create(username=role)
+            role = AddonUser.objects.create(user=user,
+                                            addon=self.app,
+                                            role=role)
+            self.app.addonuser_set.add(role)
+        res = self.summary()
+
+        eq_(sorted([u.username for u in res.context['authors']]),
+            [str(amo.AUTHOR_ROLE_DEV), str(amo.AUTHOR_ROLE_OWNER)])
+
+    def test_details(self):
+        res = self.summary()
+        eq_(res.context['app'].manifest_url, self.app.manifest_url)
+        eq_(res.context['app'].premium_type, amo.ADDON_FREE)
+        eq_(res.context['price'], None)
+
+    def test_price(self):
+        price = Price.objects.get(pk=1)
+        AddonPremium.objects.create(addon=self.app,
+                                    price=price)
+        res = self.summary()
+        eq_(res.context['price'], price)
+
+    def test_abuse_reports(self):
+        for i in range(2):
+            AbuseReport.objects.create(addon=self.app,
+                                       ip_address='10.0.0.1',
+                                       message='spam and porn everywhere')
+        res = self.summary()
+        eq_(res.context['abuse_reports'], 2)
+
+    def test_permissions(self):
+        raise SkipTest('we do not support permissions yet')
+
+    def test_purchases(self):
+        raise SkipTest()
+
+    def test_refunds(self):
+        raise SkipTest()
+
+    def test_pay_methods(self):
+        raise SkipTest()
+
+
+class DownloadSummaryTest(AppSummaryTest, TestCase):
+
+    def setUp(self):
+        super(DownloadSummaryTest, self).setUp()
+        self._setUp()
+        self.users = [UserProfile.objects.get(pk=999),
+                      UserProfile.objects.get(username='admin')]
+
+
+class TestAppDownloadSummary(DownloadSummaryTest, TestCase):
+
+    def setUp(self):
+        super(TestAppDownloadSummary, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+
+    def test_7_days(self):
+        for user in self.users:
+            Installed.objects.create(addon=self.app, user=user)
+        res = self.summary()
+        eq_(res.context['downloads']['last_7_days'], 2)
+
+    def test_ignore_older_than_7_days(self):
+        _8_days_ago = datetime.now() - timedelta(days=8)
+        for user in self.users:
+            c = Installed.objects.create(addon=self.app, user=user)
+            c.update(created=_8_days_ago)
+        res = self.summary()
+        eq_(res.context['downloads']['last_7_days'], 0)
+
+    def test_24_hours(self):
+        for user in self.users:
+            Installed.objects.create(addon=self.app, user=user)
+        res = self.summary()
+        eq_(res.context['downloads']['last_24_hours'], 2)
+
+    def test_ignore_older_than_24_hours(self):
+        _25_hr_ago = datetime.now() - timedelta(hours=25)
+        for user in self.users:
+            c = Installed.objects.create(addon=self.app, user=user)
+            c.update(created=_25_hr_ago)
+        res = self.summary()
+        eq_(res.context['downloads']['last_24_hours'], 0)
+
+    def test_alltime_dl(self):
+        for user in self.users:
+            Installed.objects.create(addon=self.app, user=user)
+        # Downloads for some other app that shouldn't be counted.
+        for user in self.users:
+            Installed.objects.create(addon=self.addon, user=user)
+        res = self.summary()
+        eq_(res.context['downloads']['alltime'], 2)
+
+
+class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
+
+    def setUp(self):
+        super(TestAddonDownloadSummary, self).setUp()
+        self.app = Addon.objects.get(pk=3615)
+        self.url = reverse('acct_lookup.app_summary',
+                           args=[self.app.pk])
+
+    def test_7_days(self):
+        for user in self.users:
+            DownloadCount.objects.create(addon=self.app, count=2,
+                                         date=datetime.now().date())
+        res = self.summary()
+        eq_(res.context['downloads']['last_7_days'], 4)
+
+    def test_ignore_older_than_7_days(self):
+        _8_days_ago = datetime.now() - timedelta(days=8)
+        for user in self.users:
+            c = DownloadCount.objects.create(addon=self.app, count=2,
+                                             date=datetime.now().date())
+            c.date = _8_days_ago.date()
+            c.save()
+        res = self.summary()
+        eq_(res.context['downloads']['last_7_days'], 0)
+
+    def test_24_hours(self):
+        for user in self.users:
+            DownloadCount.objects.create(addon=self.app, count=2,
+                                         date=datetime.now().date())
+        res = self.summary()
+        eq_(res.context['downloads']['last_24_hours'], 4)
+
+    def test_ignore_older_than_24_hours(self):
+        yesterday = datetime.now().date() - timedelta(days=1)
+        for user in self.users:
+            c = DownloadCount.objects.create(addon=self.app, count=2,
+                                             date=datetime.now().date())
+            c.date = yesterday
+            c.save()
+        res = self.summary()
+        eq_(res.context['downloads']['last_24_hours'], 0)
+
+    def test_alltime_dl(self):
+        for i in range(2):
+            DownloadCount.objects.create(addon=self.app, count=2,
+                                         date=datetime.now().date())
+        # Downloads for some other addon that shouldn't be counted.
+        addon = addon_factory()
+        for user in self.users:
+            DownloadCount.objects.create(addon=addon, count=2,
+                                         date=datetime.now().date())
+        res = self.summary()
+        eq_(res.context['downloads']['alltime'], 4)
+
+    def test_zero_alltime_dl(self):
+        # Downloads for some other addon that shouldn't be counted.
+        addon = addon_factory()
+        for user in self.users:
+            DownloadCount.objects.create(addon=addon, count=2,
+                                         date=datetime.now().date())
+        res = self.summary()
+        eq_(res.context['downloads']['alltime'], 0)
 
 
 class TestPurchases(amo.tests.TestCase):

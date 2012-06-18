@@ -126,7 +126,7 @@ class TestPreviewForm(amo.tests.TestCase):
             lambda z: True)
 @mock.patch('devhub.forms.check_paypal_id', lambda z: True)
 class TestPremiumForm(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users', 'prices']
+    fixtures = ['base/addon_3615', 'base/users', 'market/prices']
 
     def complete(self, data, exclude, dest='payment'):
         return forms.PremiumForm(data, request=None, extra={

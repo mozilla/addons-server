@@ -1,0 +1,78 @@
+{% extends 'acct_lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  {% include 'acct_lookup/includes/app_search.html' %}
+
+  <section class="island c">
+    <h1>
+      {% if app.is_webapp() %}
+        {{ _('App Lookup results for') }}
+        <a href="{{ app.get_url_path() }}"
+           title="{{ _('App Detail') }}">{{ app.name }}</a>
+      {% else %}
+        {{ _('Add-on Lookup results for') }}
+        {# TODO(Kumar) reverse to AMO doesn't work from mkt. #}
+        {{ app.name }}
+      {% endif %}
+      ({{ app.pk }})
+    </h1>
+
+    <section id="details">
+      <dl>
+        <dt>{{ _('Authors') }}</dt>
+        <dd>
+          {% for usr in authors %}
+            <div>{{ usr.display_name }}</div>
+          {% endfor %}
+        </dd>
+        <dt>{{ _('Mozilla Contact') }}</dt>
+        <dd>
+          {% if app.mozilla_contact %}
+            <a href="mailto:{{ app.mozilla_contact }}">{{ app.mozilla_contact }}</a>
+          {% else %}
+            {{ _('None') }}
+          {% endif %}
+        </dd>
+        <dt>{{ _('Manifest') }}</dt>
+        <dd><a target="_blank" href="{{ app.manifest_url }}">{{ app.manifest_url }}</a></dd>
+        <dt>{{ _('Type') }}</dt>
+        <dd>
+          {{ amo.ADDON_TYPE[app.type] }};
+          {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
+          {% if price %}
+            ({{ price.get_price_locale() }})
+          {% endif %}
+        </dd>
+        <dt>{{ _('Submitted') }}</dt>
+        <dd>{{ app.created|babel_datetime }}</dd>
+        <dt>{{ _('Status') }}</dt>
+        <dd>{{ amo.STATUS_CHOICES[app.status] }}</dd>
+        <dt>{{ _('Abuse Reports') }}</dt>
+        <dd>{{ abuse_reports }}</dd>
+        <dt>{{ _('Permissions') }}</dt>
+        <dd>TBD: permissions not supported yet</dd>
+        <dt>{{ _('Downloads') }}</dt>
+        <dd>
+          <div>{{ _('last 24 hours') }}: {{ downloads['last_24_hours'] }}</div>
+          <div>{{ _('last 7 days') }}: {{ downloads['last_7_days'] }}</div>
+          <div>{{ _('all time') }}: {{ downloads['alltime'] }}</div>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="payment-info">
+      <h2>{{ _('Payments') }}</h2>
+      <dl>
+        <dt>{{ _('Purchases') }}</dt>
+        <dd>TBD: bug 765764</dd>
+        <dt>{{ _('Refunds') }}</dt>
+        <dd>TBD: bug 765765</dd>
+        <dt>{{ _('Methods') }}</dt>
+        <dd>TBD: bug 765767</dd>
+      </dl>
+    </section>
+  </section>
+{% endblock %}

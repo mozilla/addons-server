@@ -23,7 +23,7 @@ from users.models import UserProfile
 
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
-    fixtures = ['base/users', 'prices', 'webapps/337141-steamcube']
+    fixtures = ['base/users', 'market/prices', 'webapps/337141-steamcube']
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)

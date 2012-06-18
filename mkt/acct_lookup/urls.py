@@ -12,7 +12,7 @@ user_patterns = patterns('',
 )
 
 
-# These views all start with app slug.
+# These views all start with app/addon ID.
 app_patterns = patterns('',
     url(r'^summary$', views.app_summary, name='acct_lookup.app_summary'),
 )
@@ -24,6 +24,6 @@ urlpatterns = patterns('',
         name='acct_lookup.user_search'),
     url(r'^app_search\.json$', views.app_search,
         name='acct_lookup.app_search'),
-    (r'^app/(?P<app_slug>[^/]+)/', include(app_patterns)),
+    (r'^app/(?P<addon_id>[^/]+)/', include(app_patterns)),
     (r'^user/(?P<user_id>[^/]+)/', include(user_patterns)),
 )

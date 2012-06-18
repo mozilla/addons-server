@@ -8,7 +8,7 @@ from market.forms import PriceCurrencyForm
 
 
 class TestForm(amo.tests.TestCase):
-    fixtures = ['prices', 'base/addon_3615']
+    fixtures = ['market/prices', 'base/addon_3615']
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)

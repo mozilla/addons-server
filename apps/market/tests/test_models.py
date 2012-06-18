@@ -16,7 +16,7 @@ from users.models import UserProfile
 
 
 class TestPremium(amo.tests.TestCase):
-    fixtures = ['prices.json', 'base/addon_3615.json']
+    fixtures = ['market/prices.json', 'base/addon_3615.json']
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)
@@ -74,7 +74,7 @@ class TestPremium(amo.tests.TestCase):
 
 
 class TestPrice(amo.tests.TestCase):
-    fixtures = ['prices.json']
+    fixtures = ['market/prices.json']
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)

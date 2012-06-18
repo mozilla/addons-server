@@ -24,7 +24,7 @@ class TestPurchaseIPNOrder(amo.tests.TestCase):
     # IPN processing to make sure that a few of the more complicated
     # scenarios don't break things.
     fixtures = ['base/apps', 'webapps/337141-steamcube',
-                'base/users', 'prices']
+                'base/users', 'market/prices']
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='marketplace', active=True)

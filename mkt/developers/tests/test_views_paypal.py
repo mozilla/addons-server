@@ -13,7 +13,7 @@ from users.models import UserProfile
 # Testing the payments page.
 class TestPayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
-                'prices']
+                'market/prices']
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -90,7 +90,7 @@ class TestPayments(amo.tests.TestCase):
 
 class TestPaypal(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
-                'prices']
+                'market/prices']
 
     def setUp(self):
         self.webapp = self.get_webapp()
