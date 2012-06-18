@@ -259,6 +259,12 @@ class TestAppSearch(SearchTest, ESTestCase):
         data = self.search(self.app.guid)
         self.verify_result(data)
 
+    def test_by_random_guid(self):
+        self.app = Addon.objects.get(pk=3615)
+        self.app.update(guid='__bonanza__')
+        data = self.search(self.app.guid)
+        self.verify_result(data)
+
     def test_by_id(self):
         data = self.search(self.app.pk)
         self.verify_result(data)

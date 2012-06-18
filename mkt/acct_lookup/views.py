@@ -173,10 +173,12 @@ def app_search(request):
     non_es_fields = ['id', 'name__localized_string'] + fields
     if query.isnumeric():
         qs = Addon.objects.filter(pk=query).values(*non_es_fields)
-    elif query.startswith('{'):
-        qs = Addon.objects.filter(guid=query).values(*non_es_fields)
     else:
-        qs = Addon.search().query(name__fuzzy=query).values_dict(*fields)
+        # Try to load by GUID:
+        qs = Addon.objects.filter(guid=query).values(*non_es_fields)
+        if not qs.count():
+            # Give up on GUID, assume it's a search.
+            qs = Addon.search().query(name__fuzzy=query).values_dict(*fields)
     for app in qs:
         app['url'] = reverse('acct_lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
