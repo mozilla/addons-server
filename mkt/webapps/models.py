@@ -18,7 +18,6 @@ from amo.urlresolvers import reverse
 from addons import query
 from addons.models import (Addon, AddonDeviceType, update_name_table,
                            update_search_index)
-from bandwagon.models import Collection
 from files.models import FileUpload, Platform
 from versions.models import Version
 
@@ -154,12 +153,8 @@ class Webapp(Addon):
     def domain_from_url(url):
         if not url:
             raise ValueError('URL was empty')
-        hostname = urlparse.urlparse(url).hostname
-        if hostname:
-            hostname = hostname.lower()
-            if hostname.startswith('www.'):
-                hostname = hostname[4:]
-        return hostname
+        pieces = urlparse.urlparse(url)
+        return '%s://%s' % (pieces.scheme, pieces.netloc.lower())
 
     @property
     def device_types(self):

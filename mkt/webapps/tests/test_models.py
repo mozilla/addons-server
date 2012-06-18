@@ -238,25 +238,32 @@ class TestManifest(BaseWebAppTest):
 class TestDomainFromURL(unittest.TestCase):
 
     def test_simple(self):
-        eq_(Webapp.domain_from_url('http://mozilla.com/'), 'mozilla.com')
+        eq_(Webapp.domain_from_url('http://mozilla.com/'),
+            'http://mozilla.com')
 
     def test_long_path(self):
         eq_(Webapp.domain_from_url('http://mozilla.com/super/rad.webapp'),
-            'mozilla.com')
+            'http://mozilla.com')
 
-    def test_normalize_www(self):
+    def test_no_normalize_www(self):
         eq_(Webapp.domain_from_url('http://www.mozilla.com/super/rad.webapp'),
-            'mozilla.com')
+            'http://www.mozilla.com')
 
     def test_with_port(self):
-        eq_(Webapp.domain_from_url('http://mozilla.com:9000/'), 'mozilla.com')
+        eq_(Webapp.domain_from_url('http://mozilla.com:9000/'),
+            'http://mozilla.com:9000')
 
     def test_subdomains(self):
         eq_(Webapp.domain_from_url('http://apps.mozilla.com/'),
-            'apps.mozilla.com')
+            'http://apps.mozilla.com')
 
     def test_https(self):
-        eq_(Webapp.domain_from_url('https://mozilla.com/'), 'mozilla.com')
+        eq_(Webapp.domain_from_url('https://mozilla.com/'),
+            'https://mozilla.com')
+
+    def test_normalize_case(self):
+        eq_(Webapp.domain_from_url('httP://mOzIllA.com/'),
+            'http://mozilla.com')
 
     @raises(ValueError)
     def test_none(self):
