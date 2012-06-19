@@ -11,6 +11,7 @@ import amo
 from amo.decorators import login_required, permission_required, json_view
 from amo.urlresolvers import reverse
 from amo.utils import paginate
+from apps.access import acl
 from apps.bandwagon.models import Collection
 from market.models import Refund
 from mkt.account.utils import purchase_list
@@ -29,6 +30,7 @@ def home(request):
 @permission_required('AccountLookup', 'View')
 def user_summary(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
+    is_admin = acl.action_allowed(request, 'Users', 'Edit')
     app_summary = _app_summary(user.pk)
     # All refunds that this user has requested (probably as a consumer).
     req = Refund.objects.filter(contribution__user=user)
@@ -50,6 +52,7 @@ def user_summary(request, user_id):
     return jingo.render(request, 'acct_lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,
+                         'is_admin': is_admin,
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
                          'payment_data': payment_data,

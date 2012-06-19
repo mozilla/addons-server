@@ -26,13 +26,13 @@
           {{ _('Purchases') }}
         </a>
       </li>
-      {# TODO: Spec requires this once it's built.
+      {% if is_admin %}
       <li>
-        <a href="#">
+        <a href="{{ url('users.admin_edit', account.id) }}">
           {{ _('Edit Account') }}
         </a>
       </li>
-      #}
+      {% endif %}
     </ul>
   </nav>
 </section>
