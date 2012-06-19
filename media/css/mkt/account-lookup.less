@@ -181,6 +181,35 @@ h1 {
     }
 }
 
+.island {
+    .column-a, .column-b, .column-c {
+        margin: 0;
+        float: left;
+        border-bottom: 0;
+    }
+    .column-a {
+        width: 128px;
+        text-align: center;
+    }
+    .column-b {
+        width: 400px;
+    }
+    .column-c {
+        width: 315px;
+    }
+    .pretty-list div {
+        margin: 2px 0;
+        padding: 4px 5px 6px;
+        .border-radius(5px);
+        .box-shadow(0 0 2px 0 rgba(0, 0, 0, 0.4) inset);
+    }
+    .info-box {
+        p {
+            margin: 5px 0;
+        }
+    }
+}
+
 .product-lookup-list {
     padding-top: 6px;
     div, li {
@@ -207,6 +236,10 @@ h1 {
     float: left;
     li {
         margin: 20px 0;
+    }
+    a:hover, .sel {
+        color: darken(@link, 10%);
+        text-decoration: underline;
     }
 }
 

@@ -34,7 +34,7 @@
       <h2>{{ _('Payments') }}</h2>
       <dl>
         <dt>{{ _('PayPal linked') }}:</dt>
-        <dd>
+        <dd class="pretty-list">
           {% for email in paypal_ids %}
             <div>{{ email }}</div>
           {% else %}
@@ -67,20 +67,22 @@
         </dd>
         <dt>{{ _('Addresses') }}:</dt>
         <dd>
+          <div class="info-box">
           {% for pd in payment_data %}
-            <div>{{ pd.full_name }}</div>
+            <p>{{ pd.full_name }}</p>
             {% if pd.business_name %}
-              <div>{{ pd.business_name }}</div>
+              <p>{{ pd.business_name }}</p>
             {% endif %}
-            <div>{{ pd.address_one }}</div>
+            <p>{{ pd.address_one }}</p>
             {% if pd.address_two %}
-              <div>{{ pd.address_two }}</div>
+              <p>{{ pd.address_two }}</p>
             {% endif %}
-            <div>{{ pd.city }}, {{ pd.state }} {{ pd.post_code }}</div>
-            <div>{{ pd.country }}</div>
+            <p>{{ pd.city }}, {{ pd.state }} {{ pd.post_code }}</p>
+            <p>{{ pd.country }}</p>
           {% else %}
             {{ _('None') }}
           {% endfor %}
+          </div>
         </dd>
         <dt>{{ _('Submissions') }}:</dt>
         <dd class="product-lookup-list">

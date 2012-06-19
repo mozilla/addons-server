@@ -122,14 +122,14 @@ def user_purchases(request, user_id):
 
 @login_required
 @permission_required('AccountLookup', 'View')
-def activity(request, user_id):
+def user_activity(request, user_id):
     """Shows the user activity page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
     products, contributions, listing = purchase_list(request, user, None)
 
     collections = Collection.objects.filter(author=user_id)
 
-    return jingo.render(request, 'acct_lookup/activity.html',
+    return jingo.render(request, 'acct_lookup/user_activity.html',
                         {'pager': products,
                          'account': user,
                          'listing_filter': listing,

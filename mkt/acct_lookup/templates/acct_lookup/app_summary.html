@@ -20,7 +20,11 @@
       ({{ app.pk }})
     </h1>
 
-    <section id="details">
+    <section class="column-a">
+      <img src="{{ app.get_icon_url(64) }}">
+    </section>
+
+    <section class="column-b">
       <dl>
         <dt>{{ _('Authors') }}</dt>
         <dd>
@@ -55,7 +59,7 @@
         <dt>{{ _('Permissions') }}</dt>
         <dd>TBD: permissions not supported yet</dd>
         <dt>{{ _('Downloads') }}</dt>
-        <dd>
+        <dd class="pretty-list">
           <div>{{ _('last 24 hours') }}: {{ downloads['last_24_hours'] }}</div>
           <div>{{ _('last 7 days') }}: {{ downloads['last_7_days'] }}</div>
           <div>{{ _('all time') }}: {{ downloads['alltime'] }}</div>
@@ -63,7 +67,7 @@
       </dl>
     </section>
 
-    <section id="payment-info">
+    <section class="column-c">
       <h2>{{ _('Payments') }}</h2>
       <dl>
         <dt>{{ _('Purchases') }}</dt>
