@@ -131,7 +131,7 @@ class TestInstall(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(send_request.call_args[0][0], 'install')
-        eq_(send_request.call_args[0][2], {'app-domain': u'cbc.ca',
+        eq_(send_request.call_args[0][2], {'app-domain': u'http://cbc.ca',
                                            'app-id': self.addon.pk})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')

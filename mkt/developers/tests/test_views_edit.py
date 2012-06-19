@@ -243,7 +243,7 @@ class TestEditBasic(TestEdit):
 
         self.webapp = self.get_webapp()
         eq_(self.webapp.manifest_url, url)
-        eq_(self.webapp.app_domain, 'ballin.com')
+        eq_(self.webapp.app_domain, 'https://ballin.com')
         eq_(self.webapp.current_version.version, '1.0')
         eq_(sorted(self.webapp.versions.values_list('version', flat=True)),
             sorted(['1.0', '1.0']))
@@ -252,7 +252,8 @@ class TestEditBasic(TestEdit):
     def test_view_manifest_changed_dupe_app_domain(self, mock_urlopen):
         mock_urlopen.return_value = response_mock
         Switch.objects.create(name='webapps-unique-by-domain', active=True)
-        amo.tests.app_factory(name='Super Duper', app_domain='ballin.com')
+        amo.tests.app_factory(name='Super Duper',
+                              app_domain='https://ballin.com')
 
         self.client.login(username='admin@mozilla.com', password='password')
         # POST with the new manifest URL.

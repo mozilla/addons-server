@@ -284,7 +284,8 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
 
     def setUp(self):
         super(TestCreateWebAppFromManifest, self).setUp()
-        Webapp.objects.create(app_slug='xxx', app_domain='existing-app.com')
+        Webapp.objects.create(app_slug='xxx',
+                              app_domain='http://existing-app.com')
 
     def upload_webapp(self, manifest_url, **post_kw):
         self.upload.update(name=manifest_url)  # Simulate JS upload.
