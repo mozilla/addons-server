@@ -27,7 +27,7 @@
       <table>
         <tr>
           <th class="label">{{ _('Application Domain') }}</th>
-          <td><span class="inapp-domain-protocol">https://</span>{{ addon.app_domain }}</td>
+          <td><span class="inapp-domain-protocol">https://</span>{{ addon.parsed_app_domain.netloc }}</td>
         </tr>
         <tr>
           <th><label for="id_is_https">{{ _("SSL") }} {{ required() }}</label></th>

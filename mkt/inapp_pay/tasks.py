@@ -66,8 +66,9 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
         typ = 'mozilla/payments/pay/chargeback/v1'
     else:
         raise NotImplementedError('Unknown type: %s' % notice_type)
-    url = urlparse.urlunparse((config.app_protocol(), config.addon.app_domain,
-                               uri, '', '', ''))
+    url = urlparse.urlunparse((config.app_protocol(),
+                               config.addon.parsed_app_domain.netloc, uri, '',
+                               '', ''))
     exception = None
     success = False
     issued_at = calendar.timegm(time.gmtime())

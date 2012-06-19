@@ -268,9 +268,10 @@ class InappImage(amo.models.ModelBase):
             return self.image_url
         else:
             # Assume it is relative to the app.
-            return urlparse.urlunparse((self.config.app_protocol(),
-                                        self.config.addon.app_domain,
-                                        self.image_url, '', '', ''))
+            return urlparse.urlunparse((
+                self.config.app_protocol(),
+                self.config.addon.parsed_app_domain.netloc, self.image_url, '',
+                '', ''))
 
     def path(self):
         dp = '/'.join((settings.INAPP_IMAGE_PATH, self._base_path()))

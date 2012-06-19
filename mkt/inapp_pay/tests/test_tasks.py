@@ -28,7 +28,7 @@ class TalkToAppTest(PaymentTest):
     def setUp(self):
         super(TalkToAppTest, self).setUp()
         self.domain = 'somenonexistantappdomain.com'
-        self.app.update(app_domain=self.domain)
+        self.app.update(app_domain='https://' + self.domain)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
     def url(self, path, protocol='https'):

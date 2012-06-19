@@ -157,6 +157,10 @@ class Webapp(Addon):
         return '%s://%s' % (pieces.scheme, pieces.netloc.lower())
 
     @property
+    def parsed_app_domain(self):
+        return urlparse.urlparse(self.app_domain)
+
+    @property
     def device_types(self):
         # If the transformer attached something, use it.
         if hasattr(self, '_device_types'):
