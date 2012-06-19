@@ -7,6 +7,7 @@
 
 <li id="review-{{ review.id }}" data-rating="{{ review.rating }}"
     data-edit-url="{{ review.addon.get_ratings_url('add') }}"
+    data-flag-url="{{ product.get_ratings_url('flag', args=[review.id]) }}"
     class="review{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }} c">
   {% if not is_reply %}
     {{ review.rating|stars }}
@@ -30,8 +31,8 @@
         <li class="flagged">{{ _('Flagged for review') }}</li>
       {% elif review.user_id != request.user.id %}
         <li>
-          <a class="flag post" data-action=""
-             href="{{ product.get_ratings_url('flag', args=[review.id]) }}">{{ _('Report') }}</a>
+          <a class="flag post" data-action="report"
+             href="#">{{ _('Report') }}</a>
         </li>
       {% endif %}
       {% if not (is_reply or has_reply) and (perms.is_author or perms.is_admin) %}

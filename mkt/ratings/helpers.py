@@ -1,7 +1,7 @@
 from jingo import register
 from jinja2 import contextfunction
 
-from reviews.models import GroupedRating
+from reviews.models import GroupedRating, ReviewFlag
 
 
 @register.inclusion_tag('ratings/helpers/rating_header.html')
@@ -10,4 +10,12 @@ def rating_header(context, product, title):
     c = dict(context.items())
     c.update(product=product, title=title,
              grouped_ratings=GroupedRating.get(product.id))
+    return c
+
+
+@register.inclusion_tag('ratings/edit.html')
+@contextfunction
+def review_popups(context):
+    c = dict(context.items())
+    c.update(ReviewFlag=ReviewFlag)
     return c

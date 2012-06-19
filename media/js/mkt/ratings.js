@@ -55,16 +55,45 @@
         e.stopPropagation();
         e.preventDefault();
         switch (action) {
-            case 'delete':
-            break;
             case 'edit':
                 editReview($(this).closest('.review'));
             break;
             case 'report':
+                flagReview($(this).closest('.review'));
             break;
         }
     });
 
+    // review flagging. maybe make this event-driven?
+    var flagOverlay = makeOrGetOverlay('flag-review'),
+        reviewToFlag,
+        flagURL;
+
+    function flagReview(reviewEl) {
+        flagURL = reviewEl.data('flag-url');
+        reviewToFlag = reviewEl;
+        flagOverlay.addClass('show');
+    }
+
+    flagOverlay.on('click', '.cancel', _pd(function() {
+        flagOverlay.removeClass('show');
+    })).on('click', '.menu a', _pd(function(e) {
+        var flag = $(e.target).attr('href').slice(1),
+            actionEl = reviewToFlag.find('.actions .flag');
+        flagOverlay.removeClass('show');
+        actionEl.text(gettext('Sending report...'));
+        $.ajax({type: 'POST',
+                url: flagURL,
+                data: {flag: flag},
+                success: function() {
+                    actionEl.replaceWith(gettext('Flagged for review'));
+                },
+                error: function(){ },
+                dataType: 'json'
+        });
+    }));
+
+    // review editing
     var editTemplate = $('#edit-review-template').html();
 
     function editReview(reviewEl) {
