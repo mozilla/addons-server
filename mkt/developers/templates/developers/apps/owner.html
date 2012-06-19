@@ -69,13 +69,30 @@
 {% include 'developers/includes/addons_edit_nav.html' %}
 
 <div id="author-roles-help" class="popup">
-  {# TODO(apps): Finalize copy. #}
-  <p>Apps can have any number of authors with 4 possible roles:</p>
+  <p>{{ _('Apps can have any number of authors with 4 possible roles:') }}</p>
   <ul>
-    <li><b>Owner:</b> Can manage all aspects of the app's listing, including adding and removing other authors</li>
-    <li><b>Developer:</b> Can manage all aspects of the app's listing, except for adding and removing other authors and managing payments</li>
-    <li><b>Viewer:</b> Can view the app's settings but cannot make any changes</li>
-    <li><b>Support:</b> Can view the app's settings and manage refund requests</li>
+    <li>
+      {% trans %}
+        <b>Owner:</b> Can manage all aspects of the app's listing, including
+        adding and removing other authors
+      {% endtrans %}
+    </li>
+    <li>
+      {% trans %}
+        <b>Developer:</b> Can manage all aspects of the app's listing, except
+        for adding and removing other authors and managing payments
+      {% endtrans %}
+    </li>
+    <li>
+      {% trans %}
+        <b>Viewer:</b> Can view the app's settings but cannot make any changes
+      {% endtrans %}
+    </li>
+    <li>
+      {% trans %}
+        <b>Support:</b> Can view the app's settings and manage refund requests
+      {% endtrans %}
+    </li>
   </ul>
   <p><a href="#" class="cancel close">{{ _('Close') }}</a></p>
 </div>
