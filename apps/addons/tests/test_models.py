@@ -1581,7 +1581,7 @@ class TestAddonFromUpload(UploadTest):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
         addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.app_domain, 'mozilla.com')
+        eq_(addon.app_domain, 'http://mozilla.com')
 
     def test_non_english_app(self):
         upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
