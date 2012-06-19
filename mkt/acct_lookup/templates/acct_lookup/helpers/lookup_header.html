@@ -16,22 +16,23 @@
       </li>
       <li>
         <a href="{{ url('acct_lookup.user_activity', account.id) }}"
-          {{ 'class="sel"'|safe if page_type == 'activity' }}>
+          {% if page_type == 'activity' %}class="sel"{% endif %}>
           {{ _('Activity') }}
         </a>
       </li>
       <li>
         <a href="{{ url('acct_lookup.user_purchases', account.id) }}"
-          {{ 'class="sel"'|safe if page_type == 'purchases' }}>
+          {% if page_type == 'purchases' %}class="sel"{% endif %}>
           {{ _('Purchases') }}
         </a>
       </li>
+      {# TODO: Spec requires this once it's built.
       <li>
-        {# TODO: is this sexy or what? #}
-        <a href="javascript:alert('not yet implemented');">
+        <a href="#">
           {{ _('Edit Account') }}
         </a>
       </li>
+      #}
     </ul>
   </nav>
 </section>
