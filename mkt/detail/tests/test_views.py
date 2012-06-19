@@ -568,6 +568,10 @@ class TestReportAbuse(DetailBase):
         super(TestReportAbuse, self).setUp()
         self.url = self.webapp.get_detail_url('abuse')
 
+        patcher = mock.patch.object(settings, 'TASK_USER_ID', 4043307)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def log_in(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
