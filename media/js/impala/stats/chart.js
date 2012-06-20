@@ -241,8 +241,8 @@
                 'name'  : z.StatsManager.getPrettyName(view.metric, id),
                 'id'    : id,
                 'pointInterval' : pointInterval,
-                // Compensate for timezone offsets from UTC.
-                'pointStart' : start.getTime() - start.getTimezoneOffset() * 60000,
+                // Add offset to line up points and ticks on day grouping.
+                'pointStart' : start.getTime() - start.getTimezoneOffset() * 195000,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });

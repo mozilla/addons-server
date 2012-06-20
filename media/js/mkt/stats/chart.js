@@ -174,7 +174,6 @@
 
         // Transform xAxis based on time grouping (day, week, month) and range.
         var inactive = function() { return false; };
-        var offset = 0;
         var date_range_days = parseInt((end - start) / 1000 / 3600 / 24);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 16;
@@ -182,7 +181,6 @@
         baseConfig.xAxis.max = end;
         // Set sensible spacing between ticks (so text doesn't overlap).
         if (group == 'day') {
-            offset = dayMsecs / 1.25;
             if (date_range_days <= 7) {
                 baseConfig.xAxis.tickInterval = (end - start) / 7;
             }
@@ -225,7 +223,7 @@
                 'id'    : id,
                 'pointInterval' : pointInterval,
                 // Add offset to line up points and ticks on day grouping.
-                'pointStart' : start.getTime() - offset,
+                'pointStart' : start.getTime() - start.getTimezoneOffset() * 195000,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
