@@ -10,7 +10,9 @@ steps at your own peril. Here we go!
 .. note::
 
     For less manual work, you can build Zamboni in a
-    :doc:`virtual machine using vagrant <install-with-vagrant>`.
+    :doc:`virtual machine using vagrant <install-with-vagrant>`
+    but that has known bugs at the time of this writing.
+    For best results, install manually.
 
 
 Requirements
@@ -45,14 +47,11 @@ if you're running a recent version, you can `install them automatically
 
 On OS X
 ~~~~~~~
-The best solution for installing UNIX tools on OSX is Homebrew_.
+The best solution for installing UNIX tools on OSX is brew_.
 
 The following packages will get you set for zamboni::
 
     brew install python libxml2 mysql libmemcached openssl swig jpeg
-
-.. _Homebrew: http://github.com/mxcl/homebrew#readme
-
 
 MySQL
 ~~~~~
@@ -77,46 +76,38 @@ pure-Python dependencies.  :ref:`updating` is detailed later on.
 specifically working with locales, you probably don't need to touch this again
 after you check it out.
 
+If at any point you realize you forgot to clone with the recursive
+flag, you can fix that by running::
 
-virtualenv
-----------
-
-`virtualenv <http://pypi.python.org/pypi/virtualenv>`_ is a tool to create
-isolated Python environments.  We don't want to install packages system-wide
-because that can create quite a mess. ::
-
-    sudo easy_install virtualenv
-
-virtualenv is the only Python package I install system-wide.  Everything else
-goes in a virtual environment.
+    git submodule update --init --recursive
 
 
-virtualenvwrapper
-~~~~~~~~~~~~~~~~~
+virtualenv and virtualenvwrapper
+--------------------------------
 
-`virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_
-is a set of shell functions that make virtualenv easy to work with.
+`virtualenv`_ is a tool to create
+isolated Python environments. This will let you put all of Zamboni's
+dependencies in a single directory rather than your global Python directory.
+For ultimate convenience, we'll also use `virtualenvwrapper`_
+which adds commands to your shell.
 
-Install it like this::
+Are you ready to bootstrap virtualenv_ and virtualenvwrapper_?
+Since each shell setup is different, you can install everything you need
+and configure your shell using the `virtualenv-burrito`_. Type this::
 
-    wget http://bitbucket.org/dhellmann/virtualenvwrapper/raw/f31869779141/virtualenvwrapper_bashrc -O ~/.virtualenvwrapper
-    mkdir ~/.virtualenvs
+    curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
 
-Then put these lines in your ``~/.bashrc``::
+Open a new shell to test it out. You should have the ``workon`` and
+``mkvirtualenv`` commands.
 
-    export WORKON_HOME=$HOME/.virtualenvs
-    source $HOME/.virtualenvwrapper
-
-``exec bash`` and you're set.
-
-.. note:: If you didn't have a ``.bashrc`` already, you should make a
-          ``~/.profile`` too::
-
-            echo 'source $HOME/.bashrc' >> ~/.profile
+.. _brew: http://github.com/mxcl/homebrew#readme
+.. _virtualenv: http://pypi.python.org/pypi/virtualenv
+.. _`virtualenv-burrito`: https://github.com/brainsik/virtualenv-burrito
+.. _virtualenvwrapper: http://www.doughellmann.com/docs/virtualenvwrapper/
 
 
 virtualenvwrapper Hooks (optional)
-**********************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 virtualenvwrapper lets you run hooks when creating, activating, and deleting
 virtual environments.  These hooks can change settings, the shell environment,
@@ -125,7 +116,7 @@ documentation, see
 http://www.doughellmann.com/docs/virtualenvwrapper/hooks.html.
 
 You can find some lovely hooks to get started at http://gist.github.com/536998.
-The hook files should go in ``$WORKON_HOME`` (``$HOME/.virtualenvs`` from
+The hook files should go in ``$WORKON_HOME`` (``$HOME/Envs`` from
 above), and ``premkvirtualenv`` should be made executable.
 
 
