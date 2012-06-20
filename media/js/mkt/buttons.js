@@ -79,10 +79,10 @@
         // From the old apps.js
         switch (msg) {
             case 'DENIED':
-                msg = 'cancelled'
+                msg = 'cancelled';
                 break;
             case 'MANIFEST_URL_ERROR':
-                errSummary = gettext('App manifest URL is malformed or non 200 status returned.');
+                errSummary = gettext('The manifest could not be found at the given location.');
                 break;
             case 'NETWORK_ERROR':
                 errSummary = gettext('App host could not be reached.');
