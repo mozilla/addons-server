@@ -1,4 +1,5 @@
 import json
+import os
 
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
@@ -93,5 +94,9 @@ def record(request):
 @cache_page(60 * 60)
 @no_login_required
 def mozmarket_js(request):
-    return jingo.render(request, 'site/mozmarket.js',
+    with open(os.path.join(settings.ROOT, 'vendor', 'js',
+                           'receiptverifier',
+                           'receiptverifier.js'), 'r') as fp:
+        vendor_js = [('receiptverifier', fp.read())]
+    return jingo.render(request, 'site/mozmarket.js', {'vendor_js': vendor_js},
                         content_type='text/javascript')

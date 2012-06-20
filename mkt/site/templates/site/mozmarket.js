@@ -2,9 +2,13 @@
 JS included by any *remote* web app to enable interaction
 with the Mozilla Marketplace.
 
-This currently supports in-app payments.
-Check out the documentation to learn more:
-https://developer.mozilla.org/en/Apps/In-app_payments
+This currently supports
+* in-app payments.
+  Check out the documentation to learn more:
+  https://developer.mozilla.org/en/Apps/In-app_payments
+* receipt verification.
+  Docs: https://github.com/mozilla/receiptverifier
+
 */
 (function(exports) {
 "use strict";
@@ -98,6 +102,15 @@ var $ = (function(win, doc) {
     return mu;
 })(window, document);
 
+{% for name, source in vendor_js %}
+// Start embedding source for {{ name }}
+
+{{ source|safe }}
+
+// Finish embedding source for {{ name }}
+{% endfor %}
+
+// in-app payments implementation.
 var server = '{{ settings.SITE_URL }}',
     overlay,
     def,

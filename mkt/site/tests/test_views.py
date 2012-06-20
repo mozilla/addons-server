@@ -1,6 +1,7 @@
 import json
 
 from django.conf import settings
+from django.core.cache import cache
 
 import mock
 from nose.tools import eq_
@@ -66,11 +67,21 @@ class TestManifest(amo.tests.TestCase):
 
 class TestMozmarketJS(amo.tests.TestCase):
 
+    def setUp(self):
+        cache.clear()
+
+    def render(self):
+        return self.client.get(reverse('site.mozmarket_js'))
+
     @mock.patch.object(settings, 'SITE_URL', 'https://secure-mkt.com/')
     def test_render(self):
-        resp = self.client.get(reverse('site.mozmarket_js'))
+        resp = self.render()
         self.assertContains(resp, "var server = 'https://secure-mkt.com/'")
         eq_(resp['Content-Type'], 'text/javascript')
+
+    def test_receiptverifier(self):
+        resp = self.render()
+        self.assertContains(resp, 'exports.receipts.Verifier')
 
 
 class TestRobots(amo.tests.TestCase):
