@@ -181,6 +181,12 @@ function fragmentFilter(el) {
             }
         }).on('loadfragment', function(e, href) {
             if (href) fetchFragment({path: href});
+        }).on('refreshfragment', function(e) {
+            var path = window.location.pathname + window.location.search + window.location.hash;
+            if (fragmentCache[path]) {
+                delete fragmentCache[path];
+            }
+            fetchFragment({path: path});
         });
 
         $(function() {

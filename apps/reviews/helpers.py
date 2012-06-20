@@ -72,8 +72,7 @@ def user_can_delete_review(request, review):
     persona reviewers shouldn't be able to delete add-on reviews.
     """
     is_editor = acl.check_reviewer(request)
-    is_author = acl.check_addon_ownership(request, review.addon, viewer=True,
-                                          dev=True, support=True)
+    is_author = review.addon.has_author(request.user)
     return (
         review.user_id == request.user.id or
         (is_editor and not is_author) or

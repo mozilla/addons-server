@@ -86,6 +86,14 @@ li a.delete {
     list-style-type: none;
     padding: 10px;
     position: relative;
+    + .review {
+        border-top: 1px solid @white;
+    }
+    &.reply {
+        background: url(../../img/mkt/icons/reply.png) 10px 15px no-repeat;
+        display: none;
+        padding-left: 35px;
+    }
     &.deleting {
         background: fade(@red, 40%);
     }
@@ -98,17 +106,17 @@ li a.delete {
             border-top: 0;
         }
     }
-    + .review {
-        border-top: 1px solid @white;
-    }
-    &:nth-child(2n) {
-        background: lighten(@bg, 5%);
+    &.normal:nth-child(2n) {
+        background-color: lighten(@bg, 5%);
     }
     .byline, .timestamp {
         font-size: 12px;
     }
     .byline {
         color: @medium-gray;
+        b {
+            color: @gray;
+        }
     }
     .timestamp {
         color: @note-gray;
@@ -120,16 +128,39 @@ li a.delete {
     .body {
         margin: 10px 0;
     }
+    .view-reply {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 10px;
+    }
     ul {
         float: left;
         list-style: none;
-        li {
-            display: inline-block;
-            + li:before {
-                color: @note-gray;
-                content: "\00a0\2022\00a0\00a0";
-            }
+    }
+    li {
+        display: inline-block;
+        &.hidden {
+            display: none;
         }
+        + li:before {
+            color: @note-gray;
+            content: "\00a0\2022\00a0\00a0";
+        }
+    }
+}
+
+.overlay {
+    form {
+        margin: 0;
+    }
+    h2, .char-count {
+        margin-bottom: 10px;
+    }
+    .req-error {
+        float: left;
+        font-size: 13px;
+        line-height: 18px;
+        margin-top: 5px;
     }
 }
 

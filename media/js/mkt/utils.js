@@ -27,6 +27,14 @@ String.prototype.startsWith = function(str) {
 String.prototype.endsWith = function(str) {
     return this.slice(-str.length) == str;
 };
+String.prototype.trim = function(str) {
+    // Trim leading and trailing whitespace (like lstrip + rstrip).
+    return this.replace(/^\s*/, '').replace(/\s*$/, '');
+};
+String.prototype.strip = function(str) {
+    // Strip all whitespace.
+    return this.replace(/\s/g, '');
+};
 
 
 // Sample usage:
@@ -84,9 +92,9 @@ function initCharCount() {
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
-        $el.bind('keyup blur', function() {
+        $el.bind('keyup blur', _.throttle(function() {
             countChars(this, $cc);
-        }).trigger('blur');
+        }, 250)).trigger('blur');
     });
 }
 

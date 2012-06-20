@@ -13,9 +13,9 @@ def rating_header(context, product, title):
     return c
 
 
-@register.inclusion_tag('ratings/edit.html')
+@register.inclusion_tag('ratings/helpers/rating_flag.html')
 @contextfunction
-def review_popups(context):
+def rating_flag(context):
     c = dict(context.items())
     c.update(ReviewFlag=ReviewFlag)
     return c

@@ -14,6 +14,7 @@ from amo.helpers import absolutify
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
 
+from reviews.forms import ReviewReplyForm
 from reviews.models import Review
 from reviews.helpers import user_can_delete_review
 from reviews.views import get_flags
@@ -87,7 +88,26 @@ def edit(request, addon, review_id):
 
 @addon_view
 @login_required
+@post_required
 def reply(request, addon, review_id):
+    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
+    is_author = acl.check_addon_ownership(request, addon, dev=True)
+    if not (is_admin or is_author):
+        return http.HttpResponseForbidden()
+
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
+    form = ReviewReplyForm(request.POST or None)
+    if form.is_valid():
+        d = dict(reply_to=review, addon=addon,
+                 defaults=dict(user=request.amo_user))
+        reply, new = Review.objects.get_or_create(**d)
+        for k, v in _review_details(request, addon, form).items():
+            setattr(reply, k, v)
+        reply.save()
+        action = 'New' if new else 'Edited'
+        log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
+        messages.success(request, _('Your reply was successfully added!'))
+
     return http.HttpResponse()
 
 
@@ -108,18 +128,6 @@ def add(request, addon):
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
         messages.success(request, _('Your review was successfully added!'))
-
-        # reply_url = addon.get_ratings_url('reply', args=[addon, review.id],
-        #                                   add_prefix=False)
-        # data = {'name': addon.name,
-        #         'rating': '%s out of 5 stars' % details['rating'],
-        #         'review': details['body'],
-        #         'reply_url': absolutify(reply_url)}
-
-        # emails = addon.values_list('email', flat=True)
-        # send_mail('reviews/emails/add_review.ltxt',
-        #           u'Mozilla Marketplace User Review: %s' % addon.name,
-        #           emails, Context(data), 'new_review')
 
         return redirect(addon.get_ratings_url('list'))
 

@@ -40,17 +40,15 @@
 
   <section class="reviews c" id="reviews">
     {% if ratings.object_list %}
+      {% include 'ratings/edit.html' %}
+      {% include 'ratings/reply.html' %}
+      {{ rating_flag() }}
       <div class="c" id="reviews-info">
       </div>
-      <ul id="review-list">
+      <ul id="review-list"
+          data-edit-url="{{ product.get_ratings_url('add') }}">
         {% for review in ratings.object_list %}
           {% include 'ratings/rating.html' %}
-          {% if review.id in replies %}
-            <a href="#" class="view-reply">{{ _('1 reply') }}</a>
-            {% with review=replies[review.id] %}
-              {% include 'ratings/rating.html' %}
-            {% endwith %}
-          {% endif %}
         {% endfor %}
       </ul>
       {% if ratings.object_list|length > 5 %}
