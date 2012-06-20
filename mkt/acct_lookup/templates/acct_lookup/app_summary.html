@@ -7,22 +7,7 @@
   {% include 'acct_lookup/includes/app_search.html' %}
 
   <section class="island c">
-    <h1>
-      {% if app.is_webapp() %}
-        {{ _('App Lookup results for') }}
-        <a href="{{ app.get_url_path() }}"
-           title="{{ _('App Detail') }}">{{ app.name }}</a>
-      {% else %}
-        {{ _('Add-on Lookup results for') }}
-        {# TODO(Kumar) reverse to AMO doesn't work from mkt. #}
-        {{ app.name }}
-      {% endif %}
-      ({{ app.pk }})
-    </h1>
-
-    <section class="column-a">
-      <img src="{{ app.get_icon_url(64) }}">
-    </section>
+    {{ app_header(app, 'summary') }}
 
     <section class="column-b">
       <dl>

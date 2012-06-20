@@ -1,0 +1,50 @@
+<h1>
+  {% if app.is_webapp() %}
+    {{ _('App Lookup results for') }}
+    <a href="{{ app.get_url_path() }}"
+       title="{{ _('App Detail') }}">{{ app.name }}</a>
+  {% else %}
+    {{ _('Add-on Lookup results for') }}
+    {# TODO(Kumar) reverse to AMO doesn't work from mkt. #}
+    {{ app.name }}
+  {% endif %}
+  ({{ app.pk }})
+</h1>
+
+<section class="column-a">
+  <img src="{{ app.get_icon_url(64) }}">
+  <nav class="shortcuts">
+    <ul>
+      <li>
+        <a href="{{ url('acct_lookup.app_summary', app.id) }}"
+          {% if page_type == 'summary' %}class="sel"{% endif %}>
+          {{ _('Summary') }}
+        </a>
+      </li>
+      <li>
+        <a href="#"
+          {% if page_type == 'history' %}class="sel"{% endif %}>
+          {{ _('Review History') }}
+        </a>
+      </li>
+      <li>
+        <a href="#"
+          {% if page_type == 'activity' %}class="sel"{% endif %}>
+          {{ _('Activity') }}
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('mkt.stats.overview', app.app_slug) }}">
+          {{ _('Statistics') }}
+        </a>
+      </li>
+      {% if is_admin %}
+      <li>
+        <a href="#">
+          {{ _('Edit Listing') }}
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</section>
