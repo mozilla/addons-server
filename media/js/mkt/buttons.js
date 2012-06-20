@@ -79,10 +79,10 @@
         // From the old apps.js
         switch (msg) {
             case 'DENIED':
-                errSummary = gettext('App installation not allowed.');
+                msg = 'cancelled'
                 break;
             case 'MANIFEST_URL_ERROR':
-                errSummary = gettext('App manifest is malformed.');
+                errSummary = gettext('App manifest URL is malformed or non 200 status returned.');
                 break;
             case 'NETWORK_ERROR':
                 errSummary = gettext('App host could not be reached.');
