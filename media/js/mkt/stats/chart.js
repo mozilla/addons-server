@@ -121,9 +121,6 @@
             return;
         }
 
-        // Re-enable date controls (was possibly disabled for column chart).
-        $('.group a, .range a').removeClass('inactive').unbind('click');
-
         if (!(group in acceptedGroups)) {
             group = 'day';
         }
