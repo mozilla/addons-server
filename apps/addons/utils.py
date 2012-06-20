@@ -66,43 +66,6 @@ class ReverseNameLookup(object):
             self.redis.delete(key)
 
 
-#TODO(davedash): remove after remora
-class ActivityLogMigrationTracker(object):
-    """This tracks what id of the addonlog we're on."""
-    key = 'amo:activitylog:migration'
-
-    def __init__(self):
-        self.redis = redisutils.connections['master']
-
-    def get(self):
-        return self.redis.get(self.key)
-
-    def set(self, value):
-        return self.redis.set(self.key, value)
-
-
-#TODO(davedash): remove after admin is migrated
-class AdminActivityLogMigrationTracker(ActivityLogMigrationTracker):
-    """
-    Per bug 628802:
-    We will migrate activities from Remora admin.
-    """
-    key = 'amo:activitylog:admin_migration'
-
-
-class MigrationTracker(object):
-
-    def __init__(self, key):
-        self.redis = redisutils.connections['master']
-        self.key = 'amo:activitylog:%s' % key
-
-    def get(self):
-        return self.redis.get(self.key)
-
-    def set(self, value):
-        return self.redis.set(self.key, value)
-
-
 class FeaturedManager(object):
     prefix = 'addons:featured:'
     by_id = prefix + 'byid'
