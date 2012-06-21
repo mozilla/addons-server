@@ -79,8 +79,7 @@
         }
 
         // Disable irrelevant links and controls.
-        var inactive = function() { return false; };
-        $('.group a, .range a').addClass('inactive').bind('click', inactive);
+        $('.group a, .range a').addClass('inactive').bind('click', false);
 
         if (data.empty || obj.data.length == 0) {
             showNoDataOverlay();

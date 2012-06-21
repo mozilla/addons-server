@@ -121,6 +121,10 @@
             return;
         }
 
+        // Re-enable date controls (was possibly disabled for column chart).
+        $('.group a, .range a').removeClass('inactive').unbind('click', false);
+
+
         if (!(group in acceptedGroups)) {
             group = 'day';
         }
@@ -173,8 +177,7 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
-        var inactive = function() { return false; };
-        var date_range_days = parseInt((end - start) / 1000 / 3600 / 24);
+        var date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 16;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
@@ -185,14 +188,14 @@
                 baseConfig.xAxis.tickInterval = (end - start) / 7;
             }
         } else if (group == 'week') {
-            $('a.week').addClass('inactive').bind('click', inactive);
+            $('a.week').addClass('inactive').bind('click', false);
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 90) {
                 baseConfig.xAxis.tickInterval = (end - start) / 16;
             }
         } else if (group == 'month') {
-            $('a.week, a.month').addClass('inactive').bind('click', inactive);
+            $('a.week, a.month').addClass('inactive').bind('click', false);
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 365 * 2) {
