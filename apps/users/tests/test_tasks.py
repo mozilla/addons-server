@@ -4,22 +4,27 @@ import tempfile
 
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 from nose.tools import eq_
 from PIL import Image
 
 from amo.tests.test_helpers import get_image_path
+from files.helpers import copyfileobj
 from users.tasks import delete_photo, resize_photo
 
 
 def test_delete_photo():
-    dst = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
-                                      delete=False, dir=settings.TMP_PATH)
-    path = os.path.dirname(dst.name)
+    dst_path = tempfile.mktemp(suffix='.png',
+                               dir=settings.TMP_PATH)
+    dst = storage.open(dst_path, mode='wb')
+    with dst:
+        dst.write('test data\n')
+    path = os.path.dirname(dst_path)
     settings.USERPICS_PATH = path
-    delete_photo(dst.name)
+    delete_photo(dst_path)
 
-    assert not os.path.exists(dst.name)
+    assert not storage.exists(dst_path)
 
 
 def test_resize_photo():
@@ -35,8 +40,7 @@ def test_resize_photo():
 
     src_image = Image.open(src.name)
     eq_(src_image.size, (82, 31))
-
-    resize_photo(src.name, dest.name)
+    resize_photo(src.name, dest.name, locally=True)
 
     # Image is smaller than 200x200 so it should stay the same.
     dest_image = Image.open(dest.name)

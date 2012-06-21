@@ -6,6 +6,7 @@ import sys
 import traceback
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.plugins.attrib import attr
@@ -20,6 +21,7 @@ from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion, Application
+from files.helpers import copyfileobj
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon
@@ -92,6 +94,8 @@ class TestFileValidation(amo.tests.TestCase):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
+        with storage.open(self.file.file_path, 'w') as f:
+            f.write('<pretend this is an xpi>\n')
         self.addon = self.file.version.addon
         args = [self.addon.slug, self.file.id]
         self.url = reverse('devhub.file_validation', args=args)
@@ -197,16 +201,15 @@ class TestValidateFile(BaseUploadTest):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file = File.objects.get(pk=100456)
         # Move the file into place as if it were a real file
-        self.file_dir = os.path.dirname(self.file.file_path)
-        os.makedirs(self.file_dir)
-        shutil.copyfile(self.file_path('invalid-id-20101206.xpi'),
-                        self.file.file_path)
+        with storage.open(self.file.file_path, 'w') as dest:
+            copyfileobj(open(self.file_path('invalid-id-20101206.xpi')),
+                        dest)
         self.addon = self.file.version.addon
 
     def tearDown(self):
         super(TestValidateFile, self).tearDown()
-        if os.path.exists(self.file_dir):
-            shutil.rmtree(self.file_dir)
+        if storage.exists(self.file.file_path):
+            storage.delete(self.file.file_path)
 
     @attr('validator')
     def test_lazy_validate(self):
@@ -456,7 +459,7 @@ class TestValidateFile(BaseUploadTest):
         res = self.client.get(reverse('devhub.validate_addon'))
         doc = pq(res.content)
         upload_url = doc('#upload-addon').attr('data-upload-url')
-        with open(xpi.path, 'rb') as f:
+        with storage.open(xpi.path, 'rb') as f:
             # Simulate JS file upload
             res = self.client.post(upload_url, {'upload': f}, follow=True)
         data = json.loads(res.content)
@@ -594,8 +597,8 @@ class TestUploadCompatCheck(BaseUploadTest):
     def fake_xpi(self, filename=None):
         """Any useless file that has a name property (for Django)."""
         if not filename:
-            filename = get_image_path('non-animated.gif')
-        return open(filename, 'rb')
+            return open(get_image_path('non-animated.gif'), 'rb')
+        return storage.open(filename, 'rb')
 
     def upload(self, filename=None):
         with self.fake_xpi(filename=filename) as f:

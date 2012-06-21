@@ -6,6 +6,7 @@ import zipfile
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
 from django import forms
 
 from mock import Mock, patch
@@ -198,7 +199,8 @@ class TestSearchEngineHelper(amo.tests.TestCase):
 
         if not os.path.exists(os.path.dirname(self.viewer.src)):
             os.makedirs(os.path.dirname(self.viewer.src))
-            open(self.viewer.src, 'w')
+            with storage.open(self.viewer.src, 'w') as f:
+                f.write('some data\n')
 
     def tearDown(self):
         self.viewer.cleanup()
@@ -224,6 +226,9 @@ class TestDiffSearchEngine(amo.tests.TestCase):
 
     def setUp(self):
         src = os.path.join(settings.ROOT, get_file('search.xml'))
+        if not storage.exists(src):
+            with storage.open(src, 'w') as f:
+                f.write(open(src).read())
         self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
                                  make_file(2, src, filename='search.xml'))
 

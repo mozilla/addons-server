@@ -4,6 +4,7 @@ import shutil
 import tempfile
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -70,17 +71,17 @@ def _uploader(resize_size, final_size):
         for rsize, fsize in zip(resize_size, final_size):
             dest_name = str(path.path(settings.ADDON_ICONS_PATH) / '1234')
 
-            tasks.resize_icon(src.name, dest_name, resize_size)
-            dest_image = Image.open("%s-%s.png" % (dest_name, rsize))
+            tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
+            dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
             eq_(dest_image.size, fsize)
 
             if os.path.exists(dest_image.filename):
                 os.remove(dest_image.filename)
             assert not os.path.exists(dest_image.filename)
     else:
-        dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
-        tasks.resize_icon(src.name, dest.name, resize_size)
-        dest_image = Image.open(dest.name)
+        dest = tempfile.mktemp(suffix='.png')
+        tasks.resize_icon(src.name, dest, resize_size, locally=True)
+        dest_image = Image.open(dest)
         eq_(dest_image.size, final_size)
 
     assert not os.path.exists(src.name)

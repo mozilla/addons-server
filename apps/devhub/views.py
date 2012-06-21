@@ -691,16 +691,16 @@ def package_addon_success(request, package_name):
 def package_addon_json(request, package_name):
     """Return the URL of the packaged add-on."""
     path_ = packager_path(package_name)
-    if os.path.isfile(path_):
+    if storage.exists(path_):
         url = reverse('devhub.package_addon_download', args=[package_name])
         return {'download_url': url, 'filename': os.path.basename(path_),
-                'size': round(os.path.getsize(path_) / 1024, 1)}
+                'size': round(storage.open(path_).size / 1024, 1)}
 
 
 def package_addon_download(request, package_name):
     """Serve a packaged add-on."""
     path_ = packager_path(package_name)
-    if not os.path.isfile(path_):
+    if not storage.exists(path_):
         raise http.Http404()
     return HttpResponseSendFile(request, path_, content_type='application/zip')
 
@@ -1141,9 +1141,9 @@ def image_status(request, addon_id, addon):
     elif addon.type == amo.ADDON_PERSONA:
         icons = True
     else:
-        icons = os.path.exists(os.path.join(addon.get_icon_dir(),
+        icons = storage.exists(os.path.join(addon.get_icon_dir(),
                                             '%s-32.png' % addon.id))
-    previews = all(os.path.exists(p.thumbnail_path)
+    previews = all(storage.exists(p.thumbnail_path)
                    for p in addon.previews.all())
     return {'overall': icons and previews,
             'icons': icons,

@@ -9,6 +9,7 @@ import uuid
 from django.conf import settings
 from django.core import mail
 from django.db import models
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -21,6 +22,7 @@ from addons.models import Addon
 from applications.models import AppVersion
 from files import tasks
 from files.models import File
+from files.helpers import rmtree
 from files.utils import JetpackUpgrader
 
 
@@ -89,20 +91,22 @@ class TestRepackageJetpack(amo.tests.TestCase):
         # Set up a temp file so urllib.urlretrieve works.
         self.xpi_path = os.path.join(settings.ROOT,
                                      'apps/files/fixtures/files/jetpack.xpi')
-        tmp_file = self.create_temp_file()
-        self.urllib.urlretrieve.return_value = (tmp_file.name, None)
+        self.tmp_file_path = self.create_temp_file()
+        self.urllib.urlretrieve.return_value = (self.tmp_file_path, None)
 
         self.upgrader = JetpackUpgrader()
         settings.SEND_REAL_EMAIL = True
 
         self.uuid = uuid.uuid4().hex
 
+    def tearDown(self):
+        storage.delete(self.tmp_file_path)
+
     def create_temp_file(self):
-        tmp_file = tempfile.NamedTemporaryFile(delete=False,
-                                               dir=settings.TMP_PATH)
-        tmp_file.write(open(self.xpi_path, 'rb').read())
-        tmp_file.flush()
-        return tmp_file
+        path = tempfile.mktemp(dir=settings.TMP_PATH)
+        with storage.open(path, 'w') as tmp_file:
+            tmp_file.write(open(self.xpi_path, 'rb').read())
+        return path
 
     def builder_data(self, **kw):
         """Generate builder_data response dictionary with sensible defaults."""
@@ -223,20 +227,22 @@ class TestRepackageJetpack(amo.tests.TestCase):
 
         # Make a new temp file for urlretrieve.
         tmp_file = self.create_temp_file()
-        self.urllib.urlretrieve.return_value = (tmp_file.name, None)
+        self.urllib.urlretrieve.return_value = (tmp_file, None)
 
         assert not tasks.repackage_jetpack(self.builder_data())
         eq_(self.addon.versions.count(), 2)
 
     def test_file_on_mirror(self):
         # Make sure the mirror dir is clear.
-        shutil.rmtree(os.path.dirname(self.file.mirror_file_path))
+        if storage.exists(os.path.dirname(self.file.mirror_file_path)):
+            rmtree(os.path.dirname(self.file.mirror_file_path))
         new_file = tasks.repackage_jetpack(self.builder_data())
-        assert os.path.exists(new_file.mirror_file_path)
+        assert storage.exists(new_file.mirror_file_path)
 
     def test_unreviewed_file_not_on_mirror(self):
         # Make sure the mirror dir is clear.
-        shutil.rmtree(os.path.dirname(self.file.mirror_file_path))
+        mirrordir = settings.MIRROR_STAGE_PATH + '/3615'
+        rmtree(mirrordir)
         self.file.update(status=amo.STATUS_UNREVIEWED)
         new_file = tasks.repackage_jetpack(self.builder_data())
-        assert not os.path.exists(new_file.mirror_file_path)
+        assert not storage.exists(new_file.mirror_file_path)

@@ -4,6 +4,7 @@ import os
 
 from datetime import datetime, timedelta
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -788,11 +789,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_multiple_platforms(self):
         platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
                      Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
-        assert os.path.exists(self.upload.path)
-        with open(self.upload.path) as f:
+        assert storage.exists(self.upload.path)
+        with storage.open(self.upload.path) as f:
             uploaded_hash = hashlib.md5(f.read()).hexdigest()
         version = Version.from_upload(self.upload, self.addon, platforms)
-        assert not os.path.exists(self.upload.path), (
+        assert not storage.exists(self.upload.path), (
                 "Expected original upload to move but it still exists.")
         files = version.all_files
         eq_(len(files), 2)
@@ -804,7 +805,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
              u'delicious_bookmarks-0.1-fx-%s.xpi' % (
                         amo.PLATFORM_MAC.shortname)])
         for file in files:
-            with open(file.file_path) as f:
+            with storage.open(file.file_path) as f:
                 eq_(uploaded_hash,
                     hashlib.md5(f.read()).hexdigest(),
                     "md5 hash of %r does not match uploaded file" %

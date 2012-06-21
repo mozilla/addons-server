@@ -1,6 +1,7 @@
 import json
 
 from django.core.management import call_command
+from django.core.files.storage import default_storage as storage
 from nose.tools import eq_
 
 import amo

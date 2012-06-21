@@ -274,8 +274,7 @@ class InappImage(amo.models.ModelBase):
                 '', ''))
 
     def path(self):
-        dp = '/'.join((settings.INAPP_IMAGE_PATH, self._base_path()))
-        return storage.path(dp)
+        return '/'.join((settings.INAPP_IMAGE_PATH, self._base_path()))
 
     @classmethod
     def default_image_url(cls):

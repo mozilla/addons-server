@@ -21,6 +21,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.http import urlencode
 from django.utils.translation import trans_real as translation
+from django.core.files.storage import default_storage as storage
 
 import chardet
 import rdflib
@@ -55,6 +56,14 @@ def get_filepath(fileorpath):
     if hasattr(fileorpath, 'path'):  # FileUpload
         return fileorpath.path
     return fileorpath
+
+def get_file(fileorpath):
+    """Get a file-like object, whether given a FileUpload object or a path."""
+    if hasattr(fileorpath, 'path'):  # FileUpload
+        return storage.open(fileorpath.path)
+    if hasattr(fileorpath, 'name'):
+        return fileorpath
+    return storage.open(fileorpath)
 
 
 class Extractor(object):
@@ -149,10 +158,9 @@ def extract_search(content):
 
 
 def parse_search(fileorpath, addon=None):
-    filename = get_filepath(fileorpath)
     try:
-        with open(filename) as f:
-            data = extract_search(f)
+        f = get_file(fileorpath)
+        data = extract_search(f)
     except forms.ValidationError:
         raise
     except Exception:
@@ -187,16 +195,15 @@ class WebAppParser(object):
         return ex
 
     def parse(self, fileorpath, addon=None):
-        filename = get_filepath(fileorpath)
-        with open(filename, 'rb') as f:
-            data = f.read()
-            enc_guess = chardet.detect(data)
-            data = strip_bom(data)
+        f = get_file(fileorpath)
+        data = f.read()
+        enc_guess = chardet.detect(data)
+        data = strip_bom(data)
         try:
             data = json.loads(data.decode(enc_guess['encoding']))
         except (ValueError, UnicodeDecodeError), exc:
             msg = 'Error parsing webapp %r (encoding: %r %.2f%% sure): %s: %s'
-            log.error(msg % (filename, enc_guess['encoding'],
+            log.error(msg % (f.name, enc_guess['encoding'],
                              enc_guess['confidence'] * 100.0,
                              exc.__class__.__name__, exc))
             raise forms.ValidationError(
@@ -381,15 +388,19 @@ def extract_xpi(xpi, path, expand=False):
 
 def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
-    xpi = get_filepath(xpi)
     # Extract to /tmp
     path = tempfile.mkdtemp()
     try:
+        xpi = get_file(xpi)
         extract_xpi(xpi, path)
         rdf = Extractor.parse(path)
     except forms.ValidationError:
         raise
-    except IOError as (errno, strerror):
+    except IOError as e:
+        if len(e.args) < 2:
+            errno, strerror = None, e[0]
+        else:
+            errno, strerror = e
         log.error('I/O error({0}): {1}'.format(errno, strerror))
         raise forms.ValidationError(_('Could not parse install.rdf.'))
     except Exception:

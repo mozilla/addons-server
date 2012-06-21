@@ -10,6 +10,7 @@ import uuid
 import django.core.mail
 from django.conf import settings
 from django.db import transaction
+from django.core.files.storage import default_storage as storage
 
 import jingo
 from celeryutils import task
@@ -123,7 +124,7 @@ def repackage_jetpack(builder_data, **kw):
     # Figure out the SHA256 hash of the file.
     try:
         hash_ = hashlib.sha256()
-        with open(filepath, 'rb') as fd:
+        with storage.open(filepath, 'rb') as fd:
             while True:
                 chunk = fd.read(8192)
                 if not chunk:

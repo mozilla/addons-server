@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
-import shutil
 import tempfile
 
 from mock import patch
 from nose.tools import eq_
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import amo
 import amo.tests
@@ -14,6 +14,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.utils import rm_local_tmp_dir
 from addons import forms, cron
 from addons.models import Addon, AddonDeviceType, Category, DeviceType, Webapp
+from files.helpers import copyfileobj
 from tags.models import Tag, AddonTag
 from addons.forms import DeviceTypeForm
 
@@ -252,8 +253,8 @@ class TestIconForm(amo.tests.TestCase):
                                     instance=self.addon)
 
         dest = os.path.join(self.icon_path, name)
-        shutil.copyfile(get_image_path(name), dest)
-
+        with storage.open(dest, 'w') as f:
+            copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon=self.addon)
         assert update_mock.called

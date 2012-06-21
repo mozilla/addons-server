@@ -30,7 +30,8 @@ import devhub.signals
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.cron import cleanup_watermarked_file
-from files.models import File, FileUpload, FileValidation, Platform
+from files.models import File, FileUpload, FileValidation, Platform, nfd_str
+from files.helpers import copyfileobj
 from files.utils import parse_addon, parse_xpi, check_rdf, JetpackUpgrader
 from files.utils import SafeUnzip, RDF
 from users.models import UserProfile
@@ -88,18 +89,15 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the
         filesystem."""
-        if not os.path.exists(os.path.dirname(filename)):
-            os.makedirs(os.path.dirname(filename))
-        if os.path.exists(filename):
-            os.remove(filename)
         try:
-            open(filename, 'w')
-            assert os.path.exists(filename)
+            with storage.open(filename, 'w') as f:
+                f.write('sample data\n')
+            assert storage.exists(filename)
             file_.delete()
-            assert not os.path.exists(filename)
+            assert not storage.exists(filename)
         finally:
-            if os.path.exists(filename):
-                os.remove(filename)
+            if storage.exists(filename):
+                storage.delete(filename)
 
     def test_delete_by_version(self):
         f = File.objects.get(pk=67442)
@@ -176,15 +174,15 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
                 fp.write('<pretend this is an xpi>')
             fo.status = amo.STATUS_DISABLED
             fo.save()
-            assert not os.path.exists(fo.file_path), 'file not hidden'
-            assert not os.path.exists(fo.mirror_file_path), (
+            assert not storage.exists(fo.file_path), 'file not hidden'
+            assert not storage.exists(fo.mirror_file_path), (
                             'file not removed from mirror')
 
             fo = File.objects.get(pk=67442)
             fo.status = amo.STATUS_PUBLIC
             fo.save()
-            assert os.path.exists(fo.file_path), 'file not un-hidden'
-            assert os.path.exists(fo.mirror_file_path), (
+            assert storage.exists(fo.file_path), 'file not un-hidden'
+            assert storage.exists(fo.mirror_file_path), (
                             'file not copied back to mirror')
 
     @mock.patch('files.models.File.copy_to_mirror')
@@ -256,18 +254,18 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(f.generate_filename(), 'addon-0.1.7-fx.xpi')
 
     def clean_files(self, f):
-        if f.mirror_file_path and os.path.exists(f.mirror_file_path):
-            os.remove(f.mirror_file_path)
-        if not os.path.exists(os.path.dirname(f.file_path)):
-            os.mkdir(os.path.dirname(f.file_path))
-        if not os.path.exists(f.file_path):
-            open(f.file_path, 'w')
+        if f.mirror_file_path and storage.exists(f.mirror_file_path):
+            storage.remove(f.mirror_file_path)
+        if not storage.exists(f.file_path):
+            with storage.open(f.file_path, 'w') as fp:
+                fp.write('sample data\n')
+
 
     def test_copy_to_mirror(self):
         f = File.objects.get(id=67442)
         self.clean_files(f)
         f.copy_to_mirror()
-        assert os.path.exists(f.mirror_file_path)
+        assert storage.exists(f.mirror_file_path)
 
     @mock.patch('shutil.copyfile')
     def test_not_copy_to_mirror(self, copyfile):
@@ -338,7 +336,7 @@ class TestParseXpi(amo.tests.TestCase):
     def parse(self, addon=None, filename='extension.xpi'):
         path = 'apps/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
-        return parse_addon(xpi, addon)
+        return parse_addon(open(xpi), addon)
 
     def test_parse_basics(self):
         # Everything but the apps
@@ -402,7 +400,7 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
-            self.parse(filename='baxmldzip.xpi')
+            parse_addon('baxmldzip.xpi', None)
         eq_(e.exception.messages, ['Could not parse install.rdf.'])
 
     def test_parse_dictionary(self):
@@ -468,7 +466,7 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
                                       version=version)
 
     def parse(self, filename='alt-rdf.xpi'):
-        return parse_addon(self.file_fixture_path(filename))
+        return parse_addon(open(self.file_fixture_path(filename)))
 
     def test_parse_basics(self):
         # Everything but the apps.
@@ -516,7 +514,7 @@ class TestFileUpload(UploadTest):
                                     len(self.data))
 
     def test_from_post_write_file(self):
-        eq_(open(self.upload().path).read(), self.data)
+        eq_(storage.open(self.upload().path).read(), self.data)
 
     def test_from_post_filename(self):
         eq_(self.upload().name, 'filename.xpi')
@@ -643,7 +641,11 @@ class TestFileFromUpload(UploadTest):
 
     def upload(self, name):
         v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
-        d = dict(path=self.xpi_path(name), name='%s.xpi' % name,
+        fname = nfd_str(self.xpi_path(name))
+        if not storage.exists(fname):
+            with storage.open(fname, 'w') as fs:
+                copyfileobj(open(fname), fs)
+        d = dict(path=fname, name='%s.xpi' % name,
                  hash='sha256:%s' % name, validation=v)
         return FileUpload.objects.create(**d)
 
@@ -828,7 +830,7 @@ class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
 class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def parse(self, filename='search.xml'):
-        return parse_addon(self.file_fixture_path(filename))
+        return parse_addon(open(self.file_fixture_path(filename)))
 
     def extract(self):
         # This is the expected return value from extract_search.
@@ -872,7 +874,7 @@ def test_parse_xpi():
     """Fire.fm can sometimes give us errors.  Let's prevent that."""
     firefm = os.path.join(settings.ROOT,
                           'apps/files/fixtures/files/firefm.xpi')
-    rdf = parse_xpi(firefm)
+    rdf = parse_xpi(open(firefm))
     eq_(rdf['name'], 'Fire.fm')
 
 

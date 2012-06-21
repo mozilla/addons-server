@@ -7,6 +7,7 @@ require leading directories to exist. The default Django file system storage
 """
 
 from django.core.files.storage import default_storage
+from django.utils.encoding import smart_str
 
 DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
 
@@ -33,6 +34,8 @@ def walk_storage(path, topdown=True, onerror=None, followlinks=False,
         new_roots = []
         for root in roots:
             dirs, files = storage.listdir(root)
+            files = [smart_str(f) for f in files]
+            dirs = [smart_str(d) for d in dirs]
             yield root, dirs, files
             for dn in dirs:
                 new_roots.append('%s/%s' % (root, dn))

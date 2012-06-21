@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import codecs
 import json
 import os
@@ -6,6 +6,7 @@ import shutil
 import tempfile
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django import forms
 
 import mock
@@ -19,6 +20,7 @@ import amo.tests
 from addons.models import Addon
 from amo.tests import assert_no_validation_errors
 from amo.urlresolvers import reverse
+from files.helpers import copyfileobj
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon, WebAppParser
@@ -266,20 +268,23 @@ class TestValidateFile(BaseUploadTest):
 class TestWebApps(amo.tests.TestCase):
 
     def setUp(self):
-        self.webapp_path = os.path.join(os.path.dirname(__file__),
-                                        'addons', 'mozball.webapp')
+        self.webapp_path = tempfile.mktemp(suffix='.webapp')
+        with storage.open(self.webapp_path, 'wb') as f:
+            copyfileobj(open(os.path.join(os.path.dirname(__file__),
+                                          'addons', 'mozball.webapp')),
+                        f)
         self.tmp_files = []
         self.manifest = dict(name=u'Ivan Krsti\u0107', version=u'1.0',
                              description=u'summary')
 
     def tearDown(self):
         for tmp in self.tmp_files:
-            os.unlink(tmp)
+            storage.delete(tmp)
 
     def webapp(self, data=None, contents='', suffix='.webapp'):
-        fp, tmp = tempfile.mkstemp(suffix=suffix)
+        tmp = tempfile.mktemp(suffix=suffix)
         self.tmp_files.append(tmp)
-        with open(tmp, 'w') as f:
+        with storage.open(tmp, 'wb') as f:
             f.write(json.dumps(data) if data else contents)
         return tmp
 

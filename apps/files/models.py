@@ -101,7 +101,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Checks if file has been copied to mirror"""
         if not self.mirror_file_path:
             return False
-        return os.path.isfile(self.mirror_file_path)
+        return storage.exists(self.mirror_file_path)
 
     def can_be_perf_tested(self):
         """True if it's okay to run performance tests on this addon file.

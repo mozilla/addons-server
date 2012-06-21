@@ -2,6 +2,7 @@ import json
 import os
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 from mock import patch
 from nose.tools import eq_
@@ -213,17 +214,17 @@ class TestSubmitPersona(amo.tests.TestCase):
 
         img = os.path.join(dst, 'header.jpg')
         eq_(persona.header, 'header')
-        eq_(os.path.exists(img), True)
-        eq_(Image.open(img).size, (3000, 200))
+        eq_(storage.exists(img), True)
+        eq_(Image.open(storage.open(img)).size, (3000, 200))
         eq_(amo.PERSONA_IMAGE_SIZES['header'][1], (3000, 200))
 
         img = os.path.join(dst, 'footer.jpg')
         eq_(persona.footer, 'footer')
-        eq_(os.path.exists(img), True)
-        eq_(Image.open(img).size, (3000, 100))
+        eq_(storage.exists(img), True)
+        eq_(Image.open(storage.open(img)).size, (3000, 100))
         eq_(amo.PERSONA_IMAGE_SIZES['footer'][1], (3000, 100))
 
         img = os.path.join(dst, 'preview.jpg')
-        eq_(os.path.exists(img), True)
-        eq_(Image.open(img).size, (680, 100))
+        eq_(storage.exists(img), True)
+        eq_(Image.open(storage.open(img)).size, (680, 100))
         eq_(amo.PERSONA_IMAGE_SIZES['header'][0], (680, 100))

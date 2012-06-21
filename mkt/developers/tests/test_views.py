@@ -7,6 +7,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 
 import mock
 import waffle
@@ -1244,7 +1245,7 @@ class TestUpload(BaseUploadTest):
         upload = FileUpload.objects.get(name='animated.png')
         eq_(upload.name, 'animated.png')
         data = open(get_image_path('animated.png'), 'rb').read()
-        eq_(open(upload.path).read(), data)
+        eq_(storage.open(upload.path).read(), data)
 
     def test_fileupload_user(self):
         self.client.login(username='regular@mozilla.com', password='password')

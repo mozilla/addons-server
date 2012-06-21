@@ -31,12 +31,12 @@ def delete_photo(dst, **kw):
 
 @task
 @set_modified_on
-def resize_photo(src, dst, **kw):
+def resize_photo(src, dst, locally=False, **kw):
     """Resizes userpics to 200x200"""
     task_log.debug('[1@None] Resizing photo: %s' % dst)
 
     try:
-        resize_image(src, dst, (200, 200))
+        resize_image(src, dst, (200, 200), locally=locally)
         return True
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)

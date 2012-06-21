@@ -1,8 +1,9 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import os
 from datetime import datetime, timedelta
 
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
 from mock import Mock
@@ -236,12 +237,9 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(scores[0].note_key, reviewed_type)
 
     def create_paths(self):
-        for dr in [os.path.dirname(self.file.mirror_file_path),
-                   os.path.dirname(self.file.file_path)]:
-            if not os.path.exists(dr):
-                os.mkdir(dr)
-        if not os.path.exists(self.file.file_path):
-            open(self.file.file_path, 'w')
+        if not storage.exists(self.file.file_path):
+            with storage.open(self.file.file_path, 'w') as f:
+                f.write('test data\n')
 
     def get_data(self):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
@@ -359,16 +357,17 @@ class TestReviewHelper(amo.tests.TestCase):
                                       self.helper.handler.data['addon_files'],
                                       copy_to_mirror=True)
 
-        assert os.path.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.mirror_file_path)
 
     def test_set_files_remove(self):
-        open(self.file.mirror_file_path, 'wb')
+        with storage.open(self.file.mirror_file_path, 'wb') as f:
+            f.write('test data\n')
         self.helper.set_data({'addon_files': self.version.files.all()})
         self.helper.handler.set_files(amo.STATUS_PUBLIC,
                                       self.helper.handler.data['addon_files'],
                                       hide_disabled_file=True)
 
-        assert not os.path.exists(self.file.mirror_file_path)
+        assert not storage.exists(self.file.mirror_file_path)
 
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
@@ -460,7 +459,7 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
-        assert os.path.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.mirror_file_path)
 
         eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
@@ -481,7 +480,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
-            assert os.path.exists(self.file.mirror_file_path)
+            assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
@@ -515,7 +514,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
-            assert os.path.exists(self.file.mirror_file_path)
+            assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
 
@@ -534,7 +533,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Rejected' % self.preamble)
 
-            assert not os.path.exists(self.file.mirror_file_path)
+            assert not storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_email_unicode_monster(self):
@@ -592,7 +591,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
-            assert os.path.exists(self.file.mirror_file_path)
+            assert storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
 
             self._check_score(amo.REVIEWED_ADDON_PRELIM)
@@ -608,7 +607,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Rejected' % self.preamble)
 
-            assert not os.path.exists(self.file.mirror_file_path)
+            assert not storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_preliminary_to_super_review(self):
@@ -659,7 +658,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
-            assert os.path.exists(self.file.mirror_file_path)
+            assert storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
             self._check_score(amo.REVIEWED_ADDON_UPDATED)
@@ -675,7 +674,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             assert 'did not meet the criteria' in mail.outbox[0].body
 
-            assert not os.path.exists(self.file.mirror_file_path)
+            assert not storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_operating_system_present(self):

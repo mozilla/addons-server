@@ -63,7 +63,7 @@ def test_resize_transparency():
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
-        resize_image(src, dest, (32, 32), remove_src=False)
+        resize_image(src, dest, (32, 32), remove_src=False, locally=True)
         with open(dest) as dfh:
             with open(expected) as efh:
                 assert dfh.read() == efh.read()

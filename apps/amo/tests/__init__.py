@@ -11,6 +11,7 @@ from urlparse import urlsplit
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
 from django.forms.fields import Field
 from django.test.client import Client
 from django.utils import translation
@@ -30,6 +31,7 @@ from addons.models import Addon, Category, DeviceType, Persona
 import addons.search
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
+from files.helpers import copyfileobj
 from files.models import File, Platform
 from market.models import AddonPremium, Price, PriceCurrency
 import mkt.stats.search
@@ -312,7 +314,8 @@ class AMOPaths(object):
                             'mkt/submit/tests/webapps/%s' % name)
 
     def manifest_copy_over(self, dest, name):
-        shutil.copyfile(self.manifest_path(name), dest)
+        with storage.open(dest, 'wb') as f:
+            copyfileobj(open(self.manifest_path(name)), f)
 
     @staticmethod
     def sample_key():

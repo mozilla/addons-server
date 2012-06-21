@@ -2,6 +2,7 @@ import os
 import shutil
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -10,6 +11,7 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon
+from files.helpers import copyfileobj
 from mkt.developers import forms
 
 
@@ -36,7 +38,8 @@ class TestPreviewForm(amo.tests.TestCase):
         name = 'non-animated.gif'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
+        with storage.open(os.path.join(self.dest, name), 'wb') as f:
+            copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(self.addon)
         eq_(self.addon.previews.all()[0].sizes,

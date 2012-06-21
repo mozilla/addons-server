@@ -4,6 +4,7 @@ import urlparse
 import uuid
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
 from django.dispatch import receiver
@@ -212,7 +213,7 @@ class Webapp(Addon):
         try:
             # The first file created for each version of the web app
             # is the manifest.
-            with open(self.get_latest_file().file_path, 'r') as mf:
+            with storage.open(self.get_latest_file().file_path, 'r') as mf:
                 return json.load(mf)
         except Exception, e:
             log.error('Failed to open saved manifest %r for webapp %s, %s.'

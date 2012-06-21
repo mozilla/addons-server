@@ -9,6 +9,7 @@ import tempfile
 import urllib2
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -78,7 +79,7 @@ def _uploader(resize_size, final_size):
         for rsize, fsize in zip(resize_size, final_size):
             dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
 
-            tasks.resize_icon(src.name, dest_name, resize_size)
+            tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
             dest_image = Image.open("%s-%s.png" % (dest_name, rsize))
             eq_(dest_image.size, fsize)
 
@@ -87,7 +88,7 @@ def _uploader(resize_size, final_size):
             assert not os.path.exists(dest_image.filename)
     else:
         dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
-        tasks.resize_icon(src.name, dest.name, resize_size)
+        tasks.resize_icon(src.name, dest.name, resize_size, locally=True)
         dest_image = Image.open(dest.name)
         eq_(dest_image.size, final_size)
 
@@ -174,7 +175,7 @@ class TestFetchManifest(amo.tests.TestCase):
         upload = FileUpload.objects.get(pk=self.upload.pk)
         eq_(upload.name, 'http://xx.com/manifest.json')
         eq_(upload.is_webapp, True)
-        eq_(open(upload.path).read(), 'woo')
+        eq_(storage.open(upload.path).read(), 'woo')
 
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_call_validator(self, validator_mock):
@@ -264,7 +265,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
         tasks.fetch_manifest('url', self.upload.pk)
         upload = self.get_upload()
-        with open(upload.path, 'rb') as fp:
+        with storage.open(upload.path, 'rb') as fp:
             manifest = fp.read()
             json.loads(manifest)  # no parse error
             assert not manifest.startswith(codecs.BOM_UTF8)

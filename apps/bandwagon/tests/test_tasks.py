@@ -24,8 +24,7 @@ def test_resize_icon():
 
     src_image = Image.open(src.name)
     eq_(src_image.size, (82, 31))
-
-    resize_icon(src.name, dest.name)
+    resize_icon(src.name, dest.name, locally=True)
 
     dest_image = Image.open(dest.name)
     eq_(dest_image.size, (32, 12))
@@ -42,7 +41,7 @@ def test_resize_icon_poorly():
     src_image = Image.open(src.name)
     eq_(src_image.size, (82, 31))
 
-    resize_icon(src.name, src.name)
+    resize_icon(src.name, src.name, locally=True)
 
     # assert nothing happenned
     src_image = Image.open(src.name)

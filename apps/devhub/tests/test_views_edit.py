@@ -586,9 +586,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
-        assert os.path.exists(dest)
+        assert storage.exists(dest)
 
-        eq_(Image.open(dest).size, (32, 12))
+        eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_media_icon_log(self):
         self.test_edit_media_uploadedicon()
@@ -627,9 +627,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 
-        assert os.path.exists(dest)
+        assert storage.exists(dest)
 
-        eq_(Image.open(dest).size, (48, 48))
+        eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def check_image_type(self, url, msg):
         img = '%s/js/zamboni/devhub.js' % settings.MEDIA_ROOT
@@ -652,13 +652,14 @@ class TestEditMedia(TestEdit):
         self.icon_dest = os.path.join(addon.get_icon_dir(),
                                       '%s-32.png' % addon.id)
         os.makedirs(os.path.dirname(self.icon_dest))
-        open(self.icon_dest, 'w')
+        with storage.open(self.icon_dest, 'w') as f:
+            f.write('some icon data\n')
 
         self.preview = addon.previews.create()
         self.preview.save()
         os.makedirs(os.path.dirname(self.preview.thumbnail_path))
-        open(self.preview.thumbnail_path, 'w')
-
+        with storage.open(self.preview.thumbnail_path, 'w') as f:
+            f.write('some icon data\n')
         self.url = reverse('devhub.ajax.image.status', args=[addon.slug])
 
     def test_image_status_no_choice(self):

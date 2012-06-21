@@ -6,6 +6,7 @@ import logging
 import os
 import socket
 import sys
+import tempfile
 import traceback
 import urllib2
 import uuid
@@ -26,6 +27,7 @@ from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
 from devhub import perf
+from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
 
 from PIL import Image
@@ -92,8 +94,6 @@ def file_validator(file_id, **kw):
         return None
     log.info('VALIDATING file: %s' % file_id)
     file = File.objects.get(pk=file_id)
-    # Unlike upload validation, let the validator
-    # raise an exception if there is one.
     result = run_validator(file.file_path)
     return FileValidation.from_json(file, result)
 
@@ -141,17 +141,29 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    with statsd.timer('devhub.validator'):
-        return validate(file_path,
-                        for_appversions=for_appversions,
-                        format='json',
-                        # When False, this flag says to stop testing after one
-                        # tier fails.
-                        determined=test_all_tiers,
-                        approved_applications=apps,
-                        spidermonkey=settings.SPIDERMONKEY,
-                        overrides=overrides,
-                        timeout=settings.VALIDATOR_TIMEOUT)
+    path = file_path
+    if path and not os.path.exists(path) and storage.exists(path):
+        path = tempfile.mktemp(suffix='_' + os.path.basename(file_path))
+        with open(path, 'wb') as f:
+            copyfileobj(storage.open(file_path), f)
+        temp = True
+    else:
+        temp = False
+    try:
+        with statsd.timer('devhub.validator'):
+            return validate(path,
+                            for_appversions=for_appversions,
+                            format='json',
+                            # When False, this flag says to stop testing after one
+                            # tier fails.
+                            determined=test_all_tiers,
+                            approved_applications=apps,
+                            spidermonkey=settings.SPIDERMONKEY,
+                            overrides=overrides,
+                            timeout=settings.VALIDATOR_TIMEOUT)
+    finally:
+        if temp:
+            os.remove(path)
 
 
 @task(rate_limit='4/m')
@@ -188,17 +200,21 @@ def flag_binary(ids, **kw):
 
 @task
 @set_modified_on
-def resize_icon(src, dst, size, **kw):
+def resize_icon(src, dst, size, locally=False, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
     try:
         if isinstance(size, list):
             for s in size:
                 resize_image(src, '%s-%s.png' % (dst, s), (s, s),
-                             remove_src=False)
-            storage.delete(src)
+                             remove_src=False, locally=locally)
+            if locally:
+                os.remove(src)
+            else:
+                storage.delete(src)
         else:
-            resize_image(src, dst, (size, size), remove_src=True)
+            resize_image(src, dst, (size, size), remove_src=True,
+                         locally=locally)
         return True
     except Exception, e:
         log.error("Error saving addon icon: %s" % e)
@@ -289,7 +305,7 @@ def packager(data, feature_set, **kw):
             except Exception, err:
                 log.error(u'Failed to package add-on: %s' % err)
                 raise
-            if os.path.exists(dest):
+            if storage.exists(dest):
                 log.info(u'Package saved: %s' % dest)
 
 

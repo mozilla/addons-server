@@ -8,6 +8,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.core import mail
 from django.utils.http import urlencode
+from django.core.files.storage import default_storage as storage
 
 import jingo
 from jingo.helpers import datetime as datetime_filter
@@ -1992,9 +1993,9 @@ class TestSubmitStep4(TestSubmitBase):
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
-        assert os.path.exists(dest)
+        assert storage.exists(dest)
 
-        eq_(Image.open(dest).size, (32, 12))
+        eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_media_uploadedicon_noresize(self):
         img = "%s/img/notifications/error.png" % settings.MEDIA_ROOT
@@ -2025,9 +2026,9 @@ class TestSubmitStep4(TestSubmitBase):
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 
-        assert os.path.exists(dest)
+        assert storage.exists(dest)
 
-        eq_(Image.open(dest).size, (48, 48))
+        eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def test_client_lied(self):
         filehandle = open(get_image_path('non-animated.gif'), 'rb')
@@ -2409,7 +2410,7 @@ class TestUpload(BaseUploadTest):
         upload = FileUpload.objects.get(name='animated.png')
         eq_(upload.name, 'animated.png')
         data = open(get_image_path('animated.png'), 'rb').read()
-        eq_(open(upload.path).read(), data)
+        eq_(storage.open(upload.path).read(), data)
 
     def test_fileupload_user(self):
         self.client.login(username='regular@mozilla.com', password='password')

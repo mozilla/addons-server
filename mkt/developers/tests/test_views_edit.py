@@ -3,6 +3,7 @@ import os
 import tempfile
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose import SkipTest
@@ -575,9 +576,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % webapp.id)
 
-        eq_(os.path.exists(dest), True)
+        eq_(storage.exists(dest), True)
 
-        eq_(Image.open(dest).size, (32, 12))
+        eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_icon_log(self):
         self.test_edit_uploadedicon()
@@ -617,9 +618,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % webapp.id)
 
-        assert os.path.exists(dest)
+        assert storage.exists(dest)
 
-        eq_(Image.open(dest).size, (48, 48))
+        eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def test_no_video_types(self):
         res = self.client.get(self.get_url('media', edit=True))

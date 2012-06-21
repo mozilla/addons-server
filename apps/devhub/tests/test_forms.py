@@ -13,6 +13,7 @@ import paypal
 from applications.models import AppVersion
 from addons.models import Addon, Charity
 from devhub import forms
+from files.helpers import copyfileobj
 from files.models import FileUpload
 from market.models import AddonPremium
 from users.models import UserProfile
@@ -105,7 +106,8 @@ class TestPreviewForm(amo.tests.TestCase):
         name = 'transparent.png'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
+        with storage.open(os.path.join(self.dest, name), 'w') as f:
+            copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
@@ -115,7 +117,8 @@ class TestPreviewForm(amo.tests.TestCase):
         name = 'non-animated.gif'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
+        with storage.open(os.path.join(self.dest, name), 'w') as f:
+            copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon)
         eq_(addon.previews.all()[0].sizes,

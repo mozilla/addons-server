@@ -76,7 +76,7 @@ class TestPackager(amo.tests.TestCase):
         eq_(d.attr('data-downloadurl'),
             reverse('devhub.package_addon_json', args=[pkg_name]))
 
-        assert os.path.isfile(packager_path(pkg_name)), (
+        assert storage.exists(packager_path(pkg_name)), (
             'Package was not created.')
         pkg = self.client.get(reverse('devhub.package_addon_download',
                               args=[pkg_name]))
@@ -233,7 +233,7 @@ class TestPackagerDownload(amo.tests.TestCase):
     def _prep_mock_package(self, name):
         """Prep a fake package to be downloaded."""
         path = packager_path(name)
-        with open(path, mode='w') as package:
+        with storage.open(path, mode='w') as package:
             package.write('ready')
         return path
 
@@ -259,7 +259,7 @@ class TestPackagerDownload(amo.tests.TestCase):
         data = json.loads(r.content)
 
         # Size in kB.
-        eq_(data['size'], round(os.path.getsize(dst) / 1024, 1))
+        eq_(data['size'], round(storage.open(dst).size / 1024, 1))
 
         eq_(data['filename'], os.path.basename(dst))
 

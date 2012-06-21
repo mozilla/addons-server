@@ -5,6 +5,7 @@ import logging
 import os
 import socket
 import sys
+import tempfile
 import traceback
 import urllib2
 import urlparse
@@ -28,7 +29,8 @@ from amo.decorators import set_modified_on, write
 from amo.utils import remove_icons, resize_image, strip_bom
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
-from files.models import File, FileUpload, FileValidation
+from files.helpers import copyfileobj
+from files.models import FileUpload, File, FileValidation
 
 
 log = logging.getLogger('z.mkt.developers.task')
@@ -152,34 +154,49 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
 
     if not force_validation_type:
         force_validation_type = validator.constants.PACKAGE_ANY
-    with statsd.timer('mkt.developers.validator'):
-        return validate(file_path,
-                        for_appversions=for_appversions,
-                        format='json',
-                        # When False, this flag says to stop testing after one
-                        # tier fails.
-                        determined=test_all_tiers,
-                        approved_applications=apps,
-                        spidermonkey=settings.SPIDERMONKEY,
-                        overrides=overrides,
-                        timeout=settings.VALIDATOR_TIMEOUT,
-                        expectation=force_validation_type,
-                        market_urls=settings.VALIDATOR_IAF_URLS)
+    path = file_path
+    if path and not os.path.exists(path) and storage.exists(path):
+        path = tempfile.mktemp(suffix='_' + os.path.basename(file_path))
+        copyfileobj(storage.open(file_path), open(path, 'wb'))
+        temp = True
+    else:
+        temp = False
+    try:
+        with statsd.timer('mkt.developers.validator'):
+            return validate(path,
+                            for_appversions=for_appversions,
+                            format='json',
+                            # When False, this flag says to stop testing after one
+                            # tier fails.
+                            determined=test_all_tiers,
+                            approved_applications=apps,
+                            spidermonkey=settings.SPIDERMONKEY,
+                            overrides=overrides,
+                            timeout=settings.VALIDATOR_TIMEOUT,
+                            expectation=force_validation_type,
+                            market_urls=settings.VALIDATOR_IAF_URLS))
+    finally:
+        if temp:
+            os.remove(path)
 
 
 @task
 @set_modified_on
-def resize_icon(src, dst, size, **kw):
+def resize_icon(src, dst, size, locally=False, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
     try:
         if isinstance(size, list):
             for s in size:
                 resize_image(src, '%s-%s.png' % (dst, s), (s, s),
-                             remove_src=False)
-            os.remove(src)
+                             remove_src=False, locally=locally)
+            if locally:
+                os.remove(src)
+            else:
+                storage.delete(src)
         else:
-            resize_image(src, dst, (size, size), remove_src=True)
+            resize_image(src, dst, (size, size), remove_src=True,
+                         locally=locally)
         return True
     except Exception, e:
         log.error("Error saving addon icon: %s" % e)

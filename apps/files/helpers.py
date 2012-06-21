@@ -95,9 +95,9 @@ class FileViewer:
                 os.makedirs(self.dest)
             except OSError, err:
                 pass
-            shutil.copyfileobj(storage.open(self.src),
-                               open(os.path.join(self.dest,
-                                                 self.file.filename), 'w'))
+            copyfileobj(storage.open(self.src),
+                        open(os.path.join(self.dest,
+                                          self.file.filename), 'w'))
         else:
             try:
                 extract_xpi(self.src, self.dest, expand=True)
@@ -395,3 +395,21 @@ class DiffHelper:
             if obj.is_directory():
                 return False
         return True
+
+
+def copyfileobj(fsrc, fdst, length=64*1024):
+    """copy data from file-like object fsrc to file-like object fdst"""
+    while 1:
+        buf = fsrc.read(length)
+        if not buf:
+            break
+        fdst.write(buf)
+
+
+def rmtree(prefix):
+    dirs, files = storage.listdir(prefix)
+    for fname in files:
+        storage.delete(os.path.join(prefix, fname))
+    for d in dirs:
+        rmtree(os.path.join(prefix, d))
+    storage.delete(prefix)
