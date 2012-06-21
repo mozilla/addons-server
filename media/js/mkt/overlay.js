@@ -1,4 +1,9 @@
 (function() {
+    z.body.on('touchmove', '.overlay', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
     function dismiss() {
         var $overlay = $('.overlay.show');
         if ($overlay.length) {
@@ -6,6 +11,7 @@
             $(window).trigger('overlay_dismissed');
         }
     }
+
     z.page.on('fragmentloaded', function(e) {
         // Dismiss overlay when we load a new fragment.
         dismiss();

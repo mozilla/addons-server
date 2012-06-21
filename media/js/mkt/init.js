@@ -25,11 +25,6 @@ z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
     }
 })();
 
-z.body.on('touchmove', '.overlay', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-});
-
 // Initialize webtrends tracking.
 z.page.on('fragmentloaded', webtrendsAsyncInit);
 
