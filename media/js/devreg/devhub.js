@@ -447,7 +447,7 @@ function initUploadPreview() {
     function upload_start(e, file) {
         if ($f.is('#edit-addon-admin')) {
             // No formsets here, so easy peasy!
-            form = $('.preview:last-child');
+            form = $('.preview');
             form.find('.delete input').removeAttr('checked');
         } else {
             form = create_new_preview_field();
