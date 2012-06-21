@@ -447,7 +447,7 @@ function initUploadPreview() {
     function upload_start(e, file) {
         if ($f.is('#edit-addon-admin')) {
             // No formsets here, so easy peasy!
-            form = $('.preview');
+            form = $('.preview:last-child');
             form.find('.delete input').removeAttr('checked');
         } else {
             form = create_new_preview_field();
@@ -579,7 +579,7 @@ function initUploadIcon() {
         },
 
         upload_success = function(e, file, upload_hash) {
-            $('#id_icon_upload_hash').val(upload_hash)
+            $('#id_icon_upload_hash').val(upload_hash);
             $('#icons_default a.active').removeClass('active');
 
             $('#icon_preview img').attr('src', file.dataURL);
@@ -672,9 +672,9 @@ function initPayments(delegate) {
   var $delegate = $(delegate || document.body);
     if (z.noEdit) return;
     var previews = [
-        "img/zamboni/contributions/passive.png",
-        "img/zamboni/contributions/after.png",
-        "img/zamboni/contributions/roadblock.png",
+        'img/zamboni/contributions/passive.png',
+        'img/zamboni/contributions/after.png',
+        'img/zamboni/contributions/roadblock.png'
     ],
         media_url = $("body").attr("data-media-url"),
         to = false,
@@ -913,7 +913,7 @@ function imagePoller() {
         window.clearTimeout(this.poll);
         this.poll = null;
     };
-};
+}
 
 var imageStatus = {
     start: function(do_icon, do_preview) {
@@ -957,7 +957,7 @@ var imageStatus = {
                     }
                 };
                 img.onerror = function() {
-                    setTimeout(function(){ check_images(el) }, 2500);
+                    setTimeout(function() { check_images(el); }, 2500);
                     self.polling();
                     $this.attr('style', '').addClass('preview-error');
                     delete img;
@@ -1015,7 +1015,7 @@ function multipartUpload(form, onreadystatechange) {
         submit_items = [],
         output = "";
 
-    xhr.open("POST", form.attr('action'), true)
+    xhr.open("POST", form.attr('action'), true);
     xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
     xhr.setRequestHeader('Content-length', false);
     xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
@@ -1042,7 +1042,7 @@ function multipartUpload(form, onreadystatechange) {
         output += "--" + boundary + "\r\n";
         output += "Content-Disposition: form-data; name=\"" + v.name + "\";";
 
-        if(v.file_name != undefined) {
+        if (v.file_name !== undefined) {
             output += " filename=\"new-upload\";\r\n";
             output += "Content-Type: " + v.file_type;
         }
@@ -1055,8 +1055,8 @@ function multipartUpload(form, onreadystatechange) {
 
     output += "--" + boundary + "--";
 
-    if(onreadystatechange) {
-        xhr.onreadystatechange = function(e){ onreadystatechange(e, xhr); }
+    if (onreadystatechange) {
+        xhr.onreadystatechange = function(e) { onreadystatechange(e, xhr); };
     }
 
     xhr.sendAsBinary(output);
@@ -1088,7 +1088,7 @@ function initTruncateSummary() {
             text = $summary.val(),
             submitted = ($('.errorlist li', $submit_describe).length > 0);
 
-        if($desc.val() == "" && text.length > max_length && !submitted) {
+        if($desc.val() === '' && text.length > max_length && !submitted) {
             var new_text = text.substr(0, max_length),
                 // New line or punctuation followed by a space
                 punctuation = new_text.match(/\n|[.?!]\s/g);
