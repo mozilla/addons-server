@@ -26,7 +26,11 @@
     <hgroup class="c">
       <h1 class="addon"{{ addon.name|locale_html }}>
         {# L10n: {0} is an add-on name #}
-        {{ _('Statistics for {0}')|f(addon.name) }}
+        {% if not inapp %}
+          {{ _('Statistics for {0}')|f(addon.name) }}
+        {% else %}
+          {{ _('Statistics for {0}')|f(inapp) }}
+        {% endif %}
       </h1>
     </hgroup>
 
@@ -35,7 +39,7 @@
         <li>{{ _('Controls:') }}</li>
         <li>
           <a id="chart-zoomout" class="inactive" href="#">
-               {{ _('reset zoom') }}
+             {{ _('reset zoom') }}
           </a>
         </li>
       </ul>
@@ -73,20 +77,20 @@
       <ul>
         <li>{{ _('For last:') }}</li>
         <li data-range="7 days"
-            {% if range == '7' %}class="selected"{% endif %}>
-            <a class="week" href="#">{{ _('7 days') }}</a></li>
+          {% if range == '7' %}class="selected"{% endif %}>
+          <a class="week" href="#">{{ _('7 days') }}</a></li>
         <li data-range="30 days"
-            {% if range == '30' %}class="selected"{% endif %}>
-            <a class="month" href="#">{{ _('30 days') }}</a></li>
+          {% if range == '30' %}class="selected"{% endif %}>
+          <a class="month" href="#">{{ _('30 days') }}</a></li>
         <li data-range="90 days"
-            {% if range == '90' %}class="selected"{% endif %}>
-            <a href="#">{{ _('90 days') }}</a></li>
+          {% if range == '90' %}class="selected"{% endif %}>
+          <a href="#">{{ _('90 days') }}</a></li>
         <li data-range="365 days"
-            {% if range == '365' %}class="selected"{% endif %}>
-            <a href="#">{{ _('365 days') }}</a></li>
+          {% if range == '365' %}class="selected"{% endif %}>
+          <a href="#">{{ _('365 days') }}</a></li>
         <li data-range="custom"
-            {% if range == 'custom' %}class="selected"{% endif %}>
-            <a id="custom-date-range" href="#">{{ _('Custom&hellip;') }}</a></li>
+          {% if range == 'custom' %}class="selected"{% endif %}>
+          <a id="custom-date-range" href="#">{{ _('Custom&hellip;') }}</a></li>
       </ul>
     </div>
 
@@ -94,13 +98,13 @@
       <ul>
         <li>{{ _('Group by:') }}</li>
         <li data-group="day">
-            <a href="#">{{ _('Day') }}</a>
+          <a class="group-day" href="#">{{ _('Day') }}</a>
         </li>
         <li data-group="week">
-            <a href="#">{{ _('Week') }}</a>
+          <a class="group-week" href="#">{{ _('Week') }}</a>
         </li>
         <li data-group="month">
-            <a href="#">{{ _('Month') }}</a>
+          <a class="group-month" href="#">{{ _('Month') }}</a>
         </li>
       </ul>
     </div>

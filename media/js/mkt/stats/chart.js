@@ -177,6 +177,7 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
+        var offset = 0;
         var date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.tickInterval = (end - start) / 16;
@@ -184,6 +185,8 @@
         baseConfig.xAxis.max = end;
         // Set sensible spacing between ticks (so text doesn't overlap).
         if (group == 'day') {
+            // Magic number to line up points and axis for now.
+            offset = start.getTimezoneOffset() * 160000;
             if (date_range_days <= 7) {
                 baseConfig.xAxis.tickInterval = (end - start) / 7;
             }
@@ -201,6 +204,14 @@
             if (date_range_days > 365 * 2) {
                 baseConfig.xAxis.tickInterval = (end - start) / 16;
             }
+        }
+
+        // Disable group links if they don't fit into the date range.
+        if (date_range_days <= 7) {
+            $('a.group-week, a.group-month').addClass('inactive').bind('click', false);
+        }
+        if (date_range_days <= 30) {
+            $('a.group-month').addClass('inactive').bind('click', false);
         }
 
         // Set minimum max value for yAxis to prevent duplicate yAxis values.
@@ -226,7 +237,7 @@
                 'id'    : id,
                 'pointInterval' : pointInterval,
                 // Add offset to line up points and ticks on day grouping.
-                'pointStart' : start.getTime() - start.getTimezoneOffset() * 195000,
+                'pointStart' : start.getTime() - offset,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
