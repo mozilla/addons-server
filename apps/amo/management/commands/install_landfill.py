@@ -1,8 +1,12 @@
 from datetime import date
+from gzip import GzipFile
 from optparse import make_option
 import os
 import shlex
+from StringIO import StringIO
 from subprocess import Popen, PIPE
+
+import requests
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -30,18 +34,18 @@ class Command(BaseCommand):
                     dest='no_download',
                     default=False,
                     help='Use already downloaded landfill file.'),
+        make_option('--no-save-file',
+                    action='store_true',
+                    dest='no_save_file',
+                    default=False,
+                    help='Do not save the file downloaded from allizom.'),
         )
 
     def handle(self, *args, **kw):
         filename = date.today().strftime('landfill-%Y-%m-%d.sql.gz')
         file_location = '/tmp/%s' % filename
+        file_url = 'https://landfill.addons.allizom.org/db/%s' % filename
 
-        get_file = ('wget --no-check-certificate -O %(file_location)s '
-                    'https://landfill.addons.allizom.org/db/%(filename)s' % {
-                        'file_location': file_location,
-                        'filename': filename,
-                    })
-        load_dump = 'gzcat %s' % file_location
         write_dump = 'mysql -u%(db_user)s %(db_name)s' % {
             'db_user': settings.DATABASES['default']['USER'],
             'db_name': settings.DATABASES['default']['NAME'],
@@ -50,21 +54,31 @@ class Command(BaseCommand):
         if kw['no_download']:
             if os.path.exists(file_location):
                 print('Skipping landfill download and using %s' % file_location)
+                landfill_file = GzipFile(filename=file_location,
+                                         mode='rb').read()
             else:
                 print('No file for the current day')
                 print('expected: %s' % file_location)
                 return
         else:
-            print('Removing existing landfill file before downloading')
             print('Downloading landfill file.')
-            download_process = Popen(shlex.split(get_file))
-            download_process.wait()
+            gzipped_file = requests.get(file_url, verify=False).content
+            landfill_file = GzipFile(
+                fileobj=StringIO(gzipped_file),
+                mode='rb').read()
 
+        if not kw['no_save_file']:
+            if os.path.exists(file_location):
+                print('File already exists not overwriting: %s' % file_location)
+            else:
+                with open(file_location, 'wb') as f:
+                    print('Saving file to %s' % file_location)
+                    f.write(gzipped_file)
         print('Piping file into mysql.')
-        loader_process = Popen(shlex.split(load_dump),
-                               stdout=PIPE)
-        writer_process = Popen(shlex.split(write_dump),
-                               stdin=loader_process.stdout)
+        writer_process = Popen(
+            shlex.split(write_dump),
+            stdin=PIPE)
+        writer_process.communicate(input=landfill_file)
         writer_process.wait()
         if kw['no_notice']:
             print('Removing landfile site notice.')
