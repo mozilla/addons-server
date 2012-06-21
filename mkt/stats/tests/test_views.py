@@ -9,7 +9,7 @@ from access.models import Group, GroupUser
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from mkt.webapps.models import Installed
 from mkt.stats import search, tasks, views
 from mkt.stats.views import (get_series_column, get_series_line,
@@ -157,6 +157,21 @@ class TestStatsPermissions(StatsTest):
             format='json'), 200)
         self._check_it(self.private_views_gen(
             app_slug=self.public_app.app_slug, format='json'), 403)
+
+    def test_non_public_app_redirect(self):
+        # Non-public status redirects to detail page.
+        app = amo.tests.app_factory(status=2, public_stats=True)
+        response = self.client.get(app.get_stats_url())
+        eq_(response.status_code, 302)
+
+    def test_non_public_app_owner_no_redirect(self):
+        # Non-public status, but owner of app, does not redirect to detail
+        # page.
+        self.login_as_visitor()
+        app = amo.tests.app_factory(status=2, public_stats=True)
+        AddonUser.objects.create(addon_id=app.id, user=self.user_profile)
+        response = self.client.get(app.get_stats_url())
+        eq_(response.status_code, 200)
 
 
 class TestInstalled(amo.tests.ESTestCase):

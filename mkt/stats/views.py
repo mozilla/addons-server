@@ -2,16 +2,20 @@ import datetime
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
+
 import jingo
 
-from addons.decorators import addon_view, addon_view_factory
+from access import acl
 from addons.models import Addon
+import amo
 from amo.decorators import json_view
 from amo.urlresolvers import reverse
-from mkt.webapps.models import Installed
+from mkt.webapps.models import Installed, Webapp
 from stats.models import Contribution, UpdateCount
-from stats.views import (check_series_params_or_404, check_stats_permission,
-                         get_report_view, render_csv, render_json, daterange)
+from stats.views import (check_series_params_or_404, daterange,
+                         get_report_view, render_csv, render_json)
 
 SERIES = ('installs', 'usage', 'revenue', 'sales', 'refunds',
           'currency_revenue', 'currency_sales', 'currency_refunds',
@@ -21,8 +25,14 @@ SERIES_GROUPS_DATE = ('date', 'week', 'month')
 SERIES_FORMATS = ('json', 'csv')
 
 
-@addon_view_factory(Addon.objects.valid)
+@addon_view_factory(Webapp.objects.all)
 def stats_report(request, addon, report):
+    # Redirect to detail page for non-public/pending apps if not author.
+    if (addon.status is not amo.STATUS_PUBLIC and
+        not check_stats_permission(request, addon, for_contributions=True,
+                                   no_raise=True)):
+        return redirect(addon.get_detail_url())
+
     check_stats_permission(request, addon)
     stats_base_url = reverse('mkt.stats.overview', args=[addon.app_slug])
     view = get_report_view(request)
@@ -251,6 +261,42 @@ def source_series(request, addon, group, start, end, format,
         return render_csv(request, addon, series, ['source', 'count'])
     elif format == 'json':
         return render_json(request, addon, series)
+
+
+def check_stats_permission(request, addon, for_contributions=False,
+                           no_raise=False):
+    """
+    Check if user is allowed to view stats for ``addon``.
+
+    no_raise -- if enabled function returns true or false
+                else function raises PermissionDenied
+                if user is not allowed.
+    """
+    # If public, non-contributions: everybody can view.
+    if addon.public_stats and not for_contributions:
+        return True
+
+    # Everything else requires an authenticated user.
+    if not request.user.is_authenticated():
+        if no_raise:
+            return False
+        raise PermissionDenied
+
+    if not for_contributions:
+        # Only authors and Stats Viewers allowed.
+        if (addon.has_author(request.amo_user) or
+            acl.action_allowed(request, 'Stats', 'View')):
+            return True
+
+    else:  # For contribution stats.
+        # Only authors and Contribution Stats Viewers.
+        if (addon.has_author(request.amo_user) or
+            acl.action_allowed(request, 'RevenueStats', 'View')):
+            return True
+
+    if no_raise:
+        return False
+    raise PermissionDenied
 
 
 def pad_missing_stats(days, group, date_range=None, fields=None):

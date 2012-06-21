@@ -263,7 +263,8 @@ def check_series_params_or_404(group, start, end, format):
 
 
 def check_stats_permission(request, addon, for_contributions=False):
-    """Check if user is allowed to view stats for ``addon``.
+    """
+    Check if user is allowed to view stats for ``addon``.
 
     Raises PermissionDenied if user is not allowed.
     """
