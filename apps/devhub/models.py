@@ -350,8 +350,11 @@ class ActivityLog(amo.models.ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = _('Version %s') % arg.version
-                version = self.f(u'<a href="{0}">{1}</a>',
-                                 arg.get_url_path(), text)
+                if settings.MARKETPLACE:
+                    version = self.f(text)
+                else:
+                    version = self.f(u'<a href="{0}">{1}</a>',
+                                     arg.get_url_path(), text)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = self.f(u'<a href="{0}">{1}</a>',

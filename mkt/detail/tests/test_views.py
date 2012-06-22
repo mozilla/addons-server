@@ -17,6 +17,7 @@ from amo.helpers import external_url, numberfmt, urlparams
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from devhub.models import ActivityLog
 from market.models import PreApprovalUser
 from users.models import UserProfile
 
@@ -612,3 +613,45 @@ class TestReportAbuse(DetailBase):
         self.client.post(self.url, {'text': 'spammy'})
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=self.webapp)
+
+
+class TestActivity(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.reviewer = UserProfile.objects.get(username='admin')
+        self.user = UserProfile.objects.get(pk=999)
+        self.url = reverse('acct_lookup.user_activity', args=[self.user.pk])
+
+    def test_not_allowed(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_not_even_mine(self):
+        self.client.login(username=self.user.email, password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_access(self):
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('.simple-log div')), 0)
+
+    def test_log(self):
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        log_item = ActivityLog.objects.get(action=amo.LOG.ADMIN_VIEWED_LOG.id)
+        eq_(len(log_item.arguments), 1)
+        eq_(log_item.arguments[0].id, self.reviewer.id)
+        eq_(log_item.user, self.user)
+
+    def test_display(self):
+        amo.log(amo.LOG.CREATE_ADDON, self.app, user=self.user)
+        amo.log(amo.LOG.ADMIN_USER_EDITED, self.user, 'spite', user=self.user)
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        assert 'created' in doc('li.item').eq(0).text()
+        assert 'edited' in doc('li.item').eq(1).text()
+

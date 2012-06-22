@@ -1,0 +1,47 @@
+{% extends 'mkt/base.html' %}
+
+{% block content %}
+  <section class="island c">
+    <section id="activity-info">
+      <h2>{{ _('App Updates') }}</h2>
+      <ol class="simple-log">
+        {% for item in user_items %}
+        <li class="item">
+          <p>
+            <span class="action {{ log_action_class(item.action) }}"></span>
+            {{ item }}
+          </p>
+          <p class="timestamp">
+          {% trans user=item.user|user_link, ago=item.created|timesince,
+                   iso=item.created|isotime,
+                   pretty=item.created|babel_datetime %}
+          <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
+          by {{ user }}
+          {% endtrans %}
+          </p>
+        </li>
+        {% endfor %}
+      </ol>
+      {# Show this if the account belongs to an admin/reviewer #}
+      <h2>{{ _('Administrative Actions') }}</h2>
+      <ol class="simple-log">
+        {% for item in admin_items %}
+        <li class="item">
+          <p>
+            <span class="action {{ log_action_class(item.action) }}"></span>
+            {{ item }}
+          </p>
+          <p class="timestamp">
+          {% trans user=item.user|user_link, ago=item.created|timesince,
+                   iso=item.created|isotime,
+                   pretty=item.created|babel_datetime %}
+          <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
+          by {{ user }}
+          {% endtrans %}
+          </p>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+  </section>
+{% endblock %}

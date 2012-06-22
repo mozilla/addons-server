@@ -8,7 +8,10 @@ from tower import ugettext as _
 from abuse.models import send_abuse_report
 from access import acl
 from addons.decorators import addon_view_factory
+import amo
+from amo.decorators import login_required, permission_required
 from amo.forms import AbuseForm
+from devhub.models import ActivityLog
 from reviews.models import Review
 
 from mkt.site import messages
@@ -65,3 +68,19 @@ def abuse_recaptcha(request, addon):
     else:
         return jingo.render(request, 'detail/abuse_recaptcha.html',
                             {'product': addon, 'abuse_form': form})
+
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+@addon_view
+def app_activity(request, addon):
+    """Shows the app activity age for single app."""
+
+    user_items = ActivityLog.objects.for_apps([addon]).exclude(
+        action__in=amo.LOG_HIDE_DEVELOPER)
+    admin_items = ActivityLog.objects.for_apps([addon]).filter(
+        action__in=amo.LOG_HIDE_DEVELOPER)
+    return jingo.render(request, 'detail/app_activity.html',
+                        {'user_items': user_items,
+                         'admin_items': admin_items})

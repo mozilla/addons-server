@@ -22,4 +22,6 @@ urlpatterns = patterns('',
 
     # Ratings.
     ('^reviews/', include(review_patterns)),
+
+    url('^activity/', views.app_activity, name='detail.app_activity'),
 )
