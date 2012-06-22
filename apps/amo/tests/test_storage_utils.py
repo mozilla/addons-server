@@ -93,6 +93,12 @@ class TestFileOps(unittest.TestCase):
         copy_stored_file(src, dest)
         eq_(self.contents(dest), '<contents>')
 
+    def test_self_copy(self):
+        src = self.newfile('src.txt', '<contents>')
+        dest = self.path('src.txt')
+        copy_stored_file(src, dest)
+        eq_(self.contents(dest), '<contents>')
+
     def test_move(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')

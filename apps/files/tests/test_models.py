@@ -140,7 +140,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         assert hide_mock.called
 
     @mock.patch('files.models.File.unhide_disabled_file')
-    def test_unhide_disabled_file(self, unhide_mock):
+    def test_unhide_on_enable(self, unhide_mock):
         f = File.objects.get(pk=67442)
         f.status = amo.STATUS_PUBLIC
         f.save()
@@ -155,6 +155,15 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.status = amo.STATUS_PUBLIC
         f.save()
         assert unhide_mock.called
+
+    def test_unhide_disabled_files(self):
+        f = File.objects.get(pk=67442)
+        f.status = amo.STATUS_PUBLIC
+        with storage.open(f.guarded_file_path, 'wb') as fp:
+            fp.write('some data\n')
+        f.unhide_disabled_file()
+        assert storage.exists(f.file_path)
+        assert storage.open(f.file_path).size
 
     def test_unhide_disabled_file_mirroring(self):
         tmp = tempfile.mkdtemp()

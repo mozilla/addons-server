@@ -46,6 +46,8 @@ def copy_stored_file(src_path, dest_path, storage=default_storage,
 
     Each path will be managed by the same storage implementation.
     """
+    if src_path == dest_path:
+        return
     with storage.open(src_path, 'rb') as src:
         with storage.open(dest_path, 'wb') as dest:
             done = False
