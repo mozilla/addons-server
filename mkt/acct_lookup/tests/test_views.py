@@ -548,6 +548,6 @@ class TestActivity(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        assert 'purchased' in doc('#activity-info .item').eq(0).text()
-        assert 'edited' in doc('#activity-info .item').eq(1).text()
+        assert 'purchased' in doc('li.item').eq(0).text()
+        assert 'edited' in doc('li.item').eq(1).text()
 
