@@ -1455,3 +1455,8 @@ IN_TEST_SUITE = False
 # Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
 # Flip this on in your local settings to experience the joy of ES tests.
 RUN_ES_TESTS = False
+
+# All JS vendor libraries in this list will be excluded from mozmarket.js.
+# For example, if receiptverifier is broken and you need to disable it, add
+# 'receiptverifier' to the list. See also mkt/site/views.py.
+MOZMARKET_VENDOR_EXCLUDE = ['receiptverifier']

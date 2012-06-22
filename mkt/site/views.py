@@ -94,9 +94,13 @@ def record(request):
 @cache_page(60 * 60)
 @no_login_required
 def mozmarket_js(request):
-    with open(os.path.join(settings.ROOT, 'vendor', 'js',
-                           'receiptverifier',
-                           'receiptverifier.js'), 'r') as fp:
-        vendor_js = [('receiptverifier', fp.read())]
+    vendor_js = []
+    for lib, path in (('receiptverifier',
+                       'receiptverifier/receiptverifier.js'),):
+        if lib in settings.MOZMARKET_VENDOR_EXCLUDE:
+            continue
+        with open(os.path.join(settings.ROOT,
+                               'vendor', 'js', path), 'r') as fp:
+            vendor_js.append((lib, fp.read()))
     return jingo.render(request, 'site/mozmarket.js', {'vendor_js': vendor_js},
                         content_type='text/javascript')

@@ -83,6 +83,12 @@ class TestMozmarketJS(amo.tests.TestCase):
         resp = self.render()
         self.assertContains(resp, 'exports.receipts.Verifier')
 
+    @mock.patch.object(settings, 'MOZMARKET_VENDOR_EXCLUDE',
+                       ['receiptverifier'])
+    def test_exclude(self):
+        resp = self.render()
+        self.assertNotContains(resp, 'exports.receipts.Verifier')
+
 
 class TestRobots(amo.tests.TestCase):
 
