@@ -53,32 +53,38 @@ class Price(amo.models.ModelBase):
         Price._currencies = dict([(p.currency, p.tier_id), p]
                                  for p in PriceCurrency.objects.all())
 
-    def _price(self):
-        """
-        Return the price and currency for the current locale.
-        This will take the locale and find the tier, should one
-        exist.
+    def get_price_data(self, currency=None):
+        """Returns a tuple of Decimal(price), currency, locale.
+
+        The price is the actual price in the current locale.
+        That is, if the instance is tier 1 ($0.99) and the current locale
+        maps to Euros then you get 5,01 EUR or whatever the exchange is.
+
+        If currency is None, the default currency from the current locale will
+        be returned. If you do pass in an explicit currency, you will still
+        get the currently active locale which may or may not match.
         """
         if not hasattr(self, '_currencies'):
             Price.transformer([])
 
         lang = translation.get_language()
         locale = get_locale_from_lang(lang)
-        currency = amo.LOCALE_CURRENCY.get(locale.language)
+        if not currency:
+            currency = amo.LOCALE_CURRENCY.get(locale.language)
         if currency:
             price_currency = Price._currencies.get((currency, self.id), None)
             if price_currency:
                 return price_currency.price, currency, locale
 
-        return self.price, self.currency, locale
+        return self.price, currency or self.currency, locale
 
-    def get_price(self):
+    def get_price(self, currency=None):
         """Return the price as a decimal for the current locale."""
-        return self._price()[0]
+        return self.get_price_data(currency=currency)[0]
 
-    def get_price_locale(self):
+    def get_price_locale(self, currency=None):
         """Return the price as a nicely localised string for the locale."""
-        price, currency, locale = self._price()
+        price, currency, locale = self.get_price_data(currency=currency)
         return numbers.format_currency(price, currency, locale=locale)
 
     def currencies(self):

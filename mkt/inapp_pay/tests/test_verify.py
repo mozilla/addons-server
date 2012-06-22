@@ -112,18 +112,6 @@ class TestVerify(PaymentTest):
         eq_(data['nbf'], None)
 
     @raises(InvalidRequest)
-    def test_require_price(self):
-        payload = self.payload()
-        del payload['request']['price']
-        self.verify(self.request(payload=json.dumps(payload)))
-
-    @raises(InvalidRequest)
-    def test_require_currency(self):
-        payload = self.payload()
-        del payload['request']['currency']
-        self.verify(self.request(payload=json.dumps(payload)))
-
-    @raises(InvalidRequest)
     def test_require_name(self):
         payload = self.payload()
         del payload['request']['name']
@@ -160,22 +148,6 @@ class TestVerify(PaymentTest):
         self.verify(self.request() + 'x')
 
     @raises(InvalidRequest)
-    def test_empty_price(self):
-        self.verify(update_request={'price': ''})
-
-    @raises(InvalidRequest)
-    def test_malformed_price(self):
-        self.verify(update_request={'price': 'one hundred thousand dollars'})
-
-    @raises(InvalidRequest)
-    def test_empty_currency(self):
-        self.verify(update_request={'currency': ''})
-
-    @raises(InvalidRequest)
-    def test_unknown_currency(self):
-        self.verify(update_request={'currency': 'ZZZ'})
-
-    @raises(InvalidRequest)
     def test_empty_name(self):
         self.verify(update_request={'name': ''})
 
@@ -198,3 +170,17 @@ class TestVerify(PaymentTest):
     def test_non_public_app(self):
         self.app.update(status=amo.STATUS_PENDING)
         self.verify()
+
+    @raises(InvalidRequest)
+    def test_require_price_tier(self):
+        payload = self.payload()
+        del payload['request']['priceTier']
+        self.verify(self.request(payload=json.dumps(payload)))
+
+    @raises(InvalidRequest)
+    def test_unknown_price_tier(self):
+        self.verify(update_request={'priceTier': 9999})
+
+    @raises(InvalidRequest)
+    def test_malformed_price_tier(self):
+        self.verify(update_request={'priceTier': '<garbage>'})

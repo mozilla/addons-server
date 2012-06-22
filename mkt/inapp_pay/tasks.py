@@ -78,8 +78,7 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
                                 'typ': typ,
                                 'iat': issued_at,
                                 'exp': issued_at + 3600,  # expires in 1 hour
-                                'request': {'price': str(contrib.amount),
-                                            'currency': contrib.currency,
+                                'request': {'priceTier': contrib.price_tier.pk,
                                             'name': payment.name,
                                             'description': payment.description,
                                             'productdata': payment.app_data},

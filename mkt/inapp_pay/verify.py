@@ -11,6 +11,7 @@ import jwt
 from statsd import statsd
 
 import amo
+from market.models import Price
 
 from .forms import PaymentForm, ContributionForm
 from .models import InappConfig
@@ -100,7 +101,6 @@ def verify_request(signed_request):
                                   % (cfg.status), app_id=app_id)
     app_req['_config'] = cfg
 
-    # TODO(Kumar) see bug 736573 for HSM integration
     try:
         with statsd.timer('inapp_pay.verify'):
             jwt.decode(signed_request, cfg.get_private_key(), verify=True)
@@ -161,15 +161,20 @@ def verify_request(signed_request):
     if not isinstance(request, dict):
         raise InvalidRequest('Payment JWT is missing request dict: %r'
                              % request, app_id=app_id)
-    for key in ('price', 'currency', 'name', 'description'):
+    for key in ('priceTier', 'name', 'description'):
         if key not in request:
             raise InvalidRequest('Payment JWT is missing request[%r]'
                                  % key, app_id=app_id)
 
     # Validate values for model integrity.
-    key_trans = {'app_data': 'productdata', 'amount': 'price'}
+    key_trans = {'app_data': 'productdata'}
     for form in (PaymentForm(), ContributionForm()):
         for name, field in form.fields.items():
+            if name in ('amount', 'currency'):
+                # Since we're using price tiers we don't need to complain
+                # about missing amount (which is price in the request)
+                # or currency.
+                continue
             req_field = key_trans.get(name, name)
             value = request[req_field]
             try:
@@ -178,5 +183,17 @@ def verify_request(signed_request):
                 _re_raise_as(InvalidRequest,
                              u'request[%r] is invalid: %s' % (req_field, exc))
 
-    # TODO(Kumar) Prevent repeat payments with nonce (bug 738776).
+    # Validate the price tier.
+    try:
+        if not Price.objects.filter(pk=request['priceTier']).exists():
+            raise InvalidRequest(
+                    u'priceTier:%s is not a supported price tier. Consult the '
+                    u'docs for all supported tiers: '
+                    u'https://developer.mozilla.org/en/Apps/In-app_payments'
+                    % request['priceTier'])
+    except ValueError:
+        _re_raise_as(InvalidRequest,
+                     u'priceTier:%r is not a valid number'
+                     % request['priceTier'])
+
     return app_req

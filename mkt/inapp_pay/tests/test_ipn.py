@@ -17,7 +17,7 @@ from users.models import UserProfile
 @patch('paypal.views.requests.post')
 @patch.object(settings, 'DEBUG', True)
 class TestInappIPN(InappPaymentUtil, PaypalTest):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
+    fixtures = ['webapps/337141-steamcube', 'base/users', 'market/prices']
 
     @patch.object(settings, 'DEBUG', True)
     def setUp(self):

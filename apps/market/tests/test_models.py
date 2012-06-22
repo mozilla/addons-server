@@ -78,6 +78,8 @@ class TestPrice(amo.tests.TestCase):
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)
+        if hasattr(Price, '_currencies'):
+            del Price._currencies  # needed to pick up fixtures.
 
     def test_active(self):
         eq_(Price.objects.count(), 2)
@@ -95,15 +97,26 @@ class TestPrice(amo.tests.TestCase):
     def test_get(self):
         eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
 
+    @mock.patch.object(amo, 'LOCALE_CURRENCY', {'en_US': 'USD'})
     def test_get_locale(self):
-        translation.activate('fr')
-        eq_(Price.objects.filter(pk=2)[0].get_price(), Decimal('1.99'))
-        # If you are in France, you might still get US prices but at
-        # least we'll format into French for you.
-        eq_(Price.objects.filter(pk=2)[0].get_price_locale(), u'1,99\xa0$US')
-        # In this case we have a currency so it's converted into Euro.
-        eq_(Price.objects.filter(pk=1)[0].get_price_locale(),
-            u'5,01\xa0\u20ac')
+        with self.activate('fr'):  # not in locale translations.
+            eq_(Price.objects.filter(pk=2)[0].get_price(), Decimal('1.99'))
+            # If you are in France, you might still get US prices but at
+            # least we'll format into French for you.
+            eq_(Price.objects.filter(pk=2)[0].get_price_locale(),
+                u'1,99\xa0$US')
+
+    def test_get_mapped_locale(self):
+        with self.activate('fr'):  # mapped in locale translations.
+            # In this case we have a currency so it's converted into Euro.
+            eq_(Price.objects.filter(pk=1)[0].get_price_locale(),
+                u'5,01\xa0\u20ac')
+
+    def test_get_locale_for_currency(self):
+        eq_(self.tier_one.get_price(currency='EUR'),
+            Decimal('5.01'))
+        eq_(self.tier_one.get_price_locale(currency='EUR'),
+            u'\u20ac5.01')  # has Euro sign.
 
     def test_get_tier(self):
         translation.activate('en_CA')
@@ -121,9 +134,10 @@ class TestPrice(amo.tests.TestCase):
         eq_(Price.objects.get(pk=1).get_price_locale(), u'$0.99')
 
     def test_transformer(self):
-        prices = list(Price.objects.filter(pk=1))
+        price = Price.objects.get(pk=1)
+        price.get_price_locale()  # warm up Price._currencies
         with self.assertNumQueries(0):
-            eq_(prices[0].get_price_locale(), u'$0.99')
+            eq_(price.get_price_locale(), u'$0.99')
 
     def test_get_tier_price(self):
         eq_(PriceCurrency.objects.get(pk=3).get_price_locale(), 'R$1.01')

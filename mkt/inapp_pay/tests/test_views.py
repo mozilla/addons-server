@@ -18,7 +18,7 @@ from addons.models import Addon
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from market.models import PreApprovalUser
+from market.models import PreApprovalUser, Price, PriceCurrency
 from paypal import PaypalError
 from stats.models import Contribution
 from users.models import UserProfile
@@ -32,9 +32,14 @@ class InappPaymentUtil:
     def make_contrib(self, **contrib_kw):
         payload = self.payload()
         uuid_ = '12345'
-        kw = dict(addon_id=self.app.pk, amount=payload['request']['price'],
+        tier = Price.objects.get(pk=payload['request']['priceTier'])
+        currency = contrib_kw.pop('currency', 'USD')
+        price, currency, locale = tier.get_price_data(currency=currency)
+        kw = dict(addon_id=self.app.pk,
+                  amount=price,
+                  price_tier=tier,
+                  currency=currency,
                   source='', source_locale='en-US',
-                  currency=payload['request']['currency'],
                   uuid=uuid_, type=amo.CONTRIB_INAPP_PENDING,
                   paykey='some-paykey', user=self.user)
         kw.update(contrib_kw)
@@ -59,8 +64,7 @@ class InappPaymentUtil:
             iat = calendar.timegm(time.gmtime())
         if not exp:
             exp = iat + 3600  # expires in 1 hour
-        req = {'price': '0.99',
-               'currency': 'USD',
+        req = {'priceTier': 1,
                'name': 'My bands latest album',
                'description': '320kbps MP3 download, DRM free!',
                'productdata': 'my_product_id=1234'}
@@ -78,7 +82,7 @@ class InappPaymentUtil:
 
 @mock.patch.object(settings, 'DEBUG', True)
 class PaymentTest(InappPaymentUtil, amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
+    fixtures = ['webapps/337141-steamcube', 'base/users', 'market/prices']
 
     @mock.patch.object(settings, 'DEBUG', True)
     def setUp(self):
@@ -91,6 +95,8 @@ class PaymentTest(InappPaymentUtil, amo.tests.TestCase):
         cfg.set_private_key(self.app_secret)
         self.app.paypal_id = 'app-dev-paypal@theapp.com'
         self.app.save()
+        if hasattr(Price, '_currencies'):
+            del Price._currencies  # needed to pick up fixtures.
 
     def get_app(self):
         return Addon.objects.get(pk=337141)
@@ -111,6 +117,9 @@ class PaymentViewTest(PaymentTest):
         waffle.models.Switch.objects.create(name='in-app-payments-ui',
                                             active=True)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        PreApprovalUser.objects.create(user=self.user,
+                                       currency='USD',
+                                       paypal_key='fantasmic')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
 
@@ -120,8 +129,6 @@ class PayFlowTest(PaymentViewTest):
 
     def setUp(self):
         super(PayFlowTest, self).setUp()
-        PreApprovalUser.objects.create(user=self.user,
-                                       paypal_key='fantasmic')
 
     def start(self, req=None, extra_request=None):
         if not req:
@@ -170,6 +177,27 @@ class TestPayStart(PayFlowTest):
         rp = self.start()
         eq_(rp.status_code, 200)
         self.assertTemplateUsed(rp, 'inapp_pay/nowallet.html')
+
+    def test_preapproval_sets_currency(self, fetch_prod_im):
+        currency = 'EUR'
+        self.user.preapprovaluser.update(currency=currency)
+        payload = self.payload()
+        tier = payload['request']['priceTier']
+        price = PriceCurrency.objects.get(tier=tier, currency=currency).price
+        rp = self.start(req=self.request(payload=json.dumps(payload)))
+        eq_(rp.context['price'], price)
+        eq_(rp.context['currency'], currency)
+
+    def test_locale_sets_currency(self, fetch_prod_im):
+        currency = 'EUR'
+        self.user.preapprovaluser.delete()
+        payload = self.payload()
+        tier = payload['request']['priceTier']
+        price = PriceCurrency.objects.get(tier=tier, currency=currency).price
+        with self.activate(locale='fr'):
+            rp = self.start(req=self.request(payload=json.dumps(payload)))
+        eq_(rp.context['price'], price)
+        eq_(rp.context['currency'], currency)
 
     @fudge.patch('mkt.inapp_pay.models.inapp_cef.log')
     def test_pay_start_error(self, fetch_prod_im, cef):
@@ -243,12 +271,17 @@ class TestPay(PaymentViewTest):
         super(TestPay, self).tearDown()
         self.netreq.stop()
 
-    def assert_payment_done(self, payload, contrib_type):
+    def assert_payment_done(self, payload, contrib_type, currency=None):
         cnt = Contribution.objects.get(addon=self.app)
+        tier = Price.objects.get(pk=payload['request']['priceTier'])
+        price, locale_curr, locale = tier.get_price_data(currency=currency)
+        if not currency:
+            currency = locale_curr
         eq_(cnt.addon.pk, self.app.pk)
         eq_(cnt.type, contrib_type)
-        eq_(cnt.amount, Decimal(payload['request']['price']))
-        eq_(cnt.currency, payload['request']['currency'])
+        eq_(cnt.amount, price)
+        eq_(cnt.price_tier, tier)
+        eq_(cnt.currency, currency)
 
         pmt = InappPayment.objects.get(contribution=cnt)
         eq_(pmt.config, self.inapp_config)
@@ -285,12 +318,15 @@ class TestPay(PaymentViewTest):
         self.assertContains(res, 'PaypalError')
 
     @fudge.patch('paypal.get_paykey')
-    def test_no_preauth(self, get_paykey):
+    def test_no_preapproval(self, get_paykey):
+        self.user.preapprovaluser.delete()
         payload = self.payload()
+        currency = 'USD'  # default without pre-auth
+        price = Price.objects.get(pk=payload['request']['priceTier']).price
         (get_paykey.expects_call()
                    .with_matching_args(addon_id=self.app.pk,
-                                       amount=payload['request']['price'],
-                                       currency=payload['request']['currency'],
+                                       amount=price,
+                                       currency=currency,
                                        email=self.app.paypal_id)
                    .returns(['some-pay-key', '']))
         req = self.request(payload=json.dumps(payload))
@@ -303,6 +339,24 @@ class TestPay(PaymentViewTest):
         eq_(log.config.pk, self.inapp_config.pk)
 
         self.assert_payment_done(payload, amo.CONTRIB_INAPP_PENDING)
+
+    @fudge.patch('paypal.get_paykey')
+    def test_no_preapproval_non_us_locale(self, get_paykey):
+        self.user.preapprovaluser.delete()
+        payload = self.payload()
+        currency = 'EUR'
+        tier = payload['request']['priceTier']
+        price = PriceCurrency.objects.get(tier=tier, currency=currency).price
+        (get_paykey.expects_call()
+                   .with_matching_args(amount=price,
+                                       currency=currency)
+                   .returns(['some-pay-key', '']))
+        req = self.request(payload=json.dumps(payload))
+        with self.activate(locale='fr'):
+            res = self.client.post(reverse('inapp_pay.pay'), dict(req=req))
+
+        self.assert_payment_done(payload, amo.CONTRIB_INAPP_PENDING,
+                                 currency=currency)
 
     @fudge.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')

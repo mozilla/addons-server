@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 
 import mock
@@ -60,7 +61,7 @@ class TestMarketButton(amo.tests.TestCase):
             doc = pq(market_button(self.context, self.webapp))
             data = json.loads(doc('a').attr('data-product'))
             eq_(data['price'], 1.0)
-            eq_(data['priceLocale'], u'1,00\xa0$US')
+            eq_(data['priceLocale'], u'1,00 €')
 
     def test_is_premium_purchased(self):
         AddonPurchase.objects.create(user=self.user, addon=self.webapp)

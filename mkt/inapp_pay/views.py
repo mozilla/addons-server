@@ -14,6 +14,7 @@ from django.shortcuts import redirect, get_object_or_404
 import amo
 from amo.decorators import login_required, post_required, write
 from lib.cef_loggers import inapp_cef
+from market.models import Price
 import paypal
 from stats.models import Contribution
 
@@ -38,13 +39,19 @@ def lobby(request):
 @waffle_switch('in-app-payments-ui')
 def pay_start(request, signed_req, pay_req):
     cfg = pay_req['_config']
+    pr = None
+    has_preapproval = False
+    if request.amo_user:
+        pr = request.amo_user.get_preapproval()
+        has_preapproval = request.amo_user.has_preapproval_key()
+    tier, price, currency = _get_price(pay_req, preapproval=pr)
     webapp = cfg.addon
     InappPayLog.log(request, 'PAY_START', config=cfg)
     tasks.fetch_product_image.delay(cfg.pk,
                                     _serializable_req(pay_req))
-    data = dict(price=pay_req['request']['price'],
+    data = dict(price=price,
                 product=webapp,
-                currency=pay_req['request']['currency'],
+                currency=currency,
                 item=pay_req['request']['name'],
                 img=cfg.image_url(pay_req['request'].get('imageURL')),
                 description=pay_req['request']['description'],
@@ -52,9 +59,6 @@ def pay_start(request, signed_req, pay_req):
 
     if not request.user.is_authenticated():
         return jingo.render(request, 'inapp_pay/login.html', data)
-    has_preapproval = False
-    if request.amo_user:
-        has_preapproval = request.amo_user.has_preapproval_key()
     if not has_preapproval:
         return jingo.render(request, 'inapp_pay/nowallet.html', data)
     return jingo.render(request, 'inapp_pay/pay_start.html', data)
@@ -71,8 +75,12 @@ def preauth(request):
 @write
 @waffle_switch('in-app-payments-ui')
 def pay(request, signed_req, pay_req):
-    amount = pay_req['request']['price']
-    currency = pay_req['request']['currency']
+    paykey, status = '', ''
+    preapproval = None
+    if request.amo_user:
+        preapproval = request.amo_user.get_preapproval()
+    tier, price, currency = _get_price(pay_req, preapproval=preapproval)
+
     source = request.POST.get('source', '')
     product = pay_req['_config'].addon
     # L10n: {0} is the product name. {1} is the application name.
@@ -80,14 +88,10 @@ def pay(request, signed_req, pay_req):
                    .format(pay_req['request']['name'], product.name))
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
 
-    paykey, status = '', ''
-    preapproval = None
-    if request.amo_user:
-        preapproval = request.amo_user.get_preapproval()
 
     try:
         paykey, status = paypal.get_paykey(dict(
-            amount=amount,
+            amount=price,
             chains=settings.PAYPAL_CHAINS,
             currency=currency,
             email=product.paypal_id,
@@ -110,9 +114,10 @@ def pay(request, signed_req, pay_req):
         return render_error(request, exc)
 
     with transaction.commit_on_success():
-        contrib = Contribution(addon_id=product.id, amount=amount,
+        contrib = Contribution(addon_id=product.id, amount=price,
                                source=source, source_locale=request.LANG,
                                currency=currency, uuid=str(uuid_),
+                               price_tier=tier,
                                type=amo.CONTRIB_INAPP_PENDING,
                                paykey=paykey, user=request.amo_user)
         log.debug('Storing in-app payment contrib for uuid: %s' % uuid_)
@@ -156,9 +161,9 @@ def pay(request, signed_req, pay_req):
 
     cfg = pay_req['_config']
 
-    c = dict(price=pay_req['request']['price'],
+    c = dict(price=price,
              product=cfg.addon,
-             currency=pay_req['request']['currency'],
+             currency=currency,
              item=pay_req['request']['name'],
              img=cfg.image_url(pay_req['request'].get('imageURL')),
              description=pay_req['request']['description'],
@@ -202,6 +207,17 @@ def pay_status(request, config_pk, status):
     _payment_done(request, payment, action=action)
 
     return jingo.render(request, tpl, {'product': cnt.addon})
+
+
+def _get_price(pay_request, preapproval=None):
+    """
+    Get (tier, price, currency) based either on the user's preapproval
+    currency choice or based on the current locale.
+    """
+    currency = preapproval.currency if preapproval else None
+    tier = Price.objects.get(pk=pay_request['request']['priceTier'])
+    price, currency, locale = tier.get_price_data(currency=currency)
+    return tier, price, currency
 
 
 def _payment_done(request, payment, action='PAY_COMPLETE'):
