@@ -173,3 +173,16 @@
     left: auto;
     right: 13px;
 }
+
+@media (max-width: @4col) {
+    #site-header {
+        #search {
+            float: left;
+            margin: 14px 0 0;
+        }
+        #search-q,
+        #site-search-suggestions {
+            .max-width(2.5);
+        }
+    }
+}
