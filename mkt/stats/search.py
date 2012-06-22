@@ -4,6 +4,7 @@ import elasticutils
 import pyes.exceptions as pyes
 
 import amo
+from mkt import MKT_CUT
 from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Installed
 from stats.models import Contribution
@@ -24,7 +25,7 @@ def get_finance_total(qs, addon):
     return {
         'addon': addon,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': revenue[0]['revenue'] if revenue.count() else 0,
+        'revenue': cut(revenue[0]['revenue'] if revenue.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
@@ -45,7 +46,7 @@ def get_finance_total_by_src(qs, addon, source=''):
         'addon': addon,
         'source': source,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
@@ -66,7 +67,7 @@ def get_finance_total_by_currency(qs, addon, currency=''):
         'addon': addon,
         'currency': currency,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
@@ -89,7 +90,7 @@ def get_finance_total_inapp(qs, addon, inapp_name=''):
         'addon': addon,
         'inapp': inapp_name,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': revenue[0]['revenue'] if revenue.count() else 0,
+        'revenue': cut(revenue[0]['revenue'] if revenue.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
@@ -116,7 +117,7 @@ def get_finance_total_inapp_by_currency(qs, addon, inapp_name='', currency=''):
         'inapp': inapp_name,
         'currency': currency,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
@@ -143,7 +144,7 @@ def get_finance_total_inapp_by_src(qs, addon, inapp_name='', source=''):
         'inapp': inapp_name,
         'source': source,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': revenues[0]['revenue'] if revenues.count() else 0,
+        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
 
@@ -165,14 +166,14 @@ def get_finance_daily(contribution):
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).count() or 0,
-        'revenue': Contribution.objects.filter(
+        'revenue': cut(Contribution.objects.filter(
             addon__id=addon_id,
             refund=None,
             type=amo.CONTRIB_PURCHASE,
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).aggregate(Sum('amount'))['amount__sum']
-            or 0,
+            or 0),
         'refunds': Contribution.objects.filter(
             addon__id=addon_id,
             refund__isnull=False,
@@ -201,7 +202,7 @@ def get_finance_daily_inapp(payment):
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).count() or 0,
-        'revenue': InappPayment.objects.filter(
+        'revenue': cut(InappPayment.objects.filter(
             config__addon__id=addon_id,
             contribution__refund=None,
             contribution__type=amo.CONTRIB_PURCHASE,
@@ -209,7 +210,7 @@ def get_finance_daily_inapp(payment):
             created__month=date.month,
             created__day=date.day).aggregate(
             Sum('contribution__amount'))['contribution__amount__sum']
-            or 0,
+            or 0),
         'refunds': InappPayment.objects.filter(
             contribution__addon__id=addon_id,
             contribution__refund__isnull=False,
@@ -270,3 +271,10 @@ def setup_mkt_indexes():
 
         es.put_mapping(model._meta.db_table, mapping,
                        model._get_index())
+
+
+def cut(revenue):
+    """
+    Takes away Marketplace's cut from developers' revenue.
+    """
+    return round(float(revenue) * MKT_CUT, 2)

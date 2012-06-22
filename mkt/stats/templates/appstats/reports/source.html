@@ -3,9 +3,9 @@
 {% block sales_filters %}
   <div class="criteria sales-filters island">
     {% set links = [
-      (addon.get_stats_url(action='source_revenue', inapp=inapp), _('Revenue')),
-      (addon.get_stats_url(action='source_sales', inapp=inapp), _('Sales')),
-      (addon.get_stats_url(action='source_refunds', inapp=inapp), _('Refunds'))
+      (addon.get_stats_url(action='source_revenue', inapp=inapp), _('Amount Earned')),
+      (addon.get_stats_url(action='source_sales', inapp=inapp), _('Units Sold')),
+      (addon.get_stats_url(action='source_refunds', inapp=inapp), _('Units Refunded'))
     ] %}
     <ul>
       <li>{{ _('Sales Type') }}</li>

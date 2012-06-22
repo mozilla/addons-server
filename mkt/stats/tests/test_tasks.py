@@ -1,12 +1,15 @@
 import datetime
 import random
 
+from django.utils import unittest
+
 from nose.tools import eq_
 
 import amo
 import amo.tests
 from market.models import Refund
 from mkt.stats import tasks
+from mkt.stats.search import cut
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from stats.models import Contribution
 
@@ -20,13 +23,13 @@ class TestIndexFinanceTotal(amo.tests.ESTestCase):
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
                 amount=str(random.randint(0, 10) + .99))
-            self.expected['revenue'] += c.amount
+            self.expected['revenue'] += cut(c.amount)
 
             # Create 2 refunds.
             if x % 2 == 1:
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected['revenue'] -= c.amount
+                self.expected['revenue'] -= cut(c.amount)
                 self.expected['count'] -= 1
         self.refresh()
 
@@ -61,11 +64,11 @@ class TestIndexFinanceTotalBySrc(amo.tests.ESTestCase):
             for x in range(self.expected[source]['count']):
                 c = Contribution.objects.create(addon_id=self.app.pk,
                     source=source, amount=str(random.randint(0, 10) + .99))
-                self.expected[source]['revenue'] += c.amount
+                self.expected[source]['revenue'] += cut(c.amount)
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[source]['revenue'] -= c.amount
+            self.expected[source]['revenue'] -= cut(c.amount)
             self.expected[source]['count'] -= 1
         self.refresh()
 
@@ -104,11 +107,11 @@ class TestIndexFinanceTotalByCurrency(amo.tests.ESTestCase):
             for x in range(self.expected[currency]['count']):
                 c = Contribution.objects.create(addon_id=self.app.pk,
                     currency=currency, amount=str(random.randint(0, 10) + .99))
-                self.expected[currency]['revenue'] += c.amount
+                self.expected[currency]['revenue'] += cut(c.amount)
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[currency]['revenue'] -= c.amount
+            self.expected[currency]['revenue'] -= cut(c.amount)
             self.expected[currency]['count'] -= 1
         self.refresh()
 
@@ -143,7 +146,7 @@ class TestIndexFinanceDaily(amo.tests.ESTestCase):
             c = Contribution.objects.create(addon_id=self.app.pk,
                 amount=str(random.randint(0, 10) + .99),
                 type=amo.CONTRIB_PURCHASE)
-            self.expected['revenue'] += c.amount
+            self.expected['revenue'] += cut(c.amount)
             self.ids.append(c.id)
 
             # Create 2 refunds.
@@ -152,7 +155,7 @@ class TestIndexFinanceDaily(amo.tests.ESTestCase):
                 c.save()
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected['revenue'] -= c.amount
+                self.expected['revenue'] -= cut(c.amount)
                 self.expected['count'] -= 1
 
     def test_index(self):
@@ -192,13 +195,13 @@ class TestIndexFinanceTotalInapp(amo.tests.ESTestCase):
                 amount=str(random.randint(0, 10) + .99))
             InappPayment.objects.create(config=self.inapp, contribution=c,
                                         name=self.inapp_name)
-            self.expected[self.inapp_name]['revenue'] += c.amount
+            self.expected[self.inapp_name]['revenue'] += cut(c.amount)
 
             # Create 2 refunds.
             if x % 2 == 1:
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected[self.inapp_name]['revenue'] -= c.amount
+                self.expected[self.inapp_name]['revenue'] -= cut(c.amount)
                 self.expected[self.inapp_name]['count'] -= 1
         self.refresh()
 
@@ -242,11 +245,13 @@ class TestIndexFinanceTotalInappByCurrency(amo.tests.ESTestCase):
                     currency=currency, amount=str(random.randint(0, 10) + .99))
                 InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-                self.expected[self.inapp_name][currency]['revenue'] += c.amount
+                self.expected[self.inapp_name][currency]['revenue'] += cut(
+                    c.amount)
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name][currency]['revenue'] -= c.amount
+            self.expected[self.inapp_name][currency]['revenue'] -= cut(
+                c.amount)
             self.expected[self.inapp_name][currency]['count'] -= 1
         self.refresh()
 
@@ -294,11 +299,12 @@ class TestIndexFinanceTotalInappBySource(amo.tests.ESTestCase):
                     source=source, amount=str(random.randint(0, 10) + .99))
                 InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-                self.expected[self.inapp_name][source]['revenue'] += c.amount
+                self.expected[self.inapp_name][source]['revenue'] += cut(
+                    c.amount)
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name][source]['revenue'] -= c.amount
+            self.expected[self.inapp_name][source]['revenue'] -= cut(c.amount)
             self.expected[self.inapp_name][source]['count'] -= 1
         self.refresh()
 
@@ -346,7 +352,7 @@ class TestIndexFinanceDailyInapp(amo.tests.ESTestCase):
             self.c_ids.append(c.id)
             i = InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-            self.expected[self.inapp_name]['revenue'] += c.amount
+            self.expected[self.inapp_name]['revenue'] += cut(c.amount)
             self.ids.append(i.id)
 
         for x in range(self.expected[self.inapp_name]['refunds']):
@@ -354,7 +360,7 @@ class TestIndexFinanceDailyInapp(amo.tests.ESTestCase):
             c.update(uuid=123)
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name]['revenue'] -= c.amount
+            self.expected[self.inapp_name]['revenue'] -= cut(c.amount)
             self.expected[self.inapp_name]['count'] -= 1
 
     def test_index(self):
@@ -407,13 +413,22 @@ class TestAlreadyIndexed(amo.tests.ESTestCase):
         c.update(uuid=123)
         Refund.objects.create(contribution=c,
                               status=amo.REFUND_APPROVED)
-        self.expected['revenue'] -= c.amount
+        self.expected['revenue'] -= int(c.amount)
         self.expected['count'] -= 1
 
-        self.expected['revenue'] = int(self.expected['revenue'])
+        self.expected['revenue'] = cut(self.expected['revenue'])
 
     def test_basic(self):
         eq_(tasks.already_indexed(Contribution, self.expected), [])
         tasks.index_finance_daily.delay(self.ids)
         self.refresh(timesleep=1)
         eq_(tasks.already_indexed(Contribution, self.expected) != [], True)
+
+
+class TestCut(unittest.TestCase):
+
+    def test_basic(self):
+        eq_(cut(0), 0)
+        eq_(cut(1), .7)
+        eq_(cut(10), 7)
+        eq_(cut(33), 23.10)

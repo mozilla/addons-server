@@ -381,3 +381,6 @@ REVIEWED_SCORES = {
     REVIEWED_THEME: 80,
     REVIEWED_WEBAPP: 60,
 }
+
+# Percentage of what developers earn after Marketplace's cut.
+MKT_CUT = .70

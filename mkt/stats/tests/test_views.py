@@ -280,7 +280,8 @@ class TestGetSeriesColumn(amo.tests.ESTestCase):
                 c = Contribution.objects.create(addon_id=self.app.pk,
                                                 amount=random.randint(1, 10),
                                                 currency=expected['currency'])
-                expected['count'] += c.amount
+                expected['count'] += cut(c.amount)
+            expected['count'] = int(expected['count'])
         tasks.index_finance_total_by_currency([self.app.pk])
         self.refresh(timesleep=1)
 

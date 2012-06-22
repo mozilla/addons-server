@@ -3,34 +3,34 @@ var csv_keys = {
         'count': gettext('Installs')
     },
     usage: {
-        "count": gettext('Daily Users')
-    },
-    sales: {
-        'count': gettext('Sales')
+        'count': gettext('Daily Users')
     },
     revenue: {
-        'count': gettext('Revenue')
+        'count': gettext('Amount Earned')
+    },
+    sales: {
+        'count': gettext('Units Sold')
     },
     refunds: {
-        'count': gettext('Refunds')
+        'count': gettext('Units Refunded')
     },
     currency_revenue: {
-        'count': gettext('Revenue')
+        'count': gettext('Amount Earned')
     },
     currency_sales: {
-        'count': gettext('Sales')
+        'count': gettext('Units Sold')
     },
     currency_refunds: {
-        'count': gettext('Refunds')
+        'count': gettext('Units Refunded')
     },
     source_revenue: {
-        'count': gettext('Revenue')
+        'count': gettext('Amount Earned')
     },
     source_sales: {
-        'count': gettext('Sales')
+        'count': gettext('Units Sold')
     },
     source_refunds: {
-        'count': gettext('Refunds')
+        'count': gettext('Units Refunded')
     },
     sources: {
         'null'                  : gettext('Unknown'),
@@ -99,7 +99,7 @@ var csv_keys = {
     app_overview: {
         'installs': gettext('Installs'),
         'usage': gettext('Usage'),
-        'sales': gettext('Sales')
+        'sales': gettext('Units Sold')
     },
     apps : {
         '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}' : gettext('Firefox'),
@@ -110,65 +110,65 @@ var csv_keys = {
         '{a23983c0-fd0e-11dc-95ff-0800200c9a66}' : gettext('Fennec')
     },
     chartTitle: {
-        "installs" : [
+        'installs' : [
             // L10n: {0} is an integer.
-            gettext("Installs, last {0} days"),
+            gettext('Installs, last {0} days'),
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-            gettext("Installs from {0} to {1}")
+            gettext('Installs from {0} to {1}')
         ],
-        "usage"  : [
-            gettext("Daily Users, last {0} days"),
-            gettext("Daily Users from {0} to {1}")
+        'usage'  : [
+            gettext('Daily Users, last {0} days'),
+            gettext('Daily Users from {0} to {1}')
         ],
-        "sales" : [
-            gettext("Sales, last {0} days"),
-            gettext("Sales from {0} to {1}")
+        'sales' : [
+            gettext('Units Sold, last {0} days'),
+            gettext('Units Sold from {0} to {1}')
         ],
-        "revenue" : [
-            gettext("Revenue, last {0} days"),
-            gettext("Revenue {0} to {1}")
+        'revenue' : [
+            gettext('Amount Earned, last {0} days'),
+            gettext('Amount Earned {0} to {1}')
         ],
-        "refunds" : [
-            gettext("Refunds, last {0} days"),
-            gettext("Refunds from {0} to {1}")
+        'refunds' : [
+            gettext('Units Refunded, last {0} days'),
+            gettext('Units Refunded from {0} to {1}')
         ],
-        "currency_sales" : [
-            gettext("Total Sales by Currency"),
-            gettext("Total Sales by Currency")
+        'currency_sales' : [
+            gettext('Total Units Sold by Currency'),
+            gettext('Total Units Sold by Currency')
         ],
-        "currency_revenue" : [
-            gettext("Total Revenue by Currency"),
-            gettext("Total Revenue by Currency")
+        'currency_revenue' : [
+            gettext('Total Amount Earned by Currency'),
+            gettext('Total Amount Earned by Currency')
         ],
-        "currency_refunds" : [
-            gettext("Total Refunds by Currency"),
-            gettext("Total Refunds by Currency")
+        'currency_refunds' : [
+            gettext('Total Units Refunded by Currency'),
+            gettext('Total Units Refunded by Currency')
         ],
-        "source_sales" : [
-            gettext("Total Sales by Source"),
-            gettext("Total Sales by Source")
+        'source_sales' : [
+            gettext('Total Units Sold by Source'),
+            gettext('Total Units Sold by Source')
         ],
-        "source_revenue" : [
-            gettext("Total Revenue by Source"),
-            gettext("Total Revenue by Source")
+        'source_revenue' : [
+            gettext('Total Amount Earned by Source'),
+            gettext('Total Amount Earned by Source')
         ],
-        "source_refunds" : [
-            gettext("Total Refunds by Source"),
-            gettext("Total Refunds by Source")
+        'source_refunds' : [
+            gettext('Total Units Refunded by Source'),
+            gettext('Total Units Refunded by Source')
         ]
     },
     aggregateLabel: {
-        "downloads" : [
+        'downloads' : [
             // L10n: {0} and {1} are integers.
-            gettext("<b>{0}</b> in last {1} days"),
+            gettext('<b>{0}</b> in last {1} days'),
             // L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-            gettext("<b>{0}</b> from {1} to {2}")
+            gettext('<b>{0}</b> from {1} to {2}')
         ],
-        "usage"     : [
+        'usage'     : [
             // L10n: {0} and {1} are integers.
-            gettext("<b>{0}</b> average in last {1} days"),
+            gettext('<b>{0}</b> average in last {1} days'),
             // L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-            gettext("<b>{0}</b> from {1} to {2}")
+            gettext('<b>{0}</b> from {1} to {2}')
         ]
     }
 };
