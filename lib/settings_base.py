@@ -1459,4 +1459,4 @@ RUN_ES_TESTS = False
 # All JS vendor libraries in this list will be excluded from mozmarket.js.
 # For example, if receiptverifier is broken and you need to disable it, add
 # 'receiptverifier' to the list. See also mkt/site/views.py.
-MOZMARKET_VENDOR_EXCLUDE = ['receiptverifier']
+MOZMARKET_VENDOR_EXCLUDE = []
