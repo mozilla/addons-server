@@ -72,29 +72,29 @@ class PremiumTypeForm(happyforms.Form):
 
 class UpsellForm(happyforms.Form):
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_('App Price'),
+                                   label=_lazy('App Price'),
                                    empty_label=None,
                                    required=True)
     make_public = forms.TypedChoiceField(choices=APP_PUBLIC_CHOICES,
                                     widget=forms.RadioSelect(),
-                                    label=_('When should your app be '
+                                    label=_lazy('When should your app be '
                                             'made available for sale?'),
                                     coerce=int,
                                     required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=APP_UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
-                                       label=_('Upsell this app'),
+                                       label=_lazy('Upsell this app'),
                                        required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(),
                             required=False,
                             empty_label='',
-                            label=_('App to upgrade from'),
+                            label=_lazy('App to upgrade from'),
                             widget=forms.Select())
     text = forms.CharField(widget=forms.Textarea(),
-                           help_text=_('Describe the added benefits.'),
+                           help_text=_lazy('Describe the added benefits.'),
                            required=False,
-                           label=_('Pitch your app'))
+                           label=_lazy('Pitch your app'))
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
@@ -186,18 +186,18 @@ class AppDetailsBasicForm(AddonFormBasic):
                           "it is used is required."))
     homepage = TransField.adapt(forms.URLField)(required=False,
         verify_exists=False, label=_lazy(u'Homepage:'),
-        help_text=_(u'If your app has another homepage, enter its address '
-                     'here.'),
+        help_text=_lazy(u'If your app has another homepage, enter its address '
+                         'here.'),
         widget=TransInput(attrs={'class': 'full'}))
     support_url = TransField.adapt(forms.URLField)(required=False,
         verify_exists=False, label=_lazy(u'Support Website:'),
-        help_text=_(u'If your app has a support website or forum, enter '
-                     'its address here.'),
+        help_text=_lazy(u'If your app has a support website or forum, enter '
+                         'its address here.'),
         widget=TransInput(attrs={'class': 'full'}))
     support_email = TransField.adapt(forms.EmailField)(
         label=_lazy(u'Support Email:'),
-        help_text=_(u'The email address used by end users to contact you with '
-                     'support issues and refund requests.'),
+        help_text=_lazy(u'The email address used by end users to contact you '
+                         'with support issues and refund requests.'),
         widget=TransInput(attrs={'class': 'full'}))
 
     class Meta:
