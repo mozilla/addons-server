@@ -313,3 +313,7 @@ class SiteEvent(models.Model):
     # An outbound link to an explanatory blog post or bug.
     more_info_url = models.URLField(max_length=255, blank=True, null=True,
                                     verify_exists=False)
+
+    class Meta:
+        db_table = ('zadmin_siteevent' +
+                    settings.EVENT_TABLE_SUFFIX)
