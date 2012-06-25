@@ -8,7 +8,6 @@ from nose import SkipTest
 from nose.tools import eq_, raises
 import waffle
 
-
 import amo
 from addons.models import (Addon, AddonDeviceType, BlacklistedSlug,
                            DeviceType, Preview)

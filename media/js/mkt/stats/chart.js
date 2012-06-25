@@ -283,15 +283,15 @@
             // Determine y-axis formatter.
             switch (metricTypes[metric]) {
                 case "currency": case "revenue":
-                    baseConfig.yAxis.title.text = gettext('Revenue');
+                    baseConfig.yAxis.title.text = gettext('Amount Earned');
                     yFormatter = currencyFormatter;
                     break;
                 case "sales":
-                    baseConfig.yAxis.title.text = gettext('Sales');
+                    baseConfig.yAxis.title.text = gettext('Units Sold');
                     yFormatter = salesFormatter;
                     break;
                 case "refunds":
-                    baseConfig.yAxis.title.text = gettext('Refunds');
+                    baseConfig.yAxis.title.text = gettext('Units Refunded');
                     yFormatter = refundsFormatter;
                     break;
                 case "installs":
