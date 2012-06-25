@@ -442,7 +442,7 @@ class APITest(TestCase):
     def test_purchase_number_fr(self):
         doc = self.setup_premium(lang='fr')
         eq_(doc('amount').attr('amount'), '5.12')
-        eq_(doc('amount').text(), u'5,12\xa0$US')
+        eq_(doc('amount').text(), u'5,12\xa0\u20ac')  # displays in Euros
 
     @patch.object(settings, 'SITE_URL', 'http://foo')
     def test_absolute(self):
