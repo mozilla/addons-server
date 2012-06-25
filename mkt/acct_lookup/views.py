@@ -116,10 +116,12 @@ def _app_downloads(app):
 def user_purchases(request, user_id):
     """Shows the purchase page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
+    is_admin = acl.action_allowed(request, 'Users', 'Edit')
     products, contributions, listing = purchase_list(request, user, None)
     return jingo.render(request, 'acct_lookup/user_purchases.html',
                         {'pager': products,
                          'account': user,
+                         'is_admin': is_admin,
                          'listing_filter': listing,
                          'contributions': contributions,
                          'single': bool(None),
@@ -132,6 +134,7 @@ def user_activity(request, user_id):
     """Shows the user activity page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
     products, contributions, listing = purchase_list(request, user, None)
+    is_admin = acl.action_allowed(request, 'Users', 'Edit')
 
     collections = Collection.objects.filter(author=user_id)
     user_items = ActivityLog.objects.for_user(user).exclude(
@@ -142,6 +145,7 @@ def user_activity(request, user_id):
     return jingo.render(request, 'acct_lookup/user_activity.html',
                         {'pager': products,
                          'account': user,
+                         'is_admin': is_admin,
                          'listing_filter': listing,
                          'collections': collections,
                          'contributions': contributions,

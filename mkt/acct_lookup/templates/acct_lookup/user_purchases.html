@@ -7,7 +7,7 @@
   {% include 'acct_lookup/includes/user_search.html' %}
 
   <section class="island c">
-    {{ user_header(account, _('Purchase results for'), 'purchases') }}
+    {{ user_header(account, _('Purchase results for'), is_admin, 'purchases') }}
 
     {% include 'account/includes/purchases.html' %}
   </section>
