@@ -22,6 +22,9 @@ z.capabilities = {
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance)
 };
 
+// Until https://github.com/mozilla-b2g/gaia/issues/1869 is fixed.
+z.capabilities.replaceState = false;
+
 if (z.capabilities.tablet) {
     // If we're on tablet, then we're not on desktop.
     z.capabilities.desktop = false;
