@@ -51,7 +51,7 @@ class ValidationResource(MarketplaceResource):
         if not form.is_valid():
             raise self.form_errors(form)
 
-        bundle.obj = FileUpload.objects.create()
+        bundle.obj = FileUpload.objects.create(user=amo.get_user())
         tasks.fetch_manifest(form.cleaned_data['manifest'], bundle.obj.pk)
         log.info('Validation created: %s' % bundle.obj.pk)
         return bundle

@@ -52,7 +52,8 @@ class TestAddValidationHandler(ValidationHandler):
         res = self.create()
         eq_(res.status_code, 201)  # Note! This should be a 202.
         content = json.loads(res.content)
-        eq_(FileUpload.objects.filter(uuid=content['id']).count(), 1)
+        obj = FileUpload.objects.get(uuid=content['id'])
+        eq_(obj.user, self.user)
 
     @patch('mkt.api.resources.tasks.fetch_manifest')
     def test_fetch(self, fetch):
