@@ -1460,3 +1460,10 @@ RUN_ES_TESTS = False
 # For example, if receiptverifier is broken and you need to disable it, add
 # 'receiptverifier' to the list. See also mkt/site/views.py.
 MOZMARKET_VENDOR_EXCLUDE = []
+
+# The configuration for seclusion the client that speaks to solitude.
+# A tuple of the solitude hosts that seclusion will speak to.
+SECLUSION_HOSTS = ()
+# The oAuth key and secret that solitude needs.
+SECLUSION_KEY = ''
+SECLUSION_SECRET = ''
