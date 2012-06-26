@@ -13,9 +13,11 @@ from access import acl
 import amo
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from devhub.views import _get_items
+from lib.pay_server import client
 from market.models import PreApprovalUser
 import paypal
 from users.models import UserProfile
@@ -117,26 +119,48 @@ def preapproval(request, complete=None, cancel=None):
             return failure
 
     today = datetime.today()
-    data = {'startDate': today,
-            'endDate': today + timedelta(days=365),
-            'pattern': 'account.payment',
-            }
-    try:
-        result = paypal.get_preapproval_key(data)
-    except paypal.PaypalError, e:
-        paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
-        raise
+    data = {
+        'startDate': today,
+        'endDate': today + timedelta(days=365),
+    }
 
-    paypal_log.info(u'Got preapproval key for user: %s, %s...' %
-                    (request.amo_user.pk, result['preapprovalKey'][:5]))
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        client.create_buyer_if_missing(request.amo_user)
+        try:
+            result = client.post_preapproval(data={
+                'start': data['startDate'].date(),
+                'end': data['endDate'].date(),
+                'uuid': request.amo_user,
+                'return_url': absolutify(reverse('account.payment',
+                                                 args=['complete'])),
+                'cancel_url': absolutify(reverse('account.payment',
+                                                  args=['cancel'])),
+            })
+        except client.Error:
+            paypal_log.error(u'preapproval', exc_info=True)
+            raise
+        url = result['paypal_url']
+        key = result['key']
+
+    else:
+        # TODO(solitude): remove this.
+        data.update({'pattern': 'account.payment'})
+        try:
+            result = paypal.get_preapproval_key(data)
+        except paypal.PaypalError, e:
+            paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
+            raise
+        url = paypal.get_preapproval_url(result['preapprovalKey'])
+        key = result['preapprovalKey']
+
+    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
+    # TODO(solitude): remove this completely, we won't need it.
     request.session['setup-preapproval'] = {
-        'key': result['preapprovalKey'],
+        'key': key,
         'expiry': data['endDate'],
         'complete': complete,
         'cancel': cancel,
     }
-
-    url = paypal.get_preapproval_url(result['preapprovalKey'])
     return redirect(url)
 
 
