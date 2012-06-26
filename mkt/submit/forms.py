@@ -43,8 +43,8 @@ class DevAgreementForm(happyforms.Form):
 class NewWebappForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
+        error_messages={'invalid_choice': _lazy(u'There was an error with your'
+                                                ' upload. Please try again.')})
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
@@ -58,43 +58,43 @@ class PaypalSetupForm(OriginalPaypalSetupForm):
     def __init__(self, *args, **kw):
         super(PaypalSetupForm, self).__init__(*args, **kw)
         self.fields['business_account'].choices = (
-                ('yes', _lazy('Yes')),
-                ('no', _lazy('No')),
-                ('later', _lazy("I'll link my PayPal account later.")))
+                ('yes', _lazy(u'Yes')),
+                ('no', _lazy(u'No')),
+                ('later', _lazy(u"I'll link my PayPal account later.")))
 
 
 class PremiumTypeForm(happyforms.Form):
     premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
                                 choices=amo.ADDON_PREMIUM_TYPES.items(),
                                 widget=forms.RadioSelect(),
-                                label=_lazy('Will your app use payments?'))
+                                label=_lazy(u'Will your app use payments?'))
 
 
 class UpsellForm(happyforms.Form):
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_lazy('App Price'),
+                                   label=_lazy(u'App Price'),
                                    empty_label=None,
                                    required=True)
     make_public = forms.TypedChoiceField(choices=APP_PUBLIC_CHOICES,
                                     widget=forms.RadioSelect(),
-                                    label=_lazy('When should your app be '
+                                    label=_lazy(u'When should your app be '
                                             'made available for sale?'),
                                     coerce=int,
                                     required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=APP_UPSELL_CHOICES,
                                        widget=forms.RadioSelect(),
-                                       label=_lazy('Upsell this app'),
+                                       label=_lazy(u'Upsell this app'),
                                        required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(),
                             required=False,
                             empty_label='',
-                            label=_lazy('App to upgrade from'),
+                            label=_lazy(u'App to upgrade from'),
                             widget=forms.Select())
     text = forms.CharField(widget=forms.Textarea(),
-                           help_text=_lazy('Describe the added benefits.'),
+                           help_text=_lazy(u'Describe the added benefits.'),
                            required=False,
-                           label=_lazy('Pitch your app'))
+                           label=_lazy(u'Pitch your app'))
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
