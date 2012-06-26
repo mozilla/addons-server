@@ -183,7 +183,7 @@
         var offset = 0;
         var date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
-        baseConfig.xAxis.tickInterval = (end - start) / 16;
+        baseConfig.xAxis.tickInterval = (end - start) / 12;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
         // Set sensible spacing between ticks (so text doesn't overlap).
@@ -198,14 +198,14 @@
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 90) {
-                baseConfig.xAxis.tickInterval = (end - start) / 16;
+                baseConfig.xAxis.tickInterval = (end - start) / 12;
             }
         } else if (group == 'month') {
             $('a.week, a.month').addClass('inactive').bind('click', false);
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.tickInterval = pointInterval;
             if (date_range_days > 365 * 2) {
-                baseConfig.xAxis.tickInterval = (end - start) / 16;
+                baseConfig.xAxis.tickInterval = (end - start) / 12;
             }
         }
 
