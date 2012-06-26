@@ -105,7 +105,7 @@
                 var sel = $targ.html().split(' ');
 
                 if (sel.length == 2) {
-                    sel[1] = sel[1].replace('\(', '').replace('\)', '');
+                    sel[1] = sel[1].replace(/\(/, '').replace(/\)/, '');
 
                     // Feel free to remove.
                     console.log('Setting currency to: ', sel[0]);

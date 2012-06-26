@@ -66,12 +66,12 @@
 
     // review flagging. maybe make this event-driven?
     var flagOverlay = makeOrGetOverlay('flag-review'),
-        reviewToFlag,
+        currentReview,
         flagURL;
 
     function flagReview(reviewEl) {
         flagURL = reviewEl.data('flag-url');
-        reviewToFlag = reviewEl;
+        currentReview = reviewEl;
         flagOverlay.addClass('show');
     }
 
@@ -79,7 +79,7 @@
         flagOverlay.removeClass('show');
     })).on('click', '.menu a', _pd(function(e) {
         var flag = $(e.target).attr('href').slice(1),
-            actionEl = reviewToFlag.find('.actions .flag');
+            actionEl = currentReview.find('.actions .flag');
         flagOverlay.removeClass('show');
         actionEl.text(gettext('Sending report...'));
         $.ajax({type: 'POST',

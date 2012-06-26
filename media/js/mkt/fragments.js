@@ -18,7 +18,7 @@ function fragmentFilter(el) {
     var threshold = 250,
         timeout = false,
         fragmentCache = {};
-    if (z.capabilities['replaceState']) {
+    if (z.capabilities.replaceState) {
         var $loading = $('<div>', {'class': 'loading balloon',
                                    'html': gettext('Loading&hellip;')})
                         .prependTo($('#site-header'));

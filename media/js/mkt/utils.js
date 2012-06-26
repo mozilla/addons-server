@@ -36,7 +36,7 @@ Array.prototype.startsWith = function(str) {
         if (str.startsWith(this[i])) {
             return true;
         }
-    };
+    }
     return false;
 };
 
@@ -84,7 +84,9 @@ function initCharCount() {
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
-        $el.bind('keyup blur', function() { countChars(this, $cc) }).trigger('blur');
+        $el.bind('keyup blur', function() {
+            countChars(this, $cc);
+        }).trigger('blur');
     });
 }
 

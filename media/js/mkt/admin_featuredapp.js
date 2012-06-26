@@ -35,19 +35,22 @@ function newAddonSlot(id) {
 function showAppsList(cat) {
     return appslistXHR('GET', {
         category: cat.val()
-    })};
+    });
+}
 
 function updateAppsList(cat, newItem) {
     return appslistXHR('POST', {
         category: cat.val(),
         add: newItem
-    })};
+    });
+}
 
 function deleteFromAppsList(cat, oldItem) {
     return appslistXHR('POST', {
         category: cat.val(),
         delete: oldItem
-    })};
+    });
+}
 
 function appslistXHR(verb, data) {
     var appslist = $("#featured-webapps");
@@ -56,7 +59,7 @@ function appslistXHR(verb, data) {
         appslist.html(data);
     });
     return q;
-};
+}
 
 $(document).ready(function(){
     $("#featured-webapps").delegate(

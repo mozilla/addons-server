@@ -24,8 +24,8 @@
             startX,
             newX,
             prevX,
-            currentX = 0;
-            lastMove = 0;
+            currentX = 0,
+            lastMove = 0,
             contentWidth = 0,
             prop = z.prefixUpper + 'Transform',
             sliderWidth = $el.outerWidth();
@@ -35,13 +35,13 @@
         var maxScroll = sliderWidth - contentWidth;
         $el.find('img').bind('mousedown mouseup mousemove', function(e) {
             e.preventDefault();
-        })
+        });
         $el.bind('touchstart', function(e) {
             // e.preventDefault();
             var oe = e.originalEvent;
             startX = oe.touches[0].pageX;
             $ul.addClass('panning');
-            $ul.css('-webkit-transition-timing', null)
+            $ul.css('-webkit-transition-timing', null);
             lastMove = oe.timeStamp;
         });
         $el.bind('touchmove', function(e) {
@@ -120,7 +120,7 @@
             currentPage = n;
             $this.find('ul').css(z.prefixed('transform'),
                                  'translateX(-'+val+'px)');
-            if (n == 0) {
+            if (n === 0) {
                 $prevLink.removeClass('show');
             } else if (n == maxPage) {
                 $nextLink.removeClass('show');

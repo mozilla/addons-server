@@ -25,5 +25,5 @@
         href = $logo.attr('href');
     $logo.on('click', function() {
         $(window).trigger('loadfragment', href);
-    })
+    });
 })();
