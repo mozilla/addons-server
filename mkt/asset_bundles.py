@@ -231,6 +231,9 @@ JS = {
         'js/common/ratingwidget.js',
         'js/mkt/ratings.js',
 
+        # Fix-up outgoing links.
+        'js/mkt/outgoing_links.js',
+
         # Stick.
         'js/lib/stick.js',
     ),
