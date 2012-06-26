@@ -23,7 +23,6 @@ def user_header(account, title, is_admin=False, page_type=''):
 
 # page_type is used for setting the link 'sel' class
 @register.function
-def app_header(app, is_admin=False, page_type=''):
+def app_header(app, page_type=''):
     t = env.get_template('acct_lookup/helpers/app_header.html')
-    return jinja2.Markup(t.render(app=app, is_admin=is_admin,
-                         page_type=page_type))
+    return jinja2.Markup(t.render(app=app, page_type=page_type))
