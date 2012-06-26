@@ -69,16 +69,18 @@ def app_summary(request, addon_id):
     authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
                                                        amo.AUTHOR_ROLE_OWNER))
                           .order_by('display_name'))
+
     if app.premium and app.premium.price:
         price = app.premium.price
     else:
         price = None
+
     return jingo.render(request, 'acct_lookup/app_summary.html',
-                        {'app': app,
-                         'price': price,
-                         'abuse_reports': app.abuse_reports.count(),
+                        {'abuse_reports': app.abuse_reports.count(),
+                         'app': app,
+                         'authors': authors,
                          'downloads': _app_downloads(app),
-                         'authors': authors})
+                         'price': price})
 
 
 def _app_downloads(app):

@@ -1,14 +1,19 @@
-{% extends 'mkt/base.html' %}
+{% extends 'detail/protected_app.html' %}
+{# extends 'mkt/base.html' #}
+
+{% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
 {% block content %}
+  {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
+                            (None, product.name)]) }}
+
   <section class="island c">
     <section id="activity-info">
-      <h2>{{ _('App Updates') }}</h2>
+      <h2>{{ product.name }} - {{ _('Activity') }}</h2>
       <ol class="simple-log">
         {% for item in user_items %}
         <li class="item">
-          <p>
-            <span class="action {{ log_action_class(item.action) }}"></span>
+          <p class="action {{ log_action_class(item.action) }}">
             {{ item }}
           </p>
           <p class="timestamp">
@@ -22,13 +27,13 @@
         </li>
         {% endfor %}
       </ol>
-      {# Show this if the account belongs to an admin/reviewer #}
+      {{ user_items|impala_paginator }}
+      {% if admin_items %}
       <h2>{{ _('Administrative Actions') }}</h2>
       <ol class="simple-log">
         {% for item in admin_items %}
         <li class="item">
-          <p>
-            <span class="action {{ log_action_class(item.action) }}"></span>
+          <p class="action {{ log_action_class(item.action) }}">
             {{ item }}
           </p>
           <p class="timestamp">
@@ -42,6 +47,8 @@
         </li>
         {% endfor %}
       </ol>
+      {{ admin_items|impala_paginator }}
+      {% endif %}
     </section>
   </section>
 {% endblock %}

@@ -11,6 +11,7 @@ from addons.decorators import addon_view_factory
 import amo
 from amo.decorators import login_required, permission_required
 from amo.forms import AbuseForm
+from amo.utils import paginate
 from devhub.models import ActivityLog
 from reviews.models import Review
 
@@ -81,6 +82,11 @@ def app_activity(request, addon):
         action__in=amo.LOG_HIDE_DEVELOPER)
     admin_items = ActivityLog.objects.for_apps([addon]).filter(
         action__in=amo.LOG_HIDE_DEVELOPER)
+
+    user_items = paginate(request, user_items, per_page=20)
+    admin_items = paginate(request, admin_items, per_page=20)
+
     return jingo.render(request, 'detail/app_activity.html',
-                        {'user_items': user_items,
-                         'admin_items': admin_items})
+                        {'admin_items': admin_items,
+                         'product': addon,
+                         'user_items': user_items})

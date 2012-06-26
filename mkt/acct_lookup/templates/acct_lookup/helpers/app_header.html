@@ -22,13 +22,7 @@
         </a>
       </li>
       <li>
-        <a href="#"
-          {% if page_type == 'history' %}class="sel"{% endif %}>
-          {{ _('Review History') }}
-        </a>
-      </li>
-      <li>
-        <a href="#"
+        <a href="{{ url('detail.app_activity', app.app_slug) }}"
           {% if page_type == 'activity' %}class="sel"{% endif %}>
           {{ _('Activity') }}
         </a>
@@ -40,7 +34,7 @@
       </li>
       {% if is_admin %}
       <li>
-        <a href="#">
+        <a href="{{ app.get_dev_url() }}">
           {{ _('Edit Listing') }}
         </a>
       </li>

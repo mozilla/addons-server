@@ -7,7 +7,8 @@
   {% include 'acct_lookup/includes/app_search.html' %}
 
   <section class="island c">
-    {{ app_header(app, 'summary') }}
+    {# is_admin seems to be available from the site context processors #}
+    {{ app_header(app, is_admin, 'summary') }}
 
     <section class="column-b">
       <dl>

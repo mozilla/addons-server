@@ -406,6 +406,34 @@ h1 .num {
     height: 120px;
 }
 
+#activity-info {
+    .simple-log {
+        list-style-type: none;
+        padding: 15px 0 0 0;
+        margin: 0;
+        border-top: 1px solid @gray;
+        li {
+            clear: both;
+            border-radius: 5px;
+            line-height: 25px;
+            min-height: 25px;
+            padding: 5px 8px;
+            &:nth-child(2n) {
+                background-color: #eee;
+            }
+            p {
+                margin: 0;
+            }
+            .action {
+                float: left;
+            }
+            .timestamp {
+                float: right;
+            }
+        }
+    }
+}
+
 // Anything larger than mobile.
 @media (min-width: @4col) {
     .detail #reviews {
