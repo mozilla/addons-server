@@ -93,7 +93,8 @@ $.fn.modal = function(click_target, o) {
         if (p.hideme) {
             try {
                 setTimeout(function(){
-                    $(document.body).bind('click modal', $modal.hider);
+                    $('#site-header, #page, #site-footer'
+                     ).bind('click modal', $modal.hider);
                 }, 0);
             } catch (err) {
                 // TODO(Kumar) handle this more gracefully. See bug 701221.
@@ -111,7 +112,9 @@ $.fn.modal = function(click_target, o) {
             e.preventDefault();
             $modal.trigger('close');
         });
-        $modal.bind('close', function(e) {
+
+        // Bind hider to close button.
+        var hider = function(e) {
             if (p.emptyme) {
                 $modal.empty();
             }
@@ -120,7 +123,12 @@ $.fn.modal = function(click_target, o) {
             }
             e.preventDefault();
             $modal.hideMe();
+        };
+        $('.close').bind('click', hider);
+        $modal.bind('close', function(e) {
+            hider(e);
         });
+
         $ct.trigger("modal_show", [$modal]);
         if (p.container && p.container.length)
             $modal.detach().appendTo(p.container);

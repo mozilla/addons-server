@@ -10,7 +10,7 @@
     $.datepicker.setDefaults({showAnim: ''});
     var $customModal = $("#custom-criteria").modal("#custom-date-range",
                                                    { width: 520,
-                                                     hideme: false });
+                                                     hideme: true});
     var $startPicker = $("#start-date-picker").datepicker({
         maxDate: 0,
         minDate: minDate,
@@ -100,6 +100,6 @@
                 end: Date.iso(end)
             };
         $rangeSelector.trigger('changeview', {range: newRange});
-        $customModal.trigger('close');
+        $customModal.hider();
     }));
 })();

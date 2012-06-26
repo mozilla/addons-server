@@ -332,7 +332,8 @@ $.fn.modal = function(click_target, o) {
         if (p.hideme) {
             try {
                 setTimeout(function(){
-                    $(document.body).bind('click modal', $modal.hider);
+                    $('.modal-overlay, .close').bind('click modal',
+                                                     $modal.hider);
                 }, 0);
             } catch (err) {
                 // TODO(Kumar) handle this more gracefully. See bug 701221.
@@ -407,7 +408,7 @@ function modalFromURL(url, settings) {
     a.trigger('click');
 
     $.get(url, data, function(html){
-        modal.appendTo('body')
+        modal.appendTo('body');
         inside.html("").append(html);
         if(callback) {
             callback.call(modal);
@@ -484,7 +485,7 @@ function initCharCount() {
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
-        $el.bind('keyup blur', function() { countChars(this, $cc) }).trigger('blur');
+        $el.bind('keyup blur', function() { countChars(this, $cc); }).trigger('blur');
     });
 }
 
@@ -543,11 +544,11 @@ function initCharCount() {
                     this.output += "\r\n";
                 }
             }
-        }
+        };
 
         this.open = function(mode, url, bool, login, pass) {
             this.xhr.open(mode, url, bool, login, pass);
-        }
+        };
 
         this.send = function() {
             if (hasFormData) {
@@ -559,8 +560,8 @@ function initCharCount() {
                 this.output += "--" + this.boundary + "--";
                 this.xhr.sendAsBinary(this.output);
             }
-        }
-    }
+        };
+    };
 })();
 
 // .exists()
