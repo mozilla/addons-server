@@ -184,29 +184,20 @@
 
         // Transform xAxis based on time grouping (day, week, month) and range.
         var offset = 0;
-        var date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
-        baseConfig.xAxis.tickInterval = (end - start) / 12;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
-        // Set sensible spacing between ticks (so text doesn't overlap).
         if (group == 'day') {
-            offset = start.getTimezoneOffset() * 160000
-            if (date_range_days <= 7) {
-                baseConfig.xAxis.tickInterval = (end - start) / 7;
-            }
+            // Quasi-magic number to line up points and axis.
+            offset = 0.8 * dayMsecs;
         } else if (group == 'week') {
+            offset = 0.25 * dayMsecs;
             pointInterval = 7 * dayMsecs;
-            baseConfig.xAxis.tickInterval = pointInterval;
-            if (date_range_days > 90) {
-                baseConfig.xAxis.tickInterval = (end - start) / 12;
-            }
+            baseConfig.xAxis.maxZoom = 7 * dayMsecs;
         } else if (group == 'month') {
+            offset = -2.5 * dayMsecs;
             pointInterval = 30 * dayMsecs;
-            baseConfig.xAxis.tickInterval = pointInterval;
-            if (date_range_days > 365 * 2) {
-                baseConfig.xAxis.tickInterval = (end - start) / 12;
-            }
+            baseConfig.xAxis.maxZoom = 31 * dayMsecs;
         }
 
         // Set minimum max value for yAxis to prevent duplicate yAxis values.

@@ -188,16 +188,19 @@
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
-        // Set sensible spacing between ticks (so text doesn't overlap).
         if (group == 'day') {
-            // Magic number to line up points and axis for now.
-            offset = start.getTimezoneOffset() * 160000;
+            // Quasi-magic number to line up points and axis.
+            offset = 0.8 * dayMsecs;
         } else if (group == 'week') {
             $('a.week').addClass('inactive').bind('click', false);
+            offset = 0.25 * dayMsecs;
             pointInterval = 7 * dayMsecs;
+            baseConfig.xAxis.maxZoom = 7 * dayMsecs;
         } else if (group == 'month') {
             $('a.week, a.month').addClass('inactive').bind('click', false);
+            offset = -3.5 * dayMsecs;
             pointInterval = 30 * dayMsecs;
+            baseConfig.xAxis.maxZoom = 31 * dayMsecs;
         }
 
         // Disable group links if they don't fit into the date range.
