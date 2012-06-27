@@ -53,9 +53,16 @@ def payment(request, status=None):
         if status == 'complete':
             # The user has completed the setup at PayPal and bounced back.
             if 'setup-preapproval' in request.session:
-                paypal_log.info(u'Preapproval key created for user: %s, %s.' %
-                                (request.amo_user.pk, data['key'][:5]))
+                if waffle.flag_is_active(request, 'solitude-payments'):
+                    client.put_preapproval(data={'uuid': request.amo_user},
+                                           pk=data['solitude-key'])
+
+                paypal_log.info(u'Preapproval key created: %s' %
+                                request.amo_user.pk)
                 amo.log(amo.LOG.PREAPPROVAL_ADDED)
+                # TODO(solitude): once this is turned off, we will want to
+                # keep preapproval table populated with something, perhaps
+                # a boolean inplace of pre-approval key.
                 pre.update(paypal_key=data.get('key'),
                            paypal_expiry=data.get('expiry'))
 
@@ -79,8 +86,17 @@ def payment(request, status=None):
 
         elif status == 'remove':
             # The user has an pre approval key set and chooses to remove it
+            if waffle.flag_is_active(request, 'solitude-payments'):
+                other = client.lookup_buyer_paypal(request.amo_user)
+                if other:
+                    client.patch_buyer_paypal(pk=other['resource_pk'])
+
             if pre.paypal_key:
+                # TODO(solitude): again, we'll want to maintain some local
+                # state in zamboni, so this will probably change to a
+                # boolean in the future.
                 pre.update(paypal_key='')
+
                 amo.log(amo.LOG.PREAPPROVAL_REMOVED)
                 messages.success(request,
                     _('Your payment pre-approval has been disabled.'))
@@ -123,6 +139,12 @@ def preapproval(request, complete=None, cancel=None):
         'startDate': today,
         'endDate': today + timedelta(days=365),
     }
+    store = {
+        'expiry': data['endDate'],
+        'solitude-key': None,
+        'complete': complete,
+        'cancel': cancel,
+    }
 
     if waffle.flag_is_active(request, 'solitude-payments'):
         client.create_buyer_if_missing(request.amo_user)
@@ -139,8 +161,9 @@ def preapproval(request, complete=None, cancel=None):
         except client.Error:
             paypal_log.error(u'preapproval', exc_info=True)
             raise
+
+        store.update({'key': result['key'], 'solitude-key': result['pk']})
         url = result['paypal_url']
-        key = result['key']
 
     else:
         # TODO(solitude): remove this.
@@ -150,17 +173,12 @@ def preapproval(request, complete=None, cancel=None):
         except paypal.PaypalError, e:
             paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
             raise
+
+        store.update({'key': result['preapprovalKey']})
         url = paypal.get_preapproval_url(result['preapprovalKey'])
-        key = result['preapprovalKey']
 
     paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
-    # TODO(solitude): remove this completely, we won't need it.
-    request.session['setup-preapproval'] = {
-        'key': key,
-        'expiry': data['endDate'],
-        'complete': complete,
-        'cancel': cancel,
-    }
+    request.session['setup-preapproval'] = store
     return redirect(url)
 
 

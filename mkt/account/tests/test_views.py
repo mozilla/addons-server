@@ -328,7 +328,7 @@ class TestPreapproval(amo.tests.TestCase):
         flag_is_active.return_value = True
         url = 'http://foo.com/?bar'
         client.post_preapproval.return_value = {'paypal_url': url,
-                                                'key': 'bar'}
+                                                'key': 'bar', 'pk': 'foo'}
         res = self.client.post(reverse('account.payment.preapproval'),
                                {'currency': 'USD'})
         eq_(res['Location'], url)
@@ -380,6 +380,17 @@ class TestPreapproval(amo.tests.TestCase):
         eq_((ActivityLog.objects.filter(action=amo.LOG.PREAPPROVAL_ADDED.id)
                                 .count()), 1)
 
+    @mock.patch('mkt.account.views.client')
+    def test_preapproval_complete_solitude(self, client):
+        ssn = self.client.session
+        ssn['setup-preapproval'] = {'solitude-key': 'xyz'}
+        ssn.save()
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        res = self.client.post(self.get_url('complete'))
+        eq_(res.status_code, 200)
+        eq_(client.put_preapproval.call_args[1]['pk'], 'xyz')
+
     def test_preapproval_cancel(self):
         PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
         res = self.client.post(self.get_url('cancel'))
@@ -387,6 +398,14 @@ class TestPreapproval(amo.tests.TestCase):
         eq_(self.user.preapprovaluser.paypal_key, 'xyz')
         eq_(pq(res.content)('#preapproval').attr('action'),
             self.get_url('remove'))
+
+    @mock.patch('mkt.account.views.client')
+    def test_preapproval_remove_solitude(self, client):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        self.client.post(self.get_url('remove'))
+        eq_(client.lookup_buyer_paypal.call_args[0][0].pk, self.user.pk)
+        assert 'pk' in client.patch_buyer_paypal.call_args[1]
 
     def test_session_complete(self):
         ssn = self.client.session

@@ -24,6 +24,14 @@ class ZamboniClient(Client):
 
     Error = SolitudeError
 
+    def lookup_buyer_paypal(self, buyer):
+        res = self.get_buyer(filters={'uuid': model_to_uid(buyer)})
+        count = res['meta']['total_count']
+        if count == 1:
+            return res['objects'][0]['paypal']
+        else:
+            raise ValueError('Get returned %s buyers.' % count)
+
     def create_buyer_if_missing(self, buyer):
         """
         Checks to see if the buyer exists in solitude. If not we'll create

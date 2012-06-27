@@ -41,3 +41,15 @@ class TestUtils(test_utils.TestCase):
         get_buyer.return_value = {'meta': {'total_count': 1}}
         client.create_buyer_if_missing(self.user)
         assert not post_buyer.called
+
+    @patch.object(client, 'get_buyer')
+    def test_create(self, get_buyer):
+        get_buyer.return_value = {'meta': {'total_count': 1},
+                                  'objects': [{'paypal': 'foo'}]}
+        eq_(client.lookup_buyer_paypal(self.user), 'foo')
+
+    @patch.object(client, 'get_buyer')
+    def test_create_err(self, get_buyer):
+        get_buyer.return_value = {'meta': {'total_count': 2}}
+        with self.assertRaises(ValueError):
+            client.lookup_buyer_paypal(self.user)
