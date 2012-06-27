@@ -116,8 +116,8 @@ CSS = {
     'mkt/stats': (
         'css/mkt/stats.less',
     ),
-    'mkt/acct_lookup': (
-        'css/mkt/account-lookup.less',
+    'mkt/lookup': (
+        'css/mkt/lookup-tool.less',
     ),
     'mkt/themes': (
         'css/mkt/themes.less',
@@ -272,10 +272,10 @@ JS = {
         'js/mkt/browserid.js',
         'js/mkt/login.js',
     ),
-    'mkt/acct_lookup': (
+    'mkt/lookup': (
         'js/common/keys.js',
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
-        'js/mkt/account-lookup.js',
+        'js/mkt/lookup-tool.js',
     ),
 }

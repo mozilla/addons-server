@@ -81,7 +81,7 @@ urlpatterns = patterns('',
     ('^editors/', include('editors.urls')),
 
     # Account lookup.
-    ('^account-lookup/', include('mkt.acct_lookup.urls')),
+    ('^lookup/', include('mkt.lookup.urls')),
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),

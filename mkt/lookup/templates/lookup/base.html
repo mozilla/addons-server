@@ -1,28 +1,28 @@
 {% extends 'developers/skeleton_impala.html' %}
 
-{% block title %}{{ _('Account Lookup') }}{% endblock %}
+{% block title %}{{ _('Lookup Tool') }}{% endblock %}
 
 {% block bodyclass %}account-lookup{% endblock %}
 
 {% block masthead %}
 <h1 id="masthead" class="site-title prominent">
-  <a href="{{ url('acct_lookup.home') }}">
+  <a href="{{ url('lookup.home') }}">
     {% trans %}
-      <small>Marketplace</small> Account Lookup
+      <small>Marketplace</small> Lookup Tool
     {% endtrans %}
   </a>
 </h1>
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('mkt/acct_lookup') }}
+  {{ css('mkt/lookup') }}
 {% endblock %}
 
 {% block site_header_title %}
 {% endblock %}
 
 {% block js %}
-  {{ js('mkt/acct_lookup') }}
+  {{ js('mkt/lookup') }}
 {% endblock %}
 
 {# Hiding these for the Marketplace Editor Tools until consumer pages are done. #}

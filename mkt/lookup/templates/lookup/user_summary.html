@@ -1,10 +1,10 @@
-{% extends 'acct_lookup/base.html' %}
+{% extends 'lookup/base.html' %}
 
 {% block breadcrumbs %}
 {% endblock %}
 
 {% block content %}
-  {% include 'acct_lookup/includes/user_search.html' %}
+  {% include 'lookup/includes/user_search.html' %}
 
   <section class="island c">
     {{ user_header(account, _('Account Lookup results for'), is_admin) }}

@@ -37,7 +37,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         self.steamcube = Addon.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.summary_url = reverse('acct_lookup.user_summary',
+        self.summary_url = reverse('lookup.user_summary',
                                    args=[self.user.pk])
 
     def buy_stuff(self, contrib_type):
@@ -60,8 +60,8 @@ class TestAcctSummary(AcctLookupTest, TestCase):
 
     def test_home_auth(self):
         self.client.logout()
-        res = self.client.get(reverse('acct_lookup.home'))
-        self.assertLoginRedirects(res, reverse('acct_lookup.home'))
+        res = self.client.get(reverse('lookup.home'))
+        self.assertLoginRedirects(res, reverse('lookup.home'))
 
     def test_summary_auth(self):
         self.client.logout()
@@ -69,7 +69,7 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         self.assertLoginRedirects(res, self.summary_url)
 
     def test_home(self):
-        res = self.client.get(reverse('acct_lookup.home'))
+        res = self.client.get(reverse('lookup.home'))
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
 
@@ -185,7 +185,7 @@ class TestAcctSearch(SearchTest, ESTestCase):
 
     def setUp(self):
         super(TestAcctSearch, self).setUp()
-        self.url = reverse('acct_lookup.user_search')
+        self.url = reverse('lookup.user_search')
         self.user = UserProfile.objects.get(username='clouserw')
 
     def verify_result(self, data):
@@ -193,7 +193,7 @@ class TestAcctSearch(SearchTest, ESTestCase):
         eq_(data['results'][0]['display_name'], self.user.display_name)
         eq_(data['results'][0]['email'], self.user.email)
         eq_(data['results'][0]['id'], self.user.pk)
-        eq_(data['results'][0]['url'], reverse('acct_lookup.user_summary',
+        eq_(data['results'][0]['url'], reverse('lookup.user_summary',
                                                args=[self.user.pk]))
 
     def test_by_username(self):
@@ -230,13 +230,13 @@ class TestAppSearch(SearchTest, ESTestCase):
 
     def setUp(self):
         super(TestAppSearch, self).setUp()
-        self.url = reverse('acct_lookup.app_search')
+        self.url = reverse('lookup.app_search')
         self.app = Addon.objects.get(pk=337141)
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.app.name.localized_string)
         eq_(data['results'][0]['id'], self.app.pk)
-        eq_(data['results'][0]['url'], reverse('acct_lookup.app_summary',
+        eq_(data['results'][0]['url'], reverse('lookup.app_summary',
                                                args=[self.app.pk]))
 
     def test_by_name_part(self):
@@ -277,7 +277,7 @@ class AppSummaryTest(AcctLookupTest):
 
     def _setUp(self):
         self.app = Addon.objects.get(pk=337141)
-        self.url = reverse('acct_lookup.app_summary',
+        self.url = reverse('lookup.app_summary',
                            args=[self.app.pk])
 
     def summary(self, expected_status=200):
@@ -409,7 +409,7 @@ class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
     def setUp(self):
         super(TestAddonDownloadSummary, self).setUp()
         self.app = Addon.objects.get(pk=3615)
-        self.url = reverse('acct_lookup.app_summary',
+        self.url = reverse('lookup.app_summary',
                            args=[self.app.pk])
 
     def test_7_days(self):
@@ -475,7 +475,7 @@ class TestPurchases(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
         self.user = UserProfile.objects.get(pk=999)
-        self.url = reverse('acct_lookup.user_purchases', args=[self.user.pk])
+        self.url = reverse('lookup.user_purchases', args=[self.user.pk])
 
     def test_not_allowed(self):
         self.client.logout()
@@ -517,7 +517,7 @@ class TestActivity(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
         self.user = UserProfile.objects.get(pk=999)
-        self.url = reverse('acct_lookup.user_activity', args=[self.user.pk])
+        self.url = reverse('lookup.user_activity', args=[self.user.pk])
 
     def test_not_allowed(self):
         self.client.logout()

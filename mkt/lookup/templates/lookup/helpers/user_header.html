@@ -1,6 +1,6 @@
 <h1>
   {{ title }}
-  <a href="{{ url('acct_lookup.user_summary', account.id) }}"
+  <a href="{{ url('lookup.user_summary', account.id) }}"
      title="{{ _('Account Summary') }}">{{ account.display_name }}</a>
   ({{ account.pk }})
 </h1>
@@ -15,13 +15,13 @@
         </a>
       </li>
       <li>
-        <a href="{{ url('acct_lookup.user_activity', account.id) }}"
+        <a href="{{ url('lookup.user_activity', account.id) }}"
           {% if page_type == 'activity' %}class="sel"{% endif %}>
           {{ _('Activity') }}
         </a>
       </li>
       <li>
-        <a href="{{ url('acct_lookup.user_purchases', account.id) }}"
+        <a href="{{ url('lookup.user_purchases', account.id) }}"
           {% if page_type == 'purchases' %}class="sel"{% endif %}>
           {{ _('Purchases') }}
         </a>

@@ -26,7 +26,7 @@ from users.models import UserProfile
 @login_required
 @permission_required('AccountLookup', 'View')
 def home(request):
-    return jingo.render(request, 'acct_lookup/home.html', {})
+    return jingo.render(request, 'lookup/home.html', {})
 
 
 @login_required
@@ -52,7 +52,7 @@ def user_summary(request, user_id):
     payment_data = []
     for ad in user.addons.exclude(payment_data=None):
         payment_data.append(ad.payment_data)
-    return jingo.render(request, 'acct_lookup/user_summary.html',
+    return jingo.render(request, 'lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,
                          'is_admin': is_admin,
@@ -75,7 +75,7 @@ def app_summary(request, addon_id):
     else:
         price = None
 
-    return jingo.render(request, 'acct_lookup/app_summary.html',
+    return jingo.render(request, 'lookup/app_summary.html',
                         {'abuse_reports': app.abuse_reports.count(),
                          'app': app,
                          'authors': authors,
@@ -120,7 +120,7 @@ def user_purchases(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
     products, contributions, listing = purchase_list(request, user, None)
-    return jingo.render(request, 'acct_lookup/user_purchases.html',
+    return jingo.render(request, 'lookup/user_purchases.html',
                         {'pager': products,
                          'account': user,
                          'is_admin': is_admin,
@@ -144,7 +144,7 @@ def user_activity(request, user_id):
     admin_items = ActivityLog.objects.for_user(user).filter(
         action__in=amo.LOG_HIDE_DEVELOPER)
     amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.amo_user, user=user)
-    return jingo.render(request, 'acct_lookup/user_activity.html',
+    return jingo.render(request, 'lookup/user_activity.html',
                         {'pager': products,
                          'account': user,
                          'is_admin': is_admin,
@@ -175,7 +175,7 @@ def user_search(request):
                                          email__fuzzy=query))
                          .values_dict(*fields))
     for user in qs:
-        user['url'] = reverse('acct_lookup.user_summary', args=[user['id']])
+        user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
         results.append(user)
     return {'results': results}
@@ -198,7 +198,7 @@ def app_search(request):
             # Give up on GUID, assume it's a search.
             qs = Addon.search().query(name__fuzzy=query).values_dict(*fields)
     for app in qs:
-        app['url'] = reverse('acct_lookup.app_summary', args=[app['id']])
+        app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
         if type(app['name']) != list:
             app['name'] = [app['name__localized_string']]

@@ -49,8 +49,8 @@ def global_settings(request):
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
         if acl.action_allowed(request, 'AccountLookup', '%'):
-            tools_links.append({'text': _('Account Lookup'),
-                                'href': reverse('acct_lookup.home')})
+            tools_links.append({'text': _('Lookup Tool'),
+                                'href': reverse('lookup.home')})
         if acl.action_allowed(request, 'Admin', '%'):
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
