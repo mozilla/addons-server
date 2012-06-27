@@ -6,6 +6,7 @@ from types import GeneratorType
 from datetime import date, timedelta
 
 from django import http
+from django.conf import settings
 from django.db import connection
 from django.db.models import Avg, Count, Sum, Q
 from django.utils import simplejson
@@ -379,15 +380,16 @@ def site_events(request, start, end):
 
     type_pretty = unicode(amo.SITE_EVENT_CHOICES[amo.SITE_EVENT_RELEASE])
 
-    releases = product_details.firefox_history_major_releases
+    if not settings.MARKETPLACE:
+        releases = product_details.firefox_history_major_releases
 
-    for version, date in releases.items():
-        events.append({
-            'start':       date,
-            'type_pretty': type_pretty,
-            'type':        amo.SITE_EVENT_RELEASE,
-            'description': 'Firefox %s released' % version,
-        })
+        for version, date in releases.items():
+            events.append({
+                'start':       date,
+                'type_pretty': type_pretty,
+                'type':        amo.SITE_EVENT_RELEASE,
+                'description': 'Firefox %s released' % version,
+            })
     return events
 
 
