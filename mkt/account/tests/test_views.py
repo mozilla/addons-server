@@ -322,25 +322,18 @@ class TestPreapproval(amo.tests.TestCase):
         eq_(doc('#preapproval').attr('action'),
             reverse('account.payment.preapproval'))
 
-    @mock.patch('mkt.account.views.client.post_preapproval')
+    @mock.patch('mkt.account.views.client')
     @mock.patch('mkt.account.views.waffle.flag_is_active')
-    def test_preapproval_solitude(self, flag_is_active, post_preapproval):
+    def test_preapproval_solitude(self, flag_is_active, client):
         flag_is_active.return_value = True
         url = 'http://foo.com/?bar'
-        post_preapproval.return_value = {'paypal_url': url, 'key': 'bar'}
+        client.post_preapproval.return_value = {'paypal_url': url,
+                                                'key': 'bar'}
         res = self.client.post(reverse('account.payment.preapproval'),
                                {'currency': 'USD'})
         eq_(res['Location'], url)
-        eq_(self.user.pk, post_preapproval.call_args[1]['data']['uuid'].pk)
-
-    @mock.patch('mkt.account.views.client.post_preapproval')
-    @mock.patch('mkt.account.views.waffle.flag_is_active')
-    def test_preapproval_solitude_err(self, flag_is_active, post_preapproval):
-        flag_is_active.return_value = True
-        post_preapproval.side_effect = client.Error
-        self.assertRaises(client.Error, self.client.post,
-                          reverse('account.payment.preapproval'),
-                          {'currency': 'USD'})
+        eq_(self.user.pk,
+            client.post_preapproval.call_args[1]['data']['uuid'].pk)
 
     @mock.patch('paypal.get_preapproval_key')
     @mock.patch('mkt.account.views.waffle.switch_is_active')

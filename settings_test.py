@@ -92,3 +92,4 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 MOZMARKET_VENDOR_EXCLUDE = []
+SECLUSION_HOSTS = ('http://localhost/',)
