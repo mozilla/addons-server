@@ -504,6 +504,7 @@ class TestPreApproval(amo.tests.TestCase):
         eq_(_call.call_args[0][1]['returnUrl'],
             absolutify(reverse(data['pattern'], args=['complete'])))
 
+    @mock.patch.object(settings, 'PAYPAL_LIMIT_PREAPPROVAL', True)
     def test_preapproval_limits(self, _call):
         _call.return_value = good_preapproval_string
         data = self.get_data()
@@ -511,6 +512,15 @@ class TestPreApproval(amo.tests.TestCase):
         eq_(_call.call_args[0][1]['paymentPeriod'], 'DAILY')
         eq_(_call.call_args[0][1]['maxAmountPerPayment'], 15)
         eq_(_call.call_args[0][1]['maxNumberOfPaymentsPerPeriod'], 15)
+
+    @mock.patch.object(settings, 'PAYPAL_LIMIT_PREAPPROVAL', False)
+    def test_not_preapproval_limits(self, _call):
+        _call.return_value = good_preapproval_string
+        data = self.get_data()
+        paypal.get_preapproval_key(data)
+        assert 'paymentPeriod' not in _call.call_args[0][1]
+        assert 'maxAmountPerPayment' not in _call.call_args[0][1]
+        assert 'maxNumberOfPaymentsPerPeriod' not in _call.call_args[0][1]
 
     def test_preapproval_url(self, _call):
         url = paypal.get_preapproval_url('foo')

@@ -416,12 +416,16 @@ def get_preapproval_key(data):
         'startingDate': data['startDate'].strftime('%Y-%m-%d'),
         'endingDate': data['endDate'].strftime('%Y-%m-%d'),
         'maxTotalAmountOfAllPayments': str(data.get('maxAmount', '2000')),
-        'maxAmountPerPayment': 15,
-        'maxNumberOfPaymentsPerPeriod': 15,
-        'paymentPeriod': 'DAILY',
         'returnUrl': absolutify(reverse(data['pattern'], args=['complete'])),
         'cancelUrl': absolutify(reverse(data['pattern'], args=['cancel'])),
     }
+    if settings.PAYPAL_LIMIT_PREAPPROVAL:
+        paypal_data.update({
+            'maxAmountPerPayment': 15,
+            'maxNumberOfPaymentsPerPeriod': 15,
+            'paymentPeriod': 'DAILY',
+        })
+
     with statsd.timer('paypal.preapproval.token'):
         response = _call(settings.PAYPAL_PAY_URL + 'Preapproval', paypal_data,
                          ip=data.get('ip'))
