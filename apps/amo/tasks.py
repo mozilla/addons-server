@@ -18,6 +18,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from devhub.models import ActivityLog, AppLog, LegacyAddonLog
 from editors.models import EventLog
+from market.models import Refund
 from mkt.reviewers.models import EscalationQueue
 from reviews.models import Review
 from stats.models import Contribution
@@ -217,3 +218,48 @@ def find_abuse_escalations(addon_id, **kw):
         amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
                 abuse.addon.current_version, details={'comments': msg})
         log.info(u'[addon:%s] %s' % (abuse.addon, msg))
+
+
+@task
+def find_refund_escalations(addon_id, **kw):
+    try:
+        addon = Addon.objects.get(pk=addon_id)
+    except Addon.DoesNotExist:
+        log.info(u'[addon:%s] Task called but no addon found.' % addon_id)
+        return
+
+    refund_threshold = 0.05
+    amo.set_user(get_task_user())
+    weekago = datetime.date.today() - datetime.timedelta(days=7)
+
+    ratio = Refund.recent_refund_ratio(addon.id, weekago)
+    if ratio > refund_threshold:
+        if EscalationQueue.objects.filter(addon=addon).exists():
+            # App is already in the queue, no need to re-add it.
+            # TODO: If not in queue b/c of refunds, add an
+            #       amo.LOG.ESCALATED_HIGH_REFUNDS for reviewers.
+            log.info(u'[addon:%s] High refunds, but already escalated' % addon)
+            return
+
+        # High refunds and app isn't in the escalation queue...  let's see if
+        # it has been detected and dealt with already.
+        logs = (AppLog.objects.filter(
+            activity_log__action=amo.LOG.ESCALATED_HIGH_REFUNDS.id,
+            addon=addon).order_by('-created'))
+        if logs:
+            since_ratio = Refund.recent_refund_ratio(addon.id, logs[0].created)
+            # If not high enough ratio since the last logged, do not add to
+            # the queue.
+            if not since_ratio > refund_threshold:
+                log.info(u'[addon:%s] High refunds, but not enough since last '
+                          'escalation. Ratio: %.0f%%' % (addon,
+                                                         since_ratio * 100))
+                return
+
+        # If we haven't bailed out yet, escalate this app.
+        msg = u'High number of refund requests (%.0f%%) detected on %s' % (
+            (ratio * 100), datetime.datetime.now())
+        EscalationQueue.objects.create(addon=addon)
+        amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, addon,
+                addon.current_version, details={'comments': msg})
+        log.info(u'[addon:%s] %s' % (addon, msg))

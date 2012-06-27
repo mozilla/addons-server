@@ -2,20 +2,19 @@ from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 
+import mock
+from nose.tools import eq_
+from waffle import Sample, Switch
+
+import amo
 from addons.management.commands import process_addons
 from addons.models import Addon
-import amo
-import amo.tests
 from market.tasks import (check_paypal, check_paypal_multiple,
                           _check_paypal_completed)
 from devhub.models import ActivityLog
 
-from mock import Mock, patch
-from nose.tools import eq_
-from waffle import Sample, Switch
 
-
-@patch.object(settings, 'TASK_USER_ID', 999)
+@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestCheckPaypal(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -25,15 +24,15 @@ class TestCheckPaypal(amo.tests.TestCase):
         self.pks = ['3615']
         Sample.objects.create(name='paypal-disabled-limit', percent='10.0')
         Switch.objects.create(name='paypal-disable', active=1)
-        self.check = Mock()
+        self.check = mock.Mock()
         self.check.return_value = []
         process_addons.tasks['check_paypal']['pre'] = self.check
 
     def get_check(self, passed, errors=[]):
-        _mock = Mock()
+        _mock = mock.Mock()
         _mock.passed = passed
         _mock.errors = errors
-        return Mock(return_value=_mock)
+        return mock.Mock(return_value=_mock)
 
     def test_pass(self):
         pks = check_paypal_multiple(self.pks)

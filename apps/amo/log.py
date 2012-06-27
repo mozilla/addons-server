@@ -463,7 +463,14 @@ class ESCALATED_HIGH_ABUSE(_LOG):
     review_queue = True
 
 
-# TODO(robhudson): Escalation log for high refunds.
+class ESCALATED_HIGH_REFUNDS(_LOG):
+    id = 69
+    format = _(u'{addon} escalated because of high number of refund requests.')
+    short = _(u'High Refund Requests')
+    keep = True
+    review_queue = True
+
+
 # TODO(robhudson): Escalation log for editor escalation..
 
 

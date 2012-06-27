@@ -8,10 +8,13 @@ from nose.tools import eq_
 
 import amo
 from abuse.models import AbuseReport
-from amo.tasks import find_abuse_escalations
+from amo.tasks import find_abuse_escalations, find_refund_escalations
 from amo.tests import app_factory
-
+from devhub.models import AppLog
+from market.models import AddonPurchase, Refund
 from mkt.reviewers.models import EscalationQueue
+from stats.models import Contribution
+from users.models import UserProfile
 
 
 class TestAbuseEscalationTask(amo.tests.TestCase):
@@ -58,7 +61,7 @@ class TestAbuseEscalationTask(amo.tests.TestCase):
                 details={'comments': 'All clear'})
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
 
-        # Cron will find it again but not add it again.
+        # Task will find it again but not add it again.
         find_abuse_escalations(self.app.id)
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
 
@@ -77,7 +80,7 @@ class TestAbuseEscalationTask(amo.tests.TestCase):
                 details={'comments': 'All clear'})
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
 
-        # Cron will find it again but not add it again.
+        # Task will find it again but not add it again.
         find_abuse_escalations(self.app.id)
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
 
@@ -97,3 +100,103 @@ class TestAbuseEscalationTask(amo.tests.TestCase):
         eq_(report.message, 'spammy')
         eq_(report.addon, self.app)
         _mock.delay.assert_called_with(self.app.id)
+
+
+class TestRefundsEscalationTask(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.app = app_factory(name='XXX')
+        self.user1, self.user2, self.user3 = UserProfile.objects.all()[:3]
+
+        patcher = mock.patch.object(settings, 'TASK_USER_ID', 4043307)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+
+    def _purchase(self, user=None, created=None):
+        ap1 = AddonPurchase.objects.create(user=user or self.user1,
+                                           addon=self.app)
+        if created:
+            ap1.update(created=created)
+
+    def _refund(self, user=None, created=None):
+        contribution = Contribution.objects.create(addon=self.app,
+                                                   user=user or self.user1)
+        ref = Refund.objects.create(contribution=contribution)
+        if created:
+            ref.update(created=created)
+            # Needed because these tests can run in the same second and the
+            # refund detection task depends on timestamp logic for when to
+            # escalate.
+            applog = AppLog.objects.all().order_by('-created')[0]
+            applog.update(created=created)
+
+    def test_multiple_refunds_same_user(self):
+        self._purchase(self.user1)
+        self._refund(self.user1)
+        self._refund(self.user1)
+        eq_(Refund.recent_refund_ratio(
+            self.app.id, datetime.datetime.now() - datetime.timedelta(days=1)),
+            1.0)
+
+    def test_no_refunds(self):
+        find_refund_escalations(self.app.id)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+
+    def test_refunds(self):
+        self._purchase(self.user1)
+        self._purchase(self.user2)
+        self._refund(self.user1)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 1)
+
+    def test_refunds_already_escalated(self):
+        self._purchase(self.user1)
+        self._purchase(self.user2)
+        self._refund(self.user1)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 1)
+        # Task was run on Refund.post_save, re-run task to make sure we don't
+        # escalate again.
+        find_refund_escalations(self.app.id)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 1)
+
+    def test_refunds_cleared_not_escalated(self):
+        stamp = datetime.datetime.now() - datetime.timedelta(days=2)
+        self._purchase(self.user1, stamp)
+        self._purchase(self.user2, stamp)
+        self._refund(self.user1, stamp)
+
+        # Simulate a reviewer clearing an escalation...
+        #   remove app from queue and write a log.
+        EscalationQueue.objects.filter(addon=self.app).delete()
+        amo.log(amo.LOG.ESCALATION_CLEARED, self.app, self.app.current_version,
+                details={'comments': 'All clear'})
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+        # Task will find it again but not add it again.
+        find_refund_escalations(self.app.id)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+
+    def test_older_refund_escalations_then_new(self):
+        stamp = datetime.datetime.now() - datetime.timedelta(days=2)
+        self._purchase(self.user1, stamp)
+        self._purchase(self.user2, stamp)
+
+        # Triggers 33% for refund / purchase ratio.
+        self._refund(self.user1, stamp)
+
+        # Simulate a reviewer clearing an escalation...
+        #   remove app from queue and write a log.
+        EscalationQueue.objects.filter(addon=self.app).delete()
+        amo.log(amo.LOG.ESCALATION_CLEARED, self.app, self.app.current_version,
+                details={'comments': 'All ok'})
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+
+        # Task will find it again but not add it again.
+        find_refund_escalations(self.app.id)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
+
+        # Issue another refund, which should trigger another escalation.
+        self._purchase(self.user3)
+        self._refund(self.user3)
+        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 1)
