@@ -41,6 +41,31 @@ class ZamboniClient(Client):
         if res['meta']['total_count'] == 0:
             self.post_buyer(data={'uuid': buyer})
 
+    def create_seller_paypal(self, seller):
+        """
+        Will see if the user exists. If it does, will see if paypal exists, if
+        it doesn't it will create a paypal record. It will then return the
+        paypal pk, so we can do calls to it.
+        """
+        res = self.get_seller(filters={'uuid': model_to_uid(seller)})
+        count = res['meta']['total_count']
+        if count == 0:
+            # There's no seller data, so create the seller objects.
+            sel = self.post_seller(data={'uuid': seller})
+            return self.post_seller_paypal(data={'seller':
+                                                 sel['resource_uri']})
+        elif count == 1:
+            sel = res['objects'][0]
+            paypal = sel['paypal']
+            if not paypal:
+                # There is no PayPal object. Create one.
+                return self.post_seller_paypal(data={'seller':
+                                                     sel['resource_uri']})
+            # The resource_pk is there in the first results, just save it.
+            return paypal
+        else:
+            raise ValueError('Get returned %s sellers.' % count)
+
 
 def get_client():
     # If you haven't specified a seclusion host, we can't do anything.

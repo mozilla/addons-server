@@ -34,6 +34,7 @@ from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from lib.cef_loggers import inapp_cef
+from lib.pay_server import client
 from market.models import AddonPaymentData, AddonPremium, Refund
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
@@ -271,7 +272,14 @@ def paypal_setup(request, addon_id, addon, webapp):
             return redirect(settings.PAYPAL_CGI_URL)
         else:
             # Go setup your details on paypal.
+            # TODO(solitude): we will remove this.
             addon.update(paypal_id=paypal_form.cleaned_data['email'])
+
+            if waffle.flag_is_active(request, 'solitude-payments'):
+                obj = client.create_seller_paypal(addon)
+                client.patch_seller_paypal(pk=obj['resource_pk'],
+                        data={'paypal_id': paypal_form.cleaned_data['email']})
+
             if addon.premium and addon.premium.paypal_permissions_token:
                 addon.premium.update(paypal_permissions_token='')
             return redirect(addon.get_dev_url('paypal_setup_bounce'))

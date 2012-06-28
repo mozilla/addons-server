@@ -5,12 +5,14 @@ from django.shortcuts import redirect
 from django.utils.translation.trans_real import to_language
 
 import jingo
+import waffle
 
 import amo
 from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import Addon, AddonUser
+from lib.pay_server import client
 from market.models import AddonPaymentData
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
@@ -203,6 +205,12 @@ def payments_paypal(request, addon_id, addon):
             # TODO: this will either become the API or something some better
             # URL for the future.
             return redirect(settings.PAYPAL_CGI_URL)
+
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            obj = client.create_seller_paypal(addon)
+            client.patch_seller_paypal(pk=obj['resource_pk'],
+                         data={'paypal_id': form.cleaned_data['email']})
+
         addon.update(paypal_id=form.cleaned_data['email'])
         return redirect('submit.app.payments.bounce', addon.app_slug)
     return jingo.render(request, 'submit/payments-paypal.html', {

@@ -927,6 +927,18 @@ class TestPayments(TestSubmit):
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('payments.bounce'))
 
+    @mock.patch('mkt.submit.views.client')
+    @mock.patch('mkt.submit.views.waffle.flag_is_active')
+    def test_paypal_solitude(self, flag_is_active, client):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.post(self.get_url('payments.paypal'),
+                               {'business_account': 'yes',
+                                'email': 'foo@bar.com'})
+        eq_(client.create_seller_paypal.call_args[0][0], self.webapp)
+        eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
+            'foo@bar.com')
+        self.assertRedirects(res, self.get_url('payments.bounce'))
+
     def test_no_paypal(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.paypal'),

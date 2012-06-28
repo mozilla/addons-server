@@ -145,6 +145,17 @@ class TestPaypal(amo.tests.TestCase):
         self.assertRedirects(res,
                              self.webapp.get_dev_url('paypal_setup_bounce'))
 
+    @mock.patch('mkt.developers.views.client')
+    @mock.patch('mkt.developers.views.waffle.flag_is_active')
+    def test_later_solitude(self, flag_is_active, client):
+        flag_is_active.return_value = True
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.client.post(self.url, {'email': 'a@a.com', 'form': 'paypal',
+                                    'business_account': 'yes'})
+        eq_(client.create_seller_paypal.call_args[0][0], self.webapp)
+        eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
+            'a@a.com')
+
 
 class TestPaypalResponse(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
