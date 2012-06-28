@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.views.decorators.cache import cache_control
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
@@ -581,6 +582,7 @@ def purchase(request, addon):
 
 
 # TODO(andym): again, remove this once we figure out logged out flow.
+@csrf_exempt
 @login_required
 @addon_view
 @can_be_purchased
@@ -740,6 +742,7 @@ def contribute(request, addon):
     return http.HttpResponseRedirect(url)
 
 
+@csrf_exempt
 @addon_view
 def paypal_result(request, addon, status):
     uuid = request.GET.get('uuid')

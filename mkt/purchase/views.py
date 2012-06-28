@@ -6,6 +6,7 @@ from django import http
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
+from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
@@ -143,6 +144,7 @@ def purchase(request, addon):
     return redirect(addon.get_detail_url())
 
 
+@csrf_exempt
 @login_required
 @addon_view
 @can_be_purchased
