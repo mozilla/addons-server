@@ -241,18 +241,26 @@ APPCACHE_TO_CACHE = [
     'https://browserid.org/include.js'
 ]
 
+APPCACHE_NET_PATHS = [
+    '*'
+]
+
 # These are paths relative to MEDIA_ROOT that you want to explicitly
 # cache. The browser will load *all* of these URLs when your app first loads
 # so be mindful to only list essential media files. The actual URL of the path
 # to cache will be determined using MEDIA_URL.
 # If you use wildcards here the real paths to the file(s) will be
 # expanded using glob.glob()
+
 APPCACHE_MEDIA_TO_CACHE = [
-    'css/mkt-all.css',
-    'css/mkt/consumer-all.css',
-    'js/common-all.js',
-    'js/mkt-all.js',
-    'js/preload-all.js',
-    'js/mkt/consumer-all.js',
-    'js/lib/jquery-1.*.js',
+    'js/mkt/consumer-min.js',
+    'css/mkt/consumer-min.css'
 ]
+
+APPCACHE_MEDIA_DEBUG = []
+for f in list(asset_bundles.CSS['mkt/consumer']):
+    if f.endswith('.less'):
+        APPCACHE_MEDIA_DEBUG.append(f + '.css')
+    else:
+        APPCACHE_MEDIA_DEBUG.append(f)
+APPCACHE_MEDIA_DEBUG.extend(asset_bundles.JS['mkt/consumer'])

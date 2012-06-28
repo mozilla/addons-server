@@ -4,10 +4,9 @@
 {% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}"
-  {% if settings.USE_APPCACHE %}
+  {% if settings.USE_APPCACHE and OFFLINE_MANIFEST %}
     {{ appcache_manifest_link()|safe }}
-  {% endif %}
-  >
+  {% endif %}>
   <head>
     <meta charset="utf-8">
     {% if not settings.ENGAGE_ROBOTS %}
