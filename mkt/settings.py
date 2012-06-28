@@ -264,3 +264,6 @@ for f in list(asset_bundles.CSS['mkt/consumer']):
     else:
         APPCACHE_MEDIA_DEBUG.append(f)
 APPCACHE_MEDIA_DEBUG.extend(asset_bundles.JS['mkt/consumer'])
+
+# Are you working locally? place the following line in your settings_local:
+# APPCACHE_MEDIA_TO_CACHE = APPCACHE_MEDIA_DEBUG
