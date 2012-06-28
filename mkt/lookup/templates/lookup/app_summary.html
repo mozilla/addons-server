@@ -5,6 +5,9 @@
 
 {% block content %}
   {% include 'lookup/includes/app_search.html' %}
+  {% set summaries = (('last_24_hours', _('last 24 hours')),
+                      ('last_7_days', _('last 7 days')),
+                      ('alltime', _('all time'))) %}
 
   <section class="island c">
     {{ app_header(app, 'summary') }}
@@ -45,9 +48,9 @@
         <dd>TBD: permissions not supported yet</dd>
         <dt>{{ _('Downloads') }}</dt>
         <dd class="pretty-list">
-          <div>{{ _('last 24 hours') }}: {{ downloads['last_24_hours'] }}</div>
-          <div>{{ _('last 7 days') }}: {{ downloads['last_7_days'] }}</div>
-          <div>{{ _('all time') }}: {{ downloads['alltime'] }}</div>
+          {% for key, heading in summaries %}
+            <div>{{ heading }}: {{ downloads[key] }}</div>
+          {% endfor %}
         </dd>
       </dl>
     </section>
@@ -56,7 +59,15 @@
       <h2>{{ _('Payments') }}</h2>
       <dl>
         <dt>{{ _('Purchases') }}</dt>
-        <dd>TBD: bug 765764</dd>
+        <dd class="pretty-list">
+          {% for key, heading in summaries %}
+            <div>{{ heading }}: {{ purchases[key]['total'] }}
+              {% if purchases[key]['amounts'] %}
+                ({{ ' + '.join(purchases[key]['amounts']) }})
+              {% endif %}
+            </div>
+          {% endfor %}
+        </dd>
         <dt>{{ _('Refunds') }}</dt>
         <dd>TBD: bug 765765</dd>
         <dt>{{ _('Methods') }}</dt>

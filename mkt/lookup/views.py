@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
 
 from django.db import connection
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.shortcuts import get_object_or_404
 
+from babel import numbers
 import jingo
 
 from addons.models import Addon
@@ -13,13 +14,12 @@ from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
-from devhub.views import _get_items
-from devhub import helpers
+from devhub import helpers  # for templates?
 from devhub.models import ActivityLog
 from market.models import Refund
 from mkt.account.utils import purchase_list
 from mkt.webapps.models import Installed
-from stats.models import DownloadCount
+from stats.models import DownloadCount, Contribution
 from users.models import UserProfile
 
 
@@ -80,6 +80,7 @@ def app_summary(request, addon_id):
                          'app': app,
                          'authors': authors,
                          'downloads': _app_downloads(app),
+                         'purchases': _app_purchases(app),
                          'price': price})
 
 
@@ -244,3 +245,23 @@ def _app_summary(user_id):
             elif cn.endswith('amount'):
                 summary[cn][row['currency']] = row[cn]
     return summary
+
+
+def _app_purchases(addon):
+    data = {}
+    now = datetime.now()
+    for typ, start_date in (('last_24_hours', now - timedelta(hours=24)),
+                            ('last_7_days', now - timedelta(days=7)),
+                            ('alltime', None),):
+        qs = (Contribution.objects.values('currency')
+                                  .annotate(total=Count('id'),
+                                            amount=Sum('amount'))
+                                  .filter(addon=addon))
+        if start_date:
+            qs = qs.filter(created__gte=start_date)
+        sums = list(qs)
+        data[typ] = {'total': sum(s['total'] for s in sums),
+                     'amounts': [numbers.format_currency(s['amount'],
+                                                         s['currency'])
+                                 for s in sums]}
+    return data

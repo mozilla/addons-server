@@ -404,6 +404,59 @@ class TestAppDownloadSummary(DownloadSummaryTest, TestCase):
         eq_(res.context['downloads']['alltime'], 2)
 
 
+class TestAppSummaryPurchases(AppSummaryTest, TestCase):
+
+    def setUp(self):
+        super(TestAppSummaryPurchases, self).setUp()
+        self._setUp()
+
+    def assert_totals(self, data):
+        eq_(data['total'], 6)
+        eq_(sorted(data['amounts']), [u'$6.00', u'\u20ac3.00'])
+
+    def assert_empty(self, data):
+        eq_(data['total'], 0)
+        eq_(sorted(data['amounts']), [])
+
+    def purchase(self, created=None):
+        for curr, amount in (('USD', '2.00'), ('EUR', '1.00')):
+            for i in range(3):
+                c = Contribution.objects.create(addon=self.app,
+                                                amount=Decimal(amount),
+                                                currency=curr,
+                                                type=amo.CONTRIB_PURCHASE)
+                if created:
+                    c.update(created=created)
+
+    def test_24_hr(self):
+        self.purchase()
+        res = self.summary()
+        self.assert_totals(res.context['purchases']['last_24_hours'])
+
+    def test_ignore_older_than_24_hr(self):
+        self.purchase(created=datetime.now() - timedelta(days=1,
+                                                         minutes=1))
+        res = self.summary()
+        self.assert_empty(res.context['purchases']['last_24_hours'])
+
+    def test_7_days(self):
+        self.purchase(created=datetime.now() - timedelta(days=6,
+                                                         minutes=55))
+        res = self.summary()
+        self.assert_totals(res.context['purchases']['last_7_days'])
+
+    def test_ignore_older_than_7_days(self):
+        self.purchase(created=datetime.now() - timedelta(days=7,
+                                                         minutes=1))
+        res = self.summary()
+        self.assert_empty(res.context['purchases']['last_7_days'])
+
+    def test_alltime(self):
+        self.purchase(created=datetime.now() - timedelta(days=31))
+        res = self.summary()
+        self.assert_totals(res.context['purchases']['alltime'])
+
+
 class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
 
     def setUp(self):
@@ -513,6 +566,7 @@ class TestPurchases(amo.tests.TestCase):
 
 class TestActivity(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
+
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
@@ -535,7 +589,7 @@ class TestActivity(amo.tests.TestCase):
 
     def test_log(self):
         self.client.login(username=self.reviewer.email, password='password')
-        res = self.client.get(self.url)
+        self.client.get(self.url)
         log_item = ActivityLog.objects.get(action=amo.LOG.ADMIN_VIEWED_LOG.id)
         eq_(len(log_item.arguments), 1)
         eq_(log_item.arguments[0].id, self.reviewer.id)
@@ -550,4 +604,3 @@ class TestActivity(amo.tests.TestCase):
         doc = pq(res.content)
         assert 'purchased' in doc('li.item').eq(0).text()
         assert 'edited' in doc('li.item').eq(1).text()
-
