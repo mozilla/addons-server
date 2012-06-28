@@ -186,7 +186,7 @@ Fields:
 * `support_url` (optional): a URL to your support homepage.
 * `support_email` (required): the email address for support.
 * `device_types` (required): a list of the device types at least one of:
-  'desktop', 'phone', 'tablet'.
+  'desktop', 'mobile', 'tablet'.
 * `payment_type` (required): only choice at this time is 'free'.
 
 Example body data::
