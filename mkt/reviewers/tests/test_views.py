@@ -590,7 +590,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
     def test_manifest_json(self, mock_get):
         m = mock.Mock()
         m.content = 'the manifest contents <script>'
-        m.headers = {'Content-Type':
+        m.headers = {'content-type':
                      'application/x-web-app-manifest+json <script>'}
         mock_get.return_value = m
 
