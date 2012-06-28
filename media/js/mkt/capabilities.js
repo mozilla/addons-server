@@ -24,7 +24,11 @@ z.capabilities = {
 };
 
 // Until https://github.com/mozilla-b2g/gaia/issues/1869 is fixed.
-z.capabilities.replaceState = false;
+// We have to target mobile since `window.locationbar.visible` (bug 762195) has
+// unfortunately not made it to Gaia yet.
+if (z.capabilities.mobile && z.capabilities.touch) {
+    z.capabilities.replaceState = false;
+}
 
 if (z.capabilities.tablet) {
     // If we're on tablet, then we're not on desktop.

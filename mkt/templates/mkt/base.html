@@ -185,7 +185,7 @@
         <script async defer src="https://browserid.org/include.js"></script>
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
-      {{ js('mkt/consumer', debug=True) }}
+      {{ js('mkt/consumer') }}
     {% endblock %}
 
     {% block paypal_js %}
