@@ -241,6 +241,7 @@ JS = {
         'js/mkt/apps.js',
         'js/mkt/install.js',
         'js/mkt/buttons.js',
+        'js/mkt/reviewers.js',
     ),
     'mkt/stats': (
         'js/zamboni/storage.js',

@@ -1,5 +1,6 @@
 import datetime
 from itertools import cycle
+import json
 import time
 
 from django.core import mail
@@ -584,6 +585,25 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self.get_app().update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('#receipt-check-result')), 1)
+
+    @mock.patch('mkt.reviewers.views.requests.get')
+    def test_manifest_json(self, mock_get):
+        m = mock.Mock()
+        m.content = 'the manifest contents <script>'
+        m.headers = {'Content-Type':
+                     'application/x-web-app-manifest+json <script>'}
+        mock_get.return_value = m
+
+        expected = {
+            'content': 'the manifest contents &lt;script&gt;',
+            'headers': {'content-type':
+                        'application/x-web-app-manifest+json &lt;script&gt;'}
+        }
+
+        r = self.client.get(reverse('reviewers.apps.review.manifest',
+                                    args=[self.app.app_slug]))
+        eq_(r.status_code, 200)
+        eq_(json.loads(r.content), expected)
 
 
 class TestCannedResponses(AppReviewerTest):

@@ -1,4 +1,5 @@
 import datetime
+import json
 
 from django import http
 from django.conf import settings
@@ -7,14 +8,15 @@ from django.shortcuts import redirect
 
 import jingo
 from tower import ugettext as _
+import requests
 
 from access import acl
 import amo
 from amo import messages
-from amo.utils import urlparams
+from amo.utils import escape_all, urlparams
 from addons.decorators import addon_view
 from addons.models import Version
-from amo.decorators import permission_required
+from amo.decorators import json_view, permission_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from editors.forms import MOTDForm
@@ -293,3 +295,24 @@ def motd(request):
             return redirect(reverse('reviewers.apps.motd'))
     data = context(form=form)
     return jingo.render(request, 'reviewers/motd.html', data)
+
+
+@permission_required('Apps', 'Review')
+@addon_view
+@json_view
+def app_view_manifest(request, addon):
+    content, headers = '', {}
+    if addon.manifest_url:
+        try:
+            req = requests.get(addon.manifest_url)
+            content, headers = req.content, req.headers
+        except Exception, e:
+            content = e
+
+        try:
+            # Reindent the JSON.
+            content = json.dumps(json.loads(content), indent=4)
+        except:
+            # If it's not valid JSON, just return the content as is.
+            pass
+    return escape_all({'content': content, 'headers': headers})

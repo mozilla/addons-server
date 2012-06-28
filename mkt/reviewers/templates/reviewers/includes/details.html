@@ -7,8 +7,9 @@
   <dl>
     <dt>{{ _('Manifest URL') }}</dt>
     <dd>
-      <a href="{{ product.manifest_url }}" target="_blank">
-        {{ product.manifest_url }}</a>
+      <a href="#" data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}"
+         id="view-manifest">
+        {{ product.manifest_url }} <b>{{ _('View') }}</b></a>
     </dd>
     <dt>{{ _('Default Locale') }}</dt>
     <dd>{{ product.default_locale }}</dd>
