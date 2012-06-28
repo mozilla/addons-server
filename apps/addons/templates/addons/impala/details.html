@@ -17,7 +17,7 @@
 {% block content %}
 {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                        (None, addon.name)]) }}
-<div itemscope itemtype="http://schema.org/SoftwareApplication">
+<div itemscope itemtype="http://schema.org/WebApplication">
   <link itemprop="SoftwareApplicationCategory" href="http://schema.org/OtherApplication" />
   <aside class="secondary addon-vitals">
 
@@ -106,7 +106,7 @@
       </h1>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
-    <p id="addon-summary" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+    <p id="addon-summary" itemprop="description" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {% if version or addon.is_webapp() %}
       {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% endif %}
