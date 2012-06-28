@@ -3,6 +3,8 @@ import logging.handlers
 
 from django.conf import settings
 
+from raven.handlers.logging import SentryHandler
+
 import commonware.log
 import dictconfig
 
@@ -111,3 +113,6 @@ def log_configure():
             logger['propagate'] = False
 
     dictconfig.dictConfig(cfg)
+
+    tastypie = logging.getLogger('django.request.tastypie')
+    tastypie.addHandler(SentryHandler())
