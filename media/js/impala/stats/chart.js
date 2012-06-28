@@ -184,19 +184,13 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
-        var offset = 0;
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
-        if (group == 'day') {
-            // Quasi-magic number to line up points and axis.
-            offset = 0.8 * dayMsecs;
-        } else if (group == 'week') {
-            offset = 0.25 * dayMsecs;
+        if (group == 'week') {
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.maxZoom = 7 * dayMsecs;
         } else if (group == 'month') {
-            offset = -2.5 * dayMsecs;
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.maxZoom = 31 * dayMsecs;
         }
@@ -213,17 +207,11 @@
             baseConfig.yAxis.max = 5;
         }
 
-        // Set minimum max value for yAxis to prevent duplicate yAxis values.
-        var max = 0;
-        for (var key in data) {
-            if (data[key].count > max) {
-                max = data[key].count;
-            }
-        }
-        // Chart has minimum 5 ticks so set max to 5 to avoid pigeonholing.
-        if (max < 5) {
-            baseConfig.yAxis.max = 5;
-        }
+        // Round the start time to the nearest day (truncate the time) and
+        // account for time zone to line up ticks and points on datetime axis.
+        date = new Date(start);
+        date.setHours(0, 0, 0);
+        start = date.getTime() - (date.getTimezoneOffset() * 60000);
 
         // Populate the chart config object.
         var chartData = [], id;
@@ -236,7 +224,7 @@
                 'id'    : id,
                 'pointInterval' : pointInterval,
                 // Add offset to line up points and ticks on day grouping.
-                'pointStart' : start.getTime() - offset,
+                'pointStart' : start,
                 'data'  : series[field],
                 'visible' : !(metric == 'contributions' && id !='total')
             });
