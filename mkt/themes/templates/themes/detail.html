@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(items=[(url('browse.themes'), _('Themes')),
+  {{ mkt_breadcrumbs(items=[(url('themes.browse'), _('Themes')),
                             (None, product.name)]) }}
   {% if not (is_dev or is_admin) and not product.is_public() %}
     <section class="product-details">

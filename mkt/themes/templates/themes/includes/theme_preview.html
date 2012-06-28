@@ -1,5 +1,5 @@
 <div class="theme theme-{{ size }}">
-  <div class="theme-inner">
+  <div class="theme-inner {{ 'theme-inner-landing' if landing }}">
     <div class="theme-preview">
       {% set addon_url = url_ or addon.get_url_path() %}
       <div style="background-image:url('{{ preview }}')"

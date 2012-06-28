@@ -11,6 +11,7 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
 from mkt.account.urls import (purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
+from mkt.themes.urls import theme_patterns
 from mkt.developers.views import login
 
 admin.autodiscover()
@@ -38,7 +39,7 @@ urlpatterns = patterns('',
     ('^theme/%s/' % ADDON_ID, include('mkt.themes.urls')),
 
     # Theme browse pages.
-    #url('^themes/', include('mkt.browse.urls')),
+    ('^themes/', include(theme_patterns)),
 
     # Replace the "old" Developer Hub with the "new" Marketplace one.
     ('^developers/', include('mkt.developers.urls')),

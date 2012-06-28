@@ -1,9 +1,12 @@
 from django.conf.urls.defaults import patterns, url
 
-import addons.views
 from . import views
 
 
 urlpatterns = patterns('',
     url('^$', views.detail, name='themes.detail'),
+)
+
+theme_patterns = patterns('',
+    url('^(?P<category>[^ /]+)?$', views.browse_themes, name='themes.browse')
 )

@@ -3,7 +3,7 @@ import collections
 from django import http
 from django.db.models import Q
 from django.http import HttpResponsePermanentRedirect
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.cache import cache_page
 
 import jingo
@@ -199,7 +199,6 @@ def es_extensions(request, category=None, template=None):
         and category and category.count > 4):
         return category_landing(request, category)
 
-
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
                                 is_disabled=False,
                                 status__in=amo.REVIEWED_STATUSES))
@@ -317,7 +316,7 @@ def personas_listing(request, category=None):
                  .extra(select={'_app': request.APP.id}))
 
     if category is not None:
-        category = get_object_or_404(q, slug=category)
+        category = get_list_or_404(Category, slug=category.slug, type=TYPE)[0]
         base = base.filter(categories__id=category.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')

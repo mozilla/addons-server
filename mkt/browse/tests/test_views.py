@@ -2,16 +2,17 @@ from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import waffle
+
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from addons.models import AddonCategory, Category
+from addons.models import Addon, AddonCategory, Category
 from bandwagon.models import Collection, CollectionAddon
-from users.models import UserProfile
-
 from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp
+from users.models import UserProfile
 
 
 class BrowseBase(amo.tests.ESTestCase):
@@ -30,7 +31,6 @@ class BrowseBase(amo.tests.ESTestCase):
         r = self.client.get(url, data or {})
         eq_(r.status_code, 200)
         return sorted(x.id for x in r.context[key])
-
 
     def setup_featured(self):
         amo.tests.addon_factory()

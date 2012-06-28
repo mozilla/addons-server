@@ -99,6 +99,25 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
                 for k, v in ret.items())
 
 
+def product_as_dict_theme(request, product):
+    # Dev environments might not have authors set.
+    author = ''
+    authors = product.persona.listed_authors
+    if authors:
+        author = authors[0].name
+
+    ret = {
+        'id': product.id,
+        'name': product.name,
+        'author': author,
+        'previewUrl': product.persona.preview_url,
+    }
+
+    # Jinja2 escape everything except this whitelist so that bool is retained
+    # for the JSON encoding.
+    return dict([k, jinja2.escape(v)] for k, v in ret.items())
+
+
 @jinja2.contextfunction
 @register.function
 def market_tile(context, product):
@@ -115,7 +134,18 @@ def market_tile(context, product):
         c = dict(product=product, data_attrs=data_attrs,
                  classes=' '.join(classes))
         t = env.get_template('site/tiles/app.html')
-    return jinja2.Markup(t.render(c))
+        return jinja2.Markup(t.render(c))
+
+    elif product.is_persona():
+        classes = ['product', 'mkt-tile', 'arrow']
+        product_dict = product_as_dict_theme(request, product)
+        data_attrs = {
+            'product': json.dumps(product_dict, cls=JSONEncoder),
+        }
+        c = dict(product=product, data_attrs=data_attrs,
+                 classes=' '.join(classes))
+        t = env.get_template('site/tiles/theme.html')
+        return jinja2.Markup(t.render(c))
 
 
 @register.filter
