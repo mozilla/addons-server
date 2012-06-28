@@ -134,7 +134,7 @@ create an app with your validated manifest::
 Body data should contain the manifest id from the validate call and other data
 in JSON::
 
-        {"manifest_id": "123"}
+        {"manifest": "123"}
 
 If the creation succeeded you'll get a 201 status back. This will return the id
 of the app on the marketplace as a slug. The marketplace will complete some of
@@ -159,7 +159,7 @@ the data using the manifest and return values so far::
 
 Fields:
 
-* manifest_id (required): the id of the manifest returned from verfication.
+* manifest (required): the id of the manifest returned from verfication.
 
 Update
 ======
