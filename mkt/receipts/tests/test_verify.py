@@ -14,6 +14,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
+from browserid.errors import ExpiredSignatureError
 from services import verify
 from services import utils
 from mkt.receipts.utils import create_receipt
@@ -165,6 +166,12 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(3615, user_data)
         assert 'receipt' in res
+
+    @mock.patch.object(utils.settings, 'SIGNING_SERVER_ACTIVE', True)
+    @mock.patch('services.verify.receipts.certs.ReceiptVerifier.verify')
+    def test_expired_cert(self, mthd):
+        mthd.side_effect = ExpiredSignatureError
+        assert 'typ' in verify.decode_receipt('.~' + sample)
 
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_EXPIRED_SEND', True)
     @mock.patch('services.verify.sign')

@@ -13,6 +13,7 @@ from utils import (log_configure, log_exception, log_info, mypool,
 # Go configure the log.
 log_configure()
 
+from browserid.errors import ExpiredSignatureError
 import jwt
 from lib.crypto.receipt import sign
 from lib.cef_loggers import receipt_cef
@@ -192,7 +193,12 @@ def decode_receipt(receipt):
     with statsd.timer('services.decode'):
         if settings.SIGNING_SERVER_ACTIVE:
             verifier = certs.ReceiptVerifier()
-            if not verifier.verify(receipt):
+            try:
+                result = verifier.verify(receipt)
+            except ExpiredSignatureError:
+                # Until we can do something meaningful with this, just ignore.
+                return jwt.decode(receipt.split('~')[1], verify=False)
+            if not result:
                 raise VerificationError()
             return jwt.decode(receipt.split('~')[1], verify=False)
         else:
