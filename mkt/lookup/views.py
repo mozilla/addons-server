@@ -197,8 +197,18 @@ def app_search(request):
         qs = Addon.objects.filter(guid=query).values(*non_es_fields)
         if not qs.count():
             # Give up on GUID, assume it's a search.
-            qs = (Addon.search().query(or_=dict(name__text=query,
-                                                name__fuzzy=query))
+            rules = {
+                'text': {
+                    'query': query, 'boost': 3, 'analyzer': 'standard'},
+                'fuzzy': {
+                    'value': query, 'boost': 2, 'prefix_length': 4},
+                'startswith': {
+                    'value': query, 'boost': 1.5},
+            }
+            name_query = {}
+            for k, v in rules.iteritems():
+                name_query['name__%s' % k] = v
+            qs = (Addon.search().query(or_=name_query)
                                 .values_dict(*fields))
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
