@@ -6,6 +6,8 @@ from django import forms
 
 import happyforms
 
+from addons.models import Category
+import amo
 from files.models import FileUpload
 from mkt.developers.utils import check_upload
 
@@ -62,3 +64,10 @@ class PreviewJSONForm(happyforms.Form):
     def clean(self):
         self.cleaned_data['upload_hash'] = getattr(self, 'hash_', None)
         return self.cleaned_data
+
+
+class CategoryForm(happyforms.Form):
+    # The CategoryFormSet is far too complicated, I don't follow it.
+    # Hopefully this is easier.
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))

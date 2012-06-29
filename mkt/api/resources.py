@@ -18,7 +18,7 @@ from files.models import FileUpload, Platform
 from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
-from mkt.api.forms import UploadForm
+from mkt.api.forms import CategoryForm, UploadForm
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
 from mkt.developers.forms import PreviewForm
@@ -160,7 +160,8 @@ class AppResource(MarketplaceResource):
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
-                 CategoryFormSet(data, addon=obj, request=request)]
+                 CategoryFormSet(data, addon=obj, request=request),
+                 CategoryForm({'categories': data['form-0-categories']})]
 
         valid = all([f.is_valid() for f in forms])
         if not valid:

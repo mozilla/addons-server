@@ -156,6 +156,9 @@ class CreateHandler(BaseOAuth):
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppCreateHandler(CreateHandler, AMOPaths):
 
+    fixtures = ['base/user_2519', 'base/users',
+                'base/platforms', 'base/appversion']
+
     def count(self):
         return Addon.objects.count()
 
@@ -267,6 +270,16 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(set(data['categories']), set([c.pk for c in self.categories]))
         eq_(data['premium_type'], 'free')
         eq_(data['device_types'], ['desktop-1'])
+
+    def test_put_wrong_category(self):
+        self.create_app()
+        wrong = Category.objects.create(name='wrong', type=amo.ADDON_EXTENSION,
+                                        application_id=amo.FIREFOX.id)
+        data = self.base_data()
+        data['categories'] = [wrong.pk]
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        assert 'Select a valid choice' in self.get_error(res)['categories'][0]
 
     def test_put_no_categories(self):
         self.create_app()
