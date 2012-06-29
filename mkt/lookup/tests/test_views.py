@@ -246,6 +246,13 @@ class TestAppSearch(SearchTest, ESTestCase):
         data = self.search('steamcube')
         self.verify_result(data)
 
+    def test_multiword(self):
+        self.app.name = 'Mozilla Marketplace'
+        self.app.save()
+        self.refresh()
+        data = self.search('mozilla marketplace')
+        self.verify_result(data)
+
     def test_by_stem_name(self):
         self.app.name = 'Instigation'
         self.app.save()

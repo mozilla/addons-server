@@ -196,7 +196,9 @@ def app_search(request):
         qs = Addon.objects.filter(guid=query).values(*non_es_fields)
         if not qs.count():
             # Give up on GUID, assume it's a search.
-            qs = Addon.search().query(name__fuzzy=query).values_dict(*fields)
+            qs = (Addon.search().query(or_=dict(name__text=query,
+                                                name__fuzzy=query))
+                                .values_dict(*fields))
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
