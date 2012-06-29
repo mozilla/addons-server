@@ -230,7 +230,9 @@ class PreviewResource(MarketplaceResource):
         filtering = {'addon': ALL_WITH_RELATIONS}
 
     def obj_create(self, bundle, request, **kwargs):
-        addon = self.get_object_or_404(Webapp, pk=request.GET.get('app'))
+        addon = self.get_object_or_404(Addon,
+                                       pk=request.GET.get('app'),
+                                       type=amo.ADDON_WEBAPP)
         if not AppOwnerAuthorization().is_authorized(request, object=addon):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
 
