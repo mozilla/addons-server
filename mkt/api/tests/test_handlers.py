@@ -365,6 +365,31 @@ class TestCategoryHandler(BaseOAuth):
         eq_(res.status_code, 404)
 
 
+class TestDeviceTypeHandler(BaseOAuth):
+
+    def setUp(self):
+        super(TestDeviceTypeHandler, self).setUp()
+
+        self.dt = DeviceType.objects.create(name='Phone')
+        self.dt.name = {'fr': 'Le phone'}
+        self.dt.save()
+        self.list_url = ('api_dispatch_list', {'resource_name': 'devicetype'})
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'devicetype', 'pk': self.dt.pk})
+
+        self.client = OAuthClient(None)
+
+    def test_verbs(self):
+        self._allowed_verbs(self.list_url, ['get'])
+        self._allowed_verbs(self.get_url, ['get'])
+
+    def test_get_devicetypes(self):
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['name'], 'phone')
+
+
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPreviewHandler(BaseOAuth, AMOPaths):
     fixtures = ['base/users', 'base/user_2519', 'webapps/337141-steamcube']

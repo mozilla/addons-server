@@ -23,7 +23,7 @@ from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
 from mkt.developers.forms import PreviewForm
 from mkt.api.forms import PreviewJSONForm
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon
 from mkt.submit.forms import AppDetailsBasicForm
 
 log = commonware.log.getLogger('z.api')
@@ -87,7 +87,7 @@ class AppResource(MarketplaceResource):
                                   'previews', readonly=True)
 
     class Meta:
-        queryset = Webapp.objects.all().no_transforms()
+        queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
         fields = ['id', 'name', 'description', 'device_types',
                   'homepage', 'privacy_policy',
                   'status', 'summary', 'support_email', 'support_url',
@@ -114,7 +114,7 @@ class AppResource(MarketplaceResource):
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
         # Create app, user and fetch the icon.
-        bundle.obj = Webapp.from_upload(form.obj, plats)
+        bundle.obj = Addon.from_upload(form.obj, plats)
         AddonUser(addon=bundle.obj, user=request.amo_user).save()
         tasks.fetch_icon.delay(bundle.obj)
         log.info('App created: %s' % bundle.obj.pk)
@@ -148,7 +148,7 @@ class AppResource(MarketplaceResource):
         data = bundle.data
         try:
             obj = self.get_object_list(bundle.request).get(**kwargs)
-        except Webapp.DoesNotExist:
+        except Addon.DoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
@@ -195,6 +195,23 @@ class CategoryResource(MarketplaceResource):
         always_return_data = True
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
+
+
+class DeviceTypeResource(MarketplaceResource):
+
+    class Meta:
+        queryset = DeviceType.objects.all()
+        list_allowed_methods = ['get']
+        allowed_methods = ['get']
+        fields = ['name', 'id']
+        always_return_data = True
+        resource_name = 'devicetype'
+        serializer = Serializer(formats=['json'])
+
+    def dehydrate(self, bundle):
+        with no_translation():
+            bundle.data['name'] = str(bundle.obj.name).lower()
+        return bundle
 
 
 class PreviewResource(MarketplaceResource):
