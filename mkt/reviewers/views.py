@@ -118,19 +118,6 @@ def _review(request, addon):
 
     redirect_url = reverse('reviewers.apps.queue_%s' % tab)
 
-    num = request.GET.get('num')
-    paging = {}
-    if num:
-        try:
-            num = int(num)
-        except (ValueError, TypeError):
-            raise http.Http404
-        total = queue_counts(tab)
-        paging = {'current': num, 'total': total,
-                  'prev': num > 1, 'next': num < total,
-                  'prev_url': urlparams(redirect_url, num=num - 1, tab=tab),
-                  'next_url': urlparams(redirect_url, num=num + 1, tab=tab)}
-
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
@@ -178,11 +165,10 @@ def _review(request, addon):
     ctx = context(version=version, product=addon, pager=pager,
                   num_pages=num_pages, count=count,
                   flags=Review.objects.filter(addon=addon, flag=True),
-                  form=form, paging=paging, canned=canned, is_admin=is_admin,
+                  form=form, canned=canned, is_admin=is_admin,
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal,
-                  tab=tab)
+                  actions=actions, actions_minimal=actions_minimal, tab=tab)
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 
@@ -194,26 +180,6 @@ def app_review(request, addon):
 
 
 def _queue(request, qs, tab, pager_processor=None):
-    review_num = request.GET.get('num')
-    if review_num:
-        try:
-            review_num = int(review_num)
-        except ValueError:
-            pass
-        else:
-            try:
-                # Force a limit query for efficiency:
-                start = review_num - 1
-                row = qs[start:start + 1][0]
-                # Get the addon if the instance is one of the *Queue models.
-                if not isinstance(row, Webapp):
-                    row = row.addon
-                return redirect(urlparams(
-                    reverse('reviewers.apps.review', args=[row.app_slug]),
-                    num=review_num, tab=tab))
-            except IndexError:
-                pass
-
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, qs, per_page)
 

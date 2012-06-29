@@ -23,16 +23,6 @@
 <div id="scroll_sidebar_parent">
   <div id="scroll_sidebar">
     <div class="currently_viewing_warning"></div>
-    {{ num }}
-    {% if paging %}
-    <div class="review-paging">
-      {% if paging.prev %}<a href="{{ paging.prev_url }}" class="button concealed">&laquo;</a> &nbsp; {% endif %}
-      {% trans current=paging.current, total=paging.total %}
-        {{ current }} of {{ total }}
-      {% endtrans %}
-      {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}" class="button concealed">&raquo;</a>{% endif %}
-    </div>
-    {% endif %}
     <ul id="actions">
       <li class="app-install">
         {{ market_button(product, 'reviewer') }}

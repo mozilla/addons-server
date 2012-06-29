@@ -147,9 +147,9 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_pending')
 
-    def review_url(self, app, num):
+    def review_url(self, app):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         num=num, tab='pending')
+                         tab='pending')
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -157,13 +157,13 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
         apps = Webapp.objects.pending().order_by('created')
         expected = [
-            (unicode(apps[0].name), self.review_url(apps[0], '1')),
-            (unicode(apps[1].name), self.review_url(apps[1], '2')),
+            (unicode(apps[0].name), self.review_url(apps[0])),
+            (unicode(apps[1].name), self.review_url(apps[1])),
         ]
         check_links(expected, links, verify=False)
 
     def test_action_buttons(self):
-        r = self.client.get(self.review_url(self.apps[0], '1'))
+        r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
@@ -245,10 +245,6 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
     #    eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
     #        str(self.apps[1].id))
 
-    def test_redirect_to_review(self):
-        r = self.client.get(self.url, {'num': 2})
-        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
-
 
 class TestRereviewQueue(AppReviewerTest, AccessMixin):
     fixtures = ['base/devicetypes', 'base/users']
@@ -271,9 +267,9 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_rereview')
 
-    def review_url(self, app, num):
+    def review_url(self, app):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         num=num, tab='rereview')
+                         tab='rereview')
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -282,9 +278,9 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         apps = [rq.addon for rq in
                 RereviewQueue.objects.all().order_by('created')]
         expected = [
-            (unicode(apps[0].name), self.review_url(apps[0], '1')),
-            (unicode(apps[1].name), self.review_url(apps[1], '2')),
-            (unicode(apps[2].name), self.review_url(apps[2], '3')),
+            (unicode(apps[0].name), self.review_url(apps[0])),
+            (unicode(apps[1].name), self.review_url(apps[1])),
+            (unicode(apps[2].name), self.review_url(apps[2])),
         ]
         check_links(expected, links, verify=False)
 
@@ -303,10 +299,6 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
-
-    def test_redirect_to_review(self):
-        r = self.client.get(self.url, {'num': 2})
-        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin):
@@ -330,9 +322,9 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_escalated')
 
-    def review_url(self, app, num):
+    def review_url(self, app):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         num=num, tab='escalated')
+                         tab='escalated')
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -341,14 +333,14 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         apps = [rq.addon for rq in
                 EscalationQueue.objects.all().order_by('created')]
         expected = [
-            (unicode(apps[0].name), self.review_url(apps[0], '1')),
-            (unicode(apps[1].name), self.review_url(apps[1], '2')),
-            (unicode(apps[2].name), self.review_url(apps[2], '3')),
+            (unicode(apps[0].name), self.review_url(apps[0])),
+            (unicode(apps[1].name), self.review_url(apps[1])),
+            (unicode(apps[2].name), self.review_url(apps[2])),
         ]
         check_links(expected, links, verify=False)
 
     def test_action_buttons(self):
-        r = self.client.get(self.review_url(self.apps[0], '1'))
+        r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
@@ -389,10 +381,6 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (3)')
-
-    def test_redirect_to_review(self):
-        r = self.client.get(self.url, {'num': 2})
-        self.assertRedirects(r, self.review_url(self.apps[1], num=2))
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin):
