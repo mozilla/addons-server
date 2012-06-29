@@ -307,7 +307,7 @@ No authentication required.
 
 To find a list of categories available on the marketplace::
 
-        GET /en-US/api/apps/categories/
+        GET /en-US/api/apps/category/
 
 Returns the list of categories::
 
