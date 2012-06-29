@@ -18,9 +18,8 @@ class ReviewAppForm(ReviewAddonForm):
              'updates will not generate an email.)')
 
 
-def get_review_form(data, request=None, addon=None, version=None, queue=None):
-    helper = ReviewHelper(request=request, addon=addon, version=version,
-                          queue=queue)
+def get_review_form(data, request=None, addon=None, version=None):
+    helper = ReviewHelper(request=request, addon=addon, version=version)
     return ReviewAppForm(data, helper=helper)
 
 

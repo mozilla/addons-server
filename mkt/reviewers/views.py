@@ -1,7 +1,6 @@
 import datetime
 import json
 
-from django import http
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
@@ -13,7 +12,7 @@ import requests
 from access import acl
 import amo
 from amo import messages
-from amo.utils import escape_all, urlparams
+from amo.utils import escape_all
 from addons.decorators import addon_view
 from addons.models import Version
 from amo.decorators import json_view, permission_required
@@ -112,12 +111,10 @@ def _review(request, addon):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
-    tab = request.GET.get('tab', 'pending')
     form = forms.get_review_form(request.POST or None, request=request,
-                                 addon=addon, version=version, queue=tab)
-
-    redirect_url = reverse('reviewers.apps.queue_%s' % tab)
-
+                                 addon=addon, version=version)
+    queue_type = form.helper.review_type
+    redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
@@ -168,7 +165,8 @@ def _review(request, addon):
                   form=form, canned=canned, is_admin=is_admin,
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal, tab=tab)
+                  actions=actions, actions_minimal=actions_minimal,
+                  tab=queue_type)
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 

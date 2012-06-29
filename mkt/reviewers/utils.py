@@ -12,7 +12,7 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from editors.models import ReviewerScore
 
-from .models import EscalationQueue
+from .models import EscalationQueue, RereviewQueue
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -214,18 +214,24 @@ class ReviewHelper(object):
     process off to the correct handler.
     """
 
-    def __init__(self, request=None, addon=None, version=None, queue=None):
+    def __init__(self, request=None, addon=None, version=None):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.all_files = version.files.all()
-        self.get_review_type(request, addon, version, queue)
+        self.get_review_type(request, addon, version)
         self.actions = self.get_actions()
 
     def set_data(self, data):
         self.handler.set_data(data)
 
-    def get_review_type(self, request, addon, version, queue):
+    def get_review_type(self, request, addon, version):
+        if EscalationQueue.objects.filter(addon=addon).exists():
+            queue = 'escalated'
+        elif RereviewQueue.objects.filter(addon=addon).exists():
+            queue = 'rereview'
+        else:
+            queue = 'pending'
         self.review_type = queue
         self.handler = ReviewApp(request, addon, version, queue)
 

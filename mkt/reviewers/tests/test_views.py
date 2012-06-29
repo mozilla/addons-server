@@ -1,15 +1,15 @@
 import datetime
-from itertools import cycle
 import json
 import time
+from itertools import cycle
 
 from django.core import mail
 from django.conf import settings
 
 import mock
+import waffle
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 from abuse.models import AbuseReport
@@ -148,8 +148,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         self.url = reverse('reviewers.apps.queue_pending')
 
     def review_url(self, app):
-        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         tab='pending')
+        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -268,8 +267,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         self.url = reverse('reviewers.apps.queue_rereview')
 
     def review_url(self, app):
-        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         tab='rereview')
+        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -323,8 +321,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         self.url = reverse('reviewers.apps.queue_escalated')
 
     def review_url(self, app):
-        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]),
-                         tab='escalated')
+        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
 
     def test_template_links(self):
         r = self.client.get(self.url)
