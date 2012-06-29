@@ -57,7 +57,6 @@
 
     <div class="criteria island">
       <ul>
-        <li>{{ _('Controls:') }}</li>
         <li>
           <a id="chart-zoomout" class="inactive" href="#">
              {{ _('reset zoom') }}
@@ -65,35 +64,6 @@
         </li>
       </ul>
     </div>
-
-    <div class="criteria stat-type island">
-      {% set links = [
-        (addon.get_stats_url(action='overview'), _('Overview')),
-        (addon.get_stats_url(action='installs'), _('Installs')),
-        (addon.get_stats_url(action='usage'), _('Usage'))
-      ] %}
-      <ul>
-        <li>{{ _('Statistics Type') }}</li>
-        {% for link, title in links %}
-          <li{% if url_quote(request.path) == link %} class="selected"{% endif %}>
-            <a href="{{ link }}">{{ title }}</a>
-          </li>
-        {% endfor %}
-        {% if (addon.is_premium() and check_contrib_stats_perms(addon)) or
-               inapp %}
-          <li{% block sales_select %}
-               {% if url_quote(request.path) == link %} class="selected"{% endif %}
-             {% endblock %}>
-            <a href="{{ addon.get_stats_url(action='revenue', inapp=inapp) }}">{{ _('Sales') }}</a>
-        {% endif %}
-      </ul>
-    </div>
-
-    {% block sales_filters %}{% endblock %}
-
-    <div class="c"></div>
-
-    {% block metric_filters %}{% endblock %}
 
     <div class="criteria range island">
       <ul>
@@ -132,6 +102,8 @@
     </div>
 
   </header>
+
+  {% include 'appstats/includes/stats_nav.html' %}
 
   <div id="lm" class="loadmessage">
     <span>{{ _('Loading the latest data&hellip;') }}</span>
@@ -196,7 +168,7 @@
       </div>
     {% endblock %}
     {% if waffle.switch('app-stats') %}
-    <div id="stats-permissions">
+    <div id="stats-permissions" class="c">
       {% if addon.public_stats %}
         <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
         {% if request.check_ownership(addon) %}
@@ -206,8 +178,9 @@
         <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
       {% endif %}
       {% if request.check_ownership(addon) %}
+        <div class="c"></div>
         <p>
-          <a href="{{ addon.get_dev_url() }}#edit-addon-technical">
+          <a id="perm-settings-link" href="{{ addon.get_dev_url() }}#edit-addon-technical">
             {{ _('Change settings.') }}
           </a>
         </p>

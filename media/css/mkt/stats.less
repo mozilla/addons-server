@@ -1,5 +1,9 @@
 @import 'lib';
 
+h1 {
+    display: inline;
+}
+
 .statistics {
     .island {
         float: none;
@@ -17,13 +21,67 @@
     left: 20px;
 }
 
+.primary.statistics {
+    margin-left: 210px;
+}
 .secondary {
+    float: left;
+    .width(3);
+
+    a {
+        color: @link;
+    }
+
+    ul, ol {
+        padding: 0;
+        list-style: none;
+        margin-top: 3px;
+    }
+    ul, ol, section {
+        color: @medium-gray;
+        font-size: 13px;
+        line-height: 20px;
+        margin-bottom: 30px;
+    }
+    ul ul li a {
+        padding-left: 1em;
+    }
+    li {
+        border: 1px solid @border-black;
+        border-width: 0 0 1px;
+        position: relative;
+        &:last-child {
+            border-width: 0;
+        }
+        a {
+            &.selected {
+                color: @dark-gray;
+                font-weight: bold;
+            }
+            &.selected, &:hover {
+                background: @faint-blue;
+            }
+        }
+    }
+    li.secondary-nav a {
+        padding-left: 18px;
+    }
+    li a {
+        display: block;
+        padding: 6px;
+        text-decoration: none;
+    }
+    section section {
+        margin: 0;
+    }
+
     .island {
         float: none;
     }
     > aside, > div {
         margin-bottom: 2em;
     }
+
 }
 
 /**
@@ -31,8 +89,6 @@
 **/
 
 .island.criteria {
-    padding: 0 0 0 12px;
-    margin: 0 0 0 1em;
     z-index: 1000;
     float: right;
     text-transform: lowercase;
@@ -419,10 +475,19 @@ table.stats-aggregate tbody span.change.minus {
 
 #stats-permissions p {
     margin-top: .1em;
+    float: right;
 }
 
 #side-nav .active a {
-    background-color: @link;
+    background-color: @light-gray;
+    color: @dark-gray;
+    font-weight: bold;
+    &:after {
+        color: inherit;
+    }
+}
+#side-nav li.secondary-nav.active a {
+    background: @faint-blue;
     color: @dark-gray;
     font-weight: bold;
     &:after {
@@ -455,4 +520,9 @@ table.stats-aggregate tbody span.change.minus {
             background-color: #c40000;
         }
     }
+}
+
+.product-select {
+    float: right;
+    margin-top: 15px;
 }
