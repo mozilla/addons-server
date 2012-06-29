@@ -508,8 +508,11 @@ class ReviewerScore(amo.models.ModelBase):
                 leader_top = scores[:5]
             else:
                 leader_top = scores[:3]
-                leader_near = [scores[rank - 2], scores[rank - 1],
-                               scores[rank]]
+                leader_near = [scores[rank - 2], scores[rank - 1]]
+                try:
+                    leader_near.append(scores[rank])
+                except IndexError:
+                    pass  # User is last on the leaderboard.
 
         val = {
             'leader_top': leader_top,

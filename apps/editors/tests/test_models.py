@@ -432,6 +432,20 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(leaders['leader_top'][1].total,
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
+    def test_get_leaderboards_last(self):
+        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
+                                            active=True)
+        users = list(UserProfile.objects.all())
+        last_user = users.pop(len(users) - 1)
+        for u in users:
+            self._give_points(user=u)
+        # Last user gets lower points by reviewing a persona.
+        self._give_points(user=last_user, event=amo.REVIEWED_PERSONA)
+        leaders = ReviewerScore.get_leaderboards(last_user)
+        eq_(leaders['user_rank'], 6)
+        eq_(len(leaders['leader_top']), 3)
+        eq_(len(leaders['leader_near']), 2)
+
     def test_caching(self):
         waffle.models.Switch.objects.create(name='reviewer-incentive-points',
                                             active=True)
