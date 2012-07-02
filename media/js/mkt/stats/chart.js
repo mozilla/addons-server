@@ -356,7 +356,7 @@
         } else {
             // This is a custom range so display a range shorter by one day.
             end = new Date(end.getTime() - (24 * 60 * 60 * 1000));
-            title = format(csv_keys.chartTitle[metric][1], [start.iso(), end.iso()]);
+            title = format(csv_keys.chartTitle[metric][1], [new Date(start).iso(), end.iso()]);
         }
         newConfig.title = {
             text: title
