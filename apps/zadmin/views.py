@@ -353,11 +353,10 @@ def validation_tally_csv(request, job_id):
               'type', 'addons_affected']
     writer.writerow(fields)
     job = ValidationJobTally(job_id)
+    keys = ['key', 'message', 'long_message', 'type', 'addons_affected']
     for msg in job.get_messages():
-        row = [msg.key, msg.message, msg.long_message, msg.type,
-               msg.addons_affected]
-        writer.writerow([smart_str(r, encoding='utf8', strings_only=True)
-                         for r in row])
+        writer.writerow([smart_str(msg[k], encoding='utf8', strings_only=True)
+                         for k in keys])
     return resp
 
 
