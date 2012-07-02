@@ -201,11 +201,14 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     def reset_featured_addons(self):
         from addons.cron import reset_featured_addons
-        from addons.utils import FeaturedManager, CreaturedManager
+        from addons.utils import (FeaturedManager, CreaturedManager,
+                                  get_featured_ids, get_creatured_ids)
         reset_featured_addons()
         # Clear the in-process caches.
         FeaturedManager.featured_ids.clear()
         CreaturedManager.creatured_ids.clear()
+        get_featured_ids.clear()
+        get_creatured_ids.clear()
 
     @contextmanager
     def activate(self, locale=None, app=None):

@@ -16,7 +16,7 @@ import amo.models
 from amo.models import manual_order
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, Category, FrozenAddon
-from addons.utils import FeaturedManager, CreaturedManager
+from addons.utils import get_featured_ids, get_creatured_ids
 from addons.views import BaseFilter, ESBaseFilter
 from translations.query import order_by_translation
 
@@ -384,12 +384,12 @@ class SearchToolsFilter(AddonFilter):
     def filter_featured(self):
         # Featured search add-ons in all locales:
         APP, LANG = self.request.APP, self.request.LANG
-        ids = FeaturedManager.featured_ids(APP, LANG, amo.ADDON_SEARCH)
+        ids = get_featured_ids(APP, LANG, amo.ADDON_SEARCH)
 
         try:
             search_cat = Category.objects.get(slug='search-tools',
                                               application=APP.id)
-            others = CreaturedManager.creatured_ids(search_cat, LANG)
+            others = get_creatured_ids(search_cat, LANG)
             ids.extend(o for o in others if o not in ids)
         except Category.DoesNotExist:
             pass
