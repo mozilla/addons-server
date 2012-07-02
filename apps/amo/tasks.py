@@ -4,12 +4,9 @@ import time
 from django.conf import settings
 
 import commonware.log
-import celery.signals
-import redisutils
 import phpserialize
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
-from django_statsd.clients import statsd
 
 import amo
 from abuse.models import AbuseReport
@@ -127,57 +124,6 @@ def migrate_editor_eventlog(items, **kw):
                 amo.log(amo.LOG.ADD_REVIEW, r, r.addon, **kw)
             except Review.DoesNotExist:
                 log.warning("Couldn't find review for %d" % item.changed_id)
-
-
-class TaskStats(object):
-    prefix = 'celery:tasks:stats'
-    pending = prefix + ':pending'
-    failed = prefix + ':failed'
-    run = prefix + ':run'
-    timer = prefix + ':timer'
-
-    @property
-    def redis(self):
-        # Keep this in a property so it's evaluated at runtime.
-        return redisutils.connections['master']
-
-    def on_sent(self, sender, **kw):
-        # sender is the name of the task (like "amo.tasks.ok").
-        # id in here.
-        self.redis.hincrby(self.pending, sender, 1)
-        self.redis.hset(self.timer, kw['id'], time.time())
-
-    def on_postrun(self, sender, **kw):
-        # sender is the task object. task_id in here.
-        pending = self.redis.hincrby(self.pending, sender.name, -1)
-        # Clamp pending at 0. Tasks could be coming in before we started
-        # tracking.
-        if pending < 0:
-            self.redis.hset(self.pending, sender.name, 0)
-        self.redis.hincrby(self.run, sender.name, 1)
-
-        start = self.redis.hget(self.timer, kw['task_id'])
-        if start:
-            t = (time.time() - float(start)) * 1000
-            statsd.timing('tasks.%s' % sender.name, int(t))
-
-    def on_failure(self, sender, **kw):
-        # sender is the task object.
-        self.redis.hincrby(self.failed, sender.name, 1)
-
-    def stats(self):
-        get = self.redis.hgetall
-        return get(self.pending), get(self.failed), get(self.run)
-
-    def clear(self):
-        for name in self.pending, self.failed, self.run, self.timer:
-            self.redis.delete(name)
-
-
-task_stats = TaskStats()
-celery.signals.task_sent.connect(task_stats.on_sent)
-celery.signals.task_postrun.connect(task_stats.on_postrun)
-celery.signals.task_failure.connect(task_stats.on_failure)
 
 
 @task

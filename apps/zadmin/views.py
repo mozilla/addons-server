@@ -33,7 +33,6 @@ from amo import messages, get_user
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import FakeEmailBackend
-from amo.tasks import task_stats
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from bandwagon.cron import reindex_collections
@@ -640,18 +639,6 @@ def email_devs(request):
         return redirect('zadmin.email_devs')
     return jingo.render(request, 'zadmin/email-devs.html',
                         dict(form=form, preview_csv=preview_csv))
-
-
-@admin.site.admin_view
-def celery(request):
-    if request.method == 'POST' and 'reset' in request.POST:
-        task_stats.clear()
-        return redirect('zadmin.celery')
-
-    pending, failures, totals = task_stats.stats()
-    ctx = dict(pending=pending, failures=failures, totals=totals,
-               now=datetime.now())
-    return jingo.render(request, 'zadmin/celery.html', ctx)
 
 
 @admin.site.admin_view
