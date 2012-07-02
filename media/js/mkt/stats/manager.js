@@ -321,6 +321,16 @@ z.StatsManager = (function() {
             group = view.group || 'day',
             groupedData = {};
 
+
+        // If grouping doesn't fit into custom date range, force group to day.
+        var dayMsecs = 24 * 3600 * 1000;
+        var date_range_days = (range.end.getTime() - range.start.getTime()) / dayMsecs;
+        if ((group == 'week' && date_range_days <= 8) ||
+            (group == 'month' && date_range_days <= 31)) {
+            view.group = 'day';
+            group = 'day';
+        }
+
         // if grouping is by day, do nothing.
         if (group == 'day') return data;
         var groupKey = false,

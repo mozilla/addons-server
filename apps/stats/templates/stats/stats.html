@@ -39,13 +39,13 @@
     <ul>
       <li>{{ _('Group by:') }}</li>
       <li data-group="day">
-          <a href="#">{{ _('day') }}</a>
+          <a class="group-day" href="#">{{ _('day') }}</a>
       </li>
       <li data-group="week">
-          <a href="#">{{ _('week') }}</a>
+          <a class="group-week" href="#">{{ _('week') }}</a>
       </li>
       <li data-group="month">
-          <a href="#">{{ _('month') }}</a>
+          <a class="group-month" href="#">{{ _('month') }}</a>
       </li>
     </ul>
   </div>
@@ -54,10 +54,10 @@
       <li>{{ _('For last:') }}</li>
       <li data-range="7 days"
           {% if range=='7' %}class="selected"{% endif %}>
-          <a href="#">{{ _('7 days') }}</a></li>
+          <a class="days-7" href="#">{{ _('7 days') }}</a></li>
       <li data-range="30 days"
           {% if range=='30' %}class="selected"{% endif %}>
-          <a href="#">{{ _('30 days') }}</a></li>
+          <a class="days-30" href="#">{{ _('30 days') }}</a></li>
       <li data-range="90 days"
           {% if range=='90' %}class="selected"{% endif %}>
           <a href="#">{{ _('90 days') }}</a></li>
