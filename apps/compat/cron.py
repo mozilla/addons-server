@@ -6,7 +6,6 @@ from django.db.models import Count, Max
 
 import cronjobs
 import elasticutils
-import redisutils
 
 import amo
 import amo.utils
@@ -15,14 +14,13 @@ from search.utils import floor_version
 from stats.models import UpdateCount
 from versions.compare import version_int as vint
 
-from .models import AppCompat, CompatReport
+from .models import AppCompat, CompatReport, CompatTotals
 
 log = logging.getLogger('z.compat')
 
 
 @cronjobs.register
 def compatibility_report():
-    redis = redisutils.connections['master']
     docs = defaultdict(dict)
 
     # Gather all the data for the index.
@@ -91,7 +89,11 @@ def compatibility_report():
 
         total = sum(updates.values())
         # Remember the total so we can show % of usage later.
-        redis.hset('compat:%s' % app.id, 'total', total)
+        compat_total, created = CompatTotals.objects.safer_get_or_create(
+            app=app.id,
+            defaults={'total': total})
+        if not created:
+            compat_total.update(total=total)
 
         # Figure out which add-ons are in the top 95% for this app.
         running_total = 0

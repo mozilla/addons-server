@@ -21,7 +21,6 @@ import jinja2
 import jingo
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
-import redisutils
 from tower import ugettext as _
 
 import amo
@@ -40,7 +39,7 @@ from amo.utils import chunked, sorted_groupby
 from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
 from compat.cron import compatibility_report
-from compat.models import AppCompat
+from compat.models import AppCompat, CompatTotals
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
@@ -469,7 +468,6 @@ def compat(request):
 
 def compat_stats(request, app, ver, minimum, ratio, binary):
     # Get the list of add-ons for usage stats.
-    redis = redisutils.connections['master']
     # Show add-ons marked as incompatible with this current version having
     # greater than 10 incompatible reports and whose average exceeds 80%.
     ver_int = str(vint(ver))
@@ -493,8 +491,7 @@ def compat_stats(request, app, ver, minimum, ratio, binary):
         # Determine if there is an override for this current app version.
         obj['has_override'] = obj['overrides'].filter(
             _compat_ranges__min_app_version=ver + 'a1').exists()
-    total = int(redis.hget('compat:%s' % app, 'total'))
-    return addons, total
+    return addons, CompatTotals.objects.get(app=app).total
 
 
 @login_required

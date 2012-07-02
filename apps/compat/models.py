@@ -57,3 +57,14 @@ class AppCompat(amo.models.ModelBase):
     class Meta:
         abstract = True
         db_table = 'compat'
+
+
+class CompatTotals(amo.models.ModelBase):
+    """
+    Cache for totals of success/failure reports.
+    """
+    app = models.PositiveIntegerField()
+    total = models.PositiveIntegerField()
+
+    class Meta:
+        db_table = 'compat_totals'
