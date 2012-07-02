@@ -481,6 +481,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
                 'base/addon_3615_featuredcollection']
 
     def setUp(self):
+        waffle.models.Switch.objects.create(name='no-redis', active=True)
         self.addon = Addon.objects.get(pk=3615)
         self.persona = Addon.objects.get(pk=15679)
         self.extension = Addon.objects.get(pk=2464)

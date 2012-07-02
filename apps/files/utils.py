@@ -18,12 +18,12 @@ from zipfile import BadZipfile
 
 from django import forms
 from django.conf import settings
+from django.core.cache import cache
 from django.utils.http import urlencode
 from django.utils.translation import trans_real as translation
 
 import chardet
 import rdflib
-import redisutils
 from tower import ugettext as _
 
 import amo
@@ -507,11 +507,10 @@ def find_jetpacks(minver, maxver, from_builder_only=False):
 
 
 class JetpackUpgrader(object):
-    """A little manager for jetpack upgrade data in redis."""
+    """A little manager for jetpack upgrade data in memcache."""
     prefix = 'admin:jetpack:upgrade:'
 
     def __init__(self):
-        self.redis = redisutils.connections['master']
         self.version_key = self.prefix + 'version'
         self.file_key = self.prefix + 'files'
         self.jetpack_key = self.prefix + 'jetpack'
@@ -519,41 +518,44 @@ class JetpackUpgrader(object):
     def jetpack_versions(self, min_=None, max_=None):
         if None not in (min_, max_):
             d = {'min': min_, 'max': max_}
-            return self.redis.hmset(self.jetpack_key, d)
-        d = self.redis.hgetall(self.jetpack_key) or {}
+            return cache.set(self.jetpack_key, d)
+        d = cache.get(self.jetpack_key, {})
         return d.get('min'), d.get('max')
 
     def version(self, val=None):
         if val is not None:
-            return self.redis.setnx(self.version_key, val)
-        return self.redis.get(self.version_key)
+            return cache.add(self.version_key, val)
+        return cache.get(self.version_key)
 
     def files(self, val=None):
         if val is not None:
-            for key, value in val.items():
-                val[key] = pickle.dumps(value)
-            return self.redis.hmset(self.file_key, val)
-        response = self.redis.hgetall(self.file_key)
-        return dict((key, pickle.loads(value))
-                    for key, value in response.items())
+            current = cache.get(self.file_key, {})
+            current.update(val)
+            return cache.set(self.file_key, val)
+        return cache.get(self.file_key, {})
 
     def file(self, file_id, val=None):
+        file_id = int(file_id)
         if val is not None:
-            return self.redis.hset(self.file_key, file_id,
-                                   pickle.dumps(val))
-        response = self.redis.hget(self.file_key, file_id)
-        return pickle.loads(response) if response else {}
+            current = cache.get(self.file_key, {})
+            current[file_id] = val
+            cache.set(self.file_key, current)
+            return val
+        return cache.get(self.file_key, {}).get(file_id, {})
 
     def cancel(self):
-        self.redis.delete(self.version_key)
-        for key, data in self.files().items():
-            if data.get('owner') == 'bulk':
-                self.redis.hdel(self.file_key, key)
+        cache.delete(self.version_key)
+        newfiles = dict([(k, v) for (k, v) in self.files().items()
+                         if v.get('owner') != 'bulk'])
+        cache.set(self.file_key, newfiles)
 
     def finish(self, file_id):
-        self.redis.hdel(self.file_key, file_id)
-        if not self.redis.hlen(self.file_key):
-            self.redis.delete(self.version_key)
+        file_id = int(file_id)
+        newfiles = dict([(k, v) for (k, v) in self.files().items()
+                         if k != file_id])
+        cache.set(self.file_key, newfiles)
+        if not newfiles:
+            cache.delete(self.version_key)
 
 
 class RDF(object):

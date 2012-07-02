@@ -21,7 +21,6 @@ import jinja2
 import jingo
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
-import redisutils
 from tower import ugettext as _
 
 import amo
@@ -34,13 +33,12 @@ from amo import messages, get_user
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import FakeEmailBackend
-from amo.tasks import task_stats
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
 from compat.cron import compatibility_report
-from compat.models import AppCompat
+from compat.models import AppCompat, CompatTotals
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
@@ -354,11 +352,10 @@ def validation_tally_csv(request, job_id):
               'type', 'addons_affected']
     writer.writerow(fields)
     job = ValidationJobTally(job_id)
+    keys = ['key', 'message', 'long_message', 'type', 'addons_affected']
     for msg in job.get_messages():
-        row = [msg.key, msg.message, msg.long_message, msg.type,
-               msg.addons_affected]
-        writer.writerow([smart_str(r, encoding='utf8', strings_only=True)
-                         for r in row])
+        writer.writerow([smart_str(msg[k], encoding='utf8', strings_only=True)
+                         for k in keys])
     return resp
 
 
@@ -469,7 +466,6 @@ def compat(request):
 
 def compat_stats(request, app, ver, minimum, ratio, binary):
     # Get the list of add-ons for usage stats.
-    redis = redisutils.connections['master']
     # Show add-ons marked as incompatible with this current version having
     # greater than 10 incompatible reports and whose average exceeds 80%.
     ver_int = str(vint(ver))
@@ -493,8 +489,7 @@ def compat_stats(request, app, ver, minimum, ratio, binary):
         # Determine if there is an override for this current app version.
         obj['has_override'] = obj['overrides'].filter(
             _compat_ranges__min_app_version=ver + 'a1').exists()
-    total = int(redis.hget('compat:%s' % app, 'total'))
-    return addons, total
+    return addons, CompatTotals.objects.get(app=app).total
 
 
 @login_required
@@ -644,18 +639,6 @@ def email_devs(request):
         return redirect('zadmin.email_devs')
     return jingo.render(request, 'zadmin/email-devs.html',
                         dict(form=form, preview_csv=preview_csv))
-
-
-@admin.site.admin_view
-def celery(request):
-    if request.method == 'POST' and 'reset' in request.POST:
-        task_stats.clear()
-        return redirect('zadmin.celery')
-
-    pending, failures, totals = task_stats.stats()
-    ctx = dict(pending=pending, failures=failures, totals=totals,
-               now=datetime.now())
-    return jingo.render(request, 'zadmin/celery.html', ctx)
 
 
 @admin.site.admin_view

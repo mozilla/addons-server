@@ -453,17 +453,17 @@ class TestReviewerScore(amo.tests.TestCase):
 
         with self.assertNumQueries(1):
             ReviewerScore.get_total(self.user)
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(1):
             ReviewerScore.get_total(self.user)
 
         with self.assertNumQueries(1):
             ReviewerScore.get_recent(self.user)
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(1):
             ReviewerScore.get_recent(self.user)
 
         with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
 
         # New points invalidates all caches.

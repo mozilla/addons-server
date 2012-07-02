@@ -122,8 +122,7 @@ def tally_validation_results(job_id, validation_str, **kw):
              % (tally_validation_results.rate_limit, job_id,
                 len(validation['messages'])))
     v = ValidationJobTally(job_id)
-    for msg in validation['messages']:
-        v.save_message(msg)
+    v.save_messages(validation['messages'])
 
 
 @task

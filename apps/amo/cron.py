@@ -12,7 +12,6 @@ import commonware.log
 
 import amo
 from amo.utils import chunked
-from addons.utils import AdminActivityLogMigrationTracker
 from bandwagon.models import Collection
 from cake.models import Session
 from constants.base import VALID_STATUSES
@@ -121,21 +120,6 @@ def gc(test_result=True):
 
         for line in output.split("\n"):
             log.debug(line)
-
-
-@cronjobs.register
-def migrate_admin_logs():
-    # Get the highest id we've looked at.
-    a = AdminActivityLogMigrationTracker()
-    id = a.get() or 0
-
-    # filter here for addappversion
-    items = LegacyAddonLog.objects.filter(
-            type=amo.LOG.ADD_APPVERSION.id, pk__gt=id).values_list(
-            'id', flat=True)
-    for chunk in chunked(items, 100):
-        tasks.migrate_admin_logs.delay(chunk)
-        a.set(chunk[-1])
 
 
 @cronjobs.register

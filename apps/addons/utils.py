@@ -4,11 +4,13 @@ import random
 from operator import itemgetter
 
 from django.conf import settings
+from django.db.models import Q
 from django.utils.encoding import smart_str
 
 import commonware.log
 from lib.misc import lru_cache
 import redisutils
+import waffle
 
 from amo.utils import sorted_groupby, memoize
 from translations.models import Translation
@@ -64,43 +66,6 @@ class ReverseNameLookup(object):
         self.redis.delete(self.names)
         for key in self.redis.smembers(self.keys):
             self.redis.delete(key)
-
-
-#TODO(davedash): remove after remora
-class ActivityLogMigrationTracker(object):
-    """This tracks what id of the addonlog we're on."""
-    key = 'amo:activitylog:migration'
-
-    def __init__(self):
-        self.redis = redisutils.connections['master']
-
-    def get(self):
-        return self.redis.get(self.key)
-
-    def set(self, value):
-        return self.redis.set(self.key, value)
-
-
-#TODO(davedash): remove after admin is migrated
-class AdminActivityLogMigrationTracker(ActivityLogMigrationTracker):
-    """
-    Per bug 628802:
-    We will migrate activities from Remora admin.
-    """
-    key = 'amo:activitylog:admin_migration'
-
-
-class MigrationTracker(object):
-
-    def __init__(self, key):
-        self.redis = redisutils.connections['master']
-        self.key = 'amo:activitylog:%s' % key
-
-    def get(self):
-        return self.redis.get(self.key)
-
-    def set(self, value):
-        return self.redis.set(self.key, value)
 
 
 class FeaturedManager(object):
@@ -260,3 +225,71 @@ class CreaturedManager(object):
         random.shuffle(others)
         random.shuffle(per_locale)
         return map(int, filter(None, per_locale + others))
+
+
+@lru_cache.lru_cache(maxsize=100)
+@memoize('addons:featured:no-redis', time=60 * 10)
+def get_featured_ids(app, lang=None, type=None):
+    if not waffle.switch_is_active('no-redis'):
+        return FeaturedManager.featured_ids(app, lang, type)
+
+    from addons.models import Addon
+    ids = []
+    qs = Addon.objects.filter(
+        collections__featuredcollection__isnull=False,
+        collections__featuredcollection__application__id=app.id)
+
+    if type:
+        qs = qs.filter(type=type)
+    if lang:
+        has_locale = qs.filter(
+            collections__featuredcollection__locale__iexact=lang)
+        qs = qs.filter(
+            collections__featuredcollection__locale__isnull=True)
+        if has_locale.exists():
+            ids += list(has_locale.distinct().values_list('id', flat=True))
+            random.shuffle(ids)
+    other_ids = list(qs.distinct().values_list('id', flat=True))
+    random.shuffle(other_ids)
+    ids += other_ids
+    return map(int, ids)
+
+
+@lru_cache.lru_cache(maxsize=100)
+@memoize('addons:creatured:no-redis', time=60 * 10)
+def get_creatured_ids(category, lang):
+    if not waffle.switch_is_active('no-redis'):
+        return CreaturedManager.creatured_ids(category, lang)
+
+    from addons.models import Addon
+    from bandwagon.models import FeaturedCollection
+    if lang:
+        lang = lang.lower()
+    per_locale = set()
+
+    others = (Addon.objects
+              .filter(
+                  Q(collections__featuredcollection__locale__isnull=True) |
+                  Q(collections__featuredcollection__locale=''),
+                  collections__featuredcollection__isnull=False,
+                  category=category)
+              .distinct()
+              .values_list('id', flat=True))
+
+
+    if lang is not None and lang != '':
+        possible_lang_match = FeaturedCollection.objects.filter(
+            locale__icontains=lang,
+            collection__addons__category=category).distinct()
+        for fc in possible_lang_match:
+            if lang in fc.locale.lower().split(','):
+                per_locale.update(
+                    fc.collection.addons
+                    .filter(category=category)
+                    .values_list('id', flat=True))
+
+    others = list(others)
+    per_locale = list(per_locale)
+    random.shuffle(others)
+    random.shuffle(per_locale)
+    return map(int, filter(None, per_locale + others))

@@ -217,6 +217,7 @@ def start_upgrade(file_ids, sdk_version=None, priority='low', **kw):
     minver, maxver = upgrader.jetpack_versions()
     files = File.objects.filter(id__in=file_ids).select_related('version')
     now = datetime.now()
+    filedata = {}
     for file_ in files:
         if not (file_.jetpack_version and
                 vint(minver) <= vint(file_.jetpack_version) < vint(maxver)):
@@ -256,8 +257,8 @@ def start_upgrade(file_ids, sdk_version=None, priority='low', **kw):
         except Exception:
             jp_log.error('Could not talk to builder for %s.' % file_.id,
                          exc_info=True)
-
-        upgrader.file(file_.id, data)
+        filedata[file_.id] = data
+    upgrader.files(filedata)
 
 
 @task

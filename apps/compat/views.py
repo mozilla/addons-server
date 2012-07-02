@@ -105,8 +105,7 @@ def usage_stats(request, compat, app, binary=None):
     for obj in addons.object_list:
         obj['usage'] = obj['usage'][app]
         obj['max_version'] = obj['max_version'][app]
-    total = int(redis.hget('compat:%s' % app, 'total'))
-    return addons, total
+    return addons, CompatTotals.objects.get(app=app).total
 
 
 @csrf_exempt

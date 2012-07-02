@@ -36,7 +36,6 @@ def admin_site_links():
         'tools': [
             ('View request environment', url('amo.env')),
             ('Manage elasticsearch', url('zadmin.elastic')),
-            ('View celery stats', url('zadmin.celery')),
             ('Purge data from memcache', url('zadmin.memcache')),
             ('Purge pages from zeus', url('zadmin.hera')),
             ('View graphite trends', url('amo.graphite', 'addons')),

@@ -6,6 +6,8 @@ import shlex
 from StringIO import StringIO
 from subprocess import Popen, PIPE
 
+import requests
+
 from django.conf import settings
 from django.core.management.base import BaseCommand
 

@@ -6,7 +6,6 @@ from django.conf import settings
 from django.utils.http import urlquote
 
 import commonware.log
-import redisutils
 
 from . import models as context
 from .urlresolvers import reverse
@@ -192,12 +191,3 @@ def no_login_required(f):
     """
     f._no_login_required = True
     return f
-
-
-def redis(f):
-    """Adds a redis connection as an argument to the method."""
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
-        redis = redisutils.connections['master']
-        return f(redis, *args, **kw)
-    return wrapper

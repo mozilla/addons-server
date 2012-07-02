@@ -23,7 +23,7 @@ import json_field
 from tower import ugettext_lazy as _
 import waffle
 
-from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
+from addons.utils import ReverseNameLookup, get_featured_ids, get_creatured_ids
 import amo.models
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
@@ -97,7 +97,7 @@ class AddonManager(amo.models.ManagerBase):
         """
         Filter for all featured add-ons for an application in all locales.
         """
-        ids = FeaturedManager.featured_ids(app, lang, type)
+        ids = get_featured_ids(app, lang, type)
         return amo.models.manual_order(self.listed(app), ids, 'addons.id')
 
     def listed(self, app, *status):
@@ -1060,7 +1060,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def featured_random(cls, app, lang):
-        return FeaturedManager.featured_ids(app, lang)
+        return get_featured_ids(app, lang)
 
     def is_no_restart(self):
         """Is this a no-restart add-on?"""
@@ -1070,7 +1070,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
         if app:
-            return self.id in FeaturedManager.featured_ids(app, lang)
+            return self.id in get_featured_ids(app, lang)
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
@@ -1587,7 +1587,7 @@ class AddonCategory(caching.CachingMixin, models.Model):
 
     @classmethod
     def creatured_random(cls, category, lang):
-        return CreaturedManager.creatured_ids(category, lang)
+        return get_creatured_ids(category, lang)
 
 
 class AddonRecommendation(models.Model):
