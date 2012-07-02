@@ -111,6 +111,7 @@
             range   = normalizeRange(view.range),
             start   = range.start,
             end     = range.end,
+            date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10),
             fields  = obj.fields ? obj.fields.slice(0,5) : ['count'],
             series  = {},
             events  = obj.events,
@@ -127,12 +128,25 @@
             return;
         }
 
-        // Re-enable date controls (was possibly disabled for column chart).
-        $('.group a, .range a').removeClass('inactive').unbind('click', false);
-
-
         if (!(group in acceptedGroups)) {
             group = 'day';
+        }
+
+        // Disable links if they don't fit into the date range.
+        $('.group a, .range a').removeClass('inactive').unbind('click', false);
+        if (group == 'week') {
+            $('a.days-7').addClass('inactive').bind('click', false);
+        } else if (group == 'month') {
+            $('a.days-7, a.days-30').addClass('inactive').bind('click', false);
+        }
+        if (group == 'day') {
+            $('a.group-day').parent().addClass('selected');
+        }
+        if (date_range_days <= 8) {
+            $('a.group-week, a.group-month').addClass('inactive').bind('click', false);
+        }
+        if (date_range_days <= 31) {
+            $('a.group-month').addClass('inactive').bind('click', false);
         }
 
         if (obj.data.empty || !data.firstIndex) {
@@ -183,25 +197,27 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
-        var date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10);
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
         if (group == 'week') {
-            $('a.week').addClass('inactive').bind('click', false);
+            $('a.days-7').addClass('inactive').bind('click', false);
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.maxZoom = 7 * dayMsecs;
         } else if (group == 'month') {
-            $('a.week, a.month').addClass('inactive').bind('click', false);
+            $('a.days-7, a.days-30').addClass('inactive').bind('click', false);
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.maxZoom = 31 * dayMsecs;
         }
 
         // Disable group links if they don't fit into the date range.
-        if (date_range_days <= 7) {
+        if (group == 'day') {
+            $('a.group-day').parent().addClass('selected');
+        }
+        if (date_range_days <= 8) {
             $('a.group-week, a.group-month').addClass('inactive').bind('click', false);
         }
-        if (date_range_days <= 30) {
+        if (date_range_days <= 31) {
             $('a.group-month').addClass('inactive').bind('click', false);
         }
 
