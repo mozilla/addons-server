@@ -28,8 +28,8 @@ def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
     # Use md5 to make sure the memcached key is clean.
     key = hashlib.md5(smart_str(key)).hexdigest()
-    cache.add("blocklist:keyversion", 1)
-    version = cache.get("blocklist:keyversion")
+    cache.add('blocklist:keyversion', 1)
+    version = cache.get('blocklist:keyversion')
     response = cache.get(key, version=version)
     if response is None:
         response = _blocklist(request, apiver, app, appver)
@@ -64,8 +64,8 @@ def _blocklist(request, apiver, app, appver):
 
 def clear_blocklist(*args, **kw):
     # Something in the blocklist changed; invalidate all responses.
-    cache.add("blocklist:keyversion", 1)
-    cache.incr("blocklist:keyversion")
+    cache.add('blocklist:keyversion', 1)
+    cache.incr('blocklist:keyversion')
     flush_front_end_cache_urls.delay(['/blocklist/*'])
 
 
