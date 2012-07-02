@@ -12,7 +12,6 @@ from django.utils.cache import patch_cache_control
 from django.utils.encoding import smart_str
 
 import jingo
-import redisutils
 
 from amo.utils import sorted_groupby
 from amo.tasks import flush_front_end_cache_urls
@@ -29,15 +28,12 @@ def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
     # Use md5 to make sure the memcached key is clean.
     key = hashlib.md5(smart_str(key)).hexdigest()
-    response = cache.get(key)
+    cache.add("blocklist:keyversion", 1)
+    version = cache.get("blocklist:keyversion")
+    response = cache.get(key, version=version)
     if response is None:
         response = _blocklist(request, apiver, app, appver)
-        cache.set(key, response, 60 * 60)
-        # This gets cleared with the clear_blocklist signal handler.
-        try:
-            redisutils.connections['master'].sadd('blocklist:keys', key)
-        except Exception:
-            pass  # Don't crash me bro.
+        cache.set(key, response, 60 * 60, version=version)
     patch_cache_control(response, max_age=60 * 60)
     return response
 
@@ -68,10 +64,8 @@ def _blocklist(request, apiver, app, appver):
 
 def clear_blocklist(*args, **kw):
     # Something in the blocklist changed; invalidate all responses.
-    redis = redisutils.connections['master']
-    keys = redis.smembers('blocklist:keys')
-    cache.delete_many(keys)
-    redis.delete('blocklist:keys')
+    cache.add("blocklist:keyversion", 1)
+    cache.incr("blocklist:keyversion")
     flush_front_end_cache_urls.delay(['/blocklist/*'])
 
 
