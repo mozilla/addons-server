@@ -177,8 +177,8 @@ function fragmentFilter(el) {
         $(function() {
             var path = window.location.pathname + window.location.search + window.location.hash;
             history.replaceState({path: path}, false, path);
+            fragmentCache[path] = page.html();
             page.trigger('fragmentloaded', [path, false]);
-            fetch(path);
         });
         console.log("fragments enabled");
     } else {
