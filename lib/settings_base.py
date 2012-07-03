@@ -163,7 +163,14 @@ DOMAIN = HOSTNAME
 
 # Full base URL for your main site including protocol.  No trailing slash.
 #   Example: https://addons.mozilla.org
+# TODO(Kumar) when ready, remove this in place of httphost.site_url()
 SITE_URL = 'http://%s' % DOMAIN
+
+# The site URL is automatically determined with lib.httphost.HTTPHostMiddleware.
+# However, if you want to explicitly set it for local development,
+# you can do so here. This setting only works when DEBUG is True.
+#   Example: http://localhost:8000
+SITE_URL_OVERRIDE = None
 
 # Domain of the services site.  This is where your API, and in-product pages
 # live.
@@ -268,6 +275,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.global_settings',
     'amo.context_processors.static_url',
     'jingo_minify.helpers.build_ids',
+    'lib.httphost.context_processors.httphost_context',
 )
 
 TEMPLATE_DIRS = (
@@ -328,6 +336,8 @@ MIDDLEWARE_CLASSES = (
     'access.middleware.ACLMiddleware',
 
     'commonware.middleware.ScrubRequestOnException',
+    # Set storefront related vars based on host.
+    'lib.httphost.middleware.HTTPHostMiddleware',
 )
 
 # Auth

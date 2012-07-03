@@ -41,6 +41,9 @@ DATABASES = {
     },
 }
 
+# To get browser ID to work on your local dev instance, add this.
+#SITE_URL_OVERRIDE = 'http://localhost:8000'
+
 # Skip indexing ES to speed things up?
 SKIP_SEARCH_INDEX = False
 
