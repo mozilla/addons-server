@@ -20,6 +20,14 @@
             $this.closest('ul').removeClass('active');
             $this.addClass('active');
         }
+    }).on('click', '#search-listing .items', function(e) {
+        // Let's treat each li as a click area for its data-href.
+        var $target = $(e.target),
+            url = $target.closest('.item').data().href;
+
+        if (!$target.hasClass('button')) {
+            window.location.href = url;
+        }
     });
     function turnPages(e) {
         if (fieldFocused(e)) {

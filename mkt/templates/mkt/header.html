@@ -5,7 +5,7 @@
   (_('Top Paid'), url('browse.apps')|urlparams(sort='downloads', price='paid')),
   (_('Categories'), url('browse.apps')|urlparams('categories')),
 ] %}
-<header id="site-header">
+<header id="site-header" class="c">
   <section>
     <h1 class="logo"><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
     {% if settings.REGION_STORES %}
@@ -14,7 +14,9 @@
     {% endif %}
     {% if request.can_view_consumer %}
     <nav role="navigation">
+      <a href="#" class="home-button"><b></b></a>
       <a href="#" class="menu-button"><b></b></a>
+      <a href="#" class="filter-button">{{ _('Filter') }}</a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
         {% set search_form = SimpleSearchForm(data) %}

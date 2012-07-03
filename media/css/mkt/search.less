@@ -135,8 +135,12 @@
         &:last-child {
             border-bottom: 0;
         }
-        h3 a {
-            display: block;
+        h3 {
+            .ellipsis();
+            font-weight: 400;
+            a {
+                display: block;
+            }
         }
         .rating {
             color: @gray;
@@ -146,9 +150,12 @@
             position: absolute;
             top: 10px;
         }
+        .authors {
+            margin-top: 0;
+        }
         .info {
             float: left;
-            max-width: 80%;
+            max-width: 70%;
         }
         .actions {
             float: right;
@@ -161,6 +168,12 @@
         img {
             left: 10px;
             margin-right: 10px;
+        }
+        .button {
+            position: absolute;
+            top: 20px;
+            right: 14px;
+            width: 90px;
         }
     }
 }
@@ -403,18 +416,37 @@
     }
 }
 
+// Move this to lib.less if it's needed elsewhere.
+@subtext: #74828d;
+
 @media (max-width: @4col) {
+    h1, #breadcrumbs, #sorter, #search-facets {
+        display: none;
+    }
     .listing {
+        .items {
+            border-left: 0;
+            border-right: 0;
+            margin-top: 0;
+        }
         .item {
-            padding-left: 54px;
+            padding: 0;
+            height: 106px;
+            overflow: hidden;
+            color: @text;
+            cursor: pointer;
+            h3, .authors, .vitals {
+                .ellipsis();
+            }
             h3 {
-                margin-bottom: 10px;
-                a {
-                    display: block;
-                    min-height: 32px;
-                }
+                font-size: 20px;
+                line-height: 22px;
+                font-weight: 400;
             }
             .vitals {
+                margin-top: 11px;
+                color: @subtext;
+                width: 50%;
                 .rating, .vital {
                     display: block;
                     &:before {
@@ -424,12 +456,16 @@
                 .price {
                     display: none;
                 }
+                .vital {
+                    display: none;
+                }
             }
             .info, .actions {
                 float: none;
             }
             .info {
                 max-width: 100%;
+                margin: 19px 0 0 85px;
             }
             .actions {
                 margin-top: 10px;
@@ -439,13 +475,26 @@
                     line-height: 35px;
                 }
             }
-        }
-        .icon {
-            max-height: 32px;
-            max-width: 32px;
+            .authors {
+                color: @subtext;
+            }
+            .icon {
+                top: 20px;
+            }
+            .button {
+                height: 24px;
+                line-height: 24px;
+                font-size: 13px;
+                padding: 0;
+                width: 102px;
+                top: 65px;
+            }
         }
         .desc {
             display: none;
+        }
+        p {
+            margin: 0;
         }
     }
     #search-results, #search-facets {
@@ -467,9 +516,7 @@
             }
         }
         h2 {
-            line-height: 22px;
-            min-height: 22px;
-            margin-bottom: 7px;
+            display: none;
         }
         .facets {
             .facet {
@@ -484,19 +531,28 @@
                 }
             }
         }
-    }
-    #page #search-results {
-        width: 100%;
-        h1 {
-            font-size: 15px;
+        .cnt {
+            display: none;
         }
-        #sorter {
-            h3 {
-                color: @dark-gray;
+    }
+    #page {
+        > section {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        #search-results {
+            width: 100%;
+            h1 {
+                font-size: 15px;
             }
-            li {
-                a {
-                    border-right: 0;
+            #sorter {
+                h3 {
+                    color: @dark-gray;
+                }
+                li {
+                    a {
+                        border-right: 0;
+                    }
                 }
             }
         }

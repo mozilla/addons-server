@@ -1,14 +1,8 @@
 {% for product in products %}
-  <li data-manifest="{{ product.manifest_url }}" class="item result app c">
+  <li data-manifest="{{ product.manifest_url }}" data-href="{{ product.get_detail_url() }}"
+      class="item result app c">
     <div class="info">
       {{ product_info(product) }}
-    </div>
-    <div class="actions">
-      {% if product.is_purchased(request.amo_user) %}
-        <a href="{{ url('account.purchases') }}"
-           class="checkmark purchased">{{ _('Purchased') }}</a>
-      {% endif %}
-      {{ device_list(product) }}
     </div>
   </li>
 {% else %}

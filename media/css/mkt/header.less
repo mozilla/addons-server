@@ -60,6 +60,15 @@
         float: right;
         position: relative;
     }
+    .home-button, .filter-button {
+        float: left;
+        width: 42px;
+        height: 30px;
+        .border-radius(5px);
+        .gradient-two-color(#f8f8f8, #d6d6d6);
+        margin: 10px 15px 0 5px;
+        .box-shadow(0 1px 0 1px rgba(0,0,0,0.5));
+    }
     .menu-button {
         height: 28px;
         width: 28px;
@@ -94,6 +103,10 @@
         b:after {
             top: 20px;
         }
+    }
+    .filter-button {
+        float: right;
+        display: none;
     }
     nav {
         position: relative;
@@ -331,7 +344,24 @@
             }
         }
         .menu-button {
-            margin-top: 17px;
+            display: none;
+        }
+        .filter-button {
+            display: block;
+            margin: 10px 5px 0 7px;
+            line-height: 30px;
+            text-align: center;
+            font-weight: 600;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .home-button b {
+            display: inline-block;
+            width: 12px;
+            height: 18px;
+            background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat 0 0;
+            margin: 6px 0 0 15px;
         }
         #flyout,
         #flyout a,

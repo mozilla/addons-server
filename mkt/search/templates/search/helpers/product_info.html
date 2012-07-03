@@ -22,24 +22,13 @@
   {% if dl_src %}
     {% set dl_url = dl_url|urlparams(src=dl_src) %}
   {% endif %}
-  <a href="{{ dl_url }}">
-    <img class="icon" src="{{ product.get_icon_url(64) }}">
-    {{ product.name }}</a>
+  <img class="icon" src="{{ product.get_icon_url(64) }}">
+    {{ product.name }}
 </h3>
-<p class="desc">{{ product.summary|nl2br }}</p>
+<p class="authors">{{ product.listed_authors[0].name }}</p>
+{{ market_button(product) }}
 <div class="vitals c">
-  <span class="vital price">{{ product.get_price() }}</span>
-  {% with cats = product.all_categories %}
-    {% if cats %}
-      <span class="vital">
-        {% for cat in cats %}
-          <a href="{{ cat.get_url_path() }}">{{ cat }}</a>
-          {%- if not loop.last %},{% endif %}
-        {% endfor %}
-      </span>
-    {% endif %}
-  {% endwith %}
-  {{ impala_reviews_link(product) }}
+  {{ product.average_rating|float|stars }}
   {{ sort_vital(product, 'downloads') }}
   {% if field in ('created', 'updated') %}
     {{ sort_vital(product, field) }}
