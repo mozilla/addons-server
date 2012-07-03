@@ -22,6 +22,7 @@ from waffle.decorators import waffle_flag, waffle_switch
 import commonware.log
 from django_statsd.clients import statsd
 import jingo
+from lib import httphost
 from radagast.wizard import Wizard
 from tower import ugettext as _, ugettext_lazy as _lazy
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
@@ -212,7 +213,7 @@ def edit(request):
 
                 domain = settings.DOMAIN
                 token, hash = EmailResetCode.create(amouser.id, amouser.email)
-                url = "%s%s" % (settings.SITE_URL,
+                url = "%s%s" % (httphost.site_url(),
                                 reverse('users.emailchange', args=[amouser.id,
                                                                 token, hash]))
                 t = loader.get_template('users/email/emailchange.ltxt')
@@ -322,7 +323,7 @@ def browserid_authenticate(request, assertion):
     Request is only needed for logging. :(
     """
     backend = BrowserIDBackend()
-    result = backend.verify(assertion, settings.SITE_URL)
+    result = backend.verify(assertion, httphost.site_url())
     if not result:
         return (None, "BrowserID authentication failure.")
     email = result['email']
@@ -464,7 +465,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
             msg1 = _(u'A link to activate your user account was sent by email '
                       'to your address {0}. You have to click it before you '
                       'can log in.').format(user.email)
-            url = "%s%s" % (settings.SITE_URL,
+            url = "%s%s" % (httphost.site_url(),
                             reverse('users.confirm.resend', args=[user.id]))
             msg2 = _('If you did not receive the confirmation email, make '
                       'sure your email service did not mark it as "junk '
