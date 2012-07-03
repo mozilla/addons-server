@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db.models import Model
 
-from seclusion.base import Client, Encoder, SolitudeError
+from base import Client, Encoder, SolitudeError
 
 client = None
 
