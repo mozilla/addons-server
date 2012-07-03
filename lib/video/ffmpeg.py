@@ -5,6 +5,7 @@ import tempfile
 from django.conf import settings
 
 from django_statsd.clients import statsd
+from tower import ugettext as _
 
 from .utils import check_output, subprocess, VideoBase
 
@@ -108,7 +109,7 @@ class Video(VideoBase):
         assert self.meta is not None
         self.errors = []
         if 'webm' not in self.meta.get('formats', ''):
-            self.errors.append('Videos must be WEBM.')
+            self.errors.append(_('Videos must be in WebM.'))
 
         #TODO(andym): More checks on duration, file size, bit rate?
         return not self.errors

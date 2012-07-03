@@ -94,19 +94,16 @@ $.fn.objectUrl = function(offset) {
             instance_id++;
             outstanding_uploads++;
 
-            if($upload_field.attr('data-allowed-types').split('|').indexOf(file.type) < 0) {
-                var errors;
+            if ($upload_field.attr('data-allowed-types').split('|').indexOf(file.type) < 0) {
+                var errors = [gettext('Images must be either PNG or JPG.')];
                 if (typeof $upload_field.attr('multiple') !== 'undefined') {
                     // If we have a `multiple` attribute, assume not an icon.
-                    errors = [gettext("Images must be either PNG or JPG.")];
                     if ($upload_field.attr('data-allowed-types').indexOf('video') > -1) {
-                       errors.push([gettext("Videos must be WEBM.")]);
+                       errors.push([gettext('Videos must be in WebM.')]);
                     }
-                } else {
-                    errors = [gettext("Icons must be either PNG or JPG.")];
                 }
-                $upload_field.trigger("upload_start", [file]);
-                $upload_field.trigger("upload_errors", [file, errors]);
+                $upload_field.trigger('upload_start', [file]);
+                $upload_field.trigger('upload_errors', [file, errors]);
                 finished();
                 return;
             }

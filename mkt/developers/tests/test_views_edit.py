@@ -652,8 +652,7 @@ class TestEditMedia(TestEdit):
         raise SkipTest
         # TODO(andym): fix this.
         Switch.objects.create(name='video-upload', active=True)
-        self.check_image_type(self.preview_upload,
-                              'Videos must be WEBM.')
+        self.check_image_type(self.preview_upload, 'Videos must be in WebM.')
 
     def test_edit_icon_wrong_type(self):
         self.check_image_type(self.icon_upload,
