@@ -1855,6 +1855,28 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
         assert not self.addon.is_premium()
 
+    def test_is_free(self):
+        assert self.addon.is_free()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(addon=self.addon, price=None)
+        assert self.addon.is_free()
+        price = Price.objects.create(price='1.00')
+        self.addon.premium.update(price=price)
+        assert not self.addon.is_free()
+        # An add-on of price $0.00 is still technically not "free".
+        self.addon.premium.price.update(price='0.00')
+        assert not self.addon.is_free()
+        self.addon.premium.update(price=None)
+        assert self.addon.is_free()
+
+    def test_has_price(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(addon=self.addon, price=None)
+        assert not self.addon.premium.has_price()
+        price = Price.objects.create(price='1.00')
+        self.addon.premium.update(price=price)
+        assert self.addon.premium.has_price()
+
     def test_does_not_need_paypal(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
         assert not self.addon.needs_paypal()
