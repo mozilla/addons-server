@@ -18,6 +18,7 @@ from amo import messages
 from amo.decorators import login_required, post_required, write
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
+from lib.pay_server import client
 from market.forms import PriceCurrencyForm
 from market.models import AddonPurchase
 import paypal
@@ -69,35 +70,67 @@ def purchase(request, addon):
                                  content_type='application/json')
 
     paykey, status, error = '', '', ''
+
+    # TODO(solitude): remove this, pre-approval and currency will be
+    # stored in solitude.
     preapproval = None
-    if request.amo_user:
+    if (not waffle.flag_is_active(request, 'solitude-payments')
+        and request.amo_user):
         preapproval = request.amo_user.get_preapproval()
         # User the users default currency.
         if currency == 'USD' and preapproval and preapproval.currency:
             currency = preapproval.currency
 
-    try:
-        paykey, status = paypal.get_paykey(dict(
-            amount=amount,
-            chains=settings.PAYPAL_CHAINS,
-            currency=currency,
-            email=addon.paypal_id,
-            ip=request.META.get('REMOTE_ADDR'),
-            memo=contrib_for,
-            pattern='purchase.done',
-            preapproval=preapproval,
-            qs={'realurl': request.POST.get('realurl')},
-            slug=addon.app_slug,
-            uuid=uuid_
-        ))
-    except paypal.PaypalError as error:
-        paypal.paypal_log_cef(request, addon, uuid_,
-                              'PayKey Failure', 'PAYKEYFAIL',
-                              'There was an error getting the paykey')
-        log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
-                  exc_info=True)
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        # TODO(solitude): when the migration of data is completed, we
+        # will be able to remove this. Seller data is populated in solitude
+        # on submission or devhub changes. If those don't occur, you won't be
+        # able to sell at all.
+        client.create_seller_for_pay(addon)
+
+        # Now call the client.
+        result = {}
+        try:
+            result = client.pay({'amount': amount, 'currency': currency,
+                                 'buyer': request.amo_user, 'seller': addon,
+                                 'memo': contrib_for})
+        except client.Error:
+            paypal.paypal_log_cef(request, addon, uuid_,
+                                  'PayKey Failure', 'PAYKEYFAIL',
+                                  'There was an error getting the paykey')
+            log.error('Error getting paykey: %s' % addon.pk, exc_info=True)
+
+        # TODO(solitude): just use the dictionary when solitude is live.
+        paykey = result.get('pay_key', '')
+        status = result.get('status', '')
+        uuid_ = result.get('uuid', '')
+
+    else:
+        # TODO(solitude): remove this when solitude goes live.
+        try:
+            paykey, status = paypal.get_paykey(dict(
+                amount=amount,
+                chains=settings.PAYPAL_CHAINS,
+                currency=currency,
+                email=addon.paypal_id,
+                ip=request.META.get('REMOTE_ADDR'),
+                memo=contrib_for,
+                pattern='purchase.done',
+                preapproval=preapproval,
+                qs={'realurl': request.POST.get('realurl')},
+                slug=addon.app_slug,
+                uuid=uuid_
+            ))
+        except paypal.PaypalError as error:
+            paypal.paypal_log_cef(request, addon, uuid_,
+                                  'PayKey Failure', 'PAYKEYFAIL',
+                                  'There was an error getting the paykey')
+            log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
+                      exc_info=True)
 
     if paykey:
+        # TODO(solitude): at some point we'll have to see what to do with
+        # contributions.
         contrib = Contribution(addon_id=addon.id, amount=amount,
                                source=source, source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
@@ -111,15 +144,25 @@ def purchase(request, addon):
                                   'Purchase', 'PURCHASE',
                                   'A user purchased using pre-approval')
 
-            log.debug('Status is completed for uuid: %s' % uuid_)
-            if paypal.check_purchase(paykey) == 'COMPLETED':
-                log.debug('Check purchase is completed for uuid: %s' % uuid_)
-                contrib.type = amo.CONTRIB_PURCHASE
+            log.debug('Status completed for uuid: %s' % uuid_)
+            if waffle.flag_is_active(request, 'solitude-payments'):
+                result = client.post_pay_check(data={'pay_key': paykey})
+                if result['status'] == 'COMPLETED':
+                    contrib.type = amo.CONTRIB_PURCHASE
+                else:
+                    log.error('Check purchase failed on uuid: %s' % uuid_)
+                    status = 'NOT-COMPLETED'
+
             else:
-                # In this case PayPal disagreed, we should not be trusting
-                # what get_paykey said. Which is a worry.
-                log.error('Check purchase failed on uuid: %s' % uuid_)
-                status = 'NOT-COMPLETED'
+                #TODO(solitude): remove this when solitude goes live.
+                if paypal.check_purchase(paykey) == 'COMPLETED':
+                    log.debug('Check purchase completed for uuid: %s' % uuid_)
+                    contrib.type = amo.CONTRIB_PURCHASE
+                else:
+                    # In this case PayPal disagreed, we should not be trusting
+                    # what get_paykey said. Which is a worry.
+                    log.error('Check purchase failed on uuid: %s' % uuid_)
+                    status = 'NOT-COMPLETED'
 
         contrib.save()
 
@@ -158,28 +201,45 @@ def purchase_done(request, addon, status):
         # The IPN may, or may not have come through. Which means looking for
         # a for pre or post IPN contributions. If both fail, then we've not
         # got a matching contribution.
+        #
+        # TODO(solitude): this will change when we figure out what to do
+        # with Contributions.
         lookup = (Q(uuid=uuid_, type=amo.CONTRIB_PENDING) |
                   Q(transaction_id=uuid_, type=amo.CONTRIB_PURCHASE))
         con = get_object_or_404(Contribution, lookup)
 
-        log.debug('Check purchase paypal addon: %s, user: %s, paykey: %s'
+        log.debug('Check purchase addon: %s, user: %s, paykey: %s'
                   % (addon.pk, request.amo_user.pk, con.paykey[:10]))
-        try:
-            result = paypal.check_purchase(con.paykey)
-            if result == 'ERROR':
+
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            try:
+                res = client.post_pay_check(data={'uuid': uuid_})
+            except client.Error:
                 paypal.paypal_log_cef(request, addon, uuid_,
                                       'Purchase Fail', 'PURCHASEFAIL',
-                                      'Checking purchase state returned error')
+                                      'Checking purchase error')
                 raise
-        except:
-            paypal.paypal_log_cef(request, addon, uuid_,
-                                  'Purchase Fail', 'PURCHASEFAIL',
-                                  'There was an error checking purchase state')
-            log.error('Check purchase paypal addon: %s, user: %s, paykey: %s'
-                      % (addon.pk, request.amo_user.pk, con.paykey[:10]),
-                      exc_info=True)
-            result = 'ERROR'
-            status = 'error'
+
+            result = res['status']
+
+        # TODO(solitude): can be removed once solitude is live.
+        else:
+            try:
+                result = paypal.check_purchase(con.paykey)
+                if result == 'ERROR':
+                    paypal.paypal_log_cef(request, addon, uuid_,
+                                          'Purchase Fail', 'PURCHASEFAIL',
+                                          'Checking purchase error')
+                    raise
+            except:
+                paypal.paypal_log_cef(request, addon, uuid_,
+                                      'Purchase Fail', 'PURCHASEFAIL',
+                                      'There was an error checking purchase')
+                log.error('Check purchase addon: %s, user: %s, paykey: %s'
+                          % (addon.pk, request.amo_user.pk, con.paykey[:10]),
+                          exc_info=True)
+                result = 'ERROR'
+                status = 'error'
 
         log.debug('Paypal returned: %s for paykey: %s'
                   % (result, con.paykey[:10]))

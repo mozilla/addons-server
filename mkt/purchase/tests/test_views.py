@@ -58,6 +58,17 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         res = self.client.post_ajax(self.purchase_url)
         eq_(json.loads(res.content)['paykey'], 'some-pay-key')
 
+    @mock.patch('mkt.purchase.views.client.pay')
+    @mock.patch('mkt.purchase.views.client.create_seller_for_pay')
+    def test_ajax_solitude(self, create_seller_for_pay, pay):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+
+        pay.return_value = {'pay_key': 'some-pay-key', 'uuid': 123,
+                            'status': 'CREATED'}
+        res = self.client.post_ajax(self.purchase_url)
+        eq_(json.loads(res.content)['paykey'], 'some-pay-key')
+
     @fudge.patch('paypal.get_paykey')
     def test_paykey_amount(self, get_paykey):
         def check(*args, **kw):
@@ -150,6 +161,20 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(json.loads(res.content)['status'], 'COMPLETED')
         self.check_contribution(amo.CONTRIB_PURCHASE)
 
+    @mock.patch('mkt.purchase.views.client.pay')
+    @mock.patch('mkt.purchase.views.client.create_seller_for_pay')
+    @mock.patch('mkt.purchase.views.client.post_pay_check')
+    def test_paykey_pre_approval_solitude(self, post_pay_check,
+                                          create_seller_for_pay, pay):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+
+        post_pay_check.return_value = {'status': 'COMPLETED'}
+        pay.return_value = {'status': 'COMPLETED', 'uuid': 1, 'pay_key': '1'}
+        res = self.client.post_ajax(self.purchase_url)
+        eq_(json.loads(res.content)['status'], 'COMPLETED')
+        self.check_contribution(amo.CONTRIB_PURCHASE)
+
     def test_paykey_pre_approval_disagree(self):
         res = self.post_with_preapproval(check_purchase_result='No!!!')
         eq_(json.loads(res.content)['status'], 'NOT-COMPLETED')
@@ -164,28 +189,26 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         self.assertRedirects(res, self.addon.get_detail_url())
 
     @mock.patch('paypal.check_purchase')
-    @fudge.patch('paypal.get_paykey')
-    @mock.patch.object(waffle, 'flag_is_active', lambda x, y: True)
+    @mock.patch('paypal.get_paykey')
     def test_paykey_pre_approval_used(self, get_paykey, check_purchase):
+        # TODO(solitude): remove this test, it will be redundant.
         check_purchase.return_value = 'COMPLETED'
+        get_paykey.return_value = 'some-pay-key', 'COMPLETED'
         pre = PreApprovalUser.objects.create(user=self.user, paypal_key='xyz')
-        (get_paykey.expects_call()
-                   .with_matching_args(preapproval=pre)
-                   .returns(('some-pay-key', 'COMPLETED')))
         self.client.post_ajax(self.purchase_url)
+        eq_(get_paykey.call_args[0][0]['preapproval'], pre)
 
     @mock.patch('paypal.check_purchase')
-    @fudge.patch('paypal._call')
-    @mock.patch.object(waffle, 'flag_is_active', lambda x, y: True)
-    def test_paykey_pre_approval_empty(self, _call, check_purchase):
-        check_purchase.return_value = 'COMPLETED'
+    @mock.patch('paypal.get_paykey')
+    def test_paykey_pre_approval_empty(self, get_paykey, check_purchase):
+        # TODO(solitude): remove this test, it will be invalid once solitude
+        # is live. I think it's trying to test that things still work if
+        # pre approval is empty.
+        check_purchase.return_value = 'CREATED'
+        get_paykey.return_value = '...', 'CREATED'
         PreApprovalUser.objects.create(user=self.user, paypal_key='')
-        r = lambda s: 'receiverList.receiver(0).email' in s
-        (_call.expects_call()
-              .with_matching_args(arg.any(), arg.passes_test(r))
-              .returns({'payKey': 'some-pay-key',
-                        'paymentExecStatus': 'COMPLETED'}))
-        self.client.post_ajax(self.purchase_url)
+        res = self.client.post_ajax(self.purchase_url)
+        eq_(res.status_code, 200)
 
     @mock.patch('addons.models.Addon.has_purchased')
     def test_has_purchased(self, has_purchased):
@@ -217,6 +240,22 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     @mock.patch('paypal.check_purchase')
     def test_check_purchase(self, check_purchase):
         check_purchase.return_value = 'COMPLETED'
+        self.make_contribution()
+        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].type, amo.CONTRIB_PURCHASE)
+        assert cons[0].uuid
+
+    @mock.patch('mkt.purchase.views.client.pay')
+    @mock.patch('mkt.purchase.views.client.create_seller_for_pay')
+    @mock.patch('mkt.purchase.views.client.post_pay_check')
+    def test_check_solitude(self, post_pay_check, create_seller_for_pay, pay):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        post_pay_check.return_value = {'status': 'COMPLETED'}
+        pay.return_value = {'paykey': 'asd', 'status': 'COMPLETED',
+                            'uuid': 123}
         self.make_contribution()
         self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
         cons = Contribution.objects.all()

@@ -8,6 +8,7 @@ from nose.tools import eq_
 import test_utils
 
 from addons.models import Addon
+import amo
 from users.models import UserProfile
 from lib.pay_server import client, model_to_uid, ZamboniEncoder
 
@@ -18,7 +19,7 @@ class TestUtils(test_utils.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.create()
-        self.addon = Addon.objects.create(type=1)
+        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
 
     def test_uid(self):
         eq_(model_to_uid(self.user), 'testy:users:%s' % self.user.pk)
@@ -95,3 +96,30 @@ class TestUtils(test_utils.TestCase):
             }
         with self.assertRaises(ValueError):
             client.create_seller_paypal(self.addon)
+
+    @patch.object(client, 'create_seller_paypal')
+    @patch.object(client, 'patch_seller_paypal')
+    def test_seller_there(self, patch_seller_paypal, create_seller_paypal):
+        create_seller_paypal.return_value = {'paypal_id': 'asd'}
+        client.create_seller_for_pay(None)
+        assert not patch_seller_paypal.called
+
+    @patch.object(client, 'create_seller_paypal')
+    @patch.object(client, 'patch_seller_paypal')
+    def test_seller_not(self, patch_seller_paypal, create_seller_paypal):
+        self.addon.update(paypal_id='foo')
+        create_seller_paypal.return_value = {'paypal_id': None,
+                                             'resource_pk': 1}
+        client.create_seller_for_pay(self.addon)
+        kwargs = patch_seller_paypal.call_args[1]
+        eq_(kwargs['pk'], 1)
+        eq_(kwargs['data']['paypal_id'], 'foo')
+
+    @patch.object(client, 'post_pay')
+    def test_pay(self, post_pay):
+        client.pay({'amount':1, 'currency':'USD', 'seller':self.addon,
+                    'memo':'foo'})
+        kwargs = post_pay.call_args[1]['data']
+        assert 'ipn_url' in kwargs
+        assert 'uuid' in kwargs
+        assert kwargs['uuid']in kwargs['return_url']

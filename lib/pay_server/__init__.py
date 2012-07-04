@@ -1,7 +1,13 @@
+import hashlib
+import uuid
+
 from django.conf import settings
 from django.db.models import Model
 
 from base import Client, Encoder, SolitudeError
+
+from amo.helpers import absolutify, urlparams
+from amo.urlresolvers import reverse
 
 client = None
 
@@ -65,6 +71,33 @@ class ZamboniClient(Client):
             return paypal
         else:
             raise ValueError('Get returned %s sellers.' % count)
+
+    def create_seller_for_pay(self, addon):
+        """
+        A temporary method to populate seller data, when a data migration
+        is completed, this can be removed.
+        """
+        obj = client.create_seller_paypal(addon)
+        if not obj['paypal_id']:
+            client.patch_seller_paypal(pk=obj['resource_pk'],
+                                       data={'paypal_id': addon.paypal_id})
+
+    def make_uuid(self):
+        return hashlib.md5(str(uuid.uuid4())).hexdigest()
+
+    def pay(self, data):
+        """Add in uuid and urls on the way."""
+        uuid = self.make_uuid()
+        rt = data['seller'].get_purchase_url(action='done', args=['complete'])
+        ca = data['seller'].get_purchase_url(action='done', args=['cancel'])
+
+        data.update({
+            'ipn_url': absolutify(reverse('amo.paypal')),
+            'return_url': absolutify(urlparams(rt, uuid=uuid)),
+            'cancel_url': absolutify(urlparams(ca, uuid=uuid)),
+            'uuid': uuid,
+        })
+        return self.post_pay(data=data)
 
 
 def get_client():
