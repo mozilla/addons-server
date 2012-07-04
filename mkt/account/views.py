@@ -89,7 +89,8 @@ def payment(request, status=None):
             if waffle.flag_is_active(request, 'solitude-payments'):
                 other = client.lookup_buyer_paypal(request.amo_user)
                 if other:
-                    client.patch_buyer_paypal(pk=other['resource_pk'])
+                    client.patch_buyer_paypal(pk=other['resource_pk'],
+                                              data={'key': ''})
 
             if pre.paypal_key:
                 # TODO(solitude): again, we'll want to maintain some local

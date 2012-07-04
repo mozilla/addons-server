@@ -406,6 +406,7 @@ class TestPreapproval(amo.tests.TestCase):
         self.client.post(self.get_url('remove'))
         eq_(client.lookup_buyer_paypal.call_args[0][0].pk, self.user.pk)
         assert 'pk' in client.patch_buyer_paypal.call_args[1]
+        eq_(client.patch_buyer_paypal.call_args[1]['data']['key'], '')
 
     def test_session_complete(self):
         ssn = self.client.session
