@@ -71,7 +71,11 @@
         <dt>{{ _('Refunds') }}</dt>
         <dd>TBD: bug 765765</dd>
         <dt>{{ _('Methods') }}</dt>
-        <dd>TBD: bug 765767</dd>
+        <dd class="pretty-list">
+          {% for summary in payment_methods %}
+            <div>{{ summary }}</div>
+          {% endfor %}
+        </dd>
       </dl>
     </section>
   </section>
