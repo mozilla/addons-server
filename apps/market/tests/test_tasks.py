@@ -7,8 +7,10 @@ from nose.tools import eq_
 from waffle import Sample, Switch
 
 import amo
+import amo.tests
 from addons.management.commands import process_addons
 from addons.models import Addon
+from market.models import PaypalCheckStatus
 from market.tasks import (check_paypal, check_paypal_multiple,
                           _check_paypal_completed)
 from devhub.models import ActivityLog
@@ -66,6 +68,18 @@ class TestCheckPaypal(amo.tests.TestCase):
         _mock = self.get_check(False, errors=['This is a test.'])
         check_paypal(pks, _mock)
         assert 'This is a test' in mail.outbox[0].body
+
+    def test_error(self):
+        pks = check_paypal_multiple(self.pks, limit=0)
+        _mock = self.get_check(False)
+        _mock.side_effect = ValueError
+        check_paypal(pks, _mock)
+        eq_(PaypalCheckStatus.objects.count(), 1)
+
+    def test_no_addon(self):
+        pks = check_paypal_multiple([3516], limit=0)
+        check_paypal(pks)
+        eq_(PaypalCheckStatus.objects.count(), 0)
 
     def test_at_end(self):
         pks = check_paypal_multiple(self.pks * 2)

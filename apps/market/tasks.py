@@ -4,20 +4,18 @@ import time
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models
 
 from addons.models import Addon
 import amo
 from amo.helpers import absolutify, loc
 from amo.utils import send_mail
+from market.models import PaypalCheckStatus
 from paypal.check import Check
 from users.utils import get_task_user
 
 from celeryutils import task
 from jingo import env
 from waffle import Sample, switch_is_active
-
-from market.models import PaypalCheckStatus
 
 log = logging.getLogger('z.market.task')
 key = 'amo:market:check_paypal'
@@ -153,6 +151,11 @@ def check_paypal(ids, check=None, **kw):
     for id in ids:
         try:
             addon = Addon.objects.get(pk=id)
+        except Addon.DoesNotExist:
+            log.info('No addon: %s' % id)
+            continue
+
+        try:
             log.info('Checking paypal for: %s' % addon.id)
             result = check(addon=addon)
             result.all()
@@ -170,7 +173,7 @@ def check_paypal(ids, check=None, **kw):
             # would cause the app to be marked as disabled and I think that's
             # the wrong thing to do.
             log.error('Paypal check failed: %s' % id, exc_info=True)
-            PaypalCheckStatus.objects.create(addon__id=id)
+            PaypalCheckStatus.objects.create(addon=addon)
 
         # Finally call to see if we've finished.
         _check_paypal_completed()
