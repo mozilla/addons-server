@@ -4,6 +4,7 @@ import json
 from django.conf import settings
 
 from mock import patch
+from nose import SkipTest
 from nose.tools import eq_
 import test_utils
 
@@ -117,6 +118,10 @@ class TestUtils(test_utils.TestCase):
 
     @patch.object(client, 'post_pay')
     def test_pay(self, post_pay):
+        # Temporary until we get AMO solitude support.
+        if not settings.MARKETPLACE:
+            raise SkipTest
+
         client.pay({'amount':1, 'currency':'USD', 'seller':self.addon,
                     'memo':'foo'})
         kwargs = post_pay.call_args[1]['data']
