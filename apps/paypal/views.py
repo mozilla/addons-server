@@ -52,6 +52,7 @@ def paypal(request):
 
 def ipn(request):
     result = client.post_ipn(data={'data': request.raw_post_data})
+    paypal_log.info('Solitude IPN returned: %s' % result)
 
     # PayPal could not verify this result.
     if result['status'] in ['IGNORED', 'ERROR']:
