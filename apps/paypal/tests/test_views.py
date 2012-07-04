@@ -4,12 +4,12 @@ import urllib
 
 from django import http, test
 from django.conf import settings
-from django.core.cache import cache
 from django.core import mail
 
 from mock import patch, Mock
 from nose.tools import eq_
 from test_utils import RequestFactory
+import waffle
 
 import amo.tests
 from amo.urlresolvers import reverse
@@ -181,6 +181,48 @@ class PaypalTest(amo.tests.TestCase):
         m.text = status
         return m
 
+@patch('paypal.views.client.post_ipn')
+class TestPaypalSolitude(PaypalTest):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        self.addon = Addon.objects.get(pk=3615)
+        self.url = reverse('amo.paypal')
+        self.user = UserProfile.objects.get(pk=999)
+
+    def test_ignore(self, post_ipn):
+        post_ipn.return_value = {'status': 'IGNORED'}
+        res = self.client.post(self.url, {})
+        eq_(res.content, 'Ignored')
+
+    def test_payment(self, post_ipn):
+        Contribution.objects.create(uuid=sample_purchase['tracking_id'],
+                                    addon=self.addon)
+        post_ipn.return_value = {'action': 'PAYMENT', 'status': 'OK',
+                                 'uuid': sample_purchase['tracking_id']}
+        res = self.client.post(self.url, {})
+        eq_(res.content, 'Success!')
+
+    def test_refund(self, post_ipn):
+        Contribution.objects.create(addon=self.addon, uuid=None,
+                transaction_id=sample_purchase['tracking_id'], user=self.user)
+        post_ipn.return_value = {'action': 'REFUND', 'amount': 'USD 1.00',
+                'status': 'OK', 'uuid': sample_purchase['tracking_id']}
+        res = self.client.post(self.url, {})
+        eq_(res.content, 'Success!')
+
+
+    def test_chargeback(self, post_ipn):
+        Contribution.objects.create(addon=self.addon, uuid=None,
+                transaction_id=sample_purchase['tracking_id'], user=self.user)
+        post_ipn.return_value = {'action': 'REVERSAL', 'amount': 'USD 1.00',
+                'status': 'OK', 'uuid': sample_purchase['tracking_id']}
+        res = self.client.post(self.url, {})
+        eq_(res.content, 'Success!')
+
+
 
 @patch('paypal.views.requests.post')
 class TestPaypal(PaypalTest):
@@ -218,17 +260,8 @@ class TestPaypal(PaypalTest):
 
     def test_mysterious_contribution(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
-
-        key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
-                           sample_purchase['tracking_id'])
         response = self.client.post(self.url, sample_purchase)
-        assert isinstance(response, http.HttpResponseServerError)
-        eq_(cache.get(key), 1)
-
-        cache.set(key, 10, 1209600)
-        response = self.client.post(self.url, sample_purchase)
-        assert isinstance(response, http.HttpResponse)
-        eq_(cache.get(key), None)
+        eq_(response.content, 'Transaction not found; skipping.')
 
     def test_query_string_order(self, urlopen):
         urlopen.return_value = self.urlopener('HEY MISTER')
@@ -317,7 +350,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         urlopen.return_value = self.urlopener('VERIFIED')
 
         response = self.client.post(self.url, sample_purchase)
-        eq_(response.content, 'Contribution not found')
+        eq_(response.content, 'Transaction not found; skipping.')
 
     def _receive_ipn(self, urlopen, data):
         """
@@ -367,7 +400,7 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         recorded results in an error.
         """
         response = self._receive_ipn(urlopen, sample_refund)
-        eq_(response.content, 'Contribution not found')
+        eq_(response.content, 'Transaction not found; skipping.')
         refunds = Contribution.objects.filter(type=amo.CONTRIB_REFUND)
         eq_(len(refunds), 0)
 

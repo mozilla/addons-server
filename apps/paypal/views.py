@@ -11,9 +11,11 @@ import commonware.log
 from django_statsd.clients import statsd
 import phpserialize as php
 import requests
+import waffle
 
 import amo
 from amo.decorators import no_login_required, post_required, write
+from lib.pay_server import client
 from paypal import paypal_log_cef
 from stats.db import StatsDictField
 from stats.models import Contribution, ContributionError, SubscriptionEvent
@@ -38,6 +40,8 @@ def paypal(request):
                     &content_ID=developer/e_howto_html_IPNandPDTVariables
     """
     try:
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            return ipn(request)
         return _paypal(request)
     except Exception, e:
         paypal_log.error('%s\n%s' % (e, request), exc_info=True)
@@ -46,6 +50,33 @@ def paypal(request):
         return http.HttpResponseServerError('Unknown error.')
 
 
+def ipn(request):
+    result = client.post_ipn(data={'data': request.raw_post_data})
+
+    # PayPal could not verify this result.
+    if result['status'] in ['IGNORED', 'ERROR']:
+        paypal_log.info('Solitude IPN ignored: %s' % result['status'])
+        return http.HttpResponse('Ignored')
+
+    paypal_log.info('Solitude IPN processed: %s,' % result['action'])
+
+    # Process the payment.
+    if result['action'] == 'PAYMENT':
+        return paypal_completed(request, result['uuid'])
+
+    elif result['action'] == 'REFUND':
+        return paypal_refunded(request, result['uuid'],
+                               amount=result['amount'])
+
+    elif result['action'] == 'REVERSAL':
+        return paypal_reversal(request, result['uuid'],
+                               amount=result['amount'])
+
+    else:
+        raise NotImplementedError
+
+
+# TODO(solitude): alot of this can be removed or refactored.
 def _log_error_with_data(msg, post):
     """Log a message along with some of the POST info from PayPal."""
 
@@ -116,6 +147,9 @@ def _parse(post):
 
 def _parse_currency(amount):
     """Parse USD 10.00 into a dictionary of currency and amount as Decimal."""
+    # If you are using solitude, it does this for you.
+    if isinstance(amount, dict):
+        return amount
     res = currency.match(amount).groupdict()
     if 'amount' in res:
         res['amount'] = Decimal(res['amount'])
@@ -170,7 +204,8 @@ def _paypal(request):
         if status not in methods:
             paypal_log.info('Unknown status: %s' % status)
             continue
-        result = methods[status](request, post, v)
+        result = methods[status](request, post.get('txn_id'),
+                                 post, v.get('amount'))
         called = True
         # Because of chained payments a refund is more than one transaction.
         # But from our point of view, it's actually only one transaction and
@@ -188,11 +223,12 @@ def _paypal(request):
     return result
 
 
-def paypal_refunded(request, post, transaction):
+def paypal_refunded(request, transaction_id, serialize=None, amount=None):
     try:
-        original = Contribution.objects.get(transaction_id=post['txn_id'])
+        original = Contribution.objects.get(transaction_id=transaction_id)
     except Contribution.DoesNotExist:
-        return _log_unmatched(post)
+        paypal_log.info('Ignoring transaction: %s' % transaction_id)
+        return http.HttpResponse('Transaction not found; skipping.')
 
     # If the contribution has a related contribution we've processed it.
     try:
@@ -204,29 +240,30 @@ def paypal_refunded(request, post, transaction):
         pass
 
     original.handle_chargeback('refund')
-    paypal_log.info('Refund IPN received: %s' % post['txn_id'])
-    amount = _parse_currency(transaction['amount'])
+    paypal_log.info('Refund IPN received: %s' % transaction_id)
+    amount = _parse_currency(amount)
 
     Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_REFUND,
         amount=-amount['amount'], currency=amount['currency'],
-        post_data=php.serialize(post)
+        post_data=php.serialize(serialize)
     )
     paypal_log.info('Refund successfully processed')
 
-    paypal_log_cef(request, original.addon, post['txn_id'],
+    paypal_log_cef(request, original.addon, transaction_id,
                    'Refund', 'REFUND',
                    'A paypal refund was processed')
 
     return http.HttpResponse('Success!')
 
 
-def paypal_reversal(request, post, transaction):
+def paypal_reversal(request, transaction_id, serialize=None, amount=None):
     try:
-        original = Contribution.objects.get(transaction_id=post['txn_id'])
+        original = Contribution.objects.get(transaction_id=transaction_id)
     except Contribution.DoesNotExist:
-        return _log_unmatched(post)
+        paypal_log.info('Ignoring transaction: %s' % transaction_id)
+        return http.HttpResponse('Transaction not found; skipping.')
 
     # If the contribution has a related contribution we've processed it.
     try:
@@ -238,38 +275,39 @@ def paypal_reversal(request, post, transaction):
         pass
 
     original.handle_chargeback('reversal')
-    paypal_log.info('Reversal IPN received: %s' % post['txn_id'])
-    amount = _parse_currency(transaction['amount'])
+    paypal_log.info('Reversal IPN received: %s' % transaction_id)
+    amount = _parse_currency(amount)
     refund = Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_CHARGEBACK,
         amount=-amount['amount'], currency=amount['currency'],
-        post_data=php.serialize(post)
+        post_data=php.serialize(serialize)
     )
     refund.mail_chargeback()
 
-    paypal_log_cef(request, original.addon, post['txn_id'],
+    paypal_log_cef(request, original.addon, transaction_id,
                    'Chargeback', 'CHARGEBACK',
                    'A paypal chargeback was processed')
 
     return http.HttpResponse('Success!')
 
 
-def paypal_completed(request, post, transaction):
+def paypal_completed(request, transaction_id, serialize=None, amount=None):
     # Make sure transaction has not yet been processed.
-    if Contribution.objects.filter(transaction_id=post['txn_id']).exists():
+    if Contribution.objects.filter(transaction_id=transaction_id).exists():
         paypal_log.info('Completed IPN already processed')
         return http.HttpResponse('Transaction already processed')
 
     # Note that when this completes the uuid is moved over to transaction_id.
     try:
-        original = Contribution.objects.get(uuid=post['txn_id'])
+        original = Contribution.objects.get(uuid=transaction_id)
     except Contribution.DoesNotExist:
-        return _log_unmatched(post)
+        paypal_log.info('Ignoring transaction: %s' % transaction_id)
+        return http.HttpResponse('Transaction not found; skipping.')
 
-    paypal_log.info('Completed IPN received: %s' % post['txn_id'])
-    data = StatsDictField().to_python(php.serialize(post))
-    update = {'transaction_id': post['txn_id'],
+    paypal_log.info('Completed IPN received: %s' % transaction_id)
+    data = StatsDictField().to_python(php.serialize(serialize))
+    update = {'transaction_id': transaction_id,
               'uuid': None, 'post_data': data}
 
     if original.type == amo.CONTRIB_PENDING:
@@ -280,8 +318,8 @@ def paypal_completed(request, post, transaction):
         # to get it logged properly. This will add the log in.
         amo.log(amo.LOG.PURCHASE_ADDON, original.addon)
 
-    if 'mc_gross' in post:
-        update['amount'] = post['mc_gross']
+    if amount:
+        update['amount'] = _parse_currency(amount)['amount']
 
     original.update(**update)
     # Send thankyou email.
@@ -291,7 +329,7 @@ def paypal_completed(request, post, transaction):
         # A failed thankyou email is not a show stopper, but is good to know.
         paypal_log.error('Thankyou note email failed with error: %s' % e)
 
-    paypal_log_cef(request, original.addon, post['txn_id'],
+    paypal_log_cef(request, original.addon, transaction_id,
                    'Purchase', 'PURCHASE',
                    'A user purchased or contributed to an addon')
     paypal_log.info('Completed successfully processed')
