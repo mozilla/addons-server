@@ -14,6 +14,7 @@ from users.models import UserProfile
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
 
+
 class ReviewTest(amo.tests.TestCase):
     fixtures = ['base/admin', 'base/apps', 'reviews/dev-reply']
 
@@ -266,7 +267,7 @@ class TestListing(ReviewTest):
 
     def get_flags(self, actions):
         return sorted(c.get('class').replace(' post', '')
-                      for c in actions.find('li a'))
+                      for c in actions.find('li:not(.hidden) a'))
 
     def test_actions_as_author(self):
         r = self.client.get(self.listing)
