@@ -56,7 +56,7 @@ def _landing(request, category=None):
                    .order_by('-persona__popularity')[:12])
 
         categories, filter, base, category = personas_listing(request,
-                                                              category)
+                                                              category.slug)
         ids = AddonCategory.creatured_random(category, request.LANG)
         featured = manual_order(base, ids, pk_name="addons.id")[:12]
     else:

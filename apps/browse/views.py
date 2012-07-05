@@ -316,7 +316,7 @@ def personas_listing(request, category=None):
                  .extra(select={'_app': request.APP.id}))
 
     if category is not None:
-        category = get_list_or_404(Category, slug=category.slug, type=TYPE)[0]
+        category = get_list_or_404(Category, slug=category, type=TYPE)[0]
         base = base.filter(categories__id=category.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
