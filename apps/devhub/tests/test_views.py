@@ -3039,7 +3039,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         UploadTest().assert_json_error(self, *args)
 
     def test_unique_name(self):
-        a = addon_factory(name='xpi name')
+        addon_factory(name='xpi name')
         r = self.post(expect_errors=True)
         eq_(r.context['new_addon_form'].non_field_errors(),
             ['This name is already in use. Please choose another.'])
