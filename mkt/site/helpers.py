@@ -203,7 +203,6 @@ def admin_site_links():
         'addons': [
             ('Search for apps by name or id', reverse('zadmin.addon-search')),
             ('Featured add-ons', reverse('zadmin.featured_apps')),
-            ('Name blocklist', reverse('zadmin.addon-name-blocklist')),
             ('Fake mail', reverse('zadmin.mail')),
             ('Flagged reviews', reverse('zadmin.flagged')),
         ],
