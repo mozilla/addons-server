@@ -25,7 +25,9 @@
   <img class="icon" src="{{ product.get_icon_url(64) }}">
     {{ product.name }}
 </h3>
-<p class="authors">{{ product.listed_authors[0].name }}</p>
+{% if product.listed_authors %}
+  <p class="authors">{{ product.listed_authors[0].name }}</p>
+{% endif %}
 {{ market_button(product) }}
 <div class="vitals c">
   {{ product.average_rating|float|stars }}
