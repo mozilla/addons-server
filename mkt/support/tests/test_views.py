@@ -4,6 +4,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -206,3 +207,21 @@ class TestRequestSupport(PurchaseBase):
         eq_(res.status_code, 200)
         eq_(len(pq(res.content)('.notification-box')), 1)
         record.assert_called_once_with(err[0])
+
+    @mock.patch('stats.models.Contribution.enqueue_refund')
+    @mock.patch('stats.models.Contribution.is_instant_refund')
+    @mock.patch('mkt.support.views.client')
+    def test_request_instant_solitude(self, client, is_instant_refund,
+                                      enqueue_refund):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+
+        is_instant_refund.return_value = True
+        self.client.post(self.get_support_url('request'), {'remove': 1})
+        res = self.client.post(self.get_support_url('reason'), {})
+        eq_(client.post_refund.call_args[1]['data']['uuid'], 'txn-1')
+        eq_(res.status_code, 302)
+        # There should be one instant refund added.
+        eq_(enqueue_refund.call_args_list[0][0],
+            (amo.REFUND_APPROVED_INSTANT,))
+        eq_(self.logged(status=amo.LOG.REFUND_INSTANT).count(), 1)

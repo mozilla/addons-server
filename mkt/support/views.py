@@ -11,12 +11,14 @@ import commonware.log
 import jingo
 from radagast.wizard import Wizard
 from tower import ugettext as _, ugettext_lazy as _lazy
+import waffle
 from waffle.decorators import waffle_switch
 
 import amo
 from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
+from lib.pay_server import client
 import paypal
 from paypal import PaypalError
 from mkt.site import messages
@@ -125,14 +127,25 @@ def refund_reason(request, contribution, wizard):
         return redirect('account.purchases')
 
     if contribution.is_instant_refund():
-        try:
-            paypal.refund(contribution.paykey)
-        except PaypalError, e:
-            paypal_log.error('Paypal error with refund', exc_info=True)
-            messages.error(request, _('There was an error with your instant '
-                                      'refund.'))
-            contribution.record_failed_refund(e)
-            return redirect('account.purchases')
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            try:
+                client.post_refund(data={'uuid': contribution.transaction_id})
+            except client.Error, e:
+                paypal_log.error('Paypal error with refund', exc_info=True)
+                messages.error(request, _('There was an error with your '
+                                          'instant refund.'))
+                contribution.record_failed_refund(e)
+                return redirect('account.purchases')
+        else:
+            # TODO(solitude): remove this.
+            try:
+                paypal.refund(contribution.paykey)
+            except PaypalError, e:
+                paypal_log.error('Paypal error with refund', exc_info=True)
+                messages.error(request, _('There was an error with your '
+                                          'instant refund.'))
+                contribution.record_failed_refund(e)
+                return redirect('account.purchases')
 
         refund = contribution.enqueue_refund(amo.REFUND_APPROVED_INSTANT)
         paypal_log.info('Refund %r issued for contribution %r' %
