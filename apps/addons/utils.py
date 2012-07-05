@@ -12,6 +12,7 @@ from lib.misc import lru_cache
 import redisutils
 import waffle
 
+import amo
 from amo.utils import sorted_groupby, memoize
 from translations.models import Translation
 
@@ -24,6 +25,7 @@ rnlog = logging.getLogger('z.rn')
 class ReverseNameLookup(object):
 
     def __init__(self, webapp=False):
+        self.webapp = webapp
         self.redis = redisutils.connections['master']
         self.type = 'app' if webapp else 'addon'
         self.prefix = 'amo:%s:name' % self.type
@@ -42,8 +44,18 @@ class ReverseNameLookup(object):
         self.redis.sadd(self.keys, addon_id)
 
     def get(self, key):
-        val = self.redis.hget(self.names, safe_key(key))
-        return int(val) if val else None
+        if not waffle.switch_is_active('no-redis'):
+            val = self.redis.hget(self.names, safe_key(key))
+            return int(val) if val else None
+        from addons.models import Addon
+        qs = Addon.objects.filter(name__localized_string=key).no_cache()
+        if self.webapp:
+            qs = qs.filter(type=amo.ADDON_WEBAPP)
+        else:
+            qs = qs.exclude(type=amo.ADDON_WEBAPP)
+        if qs.exists():
+            return qs.get().id
+        return None
 
     def update(self, addon):
         self.delete(addon.id)

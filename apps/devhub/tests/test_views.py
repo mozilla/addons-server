@@ -26,14 +26,13 @@ import amo.tests
 import paypal
 from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
                          timesince)
-from amo.tests import (formset, initial, close_to_now,
+from amo.tests import (formset, initial, close_to_now, addon_factory,
                        assert_no_validation_errors)
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons import cron
 from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            Category, Charity)
-from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
@@ -3040,7 +3039,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         UploadTest().assert_json_error(self, *args)
 
     def test_unique_name(self):
-        ReverseNameLookup().add('xpi name', 34)
+        a = addon_factory(name='xpi name')
         r = self.post(expect_errors=True)
         eq_(r.context['new_addon_form'].non_field_errors(),
             ['This name is already in use. Please choose another.'])
