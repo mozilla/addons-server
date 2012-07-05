@@ -545,8 +545,13 @@
 #side-nav + #win-tablet {
     padding: 0;
     a {
+        .border-radius(5px);
+        border: 1px solid @border-blue;
         background: url(../../img/zamboni/promos/fav-small.jpg) no-repeat;
         height: 180px;
         width: 180px;
+        &:hover {
+            border-color: darken(@border-blue, 10%);
+        }
     }
 }
