@@ -104,9 +104,11 @@
             top: 20px;
         }
     }
+    .home-button, .filter-button {
+        display: none;
+    }
     .filter-button {
         float: right;
-        display: none;
     }
     nav {
         position: relative;
@@ -356,12 +358,15 @@
                 text-decoration: none;
             }
         }
-        .home-button b {
+        .home-button {
             display: inline-block;
-            width: 12px;
-            height: 18px;
-            background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat 0 0;
-            margin: 6px 0 0 15px;
+            b {
+                display: inline-block;
+                width: 12px;
+                height: 18px;
+                background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat 0 0;
+                margin: 6px 0 0 15px;
+            }
         }
         #flyout,
         #flyout a,
