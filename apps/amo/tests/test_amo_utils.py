@@ -11,9 +11,9 @@ from django.utils import translation
 import mock
 from nose.tools import eq_, assert_raises, raises
 
-from amo.utils import (cache_ns_key, LocalFileStorage, no_translation,
-                       resize_image, rm_local_tmp_dir, slug_validator, slugify,
-                       to_language)
+from amo.utils import (cache_ns_key, escape_all, LocalFileStorage,
+                       no_translation, resize_image, rm_local_tmp_dir,
+                       slug_validator, slugify, to_language)
 from product_details import product_details
 
 
@@ -210,3 +210,26 @@ class TestCacheNamespaces(unittest.TestCase):
         expected = '123457:ns:%s' % self.namespace
         eq_(ns_key, expected)
         eq_(cache_ns_key(self.namespace), expected)
+
+
+def test_escape_all():
+    x = '-'.join([u, u])
+    y = ' - '.join([u, u])
+
+    def check(x, y):
+        eq_(escape_all(x), y)
+
+    # All I ask: Don't crash me, bro.
+    s = [
+        ('<script>alert("BALL SO HARD")</script>',
+         '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
+        (u'Bän...g (bang)', u'Bän...g (bang)'),
+        (u, u),
+        (x, x),
+        (y, y),
+        (u'x荿', u'x\u837f'),
+        (u'ϧ΃蒬蓣',  u'\u03e7\u0383\u84ac\u84e3'),
+        (u'¿x', u'¿x'),
+    ]
+    for val, expected in s:
+        yield check, val, expected

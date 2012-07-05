@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import json
 import time
@@ -589,6 +590,19 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), expected)
+
+    @mock.patch('mkt.reviewers.views.requests.get')
+    def test_manifest_json_unicode(self, mock_get):
+        m = mock.Mock()
+        m.content = u'كك some foreign ish'
+        m.headers = {}
+        mock_get.return_value = m
+
+        r = self.client.get(reverse('reviewers.apps.review.manifest',
+                                    args=[self.app.app_slug]))
+        eq_(r.status_code, 200)
+        eq_(json.loads(r.content), {'content': u'كك some foreign ish',
+                                    'headers': {}})
 
 
 class TestCannedResponses(AppReviewerTest):

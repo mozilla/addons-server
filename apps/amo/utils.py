@@ -791,7 +791,7 @@ def no_translation():
 def escape_all(v):
     """Escape html in JSON value, including nested items."""
     if isinstance(v, basestring):
-        v = jinja2.escape(v)
+        v = jinja2.escape(smart_unicode(v))
         v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
         return v
     elif isinstance(v, list):
