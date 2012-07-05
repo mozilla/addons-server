@@ -202,12 +202,12 @@ class TranslationTestCase(ExtraAppTestCase):
 
     def test_dict_bad_locale(self):
         m = TranslatedModel.objects.get(id=1)
-        m.name = {'de': 'oof', 'xxx': 'bam', 'es-ES': 'si'}
+        m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
         m.save()
 
         ts = Translation.objects.filter(id=m.name_id)
         eq_(sorted(ts.values_list('locale', flat=True)),
-            ['de', 'en-US', 'es-ES'])
+            ['de', 'en-US', 'es'])
 
     def test_sorting(self):
         """Test translation comparisons in Python code."""

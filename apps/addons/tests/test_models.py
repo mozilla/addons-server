@@ -1647,10 +1647,10 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform])
         eq_(addon.default_locale, 'en-US')
 
-        translation.activate('es-ES')
+        translation.activate('es')
         addon = Addon.from_upload(self.get_upload('search.xml'),
                                   [self.platform])
-        eq_(addon.default_locale, 'es-ES')
+        eq_(addon.default_locale, 'es')
 
     def test_webapp_default_locale_override(self):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),

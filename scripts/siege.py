@@ -1,17 +1,16 @@
 """
 A script for generating siege files with a bunch of URL variations.
 """
-import itertools
 import re
 import sys
 
 part_re = re.compile(r'\{([-\w]+)\}')
 
 AMO_LANGUAGES = (
-    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES', 'eu',
-    'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
-    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq', 'sr',
-    'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
+    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa', 'fi',
+    'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq', 'sr', 'sv-SE', 'uk', 'vi',
+    'zh-CN', 'zh-TW',
 )
 
 config = {

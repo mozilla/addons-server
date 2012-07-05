@@ -504,7 +504,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
         # are changing.
         doc = pq(content)
         ass = doc('.featured-inner .item a')
-        rx = re.compile('/(en-US|es-ES)/firefox/addon/(\d+)/$')
+        rx = re.compile('/(en-US|es)/firefox/addon/(\d+)/$')
         for a in ass:
             mtch = rx.match(a.attrib['href'])
             if mtch:
@@ -516,7 +516,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
 
     def test_creatured_locale_es_ES(self):
         """Ensure 'en-US'-creatured add-ons do not exist for other locales."""
-        res = self.client.get(self.url.replace('en-US', 'es-ES'))
+        res = self.client.get(self.url.replace('en-US', 'es'))
         assert self.addon not in res.context['addons']
 
     def test_creatured_locale_nones(self):
@@ -529,15 +529,15 @@ class TestFeaturedLocale(amo.tests.TestCase):
         assert self.addon in res.context['addons']
 
     def test_creatured_locale_many(self):
-        self.change_addoncategory(self.addon, 'en-US,es-ES')
+        self.change_addoncategory(self.addon, 'en-US,es')
         res = self.client.get(self.url)
         assert self.addon in res.context['addons']
 
-        res = self.client.get(self.url.replace('en-US', 'es-ES'))
+        res = self.client.get(self.url.replace('en-US', 'es'))
         assert self.addon in res.context['addons']
 
     def test_creatured_locale_not_en_US(self):
-        self.change_addoncategory(self.addon, 'es-ES')
+        self.change_addoncategory(self.addon, 'es')
         res = self.client.get(self.url)
         assert self.addon not in res.context['addons']
 
@@ -550,13 +550,13 @@ class TestFeaturedLocale(amo.tests.TestCase):
         assert not self.persona in res.context['addons']
 
     def test_featured_locale_es_ES(self):
-        self.change_addon(self.extension, 'es-ES')
+        self.change_addon(self.extension, 'es')
         url = reverse('browse.extensions') + '?sort=featured'
         res = self.client.get(url)
         assert self.extension not in res.context['addons']
 
-        res = self.client.get(url.replace('en-US', 'es-ES'))
-        self.change_addon(self.extension, 'es-ES')
+        res = self.client.get(url.replace('en-US', 'es'))
+        self.change_addon(self.extension, 'es')
         assert self.extension in res.context['addons']
 
     def test_featured_extensions_no_category_en_US(self):
@@ -569,7 +569,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
         res = self.client.get(reverse('browse.extensions', args=['bookmarks']))
         assert addon in res.context['filter'].all()['featured']
 
-        self.change_addoncategory(addon, 'es-ES')
+        self.change_addoncategory(addon, 'es')
         res = self.client.get(reverse('browse.extensions', args=['bookmarks']))
         assert addon not in res.context['filter'].all()['featured']
 
@@ -579,11 +579,11 @@ class TestFeaturedLocale(amo.tests.TestCase):
         res = self.client.get(url)
         assert addon in res.context['featured']
 
-        self.change_addon(addon, 'es-ES')
+        self.change_addon(addon, 'es')
         res = self.client.get(url)
         assert addon not in res.context['featured']
 
-        res = self.client.get(url.replace('en-US', 'es-ES'))
+        res = self.client.get(url.replace('en-US', 'es'))
         assert addon in res.context['featured']
 
     def test_featured_persona_category_en_US(self):
@@ -597,11 +597,11 @@ class TestFeaturedLocale(amo.tests.TestCase):
         res = self.client.get(url)
         assert addon in res.context['featured']
 
-        self.change_addoncategory(addon, 'es-ES')
+        self.change_addoncategory(addon, 'es')
         res = self.client.get(url)
         assert addon not in res.context['featured']
 
-        res = self.client.get(url.replace('en-US', 'es-ES'))
+        res = self.client.get(url.replace('en-US', 'es'))
         assert addon in res.context['featured']
 
     def test_homepage(self):
@@ -609,11 +609,11 @@ class TestFeaturedLocale(amo.tests.TestCase):
         res = self.client.get(url)
         assert self.extension in res.context['featured']
 
-        self.change_addon(self.extension, 'es-ES')
+        self.change_addon(self.extension, 'es')
         res = self.client.get(url)
         assert self.extension not in res.context['featured']
 
-        res = self.client.get(url.replace('en-US', 'es-ES'))
+        res = self.client.get(url.replace('en-US', 'es'))
         assert self.extension in res.context['featured']
 
     def test_homepage_persona(self):
@@ -663,13 +663,13 @@ class TestFeaturedLocale(amo.tests.TestCase):
         eq_([1003, 3481], sorted([i.pk for i in items[0:2]]))
         eq_([2464, 7661], sorted([i.pk for i in items[2:]]))
 
-        res = self.client.get(url.replace('en-US', 'es-ES'))
+        res = self.client.get(url.replace('en-US', 'es'))
         items = res.context['featured']
         eq_([2464, 7661], sorted([i.pk for i in items]))
 
-        self.change_addon(another, 'es-ES')
+        self.change_addon(another, 'es')
 
-        res = self.client.get(url.replace('en-US', 'es-ES'))
+        res = self.client.get(url.replace('en-US', 'es'))
         items = res.context['featured']
         eq_(items[0].pk, 1003)
         eq_([1003, 2464, 7661], sorted([i.pk for i in items]))
@@ -694,7 +694,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
                                    end=datetime.today())
         eq_(Addon.featured_random(amo.FIREFOX, 'en-US').count(1003), 1)
 
-    def change_addon(self, addon, locale='es-ES'):
+    def change_addon(self, addon, locale='es'):
         fc = FeaturedCollection.objects.filter(collection__addons=addon.id)[0]
         feature = FeaturedCollection.objects.create(locale=locale,
             application=Application.objects.get(id=amo.FIREFOX.id),
@@ -705,7 +705,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
         c.save()
         self.reset()
 
-    def change_addoncategory(self, addon, locale='es-ES'):
+    def change_addoncategory(self, addon, locale='es'):
         CollectionAddon.objects.filter(addon=addon).delete()
         locales = (locale or '').split(',')
         for locale in locales:
