@@ -18,7 +18,6 @@ def admin_site_links():
             ('Discovery Pane promo modules', url('discovery.module_admin')),
             ('Monthly Pick', url('zadmin.monthly_pick')),
             ('Upgrade jetpack add-ons', url('zadmin.jetpack')),
-            ('Name blocklist', url('zadmin.addon-name-blocklist')),
             ('Bulk add-on validation', url('zadmin.validation')),
             ('Fake mail', url('zadmin.mail')),
             ('Flagged reviews', url('zadmin.flagged')),

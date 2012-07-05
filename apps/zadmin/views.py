@@ -641,21 +641,6 @@ def email_devs(request):
                         dict(form=form, preview_csv=preview_csv))
 
 
-@admin.site.admin_view
-def addon_name_blocklist(request):
-    rn = ReverseNameLookup()
-    addon = None
-    if request.method == 'POST':
-        rn.delete(rn.get(request.GET['addon']))
-    if request.GET.get('addon'):
-        id = rn.get(request.GET.get('addon'))
-        if id:
-            qs = Addon.objects.filter(id=id)
-            addon = qs[0] if qs else None
-    return jingo.render(request, 'zadmin/addon-name-blocklist.html',
-                        dict(rn=rn, addon=addon))
-
-
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View'),
