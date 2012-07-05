@@ -1471,3 +1471,6 @@ SECLUSION_HOSTS = ()
 # The oAuth key and secret that solitude needs.
 SECLUSION_KEY = ''
 SECLUSION_SECRET = ''
+# The timeout we'll give seclusion. Since this often involves calling Paypal or
+# other servers, we are including that in this.
+SECLUSION_TIMEOUT = 10

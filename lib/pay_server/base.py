@@ -7,10 +7,22 @@ import urllib
 
 import requests
 
+from tower import ugettext as _
+
+from .errors import lookup
+
 log = logging.getLogger('s.client')
 
 
 class SolitudeError(Exception):
+    pass
+
+
+class SolitudeOffline(SolitudeError):
+    pass
+
+
+class SolitudeTimeout(SolitudeError):
     pass
 
 
@@ -47,6 +59,8 @@ class Encoder(json.JSONEncoder):
         else:
             return super(Encoder, self).default(v)
 
+general_error = _('Oops, we had an error processing that.')
+
 
 class Client(object):
 
@@ -71,18 +85,27 @@ class Client(object):
         data = (json.dumps(data, cls=self.encoder or Encoder)
                 if data else json.dumps({}))
         method = getattr(requests, method)
-        result = method(url, data=data,
-                        headers={'content-type': 'application/json'})
+
+        try:
+            result = method(url, data=data,
+                            headers={'content-type': 'application/json'},
+                            timeout=self.config.get('timeout', 10))
+        except requests.ConnectionError:
+            log.error('Solitude not accessible')
+            raise SolitudeOffline(general_error)
+        except requests.Timeout:
+            log.error('Solitude timed out, limit %s'
+                      % self.config.get('timeout', 10))
+            raise SolitudeTimeout(general_error)
 
         if result.status_code in (200, 201, 202, 204):
             return json.loads(result.text) if result.text else {}
         else:
-            data = ''
             try:
                 data = json.loads(result.text) if result.text else {}
             except:
                 log.error('Failed to parse error: %s' % result.text)
-            raise SolitudeError(result.status_code, data)
+            raise SolitudeError(lookup(data.get('error_code', 0)))
 
     def __getattr__(self, attr):
         try:
@@ -105,4 +128,3 @@ class Client(object):
         if filters:
             url = '%s?%s' % (url, urllib.urlencode(filters))
         return self.call(url, method, data=data)
-

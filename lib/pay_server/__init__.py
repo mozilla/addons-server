@@ -108,7 +108,8 @@ def get_client():
             # them all through and let seclusion do its magic.
             'server': settings.SECLUSION_HOSTS[0],
             'key': settings.SECLUSION_KEY,
-            'secret': settings.SECLUSION_SECRET
+            'secret': settings.SECLUSION_SECRET,
+            'timeout': settings.SECLUSION_TIMEOUT
         }
         client = ZamboniClient(config)
         client.encoder = ZamboniEncoder

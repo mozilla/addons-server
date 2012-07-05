@@ -94,7 +94,10 @@ def purchase(request, addon):
             result = client.pay({'amount': amount, 'currency': currency,
                                  'buyer': request.amo_user, 'seller': addon,
                                  'memo': contrib_for})
-        except client.Error:
+        except client.Error as error:
+            # Note that by assigning this to error, it will go into the return
+            # value for the json. General solitude errors will then be
+            # reported back to the user.
             paypal.paypal_log_cef(request, addon, uuid_,
                                   'PayKey Failure', 'PAYKEYFAIL',
                                   'There was an error getting the paykey')
