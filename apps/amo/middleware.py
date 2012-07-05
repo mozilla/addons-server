@@ -69,6 +69,7 @@ class LocaleAndAppURLMiddleware(object):
             old_app = prefixer.app
             old_locale = prefixer.locale
             new_locale, new_app, _ = prefixer.split_path(full_path)
+
             if old_locale != new_locale:
                 patch_vary_headers(response, ['Accept-Language'])
             if with_app and old_app != new_app:

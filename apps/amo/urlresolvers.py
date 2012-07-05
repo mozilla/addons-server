@@ -10,7 +10,6 @@ from django.utils import encoding
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import jinja2
-import waffle
 
 import amo
 
@@ -86,7 +85,18 @@ class Prefixer(object):
         first, _, first_rest = path.partition('/')
         second, _, rest = first_rest.partition('/')
 
-        if first.lower() in settings.LANGUAGES:
+        first_lower = first.lower()
+        lang, dash, territory = first_lower.partition('-')
+
+        # Check language-territory first.
+        if first_lower in settings.LANGUAGES:
+            if second in amo.APPS:
+                return first, second, rest
+            else:
+                return first, '', first_rest
+        # And check just language next.
+        elif dash and lang in settings.LANGUAGES:
+            first = lang
             if second in amo.APPS:
                 return first, second, rest
             else:
@@ -122,6 +132,9 @@ class Prefixer(object):
             lang = self.request.GET['lang'].lower()
             if lang in settings.LANGUAGE_URL_MAP:
                 return settings.LANGUAGE_URL_MAP[lang]
+            prefix = lang.split('-')[0]
+            if prefix in settings.LANGUAGE_URL_MAP:
+                return settings.LANGUAGE_URL_MAP[prefix]
 
         accept = self.request.META.get('HTTP_ACCEPT_LANGUAGE', '')
         return lang_from_accept_header(accept)

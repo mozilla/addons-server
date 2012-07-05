@@ -112,10 +112,10 @@ LANGUAGE_CODE = 'en-US'
 # Note: If you update this list, don't forget to also update the locale
 # permissions in the database.
 AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES',
-    'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
-    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE',
-    'uk', 'vi', 'zh-CN', 'zh-TW',
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
+    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'zh-CN', 'zh-TW',
 )
 
 # Not shown on the site, but .po files exist and these are available on the

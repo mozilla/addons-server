@@ -59,7 +59,7 @@ class TestCategory(amo.tests.TestCase):
     def setUp(self):
         self.cat1 = Category.objects.create(name='Causes',
                                             type=amo.ADDON_EXTENSION)
-        self.cat1.name = {'es-ES': u'Campañas', 'zh-CN': u'原因'}
+        self.cat1.name = {'es': u'Campañas', 'zh-CN': u'原因'}
         self.cat1.save()
 
         self.cat2 = Category.objects.create(name='Music',
@@ -73,7 +73,7 @@ class TestCategory(amo.tests.TestCase):
     def test_permissions(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
-        url = reverse('localizers.categories', kwargs=dict(locale_code='es-ES'))
+        url = reverse('localizers.categories', kwargs=dict(locale_code='es'))
         res = self.client.get(url)
         eq_(res.status_code, 403)
 
@@ -81,7 +81,7 @@ class TestCategory(amo.tests.TestCase):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         # Test page loads and names are as we expect.
-        url = reverse('localizers.categories', kwargs=dict(locale_code='es-ES'))
+        url = reverse('localizers.categories', kwargs=dict(locale_code='es'))
         res = self.client.get(url)
         eq_(res.status_code, 200)
         doc = pq(res.content.decode('utf-8'))
@@ -93,7 +93,7 @@ class TestCategory(amo.tests.TestCase):
         # Test page loads and the page UI remains in the user's locale.
         with self.activate(locale='de'):
             url = reverse('localizers.categories',
-                          kwargs=dict(locale_code='es-ES'))
+                          kwargs=dict(locale_code='es'))
             res = self.client.get(url)
             eq_(res.status_code, 200)
             doc = pq(res.content.decode('utf-8'))
@@ -107,9 +107,9 @@ class TestCategory(amo.tests.TestCase):
     def test_other_local(self):
         # Test that somethign other than /en-US/ as the site locale doesn't
         # affect the left hand column category names.
-        with self.activate(locale='es-ES'):
+        with self.activate(locale='es'):
             url = reverse('localizers.categories',
-                          kwargs=dict(locale_code='es-ES'))
+                          kwargs=dict(locale_code='es'))
             res = self.client.get(url)
             eq_(res.status_code, 200)
             doc = pq(res.content.decode('utf-8'))
@@ -119,7 +119,7 @@ class TestCategory(amo.tests.TestCase):
     def test_post(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        url = reverse('localizers.categories', kwargs=dict(locale_code='es-ES'))
+        url = reverse('localizers.categories', kwargs=dict(locale_code='es'))
         data = {
             'form-TOTAL_FORMS': 2,
             'form-INITIAL_FORMS': 2,
@@ -133,7 +133,7 @@ class TestCategory(amo.tests.TestCase):
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Nada')
         eq_(doc('#id_form-1-name').val(), u'Música')
-        translation.activate('es-ES')
+        translation.activate('es')
         # Test translation change.
         cat = Category.objects.get(pk=self.cat1.id)
         eq_(cat.name, u'Nada')
@@ -145,7 +145,7 @@ class TestCategory(amo.tests.TestCase):
     def test_post_with_empty_translations(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        url = reverse('localizers.categories', kwargs=dict(locale_code='es-ES'))
+        url = reverse('localizers.categories', kwargs=dict(locale_code='es'))
         data = {
             'form-TOTAL_FORMS': 2,
             'form-INITIAL_FORMS': 2,
@@ -159,7 +159,7 @@ class TestCategory(amo.tests.TestCase):
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Campañas')
         eq_(doc('#id_form-1-name').val(), None)
-        translation.activate('es-ES')
+        translation.activate('es')
         # Test translation change.
         cat = Category.objects.get(pk=self.cat1.id)
         eq_(cat.name, u'Campañas')
