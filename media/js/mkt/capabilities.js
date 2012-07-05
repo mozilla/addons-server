@@ -4,7 +4,7 @@ z.capabilities = {
     'debug_in_page': (('' + document.location).indexOf('dbginpage') >= 0),
     'console': window.console && (typeof window.console.log == 'function'),
     'replaceState': typeof history.replaceState === 'function',
-    'chromeless': !window.locationbar.visible,
+    'chromeless': window.locationbar && !window.locationbar.visible,
     'localStorage': false,
     'sessionStorage': false,
     'webApps': !!(navigator.mozApps && navigator.mozApps.install),
@@ -22,13 +22,6 @@ z.capabilities = {
     })(),
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance)
 };
-
-// Until https://github.com/mozilla-b2g/gaia/issues/1869 is fixed.
-// We have to target mobile since `window.locationbar.visible` (bug 762195) has
-// unfortunately not made it to Gaia yet.
-//if (z.capabilities.mobile && z.capabilities.touch) {
-//    z.capabilities.replaceState = false;
-//}
 
 if (z.capabilities.tablet) {
     // If we're on tablet, then we're not on desktop.
