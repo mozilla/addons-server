@@ -1883,6 +1883,16 @@ class AddonUpsell(amo.models.ModelBase):
     def __unicode__(self):
         return u'Free: %s to Premium: %s' % (self.free, self.premium)
 
+    @amo.cached_property
+    def premium_addon(self):
+        """
+        Return the premium version, or None if there isn't one.
+        """
+        try:
+            return self.premium
+        except Addon.DoesNotExist:
+            pass
+
 
 class CompatOverride(amo.models.ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
