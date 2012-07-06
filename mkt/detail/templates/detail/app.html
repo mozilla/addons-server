@@ -133,34 +133,36 @@
 
   {% set upsell = product.upsell %}
   {% if upsell %}
-    {% set prm = upsell.premium %}
-    <section id="upsell" class="notification-box wide c">
-      <div class="upsell">
-        <h3>{{ _('Premium version available') }}</h3>
-        <a href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-          <img class="icon" src="{{ prm.get_icon_url(64) }}">
-          <span class="name">{{ prm.name }}</span>
-        </a>
-      </div>
-      <a class="button special" href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-        {{ _('Read More') }}
-      </a>
-      <div class="details">
-        <div class="prose">{{ upsell.text|nl2br }}</div>
-        <div class="vitals">
-          <span class="vital price">{{ prm.get_price() }}</span>
-          <span class="vital downloads">
-            {{ prm|weekly_downloads }}
-          </span>
+    {% set prm = upsell.premium_addon %}
+    {% if prm %}
+      <section id="upsell" class="notification-box wide c">
+        <div class="upsell">
+          <h3>{{ _('Premium version available') }}</h3>
+          <a href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+            <img class="icon" src="{{ prm.get_icon_url(64) }}">
+            <span class="name">{{ prm.name }}</span>
+          </a>
         </div>
-      </div>
-    </section>
-    <a id="upsell" class="narrow"
-       href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-       <span class="avail">{{ _('Premium version available') }}</span>
-       <img class="icon" src="{{ prm.get_icon_url(16) }}">
-       <span class="name">{{ prm.name }}</span>
-    </a>
+        <a class="button special" href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+          {{ _('Read More') }}
+        </a>
+        <div class="details">
+          <div class="prose">{{ upsell.text|nl2br }}</div>
+          <div class="vitals">
+            <span class="vital price">{{ prm.get_price() }}</span>
+            <span class="vital downloads">
+              {{ prm|weekly_downloads }}
+            </span>
+          </div>
+        </div>
+      </section>
+      <a id="upsell" class="narrow"
+         href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+         <span class="avail">{{ _('Premium version available') }}</span>
+         <img class="icon" src="{{ prm.get_icon_url(16) }}">
+         <span class="name">{{ prm.name }}</span>
+      </a>
+    {% endif %}
   {% endif %}
 
   <section class="description">
