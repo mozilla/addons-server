@@ -1,7 +1,6 @@
 import csv
 import json
 import os
-from datetime import datetime
 from decimal import Decimal
 from urlparse import urlparse
 
@@ -29,7 +28,6 @@ from addons.cron import reindex_addons, reindex_apps
 from addons.search import setup_mapping
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
-from addons.utils import ReverseNameLookup
 from amo import messages, get_user
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
@@ -325,7 +323,8 @@ def notify_success(request, job):
     return redirect(reverse('zadmin.validation'))
 
 
-@admin.site.admin_view
+@any_permission_required([('Admin', '%'),
+                          ('BulkValidationAdminTools', 'View')])
 def email_preview_csv(request, topic):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
