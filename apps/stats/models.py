@@ -122,6 +122,9 @@ class Contribution(amo.models.ModelBase):
                                 choices=do_dictsort(amo.PAYPAL_CURRENCIES),
                                 default=amo.CURRENCY_DEFAULT)
     source = models.CharField(max_length=255, null=True)
+    device_type = models.CharField(max_length=255, null=True)
+    user_agent = models.CharField(max_length=255, null=True)
+    is_chromeless = models.BooleanField()
     source_locale = models.CharField(max_length=10, null=True)
 
     uuid = models.CharField(max_length=255, null=True)

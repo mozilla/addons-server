@@ -26,18 +26,20 @@ def _categories():
 
 @register.filter
 @jinja2.contextfilter
-def promo_grid(context, products):
+def promo_grid(context, products, src=''):
     t = env.get_template('browse/helpers/promo_grid.html')
     return jinja2.Markup(t.render(request=context['request'],
-                                  products=products))
+                                  products=products,
+                                  src=src))
 
 
 @register.filter
 @jinja2.contextfilter
-def promo_slider(context, products, feature=False):
+def promo_slider(context, products, feature=False, src=''):
     t = env.get_template('browse/helpers/promo_slider.html')
     return jinja2.Markup(t.render(request=context['request'],
-                                  products=products, feature=feature))
+                                  products=products, feature=feature,
+                                  src=src))
 
 
 @register.function

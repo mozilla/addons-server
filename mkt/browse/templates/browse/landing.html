@@ -24,7 +24,7 @@
     </div>
   </section>
   <section class="featured full slider">
-    {{ featured|promo_slider(feature=True) }}
+    {{ featured|promo_slider(feature=True, src='mkt-cat') }}
   </section>
   {% if popular %}
     <section class="popular subheading full">
@@ -37,7 +37,7 @@
       </div>
     </section>
     <section class="popular grid full">
-      {{ popular|promo_grid }}
+      {{ popular|promo_grid(src='mkt-cat') }}
     </section>
   {% else %}
     {{ no_results() }}

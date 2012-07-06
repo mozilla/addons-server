@@ -82,7 +82,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         a = item.find('h3 a')
         eq_(a.text(), unicode(self.webapp.name))
         eq_(a.attr('href'),
-            urlparams(self.webapp.get_url_path(), src='search'))
+            urlparams(self.webapp.get_url_path(), src='mkt-search'))
 
     def test_results_downloads(self):
         for sort in ('', 'downloads', 'created'):

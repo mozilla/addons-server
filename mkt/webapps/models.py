@@ -308,6 +308,10 @@ class Installed(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
+    source = models.CharField(max_length=255, null=True)
+    device_type = models.CharField(max_length=255, null=True)
+    user_agent = models.CharField(max_length=255, null=True)
+    is_chromeless = models.BooleanField()
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(

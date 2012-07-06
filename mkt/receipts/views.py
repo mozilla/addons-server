@@ -70,7 +70,10 @@ def _record(request, addon):
             return http.HttpResponseForbidden()
 
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
-            user=request.amo_user)
+            user=request.amo_user, source=request.GET.get('src', ''),
+            device_type=request.POST.get('device_type', ''),
+            is_chromeless=request.POST.get('chromeless', False),
+            user_agent=request.POST.get('user_agent', ''))
         # Look up to see if its in the receipt cache and log if we have
         # to recreate it.
         receipt = memoize_get('create-receipt', installed.pk)

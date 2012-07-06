@@ -98,6 +98,10 @@ function initCharCount() {
     });
 }
 
+function addParamToURL(param, _url){
+    _url += (_url.split('?')[1] ? '&':'?') + param;
+    return _url;
+}
 
 $('html').ajaxSuccess(function(event, xhr, ajaxSettings) {
     $(window).trigger('resize'); // Redraw what needs to be redrawn.
