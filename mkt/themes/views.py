@@ -49,9 +49,8 @@ def _landing(request, category=None):
         category = get_list_or_404(
             Category.objects.filter(type=amo.ADDON_PERSONA,
             slug=category))[0]
-        popular = (Addon.objects
+        popular = (Addon.objects.public()
                    .filter(type=amo.ADDON_PERSONA,
-                           status=amo.STATUS_PUBLIC,
                            addoncategory__category__id=category.id)
                    .order_by('-persona__popularity')[:12])
 
@@ -60,8 +59,7 @@ def _landing(request, category=None):
         ids = AddonCategory.creatured_random(category, request.LANG)
         featured = manual_order(base, ids, pk_name="addons.id")[:12]
     else:
-        popular = (Addon.objects.public().filter(type=amo.ADDON_PERSONA,
-                                                 status=amo.STATUS_PUBLIC)
+        popular = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
                    .order_by('-persona__popularity')[:12])
         featured = get_featured_personas(request, num_personas=12)
 

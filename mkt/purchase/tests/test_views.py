@@ -2,6 +2,8 @@
 from decimal import Decimal
 import json
 
+from django.conf import settings
+
 import fudge
 from fudge.inspector import arg
 import mock
@@ -16,10 +18,12 @@ from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
                            Price, PriceCurrency)
+from mkt import regions
 from mkt.webapps.models import Webapp
 from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
 from users.models import UserProfile
+from zadmin.models import DownloadSource
 
 
 class TestPurchaseEmbedded(amo.tests.TestCase):
@@ -320,6 +324,27 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                    .returns(('payKey', 'paymentExecStatus')))
         self.client.post(self.addon.get_purchase_url(),
                          {'result_type': 'json'})
+
+    @mock.patch('paypal.get_paykey')
+    def test_contribution_client_data(self, get_paykey):
+        get_paykey.return_value = ['some-pay-key', '']
+        download_source = DownloadSource.objects.create(name='mkt-home')
+        device_type = 'desktop'
+        user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0)'
+
+        self.client.post_ajax(self.purchase_url + '?lang=pt-BR',
+                              data={'src': download_source.name,
+                                    'device_type': device_type,
+                                    'is_chromeless': False},
+                              **{'HTTP_USER_AGENT': user_agent})
+        cons = Contribution.objects.filter(type=amo.CONTRIB_PENDING)
+        eq_(cons.count(), 1)
+        eq_(cons[0].client_data.download_source, download_source)
+        eq_(cons[0].client_data.device_type, device_type)
+        eq_(cons[0].client_data.user_agent, user_agent)
+        eq_(cons[0].client_data.is_chromeless, False)
+        eq_(cons[0].client_data.language, 'pt-BR')
+        eq_(cons[0].client_data.region, regions.BRAZIL.id)
 
 
 class TestPurchaseDetails(amo.tests.TestCase):

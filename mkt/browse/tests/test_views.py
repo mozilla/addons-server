@@ -2,17 +2,13 @@ from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import waffle
-
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from addons.models import Addon, AddonCategory, Category
-from bandwagon.models import Collection, CollectionAddon
+from addons.models import AddonCategory, Category
 from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp
-from users.models import UserProfile
 
 
 class BrowseBase(amo.tests.ESTestCase):

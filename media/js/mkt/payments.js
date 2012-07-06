@@ -7,8 +7,16 @@
         $def,
         message = $('#purchased-message'),
         messageTemplate = template($('#purchased-template').html()),
-        data = {'currency': $('body').data('user').currency},
+        data = {
+            'currency': $('body').data('user').currency,
+            'src': z.getVars().src,
+            'device_type': z.capabilities.getDeviceType()
+        },
         oneTimePayClicked = false;
+
+    if (z.capabilities.chromeless) {
+        data.chromeless = 1;
+    }
 
     function beginPurchase(prod) {
         if (!prod) return;

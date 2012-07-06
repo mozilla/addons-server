@@ -7,10 +7,12 @@ import amo
 from amo.helpers import numberfmt
 import amo.tests
 from reviews.models import Review, ReviewFlag
+from stats.models import ClientData
 from users.models import UserProfile
+from zadmin.models import DownloadSource
 
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Installed, Webapp
 
 
 class ReviewTest(amo.tests.TestCase):
@@ -261,6 +263,45 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get(self.add)
         self.assertLoginRedirects(r, self.add, 302)
+
+    def test_add_client_data(self):
+        self.enable_waffle()
+        client_data = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent', is_chromeless=False,
+            language='pt-BR', region=3
+        )
+        client_data_diff_agent = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent2',
+            is_chromeless=False, language='pt-BR', region=3
+        )
+        Installed.objects.create(user=self.user, addon=self.webapp,
+                                 client_data=client_data)
+        Installed.objects.create(user=self.user, addon=self.webapp,
+                                 client_data=client_data_diff_agent)
+        Review.objects.all().delete()
+        r = self.client.post(self.add,
+                             {'body': 'x', 'rating': 4},
+                             HTTP_USER_AGENT='test-agent')
+        review = Review.objects.order_by('-created')[0]
+        eq_(review.client_data, client_data)
+
+    def test_add_client_data_no_user_agent_match(self):
+        self.enable_waffle()
+        client_data = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent-1',
+            is_chromeless=False, language='pt-BR', region=3
+        )
+        Installed.objects.create(user=self.user, addon=self.webapp,
+                                 client_data=client_data)
+        Review.objects.all().delete()
+        r = self.client.post(self.add,
+                             {'body': 'x', 'rating': 4},
+                             HTTP_USER_AGENT='test-agent-2')
+        review = Review.objects.order_by('-created')[0]
+        eq_(review.client_data, client_data)
 
 
 class TestListing(ReviewTest):
