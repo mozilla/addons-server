@@ -13,6 +13,7 @@ z.capabilities = {
         typeof navigator.mozApps.html5Implementation === 'undefined'
     ),
     'fileAPI': !!window.FileReader,
+    'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
 };
 
 
