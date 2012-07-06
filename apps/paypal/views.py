@@ -146,15 +146,14 @@ def _parse(post):
     return post, transactions
 
 
-def _parse_currency(amount):
+def _parse_currency(value):
     """Parse USD 10.00 into a dictionary of currency and amount as Decimal."""
-    # If you are using solitude, it does this for you.
-    if isinstance(amount, dict):
-        return amount
-    res = currency.match(amount).groupdict()
-    if 'amount' in res:
-        res['amount'] = Decimal(res['amount'])
-    return res
+    # If you are using solitude, it's a dictionary. However it returns
+    # amount as a string, not a decimal.
+    if not isinstance(value, dict):
+        value = currency.match(value).groupdict()
+    value['amount'] = Decimal(value['amount'])
+    return value
 
 
 def _paypal(request):

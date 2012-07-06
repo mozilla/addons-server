@@ -336,6 +336,10 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         eq_(res['amount'], Decimal('1.00'))
         eq_(res['currency'], 'USD')
 
+    def test_parse_currency_solitude(self, urlopen):
+        res = views._parse_currency({'amount': '1.00', 'currency': 'USD'})
+        eq_(res['amount'], Decimal('1.00'))
+
     def test_success(self, urlopen):
         Contribution.objects.create(uuid=sample_purchase['tracking_id'],
                                     addon=self.addon)
