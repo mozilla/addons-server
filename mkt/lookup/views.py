@@ -189,7 +189,7 @@ def user_search(request):
 @json_view
 def app_search(request):
     results = []
-    query = request.GET.get('q', '').lower()
+    query = request.GET.get('q', u'').lower()
     addon_type = request.GET.get('type', amo.ADDON_WEBAPP)
     fields = ['name', 'app_slug']
     non_es_fields = ['id', 'name__localized_string'] + fields
