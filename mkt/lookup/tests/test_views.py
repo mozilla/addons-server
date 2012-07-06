@@ -156,10 +156,10 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         eq_(res.context['payment_data'], [])
 
 
-class SearchTest(AcctLookupTest):
+class SearchTestMixin(AcctLookupTest):
 
-    def search(self, q, expect_results=True):
-        res = self.client.get(self.url, {'q': q})
+    def search(self, expect_results=True, **data):
+        res = self.client.get(self.url, data)
         data = json.loads(res.content)
         if expect_results:
             assert len(data['results']), 'should be more than 0 results'
@@ -171,11 +171,11 @@ class SearchTest(AcctLookupTest):
         self.assertLoginRedirects(res, self.url)
 
     def test_no_results(self):
-        data = self.search('__garbage__', expect_results=False)
+        data = self.search(q='__garbage__', expect_results=False)
         eq_(data['results'], [])
 
 
-class TestAcctSearch(SearchTest, ESTestCase):
+class TestAcctSearch(SearchTestMixin, ESTestCase):
     fixtures = ['base/users']
 
     @classmethod
@@ -199,27 +199,27 @@ class TestAcctSearch(SearchTest, ESTestCase):
     def test_by_username(self):
         self.user.update(username='newusername')
         self.refresh()
-        data = self.search('newus')
+        data = self.search(q='newus')
         self.verify_result(data)
 
     def test_by_display_name(self):
         self.user.update(display_name='Kumar McMillan')
         self.refresh()
-        data = self.search('mcmill')
+        data = self.search(q='mcmill')
         self.verify_result(data)
 
     def test_by_id(self):
-        data = self.search(self.user.pk)
+        data = self.search(q=self.user.pk)
         self.verify_result(data)
 
     def test_by_email(self):
         self.user.update(email='fonzi@happydays.com')
         self.refresh()
-        data = self.search('fonzih')
+        data = self.search(q='fonzih')
         self.verify_result(data)
 
 
-class TestAppSearch(SearchTest, ESTestCase):
+class TestAppSearch(SearchTestMixin, ESTestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube',
                 'base/addon_3615']
 
@@ -243,38 +243,38 @@ class TestAppSearch(SearchTest, ESTestCase):
         self.app.name = 'This is Steamcube'
         self.app.save()
         self.refresh()
-        data = self.search('steamcube')
+        data = self.search(q='steamcube')
         self.verify_result(data)
 
     def test_multiword(self):
         self.app.name = 'Mozilla Marketplace'
         self.app.save()
         self.refresh()
-        data = self.search('mozilla marketplace')
+        data = self.search(q='mozilla marketplace')
         self.verify_result(data)
 
     def test_by_stem_name(self):
         self.app.name = 'Instigation'
         self.app.save()
         self.refresh()
-        data = self.search('instigate')
+        data = self.search(q='instigate')
         self.verify_result(data)
 
     def test_by_guid(self):
         self.app = Addon.objects.get(pk=3615)
         assert self.app.guid, 'Expected this addon to have a guid'
         self.app = Addon.objects.get(guid=self.app.guid)
-        data = self.search(self.app.guid)
+        data = self.search(q=self.app.guid, type=amo.ADDON_EXTENSION)
         self.verify_result(data)
 
     def test_by_random_guid(self):
         self.app = Addon.objects.get(pk=3615)
         self.app.update(guid='__bonanza__')
-        data = self.search(self.app.guid)
+        data = self.search(q=self.app.guid, type=amo.ADDON_EXTENSION)
         self.verify_result(data)
 
     def test_by_id(self):
-        data = self.search(self.app.pk)
+        data = self.search(q=self.app.pk)
         self.verify_result(data)
 
 
@@ -298,6 +298,11 @@ class TestAppSummary(AppSummaryTest, TestCase):
     def setUp(self):
         super(TestAppSummary, self).setUp()
         self._setUp()
+
+    def test_search_matches_type(self):
+        res = self.summary()
+        eq_(pq(res.content)('#app-search-form select option[selected]').val(),
+            str(amo.ADDON_WEBAPP))
 
     def test_authors(self):
         user = UserProfile.objects.get(username='admin')

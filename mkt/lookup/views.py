@@ -4,12 +4,12 @@ from django.db import connection
 from django.db.models import Sum, Count
 from django.shortcuts import get_object_or_404
 
-from babel import numbers
 import jingo
+from babel import numbers
 from tower import ugettext as _
 
-from addons.models import Addon
 import amo
+from addons.models import Addon
 from amo.decorators import login_required, permission_required, json_view
 from amo.urlresolvers import reverse
 from amo.utils import paginate
@@ -165,7 +165,7 @@ def user_activity(request, user_id):
 @json_view
 def user_search(request):
     results = []
-    query = request.GET.get('q', '').lower()
+    query = request.GET.get('q', u'').lower()
     fields = ('username', 'display_name', 'email')
     if query.isnumeric():
         # id is added implictly by the ES filter. Add it explicitly:
@@ -190,13 +190,16 @@ def user_search(request):
 def app_search(request):
     results = []
     query = request.GET.get('q', '').lower()
+    addon_type = request.GET.get('type', amo.ADDON_WEBAPP)
     fields = ['name', 'app_slug']
     non_es_fields = ['id', 'name__localized_string'] + fields
     if query.isnumeric():
-        qs = Addon.objects.filter(pk=query).values(*non_es_fields)
+        qs = (Addon.objects.filter(type=addon_type, pk=query)
+                           .values(*non_es_fields))
     else:
         # Try to load by GUID:
-        qs = Addon.objects.filter(guid=query).values(*non_es_fields)
+        qs = (Addon.objects.filter(type=addon_type, guid=query)
+                           .values(*non_es_fields))
         if not qs.count():
             # Give up on GUID, assume it's a search.
             rules = {
@@ -210,7 +213,7 @@ def app_search(request):
             name_query = {}
             for k, v in rules.iteritems():
                 name_query['name__%s' % k] = v
-            qs = (Addon.search().query(or_=name_query)
+            qs = (Addon.search().query(type=addon_type, or_=name_query)
                                 .values_dict(*fields))
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
