@@ -58,7 +58,8 @@ def index_finance_total_by_src(addons, **kw):
         for source in sources:
             try:
                 key = ord_word('src' + str(addon) + str(source))
-                data = search.get_finance_total_by_src(qs, addon, source)
+                data = search.get_finance_total(qs, addon, 'source',
+                                                source=source)
                 if not already_indexed(Contribution, data):
                     Contribution.index(data, bulk=True, id=key)
                 es.flush_bulk(forced=True)
@@ -89,8 +90,8 @@ def index_finance_total_by_currency(addons, **kw):
         for currency in currencies:
             try:
                 key = ord_word('cur' + str(addon) + currency.lower())
-                data = search.get_finance_total_by_currency(
-                    qs, addon, currency)
+                data = search.get_finance_total(
+                    qs, addon, 'currency', currency=currency)
                 if not already_indexed(Contribution, data):
                     Contribution.index(data, bulk=True, id=key)
                 es.flush_bulk(forced=True)
@@ -205,8 +206,8 @@ def index_finance_total_inapp_by_currency(addons, **kw):
                 try:
                     key = ord_word('curinapp' + str(addon) + inapp_name +
                                    currency.lower())
-                    data = search.get_finance_total_inapp_by_currency(
-                        qs, addon, inapp_name, currency)
+                    data = search.get_finance_total_inapp(
+                        qs, addon, inapp_name, 'currency', currency=currency)
                     if not already_indexed(InappPayment, data):
                         InappPayment.index(data, bulk=True, id=key)
                     es.flush_bulk(forced=True)
@@ -244,8 +245,8 @@ def index_finance_total_inapp_by_src(addons, **kw):
                 try:
                     key = ord_word('srcinapp' + str(addon) + inapp_name +
                                    source.lower())
-                    data = search.get_finance_total_inapp_by_src(
-                        qs, addon, inapp_name, source)
+                    data = search.get_finance_total_inapp(
+                        qs, addon, inapp_name, 'source', source=source)
                     if not already_indexed(InappPayment, data):
                         InappPayment.index(data, bulk=True, id=key)
                     es.flush_bulk(forced=True)

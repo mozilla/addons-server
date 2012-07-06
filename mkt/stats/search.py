@@ -1,4 +1,4 @@
-from django.db.models import Count, Sum
+from django.db.models import Count, Q, Sum
 
 import elasticutils
 import pyes.exceptions as pyes
@@ -10,143 +10,67 @@ from mkt.webapps.models import Installed
 from stats.models import Contribution
 
 
-def get_finance_total(qs, addon):
+def get_finance_total(qs, addon, field=None, **kwargs):
     """
-    sales per app
-    revenue per app
-    refunds per app
+    sales/revenue/refunds per app overall
+    field -- breakdown field name contained by kwargs
     """
-    revenue = (qs.values('addon').filter(refund=None).
+    q = Q()
+    if field:
+        kwargs_copy = {field: kwargs[field]}
+        q = handle_kwargs(q, field, kwargs)
+
+    revenue = (qs.values('addon').filter(q, refund=None, **kwargs).
                annotate(revenue=Sum('amount')))
-    sales = (qs.values('addon').filter(refund=None).
+    sales = (qs.values('addon').filter(q, refund=None, **kwargs).
              annotate(sales=Count('id')))
-    refunds = (qs.filter(refund__isnull=False).
+    refunds = (qs.filter(q, refund__isnull=False, **kwargs).
                values('addon').annotate(refunds=Count('id')))
-    return {
+    document = {
         'addon': addon,
         'count': sales[0]['sales'] if sales.count() else 0,
         'revenue': cut(revenue[0]['revenue'] if revenue.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
+    if field:
+        # Edge case, handle None values.
+        if kwargs_copy[field] == None:
+            kwargs_copy[field] = ''
+        document[field] = kwargs_copy[field]
+    return document
 
 
-def get_finance_total_by_src(qs, addon, source=''):
+def get_finance_total_inapp(qs, addon, inapp_name='', field=None, **kwargs):
     """
-    sales per app by src
-    revenue per app by src
-    refunds per app by src
+    sales/revenue/refunds per in-app overall
+    field -- breakdown field name contained by kwargs
     """
-    revenues = (qs.filter(source=source, refund=None).values('addon').
-                annotate(revenue=Sum('amount')))
-    sales = (qs.filter(source=source, refund=None).values('addon').
-             annotate(sales=Count('id')))
-    refunds = (qs.filter(source=source, refund__isnull=False).
-               values('addon').annotate(refunds=Count('id')))
-    return {
-        'addon': addon,
-        'source': source,
-        'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
-        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
-    }
+    q = Q()
+    if field:
+        kwargs_copy = {field: kwargs[field]}
+        q = handle_kwargs(q, field, kwargs, join_field='contribution__')
 
-
-def get_finance_total_by_currency(qs, addon, currency=''):
-    """
-    sales per app by currency
-    revenue per app by currency
-    refunds per app by currency
-    """
-    revenues = (qs.filter(currency=currency, refund=None).
-                values('addon').annotate(revenue=Sum('amount')))
-    sales = (qs.filter(currency=currency, refund=None)
-             .values('addon').annotate(sales=Count('id')))
-    refunds = (qs.filter(currency=currency, refund__isnull=False).
-               values('addon').annotate(refunds=Count('id')))
-    return {
-        'addon': addon,
-        'currency': currency,
-        'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
-        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
-    }
-
-
-def get_finance_total_inapp(qs, addon, inapp_name=''):
-    """
-    sales per in-app
-    revenue per in-app
-    refunds per in-app
-    """
-    revenue = (qs.filter(contribution__refund=None).
+    revenue = (qs.filter(q, contribution__refund=None, **kwargs).
                values('config__addon').annotate(
                revenue=Sum('contribution__amount')))
-    sales = (qs.filter(contribution__refund=None).
+    sales = (qs.filter(q, contribution__refund=None, **kwargs).
              values('config__addon').
              annotate(sales=Count('id')))
-    refunds = (qs.filter(contribution__refund__isnull=False).
+    refunds = (qs.filter(q, contribution__refund__isnull=False, **kwargs).
                values('config__addon').annotate(refunds=Count('id')))
-    return {
+    document = {
         'addon': addon,
         'inapp': inapp_name,
         'count': sales[0]['sales'] if sales.count() else 0,
         'revenue': cut(revenue[0]['revenue'] if revenue.count() else 0),
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
-
-
-def get_finance_total_inapp_by_currency(qs, addon, inapp_name='', currency=''):
-    """
-    sales per in-app by currency
-    revenue per in-app by currency
-    refunds per in-app by currency
-    """
-    revenues = (qs.filter(contribution__currency=currency,
-                          contribution__refund=None).
-                values('config__addon').
-                annotate(revenue=Sum('contribution__amount')))
-    sales = (qs.filter(contribution__currency=currency,
-                       contribution__refund=None).
-             values('config__addon').annotate(sales=Count('id')))
-    refunds = (qs.filter(contribution__currency=currency,
-                         contribution__refund__isnull=False).
-               values('config__addon').
-               annotate(refunds=Count('id')))
-    return {
-        'addon': addon,
-        'inapp': inapp_name,
-        'currency': currency,
-        'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
-        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
-    }
-
-
-def get_finance_total_inapp_by_src(qs, addon, inapp_name='', source=''):
-    """
-    sales per in-app by source
-    revenue per in-app by source
-    refunds per in-app by source
-    """
-    revenues = (qs.filter(contribution__source=source,
-                          contribution__refund=None).
-                values('config__addon').
-                annotate(revenue=Sum('contribution__amount')))
-    sales = (qs.filter(contribution__source=source,
-                       contribution__refund=None).
-             values('config__addon').annotate(sales=Count('id')))
-    refunds = (qs.filter(contribution__source=source,
-                         contribution__refund__isnull=False).
-               values('config__addon').
-               annotate(refunds=Count('id')))
-    return {
-        'addon': addon,
-        'inapp': inapp_name,
-        'source': source,
-        'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': cut(revenues[0]['revenue'] if revenues.count() else 0),
-        'refunds': refunds[0]['refunds'] if refunds.count() else 0,
-    }
+    if field:
+        # Edge case, handle None values.
+        if kwargs_copy[field] == None:
+            kwargs_copy[field] = ''
+        document[field] = kwargs_copy[field]
+    return document
 
 
 def get_finance_daily(contribution):
@@ -278,3 +202,23 @@ def cut(revenue):
     Takes away Marketplace's cut from developers' revenue.
     """
     return round(float(revenue) * MKT_CUT, 2)
+
+
+def handle_kwargs(q, field, kwargs, join_field=None):
+    """
+    Processes kwargs to combine '' and None values and make it ready for
+    filters. Returns Q object to use in filter.
+    """
+    if join_field:
+        join_field = join_field + field
+        kwargs[join_field] = kwargs[field]
+
+    # Have '' and None have the same meaning.
+    if not kwargs[field]:
+        q = Q(**{field + '__in': ['', None]})
+        del(kwargs[field])
+
+    if join_field:
+        del(kwargs[field])
+
+    return q
