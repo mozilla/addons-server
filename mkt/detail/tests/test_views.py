@@ -171,6 +171,20 @@ class TestDetail(DetailBase):
     def test_no_manage_button_for_anon(self):
         eq_(self.get_pq()('.manage').length, 0)
 
+    def test_review_history_button_for_reviewers(self):
+        # Public apps get a "Review History" button.
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(doc('.button.reviewer').length, 1)
+        eq_(doc('.button.reviewer').text(), 'Review History')
+
+        # Pending apps get "Approve / Reject" button.
+        self.webapp.update(status=amo.STATUS_PENDING)
+        doc = self.get_pq()
+        eq_(doc('.button.reviewer').length, 1)
+        eq_(doc('.button.reviewer').text(), 'Approve / Reject')
+
     def test_upsell(self):
         eq_(self.get_pq()('#upsell.wide').length, 0)
         premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
@@ -617,6 +631,7 @@ class TestReportAbuse(DetailBase):
 
 class TestActivity(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
+
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
@@ -639,7 +654,7 @@ class TestActivity(amo.tests.TestCase):
 
     def test_log(self):
         self.client.login(username=self.reviewer.email, password='password')
-        res = self.client.get(self.url)
+        self.client.get(self.url)
         log_item = ActivityLog.objects.get(action=amo.LOG.ADMIN_VIEWED_LOG.id)
         eq_(len(log_item.arguments), 1)
         eq_(log_item.arguments[0].id, self.reviewer.id)
@@ -654,4 +669,3 @@ class TestActivity(amo.tests.TestCase):
         doc = pq(res.content)
         assert 'created' in doc('li.item').eq(0).text()
         assert 'edited' in doc('li.item').eq(1).text()
-
