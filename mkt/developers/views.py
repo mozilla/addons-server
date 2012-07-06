@@ -520,15 +520,30 @@ def issue_refund(request, addon_id, addon, webapp=False):
 
     elif request.method == 'POST':
         if 'issue' in request.POST:
-            try:
-                results = paypal.refund(contribution.paykey)
-            except PaypalError, e:
-                contribution.record_failed_refund(e)
-                paypal_log.error('Refund failed for: %s' % txn_id,
-                                 exc_info=True)
-                messages.error(request, _('There was an error with '
-                                          'the refund.'))
-                return redirect(addon.get_dev_url('refunds'))
+            if waffle.flag_is_active(request, 'solitude-payments'):
+                try:
+                    response = client.post_refund(data={'uuid':
+                                                 contribution.transaction_id})
+                except client.Error, e:
+                    contribution.record_failed_refund(e)
+                    paypal_log.error('Refund failed for: %s' % txn_id,
+                                     exc_info=True)
+                    messages.error(request, _('There was an error with '
+                                              'the refund.'))
+                    return redirect(addon.get_dev_url('refunds'))
+                results = response['response']
+
+            else:
+                # TODO(solitude): remove this.
+                try:
+                    results = paypal.refund(contribution.paykey)
+                except PaypalError, e:
+                    contribution.record_failed_refund(e)
+                    paypal_log.error('Refund failed for: %s' % txn_id,
+                                     exc_info=True)
+                    messages.error(request, _('There was an error with '
+                                              'the refund.'))
+                    return redirect(addon.get_dev_url('refunds'))
 
             for res in results:
                 if res['refundStatus'] == 'ALREADY_REVERSED_OR_REFUNDED':

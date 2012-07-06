@@ -646,6 +646,38 @@ class TestIssueRefund(amo.tests.TestCase):
                                         'issue': '1'}, follow=True)
         eq_(len(pq(r.content)('.notification-box')), 1)
 
+    def _test_issue_solitude(self, client, enqueue_refund):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        client.post_refund.return_value = {'response': []}
+
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'})
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
+        eq_(client.post_refund.call_args[1]['data']['uuid'], 'fake-txn-id')
+        eq_(len(mail.outbox), 1)
+        assert 'approved' in mail.outbox[0].subject
+        # There should be one approved refund added.
+        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_APPROVED,))
+
+    @mock.patch('stats.models.Contribution.enqueue_refund')
+    @mock.patch('mkt.developers.views.client')
+    def test_apps_issue_solitude(self, client, enqueue_refund):
+        self._test_issue_solitude(client, enqueue_refund)
+
+    @mock.patch('stats.models.Contribution.enqueue_refund')
+    @mock.patch('mkt.developers.views.client')
+    def test_apps_issue_solitude_error(self, client, enqueue_refund):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+
+        client.post_refund.side_effect = client.Error
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'}, follow=True)
+        eq_(len(pq(r.content)('.notification-box')), 1)
+
     def test_fresh_refund(self):
         c = self.make_purchase()
         Refund.objects.create(contribution=c)
@@ -743,6 +775,21 @@ class TestIssueRefund(amo.tests.TestCase):
     def test_already_refunded(self, refund):
         refund.return_value = [{'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
                                 'receiver.email': self.user.email}]
+        c = self.make_purchase()
+        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
+                                        'issue': '1'})
+        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
+        eq_(len(mail.outbox), 0)
+        assert 'previously issued' in r.cookies['messages'].value
+
+    @mock.patch('mkt.developers.views.client')
+    def test_already_refunded_solitude(self, client):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+
+        client.post_refund.return_value = {'response': [{
+                'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
+                'receiver.email': self.user.email}]}
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'issue': '1'})
