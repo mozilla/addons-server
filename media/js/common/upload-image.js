@@ -44,7 +44,7 @@ $.fn.objectUrl = function(offset) {
         var f = files[offset];
         if (typeof window.URL == 'object') {
             url = window.URL.createObjectURL(f);
-        } else if (typeof window.webkitURL == 'object') {
+        } else if (typeof window.webkitURL == 'function') {
             url = window.webkitURL.createObjectURL(f);
         } else if(typeof f.getAsDataURL == 'function') {
             url = f.getAsDataURL();
