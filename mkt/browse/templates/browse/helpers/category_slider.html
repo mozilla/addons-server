@@ -11,7 +11,7 @@
       {% for category in categories %}
         <li>
           <a href="{{ category.get_url_path() }}">
-            <div class="arrow img"></div>
+            <div class="arrow img {{ category.slug }}"></div>
             <h3>{{ category.name }}</h3>
           </a>
         </li>
