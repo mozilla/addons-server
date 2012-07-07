@@ -7,7 +7,7 @@
       </li>
       {% else %}
       <li class="{{ device.class_name }} unavailable" title="{{ device.name }}">
-        {{ device.name }}
+        {{ device.name }} {{ _('(Unsupported)') }}
       </li>
       {% endif %}
     {% endfor %}
