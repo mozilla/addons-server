@@ -17,7 +17,7 @@ class REGION(object):
     mcc = None  # See comment above.
 
 
-class WORLWIDE(REGION):
+class WORLDWIDE(REGION):
     id = 1
     name = _lazy(u'Worldwide')
 
