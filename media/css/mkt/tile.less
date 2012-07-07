@@ -1,5 +1,57 @@
+@import 'lib';
+
 .mkt-tile {
+    position: relative;
+    height: 66px;
+    overflow: hidden;
+    padding: 20px 10px;
+    display: block;
+    .gradient-two-color(#f7f7f7, @barely-gray);
+    color: @text;
+    h3 {
+        font-size: 20px;
+        line-height: 22px;
+        font-weight: 400;
+    }
+    .icon {
+        height: 64px;
+        width: 64px;
+        float: left;
+        margin-right: 10px;
+    }
     .author {
-        display: none;
+        color: @subtext;
+    }
+    .button {
+        position: absolute;
+        bottom: 24px;
+        right: 10px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 13px;
+        padding: 0;
+        width: 102px;
+        top: 65px;
+    }
+    .rating {
+        margin-top: 8px;
+        color: @subtext;
+        display: block;
+        font-size: 11px;
+        &:before {
+            display: none;
+        }
+    }
+}
+
+.listing {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+        border-top: 1px solid @light-gray;
+        &:first-child {
+            border-top: 0;
+        }
     }
 }

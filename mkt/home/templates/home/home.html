@@ -1,69 +1,26 @@
-{% set OFFLINE_MANIFEST = True %}
 {% extends 'mkt/base.html' %}
 
 {% block bodyclass %}home{% endblock %}
 
 {% block content %}
-  <section class="homepage-promo full">
-    <div>
-      <h1 class="hidden">{{ _('Home') }}</h1>
-      <h1>{{ _('Opening soon.') }}</h1>
-      <p>
-        {% trans %}
-          We're inviting Mozillians to take the Marketplace for a test drive
-          and discover the best the Web has to offer.
-          Download apps, give them a try and let us know what you think.
-          Thanks for your support!
-        {% endtrans %}
-      </p>
-      <a href="https://wiki.mozilla.org/Marketplace/Mozillian_Preview"
-         class="button arrow" target="_blank">{{ _('Test & give feedback') }}</a>
-    </div>
-  </section>
-  <section id="home-featured" class="featured full">
-    <div>
-      <h2>{{ _('Featured') }}</h2>
-    </div>
-  </section>
-  <section class="featured full slider">
-    {{ featured|promo_slider(feature=True, src='mkt-home') }}
+  <section class="featured full">
+    <ul class="listing">
+      {% for app in featured %}
+        <li>
+          {{ market_tile(app) }}
+        </li>
+      {% endfor %}
+    </ul>
   </section>
   {% if popular %}
-    <section class="popular tabbed narrow full">
-      <div>
-        <div class="tabnav c">
-          <span data-show="popular" data-shown class="popular">{{ _('Popular') }}</span>
-          <span data-show="new" class="new">{{ _('New') }}</span>
-        </div>
-      </div>
-    </section>
-    <section id="home-popular" class="popular tabbed wide full">
-      <div>
-        <h2><a href="{{ url('browse.apps')|urlparams(sort='downloads') }}">
-          {{ _('Popular') }}</a></h2>
-      </div>
-    </section>
-    <section data-group="popular" data-shown class="popular grid full">
-      {{ popular|promo_grid(src='mkt-home') }}
-    </section>
-    <section data-group="popular" data-shown class="narrow popular view-more full">
-      <div>
-        <a href="{{ url('browse.apps')|urlparams(sort='downloads') }}"
-           class="arrow">{{ _('View more') }}</a>
-      </div>
-    </section>
-    <section class="hidden">
-      <h2><a href="{{ url('browse.apps')|urlparams(sort='created') }}">
-        {{ _('New') }}</a></h2>
-    </section>
-    <section data-group="new" class="narrow popular grid full">
-      {{ latest|promo_grid(src='mkt-home') }}
-    </section>
-    <section data-group="new" class="narrow popular view-more full">
-      <div>
-        <a href="{{ url('browse.apps')|urlparams(sort='created') }}"
-           class="arrow">{{ _('View more') }}</a>
-      </div>
+    <section class="popular full">
+      <ul class="listing">
+        {% for app in popular %}
+          <li>
+            {{ market_tile(app) }}
+          </li>
+        {% endfor %}
+      </ul>
     </section>
   {% endif %}
   {{ category_slider() }}

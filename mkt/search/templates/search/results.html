@@ -89,25 +89,20 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}
-  <section class="c">
-    <section id="search-facets" class="col">
-      <h2>{{ _('Filter Results') }}</h2>
-      <ul class="facets island pjax-trigger">
+  <section id="search-facets" class="col">
+    <h2>{{ _('Filter Results') }}</h2>
+    <ul class="facets island pjax-trigger">
         {{ facet(_('Category'), 'category-facets', categories, active=active.categories) }}
         {{ facet(_('Price'), 'price-facets', prices, active=active.prices) }}
         {% if not request.MOBILE %}
           {{ facet(_('Optimized for'), 'device-facets', devices, active=active.devices) }}
         {% endif %}
-      </ul>
-      {{ num_results() }}
-    </section>
-    <section id="search-results" class="col">
-      <h1>{{ heading }}</h1>
-      <div id="search-listing" class="listing">
-        {% with search_url=search_url %}
-          {% include 'search/results_inner.html' %}
-        {% endwith %}
-      </div>
-    </section>
+    </ul>
+    {{ num_results() }}
+  </section>
+  <section id="search-results" class="full c">
+    {% with search_url=search_url %}
+      {% include 'search/results_inner.html' %}
+    {% endwith %}
   </section>
 {% endblock %}

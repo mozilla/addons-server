@@ -6,14 +6,13 @@
 <a class="{{ classes }}" href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"
    {% for k, v in data_attrs.items() -%}
       data-{{ k }}="{{ v }}" {% endfor %}>
-  <div class="img icon" style="background-image:url({{ product.get_icon_url(64) }})"></div>
-  <div class="img preview" style="background-image:url({{ preview }})"></div>
+  <img class="icon" src="{{ product.get_icon_url(64) }}">
   <h3>{{ product.name }}</h3>
   {% if product.listed_authors %}
-    <em class="author">{{ product.listed_authors[0].name }}</em>
+    <div class="author vital">{{ product.listed_authors[0].name }}</div>
   {% endif %}
-  <p class="price">{{ product.get_price() }}</p>
   {% if waffle.switch('ratings') %}
-    <div class="rating">{{ product.average_rating|float|stars }}</div>
+    <div class="rating vital">{{ product.average_rating|float|stars }}</div>
   {% endif %}
-</a>
+  {{ market_button(product) }}
+</div>

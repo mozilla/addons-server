@@ -107,97 +107,6 @@
     }
 }
 
-.listing {
-    p {
-        margin: 5px 0;
-    }
-    ol {
-        list-style: none;
-        padding: 0;
-    }
-    .icon {
-        max-height: 64px;
-        max-width: 64px;
-    }
-    .device-list {
-        margin-top: 8px;
-    }
-    .items {
-        border: 1px solid @light-gray;
-    }
-    .item {
-        .gradient-two-color(#f7f7f7, @barely-gray);
-        border-bottom: 1px solid @light-gray;
-        border-top: 1px solid @white;
-        min-height: 64px;
-        padding: 10px 10px 10px 95px;
-        position: relative;
-        &:last-child {
-            border-bottom: 0;
-        }
-        h3 {
-            .ellipsis();
-            font-weight: 400;
-            a {
-                display: block;
-            }
-        }
-        .rating {
-            color: @gray;
-            margin-right: 2px;
-        }
-        img {
-            position: absolute;
-            top: 10px;
-        }
-        .authors {
-            margin-top: 0;
-        }
-        .info {
-            float: left;
-            max-width: 70%;
-        }
-        .actions {
-            float: right;
-            width: 100px;
-            .button {
-                display: block;
-                line-height: 32px;
-            }
-        }
-        img {
-            left: 10px;
-            margin-right: 10px;
-        }
-        .button {
-            position: absolute;
-            top: 20px;
-            right: 14px;
-            width: 90px;
-        }
-    }
-}
-
-.html-rtl .listing {
-    .price {
-        margin: 0 0 0 8px;
-        &:after {
-            text-indent: -8px;
-        }
-    }
-    .item {
-        padding: 10px 95px 10px 10px;
-    }
-    .actions {
-        float: left;
-    }
-    img {
-        left: auto;
-        right: 10px;
-        margin: 0 0 0 10px;
-    }
-}
-
 #search-results {
     .width(10);
 }
@@ -423,80 +332,6 @@
     h1, #breadcrumbs, #sorter, #search-facets {
         display: none;
     }
-    .listing {
-        .items {
-            border-left: 0;
-            border-right: 0;
-            margin-top: 0;
-        }
-        .item {
-            padding: 0;
-            height: 106px;
-            overflow: hidden;
-            color: @text;
-            cursor: pointer;
-            h3, .authors, .vitals {
-                .ellipsis();
-            }
-            h3 {
-                font-size: 20px;
-                line-height: 22px;
-                font-weight: 400;
-            }
-            .vitals {
-                margin-top: 11px;
-                color: @subtext;
-                width: 50%;
-                .rating, .vital {
-                    display: block;
-                    &:before {
-                        display: none;
-                    }
-                }
-                .price {
-                    display: none;
-                }
-                .vital {
-                    display: none;
-                }
-            }
-            .info, .actions {
-                float: none;
-            }
-            .info {
-                max-width: 100%;
-                margin: 19px 0 0 85px;
-            }
-            .actions {
-                margin-top: 10px;
-                width: 100%;
-                .button {
-                    font-size: 13px;
-                    line-height: 35px;
-                }
-            }
-            .authors {
-                color: @subtext;
-            }
-            .icon {
-                top: 20px;
-            }
-            .button {
-                height: 24px;
-                line-height: 24px;
-                font-size: 13px;
-                padding: 0;
-                width: 102px;
-                top: 65px;
-            }
-        }
-        .desc {
-            display: none;
-        }
-        p {
-            margin: 0;
-        }
-    }
     #search-results, #search-facets {
         .width(4);
     }
@@ -536,10 +371,6 @@
         }
     }
     #page {
-        > section {
-            padding-left: 0;
-            padding-right: 0;
-        }
         #search-results {
             width: 100%;
             h1 {

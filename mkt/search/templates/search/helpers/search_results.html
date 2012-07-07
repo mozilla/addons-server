@@ -1,9 +1,7 @@
 {% for product in products %}
   <li data-manifest="{{ product.manifest_url }}" data-href="{{ product.get_detail_url() }}"
       class="item result app c">
-    <div class="info">
-      {{ product_info(product) }}
-    </div>
+    {{ market_tile(product) }}
   </li>
 {% else %}
   {{ no_results() }}

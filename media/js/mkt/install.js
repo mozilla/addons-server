@@ -6,7 +6,7 @@
     function clickHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        var product = $(this).data('product');
+        var product = $(this).closest('[data-product]').data('product');
         startInstall(product);
     }
 
