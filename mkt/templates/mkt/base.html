@@ -74,7 +74,7 @@
             <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
           {% endif %}
         </div>
-        <nav class="footer-links c">
+        <nav class="footer-links c" role="navigation">
           {% if logged %}
             {% for link in tools_links %}
               <a href="{{ link.href }}" rel="external">{{ link.text }}</a>

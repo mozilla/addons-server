@@ -9,7 +9,7 @@
   <section>
     <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
     {% if request.can_view_consumer %}
-    <nav>
+    <nav role="navigation">
       <a href="#" class="menu-button"><b></b></a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}

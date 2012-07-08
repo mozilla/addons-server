@@ -17,7 +17,7 @@
     ('created', _('Newest')),
 ) %}
 
-<nav id="site-nav" class="app-nav menu-nav c">
+<nav id="site-nav" class="app-nav menu-nav c" role="navigation">
   {# TODO(apps): Finalize these links. #}
   <ul>
     {{ section('explore-cats', _('Categories'), url('apps.list'), extras, cats) }}
