@@ -18,7 +18,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from search.utils import floor_version
 from versions.compare import version_dict as vdict, version_int as vint
-from .models import CompatReport, AppCompat
+from .models import CompatReport, AppCompat, CompatTotals
 from .forms import AppVerForm, CompatForm
 
 
