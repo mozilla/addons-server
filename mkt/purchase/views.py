@@ -40,9 +40,7 @@ def purchase(request, addon):
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
     amount = addon.premium.get_price()
-    source = request.POST.get('src', '')
-    device_type = request.POST.get('device_type', '')
-    user_agent = request.POST.get('user_agent', '')
+    source = request.POST.get('source', '')
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # L10n: {0} is the addon name.
     contrib_for = (_(u'Mozilla Marketplace purchase of {0}')
@@ -139,10 +137,7 @@ def purchase(request, addon):
         contrib = Contribution(addon_id=addon.id, amount=amount,
                                source=source, source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
-                               paykey=paykey, user=request.amo_user,
-                               device_type=device_type, user_agent=user_agent,
-                               is_chromeless=request.POST.get('chromeless',
-                                                              False))
+                               paykey=paykey, user=request.amo_user)
         log.debug('Storing contrib for uuid: %s' % uuid_)
 
         # If this was a pre-approval, it's completed already, we'll

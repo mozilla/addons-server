@@ -1,6 +1,7 @@
 import collections
 
 from django import http
+from django.db.models import Q
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.cache import cache_page
@@ -301,7 +302,7 @@ class PersonasFilter(BaseFilter):
                     .with_index(personas='personas_movers_idx'))
 
 
-def personas_listing(request, category_slug=None):
+def personas_listing(request, category=None):
     # Common pieces using by browse and search.
     TYPE = amo.ADDON_PERSONA
     q = Category.objects.filter(application=request.APP.id,
@@ -314,9 +315,8 @@ def personas_listing(request, category_slug=None):
                  .exclude(id__in=frozen)
                  .extra(select={'_app': request.APP.id}))
 
-    category = None
-    if category_slug is not None:
-        category = get_list_or_404(Category, slug=category_slug, type=TYPE)[0]
+    if category is not None:
+        category = get_list_or_404(Category, slug=category, type=TYPE)[0]
         base = base.filter(categories__id=category.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')

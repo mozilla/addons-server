@@ -13,19 +13,14 @@ z.capabilities = {
         typeof navigator.mozApps.html5Implementation === 'undefined'
     ),
     'fileAPI': !!window.FileReader,
-    'userAgent': navigator.userAgent,
-    'desktop': window.matchMedia('(min-width: 673px)').matches,
-    'tablet': window.matchMedia('(max-width: 672px)').matches &&
-              window.matchMedia('(min-width: 601px)').matches,
+    'desktop': window.matchMedia('(max-width: 1024px)').matches,
+    'tablet': window.matchMedia('(max-width: 672px)').matches,
     'mobile': window.matchMedia('(max-width: 600px)').matches,
     'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
     'nativeScroll': (function() {
         return 'WebkitOverflowScrolling' in document.createElement('div').style;
     })(),
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance)
-};
-z.capabilities.getDeviceType = function() {
-    return this.desktop ? 'desktop' : (this.tablet ? 'tablet' : 'mobile');
 };
 
 if (z.capabilities.tablet) {
@@ -39,14 +34,14 @@ if (z.capabilities.mobile) {
 }
 
 try {
-    if ('localStorage' in window && window.localStorage !== null) {
+    if ('localStorage' in window && window['localStorage'] !== null) {
         z.capabilities.localStorage = true;
     }
 } catch (e) {
 }
 
 try {
-    if ('sessionStorage' in window && window.sessionStorage !== null) {
+    if ('sessionStorage' in window && window['sessionStorage'] !== null) {
         z.capabilities.sessionStorage = true;
     }
 } catch (e) {
