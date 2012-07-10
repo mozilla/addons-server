@@ -6,7 +6,11 @@
                 return;
             }
 
-            initCharCount();
+            // Remove character counter on review field on mobile for now
+            // (770661).
+            if (z.capabilities.getDeviceType() != 'mobile') {
+                initCharCount();
+            }
 
             // Hijack <select> with stars.
             $('select[name="rating"]').ratingwidget();
@@ -119,7 +123,11 @@
                 // Stuff that is common to Edit and Reply.
                 var $form = overlay.find('form');
 
-                initCharCount();
+                // Remove character counter on review field on mobile for now
+                // (770661).
+                if (z.capabilities.getDeviceType() != 'mobile') {
+                    initCharCount();
+                }
 
                 function validate() {
                     var $error = overlay.find('.req-error'),
