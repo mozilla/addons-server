@@ -139,8 +139,29 @@ class TestUpdateManifest(amo.tests.TestCase):
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
 
-        eq_(RereviewQueue.objects.all().count(), 0)
+        eq_(RereviewQueue.objects.count(), 0)
         self._run()
-        eq_(RereviewQueue.objects.all().count(), 1)
+        eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+
+    @mock.patch.object(settings, 'SITE_URL', 'http://test')
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_validation_error_logs(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        n = new.copy()
+        n['locale'] = 'en-US'
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(n)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        eq_(RereviewQueue.objects.count(), 0)
+        self._run()
+        eq_(RereviewQueue.objects.count(), 1)
+        assert 'http://test/en-US/developers/upload' in ''.join(
+            [a._details for a in ActivityLog.objects.for_apps(self.addon)])
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)

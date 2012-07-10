@@ -2,11 +2,14 @@ import hashlib
 import json
 import logging
 
+import bleach
 from celeryutils import task
 
 from django.core.files.storage import default_storage as storage
 
 import amo
+from amo.helpers import absolutify
+from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.reviewers.models import RereviewQueue
@@ -98,8 +101,12 @@ def update_manifests(ids, **kw):
         upload = FileUpload.objects.get(pk=upload.pk)
         v8n = json.loads(upload.validation)
         if v8n['errors']:
+            v8n_url = absolutify(reverse(
+                'mkt.developers.upload_detail', args=[upload.uuid]))
             msg = u'Validation errors: %s' % (
-                ' '.join([m['description'] for m in v8n['messages']]),)
+                ' '.join([m['message'] for m in v8n['messages']]),)
+            msg += '\nValidation result URL: %s' % bleach.linkify(
+                v8n_url, nofollow=True, filter_url=get_outgoing_url)
             _log(webapp, msg)
             _flag_for_review(webapp, msg)
             continue

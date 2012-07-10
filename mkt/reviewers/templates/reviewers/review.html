@@ -117,7 +117,7 @@
                     <div>By {{ user }} on {{ date }}</div>
                   {% endtrans %}
                   {% if record.details %}
-                    <blockquote>{{ record.details.comments }}</blockquote>
+                    <div class="log-comments">{{ record.details.comments }}</div>
                   {% endif %}
                 </td>
               </tr>
