@@ -587,7 +587,7 @@ class TestEditMedia(TestEdit):
         eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
 
     def test_edit_uploadedicon_noresize(self):
-        img = '%s/img/notifications/error.png' % settings.MEDIA_ROOT
+        img = '%s/img/mkt/logos/128.png' % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -618,9 +618,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % webapp.id)
 
-        assert os.path.exists(dest)
+        assert os.path.exists(dest), dest
 
-        eq_(Image.open(dest).size, (48, 48))
+        eq_(Image.open(dest).size, (64, 64))
 
     def test_no_video_types(self):
         res = self.client.get(self.get_url('media', edit=True))
@@ -727,7 +727,7 @@ class TestEditMedia(TestEdit):
 
         res = self.client.post(url, {'upload_image': filehandle})
         response_json = json.loads(res.content)
-        eq_(response_json['errors'][0], msg)
+        assert any(e == msg for e in response_json['errors'])
 
     def test_icon_animated(self):
         self.check_image_animated(self.icon_upload,
@@ -770,7 +770,8 @@ class TestEditMedia(TestEdit):
     def test_edit_preview_video_add_hash(self):
         Switch.objects.create(name='video-upload', active=True)
         res = self.add_json(open(video_files['good'], 'rb'))
-        assert res['upload_hash'].endswith('.video-webm')
+        assert not res['errors'], res['errors']
+        assert res['upload_hash'].endswith('.video-webm'), res['upload_hash']
 
     def test_edit_preview_video_add_hash_switch_off(self):
         res = self.add_json(open(video_files['good'], 'rb'))
@@ -784,7 +785,8 @@ class TestEditMedia(TestEdit):
     def test_edit_preview_video_size(self):
         Switch.objects.create(name='video-upload', active=True)
         res = self.add_json(open(video_files['good'], 'rb'))
-        assert res['errors'][0].startswith('Please use')
+        assert any(e.startswith('Please use') for e in res['errors']), (
+                res['errors'])
 
     def test_edit_preview_video_add(self):
         Switch.objects.create(name='video-upload', active=True)
