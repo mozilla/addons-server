@@ -10,6 +10,7 @@ from urlparse import urlsplit
 
 from django import forms
 from django.conf import settings
+from django.core.cache import cache
 from django.forms.fields import Field
 from django.test.client import Client
 from django.utils import translation
@@ -204,11 +205,7 @@ class TestCase(RedisTest, test_utils.TestCase):
         from addons.utils import (FeaturedManager, CreaturedManager,
                                   get_featured_ids, get_creatured_ids)
         reset_featured_addons()
-        # Clear the in-process caches.
-        FeaturedManager.featured_ids.clear()
-        CreaturedManager.creatured_ids.clear()
-        get_featured_ids.clear()
-        get_creatured_ids.clear()
+        cache.clear()
 
     @contextmanager
     def activate(self, locale=None, app=None):
