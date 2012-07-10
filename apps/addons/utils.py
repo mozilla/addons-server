@@ -8,7 +8,6 @@ from django.db.models import Q
 from django.utils.encoding import smart_str
 
 import commonware.log
-from lib.misc import lru_cache
 import redisutils
 import waffle
 
@@ -140,7 +139,6 @@ class FeaturedManager(object):
         pipe.execute()
 
     @classmethod
-    @lru_cache.lru_cache(maxsize=100)
     @memoize(prefix, time=60 * 10)
     def featured_ids(cls, app, lang=None, type=None):
         redis = cls.redis()
@@ -225,7 +223,6 @@ class CreaturedManager(object):
         pipe.execute()
 
     @classmethod
-    @lru_cache.lru_cache(maxsize=100)
     @memoize(prefix, time=60 * 10)
     def creatured_ids(cls, category, lang):
         redis = cls.redis()
@@ -239,7 +236,6 @@ class CreaturedManager(object):
         return map(int, filter(None, per_locale + others))
 
 
-@lru_cache.lru_cache(maxsize=100)
 @memoize('addons:featured:no-redis', time=60 * 10)
 def get_featured_ids(app, lang=None, type=None):
     if not waffle.switch_is_active('no-redis'):
@@ -267,7 +263,6 @@ def get_featured_ids(app, lang=None, type=None):
     return map(int, ids)
 
 
-@lru_cache.lru_cache(maxsize=100)
 @memoize('addons:creatured:no-redis', time=60 * 10)
 def get_creatured_ids(category, lang):
     if not waffle.switch_is_active('no-redis'):
