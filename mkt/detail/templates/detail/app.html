@@ -10,6 +10,8 @@
 
 {% block extrahead %}
   {{ super() }}
+  <link rel="alternate" type="application/rss+xml" title="RSS"
+   href="{{ request.get_full_path() }}format:rss">
   {% for preview in product.all_previews %}
     <link rel="prefetch" href="{{ preview.image_url }}">
   {% endfor %}

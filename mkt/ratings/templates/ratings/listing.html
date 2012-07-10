@@ -7,6 +7,12 @@
 
 {% block bodyclass %}reviews listing{% endblock %}
 
+{% block extrahead %}
+  {{ super() }}
+  <link rel="alternate" type="application/rss+xml"
+        title="RSS" href="{{ request.get_full_path() }}format:rss">
+{% endblock %}
+
 {% block content %}
   {{ mkt_breadcrumbs(product, [(None, _('Reviews'))]) }}
   <section id="review-listing">

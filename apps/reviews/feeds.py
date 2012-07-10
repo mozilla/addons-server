@@ -42,7 +42,8 @@ class ReviewsRss(Feed):
 
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
-        return absolutify(shared_url('reviews.detail', self.addon, review.id))
+        return absolutify(shared_url('reviews.detail', self.addon,
+                                     review.id))
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""

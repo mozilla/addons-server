@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, url, include
 
+from mkt.ratings.feeds import RatingsRss
 from reviews.views import delete as amo_delete, flag as amo_flag
-from reviews.feeds import ReviewsRss
 
 from . import views
 
@@ -20,6 +20,6 @@ review_patterns = patterns('',
     url('^$', views.review_list, name='ratings.list'),
     url('^add$', views.add, name='ratings.add'),
     url('^(?P<review_id>\d+)/', include(detail_patterns)),
-    url('^format:rss$', ReviewsRss(), name='ratings.list.rss'),
+    url('^format:rss$', RatingsRss(), name='ratings.list.rss'),
     url('^user:(?P<user_id>\d+)$', views.review_list, name='ratings.user'),
 )
