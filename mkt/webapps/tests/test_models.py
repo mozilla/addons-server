@@ -90,24 +90,21 @@ class TestWebapp(test_utils.TestCase):
 
     def test_get_url_path(self):
         webapp = Webapp(app_slug='woo')
-        eq_(webapp.get_url_path(), '/en-US/app/woo/')
+        eq_(webapp.get_url_path(), '/app/woo/')
 
     def test_get_stats_url(self):
         webapp = Webapp(app_slug='woo')
 
-        eq_(webapp.get_stats_url(), '/en-US/app/woo/statistics/')
+        eq_(webapp.get_stats_url(), '/app/woo/statistics/')
 
-        eq_(
-            webapp.get_stats_url(
-                action='installs_series',
-                args=['day', '20120101', '20120201', 'json']),
-                '/en-US/app/woo/statistics/installs-day-20120101-20120201.json'
-        )
+        url = webapp.get_stats_url(action='installs_series',
+            args=['day', '20120101', '20120201', 'json'])
+        eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
     def test_get_inapp_stats_url(self):
         webapp = Webapp.objects.create(app_slug='woo')
         eq_(webapp.get_stats_inapp_url(action='revenue', inapp='duh'),
-            '/en-US/app/woo/statistics/inapp/duh/sales/')
+            '/app/woo/statistics/inapp/duh/sales/')
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'

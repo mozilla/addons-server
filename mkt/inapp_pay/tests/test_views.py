@@ -130,14 +130,14 @@ class PayFlowTest(PaymentViewTest):
     def setUp(self):
         super(PayFlowTest, self).setUp()
 
-    def start(self, req=None, extra_request=None):
+    def start(self, req=None, extra_request=None, **kw):
         if not req:
             payload = self.payload()
             if extra_request:
                 payload['request'].update(extra_request)
             req = self.request(payload=json.dumps(payload))
         return self.client.get(reverse('inapp_pay.pay_start'),
-                               data=dict(req=req))
+                               data=dict(req=req), **kw)
 
 
 @mock.patch.object(settings, 'DEBUG', True)
@@ -194,8 +194,8 @@ class TestPayStart(PayFlowTest):
         payload = self.payload()
         tier = payload['request']['priceTier']
         price = PriceCurrency.objects.get(tier=tier, currency=currency).price
-        with self.activate(locale='fr'):
-            rp = self.start(req=self.request(payload=json.dumps(payload)))
+        rp = self.start(req=self.request(payload=json.dumps(payload)),
+                        HTTP_ACCEPT_LANGUAGE='fr')
         eq_(rp.context['price'], price)
         eq_(rp.context['currency'], currency)
 
@@ -352,9 +352,8 @@ class TestPay(PaymentViewTest):
                                        currency=currency)
                    .returns(['some-pay-key', '']))
         req = self.request(payload=json.dumps(payload))
-        with self.activate(locale='fr'):
-            res = self.client.post(reverse('inapp_pay.pay'), dict(req=req))
-
+        res = self.client.post(reverse('inapp_pay.pay'), dict(req=req),
+                               HTTP_ACCEPT_LANGUAGE='fr')
         self.assert_payment_done(payload, amo.CONTRIB_INAPP_PENDING,
                                  currency=currency)
 

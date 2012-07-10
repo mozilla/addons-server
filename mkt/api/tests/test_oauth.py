@@ -75,11 +75,12 @@ class OAuthClient(Client):
         req.sign_request(self.signature_method, self.consumer, None)
         return req.to_header()['Authorization']
 
-    def get(self, url):
+    def get(self, url, **kw):
         url = get_absolute_url(url)
         return super(OAuthClient, self).get(url,
-                        HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('GET', url))
+                     HTTP_HOST='api',
+                     HTTP_AUTHORIZATION=self.header('GET', url),
+                     **kw)
 
     def delete(self, url):
         url = get_absolute_url(url)

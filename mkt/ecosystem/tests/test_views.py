@@ -12,8 +12,8 @@ class TestLanding(amo.tests.TestCase):
         self.url = reverse('ecosystem.landing')
 
     def test_legacy_redirect(self):
-        r = self.client.get('/en-US/ecosystem/')
-        self.assertRedirects(r, '/en-US/developers/', 301)
+        r = self.client.get('/ecosystem/')
+        self.assertRedirects(r, '/developers/', 301)
 
     def test_tutorials_default(self):
         r = self.client.get(self.url)

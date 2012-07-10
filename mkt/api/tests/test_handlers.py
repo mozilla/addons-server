@@ -366,10 +366,9 @@ class TestCategoryHandler(BaseOAuth):
         eq_(data['name'], 'Webapp')
 
     def test_get_category_localised(self):
-        with self.activate(locale='fr'):
-            res = self.client.get(self.get_url)
-            data = json.loads(res.content)
-            eq_(data['name'], 'Le Webapp')
+        res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
+        data = json.loads(res.content)
+        eq_(data['name'], 'Le Webapp')
 
     def test_get_other_category(self):
         res = self.client.get(('api_dispatch_detail',

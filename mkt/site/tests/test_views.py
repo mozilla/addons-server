@@ -23,26 +23,26 @@ class Test404(amo.tests.TestCase):
 
     def test_404(self):
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
+        eq_(pq(r.content)('#site-header .logo').text(), 'Mozilla Marketplace')
 
     def test_404_devhub(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
         r = self._test_404('/developers/xxx')
-        eq_(pq(r.content)('#site-header h1').text(),
+        eq_(pq(r.content)('#site-header .logo').text(),
             'Mozilla Marketplace Developers')
 
     def test_404_consumer_legacy(self):
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
+        eq_(pq(r.content)('#site-header .logo').text(), 'Mozilla Marketplace')
 
     def test_404_consumer(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header h1').text(), 'Mozilla Marketplace')
+        eq_(pq(r.content)('#site-header .logo').text(), 'Mozilla Marketplace')
 
 
 class TestManifest(amo.tests.TestCase):

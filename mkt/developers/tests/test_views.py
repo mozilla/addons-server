@@ -69,16 +69,13 @@ class TestHome(amo.tests.TestCase):
         self.url = reverse('mkt.developers.apps')
 
     def test_legacy_login_redirect(self):
-        r = self.client.get('/en-US/firefox/users/login')
-        got, exp = r['Location'], '/en-US/users/login'
-        assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
-        r = self.client.get('/en-US/users/login')
-        got, exp = r['Location'], '/en-US/login'
+        r = self.client.get('/users/login')
+        got, exp = r['Location'], '/login'
         assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
 
     def test_login_redirect(self):
         r = self.client.get(self.url)
-        self.assertLoginRedirects(r, '/en-US/developers/submissions', 302)
+        self.assertLoginRedirects(r, '/developers/submissions', 302)
 
     def test_home_anonymous(self):
         r = self.client.get(self.url, follow=True)

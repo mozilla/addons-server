@@ -111,10 +111,6 @@ class TestRedirects(amo.tests.TestCase):
         self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
 
         response = self.client.get('/', follow=True,
-                                   HTTP_ACCEPT_LANGUAGE='pt-XX, xx, de')
-        self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
-
-        response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='xx, yy, zz')
         self.assertRedirects(response, '/en-US/firefox/', status_code=301)
 

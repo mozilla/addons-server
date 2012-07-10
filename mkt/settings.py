@@ -25,6 +25,10 @@ LOGOUT_URL = '/logout'
 # Let robots tear this place up.
 ENGAGE_ROBOTS = True
 
+# NOTE: If you want to disable this, you have to do it in this file right here
+# since we do a lot of conditional stuff below.
+REGION_STORES = True
+
 MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 MKT_SUPPORT_EMAIL = 'marketplace-developer-support@mozilla.org'
@@ -72,19 +76,28 @@ INSTALLED_APPS += (
     'mkt.webapps',
 )
 
-SUPPORTED_NONLOCALES += (
-    'manifest.webapp',
-    'mozmarket.js',
-    'appcache',
-    'csrf',
-)
+if not REGION_STORES:
+    SUPPORTED_NONLOCALES += (
+        'manifest.webapp',
+        'mozmarket.js',
+        'appcache',
+        'csrf',
+    )
 
-MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 # TODO: I want to get rid of these eventually but it breaks some junk now.
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('cake.middleware.CookieCleaningMiddleware')
-MIDDLEWARE_CLASSES += (
+MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+if REGION_STORES:
+    MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
+    MIDDLEWARE_CLASSES += [
+        'mkt.site.middleware.RequestCookiesMiddleware',
+        'mkt.site.middleware.FixLegacyLocaleMiddleware',
+        'mkt.site.middleware.LocaleMiddleware',
+        'mkt.site.middleware.RegionMiddleware',
+    ]
+MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.VaryOnAJAXMiddleware',
 
     # TODO: Remove this when we remove `request.can_view_consumer`.
@@ -93,11 +106,13 @@ MIDDLEWARE_CLASSES += (
     # Put this in your settings_local_mkt if you want the walled garden.
     #'amo.middleware.NoConsumerMiddleware',
     #'amo.middleware.LoginRequiredMiddleware',
-)
+]
 
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
-TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
+if REGION_STORES:
+    TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.app')
+    TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
 TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.site.context_processors.global_settings',
 ]

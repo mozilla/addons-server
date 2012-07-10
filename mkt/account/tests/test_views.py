@@ -658,8 +658,8 @@ class TestPurchases(PurchaseBase):
         cache.clear()
         eq_(self.get_order('purchased'), ['t2', 't4', 't3', 't1', 'f1', 'f2'])
 
-    def get_pq(self):
-        r = self.client.get(self.url, dict(sort='name'))
+    def get_pq(self, **kw):
+        r = self.client.get(self.url, dict(sort='name', **kw))
         eq_(r.status_code, 200)
         return pq(r.content)('#purchases')
 
@@ -667,8 +667,8 @@ class TestPurchases(PurchaseBase):
         assert '$1.00' in self.get_pq()('.purchase').eq(0).text()
 
     def test_price_locale(self):
-        self.url = self.url.replace('/en-US', '/fr')
-        assert u'1,00' in self.get_pq()('.purchase').eq(0).text()
+        purchases = self.get_pq(lang='fr')
+        assert u'1,00' in purchases('.purchase').eq(0).text()
 
     def test_receipt(self):
         res = self.client.get(reverse('account.purchases.receipt',

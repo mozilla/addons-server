@@ -62,6 +62,7 @@ def global_settings(request):
     context.update(account_links=account_links,
                    settings=settings,
                    amo=amo, mkt=mkt,
+                   APP=amo.FIREFOX,
                    tools_links=tools_links,
                    tools_title=tools_title,
                    ADMIN_MESSAGE=get_config('site_notice'),
