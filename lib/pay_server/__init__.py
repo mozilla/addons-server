@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db.models import Model
 
 from base import Client, Encoder, SolitudeError
+from errors import pre_approval_codes
 
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
@@ -85,18 +86,37 @@ class ZamboniClient(Client):
     def make_uuid(self):
         return hashlib.md5(str(uuid.uuid4())).hexdigest()
 
-    def pay(self, data):
-        """Add in uuid and urls on the way."""
+    def make_urls(self, complete, cancel):
         uuid = self.make_uuid()
+        return {
+            'cancel_url': absolutify(urlparams(cancel, uuid=uuid)),
+            'return_url': absolutify(urlparams(complete, uuid=uuid)),
+            'uuid': uuid
+        }
+
+    def pay(self, data, retry=True):
+        """
+        Add in uuid and urls on the way. If retry is True, if the transaction
+        fails because of a pre-approval failure, we'll try it a second time
+        without it.
+        """
         rt = data['seller'].get_purchase_url(action='done', args=['complete'])
         ca = data['seller'].get_purchase_url(action='done', args=['cancel'])
 
         data.update({
             'ipn_url': absolutify(reverse('amo.paypal')),
-            'return_url': absolutify(urlparams(rt, uuid=uuid)),
-            'cancel_url': absolutify(urlparams(ca, uuid=uuid)),
-            'uuid': uuid,
+            'use_preapproval': True,
         })
+        data.update(self.make_urls(rt, ca))
+
+        try:
+            return self.post_pay(data=data)
+        except self.Error, error:
+            if not (retry and error.code in pre_approval_codes):
+                raise
+
+        data.update(self.make_urls(rt, ca))
+        data['use_preapproval'] = False
         return self.post_pay(data=data)
 
 

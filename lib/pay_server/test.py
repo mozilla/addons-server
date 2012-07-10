@@ -47,7 +47,7 @@ class TestUtils(test_utils.TestCase):
         assert not post_buyer.called
 
     @patch.object(client, 'get_buyer')
-    def test_create(self, get_buyer):
+    def test_create_exists(self, get_buyer):
         get_buyer.return_value = {'meta': {'total_count': 1},
                                   'objects': [{'paypal': 'foo'}]}
         eq_(client.lookup_buyer_paypal(self.user), 'foo')
@@ -60,7 +60,7 @@ class TestUtils(test_utils.TestCase):
 
     @patch.object(client, 'get_seller')
     @patch.object(client, 'post_seller')
-    def test_create(self, post_seller, get_seller):
+    def test_create_exists_paypal(self, post_seller, get_seller):
         get_seller.return_value = {
                 'meta': {'total_count': 1},
                 'objects': [{'paypal': {'resource_pk': 1}}]
@@ -116,15 +116,53 @@ class TestUtils(test_utils.TestCase):
         eq_(kwargs['pk'], 1)
         eq_(kwargs['data']['paypal_id'], 'foo')
 
-    @patch.object(client, 'post_pay')
-    def test_pay(self, post_pay):
+
+@patch.object(settings, 'SECLUSION_HOSTS', ('http://localhost'))
+@patch.object(settings, 'DOMAIN', 'testy')
+class TestPay(test_utils.TestCase):
+
+    def setUp(self):
+        self.user = UserProfile.objects.create()
+        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
         # Temporary until we get AMO solitude support.
         if not settings.MARKETPLACE:
             raise SkipTest
 
-        client.pay({'amount':1, 'currency':'USD', 'seller':self.addon,
-                    'memo':'foo'})
+    @patch.object(client, 'post_pay')
+    def test_pay(self, post_pay):
+        client.pay({'amount': 1, 'currency': 'USD', 'seller': self.addon,
+                    'memo': 'foo'})
         kwargs = post_pay.call_args[1]['data']
         assert 'ipn_url' in kwargs
         assert 'uuid' in kwargs
         assert kwargs['uuid']in kwargs['return_url']
+
+    @patch.object(client, 'post_pay')
+    def test_pay_not_preapproval(self, post_pay):
+        post_pay.side_effect = client.Error('nope', code='0')
+        with self.assertRaises(client.Error):
+            client.pay({'amount': 1, 'currency': 'USD',
+                        'seller': self.addon, 'memo': 'foo'})
+        # It did not retry because this is not a pre-approval error.
+        eq_(post_pay.call_count, 1)
+
+    @patch.object(client, 'post_pay')
+    def test_pay_preapproval_no_retry(self, post_pay):
+        post_pay.side_effect = client.Error('nope', code='539012')
+        with self.assertRaises(client.Error):
+            client.pay({'amount': 1, 'currency': 'USD',
+                        'seller': self.addon, 'memo': 'foo'}, retry=False)
+        eq_(post_pay.call_count, 1)
+        args = post_pay.call_args_list[0][1]
+        eq_(args['data']['use_preapproval'], True)
+
+    @patch.object(client, 'post_pay')
+    def test_pay_preapproval(self, post_pay):
+        post_pay.side_effect = client.Error('nope', code='539012')
+        with self.assertRaises(client.Error):
+            client.pay({'amount': 1, 'currency': 'USD',
+                        'seller': self.addon, 'memo': 'foo',
+                        'buyer': self.user})
+        eq_(post_pay.call_count, 2)
+        args = post_pay.call_args_list[1][1]
+        eq_(args['data']['use_preapproval'], False)

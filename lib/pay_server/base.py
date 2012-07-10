@@ -15,7 +15,10 @@ log = logging.getLogger('s.client')
 
 
 class SolitudeError(Exception):
-    pass
+
+    def __init__(self, *args, **kwargs):
+        self.code = kwargs.pop('code', 0)
+        super(SolitudeError, self).__init__(*args, **kwargs)
 
 
 class SolitudeOffline(SolitudeError):
@@ -106,7 +109,8 @@ class Client(object):
                 res = json.loads(result.text) if result.text else {}
             except:
                 log.error('Failed to parse error: %s' % result.text)
-            raise SolitudeError(lookup(res.get('error_code', 0)))
+            code = res.get('error_code', 0)
+            raise SolitudeError(lookup(code), code=code)
 
     def __getattr__(self, attr):
         try:
