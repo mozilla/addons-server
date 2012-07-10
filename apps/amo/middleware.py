@@ -236,9 +236,7 @@ class LoginRequiredMiddleware(ViewMiddleware):
             name.startswith(settings.NO_LOGIN_REQUIRED_MODULES)):
             return
         if settings.MARKETPLACE:
-            redirect_url = '/%s%s' % ('' if settings.REGION_STORES
-                                         else request.LANG,
-                                      settings.LOGIN_URL)
+            redirect_url = '/%s%s' % (request.LANG, settings.LOGIN_URL)
             path_info = request.path_info
             if path_info.lstrip('/') and path_info != settings.LOGIN_URL:
                 redirect_url = urlparams(redirect_url, to=request.path)

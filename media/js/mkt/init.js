@@ -98,9 +98,6 @@ z.page.on('fragmentloaded', function() {
     $header.on('click', '.menu-button', _pd(function() {
         $nav.addClass('active');
         $('.nav-overlay').addClass('show');
-    })).on('click', '.region', _pd(function() {
-        var $outer = $('html, body');
-        $outer.animate({scrollTop: $outer.height()}, 1000);
     }));
 
     // $header.on('focus.search', '#search-q', function() {

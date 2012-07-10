@@ -7,11 +7,7 @@
 ] %}
 <header id="site-header">
   <section>
-    <h1 class="logo"><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
-    {% if settings.REGION_STORES %}
-      <h1 class="region{% if request.REGION != mkt.regions.WORLDWIDE %} flag {{ request.REGION.slug }}{% endif %}">
-        {{ request.REGION.name }}</h1>
-    {% endif %}
+    <h1><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
     {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="#" class="menu-button"><b></b></a>
