@@ -3,7 +3,6 @@ import logging
 import random
 from operator import itemgetter
 
-from django.conf import settings
 from django.db.models import Q
 from django.utils.encoding import smart_str
 
@@ -252,11 +251,11 @@ def get_featured_ids(app, lang=None, type=None):
     if lang:
         has_locale = qs.filter(
             collections__featuredcollection__locale__iexact=lang)
-        qs = qs.filter(
-            collections__featuredcollection__locale__isnull=True)
         if has_locale.exists():
             ids += list(has_locale.distinct().values_list('id', flat=True))
             random.shuffle(ids)
+    qs = qs.filter(Q(collections__featuredcollection__locale=None) |
+                   Q(collections__featuredcollection__locale=''))
     other_ids = list(qs.distinct().values_list('id', flat=True))
     random.shuffle(other_ids)
     ids += other_ids
@@ -282,7 +281,6 @@ def get_creatured_ids(category, lang):
                   category=category)
               .distinct()
               .values_list('id', flat=True))
-
 
     if lang is not None and lang != '':
         possible_lang_match = FeaturedCollection.objects.filter(
