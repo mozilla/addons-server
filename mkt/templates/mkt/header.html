@@ -1,21 +1,9 @@
-{% set urls = [
-  (_('Home'), url('home')),
-  (_('Popular'), url('browse.apps')|urlparams(sort='downloads')),
-  (_('Top Free'), url('browse.apps')|urlparams(sort='downloads', price='free')),
-  (_('Top Paid'), url('browse.apps')|urlparams(sort='downloads', price='paid')),
-  (_('Categories'), url('browse.apps')|urlparams('categories')),
-] %}
 <header id="site-header" class="c">
   <section>
     <h1 class="logo"><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
-    {% if settings.REGION_STORES %}
-      <h1 class="region{% if request.REGION != mkt.regions.WORLDWIDE %} flag {{ request.REGION.slug }}{% endif %}">
-        {{ request.REGION.name }}</h1>
-    {% endif %}
     {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="#" class="home-button"><b></b></a>
-      <a href="#" class="menu-button"><b></b></a>
       <a href="#" class="filter-button">{{ _('Filter') }}</a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
@@ -33,11 +21,6 @@
           <button id="search-go">{{ _('Search') }}</button>
         </form>
       {% endblock %}
-      <ul id="flyout">
-        {% for text, link in urls %}
-          <li><a href="{{ link }}">{{ text }}</a></li>
-        {% endfor %}
-      </ul>
     </nav>
     {% endif %}
   </section>

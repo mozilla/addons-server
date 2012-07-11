@@ -3,102 +3,61 @@
 {% set query_term = query.q %}
 {% set search_url = request.get_full_path() %}
 
-{% if query_term %}
-  {# L10n: {0} is a search term, such as Firebug. #}
-  {% set title = _('{0} | Search')|f(query_term) %}
-  {# L10n: {0} is a search term, such as Firebug. #}
-  {% set heading = _('Search Results for "{0}"')|f(query_term) %}
-  {% set crumbs = [(url('search.search'), _('Search')),
-                   (None, query_term)] %}
-{% elif category %}
-  {% set search_url = url('search.search')|urlparams(cat=category.id) %}
-  {% set title = category.name %}
-  {% set heading = title %}
-{% elif browse %}
-  {# Yeah, you're right this is ridiculous. #}
-  {% if sort == 'downloads' %}
-    {% if price == 'free' %}
-      {% set title = _('Top Free') %}
-    {% elif price == 'paid' %}
-      {% set title = _('Top Paid') %}
-    {% else %}
-      {% set title = _('By Popularity') %}
-    {% endif %}
-  {% elif sort == 'rating' %}
-    {% set title = _('By Rating') %}
-  {% elif sort == 'price' %}
-    {% set title = _('By Price') %}
-  {% elif sort == 'created' %}
-    {% set title = _('Newest Apps') %}
-  {% endif %}
-  {% if title %}
-    {% set heading = title %}
-    {% set title = '%s | %s' % (title, _('Apps')) %}
-    {% set crumbs = [(url('browse.apps'), _('Apps')),
-                     (None, heading)] %}
-  {% else %}
-    {% set title = 'Apps' %}
-    {% set heading = title %}
-  {% endif %}
-{% else %}
-  {% set title = _('Search') %}
-  {% set heading = title %}
-{% endif %}
-
-{% if not crumbs %}
-  {% set crumbs = [(None, title)] %}
-{% endif %}
-
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+{% block title %}{{ mkt_page_title(_('Search Results')) }}{% endblock %}
 
 {% block extrahead %}
   <meta name="WT.oss" content="{{ query_term }}">
   <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
-{% macro facet(title, id, links, active=False) %}
-  <li id="{{ id }}" class="facet{{ ' active' if active }}">
-    <h3>{{ title }}</h3>
-    {{ facet_links(links) }}
-  </li>
-{% endmacro %}
-
-{% macro facet_links(links) %}
-  <ul class="facet-group">
-    {% for link in links recursive %}
-    <li{% if link.selected %} class="selected"{% endif %}>
-      <a href="{{ search_url|urlparams(page=None, **link.urlparams) }}"
-         data-params="{{ dict(page=None, **link.urlparams)|json }}">
-        {{ link.text }}</a>
-      {% if link.children %}
-        <ul>{{ loop(link.children) }}</ul>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-{% endmacro %}
-
-{% macro num_results() %}
-  {% set cnt = pager.paginator.count %}
-  <p class="cnt">
-    {{ ngettext('<b>{0}</b> matching result',
-                '<b>{0}</b> matching results',
-                cnt)|f(cnt|numberfmt)|safe }}
-  </p>
-{% endmacro %}
+{# if applied_filters might be useful later #}
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}
-  <section id="search-facets" class="col">
-    <h2>{{ _('Filter Results') }}</h2>
-    <ul class="facets island pjax-trigger">
-        {{ facet(_('Category'), 'category-facets', categories, active=active.categories) }}
-        {{ facet(_('Price'), 'price-facets', prices, active=active.prices) }}
-        {% if not request.MOBILE %}
-          {{ facet(_('Optimized for'), 'device-facets', devices, active=active.devices) }}
-        {% endif %}
-    </ul>
-    {{ num_results() }}
+  <section id="filters">
+    <header class="classic-header">
+      <a href="#" class="back-button">&lt;</a>
+      <h1>{{ _('Filter') }}</h1>
+    </header>
+
+    <div>
+      {% if prices %}
+        <h2>{{ _('Filter by price') }}</h2>
+        <ul class="toggles c">
+          {% for price in prices %}
+            <li>
+              <a{% if price.selected %} class="sel"{% endif %}
+                 href="{{ search_url|urlparams(page=None,
+                                               **price.urlparams) }}">
+                {{ price.text }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if categories %}
+        <h2>{{ _('Filter by category') }}</h2>
+        <ul class="toggles c">
+          {% for category in categories %}
+            <li>
+              <a {% if category.selected %} class="sel"{% endif %}
+                 href="{{ search_url|urlparams(page=None,
+                                               **category.urlparams) }}">
+                {{ category.text }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {# TODO: This needs to be implemented. #}
+      <h2>{{ _('Sort by') }}</h2>
+      <ul class="toggles c">
+        <li><a href="#">Relevancy</a></li>
+        <li><a href="#" class="sel">Rating</a></li>
+      </ul>
+    </div>
   </section>
   <section id="search-results" class="full c">
     {% with search_url=search_url %}

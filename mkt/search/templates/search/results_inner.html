@@ -1,16 +1,3 @@
-{{ impala_addon_listing_header(search_url|urlparams(page=None),
-                               sort_opts, query.sort or None, extra_sort_opts) }}
-{% if applied_filters %}
-  <section class="applied-filters">
-    <h2>{{ _('Applied Filters:') }}</h2>
-    <ol>
-      {% for f in applied_filters %}
-        <li><a href="{{ search_url|urlparams(**f.null_urlparams) }}">
-          {{ f.text }}</a></li>
-      {% endfor %}
-    </ol>
-  </section>
-{% endif %}
 {% if pager.object_list %}
   <ol class="listing" start="{{ pager.start_index() }}">
     {{ search_results(pager.object_list, field=query.sort, src='mkt-search') }}

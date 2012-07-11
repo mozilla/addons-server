@@ -61,6 +61,14 @@
         position: relative;
     }
     .home-button, .filter-button {
+        display: none;
+    }
+    nav {
+        position: relative;
+    }
+}
+#site-header, #filters {
+    .home-button, .filter-button, .back-button {
         float: left;
         width: 42px;
         height: 30px;
@@ -69,137 +77,8 @@
         margin: 10px 15px 0 5px;
         .box-shadow(0 1px 0 1px rgba(0,0,0,0.5));
     }
-    .menu-button {
-        height: 28px;
-        width: 28px;
-        float: right;
-        height: 30px;
-        margin: 25px 0 0 44px;
-        display: block;
-        position: relative;
-        overflow: hidden;
-        outline: none;
-        // CSS Menu icon.
-        b, b:before, b:after {
-            position: absolute;
-            top: 0;
-            left: 0;
-            text-indent: -9999px;
-            .border-radius(2px);
-            .box-shadow(0 1px 0 fadeOut(#fff, 80%),
-                        0 1px 0 rgba(0,0,0,.5) inset,
-                        0 1px 1px rgba(0,0,0,.5) inset);
-            .gradient-two-color(#21292f, #2a353c);
-            display: block;
-            content: '';
-            background: rgba(0,0,0,.5);
-            margin-bottom: 3px;
-            width: 28px;
-            height: 7px;
-        }
-        b:before {
-            top: 10px;
-        }
-        b:after {
-            top: 20px;
-        }
-    }
-    .home-button, .filter-button {
-        display: none;
-    }
     .filter-button {
         float: right;
-    }
-    nav {
-        position: relative;
-    }
-    #flyout {
-        .border-radius(5px);
-        .box-shadow(0 1px 4px fadeOut(@black, 50%));
-        background: @white;
-        opacity: 0;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        visibility: hidden;
-        top: 32px;
-        right: -15px;
-        .min-width(3);
-        z-index: 9001;
-        &.active {
-            opacity: 1;
-            visibility: visible;
-            top: 70px;
-        }
-        li {
-            + li {
-                border-top: 1px solid @light-gray;
-            }
-            &:first-child a {
-                &:hover:before,
-                &:active:before {
-                    background: @btn-b;
-                }
-                .border-radius(5px 5px 0 0);
-                &:before {
-                    .box-shadow(1px 1px 0 rgba(255,255,255,.1) inset,
-                                -1px -1px 0 fadeOut(@black, 75%));
-                    .transform(~'rotate(45deg)');
-                    background: @white;
-                    content: "";
-                    height: 14px;
-                    position: absolute;
-                    top: -7px;
-                    right: 22px;
-                    z-index: 0;
-                    width: 14px;
-                }
-            }
-            &:last-child a {
-                .border-radius(0 0 5px 5px);
-            }
-            &:hover, &:hover + li {
-                border-top-color: @dark-gray;
-            }
-        }
-        a, a:after {
-            height: 35px;
-        }
-        a {
-            color: @link;
-            display: block;
-            font-size: 15px;
-            line-height: 35px;
-            padding: 0 35px 0 15px;
-            position: relative;
-            z-index: 2;
-            &:after {
-                .arrow;
-                background-position: 100% 50%;
-                content: "";
-                display: block;
-                opacity: .7;
-                position: absolute;
-                top: 0;
-                right: 15px;
-                width: 18px;
-            }
-            &:hover, &:active {
-                .gradient-two-color(@btn-b, @btn-b-dark);
-                color: @white;
-                text-decoration: none;
-                &:after {
-                    right: 10px;
-                    opacity: 1;
-                }
-            }
-        }
-        a:active,
-        li:first-child a:active:before {
-            .box-shadow(inset 0 2px 0 0 rgba(0,0,0,.2),
-                        inset 0 12px 24px 6px rgba(0,0,0,.2),
-                        inset 0 0 2px 2px rgba(0,0,0,.2));
-        }
     }
 }
 
@@ -336,6 +215,15 @@
     .region {
         display: none;
     }
+    .classic-header {
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+        color: @white;
+        .border-box;
+        background: @grain-src @navy-gray;
+        text-align: center;
+    }
     #site-header {
         height: 50px;
         .logo {
@@ -344,9 +232,6 @@
                 height: 43px;
                 width: 50px;
             }
-        }
-        .menu-button {
-            display: none;
         }
         .filter-button {
             display: block;
@@ -364,68 +249,8 @@
                 display: inline-block;
                 width: 12px;
                 height: 18px;
-                background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat 0 0;
+                background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat;
                 margin: 6px 0 0 15px;
-            }
-        }
-        #flyout,
-        #flyout a,
-        #flyout li:first-child a:before {
-            background: @dark-gray;
-        }
-        #flyout,
-        #flyout li:first-child a,
-        #flyout li:last-child a {
-            .border-radius(0);
-        }
-        #flyout {
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            &.active {
-                // Let the nav be dismissed when you click anywhere below the links.
-                pointer-events: none;
-                top: 55px;
-            }
-            li {
-                &:hover + li,
-                + li {
-                    border-top: 1px solid lighten(@dark-gray, 4%);
-                }
-                &:last-child {
-                    border-bottom: 1px solid lighten(@dark-gray, 4%);
-                }
-                &:first-child a:before {
-                    .box-shadow(1px 1px 0 rgba(51,51,51,.1) inset,
-                                -1px -1px 0 fadeOut(@black, 75%));
-                    top: -5px;
-                    right: 18px;
-                }
-            }
-            a {
-                .dark-text-shadow;
-                border-bottom: 1px solid darken(#222, 2%);
-                color: @faint-gray;
-                font-size: 21px;
-                line-height: 140%;
-                padding: 15px;
-                pointer-events: auto;
-                &:hover {
-                    color: @white;
-                }
-                &:after {
-                    background: @arrow-big-src 100% 100%;
-                    height: 19px;
-                    top: 22px;
-                }
-                &:hover, &:active {
-                    background: @btn-b;
-                    &:after {
-                        right: 15px;
-                    }
-                }
             }
         }
     }

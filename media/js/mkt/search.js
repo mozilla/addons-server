@@ -20,15 +20,12 @@
             $this.closest('ul').removeClass('active');
             $this.addClass('active');
         }
-    }).on('click', '#search-listing .items', function(e) {
-        // Let's treat each li as a click area for its data-href.
-        var $target = $(e.target),
-            url = $target.closest('.item').data().href;
-
-        if (!$target.hasClass('button')) {
-            window.location.href = url;
-        }
-    });
+    }).on('click', '#filters .back-button', _pd(function(e) {
+        $('#filters').hide();
+    }));
+    $('nav .filter-button').click(_pd(function(e) {
+        $('#filters').show();
+    }));
     function turnPages(e) {
         if (fieldFocused(e)) {
             return;

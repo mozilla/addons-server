@@ -102,6 +102,7 @@ CSS = {
         'css/impala/lightbox.less',
         'css/mkt/lightbox.less',
         'css/mkt/browse.less',
+        'css/mkt/filters.less',
     ),
     'mkt/ecosystem': (
         'css/ecosystem/landing.less',
