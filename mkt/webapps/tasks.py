@@ -104,7 +104,8 @@ def update_manifests(ids, **kw):
             v8n_url = absolutify(reverse(
                 'mkt.developers.upload_detail', args=[upload.uuid]))
             msg = u'Validation errors: %s' % (
-                ' '.join([m['message'] for m in v8n['messages']]),)
+                ' '.join([m['message'] for m in v8n['messages']
+                          if m['type'] == u'error']),)
             msg += '\nValidation result URL: %s' % bleach.linkify(
                 v8n_url, nofollow=True, filter_url=get_outgoing_url)
             _log(webapp, msg)

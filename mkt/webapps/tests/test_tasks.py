@@ -22,8 +22,13 @@ original = {
         "version": "0.1",
         "name": "MozillaBall",
         "description": "Exciting Open Web development action!",
+        "icons": {
+            "16": "http://test.com/icon-16.png",
+            "48": "http://test.com/icon-48.png",
+            "128": "http://test.com/icon-128.png"
+        },
         "installs_allowed_from": [
-            "https://appstore.mozillalabs.com",
+            "*",
         ],
     }
 
@@ -32,6 +37,11 @@ new = {
         "version": "1.0",
         "name": "MozillaBall",
         "description": "Exciting Open Web development action!",
+        "icons": {
+            "16": "http://test.com/icon-16.png",
+            "48": "http://test.com/icon-48.png",
+            "128": "http://test.com/icon-128.png"
+        },
         "installs_allowed_from": [
             "*",
         ],
@@ -132,7 +142,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         open_manifest.return_value = original
         # Mock new manifest with name change.
         n = new.copy()
-        n['name'] = 'MozillaBall Ultimate Edition'
+        n['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
         response_mock.read.return_value = json.dumps(n)
         response_mock.headers = {
