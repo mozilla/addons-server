@@ -37,62 +37,8 @@
   {{ notification(product, amo, is_dev) }}
 {% else %}
   <section class="product-details">
-    <div class="visual">
-      <img src="{{ product.get_icon_url(64) }}">
-    </div>
-    <div class="vitals c">
-      <h1 class="oneline">
-        {% if 'id' in request.GET %}
-          <b class="num">#{{ product.id }}</b>
-        {% endif %}
-        {{ product.name }}
-      </h1>
-      {% if product.listed_authors %}
-        <h2 class="authors oneline wide">{{ users_list(product.listed_authors, size=3) }}</h2>
-        <h2 class="authors oneline narrow">{{ product.listed_authors[0]|user_link }}</h2>
-      {% endif %}
-      {% set categories = product.all_categories %}
-      {% if is_author and product.is_premium() and product.premium %}
-        <p class="pricetag oneline faked-purchase">
-          <span class="price">{{ product.premium.get_price_locale() }}</span>
-        </p>
-      {% endif %}
-      {% if cats %}
-        <p class="cats wide">
-          {% for category in cats %}
-            <a href="{{ category.get_url_path() }}">
-              {{ category }}</a>{% if not loop.last %}, {% endif %}
-          {% endfor %}
-        </p>
-      {% endif %}
-      <p class="downloads oneline">
-        {{ product|weekly_downloads }}
-      </p>
-      {{ device_list(product) }}
-    </div>
+    {{ market_tile(product) }}
     <div class="actions">
-      {% if product.is_public() %}
-        {% if product.has_author(amo_user) %}
-          {{ market_button(product, 'developer') }}
-        {% else %}
-          {{ market_button(product) }}
-        {% endif %}
-        {% if request.amo_user %}
-          {% if purchased %}
-            <span class="approval checkmark purchased">
-              <b>{{ _('Purchased') }}</b></span>
-          {% elif product.can_purchase() %}
-            {% if user_data(amo_user)['pre_auth'] %}
-              <span class="approval checkmark">
-                <b>{{ _('PayPal pre-approval') }}</b></span>
-            {% endif %}
-          {% endif %}
-        {% endif %}
-      {% elif product.has_author(amo_user) %}
-        {{ market_button(product, 'developer') }}
-      {% elif is_reviewer %}
-        {{ market_button(product) }}
-      {% endif %}
       {% if is_dev %}
         <p><a href="{{ product.get_dev_url() }}" class="button manage wide">
           {{ _('Manage') }}</a></p>
@@ -104,6 +50,26 @@
       {% endif %}
     </div>
   </section>
+  {% if product.all_previews %}
+    <section class="previews slider full">
+      <div class="alt-slider">
+        <div class="controls">
+          <a href="#" class="prev-page"></a>
+          <a href="#" class="next-page"></a>
+        </div>
+        <ul class="content">
+          {%- for preview in product.all_previews -%}
+            <li>
+              <a class="screenshot thumbnail arrow{{ ' video' if preview.filetype == 'video/webm' }}"
+                 href="{{ preview.image_url }}" title="{{ preview.caption }}">
+                <div class="img" style="background-image:url({{ preview.thumbnail_url }})"></div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </section>
+  {% endif %}
 
   {{ notification(product, amo, is_dev) }}
 
@@ -133,95 +99,27 @@
   </section>
   <div id="purchased-message"></div>
 
-  {% set upsell = product.upsell %}
-  {% if upsell %}
-    {% set prm = upsell.premium_addon %}
-    {% if prm %}
-      <section id="upsell" class="notification-box wide c">
-        <div class="upsell">
-          <h3>{{ _('Premium version available') }}</h3>
-          <a href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-            <img class="icon" src="{{ prm.get_icon_url(64) }}">
-            <span class="name">{{ prm.name }}</span>
-          </a>
-        </div>
-        <a class="button special" href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-          {{ _('Read More') }}
-        </a>
-        <div class="details">
-          <div class="prose">{{ upsell.text|nl2br }}</div>
-          <div class="vitals">
-            <span class="vital price">{{ prm.get_price() }}</span>
-            <span class="vital downloads">
-              {{ prm|weekly_downloads }}
-            </span>
-          </div>
-        </div>
-      </section>
-      <a id="upsell" class="narrow"
-         href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-         <span class="avail">{{ _('Premium version available') }}</span>
-         <img class="icon" src="{{ prm.get_icon_url(16) }}">
-         <span class="name">{{ prm.name }}</span>
-      </a>
-    {% endif %}
-  {% endif %}
-
-  <section class="description">
-    {% if product.description %}
-      <a href="#" class="collapse wide">{{ _('More&hellip;') }}</a>
-    {% endif %}
-    <p class="summary">
-      {{ product.summary|nl2br }}
-      {% if product.description %}
-        <a href="#" class="collapse narrow">{{ _('More&hellip;') }}</a>
-      {% endif %}
-    </p>
-    {% if product.description or product.developer_comments %}
-      <div class="collapse">
+  <section class="description infobox full">
+    <div>
+      <p class="summary">
+        {{ product.summary|nl2br }}
         {% if product.description %}
-          <div class="more">{{ product.description|nl2br }}</div>
+          <a href="#" class="collapse narrow">{{ _('More&hellip;') }}</a>
         {% endif %}
-        {% if product.developer_comments %}
-          <h3>{{ _('Developer Comments') }}</h3>
-          <div class="developer-comments">{{ product.developer_comments }}</div>
-        {% endif %}
-      </div>
-    {% endif %}
-  </section>
-
-  {% if product.all_previews %}
-    <section class="previews slider full">
-      <div class="alt-slider">
-        <div class="controls">
-          <a href="#" class="prev-page"></a>
-          <a href="#" class="next-page"></a>
+      </p>
+      {% if product.description or product.developer_comments %}
+        <div class="collapse">
+          {% if product.description %}
+            <div class="more">{{ product.description|nl2br }}</div>
+          {% endif %}
+          {% if product.developer_comments %}
+            <h3>{{ _('Developer Comments') }}</h3>
+            <div class="developer-comments">{{ product.developer_comments }}</div>
+          {% endif %}
         </div>
-        <ul class="content">
-          {%- for preview in product.all_previews -%}
-            <li>
-              <a class="screenshot thumbnail arrow{{ ' video' if preview.filetype == 'video/webm' }}"
-                 href="{{ preview.image_url }}" title="{{ preview.caption }}">
-                <div class="img" style="background-image:url({{ preview.thumbnail_url }})"></div>
-              </a>
-            </li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    </section>
-    <div id="lightbox">
-      <section>
-        <div class="content">
-          <a class="close" href="#">{{ _('Close') }}</a>
-        </div>
-        <div class="controls">
-          <a href="#" class="control next">&raquo;</a>
-          <a href="#" class="control prev">&laquo;</a>
-          <div class="caption"><span></span></div>
-        </div>
-      </section>
+      {% endif %}
     </div>
-  {% endif %}
+  </section>
 
   <section id="support" class="support c">
 
@@ -277,46 +175,59 @@
 
     {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
              pare this down. But until then... code duplication :( #}
-      <ul class="narrow c">
-        {% if False %}
-          {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
-                   https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
-          <li><a href="" class="arrow">{{ _('Support') }}</a></li>
+    <ul class="narrow c">
+      {% if False %}
+        {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
+                 https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
+        <li><a href="" class="arrow">{{ _('Support') }}</a></li>
+      {% endif %}
+      {% if product.support_email %}
+        <li class="support-email">
+          {{ emaillink(product.support_email.localized_string,
+                       _('Support Email')) }}
+        </li>
+      {% endif %}
+      {% if product.support_url %}
+        <li class="support-url">
+          <a href="{{ product.support_url|external_url }}">
+            {{ _('Support Site') }}</a>
+        </li>
+      {% endif %}
+      {% if product.homepage %}
+        <li><a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a></li>
+      {% endif %}
+      {% if product.is_public() or is_reviewer %}
+        {% if product.privacy_policy %}
+          <li><a href="{{ product.get_detail_url('privacy') }}">
+            {{ _('Privacy Policy') }}</a></li>
         {% endif %}
-        {% if product.support_email %}
-          <li class="support-email">
-            {{ emaillink(product.support_email.localized_string,
-                         _('Support Email')) }}
-          </li>
+        {% if waffle.switch('app-stats') and product.public_stats %}
+          <li><a href="{{ url('mkt.stats.overview', product.app_slug) }}">
+            {{ _('Statistics') }}</a></li>
         {% endif %}
-        {% if product.support_url %}
-          <li class="support-url">
-            <a href="{{ product.support_url|external_url }}">
-              {{ _('Support Site') }}</a>
-          </li>
-        {% endif %}
-        {% if product.homepage %}
-          <li><a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a></li>
-        {% endif %}
-        {% if product.is_public() or is_reviewer %}
-          {% if product.privacy_policy %}
-            <li><a href="{{ product.get_detail_url('privacy') }}">
-              {{ _('Privacy Policy') }}</a></li>
-          {% endif %}
-          {% if waffle.switch('app-stats') and product.public_stats %}
-            <li><a href="{{ url('mkt.stats.overview', product.app_slug) }}">
-              {{ _('Statistics') }}</a></li>
-          {% endif %}
-        {% endif %}
-        {% if abuse_form %}
-          <li><a href="{{ product.get_detail_url('abuse') }}">
-            {{ _('Report Abuse') }}</a></li>
-        {% endif %}
-      </ul>
-      <dl class="narrow">
-        <dt>{{ _('Published') }}</dt>
-        <dd>{{ product.created|timelabel }}</dd>
-      </dl>
+      {% endif %}
+      {% if abuse_form %}
+        <li><a href="{{ product.get_detail_url('abuse') }}">
+          {{ _('Report Abuse') }}</a></li>
+      {% endif %}
+    </ul>
+    {% set upsell = product.upsell %}
+    {% if upsell %}
+      {% set prm = upsell.premium_addon %}
+      {% if prm %}
+        <a id="upsell" class="narrow"
+           href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+           <span class="avail">{{ _('Premium version available') }}</span>
+           <img class="icon" src="{{ prm.get_icon_url(16) }}">
+           <span class="name">{{ prm.name }}</span>
+        </a>
+      {% endif %}
+    {% endif %}
+
+    <dl class="narrow">
+      <dt>{{ _('Published') }}</dt>
+      <dd>{{ product.created|timelabel }}</dd>
+    </dl>
 
     <ul class="wide">
       {% if product.support_email or product.support_url %}
@@ -379,6 +290,5 @@
       {% endif %}
     </ul>
   </section>
-
 {% endif %}
 {% endblock %}

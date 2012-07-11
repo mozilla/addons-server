@@ -149,6 +149,20 @@
       </div>
     {% endif %}
 
+    <!-- screenshot lightbox -->
+    <div id="lightbox">
+      <section>
+        <div class="content">
+          <a class="close" href="#">{{ _('Close') }}</a>
+        </div>
+        <div class="controls">
+          <a href="#" class="control next">&raquo;</a>
+          <a href="#" class="control prev">&laquo;</a>
+          <div class="caption"><span></span></div>
+        </div>
+      </section>
+    </div>
+
     <svg height="0">
       <mask id="tabMaskStart" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
         <rect width="1" height="1" x="0" y="0.5" fill="white" />

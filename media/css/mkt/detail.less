@@ -93,8 +93,12 @@ h1 .num {
 }
 
 #upsell {
-    background: @yellow;
-    margin-top: 30px;
+    .fat-button;
+    .highlight;
+    text-align: left;
+    margin: 20px 0;
+    padding: 10px 33px 10px 52px;
+    position: relative;
     h3 {
         color: darken(@yellow, 75%);
         margin-bottom: 10px;
@@ -123,13 +127,53 @@ h1 .num {
         display: block;
         margin-right: 15px;
         position: absolute;
-        left: 0;
-        top: 0;
         vertical-align: top;
+        top: 10px;
+        left: 10px;
+        max-height: 32px;
+        max-width: 32px;
     }
     .prose {
         color: @medium-gray;
         margin-bottom: 10px;
+    }
+    &:after {
+        background: @arrow-src 100% 50% no-repeat;
+        content: "";
+        display: block;
+        height: 14px;
+        opacity: .8;
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        width: 13px;
+    }
+    .avail, .name, .icon {
+        opacity: .85;
+    }
+    &:hover {
+        border-color: @bg-gray;
+        text-decoration: none;
+        &:after, .avail, .name, .icon {
+            opacity: 1;
+        }
+    }
+    .avail, .name {
+        .ellipsis;
+        display: block;
+    }
+    .avail {
+        color: @green;
+        font-weight: 400;
+        line-height: 12px;
+        margin-bottom: -4px;
+        padding-bottom: 5px;
+    }
+    .name {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: -4px;
+        padding-bottom: 0;
     }
 }
 
@@ -595,6 +639,8 @@ h1 .num {
     }
 }
 
+
+
 @media (max-width: @4col) {
     #page > .description {
         border-width: 1px 0;
@@ -622,56 +668,6 @@ h1 .num {
                 display: none;
                 .transform(none);
             }
-        }
-    }
-    #upsell.narrow {
-        .highlight;
-        margin: 20px 10px 0;
-        padding: 10px 33px 10px 52px;
-        position: relative;
-        &:after {
-            background: @arrow-src 100% 50% no-repeat;
-            content: "";
-            display: block;
-            height: 14px;
-            opacity: .8;
-            position: absolute;
-            top: 20px;
-            right: 10px;
-            width: 13px;
-        }
-        .avail, .name, .icon {
-            opacity: .85;
-        }
-        &:hover {
-            border-color: @bg-gray;
-            text-decoration: none;
-            &:after, .avail, .name, .icon {
-                opacity: 1;
-            }
-        }
-        .avail, .name {
-            .ellipsis;
-            display: block;
-        }
-        .avail {
-            color: @green;
-            font-weight: 400;
-            line-height: 12px;
-            margin-bottom: -4px;
-            padding-bottom: 5px;
-        }
-        .name {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: -4px;
-            padding-bottom: 0;
-        }
-        .icon {
-            top: 10px;
-            left: 10px;
-            max-height: 32px;
-            max-width: 32px;
         }
     }
     .downloads {

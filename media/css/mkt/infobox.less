@@ -1,0 +1,48 @@
+@import 'lib';
+
+.infobox {
+    border-bottom: 1px solid #abb4ba;
+    border-top: 1px solid #edf0f1;
+    > div {
+        padding: 20px 10px;
+    }
+    .not-rated {
+        color: @medium-gray;
+    }
+    .average-rating {
+        width: 100%;
+    }
+    ul {
+        a {
+            .fat-button;
+        }
+        margin: 0;
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        .border-box;
+        float: left;
+        margin: 10px 0 0;
+        min-height: inherit;
+        padding-right: 5px;
+        width: 50%;
+        &:nth-child(2n) {
+            padding: 0 0 0 5px;
+        }
+    }
+    dl {
+        margin: 15px 0 0;
+    }
+    dt, dd {
+        color: @text;
+        display: inline-block;
+    }
+    dt {
+        margin-right: 5px;
+    }
+}
+
+.fatbutton {
+    .fat-button;
+}

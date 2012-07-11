@@ -88,6 +88,7 @@ CSS = {
         'css/mkt/abuse.less',
         'css/mkt/slider.less',
         'css/mkt/menu.less',
+        'css/mkt/infobox.less',
         'css/mkt/promo-grid.less',
         'css/mkt/overlay.less',
         'css/mkt/search.less',

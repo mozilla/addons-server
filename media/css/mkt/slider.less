@@ -146,58 +146,6 @@
     }
 }
 
-.featured, .popular {
-    &.slider {
-        .controls {
-            .next-page, .prev-page {
-                height: 225px;
-                top: 15px;
-            }
-        }
-        .promo-slider {
-            height: 230px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            float: left;
-        }
-    }
-}
-
-.featured {
-    background: #60747F;
-    .grain;
-    color: @white;
-    &.slider {
-        border-bottom: 1px solid #666;
-    }
-    a {
-        color: lighten(@text, 60%);
-        &:hover {
-            color: @white;
-        }
-    }
-}
-
-.popular {
-    h2 {
-        padding-top: 10px;
-    }
-    a {
-        color: @text;
-        &:hover {
-            color: darken(@text, 15%);
-        }
-    }
-}
-
-.popular, .categories {
-    h2 {
-        padding-top: 20px;
-        line-height: 36px;
-    }
-}
-
 .categories {
     background: @pale-bg;
     .controls {
