@@ -128,10 +128,12 @@ class TestPay(test_utils.TestCase):
         if not settings.MARKETPLACE:
             raise SkipTest
 
+        self.data = {'amount': 1, 'currency': 'USD', 'seller': self.addon,
+                     'memo': 'foo'}
+
     @patch.object(client, 'post_pay')
     def test_pay(self, post_pay):
-        client.pay({'amount': 1, 'currency': 'USD', 'seller': self.addon,
-                    'memo': 'foo'})
+        client.pay(self.data)
         kwargs = post_pay.call_args[1]['data']
         assert 'ipn_url' in kwargs
         assert 'uuid' in kwargs
@@ -141,8 +143,7 @@ class TestPay(test_utils.TestCase):
     def test_pay_not_preapproval(self, post_pay):
         post_pay.side_effect = client.Error('nope', code='0')
         with self.assertRaises(client.Error):
-            client.pay({'amount': 1, 'currency': 'USD',
-                        'seller': self.addon, 'memo': 'foo'})
+            client.pay(self.data)
         # It did not retry because this is not a pre-approval error.
         eq_(post_pay.call_count, 1)
 
@@ -150,8 +151,7 @@ class TestPay(test_utils.TestCase):
     def test_pay_preapproval_no_retry(self, post_pay):
         post_pay.side_effect = client.Error('nope', code='539012')
         with self.assertRaises(client.Error):
-            client.pay({'amount': 1, 'currency': 'USD',
-                        'seller': self.addon, 'memo': 'foo'}, retry=False)
+            client.pay(self.data, retry=False)
         eq_(post_pay.call_count, 1)
         args = post_pay.call_args_list[0][1]
         eq_(args['data']['use_preapproval'], True)
@@ -160,9 +160,23 @@ class TestPay(test_utils.TestCase):
     def test_pay_preapproval(self, post_pay):
         post_pay.side_effect = client.Error('nope', code='539012')
         with self.assertRaises(client.Error):
-            client.pay({'amount': 1, 'currency': 'USD',
-                        'seller': self.addon, 'memo': 'foo',
-                        'buyer': self.user})
+            data = self.data
+            data['buyer'] = self.user
+            client.pay(data)
         eq_(post_pay.call_count, 2)
         args = post_pay.call_args_list[1][1]
         eq_(args['data']['use_preapproval'], False)
+
+    @patch.object(settings, 'SITE_URL', 'http://foo.com')
+    @patch.object(client, 'post_pay')
+    def test_pay_non_absolute_url(self, post_pay):
+        data = self.data
+        data['complete'] = '/bar'
+        client.pay(data)
+        eq_(post_pay.call_args[1]['data']['return_url'], 'http://foo.com/bar')
+
+    @patch.object(settings, 'SITE_URL', 'http://foo.com')
+    @patch.object(client, 'post_pay')
+    def test_pay_no_url(self, post_pay):
+        client.pay(self.data)
+        assert 'uuid' in post_pay.call_args[1]['data']['return_url']

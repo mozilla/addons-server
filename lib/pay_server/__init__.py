@@ -86,28 +86,36 @@ class ZamboniClient(Client):
     def make_uuid(self):
         return hashlib.md5(str(uuid.uuid4())).hexdigest()
 
-    def make_urls(self, complete, cancel):
+    def make_urls(self, data):
         uuid = self.make_uuid()
+        seller = data['seller']
+        # If the pay call doesn't specify complete URLs, use some defaults.
+        if 'complete' not in data:
+            data['complete'] = urlparams(
+                    seller.get_purchase_url(action='done', args=['complete']),
+                    uuid=uuid)
+        if 'cancel' not in data:
+            data['cancel'] = urlparams(
+                    seller.get_purchase_url(action='done', args=['cancel']),
+                    uuid=uuid)
+        # Absolutify all URLs. Absolutify can safely be called multiple
+        # times with no ill effects.
         return {
-            'cancel_url': absolutify(urlparams(cancel, uuid=uuid)),
-            'return_url': absolutify(urlparams(complete, uuid=uuid)),
+            'cancel_url': absolutify(data['cancel']),
+            'return_url': absolutify(data['complete']),
+            'ipn_url': absolutify(reverse('amo.paypal')),
             'uuid': uuid
         }
 
-    def pay(self, data, retry=True):
+    def pay(self, payload, retry=True):
         """
         Add in uuid and urls on the way. If retry is True, if the transaction
         fails because of a pre-approval failure, we'll try it a second time
         without it.
         """
-        rt = data['seller'].get_purchase_url(action='done', args=['complete'])
-        ca = data['seller'].get_purchase_url(action='done', args=['cancel'])
-
-        data.update({
-            'ipn_url': absolutify(reverse('amo.paypal')),
-            'use_preapproval': True,
-        })
-        data.update(self.make_urls(rt, ca))
+        data = payload.copy()
+        data.update(self.make_urls(payload))
+        data['use_preapproval'] = True
 
         try:
             return self.post_pay(data=data)
@@ -115,7 +123,7 @@ class ZamboniClient(Client):
             if not (retry and error.code in pre_approval_codes):
                 raise
 
-        data.update(self.make_urls(rt, ca))
+        data.update(self.make_urls(payload))
         data['use_preapproval'] = False
         return self.post_pay(data=data)
 

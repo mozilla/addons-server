@@ -5,6 +5,7 @@ import commonware.log
 import jingo
 from session_csrf import anonymous_csrf
 from tower import ugettext as _
+import waffle
 from waffle.decorators import waffle_switch
 
 from django.conf import settings
@@ -13,7 +14,9 @@ from django.shortcuts import redirect, get_object_or_404
 
 import amo
 from amo.decorators import login_required, post_required, write
+from amo.urlresolvers import reverse
 from lib.cef_loggers import inapp_cef
+from lib.pay_server import client
 from market.models import Price
 import paypal
 from stats.models import Contribution
@@ -86,32 +89,68 @@ def pay(request, signed_req, pay_req):
     # L10n: {0} is the product name. {1} is the application name.
     contrib_for = (_(u'Mozilla Marketplace in-app payment for {0} to {1}')
                    .format(pay_req['request']['name'], product.name))
+    # TODO(solitude): solitude lib will create these for us.
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
 
 
-    try:
-        paykey, status = paypal.get_paykey(dict(
-            amount=price,
-            chains=settings.PAYPAL_CHAINS,
-            currency=currency,
-            email=product.paypal_id,
-            ip=request.META.get('REMOTE_ADDR'),
-            memo=contrib_for,
-            pattern='inapp_pay.pay_status',
-            preapproval=preapproval,
-            qs={'realurl': request.POST.get('realurl')},
-            slug=pay_req['_config'].pk,  # passed to pay_done() via reverse()
-            uuid=uuid_
-        ))
-    except paypal.PaypalError, exc:
-        paypal.paypal_log_cef(request, product, uuid_,
-                              'in-app PayKey Failure', 'PAYKEYFAIL',
-                              'There was an error getting the paykey')
-        log.error(u'Error getting paykey, in-app payment: %s'
-                  % pay_req['_config'].pk,
-                  exc_info=True)
-        InappPayLog.log(request, 'PAY_ERROR', config=pay_req['_config'])
-        return render_error(request, exc)
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        # TODO(solitude): when the migration of data is completed, we
+        # will be able to remove this. Seller data is populated in solitude
+        # on submission or devhub changes. If those don't occur, you won't be
+        # able to sell at all.
+        client.create_seller_for_pay(product)
+
+        complete = reverse('inapp_pay.pay_status',
+                           args=[pay_req['_config'].pk, 'complete'])
+        cancel = reverse('inapp_pay.pay_status',
+                         args=[pay_req['_config'].pk, 'cancel'])
+
+        # TODO(bug 748137): remove retry is False.
+        try:
+            result = client.pay({'amount': price, 'currency': currency,
+                                 'buyer': request.amo_user, 'seller': product,
+                                 'memo': contrib_for, 'complete': complete,
+                                 'cancel': cancel}, retry=False)
+        except client.Error as exc:
+            paypal.paypal_log_cef(request, product, uuid_,
+                                  'in-app PayKey Failure', 'PAYKEYFAIL',
+                                  'There was an error getting the paykey')
+            log.error(u'Error getting paykey, in-app payment: %s'
+                      % pay_req['_config'].pk,
+                      exc_info=True)
+            InappPayLog.log(request, 'PAY_ERROR', config=pay_req['_config'])
+            return render_error(request, exc)
+
+        #TODO(solitude): just use the dictionary when solitude is live.
+        paykey = result.get('pay_key', '')
+        status = result.get('status', '')
+        uuid_ = result.get('uuid', '')
+
+    else:
+        try:
+            paykey, status = paypal.get_paykey(dict(
+                amount=price,
+                chains=settings.PAYPAL_CHAINS,
+                currency=currency,
+                email=product.paypal_id,
+                ip=request.META.get('REMOTE_ADDR'),
+                memo=contrib_for,
+                pattern='inapp_pay.pay_status',
+                preapproval=preapproval,
+                qs={'realurl': request.POST.get('realurl')},
+                slug=pay_req['_config'].pk,  # passed to pay_done()
+                                             # via reverse()
+                uuid=uuid_
+            ))
+        except paypal.PaypalError, exc:
+            paypal.paypal_log_cef(request, product, uuid_,
+                                  'in-app PayKey Failure', 'PAYKEYFAIL',
+                                  'There was an error getting the paykey')
+            log.error(u'Error getting paykey, in-app payment: %s'
+                      % pay_req['_config'].pk,
+                      exc_info=True)
+            InappPayLog.log(request, 'PAY_ERROR', config=pay_req['_config'])
+            return render_error(request, exc)
 
     with transaction.commit_on_success():
         contrib = Contribution(addon_id=product.id, amount=price,
@@ -130,15 +169,30 @@ def pay(request, signed_req, pay_req):
                                   'A user purchased using pre-approval')
 
             log.debug('Status is completed for uuid: %s' % uuid_)
-            if paypal.check_purchase(paykey) == 'COMPLETED':
-                log.debug('Check in-app payment is completed for uuid: %s'
+            if waffle.flag_is_active(request, 'solitude-payments'):
+                result = client.post_pay_check(data={'pay_key': paykey})
+                if result['status'] == 'COMPLETED':
+                    log.debug('Check in-app payment is completed for uuid: %s'
                           % uuid_)
-                contrib.type = amo.CONTRIB_INAPP
+                    contrib.type = amo.CONTRIB_INAPP
+                else:
+                    # In this case PayPal disagreed, we should not be trusting
+                    # what get_paykey said. Which is a worry.
+                    log.error('Check in-app payment failed on uuid: %s'
+                              % uuid_)
+                    status = 'NOT-COMPLETED'
             else:
-                # In this case PayPal disagreed, we should not be trusting
-                # what get_paykey said. Which is a worry.
-                log.error('Check in-app payment failed on uuid: %s' % uuid_)
-                status = 'NOT-COMPLETED'
+                # TODO(solitude): remove this when solitude goes live.
+                if paypal.check_purchase(paykey) == 'COMPLETED':
+                    log.debug('Check in-app payment is completed for uuid: %s'
+                              % uuid_)
+                    contrib.type = amo.CONTRIB_INAPP
+                else:
+                    # In this case PayPal disagreed, we should not be trusting
+                    # what get_paykey said. Which is a worry.
+                    log.error('Check in-app payment failed on uuid: %s'
+                              % uuid_)
+                    status = 'NOT-COMPLETED'
 
         contrib.save()
 

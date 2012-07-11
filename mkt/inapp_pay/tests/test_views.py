@@ -375,6 +375,31 @@ class TestPay(PaymentViewTest):
         eq_(logs[0].action, InappPayLog._actions['PAY'])
         eq_(logs[1].action, InappPayLog._actions['PAY_COMPLETE'])
 
+    @mock.patch('mkt.inapp_pay.views.client')
+    def test_preauth_ok_solitude(self, client):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        payload = self.payload()
+        client.pay.return_value = {'pay_key': '', 'status': 'COMPLETED',
+                                   'uuid': '123'}
+        client.post_pay_check.return_value = {'status': 'COMPLETED'}
+        req = self.request(payload=json.dumps(payload))
+        self.client.post(reverse('inapp_pay.pay'), dict(req=req))
+
+        logs = InappPayLog.objects.all().order_by('created')
+        eq_(logs[0].action, InappPayLog._actions['PAY'])
+        eq_(logs[1].action, InappPayLog._actions['PAY_COMPLETE'])
+
+    @mock.patch('mkt.inapp_pay.views.client')
+    def test_urls_solitude(self, client):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        payload = self.payload()
+        req = self.request(payload=json.dumps(payload))
+        self.client.post(reverse('inapp_pay.pay'), dict(req=req))
+        eq_(client.pay.call_args[0][0]['cancel'], self.cancel_url)
+        eq_(client.pay.call_args[0][0]['complete'], self.complete_url)
+
     @fudge.patch('paypal.check_purchase')
     @fudge.patch('paypal.get_paykey')
     def test_unverified_preauth(self, check_purchase, get_paykey):
