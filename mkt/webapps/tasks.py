@@ -2,14 +2,13 @@ import hashlib
 import json
 import logging
 
-import bleach
 from celeryutils import task
 
 from django.core.files.storage import default_storage as storage
 
 import amo
 from amo.helpers import absolutify
-from amo.urlresolvers import get_outgoing_url, reverse
+from amo.urlresolvers import reverse
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.reviewers.models import RereviewQueue
@@ -98,19 +97,24 @@ def update_manifests(ids, **kw):
         upload.add_file([content], webapp.manifest_url, len(content),
                         is_webapp=True)
         validator(upload.pk)
-        upload = FileUpload.objects.get(pk=upload.pk)
-        v8n = json.loads(upload.validation)
-        if v8n['errors']:
-            v8n_url = absolutify(reverse(
-                'mkt.developers.upload_detail', args=[upload.uuid]))
-            msg = u'Validation errors: %s' % (
-                ' '.join([m['message'] for m in v8n['messages']
-                          if m['type'] == u'error']),)
-            msg += '\nValidation result URL: %s' % bleach.linkify(
-                v8n_url, nofollow=True, filter_url=get_outgoing_url)
-            _log(webapp, msg)
-            _flag_for_review(webapp, msg)
-            continue
+        upload = FileUpload.uncached.get(pk=upload.pk)
+        if upload.validation:
+            v8n = json.loads(upload.validation)
+            if v8n['errors']:
+                v8n_url = absolutify(reverse(
+                    'mkt.developers.upload_detail', args=[upload.uuid]))
+                msg = u'Validation errors:<ul>'
+                for m in v8n['messages']:
+                    if m['type'] == u'error':
+                        msg += u'<li>%s</li>' % m['message']
+                msg += u'</ul>'
+                msg += u'<a href="%s">View Validation Result' % v8n_url
+                _log(webapp, msg)
+                _flag_for_review(webapp, msg)
+                continue
+        else:
+            _log(webapp,
+                 u'Validation for upload UUID %s has no result' % upload.uuid)
 
         # New manifest is different and validates, create a new version.
         try:
