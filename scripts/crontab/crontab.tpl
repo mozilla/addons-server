@@ -44,8 +44,7 @@ HOME=/tmp
 40 1 * * * {{ z_cron }} update_weekly_downloads
 50 1 * * * {{ z_cron }} gc
 30 2 * * * {{ z_cron }} mail_pending_refunds --settings=settings_local_mkt
-#45 2 * * * {{ django }} process_addons --task=update_manifests --settings=settings_local_mkt
-# Needs to be fixed https://bugzilla.mozilla.org/show_bug.cgi?id=759797
+45 2 * * * {{ django }} process_addons --task=update_manifests --settings=settings_local_mkt
 30 3 * * * {{ django }} cleanup
 30 4 * * * {{ z_cron }} cleanup_synced_collections
 30 5 * * * {{ z_cron }} expired_resetcode
