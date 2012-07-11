@@ -163,7 +163,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                         spidermonkey=settings.SPIDERMONKEY,
                         overrides=overrides,
                         timeout=settings.VALIDATOR_TIMEOUT,
-                        expectation=force_validation_type)
+                        expectation=force_validation_type,
+                        market_urls=settings.VALIDATOR_IAF_URLS)
 
 
 @task

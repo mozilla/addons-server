@@ -267,3 +267,6 @@ APPCACHE_MEDIA_DEBUG.extend(asset_bundles.JS['mkt/consumer'])
 
 # Are you working locally? place the following line in your settings_local:
 # APPCACHE_MEDIA_TO_CACHE = APPCACHE_MEDIA_DEBUG
+
+# Allowed `installs_allowed_from` values for manifest validator.
+VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org']
