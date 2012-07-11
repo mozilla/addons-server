@@ -37,8 +37,8 @@ def test_resize_icon_shrink():
 def test_resize_icon_enlarge():
     """ Image stays the same, since the new size is bigger than both sides. """
 
-    resize_size = 1000
-    final_size = (339, 128)
+    resize_size = 100
+    final_size = (82, 31)
 
     _uploader(resize_size, final_size)
 
@@ -46,8 +46,8 @@ def test_resize_icon_enlarge():
 def test_resize_icon_same():
     """ Image stays the same, since the new size is the same. """
 
-    resize_size = 339
-    final_size = (339, 128)
+    resize_size = 82
+    final_size = (82, 31)
 
     _uploader(resize_size, final_size)
 
@@ -56,14 +56,14 @@ def test_resize_icon_list():
     """ Resize multiple images at once. """
 
     resize_size = [32, 82, 100]
-    final_size = [(32, 12), (82, 30), (100, 37)]
+    final_size = [(32, 12), (82, 31), (82, 31)]
 
     _uploader(resize_size, final_size)
 
 
 def _uploader(resize_size, final_size):
     img = get_image_path('mozilla.png')
-    original_size = (339, 128)
+    original_size = (82, 31)
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
