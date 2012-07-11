@@ -524,6 +524,12 @@ class TestDetails(TestSubmit):
             assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
                     'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
 
+    def test_icon_too_small(self):
+        self._step()
+        hash = self.upload_icon(get_image_path('non-animated-thin.png'))
+        # You get an empty hash when there's an upload error.
+        eq_(hash, '')
+
     def _setup_other_webapp(self):
         self._step()
         # Generate another webapp to test name uniqueness.

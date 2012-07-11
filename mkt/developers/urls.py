@@ -93,11 +93,12 @@ ajax_patterns = patterns('',
 urlpatterns = decorate(write, patterns('',
     # Redirect people who have /apps/ instead of /app/.
     ('^apps/\d+/.*',
-     lambda r: redirect(r.path.replace('addons', 'addon', 1))),
+     lambda r: redirect(r.path.replace('apps', 'app', 1))),
 
-    # Standalone validator:
-    url('^addon/validate/?$', views.validate_addon,
-        name='mkt.developers.validate_addon'),
+    # There's no validator yet, but this is where it will go.
+    ## Standalone validator:
+    #url('^addon/validate/?$', views.validate_addon,
+    #    name='mkt.developers.validate_addon'),
 
     # Redirect to /addons/ at the base.
     url('^submissions$', use_apps(views.dashboard),

@@ -150,25 +150,25 @@ class TestFileValidation(amo.tests.TestCase):
         eq_(self.client.get(self.json_url).status_code, 405)
 
 
-class TestValidateAddon(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestValidateAddon, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-
-    def test_login_required(self):
-        self.client.logout()
-        r = self.client.get(reverse('mkt.developers.validate_addon'))
-        eq_(r.status_code, 302)
-
-    def test_context(self):
-        r = self.client.get(reverse('mkt.developers.validate_addon'))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('#upload-addon').attr('data-upload-url'),
-            reverse('mkt.developers.standalone_upload'))
+#class TestValidateAddon(amo.tests.TestCase):
+#    fixtures = ['base/users']
+#
+#    def setUp(self):
+#        super(TestValidateAddon, self).setUp()
+#        assert self.client.login(username='regular@mozilla.com',
+#                                 password='password')
+#
+#    def test_login_required(self):
+#        self.client.logout()
+#        r = self.client.get(reverse('mkt.developers.validate_addon'))
+#        eq_(r.status_code, 302)
+#
+#    def test_context(self):
+#        r = self.client.get(reverse('mkt.developers.validate_addon'))
+#        eq_(r.status_code, 200)
+#        doc = pq(r.content)
+#        eq_(doc('#upload-addon').attr('data-upload-url'),
+#            reverse('mkt.developers.standalone_upload'))
 
 
 class TestValidateFile(BaseUploadTest):
