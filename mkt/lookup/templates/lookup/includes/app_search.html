@@ -1,7 +1,7 @@
 <section class="island">
-  <form action="" method="post" class="lookup-search-form" id="app-search-form">
+  <form method="post" class="lookup-search-form" id="app-search-form">
     {{ csrf() }}
-    <label for="app-search">
+    <label>
       <select name="type">
         {% set selected = app and app.type or amo.ADDON_WEBAPP %}
         {% for k, v in amo.ADDON_TYPE.iteritems() %}
