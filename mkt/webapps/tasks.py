@@ -37,7 +37,8 @@ def _log(webapp, message, exc_info=False):
 
 
 def _flag_for_review(webapp, message):
-    RereviewQueue.objects.create(addon=webapp)
+    if not RereviewQueue.objects.filter(addon=webapp).exists():
+        RereviewQueue.objects.create(addon=webapp)
     amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, webapp,
             webapp.current_version, details={'comments': message})
 

@@ -175,3 +175,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         assert 'http://test/en-US/developers/upload' in ''.join(
             [a._details for a in ActivityLog.objects.for_apps(self.addon)])
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
+
+        # Test we don't add app to re-review queue twice.
+        self._run()
+        eq_(RereviewQueue.objects.count(), 1)
