@@ -9,7 +9,3 @@ APP_STEPS = [
     ('done', _('Finished!')),
 ]
 APP_STEPS_TITLE = dict(APP_STEPS)
-
-# Size requirements for uploaded app icons
-APP_ICON_MIN_SIZE = (128, 128)
-

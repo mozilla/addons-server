@@ -9,7 +9,6 @@ from tower import ugettext as _
 import waffle
 
 import amo
-import mkt.constants.submit as submit_constants
 from lib.video import library as video_library
 
 
@@ -47,12 +46,6 @@ def check_upload(file_obj, upload_type, content_type):
                 errors.append(_('Icons must be either PNG or JPG.'))
             else:
                 errors.append(_('Images must be either PNG or JPG.'))
-        elif is_icon:
-            # The upload is an image and it's intended to be an icon.
-            icon_width, icon_height = check.img.size
-            min_width, min_height = submit_constants.APP_ICON_MIN_SIZE
-            if icon_width < min_width or icon_height < min_height:
-                errors.append(_('The icon must be at least 128x128px.'))
 
         if check.is_animated():
             if is_icon:
