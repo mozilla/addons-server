@@ -272,16 +272,6 @@ def _fetch_content(url):
             raise Exception(str(e.reason))
 
 
-def check_content_type(response, content_type,
-                       no_ct_message, wrong_ct_message):
-    if not response.headers.get('Content-Type', '').startswith(content_type):
-        if 'Content-Type' in response.headers:
-            raise Exception(wrong_ct_message %
-                            (content_type, response.headers['Content-Type']))
-        else:
-            raise Exception(no_ct_message % content_type)
-
-
 def get_content_and_check_size(response, max_size, error_message):
     # Read one extra byte. Reject if it's too big so we don't have issues
     # downloading huge files.
@@ -365,14 +355,16 @@ def fetch_icon(webapp, **kw):
 
 
 def _fetch_manifest(url):
-    response = _fetch_content(url)
-
-    no_ct_message = _('Your manifest must be served with the HTTP '
-                      'header "Content-Type: %s".')
-    wrong_ct_message = _('Your manifest must be served with the HTTP '
-                         'header "Content-Type: %s". We saw "%s".')
-    check_content_type(response, 'application/x-web-app-manifest+json',
-                       no_ct_message, wrong_ct_message)
+    try:
+        response = _fetch_content(url)
+        ct = response.headers.get('Content-Type', '')
+        if not ct.startswith('application/x-web-app-manifest+json'):
+            raise Exception('Content type is ' + ct)
+    except Exception, e:
+        log.error('Failed to fetch manifest from %r: %s' % (url, e))
+        raise Exception('No manifest was found at that URL. Check the address and make'
+                        ' sure the manifest is served with the HTTP header '
+                        '"Content-Type: application/x-web-app-manifest+json".')
 
     size_error_message = _('Your manifest must be less than %s bytes.')
     content = get_content_and_check_size(response,
