@@ -4,9 +4,9 @@ import jingo
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
 import amo.utils
 from amo.decorators import json_view
+from amo.urlresolvers import reverse
 from apps.addons.models import Category
 from apps.search.views import name_query, WebappSuggestionsAjax
 from mkt.webapps.models import Webapp

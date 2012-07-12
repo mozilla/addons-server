@@ -81,6 +81,7 @@ def any_permission_required(pairs):
         return wrapper
     return decorator
 
+
 def restricted_content(f):
     """
     Prevent access to a view function for accounts restricted from
@@ -95,7 +96,6 @@ def restricted_content(f):
         else:
             return http.HttpResponseForbidden()
     return wrapper
-
 
 
 def modal_view(f):
