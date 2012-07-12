@@ -40,6 +40,7 @@ HOME=/tmp
 25 9,21 * * * {{ z_cron }} hide_disabled_files
 
 #once per day
+05 0 * * * {{ z_cron }} email_daily_ratings --settings=settings_local_mkt
 30 1 * * * {{ z_cron }} update_user_ratings
 40 1 * * * {{ z_cron }} update_weekly_downloads
 50 1 * * * {{ z_cron }} gc
