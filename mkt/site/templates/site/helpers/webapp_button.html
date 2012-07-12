@@ -1,6 +1,6 @@
-<a href="#"
+<button
     {% for k, v in data_attrs.items() -%}
         data-{{ k }}="{{ v }}" {% endfor %}
     class="{{ classes }}">
         {{ label }}
-</a>
+</button>

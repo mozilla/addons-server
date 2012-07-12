@@ -4,7 +4,7 @@
 
 {% block content %}
   <section class="featured full">
-    <ul class="listing">
+    <ul class="grid">
       {% for app in featured %}
         <li>
           {{ market_tile(app) }}
@@ -14,7 +14,7 @@
   </section>
   {% if popular %}
     <section class="popular full">
-      <ul class="listing">
+      <ul class="grid">
         {% for app in popular %}
           <li>
             {{ market_tile(app) }}

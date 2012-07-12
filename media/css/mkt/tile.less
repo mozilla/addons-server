@@ -1,24 +1,37 @@
 @import 'lib';
 
+/* base class */
+
 .mkt-tile {
     position: relative;
-    height: 66px;
     overflow: hidden;
-    padding: 20px 10px;
     display: block;
-    .gradient-two-color(#f7f7f7, @barely-gray);
     color: @text;
-    h3 {
-        font-size: 20px;
-        line-height: 22px;
-        font-weight: 400;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    &:hover {
+        text-decoration: none;
     }
     .icon {
         height: 64px;
         width: 64px;
+        display: block;
+    }
+    h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.listing .mkt-tile {
+    height: 66px;
+    .gradient-two-color(#f7f7f7, @barely-gray);
+    padding: 20px 10px;
+    h3 {
+        font-size: 20px;
+        line-height: 22px;
+        font-weight: 400;
+    }
+    .icon {
         float: left;
         margin-right: 10px;
     }
@@ -45,12 +58,61 @@
             display: none;
         }
     }
+    .price {
+        display: none;
+    }
 }
 
-.listing {
+.grid, .listing {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+.grid {
+    li {
+        float: left;
+    }
+    .mkt-tile {
+        width: 107px;
+        height: 145px;
+        .info {
+            .gradient-two-color(#d9d9d9, #fff);
+            height: 38px;
+            padding: 4px;
+        }
+        h3, .vital {
+            font-size: 11px;
+            margin: 0;
+            padding: 0;
+        }
+        .price {
+            font-weight: bold;
+            color: @link;
+        }
+        .icon {
+            width: 107px;
+            height: 107px;
+        }
+        .button {
+            display: none;
+        }
+        .author {
+            display: none;
+        }
+        .rating {
+            display: none;
+        }
+    }
+    li:nth-child(3n+1) .mkt-tile {
+        width: 106px;
+    }
+    li:nth-child(even) .mkt-tile {
+        .info {
+            .gradient-two-color(#fff, #d9d9d9);
+        }
+    }
+}
+.listing {
     li {
         border-top: 1px solid @light-gray;
         &:first-child {
