@@ -1,12 +1,12 @@
-from contextlib import contextmanager
-from datetime import datetime, timedelta
-from functools import partial, wraps
 import math
 import os
 import random
 import shutil
 import time
-from urlparse import urlsplit
+from contextlib import contextmanager
+from datetime import datetime, timedelta
+from functools import partial, wraps
+from urlparse import urlsplit, urlunsplit
 
 from django import forms
 from django.conf import settings
@@ -17,28 +17,27 @@ from django.test.client import Client
 from django.utils import translation
 
 import elasticutils
-import nose
 import mock
+import pyes.exceptions as pyes
+import test_utils
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
-import pyes.exceptions as pyes
 from redisutils import mock_redis, reset_redis
-import test_utils
 from waffle.models import Flag, Switch
 
-import amo
-from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
-from addons.models import Addon, Category, DeviceType, Persona
 import addons.search
+import amo
+import mkt.stats.search
+import stats.search
+from addons.models import Addon, Category, DeviceType, Persona
+from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.helpers import copyfileobj
 from files.models import File, Platform
 from market.models import AddonPremium, Price, PriceCurrency
-import mkt.stats.search
-import stats.search
 from translations.models import Translation
-from versions.models import Version, ApplicationsVersions
+from versions.models import ApplicationsVersions, Version
 
 
 def formset(*args, **kw):
@@ -205,8 +204,6 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     def reset_featured_addons(self):
         from addons.cron import reset_featured_addons
-        from addons.utils import (FeaturedManager, CreaturedManager,
-                                  get_featured_ids, get_creatured_ids)
         reset_featured_addons()
         cache.clear()
 
@@ -268,6 +265,47 @@ class TestCase(RedisTest, test_utils.TestCase):
         self.assertRedirects(response,
             '%s?to=%s' % (reverse('users.login'), to), status_code)
 
+    def assert3xx(self, response, expected_url, status_code=302,
+                  target_status_code=200):
+        """Asserts redirect and final redirect matches expected URL.
+
+        Similar to Django's `assertRedirects` but skips the final GET
+        verification for speed.
+
+        """
+        if hasattr(response, 'redirect_chain'):
+            # The request was a followed redirect
+            self.assertTrue(len(response.redirect_chain) > 0,
+                "Response didn't redirect as expected: Response"
+                " code was %d (expected %d)" %
+                    (response.status_code, status_code))
+
+            url, status_code = response.redirect_chain[-1]
+
+            self.assertEqual(response.status_code, target_status_code,
+                "Response didn't redirect as expected: Final"
+                " Response code was %d (expected %d)" %
+                    (response.status_code, target_status_code))
+
+        else:
+            # Not a followed redirect
+            self.assertEqual(response.status_code, status_code,
+                "Response didn't redirect as expected: Response"
+                " code was %d (expected %d)" %
+                    (response.status_code, status_code))
+
+            url = response['Location']
+            scheme, netloc, path, query, fragment = urlsplit(url)
+
+        e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
+                                                              expected_url)
+        if not (e_scheme or e_netloc):
+            expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
+                                       e_fragment))
+
+        self.assertEqual(url, expected_url,
+            "Response redirected to '%s', expected '%s'" % (url, expected_url))
+
     def assertLoginRequired(self, response, status_code=302):
         """
         A simpler version of assertLoginRedirects that just checks that we
@@ -303,7 +341,6 @@ class TestCase(RedisTest, test_utils.TestCase):
         """Skips a test if a particular setting is disabled."""
         if not setting:
             raise SkipTest('Skipping since setting %r is disabled' % setting)
-
 
 
 class AMOPaths(object):

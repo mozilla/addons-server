@@ -36,6 +36,11 @@ class ReviewBase(object):
         self.version = version
         self.review_type = review_type
         self.files = None
+        self.in_pending = self.addon.status == amo.STATUS_PENDING
+        self.in_rereview = RereviewQueue.objects.filter(
+            addon=self.addon).exists()
+        self.in_escalate = EscalationQueue.objects.filter(
+            addon=self.addon).exists()
 
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
@@ -109,10 +114,10 @@ class ReviewBase(object):
                   self.get_context_data(), emails,
                   perm_setting='app_individual_contact', cc=cc_email)
 
-    def send_super_mail(self):
-        self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
-        log.info(u'Super review requested for %s' % self.addon)
-        send_mail(u'Super Review Requested: %s' % self.addon.name,
+    def send_escalate_mail(self):
+        self.log_action(amo.LOG.ESCALATE_MANUAL)
+        log.info(u'Escalated review requested for %s' % self.addon)
+        send_mail(u'Escalated Review Requested: %s' % self.addon.name,
                   'reviewers/emails/super_review.txt',
                   self.get_context_data(), [settings.MKT_SENIOR_EDITORS_EMAIL])
 
@@ -125,8 +130,16 @@ class ReviewApp(ReviewBase):
 
     def process_public(self):
         if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
-            return self.process_public_immediately()
-        return self.process_public_waiting()
+            self.process_public_immediately()
+        else:
+            self.process_public_waiting()
+
+        if self.in_escalate:
+            EscalationQueue.objects.filter(addon=self.addon).delete()
+
+        # Assign reviewer incentive scores.
+        event = ReviewerScore.get_event_by_type(self.addon)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
 
     def process_public_waiting(self):
         """Make an app pending."""
@@ -135,15 +148,11 @@ class ReviewApp(ReviewBase):
                        status=amo.STATUS_PUBLIC_WAITING)
 
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
-        self.notify_email('%s_to_public_waiting' % self.review_type,
+        self.notify_email('pending_to_public_waiting',
                           u'App Approved but waiting: %s')
 
         log.info(u'Making %s public but pending' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
-
-        # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon)
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
 
     def process_public_immediately(self):
         """Approve an app."""
@@ -154,35 +163,33 @@ class ReviewApp(ReviewBase):
                        status=amo.STATUS_PUBLIC)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        self.notify_email('%s_to_public' % self.review_type,
-                          u'App Approved: %s')
+        self.notify_email('pending_to_public', u'App Approved: %s')
 
         log.info(u'Making %s public' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
 
-        # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon)
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
-
     def process_sandbox(self):
         """Reject an app."""
         self.set_addon(status=amo.STATUS_REJECTED)
+        if self.in_escalate:
+            EscalationQueue.objects.filter(addon=self.addon).delete()
+        if self.in_rereview:
+            RereviewQueue.objects.filter(addon=self.addon).delete()
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        self.notify_email('%s_to_sandbox' % self.review_type,
-                          u'Submission Update: %s')
+        self.notify_email('pending_to_sandbox', u'Submission Update: %s')
 
         log.info(u'Making %s disabled' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
 
-    def process_super_review(self):
-        """Ask for super review for an app."""
-        self.addon.update(admin_review=True)
+    def process_escalate(self):
+        """Ask for escalation for an app."""
+        EscalationQueue.objects.get_or_create(addon=self.addon)
         self.notify_email('author_super_review', u'Submission Update: %s')
 
-        self.send_super_mail()
+        self.send_escalate_mail()
 
     def process_comment(self):
         self.version.update(has_editor_comment=True)
@@ -194,10 +201,19 @@ class ReviewApp(ReviewBase):
         self.log_action(amo.LOG.ESCALATION_CLEARED)
         log.info(u'Escalation cleared for app: %s' % self.addon)
 
+    def process_clear_rereview(self):
+        """Clear app from re-review queue."""
+        RereviewQueue.objects.filter(addon=self.addon).delete()
+        self.log_action(amo.LOG.REREVIEW_CLEARED)
+        log.info(u'Re-review cleared for app: %s' % self.addon)
+
     def process_disable(self):
         """Disables app."""
         self.addon.update(status=amo.STATUS_DISABLED)
-        EscalationQueue.objects.filter(addon=self.addon).delete()
+        if self.in_escalate:
+            EscalationQueue.objects.filter(addon=self.addon).delete()
+        if self.in_rereview:
+            RereviewQueue.objects.filter(addon=self.addon).delete()
         emails = list(self.addon.authors.values_list('email', flat=True))
         cc_email = self.addon.mozilla_contact or None
         send_mail(u'App disabled by reviewer: %s' % self.addon.name,
@@ -239,59 +255,80 @@ class ReviewHelper(object):
         public = {
             'method': self.handler.process_public,
             'minimal': False,
-            'label': _lazy('Push to public'),
-            'details': _lazy('This will approve the sandboxed app so it '
-                             'appears on the public side.')}
+            'label': _lazy(u'Push to public'),
+            'details': _lazy(u'This will approve the sandboxed app so it '
+                             u'appears on the public side.')}
         reject = {
             'method': self.handler.process_sandbox,
-            'label': _lazy('Reject'),
+            'label': _lazy(u'Reject'),
             'minimal': False,
-            'details': _lazy('This will reject the app and remove it from the '
-                             'review queue.')}
+            'details': _lazy(u'This will reject the app and remove it from the '
+                             u'review queue.')}
         info = {
             'method': self.handler.request_information,
-            'label': _lazy('Request more information'),
+            'label': _lazy(u'Request more information'),
             'minimal': True,
-            'details': _lazy('This will send the author(s) an email '
-                             'requesting more information.')}
-        super = {
-            'method': self.handler.process_super_review,
-            'label': _lazy('Request super-review'),
+            'details': _lazy(u'This will send the author(s) an email '
+                             u'requesting more information.')}
+        escalate = {
+            'method': self.handler.process_escalate,
+            'label': _lazy(u'Escalate'),
             'minimal': True,
-            'details': _lazy('Flag this app for an admin to review')}
+            'details': _lazy(u'Flag this app for an admin to review.')}
         comment = {
             'method': self.handler.process_comment,
-            'label': _lazy('Comment'),
+            'label': _lazy(u'Comment'),
             'minimal': True,
-            'details': _lazy('Make a comment on this app.  The author won\'t '
-                             'be able to see this.')}
+            'details': _lazy(u'Make a comment on this app.  The author won\'t '
+                             u'be able to see this.')}
         clear_escalation = {
             'method': self.handler.process_clear_escalation,
-            'label': _lazy('Clear Escalation'),
+            'label': _lazy(u'Clear Escalation'),
             'minimal': True,
-            'details': _lazy('Clear this app from the escalation queue. The '
-                             'author will get no email or see comments here.')}
+            'details': _lazy(u'Clear this app from the escalation queue. The '
+                             u'author will get no email or see comments here.')}
+        clear_rereview = {
+            'method': self.handler.process_clear_rereview,
+            'label': _lazy(u'Clear Re-review'),
+            'minimal': True,
+            'details': _lazy(u'Clear this app from the re-review queue. The '
+                             u'author will get no email or see comments here.')}
         disable = {
             'method': self.handler.process_disable,
-            'label': _lazy('Disable app'),
+            'label': _lazy(u'Disable app'),
             'minimal': True,
-            'details': _lazy('Disable the app, removing it from public '
-                             'results. Sends comments to author.')}
+            'details': _lazy(u'Disable the app, removing it from public '
+                             u'results. Sends comments to author.')}
 
         actions = SortedDict()
-        if self.review_type == 'pending':
+
+        # Public.
+        if self.addon.status != amo.STATUS_PUBLIC:
             actions['public'] = public
+
+        # Reject.
+        if self.addon.status not in [amo.STATUS_REJECTED, amo.STATUS_DISABLED]:
             actions['reject'] = reject
-            actions['info'] = info
-            actions['super'] = super
-            actions['comment'] = comment
-        elif self.review_type == 'rereview':
-            pass  # TODO(robhudson)
-        elif self.review_type == 'escalated':
-            actions['clear_escalation'] = clear_escalation
+
+        # Disable.
+        if self.addon.status == amo.STATUS_PUBLIC:
             actions['disable'] = disable
-            actions['info'] = info
-            actions['comment'] = comment
+
+        # Clear escalation.
+        if self.handler.in_escalate:
+            actions['clear_escalation'] = clear_escalation
+
+        # Clear re-review.
+        if self.handler.in_rereview:
+            actions['clear_rereview'] = clear_rereview
+
+        # Escalate.
+        if not self.handler.in_escalate:
+            actions['escalate'] = escalate
+
+        # Request info and comment are always shown.
+        actions['info'] = info
+        actions['comment'] = comment
 
         return actions
 

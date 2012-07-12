@@ -162,26 +162,32 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         ]
         check_links(expected, links, verify=False)
 
-    def test_action_buttons(self):
+    def test_action_buttons_pending(self):
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Push to public', 'public'),
             (u'Reject', 'reject'),
+            (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
-            (u'Request super-review', 'super'),
             (u'Comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
-    def test_flag_super_review(self):
-        self.apps[0].update(admin_review=True)
-        r = self.client.get(self.url)
+    def test_action_buttons_rejected(self):
+        # Check action buttons for a previously rejected app.
+        self.apps[0].update(status=amo.STATUS_REJECTED)
+        r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
-        flags = tds('div.ed-sprite-admin-review')
-        eq_(flags.length, 1)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
 
     def test_flag_info(self):
         self.apps[0].current_version.update(has_info_request=True)
@@ -283,8 +289,33 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         ]
         check_links(expected, links, verify=False)
 
-    # TODO: Test actions buttons.
-    # TODO: Test actions.
+    def test_action_buttons_public(self):
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Reject', 'reject'),
+            (u'Disable app', 'disable'),
+            (u'Clear Re-review', 'clear_rereview'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    def test_action_buttons_reject(self):
+        self.apps[0].update(status=amo.STATUS_REJECTED)
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Clear Re-review', 'clear_rereview'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
 
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
@@ -337,19 +368,31 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         ]
         check_links(expected, links, verify=False)
 
-    def test_action_buttons(self):
+    def test_action_buttons_public(self):
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Clear Escalation', 'clear_escalation'),
+            (u'Reject', 'reject'),
             (u'Disable app', 'disable'),
+            (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
-    # TODO: Test actions.
+    def test_action_buttons_reject(self):
+        self.apps[0].update(status=amo.STATUS_REJECTED)
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Clear Escalation', 'clear_escalation'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
 
     def test_flag_info(self):
         self.apps[0].current_version.update(has_info_request=True)
@@ -392,18 +435,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
                         mozilla_contact=self.mozilla_contact)
         self.version = self.app.current_version
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
-        self.escalated_url = urlparams(
-            reverse('reviewers.apps.review', args=[self.app.app_slug]),
-            tab='escalated')
 
     def get_app(self):
         return Webapp.objects.get(id=337141)
 
-    def post(self, data, url=None):
-        r = self.client.post(url or self.url, data)
-        # Purposefully not using assertRedirects to avoid having to mock ES.
-        eq_(r.status_code, 302)
-        ok_(reverse('reviewers.apps.queue_pending') in r['Location'])
+    def post(self, data, queue='pending'):
+        res = self.client.post(self.url, data)
+        # Purposefully not using assertRedirects.
+        self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
 
     @mock.patch.object(settings, 'DEBUG', False)
     def test_cannot_review_my_app(self):
@@ -443,7 +482,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
         eq_(scores[0].note_key, reviewed_type)
 
-    def test_push_public(self):
+    def test_pending_to_public(self):
         waffle.models.Switch.objects.create(name='reviewer-incentive-points',
                                             active=True)
         files = list(self.version.files.values_list('id', flat=True))
@@ -463,7 +502,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP)
 
-    def test_push_public_no_mozilla_contact(self):
+    def test_pending_to_public_no_mozilla_contact(self):
         waffle.models.Switch.objects.create(name='reviewer-incentive-points',
                                             active=True)
         files = list(self.version.files.values_list('id', flat=True))
@@ -484,7 +523,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP)
 
-    def test_push_public_waiting(self):
+    def test_pending_to_public_waiting(self):
         waffle.models.Switch.objects.create(name='reviewer-incentive-points',
                                             active=True)
         files = list(self.version.files.values_list('id', flat=True))
@@ -505,12 +544,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP)
 
-    def test_comment(self):
-        self.post({'action': 'comment', 'comments': 'mmm, nice app'})
-        eq_(len(mail.outbox), 0)
-        self._check_log(amo.LOG.COMMENT_VERSION)
-
-    def test_reject(self):
+    def test_pending_to_reject(self):
         self.post({'action': 'reject', 'comments': 'suxor'})
         eq_(self.get_app().status, amo.STATUS_REJECTED)
         self._check_log(amo.LOG.REJECT_VERSION)
@@ -520,18 +554,142 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
-    def test_super_review(self):
-        self.post({'action': 'super', 'comments': 'soup her man'})
-        eq_(self.get_app().admin_review, True)
-        self._check_log(amo.LOG.REQUEST_SUPER_REVIEW)
+    def test_pending_to_escalation(self):
+        self.post({'action': 'escalate', 'comments': 'soup her man'})
+        eq_(EscalationQueue.objects.count(), 1)
+        self._check_log(amo.LOG.ESCALATE_MANUAL)
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
         dev_msg = mail.outbox[0]
         self._check_email(dev_msg, 'Submission Update')
         adm_msg = mail.outbox[1]
-        self._check_admin_email(adm_msg, 'Super Review Requested')
+        self._check_admin_email(adm_msg, 'Escalated Review Requested')
+
+    def test_pending_to_disable(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        self.post({'action': 'disable', 'comments': 'disabled ur app'})
+        eq_(self.get_app().status, amo.STATUS_DISABLED)
+        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
+    def test_escalation_to_public(self):
+        EscalationQueue.objects.create(addon=self.app)
+        eq_(self.app.status, amo.STATUS_PENDING)
+        files = list(self.version.files.values_list('id', flat=True))
+        self.post({
+            'action': 'public',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        }, queue='escalated')
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(EscalationQueue.objects.count(), 0)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'App Approved')
+        self._check_email_body(msg)
+
+    def test_escalation_to_reject(self):
+        EscalationQueue.objects.create(addon=self.app)
+        eq_(self.app.status, amo.STATUS_PENDING)
+        files = list(self.version.files.values_list('id', flat=True))
+        self.post({
+            'action': 'reject',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        }, queue='escalated')
+        eq_(self.get_app().status, amo.STATUS_REJECTED)
+        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(EscalationQueue.objects.count(), 0)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
+        self._check_email_body(msg)
+
+    def test_escalation_to_disable(self):
+        EscalationQueue.objects.create(addon=self.app)
+        self.app.update(status=amo.STATUS_PUBLIC)
+        self.post({'action': 'disable', 'comments': 'disabled ur app'},
+                  queue='escalated')
+        eq_(self.get_app().status, amo.STATUS_DISABLED)
+        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(EscalationQueue.objects.count(), 0)
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
+    def test_clear_escalation(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        EscalationQueue.objects.create(addon=self.app)
+        self.post({'action': 'clear_escalation', 'comments': 'all clear'},
+                  queue='escalated')
+        eq_(EscalationQueue.objects.count(), 0)
+        self._check_log(amo.LOG.ESCALATION_CLEARED)
+        # Ensure we don't send email on clearing escalations.
+        eq_(len(mail.outbox), 0)
+
+    def test_rereview_to_reject(self):
+        RereviewQueue.objects.create(addon=self.app)
+        self.app.update(status=amo.STATUS_PUBLIC)
+        files = list(self.version.files.values_list('id', flat=True))
+        self.post({
+            'action': 'reject',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        }, queue='rereview')
+        eq_(self.get_app().status, amo.STATUS_REJECTED)
+        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(RereviewQueue.objects.count(), 0)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
+        self._check_email_body(msg)
+
+    def test_rereview_to_disable(self):
+        RereviewQueue.objects.create(addon=self.app)
+        self.app.update(status=amo.STATUS_PUBLIC)
+        self.post({'action': 'disable', 'comments': 'disabled ur app'},
+                  queue='rereview')
+        eq_(self.get_app().status, amo.STATUS_DISABLED)
+        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
+    def test_clear_rereview(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        RereviewQueue.objects.create(addon=self.app)
+        self.post({'action': 'clear_rereview', 'comments': 'all clear'},
+                  queue='rereview')
+        eq_(RereviewQueue.objects.count(), 0)
+        self._check_log(amo.LOG.REREVIEW_CLEARED)
+        # Ensure we don't send email on clearing re-reviews..
+        eq_(len(mail.outbox), 0)
+
+    def test_rereview_to_escalation(self):
+        RereviewQueue.objects.create(addon=self.app)
+        self.post({'action': 'escalate', 'comments': 'soup her man'},
+                  queue='rereview')
+        eq_(EscalationQueue.objects.count(), 1)
+        self._check_log(amo.LOG.ESCALATE_MANUAL)
+        # Test 2 emails: 1 to dev, 1 to admin.
+        eq_(len(mail.outbox), 2)
+        dev_msg = mail.outbox[0]
+        self._check_email(dev_msg, 'Submission Update')
+        adm_msg = mail.outbox[1]
+        self._check_admin_email(adm_msg, 'Escalated Review Requested')
 
     def test_more_information(self):
+        # Test the same for all queues.
         self.post({'action': 'info', 'comments': 'Knead moor in faux'})
         eq_(self.get_app().status, amo.STATUS_PENDING)
         self._check_log(amo.LOG.REQUEST_INFORMATION)
@@ -542,26 +700,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
 
-    def test_clear_escalation(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        EscalationQueue.objects.create(addon=self.app)
-        self.post({'action': 'clear_escalation', 'comments': 'all clear'},
-                  url=self.escalated_url)
-        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
-        self._check_log(amo.LOG.ESCALATION_CLEARED)
-        # Ensure we don't send email on clearing escalations.
+    def test_comment(self):
+        # Test the same for all queues.
+        self.post({'action': 'comment', 'comments': 'mmm, nice app'})
         eq_(len(mail.outbox), 0)
-
-    def test_disable_app(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        EscalationQueue.objects.create(addon=self.app)
-        self.post({'action': 'disable', 'comments': 'disabled ur app'},
-                  url=self.escalated_url)
-        eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
-        eq_(self.get_app().status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.APP_DISABLED)
-        eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+        self._check_log(amo.LOG.COMMENT_VERSION)
 
     def test_receipt_no_node(self):
         res = self.client.get(self.url)
@@ -726,14 +869,14 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
 
     def test_search_comment_exists(self):
         """Search by comment."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, comment='hello')
         r = self.client.get(self.url, dict(search='hello'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#log-listing tbody tr.hide').eq(0).text(), 'hello')
 
     def test_search_comment_doesnt_exist(self):
         """Search by comment, with no results."""
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, comment='hello')
         r = self.client.get(self.url, dict(search='bye'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
@@ -741,7 +884,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_exists(self):
         """Search by author."""
         self.make_approvals()
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, username='editor',
+        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, username='editor',
                               comment='hi')
 
         r = self.client.get(self.url, dict(search='editor'))
@@ -754,7 +897,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_doesnt_exist(self):
         """Search by author, with no results."""
         self.make_approvals()
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, username='editor')
+        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, username='editor')
 
         r = self.client.get(self.url, dict(search='wrong'))
         eq_(r.status_code, 200)
@@ -802,11 +945,11 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
             'More information requested')
 
-    def test_super_review_logs(self):
-        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
+    def test_escalate_logs(self):
+        self.make_an_approval(amo.LOG.ESCALATE_MANUAL)
         r = self.client.get(self.url)
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
-            'Super review requested')
+            'Reviewer escalation')
 
 
 class TestMotd(AppReviewerTest, AccessMixin):
@@ -820,8 +963,7 @@ class TestMotd(AppReviewerTest, AccessMixin):
     def test_perms_not_editor(self):
         self.client.logout()
         req = self.client.get(self.url, follow=True)
-        self.assertRedirects(req, '%s?to=%s' % (reverse('users.login'),
-                                                self.url))
+        self.assert3xx(req, '%s?to=%s' % (reverse('users.login'), self.url))
         self.client.login(username='regular@mozilla.com',
                           password='password')
         eq_(self.client.get(self.url).status_code, 403)
@@ -855,5 +997,5 @@ class TestMotd(AppReviewerTest, AccessMixin):
             'This field is required.')
         # A real post now.
         req = self.client.post(self.url, dict(motd='new motd'))
-        self.assertRedirects(req, self.url)
+        self.assert3xx(req, self.url)
         eq_(get_config(self.key), u'new motd')
