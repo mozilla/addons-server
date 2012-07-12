@@ -70,6 +70,7 @@ class Client(object):
     def __init__(self, config=None):
         self.config = self.parse(config)
         self.encoder = None
+        self.filter_encoder = urllib.urlencode
 
     def _url(self, context, name, pk=None):
         url = '%s/%s/%s/' % (self.config['server'], context, name)
@@ -131,5 +132,5 @@ class Client(object):
                 filters=None):
         url = self._url(*target[:2], pk=pk)
         if filters:
-            url = '%s?%s' % (url, urllib.urlencode(filters))
+            url = '%s?%s' % (url, self.filter_encoder(filters))
         return self.call(url, method, data=data)

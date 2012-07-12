@@ -11,7 +11,8 @@ import test_utils
 from addons.models import Addon
 import amo
 from users.models import UserProfile
-from lib.pay_server import client, model_to_uid, ZamboniEncoder
+from lib.pay_server import (client, filter_encoder, model_to_uid,
+                            ZamboniEncoder)
 
 
 @patch.object(settings, 'SECLUSION_HOSTS', ('http://localhost'))
@@ -31,6 +32,10 @@ class TestUtils(test_utils.TestCase):
                                     cls=ZamboniEncoder))
         eq_(res['uuid'], 'testy:users:%s' % self.user.pk)
         eq_(res['date'], today.strftime('%Y-%m-%d'))
+
+    def test_filter_encoder(self):
+        eq_(filter_encoder({'uuid': self.user, 'bar': 'bar'}),
+            'bar=bar&uuid=testy%3Ausers%3A12')
 
     @patch.object(client, 'get_buyer')
     @patch.object(client, 'post_buyer')
@@ -101,7 +106,8 @@ class TestUtils(test_utils.TestCase):
     @patch.object(client, 'create_seller_paypal')
     @patch.object(client, 'patch_seller_paypal')
     def test_seller_there(self, patch_seller_paypal, create_seller_paypal):
-        create_seller_paypal.return_value = {'paypal_id': 'asd'}
+        create_seller_paypal.return_value = {'paypal_id': 'asd',
+                                             'resource_pk': 1}
         client.create_seller_for_pay(None)
         assert not patch_seller_paypal.called
 

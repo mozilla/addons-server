@@ -1,4 +1,5 @@
 import hashlib
+import urllib
 import uuid
 
 from django.conf import settings
@@ -25,6 +26,13 @@ class ZamboniEncoder(Encoder):
         if isinstance(v, Model):
             return model_to_uid(v)
         return super(ZamboniEncoder, self).default(v)
+
+
+def filter_encoder(query):
+    for k, v in query.items():
+        if isinstance(v, Model):
+            query[k] = model_to_uid(v)
+    return urllib.urlencode(query)
 
 
 class ZamboniClient(Client):
@@ -82,6 +90,7 @@ class ZamboniClient(Client):
         if not obj['paypal_id']:
             client.patch_seller_paypal(pk=obj['resource_pk'],
                                        data={'paypal_id': addon.paypal_id})
+        return obj['resource_pk']
 
     def make_uuid(self):
         return hashlib.md5(str(uuid.uuid4())).hexdigest()
@@ -141,6 +150,7 @@ def get_client():
         }
         client = ZamboniClient(config)
         client.encoder = ZamboniEncoder
+        client.filter_encoder = filter_encoder
         return client
 
 if not client:
