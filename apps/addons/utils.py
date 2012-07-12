@@ -235,7 +235,7 @@ class CreaturedManager(object):
         return map(int, filter(None, per_locale + others))
 
 
-@memoize('addons:featured:no-redis', time=60 * 10)
+#@memoize('addons:featured:no-redis', time=60 * 10)
 def get_featured_ids(app, lang=None, type=None):
     if not waffle.switch_is_active('no-redis'):
         return FeaturedManager.featured_ids(app, lang, type)
