@@ -12,7 +12,8 @@ class TestGetFeaturedIds(amo.tests.TestCase):
 
     no_locale = (1001, 1003, 2464, 7661, 15679)
     en_us_locale = (3481,)
-    no_local_type_one = (1001, 1003, 2464, 7661)
+    all_locales = no_locale + en_us_locale
+    no_locale_type_one = (1001, 1003, 2464, 7661)
 
     def setUp(self):
         super(TestGetFeaturedIds, self).setUp()
@@ -20,15 +21,15 @@ class TestGetFeaturedIds(amo.tests.TestCase):
 
     def test_by_app(self):
         eq_(set(get_featured_ids(amo.FIREFOX)),
-            set(self.no_locale))
+            set(self.all_locales))
 
     def test_by_type(self):
         eq_(set(get_featured_ids(amo.FIREFOX, 'xx', 1)),
-            set(self.no_local_type_one))
+            set(self.no_locale_type_one))
 
     def test_by_locale(self):
         eq_(set(get_featured_ids(amo.FIREFOX)),
-            set(self.no_locale))
+            set(self.all_locales))
         eq_(set(get_featured_ids(amo.FIREFOX, 'xx')),
             set(self.no_locale))
         eq_(set(get_featured_ids(amo.FIREFOX, 'en-US')),

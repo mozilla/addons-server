@@ -242,21 +242,28 @@ def get_featured_ids(app, lang=None, type=None):
 
     from addons.models import Addon
     ids = []
-    qs = Addon.objects.filter(
-        collections__featuredcollection__isnull=False,
-        collections__featuredcollection__application__id=app.id)
+    is_featured = (Q(collections__featuredcollection__isnull=False) &
+                   Q(collections__featuredcollection__application__id=app.id))
+    qs = Addon.objects.all()
 
     if type:
         qs = qs.filter(type=type)
     if lang:
         has_locale = qs.filter(
-            collections__featuredcollection__locale__iexact=lang)
+            is_featured &
+            Q(collections__featuredcollection__locale__iexact=lang))
         if has_locale.exists():
             ids += list(has_locale.distinct().values_list('id', flat=True))
-            random.shuffle(ids)
-    qs = qs.filter(Q(collections__featuredcollection__locale=None) |
-                   Q(collections__featuredcollection__locale=''))
+        none_qs = qs.filter(
+            is_featured &
+            Q(collections__featuredcollection__locale__isnull=True))
+        blank_qs = qs.filter(is_featured &
+                             Q(collections__featuredcollection__locale=''))
+        qs = none_qs | blank_qs
+    else:
+        qs = qs.filter(is_featured)
     other_ids = list(qs.distinct().values_list('id', flat=True))
+    random.shuffle(ids)
     random.shuffle(other_ids)
     ids += other_ids
     return map(int, ids)
