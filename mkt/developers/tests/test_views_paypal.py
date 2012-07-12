@@ -2,6 +2,8 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import waffle
+
 from addons.models import Addon
 import amo
 import amo.tests
@@ -213,3 +215,36 @@ class TestPaypalResponse(amo.tests.TestCase):
         for field in ('country', 'address_one'):
             self.assertFormError(res, 'form', field,
                                  [u'This field is required.'])
+
+    @mock.patch('mkt.developers.views.client')
+    def test_payment_reads_solitude(self, client):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        client.get_seller.return_value = {'meta': {'total_count': 1},
+                                          'objects': [{'paypal': {
+                                                'country': 'france'}}]}
+        res = self.client.get(self.url)
+        eq_(res.context['form'].data['country'], 'france')
+
+    @mock.patch('mkt.developers.views.client')
+    def test_payment_reads_solitude_but_empty(self, client):
+        AddonPaymentData.objects.create(addon=self.webapp, country='ca',
+                                        address_one='123 bob st.')
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        client.get_seller.return_value = {'meta': {'total_count': 0},
+                                          'objects': []}
+        res = self.client.get(self.url)
+        eq_(res.context['form'].data['country'], 'ca')
+
+    @mock.patch('mkt.developers.views.client')
+    def test_payment_confirm_solitude(self, client):
+        waffle.models.Flag.objects.create(name='solitude-payments',
+                                          everyone=True)
+        client.create_seller_for_pay.return_value = 1
+        res = self.client.post(self.url, {'country': 'uk',
+                                          'address_one': '123 bob st.'})
+        args = client.patch_seller_paypal.call_args[1]
+        eq_(args['data']['address_one'], '123 bob st.')
+        eq_(args['pk'], 1)
+        eq_(res.status_code, 302)

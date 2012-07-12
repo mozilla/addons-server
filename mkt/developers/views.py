@@ -7,6 +7,7 @@ from django import http
 from django.conf import settings
 from django import forms as django_forms
 from django.db import models, transaction
+from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
@@ -336,9 +337,29 @@ def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
         title = _('Contact Details')
         button = _('Save')
 
-    adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
-    form = forms.PaypalPaymentData(request.POST or None, instance=adp)
+    data = {}
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        # If it exists in solitude, use it.
+        existing = client.get_seller(filters={'uuid': addon})
+        if existing['meta']['total_count'] == 1:
+            data = existing['objects'][0]['paypal']
+
+    # TODO(solitude): remove this bit.
+    # If it's not in solitude, use the local version
+    adp, created = (AddonPaymentData.objects
+                                    .safer_get_or_create(addon=addon))
+    if not data:
+        data = model_to_dict(adp)
+
+    form = forms.PaypalPaymentData(request.POST or data)
     if request.method == 'POST' and form.is_valid():
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            # TODO(solitude): when the migration of data is completed, we
+            # will be able to remove this.
+            pk = client.create_seller_for_pay(addon)
+            client.patch_seller_paypal(pk=pk, data=form.cleaned_data)
+
+        # TODO(solitude): remove this.
         adp.update(**form.cleaned_data)
         messages.success(request, msg)
         if source == 'paypal' and addon.is_incomplete() and addon.paypal_id:

@@ -553,13 +553,18 @@ class PaypalSetupForm(happyforms.Form):
         return data
 
 
-class PaypalPaymentData(happyforms.ModelForm):
-
-    class Meta:
-        model = AddonPaymentData
-        fields = ['first_name', 'last_name',
-                  'address_one', 'address_two', 'city',
-                  'state', 'post_code', 'country', 'phone']
+class PaypalPaymentData(happyforms.Form):
+    first_name = forms.CharField(max_length=255, required=False)
+    last_name = forms.CharField(max_length=255, required=False)
+    full_name = forms.CharField(max_length=255, required=False)
+    business_name = forms.CharField(max_length=255, required=False)
+    country = forms.CharField(max_length=64)
+    address_one = forms.CharField(max_length=255)
+    address_two = forms.CharField(max_length=255,  required=False)
+    post_code = forms.CharField(max_length=128, required=False)
+    city = forms.CharField(max_length=128, required=False)
+    state = forms.CharField(max_length=64, required=False)
+    phone = forms.CharField(max_length=32, required=False)
 
 
 class AppFormDetails(addons.forms.AddonFormBase):
