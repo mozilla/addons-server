@@ -13,9 +13,11 @@
 
   {% block review_header %}
     {{ rating_header(product, title) }}
+    {% if product.can_review(amo_user) %}
     <p id="add-review">
       <a href="{{ product.get_ratings_url('add') }}" class="button fat">
         {{ _('Add a review') }}</a></p>
+    {% endif %}
 <!--
         {% if page == 'list' %}
           <img src="{{ product.get_icon_url(64) }}">
