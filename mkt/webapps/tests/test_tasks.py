@@ -172,7 +172,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
-        assert 'http://test/en-US/developers/upload' in ''.join(
+        assert 'http://test/developers/upload' in ''.join(
             [a._details for a in ActivityLog.objects.for_apps(self.addon)])
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
 
