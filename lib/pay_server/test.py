@@ -35,7 +35,7 @@ class TestUtils(test_utils.TestCase):
 
     def test_filter_encoder(self):
         eq_(filter_encoder({'uuid': self.user, 'bar': 'bar'}),
-            'bar=bar&uuid=testy%3Ausers%3A12')
+            'bar=bar&uuid=testy%%3Ausers%%3A%s' % self.user.pk)
 
     @patch.object(client, 'get_buyer')
     @patch.object(client, 'post_buyer')
