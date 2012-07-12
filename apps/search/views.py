@@ -463,6 +463,7 @@ def name_only_query(q):
     d = {}
 
     rules = {'text': {'query': q, 'boost': 3, 'analyzer': 'standard'},
+             'text': {'query': q, 'boost': 4, 'type': 'phrase'},
              'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
              'startswith': {'value': q, 'boost': 1.5}}
     for k, v in rules.iteritems():
