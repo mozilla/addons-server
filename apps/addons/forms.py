@@ -610,3 +610,7 @@ class NewPersonaForm(AddonFormBase):
         AddonCategory(addon=addon, category=tb_c).save()
 
         return addon
+
+
+class ContributionForm(happyforms.Form):
+    amount = forms.DecimalField(required=True)

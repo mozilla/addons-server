@@ -44,6 +44,7 @@ from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
+from .forms import ContributionForm
 from .models import Addon, Persona, FrozenAddon
 from .decorators import (addon_view_factory, can_be_purchased, has_purchased,
                          has_not_purchased)
@@ -680,6 +681,14 @@ def contribute(request, addon):
     }.get(contrib_type, '')
     if not amount:
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
+
+    # This is all going to get shoved into solitude. Temporary.
+    form = ContributionForm({'amount': amount})
+    if not form.is_valid():
+        return http.HttpResponse(json.dumps({'error': 'Invalid data.',
+                                             'status': '', 'url': '',
+                                             'paykey': ''}),
+                                 content_type='application/json')
 
     contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
 

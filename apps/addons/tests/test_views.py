@@ -244,6 +244,13 @@ class TestContributeEmbedded(amo.tests.TestCase):
         eq_(response.status_code, 302)
         eq_(Contribution.objects.all()[0].amount, Decimal('42.00'))
 
+    def test_invalid_amount(self):
+        response = self.client_post(rev=['a592'], data={'onetime-amount': 'f',
+                                                        'type': 'onetime'})
+        data = json.loads(response.content)
+        eq_(data['paykey'], '')
+        eq_(data['error'], 'Invalid data.')
+
     def test_ppal_json_switch(self):
         response = self.client_post(rev=['a592'], qs='?result_type=json')
         eq_(response.status_code, 200)
