@@ -8,7 +8,7 @@ from addons.models import Addon
 import amo
 from amo.helpers import numberfmt
 import amo.tests
-from reviews.models import Review
+from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 
 from mkt.developers.models import ActivityLog
@@ -308,3 +308,25 @@ class TestListing(ReviewTest):
 
         eq_(self.get_flags(reviews.find('#review-218468 .actions')),
             ['delete', 'edit'])
+
+
+class TestFlag(ReviewTest):
+
+    def setUp(self):
+        super(TestFlag, self).setUp()
+        self.user = UserProfile.objects.get(email='root_x@ukr.net')
+        assert self.client.login(username=self.user.email, password='password')
+        self.flag = self.webapp.get_ratings_url('flag', [218468])
+
+    def test_no_login(self):
+        self.client.logout()
+        response = self.client.post(self.flag)
+        eq_(response.status_code, 401)
+
+    def test_new_flag(self):
+        response = self.client.post(self.flag, {'flag': ReviewFlag.SPAM})
+        eq_(response.status_code, 200)
+        eq_(response.content, '{"msg": "Thanks; this review has been '
+                                       'flagged for editor approval."}')
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
+        eq_(Review.objects.filter(editorreview=True).count(), 1)

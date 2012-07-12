@@ -71,14 +71,6 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
 
 
 @addon_view
-@post_required
-@login_required(redirect=False)
-@json_view
-def flag(request, addon, review_id):
-    return http.HttpResponse()
-
-
-@addon_view
 @json_view
 @login_required(redirect=False)
 @post_required
