@@ -2,7 +2,7 @@
     z.page.on('fragmentloaded', function() {
         setTimeout(function() {
             // Make sure the class got updated.
-            if (!$('body.reviews').length) {
+            if (!$('body.reviews').length && !$('ol.reviews').length) {
                 return;
             }
 

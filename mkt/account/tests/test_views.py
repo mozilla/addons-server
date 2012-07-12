@@ -20,6 +20,7 @@ from lib.pay_server import client
 from market.models import PreApprovalUser, Price, PriceCurrency
 from mkt.developers.models import ActivityLog
 import paypal
+from reviews.models import Review
 from stats.models import Contribution
 from users.models import UserNotification, UserProfile
 import users.notifications as email
@@ -551,6 +552,15 @@ class TestProfileSections(amo.tests.TestCase):
             'This user should have way more than 10 add-ons.')
         r = self.client.get(self.url)
         eq_(pq(r.content)('#my-submissions .paginator').length, 1)
+
+    def test_my_reviews(self):
+        r = Review.objects.create(user=self.user, addon_id=337141)
+        eq_(list(self.user.reviews), [r])
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)('.reviews')
+        eq_(doc('.items-profile li.review').length, 1)
+        eq_(doc('#review-1').length, 1)
 
 
 class PurchaseBase(amo.tests.TestCase):
