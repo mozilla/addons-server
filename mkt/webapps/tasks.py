@@ -7,6 +7,7 @@ from celeryutils import task
 from django.core.files.storage import default_storage as storage
 
 import amo
+from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from files.models import FileUpload
@@ -58,6 +59,7 @@ def _open_manifest(webapp, file_):
 
 
 @task
+@write
 def update_manifests(ids, **kw):
     task_log.info('[%s@%s] Update manifests.' %
                   (len(ids), update_manifests.rate_limit))
