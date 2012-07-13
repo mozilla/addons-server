@@ -56,6 +56,14 @@ class ZamboniClient(Client):
         if res['meta']['total_count'] == 0:
             self.post_buyer(data={'uuid': buyer})
 
+    def get_seller_paypal_if_exists(self, seller):
+        """
+        Will return the paypal details if the user and paypal data exists.
+        """
+        res = self.get_seller(filters={'uuid': seller})
+        if res['meta']['total_count'] == 1:
+            return res['objects'][0]['paypal']
+
     def create_seller_paypal(self, seller):
         """
         Will see if the user exists. If it does, will see if paypal exists, if

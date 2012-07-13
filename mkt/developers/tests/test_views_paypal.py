@@ -218,29 +218,23 @@ class TestPaypalResponse(amo.tests.TestCase):
 
     @mock.patch('mkt.developers.views.client')
     def test_payment_reads_solitude(self, client):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-        client.get_seller.return_value = {'meta': {'total_count': 1},
-                                          'objects': [{'paypal': {
-                                                'country': 'france'}}]}
+        self.create_flag(name='solitude-payments')
+        client.get_seller_paypal_if_exists.return_value = {'country': 'fr'}
         res = self.client.get(self.url)
-        eq_(res.context['form'].data['country'], 'france')
+        eq_(res.context['form'].data['country'], 'fr')
 
     @mock.patch('mkt.developers.views.client')
     def test_payment_reads_solitude_but_empty(self, client):
         AddonPaymentData.objects.create(addon=self.webapp, country='ca',
                                         address_one='123 bob st.')
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-        client.get_seller.return_value = {'meta': {'total_count': 0},
-                                          'objects': []}
+        self.create_flag(name='solitude-payments')
+        client.get_seller_paypal_if_exists.return_value = None
         res = self.client.get(self.url)
         eq_(res.context['form'].data['country'], 'ca')
 
     @mock.patch('mkt.developers.views.client')
     def test_payment_confirm_solitude(self, client):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
+        self.create_flag(name='solitude-payments')
         client.create_seller_for_pay.return_value = 1
         res = self.client.post(self.url, {'country': 'uk',
                                           'address_one': '123 bob st.'})

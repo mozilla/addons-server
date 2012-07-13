@@ -24,6 +24,7 @@ from nose.tools import eq_, nottest
 import pyes.exceptions as pyes
 from redisutils import mock_redis, reset_redis
 import test_utils
+from waffle.models import Flag, Switch
 
 import amo
 from amo.urlresolvers import Prefixer, get_url_prefix, reverse, set_url_prefix
@@ -289,6 +290,14 @@ class TestCase(RedisTest, test_utils.TestCase):
                                              price='1.00', tier=price)
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price)
+
+    def create_switch(self, **kw):
+        kw.setdefault('active', True)
+        Switch.objects.create(**kw)
+
+    def create_flag(self, **kw):
+        kw.setdefault('everyone', True)
+        Flag.objects.create(**kw)
 
 
 class AMOPaths(object):

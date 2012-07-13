@@ -339,10 +339,7 @@ def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
 
     data = {}
     if waffle.flag_is_active(request, 'solitude-payments'):
-        # If it exists in solitude, use it.
-        existing = client.get_seller(filters={'uuid': addon})
-        if existing['meta']['total_count'] == 1:
-            data = existing['objects'][0]['paypal']
+        data = client.get_seller_paypal_if_exists(addon) or {}
 
     # TODO(solitude): remove this bit.
     # If it's not in solitude, use the local version
