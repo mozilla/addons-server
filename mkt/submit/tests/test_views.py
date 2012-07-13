@@ -969,6 +969,28 @@ class TestPayments(TestSubmit):
         res = self.client.get(self.get_acquire_url())
         self.assertRedirects(res, self.get_url('payments.confirm'))
 
+    @mock.patch('mkt.submit.views.client')
+    def test_confirm_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
+                           paypal_id='a@a.com')
+        client.get_seller_paypal_if_exists.return_value = {'country': 'fr'}
+        res = self.client.get(self.get_url('payments.confirm'))
+        eq_(res.context['form'].data['country'], 'fr')
+
+    @mock.patch('mkt.submit.views.client')
+    def test_confirm_solitude_saves(self, client):
+        self.create_flag(name='solitude-payments')
+        client.get_seller_paypal_if_exists.return_value = None
+        client.create_seller_for_pay.return_value = 1
+        res = self.client.post(self.get_url('payments.confirm'),
+                               {'country': 'uk',
+                                'address_one': '123 bob st.'})
+        args = client.patch_seller_paypal.call_args[1]
+        eq_(args['data']['address_one'], '123 bob st.')
+        eq_(args['pk'], 1)
+        eq_(res.status_code, 302)
+
     @mock.patch('paypal.get_permissions_token')
     @mock.patch('paypal.get_personal_data')
     def test_bounce_result_fails_email(self, get_personal_data,

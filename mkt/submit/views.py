@@ -238,9 +238,24 @@ def payments_bounce(request, addon_id, addon):
 @dev_required
 @submit_step('payments')
 def payments_confirm(request, addon_id, addon):
+    data = {}
+    # TODO(solitude): remove all references to AddonPaymentData.
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        data = client.get_seller_paypal_if_exists(addon) or {}
+
     adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
-    form = PaypalPaymentData(request.POST or model_to_dict(adp))
+    if not data:
+        data = model_to_dict(adp)
+
+    form = PaypalPaymentData(request.POST or data)
     if request.method == 'POST' and form.is_valid():
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            # TODO(solitude): when the migration of data is completed, we
+            # will be able to remove this.
+            pk = client.create_seller_for_pay(addon)
+            client.patch_seller_paypal(pk=pk, data=form.cleaned_data)
+
+        # TODO(solitude): remove this.
         adp.update(**form.cleaned_data)
         AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
         addon.mark_done()
