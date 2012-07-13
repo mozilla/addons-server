@@ -8,7 +8,7 @@
 
             // Remove character counter on review field on mobile for now
             // (770661).
-            if (z.capabilities.getDeviceType() != 'mobile') {
+            if (!z.capabilities.mobile) {
                 initCharCount();
             }
 
@@ -132,7 +132,7 @@
 
                 // Remove character counter on review field on mobile for now
                 // (770661).
-                if (z.capabilities.getDeviceType() != 'mobile') {
+                if (!z.capabilities.mobile) {
                     initCharCount();
                 }
 

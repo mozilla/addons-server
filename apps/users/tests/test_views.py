@@ -1195,6 +1195,15 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(doc('#popup-staging #report-user-modal.modal').length, 0)
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
+    def test_with_mkt_reviews(self):
+        # Test marketplace reviews don't break profiles on AMO.
+        app = amo.tests.app_factory(type=amo.ADDON_WEBAPP, app_slug='1abcxyz1')
+        AddonUser.objects.create(addon_id=app.id, user_id=self.user.id)
+        Review.objects.create(user_id=self.user.id, addon=app, rating=1)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(app.app_slug in r.content, False)
+
 
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']

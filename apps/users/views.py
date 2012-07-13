@@ -563,11 +563,9 @@ def profile(request, user_id):
         addons = dict((addon.id, addon) for addon in qs)
         for review in reviews:
             review.addon = addons.get(review.addon_id)
-    reviews = user.reviews.transform(get_addons)
-
-    # Don't show marketplace reviews for AMO (since that would break).
-    reviews = [review for review in reviews
-               if review.addon.type != amo.ADDON_WEBAPP]
+    # (Don't show marketplace reviews for AMO (since that would break))
+    reviews = (user.reviews.exclude(addon__type=amo.ADDON_WEBAPP)
+               .transform(get_addons))
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
