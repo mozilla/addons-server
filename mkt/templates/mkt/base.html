@@ -149,6 +149,23 @@
       </div>
     {% endif %}
 
+    <!-- screenshot tray template-->
+    <script type="text/template" id="single-preview">
+      <li>
+        <a class="screenshot thumbnail {typeclass}"
+           href="{fullUrl}" title="{caption}">
+          <img alt="{caption}" src="{thumbUrl}">
+        </a>
+      </li>
+    </script>
+
+    <!-- screenshot tray template-->
+    <script type="text/template" id="preview-tray">
+      <div class="slider">
+        <ul class="content">{previews}</div>
+      </div>
+    </script>
+
     <!-- screenshot lightbox -->
     <div id="lightbox">
       <section>

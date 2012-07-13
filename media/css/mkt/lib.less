@@ -207,13 +207,16 @@
 .gradient-two-color(@color1, @color2) {
     background-color: @color2;
     background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
-    background-image: linear-gradient(@color1, @color2);
-    background-image: -moz-linear-gradient(@color1, @color2);
     background-image: -webkit-linear-gradient(@color1, @color2);
+    background-image:    -moz-linear-gradient(@color1, @color2);
+    background-image:     -ms-linear-gradient(@color1, @color2);
+    background-image:      -o-linear-gradient(@color1, @color2);
+    background-image:         linear-gradient(@color1, @color2);
 }
 
 .h-gradient-two-color(@color1, @color2) {
     // The background-color fallback is bad for opacity gradients.
+    background-color: @color2;
     background-image: -webkit-gradient(linear, left center, right center, from(@color1), to(@color2));
     background-image: -webkit-linear-gradient(to right, @color1, @color2);
     background-image:    -moz-linear-gradient(to right, @color1, @color2);

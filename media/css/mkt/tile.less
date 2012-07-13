@@ -1,6 +1,6 @@
 @import 'lib';
 
-/* base class */
+// base class
 
 .mkt-tile {
     position: relative;
@@ -22,10 +22,20 @@
     }
 }
 
+
+.grid, .listing {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Listing
+// name + icon + price + rating in a vertical listview.
+// also used as standalone "card" on detail pages.
 .listing .mkt-tile {
     height: 66px;
     .gradient-two-color(#f7f7f7, @barely-gray);
-    padding: 20px 10px;
+    padding: 20px 15px;
     h3 {
         font-size: 20px;
         line-height: 22px;
@@ -41,7 +51,7 @@
     .button {
         position: absolute;
         bottom: 24px;
-        right: 10px;
+        right: 15px;
         height: 24px;
         line-height: 24px;
         font-size: 13px;
@@ -63,11 +73,11 @@
     }
 }
 
-.grid, .listing {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+
+// Grid
+// store graphic, name, price in a floated grid (3 tiles wide at 320).
+// center of each row is 1 px wider to provide for proper division by 3.
+
 .grid {
     li {
         float: left;
@@ -103,9 +113,12 @@
             display: none;
         }
     }
+    // make the middle element of the 3-wide grid 1px wider.
+    // would love to move to using percentages here.
     li:nth-child(3n+1) .mkt-tile {
         width: 106px;
     }
+    // produce the gradient "pop" every other (produces checkerboard)
     li:nth-child(even) .mkt-tile {
         .info {
             .gradient-two-color(#fff, #d9d9d9);
@@ -117,6 +130,43 @@
         border-top: 1px solid @light-gray;
         &:first-child {
             border-top: 0;
+        }
+    }
+}
+
+// Previews tray.
+.expanded .mkt-tile + .tray {
+    height: 232px;
+    .gradient-two-color(#fff, fade(#fff, 0%));
+    border-bottom: 1px solid #edf0f1;
+    border-top: 1px solid #abb4ba;
+    position: relative;
+    background: #ccc;
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: -1px;
+        left: 27px;
+        -moz-transform-origin: 0 0;
+        .transform(~'scaleY(.6) rotate(-45deg)');
+        background: #ccc;
+        width: 21px;
+        height: 21px;
+        .box-shadow(-2px 2px 1px fade(#808385, 50%) inset);
+    }
+    ul {
+        padding: 15px;
+        margin: 0;
+        list-style-type: none;
+        text-align: center;
+        white-space: nowrap;
+    }
+    li {
+        margin-left: 15px;
+        display: inline-block;
+        &:first-child {
+            margin-left: 0px;
         }
     }
 }

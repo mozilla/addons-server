@@ -36,40 +36,9 @@
   </section>
   {{ notification(product, amo, is_dev) }}
 {% else %}
-  <section class="product-details listing">
+  <section class="product-details listing expanded">
     {{ market_tile(product) }}
-    <div class="actions">
-      {% if is_dev %}
-        <p><a href="{{ product.get_dev_url() }}" class="button manage wide">
-          {{ _('Manage') }}</a></p>
-      {% endif %}
-      {% if is_reviewer %}
-        <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
-              class="button good reviewer wide" target="_blank">
-          {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
-      {% endif %}
-    </div>
   </section>
-  {% if product.all_previews %}
-    <section class="previews slider full">
-      <div class="alt-slider">
-        <div class="controls">
-          <a href="#" class="prev-page"></a>
-          <a href="#" class="next-page"></a>
-        </div>
-        <ul class="content">
-          {%- for preview in product.all_previews -%}
-            <li>
-              <a class="screenshot thumbnail arrow{{ ' video' if preview.filetype == 'video/webm' }}"
-                 href="{{ preview.image_url }}" title="{{ preview.caption }}">
-                <div class="img" style="background-image:url({{ preview.thumbnail_url }})"></div>
-              </a>
-            </li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    </section>
-  {% endif %}
 
   {{ notification(product, amo, is_dev) }}
 
@@ -99,6 +68,20 @@
   </section>
   <div id="purchased-message"></div>
 
+  <section class="infobox wide">
+    <div class="actions wide">
+      {% if is_dev %}
+        <p><a href="{{ product.get_dev_url() }}" class="button manage">
+          {{ _('Manage') }}</a></p>
+      {% endif %}
+      {% if is_reviewer %}
+        <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
+              class="button good reviewer" target="_blank">
+          {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
+      {% endif %}
+    </div>
+  </section>
+
   <section class="description infobox full">
     <div>
       <p class="summary">
@@ -121,9 +104,8 @@
     </div>
   </section>
 
-  <section id="support" class="support c">
-
-    {% if waffle.switch('ratings') %}
+  {% if waffle.switch('ratings') %}
+    <section class="reviews c infobox full">
       <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
         <div class="review-stars-header">
           <h3 class="wide">{{ _('Reviews') }}</h3>
@@ -154,141 +136,67 @@
               }}</a></p>
           {% endif %}
         </div>
-
-        {% if reviews %}
-         {{ rating_flag() }}
-          <div class="reviews-sidebar">
-            <ol class="latest-reviews-list">
-              {% for review in reviews %}
-                {% with product = review.addon, show_addon = True %}
-                  {% include "ratings/rating.html" %}
-                {% endwith %}
-              {% endfor %}
-            </ol>
-            <p class="view-more-reviews">
-              <a class="arrow" href="{{ product.get_ratings_url('list') }}">{{ _('View More') }}</a>
-            </p>
-          </div>
-        {% endif %}
       </div>
-    {% endif %}
+    </section>
+  {% endif %}
 
-    {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
-             pare this down. But until then... code duplication :( #}
-    <ul class="narrow c">
-      {% if False %}
-        {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
-                 https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
-        <li><a href="" class="arrow">{{ _('Support') }}</a></li>
-      {% endif %}
-      {% if product.support_email %}
-        <li class="support-email">
-          {{ emaillink(product.support_email.localized_string,
-                       _('Support Email')) }}
-        </li>
-      {% endif %}
-      {% if product.support_url %}
-        <li class="support-url">
-          <a href="{{ product.support_url|external_url }}">
-            {{ _('Support Site') }}</a>
-        </li>
-      {% endif %}
-      {% if product.homepage %}
-        <li><a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a></li>
-      {% endif %}
-      {% if product.is_public() or is_reviewer %}
-        {% if product.privacy_policy %}
-          <li><a href="{{ product.get_detail_url('privacy') }}">
-            {{ _('Privacy Policy') }}</a></li>
+  <section id="support" class="infobox full support c">
+    <div>
+      {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
+               pare this down. But until then... code duplication :( #}
+      <ul class="c">
+        {% if False %}
+          {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
+                   https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
+          <li><a href="" class="arrow">{{ _('Support') }}</a></li>
         {% endif %}
-        {% if waffle.switch('app-stats') and product.public_stats %}
-          <li><a href="{{ url('mkt.stats.overview', product.app_slug) }}">
-            {{ _('Statistics') }}</a></li>
-        {% endif %}
-      {% endif %}
-      {% if abuse_form %}
-        <li><a href="{{ product.get_detail_url('abuse') }}">
-          {{ _('Report Abuse') }}</a></li>
-      {% endif %}
-    </ul>
-    {% set upsell = product.upsell %}
-    {% if upsell %}
-      {% set prm = upsell.premium_addon %}
-      {% if prm %}
-        <a id="upsell" class="narrow"
-           href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-           <span class="avail">{{ _('Premium version available') }}</span>
-           <img class="icon" src="{{ prm.get_icon_url(16) }}">
-           <span class="name">{{ prm.name }}</span>
-        </a>
-      {% endif %}
-    {% endif %}
-
-    <dl class="narrow">
-      <dt>{{ _('Published') }}</dt>
-      <dd>{{ product.created|timelabel }}</dd>
-    </dl>
-
-    <ul class="wide">
-      {% if product.support_email or product.support_url %}
-        <li class="contact-support">
-          <h3>{{ _('Contact Support') }}</h3>
-          {% if product.support_email %}
-            <p class="support-email">
-              {{ emaillink(product.support_email.localized_string,
-                           _('Support Email'), 'arrow') }}
-            </p>
-          {% endif %}
-          {% if product.support_url %}
-            <p class="support-url">
-              <a class="arrow" href="{{ product.support_url|external_url }}">
-                {{ _('Support Site') }}</a>
-            </p>
-          {% endif %}
-        </li>
-      {% endif %}
-      {% if product.homepage %}
-        <li class="homepage">
-          <h3>{{ _('App Homepage') }}</h3>
-          <p>
-            <a class="arrow" href="{{ product.homepage|external_url }}">
-              {{ product.homepage }}</a>
-          </p>
-        </li>
-      {% endif %}
-      {% if product.is_public() or is_reviewer %}
-        {% if product.privacy_policy or product.public_stats %}
-          <li class="more-info c">
-            <h3>{{ _('More Info') }}</h3>
-              <p class="privacy">
-                <a class="arrow" href="{{ product.get_detail_url('privacy') }}">
-                  {{ _('Privacy Policy') }}
-                </a>
-              </p>
-            {% if waffle.switch('app-stats') and product.public_stats %}
-              <p class="view-stats">
-                <a class="arrow" href="{{ url('mkt.stats.overview', product.app_slug) }}">
-                  {{ _('Statistics') }}
-                </a>
-              </p>
-            {% endif %}
+        {% if product.support_email %}
+          <li class="support-email">
+            {{ emaillink(product.support_email.localized_string,
+                         _('Support Email')) }}
           </li>
         {% endif %}
-        <li class="published">
-          <h3>{{ _('Published') }}</h3>
-          <p>
-            {{ product.created|timelabel }}
-          </p>
-        </li>
+        {% if product.support_url %}
+          <li class="support-url">
+            <a href="{{ product.support_url|external_url }}">
+              {{ _('Support Site') }}</a>
+          </li>
+        {% endif %}
+        {% if product.homepage %}
+          <li><a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a></li>
+        {% endif %}
+        {% if product.is_public() or is_reviewer %}
+          {% if product.privacy_policy %}
+            <li><a href="{{ product.get_detail_url('privacy') }}">
+              {{ _('Privacy Policy') }}</a></li>
+          {% endif %}
+          {% if waffle.switch('app-stats') and product.public_stats %}
+            <li><a href="{{ url('mkt.stats.overview', product.app_slug) }}">
+              {{ _('Statistics') }}</a></li>
+          {% endif %}
+        {% endif %}
+        {% if abuse_form %}
+          <li><a href="{{ product.get_detail_url('abuse') }}">
+            {{ _('Report Abuse') }}</a></li>
+        {% endif %}
+      </ul>
+      {% set upsell = product.upsell %}
+      {% if upsell %}
+        {% set prm = upsell.premium_addon %}
+        {% if prm %}
+          <a id="upsell" class="narrow"
+             href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
+             <span class="avail">{{ _('Premium version available') }}</span>
+             <img class="icon" src="{{ prm.get_icon_url(16) }}">
+             <span class="name">{{ prm.name }}</span>
+          </a>
+        {% endif %}
       {% endif %}
-      {% if abuse_form %}
-        <li class="abuse">
-          <h3>{{ _('Report Abuse') }}</h3>
-          <p><a class="arrow" href="{{ product.get_detail_url('abuse') }}">
-            {{ _('Report') }}</a></p>
-        </li>
-      {% endif %}
-    </ul>
+      <dl class="narrow">
+        <dt>{{ _('Published') }}</dt>
+        <dd>{{ product.created|timelabel }}</dd>
+      </dl>
+    </div>
   </section>
 {% endif %}
 {% endblock %}
