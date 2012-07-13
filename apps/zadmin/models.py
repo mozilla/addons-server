@@ -306,6 +306,7 @@ class DownloadSource(models.Model):
     # e.g., `full` or `prefix`.
     type = models.CharField(max_length=255)
 
+    description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
