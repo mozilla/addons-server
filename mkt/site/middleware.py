@@ -97,10 +97,10 @@ class LocaleMiddleware(object):
         if remembered in settings.LANGUAGE_URL_MAP:
             request.LANG = settings.LANGUAGE_URL_MAP[remembered]
 
-        if 'lang' in request.GET or not remembered:
-            language = Prefixer(request).get_language()
-            if language:
-                request.LANG = language
+        user_defined = Prefixer(request).get_language()
+        if ('lang' in request.GET or not remembered or
+            user_defined != settings.LANGUAGE_CODE):
+            request.LANG = user_defined
 
         if not remembered or remembered != request.LANG:
             request.set_cookie('lang', request.LANG)
@@ -120,17 +120,21 @@ class RegionMiddleware(object):
         regions = mkt.regions.REGIONS_DICT
         request.REGION = mkt.regions.WORLDWIDE
 
+        # This gives us something like: [('en-us', 1.0), ('fr', 0.5)]
+        header = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+        accept_lang = parse_accept_lang_header(header.lower())
+        if accept_lang:
+            user_defined = accept_lang[0][0]
+        else:
+            user_defined = settings.LANGUAGE_CODE
+
         remembered = request.COOKIES.get('region')
-        if not remembered:
+        if not remembered or user_defined != settings.LANGUAGE_CODE:
             # TODO: Do geolocation magic.
 
-            # This gives us something like: [('en-us', 1.0), ('fr', 0.5)]
-            header = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
-            accept_lang = parse_accept_lang_header(header.lower())
-
             # If our locale is `en-US`, then exclude the Worldwide region.
-            if (request.LANG == settings.LANGUAGE_CODE and accept_lang and
-                accept_lang[0][0] == request.LANG.lower()):
+            if (request.LANG == settings.LANGUAGE_CODE and
+                user_defined == request.LANG.lower()):
                 choices = mkt.regions.REGIONS_CHOICES[1:]
             else:
                 choices = mkt.regions.REGIONS_CHOICES

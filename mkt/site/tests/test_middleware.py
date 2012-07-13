@@ -136,6 +136,15 @@ class TestLocaleMiddleware(MiddlewareCase):
 
             self.client.cookies.clear()
 
+    def test_accept_language_takes_precedence_over_cookie(self):
+        r = self.client.get('/')
+        eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
+
+        # Even though you remembered my previous language, I've since
+        # changed it in my browser, so let's respect that.
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
+        eq_(r.cookies['lang'].value, 'fr')
+
 
 class TestRegionMiddleware(MiddlewareCase):
 
@@ -209,6 +218,15 @@ class TestRegionMiddleware(MiddlewareCase):
             got = r.context['request'].REGION.slug
             eq_(got, expected,
                 'For %r: expected %r but got %r' % (locale, expected, got))
+
+    def test_accept_language_takes_precedence_over_cookie(self):
+        r = self.client.get('/')
+        eq_(r.cookies['region'].value, 'worldwide')
+
+        # Even though you remembered my previous language, I've since
+        # changed it in my browser, so let's respect that.
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
+        eq_(r.cookies['region'].value, 'brazil')
 
 
 class TestVaryMiddleware(MiddlewareCase):
