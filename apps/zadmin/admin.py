@@ -11,3 +11,5 @@ class ConsumerAdmin(admin.ModelAdmin):
 admin.site.register(models.Config)
 admin.site.register(Consumer, ConsumerAdmin)
 admin.site.disable_action('delete_selected')
+
+admin.site.register(models.DownloadSource)
