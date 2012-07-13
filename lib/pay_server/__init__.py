@@ -40,7 +40,7 @@ class ZamboniClient(Client):
     Error = SolitudeError
 
     def lookup_buyer_paypal(self, buyer):
-        res = self.get_buyer(filters={'uuid': model_to_uid(buyer)})
+        res = self.get_buyer(filters={'uuid': buyer})
         count = res['meta']['total_count']
         if count == 1:
             return res['objects'][0]['paypal']
@@ -52,7 +52,7 @@ class ZamboniClient(Client):
         Checks to see if the buyer exists in solitude. If not we'll create
         it so that solitude can store the pre-approval data for that buyer.
         """
-        res = self.get_buyer(filters={'uuid': model_to_uid(buyer)})
+        res = self.get_buyer(filters={'uuid': buyer})
         if res['meta']['total_count'] == 0:
             self.post_buyer(data={'uuid': buyer})
 
@@ -62,7 +62,7 @@ class ZamboniClient(Client):
         it doesn't it will create a paypal record. It will then return the
         paypal pk, so we can do calls to it.
         """
-        res = self.get_seller(filters={'uuid': model_to_uid(seller)})
+        res = self.get_seller(filters={'uuid': seller})
         count = res['meta']['total_count']
         if count == 0:
             # There's no seller data, so create the seller objects.
