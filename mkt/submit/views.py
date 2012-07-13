@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
+from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 from django.utils.translation.trans_real import to_language
 
@@ -238,7 +239,7 @@ def payments_bounce(request, addon_id, addon):
 @submit_step('payments')
 def payments_confirm(request, addon_id, addon):
     adp, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
-    form = PaypalPaymentData(request.POST or None, instance=adp)
+    form = PaypalPaymentData(request.POST or model_to_dict(adp))
     if request.method == 'POST' and form.is_valid():
         adp.update(**form.cleaned_data)
         AppSubmissionChecklist.objects.get(addon=addon).update(payments=True)
