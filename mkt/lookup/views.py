@@ -132,23 +132,38 @@ def user_activity(request, user_id):
                          'show_link': False})
 
 
+def _expand_query(q, fields):
+    query = {}
+    rules = {
+        'text': {
+            'query': q, 'boost': 4, 'type': 'phrase'},
+        'text': {
+            'query': q, 'boost': 3, 'analyzer': 'standard'},
+        'fuzzy': {
+            'value': q, 'boost': 2, 'prefix_length': 4},
+        'startswith': {
+            'value': q, 'boost': 1.5},
+    }
+    for k, v in rules.iteritems():
+        for field in fields:
+            query['%s__%s' % (field, k)] = v
+    return query
+
+
 @login_required
 @permission_required('AccountLookup', 'View')
 @json_view
 def user_search(request):
     results = []
-    query = request.GET.get('q', u'').lower()
+    q = request.GET.get('q', u'').lower().strip()
     fields = ('username', 'display_name', 'email')
-    if query.isnumeric():
+    if q.isnumeric():
         # id is added implictly by the ES filter. Add it explicitly:
         fields = ['id'] + list(fields)
-        qs = UserProfile.objects.filter(pk=query).values(*fields)
+        qs = UserProfile.objects.filter(pk=q).values(*fields)
     else:
-        qs = (UserProfile.search()
-                         .query(or_=dict(username__startswith=query,
-                                         display_name__fuzzy=query,
-                                         email__fuzzy=query))
-                         .values_dict(*fields))
+        qs = (UserProfile.search().query(or_=_expand_query(q, fields))
+                                  .values_dict(*fields))
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
@@ -161,31 +176,20 @@ def user_search(request):
 @json_view
 def app_search(request):
     results = []
-    query = request.GET.get('q', u'').lower()
+    q = request.GET.get('q', u'').lower().strip()
     addon_type = request.GET.get('type', amo.ADDON_WEBAPP)
-    fields = ['name', 'app_slug']
-    non_es_fields = ['id', 'name__localized_string'] + fields
-    if query.isnumeric():
-        qs = (Addon.objects.filter(type=addon_type, pk=query)
+    fields = ('name', 'app_slug')
+    non_es_fields = ['id', 'name__localized_string'] + list(fields)
+    if q.isnumeric():
+        qs = (Addon.objects.filter(type=addon_type, pk=q)
                            .values(*non_es_fields))
     else:
         # Try to load by GUID:
-        qs = (Addon.objects.filter(type=addon_type, guid=query)
+        qs = (Addon.objects.filter(type=addon_type, guid=q)
                            .values(*non_es_fields))
         if not qs.count():
-            # Give up on GUID, assume it's a search.
-            rules = {
-                'text': {
-                    'query': query, 'boost': 3, 'analyzer': 'standard'},
-                'fuzzy': {
-                    'value': query, 'boost': 2, 'prefix_length': 4},
-                'startswith': {
-                    'value': query, 'boost': 1.5},
-            }
-            name_query = {}
-            for k, v in rules.iteritems():
-                name_query['name__%s' % k] = v
-            qs = (Addon.search().query(type=addon_type, or_=name_query)
+            qs = (Addon.search().query(type=addon_type,
+                                       or_=_expand_query(q, fields))
                                 .values_dict(*fields))
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])

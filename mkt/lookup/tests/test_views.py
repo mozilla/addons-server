@@ -202,6 +202,12 @@ class TestAcctSearch(SearchTestMixin, ESTestCase):
         data = self.search(q='newus')
         self.verify_result(data)
 
+    def test_by_username_with_dashes(self):
+        self.user.update(username='kr-raj')
+        self.refresh()
+        data = self.search(q='kr-raj')
+        self.verify_result(data)
+
     def test_by_display_name(self):
         self.user.update(display_name='Kumar McMillan')
         self.refresh()
