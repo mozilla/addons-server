@@ -27,9 +27,18 @@ class FormsTest(amo.tests.TestCase):
         super(FormsTest, self).setUp()
         cron.build_reverse_name_lookup()
         self.existing_name = 'Delicious Bookmarks'
+        self.non_existing_name = 'Does Not Exist'
         self.error_msg = 'This name is already in use. Please choose another.'
 
     def test_new(self):
+        """
+        New add-ons should be able to use non-existing add-on names.
+        """
+        f = forms.AddonForm(dict(name=self.non_existing_name))
+        f.is_valid()
+        eq_(f.errors.get('name'), None)
+
+    def test_new_existing(self):
         """
         New add-ons shouldn't be able to use existing add-on names.
         """
@@ -54,6 +63,7 @@ class FormsTest(amo.tests.TestCase):
         delicious = Addon.objects.get()
         f = forms.AddonFormBasic(dict(name=self.existing_name), request=None,
                                  instance=delicious)
+        f.is_valid()
         eq_(f.errors.get('name'), None)
 
     def test_locales(self):
