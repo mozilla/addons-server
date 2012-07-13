@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.db import connection
-from django.db.models import Sum, Count
+from django.db.models import Sum, Count, Q
 from django.shortcuts import get_object_or_404
 
 import jingo
@@ -76,44 +76,16 @@ def app_summary(request, addon_id):
     else:
         price = None
 
+    purchases, refunds = _app_purchases_and_refunds(app)
     return jingo.render(request, 'lookup/app_summary.html',
                         {'abuse_reports': app.abuse_reports.count(),
                          'app': app,
                          'authors': authors,
                          'downloads': _app_downloads(app),
-                         'purchases': _app_purchases(app),
+                         'purchases': purchases,
                          'payment_methods': _app_pay_methods(app),
+                         'refunds': refunds,
                          'price': price})
-
-
-def _app_downloads(app):
-    stats = {'last_7_days': 0,
-             'last_24_hours': 0,
-             'alltime': 0}
-    if app.is_webapp():
-        Data = Installed
-    else:
-        Data = DownloadCount
-    _7_days_ago = datetime.now() - timedelta(days=7)
-    qs = Data.objects.filter(addon=app)
-    if app.is_webapp():
-        _24_hr_ago = datetime.now() - timedelta(hours=24)
-        stats['last_24_hours'] = (qs.filter(created__gte=_24_hr_ago)
-                                    .count())
-        stats['last_7_days'] = (qs.filter(created__gte=_7_days_ago)
-                                  .count())
-        stats['alltime'] = qs.count()
-    else:
-        # Non-app add-ons.
-
-        def sum_(qs):
-            return qs.aggregate(total=Sum('count'))['total'] or 0
-
-        yesterday = datetime.now().date() - timedelta(days=1)
-        stats['last_24_hours'] = sum_(qs.filter(date__gt=yesterday))
-        stats['last_7_days'] = sum_(qs.filter(date__gte=_7_days_ago.date()))
-        stats['alltime'] = sum_(qs)
-    return stats
 
 
 @login_required
@@ -227,6 +199,36 @@ def app_search(request):
     return {'results': results}
 
 
+def _app_downloads(app):
+    stats = {'last_7_days': 0,
+             'last_24_hours': 0,
+             'alltime': 0}
+    if app.is_webapp():
+        Data = Installed
+    else:
+        Data = DownloadCount
+    _7_days_ago = datetime.now() - timedelta(days=7)
+    qs = Data.objects.filter(addon=app)
+    if app.is_webapp():
+        _24_hr_ago = datetime.now() - timedelta(hours=24)
+        stats['last_24_hours'] = (qs.filter(created__gte=_24_hr_ago)
+                                    .count())
+        stats['last_7_days'] = (qs.filter(created__gte=_7_days_ago)
+                                  .count())
+        stats['alltime'] = qs.count()
+    else:
+        # Non-app add-ons.
+
+        def sum_(qs):
+            return qs.aggregate(total=Sum('count'))['total'] or 0
+
+        yesterday = datetime.now().date() - timedelta(days=1)
+        stats['last_24_hours'] = sum_(qs.filter(date__gt=yesterday))
+        stats['last_7_days'] = sum_(qs.filter(date__gte=_7_days_ago.date()))
+        stats['alltime'] = sum_(qs)
+    return stats
+
+
 def _app_summary(user_id):
     sql = """
         select currency,
@@ -264,24 +266,44 @@ def _app_summary(user_id):
     return summary
 
 
-def _app_purchases(addon):
-    data = {}
+def _app_purchases_and_refunds(addon):
+    purchases = {}
     now = datetime.now()
+    base_qs = (Contribution.objects.values('currency')
+                           .annotate(total=Count('id'),
+                                     amount=Sum('amount'))
+                           .filter(addon=addon)
+                           .exclude(type__in=[amo.CONTRIB_REFUND,
+                                              amo.CONTRIB_CHARGEBACK,
+                                              amo.CONTRIB_PENDING,
+                                              amo.CONTRIB_INAPP_PENDING]))
     for typ, start_date in (('last_24_hours', now - timedelta(hours=24)),
                             ('last_7_days', now - timedelta(days=7)),
                             ('alltime', None),):
-        qs = (Contribution.objects.values('currency')
-                                  .annotate(total=Count('id'),
-                                            amount=Sum('amount'))
-                                  .filter(addon=addon))
+        qs = base_qs.all()
         if start_date:
             qs = qs.filter(created__gte=start_date)
         sums = list(qs)
-        data[typ] = {'total': sum(s['total'] for s in sums),
-                     'amounts': [numbers.format_currency(s['amount'],
-                                                         s['currency'])
-                                 for s in sums]}
-    return data
+        purchases[typ] = {'total': sum(s['total'] for s in sums),
+                          'amounts': [numbers.format_currency(s['amount'],
+                                                              s['currency'])
+                                      for s in sums]}
+    refunds = {}
+    rejected_q = Q(status=amo.REFUND_DECLINED) | Q(status=amo.REFUND_FAILED)
+    qs = Refund.objects.filter(contribution__addon=addon)
+
+    refunds['requested'] = qs.exclude(rejected_q).count()
+    percent = 0.0
+    total = purchases['alltime']['total']
+    if total:
+        percent = (refunds['requested'] / float(total)) * 100.0
+    refunds['percent_of_purchases'] = '%.1f%%' % percent
+    refunds['auto-approved'] = (qs.filter(status=amo.REFUND_APPROVED_INSTANT)
+                                .count())
+    refunds['approved'] = qs.filter(status=amo.REFUND_APPROVED).count()
+    refunds['rejected'] = qs.filter(rejected_q).count()
+
+    return purchases, refunds
 
 
 def _app_pay_methods(addon):

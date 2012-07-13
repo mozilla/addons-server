@@ -69,7 +69,17 @@
           {% endfor %}
         </dd>
         <dt>{{ _('Refunds') }}</dt>
-        <dd>TBD: bug 765765</dd>
+        <dd class="pretty-list">
+          {# L10n: first argument is number of refunds, second argument is percentage of purchases. #}
+          <div>{{ _('{0} requested ({1} of purchases)')|f(refunds['requested'],
+                                                          refunds['percent_of_purchases']) }}</div>
+          {# L10n: number of refunds. #}
+          <div>{{ _('{0} auto-approved')|f(refunds['auto-approved']) }}</div>
+          {# L10n: number of refunds. #}
+          <div>{{ _('{0} approved')|f(refunds['approved']) }}</div>
+          {# L10n: number of refunds. #}
+          <div>{{ _('{0} rejected')|f(refunds['rejected']) }}</div>
+        </dd>
         <dt>{{ _('Methods') }}</dt>
         <dd class="pretty-list">
           {% for summary in payment_methods %}
