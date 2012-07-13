@@ -353,15 +353,6 @@ class TestAppSummary(AppSummaryTest, TestCase):
     def test_permissions(self):
         raise SkipTest('we do not support permissions yet')
 
-    def test_purchases(self):
-        raise SkipTest()
-
-    def test_refunds(self):
-        raise SkipTest()
-
-    def test_pay_methods(self):
-        raise SkipTest()
-
 
 class DownloadSummaryTest(AppSummaryTest, TestCase):
 
@@ -491,6 +482,65 @@ class TestAppSummaryPurchases(AppSummaryTest, TestCase):
         res = self.summary()
         eq_(res.context['payment_methods'],
             [u'100.0% of purchases via PayPal'])
+
+
+class TestAppSummaryRefunds(AppSummaryTest, TestCase):
+
+    def setUp(self):
+        super(TestAppSummaryRefunds, self).setUp()
+        self._setUp()
+        self.contrib1 = self.purchase()
+        self.contrib2 = self.purchase()
+        self.contrib3 = self.purchase()
+        self.contrib4 = self.purchase()
+
+    def purchase(self):
+        return Contribution.objects.create(addon=self.app,
+                                           amount=Decimal('0.99'),
+                                           currency='USD',
+                                           paykey='AP-1235',
+                                           type=amo.CONTRIB_PURCHASE)
+
+    def refund(self, refunds):
+        for contrib, status in refunds:
+            Refund.objects.create(contribution=contrib,
+                                  status=status)
+
+    def test_requested(self):
+        self.refund(((self.contrib1, amo.REFUND_APPROVED),
+                     (self.contrib2, amo.REFUND_APPROVED),
+                     (self.contrib3, amo.REFUND_DECLINED),
+                     (self.contrib4, amo.REFUND_DECLINED)))
+        res = self.summary()
+        eq_(res.context['refunds']['requested'], 2)
+        eq_(res.context['refunds']['percent_of_purchases'], '50.0%')
+
+    def test_no_refunds(self):
+        res = self.summary()
+        eq_(res.context['refunds']['requested'], 0)
+        eq_(res.context['refunds']['percent_of_purchases'], '0.0%')
+        eq_(res.context['refunds']['auto-approved'], 0)
+        eq_(res.context['refunds']['approved'], 0)
+        eq_(res.context['refunds']['rejected'], 0)
+
+    def test_auto_approved(self):
+        self.refund(((self.contrib1, amo.REFUND_APPROVED),
+                     (self.contrib2, amo.REFUND_APPROVED_INSTANT)))
+        res = self.summary()
+        eq_(res.context['refunds']['auto-approved'], 1)
+
+    def test_approved(self):
+        self.refund(((self.contrib1, amo.REFUND_APPROVED),
+                     (self.contrib2, amo.REFUND_DECLINED)))
+        res = self.summary()
+        eq_(res.context['refunds']['approved'], 1)
+
+    def test_rejected(self):
+        self.refund(((self.contrib1, amo.REFUND_APPROVED),
+                     (self.contrib2, amo.REFUND_DECLINED),
+                     (self.contrib3, amo.REFUND_FAILED)))
+        res = self.summary()
+        eq_(res.context['refunds']['rejected'], 2)
 
 
 class TestAddonDownloadSummary(DownloadSummaryTest, TestCase):
