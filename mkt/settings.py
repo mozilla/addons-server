@@ -93,7 +93,7 @@ if REGION_STORES:
     MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
     MIDDLEWARE_CLASSES += [
         'mkt.site.middleware.RequestCookiesMiddleware',
-        'mkt.site.middleware.FixLegacyLocaleMiddleware',
+        'mkt.site.middleware.RedirectPrefixedURIMiddleware',
         'mkt.site.middleware.LocaleMiddleware',
         'mkt.site.middleware.RegionMiddleware',
     ]

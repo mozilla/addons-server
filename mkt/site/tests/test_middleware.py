@@ -20,7 +20,7 @@ class MiddlewareCase(amo.tests.TestCase):
             raise SkipTest
 
 
-class TestFixLegacyLocaleMiddleware(MiddlewareCase):
+class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
 
     def test_redirect_for_good_locale(self):
         locales = [
@@ -34,17 +34,12 @@ class TestFixLegacyLocaleMiddleware(MiddlewareCase):
             r = self.client.get('/%s/' % given)
             self.assertRedirects(r, '/?lang=%s' % expected, 302)
 
-    def test_404_for_bad_locale(self):
-        r = self.client.get('/xxx/')
-        eq_(r.status_code, 404)
-        r = self.client.get('/pt/?lang=de')
-        eq_(r.status_code, 404)
-
-    def test_preserve_qs(self):
+    def test_preserve_qs_for_lang(self):
         r = self.client.get('/pt-BR/privacy-policy?omg=yes')
         self.assertRedirects(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
 
     def test_switch_locale(self):
+        # Locale in URL prefix takes precedence.
         r = self.client.get('/pt-BR/?lang=de')
         self.assertRedirects(r, '/?lang=pt-br', 302)
 
@@ -53,6 +48,38 @@ class TestFixLegacyLocaleMiddleware(MiddlewareCase):
         eq_(r.status_code, 200)
         r = self.client.get('/?lang=fr')
         eq_(r.status_code, 200)
+
+    def test_redirect_for_good_region(self):
+        regions = [
+            ('worldwide', 'worldwide'),
+            ('brazil', 'brazil'),
+            ('usa', 'usa'),
+            ('BRAZIL', 'brazil'),
+        ]
+        for given, expected in regions:
+            r = self.client.get('/%s/' % given)
+            self.assertRedirects(r, '/?region=%s' % expected, 302)
+
+    def test_redirect_for_good_locale_and_region(self):
+        r = self.client.get('/en-US/brazil/privacy-policy?omg=yes',
+                            follow=True)
+        # Can you believe this actually works?
+        self.assertRedirects(r,
+            '/privacy-policy?lang=en-us&region=brazil&omg=yes', 302)
+
+    def test_preserve_qs_for_region(self):
+        r = self.client.get('/brazil/privacy-policy?omg=yes')
+        self.assertRedirects(r, '/privacy-policy?region=brazil&omg=yes', 302)
+
+    def test_switch_region(self):
+        r = self.client.get('/worldwide/?region=brazil')
+        self.assertRedirects(r, '/?region=worldwide', 302)
+
+    def test_404_for_bad_prefix(self):
+        for url in ['/xxx', '/xxx/search/', '/pt/?lang=de', '/pt-XX/brazil/']:
+            r = self.client.get(url)
+            got = r.status_code
+            eq_(got, 404, "For %r: expected '404' but got %r" % (url, got))
 
 
 class TestLocaleMiddleware(MiddlewareCase):

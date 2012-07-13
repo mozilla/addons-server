@@ -66,13 +66,13 @@ class RequestCookiesMiddleware(object):
         return response
 
 
-class FixLegacyLocaleMiddleware(object):
+class RedirectPrefixedURIMiddleware(object):
     """
-    Redirect legacy /<lang>/ URLs to ?lang=<lang> so `LocaleMiddleware`
+    Redirect /<lang>/ URLs to ?lang=<lang> so `LocaleMiddleware`
     can then set a cookie.
 
-    TODO: Maybe we want to allow this for regions too so people can share
-          nicely formatted, region-prefixed links.
+    Redirect /<region>/ URLs to ?region=<lang> so `RegionMiddleware`
+    can then set a cookie.
     """
 
     def process_request(self, request):
@@ -86,6 +86,11 @@ class FixLegacyLocaleMiddleware(object):
             # I can sleep better with a 302.
             return redirect(urlparams(new_path, lang=lang.lower()))
 
+        region, _, rest = request.get_full_path().lstrip('/').partition('/')
+        region = region.lower()
+        if region in mkt.regions.REGIONS_DICT:
+            # Strip /<region> from URL.
+            return redirect(urlparams('/' + rest, region=region))
 
 class LocaleMiddleware(object):
     """Figure out the user's locale and store it in a cookie."""
@@ -118,6 +123,7 @@ class RegionMiddleware(object):
 
     def process_request(self, request):
         regions = mkt.regions.REGIONS_DICT
+
         request.REGION = mkt.regions.WORLDWIDE
 
         # This gives us something like: [('en-us', 1.0), ('fr', 0.5)]
