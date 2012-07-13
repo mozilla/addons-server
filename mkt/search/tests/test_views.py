@@ -75,6 +75,12 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/results.html')
 
+
+    def test_case_insensitive(self):
+        self.refresh()
+        self.check_results({'q': 'steam'}, [self.webapp.pk])
+        self.check_results({'q': 'Steam'}, [self.webapp.pk])
+
     def test_results_item(self):
         r = self.client.get(self.url)
         item = pq(r.content)('.items .item')
