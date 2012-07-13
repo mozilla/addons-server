@@ -421,13 +421,13 @@ class TestAppSummaryPurchases(AppSummaryTest, TestCase):
         eq_(data['total'], 0)
         eq_(sorted(data['amounts']), [])
 
-    def purchase(self, created=None):
+    def purchase(self, created=None, typ=amo.CONTRIB_PURCHASE):
         for curr, amount in (('USD', '2.00'), ('EUR', '1.00')):
             for i in range(3):
                 c = Contribution.objects.create(addon=self.app,
                                                 amount=Decimal(amount),
                                                 currency=curr,
-                                                type=amo.CONTRIB_PURCHASE)
+                                                type=typ)
                 if created:
                     c.update(created=created)
 
@@ -458,6 +458,15 @@ class TestAppSummaryPurchases(AppSummaryTest, TestCase):
         self.purchase(created=datetime.now() - timedelta(days=31))
         res = self.summary()
         self.assert_totals(res.context['purchases']['alltime'])
+
+    def test_ignore_non_purchases(self):
+        for typ in [amo.CONTRIB_REFUND,
+                    amo.CONTRIB_CHARGEBACK,
+                    amo.CONTRIB_PENDING,
+                    amo.CONTRIB_INAPP_PENDING]:
+            self.purchase(typ=typ)
+        res = self.summary()
+        self.assert_empty(res.context['purchases']['alltime'])
 
     def test_pay_methods(self):
         for paykey in ('AP-1234',  # indicates PayPal

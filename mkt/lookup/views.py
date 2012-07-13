@@ -272,7 +272,11 @@ def _app_purchases_and_refunds(addon):
     base_qs = (Contribution.objects.values('currency')
                            .annotate(total=Count('id'),
                                      amount=Sum('amount'))
-                           .filter(addon=addon))
+                           .filter(addon=addon)
+                           .exclude(type__in=[amo.CONTRIB_REFUND,
+                                              amo.CONTRIB_CHARGEBACK,
+                                              amo.CONTRIB_PENDING,
+                                              amo.CONTRIB_INAPP_PENDING]))
     for typ, start_date in (('last_24_hours', now - timedelta(hours=24)),
                             ('last_7_days', now - timedelta(days=7)),
                             ('alltime', None),):
