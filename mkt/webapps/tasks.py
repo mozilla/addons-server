@@ -119,6 +119,10 @@ def update_manifests(ids, **kw):
             _log(webapp,
                  u'Validation for upload UUID %s has no result' % upload.uuid)
 
+        # Get the old manifest before we overwrite it.
+        new = json.loads(content)
+        old = _open_manifest(webapp, file_)
+
         # New manifest is different and validates, create a new version.
         try:
             webapp.manifest_updated(content, upload)
@@ -126,9 +130,6 @@ def update_manifests(ids, **kw):
             _log(webapp, u'Failed to create version', exc_info=True)
 
         # Check for any name changes for re-review.
-        new = json.loads(content)
-        old = _open_manifest(webapp, file_)
-
         if (old and old.get('name') and old.get('name') != new.get('name')):
             msg = u'Manifest name changed from "%s" to "%s"' % (
                 old.get('name'), new.get('name'))
