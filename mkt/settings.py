@@ -239,6 +239,8 @@ STATSD_RECORD_KEYS = [
     'window.performance.timing.domComplete',
     'window.performance.timing.domInteractive',
     'window.performance.timing.domLoading',
+    'window.performance.timing.loadEventEnd',
+    'window.performance.timing.responseStart',
     'window.performance.timing.fragment.loaded',
     'window.performance.navigation.redirectCount',
     'window.performance.navigation.type',

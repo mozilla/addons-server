@@ -26,14 +26,18 @@ var send = function(data) {
 exports.basic = function() {
     /* Sends the timing data to the given URL */
     if (z.capabilities.performance) {
-        send({
-            'window.performance.timing.navigationStart': perf.timing.navigationStart,
-            'window.performance.timing.domComplete': perf.timing.domComplete,
-            'window.performance.timing.domInteractive': perf.timing.domInteractive,
-            'window.performance.timing.domLoading': perf.timing.domLoading,
-            'window.performance.navigation.redirectCount': perf.navigation.redirectCount,
-            'window.performance.navigation.type': perf.navigation.type,
-        });
+        setTimeout(function() {
+            send({
+                'window.performance.timing.navigationStart': perf.timing.navigationStart,
+                'window.performance.timing.domComplete': perf.timing.domComplete,
+                'window.performance.timing.domInteractive': perf.timing.domInteractive,
+                'window.performance.timing.domLoading': perf.timing.domLoading,
+                'window.performance.timing.loadEventEnd': perf.timing.loadEventEnd,
+                'window.performance.timing.responseStart': perf.timing.responseStart,
+                'window.performance.navigation.redirectCount': perf.navigation.redirectCount,
+                'window.performance.navigation.type': perf.navigation.type,
+            })
+        }, 1000);
     }
 };
 
