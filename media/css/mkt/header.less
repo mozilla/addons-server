@@ -60,27 +60,24 @@
         float: right;
         position: relative;
     }
-    .home-button, .filter-button {
-        display: none;
-    }
     nav {
         position: relative;
     }
 }
-#site-header, #filters {
-    .home-button, .filter-button, .back-button {
-        float: left;
-        width: 42px;
-        height: 30px;
-        .border-radius(5px);
-        .gradient-two-color(#f8f8f8, #d6d6d6);
-        margin: 10px 15px 0;
-        .box-shadow(0 1px 0 1px rgba(0,0,0,0.5));
-    }
-    .filter-button {
+
+.header-button {
+    display: none;
+    float: left;
+    width: 42px;
+    height: 30px;
+    .border-radius(5px);
+    .gradient-two-color(#f8f8f8, #d6d6d6);
+    margin: 10px 15px 0;
+    .box-shadow(0 1px 0 1px rgba(0,0,0,0.5));
+    &.filter {
         float: right;
     }
-    .back-button {
+    &.back {
         margin-left: 5px;
     }
 }
@@ -236,28 +233,31 @@
                 width: 50px;
             }
         }
-        .filter-button {
-            display: block;
-            margin: 10px 15px 0 7px;
-            line-height: 30px;
-            text-align: center;
-            font-weight: 600;
-            &:hover {
-                text-decoration: none;
-            }
-        }
-        .home-button {
-            display: inline-block;
-            b {
-                display: inline-block;
-                width: 12px;
-                height: 18px;
-                background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat;
-                margin: 6px 0 0 15px;
-            }
-        }
     }
     .nav-overlay.show {
         background: rgba(0,0,0,.2);
+    }
+    .search .header-button.filter {
+        display: block;
+        margin: 10px 15px 0 7px;
+        line-height: 30px;
+        text-align: center;
+        font-weight: 600;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    .header-button.home {
+        display: inline-block;
+        b {
+            display: inline-block;
+            width: 12px;
+            height: 18px;
+            background: url(../../img/mkt/glyphs/rocket_btn.png) no-repeat;
+            margin: 6px 0 0 15px;
+        }
+    }
+    .home .header-button.home {
+        display: none;
     }
 }
