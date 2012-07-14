@@ -4,6 +4,7 @@
     {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="{{ url('home') }}" class="header-button home"><b></b></a>
+      <a href="{{ url('account.settings') }}" class="header-button settings"><b></b></a>
       <a href="#" class="header-button filter">{{ _('Filter') }}</a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
