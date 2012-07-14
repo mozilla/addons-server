@@ -175,18 +175,18 @@ class Spam(object):
     def add(self, review, reason):
         reason = 'amo:review:spam:%s' % reason
         try:
-            reasonset = cache.get('amo:review:spam:reasons')
+            reasonset = cache.get('amo:review:spam:reasons', set())
         except KeyError:
             reasonset = set()
         try:
-            idset = cache.get(reason)
+            idset = cache.get(reason, set())
         except KeyError:
             idset = set()
         reasonset.add(reason)
         cache.set('amo:review:spam:reasons', reasonset)
         idset.add(review.id)
         cache.set(reason, idset)
-
+        return True
 
     def reasons(self):
         return cache.get('amo:review:spam:reasons')

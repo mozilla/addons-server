@@ -5,11 +5,11 @@ import test_utils
 
 import amo.tests
 from reviews import tasks
-from reviews.models import Review, GroupedRating, check_spam
+from reviews.models import check_spam, Review, GroupedRating, Spam
 
 
 class TestReviewModel(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models.json']
+    fixtures = ['base/apps', 'reviews/test_models']
 
     def test_translations(self):
         translation.activate('en-US')
@@ -34,7 +34,7 @@ class TestReviewModel(amo.tests.TestCase):
 
 
 class TestGroupedRating(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/dev-reply.json']
+    fixtures = ['base/apps', 'reviews/dev-reply']
 
     def test_get_none(self):
         eq_(GroupedRating.get(3), None)
@@ -51,8 +51,12 @@ class TestGroupedRating(amo.tests.TestCase):
 
 
 class TestSpamTest(amo.tests.TestCase):
-    # TODO: couldn't find tests covering spam, check coverage?
+    fixtures = ['reviews/test_models']
 
     def test_create_not_there(self):
-        assert not Review.objects.count()
+        Review.objects.all().delete()
+        eq_(Review.objects.count(), 0)
         check_spam(1)
+
+    def test_add(self):
+        assert Spam().add(Review.objects.all()[0], 'ball so hard')
