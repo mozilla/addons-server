@@ -3,7 +3,7 @@
     <h1 class="logo"><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
     {% if request.can_view_consumer %}
     <nav role="navigation">
-      <a href="#" class="home-button"><b></b></a>
+      <a href="{{ url('home') }}" class="home-button"><b></b></a>
       <a href="#" class="filter-button">{{ _('Filter') }}</a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
