@@ -3,9 +3,10 @@
   {% set preview = previews[0].image_url if feature else
                    previews[0].thumbnail_url %}
 {% endif %}
-<a class="{{ classes }}" href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"
-   {% for k, v in data_attrs.items() -%}
-      data-{{ k }}="{{ v }}" {% endfor %}>
+{% set tag = 'a' if link else 'div' %}
+<{{ tag }} class="{{ classes }}"
+  {% if link %}href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
+  {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
   <img class="icon" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
@@ -22,6 +23,6 @@
   {% else %}
     {{ market_button(product) }}
   {% endif %}
-</a>
+</{{ tag }}>
 <div class="tray previews">
 </div>

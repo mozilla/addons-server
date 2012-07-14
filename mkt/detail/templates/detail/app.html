@@ -37,7 +37,7 @@
   {{ notification(product, amo, is_dev) }}
 {% else %}
   <section class="product-details listing expanded">
-    {{ market_tile(product) }}
+    {{ market_tile(product, link=False) }}
   </section>
 
   {{ notification(product, amo, is_dev) }}
