@@ -1,6 +1,5 @@
 @import 'lib';
 
-.view-more a,
 .promo-grid .mkt-tile {
     &:hover,
     &:active {
@@ -173,76 +172,6 @@
     #page > section.popular {
         padding-left: 0;
         padding-right: 0;
-    }
-    .popular {
-        &.tabbed {
-            background: @grain-src @header-bg;
-        }
-        .tabnav {
-            position: relative;
-            width: 100%;
-            span, span:before, span:after {
-                background: @tab-bg;
-                content: "";
-                display: block;
-                position: absolute;
-                top: 0;
-                height: 100%;
-                min-width: 36px;
-            }
-            span {
-                .border-box;
-                .dark-text-shadow;
-                color: @faint-gray;
-                cursor: pointer;
-                display: inline-block;
-                font-size: 20px;
-                line-height: 22px;
-                margin: 0;
-                padding: 10px;
-                position: relative;
-                z-index: 2;
-                top: 1px;
-                width: 110px;
-                &:before {
-                    left: -35px;
-                }
-                &:after {
-                    right: -35px;
-                }
-                &[data-shown] {
-                    color: @text;
-                    outline: none;
-                    text-shadow: .5px .5px 0 @white;
-                    z-index: 3;
-                }
-                &[data-shown],
-                &[data-shown]:before,
-                &[data-shown]:after {
-                    background: @bg-lite;
-                }
-                &[data-shown]:before,
-                &[data-shown]:after {
-                    pointer-events: none;
-                }
-                + span {
-                    margin-left: 0;
-                    padding-left: 30px;
-                }
-            }
-        }
-    }
-    .view-more a {
-        background: @bg;
-        border-top: 1px solid @light-gray;
-        display: block;
-        font-weight: 600;
-        opacity: .8;
-        padding: 15px 10px;
-        position: relative;
-        &:hover {
-            opacity: 1;
-        }
     }
     .promo-grid {
         h3, .author {

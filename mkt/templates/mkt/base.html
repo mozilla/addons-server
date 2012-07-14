@@ -180,30 +180,6 @@
       </section>
     </div>
 
-    <svg height="0">
-      <mask id="tabMaskStart" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-        <rect width="1" height="1" x="0" y="0.5" fill="white" />
-        <circle cx="1" cy="0.5" r="0.5" fill="white" />
-        <circle cx="-.1" cy="0.4" r="0.6" />
-      </mask>
-      <mask id="tabMaskEnd" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-        <rect width="1" height="1" x="0" y="0.5" fill="white" />
-        <circle cx="0" cy="0.5" r="0.5" fill="white" />
-        <circle cx="1.1" cy="0.4" r="0.6" />
-      </mask>
-    </svg>
-
-    <style>
-      .tabnav span:before {
-        mask: url(#tabMaskStart);
-        -webkit-mask-box-image: url(#tabMaskEnd);
-      }
-      .tabnav span:after {
-        mask: url(#tabMaskEnd);
-        -webkit-mask-box-image: url(#tabMaskEnd);
-      }
-    </style>
-
     {% block dbgoverlay %}{% endblock %}
 
     {# js #}
