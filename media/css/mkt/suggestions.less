@@ -1,6 +1,7 @@
 @import 'lib';
 
 #search {
+    float: right;
     position: relative;
     margin: 24px 0;
 }
@@ -30,10 +31,10 @@
 }
 #search-go {
     .box-shadow(none);
-    background: url(../../img/mkt/glyphs/magnifier.png) center no-repeat;
+    background: url(../../img/mkt/icons/magnifier.png) center no-repeat;
     border: 0;
     display: block;
-    height: 30px;
+    height: 100%;
     margin: 0;
     padding: 0;
     position: absolute;
@@ -42,7 +43,6 @@
     text-indent: -9999px;
     width: 20px;
 }
-
 
 .html-rtl #site-header #search-q {
     background-position: 0 50%;
@@ -176,15 +176,19 @@
 }
 
 @media (max-width: @4col) {
-    #site-header {
-        #search {
-            float: left;
-            margin: 10px 0 0;
-        }
-        #search-q,
-        #site-search-suggestions,
-        #site-search-suggestions a span {
-            .max-width(2.75);
-        }
+    #search {
+        float: none;
+        margin: 0;
+    }
+    #search-q,
+    #site-search-suggestions,
+    #site-search-suggestions a span {
+        max-width: 160px;
+    }
+    #search-q {
+        display: none;
+    }
+    .search #search-q {
+        display: inline-block;
     }
 }

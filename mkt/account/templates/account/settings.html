@@ -4,7 +4,10 @@
 {% set title = _('Account Settings') %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
+{% block bodyclass %}settings{% endblock %}
+
 {% block content %}
+  <h1 id="top">{{ _('Settings') }}</h1>
   {{ mkt_breadcrumbs(product, [(None, title)]) }}
   <section id="account-settings" class="account">
     <header class="c">

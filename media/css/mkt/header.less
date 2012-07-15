@@ -1,12 +1,14 @@
 @import 'lib';
 
+// Top-level page name (useful for mobile).
+#top {
+    display: none;
+}
+
 #site-header {
     .border-box;
     background: @grain-src @navy-gray;
     height: 82px;
-    h1, form {
-        line-height: 30px;
-    }
     h1 {
         float: left;
         padding: 15px 0;
@@ -56,12 +58,12 @@
             background-image: url(../../img/mkt/icons/regions/uk.png);
         }
     }
-    form {
-        float: right;
-        position: relative;
-    }
     nav {
         position: relative;
+    }
+    form {
+        display: inline-block;
+        margin-top: 10px;
     }
 }
 
@@ -73,12 +75,16 @@
     .border-radius(5px);
     .gradient-two-color(#f8f8f8, #d6d6d6);
     margin: 10px 15px 0;
-    .box-shadow(0 1px 0 1px rgba(0,0,0,0.5));
-    &.filter {
-        float: right;
+    .box-shadow(0 1px 0 1px rgba(0,0,0,0.2));
+    &:hover {
+        .gradient-two-color(lighten(#f8f8f8, 10%), darken(#def, 2%);
     }
-    &.back {
-        margin-left: 5px;
+    &:active {
+        .box-shadow(inset 0px 1px 0px 0px fadeOut(#000,80%),
+                    inset 0px 8px 10px 6px fadeOut(#000,80%),
+                    inset 0px 0px 1px 1px fadeOut(#000,80%));
+        .gradient-two-color(#d6d6d6, #f8f8f8);
+        opacity: .9;
     }
     b {
         display: inline-block;
@@ -172,6 +178,24 @@
 @drk-hding-end: darken(#60747F, 10%);
 
 @media (max-width: @4col) {
+    // Top-level page name.
+    #top {
+        .border-box;
+        .dark-text-shadow;
+        .ellipsis;
+        color: @white;
+        display: block;
+        font-size: 16px;
+        line-height: 50px;
+        margin: 0 auto;
+        position: relative;
+        top: -50px;
+        text-align: center;
+        width: 160px;
+    }
+    .search #top {
+        display: none;
+    }
     #page header h1,
     #page header .sub-nav,
     #page header .sub-nav li {
@@ -242,29 +266,54 @@
     .nav-overlay.show {
         background: rgba(0,0,0,.2);
     }
-    .search .header-button.filter {
-        display: block;
-        margin: 10px 15px 0 7px;
-        line-height: 30px;
-        text-align: center;
-        font-weight: 600;
-        &:hover {
-            text-decoration: none;
+    .search .header-button {
+        // The rocket icon is confusing and inconsistent. We can revisit later.
+        /*
+        &.home {
+            display: inline-block;
+            b {
+                background: url(../../img/mkt/glyphs/rocket_btn.png) center no-repeat;
+            }
+        }
+        */
+        &.filter {
+            display: inline-block;
+            font-weight: 600;
+            line-height: 30px;
+            margin: 10px 15px 0 7px;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
-    .header-button.home {
-        display: inline-block;
-        b {
-            background: url(../../img/mkt/glyphs/rocket_btn.png) 50% 50% no-repeat;
+    .home .header-button {
+        &.back {
+            display: none;
+        }
+        &.settings {
+            display: inline-block;
+            b {
+                background: url(../../img/mkt/icons/settings.png) center no-repeat;
+            }
         }
     }
-    .home .header-button.settings {
-        display: inline-block;
-        b {
-            background: url(../../img/mkt/icons/settings.png) 50% 50% no-repeat;
+    .header-button {
+        &.back {
+            display: inline-block;
+            b {
+                background: url(../../img/mkt/icons/back.png) center no-repeat;
+            }
         }
-    }
-    .home .header-button.home {
-        display: none;
+        &.search {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            b {
+                background: url(../../img/mkt/icons/magnifier-blue.png) center no-repeat;
+            }
+        }
     }
 }

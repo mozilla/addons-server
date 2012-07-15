@@ -24,7 +24,7 @@ function fragmentFilter(el) {
                         .prependTo($('#site-header'));
 
         // capture clicks in our target environment
-        page.on('click', 'a', function(e) {
+        z.body.on('click', 'a', function(e) {
             var href = this.getAttribute('href');
             if (e.metaKey || e.ctrlKey || e.button !== 0) return;
             if (nodeFilter(this)) {

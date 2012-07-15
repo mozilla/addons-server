@@ -13,6 +13,8 @@
 
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
+{% block bodyclass %}search{% endblock %}
+
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs, cls='dark') }}
   <section id="browse-featured" class="featured full">

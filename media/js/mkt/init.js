@@ -130,4 +130,21 @@ z.page.on('fragmentloaded', function() {
     if (z.capabilities.touch) {
         $('a[rel=external]').attr('target', '_blank');
     }
+
+    // Header controls.
+    $('header').on('click', '.header-button', function(e) {
+        var $this = $(this),
+            $btns = $('.header-button');
+
+        if ($this.hasClass('back')) {
+            history.back();
+            $btns.blur();
+            e.preventDefault();
+        } else if ($this.hasClass('search')) {
+            // FYI: There ain't no X or anything, so people can't dismiss this.
+            z.body.addClass('search');
+            $btns.blur();
+            e.preventDefault();
+        }
+    });
 });
