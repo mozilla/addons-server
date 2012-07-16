@@ -21,20 +21,32 @@ var escape_ = function(s) {
 };
 
 
-String.prototype.startsWith = function(str) {
-    return this.slice(0, str.length) == str;
-};
-String.prototype.endsWith = function(str) {
-    return this.slice(-str.length) == str;
-};
-String.prototype.trim = function(str) {
-    // Trim leading and trailing whitespace (like lstrip + rstrip).
-    return this.replace(/^\s*/, '').replace(/\s*$/, '');
-};
-String.prototype.strip = function(str) {
-    // Strip all whitespace.
-    return this.replace(/\s/g, '');
-};
+// Sexy setTimeout. wait(1000).then(doSomething);
+function wait(ms) {
+    var $d = $.Deferred();
+    setTimeout(function() {
+        $d.resolve();
+    }, ms);
+    return $d.promise();
+}
+
+
+_.extend(String.prototype, {
+    startsWith: function(str) {
+        return this.slice(0, str.length) == str;
+    },
+    endsWith: function(str) {
+        return this.slice(-str.length) == str;
+    },
+    trim: function(str) {
+        // Trim leading and trailing whitespace (like lstrip + rstrip).
+        return this.replace(/^\s*/, '').replace(/\s*$/, '');
+    },
+    strip: function(str) {
+        // Strip all whitespace.
+        return this.replace(/\s/g, '');
+    }
+});
 
 
 // Sample usage:
