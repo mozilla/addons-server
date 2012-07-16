@@ -1,8 +1,8 @@
 import os
 import socket
 import StringIO
+import time
 import traceback
-import urllib2
 from PIL import Image
 
 from django.conf import settings
@@ -10,8 +10,9 @@ from django.conf import settings
 import commonware.log
 import elasticutils
 
+from amo.utils import memoize
 from applications.management.commands import dump_apps
-
+from lib.crypto import receipt
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -161,17 +162,40 @@ def redis():
     return status, redis_results
 
 
+# The signer check actually asks the signing server to sign something. Do this
+# once per nagios check, once per web head might be a bit much. The memoize
+# slows it down a bit, by caching the result once per minute.
+@memoize('monitors-signer', time=60 * 5)
 def signer():
     destination = getattr(settings, 'SIGNING_SERVER', None)
     if not destination:
-        return True, "Signer is not configured."
+        return True, 'Signer is not configured.'
 
-    destination += "/1.0/sign"
-    request = urllib2.Request(destination)
+    # Just send some test data into the signer.
+    now = int(time.time())
+    not_valid = (settings.SITE_URL + '/not-valid')
+    data = {'detail': not_valid, 'exp': now + 3600, 'iat': now,
+            'iss': settings.SITE_URL,
+            'product': {'storedata': 'id=1', 'url': u'http://not-valid.com'},
+            'nbf': now, 'typ': 'purchase-receipt',
+            'reissue': not_valid,
+            'user': {'type': 'directed-identifier',
+                     'value': u'something-not-valid'},
+            'verify': not_valid
+    }
+
     try:
-        urllib2.urlopen(request)
-    except urllib2.HTTPError, error:
-        if error.code == 405:
-            return True, "%s is working." % destination
+        result = receipt.sign(data)
+    except receipt.SigningError, err:
+        return False, 'Error on signing (%s): %s' % (destination, err)
 
-    return False, "%s can not be contacted." % destination
+    try:
+        cert, rest = receipt.crack(result)
+    except Exception, err:
+        return False, 'Error on cracking receipt (%s): %s' % (destination, err)
+
+    # Check that the certs used to sign the receipts are not about to expire.
+    limit = now + (60 * 60 * 24)  # One day.
+    if cert['exp'] < limit:
+        return False, 'Cert will expire soon (%s)' % destination
+    return True, 'Signer working and up to date'

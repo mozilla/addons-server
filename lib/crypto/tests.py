@@ -1,12 +1,14 @@
 # -*- coding: utf8 -*-
+import json
+
 from django.conf import settings
 
-import json
+import jwt
 import mock
 from nose.tools import eq_, raises
 
 import amo.tests
-from lib.crypto.receipt import sign, SigningError
+from lib.crypto.receipt import crack, sign, SigningError
 
 
 @mock.patch('lib.metrics.urllib2.urlopen')
@@ -42,3 +44,13 @@ class TestReceipt(amo.tests.TestCase):
     def test_other(self, urlopen):
         urlopen.return_value = self.get_response(206)
         sign('x')
+
+
+class TestCrack(amo.tests.TestCase):
+
+    def test_crack(self):
+        eq_(crack(jwt.encode('foo', 'x')), [u'foo'])
+
+    def test_crack_mulitple(self):
+        eq_(crack('~'.join([jwt.encode('foo', 'x'), jwt.encode('bar', 'y')])),
+            [u'foo', u'bar'])

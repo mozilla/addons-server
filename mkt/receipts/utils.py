@@ -1,17 +1,16 @@
 import calendar
 import time
-import jwt
-import time
+from urllib import urlencode
 
 from django.conf import settings
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
+
+import jwt
 
 from access import acl
-from urllib import urlencode
-from lib.crypto.receipt import sign
-
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
 from amo.utils import memoize
+from lib.crypto.receipt import sign
 from mkt.webapps.models import Installed
 
 

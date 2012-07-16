@@ -6,6 +6,9 @@ from django_statsd.clients import statsd
 
 import commonware.log
 
+import jwt
+
+
 log = commonware.log.getLogger('z.services')
 
 
@@ -62,3 +65,13 @@ def decode(receipt):
     if it is valid.
     """
     raise NotImplementedError
+
+
+def crack(receipt):
+    """
+    Crack open the receipt, without checking that the crypto is valid.
+    Returns a list of all the elements of a receipt, which by default is
+    cert, receipt.
+    """
+    return map(lambda x: jwt.decode(x.encode('ascii'), verify=False),
+               receipt.split('~'))
