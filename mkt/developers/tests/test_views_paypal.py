@@ -2,8 +2,6 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import waffle
-
 from addons.models import Addon
 import amo
 import amo.tests
@@ -157,6 +155,15 @@ class TestPaypal(amo.tests.TestCase):
         eq_(client.create_seller_paypal.call_args[0][0], self.webapp)
         eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
             'a@a.com')
+
+    @mock.patch('mkt.developers.views.client')
+    def test_bounce_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        url = 'http://foo.com'
+        client.post_permission_url.return_value = {'token': url}
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@.com')
+        res = self.client.post(self.webapp.get_dev_url('paypal_setup_bounce'))
+        eq_(pq(res.content)('section.primary a.button').attr('href'), url)
 
 
 class TestPaypalResponse(amo.tests.TestCase):

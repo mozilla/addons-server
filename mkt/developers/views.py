@@ -25,6 +25,7 @@ import amo
 import amo.utils
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
+from amo.helpers import absolutify, urlparams
 from amo.utils import escape_all
 from amo.urlresolvers import reverse
 from addons import forms as addon_forms
@@ -312,10 +313,18 @@ def paypal_setup_bounce(request, addon_id, addon, webapp):
     if not addon.paypal_id:
         messages.error(request, 'We need a PayPal email before continuing.')
         return redirect(addon.get_dev_url('paypal_setup'))
-    paypal_url = paypal.get_permission_url(addon, 'management',
-                                        ['REFUND',
-                                         'ACCESS_BASIC_PERSONAL_DATA',
-                                         'ACCESS_ADVANCED_PERSONAL_DATA'])
+
+    dest = 'submission'
+    perms = ['REFUND', 'ACCESS_BASIC_PERSONAL_DATA',
+             'ACCESS_ADVANCED_PERSONAL_DATA']
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        url = addon.get_dev_url('acquire_refund_permission')
+        url = absolutify(urlparams(url, dest=dest))
+        result = client.post_permission_url(data={'scope': perms, 'url': url})
+        paypal_url = result['token']
+    # TODO(solitude): remove this.
+    else:
+        paypal_url = paypal.get_permission_url(addon, dest, perms)
 
     return jingo.render(request,
                         'developers/payments/paypal-details-request.html',
