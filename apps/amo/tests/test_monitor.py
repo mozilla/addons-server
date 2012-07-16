@@ -26,11 +26,11 @@ class TestMonitor(amo.tests.TestCase):
     @patch('amo.monitors.receipt')
     def test_expire(self, receipt):
         now = time.time()
-        receipt.crack.return_value = [{'exp': now + (60 * 60 * 12}]
-        eq_(signer()[0], False)i
+        receipt.crack.return_value = [{'exp': now + (60 * 60 * 12)}, '']
+        eq_(signer()[0], False)
 
     @patch('amo.monitors.receipt')
     def test_good(self, receipt):
         now = time.time()
-        receipt.crack.return_value = [{'exp': now + (60 * 60 * 36}]
+        receipt.crack.return_value = [{'exp': now + (60 * 60 * 36)}, '']
         eq_(signer()[0], True)
