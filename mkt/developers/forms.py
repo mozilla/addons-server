@@ -8,28 +8,30 @@ from django.forms.models import modelformset_factory
 
 import commonware
 import happyforms
-from tower import ugettext as _, ugettext_lazy as _lazy
-from quieter_formset.formset import BaseModelFormSet
 import waffle
+from quieter_formset.formset import BaseModelFormSet
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from access import acl
 import addons.forms
+import paypal
+from access import acl
 from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
                            Preview)
 from amo.utils import raise_required, remove_icons
-from market.models import AddonPaymentData, AddonPremium, Price, PriceCurrency
-from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.inapp_pay.models import InappConfig
-import paypal
-from translations.widgets import TransInput, TransTextarea
-from translations.fields import TransField
-from translations.models import Translation
-from translations.forms import TranslationFormMixin
-from mkt.webapps.models import Webapp
-from . import tasks
 from lib.video import tasks as vtasks
+from market.models import AddonPremium, Price, PriceCurrency
+from mkt.inapp_pay.models import InappConfig
+from mkt.reviewers.models import RereviewQueue
+from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
+from mkt.webapps.models import Webapp
+from translations.fields import TransField
+from translations.forms import TranslationFormMixin
+from translations.models import Translation
+from translations.widgets import TransInput, TransTextarea
+
+from . import tasks
 
 log = commonware.log.getLogger('mkt.developers')
 paypal_log = commonware.log.getLogger('mkt.paypal')
@@ -452,7 +454,17 @@ class PremiumForm(happyforms.Form):
         elif not self.cleaned_data['do_upsell'] and upsell:
             upsell.delete()
 
-        self.addon.premium_type = self.cleaned_data['premium_type']
+        # Check for free -> paid for already public apps.
+        premium_type = self.cleaned_data['premium_type']
+        if (self.addon.premium_type == amo.ADDON_FREE and
+            premium_type in amo.ADDON_PREMIUMS and
+            self.addon.status == amo.STATUS_PUBLIC):
+            # Free -> paid for public apps trigger re-review.
+            log.info(u'[Webapp:%s] (Re-review) Public app, free -> paid.' % (
+                self.addon))
+            RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_FREE_TO_PAID)
+
+        self.addon.premium_type = premium_type
         self.addon.save()
 
         # If they checked later in the wizard and then decided they want

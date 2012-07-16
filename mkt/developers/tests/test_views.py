@@ -19,26 +19,26 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 import paypal
-from paypal.check import Check
-from paypal import PaypalError
+from addons.models import Addon, AddonUpsell, AddonUser
 from amo.helpers import babel_datetime, timesince
 from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from addons.models import Addon, AddonUpsell, AddonUser
-from browse.tests import test_listing_sort, test_default_sort
+from browse.tests import test_default_sort, test_listing_sort
 from devhub.models import UserLog
-from mkt.developers.models import ActivityLog
-from mkt.submit.models import AppSubmissionChecklist
-from mkt.developers import tasks
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
+from mkt.developers import tasks
+from mkt.developers.models import ActivityLog
+from mkt.submit.models import AppSubmissionChecklist
+from mkt.webapps.models import Webapp
+from paypal import PaypalError
+from paypal.check import Check
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
-from mkt.webapps.models import Webapp
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -810,8 +810,10 @@ class TestIssueRefund(amo.tests.TestCase):
     @mock.patch('paypal.refund')
     def test_refund_failed(self, refund, record):
         err = paypal.PaypalError('transaction died in a fire')
+
         def fail(*args, **kwargs):
             raise err
+
         refund.side_effect = fail
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
@@ -948,7 +950,8 @@ class TestRefunds(amo.tests.TestCase):
 
         # All other timestamps should be absolute.
         table = doc('table')
-        others = Refund.objects.exclude(status__in=(amo.REFUND_PENDING, amo.REFUND_FAILED))
+        others = Refund.objects.exclude(status__in=(amo.REFUND_PENDING,
+                                                    amo.REFUND_FAILED))
         for refund in others:
             tr = table.find('.refund[data-refundid=%s]' % refund.id)
             eq_(tr.find('.purchased-date').text(),

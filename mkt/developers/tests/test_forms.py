@@ -6,13 +6,17 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
+from test_utils import RequestFactory
 
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon
 from files.helpers import copyfileobj
+from market.models import Price
 from mkt.developers import forms
+from mkt.reviewers.models import RereviewQueue
+from users.models import UserProfile
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -112,3 +116,72 @@ class TestInappConfigForm(amo.tests.TestCase):
     def test_can_override_https(self):
         cfg = self.submit(is_https=False)
         eq_(cfg.is_https, False)
+
+
+class TestFreeToPremium(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        self.request = RequestFactory()
+        self.addon = Addon.objects.get(pk=337141)
+        self.price = Price.objects.create(price='0.99')
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+
+    def test_free_to_premium(self):
+        kwargs = {
+            'request': self.request,
+            'extra': {
+                'addon': self.addon,
+                'amo_user': self.user,
+                'dest': 'payment',
+            }
+        }
+        data = {
+            'premium_type': amo.ADDON_PREMIUM,
+            'price': self.price.id,
+        }
+        form = forms.PremiumForm(data=data, **kwargs)
+        assert form.is_valid()
+        form.save()
+        eq_(RereviewQueue.objects.count(), 1)
+
+    def test_free_to_premium_pending(self):
+        # Pending apps shouldn't get re-reviewed.
+        self.addon.update(status=amo.STATUS_PENDING)
+
+        kwargs = {
+            'request': self.request,
+            'extra': {
+                'addon': self.addon,
+                'amo_user': self.user,
+                'dest': 'payment',
+            }
+        }
+        data = {
+            'premium_type': amo.ADDON_PREMIUM,
+            'price': self.price.id,
+        }
+        form = forms.PremiumForm(data=data, **kwargs)
+        assert form.is_valid()
+        form.save()
+        eq_(RereviewQueue.objects.count(), 0)
+
+    def test_premium_to_free(self):
+        # Premium to Free is ok for public apps.
+        self.make_premium(self.addon)
+
+        kwargs = {
+            'request': self.request,
+            'extra': {
+                'addon': self.addon,
+                'amo_user': self.user,
+                'dest': 'payment',
+            }
+        }
+        data = {
+            'premium_type': amo.ADDON_FREE,
+        }
+        form = forms.PremiumForm(data=data, **kwargs)
+        assert form.is_valid()
+        form.save()
+        eq_(RereviewQueue.objects.count(), 0)

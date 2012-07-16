@@ -1,15 +1,15 @@
-import fudge
-from fudge.inspector import arg
-import mock
-from nose.tools import eq_
-from pyquery import PyQuery as pq
-import waffle
-
 from django.conf import settings
 
-from addons.models import Addon
+import fudge
+import mock
+import waffle
+from fudge.inspector import arg
+from nose.tools import eq_
+from pyquery import PyQuery as pq
+
 import amo
 import amo.tests
+from addons.models import Addon
 from mkt.inapp_pay.models import InappConfig
 
 

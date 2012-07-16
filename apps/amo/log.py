@@ -479,6 +479,15 @@ class REREVIEW_MANIFEST_CHANGE(_LOG):
     review_queue = True
 
 
+class REREVIEW_FREE_TO_PAID(_LOG):
+    id = 71
+    format = _(u'{addon} re-reviewed because app was previously free and is '
+               u'now premium.')
+    short = _(u'Free app became premium')
+    keep = True
+    review_queue = True
+
+
 # TODO(robhudson): Escalation log for editor escalation..
 
 

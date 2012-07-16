@@ -33,15 +33,10 @@ def _get_content_hash(content):
     return 'sha256:%s' % hashlib.sha256(content).hexdigest()
 
 
-def _log(webapp, message, exc_info=False):
+def _log(webapp, message, rereview=False, exc_info=False):
+    if rereview:
+        message = u'(Re-review) ' + message
     task_log.info(u'[Webapp:%s] %s' % (webapp, message), exc_info=exc_info)
-
-
-def _flag_for_review(webapp, message):
-    if not RereviewQueue.objects.filter(addon=webapp).exists():
-        RereviewQueue.objects.create(addon=webapp)
-    amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, webapp,
-            webapp.current_version, details={'comments': message})
 
 
 def _open_manifest(webapp, file_):
@@ -83,8 +78,8 @@ def update_manifests(ids, **kw):
         except Exception, e:
             msg = u'Failed to get manifest from %s. Error: %s' % (
                 webapp.manifest_url, e.message)
-            _log(webapp, msg, exc_info=True)
-            _flag_for_review(webapp, msg)
+            _log(webapp, msg, rereview=True, exc_info=True)
+            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
             continue
 
         # Check hash.
@@ -112,8 +107,9 @@ def update_manifests(ids, **kw):
                         msg += u'<li>%s</li>' % m['message']
                 msg += u'</ul>'
                 msg += u'<a href="%s">View Validation Result' % v8n_url
-                _log(webapp, msg)
-                _flag_for_review(webapp, msg)
+                _log(webapp, msg, rereview=True)
+                RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+                                   msg)
                 continue
         else:
             _log(webapp,
@@ -133,5 +129,5 @@ def update_manifests(ids, **kw):
         if (old and old.get('name') and old.get('name') != new.get('name')):
             msg = u'Manifest name changed from "%s" to "%s"' % (
                 old.get('name'), new.get('name'))
-            _log(webapp, msg)
-            _flag_for_review(webapp, msg)
+            _log(webapp, msg, rereview=True)
+            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
