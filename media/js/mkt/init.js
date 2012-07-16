@@ -136,15 +136,25 @@ z.page.on('fragmentloaded', function() {
         var $this = $(this),
             $btns = $('.header-button');
 
-        if ($this.hasClass('back')) {
+        if ($this.hasClass('dismiss')) {
+            // Dismiss looks like back but actually just dismisses an overlay.
+            $('#filters').hide();
+        } else if ($this.hasClass('filter')) {
+            $('#filters').show();
+        } else if ($this.hasClass('back')) {
             history.back();
             $btns.blur();
             e.preventDefault();
         } else if ($this.hasClass('search')) {
-            // FYI: There ain't no X or anything, so people can't dismiss this.
-            z.body.addClass('search');
+            z.body.addClass('show-search');
+            $btns.blur();
+            e.preventDefault();
+        } else if ($this.hasClass('cancel')) {
+            z.body.removeClass('show-search');
+            $('#search-q').blur();
             $btns.blur();
             e.preventDefault();
         }
     });
 });
+

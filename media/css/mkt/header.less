@@ -78,6 +78,7 @@
     .box-shadow(0 1px 0 1px rgba(0,0,0,0.2));
     &:hover {
         .gradient-two-color(lighten(#f8f8f8, 10%), darken(#def, 2%);
+        text-decoration: none;
     }
     &:active {
         .box-shadow(inset 0px 1px 0px 0px fadeOut(#000,80%),
@@ -178,24 +179,6 @@
 @drk-hding-end: darken(#60747F, 10%);
 
 @media (max-width: @4col) {
-    // Top-level page name.
-    #top {
-        .border-box;
-        .dark-text-shadow;
-        .ellipsis;
-        color: @white;
-        display: block;
-        font-size: 16px;
-        line-height: 50px;
-        margin: 0 auto;
-        position: relative;
-        top: -50px;
-        text-align: center;
-        width: 160px;
-    }
-    .search #top {
-        display: none;
-    }
     #page header h1,
     #page header .sub-nav,
     #page header .sub-nav li {
@@ -245,13 +228,20 @@
         display: none;
     }
     .classic-header {
-        height: 50px;
-        line-height: 50px;
-        font-size: 18px;
-        color: @white;
         .border-box;
         background: @grain-src @navy-gray;
+        color: @white;
+        font-size: 18px;
+        height: 50px;
         text-align: center;
+        h1 {
+            font-weight: 400;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+            width: 160px;
+        }
     }
     #site-header {
         height: 50px;
@@ -266,26 +256,64 @@
     .nav-overlay.show {
         background: rgba(0,0,0,.2);
     }
-    .search .header-button {
-        // The rocket icon is confusing and inconsistent. We can revisit later.
-        /*
-        &.home {
-            display: inline-block;
-            b {
-                background: url(../../img/mkt/glyphs/rocket_btn.png) center no-repeat;
-            }
+    // Top-level page name.
+    #top {
+        .border-box;
+        .dark-text-shadow;
+        .ellipsis;
+        color: @white;
+        display: block;
+        font-size: 16px;
+        line-height: 50px;
+        margin: 0 auto -50px;
+        position: relative;
+        top: -50px;
+        text-align: center;
+        width: 160px;
+    }
+    .show-search {
+        #top {
+            display: none;
         }
-        */
-        &.filter {
+        .header-button.cancel {
             display: inline-block;
+            font-size: 28px;
             font-weight: 600;
             line-height: 30px;
-            margin: 10px 15px 0 7px;
+            text-shadow: 1px 1px 1px #fff;
             position: absolute;
             right: 0;
             text-align: center;
-            &:hover {
-                text-decoration: none;
+        }
+    }
+    .search {
+        #top {
+            display: none;
+        }
+        #filters #top {
+            display: block;
+        }
+        .header-button {
+            // The rocket icon is confusing and inconsistent. We can revisit later.
+            /*
+            &.home {
+                display: inline-block;
+                b {
+                    background: url(../../img/mkt/glyphs/rocket_btn.png) center no-repeat;
+                }
+            }
+            */
+            &.filter {
+                display: inline-block;
+                font-weight: 600;
+                line-height: 30px;
+                margin: 10px 15px 0 7px;
+                position: absolute;
+                right: 0;
+                text-align: center;
+            }
+            &.search {
+                display: none;
             }
         }
     }

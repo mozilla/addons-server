@@ -20,12 +20,7 @@
             $this.closest('ul').removeClass('active');
             $this.addClass('active');
         }
-    }).on('click', '#filters .back-button', _pd(function(e) {
-        $('#filters').hide();
-    }));
-    $('nav .filter-button').click(_pd(function(e) {
-        $('#filters').show();
-    }));
+    });
     function turnPages(e) {
         if (fieldFocused(e)) {
             return;
