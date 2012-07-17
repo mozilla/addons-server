@@ -1293,8 +1293,9 @@ class TestUpload(BaseUploadTest):
         msg = validation['messages'][0]
         assert 'uid' in msg, "Unexpected: %r" % msg
         eq_(msg['type'], u'error')
-        eq_(msg['message'], u'The package is not of a recognized type.')
-        eq_(msg['description'], u'')
+        eq_(msg['message'], u'JSON Parse Error')
+        eq_(msg['description'], u'The webapp extension could not be parsed'
+                                u' due to a syntax error in the JSON.')
 
     def test_redirect(self):
         r = self.post()
