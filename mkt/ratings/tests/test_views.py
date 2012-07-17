@@ -94,6 +94,8 @@ class TestCreate(ReviewTest):
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
 
     def test_review_success(self):
+        Review.objects.all().delete()
+
         qs = self.webapp.reviews
         old_cnt = qs.count()
         log_count = ActivityLog.objects.count()
@@ -104,6 +106,19 @@ class TestCreate(ReviewTest):
         eq_(qs.count(), old_cnt + 1)
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected ADD_REVIEW entry')
+        eq_(self.get_webapp().total_reviews, 1)
+
+    def test_review_success_edit(self):
+        qs = self.webapp.reviews
+        old_cnt = qs.count()
+        log_count = ActivityLog.objects.count()
+
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 1})
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
+                             status_code=302)
+        eq_(qs.count(), old_cnt)
+        eq_(ActivityLog.objects.count(), log_count + 1,
+            'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
 
     def test_can_review_purchased(self):

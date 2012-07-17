@@ -67,6 +67,7 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
                                                    dev=True, support=True),
         }
         ctx['flags'] = get_flags(request, ratings.object_list)
+        ctx['has_review'] = addon.reviews.filter(user=request.user.id).exists()
     return jingo.render(request, 'ratings/listing.html', ctx)
 
 
@@ -113,15 +114,60 @@ def add(request, addon):
         return http.HttpResponseForbidden()
 
     data = request.POST or None
-    form = ReviewForm(data)
-    if data and form.is_valid():
-        review = Review.objects.create(**_review_details(request, addon, form))
-        Addon.objects.invalidate(*[addon])
-        amo.log(amo.LOG.ADD_REVIEW, addon, review)
-        log.debug('New review: %s' % review.id)
-        messages.success(request, _('Your review was successfully added!'))
 
-        return redirect(addon.get_ratings_url('list'))
+    # Try to get an existing review of the app by this user if we can.
+    try:
+        existing_review = Review.objects.get(addon=addon, user=request.user)
+    except Review.DoesNotExist, Review.MultipleObjectsReturned:
+        # If one doesn't exist, set it to None.
+        existing_review = None
+
+    # If the user is posting back, try to process the submission.
+    if data:
+        form = ReviewForm(data)
+        if form.is_valid():
+            if existing_review:
+                cleaned = form.cleaned_data
+                # If there's a review to overwrite, overwrite it.
+                if (cleaned['body'] != existing_review.body or
+                    cleaned['rating'] != existing_review.rating):
+                    existing_review.body = cleaned['body']
+                    existing_review.rating = cleaned['rating']
+                    ip = request.META.get('REMOTE_ADDR', '')
+                    existing_review.ip_address = ip
+
+                    existing_review.save()
+
+                amo.log(amo.LOG.EDIT_REVIEW, addon, existing_review)
+                log.debug('[Review:%s] Edited by %s' % (existing_review.id,
+                                                        request.user.id))
+                messages.success(request,
+                                 _('Your review was updated successfully!'))
+            else:
+                # If there isn't a review to overwrite, create a new review.
+                review = Review.objects.create(
+                        **_review_details(request, addon, form))
+                amo.log(amo.LOG.ADD_REVIEW, addon, review)
+                log.debug('[Review:%s] Created by user %s ' % (review.id,
+                                                               request.user.id))
+                messages.success(request,
+                                 _('Your review was successfully added!'))
+
+            Addon.objects.invalidate(*[addon])
+            return redirect(addon.get_ratings_url('list'))
+
+        # If the form isn't valid, we've set `form` so that it can be used when
+        # the template is rendered below.
+
+    elif existing_review:
+        # If the user isn't posting back but has an existing review, populate
+        # the form with their existing review and rating.
+        form = ReviewForm({'rating': existing_review.rating,
+                           'body': existing_review.body})
+    else:
+        # If the user isn't posting back and doesn't have an existing review,
+        # just show a blank version of the form.
+        form = ReviewForm()
 
     return jingo.render(request, 'ratings/add.html',
                         {'product': addon, 'form': form})

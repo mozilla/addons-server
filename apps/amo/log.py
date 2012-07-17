@@ -542,6 +542,13 @@ class ADMIN_VIEWED_LOG(_LOG):
     format = _(u'Admin {0} viewed activity log for {user}.')
     admin_event = True
 
+
+class EDIT_REVIEW(_LOG):
+    id = 107
+    action_class = 'review'
+    format = _(u'{review} for {addon} updated.')
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 

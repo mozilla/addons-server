@@ -214,6 +214,7 @@ def edit(request, addon, review_id):
         for field in form.fields:
             if field in form.cleaned_data:
                 setattr(review, field, form.cleaned_data[field])
+        amo.log(amo.LOG.EDIT_REVIEW, addon, review)
         review.save()
         return http.HttpResponse()
     else:
