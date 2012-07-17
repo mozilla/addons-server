@@ -834,7 +834,7 @@ class TestPayments(TestSubmit):
 
     def test_premium_other(self):
         res = self.client.post(self.get_url('payments'),
-                               {'premium_type': amo.ADDON_PREMIUM_OTHER})
+                               {'premium_type': amo.ADDON_OTHER_INAPP})
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('done'))
 

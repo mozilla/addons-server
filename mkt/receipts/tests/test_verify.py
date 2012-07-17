@@ -228,7 +228,7 @@ class TestVerify(amo.tests.TestCase):
 
     def test_other_premiums(self):
         for k in (amo.ADDON_FREE, amo.ADDON_PREMIUM_INAPP,
-                  amo.ADDON_FREE_INAPP, amo.ADDON_PREMIUM_OTHER):
+                  amo.ADDON_FREE_INAPP, amo.ADDON_OTHER_INAPP):
             Installed.objects.all().delete()
             self.addon.update(premium_type=k)
             self.make_install()

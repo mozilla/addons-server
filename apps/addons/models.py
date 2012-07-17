@@ -1042,7 +1042,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 and self.type in amo.ADDON_BECOME_PREMIUM)
 
     def is_premium(self):
-        return self.premium_type == amo.ADDON_PREMIUM
+        return self.premium_type in amo.ADDON_PREMIUMS
 
     def is_free(self):
         return not (self.is_premium() and self.premium and
@@ -1050,7 +1050,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def needs_paypal(self):
         return (self.premium_type not in
-                (amo.ADDON_FREE, amo.ADDON_PREMIUM_OTHER))
+                (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))
 
     def can_be_purchased(self):
         return self.is_premium() and self.status in amo.REVIEWED_STATUSES

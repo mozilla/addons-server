@@ -1890,7 +1890,7 @@ class TestMarketplace(amo.tests.TestCase):
         assert not self.addon.needs_paypal()
 
     def test_other_payments(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM_OTHER)
+        self.addon.update(premium_type=amo.ADDON_OTHER_INAPP)
         assert not self.addon.needs_paypal()
 
     def test_needs_paypal(self):

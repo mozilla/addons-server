@@ -880,7 +880,7 @@ class TestRefunds(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_not_premium(self):
-        for status in [amo.ADDON_FREE, amo.ADDON_PREMIUM_OTHER]:
+        for status in [amo.ADDON_FREE, amo.ADDON_OTHER_INAPP]:
             self.webapp.update(premium_type=status)
             r = self.client.get(self.url)
             eq_(r.status_code, 200)
