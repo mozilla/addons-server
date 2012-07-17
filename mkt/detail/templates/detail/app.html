@@ -99,7 +99,7 @@
       {% endif %}
       {% if is_reviewer %}
         <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
-              class="button good reviewer" target="_blank">
+              class="button good reviewer wide" target="_blank">
           {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
       {% endif %}
     </div>
