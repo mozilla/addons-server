@@ -51,9 +51,13 @@ class ReverseNameLookup(object):
             qs = qs.filter(type=amo.ADDON_WEBAPP)
         else:
             qs = qs.exclude(type=amo.ADDON_WEBAPP)
-        if qs.exists():
-            return qs.get().id
-        return None
+        values = list(qs.distinct().values_list('id', flat=True))
+        if values:
+            if len(values) > 1:
+                rnlog.warning('Multiple returned for [%s:%s]: %s' % (
+                    self.type, key, values))
+            return values[0]
+        return None  # Explicitly return None for no results
 
     def update(self, addon):
         self.delete(addon.id)
