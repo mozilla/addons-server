@@ -163,7 +163,7 @@ def user_search(request):
         qs = UserProfile.objects.filter(pk=q).values(*fields)
     else:
         qs = (UserProfile.search().query(or_=_expand_query(q, fields))
-                                  .values_dict(*fields))
+                                  .values_dict(*fields))[:20]
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
@@ -190,7 +190,7 @@ def app_search(request):
         if not qs.count():
             qs = (Addon.search().query(type=addon_type,
                                        or_=_expand_query(q, fields))
-                                .values_dict(*fields))
+                                .values_dict(*fields))[:20]
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
