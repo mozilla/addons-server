@@ -1,8 +1,6 @@
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import waffle
-
 from access.models import Group, GroupUser
 from addons.models import Addon
 import amo
@@ -16,31 +14,43 @@ from mkt.webapps.models import Webapp
 
 
 class ReviewTest(amo.tests.TestCase):
-    fixtures = ['base/admin', 'base/apps', 'reviews/dev-reply']
+    fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.webapp = self.get_webapp()
+        self.dev = UserProfile.objects.get(pk=31337)
+        self.admin = UserProfile.objects.get(username='admin')
+        self.regular = UserProfile.objects.get(username='regularuser')
+        # Fixtures blow chunks.
+        self.review = Review.objects.create(
+            rating=4,
+            body={'ru': 'I \u042f so hard.'},
+            addon=self.webapp,
+            user=self.regular,
+            ip_address='63.245.213.8'
+        )
+        self.reply = Review.objects.create(
+            reply_to=self.review,
+            body='Swag surfing and \u0434\u0430\u0432\u043d.',
+            addon=self.webapp,
+            user=self.dev,
+            ip_address='0.0.0.0',
+        )
 
     def get_webapp(self):
-        # Because django hates my new fixture.
-        addon = Addon.objects.get(id=1865)
-        if not addon.is_webapp():
-            addon.update(type=amo.ADDON_WEBAPP)
-        return Webapp.objects.get(id=1865)
+        return Webapp.objects.get(id=337141)
 
     def log_in_dev(self):
-        self.client.login(username='trev@adblockplus.org', password='password')
+        self.client.login(username=self.dev.email, password='password')
 
     def log_in_admin(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(username=self.admin.email, password='password')
 
-    def make_it_my_review(self, review_id=218468):
-        r = Review.objects.get(id=review_id)
-        r.user = UserProfile.objects.get(username='jbalogh')
-        r.save()
+    def log_in_regular(self):
+        self.client.login(username=self.regular.email, password='password')
 
     def enable_waffle(self):
-        waffle.models.Switch.objects.create(name='ratings', active=True)
+        self.create_switch(name='ratings')
 
 
 class TestCreate(ReviewTest):
@@ -48,12 +58,13 @@ class TestCreate(ReviewTest):
     def setUp(self):
         super(TestCreate, self).setUp()
         self.add = self.webapp.get_ratings_url('add')
-        self.user = UserProfile.objects.get(email='root_x@ukr.net')
-        assert self.client.login(username=self.user.email, password='password')
+        self.user = self.regular
+        self.log_in_regular()
         self.detail = self.webapp.get_detail_url()
 
     def test_restrict(self):
-        g = Group.objects.get(rules='Restricted:UGC')
+        g = Group.objects.create(name='Restricted Users',
+                                 rules='Restricted:UGC')
         GroupUser.objects.create(group=g, user=self.user)
         r = self.client.post(self.add, {'body': 'x', 'score': 1})
         self.assertEqual(r.status_code, 403)
@@ -83,7 +94,7 @@ class TestCreate(ReviewTest):
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
 
     def test_review_success(self):
-        qs = Review.objects.filter(addon=1865)
+        qs = self.webapp.reviews
         old_cnt = qs.count()
         log_count = ActivityLog.objects.count()
 
@@ -188,23 +199,22 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 1)
 
-    def test_review_link(self):
+    def test_review_link_plural(self):
         # We have reviews.
         self.enable_waffle()
+        self.webapp.update(total_reviews=2)
         r = self.client.get(self.detail)
-        rating = int(round(self.webapp.average_rating))
         total = numberfmt(self.webapp.total_reviews)
         eq_(pq(r.content)('.average-rating').text(),
-            'Rated %s out of 5 stars %s reviews' % (rating, total))
+            'Rated 4 out of 5 stars 2 reviews')
 
     def test_review_link_singular(self):
         # We have one review.
         self.enable_waffle()
         self.webapp.update(total_reviews=1)
         r = self.client.get(self.detail)
-        rating = int(round(self.webapp.average_rating))
         eq_(pq(r.content)('.average-rating').text(),
-            'Rated %s out of 5 stars 1 review' % rating)
+            'Rated 4 out of 5 stars 1 review')
 
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.
@@ -224,9 +234,10 @@ class TestListing(ReviewTest):
 
     def setUp(self):
         super(TestListing, self).setUp()
-        self.user = UserProfile.objects.get(email='root_x@ukr.net')
-        assert self.client.login(username=self.user.email, password='password')
+        self.log_in_regular()
         self.listing = self.webapp.get_ratings_url('list')
+        self.review_id = '#review-%s' % self.review.id
+        self.reply_id = '#review-%s' % self.reply.id
 
     def test_items(self):
         r = self.client.get(self.listing)
@@ -239,20 +250,16 @@ class TestListing(ReviewTest):
         eq_(doc('.no-rating').length, 0)
 
         # A review.
-        r = Review.objects.get(id=218207)
-        item = reviews.filter('#review-218207')
-        eq_(r.reply_to_id, None)
+        item = reviews.filter('#review-%s' % self.review.id)
         eq_(item.hasClass('reply'), False)
         eq_(item.length, 1)
-        eq_(item.attr('data-rating'), str(r.rating))
+        eq_(item.attr('data-rating'), str(self.review.rating))
 
         # A reply.
-        r = Review.objects.get(id=218468)
-        item = reviews.filter('#review-218468')
+        item = reviews.filter('#review-%s' % self.reply.id)
         eq_(item.length, 1)
-        eq_(r.reply_to_id, 218207)
         eq_(item.hasClass('reply'), True)
-        eq_(r.rating, None)
+        eq_(self.reply.rating, None)
         eq_(item.attr('data-rating'), '')
 
     def test_empty_list(self):
@@ -274,39 +281,39 @@ class TestListing(ReviewTest):
         reviews = pq(r.content)('#reviews')
 
         # My own review.
-        eq_(self.get_flags(reviews.find('#review-218207 .actions')),
+        eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'edit'])
 
         # A reply.
-        eq_(self.get_flags(reviews.find('#review-218468 .actions')), ['flag'])
+        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
+            ['flag'])
 
     def test_actions_as_admin(self):
-        assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='password')
+        self.log_in_admin()
 
         r = self.client.get(self.listing)
         reviews = pq(r.content)('#reviews')
 
-        eq_(self.get_flags(reviews.find('#review-218207 .actions')),
+        eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'flag'])
 
-        eq_(self.get_flags(reviews.find('#review-218468 .actions')),
+        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
             ['delete', 'flag'])
 
     def test_actions_as_admin_and_author(self):
-        assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='password')
+        self.log_in_admin()
 
         # Now I own the reply.
-        self.make_it_my_review()
+        self.reply.user = self.admin
+        self.reply.save()
 
         r = self.client.get(self.listing)
         reviews = pq(r.content)('#reviews')
 
-        eq_(self.get_flags(reviews.find('#review-218207 .actions')),
+        eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'flag'])
 
-        eq_(self.get_flags(reviews.find('#review-218468 .actions')),
+        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
             ['delete', 'edit'])
 
 
@@ -314,9 +321,8 @@ class TestFlag(ReviewTest):
 
     def setUp(self):
         super(TestFlag, self).setUp()
-        self.user = UserProfile.objects.get(email='root_x@ukr.net')
-        assert self.client.login(username=self.user.email, password='password')
-        self.flag = self.webapp.get_ratings_url('flag', [218468])
+        self.log_in_regular()
+        self.flag = self.webapp.get_ratings_url('flag', [self.reply.id])
 
     def test_no_login(self):
         self.client.logout()
