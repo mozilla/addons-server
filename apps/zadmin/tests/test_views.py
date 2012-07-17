@@ -1868,7 +1868,7 @@ class TestEmailDevs(amo.tests.TestCase):
 
 
 class TestPerms(amo.tests.TestCase):
-    fixtures = ['base/users', 'zadmin/tests/flagged']
+    fixtures = ['base/users', 'base/apps', 'zadmin/tests/flagged']
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
@@ -1878,6 +1878,10 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
+        eq_(self.client.get(
+            reverse('discovery.module_admin')).status_code, 200)
         eq_(self.client.get(
             reverse('zadmin.oauth-consumer-create')).status_code, 200)
 
@@ -1893,6 +1897,9 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
+        eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
+        eq_(self.client.get(
+            reverse('discovery.module_admin')).status_code, 200)
         eq_(self.client.get(
             reverse('zadmin.oauth-consumer-create')).status_code, 403)
 
@@ -1935,6 +1942,10 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
+        eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 403)
+        eq_(self.client.get(reverse('zadmin.features')).status_code, 403)
+        eq_(self.client.get(
+            reverse('discovery.module_admin')).status_code, 403)
         eq_(self.client.get(
             reverse('zadmin.oauth-consumer-create')).status_code, 403)
         # Anonymous users should also get a 403.
