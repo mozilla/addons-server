@@ -124,7 +124,7 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
 
 
     def save(self, *args, **kw):
-        profile = super(UserEditForm, self).save()
+        profile = super(AdminUserEditForm, self).save()
         if self.cleaned_data['anonymize']:
             amo.log(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
                     self.cleaned_data['admin_log'])
