@@ -106,6 +106,10 @@ class TestInstall(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         eq_(self.client.post(self.url).status_code, 200)
 
+    def test_own_payments(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM_OTHER)
+        eq_(self.client.post(self.url).status_code, 200)
+
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_not_paid(self, has_purchased):
         has_purchased.return_value = False

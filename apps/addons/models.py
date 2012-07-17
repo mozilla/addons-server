@@ -1042,7 +1042,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 and self.type in amo.ADDON_BECOME_PREMIUM)
 
     def is_premium(self):
-        return self.premium_type in amo.ADDON_PREMIUMS
+        return self.premium_type == amo.ADDON_PREMIUM
 
     def is_free(self):
         return not (self.is_premium() and self.premium and
