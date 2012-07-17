@@ -140,7 +140,7 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     compatibility tests.
     """
 
-    from validator.validate import validate
+    from validator.validate import validate_app
 
     # TODO(Kumar) remove this when validator is fixed, see bug 620503
     from validator.testcases import scripting
@@ -154,30 +154,10 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
 
     if not force_validation_type:
         force_validation_type = validator.constants.PACKAGE_ANY
-    path = file_path
-    if path and not os.path.exists(path) and storage.exists(path):
-        path = tempfile.mktemp(suffix='_' + os.path.basename(file_path))
-        copyfileobj(storage.open(file_path), open(path, 'wb'))
-        temp = True
-    else:
-        temp = False
-    try:
-        with statsd.timer('mkt.developers.validator'):
-            return validate(path,
-                            for_appversions=for_appversions,
-                            format='json',
-                            # When False, this flag says to stop testing after one
-                            # tier fails.
-                            determined=test_all_tiers,
-                            approved_applications=apps,
-                            spidermonkey=settings.SPIDERMONKEY,
-                            overrides=overrides,
-                            timeout=settings.VALIDATOR_TIMEOUT,
-                            expectation=force_validation_type,
-                            market_urls=settings.VALIDATOR_IAF_URLS)
-    finally:
-        if temp:
-            os.remove(path)
+    with statsd.timer('mkt.developers.validator'):
+            return validate_app(
+                storage.open(file_path).read() if file_path else '',
+                market_urls=settings.VALIDATOR_IAF_URLS)
 
 
 @task

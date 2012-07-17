@@ -125,20 +125,12 @@ class TestValidator(amo.tests.TestCase):
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
 
-    @mock.patch('validator.validate.validate')
+    @mock.patch('validator.validate.validate_app')
     def test_validate_manifest(self, _mock):
         self.get_upload().update(is_webapp=True)
         _mock.return_value = '{"errors": 0}'
         tasks.validator(self.upload.pk)
-        eq_(_mock.call_args[1]['expectation'],
-            validator.constants.PACKAGE_WEBAPP)
-
-    @mock.patch('validator.validate.validate')
-    def test_validate_any_package(self, _mock):
-        _mock.return_value = '{"errors": 0}'
-        tasks.validator(self.upload.pk)
-        # Let validator determine by file extension.
-        eq_(_mock.call_args[1]['expectation'], validator.constants.PACKAGE_ANY)
+        assert _mock.called
 
 
 class TestFetchManifest(amo.tests.TestCase):
