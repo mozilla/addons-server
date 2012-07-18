@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1 id="top">{{ _('Mozilla Marketplace') }}</h1>
-  <section class="featured full">
+  <section class="featured">
     <ul class="grid">
       {% for app in featured %}
         <li>
@@ -13,16 +13,5 @@
       {% endfor %}
     </ul>
   </section>
-  {% if popular %}
-    <section class="popular full">
-      <ul class="grid">
-        {% for app in popular %}
-          <li>
-            {{ market_tile(app) }}
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
   {{ category_slider() }}
 {% endblock %}

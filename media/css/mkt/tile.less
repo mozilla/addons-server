@@ -81,9 +81,11 @@
 .grid {
     li {
         float: left;
+        max-width: 107px;
+        width: 100%/3;
     }
     .mkt-tile {
-        width: 107px;
+        width: 100%;
         height: 145px;
         .info {
             .gradient-two-color(#d9d9d9, #fff);
@@ -91,11 +93,12 @@
             padding: 4px;
         }
         h3, .vital {
-            font-size: 11px;
+            font-size: 12px;
             margin: 0;
             padding: 0;
         }
         .price {
+            font-size: 11px;
             font-weight: bold;
             color: @link;
         }
@@ -112,13 +115,20 @@
         .rating {
             display: none;
         }
+        &.category {
+            height: 107px;
+            h3 {
+                text-align: center;
+                width: 90px;
+                padding: 8px;
+                color: white;
+                text-shadow: 0 1px 1px fade(#000, 50%);
+                font-weight: 600;
+                position: absolute;
+                bottom: 0px;
+            }
+        }
     }
-    // make the middle element of the 3-wide grid 1px wider.
-    // would love to move to using percentages here.
-    li:nth-child(3n+1) .mkt-tile {
-        width: 106px;
-    }
-    // produce the gradient "pop" every other (produces checkerboard)
     li:nth-child(even) .mkt-tile {
         .info {
             .gradient-two-color(#fff, #d9d9d9);
@@ -147,7 +157,7 @@
         display: block;
         position: absolute;
         top: -1px;
-        left: 27px;
+        left: 32px;
         -moz-transform-origin: 0 0;
         .transform(~'scaleY(.6) rotate(-45deg)');
         background: #ccc;
@@ -161,12 +171,18 @@
         list-style-type: none;
         text-align: center;
         white-space: nowrap;
+        overflow: hidden;
+        height: 232px;
     }
     li {
         margin-left: 15px;
         display: inline-block;
         &:first-child {
             margin-left: 0px;
+        }
+        img {
+            width: 180px;
+            max-height: 270px;
         }
     }
 }

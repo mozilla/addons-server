@@ -9,6 +9,7 @@ from translations.query import order_by_translation
 
 @register.function
 def category_slider():
+    return _categories()
     return caching.cached(lambda: _categories(), 'category-slider-apps')
 
 

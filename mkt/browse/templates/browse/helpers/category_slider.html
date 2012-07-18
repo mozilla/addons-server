@@ -1,21 +1,12 @@
-<section id="categories" class="categories full">
-  <div><h2>{{ _('All categories') }}</h2></div>
-</section>
-<section class="categories slider full">
-  <div class="promo-slider">
-    <div class="controls">
-      <a href="#" class="prev-page"></a>
-      <a href="#" class="next-page"></a>
-    </div>
-    <ul class="content">
-      {% for category in categories %}
-        <li>
-          <a href="{{ category.get_url_path() }}">
-            <div class="arrow img {{ category.slug }}"></div>
-            <h3>{{ category.name }}</h3>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+<section class="categories">
+  <ul class="grid">
+    {% for category in categories %}
+      <li>
+        <a class="mkt-tile category" href="{{ category.get_url_path() }}">
+          <div class="icon cat-{{ category.slug }}"></div>
+          <h3>{{ category.name }}</h3>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
 </section>

@@ -147,21 +147,7 @@
 }
 
 .categories {
-    background: @pale-bg;
-    .controls {
-        .next-page, .prev-page {
-            height: 162px;
-            top: 14px;
-        }
-    }
-    a {
-        color: @medium-gray;
-        &:hover {
-            color: @dark-gray;
-            text-decoration: none;
-        }
-    }
-    .img {
+    .icon {
         .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 2px 1px 0 rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05) inset');
         background: #D9DDE0 url(../../img/mkt/glyphs/rocket.png) 50% 50% no-repeat;
         &:after {
@@ -169,105 +155,55 @@
             right: 5px;
             bottom: 5px;
         }
-        &.books-reference {
+        &.cat-books-reference {
             background-image: url(../../img/mkt/glyphs/books-reference.png);
         }
-        &.business {
+        &.cat-business {
             background-image: url(../../img/mkt/glyphs/business.png);
         }
-        &.education {
+        &.cat-education {
             background-image: url(../../img/mkt/glyphs/education.png);
         }
-        &.entertainment-sports {
+        &.cat-entertainment-sports {
             background-image: url(../../img/mkt/glyphs/entertainment-sports.png);
         }
-        &.games {
+        &.cat-games {
             background-image: url(../../img/mkt/glyphs/games.png);
         }
-        &.health-fitness {
+        &.cat-health-fitness {
             background-image: url(../../img/mkt/glyphs/health-fitness.png);
         }
-        &.lifestyle {
+        &.cat-lifestyle {
             background-image: url(../../img/mkt/glyphs/lifestyle.png);
         }
-        &.music {
+        &.cat-music {
             background-image: url(../../img/mkt/glyphs/music.png);
         }
-        &.news-weather {
+        &.cat-news-weather {
             background-image: url(../../img/mkt/glyphs/news-weather.png);
         }
-        &.photos-media {
+        &.cat-photos-media {
             background-image: url(../../img/mkt/glyphs/photos-media.png);
         }
-        &.productivity {
+        &.cat-productivity {
             background-image: url(../../img/mkt/glyphs/productivity.png);
         }
-        &.shopping {
+        &.cat-shopping {
             background-image: url(../../img/mkt/glyphs/shopping.png);
         }
-        &.social {
+        &.cat-social {
             background-image: url(../../img/mkt/glyphs/social.png);
         }
-        &.travel {
+        &.cat-travel {
             background-image: url(../../img/mkt/glyphs/travel.png);
         }
-        &.utilities {
+        &.cat-utilities {
             background-image: url(../../img/mkt/glyphs/utilities.png);
         }
-    }
-    .promo-slider {
-        height: 170px;
-        li, li a, .img {
-            height: 120px;
-            width: 120px;
-        }
-        li {
-            h3 {
-                .ellipsis;
-                font-size: 15px;
-                // Because `overflow: hidden` is required for `text-overflow: ellipsis`
-                // and the letter 'g' gets clipped, my g.
-                margin: 10px 0 -6px;
-                text-align: center;
-                width: 100%;
-            }
-            a {
-                .transition-duration(0.1s);
-                .transition-property(~'background-color,'
-                                      '-moz-box-shadow, -webkit-box-shadow,'
-                                      'box-shadow, line-height');
-                display: block;
-                line-height: 120px;
-                margin: 0 auto;
-                text-align: center;
-                &:hover {
-                    .img {
-                        .box-shadow(~'0 1px 2px 0 rgba(0,0,0,.3), 0 4px 1px 0 rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.05), 0 0 12px 0 rgba(0,0,0,.05), 0 0 48px 0 #fff inset, 0 -3px 0 0 rgba(0,0,0,.15) inset');
-                        line-height: 118px;
-                    }
-                }
-                &:active {
-                    .img {
-                        .box-shadow(~'0 2px 0 0 rgba(0,0,0,.2) inset, 0 12px 24px 6px rgba(0,0,0,.2) inset, 0 2px 2px 2px rgba(0,0,0,.2) inset');
-                        background-color: rgba(0,0,0,0.1);
-                        line-height: 124px;
-                    }
-                }
-            }
-        }
-    }
-    .promo-slider ul a:after {
-        bottom: 5px;
-        right: 5px;
     }
 }
 
 @media (max-width: @4col) {
-    .categories,
-    .promo-slider p,
-    .featured h2 {
-        display: none;
-    }
     .featured.slider {
         .controls {
             .next-page, .prev-page {
