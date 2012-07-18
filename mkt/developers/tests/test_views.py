@@ -880,7 +880,7 @@ class TestRefunds(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_not_premium(self):
-        for status in [amo.ADDON_FREE, amo.ADDON_PREMIUM_OTHER]:
+        for status in [amo.ADDON_FREE, amo.ADDON_OTHER_INAPP]:
             self.webapp.update(premium_type=status)
             r = self.client.get(self.url)
             eq_(r.status_code, 200)
@@ -1293,8 +1293,9 @@ class TestUpload(BaseUploadTest):
         msg = validation['messages'][0]
         assert 'uid' in msg, "Unexpected: %r" % msg
         eq_(msg['type'], u'error')
-        eq_(msg['message'], u'The package is not of a recognized type.')
-        eq_(msg['description'], u'')
+        eq_(msg['message'], u'JSON Parse Error')
+        eq_(msg['description'], u'The webapp extension could not be parsed'
+                                u' due to a syntax error in the JSON.')
 
     def test_redirect(self):
         r = self.post()

@@ -75,7 +75,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/results.html')
 
-
     def test_case_insensitive(self):
         self.refresh()
         self.check_results({'q': 'steam'}, [self.webapp.pk])
@@ -178,10 +177,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(self.check_price_filter('free', 'Free Only',
                                     amo.ADDON_FREE_INAPP), self.free)
 
-    def test_free_and_premium_other(self):
-        eq_(self.check_price_filter('', 'Any Price', amo.ADDON_PREMIUM_OTHER),
-            self.both)
-
     def test_premium_only(self):
         eq_(self.check_price_filter('paid', 'Premium Only'), self.paid)
 
@@ -189,18 +184,9 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(self.check_price_filter('paid', 'Premium Only',
                                     amo.ADDON_PREMIUM_INAPP), self.paid)
 
-    def test_premium_other(self):
-        eq_(self.check_price_filter('paid', 'Premium Only',
-                                    amo.ADDON_PREMIUM_OTHER), self.paid)
-
-    def test_premium_other_zero(self):
-        price = Price.objects.create(price=0)
-        app = amo.tests.app_factory(weekly_downloads=1)
-        AddonPremium.objects.create(price=price, addon=app)
-        app.update(premium_type=amo.ADDON_PREMIUM_OTHER)
-        eq_(self.check_price_filter('paid', 'Premium Only',
-                                    amo.ADDON_PREMIUM_OTHER),
-            self.paid + [app])
+    def test_free_other(self):
+        eq_(self.check_price_filter('free', 'Free Only',
+                                    amo.ADDON_OTHER_INAPP), self.free)
 
     def setup_devices(self):
         self._generate(3)

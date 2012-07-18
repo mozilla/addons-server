@@ -163,12 +163,18 @@ class TestLocaleMiddleware(MiddlewareCase):
 
             self.client.cookies.clear()
 
-    def test_accept_language_takes_precedence_over_cookie(self):
+    def test_accept_language_takes_precedence_over_previous_request(self):
         r = self.client.get('/')
         eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
 
         # Even though you remembered my previous language, I've since
         # changed it in my browser, so let's respect that.
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
+        eq_(r.cookies['lang'].value, 'fr')
+
+    def test_accept_language_takes_precedence_over_cookie(self):
+        self.client.cookies['lang'] = 'pt-BR'
+
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
         eq_(r.cookies['lang'].value, 'fr')
 
@@ -246,12 +252,18 @@ class TestRegionMiddleware(MiddlewareCase):
             eq_(got, expected,
                 'For %r: expected %r but got %r' % (locale, expected, got))
 
-    def test_accept_language_takes_precedence_over_cookie(self):
+    def test_accept_language_takes_precedence_over_previous_request(self):
         r = self.client.get('/')
         eq_(r.cookies['region'].value, 'worldwide')
 
         # Even though you remembered my previous language, I've since
         # changed it in my browser, so let's respect that.
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
+        eq_(r.cookies['region'].value, 'brazil')
+
+    def test_accept_language_takes_precedence_over_cookie(self):
+        self.client.cookies['region'] = 'worldwide'
+
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
         eq_(r.cookies['region'].value, 'brazil')
 
@@ -262,13 +274,13 @@ class TestVaryMiddleware(MiddlewareCase):
         # What is expected to `Vary`.
         r = self.client.get('/privacy-policy')
         eq_(r['Vary'],
-            'X-Requested-With, Accept-Language, X-Mobile, User-Agent')
+            'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')
 
         # But we do prevent `Vary: Cookie`.
         self.client.cookies.clear()
         r = self.client.get('/privacy-policy', follow=True)
         eq_(r['Vary'],
-            'X-Requested-With, Accept-Language, X-Mobile, User-Agent')
+            'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')
 
     # Patching MIDDLEWARE_CLASSES because other middleware tweaks vary headers.
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES', [

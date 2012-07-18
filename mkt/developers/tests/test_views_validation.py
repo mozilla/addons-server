@@ -206,7 +206,7 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(r.content)
         assert_no_validation_errors(data)
         msg = data['validation']['messages'][0]
-        eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
+        eq_(msg['message'], 'JSON Parse Error')
 
     def test_time(self):
         r = self.client.post(self.url, follow=True)

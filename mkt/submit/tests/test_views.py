@@ -834,7 +834,7 @@ class TestPayments(TestSubmit):
 
     def test_premium_other(self):
         res = self.client.post(self.get_url('payments'),
-                               {'premium_type': amo.ADDON_PREMIUM_OTHER})
+                               {'premium_type': amo.ADDON_OTHER_INAPP})
         eq_(res.status_code, 302)
         self.assertRedirects(res, self.get_url('done'))
 
@@ -937,7 +937,16 @@ class TestPayments(TestSubmit):
         eq_(client.create_seller_paypal.call_args[0][0], self.webapp)
         eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
             'foo@bar.com')
+        client.post_permissions_url.return_value = {'token': 'http://foo/'}
         self.assertRedirects(res, self.get_url('payments.bounce'))
+
+    @mock.patch('mkt.submit.views.client')
+    def test_bounce_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        url = 'http://foo.com'
+        client.post_permission_url.return_value = {'token': url}
+        res = self.client.post(self.get_url('payments.bounce'))
+        eq_(pq(res.content)('section.primary a.button').attr('href'), url)
 
     def test_no_paypal(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)

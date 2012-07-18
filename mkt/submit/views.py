@@ -10,6 +10,7 @@ import waffle
 
 import amo
 from amo.decorators import login_required
+from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from addons.forms import CategoryFormSet, DeviceTypeForm
 from addons.models import Addon, AddonUser
@@ -224,10 +225,18 @@ def payments_paypal(request, addon_id, addon):
 @dev_required
 @submit_step('payments')
 def payments_bounce(request, addon_id, addon):
-    paypal_url = paypal.get_permission_url(addon, 'submission',
-                                           ['REFUND',
-                                            'ACCESS_BASIC_PERSONAL_DATA',
-                                            'ACCESS_ADVANCED_PERSONAL_DATA'])
+    dest = 'submission'
+    perms = ['REFUND', 'ACCESS_BASIC_PERSONAL_DATA',
+             'ACCESS_ADVANCED_PERSONAL_DATA']
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        url = addon.get_dev_url('acquire_refund_permission')
+        url = absolutify(urlparams(url, dest=dest))
+        result = client.post_permission_url(data={'scope': perms, 'url': url})
+        paypal_url = result['token']
+    #TODO(solitude): remove these
+    else:
+        paypal_url = paypal.get_permission_url(addon, dest, perms)
+
     return jingo.render(request, 'submit/payments-bounce.html', {
                         'step': 'payments',
                         'paypal_url': paypal_url,

@@ -196,14 +196,14 @@ ADDON_PREMIUM = 1
 ADDON_PREMIUM_INAPP = 2
 ADDON_FREE_INAPP = 3
 # The addon will have payments, but they aren't using our payment system.
-ADDON_PREMIUM_OTHER = 4
+ADDON_OTHER_INAPP = 4
 
 ADDON_PREMIUM_TYPES = {
     ADDON_FREE: _('Free'),
     ADDON_PREMIUM: _('Premium'),
     ADDON_PREMIUM_INAPP: _('Premium with in-app payments'),
     ADDON_FREE_INAPP: _('Free with in-app payments'),
-    ADDON_PREMIUM_OTHER: _("Premium, but I'll use my own payments system")
+    ADDON_OTHER_INAPP: _("I'll use my own system for in-app payments")
 }
 
 # Non-locale versions for the API.
@@ -211,8 +211,10 @@ ADDON_PREMIUM_API = {
     ADDON_FREE: 'free',
 }
 
-ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP, ADDON_PREMIUM_OTHER)
-ADDON_FREES = (ADDON_FREE, ADDON_FREE_INAPP)
+# Apps that require some sort of payment prior to installing.
+ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
+# Apps that do *not* require a payment prior to installing.
+ADDON_FREES = (ADDON_FREE, ADDON_FREE_INAPP, ADDON_OTHER_INAPP)
 ADDON_INAPPS = (ADDON_PREMIUM_INAPP, ADDON_FREE_INAPP)
 ADDON_BECOME_PREMIUM = (ADDON_EXTENSION, ADDON_THEME, ADDON_DICT,
                         ADDON_LPAPP, ADDON_WEBAPP)

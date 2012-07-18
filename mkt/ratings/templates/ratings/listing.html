@@ -22,7 +22,8 @@
     {% if product.can_review(amo_user) %}
     <p id="add-review">
       <a href="{{ product.get_ratings_url('add') }}" class="button fat">
-        {{ _('Add a review') }}</a></p>
+        {{ _('Add a review') if not has_review else _('Edit review') }}
+      </a></p>
     {% endif %}
 <!--
         {% if page == 'list' %}
