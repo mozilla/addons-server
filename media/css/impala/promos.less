@@ -154,6 +154,46 @@
     hgroup {
         margin: 10px auto 20px;
     }
+    .vid-button {
+        display: block;
+        float: left;
+        .border-radius(5px);
+        background-color: #778343;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    .view-button {
+        a {
+            .border-radius(5px);
+            .box-shadow(0 -5px #bbb inset);
+            background-color: #fff;
+            color: #666;
+            display: block;
+            float: left;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0 #fff;
+            .gradient-two-color(#fff, #ccc);
+            &:hover {
+                .box-shadow(0 -5px #AAA inset);
+                .gradient-two-color(#fff, #bbb);
+                color: #444;
+                strong {
+                    color: #111;
+                }
+            }
+            &:active {
+                margin-top: 2px;
+                padding-bottom: 8px;
+                position: relative;
+            }
+            strong {
+                color: #333;
+            }
+        }
+    }
 }
 
 #starter {
@@ -240,54 +280,15 @@
 }
 
 #addon-video-promo {
-    background: url("../../img/zamboni/discovery_pane/promos/video/bg.png") repeat scroll left bottom transparent;
+    background: url(../../img/zamboni/discovery_pane/promos/video/bg.png);
     position: relative;
     h2 {
         margin-top: 25px;
     }
-
     h2, h3 {
         color: #fff;
         margin-right: 200px;
         text-shadow: 1px 1px 0px #000;
-    }
-
-    .vid-button {
-        display: block;
-        float: left;
-        .border-radius(5px);
-        background-color: #778343;
-        padding: 5px;
-        margin-top: 10px;
-        a {
-            background-color: #FFF;
-            border-radius: 5px;
-            .box-shadow(0 -5px #BBB inset);
-            color: #666;
-            display: block;
-            float: left;
-            font-size: 2em;
-            padding: 10px 20px;
-            text-decoration: none;
-            text-shadow: 1px 1px 0 #fff;
-            .gradient-two-color(#fff, #ccc);
-            &:hover {
-                .box-shadow(0 -5px #AAA inset);
-                .gradient-two-color(#fff, #bbb);
-                color: #444;
-                strong {
-                    color: #111;
-                }
-            }
-            &:active {
-                padding-bottom: 8px;
-                margin-top: 2px;
-                position: relative;
-            }
-            strong {
-                color: #333;
-            }
-        }
     }
     .vid-guy {
         width: 224px;
@@ -428,6 +429,32 @@
         color: #ffc;
         margin: 30px 0;
         text-shadow: 0 1px 0 rgba(0,0,0,.5);
+    }
+}
+
+#olympics {
+    background: url(../../img/zamboni/discovery_pane/promos/olympics-bg.png) 100% 0;
+    &.promo h2 {
+        color: #383838;
+        font-size: 32px;
+    }
+    hgroup {
+        margin-bottom: 15px;
+    }
+    p {
+        color: #585858;
+        font-size: 18px;
+        &.subtitle {
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+    }
+    .view-button a {
+        .gradient-two-color(@button-green-light, @button-green-dark);
+        color: #fff;
+        line-height: 35px;
+        padding: 0 20px 4px;
+        text-shadow: 0 1px 1px darken(@button-green-dark, 10%);
     }
 }
 

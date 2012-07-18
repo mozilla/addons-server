@@ -35,7 +35,7 @@ $(document).ready(function(){
             s_title = $('<h2>', {'text': 'First time with Add-ons?'}),
             s_sub = $('<h3>', {'text': 'Check out our interactive video to learn about some of the awesome things you can do with add-ons!'}),
             s_button = $('<a>', {'html': '<strong>Watch</strong> the Video', 'href': '#'}),
-            s_button_span = $('<span>', {'class': 'vid-button'}),
+            s_button_span = $('<span>', {'class': 'vid-button view-button'}),
             s_guy = $('<div>', {'class': 'vid-guy'});
 
             starter.replaceWith(s_panel);
@@ -86,11 +86,11 @@ function initTrunc() {
     $('.vtruncate').truncate({dir: 'v'});
     $('#monthly .blurb > p').lineclamp(4);
     $('.ryff .desc').lineclamp(6);
-    $('#promos h2').linefit();
+    $('#promos h2:not(.multiline)').linefit();
     $(window).resize(debounce(function() {
         $('.htruncate').truncate({dir: 'h'});
         $('.vtruncate').truncate({dir: 'v'});
-        $('#promos h2').linefit();
+        $('#promos h2:not(.multiline)').linefit();
     }, 200));
 }
 

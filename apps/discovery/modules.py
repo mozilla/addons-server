@@ -276,7 +276,10 @@ class ValentinesDay(CollectionPromo):
     slug = 'Valentines Day'
     collection_author, collection_slug = 'amoteam', 'va'
     id = 'valentines'
-    cls = 'promo'
     title = _(u'Love is in the Air')
     subtitle = _(u'Add some romance to your Firefox.')
 
+
+class Olympics(TemplatePromo):
+    slug = 'Olympics'
+    template = 'discovery/modules/olympics.html'

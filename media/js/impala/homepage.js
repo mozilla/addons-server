@@ -21,7 +21,7 @@
         }
         $('#monthly .blurb > p').lineclamp(4);
         $('.ryff .desc').lineclamp(6);
-        $('h2', $promos).linefit();
+        $('h2:not(.multiline)', $promos).linefit();
     });
 })();
 
