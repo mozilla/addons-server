@@ -9,7 +9,6 @@ from addons.models import AddonCategory, AddonDeviceType, Category, DeviceType
 from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from market.models import AddonPremium, Price
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_views import PaidAppMixin

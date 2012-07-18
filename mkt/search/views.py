@@ -51,7 +51,7 @@ def _filter_search(qs, query, filters=None, sorting=None,
         if query['price'] == 'paid':
             qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
         elif query['price'] == 'free':
-            qs = qs.filter(premium_type=amo.ADDON_FREE, price=0)
+            qs = qs.filter(premium_type__in=amo.ADDON_FREES, price=0)
     if 'device' in show:
         qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
     if 'sort' in show:
