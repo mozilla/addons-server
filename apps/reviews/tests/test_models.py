@@ -35,19 +35,24 @@ class TestReviewModel(amo.tests.TestCase):
 
 class TestGroupedRating(amo.tests.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply']
+    grouped_ratings = [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)]
 
     def test_get_none(self):
-        eq_(GroupedRating.get(3), None)
+        eq_(GroupedRating.get(3, update_none=False), None)
 
     def test_set(self):
-        eq_(GroupedRating.get(1865), None)
+        eq_(GroupedRating.get(1865, update_none=False), None)
         GroupedRating.set(1865)
-        eq_(GroupedRating.get(1865), [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)])
+        eq_(GroupedRating.get(1865, update_none=False), self.grouped_ratings)
 
     def test_cron(self):
-        eq_(GroupedRating.get(1865), None)
+        eq_(GroupedRating.get(1865, update_none=False), None)
         tasks.addon_grouped_rating(1865)
-        eq_(GroupedRating.get(1865), [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)])
+        eq_(GroupedRating.get(1865, update_none=False), self.grouped_ratings)
+
+    def test_update_none(self):
+        eq_(GroupedRating.get(1865, update_none=False), None)
+        eq_(GroupedRating.get(1865, update_none=True), self.grouped_ratings)
 
 
 class TestSpamTest(amo.tests.TestCase):

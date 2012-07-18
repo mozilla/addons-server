@@ -10,6 +10,7 @@ import bleach
 from celeryutils import task
 from tower import ugettext_lazy as _
 
+from addons.utils import safe_key
 import amo.models
 from amo.helpers import shared_url
 from amo.urlresolvers import reverse
@@ -151,12 +152,15 @@ class GroupedRating(object):
 
     @classmethod
     def key(cls, addon):
-        return '%s:%s' % (cls.prefix, addon)
+        return safe_key('%s:%s' % (cls.prefix, addon))
 
     @classmethod
-    def get(cls, addon):
+    def get(cls, addon, update_none=True):
         try:
-            return cache.get(cls.key(addon))
+            grouped_ratings = cache.get(cls.key(addon))
+            if update_none and grouped_ratings is None:
+                return cls.set(addon)
+            return grouped_ratings
         except Exception:
             # Don't worry about failures, especially timeouts.
             return
@@ -168,6 +172,7 @@ class GroupedRating(object):
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon), ratings)
+        return ratings
 
 
 class Spam(object):
