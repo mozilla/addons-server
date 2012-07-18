@@ -53,6 +53,10 @@ class Command(BaseCommand):
             'db_name': settings.DATABASES['default']['NAME'],
         }
 
+        db_password = settings.DATABASES['default'].get('PASSWORD')
+        if db_password:
+            write_dump += ' -p%s' % db_password
+
         if kw['no_download']:
             if os.path.exists(file_location):
                 print('Skipping landfill download and using %s' % file_location)
