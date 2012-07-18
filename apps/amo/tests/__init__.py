@@ -299,6 +299,12 @@ class TestCase(RedisTest, test_utils.TestCase):
         kw.setdefault('everyone', True)
         Flag.objects.create(**kw)
 
+    def skip_if_disabled(self, setting):
+        """Skips a test if a particular setting is disabled."""
+        if not setting:
+            raise SkipTest('Skipping since setting %r is disabled' % setting)
+
+
 
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""

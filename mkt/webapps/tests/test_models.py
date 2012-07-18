@@ -2,22 +2,24 @@ from datetime import datetime, timedelta
 import json
 import unittest
 
-import test_utils
+from django.conf import settings
+
 import mock
 from nose import SkipTest
 from nose.tools import eq_, raises
 import waffle
 
-import amo
 from addons.models import (Addon, AddonDeviceType, BlacklistedSlug,
                            DeviceType, Preview)
+import amo
+from amo.tests import TestCase
 from mkt.developers.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import Webapp
 from files.models import File
 from versions.models import Version
 
 
-class TestWebapp(test_utils.TestCase):
+class TestWebapp(TestCase):
 
     def test_hard_deleted(self):
         # Uncomment when redis gets fixed on ci.mozilla.org.
@@ -89,10 +91,12 @@ class TestWebapp(test_utils.TestCase):
         eq_(w.app_slug, 'slug~')
 
     def test_get_url_path(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         webapp = Webapp(app_slug='woo')
         eq_(webapp.get_url_path(), '/app/woo/')
 
     def test_get_stats_url(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         webapp = Webapp(app_slug='woo')
 
         eq_(webapp.get_stats_url(), '/app/woo/statistics/')
@@ -102,6 +106,7 @@ class TestWebapp(test_utils.TestCase):
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
     def test_get_inapp_stats_url(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         webapp = Webapp.objects.create(app_slug='woo')
         eq_(webapp.get_stats_inapp_url(action='revenue', inapp='duh'),
             '/app/woo/statistics/inapp/duh/sales/')
@@ -185,7 +190,7 @@ class TestWebappVersion(amo.tests.TestCase):
         eq_(webapp.get_latest_file().pk, new_file.pk)
 
 
-class TestWebappManager(test_utils.TestCase):
+class TestWebappManager(TestCase):
 
     def setUp(self):
         self.reviewed_eq = (lambda f=[]:

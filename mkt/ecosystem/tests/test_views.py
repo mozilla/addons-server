@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -12,6 +14,7 @@ class TestLanding(amo.tests.TestCase):
         self.url = reverse('ecosystem.landing')
 
     def test_legacy_redirect(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get('/ecosystem/')
         self.assertRedirects(r, '/developers/', 301)
 

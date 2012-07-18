@@ -164,6 +164,7 @@ class TestUpdateManifest(amo.tests.TestCase):
     @mock.patch.object(settings, 'SITE_URL', 'http://test')
     @mock.patch('mkt.webapps.tasks._open_manifest')
     def test_validation_error_logs(self, open_manifest):
+        self.skip_if_disabled(settings.REGION_STORES)
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.

@@ -63,7 +63,7 @@ class TestAccountDelete(amo.tests.TestCase):
         eq_(user.deleted, False, 'User should not have been deleted')
         eq_(user.email, self.user.email, 'Email should not have changed')
 
-s
+
 class TestAccountSettings(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
@@ -668,7 +668,7 @@ class TestPurchases(PurchaseBase):
         assert '$1.00' in self.get_pq()('.purchase').eq(0).text()
 
     def test_price_locale(self):
-        if not settings.REGION_STORES:
+        self.skip_if_disabled(settings.REGION_STORES)
         purchases = self.get_pq(lang='fr')
         assert u'1,00' in purchases('.purchase').eq(0).text()
 

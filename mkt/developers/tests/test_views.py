@@ -75,6 +75,7 @@ class TestHome(amo.tests.TestCase):
         assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
 
     def test_login_redirect(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get(self.url)
         self.assertLoginRedirects(r, '/developers/submissions', 302)
 
@@ -1251,6 +1252,7 @@ class TestUpload(BaseUploadTest):
         return self.client.post(self.url, {'upload': data})
 
     def test_login_required(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         self.client.logout()
         r = self.post()
         eq_(r.status_code, 302)

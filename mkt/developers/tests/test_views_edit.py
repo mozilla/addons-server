@@ -467,6 +467,7 @@ class TestEditBasic(TestEdit):
                 'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us_id_url(self):
+        self.skip_if_disabled(settings.REGION_STORES)
         self.webapp.update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get('/id' + url, follow=True)
