@@ -210,7 +210,7 @@ def handle_kwargs(q, field, kwargs, join_field=None):
     filters. Returns Q object to use in filter.
     """
     if join_field:
-        join_field = join_field + field
+        join_field += field
         kwargs[join_field] = kwargs[field]
 
     # Have '' and None have the same meaning.
@@ -218,6 +218,7 @@ def handle_kwargs(q, field, kwargs, join_field=None):
         q = Q(**{field + '__in': ['', None]})
         del(kwargs[field])
 
+    # We are using the join field to filter so get rid of the plain one.
     if join_field:
         del(kwargs[field])
 
