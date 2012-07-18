@@ -19,30 +19,3 @@ A minimal Addon model looks like this::
     class Addon(amo.models.ModelBase):
         name = TranslatedField()
         description = TranslatedField()
-
-
-Creating New Translations
--------------------------
-
-If you need to create new
-:class:`Translations <translations.models.Translation>` without the automagic
-helpers behind :class:`~translations.fields.TranslatedField`, use
-:meth:`Translation.new <translations.models.Translation.new>`.
-
-.. automethod:: translations.models.Translation.new
-
-
-``translations.fields``
------------------------
-
-.. module:: translations.fields
-
-.. autoclass:: translations.fields.TranslatedField
-
-
-``translations.models``
------------------------
-
-.. module:: translations.models
-.. autoclass:: translations.models.Translation
-.. autoclass:: translations.models.TranslationSequence

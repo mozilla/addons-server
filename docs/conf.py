@@ -19,14 +19,6 @@ import sys, os
 sys.path.append(os.path.abspath('.'))
 sys.path.append(os.path.abspath('..'))
 
-# Import manage.py so we get the sitedirs that are added there.
-from manage import settings
-
-# Store the settings module so we don't get errors when Sphinx runs imports.
-filename = os.path.splitext(os.path.basename(settings.__file__))[0]
-os.environ['DJANGO_SETTINGS_MODULE'] = filename
-
-
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
