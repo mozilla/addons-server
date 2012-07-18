@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.forms.models import model_to_dict
@@ -62,7 +63,7 @@ class TestAccountDelete(amo.tests.TestCase):
         eq_(user.deleted, False, 'User should not have been deleted')
         eq_(user.email, self.user.email, 'Email should not have changed')
 
-
+s
 class TestAccountSettings(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
@@ -667,6 +668,7 @@ class TestPurchases(PurchaseBase):
         assert '$1.00' in self.get_pq()('.purchase').eq(0).text()
 
     def test_price_locale(self):
+        if not settings.REGION_STORES:
         purchases = self.get_pq(lang='fr')
         assert u'1,00' in purchases('.purchase').eq(0).text()
 
