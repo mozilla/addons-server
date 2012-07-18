@@ -27,7 +27,7 @@ ENGAGE_ROBOTS = True
 
 # NOTE: If you want to disable this, you have to do it in this file right here
 # since we do a lot of conditional stuff below.
-REGION_STORES = True
+REGION_STORES = False
 
 MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
