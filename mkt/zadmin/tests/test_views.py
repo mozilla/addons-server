@@ -103,8 +103,8 @@ class TestFeaturedApps(amo.tests.TestCase):
 
     def test_set_region(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
-        eq_(f.region, 'worldwide')
+        eq_(f.region, 1)
         r = self.client.post(reverse('zadmin.set_region_ajax'),
-                             data={'app': f.pk, 'region': 'brazil'})
+                             data={'app': f.pk, 'region': 3})
         eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).region, 'brazil')
+        eq_(FeaturedApp.objects.get(pk=f.pk).region, 3)
