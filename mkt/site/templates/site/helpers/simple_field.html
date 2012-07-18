@@ -9,7 +9,6 @@
   {% if field.field.required and req != False %}{{ required() -}}{% endif %}
   {% if opt %}{{ optional() -}}{% endif %}
 
-  {% if not hint and tooltip %}{{ tip(None, tooltip) }}{% endif %}
 {% endmacro %}
 
 {% if tag %}

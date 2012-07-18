@@ -216,8 +216,7 @@ form {
 .form-grid {
     .simple-field {
         .border-box;
-        border-top: 1px solid @light-gray;
-        padding: 10px 0;
+        padding: 5px 0;
         width: 100%;
         label {
             margin: 0;
@@ -227,6 +226,7 @@ form {
     .form-col {
         .border-box;
         float: left;
+        color: @text;
     }
     .form-label {
         padding: 5px 0;
@@ -257,12 +257,14 @@ form {
         line-height: 28px;
     }
     .form-footer {
-        border-top: 1px solid @light-gray;
         padding-top: 15px;
     }
     input[type=text],
     textarea {
-        .width(4);
+        width: 100%;
+    }
+    input[type=text] {
+        height: 32px;
     }
     .html-support {
         .max-width(4);
@@ -299,6 +301,8 @@ form {
 .form-footer {
     button {
         margin-right: 8px;
+        width: 100%;
+        font-size: 14px;
     }
     a {
         display: inline-block;

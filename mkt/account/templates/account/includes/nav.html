@@ -1,14 +1,14 @@
 {% set urls = [
-  (url('account.settings'), _('Basic Info'),
+  (url('account.settings'), _('Account'),
    request.path == url('account.settings')),
-  (url('account.payment'), _('Payment'),
+  (url('account.payment'), _('Apps'),
    request.path.startswith(url('account.payment'))),
-  (url('users.profile', request.user.get_profile().username), _('View Profile'),
+  (url('users.profile', request.user.get_profile().username), _('About'),
    request.path == url('users.profile', request.user.get_profile().username)),
 ] %}
-<ul class="sub-nav">
+<ul class="toggles c">
   {% for link, title, selected in urls %}
-    <li{% if selected %} class="selected"{% endif %}>
+    <li{% if selected %} class="sel"{% endif %}>
       <a href="{{ link }}">{{ title }}</a></li>
   {% endfor %}
 </ul>

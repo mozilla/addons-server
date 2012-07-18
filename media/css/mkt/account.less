@@ -30,7 +30,26 @@
     .box-shadow(1px 1px 3px #B2C8E0);
 }
 
+//TODO: This site.less override may need a better fix.
+#page #account-settings {
+    padding: 15px;
+}
+
 #account-settings {
+    form {
+        margin: 16px 0;
+        .two-col {
+            margin-top: 6px;
+        }
+        .col-a {
+            width: 50%;
+            float: left;
+        }
+        .col-b {
+            float: right;
+            width: 50%;
+        }
+    }
     img, .button {
         .border-box;
     }
@@ -41,9 +60,6 @@
             max-height: 210px;
             max-width: 210px;
         }
-    }
-    .button {
-        .width(2);
     }
     .button {
         font-size: 12px;
