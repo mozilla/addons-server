@@ -119,7 +119,7 @@ def add(request, addon):
     # Try to get an existing review of the app by this user if we can.
     try:
         existing_review = Review.objects.get(addon=addon, user=request.user)
-    except Review.DoesNotExist, Review.MultipleObjectsReturned:
+    except (Review.DoesNotExist, Review.MultipleObjectsReturned):
         # If one doesn't exist, set it to None.
         existing_review = None
 
@@ -166,7 +166,7 @@ def add(request, addon):
     elif existing_review:
         # If the user isn't posting back but has an existing review, populate
         # the form with their existing review and rating.
-        form = ReviewForm({'rating': existing_review.rating,
+        form = ReviewForm({'rating': existing_review.rating or 1,
                            'body': existing_review.body})
     else:
         # If the user isn't posting back and doesn't have an existing review,

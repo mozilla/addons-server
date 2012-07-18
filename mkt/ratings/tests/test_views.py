@@ -121,6 +121,24 @@ class TestCreate(ReviewTest):
             'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
 
+    def test_review_success_dup(self):
+        Review.objects.create(
+            body='This review already exists!',
+            addon=self.webapp,
+            user=self.user,
+            ip_address='0.0.0.0')
+        Review.objects.create(
+            body='You bet it does!',
+            addon=self.webapp,
+            user=self.user,
+            ip_address='0.0.0.0')
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 1})
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
+                             status_code=302)
+        # We're just testing for tracebacks. This should never happen in
+        # production; we're handling it because there are reviews like this
+        # on staging/dev.
+
     def test_can_review_purchased(self):
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
