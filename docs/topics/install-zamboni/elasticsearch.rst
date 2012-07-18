@@ -10,7 +10,10 @@ key-value store.
 Installation::
 
     brew install elasticsearch  # or whatever your package manager is called.
-    apt-get/aptitude install elasticsearch
+
+If elasticsearch isn't packaged for your system, you will have to install it
+manually, `here are some good instructions on how to do so
+<http://www.elasticsearch.org/tutorials/2010/07/01/setting-up-elasticsearch.html>`_.
 
 Launch elasticsearch. If you used homebrew, `brew info elasticsearch`
 will show you the commands to launch. If you used aptitude, elasticsearch will
