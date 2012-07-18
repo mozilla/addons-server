@@ -9,21 +9,24 @@ import tempfile
 import urllib2
 
 from django.conf import settings
+from django.core import mail
 from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
 from PIL import Image
-import validator.constants
 
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import ImageCheck
+from files.models import FileUpload
+
+import mkt
 from mkt.developers import tasks
 from mkt.developers.tests.test_views import BaseWebAppTest
-from files.models import FileUpload
+from mkt.webapps.models import AddonExcludedRegion as AER
 
 
 def test_resize_icon_shrink():
@@ -348,3 +351,73 @@ class TestFetchIcon(BaseWebAppTest):
         webapp.get_manifest_json.return_value = {'icons': {'128': url}}
         tasks.fetch_icon(webapp)
         assert url in fetch.call_args[0][0]
+
+
+class TestRegionEmail(amo.tests.WebappTestCase):
+
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
+    def test_email_for_one_new_region(self):
+        tasks.region_email([self.app.id], [mkt.regions.CA])
+        msg = mail.outbox[0]
+        eq_(msg.subject, '%s: Canada region added to the Mozilla Marketplace'
+                         % self.app.name)
+        eq_(msg.to, ['steamcube@mozilla.com'])
+        dev_url = ('http://omg.org/yes/developers/app/something-something/'
+                   'edit#details')
+        assert unicode(self.app.name) in msg.body
+        assert dev_url in msg.body
+        assert ' added a new ' in msg.body
+        assert ' for Canada.' in msg.body
+        assert 'Unsubscribe' in msg.body
+
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
+    def test_email_for_two_new_regions(self):
+        tasks.region_email([self.app.id],
+                           [mkt.regions.UK, mkt.regions.CA])
+        msg = mail.outbox[0]
+        eq_(msg.subject, '%s: New regions added to the Mozilla Marketplace'
+                         % self.app.name)
+        eq_(msg.to, ['steamcube@mozilla.com'])
+        dev_url = ('http://omg.org/yes/developers/app/something-something/'
+                   'edit#details')
+        assert unicode(self.app.name) in msg.body
+        assert dev_url in msg.body
+        assert ' added two new ' in msg.body
+        assert ': Canada and United Kingdom.' in msg.body
+        assert 'Unsubscribe' in msg.body
+
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
+    def test_email_for_several_new_regions(self):
+        tasks.region_email([self.app.id],
+                           [mkt.regions.CA, mkt.regions.UK, mkt.regions.BR])
+        msg = mail.outbox[0]
+        eq_(msg.subject, '%s: New regions added to the Mozilla Marketplace'
+                          % self.app.name)
+        assert ' added a few new ' in msg.body
+        assert ': Brazil, Canada, and United Kingdom.' in msg.body
+
+
+class TestRegionExclude(amo.tests.WebappTestCase):
+
+    def test_exclude_no_apps(self):
+        tasks.region_exclude([], [])
+        eq_(AER.objects.count(), 0)
+
+        tasks.region_exclude([], [mkt.regions.CA])
+        eq_(AER.objects.count(), 0)
+
+    def test_exclude_no_regions(self):
+        tasks.region_exclude([self.app.id], [])
+        eq_(AER.objects.count(), 0)
+
+    def test_exclude_one_new_region(self):
+        tasks.region_exclude([self.app.id], [mkt.regions.CA])
+        excluded = list(AER.objects.filter(addon=self.app)
+                        .values_list('region', flat=True))
+        eq_(excluded, [mkt.regions.CA.id])
+
+    def test_exclude_several_new_regions(self):
+        tasks.region_exclude([self.app.id], [mkt.regions.UK, mkt.regions.CA])
+        excluded = sorted(AER.objects.filter(addon=self.app)
+                          .values_list('region', flat=True))
+        eq_(excluded, sorted([mkt.regions.CA.id, mkt.regions.UK.id]))

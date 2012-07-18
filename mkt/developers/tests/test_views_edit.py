@@ -10,6 +10,7 @@ from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
+from tower import strip_whitespace
 from waffle.models import Switch
 
 import amo
@@ -22,9 +23,11 @@ from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory,
                            AddonDeviceType, AddonUser, Category, DeviceType)
 from lib.video.tests import files as video_files
-from mkt.developers.models import ActivityLog
 from users.models import UserProfile
 
+import mkt
+from mkt.developers.models import ActivityLog
+from mkt.webapps.models import AddonExcludedRegion
 
 response_mock = mock.Mock()
 response_mock.read.return_value = '''
@@ -78,9 +81,19 @@ class TestEdit(amo.tests.TestCase):
 
     def compare(self, data):
         """Compare an app against a `dict` of expected values."""
+        mapping = {
+            'regions': 'get_region_ids'
+        }
+
         webapp = self.get_webapp()
         for k, v in data.iteritems():
-            eq_(unicode(getattr(webapp, k)), unicode(v))
+            k = mapping.get(k, k)
+
+            val = getattr(webapp, k, '')
+            if callable(val):
+                val = val()
+
+            eq_(unicode(val), unicode(v))
 
     def check_form_url(self, section):
         # Check form destinations and "Edit" button.
@@ -476,16 +489,20 @@ class TestEditBasic(TestEdit):
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh(self, fetch):
-        self.client.login(username='steamcube@mozilla.com', password='password')
-        url = reverse('mkt.developers.apps.refresh_manifest', args=[self.webapp.app_slug])
+        self.client.login(username='steamcube@mozilla.com',
+                          password='password')
+        url = reverse('mkt.developers.apps.refresh_manifest',
+                      args=[self.webapp.app_slug])
         r = self.client.post(url)
         eq_(r.status_code, 204)
         fetch.assert_called_once_with(self.webapp.pk)
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh_dev_only(self, fetch):
-        self.client.login(username='regular@mozilla.com', password='password')
-        url = reverse('mkt.developers.apps.refresh_manifest', args=[self.webapp.app_slug])
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        url = reverse('mkt.developers.apps.refresh_manifest',
+                      args=[self.webapp.app_slug])
         r = self.client.post(url)
         eq_(r.status_code, 403)
         eq_(fetch.called, 0)
@@ -925,8 +942,9 @@ class TestEditDetails(TestEdit):
         data = dict(description='New description with <em>html</em>!',
                     default_locale='en-US',
                     homepage='http://twitter.com/fligtarsmom',
-                    privacy_policy="fligtar's mom does <em>not</em> share your"
-                                   " data with third parties.")
+                    privacy_policy="fligtar's mom does <em>not</em> share "
+                                   "your data with third parties.",
+                    regions=[mkt.regions.CA.id])
         data.update(kw)
         return data
 
@@ -962,7 +980,8 @@ class TestEditDetails(TestEdit):
             "alert('soul')&lt;/script&gt;")
 
     def test_edit_exclude_optional_fields(self):
-        data = dict(description='New description with <em>html</em>!',
+        data = self.get_dict()
+        data.update(description='New description with <em>html</em>!',
                     default_locale='en-US', homepage='',
                     privacy_policy='we sell your data to everyone')
 
@@ -972,7 +991,8 @@ class TestEditDetails(TestEdit):
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
-        data = dict(description='bullocks',
+        data = self.get_dict()
+        data.update(description='bullocks',
                     homepage='http://omg.org/yes',
                     privacy_policy='your data is delicious')
         # TODO: description should get fixed up with the form.
@@ -1006,15 +1026,18 @@ class TestEditDetails(TestEdit):
         self.assertNoFormErrors(r)
 
     def test_edit_default_locale_frontend_error(self):
-        da = dict(description='xx', homepage='http://google.com',
-                  default_locale='fr', privacy_policy='pp')
-        rp = self.client.post(self.edit_url, da)
-        self.assertContains(rp, 'Before changing your default locale you must')
+        data = self.get_dict()
+        data.update(description='xx', homepage='http://google.com',
+                    default_locale='fr', privacy_policy='pp')
+        rp = self.client.post(self.edit_url, data)
+        self.assertContains(rp,
+            'Before changing your default locale you must')
 
     def test_edit_locale(self):
         self.webapp.update(default_locale='en-US')
         r = self.client.get(self.url)
-        eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), 'English (US)')
+        eq_(pq(r.content)('.addon_edit_locale').eq(0).text(),
+            'English (US)')
 
     def test_homepage_url_optional(self):
         r = self.client.post(self.edit_url, self.get_dict(homepage=''))
@@ -1024,6 +1047,115 @@ class TestEditDetails(TestEdit):
         r = self.client.post(self.edit_url,
                              self.get_dict(homepage='xxx'))
         self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
+
+    def test_regions_listed(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        r = self.client.get(self.url)
+        eq_(strip_whitespace(pq(r.content)('#regions').text()),
+            ', '.join([unicode(name) for id_, name in
+                       mkt.regions.REGIONS_CHOICES_NAME[1:]]))
+
+    def test_excluded_regions_not_listed(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        AddonExcludedRegion.objects.create(addon=self.webapp,
+                                           region=mkt.regions.BR.id)
+
+        expected = [unicode(name) for id_, name in
+                    mkt.regions.REGIONS_CHOICES_NAME[1:]
+                    if id_ != mkt.regions.BR.id]
+
+        r = self.client.get(self.url)
+        eq_(strip_whitespace(pq(r.content)('#regions').text()),
+            ', '.join(expected))
+
+    def test_excluded_all_regions_not_listed(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        for region in mkt.regions.REGION_IDS:
+            AddonExcludedRegion.objects.create(addon=self.webapp,
+                                               region=region)
+
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#regions .empty').length, 1)
+
+    def test_exclude_region(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        to_exclude = list(mkt.regions.REGION_IDS)
+        to_exclude.remove(mkt.regions.CA.id)
+        data = self.get_dict(regions=to_exclude, other_regions=True)
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+
+        excluded = list(AddonExcludedRegion.objects
+                        .filter(addon=self.webapp)
+                        .values_list('region', flat=True))
+
+        eq_(excluded, [mkt.regions.CA.id])
+
+    def test_cannot_exclude_all_regions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        data = self.get_dict(regions=[], other_regions=True)
+        r = self.client.post(self.edit_url, data)
+
+        eq_(r.context['region_form'].errors,
+            {'regions': ['You must select at least one region.']})
+        eq_(AddonExcludedRegion.objects.count(), 0)
+
+    def test_exclude_future_regions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        data = self.get_dict(regions=mkt.regions.REGION_IDS,
+                             other_regions=False)
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+
+        excluded = list(AddonExcludedRegion.objects
+                          .filter(addon=self.webapp)
+                          .values_list('region', flat=True))
+        eq_(excluded, [mkt.regions.FUTURE.id])
+
+    def test_include_regions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        AddonExcludedRegion.objects.create(addon=self.webapp,
+                                           region=mkt.regions.BR.id)
+
+        data = self.get_dict(regions=mkt.regions.REGION_IDS,
+                             other_regions=True)
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+
+        excluded = list(AddonExcludedRegion.objects
+                        .filter(addon=self.webapp)
+                        .values_list('region', flat=True))
+        eq_(excluded, [])
+
+    def test_include_future_regions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        AddonExcludedRegion.objects.create(addon=self.webapp,
+                                           region=mkt.regions.FUTURE.id)
+
+        data = self.get_dict(regions=mkt.regions.REGION_IDS,
+                             other_regions=True)
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+
+        excluded = list(AddonExcludedRegion.objects
+                        .filter(addon=self.webapp)
+                        .values_list('region', flat=True))
+        eq_(excluded, [])
+
+    def test_include_all_and_future_regions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        AddonExcludedRegion.objects.create(addon=self.webapp,
+                                           region=mkt.regions.FUTURE.id)
+
+        data = self.get_dict(regions=mkt.regions.REGION_IDS,
+                             other_regions=True)
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+
+        excluded = list(AddonExcludedRegion.objects
+                        .filter(addon=self.webapp)
+                        .values_list('region', flat=True))
+        eq_(excluded, [])
 
 
 class TestEditSupport(TestEdit):

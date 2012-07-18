@@ -1,6 +1,6 @@
 {% from 'developers/includes/macros.html' import empty_unless, required, some_html_tip, tip %}
 {% set req_if_edit = required() if editable %}
-<form method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
+<form id="details" method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
   <h2>
     {{ _('App Details') }}
     {% if not editable %}
@@ -54,6 +54,48 @@
             {% endif %}
           </td>
         </tr>
+        {% if settings.REGION_STORES %}
+        <tr>
+          <th>
+            {{ tip(_('Regions'),
+                   _('Indicate regional support for your app.')) }}
+            {{ req_if_edit }}
+          </th>
+          <td id="regions">
+            {% if editable %}
+              {{ region_form.regions.label }}
+              <p class="toggles">
+                <a href="#" class="all">{{ _('Select All') }}</a> &middot;
+                <a href="#" class="none">{{ _('None') }}</a>
+              </p>
+              {{ region_form.regions.errors }}
+              <div class="checkbox-choices">
+                {{ region_form.regions }}
+              </div>
+              <div class="other-regions">
+                {{ region_form.other_regions }}
+                {{ region_form.other_regions.label_tag() }}
+                {{ region_form.other_regions.errors }}
+                <div class="hint note">
+                  {% trans %}
+                    Your app will be displayed in the worldwide Marketplace and
+                    in any regional marketplace that is added in the future.
+                    You will receive an email notification when a new region
+                    is added.
+                  {% endtrans %}
+                </div>
+              </div>
+            {% else %}
+              {% set regions = addon.get_regions() %}
+              {% call empty_unless(regions) %}
+                {% for region in regions -%}
+                  {{ region.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+              {% endcall %}
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
         <tr>
           <th>
             <label data-for="homepage">

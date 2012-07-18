@@ -20,9 +20,9 @@ from amo.urlresolvers import reverse
 from addons import query
 from addons.models import (Addon, AddonDeviceType, update_name_table,
                            update_search_index)
-from files.models import FileUpload, Platform
 from versions.models import Version
 
+import mkt
 
 log = commonware.log.getLogger('z.addons')
 
@@ -295,6 +295,24 @@ class Webapp(Addon):
         except IndexError:
             pass
 
+    def get_region_ids(self):
+        """Return IDs of regions in which this app is listed."""
+        excluded = list(self.addonexcludedregion
+                            .values_list('region', flat=True))
+        return list(set(mkt.regions.REGION_IDS) - set(excluded))
+
+    def get_regions(self):
+        """
+        Return regions, e.g.:
+            [<class 'mkt.constants.regions.BR'>,
+             <class 'mkt.constants.regions.CA'>,
+             <class 'mkt.constants.regions.UK'>,
+             <class 'mkt.constants.regions.US'>]
+        """
+        regions = filter(None, [mkt.regions.REGIONS_CHOICES_ID_DICT.get(r)
+                                for r in self.get_region_ids()])
+        return sorted(regions, key=lambda x: x.slug)
+
     @classmethod
     def featured(cls, cat):
         return [fa.app for fa in
@@ -339,9 +357,8 @@ class Installed(amo.models.ModelBase):
     client_data = models.ForeignKey('stats.ClientData', null=True)
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
-    premium_type = models.PositiveIntegerField(
-                                    choices=amo.ADDON_PREMIUM_TYPES.items(),
-                                    null=True, default=None)
+    premium_type = models.PositiveIntegerField(null=True, default=None,
+        choices=amo.ADDON_PREMIUM_TYPES.items())
 
     class Meta:
         db_table = 'users_install'
@@ -356,3 +373,25 @@ def add_uuid(sender, **kw):
             install.uuid = ('%s-%s' % (install.pk, str(uuid.uuid4())))
             install.premium_type = install.addon.premium_type
             install.save()
+
+
+class AddonExcludedRegion(amo.models.ModelBase):
+    """
+    Apps are listed in all regions by default.
+    When regions are unchecked, we remember those excluded regions.
+    """
+    addon = models.ForeignKey('addons.Addon',
+        related_name='addonexcludedregion')
+    region = models.PositiveIntegerField(
+        choices=mkt.regions.REGIONS_CHOICES_ID)
+
+    class Meta:
+        db_table = 'addons_excluded_regions'
+        unique_together = ('addon', 'region')
+
+    def __unicode__(self):
+        region = self.get_region()
+        return u'%s: %s' % (self.addon.name, region.slug if region else None)
+
+    def get_region(self):
+        return mkt.regions.REGIONS_CHOICES_ID_DICT.get(self.region)

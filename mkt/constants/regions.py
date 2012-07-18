@@ -40,6 +40,15 @@ class REGION(object):
     weight = 0
 
 
+class FUTURE(REGION):
+    """
+    This is for when developers select "Other and new regions" from
+    the devhub. This lets us exclude them from new regions in the future.
+    """
+    id = 999
+    weight = -1
+
+
 class WORLDWIDE(REGION):
     id = 1
     name = _lazy(u'Worldwide')
@@ -102,16 +111,25 @@ class BR(REGION):
 #      ('brazil', <class 'mkt.constants.regions.BRAZIL'>),
 #      ('usa', <class 'mkt.constants.regions.BRAZIL'>)]
 #
+
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),
                  key=lambda x: getattr(x, 'slug', None))
 REGIONS_CHOICES = (
     [('worldwide', WORLDWIDE)]
-    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight != -1],
+    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight > -1],
              key=lambda x: x[1].weight, reverse=True)
 )
-REGIONS_CHOICES_DISPLAY = (
-    [('worldwide', WORLDWIDE)]
-    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight != -1],
-             key=lambda x: x[1].slug)
-)
+
+BY_SLUG = sorted([v for k, v in DEFINED if v.id and v.weight > -1],
+                 key=lambda v: v.slug)
+REGIONS_CHOICES_SLUG = ([('worldwide', WORLDWIDE)] +
+                        [(v.slug, v) for v in BY_SLUG])
+REGIONS_CHOICES_ID = ([(WORLDWIDE.id, WORLDWIDE)] +
+                      [(v.id, v) for v in BY_SLUG])
+REGIONS_CHOICES_NAME = ([(WORLDWIDE.id, WORLDWIDE.name)] +
+                        [(v.id, v.name) for v in BY_SLUG])
+
 REGIONS_DICT = dict(REGIONS_CHOICES)
+REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
+
+REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys()[1:])

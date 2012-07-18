@@ -61,7 +61,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         output = []
         for (k, group) in enumerate(groups):
             cls = 'addon-misc-category' if k == 1 else 'addon-categories'
-            output.append(u'<ul class="%s">' % cls)
+            output.append(u'<ul class="%s checkbox-choices">' % cls)
 
             for i, (option_value, option_label) in group:
                 if has_id:
