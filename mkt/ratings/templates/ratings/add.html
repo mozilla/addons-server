@@ -2,8 +2,13 @@
 
 {% extends 'mkt/base.html' %}
 
-{% set title = _('Add a review') %}
-{% set page_title = _('Add a review for {0}')|f(product.name) %}
+{% if not has_review %}
+  {% set title = _('Add a review') %}
+  {% set page_title = _('Add a review for {0}')|f(product.name) %}
+{% else %}
+  {% set title = _('Edit review') %}
+  {% set page_title = _('Edit review for {0}')|f(product.name) %}
+{% endif %}
 {% block title %}{{ mkt_page_title(page_title) }}{% endblock %}
 
 {% block bodyclass %}reviews{% endblock %}

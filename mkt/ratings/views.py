@@ -17,6 +17,7 @@ from amo.decorators import (json_view, login_required, post_required,
 from reviews.forms import ReviewReplyForm
 from reviews.models import Review
 from reviews.helpers import user_can_delete_review
+from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
 
 from mkt.site import messages
@@ -137,6 +138,9 @@ def add(request, addon):
                     existing_review.ip_address = ip
 
                     existing_review.save()
+                    # Update ratings and review counts.
+                    addon_review_aggregates.delay(addon.id,
+                                                  using='default')
 
                 amo.log(amo.LOG.EDIT_REVIEW, addon, existing_review)
                 log.debug('[Review:%s] Edited by %s' % (existing_review.id,
