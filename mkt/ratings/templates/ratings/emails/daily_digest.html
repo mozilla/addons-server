@@ -1,12 +1,12 @@
 {% block content %}
 On {{ pretty_date }}, the following users have left reviews for {{ reviews.0.addon.name }}.{{ '\n' }}
 Reviews
------------{{ '\n' }}
-{%- for review in reviews -%}
+-----------
+{% for review in reviews -%}
 {{ review.get_url_path()|absolutify(base_url) }}
 Rating: {{ review.rating }}
 Comment: {{ review.body }}
 User: {{ review.user.name }}
------------{{ '\n' }}
-{%- endfor -%}
+-----------
+{% endfor -%}
 {% endblock %}
