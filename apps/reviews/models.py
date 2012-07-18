@@ -1,4 +1,3 @@
-import json
 from datetime import datetime, timedelta
 import logging
 
@@ -10,7 +9,6 @@ import bleach
 from celeryutils import task
 from tower import ugettext_lazy as _
 
-from addons.utils import safe_key
 import amo.models
 from amo.helpers import shared_url
 from amo.urlresolvers import reverse
@@ -152,7 +150,7 @@ class GroupedRating(object):
 
     @classmethod
     def key(cls, addon):
-        return safe_key('%s:%s' % (cls.prefix, addon))
+        return '%s:%s' % (cls.prefix, addon)
 
     @classmethod
     def get(cls, addon, update_none=True):
