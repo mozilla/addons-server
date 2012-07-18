@@ -1,6 +1,7 @@
 import jingo
 
 from django.contrib import admin
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.db import transaction
 
@@ -11,6 +12,7 @@ from amo.urlresolvers import reverse
 from addons.models import Category, AddonCategory
 from bandwagon.models import CollectionAddon
 
+import mkt
 from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
 from mkt.ecosystem.models import MdnCache
 from mkt.webapps.models import Webapp
@@ -62,7 +64,16 @@ def featured_apps_ajax(request):
 
     apps = FeaturedApp.objects.filter(category__id=cat)
     return jingo.render(request, 'zadmin/featured_apps_ajax.html',
-                        {'apps': apps})
+                        {'apps': apps,
+                         'regions': mkt.regions.REGIONS_CHOICES})
+
+@admin.site.admin_view
+def set_region_ajax(request):
+    region = request.POST.get('region', None)
+    app = request.POST.get('app', None)
+    if region and app:
+        FeaturedApp.objects.filter(pk=app).update(region=region)
+    return HttpResponse()
 
 @admin.site.admin_view
 def featured_categories_ajax(request):
