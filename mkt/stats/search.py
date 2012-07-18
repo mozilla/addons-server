@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db.models import Count, Q, Sum
 
 import elasticutils
@@ -201,7 +203,7 @@ def cut(revenue):
     """
     Takes away Marketplace's cut from developers' revenue.
     """
-    return round(float(revenue) * MKT_CUT, 2)
+    return Decimal(round(Decimal(revenue) * Decimal(MKT_CUT), 2))
 
 
 def handle_kwargs(q, field, kwargs, join_field=None):
