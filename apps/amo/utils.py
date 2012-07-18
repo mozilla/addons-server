@@ -805,6 +805,8 @@ def escape_all(v):
     elif isinstance(v, dict):
         for k, lv in v.iteritems():
             v[k] = escape_all(lv)
+    elif isinstance(v, Translation):
+        v = jinja2.escape(smart_unicode(v.localized_string))
     return v
 
 
