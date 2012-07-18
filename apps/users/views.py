@@ -34,7 +34,7 @@ from amo import messages
 from amo.decorators import (json_view, login_required, no_login_required,
                             permission_required, write, post_required)
 from amo.forms import AbuseForm
-from amo.urlresolvers import reverse
+from amo.urlresolvers import get_url_prefix, reverse
 from amo.helpers import loc
 from amo.utils import escape_all, log_cef, send_mail, urlparams
 from abuse.models import send_abuse_report
@@ -518,7 +518,12 @@ def logout(request):
     if 'to' in request.GET:
         request = _clean_next_url(request)
 
-    next = request.GET.get('to') or settings.LOGOUT_REDIRECT_URL
+    next = request.GET.get('to')
+    if not next:
+        next = settings.LOGOUT_REDIRECT_URL
+        prefixer = get_url_prefix()
+        if prefixer:
+            next = prefixer.fix(next)
     response = http.HttpResponseRedirect(next)
     # Fire logged out signal so we can be decoupled from cake.
     logged_out.send(None, request=request, response=response)
