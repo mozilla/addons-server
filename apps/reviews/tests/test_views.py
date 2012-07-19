@@ -37,6 +37,12 @@ class TestViews(ReviewTest):
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
+    def test_dev_no_rss(self):
+        url = shared_url('reviews.detail', self.addon, 218468)
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('link[title=RSS]').length, 0)
+
     def test_404_user_page(self):
         url = shared_url('reviews.user', self.addon, 233452342)
         r = self.client.get(url)
@@ -84,6 +90,11 @@ class TestViews(ReviewTest):
         eq_(item.hasClass('reply'), True)
         eq_(r.rating, None)
         eq_(item.attr('data-rating'), '')
+
+    def test_list_rss(self):
+        r = self.client.get(shared_url('reviews.list', self.addon))
+        doc = pq(r.content)
+        eq_(doc('link[title=RSS]').length, 1)
 
     def test_empty_list(self):
         Review.objects.all().delete()
