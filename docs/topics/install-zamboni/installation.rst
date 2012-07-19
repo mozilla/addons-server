@@ -209,6 +209,17 @@ snapshot manually (ie without the management command)::
     # Optionally, you can remove the landfill site notice:
     mysql -uroot -e"delete from config where \`key\`='site_notice'" $DB_NAME
 
+.. note::
+
+   If you are under Mac OS X, you might need to add a *.Z* suffix to the
+   *.sql.gz* file, otherwise **zcat** might not recognize it::
+
+      ...
+      $ mv /tmp/landfill-`date +%Y-%m-%d`.sql.gz /tmp/landfill-`date +%Y-%m-%d`.sql.gz.Z
+      $ zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
+      ...
+
+
 Database Migrations
 -------------------
 
