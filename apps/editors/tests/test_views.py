@@ -878,6 +878,10 @@ class TestModeratedQueue(QueueTest):
     def test_queue_count(self):
         self._test_queue_count(4, 'Moderated Review', 1)
 
+    def test_queue_count_w_webapp_reviews(self):
+        Addon.objects.update(type=amo.ADDON_WEBAPP)
+        self._test_queue_count(4, 'Moderated Reviews', 0)
+
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Moderated Reviews', None)])
 

@@ -335,8 +335,10 @@ def queue_counts(type=None, **kw):
               'nominated': construct_query(ViewFullReviewQueue, **kw),
               'prelim': construct_query(ViewPreliminaryQueue, **kw),
               'fast_track': construct_query(ViewFastTrackQueue, **kw),
-              'moderated': Review.objects.filter(reviewflag__isnull=False,
-                                                 editorreview=1).count,
+              'moderated': (
+                  Review.objects.exclude(addon__type=amo.ADDON_WEBAPP)
+                                .filter(reviewflag__isnull=False,
+                                        editorreview=1).count),
               'apps': Webapp.objects.pending().count}
     rv = {}
     if isinstance(type, basestring):
