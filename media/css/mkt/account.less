@@ -30,14 +30,37 @@
     .box-shadow(1px 1px 3px #B2C8E0);
 }
 
-//TODO: This site.less override may need a better fix.
-#page #account-settings {
+#page .account {
     padding: 15px;
+    margin-bottom: 16px;
+    color: @text;
+    &.full {
+        padding-left: 0;
+        padding-right: 0;
+        > .toggles:first-child {
+            padding: 0 15px;
+        }
+    }
+    > .toggles:first-child {
+        margin-bottom: 13px;
+    }
+    h3.intro {
+        font-size: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #abb4ba;
+        .box-shadow(0 1px 0 #edeff0);
+        font-weight: 600;
+    }
+    p {
+        font-size: 14px;
+    }
+    .form-footer .delete {
+        margin-top: 12px;
+    }
 }
 
 #account-settings {
     form {
-        margin: 16px 0;
         .two-col {
             margin-top: 6px;
         }

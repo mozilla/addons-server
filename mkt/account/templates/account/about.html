@@ -1,0 +1,23 @@
+{% extends 'mkt/base.html' %}
+
+{% set title = _('About') %}
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+
+{% block content %}
+    <h1 id="top">{{ title }}</h1>
+    <section class="account">
+        {% include 'account/includes/nav.html' %}
+
+        <h3 class="intro">{{ _('Privacy Policy') }}</h3>
+
+        {# TODO: The text below seems to be filler content for now. #}
+        {% trans %}
+            <p>Note: The proposed full version of the Privacy Policy for the
+            Mozilla Marketplace is currently under review and comment on our
+            governance mailing list.</p>
+
+            <p>When the Mozilla Marketplace is fully launched, we will ask for
+            your consent to the final Privacy Policy.</p>
+        {% endtrans %}
+    </section>
+{% endblock %}

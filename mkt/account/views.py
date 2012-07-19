@@ -214,6 +214,10 @@ def account_settings(request):
                         {'form': form, 'amouser': amo_user})
 
 
+def account_about(request):
+    return jingo.render(request, 'account/about.html')
+
+
 @write
 @login_required
 @permission_required('Users', 'Edit')

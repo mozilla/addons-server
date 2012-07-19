@@ -1,5 +1,4 @@
 {% extends 'mkt/base.html' %}
-{% from 'developers/includes/macros.html' import some_html_tip %}
 
 {% set title = _('Account Settings') %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
@@ -8,11 +7,12 @@
 
 {% block content %}
   <h1 id="top">{{ _('Settings') }}</h1>
-  {{ mkt_breadcrumbs(product, [(None, title)]) }}
   <section id="account-settings" class="account">
 
     {% include 'account/includes/nav.html' %}
 
+    {# TODO: This form currently does nothing and without BrowserID it makes
+       even less sense. #}
     <form class="form-grid" enctype="multipart/form-data" method="post">
       {{ csrf() }}
 
@@ -27,14 +27,6 @@
 
       {{ grid_field(form.display_name) }}
 
-      {% if 'admin_log' in form.fields %}
-        <h3>Administration</h3>
-        {{ grid_field(form.admin_log) }}
-        {{ grid_field(form.notes) }}
-        {{ grid_field(form.anonymize) }}
-        {{ grid_field(form.restricted) }}
-      {% endif %}
-
       <div class="simple-field two-col c">
         <div class="col-a">
           <label for="language">{{ _('Language') }}:</label>
@@ -42,7 +34,8 @@
         <div class="col-b">
           <select id="language" name="lang" dir="ltr" class="hmm">
             {% for code, name in LANGUAGES|dictsort -%}
-              <option value="{{ code }}"{% if code == LANG|lower %} selected{% endif %}>
+              <option value="{{ code }}"{% if code == LANG|lower %}
+                                           selected{% endif %}>
               {{ name }}</option>
             {%- endfor %}
           </select>
@@ -51,6 +44,14 @@
           {% endfor %}
         </div>
       </div>
+
+      {% if 'admin_log' in form.fields %}
+        <h3>Administration</h3>
+        {{ grid_field(form.admin_log) }}
+        {{ grid_field(form.notes) }}
+        {{ grid_field(form.anonymize) }}
+        {{ grid_field(form.restricted) }}
+      {% endif %}
 
       <footer class="form-footer">
         <button type="submit">{{ _('Save Changes') }}</button>
