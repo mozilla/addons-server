@@ -308,3 +308,11 @@ APPCACHE_MEDIA_DEBUG.extend(asset_bundles.JS['mkt/consumer'])
 
 # Allowed `installs_allowed_from` values for manifest validator.
 VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org']
+
+# All JS vendor libraries in this list will be excluded from mozmarket.js.
+# For example, if receiptverifier is broken and you need to disable it, add
+# 'receiptverifier' to the list. See also mkt/site/views.py.
+MOZMARKET_VENDOR_EXCLUDE = []
+
+# When True, mozmarket.js will be served as minified JavaScript.
+MINIFY_MOZMARKET = True
