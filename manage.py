@@ -5,7 +5,11 @@ import os
 import site
 import sys
 import warnings
-
+try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+except ImportError:
+        pass
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 if os.path.splitext(os.path.basename(__file__))[0] == 'cProfile':
