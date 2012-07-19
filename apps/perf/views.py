@@ -16,8 +16,8 @@ from .models import Performance, PerformanceOSVersion
 # TODO(wraithan): remove this as the code the powers this is no longer around
 @cache_control(max_age=60 * 60 * 24)  # Cache for a day.
 def index(request):
-    raise NotImplementedError, ('This relies on redis, theoretically it is'
-                                'disabled so you should never see this.')
+    if settings.PERFORMANCE_NOTES == False:
+        return jingo.render(request, 'perf/index.html', {'addons': []})
     # By default don't show less than 25; bug 647398
     threshold = Performance.get_threshold()
 
