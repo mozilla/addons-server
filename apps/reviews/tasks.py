@@ -66,6 +66,9 @@ def addon_bayesian_rating(*addons, **kw):
     f = lambda: Addon.objects.aggregate(rating=Avg('average_rating'),
                                         reviews=Avg('total_reviews'))
     avg = caching.cached(f, 'task.bayes.avg', 60 * 60 * 60)
+    # Rating can be NULL in the DB, so don't update it if it's not there.
+    if avg['rating'] is None:
+        return
     mc = avg['reviews'] * avg['rating']
     for addon in Addon.uncached.filter(id__in=addons):
         q = Addon.objects.filter(id=addon.id)
