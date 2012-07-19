@@ -203,7 +203,7 @@ def cut(revenue):
     """
     Takes away Marketplace's cut from developers' revenue.
     """
-    return Decimal(round(Decimal(revenue) * Decimal(MKT_CUT), 2))
+    return Decimal(str(round(revenue * MKT_CUT, 2)))
 
 
 def handle_kwargs(q, field, kwargs, join_field=None):

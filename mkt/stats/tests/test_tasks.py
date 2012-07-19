@@ -1,4 +1,5 @@
 import datetime
+from decimal import Decimal
 import random
 
 from django.utils import unittest
@@ -428,7 +429,7 @@ class TestAlreadyIndexed(amo.tests.ESTestCase):
 class TestCut(unittest.TestCase):
 
     def test_basic(self):
-        eq_(cut(0), 0)
-        eq_(cut(1), .7)
-        eq_(cut(10), 7)
-        eq_(cut(33), 23.10)
+        eq_(cut(0), Decimal(str(0)))
+        eq_(cut(1), Decimal(str(.7)))
+        eq_(cut(10), Decimal(str(7)))
+        eq_(cut(33), Decimal(str(23.10)))
