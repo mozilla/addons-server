@@ -19,6 +19,7 @@ from addons.models import Addon
 
 from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
+from .tasks import addon_review_aggregates
 from . import forms
 
 log = commonware.log.getLogger('z.reviews')
@@ -115,6 +116,10 @@ def delete(request, addon, review_id):
     if not user_can_delete_review(request, review):
         return http.HttpResponseForbidden()
     review.delete()
+
+    # Update the ratings and counts for the add-on/app.
+    addon_review_aggregates.delay(addon.id, using='default')
+
     log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")' %
              (request.amo_user.name, review_id, review.user.name, review.title,
               review.body))
@@ -194,6 +199,9 @@ def add(request, addon, template=None):
         send_mail('reviews/emails/add_review.ltxt',
                   u'Mozilla Add-on User Review: %s' % addon.name,
                   emails, Context(data), 'new_review')
+
+        # Update the ratings and counts for the add-on.
+        addon_review_aggregates.delay(addon.id, using='default')
 
         return redirect(shared_url('reviews.list', addon))
     return jingo.render(request, template, dict(addon=addon, form=form))
