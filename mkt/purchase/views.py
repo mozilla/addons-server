@@ -23,6 +23,7 @@ from market.forms import PriceCurrencyForm
 from market.models import AddonPurchase
 import paypal
 from stats.models import ClientData, Contribution
+import mkt
 from mkt.account.views import preapproval as user_preapproval
 from mkt.webapps.models import Webapp
 from zadmin.models import DownloadSource
@@ -146,13 +147,17 @@ def purchase(request, addon):
             download_source = DownloadSource.objects.get(name=download_source)
         except DownloadSource.DoesNotExist:
             download_source = None
+        try:
+            region = request.REGION.id
+        except AttributeError:
+            region = mkt.regions.WORLDWIDE.id
         client_data, c = ClientData.objects.get_or_create(
             download_source=download_source,
             device_type=request.POST.get('device_type', ''),
             user_agent=request.META.get('HTTP_USER_AGENT', ''),
             is_chromeless=request.POST.get('chromeless', False),
             language=request.LANG,
-            region=request.REGION.id)
+            region=region)
         contrib.update(client_data=client_data)
 
         log.debug('Storing contrib for uuid: %s' % uuid_)

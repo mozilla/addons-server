@@ -332,7 +332,7 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         device_type = 'desktop'
         user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0)'
 
-        self.client.post_ajax(self.purchase_url + '?lang=pt-BR',
+        self.client.post_ajax(self.purchase_url,
                               data={'src': download_source.name,
                                     'device_type': device_type,
                                     'is_chromeless': False},
@@ -343,8 +343,8 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         eq_(cons[0].client_data.device_type, device_type)
         eq_(cons[0].client_data.user_agent, user_agent)
         eq_(cons[0].client_data.is_chromeless, False)
-        eq_(cons[0].client_data.language, 'pt-BR')
-        eq_(cons[0].client_data.region, regions.BRAZIL.id)
+        eq_(not cons[0].client_data.language, False)
+        eq_(not cons[0].client_data.region, False)
 
 
 class TestPurchaseDetails(amo.tests.TestCase):
