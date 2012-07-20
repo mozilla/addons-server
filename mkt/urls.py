@@ -78,9 +78,6 @@ urlpatterns = patterns('',
     # Reviewer tools.
     ('^reviewers/', include('mkt.reviewers.urls')),
 
-    # Editor tools.
-    ('^editors/', include('editors.urls')),
-
     # Account lookup.
     ('^lookup/', include('mkt.lookup.urls')),
 
