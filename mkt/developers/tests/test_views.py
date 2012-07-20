@@ -377,6 +377,16 @@ class TestPaymentsProfile(amo.tests.TestCase):
         result = json.loads(res.content)
         eq_(result[u'valid'], False)
 
+    @mock.patch('mkt.developers.views.client')
+    def test_checker_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        client.post_account_check.return_value = {'passed': True,
+                                                  'errors': []}
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        result = json.loads(res.content)
+        eq_(result['valid'], True)
+
 
 class MarketplaceMixin(object):
 

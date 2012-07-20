@@ -300,12 +300,16 @@ def paypal_setup(request, addon_id, addon, webapp):
 @json_view
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup_check(request, addon_id, addon, webapp):
-    if not addon.paypal_id:
-        return {'valid': False, 'message': ['No PayPal email.']}
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        data = client.post_account_check(data={'seller': addon})
+        return {'valid': data['passed'], 'message': data['errors']}
+    else:
+        if not addon.paypal_id:
+            return {'valid': False, 'message': ['No PayPal email.']}
 
-    check = Check(addon=addon)
-    check.all()
-    return {'valid': check.passed, 'message': check.errors}
+        check = Check(addon=addon)
+        check.all()
+        return {'valid': check.passed, 'message': check.errors}
 
 
 @dev_required(owner_for_post=True, webapp=True)
