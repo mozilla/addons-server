@@ -9,14 +9,15 @@ import jingo
 from tower import ugettext as _
 import requests
 
-from access import acl
 import amo
-from amo import messages
-from amo.utils import escape_all
+from abuse.models import AbuseReport
+from access import acl
 from addons.decorators import addon_view
 from addons.models import Version
+from amo import messages
 from amo.decorators import json_view, permission_required
 from amo.urlresolvers import reverse
+from amo.utils import escape_all
 from amo.utils import paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
@@ -25,7 +26,6 @@ from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
 from reviews.models import Review
 from zadmin.models import get_config, set_config
-
 from . import forms
 from .models import AppCannedResponse, EscalationQueue, RereviewQueue
 
@@ -280,3 +280,13 @@ def app_view_manifest(request, addon):
             # If it's not valid JSON, just return the content as is.
             pass
     return escape_all({'content': content, 'headers': headers})
+
+
+@permission_required('Apps', 'Review')
+@addon_view
+def app_abuse(request, addon):
+    reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
+    total = reports.count()
+    reports = amo.utils.paginate(request, reports, count=total)
+    return jingo.render(request, 'reviewers/abuse.html',
+                        dict(addon=addon, reports=reports, total=total))

@@ -747,6 +747,17 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(json.loads(r.content), {'content': u'كك some foreign ish',
                                     'headers': {}})
 
+    def test_abuse(self):
+        AbuseReport.objects.create(addon=self.app, message='!@#$')
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        dt = doc('#summary dt:nth-of-type(8)')
+        eq_(dt.html(), u'Abuse Reports')
+        dd = dt.next()
+        eq_(dd.text(), u'1')
+        eq_(dd.find('a').attr('href'), reverse('reviewers.apps.review.abuse',
+                                               args=[self.app.app_slug]))
+
 
 class TestCannedResponses(AppReviewerTest):
 
@@ -999,3 +1010,27 @@ class TestMotd(AppReviewerTest, AccessMixin):
         req = self.client.post(self.url, dict(motd='new motd'))
         self.assert3xx(req, self.url)
         eq_(get_config(self.key), u'new motd')
+
+
+class TestAbuseReports(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        user = UserProfile.objects.all()[0]
+        self.app = app_factory()
+        AbuseReport.objects.create(addon_id=self.app.id, message='eff')
+        AbuseReport.objects.create(addon_id=self.app.id, message='yeah',
+                                   reporter=user)
+        # Make a user abuse report to make sure it doesn't show up.
+        AbuseReport.objects.create(user=user, message='hey now')
+
+    def test_abuse_reports_list(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        r = self.client.get(reverse('reviewers.apps.review.abuse',
+                                    args=[self.app.app_slug]))
+        eq_(r.status_code, 200)
+        # We see the two abuse reports created in setUp.
+        reports = r.context['reports']
+        eq_(len(reports), 2)
+        eq_(sorted([r.message for r in reports]), [u'eff', u'yeah'])
