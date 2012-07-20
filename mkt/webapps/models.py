@@ -309,7 +309,6 @@ class Installed(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
-    client_data = models.ForeignKey('stats.ClientData', null=True)
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
@@ -318,7 +317,7 @@ class Installed(amo.models.ModelBase):
 
     class Meta:
         db_table = 'users_install'
-        unique_together = ('addon', 'user', 'client_data')
+        unique_together = ('addon', 'user')
 
 
 @receiver(models.signals.post_save, sender=Installed)

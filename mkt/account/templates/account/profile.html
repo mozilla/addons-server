@@ -83,7 +83,7 @@
       <div id="my-submissions" class="listing c">
         <h2>{{ _('My Submissions') }}</h2>
         <ol class="items" start="{{ submissions.start_index() }}">
-          {{ search_results(submissions.object_list, src='mkt-user-profile') }}
+          {{ search_results(submissions.object_list, src='search') }}
         </ol>
         {{ submissions|impala_paginator }}
       </div>

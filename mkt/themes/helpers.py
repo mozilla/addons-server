@@ -1,6 +1,7 @@
 import caching.base as caching
-from jingo import env, register
 import jinja2
+
+from jingo import env, register
 
 import amo
 from addons.models import AddonCategory, Category

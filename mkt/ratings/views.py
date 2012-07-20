@@ -19,11 +19,9 @@ from reviews.models import Review
 from reviews.helpers import user_can_delete_review
 from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
-from stats.models import ClientData
 
 from mkt.site import messages
 from mkt.ratings.forms import ReviewForm
-from mkt.webapps.models import Installed
 
 
 log = commonware.log.getLogger('mkt.ratings')
@@ -116,26 +114,6 @@ def add(request, addon):
         # Don't let app owners review their own apps.
         return http.HttpResponseForbidden()
 
-    # Get user agent of user submitting review. If there is an install with
-    # logged user agent that matches the current user agent, hook up that
-    # install's client data with the rating. If there aren't any install that
-    # match, use the most recent install. This implies that user must have an
-    # install to submit a review, but not sure if that logic is worked in, so
-    # default client_data to None.
-    client_data = None
-    user_agent = request.META.get('HTTP_USER_AGENT', '')
-    install = (Installed.objects.filter(user=request.user, addon=addon)
-               .order_by('-created'))
-    install_w_user_agent = (install.filter(client_data__user_agent=user_agent)
-                            .order_by('-created'))
-    try:
-        if install_w_user_agent:
-            client_data = install_w_user_agent[0].client_data
-        elif install:
-            client_data = install[0].client_data
-    except ClientData.DoesNotExist:
-        client_data = None
-
     data = request.POST or None
 
     # Try to get an existing review of the app by this user if we can.
@@ -171,11 +149,11 @@ def add(request, addon):
                                  _('Your review was updated successfully!'))
             else:
                 # If there isn't a review to overwrite, create a new review.
-                review = Review.objects.create(client_data=client_data,
+                review = Review.objects.create(
                         **_review_details(request, addon, form))
                 amo.log(amo.LOG.ADD_REVIEW, addon, review)
-                log.debug('[Review:%s] Created by user %s ' %
-                          (review.id, request.user.id))
+                log.debug('[Review:%s] Created by user %s ' % (review.id,
+                                                               request.user.id))
                 messages.success(request,
                                  _('Your review was successfully added!'))
 

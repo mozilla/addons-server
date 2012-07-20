@@ -13,7 +13,6 @@ from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
-from zadmin.models import DownloadSource
 
 
 class TestReissue(amo.tests.TestCase):
@@ -173,28 +172,6 @@ class TestInstall(amo.tests.TestCase):
         res = self.client.post(self.url)
         content = json.loads(res.content)
         assert content.get('receipt'), content
-
-    def test_installed_client_data(self):
-        download_source = DownloadSource.objects.create(name='mkt-home')
-        device_type = 'mobile'
-        user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0)'
-
-        self.addon.update(type=amo.ADDON_WEBAPP)
-        res = self.client.post(self.url,
-                               data={'device_type': device_type,
-                                     'is_chromeless': False,
-                                     'src': download_source.name},
-                               HTTP_USER_AGENT=user_agent)
-
-        eq_(res.status_code, 200)
-        eq_(self.user.installed_set.count(), 1)
-        ins = self.user.installed_set.get()
-        eq_(ins.client_data.download_source, download_source)
-        eq_(ins.client_data.device_type, device_type)
-        eq_(ins.client_data.user_agent, user_agent)
-        eq_(ins.client_data.is_chromeless, False)
-        eq_(not ins.client_data.language, False)
-        eq_(not ins.client_data.region, False)
 
 
 class TestReceiptVerify(amo.tests.TestCase):

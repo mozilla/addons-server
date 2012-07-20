@@ -122,7 +122,6 @@ class Contribution(amo.models.ModelBase):
                                 choices=do_dictsort(amo.PAYPAL_CURRENCIES),
                                 default=amo.CURRENCY_DEFAULT)
     source = models.CharField(max_length=255, null=True)
-    client_data = models.ForeignKey('stats.ClientData', null=True)
     source_locale = models.CharField(max_length=10, null=True)
 
     uuid = models.CharField(max_length=255, null=True)
@@ -403,20 +402,3 @@ class GlobalStat(caching.base.CachingMixin, models.Model):
         db_table = 'global_stats'
         unique_together = ('name', 'date')
         get_latest_by = 'date'
-
-
-class ClientData(models.Model):
-    """
-    Helps tracks user agent and download source data of installs and purchases.
-    """
-    download_source = models.ForeignKey('zadmin.DownloadSource', null=True)
-    device_type = models.CharField(max_length=255)
-    user_agent = models.CharField(max_length=255)
-    is_chromeless = models.BooleanField()
-    language = models.CharField(max_length=7)
-    region = models.IntegerField(null=True)
-
-    class Meta:
-        db_table = 'client_data'
-        unique_together = ('download_source', 'device_type', 'user_agent',
-                           'is_chromeless', 'language', 'region')
