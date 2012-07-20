@@ -23,11 +23,11 @@ CREATE TABLE `client_data` (
 
 ALTER TABLE `client_data` ADD CONSTRAINT `download_source_id_refs_id_b71b78fb` FOREIGN KEY (`download_source_id`) REFERENCES `download_sources` (`id`);
 
-ALTER TABLE users_install ADD COLUMN client_data_id int(11);
+ALTER TABLE users_install ADD COLUMN client_data_id int(11) unsigned;
 ALTER TABLE `users_install` ADD CONSTRAINT `client_data_id_refs_id_15062d7f` FOREIGN KEY (`client_data_id`) REFERENCES `client_data` (`id`);
-ALTER TABLE stats_contributions ADD COLUMN client_data_id int(11);
+ALTER TABLE stats_contributions ADD COLUMN client_data_id int(11) unsigned;
 ALTER TABLE `stats_contributions` ADD CONSTRAINT `client_data_id_refs_id_c8ef1728` FOREIGN KEY (`client_data_id`) REFERENCES `client_data` (`id`);
-ALTER TABLE reviews ADD COLUMN client_data_id int(11);
+ALTER TABLE reviews ADD COLUMN client_data_id int(11) unsigned;
 ALTER TABLE `reviews` ADD CONSTRAINT `client_data_id_refs_id_d160c5ba` FOREIGN KEY (`client_data_id`) REFERENCES `client_data` (`id`);
 
 ALTER TABLE `users_install` ADD CONSTRAINT UNIQUE (`addon_id`, `user_id`, `client_data_id`);
