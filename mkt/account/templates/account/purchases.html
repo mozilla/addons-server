@@ -4,17 +4,17 @@
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
-    <h1 id="top">{{ title }}</h1>
-    <section class="account full">
-        {% include 'account/includes/nav.html' %}
+  <h1 id="top">{{ title }}</h1>
+  <section class="account full">
+    {% include 'account/includes/nav.html' %}
 
-        {% if pager.object_list %}
-            <ol class="listing" start="{{ pager.start_index() }}">
-            {% for product in pager.object_list %}
-                <li>{{ market_tile(product) }}</li>
-            {% endfor %}
-            </ol>
-            {{ pager|impala_paginator }}
-        {% endif %}
-    </section>
+    {% if pager.object_list %}
+      <ol class="listing" start="{{ pager.start_index() }}">
+      {% for product in pager.object_list %}
+        <li>{{ market_tile(product) }}</li>
+      {% endfor %}
+      </ol>
+      {{ pager|impala_paginator }}
+    {% endif %}
+  </section>
 {% endblock %}

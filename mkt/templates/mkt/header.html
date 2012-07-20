@@ -9,7 +9,9 @@
       <a href="#" class="header-button search"><b></b></a>
       <a href="#" class="header-button cancel">&times;</a>
       <a href="#" class="header-button filter">{{ _('Filter') }}</a>
-      <a href="#" class="header-button logout">{{ _('Log out') }}</a>
+      <a href="{{ url('users.logout') }}" class="header-button logout">
+        {{ _('Sign out') }}
+      </a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
         {% set search_form = SimpleSearchForm(data) %}
