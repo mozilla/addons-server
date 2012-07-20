@@ -276,8 +276,6 @@ class TestVaryMiddleware(MiddlewareCase):
         eq_(r['Vary'],
             'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')
 
-        # But we do prevent `Vary: Cookie`.
-        self.client.cookies.clear()
         r = self.client.get('/privacy-policy', follow=True)
         eq_(r['Vary'],
             'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')

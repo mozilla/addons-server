@@ -113,8 +113,7 @@ class LocaleMiddleware(object):
         tower.activate(request.LANG)
 
     def process_response(self, request, response):
-        if 'lang' in request.COOKIES:
-            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
 
 
@@ -162,8 +161,7 @@ class RegionMiddleware(object):
             request.set_cookie('region', current)
 
     def process_response(self, request, response):
-        if 'region' in request.COOKIES:
-            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
 
 
