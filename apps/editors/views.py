@@ -376,8 +376,11 @@ def queue_fast_track(request):
 
 @reviewer_required
 def queue_moderated(request):
-    rf = (Review.objects.filter(editorreview=1, reviewflag__isnull=False,
-                                addon__isnull=False)
+    rf = (Review.objects.exclude(
+                            Q(addon__type=amo.ADDON_WEBAPP) |
+                            Q(addon__isnull=True) |
+                            Q(reviewflag__isnull=True))
+                        .filter(editorreview=1)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
