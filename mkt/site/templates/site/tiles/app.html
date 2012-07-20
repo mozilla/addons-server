@@ -3,7 +3,7 @@
   {% set preview = previews[0].image_url if feature else
                    previews[0].thumbnail_url %}
 {% endif %}
-<a class="{{ classes }}" href="{{ product.get_url_path() }}" data-prefetch="1"
+<a class="{{ classes }}" href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}" data-prefetch="1"
    {% for k, v in data_attrs.items() -%}
       data-{{ k }}="{{ v }}" {% endfor %}>
   <div class="img icon" style="background-image:url({{ product.get_icon_url(64) }})"></div>

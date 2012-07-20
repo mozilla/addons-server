@@ -8,7 +8,7 @@
       {% for product in products %}
         {% if not preview or preview.filetype != 'video/webm' %}
           <li>
-            {{ market_tile(product) }}
+            {{ market_tile(product, src=src) }}
           </li>
         {% endif %}
       {% endfor %}

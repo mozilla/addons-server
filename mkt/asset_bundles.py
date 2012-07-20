@@ -197,6 +197,7 @@ JS = {
         'js/zamboni/truncation.js',
         'js/common/keys.js',
         'js/mkt/capabilities.js',
+        'js/impala/serializers.js',
         'js/mkt/fragments.js',
         'js/mkt/recaptcha.js',
         'js/mkt/overlay.js',
@@ -209,7 +210,6 @@ JS = {
         'js/mkt/apps.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
-        'js/impala/serializers.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
@@ -238,6 +238,7 @@ JS = {
         'js/lib/stick.js',
     ),
     'mkt/reviewers': (
+        'js/mkt/utils.js',
         'js/mkt/apps.js',
         'js/mkt/install.js',
         'js/mkt/buttons.js',

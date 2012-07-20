@@ -24,7 +24,9 @@ from lib.cef_loggers import receipt_cef
 import mkt
 from mkt.webapps.models import Installed, Webapp
 from services.verify import Verify
+from stats.models import ClientData
 from users.models import UserProfile
+from zadmin.models import DownloadSource
 
 from .utils import create_receipt
 
@@ -70,8 +72,29 @@ def _record(request, addon):
             not is_reviewer and not is_dev):
             return http.HttpResponseForbidden()
 
+        # Log the install.
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
             user=request.amo_user)
+
+        # Get download source from GET if it exists, if so get the download
+        # source object if it exists. Then grab a client data object to hook up
+        # with the Installed object.
+        download_source = DownloadSource.objects.filter(
+            name=request.REQUEST.get('src', None))
+        download_source = download_source[0] if download_source else None
+        try:
+            region = request.REGION.id
+        except AttributeError:
+            region = mkt.regions.WORLDWIDE.id
+        client_data, c = ClientData.objects.get_or_create(
+            download_source=download_source,
+            device_type=request.POST.get('device_type', ''),
+            user_agent=request.META.get('HTTP_USER_AGENT', ''),
+            is_chromeless=request.POST.get('chromeless', False),
+            language=request.LANG,
+            region=region)
+        installed.update(client_data=client_data)
+
         # Look up to see if its in the receipt cache and log if we have
         # to recreate it.
         receipt = memoize_get('create-receipt', installed.pk)

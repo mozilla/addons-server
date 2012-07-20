@@ -120,14 +120,15 @@ def product_as_dict_theme(request, product):
 
 @jinja2.contextfunction
 @register.function
-def market_tile(context, product):
+def market_tile(context, product, src=''):
     request = context['request']
     if product.is_webapp():
         classes = ['product', 'mkt-tile', 'arrow']
         product_dict = product_as_dict(request, product)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
-            'manifestUrl': product.manifest_url
+            'manifestUrl': product.manifest_url,
+            'src': src
         }
         if product.is_premium() and product.premium:
             classes.append('premium')
@@ -141,6 +142,7 @@ def market_tile(context, product):
         product_dict = product_as_dict_theme(request, product)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
+            'src': src
         }
         c = dict(product=product, data_attrs=data_attrs,
                  classes=' '.join(classes))

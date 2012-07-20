@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils.encoding import smart_str
@@ -354,7 +355,7 @@ class BaseAjaxSearch(object):
 
 
 class SearchSuggestionsAjax(BaseAjaxSearch):
-    src = 'ss'
+    src = 'mkt-ss' if settings.MARKETPLACE else 'ss'
 
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
