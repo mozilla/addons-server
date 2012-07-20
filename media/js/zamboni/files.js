@@ -145,7 +145,7 @@ jQuery.fn.numberInput = function(increment) {
 
         $.each(['change', 'keypress', 'input'], function(i, event) {
             $self.bind(event, function() {
-                $self.val($self.val().replace(/\D+/, ""));
+                $self.val($self.val().replace(/\D+/, ''));
             });
         });
         $self.keypress(function(event) {
@@ -257,38 +257,46 @@ function bind_viewer(nodes) {
         };
         this.compute_messages = function(node) {
             var $diff = node.find('#diff'),
-                path = this.nodes.$files.find('a.file.selected').attr('data-short');
+                path = this.nodes.$files.find('a.file.selected').attr('data-short'),
+                messages = [];
 
-            if (this.messages && this.messages.hasOwnProperty(path)) {
-                var messages = this.messages[path];
-                for (var i = 0; i < messages.length; i++) {
-                    var message = messages[i],
-                        $line = $('#L' + message.line),
-                        title = $line.attr('title'),
-                        $dom = $('<div>').append($('<strong>').html(format('{0}{1}: {2}',
-                                                                           message.type[0].toUpperCase(),
-                                                                           message.type.substr(1),
-                                                                           message.message)));
-
-                    $.each([].concat(message.description), function(i, msg) {
-                        $dom.append($('<p>').html(String(message.description)));
-                    });
-
-                    if (message.line != null && $line.length) {
-                        $line.addClass(message.type)
-                             .parent()
-                             .appendMessage($dom);
-
-                        $('.code .' + $line.parent().attr('class').match(/number\d+/)[0] + ':eq(0)')
-                             .addClass(message.type);
-                    } else {
-                        $('#diff-wrapper').before(
-                            $('<div>', { 'class': 'notification-box' })
-                                .addClass(this.message_type_map[message.type])
-                                .append($dom));
-                    }
-                }
+            if (this.messages) {
+                if (this.messages.hasOwnProperty(''))
+                    messages = messages.concat(this.messages['']);
+                if (this.messages.hasOwnProperty(path))
+                    messages = messages.concat(this.messages[path]);
             }
+
+            _.each(messages, function(message) {
+                var $line = $('#L' + message.line),
+                    title = $line.attr('title'),
+                    html = ['<div>',
+                            format('<strong>{0}{1}: {2}</strong>',
+                                   message.type[0].toUpperCase(),
+                                   message.type.substr(1),
+                                   message.message)];
+
+                $.each([].concat(message.description), function(i, msg) {
+                    html.push('<p>', message.description, '</p>');
+                });
+
+                html.push('</div>');
+                var $dom = $(html.join(''));
+
+                if (message.line != null && $line.length) {
+                    $line.addClass(message.type)
+                         .parent()
+                         .appendMessage($dom);
+
+                    $('.code .' + $line.parent().attr('class').match(/number\d+/)[0] + ':eq(0)')
+                         .addClass(message.type);
+                } else {
+                    $('#diff-wrapper').before(
+                        $('<div>', { 'class': 'notification-box' })
+                            .addClass(this.message_type_map[message.type])
+                            .append($dom));
+                }
+            }, this);
 
             if ($diff.length || messages) {
                 /* Build out the diff bar based on the line numbers. */
@@ -363,22 +371,28 @@ function bind_viewer(nodes) {
                 this.validation = data.validation;
 
                 this.messages = {};
-                var messages = data.validation.messages;
-                for (var i = 0; i < messages.length; i++) {
-                    var path = [].concat(messages[i].file).join("/");
+                _.each(data.validation.messages, function(message) {
+                    var path = [].concat(message.file).join("/");
 
                     if (!this.messages[path]) {
                         this.messages[path] = [];
                     }
-                    this.messages[path].push(messages[i]);
-                }
+                    this.messages[path].push(message);
+                }, this);
 
                 this.known_files = {};
                 var metadata = data.validation.metadata;
-                if (metadata && metadata.jetpack_identified_files) {
-                    var files = metadata.jetpack_identified_files;
-                    for (var file in files) {
-                        this.known_files[file] = ['JetPack'].concat(files[file]);
+                if (metadata) {
+                    if (metadata.jetpack_sdk_version) {
+                        $('#jetpack-version').show()
+                            .find('span').text(metadata.jetpack_sdk_version);
+                    }
+
+                    if (metadata.jetpack_identified_files) {
+                        var files = metadata.jetpack_identified_files;
+                        for (var file in files) {
+                            this.known_files[file] = ['JetPack'].concat(files[file]);
+                        }
                     }
                 }
 
@@ -399,9 +413,9 @@ function bind_viewer(nodes) {
                     var messages = viewer.messages[$self.attr('data-short')];
                     if (messages) {
                         var types = {};
-                        for (var i = 0; i < messages.length; i++) {
-                            types[messages[i].type] = true;
-                        }
+                        $.each(messages, function(i, message) {
+                            types[message.type] = true;
+                        });
                         for (var type in types) {
                             $self.addClass(type);
                         }
@@ -603,7 +617,7 @@ function bind_viewer(nodes) {
             if (hide == null)
                 hide = storage.get('files/hide-known');
             else
-                storage.set('files/hide-known', hide ? "true" : "");
+                storage.set('files/hide-known', hide ? 'true' : '');
 
             $('#file-viewer').toggleClass('hide-known-files', !!hide);
             $('#toggle-known')[0].checked = !!hide;
