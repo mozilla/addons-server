@@ -251,6 +251,12 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
     #    eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
     #        str(self.apps[1].id))
 
+    def test_escalated_not_in_queue(self):
+        EscalationQueue.objects.create(addon=self.apps[0])
+        res = self.client.get(self.url)
+        # self.apps[2] is not pending so doesn't show up either.
+        eq_(list(res.context['addons']), [self.apps[1]])
+
 
 class TestRereviewQueue(AppReviewerTest, AccessMixin):
     fixtures = ['base/devicetypes', 'base/users']
@@ -329,6 +335,11 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
+
+    def test_escalated_not_in_queue(self):
+        EscalationQueue.objects.create(addon=self.apps[0])
+        res = self.client.get(self.url)
+        eq_(res.context['addons'], self.apps[1:])
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin):

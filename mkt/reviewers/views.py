@@ -195,15 +195,21 @@ def _queue(request, qs, tab, pager_processor=None):
 
 @permission_required('Apps', 'Review')
 def queue_apps(request):
-    qs = (Webapp.objects.pending().filter(disabled_by_user=False)
+    excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
+    qs = (Webapp.objects.pending()
+                        .exclude(id__in=excluded_ids)
+                        .filter(disabled_by_user=False)
                         .order_by('created'))
     return _queue(request, qs, 'pending')
 
 
 @permission_required('Apps', 'Review')
 def queue_rereview(request):
-    qs = (RereviewQueue.objects.filter(addon__disabled_by_user=False)
-                        .order_by('created'))
+    excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
+    qs = (RereviewQueue.objects
+                       .exclude(addon__in=excluded_ids)
+                       .filter(addon__disabled_by_user=False)
+                       .order_by('created'))
     return _queue(request, qs, 'rereview',
                   lambda p: [r.addon for r in p.object_list])
 
