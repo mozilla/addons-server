@@ -21,6 +21,7 @@ from editors.views import reviewer_required
 from lib.metrics import send_request
 from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
+import mkt
 from mkt.webapps.models import Installed, Webapp
 from services.verify import Verify
 from stats.models import ClientData
@@ -84,7 +85,7 @@ def _record(request, addon):
         try:
             region = request.REGION.id
         except AttributeError:
-            region = 1
+            region = mkt.regions.WORLDWIDE.id
         client_data, c = ClientData.objects.get_or_create(
             download_source=download_source,
             device_type=request.POST.get('device_type', ''),

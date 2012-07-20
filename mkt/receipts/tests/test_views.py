@@ -11,7 +11,6 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
-import mkt
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from zadmin.models import DownloadSource
