@@ -81,13 +81,17 @@ def _record(request, addon):
         download_source = DownloadSource.objects.filter(
             name=request.REQUEST.get('src', None))
         download_source = download_source[0] if download_source else None
+        try:
+            region = request.REGION.id
+        except AttributeError:
+            region = 1
         client_data, c = ClientData.objects.get_or_create(
             download_source=download_source,
             device_type=request.POST.get('device_type', ''),
             user_agent=request.META.get('HTTP_USER_AGENT', ''),
             is_chromeless=request.POST.get('chromeless', False),
             language=request.LANG,
-            region=request.REGION.id)
+            region=region)
         installed.update(client_data=client_data)
 
         # Look up to see if its in the receipt cache and log if we have

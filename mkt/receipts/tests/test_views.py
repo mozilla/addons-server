@@ -11,6 +11,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
+import mkt
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from zadmin.models import DownloadSource
@@ -174,7 +175,6 @@ class TestInstall(amo.tests.TestCase):
         content = json.loads(res.content)
         assert content.get('receipt'), content
 
-    @mock.patch.object(settings, 'LANGUAGE_CODE', 'pt-BR')
     def test_installed_client_data(self):
         download_source = DownloadSource.objects.create(name='mkt-home')
         device_type = 'mobile'
@@ -185,7 +185,7 @@ class TestInstall(amo.tests.TestCase):
                                data={'device_type': device_type,
                                      'is_chromeless': False,
                                      'src': download_source.name},
-                               **{'HTTP_USER_AGENT': user_agent})
+                               HTTP_USER_AGENT=user_agent)
 
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
@@ -194,8 +194,8 @@ class TestInstall(amo.tests.TestCase):
         eq_(ins.client_data.device_type, device_type)
         eq_(ins.client_data.user_agent, user_agent)
         eq_(ins.client_data.is_chromeless, False)
-        eq_(ins.client_data.language, 'pt-BR')
-        eq_(ins.client_data.region, 3)
+        eq_(not ins.client_data.language, False)
+        eq_(not ins.client_data.region, False)
 
 
 class TestReceiptVerify(amo.tests.TestCase):
