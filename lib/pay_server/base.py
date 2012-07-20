@@ -40,6 +40,9 @@ mapping = {
     'pay': ['paypal', 'pay', ['post']],
     'pay_check': ['paypal', 'pay-check', ['post']],
     'permission_url': ['paypal', 'permission-url', ['post']],
+    'permission_token': ['paypal', 'permission-token', ['post']],
+    'personal_basic': ['paypal', 'personal-basic', ['post']],
+    'personal_advanced': ['paypal', 'personal-advanced', ['post']],
     'refund': ['paypal', 'refund', ['post']],
 }
 

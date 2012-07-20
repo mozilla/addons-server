@@ -540,6 +540,17 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.premium.paypal_permissions_token, '')
 
+    @mock.patch('mkt.developers.views.client')
+    def test_permissions_token_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        self.setup_premium()
+        url = self.addon.get_dev_url('acquire_refund_permission')
+        client.post_personal_basic.return_value = {'email': 'a@a.com'}
+        res = self.client.get(urlparams(url, request_token='foo',
+                                        verification_code='bar'))
+        self.assertRedirects(res,
+                             self.addon.get_dev_url('paypal_setup_confirm'))
+
 
 class TestIssueRefund(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']

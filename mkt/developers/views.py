@@ -314,7 +314,7 @@ def paypal_setup_bounce(request, addon_id, addon, webapp):
         messages.error(request, 'We need a PayPal email before continuing.')
         return redirect(addon.get_dev_url('paypal_setup'))
 
-    dest = 'submission'
+    dest = 'developers'
     perms = ['REFUND', 'ACCESS_BASIC_PERSONAL_DATA',
              'ACCESS_ADVANCED_PERSONAL_DATA']
     if waffle.flag_is_active(request, 'solitude-payments'):
@@ -402,13 +402,20 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
         return redirect(on_error)
 
     paypal_log.debug('User approved permissions for addon: %s' % addon_id)
-    token = paypal.get_permissions_token(request.GET['request_token'],
-                                         request.GET['verification_code'])
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        client.post_permission_token(data={
+            'seller': addon, 'token': request.GET['request_token'],
+            'verifier': request.GET['verification_code'],
+        })
+        data = client.post_personal_basic(data={'seller': addon})
+        data.update(client.post_personal_advanced(data={'seller': addon}))
+    # TODO(solitude): remove these.
+    else:
+        token = paypal.get_permissions_token(request.GET['request_token'],
+                                             request.GET['verification_code'])
+        data = paypal.get_personal_data(token)
 
-    paypal_log.debug('Getting personal data for token: %s' % addon_id)
-    data = paypal.get_personal_data(token)
     email = data.get('email')
-
     # If the email from paypal is different, something has gone wrong.
     if email != addon.paypal_id:
         paypal_log.debug('Addon paypal_id and personal data differ: '
@@ -419,16 +426,29 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
                          % email)
         return redirect(on_error)
 
-    # Set the permissions token that we have just successfully used
-    # in get_personal_data.
-    addonpremium, created = (AddonPremium.objects
-                                         .safer_get_or_create(addon=addon))
-    addonpremium.update(paypal_permissions_token=token)
+    # TODO(solitude): remove this. Sadly because the permissions tokens
+    # are never being traversed back we have a disconnect between what is
+    # happening in solitude and here and this will not easily survive flipping
+    # on and off the flag.
+    if not waffle.flag_is_active(request, 'solitude-payments'):
+        # Set the permissions token that we have just successfully used
+        # in get_personal_data.
+        addonpremium, created = (AddonPremium.objects
+                                             .safer_get_or_create(addon=addon))
+        addonpremium.update(paypal_permissions_token=token)
 
     # Finally update the data returned from PayPal for this addon.
     paypal_log.debug('Updating personal data for: %s' % addon_id)
+    # TODO(solitude): delete this, as the data was pulled through solitude
+    # it was saved.
     apd, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
-    apd.update(**data)
+    # This can be deleted with solitude, but this needs to change because
+    # data will contain more than the fields on the object, this is a quick
+    # workaround.
+    for k, v in data.items():
+        setattr(apd, k, v)
+    apd.save()
+
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
     if show_good_msgs:
