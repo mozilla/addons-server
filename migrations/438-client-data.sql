@@ -11,13 +11,13 @@ INSERT INTO download_sources (name, type)
 
 
 CREATE TABLE `client_data` (
-    `id` int(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `download_source_id` int(11) NULL,
+    `id` int(11) unsigned AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `download_source_id` int(11) unsigned NULL,
     `device_type` varchar(255) NOT NULL,
     `user_agent` varchar(255) NOT NULL,
     `is_chromeless` bool,
     `language` varchar(7) NOT NULL,
-    `region` int(11) NULL,
+    `region` int(11) unsigned NULL,
     UNIQUE (`download_source_id`, `device_type`, `user_agent`, `is_chromeless`, `language`, `region`)
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;
 
