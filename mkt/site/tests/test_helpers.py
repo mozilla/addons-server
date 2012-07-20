@@ -5,6 +5,7 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from addons.models import AddonCategory, Category
 import amo
 import amo.tests
 from amo.helpers import urlparams
@@ -109,3 +110,11 @@ class TestMarketButton(amo.tests.TestCase):
         issue = urlparams(reverse('receipt.issue',
                                   args=[self.webapp.app_slug]), src='foo')
         eq_(data['recordUrl'], issue)
+
+    def test_category(self):
+        c = Category.objects.create(name='test-cat', type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.create(addon=self.webapp, category=c)
+        doc = pq(market_button(self.context, self.webapp))
+        data = json.loads(doc('a').attr('data-product'))
+        eq_(data['categories'],
+            [str(cat.name) for cat in self.webapp.categories.all()])

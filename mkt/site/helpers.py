@@ -70,6 +70,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
     ret = {
         'id': product.id,
         'name': product.name,
+        'categories': [unicode(cat.name) for cat in
+                       product.categories.all()],
         'manifestUrl': product.manifest_url,
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
@@ -92,9 +94,10 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
             ret['currencies'] = json.dumps(currencies_dict, cls=JSONEncoder)
         if request.amo_user:
             ret['isPurchased'] = purchased
+
     # Jinja2 escape everything except this whitelist so that bool is retained
     # for the JSON encoding.
-    wl = ('isPurchased', 'price', 'currencies')
+    wl = ('isPurchased', 'price', 'currencies', 'categories')
     return dict([k, jinja2.escape(v) if k not in wl else v]
                 for k, v in ret.items())
 
