@@ -67,4 +67,10 @@ urlpatterns = patterns('',
         name='browse.search-tools'),
 
     url('^featured/format:rss$', FeaturedRss(), name='browse.featured.rss'),
+
+    # The plugins page was moved to mozilla.org and so now it is just a
+    # redirect, per bug 775799.
+    url('^plugins$',
+        lambda r: redirect('http://www.mozilla.org/en-US/plugincheck/',
+                           permanent=True)),
 )
