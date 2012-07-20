@@ -182,18 +182,18 @@ def setup_mkt_indexes():
                 'date': {'format': 'dateOptionalTime',
                          'type': 'date'},
                 'count': {'type': 'long'},
+                'revenue': {'type': 'double'},
+
+                # Try to tell ES not to 'analyze' the field to querying with
+                # hyphens and lowercase letters.
+                'currency': {'type': 'string',
+                             'index': 'not_analyzed'},
+                'source': {'type': 'string',
+                           'index': 'not_analyzed'},
+                'inapp': {'type': 'string',
+                          'index': 'not_analyzed'}
             }
         }
-
-        # Try to tell ES not to 'analyze' the field to querying with hyphens
-        # and lowercase letters.
-        if model == Contribution or model == InappPayment:
-            mapping['properties']['currency'] = {'type': 'string',
-                                                 'index': 'not_analyzed'}
-            mapping['properties']['source'] = {'type': 'string',
-                                               'index': 'not_analyzed'}
-            mapping['properties']['inapp'] = {'type': 'string',
-                                              'index': 'not_analyzed'}
 
         es.put_mapping(model._meta.db_table, mapping,
                        model._get_index())
