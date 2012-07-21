@@ -554,13 +554,13 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(pq(r.content)('#my-submissions .paginator').length, 1)
 
     def test_my_reviews(self):
-        r = Review.objects.create(user=self.user, addon_id=337141)
-        eq_(list(self.user.reviews), [r])
+        review = Review.objects.create(user=self.user, addon_id=337141)
+        eq_(list(self.user.reviews), [review])
 
         r = self.client.get(self.url)
         doc = pq(r.content)('.reviews')
         eq_(doc('.items-profile li.review').length, 1)
-        eq_(doc('#review-1').length, 1)
+        eq_(doc('#review-%s' % review.id).length, 1)
 
 
 class PurchaseBase(amo.tests.TestCase):
