@@ -54,12 +54,12 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
     if settings.MARKETPLACE and settings.REGION_STORES:
-        prefix = prefixer = None
+        prefix = None
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
     url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
-    if prefixer and add_prefix:
+    if prefixer and add_prefix and hasattr(prefixer, 'carrier'):
         return prefixer.fix(url)
     else:
         return url
