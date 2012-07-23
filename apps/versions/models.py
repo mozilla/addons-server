@@ -438,12 +438,18 @@ def cleanup_version(sender, instance, **kw):
 
 def clear_compatversion_cache_on_save(sender, instance, created, **kw):
     """Clears compatversion cache if new Version created."""
+    if not instance.addon.type == amo.ADDON_EXTENSION:
+        return
+
     if not kw.get('raw') and created:
         instance.addon.invalidate_d2c_versions()
 
 
 def clear_compatversion_cache_on_delete(sender, instance, **kw):
     """Clears compatversion cache when Version deleted."""
+    if not instance.addon.type == amo.ADDON_EXTENSION:
+        return
+
     if not kw.get('raw'):
         instance.addon.invalidate_d2c_versions()
 
