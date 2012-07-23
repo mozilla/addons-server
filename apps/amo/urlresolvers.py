@@ -143,7 +143,7 @@ class Prefixer(object):
 
     def fix(self, path):
         # Marketplace URLs are not prefixed with `/<app>/<locale>`.
-        if settings.MARKETPLACE:
+        if settings.MARKETPLACE and settings.REGION_STORES:
             return path
 
         path = path.lstrip('/')
@@ -152,7 +152,8 @@ class Prefixer(object):
         if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
             url_parts.append(self.locale or self.get_language())
 
-        if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
+        if (not settings.MARKETPLACE and
+            path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
             url_parts.append(self.app or self.get_app())
 
         url_parts.append(path)
