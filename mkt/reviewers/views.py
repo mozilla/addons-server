@@ -54,10 +54,20 @@ def home(request):
 
 
 def queue_counts(type=None, **kw):
+    excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
+
     counts = {
-        'pending': Webapp.objects.pending().count(),
-        'rereview': RereviewQueue.objects.count(),
-        'escalated': EscalationQueue.objects.count(),
+        'pending': Webapp.objects.pending()
+                                 .exclude(id__in=excluded_ids)
+                                 .filter(disabled_by_user=False)
+                                 .count(),
+        'rereview': RereviewQueue.objects
+                                 .exclude(addon__in=excluded_ids)
+                                 .filter(addon__disabled_by_user=False)
+                                 .count(),
+        'escalated': EscalationQueue.objects
+                                    .filter(addon__disabled_by_user=False)
+                                    .count(),
     }
     rv = {}
     if isinstance(type, basestring):
