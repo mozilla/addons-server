@@ -133,7 +133,7 @@ class ControlCharacterTest(TestCase):
 
     def test(self):
         a = Addon.objects.get(pk=3615)
-        a.name = "Iove You"
+        a.name = "I ove You"
         a.save()
         response = make_call('addon/3615')
         self.assertNotContains(response, '')
