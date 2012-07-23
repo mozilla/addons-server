@@ -29,6 +29,7 @@ from browse.tests import test_default_sort, test_listing_sort
 from devhub.models import UserLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
+from lib.pay_server import client
 from market.models import AddonPremium, Price, Refund
 from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
@@ -560,6 +561,17 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
                                         verification_code='bar'))
         self.assertRedirects(res,
                              self.addon.get_dev_url('paypal_setup_confirm'))
+
+    @mock.patch('mkt.developers.views.client')
+    def test_personal_differs_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        self.setup_premium()
+        url = self.addon.get_dev_url('acquire_refund_permission')
+        client.post_personal_basic.side_effect = client.Error
+        res = self.client.get(urlparams(url, request_token='foo',
+                                        verification_code='bar'))
+        self.assertRedirects(res,
+                             self.addon.get_dev_url('paypal_setup_bounce'))
 
 
 class TestIssueRefund(amo.tests.TestCase):

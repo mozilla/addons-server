@@ -411,7 +411,13 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
             'seller': addon, 'token': request.GET['request_token'],
             'verifier': request.GET['verification_code'],
         })
-        data = client.post_personal_basic(data={'seller': addon})
+        try:
+            data = client.post_personal_basic(data={'seller': addon})
+        except client.Error as err:
+            paypal_log.debug('%s for addon %s' % (err.message, addon.id))
+            messages.warning(request, err.message)
+            return redirect(on_error)
+
         data.update(client.post_personal_advanced(data={'seller': addon}))
     # TODO(solitude): remove these.
     else:
@@ -419,6 +425,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
                                              request.GET['verification_code'])
         data = paypal.get_personal_data(token)
 
+    # TODO(solitude): remove this.
     email = data.get('email')
     # If the email from paypal is different, something has gone wrong.
     if email != addon.paypal_id:

@@ -115,7 +115,8 @@ class Client(object):
             except:
                 log.error('Failed to parse error: %s' % result.text)
             code = res.get('error_code', 0)
-            raise SolitudeError(lookup(code), code=code)
+            raise SolitudeError(lookup(code, res.get('error_data', {})),
+                                code=code)
 
     def __getattr__(self, attr):
         try:
