@@ -25,7 +25,7 @@ from tower import ugettext as _, ugettext_lazy
 import amo
 import api
 from addons.models import Addon, CompatOverride
-from amo.decorators import post_required
+from amo.decorators import post_required, allow_cross_site_request
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
@@ -242,6 +242,7 @@ class APIView(object):
 
 class AddonDetailView(APIView):
 
+    @allow_cross_site_request
     def process_request(self, addon_id):
         try:
             addon = Addon.objects.id_or_slug(addon_id).get()
