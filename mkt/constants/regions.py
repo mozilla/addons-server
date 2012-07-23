@@ -47,17 +47,50 @@ class WORLDWIDE(REGION):
     weight = -1
 
 
-class USA(REGION):
+class US(REGION):
     id = 2
     name = _lazy(u'United States')
-    slug = 'usa'
+    slug = 'us'
     mcc = 310
+    weight = 1
 
 
-class BRAZIL(REGION):
+class CA(REGION):
     id = 3
+    name = _lazy(u'Canada')
+    slug = 'ca'
+    default_currency = 'CAD'
+    mcc = 302
+
+
+class UK(REGION):
+    id = 4
+    name = _lazy(u'United Kingdom')
+    slug = 'uk'
+    default_currency = 'GBP'
+    mcc = 235
+
+
+class AU(REGION):
+    id = 5
+    name = _lazy(u'Australia')
+    slug = 'au'
+    default_currency = 'AUD'
+    mcc = 505
+
+
+class NZ(REGION):
+    id = 6
+    name = _lazy(u'New Zealand')
+    slug = 'nz'
+    default_currency = 'NZD'
+    mcc = 530
+
+
+class BR(REGION):
+    id = 7
     name = _lazy(u'Brazil')
-    slug = 'brazil'
+    slug = 'br'
     default_currency = 'BRL'
     default_language = 'pt-BR'
     mcc = 724
@@ -71,6 +104,14 @@ class BRAZIL(REGION):
 #
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),
                  key=lambda x: getattr(x, 'slug', None))
-REGIONS_CHOICES = sorted([(k.lower(), v) for k, v in DEFINED if v.id],
-                         key=lambda x: x[1].weight)
+REGIONS_CHOICES = (
+    [('worldwide', WORLDWIDE)]
+    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight != -1],
+             key=lambda x: x[1].weight, reverse=True)
+)
+REGIONS_CHOICES_DISPLAY = (
+    [('worldwide', WORLDWIDE)]
+    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight != -1],
+             key=lambda x: x[1].slug)
+)
 REGIONS_DICT = dict(REGIONS_CHOICES)

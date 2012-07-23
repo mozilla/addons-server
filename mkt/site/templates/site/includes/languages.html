@@ -2,7 +2,7 @@
   <form class="go" id="region-form" method="get">
     <label for="region">{{ _('Region') }}:</label>
     <select id="region" name="region">
-      {% for code, region in mkt.regions.REGIONS_CHOICES -%}
+      {% for code, region in mkt.regions.REGIONS_CHOICES_DISPLAY -%}
         <option value="{{ code }}"{% if code == request.REGION.slug %} selected{% endif %}>
           {{ region.name }}</option>
       {%- endfor %}
