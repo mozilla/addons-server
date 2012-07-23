@@ -322,6 +322,7 @@ class TestListing(ReviewTest):
         eq_(reviews.length, Review.objects.count())
         eq_(doc('.average-rating').length, 1)
         eq_(doc('.no-rating').length, 0)
+        eq_(doc('.review-heading-profile').length, 0)
 
         # A review.
         item = reviews.filter('#review-%s' % self.review.id)

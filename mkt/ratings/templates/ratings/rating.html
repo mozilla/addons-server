@@ -11,14 +11,16 @@
     {% if profile %}data-edit-url="{{ product.get_ratings_url('add') }}"{% endif %}
     class="review{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }} c">
   <div class="review-inner">
-    <h3 class="review-heading-profile">
-      <a href="{{ product.get_detail_url() }}">
-        <img class="icon icon-profile" src="{{ product.get_icon_url(64) }}">
-      </a>
-      <a href="{{ review.get_url_path() }}">
-        {{ product.name }}
-      </a>
-    </h3>
+    {% if profile %}
+      <h3 class="review-heading-profile">
+        <a href="{{ product.get_detail_url() }}">
+          <img class="icon icon-profile" src="{{ product.get_icon_url(64) }}">
+        </a>
+        <a href="{{ review.get_url_path() }}">
+          {{ product.name }}
+        </a>
+      </h3>
+    {% endif %}
     {% if not is_reply %}
       {{ review.rating|stars }}
     {% endif %}

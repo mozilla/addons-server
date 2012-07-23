@@ -560,6 +560,7 @@ class TestProfileSections(amo.tests.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)('.reviews')
         eq_(doc('.items-profile li.review').length, 1)
+        eq_(doc('.review-heading-profile').length, 1)
         eq_(doc('#review-%s' % review.id).length, 1)
 
 
