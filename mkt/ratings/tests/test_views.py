@@ -2,7 +2,6 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
-from addons.models import Addon
 import amo
 from amo.helpers import numberfmt
 import amo.tests
@@ -250,6 +249,18 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('.average-rating').text(),
             'Rated 4 out of 5 stars 1 review')
+
+    def test_support_link(self):
+        self.enable_waffle()
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('.support-link').length, 0)
+
+        self.webapp.support_url = {'en-US': 'test'}
+        self.webapp.save()
+        r = self.client.get(self.add)
+        doc = pq(r.content)('.support-link a')
+        eq_(doc.length, 1)
+        eq_(doc.attr('href'), 'test')
 
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.

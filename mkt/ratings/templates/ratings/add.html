@@ -31,11 +31,19 @@
                     cc_for=form.body.auto_id,
                     cc_maxlength=form.body.field.max_length, tag='div') }}
       {{ required_note() }}
-      <p class="form-footer">
+      <p class="form-footer submit-review">
         <button type="submit" class="fat">
           {{ _('Submit review') }}
         </button>
       </p>
+      {% if product.support_url %}
+        <p class="support-link c">
+        {% trans support_url=product.support_url %}
+          Visit <a href="{{ support_url }}" target="_blank">support</a>
+          for assistance with this app.
+        {% endtrans %}
+        </p>
+      {% endif %}
     </form>
   </section>
 {% endblock %}
