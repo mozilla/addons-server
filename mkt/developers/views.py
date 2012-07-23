@@ -54,7 +54,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   PreviewFormSet, trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
-from mkt.webapps.tasks import update_manifests
+from mkt.webapps.tasks import update_manifests, _update_manifest
 from mkt.webapps.models import Webapp
 
 from . import forms, tasks
@@ -725,6 +725,13 @@ def upload(request, addon_slug=None, is_standalone=False):
         return redirect('mkt.developers.standalone_upload_detail', fu.pk)
     else:
         return redirect('mkt.developers.upload_detail', fu.pk, 'json')
+
+
+@dev_required
+def refresh_manifest(request, addon_id, addon, webapp=False):
+    log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
+    _update_manifest(addon_id)
+    return http.HttpResponse(status=204)
 
 
 @login_required

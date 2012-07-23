@@ -338,6 +338,19 @@ function addonFormSubmit() {
 $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
+function addManifestRefresh() {
+    $('#manifest-url a.button').on('click', _pd(function(e) {
+    $('#manifest-url th.label span.hint').remove();
+        var p = $.ajax({url: $(e.target).data("url"),
+                        type: 'POST'});
+        p.then(function() {
+            var refreshed = gettext('Refreshed');
+            $('#manifest-url th.label').append('<span class="hint">'
+                                               + refreshed + '</span>');
+        });
+    }));
+}
+
 function initEditAddon() {
     if (z.noEdit) return;
 
@@ -353,6 +366,9 @@ function initEditAddon() {
             parent_div.load($(a).attr('data-editurl'), function(){
                 if (parent_div.find('#addon-categories-edit').length) {
                     initCatFields();
+                }
+                if (parent_div.find('#manifest-url').length) {
+                    addManifestRefresh();
                 }
                 $(this).each(addonFormSubmit);
                 initInvisibleUploads();

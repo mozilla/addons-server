@@ -474,6 +474,22 @@ class TestEditBasic(TestEdit):
             eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
                 'l10n menu not visible for %s' % url)
 
+    @mock.patch('mkt.developers.views._update_manifest')
+    def test_refresh(self, fetch):
+        self.client.login(username='steamcube@mozilla.com', password='password')
+        url = reverse('mkt.developers.apps.refresh_manifest', args=[self.webapp.app_slug])
+        r = self.client.post(url)
+        eq_(r.status_code, 204)
+        fetch.assert_called_once_with(self.webapp.pk)
+
+    @mock.patch('mkt.developers.views._update_manifest')
+    def test_refresh_dev_only(self, fetch):
+        self.client.login(username='regular@mozilla.com', password='password')
+        url = reverse('mkt.developers.apps.refresh_manifest', args=[self.webapp.app_slug])
+        r = self.client.post(url)
+        eq_(r.status_code, 403)
+        eq_(fetch.called, 0)
+
 
 class TestEditMedia(TestEdit):
 

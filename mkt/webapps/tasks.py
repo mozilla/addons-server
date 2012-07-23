@@ -66,69 +66,94 @@ def update_manifests(ids, **kw):
     amo.set_user(get_task_user())
 
     for id in ids:
-        webapp = Webapp.objects.get(pk=id)
-        file_ = webapp.get_latest_file()
+        _update_manifest(id)
 
-        _log(webapp, u'Fetching webapp manifest')
-        if not file_:
-            _log(webapp, u'Ignoring, no existing file')
-            continue
 
-        # Fetch manifest, catching and logging any exception.
-        try:
-            content = _fetch_manifest(webapp.manifest_url)
-        except Exception, e:
-            msg = u'Failed to get manifest from %s. Error: %s' % (
-                webapp.manifest_url, e.message)
-            _log(webapp, msg, rereview=True, exc_info=True)
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
-            continue
+def _update_manifest(id):
+    webapp = Webapp.objects.get(pk=id)
+    file_ = webapp.get_latest_file()
 
-        # Check hash.
-        hash_ = _get_content_hash(content)
-        if file_.hash == hash_:
-            _log(webapp, u'Manifest the same')
-            continue
+    _log(webapp, u'Fetching webapp manifest')
+    if not file_:
+        _log(webapp, u'Ignoring, no existing file')
+        return
 
-        _log(webapp, u'Manifest different')
+    # Fetch manifest, catching and logging any exception.
+    try:
+        content = _fetch_manifest(webapp.manifest_url)
+    except Exception, e:
+        msg = u'Failed to get manifest from %s. Error: %s' % (
+            webapp.manifest_url, e.message)
+        _log(webapp, msg, rereview=True, exc_info=True)
+        RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+        return
 
-        # Validate the new manifest.
-        upload = FileUpload.objects.create()
-        upload.add_file([content], webapp.manifest_url, len(content),
-                        is_webapp=True)
-        validator(upload.pk)
-        upload = FileUpload.uncached.get(pk=upload.pk)
-        if upload.validation:
-            v8n = json.loads(upload.validation)
-            if v8n['errors']:
-                v8n_url = absolutify(reverse(
-                    'mkt.developers.upload_detail', args=[upload.uuid]))
-                msg = u'Validation errors:\n'
-                for m in v8n['messages']:
-                    if m['type'] == u'error':
-                        msg += u'* %s\n' % m['message']
-                msg += u'\nValidation Result:\n%s' % v8n_url
-                _log(webapp, msg, rereview=True)
-                RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
-                                   msg)
-                continue
-        else:
-            _log(webapp,
-                 u'Validation for upload UUID %s has no result' % upload.uuid)
+    # Check hash.
+    hash_ = _get_content_hash(content)
+    if file_.hash == hash_:
+        _log(webapp, u'Manifest the same')
+        return
 
-        # Get the old manifest before we overwrite it.
-        new = json.loads(content)
-        old = _open_manifest(webapp, file_)
+    _log(webapp, u'Manifest different')
 
-        # New manifest is different and validates, create a new version.
-        try:
-            webapp.manifest_updated(content, upload)
-        except:
-            _log(webapp, u'Failed to create version', exc_info=True)
-
-        # Check for any name changes for re-review.
-        if (old and old.get('name') and old.get('name') != new.get('name')):
-            msg = u'Manifest name changed from "%s" to "%s"' % (
-                old.get('name'), new.get('name'))
+    # Validate the new manifest.
+    upload = FileUpload.objects.create()
+    upload.add_file([content], webapp.manifest_url, len(content),
+                    is_webapp=True)
+    validator(upload.pk)
+    upload = FileUpload.uncached.get(pk=upload.pk)
+    if upload.validation:
+        v8n = json.loads(upload.validation)
+        if v8n['errors']:
+            v8n_url = absolutify(reverse(
+                'mkt.developers.upload_detail', args=[upload.uuid]))
+            msg = u'Validation errors:\n'
+            for m in v8n['messages']:
+                if m['type'] == u'error':
+                    msg += u'* %s\n' % m['message']
+            msg += u'\nValidation Result:\n%s' % v8n_url
             _log(webapp, msg, rereview=True)
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+                               msg)
+            return
+    else:
+        _log(webapp,
+             u'Validation for upload UUID %s has no result' % upload.uuid)
+
+    # Get the old manifest before we overwrite it.
+    new = json.loads(content)
+    old = _open_manifest(webapp, file_)
+
+    # New manifest is different and validates, create a new version.
+    try:
+        webapp.manifest_updated(content, upload)
+    except:
+        _log(webapp, u'Failed to create version', exc_info=True)
+
+    # Check for any name changes for re-review.
+    if (old and old.get('name') and old.get('name') != new.get('name')):
+        msg = u'Manifest name changed from "%s" to "%s"' % (
+            old.get('name'), new.get('name'))
+        _log(webapp, msg, rereview=True)
+        RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+        return
+    else:
+        _log(webapp,
+             u'Validation for upload UUID %s has no result' % upload.uuid)
+
+    # Get the old manifest before we overwrite it.
+    new = json.loads(content)
+    old = _open_manifest(webapp, file_)
+
+    # New manifest is different and validates, create a new version.
+    try:
+        webapp.manifest_updated(content, upload)
+    except:
+        _log(webapp, u'Failed to create version', exc_info=True)
+
+    # Check for any name changes for re-review.
+    if (old and old.get('name') and old.get('name') != new.get('name')):
+        msg = u'Manifest name changed from "%s" to "%s"' % (
+            old.get('name'), new.get('name'))
+        _log(webapp, msg, rereview=True)
+        RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
