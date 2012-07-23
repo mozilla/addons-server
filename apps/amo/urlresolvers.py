@@ -142,7 +142,7 @@ class Prefixer(object):
         return lang_from_accept_header(accept)
 
     def fix(self, path):
-        # Marketplace URLs are not prefixed with `/<app>/<locale>`.
+        # Marketplace URLs are not prefixed with `/<locale>/<app>`.
         if settings.MARKETPLACE and settings.REGION_STORES:
             return path
 
