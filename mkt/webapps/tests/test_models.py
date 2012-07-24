@@ -9,10 +9,11 @@ from nose import SkipTest
 from nose.tools import eq_, raises
 import waffle
 
-from addons.models import (Addon, AddonDeviceType, BlacklistedSlug,
-                           DeviceType, Preview)
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
+                           BlacklistedSlug, Category, DeviceType, Preview)
 import amo
 from amo.tests import TestCase
+from market.models import Price
 from mkt.developers.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import Webapp
 from files.models import File
@@ -168,6 +169,25 @@ class TestWebapp(TestCase):
         get_manifest_json.return_value = {'icons': {}}
         eq_(webapp.has_icon_in_manifest(), True)
 
+    def test_has_price(self):
+        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
+        webapp._premium = mock.Mock()
+        eq_(webapp.has_price(), True)
+
+    def test_has_no_price(self):
+        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
+        webapp._premium = mock.Mock()
+        webapp._premium.price = None
+        eq_(webapp.has_price(), False)
+
+    def test_has_no_premium(self):
+        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
+        webapp._premium = None
+        eq_(webapp.has_price(), False)
+
+    def test_not_premium(self):
+        eq_(Webapp().has_price, False)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
@@ -304,3 +324,56 @@ class TestTransformer(amo.tests.TestCase):
         webapp._device_types = []
         with self.assertNumQueries(0):
             eq_(webapp.device_types, [])
+
+
+class TestIsComplete(amo.tests.TestCase):
+
+    def setUp(self):
+        self.device = DeviceType.objects.create(name='f', class_name='phone')
+        self.cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
+        self.webapp = Webapp.objects.create(type=amo.ADDON_WEBAPP,
+                                            status=amo.STATUS_NULL)
+
+    def fail(self, value):
+        can, reasons = self.webapp.is_complete()
+        eq_(can, False)
+        assert value in reasons[0], reasons
+
+    def test_fail(self):
+        self.fail('email')
+
+        self.webapp.support_email = 'a@a.com'
+        self.webapp.save()
+        self.fail('name')
+
+        self.webapp.name = 'name'
+        self.webapp.save()
+        self.fail('device')
+
+        self.webapp.addondevicetype_set.create(device_type=self.device)
+        self.webapp.save()
+        self.fail('category')
+
+        AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        self.fail('screenshot')
+
+        self.webapp.previews.create()
+        eq_(self.webapp.is_complete()[0], True)
+
+    def test_paypal(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.fail('payments')
+
+        self.webapp.update(paypal_id='a@a.com')
+        self.fail('price')
+
+    def test_no_price(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@a.com')
+        AddonPremium.objects.create(addon=self.webapp, currencies=['BRL'])
+        self.fail('price')
+
+    def test_price(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@a.com')
+        AddonPremium.objects.create(addon=self.webapp, currencies=['BRL'],
+                                    price=Price.objects.create(price='1'))
+        self.fail('email')

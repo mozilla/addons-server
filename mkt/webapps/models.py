@@ -232,6 +232,30 @@ class Webapp(Addon):
         self.update_version()
         amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
+    def is_complete(self):
+        """See if the app is complete. If not, return why."""
+        reasons = []
+        if self.needs_paypal():
+            if not self.paypal_id:
+                reasons.append(_('You must set up payments.'))
+            if not self.has_price():
+                reasons.append(_('You must specify a price.'))
+
+        if not self.support_email:
+            reasons.append(_('You must provide a support email.'))
+        if not self.name:
+            reasons.append(_('You must provide an app name.'))
+        if not self.device_types:
+            reasons.append(_('You must provide at least one device type.'))
+
+        if not self.categories.count():
+            reasons.append(_('You must provide at least one category.'))
+        if not self.previews.count():
+            reasons.append(_('You must upload at least one '
+                             'screenshot or video.'))
+
+        return not bool(reasons), reasons
+
     def mark_done(self):
         """When the submission process is done, update status accordingly."""
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
@@ -252,6 +276,9 @@ class Webapp(Addon):
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
+
+    def has_price(self):
+        return bool(self.is_premium() and self.premium and self.premium.price)
 
     def get_price(self):
         if self.is_premium() and self.premium:
