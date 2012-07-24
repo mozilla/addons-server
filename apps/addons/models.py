@@ -1290,7 +1290,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if user and self.has_author(user):
             return False
         else:
-            return not self.is_premium() or self.has_purchased(user)
+            return (not self.is_premium() or self.has_purchased(user) or
+                    self.is_refunded(user))
 
     @property
     def premium(self):
