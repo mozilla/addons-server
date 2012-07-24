@@ -90,7 +90,7 @@ z.page.on('fragmentloaded', function() {
         baseline = $body.attr('class').split(' ')[0],
         device = z.capabilities.touch ? 'touch' : 'desktop';
     baseline += ' ' + device;
-    $body.data('class', baseline).addClass(device);
+    $body.attr('data-class', baseline).addClass(device);
 
     // Navigation toggle.
     var $header = $('#site-header'),

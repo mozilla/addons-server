@@ -132,6 +132,7 @@ function fragmentFilter(el) {
             page.html(content);
             $('html, body').scrollTop(opts.scrollTop || 0);
             page.trigger('fragmentloaded', [href, popped]);
+            page.trigger('postfragmentloaded', [href, popped]);
 
             // We so sneaky.
             var $title = page.find('title');
@@ -200,6 +201,7 @@ function fragmentFilter(el) {
         console.warn("fragments not enabled!!");
         $(function() {
             page.trigger('fragmentloaded');
+            page.trigger('postfragmentloaded');
         });
     }
 })(z.page, fragmentFilter);
