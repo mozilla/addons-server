@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -6,7 +8,7 @@ import amo
 from amo.helpers import numberfmt
 import amo.tests
 from reviews.models import Review, ReviewFlag
-from stats.models import ClientData
+from stats.models import ClientData, Contribution
 from users.models import UserProfile
 from zadmin.models import DownloadSource
 
@@ -271,16 +273,25 @@ class TestCreate(ReviewTest):
             'Rated 4 out of 5 stars 1 review')
 
     def test_support_link(self):
+        # Test no link if no support url or contribution.
         self.enable_waffle()
         r = self.client.get(self.add)
         eq_(pq(r.content)('.support-link').length, 0)
 
+        # Test link to support url if support url.
         self.webapp.support_url = {'en-US': 'test'}
         self.webapp.save()
         r = self.client.get(self.add)
         doc = pq(r.content)('.support-link a')
         eq_(doc.length, 1)
         eq_(doc.attr('href'), 'test')
+
+        # Test link to support flow if contribution.
+        c = Contribution.objects.create(addon=self.webapp, user=self.user)
+        r = self.client.get(self.add)
+        doc = pq(r.content)('.support-link a')
+        eq_(doc.length, 1)
+        eq_(doc.attr('href'), reverse('support', args=[c.id]))
 
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.

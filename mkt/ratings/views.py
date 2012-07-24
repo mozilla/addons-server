@@ -1,4 +1,5 @@
 from django import http
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -8,7 +9,7 @@ from tower import ugettext as _
 from access import acl
 import amo
 import amo.log
-from addons.decorators import (addon_view_factory, has_purchased_or_refunded)
+from addons.decorators import addon_view_factory, has_purchased_or_refunded
 from addons.models import Addon
 from amo.helpers import absolutify
 from amo.decorators import (json_view, login_required, post_required,
@@ -19,7 +20,7 @@ from reviews.models import Review
 from reviews.helpers import user_can_delete_review
 from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
-from stats.models import ClientData
+from stats.models import ClientData, Contribution
 
 from mkt.site import messages
 from mkt.ratings.forms import ReviewForm
@@ -195,5 +196,16 @@ def add(request, addon):
         # just show a blank version of the form.
         form = ReviewForm()
 
+    # Get app's support url, either from support flow if contribution exists or
+    # author's support url.
+    try:
+        contrib_id = (Contribution.objects
+                      .filter(user=request.user, addon=addon)
+                      .order_by('-created')[0].id)
+        support_url = reverse('support', args=[contrib_id])
+    except IndexError:
+        support_url = addon.support_url
+
     return jingo.render(request, 'ratings/add.html',
-                        {'product': addon, 'form': form})
+                        {'product': addon, 'form': form,
+                         'support_url': support_url})

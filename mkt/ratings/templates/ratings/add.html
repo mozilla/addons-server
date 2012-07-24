@@ -36,12 +36,12 @@
           {{ _('Submit review') }}
         </button>
       </p>
-      {% if product.support_url %}
+      {% if support_url %}
         <p class="support-link c">
-        {% trans support_url=product.support_url %}
-          Visit <a href="{{ support_url }}" target="_blank">support</a>
-          for assistance with this app.
-        {% endtrans %}
+          {% trans %}
+            Visit <a href="{{ support_url }}" target="_blank">support</a>
+            for assistance with this app.
+          {% endtrans %}
         </p>
       {% endif %}
     </form>
