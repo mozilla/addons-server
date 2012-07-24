@@ -68,6 +68,7 @@ CSS = {
     ),
     'mkt/reviewers': (
         'css/mkt/buttons.less',
+        'css/mkt/ratings.less',
         'css/mkt/reviewers.less',
     ),
     'mkt/consumer': (

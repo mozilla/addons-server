@@ -13,19 +13,20 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
+import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import AddonDeviceType, AddonUser, DeviceType
-from amo.tests import app_factory, check_links
+from amo.tests import app_factory, check_links, formset, initial
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from devhub.models import AppLog
+from devhub.models import ActivityLog, AppLog
 from editors.models import CannedResponse, ReviewerScore
-from users.models import UserProfile
-from zadmin.models import get_config, set_config
-
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.webapps.models import Webapp
+from reviews.models import Review, ReviewFlag
+from users.models import UserProfile
+from zadmin.models import get_config, set_config
 
 
 class AppReviewerTest(amo.tests.TestCase):
@@ -243,6 +244,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     def test_escalated_not_in_queue(self):
         EscalationQueue.objects.create(addon=self.apps[0])
@@ -254,6 +256,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (1)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (1)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     # TODO(robhudson): Add sorting back in.
     #def test_sort(self):
@@ -340,6 +343,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     def test_escalated_not_in_queue(self):
         EscalationQueue.objects.create(addon=self.apps[0])
@@ -350,6 +354,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (2)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (1)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin):
@@ -443,6 +448,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (3)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin):
@@ -1055,3 +1061,84 @@ class TestAbuseReports(amo.tests.TestCase):
         reports = r.context['reports']
         eq_(len(reports), 2)
         eq_(sorted([r.message for r in reports]), [u'eff', u'yeah'])
+
+
+class TestModeratedQueue(amo.tests.TestCase, AccessMixin):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.app = app_factory()
+
+        self.reviewer = UserProfile.objects.get(email='editor@mozilla.com')
+        self.users = list(UserProfile.objects.exclude(pk=self.reviewer.id))
+
+        self.url = reverse('reviewers.apps.queue_moderated')
+
+        self.review1 = Review.objects.create(addon=self.app, body='body',
+                                             user=self.users[0], rating=3,
+                                             editorreview=True)
+        ReviewFlag.objects.create(review=self.review1, flag=ReviewFlag.SPAM,
+                                  user=self.users[0])
+        self.review2 = Review.objects.create(addon=self.app, body='body',
+                                             user=self.users[1], rating=4,
+                                             editorreview=True)
+        ReviewFlag.objects.create(review=self.review2, flag=ReviewFlag.SUPPORT,
+                                  user=self.users[1])
+
+        self.client.login(username=self.reviewer.email, password='password')
+
+    def _post(self, action):
+        ctx = self.client.get(self.url).context
+        data_formset = formset(initial(ctx['reviews_formset'].forms[0]))
+        data_formset['form-0-action'] = action
+
+        res = self.client.post(self.url, data_formset)
+        self.assert3xx(res, self.url)
+
+    def _get_logs(self, action):
+        return ActivityLog.objects.filter(action=action.id)
+
+    def test_setup(self):
+        eq_(Review.objects.filter(editorreview=True).count(), 2)
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
+
+        res = self.client.get(self.url)
+        doc = pq(res.content)('#reviews-flagged')
+
+        # Test the default action is "skip".
+        eq_(doc('#id_form-0-action_1:checked').length, 1)
+
+    def test_skip(self):
+        # Skip the first review, which still leaves two.
+        self._post(reviews.REVIEW_MODERATE_SKIP)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 2)
+
+    def test_delete(self):
+        # Delete the first review, which leaves one.
+        self._post(reviews.REVIEW_MODERATE_DELETE)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 1)
+        eq_(self._get_logs(amo.LOG.DELETE_REVIEW).count(), 1)
+
+    def test_keep(self):
+        # Keep the first review, which leaves one.
+        self._post(reviews.REVIEW_MODERATE_KEEP)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 1)
+        eq_(self._get_logs(amo.LOG.APPROVE_REVIEW).count(), 1)
+
+    def test_no_reviews(self):
+        Review.objects.all().delete()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('#reviews-flagged .no-results').length, 1)
+
+    def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (2)')

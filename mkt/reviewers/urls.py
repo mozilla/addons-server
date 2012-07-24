@@ -15,6 +15,8 @@ urlpatterns = (
         name='reviewers.apps.queue_rereview'),
     url(r'^apps/queue/escalated/$', views.queue_escalated,
         name='reviewers.apps.queue_escalated'),
+    url(r'^apps/queue/reviews$', views.queue_moderated,
+        name='reviewers.apps.queue_moderated'),
     url(r'^apps/review/%s$' % amo.APP_SLUG, views.app_review,
         name='reviewers.apps.review'),
     url(r'^apps/review/%s/manifest$' % amo.APP_SLUG, views.app_view_manifest,

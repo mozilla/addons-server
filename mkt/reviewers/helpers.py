@@ -26,7 +26,8 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
     if queue:
         queues = {'pending': _('Apps'),
                   'rereview': _('Re-reviews'),
-                  'escalated': _('Escalations')}
+                  'escalated': _('Escalations'),
+                  'moderated': _('Moderated Reviews')}
 
         if items:
             url = reverse('reviewers.apps.queue_%s' % queue)
@@ -67,4 +68,7 @@ def queue_tabnav(context):
         ('escalated', 'queue_escalated',
          _('Escalations ({0})',
            counts['escalated']).format(counts['escalated'])),
+        ('moderated', 'queue_moderated',
+         _('Moderated Reviews ({0})',
+           counts['moderated']).format(counts['moderated'])),
     ]
