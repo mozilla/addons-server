@@ -224,6 +224,15 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 0)
 
+    def test_reviews_premium_add_review_link(self):
+        # Ensure 'Review this App' link exists for purchased premium apps.
+        self.enable_waffle()
+        Review.objects.all().delete()
+        self.webapp.addonpurchase_set.create(user=self.user)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get(self.detail)
+        eq_(pq(r.content)('#add-first-review').length, 1)
+
     def test_reviews_premium_refunded(self):
         # Ensure 'Review this App' link exists for refunded premium apps.
         self.enable_waffle()
@@ -234,14 +243,15 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 1)
 
-    def test_reviews_premium_add_review_link(self):
-        # Ensure 'Review this App' link exists for purchased premium apps.
+    def test_add_review_premium_refunded(self):
+        # Ensure able to add review for refunded premium apps.
         self.enable_waffle()
         Review.objects.all().delete()
-        self.webapp.addonpurchase_set.create(user=self.user)
+        self.webapp.addonpurchase_set.create(user=self.user,
+                                             type=amo.CONTRIB_REFUND)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get(self.detail)
-        eq_(pq(r.content)('#add-first-review').length, 1)
+        r = self.client.get(self.add)
+        eq_(r.status_code, 200)
 
     def test_review_link_plural(self):
         # We have reviews.

@@ -8,7 +8,7 @@ from tower import ugettext as _
 from access import acl
 import amo
 import amo.log
-from addons.decorators import addon_view_factory, has_purchased
+from addons.decorators import (addon_view_factory, has_purchased_or_refunded)
 from addons.models import Addon
 from amo.helpers import absolutify
 from amo.decorators import (json_view, login_required, post_required,
@@ -110,7 +110,7 @@ def reply(request, addon, review_id):
 @addon_view
 @login_required
 @restricted_content
-@has_purchased
+@has_purchased_or_refunded
 def add(request, addon):
     if addon.has_author(request.user):
         # Don't let app owners review their own apps.
