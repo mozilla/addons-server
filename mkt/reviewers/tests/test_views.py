@@ -509,6 +509,13 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
         eq_(scores[0].note_key, reviewed_type)
 
+    def test_xss(self):
+        self.post({'action': 'comment',
+                   'comments': '<script>alert("xss")</script>'})
+        res = self.client.get(self.url)
+        assert '<script>alert' not in res.content
+        assert '&lt;script&gt;alert' in res.content
+
     def test_pending_to_public(self):
         waffle.models.Switch.objects.create(name='reviewer-incentive-points',
                                             active=True)

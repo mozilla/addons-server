@@ -103,12 +103,11 @@ def update_manifests(ids, **kw):
             if v8n['errors']:
                 v8n_url = absolutify(reverse(
                     'mkt.developers.upload_detail', args=[upload.uuid]))
-                msg = u'Validation errors:<ul>'
+                msg = u'Validation errors:\n'
                 for m in v8n['messages']:
                     if m['type'] == u'error':
-                        msg += u'<li>%s</li>' % m['message']
-                msg += u'</ul>'
-                msg += u'<a href="%s">View Validation Result' % v8n_url
+                        msg += u'* %s\n' % m['message']
+                msg += u'\nValidation Result:\n%s' % v8n_url
                 _log(webapp, msg, rereview=True)
                 RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
                                    msg)

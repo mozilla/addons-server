@@ -1,5 +1,4 @@
 import datetime
-import time
 
 from django.conf import settings
 
@@ -158,8 +157,7 @@ def find_abuse_escalations(addon_id, **kw):
                 continue
 
         # If we haven't bailed out yet, escalate this app.
-        msg = u'High number of abuse reports detected on %s' % (
-            datetime.datetime.now())
+        msg = u'High number of abuse reports detected'
         EscalationQueue.objects.create(addon=abuse.addon)
         amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
                 abuse.addon.current_version, details={'comments': msg})
@@ -203,8 +201,8 @@ def find_refund_escalations(addon_id, **kw):
                 return
 
         # If we haven't bailed out yet, escalate this app.
-        msg = u'High number of refund requests (%.0f%%) detected on %s' % (
-            (ratio * 100), datetime.datetime.now())
+        msg = u'High number of refund requests (%.0f%%) detected.' % (
+            (ratio * 100),)
         EscalationQueue.objects.create(addon=addon)
         amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, addon,
                 addon.current_version, details={'comments': msg})
