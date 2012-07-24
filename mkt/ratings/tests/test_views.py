@@ -1,11 +1,10 @@
-from django.core.urlresolvers import reverse
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
 import amo
 from amo.helpers import numberfmt
+from amo.urlresolvers import reverse
 import amo.tests
 from reviews.models import Review, ReviewFlag
 from stats.models import ClientData, Contribution
@@ -278,6 +277,13 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.add)
         eq_(pq(r.content)('.support-link').length, 0)
 
+        # Test support email if no support url.
+        self.webapp.support_email = {'en-US': 'test@test.com'}
+        self.webapp.save()
+        r = self.client.get(self.add)
+        doc = pq(r.content)('.support-link')
+        eq_(doc.length, 1)
+
         # Test link to support url if support url.
         self.webapp.support_url = {'en-US': 'test'}
         self.webapp.save()
@@ -287,7 +293,8 @@ class TestCreate(ReviewTest):
         eq_(doc.attr('href'), 'test')
 
         # Test link to support flow if contribution.
-        c = Contribution.objects.create(addon=self.webapp, user=self.user)
+        c = Contribution.objects.create(addon=self.webapp, user=self.user,
+                                        type=amo.CONTRIB_PURCHASE)
         r = self.client.get(self.add)
         doc = pq(r.content)('.support-link a')
         eq_(doc.length, 1)

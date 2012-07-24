@@ -1,5 +1,4 @@
 from django import http
-from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -9,6 +8,7 @@ from tower import ugettext as _
 from access import acl
 import amo
 import amo.log
+from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory, has_purchased_or_refunded
 from addons.models import Addon
 from amo.helpers import absolutify
@@ -198,9 +198,13 @@ def add(request, addon):
 
     # Get app's support url, either from support flow if contribution exists or
     # author's support url.
+    support_email = str(addon.support_email) if addon.support_email else None
     try:
         contrib_id = (Contribution.objects
-                      .filter(user=request.user, addon=addon)
+                      .filter(user=request.user, addon=addon,
+                              type__in=(amo.CONTRIB_PURCHASE,
+                                        amo.CONTRIB_INAPP,
+                                        amo.CONTRIB_REFUND))
                       .order_by('-created')[0].id)
         support_url = reverse('support', args=[contrib_id])
     except IndexError:
@@ -208,4 +212,5 @@ def add(request, addon):
 
     return jingo.render(request, 'ratings/add.html',
                         {'product': addon, 'form': form,
-                         'support_url': support_url})
+                         'support_url': support_url,
+                         'support_email': support_email})
