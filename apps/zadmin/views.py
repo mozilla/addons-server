@@ -657,7 +657,11 @@ def addon_search(request):
         if q.isdigit():
             qs = Addon.objects.filter(id=int(q))
         else:
-            qs = Addon.search().query(name__text=q.lower())[:100]
+            qs = (Addon.search()
+                       .query(name__text=q.lower())
+                       .filter(type__in=amo.MARKETPLACE_TYPES if
+                                        settings.MARKETPLACE else
+                                        amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs

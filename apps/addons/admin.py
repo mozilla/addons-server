@@ -1,5 +1,8 @@
 from django import forms
+from django.conf import settings
 from django.contrib import admin
+
+import amo
 
 from . import models
 
@@ -42,6 +45,11 @@ class AddonAdmin(admin.ModelAdmin):
         ('Dictionaries', {
             'fields': ('target_locale', 'locale_disambiguation'),
         }))
+
+    def queryset(self, request):
+        types = (amo.MARKETPLACE_TYPES if settings.MARKETPLACE else
+                 amo.ADDON_ADMIN_SEARCH_TYPES)
+        return models.Addon.objects.filter(type__in=types)
 
 
 class FeatureAdmin(admin.ModelAdmin):
