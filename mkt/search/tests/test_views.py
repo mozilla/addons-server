@@ -270,7 +270,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         r = self.client.get(self.url, {'price': 'free'})
         eq_(r.status_code, 200)
         assert 'price' not in dict(r.context['sort_opts']), (
-            'Unexpected price sort')
+            'Unexpected price filter')
 
     def test_paid_price_sort(self):
         for url in [self.url, reverse('browse.apps')]:
@@ -279,9 +279,11 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
     def test_redirect_free_price_sort(self):
         for url in [self.url, reverse('browse.apps')]:
-            # `sort=price` should be removed if `price=free` is in querystring.
+            # `sort=price` should be changed to `sort=downloads` if
+            # `price=free` is in querystring.
             r = self.client.get(url, {'price': 'free', 'sort': 'price'})
-            self.assertRedirects(r, urlparams(url, price='free'))
+            self.assert3xx(r, urlparams(url, price='free', sort='downloads'),
+                           302)
 
 
 class SuggestionsTests(TestAjaxSearch):

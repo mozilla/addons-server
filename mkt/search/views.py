@@ -115,7 +115,8 @@ def _app_search(request, category=None, browse=None):
     # Remove `sort=price` if `price=free`.
     if query.get('price') == 'free' and query.get('sort') == 'price':
         return {'redirect': amo.utils.urlparams(request.get_full_path(),
-                                                sort=None)}
+                                                sort='downloads',
+                                                price='free')}
 
     qs = _get_query(request, form, query)
     qs = _filter_search(qs, query)
