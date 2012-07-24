@@ -11,8 +11,6 @@
 
     {% include 'account/includes/nav.html' %}
 
-    {# TODO: This form currently does nothing and without BrowserID it makes
-       even less sense. #}
     <form class="form-grid" enctype="multipart/form-data" method="post">
       {{ csrf() }}
 
@@ -21,27 +19,29 @@
           {{ _('Email') }}
         </div>
         <div class="form-col">
-          <input type="text" id="email" value="{{ amouser.email }}">
+          <input type="text" id="email" readonly value="{{ amouser.email }}">
         </div>
       </div>
 
       {{ grid_field(form.display_name) }}
 
+      {#
+        TODO: This div below should be removed (here for visual reminder).
+        Use {% include 'site/includes/languages.html' %} once gaia-ui is
+        merged into master.
+      #}
       <div class="simple-field two-col c">
         <div class="col-a">
           <label for="language">{{ _('Language') }}:</label>
         </div>
         <div class="col-b">
-          <select id="language" name="lang" dir="ltr" class="hmm">
+          <select id="language" dir="ltr" class="hmm">
             {% for code, name in LANGUAGES|dictsort -%}
               <option value="{{ code }}"{% if code == LANG|lower %}
                                            selected{% endif %}>
               {{ name }}</option>
             {%- endfor %}
           </select>
-          {% for key, value in request.GET.items() %}
-            <input type="hidden" name="{{ key }}" value="{{ value }}">
-          {% endfor %}
         </div>
       </div>
 
