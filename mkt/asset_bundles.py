@@ -134,7 +134,7 @@ JS = {
         'js/amo2009/addons.js',
         'js/common/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
-        'js/impala/capabilities.js',
+        'js/mkt/capabilities.js',
         'js/lib/format.js',
         'js/lib/jquery.cookie.js',
         'js/zamboni/storage.js',
