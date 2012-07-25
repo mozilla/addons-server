@@ -333,4 +333,4 @@ def app_abuse(request, addon):
     total = reports.count()
     reports = amo.utils.paginate(request, reports, count=total)
     return jingo.render(request, 'reviewers/abuse.html',
-                        dict(addon=addon, reports=reports, total=total))
+                        context(addon=addon, reports=reports, total=total))

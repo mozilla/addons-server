@@ -6,7 +6,6 @@ from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
 from mkt.developers.helpers import mkt_page_title
-from .views import queue_counts
 
 
 @register.function
@@ -59,7 +58,7 @@ def queue_tabnav(context):
 
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
-    counts = queue_counts()
+    counts = context['queue_counts']
     return [
         ('pending', 'queue_pending',
          _('Apps ({0})', counts['pending']).format(counts['pending'])),
