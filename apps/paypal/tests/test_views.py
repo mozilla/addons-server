@@ -14,6 +14,7 @@ import waffle
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from market.models import Price
 from stats.models import SubscriptionEvent, Contribution
 from users.models import UserProfile
 from paypal import views, PaypalError
@@ -181,6 +182,7 @@ class PaypalTest(amo.tests.TestCase):
         m.text = status
         return m
 
+
 @patch('paypal.views.client.post_ipn')
 class TestPaypalSolitude(PaypalTest):
     fixtures = ['base/users', 'base/addon_3615']
@@ -213,7 +215,6 @@ class TestPaypalSolitude(PaypalTest):
         res = self.client.post(self.url, {})
         eq_(res.content, 'Success!')
 
-
     def test_chargeback(self, post_ipn):
         Contribution.objects.create(addon=self.addon, uuid=None,
                 transaction_id=sample_purchase['tracking_id'], user=self.user)
@@ -221,7 +222,6 @@ class TestPaypalSolitude(PaypalTest):
                 'status': 'OK', 'uuid': sample_purchase['tracking_id']}
         res = self.client.post(self.url, {})
         eq_(res.content, 'Success!')
-
 
 
 @patch('paypal.views.requests.post')
@@ -315,7 +315,7 @@ class TestPaypal(PaypalTest):
 
 @patch('paypal.views.requests.post')
 class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615', 'market/prices']
     uuid = 'e76059abcf747f5b4e838bf47822e6b2'
 
     def setUp(self):
@@ -374,7 +374,8 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
         # a transaction id that will map the tracking_id sent by paypal.
         original = Contribution.objects.create(
                         uuid=None, user=user, addon=self.addon,
-                        transaction_id=data['tracking_id'])
+                        transaction_id=data['tracking_id'],
+                        price_tier=Price.objects.get(price=Decimal('.99')))
 
         response = self._receive_ipn(urlopen, data)
         eq_(response.content, 'Success!')
@@ -411,6 +412,33 @@ class TestEmbeddedPaymentsPaypal(amo.tests.TestCase):
     def test_refund_amount(self, urlopen):
         self._refund(urlopen, sample_chained_refund)
         eq_(Contribution.objects.all()[1].amount, Decimal('-0.99'))
+
+    def test_refund_price_tier_usd(self, urlopen):
+        # Store refund values before changing it.
+        amount = sample_refund['transaction[0].amount']
+        refund_amount = sample_refund['transaction[0].refund_amount']
+
+        sample_refund['transaction[0].amount'] = 'USD 0.99'
+        sample_refund['transaction[0].refund_amount'] = 'USD 0.99'
+        self._refund(urlopen, sample_refund)
+        eq_(Contribution.objects.all()[1].price_tier.id, 1)
+
+        # Restore refund values.
+        sample_refund['transaction[0].amount'] = amount
+        sample_refund['transaction[0].refund_amount'] = refund_amount
+
+    def test_refund_price_tier_non_usd(self, urlopen):
+        # Store refund values before changing it.
+        amount = sample_refund['transaction[0].amount']
+        refund_amount = sample_refund['transaction[0].refund_amount']
+
+        sample_refund['transaction[0].amount'] = 'EUR 5.01'
+        sample_refund['transaction[0].refund_amount'] = 'EUR 5.01'
+        self._refund(urlopen, sample_refund)
+        eq_(Contribution.objects.all()[1].price_tier.id, 1)
+
+        sample_refund['transaction[0].amount'] = amount
+        sample_refund['transaction[0].refund_amount'] = refund_amount
 
     def reversal(self, urlopen):
         user = UserProfile.objects.get(pk=999)

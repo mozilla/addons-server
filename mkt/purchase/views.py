@@ -140,7 +140,8 @@ def purchase(request, addon):
                                source=download_source,
                                source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
-                               paykey=paykey, user=request.amo_user)
+                               paykey=paykey, user=request.amo_user,
+                               price_tier=addon.premium.price)
 
         # Grab a client data object to hook up with the Contribution object.
         try:

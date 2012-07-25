@@ -2,8 +2,6 @@
 from decimal import Decimal
 import json
 
-from django.conf import settings
-
 import fudge
 from fudge.inspector import arg
 import mock
@@ -18,7 +16,6 @@ from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
                            Price, PriceCurrency)
-from mkt import regions
 from mkt.webapps.models import Webapp
 from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
@@ -155,15 +152,29 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     @mock.patch('paypal.check_purchase')
     @mock.patch('paypal.get_paykey')
     def post_with_preapproval(self, get_paykey, check_purchase,
-                             check_purchase_result=None):
+                              check_purchase_result=None, data=None):
         get_paykey.return_value = ['some-pay-key', 'COMPLETED']
         check_purchase.return_value = check_purchase_result
-        return self.client.post_ajax(self.purchase_url)
+        return self.client.post_ajax(self.purchase_url, data=data or {})
 
     def test_paykey_pre_approval(self):
         res = self.post_with_preapproval(check_purchase_result='COMPLETED')
         eq_(json.loads(res.content)['status'], 'COMPLETED')
         self.check_contribution(amo.CONTRIB_PURCHASE)
+
+    def test_contrib_tier_usd(self):
+        # Test with currency switch in USD.
+        self.post_with_preapproval(data={'currency': 'USD', 'tier': 1})
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].price_tier.id, 1)
+
+    def test_contrib_tier_non_usd(self):
+        # Test with currency switch in BRL.
+        self.post_with_preapproval(data={'currency': 'BRL', 'tier': 1})
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].price_tier.id, 1)
 
     @mock.patch('mkt.purchase.views.client.pay')
     @mock.patch('mkt.purchase.views.client.create_seller_for_pay')

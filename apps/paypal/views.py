@@ -241,12 +241,16 @@ def paypal_refunded(request, transaction_id, serialize=None, amount=None):
 
     original.handle_chargeback('refund')
     paypal_log.info('Refund IPN received: %s' % transaction_id)
-    amount = _parse_currency(amount)
+    price_currency = _parse_currency(amount)
+    amount = price_currency['amount']
+    currency = price_currency['currency']
 
+    # Contribution with negative amount for refunds.
     Contribution.objects.create(
         addon=original.addon, related=original,
         user=original.user, type=amo.CONTRIB_REFUND,
-        amount=-amount['amount'], currency=amount['currency'],
+        amount=-amount, currency=currency,
+        price_tier=original.price_tier,
         post_data=php.serialize(serialize)
     )
     paypal_log.info('Refund successfully processed')
