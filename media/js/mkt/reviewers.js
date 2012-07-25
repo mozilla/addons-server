@@ -1,4 +1,27 @@
 (function() {
+    if (z.capabilities.webApps) {
+        // Get list of installed apps and mark as such.
+        var r = window.navigator.mozApps.getInstalled();
+        r.onerror = function(e) {
+            throw 'Error calling getInstalled: ' + r.error.name;
+        };
+        r.onsuccess = function() {
+            z.apps = r.result;
+            _.each(r.result, function(val) {
+                $(window).trigger('app_install_success',
+                                  [{'manifestUrl': val.manifestURL}, false])
+                         .trigger('app_install_mark',
+                                  {'manifestUrl': val.manifestURL});
+            });
+        };
+    } else {
+        z.apps = {};
+    }
+
+    if (!z.canInstallApps) {
+        $(window).trigger('app_install_disabled');
+    }
+
     var $viewManifest = $('#view-manifest'),
         $manifest = $('#manifest-contents');
     if (!$viewManifest.length) {

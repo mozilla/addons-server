@@ -66,7 +66,10 @@ $(document).ready(function() {
 z.page.on('fragmentloaded', function() {
     if (z.capabilities.webApps) {
         // Get list of installed apps and mark as such.
-        r = window.navigator.mozApps.getInstalled();
+        var r = window.navigator.mozApps.getInstalled();
+        r.onerror = function(e) {
+            throw 'Error calling getInstalled: ' + r.error.name;
+        };
         r.onsuccess = function() {
             z.apps = r.result;
             _.each(r.result, function(val) {
