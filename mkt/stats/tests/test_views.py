@@ -10,6 +10,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
+from market.models import Price
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from mkt.webapps.models import Installed
 from mkt.stats import search, tasks, views
@@ -231,13 +232,18 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
     def setUp(self):
         # Create apps and contributions to index.
         self.app = amo.tests.app_factory()
+        price_tier = Price.objects.create(price=.99)
 
         # Create a sale for each day in the expected range.
         self.expected_days = (1, 2, 3, 4, 5)
-        for x in self.expected_days:
-            c = Contribution.objects.create(addon_id=self.app.pk,
-                amount=5)
-            c.update(created=datetime.datetime(2012, 5, x, 0, 0, 0))
+        for day in self.expected_days:
+            # Create different amounts of contribs for each day.
+            for x in range(0, day):
+                c = Contribution.objects.create(addon_id=self.app.pk,
+                                                amount=.99,
+                                                price_tier=price_tier,
+                                                type=amo.CONTRIB_PURCHASE)
+                c.update(created=datetime.datetime(2012, 5, day, 0, 0, 0))
         tasks.index_finance_daily(Contribution.objects.all())
         self.refresh(timesleep=1)
 
@@ -247,7 +253,7 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
         """
         d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 15))
         stats = list(get_series_line(Contribution, 'day', addon=self.app.pk,
-                                date__range=d_range))
+                                     date__range=d_range))
         dates_with_sales = [c['date'] for c in stats if c['count'] > 0]
         days = [d.day for d in dates_with_sales]
         for day in self.expected_days:
@@ -259,8 +265,22 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
         """
         d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 15))
         stats = list(get_series_line(Contribution, 'day', addon=self.app.pk,
-                                date__range=d_range))
+                                     date__range=d_range))
         eq_(stats, sorted(stats, key=lambda x: x['date'], reverse=True))
+
+    def test_revenue(self):
+        """
+        Check each day's revenue is correct.
+        """
+        d_range = (datetime.date(2012, 05, 01), datetime.date(2012, 05, 05))
+        stats = list(get_series_line(Contribution, 'day',
+                                     primary_field='revenue',
+                                     addon=self.app.pk,
+                                     date__range=d_range))
+
+        for stat, day in zip(stats, sorted(self.expected_days, reverse=True)):
+            expected_revenue = day * .99 * amo.MKT_CUT
+            eq_(round(stat['count'], 2), round(expected_revenue, 2))
 
 
 class TestGetSeriesColumn(amo.tests.ESTestCase):
@@ -268,8 +288,9 @@ class TestGetSeriesColumn(amo.tests.ESTestCase):
     def setUp(self):
         # Create apps and contributions to index.
         self.app = amo.tests.app_factory()
+        price_tier = Price.objects.create(price=.99)
 
-        # Create a sale for each day in the expected range.
+        # Create some revenue for several different currencies.
         self.expected = [
             {'currency': 'CAD', 'count': 0},
             {'currency': 'EUR', 'count': 0},
@@ -277,15 +298,18 @@ class TestGetSeriesColumn(amo.tests.ESTestCase):
         ]
         for expected in self.expected:
             for x in range(random.randint(1, 4)):
-                c = Contribution.objects.create(addon_id=self.app.pk,
-                                                amount=random.randint(1, 10),
-                                                currency=expected['currency'])
-                expected['count'] += cut(c.amount)
+                # Amount doesn't matter for this stat since based off of price
+                # tier (USD normalized).
+                Contribution.objects.create(addon_id=self.app.pk,
+                                            amount=random.randint(0, 10),
+                                            currency=expected['currency'],
+                                            price_tier=price_tier)
+                expected['count'] += cut(price_tier.price)
             expected['count'] = int(expected['count'])
         tasks.index_finance_total_by_currency([self.app.pk])
         self.refresh(timesleep=1)
 
-    def test_basic(self):
+    def test_basic_revenue(self):
         stats = list(get_series_column(Contribution, addon=self.app.pk,
                                        primary_field='revenue',
                                        category_field='currency'))
