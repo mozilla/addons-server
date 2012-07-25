@@ -186,7 +186,7 @@ class TestWebapp(TestCase):
         eq_(webapp.has_price(), False)
 
     def test_not_premium(self):
-        eq_(Webapp().has_price, False)
+        eq_(Webapp().has_price(), False)
 
 
 class TestWebappVersion(amo.tests.TestCase):
