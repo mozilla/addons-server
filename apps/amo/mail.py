@@ -1,7 +1,6 @@
 import logging
 
 from django.core.mail.backends.base import BaseEmailBackend
-from django.db import models
 
 from amo.models import FakeEmail
 
@@ -25,7 +24,7 @@ class FakeEmailBackend(BaseEmailBackend):
     def view_all(self):
         """Useful for displaying messages in admin panel."""
         return (FakeEmail.objects.values_list('message', flat=True)
-                .order_by('-id'))
+                .order_by('-created'))
 
     def clear(self):
         return FakeEmail.objects.all().delete()
