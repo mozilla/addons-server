@@ -109,10 +109,6 @@
 
     function installSuccess(product) {
         $(window).trigger('app_install_success', [product, true]);
-        if (installedNow && location.pathname.indexOf('/reviewers/') > -1) {
-            startLaunch(product);
-        }
-
     }
 
     function installError(product, msg) {
