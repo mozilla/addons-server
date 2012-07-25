@@ -3,28 +3,14 @@
 
         flagOverlay = makeOrGetOverlay('flag-review');
 
-        // Make sure the class got updated.
-        if (!$('body.reviews').length && !$('ol.reviews').length) {
-            return;
-        }
+        // Hijack <select> with stars.
+        $('select[name="rating"]').ratingwidget();
 
         // Remove character counter on review field on mobile for now
         // (770661).
         if (!z.capabilities.mobile) {
             initCharCount();
         }
-
-        // Hijack <select> with stars.
-        $('select[name="rating"]').ratingwidget();
-
-        // Toggle rating breakdown.
-        var $breakdown = $('.grouped-ratings');
-        $('.average-rating').on('click', _pd(function() {
-            $breakdown.toggle();
-        }));
-        $breakdown.on('click', _pd(function() {
-            $breakdown.hide();
-        }));
 
         // "More reviews" button.
         var $more = $('.load-more');
@@ -167,6 +153,14 @@
             window.location = newReview;
         });
     }
+
+    // Toggle rating breakdown.
+    z.page.on('click', '.average-rating', _pd(function() {
+        $('.grouped-ratings').toggle();
+    }));
+    z.page.on('click', '.grouped-ratings', _pd(function() {
+        $('.grouped-ratings').hide();
+    }));
 
     z.page.on('click', '.review .actions a', function(e) {
         var $this = $(this),
