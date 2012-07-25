@@ -311,7 +311,7 @@
     background-position: 0 100%;
 }
 
-/*
+
 #tabzilla-promo .snippet#tabzilla-promo-beta a {
     background-image: url(../../img/mkt/tabzilla/promo-beta.jpg);
     background-position: 0 0;
@@ -320,13 +320,13 @@
     font-size: 12px;
     padding: 50px 15px 30px 145px;
     line-height: 20px;
-}*/
+}
 
 #tabzilla-promo .snippet#tabzilla-promo-beta a b {
     white-space: nowrap;
 }
 
-/*
+
 #tabzilla-promo .snippet#tabzilla-promo-mobile a {
     background-image: url(../../img/mkt/tabzilla/promo-mobile.jpg);
     background-position: 0 0;
@@ -337,7 +337,7 @@
     height: 140px;
     line-height: 20px;
     text-shadow: none;
-}*/
+}
 
 #tabzilla-promo .snippet#tabzilla-promo-mobile a h4 {
     color: #fff;
