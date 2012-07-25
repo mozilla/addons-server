@@ -195,6 +195,7 @@ function fragmentFilter(el) {
             history.replaceState({path: path}, false, path);
             fragmentCache[path] = page.html();
             page.trigger('fragmentloaded', [path, false]);
+            page.trigger('postfragmentloaded', [path, false]);
         });
         console.log("fragments enabled");
     } else {
