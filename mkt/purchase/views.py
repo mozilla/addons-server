@@ -23,22 +23,14 @@ from market.forms import PriceCurrencyForm
 from market.models import AddonPurchase
 import paypal
 from stats.models import ClientData, Contribution
-import mkt
 from mkt.account.views import preapproval as user_preapproval
 from mkt.webapps.models import Webapp
-from zadmin.models import DownloadSource
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
-@login_required
-@addon_view
-@can_be_purchased
-@has_not_purchased
-@write
-@post_required
-def purchase(request, addon):
+def start_purchase(request, addon):
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
     amount = addon.premium.get_price()
@@ -57,6 +49,25 @@ def purchase(request, addon):
             tier = form.get_tier()
             if tier:
                 amount, currency = tier.price, tier.currency
+
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        # TODO(solitude): when the migration of data is completed, we
+        # will be able to remove this. Seller data is populated in solitude
+        # on submission or devhub changes. If those don't occur, you won't be
+        # able to sell at all.
+        client.create_seller_for_pay(addon)
+
+    return amount, currency, uuid_, contrib_for
+
+
+@login_required
+@addon_view
+@can_be_purchased
+@has_not_purchased
+@write
+@post_required
+def purchase(request, addon):
+    amount, currency, uuid_, contrib_for = start_purchase(request, addon)
 
     if not amount:
         # We won't write a contribution row for this because there
@@ -83,12 +94,6 @@ def purchase(request, addon):
             currency = preapproval.currency
 
     if waffle.flag_is_active(request, 'solitude-payments'):
-        # TODO(solitude): when the migration of data is completed, we
-        # will be able to remove this. Seller data is populated in solitude
-        # on submission or devhub changes. If those don't occur, you won't be
-        # able to sell at all.
-        client.create_seller_for_pay(addon)
-
         # Now call the client.
         result = {}
         try:
@@ -141,25 +146,8 @@ def purchase(request, addon):
                                source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
                                paykey=paykey, user=request.amo_user,
-                               price_tier=addon.premium.price)
-
-        # Grab a client data object to hook up with the Contribution object.
-        try:
-            download_source = DownloadSource.objects.get(name=download_source)
-        except DownloadSource.DoesNotExist:
-            download_source = None
-        try:
-            region = request.REGION.id
-        except AttributeError:
-            region = mkt.regions.WORLDWIDE.id
-        client_data, c = ClientData.objects.get_or_create(
-            download_source=download_source,
-            device_type=request.POST.get('device_type', ''),
-            user_agent=request.META.get('HTTP_USER_AGENT', ''),
-            is_chromeless=request.POST.get('chromeless', False),
-            language=request.LANG,
-            region=region)
-        contrib.update(client_data=client_data)
+                               price_tier=addon.premium.price,
+                               client_data=ClientData.get_or_create(request))
 
         log.debug('Storing contrib for uuid: %s' % uuid_)
 

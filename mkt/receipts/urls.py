@@ -7,7 +7,7 @@ from . import views
 
 # Note: this URL is embedded in receipts, if you change the URL, make sure
 # that you put a redirect in.
-purchase_patterns = patterns('',
+app_receipt_patterns = patterns('',
     url('^reissue$', views.reissue, name='purchase.reissue'),
     url('^record$',
         (views.record_anon

@@ -23,11 +23,11 @@ from users.models import UserProfile
 from zadmin.models import DownloadSource
 
 
-class TestPurchaseEmbedded(amo.tests.TestCase):
+class PurchaseTest(amo.tests.TestCase):
     fixtures = ['base/users', 'market/prices', 'webapps/337141-steamcube']
 
     def setUp(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.create_switch(name='marketplace')
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -35,10 +35,14 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         AddonPremium.objects.create(addon=self.addon, price=self.price,
                                     currencies=['BRL'])
         self.purchase_url = self.addon.get_purchase_url()
-        self.client.login(username='regular@mozilla.com', password='password')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
         self.brl = PriceCurrency.objects.create(currency='BRL',
                                                 price=Decimal('0.5'),
                                                 tier_id=1)
+
+
+class TestPurchaseEmbedded(PurchaseTest):
 
     def test_premium_only(self):
         self.addon.update(premium_type=amo.ADDON_FREE)

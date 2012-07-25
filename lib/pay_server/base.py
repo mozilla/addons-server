@@ -35,6 +35,9 @@ mapping = {
     'seller': ['generic', 'seller', ['get', 'post']],
     'seller_paypal': ['paypal', 'seller', ['get', 'post', 'patch']],
     'seller_bluevia': ['bluevia', 'seller', ['get', 'post', 'patch']],
+    # BlueVia APIs
+    'prepare_bluevia_pay': ['bluevia', 'prepare-pay', ['post']],
+    'verify_bluevia_jwt': ['bluevia', 'verify-jwt', ['post']],
     # PayPal APIs
     'account_check': ['paypal', 'account-check', ['post']],
     'ipn': ['paypal', 'ipn', ['post']],
