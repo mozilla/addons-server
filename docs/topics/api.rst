@@ -289,10 +289,46 @@ Delete
 
 Delete a screenshot of video::
 
-        DELETE /en-US/api/apps/previe/<preview id>/
+        DELETE /en-US/api/apps/preview/<preview id>/
 
 This will return a 204 if the screenshot has been deleted.
 
+Enabling an App
+===============
+
+Once all the data has been completed and at least one screenshot created, you
+can push the app to the review queue::
+
+        PATCH /en-US/api/apps/status/<app id>/
+        {"status": "pending"}
+
+* `status` (optional): key statuses are
+
+  * `incomplete`: incomplete
+  * `pending`: pending
+  * `public`: public
+  * `waiting`: waiting to be public
+
+* `disabled_by_user` (optional): `True` or `False`.
+
+Valid transitions that users can initiate are:
+
+* *waiting to be public* to *public*: occurs when the app has been reviewed,
+  but not yet been made public.
+* *incomplete* to *pending*: call this once your app has been completed and it
+  will be added to the Marketplace review queue. This can only be called if all
+  the required data is there. If not, you'll get an error containing the
+  reason. For example::
+
+        PATCH /en-US/api/apps/status/<app id>/
+        {"status": "pending"}
+
+        Status code: 400
+        {"error_message":
+                {"status": ["You must provide a support email.",
+                            "You must provide at least one device type.",
+                            "You must provide at least one category.",
+                            "You must upload at least one screenshot or video."]}}
 
 Other APIs
 ----------

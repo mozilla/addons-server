@@ -42,6 +42,41 @@ STATUS_CHOICES = {
     STATUS_PUBLIC_WAITING: _('Approved but waiting'),
 }
 
+# We need to expose nice values that aren't localisable.
+STATUS_CHOICES_API = {
+    STATUS_NULL: 'incomplete',
+    STATUS_UNREVIEWED: 'unreviewed',
+    STATUS_PENDING: 'pending',
+    STATUS_NOMINATED: 'nominated',
+    STATUS_PUBLIC: 'public',
+    STATUS_DISABLED: 'disabled',
+    STATUS_LISTED: 'listed',
+    STATUS_BETA: 'beta',
+    STATUS_LITE: 'lite',
+    STATUS_LITE_AND_NOMINATED: 'lite-nominated',
+    STATUS_PURGATORY: 'purgatory',
+    STATUS_DELETED: 'deleted',
+    STATUS_REJECTED: 'rejected',
+    STATUS_PUBLIC_WAITING: 'waiting',
+}
+
+STATUS_CHOICES_API_LOOKUP = {
+    'incomplete': STATUS_NULL,
+    'unreviewed': STATUS_UNREVIEWED,
+    'pending': STATUS_PENDING,
+    'nominated': STATUS_NOMINATED,
+    'public': STATUS_PUBLIC,
+    'disabled': STATUS_DISABLED,
+    'listed': STATUS_LISTED,
+    'beta': STATUS_BETA,
+    'lite': STATUS_LITE,
+    'lite-nominated': STATUS_LITE_AND_NOMINATED,
+    'purgatory': STATUS_PURGATORY,
+    'deleted': STATUS_DELETED,
+    'rejected': STATUS_REJECTED,
+    'waiting': STATUS_PUBLIC_WAITING,
+}
+
 PUBLIC_IMMEDIATELY = None
 # Our MySQL does not store microseconds.
 PUBLIC_WAIT = datetime.max.replace(microsecond=0)

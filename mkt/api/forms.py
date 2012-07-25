@@ -6,7 +6,7 @@ from django import forms
 
 import happyforms
 
-from addons.models import Category
+from addons.models import Addon, Category
 import amo
 from files.models import FileUpload
 from mkt.developers.utils import check_upload
@@ -71,3 +71,35 @@ class CategoryForm(happyforms.Form):
     # Hopefully this is easier.
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
+
+
+class StatusForm(happyforms.ModelForm):
+    status = forms.ChoiceField(choices=(), required=False)
+
+    lookup = {
+        # You can push to the pending queue.
+        amo.STATUS_NULL: amo.STATUS_PENDING,
+        # You can push to public if you've been reviewed.
+        amo.STATUS_PUBLIC_WAITING: amo.STATUS_PUBLIC,
+    }
+
+    class Meta:
+        model = Addon
+        fields = ['status', 'disabled_by_user']
+
+    def __init__(self, *args, **kw):
+        super(StatusForm, self).__init__(*args, **kw)
+        choice = self.lookup.get(self.instance.status)
+        choices = []
+        if self.instance.status in self.lookup:
+            choices.append(amo.STATUS_CHOICES_API[choice])
+        choices.append(amo.STATUS_CHOICES_API[self.instance.status])
+        self.fields['status'].choices = [(k, k) for k in sorted(choices)]
+
+    def clean_status(self):
+        requested = self.cleaned_data['status']
+        if requested == amo.STATUS_CHOICES_API[amo.STATUS_PENDING]:
+            valid, reasons = self.instance.is_complete()
+            if not valid:
+                raise forms.ValidationError(reasons)
+        return amo.STATUS_CHOICES_API_LOOKUP[requested]

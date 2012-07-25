@@ -25,7 +25,7 @@ import urlparse
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.test.client import Client
+from django.test.client import Client, FakePayload
 
 import oauth2 as oauth
 from mock import Mock, patch
@@ -110,7 +110,7 @@ class OAuthClient(Client):
             'CONTENT_TYPE': 'application/json',
             'PATH_INFO': urllib.unquote(parsed[2]),
             'REQUEST_METHOD': 'PATCH',
-            'wsgi.input': data,
+            'wsgi.input': FakePayload(data),
             'HTTP_HOST': 'api',
             'HTTP_AUTHORIZATION': self.header('PATCH', url)
         }

@@ -18,7 +18,7 @@ from files.models import FileUpload, Platform
 from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
-from mkt.api.forms import CategoryForm, UploadForm
+from mkt.api.forms import CategoryForm, UploadForm, StatusForm
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
 from mkt.developers.forms import PreviewForm
@@ -183,6 +183,54 @@ class AppResource(MarketplaceResource):
             bundle.data['device_types'] = [str(n.name).lower()
                                             for n in obj.device_types]
         return bundle
+
+
+class StatusResource(MarketplaceResource):
+
+    class Meta:
+        queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
+        fields = ['status', 'disabled_by_user']
+        list_allowed_methods = []
+        allowed_methods = ['patch', 'get']
+        always_return_data = True
+        authentication = MarketplaceAuthentication()
+        authorization = AppOwnerAuthorization()
+        resource_name = 'status'
+        serializer = Serializer(formats=['json'])
+
+    @write
+    @transaction.commit_on_success
+    def obj_update(self, bundle, request, **kwargs):
+        try:
+            obj = self.get_object_list(bundle.request).get(**kwargs)
+        except Addon.DoesNotExist:
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        form = StatusForm(bundle.data, instance=obj)
+        if not form.is_valid():
+            raise self.form_errors(form)
+
+        form.save()
+        log.info('App status updated: %s' % obj.pk)
+        bundle.obj = obj
+        return bundle
+
+    def obj_get(self, request=None, **kwargs):
+        obj = super(StatusResource, self).obj_get(request=request, **kwargs)
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        log.info('App status retreived: %s' % obj.pk)
+        return obj
+
+    def dehydrate_status(self, bundle):
+        return amo.STATUS_CHOICES_API[int(bundle.data['status'])]
+
+    def hydrate_status(self, bundle):
+        return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
 
 
 class CategoryResource(MarketplaceResource):
