@@ -51,6 +51,8 @@ def _open_manifest(webapp, file_):
     except IOError:
         _log(webapp, u'Original manifest could not be found at: %s' % path,
              exc_info=True)
+    except ValueError:
+        _log(webapp, u'JSON decoding error', exc_info=True)
 
 
 @task
