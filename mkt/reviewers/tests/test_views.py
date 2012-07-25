@@ -15,7 +15,6 @@ from pyquery import PyQuery as pq
 import amo
 import reviews
 from abuse.models import AbuseReport
-from access.models import Group, GroupUser
 from addons.models import AddonDeviceType, AddonUser, DeviceType
 from amo.tests import app_factory, check_links, formset, initial
 from amo.urlresolvers import reverse
@@ -42,6 +41,12 @@ class AppReviewerTest(amo.tests.TestCase):
     def login_as_editor(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
+
+    def login_as_senior_reviewer(self):
+        self.client.logout()
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.login_as_editor()
 
     def check_actions(self, expected, elements):
         """Check the action buttons on the review page.
@@ -303,13 +308,28 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         ]
         check_links(expected, links, verify=False)
 
-    def test_action_buttons_public(self):
+    def test_action_buttons_public_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
             (u'Disable app', 'disable'),
+            (u'Clear Re-review', 'clear_rereview'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    def test_action_buttons_public(self):
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Reject', 'reject'),
             (u'Clear Re-review', 'clear_rereview'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
@@ -394,13 +414,27 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         ]
         check_links(expected, links, verify=False)
 
-    def test_action_buttons_public(self):
+    def test_action_buttons_public_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
             (u'Disable app', 'disable'),
+            (u'Clear Escalation', 'clear_escalation'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    def test_action_buttons_public(self):
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Reject', 'reject'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -599,13 +633,24 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         adm_msg = mail.outbox[1]
         self._check_admin_email(adm_msg, 'Escalated Review Requested')
 
-    def test_pending_to_disable(self):
+    def test_pending_to_disable_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+
         self.app.update(status=amo.STATUS_PUBLIC)
         self.post({'action': 'disable', 'comments': 'disabled ur app'})
         eq_(self.get_app().status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
+    def test_pending_to_disable(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        res = self.client.post(self.url, {'action': 'disable',
+                                          'comments': 'disabled ur app'})
+        eq_(res.status_code, 200)
+        ok_('action' in res.context['form'].errors)
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(len(mail.outbox), 0)
 
     def test_escalation_to_public(self):
         EscalationQueue.objects.create(addon=self.app)
@@ -647,7 +692,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
-    def test_escalation_to_disable(self):
+    def test_escalation_to_disable_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         self.post({'action': 'disable', 'comments': 'disabled ur app'},
@@ -657,6 +704,18 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
+    def test_escalation_to_disable(self):
+        EscalationQueue.objects.create(addon=self.app)
+        self.app.update(status=amo.STATUS_PUBLIC)
+        res = self.client.post(self.url, {'action': 'disable',
+                                          'comments': 'disabled ur app'},
+                               queue='escalated')
+        eq_(res.status_code, 200)
+        ok_('action' in res.context['form'].errors)
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(EscalationQueue.objects.count(), 1)
+        eq_(len(mail.outbox), 0)
 
     def test_clear_escalation(self):
         self.app.update(status=amo.STATUS_PUBLIC)
@@ -688,7 +747,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
-    def test_rereview_to_disable(self):
+    def test_rereview_to_disable_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         self.post({'action': 'disable', 'comments': 'disabled ur app'},
@@ -698,6 +759,18 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
+
+    def test_rereview_to_disable(self):
+        RereviewQueue.objects.create(addon=self.app)
+        self.app.update(status=amo.STATUS_PUBLIC)
+        res = self.client.post(self.url, {'action': 'disable',
+                                          'comments': 'disabled ur app'},
+                               queue='rereview')
+        eq_(res.status_code, 200)
+        ok_('action' in res.context['form'].errors)
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(RereviewQueue.objects.filter(addon=self.app).count(), 1)
+        eq_(len(mail.outbox), 0)
 
     def test_clear_rereview(self):
         self.app.update(status=amo.STATUS_PUBLIC)
@@ -1026,9 +1099,7 @@ class TestMotd(AppReviewerTest, AccessMixin):
     def test_motd_change(self):
         # Only users in the MOTD group can POST.
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        group = Group.objects.create(name='App Reviewer MOTD',
-                                     rules='AppReviewerMOTD:Edit')
-        GroupUser.objects.create(user=user, group=group)
+        self.grant_permission(user, 'AppReviewerMOTD:Edit')
         self.login_as_editor()
 
         # Get is a 200 with a form.

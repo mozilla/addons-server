@@ -7,6 +7,7 @@ import commonware.log
 from tower import ugettext_lazy as _lazy
 
 import amo
+from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
@@ -209,6 +210,9 @@ class ReviewApp(ReviewBase):
 
     def process_disable(self):
         """Disables app."""
+        if not acl.action_allowed(self.request, 'Addons', 'Edit'):
+            return
+
         self.addon.update(status=amo.STATUS_DISABLED)
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
@@ -262,8 +266,8 @@ class ReviewHelper(object):
             'method': self.handler.process_sandbox,
             'label': _lazy(u'Reject'),
             'minimal': False,
-            'details': _lazy(u'This will reject the app and remove it from the '
-                             u'review queue.')}
+            'details': _lazy(u'This will reject the app and remove it from '
+                             u'the review queue.')}
         info = {
             'method': self.handler.request_information,
             'label': _lazy(u'Request more information'),
@@ -311,7 +315,8 @@ class ReviewHelper(object):
             actions['reject'] = reject
 
         # Disable.
-        if self.addon.status == amo.STATUS_PUBLIC:
+        if (acl.action_allowed(self.handler.request, 'Addons', 'Edit') and
+            self.addon.status != amo.STATUS_DISABLED):
             actions['disable'] = disable
 
         # Clear escalation.

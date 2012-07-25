@@ -29,6 +29,7 @@ import addons.search
 import amo
 import mkt.stats.search
 import stats.search
+from access.models import Group, GroupUser
 from addons.models import Addon, Category, DeviceType, Persona
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
@@ -341,6 +342,11 @@ class TestCase(RedisTest, test_utils.TestCase):
         """Skips a test if a particular setting is disabled."""
         if not setting:
             raise SkipTest('Skipping since setting %r is disabled' % setting)
+
+    def grant_permission(self, user_obj, rules):
+        """Creates group with rule, and adds user to group."""
+        group = Group.objects.create(name='Test Group', rules=rules)
+        GroupUser.objects.create(group=group, user=user_obj)
 
 
 class AMOPaths(object):
