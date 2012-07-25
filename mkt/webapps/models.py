@@ -23,6 +23,7 @@ from addons.models import (Addon, AddonDeviceType, update_name_table,
 from versions.models import Version
 
 import mkt
+from mkt.constants import ratingsbodies
 
 log = commonware.log.getLogger('z.addons')
 
@@ -395,3 +396,19 @@ class AddonExcludedRegion(amo.models.ModelBase):
 
     def get_region(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT.get(self.region)
+
+
+class ContentRating(amo.models.ModelBase):
+    """
+    Ratings body information about an app.
+    """
+    addon = models.ForeignKey('addons.Addon', related_name='ratings')
+    ratings_body = models.PositiveIntegerField(
+        choices=[(k, rb.name) for k, rb in ratingsbodies.RATINGS_BODIES.items()],
+        null=False)
+    rating = models.PositiveIntegerField(null=False)
+
+    def __unicode__(self):
+        rb = ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        return '%s - %s' % (rb.name,
+                            rb.ratings[self.rating].name)

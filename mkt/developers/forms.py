@@ -22,6 +22,12 @@ from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
 from amo.utils import raise_required, remove_icons
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
+from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
+                                         RATINGS_BODIES)
+from mkt.inapp_pay.models import InappConfig
+from mkt.reviewers.models import RereviewQueue
+from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
+from mkt.webapps.models import Webapp, ContentRating
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -280,6 +286,9 @@ class PreviewForm(happyforms.ModelForm):
 class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
     mozilla_contact = forms.EmailField(required=False)
+    app_ratings = forms.MultipleChoiceField(
+        required=False,
+        choices=RATINGS_BY_NAME)
 
     class Meta:
         model = Preview
@@ -300,6 +309,12 @@ class AdminSettingsForm(PreviewForm):
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
 
+            rs = []
+            for r in addon.ratings.all():
+                rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
+                rs.append(ALL_RATINGS.index(rating))
+            self.initial['app_ratings'] = rs
+
     def clean_caption(self):
         return '__promo__'
 
@@ -318,7 +333,14 @@ class AdminSettingsForm(PreviewForm):
         contact = self.cleaned_data.get('mozilla_contact')
         if contact:
             addon.update(mozilla_contact=contact)
-
+        ratings = self.cleaned_data.get('app_ratings')
+        if ratings:
+            ratings = set(int(r) for r in ratings)
+            addon.ratings.exclude(rating__in=ratings).delete()
+            for i in ratings - set(addon.ratings.filter(rating__in=ratings)):
+                r = ALL_RATINGS[i]
+                ContentRating.objects.create(addon=addon, rating=r.id,
+                                             ratings_body=r.ratingsbody.id)
         return addon
 
 

@@ -3,6 +3,8 @@ import sys
 
 from tower import ugettext_lazy as _lazy
 
+from mkt.constants import ratingsbodies
+
 
 class REGION(object):
     """
@@ -38,6 +40,7 @@ class REGION(object):
     adolescent = True
     mcc = None
     weight = 0
+    ratingsbodies = ()
 
 
 class FUTURE(REGION):
@@ -103,6 +106,7 @@ class BR(REGION):
     default_currency = 'BRL'
     default_language = 'pt-BR'
     mcc = 724
+    ratingsbodies = (ratingsbodies.DJCTQ,)
 
 
 # Create a list of tuples like so (in alphabetical order):

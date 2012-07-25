@@ -23,6 +23,9 @@ from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory,
                            AddonDeviceType, AddonUser, Category, DeviceType)
 from lib.video.tests import files as video_files
+from mkt.constants.ratingsbodies import RATINGS_BODIES
+from mkt.developers.models import ActivityLog
+from mkt.webapps.models import ContentRating
 from users.models import UserProfile
 
 import mkt
@@ -1359,6 +1362,45 @@ class TestAdminSettings(TestAdmin):
 
         # Test POST. Ignore errors.
         eq_(self.client.post(self.edit_url).status_code, 403)
+
+    def test_ratings_edit_add(self):
+        self.log_in_with('Apps:Configure')
+
+        data = {'caption': 'ball so hard that ish cray',
+                'position': '1',
+                'upload_hash': 'abcdef',
+                'app_ratings': '2'
+                }
+        r = self.client.post(self.edit_url, data)
+        eq_(r.status_code, 200)
+        webapp = self.get_webapp()
+        eq_(list(webapp.ratings.values_list('ratings_body', 'rating')),
+            [(0, 2)])
+
+    def test_ratings_edit_update(self):
+        self.log_in_with('Apps:Configure')
+        webapp = self.get_webapp()
+        ContentRating.objects.create(addon=webapp, ratings_body=0, rating=2)
+        data = {'caption': 'ball so hard that ish cray',
+                'position': '1',
+                'upload_hash': 'abcdef',
+                'app_ratings': ('1', '3')
+                }
+        r = self.client.post(self.edit_url, data)
+        eq_(r.status_code, 200)
+        eq_(list(webapp.ratings.all().values_list('ratings_body', 'rating')),
+            [(0, 1), (0, 3)])
+
+    def test_ratings_view(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        webapp = self.get_webapp()
+        ContentRating.objects.create(addon=webapp, ratings_body=0, rating=2)
+        r = self.client.get(self.url)
+        txt = pq(r.content)[0].xpath(
+            "//label[@for='app_ratings']/../../td/div/text()")[0]
+        eq_(txt,
+            '%s - %s' % (RATINGS_BODIES[0].name,
+                         RATINGS_BODIES[0].ratings[2].name))
 
 
 class TestPromoUpload(TestAdmin):
