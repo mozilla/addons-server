@@ -19,7 +19,7 @@
 </form>
 
 <ul id="messages">
-  {% for msg in mail|reverse %}
+  {% for msg in mail %}
     <li id="msg-{{ loop.revindex }}">
       <a href="#msg-{{ loop.revindex }}">#{{ loop.revindex }}</a>
       <pre>{{ msg }}</pre>
