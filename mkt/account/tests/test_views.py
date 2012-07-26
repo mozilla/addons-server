@@ -16,7 +16,6 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonPremium, AddonUser
-from lib.pay_server import client
 from market.models import PreApprovalUser, Price, PriceCurrency
 from mkt.developers.models import ActivityLog
 import paypal
@@ -554,6 +553,7 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(pq(r.content)('#my-submissions .paginator').length, 1)
 
     def test_my_reviews(self):
+        self.create_switch(name='ratings')
         review = Review.objects.create(user=self.user, addon_id=337141)
         eq_(list(self.user.reviews), [review])
 

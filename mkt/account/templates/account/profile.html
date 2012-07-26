@@ -93,20 +93,21 @@
     <div class="island primary{{ ' full' if not (own_coll or fav_coll) }}"
          id="reviews">
       <h2>{{ _('My Reviews') }}</h2>
-      <ol class="reviews items-profile">
-        {% if reviews %}
-          {% for review in reviews %}
+      {% if reviews.object_list %}
+        <ol class="reviews items-profile">
+          {% for review in reviews.object_list %}
             {% with product = review.addon, show_addon = True %}
               {% include "ratings/rating.html" %}
             {% endwith %}
           {% endfor %}
-          {% include 'ratings/edit.html' %}
-        {% else %}
-          <p class="no-reviews no-results">
-            {{ _('No app reviews yet.') }}
-          </p>
-        {% endif %}
-      </ol>
+        </ol>
+        {% include 'ratings/edit.html' %}
+        {{ reviews|impala_paginator }}
+      {% else %}
+        <p class="no-reviews no-results">
+          {{ _('No app reviews yet.') }}
+        </p>
+      {% endif %}
     </div>
     {% endif %}
 
