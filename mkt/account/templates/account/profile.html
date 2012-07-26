@@ -89,6 +89,7 @@
       </div>
     {% endif %}
 
+    {% if waffle.switch('ratings') %}
     <div class="island primary{{ ' full' if not (own_coll or fav_coll) }}"
          id="reviews">
       <h2>{{ _('My Reviews') }}</h2>
@@ -107,6 +108,7 @@
         {% endif %}
       </ol>
     </div>
+    {% endif %}
 
   </section>
 {% endblock %}
