@@ -52,7 +52,8 @@
             href="{{ product.get_ratings_url('reply', args=[review.id]) }}">{{ _('Reply') }}</a></li>
         {% endif %}
         {% if review.user_id == request.user.id %}
-          <li><a class="edit" data-action="edit" href="#">{{ _('Edit') }}</a></li>
+          <li><a class="edit{{ ' post' if is_reply }}" data-action="edit{{ '-reply' if is_reply }}"
+            href="{{ product.get_ratings_url('reply', args=[review.reply_to_id]) if is_reply else '#' }}">{{ _('Edit') }}</a></li>
         {% endif %}
         <li{% if not check_review_delete(review) %} class="hidden"{% endif %}><a
           href="{{ product.get_ratings_url('delete', args=[review.id]) }}"

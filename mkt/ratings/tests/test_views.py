@@ -141,6 +141,19 @@ class TestCreate(ReviewTest):
         # production; we're handling it because there are reviews like this
         # on staging/dev.
 
+    def test_review_reply_edit(self):
+        self.log_in_dev()
+        old_cnt = Review.objects.count()
+        log_count = ActivityLog.objects.count()
+
+        r = self.client.post(
+            self.webapp.get_ratings_url('reply',
+                                        args=[self.reply.reply_to_id]),
+            {'body': 'revision'})
+        eq_(Review.objects.count(), old_cnt)
+        eq_(ActivityLog.objects.count(), log_count + 1,
+            'Expected EDIT_REVIEW entry')
+
     def test_can_review_purchased(self):
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)

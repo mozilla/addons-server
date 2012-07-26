@@ -102,8 +102,15 @@ def reply(request, addon, review_id):
             setattr(reply, k, v)
         reply.save()
         action = 'New' if new else 'Edited'
+        if new:
+            amo.log(amo.LOG.ADD_REVIEW, addon, reply)
+        else:
+            amo.log(amo.LOG.EDIT_REVIEW, addon, reply)
+
         log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
-        messages.success(request, _('Your reply was successfully added!'))
+        messages.success(request,
+                         _('Your reply was successfully added.') if new else
+                         _('Your reply was successfully updated.'))
 
     return http.HttpResponse()
 
@@ -126,9 +133,9 @@ def add(request, addon):
     client_data = None
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     install = (Installed.objects.filter(user=request.user, addon=addon)
-               .order_by('-created'))
+                                .order_by('-created'))
     install_w_user_agent = (install.filter(client_data__user_agent=user_agent)
-                            .order_by('-created'))
+                                   .order_by('-created'))
     try:
         if install_w_user_agent:
             client_data = install_w_user_agent[0].client_data

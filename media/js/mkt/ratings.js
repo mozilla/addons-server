@@ -81,9 +81,9 @@
     function flagReview(reviewEl) {
         var overlay = makeOrGetOverlay('flag-review');
         overlay.addClass('show');
-        overlay.on('click', '.cancel', _pd(function() {
+        overlay.one('click', '.cancel', _pd(function() {
             overlay.removeClass('show');
-        })).on('click', '.menu a', _pd(function(e) {
+        })).one('click', '.menu a', _pd(function(e) {
             var flag = $(e.target).attr('href').slice(1),
                 actionEl = reviewEl.find('.actions .flag');
             overlay.removeClass('show');
@@ -154,6 +154,14 @@
         });
     }
 
+    function editReply(reviewEl, action) {
+        var overlay = makeOrGetOverlay('edit-reply-review'),
+            body = reviewEl.find('.body').html().trim();
+        overlay.html(format($('#edit-reply-review-template').html(),
+                            {action: action, body: body}));
+        handleReviewOverlay(overlay);
+    }
+
     // Toggle rating breakdown.
     z.page.on('click', '.average-rating', _pd(function() {
         $('.grouped-ratings').toggle();
@@ -162,12 +170,10 @@
         $('.grouped-ratings').hide();
     }));
 
-    z.page.on('click', '.review .actions a', function(e) {
+    z.page.on('click', '.review .actions a', _pd(function(e) {
         var $this = $(this),
             action = $this.data('action');
         if (!action) return;
-        e.stopPropagation();
-        e.preventDefault();
         var $review = $this.closest('.review');
         switch (action) {
             case 'delete':
@@ -182,8 +188,11 @@
             case 'reply':
                 replyReview($review, $this.attr('href'));
                 break;
+            case 'edit-reply':
+                editReply($review, $this.attr('href'));
+                break;
         }
-    });
+    }));
 
     // View reply.
     z.page.on('click', '.review .view-reply', _pd(function() {
