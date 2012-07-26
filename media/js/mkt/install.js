@@ -25,29 +25,21 @@
     }
 
     function startLaunch(product) {
-        var attempts = 0,
-            max_attempts = 6;
-        var intVal = setInterval(function() {
-            if (attempts >= max_attempts) {
-                return;
-            }
-            if (!z.capabilities.webApps) {
-                return;
-            }
-            var r = window.navigator.mozApps.getInstalled();
-            r.onerror = function(e) {
-                throw 'Error calling getInstalled: ' + r.error.name;
-            };
-            r.onsuccess = function() {
-                z.apps = r.result;
-                _.each(r.result, function(app) {
-                    if (app.manifestURL == product.manifestUrl) {
-                        return app.launch();
-                    }
-                });
-            };
-            attempts++;
-        }, 500);
+        if (!z.capabilities.webApps) {
+            return;
+        }
+        var r = window.navigator.mozApps.getInstalled();
+        r.onerror = function(e) {
+            throw 'Error calling getInstalled: ' + r.error.name;
+        };
+        r.onsuccess = function() {
+            z.apps = r.result;
+            _.each(r.result, function(app) {
+                if (app.manifestURL == product.manifestUrl) {
+                    return app.launch();
+                }
+            });
+        };
     }
 
     function startInstall(product) {
