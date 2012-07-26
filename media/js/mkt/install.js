@@ -3,43 +3,11 @@
 (function() {
     z.page.on('click', '.button.product', clickHandler);
 
-    // Automatically launch the app for reviewers.
-    $(window).on('app_install_success.reviewers', function(e, product, installedNow) {
-        if (installedNow && location.pathname.indexOf('/reviewers/') > -1) {
-            setTimeout(function() {
-                startLaunch(product);
-            }, 1000);
-        }
-    });
-
     function clickHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        var $this = $(this),
-            product = $this.data('product');
-        if ($this.hasClass('launch')) {
-            startLaunch(product);
-        } else {
-            startInstall(product);
-        }
-    }
-
-    function startLaunch(product) {
-        if (!z.capabilities.webApps) {
-            return;
-        }
-        var r = window.navigator.mozApps.getInstalled();
-        r.onerror = function(e) {
-            throw 'Error calling getInstalled: ' + r.error.name;
-        };
-        r.onsuccess = function() {
-            z.apps = r.result;
-            _.each(r.result, function(app) {
-                if (app.manifestURL == product.manifestUrl) {
-                    return app.launch();
-                }
-            });
-        };
+        var product = $(this).data('product');
+        startInstall(product);
     }
 
     function startInstall(product) {

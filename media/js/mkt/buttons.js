@@ -68,7 +68,7 @@
                 $how.show();
             }
         }
-        setButton($button, gettext('Launch'), 'launch');
+        setButton($button, gettext('Installed'), 'installed');
     }).bind('app_purchase_error app_install_error', function(e, product, msg) {
         var $button = getButton(product),
             errSummary;
