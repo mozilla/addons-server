@@ -3,15 +3,12 @@
     <h1 class="logo"><a href="{{ url('home') }}">{{ _('Mozilla Marketplace') }}</a></h1>
     {% if request.can_view_consumer %}
     <nav role="navigation">
-      <a href="{{ url('home') }}" class="header-button home"><b></b></a>
-      <a href="{{ url('account.settings') }}" class="header-button settings"><b></b></a>
-      <a href="#" class="header-button back"><b></b></a>
-      <a href="#" class="header-button search"><b></b></a>
-      <a href="#" class="header-button cancel">&times;</a>
-      <a href="#" class="header-button filter">{{ _('Filter') }}</a>
-      <a href="{{ url('users.logout') }}" class="header-button logout">
-        {{ _('Sign out') }}
-      </a>
+      <a href="{{ url('home') }}" class="header-button icon home left">{{ _('Home') }}</a>
+      <a href="{{ url('account.settings') }}" class="header-button icon settings left">{{ _('Settings') }}</a>
+      <a href="#" class="header-button icon back left">{{ _('Back') }}</a>
+      <a href="#" class="header-button icon search right">{{ _('Search') }}</a>
+      <a href="#" class="header-button icon cancel right">{{ _('Cancel') }}</a>
+      <a href="#" class="header-button filter right">{{ _('Filter') }}</a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
         {% set search_form = SimpleSearchForm(data) %}

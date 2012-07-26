@@ -1,96 +1,120 @@
+// styles for the global site header only.
 @import 'lib';
 
-// Top-level page name (useful for mobile).
+// compensate for fixed header.
+#page {
+    padding-top: 50px;
+}
+
 #top {
     display: none;
 }
 
 #site-header {
     .border-box;
-    background: @grain-src @navy-gray;
-    height: 82px;
+    > section {
+        position: relative;
+    }
+    .gradient-two-color(#566773, #3e4e59);
+    .box-shadow(0 1px 6px fade(#000, 35%),
+                0 1px fade(#000, 20%));
+
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 100;
     h1 {
         float: left;
         padding: 15px 0;
-    }
-    .logo a {
-        .hidetext;
-        background: url(../../img/mkt/logos/wordmark.png) -3px 0 no-repeat;
-        display: block;
-        width: 215px;
-        height: 52px;
-    }
-    .region {
-        .medium-text-shadow;
-        border-left: 1px solid @text;
-        color: @white;
-        cursor: pointer;
-        font-size: 16px;
-        height: 20px;
-        line-height: 20px;
-        margin: 5px 0 0 15px;
-        padding-left: 15px;
-        position: relative;
-        bottom: -10px;
-    }
-    // Bartelme is sick wit' it!
-    // http://www.bartelme.at/journal/archive/flag_button_devkit/
-    .flag {
-        background: url(../../img/mkt/icons/regions/us.png) 15px 50% no-repeat;
-        background-size: auto 30px;
-        padding: 15px 0 15px 55px;
-        &.au {
-            background-image: url(../../img/mkt/icons/regions/au.png);
-        }
-        &.br {
-            background-image: url(../../img/mkt/icons/regions/br.png);
-        }
-        &.ca {
-            background-image: url(../../img/mkt/icons/regions/ca.png);
-        }
-        &.es {
-            background-image: url(../../img/mkt/icons/regions/es.png);
-        }
-        &.nz {
-            background-image: url(../../img/mkt/icons/regions/nz.png);
-        }
-        &.uk {
-            background-image: url(../../img/mkt/icons/regions/uk.png);
+        a {
+            .hidetext;
+            background: url(../../img/mkt/logos/wordmark.png) -3px 0 no-repeat;
+            display: block;
+            width: 215px;
+            height: 52px;
         }
     }
-    nav {
+    nav,
+    > section {
         position: relative;
     }
     form {
         display: inline-block;
         margin-top: 10px;
     }
+    .pressed() {
+        background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+    }
 }
 
 .header-button {
-    display: none;
-    float: left;
-    width: 42px;
-    height: 30px;
-    .border-radius(5px);
-    .gradient-two-color(#f8f8f8, #d6d6d6);
-    margin: 10px 15px 0;
-    .box-shadow(0 1px 0 1px rgba(0,0,0,0.2));
-    &:hover {
-        .gradient-two-color(lighten(#f8f8f8, 10%), darken(#def, 2%);
-        text-decoration: none;
+    width: 50px;
+    height: 50px;
+    text-indent: -1000%;
+    position: absolute;
+    &:after {
+        content: '';
+        z-index: 1;
+        position: absolute;
+        height: 34px;
+        width: 2px;
+        background: url(../../img/mkt/divider.png);
+        margin-top: 7px;
     }
-    &:active {
-        .box-shadow(inset 0px 1px 0px 0px fadeOut(#000,80%),
-                    inset 0px 8px 10px 6px fadeOut(#000,80%),
-                    inset 0px 0px 1px 1px fadeOut(#000,80%));
-        .gradient-two-color(#d6d6d6, #f8f8f8);
-        opacity: .9;
+    &.right {
+        right: 0;
+        &:after {
+            left: -1px;
+        }
     }
-    b {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
+    &.left {
+        left: 0;
+        &:after {
+            right: -1px;
+        }
+    }
+
+    // icons for header buttons
+    &.icon:before {
+        content: '';
+        width: 24px;
+        height: 24px;
+        background-image: url(../../img/mkt/header-icons.png);
+        background-repeat: no-repeat;
+        background-position: 0 24px;
+        display: block;
+        position: absolute;
+        top: 13px;
+        left: 13px;
+    }
+    &.settings:before {
+        background-position: 0 0px;
+    }
+    &.search:before {
+        background-position: 0 -24px;
+    }
+    &.back {
+        width: 20px;
+        #site-header > .pressed;
+        &:before {
+            background-position: 0 -48px;
+            width: 12px;
+            left: 4px;
+        }
+    }
+    &.home {
+        width: 29px;
+        background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+        &:before {
+            width: 18px;
+            left: 5px;
+            background-position: 0 -72px;
+        }
     }
 }
 
@@ -162,21 +186,9 @@
     }
 }
 
-.html-rtl #page header {
-    h1 {
-        float: right;
-    }
-    .sub-nav {
-        float: left;
-    }
-}
-
-.desktop #site-header #flyout a:after {
-    .transition(.2s right);
-}
-
 @drk-hding-start: darken(#394C58, 10%);
 @drk-hding-end: darken(#60747F, 10%);
+/*
 
 @media (max-width: @4col) {
     #page header h1,
@@ -224,9 +236,6 @@
         background-image: @grain-src,
                           -webkit-gradient(linear, left bottom, left top, from(@drk-hding-end), to(@drk-hding-end));
     }
-    .region {
-        display: none;
-    }
     .classic-header {
         .border-box;
         background: @grain-src @navy-gray;
@@ -245,7 +254,7 @@
     }
     #site-header {
         height: 50px;
-        .logo {
+        h1 {
             padding: 3px 7px 0 0;
             a {
                 height: 43px;
@@ -294,15 +303,6 @@
             display: block;
         }
         .header-button {
-            // The rocket icon is confusing and inconsistent. We can revisit later.
-            /*
-            &.home {
-                display: inline-block;
-                b {
-                    background: url(../../img/mkt/glyphs/rocket_btn.png) center no-repeat;
-                }
-            }
-            */
             &.filter {
                 display: inline-block;
                 font-weight: 600;
@@ -349,6 +349,37 @@
             padding: 0 10px;
             line-height: 30px;
             font-weight: 600;
+        }
+    }
+}
+
+*/
+
+// when to show what buttons where.
+// not certain if this is how we'll do this yet.
+body {
+    .header-button {
+        display: none;
+    }
+    &.search {
+        .header-button {
+            &.home {
+                display: block;
+            }
+        }
+    }
+    &.detail {
+        .header-button {
+            &.back {
+                display: block;
+            }
+        }
+    }
+    &.home {
+        .header-button {
+            &.search, &.settings {
+                display: block;
+            }
         }
     }
 }
