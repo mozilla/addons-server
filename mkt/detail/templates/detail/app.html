@@ -245,7 +245,7 @@
         {% if can_review %}
           <p><a class="overall-reviews arrow" id="add-first-review"
              href="{{ product.get_ratings_url('add') }}">
-            {{ _('Submit a Review') }}</a></p>
+            {{ _('Edit Your Review') if has_review else _('Submit a Review') }}</a></p>
         {% elif not reviews %}
           <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
         {% endif %}

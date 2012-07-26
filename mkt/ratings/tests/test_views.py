@@ -175,7 +175,9 @@ class TestCreate(ReviewTest):
         self.enable_waffle()
         self.client.logout()
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#add-first-review').length, 1)
+        submit_button = pq(r.content)('#add-first-review')
+        eq_(submit_button.length, 1)
+        eq_(submit_button.text(), 'Submit a Review')
 
     def test_add_link_logged(self):
         # Ensure logged user can see Add Review links.
@@ -246,6 +248,23 @@ class TestCreate(ReviewTest):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 1)
+
+    def test_reviews_premium_edit_review_link(self):
+        # Ensure 'Review this App' link exists for purchased premium apps.
+        self.enable_waffle()
+        Review.objects.create(
+            rating=4,
+            body={'ru': 'I \u042f so hard.'},
+            addon=self.webapp,
+            user=self.user,
+            ip_address='63.245.213.8'
+        )
+        self.webapp.addonpurchase_set.create(user=self.user)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get(self.detail)
+        submit_button = pq(r.content)('#add-first-review')
+        eq_(submit_button.length, 1)
+        eq_(submit_button.text(), 'Edit Your Review')
 
     def test_reviews_premium_refunded(self):
         # Ensure 'Review this App' link exists for refunded premium apps.

@@ -25,9 +25,12 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 @addon_all_view
 def detail(request, addon):
     """Product details page."""
+    reviews = Review.objects.latest().filter(addon=addon)
     ctx = {
         'product': addon,
-        'reviews': Review.objects.latest().filter(addon=addon),
+        'reviews': reviews,
+        'has_review': request.user.is_authenticated() and
+                      reviews.filter(user=request.user.id).exists()
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)
