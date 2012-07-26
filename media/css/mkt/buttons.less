@@ -83,15 +83,13 @@ a.arrow, .img.arrow {
     }
 
     &[disabled], &.disabled,
-    &.purchasing, &.purchased,
-    &.installing, &.installed {
-
+    &.purchasing, &.purchased:not(.launch),
+    &.installing {
         color: #919497;
         text-shadow: 0 1px 0 rgba(255,255,255,.5);
         pointer-events: none;
         background-color: @light-gray;
         .gradient-two-color(#ddd, @light-gray);
-
     }
 
     &.installed, &.purchased {
