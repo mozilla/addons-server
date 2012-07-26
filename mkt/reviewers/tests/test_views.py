@@ -923,6 +923,12 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
         self.url = reverse('reviewers.apps.logs')
 
+        self.task_user = UserProfile.objects.get(email='admin@mozilla.com')
+        patcher = mock.patch.object(settings, 'TASK_USER_ID',
+                                    self.task_user.id)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def get_user(self):
         return UserProfile.objects.all()[0]
 
@@ -930,6 +936,9 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         for app in self.apps:
             amo.log(amo.LOG.REJECT_VERSION, app, app.current_version,
                     user=self.get_user(), details={'comments': 'youwin'})
+            # Throw in a few tasks logs that shouldn't get queried.
+            amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, app, app.current_version,
+                    user=self.task_user, details={'comments': 'foo'})
 
     def make_an_approval(self, action, comment='youwin', username=None,
                          app=None):
