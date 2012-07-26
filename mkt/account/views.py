@@ -269,7 +269,7 @@ def profile(request, username):
                                per_page=5)
 
     reviews = user.reviews.filter(addon__type=amo.ADDON_WEBAPP)
-    reviews = paginate(request, reviews, per_page=10)
+    reviews = paginate(request, reviews, per_page=5)
 
     data = {'profile': user, 'edit_any_user': edit_any_user,
             'submissions': submissions, 'own_profile': own_profile,
