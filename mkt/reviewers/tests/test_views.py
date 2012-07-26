@@ -15,6 +15,7 @@ from pyquery import PyQuery as pq
 import amo
 import reviews
 from abuse.models import AbuseReport
+from access.models import GroupUser
 from addons.models import AddonDeviceType, AddonUser, DeviceType
 from amo.tests import app_factory, check_links, formset, initial
 from amo.urlresolvers import reverse
@@ -45,7 +46,7 @@ class AppReviewerTest(amo.tests.TestCase):
     def login_as_senior_reviewer(self):
         self.client.logout()
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Addons:Edit,Apps:ReviewEscalated')
         self.login_as_editor()
 
     def check_actions(self, expected, elements):
@@ -248,10 +249,20 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Moderated Reviews (0)')
+
+    def test_queue_count_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     def test_escalated_not_in_queue(self):
+        self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         res = self.client.get(self.url)
         # self.apps[2] is not pending so doesn't show up either.
@@ -362,10 +373,20 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Moderated Reviews (0)')
+
+    def test_queue_count_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     def test_escalated_not_in_queue(self):
+        self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         res = self.client.get(self.url)
         eq_(res.context['addons'], self.apps[1:])
@@ -395,11 +416,19 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         eq3 = EscalationQueue.objects.create(addon=self.apps[2])
         eq3.update(created=days_ago(1))
 
-        self.login_as_editor()
+        self.login_as_senior_reviewer()
         self.url = reverse('reviewers.apps.queue_escalated')
 
     def review_url(self, app):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
+
+    def test_no_access_regular_reviewer(self):
+        # Since setUp added a new group, remove all groups and start over.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        GroupUser.objects.filter(user=user).delete()
+        self.grant_permission(user, 'Apps:Review')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -414,27 +443,13 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         ]
         check_links(expected, links, verify=False)
 
-    def test_action_buttons_public_senior_reviewer(self):
-        self.login_as_senior_reviewer()
-
-        r = self.client.get(self.review_url(self.apps[0]))
-        eq_(r.status_code, 200)
-        actions = pq(r.content)('#review-actions input')
-        expected = [
-            (u'Reject', 'reject'),
-            (u'Disable app', 'disable'),
-            (u'Clear Escalation', 'clear_escalation'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
-        ]
-        self.check_actions(expected, actions)
-
     def test_action_buttons_public(self):
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
+            (u'Disable app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -448,6 +463,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Push to public', 'public'),
+            (u'Disable app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -1141,7 +1157,7 @@ class TestAbuseReports(amo.tests.TestCase):
         eq_(sorted([r.message for r in reports]), [u'eff', u'yeah'])
 
 
-class TestModeratedQueue(amo.tests.TestCase, AccessMixin):
+class TestModeratedQueue(AppReviewerTest, AccessMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1213,6 +1229,15 @@ class TestModeratedQueue(amo.tests.TestCase, AccessMixin):
         eq_(pq(res.content)('#reviews-flagged .no-results').length, 1)
 
     def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Moderated Reviews (2)')
+
+    def test_queue_count_senior_reviewer(self):
+        self.login_as_senior_reviewer()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)

@@ -12,6 +12,7 @@ class GroupAdmin(admin.ModelAdmin):
     raw_id_fields = ('users',)
     ordering = ('name',)
     list_display = ('name', 'rules', 'notes')
+    readonly_fields = ('rules',)
     inlines = (GroupUserInline,)
 
 

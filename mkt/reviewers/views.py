@@ -54,7 +54,7 @@ def home(request):
     return jingo.render(request, 'reviewers/home.html', data)
 
 
-def queue_counts(type=None, **kw):
+def queue_counts():
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
 
     counts = {
@@ -229,7 +229,7 @@ def queue_rereview(request):
                   lambda p: [r.addon for r in p.object_list])
 
 
-@permission_required('Apps', 'Review')
+@permission_required('Apps', 'ReviewEscalated')
 def queue_escalated(request):
     qs = (EscalationQueue.uncached.filter(addon__disabled_by_user=False)
                          .order_by('created'))

@@ -2,6 +2,7 @@ import jinja2
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+from access import acl
 from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
@@ -59,15 +60,21 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = context['queue_counts']
-    return [
+    rv = [
         ('pending', 'queue_pending',
          _('Apps ({0})', counts['pending']).format(counts['pending'])),
         ('rereview', 'queue_rereview',
          _('Re-reviews ({0})', counts['rereview']).format(counts['rereview'])),
-        ('escalated', 'queue_escalated',
-         _('Escalations ({0})',
-           counts['escalated']).format(counts['escalated'])),
+    ]
+    if acl.action_allowed(context['request'], 'Apps', 'ReviewEscalated'):
+        rv.append(
+            ('escalated', 'queue_escalated',
+             _('Escalations ({0})',
+               counts['escalated']).format(counts['escalated']))
+        )
+    rv.append(
         ('moderated', 'queue_moderated',
          _('Moderated Reviews ({0})',
            counts['moderated']).format(counts['moderated'])),
-    ]
+    )
+    return rv
