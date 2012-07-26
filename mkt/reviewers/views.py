@@ -91,7 +91,10 @@ def _progress():
     """
 
     days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
-    qs = Webapp.uncached.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    qs = (Webapp.uncached.exclude(id__in=excluded_ids)
+                         .filter(status=amo.WEBAPPS_UNREVIEWED_STATUS,
+                                 disabled_by_user=False))
     progress = {
         'new': qs.filter(created__gt=days_ago(5)).count(),
         'med': qs.filter(created__range=(days_ago(10), days_ago(5))).count(),

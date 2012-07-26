@@ -81,13 +81,20 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
     def setUp(self):
         self.login_as_editor()
         super(TestReviewersHome, self).setUp()
+        self.url = reverse('reviewers.home')
         self.apps = [app_factory(name='Antelope',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='Bear',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='Cougar',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
-        self.url = reverse('reviewers.home')
+        # Add a disabled app for good measure.
+        app_factory(name='Dungeness Crab', disabled_by_user=True,
+                    status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        # Escalate one app to make sure it doesn't affect stats.
+        escalated = app_factory(name='Eyelash Pit Viper',
+                                status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        EscalationQueue.objects.create(addon=escalated)
 
     def test_stats_waiting(self):
         now = datetime.datetime.now()
