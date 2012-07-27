@@ -483,7 +483,7 @@ class TestDetails(TestSubmit):
         self._step()
         res = self.client.get(self.url)
         doc = pq(res.content)
-        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+        eq_(doc('.screenshot_upload').attr('data-allowed-types'),
             'image/jpeg|image/png')
         eq_(doc('#id_icon_upload').attr('data-allowed-types'),
             'image/jpeg|image/png')
@@ -493,7 +493,7 @@ class TestDetails(TestSubmit):
         self._step()
         res = self.client.get(self.url)
         doc = pq(res.content)
-        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+        eq_(doc('.screenshot_upload').attr('data-allowed-types'),
             'image/jpeg|image/png|video/webm')
 
     def test_screenshot(self):

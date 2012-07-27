@@ -52,7 +52,8 @@
               </div>
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Add a Promo') }}</a>
-                <input type="file" id="screenshot_upload" name="uploads"
+                <input type="file" name="uploads"
+                       class="screenshot_upload edit-admin-promo"
                        data-allowed-types="image/jpeg|image/png"
                        data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
               </div>

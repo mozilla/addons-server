@@ -461,7 +461,7 @@ function initUploadPreview() {
     }
 
     function upload_start(e, file) {
-        if ($f.is('#edit-addon-admin')) {
+        if ($(this).is('.edit-admin-promo')) {
             // No formsets here, so easy peasy!
             form = $('.preview');
             form.find('.delete input').removeAttr('checked');
@@ -510,30 +510,40 @@ function initUploadPreview() {
 
         $el.find('.preview-thumb').addClass('error-loading');
 
-        $el.find('.edit-previews-text').addClass('error').html("")
+        $el.find('.edit-previews-text').addClass('error').html('')
                                        .append($error_title)
                                        .append($error_list);
-        $el.find(".delete input").attr("checked", "checked");
+        $el.find('.delete input').attr('checked', 'checked');
         renumberPreviews();
     }
 
     if (z.capabilities.fileAPI) {
-        $f.delegate('#screenshot_upload', "upload_finished", upload_finished)
-          .delegate('#screenshot_upload', "upload_success", upload_success)
-          .delegate('#screenshot_upload', "upload_start", upload_start)
-          .delegate('#screenshot_upload', "upload_errors", upload_errors)
-          .delegate('#screenshot_upload', "upload_start_all", upload_start_all)
-          .delegate('#screenshot_upload', "upload_finished_all", upload_finished_all)
-          .delegate('#screenshot_upload', 'change', function(e){
+        $f.delegate('.screenshot_upload', 'upload_finished', upload_finished)
+          .delegate('.screenshot_upload', 'upload_success', upload_success)
+          .delegate('.screenshot_upload', 'upload_start', upload_start)
+          .delegate('.screenshot_upload', 'upload_errors', upload_errors)
+          .delegate('.screenshot_upload', 'upload_start_all', upload_start_all)
+          .delegate('.screenshot_upload', 'upload_finished_all', upload_finished_all)
+          .delegate('.screenshot_upload', 'change', function(e){
                 $(this).imageUploader();
           });
     }
 
-    $(".edit-media, .submit-media").delegate("#file-list .remove", "click", function(e){
+    $('.edit-media, .submit-media').delegate('#file-list .remove', 'click', function(e){
         e.preventDefault();
-        var row = $(this).closest(".preview");
-        row.find(".delete input").attr("checked", "checked");
+        var $this = $(this),
+            row = $this.closest('.preview');
         row.slideUp(300, renumberPreviews);
+        if($this.closest('.edit-media').is('#edit-addon-admin')) {
+            // If we're updating the promo, we need to delete the existing
+            // promo immediately because we recycle the existing .preview
+            // element. The delete value will get overwritten and I'll be a
+            // sad basta.
+            var $form = $this.closest('form');
+            $.post($form.attr('action'), $form.serialize() + '&DELETE=on');
+        } else {
+            row.find('.delete input').attr('checked', 'checked');
+        }
     });
 
     // Display images that were already uploaded but not yet saved
@@ -567,7 +577,7 @@ function initUploadIcon() {
     $('.edit-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
 
-        var $error_list = $('#icon_preview').parent().find(".errorlist"),
+        var $error_list = $('#icon_preview').parent().find('.errorlist'),
             $parent = $(this).closest('li');
 
         $('input', $parent).attr('checked', true);
@@ -588,7 +598,7 @@ function initUploadIcon() {
     var $f = $('.edit-media, #submit-media'),
 
         upload_errors = function(e, file, errors){
-            var $error_list = $('#icon_preview').parent().find(".errorlist");
+            var $error_list = $('#icon_preview').parent().find('.errorlist');
             $.each(errors, function(i, v){
                 $error_list.append("<li>" + v + "</li>");
             });
@@ -620,10 +630,10 @@ function initUploadIcon() {
             $('.edit-media-button button').attr('disabled', false);
         };
 
-    $f.delegate('#id_icon_upload', "upload_success", upload_success)
-      .delegate('#id_icon_upload', "upload_start", upload_start)
-      .delegate('#id_icon_upload', "upload_finished", upload_finished)
-      .delegate('#id_icon_upload', "upload_errors", upload_errors)
+    $f.delegate('#id_icon_upload', 'upload_success', upload_success)
+      .delegate('#id_icon_upload', 'upload_start', upload_start)
+      .delegate('#id_icon_upload', 'upload_finished', upload_finished)
+      .delegate('#id_icon_upload', 'upload_errors', upload_errors)
       .delegate('#id_icon_upload', 'change', function(e) {
         if (z.capabilities.fileAPI) {
             $(this).imageUploader();
@@ -671,14 +681,14 @@ function initSubmit() {
         });
     $('#id_slug').each(slugify);
     reorderPreviews();
-    $('.invisible-upload [disabled]').attr("disabled", false);
-    $('.invisible-upload .disabled').removeClass("disabled");
+    $('.invisible-upload [disabled]').attr('disabled', false);
+    $('.invisible-upload .disabled').removeClass('disabled');
 }
 
 function generateErrorList(o) {
     var list = $("<ul class='errorlist'></ul>");
     $.each(o, function(i, v) {
-        list.append($(format("<li>{0}</li>", v)));
+        list.append($(format('<li>{0}</li>', v)));
     });
     return list;
 }

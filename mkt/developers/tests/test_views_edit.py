@@ -642,7 +642,7 @@ class TestEditMedia(TestEdit):
     def test_no_video_types(self):
         res = self.client.get(self.get_url('media', edit=True))
         doc = pq(res.content)
-        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+        eq_(doc('.screenshot_upload').attr('data-allowed-types'),
             'image/jpeg|image/png')
         eq_(doc('#id_icon_upload').attr('data-allowed-types'),
             'image/jpeg|image/png')
@@ -651,7 +651,7 @@ class TestEditMedia(TestEdit):
         Switch.objects.create(name='video-upload', active=True)
         res = self.client.get(self.get_url('media', edit=True))
         doc = pq(res.content)
-        eq_(doc('#screenshot_upload').attr('data-allowed-types'),
+        eq_(doc('.screenshot_upload').attr('data-allowed-types'),
             'image/jpeg|image/png|video/webm')
 
     def check_image_type(self, url, msg):
