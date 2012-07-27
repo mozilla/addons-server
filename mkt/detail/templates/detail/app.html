@@ -225,29 +225,50 @@
 
   <section id="support" class="support c">
 
-    <div id="reviews">
+    <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
       {% if waffle.switch('ratings') %}
-        <h3 class="wide">{{ _('Reviews') }}</h3>
+        <div class="review-stars-header">
+          <h3 class="wide">{{ _('Reviews') }}</h3>
+          {% if reviews %}
+            <a class="overall-reviews average-rating arrow"
+               href="{{ product.get_ratings_url() }}">
+              {{ product.average_rating|float|stars }}
+              <span>
+                {% trans cnt=product.total_reviews,
+                         num=product.total_reviews|numberfmt %}
+                  {{ num }} review
+                {% pluralize %}
+                  {{ num }} reviews
+                {% endtrans %}
+              </span>
+            </a>
+          {% endif %}
+        </div>
+        <div class="review-stars">
+          {% include 'ratings/helpers/grouped_ratings.html' %}
+          {% if not reviews %}
+            <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
+          {% endif %}
+          {% if can_review %}
+            <p><a class="overall-reviews add-edit-review arrow" id="add-first-review"
+               href="{{ product.get_ratings_url('add') }}">
+              {{ _('Edit Your Review') if has_review else _('Submit a Review')
+              }}</a></p>
+          {% endif %}
+        </div>
+
         {% if reviews %}
-          <a class="overall-reviews average-rating arrow"
-             href="{{ product.get_ratings_url() }}">
-            {{ product.average_rating|float|stars }}
-            <span>
-              {% trans cnt=product.total_reviews,
-                       num=product.total_reviews|numberfmt %}
-                {{ num }} review
-              {% pluralize %}
-                {{ num }} reviews
-              {% endtrans %}
-            </span>
-          </a>
-        {% endif %}
-        {% if can_review %}
-          <p><a class="overall-reviews arrow" id="add-first-review"
-             href="{{ product.get_ratings_url('add') }}">
-            {{ _('Edit Your Review') if has_review else _('Submit a Review') }}</a></p>
-        {% elif not reviews %}
-          <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
+         {{ rating_flag() }}
+          <div class="latest-reviews-list">
+            {% for review in reviews %}
+              {% with product = review.addon, show_addon = True %}
+                {% include "ratings/rating.html" %}
+              {% endwith %}
+            {% endfor %}
+            <p>
+              <a class="view-more arrow" href="{{ product.get_ratings_url('list') }}">{{ _('View More') }}</a>
+            </p>
+          </div>
         {% endif %}
       {% endif %}
     </div>

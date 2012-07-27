@@ -345,11 +345,6 @@ h1 .num {
 
 .support {
     font-size: 14px;
-    .average-rating {
-        .fat-button;
-        .width(4);
-        margin: 10px 0;
-    }
     .overall-reviews {
         text-align: left;
         &:hover {
@@ -436,7 +431,7 @@ h1 .num {
 
 // Anything larger than mobile.
 @media (min-width: @4col) {
-    .detail #reviews {
+    .detail #reviews-detail {
         margin: 40px 0 20px;
     }
     .support li {
@@ -453,11 +448,129 @@ h1 .num {
             top: 8px;
         }
     }
+
+    #reviews-detail {
+        min-height: 290px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+
+        .review-stars-header {
+            clear: right;
+            float: left;
+
+            h3 {
+                display: inline;
+                width: 100%;
+            }
+            .average-rating {
+                bottom: 2px;
+                left: 8px;
+                span {
+                    font-weight: bold;
+                    margin-left: 8px;
+                }
+            }
+        }
+        .review-stars {
+            clear: both;
+            float: left;
+            width: 35%;
+        }
+        a.average-rating {
+            &:after {
+                display: none;
+            }
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .grouped-ratings {
+            display: block;
+            height: 150px;
+            margin-top: 12px;
+            padding: 15px 0 0 20px;
+            &:before {
+                left: 135px;
+            }
+        }
+        .grouped-ratings li {
+            margin: 0;
+            min-height: 0;
+            width: auto;
+        }
+        .add-edit-review {
+            .fat-button;
+            clear: left;
+            margin-top: 14px;
+            text-align: left;
+        }
+        .add-edit-review:after {
+            top: 14px;
+            right: 16px;
+        }
+        .latest-reviews-list li {
+            margin: 0;
+            min-height: 0;
+            font-size: 13px;
+        }
+        li.review {
+            &:first-child {
+                margin-top: 8px;
+                border-top-color: @light-gray;
+            }
+            border-width: 1px 0;
+            border-top-color: @white;
+            float: right;
+            width: 60%;
+        }
+        .actions {
+            li {
+                width: auto;
+            }
+            a {
+                padding: 0;
+            }
+        }
+        .timestamp time, a.timestamp {
+            display: block;
+            padding: 0;
+        }
+        a.view-more {
+            clear: both;
+            float: right;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+        .replies {
+            display: none;
+        }
+    }
+    .menu li {
+        width: auto;
+        min-height: 0;
+        margin-bottom: 0;
+        float: none;
+    }
 }
 
-@media (max-width: @7col) {
+@media (min-width: @4col) and (max-width: @10col) {
     .support li {
         .width(2);
+    }
+
+    #reviews-detail {
+        .review-stars-header {
+            h3 {
+                float: left;
+            }
+            .overall-reviews {
+                float: left;
+                left: -8px;
+            }
+        }
+        .grouped-ratings:before {
+            left: 37px;
+        }
     }
 }
 
@@ -637,13 +750,16 @@ h1 .num {
     .support {
         .not-rated,
         .average-rating {
+            .fat-button;
             margin: 20px 0 10px;
+            text-align: left;
+            width: 100%;
+        }
+        .latest-reviews-list {
+            display: none;
         }
         .not-rated {
             color: @medium-gray;
-        }
-        .average-rating {
-            width: 100%;
         }
         a {
             .fat-button;

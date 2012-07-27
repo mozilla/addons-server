@@ -13,7 +13,8 @@ from amo.decorators import login_required, permission_required
 from amo.forms import AbuseForm
 from amo.utils import paginate
 from devhub.models import ActivityLog
-from reviews.models import Review
+from reviews.models import GroupedRating, Review
+from reviews.views import get_flags
 
 from mkt.site import messages
 from mkt.webapps.models import Webapp
@@ -28,9 +29,11 @@ def detail(request, addon):
     reviews = Review.objects.latest().filter(addon=addon)
     ctx = {
         'product': addon,
-        'reviews': reviews,
+        'reviews': reviews[:2],
+        'flags': get_flags(request, reviews),
         'has_review': request.user.is_authenticated() and
-                      reviews.filter(user=request.user.id).exists()
+                      reviews.filter(user=request.user.id).exists(),
+        'grouped_ratings': GroupedRating.get(addon.id)
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)
@@ -72,7 +75,6 @@ def abuse_recaptcha(request, addon):
     else:
         return jingo.render(request, 'detail/abuse_recaptcha.html',
                             {'product': addon, 'abuse_form': form})
-
 
 
 @login_required

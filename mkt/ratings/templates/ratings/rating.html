@@ -8,7 +8,7 @@
 {% if not (is_reply and profile) %}
 <li id="review-{{ review.id }}" data-rating="{{ review.rating }}"
     data-flag-url="{{ product.get_ratings_url('flag', args=[review.id]) }}"
-    {% if profile %}data-edit-url="{{ product.get_ratings_url('add') }}"{% endif %}
+    data-edit-url="{{ product.get_ratings_url('add') }}"
     class="review{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }} c">
   <div class="review-inner">
     {% if profile %}
@@ -68,8 +68,10 @@
 </li>
 {% endif %}
 
-{% if review.id in replies %}
-  {% with review=replies[review.id] %}
-    {% include 'ratings/rating.html' %}
-  {% endwith %}
-{% endif %}
+<div class="replies">
+  {% if review.id in replies %}
+    {% with review=replies[review.id] %}
+      {% include 'ratings/rating.html' %}
+    {% endwith %}
+  {% endif %}
+</div>

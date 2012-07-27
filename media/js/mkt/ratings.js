@@ -106,6 +106,8 @@
         $.post(action);
         setTimeout(function() {
             reviewEl.addClass('deleted');
+            // If on detail page, change button text.
+            $('.add-edit-review').text('Submit A Review');
             if (reviewEl.hasClass('reply')) {
                 var $parent = reviewEl.prev('.review');
                 // If this was a reply, remove the "1 reply" link.
@@ -162,11 +164,11 @@
         handleReviewOverlay(overlay);
     }
 
-    // Toggle rating breakdown.
-    z.page.on('click', '.average-rating', _pd(function() {
+    // Toggle rating breakdown (on listing page only, not detail page).
+    z.page.on('click', '.average-rating-listing', _pd(function() {
         $('.grouped-ratings').toggle();
     }));
-    z.page.on('click', '.grouped-ratings', _pd(function() {
+    z.page.on('click', '.grouped-ratings-listing', _pd(function() {
         $('.grouped-ratings').hide();
     }));
 

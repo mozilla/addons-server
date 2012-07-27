@@ -284,4 +284,7 @@ JS = {
     'mkt/account': (
         'js/mkt/ratings.js',
     ),
+    'mkt/detail': (
+        'js/mkt/ratings.js',
+    ),
 }
