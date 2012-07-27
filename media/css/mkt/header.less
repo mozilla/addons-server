@@ -6,8 +6,32 @@
     padding-top: 50px;
 }
 
+// if there is a page title we want in the header, give it the id of #top
 #top {
+    position: fixed;
+    text-align: center;
+    max-width: 200px;
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 50px;
+    z-index: 110;
+    color: #fff;
+    font-weight: 300;
+}
+
+.home #top {
+    text-indent: 30px;
+    background-image: url(../../img/mkt/logo-small.png);
+    background-position: left 10px;
+    background-repeat: no-repeat;
+}
+
+#search {
     display: none;
+    color: white;
 }
 
 #site-header {
@@ -56,7 +80,7 @@
     width: 50px;
     height: 50px;
     text-indent: -1000%;
-    position: absolute;
+    position: relative;
     &:after {
         content: '';
         z-index: 1;
@@ -67,13 +91,13 @@
         margin-top: 7px;
     }
     &.right {
-        right: 0;
+        float: right;
         &:after {
             left: -1px;
         }
     }
     &.left {
-        left: 0;
+        float: left;
         &:after {
             right: -1px;
         }

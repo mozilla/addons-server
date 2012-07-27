@@ -3,7 +3,11 @@
 #search {
     float: right;
     position: relative;
-    margin: 24px 0;
+    margin: 10px 14px;
+}
+
+.show-search #search-q {
+    display: block;
 }
 
 #search-q {
@@ -169,27 +173,3 @@
         }
     }
 }
-
-.html-rtl #site-search-suggestions .wrap:before {
-    left: auto;
-    right: 13px;
-}
-
-@media (max-width: @4col) {
-    #search {
-        float: none;
-        margin: 0;
-    }
-    #search-q,
-    #site-search-suggestions,
-    #site-search-suggestions a span {
-        max-width: 160px;
-    }
-    #search-q {
-        display: none;
-    }
-    .search #search-q,
-    .show-search #search-q {
-        display: inline-block;
-    }
- }
