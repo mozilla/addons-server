@@ -395,9 +395,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             log.debug('Sending delete email for %(atype)s %(id)s' % context)
             subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
             if waffle.switch_is_active('soft_delete'):
+                models.signals.pre_delete.send(sender=Addon, instance=self)
                 self.status = amo.STATUS_DELETED
                 self.slug = self.app_slug = self.app_domain = None
                 self.save()
+                models.signals.post_delete.send(sender=Addon, instance=self)
             else:
                 super(Addon, self).delete()
             send_mail(subject, email_msg, recipient_list=to)

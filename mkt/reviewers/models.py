@@ -39,3 +39,12 @@ class EscalationQueue(amo.models.ModelBase):
 
     class Meta:
         db_table = 'escalation_queue'
+
+
+def cleanup_queues(sender, instance, **kwargs):
+    RereviewQueue.objects.filter(addon=instance).delete()
+    EscalationQueue.objects.filter(addon=instance).delete()
+
+
+models.signals.post_delete.connect(cleanup_queues, sender=Addon,
+                                   dispatch_uid='queue-addon-cleanup')

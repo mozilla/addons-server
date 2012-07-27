@@ -408,6 +408,12 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (1)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
+    def test_addon_deleted(self):
+        self.create_switch(name='soft_delete')
+        app = self.apps[0]
+        app.delete()
+        eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
+
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin):
     fixtures = ['base/devicetypes', 'base/users']
@@ -510,6 +516,12 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
         eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (3)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+
+    def test_addon_deleted(self):
+        self.create_switch(name='soft_delete')
+        app = self.apps[0]
+        app.delete()
+        eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin):
