@@ -165,6 +165,10 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
     def review_url(self, app):
         return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
 
+    def test_queue_viewing_ping(self):
+        eq_(self.client.post(reverse('editors.queue_viewing')).status_code,
+            200)
+
     def test_template_links(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -527,6 +531,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         res = self.client.post(self.url, data)
         # Purposefully not using assertRedirects.
         self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
+
+    def test_review_viewing_ping(self):
+        eq_(self.client.post(reverse('editors.review_viewing')).status_code,
+            200)
 
     @mock.patch.object(settings, 'DEBUG', False)
     def test_cannot_review_my_app(self):

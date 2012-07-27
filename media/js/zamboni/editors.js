@@ -129,8 +129,9 @@ function initReviewActions() {
 
     /* Who's currently on this page? */
     var addon_id = $('#addon').attr('data-id');
+    var url = $('#addon').attr('data-url');
     function check_currently_viewing() {
-        $.post('/en-US/editors/review_viewing', {'addon_id': addon_id}, function(d){
+        $.post(url, {'addon_id': addon_id}, function(d){
             var show = d.is_user != 1 && typeof d.current_name != "undefined",
                        $current = $('.currently_viewing_warning');
 

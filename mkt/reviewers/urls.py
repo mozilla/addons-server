@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import include, url
 
 import amo
-from apps.editors.views import queue_viewing
+from apps.editors.views import queue_viewing, review_viewing
 from mkt.receipts.urls import receipt_patterns
 from . import views
 
@@ -26,6 +26,7 @@ urlpatterns = (
     url(r'^apps/logs$', views.logs, name='reviewers.apps.logs'),
     url(r'^apps/motd$', views.motd, name='reviewers.apps.motd'),
     url(r'^queue_viewing$', queue_viewing, name='editors.queue_viewing'),
+    url(r'^review_viewing$', review_viewing, name='editors.review_viewing'),
 
     url(r'^receipt/', include(receipt_patterns))
 )
