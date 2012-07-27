@@ -559,17 +559,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         diff = [self._backup_version, backup, self._current_version, current]
 
-        changed = False
+        updated = {}
         if self._backup_version != backup:
-            self._backup_version = backup
-            changed = True
+            updated.update({'_backup_version': backup})
         if self._current_version != current:
-            self._current_version = current
-            changed = True
+            updated.update({'_current_version': current})
 
-        if changed:
+        if updated:
             try:
-                self.save()
+                self.update(**updated)
                 signals.version_changed.send(sender=self)
                 log.info(u'Version changed from backup: %s to %s, '
                           'current: %s to %s for addon %s'
@@ -579,7 +577,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                           'current: %s to %s for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
-        return changed
+        return bool(updated)
 
     @property
     def latest_version(self):
