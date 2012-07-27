@@ -177,6 +177,18 @@ def add(request, addon):
                                                         request.user.id))
                 messages.success(request,
                                  _('Your review was updated successfully!'))
+
+                # If there is a developer reply to the review, delete it. We do
+                # this per bug 777059.
+                try:
+                    reply = existing_review.replies.all()[0]
+                except IndexError:
+                    pass
+                else:
+                    log.debug('[Review:%s] Deleted reply to %s' %
+                                  (reply.id, existing_review.id))
+                    reply.delete()
+
             else:
                 # If there isn't a review to overwrite, create a new review.
                 review = Review.objects.create(client_data=client_data,
