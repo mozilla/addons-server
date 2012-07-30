@@ -106,8 +106,9 @@
         $.post(action);
         setTimeout(function() {
             reviewEl.addClass('deleted');
-            // If on detail page, change button text.
-            $('.add-edit-review').text('Submit A Review');
+            // Change edit review button to submit review button.
+            $('.add-edit-review').text(gettext('Submit a Review'));
+            $('#add-review').children().text(gettext('Add a Review'));
             if (reviewEl.hasClass('reply')) {
                 var $parent = reviewEl.prev('.review');
                 // If this was a reply, remove the "1 reply" link.
