@@ -344,23 +344,23 @@
         </li>
       {% endif %}
       {% if product.is_public() or is_reviewer %}
-        <li class="more-info">
-          <h3>{{ _('More Info') }}</h3>
-          {% if product.privacy_policy %}
-            <p class="privacy">
-              <a class="arrow" href="{{ product.get_detail_url('privacy') }}">
-                {{ _('Privacy Policy') }}
-              </a>
-            </p>
-          {% endif %}
-          {% if waffle.switch('app-stats') and product.public_stats %}
-            <p class="view-stats">
-              <a class="arrow" href="{{ url('mkt.stats.overview', product.app_slug) }}">
-                {{ _('Statistics') }}
-              </a>
-            </p>
-          {% endif %}
-        </li>
+        {% if product.privacy_policy or product.public_stats %}
+          <li class="more-info c">
+            <h3>{{ _('More Info') }}</h3>
+              <p class="privacy">
+                <a class="arrow" href="{{ product.get_detail_url('privacy') }}">
+                  {{ _('Privacy Policy') }}
+                </a>
+              </p>
+            {% if waffle.switch('app-stats') and product.public_stats %}
+              <p class="view-stats">
+                <a class="arrow" href="{{ url('mkt.stats.overview', product.app_slug) }}">
+                  {{ _('Statistics') }}
+                </a>
+              </p>
+            {% endif %}
+          </li>
+        {% endif %}
         <li class="published">
           <h3>{{ _('Published') }}</h3>
           <p>
