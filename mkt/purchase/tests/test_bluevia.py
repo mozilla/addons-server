@@ -1,6 +1,7 @@
 import calendar
 import json
 import time
+import urlparse
 
 from django.conf import settings
 
@@ -9,7 +10,8 @@ from fudge.inspector import arg
 import jwt
 import mock
 from mock import Mock
-from nose.tools import eq_
+from moz_inapp_pay.exc import RequestExpired
+from nose.tools import eq_, raises
 
 import amo
 from amo.helpers import absolutify
@@ -54,7 +56,9 @@ class TestPurchase(PurchaseTest):
                 absolutify(reverse('bluevia.postback')))
             eq_(da['chargeback_url'],
                 absolutify(reverse('bluevia.chargeback')))
-            assert 'contrib_uuid' in da
+            pd = urlparse.parse_qs(da['product_data'])
+            assert 'contrib_uuid' in pd, 'Unexpected: %s' % pd
+            eq_(pd['addon_id'][0], str(self.addon.pk))
             return True
 
         # Sample of BlueVia JWT but not complete.
@@ -114,6 +118,7 @@ class TestPurchase(PurchaseTest):
 
 
 @mock.patch.object(settings, 'SECLUSION_HOSTS', ['host'])
+@mock.patch('mkt.purchase.bluevia.tasks')
 class TestPostback(PurchaseTest):
 
     def setUp(self):
@@ -128,12 +133,17 @@ class TestPostback(PurchaseTest):
         self.bluevia_dev_id = '<stored in solitude>'
         self.bluevia_dev_secret = '<stored in solitude>'
 
-    def post(self):
+    def post(self, req=None):
+        if not req:
+            req = self.jwt()
         return self.client.post(reverse('bluevia.postback'),
-                                data=self.jwt(), content_type='text/plain')
+                                data=req, content_type='text/plain')
 
-    def jwt_dict(self, expiry=3600):
-        issued_at = calendar.timegm(time.gmtime())
+    def jwt_dict(self, expiry=3600, issued_at=None, contrib_uuid=None):
+        if not issued_at:
+            issued_at = calendar.timegm(time.gmtime())
+        if not contrib_uuid:
+            contrib_uuid = self.contrib.uuid
         return {'iss': 'tu.com',
                 'aud': self.bluevia_dev_id,
                 'typ': 'tu.com/payments/inapp/v1',
@@ -146,7 +156,7 @@ class TestPostback(PurchaseTest):
                     'currencyCode': 'USD',
                     'postbackURL': '/postback',
                     'chargebackURL': '/chargeback',
-                    'productData': 'contrib_uuid=%s' % self.contrib.uuid
+                    'productData': 'contrib_uuid=%s' % contrib_uuid
                 },
                 'response': {
                     'transactionID': '<BlueVia-trans-id>'
@@ -156,20 +166,41 @@ class TestPostback(PurchaseTest):
         return jwt.encode(self.jwt_dict(**kw), self.bluevia_dev_secret)
 
     @fudge.patch('lib.pay_server.base.requests.post')
-    def test_valid(self, api_post):
+    def test_valid(self, tasks, api_post):
         api_post.expects_call().returns(Mock(status_code=200,
                                              text='{"valid": true}'))
+        req = self.jwt()
+        self.post(req=req)
         resp = self.post()
         eq_(resp.status_code, 200)
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
+        eq_(cn.bluevia_transaction_id, '<BlueVia-trans-id>')
+        tasks.purchase_notify.delay.assert_called_with(req, cn.pk)
 
     @fudge.patch('lib.pay_server.base.requests.post')
-    def test_invalid(self, api_post):
+    def test_invalid(self, tasks, api_post):
         api_post.expects_call().returns(Mock(status_code=200,
                                              text='{"valid": false}'))
         resp = self.post()
         eq_(resp.status_code, 400)
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PENDING)
+
+    @raises(RequestExpired)
+    @fudge.patch('lib.pay_server.base.requests.post')
+    def test_invalid_claim(self, tasks, api_post):
+        api_post.expects_call().returns(Mock(status_code=200,
+                                             text='{"valid": true}'))
+        iat = calendar.timegm(time.gmtime()) - 3601  # too old
+        req = self.jwt(issued_at=iat)
+        self.post(req=req)
+
+    @raises(LookupError)
+    @fudge.patch('lib.pay_server.base.requests.post')
+    def test_unknown_contrib(self, tasks, api_post):
+        api_post.expects_call().returns(Mock(status_code=200,
+                                             text='{"valid": true}'))
+        req = self.jwt(contrib_uuid='<bogus>')
+        self.post(req=req)

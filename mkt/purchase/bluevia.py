@@ -1,11 +1,13 @@
+import sys
+from urllib import urlencode
 import urlparse
 
 from django import http
-from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jwt
+from moz_inapp_pay.verify import verify_claims, verify_keys
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
@@ -17,6 +19,7 @@ from lib.pay_server import client
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
+from . import bluevia_tasks as tasks
 from .views import start_purchase
 
 log = commonware.log.getLogger('z.purchase')
@@ -46,8 +49,9 @@ def prepare_pay(request, addon):
             'app_description': unicode(addon.description),
             'postback_url': absolutify(reverse('bluevia.postback')),
             'chargeback_url': absolutify(reverse('bluevia.chargeback')),
-            'seller': addon,
-            'contrib_uuid': uuid_,
+            'seller': addon.pk,
+            'product_data': urlencode({'contrib_uuid': uuid_,
+                                       'addon_id': addon.pk}),
             'memo': contrib_for}
 
     return {'bluevia_jwt': client.prepare_bluevia_pay(data),
@@ -79,7 +83,8 @@ def pay_status(request, addon, contrib_uuid):
 @post_required
 def postback(request):
     """Verify signature from BlueVia and set contribution to paid."""
-    result = client.verify_bluevia_jwt(request.raw_post_data)
+    signed_jwt = request.raw_post_data
+    result = client.verify_bluevia_jwt(signed_jwt)
     if not result['valid']:
         ip = (request.META.get('HTTP_X_FORWARDED_FOR', '') or
               request.META.get('REMOTE_ADDR', ''))
@@ -87,13 +92,31 @@ def postback(request):
             ip = '(unknown)'
         log.info('Received invalid bluevia postback from IP %s' % ip)
         return http.HttpResponseBadRequest('invalid request')
-    data = jwt.decode(request.raw_post_data, verify=False)
-    # TODO(Kumar) verify all JWT dict keys and values. bug 776646.
-    product_data = urlparse.parse_qs(data['request']['productData'])
-    cn = get_object_or_404(Contribution, uuid=product_data['contrib_uuid'][0])
-    cn.update(type=amo.CONTRIB_PURCHASE)
-    # TODO(Kumar) notify dev via default postback URL. bug 776646.
-    trans_id = data['response']['transactionID']
+    # From here on, let all exceptions raise. The JWT comes from BlueVia
+    # so if anything fails we want to know ASAP.
+    data = jwt.decode(signed_jwt, verify=False)
+    verify_claims(data)
+    iss, aud, product_data, trans_id = verify_keys(data,
+                                            ('iss',
+                                             'aud',
+                                             'request.productData',
+                                             'response.transactionID'))
+    log.info('received BlueVia postback JWT: iss:%s aud:%s '
+             'trans_id:%s product_data:%s'
+             % (iss, aud, trans_id, product_data))
+    pd = urlparse.parse_qs(product_data)
+    contrib_uuid = pd['contrib_uuid'][0]
+    try:
+        contrib = Contribution.objects.get(uuid=contrib_uuid)
+    except Contribution.DoesNotExist:
+        etype, val, tb = sys.exc_info()
+        raise LookupError('BlueVia JWT (iss:%s, aud:%s) for trans_id %s '
+                          'links to contrib %s which doesn\'t exist'
+                          % (iss, aud, trans_id, contrib_uuid)), None, tb
+    contrib.update(type=amo.CONTRIB_PURCHASE,
+                   bluevia_transaction_id=trans_id)
+
+    tasks.purchase_notify.delay(signed_jwt, contrib.pk)
     return http.HttpResponse(trans_id)
 
 

@@ -4,7 +4,6 @@ import logging
 import os
 import tempfile
 import time
-import urlparse
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -19,6 +18,7 @@ from amo.decorators import write
 from amo.utils import ImageCheck, resize_image
 
 from .models import InappPayment, InappPayNotice, InappImage, InappConfig
+from .utils import send_pay_notice
 
 log = logging.getLogger('z.inapp_pay.tasks')
 notify_kw = dict(default_retry_delay=15,  # seconds
@@ -55,24 +55,16 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
     payment = InappPayment.objects.get(pk=payment_id)
     config = payment.config
     contrib = payment.contribution
-    response = {'transactionID': contrib.pk}
-    if extra_response:
-        response.update(extra_response)
     if notice_type == amo.INAPP_NOTICE_PAY:
-        uri = config.postback_url
         typ = 'mozilla/payments/pay/postback/v1'
     elif notice_type == amo.INAPP_NOTICE_CHARGEBACK:
-        uri = config.chargeback_url
         typ = 'mozilla/payments/pay/chargeback/v1'
     else:
         raise NotImplementedError('Unknown type: %s' % notice_type)
-    url = urlparse.urlunparse((config.app_protocol(),
-                               config.addon.parsed_app_domain.netloc, uri, '',
-                               '', ''))
-    exception = None
-    success = False
+    response = {'transactionID': contrib.pk}
+    if extra_response:
+        response.update(extra_response)
     issued_at = calendar.timegm(time.gmtime())
-
     signed_notice = jwt.encode({'iss': settings.INAPP_MARKET_ID,
                                 'aud': config.public_key,  # app ID
                                 'typ': typ,
@@ -85,37 +77,11 @@ def _notify(payment_id, notice_type, notifier_task, extra_response=None):
                                 'response': response},
                                config.get_private_key(),
                                algorithm='HS256')
-    try:
-        res = requests.post(url, signed_notice, timeout=5)
-        res.raise_for_status()  # raise exception for non-200s
-        res_content = res.text
-    except AssertionError:
-        raise  # Raise test-related exceptions.
-    except Exception, exception:
-        log.error('In-app payment %s raised exception in URL %s'
-                  % (payment.pk, url), exc_info=True)
-        try:
-            notifier_task.retry(exc=exception)
-        except:
-            log.exception('retrying in-app payment %s notification URL %s'
-                          % (payment.pk, url))
-    else:
-        if res_content == str(contrib.pk):
-            success = True
-            log.debug('app config %s responded OK for in-app payment %s'
-                      % (config.pk, payment.pk))
-        else:
-            log.error('app config %s did not respond with contribution ID %s '
-                      'for in-app payment %s' % (config.pk, contrib.pk,
-                                                 payment.pk))
+    url, success, last_error = send_pay_notice(notice_type, signed_notice,
+                                               config, contrib, notifier_task)
 
-    if exception:
-        last_error = u'%s: %s' % (exception.__class__.__name__, exception)
-    else:
-        last_error = ''
     s = InappPayNotice._meta.get_field_by_name('last_error')[0].max_length
     last_error = last_error[:s]  # truncate to fit
-
     InappPayNotice.objects.create(payment=payment,
                                   notice=notice_type,
                                   success=success,

@@ -56,7 +56,7 @@ class TestNotifyApp(TalkToAppTest):
     def notify(self):
         tasks.payment_notify(self.payment.pk)
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_notify_pay(self, fake_req):
         url = self.url(self.postback)
         payload = self.payload(typ='mozilla/payments/pay/postback/v1')
@@ -80,7 +80,7 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_notify_refund_chargeback(self, fake_req):
         url = self.url(self.chargeback)
         payload = self.payload(typ='mozilla/payments/pay/chargeback/v1')
@@ -106,7 +106,7 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.url, url)
         eq_(notice.payment.pk, self.payment.pk)
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_notify_reversal_chargeback(self, fake_req):
         url = self.url(self.chargeback)
 
@@ -127,7 +127,7 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.success, True)
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', True)
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_force_https(self, fake_req):
         self.inapp_config.update(is_https=False)
         url = self.url(self.postback, protocol='https')
@@ -139,7 +139,7 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.last_error, '')
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_configurable_https(self, fake_req):
         self.inapp_config.update(is_https=True)
         url = self.url(self.postback, protocol='https')
@@ -151,7 +151,7 @@ class TestNotifyApp(TalkToAppTest):
         eq_(notice.last_error, '')
 
     @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_configurable_http(self, fake_req):
         self.inapp_config.update(is_https=False)
         url = self.url(self.postback, protocol='http')
@@ -162,7 +162,7 @@ class TestNotifyApp(TalkToAppTest):
         notice = InappPayNotice.objects.get()
         eq_(notice.last_error, '')
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_notify_timeout(self, fake_req):
         fake_req.expects('post').raises(Timeout())
         self.notify()
@@ -172,14 +172,14 @@ class TestNotifyApp(TalkToAppTest):
         assert er.startswith('Timeout:'), 'Unexpected: %s' % er
 
     @mock.patch('mkt.inapp_pay.tasks.payment_notify.retry')
-    @mock.patch('mkt.inapp_pay.tasks.requests.post')
+    @mock.patch('mkt.inapp_pay.utils.requests.post')
     def test_retry_http_error(self, post, retry):
         post.side_effect = RequestException('500 error')
         self.notify()
         assert post.called, 'notification not sent'
         assert retry.called, 'task was not retried after error'
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_any_error(self, fake_req):
         fake_req.expects('post').raises(RequestException('some http error'))
         self.notify()
@@ -188,7 +188,7 @@ class TestNotifyApp(TalkToAppTest):
         er = notice.last_error
         assert er.startswith('RequestException:'), 'Unexpected: %s' % er
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_bad_status(self, fake_req):
         (fake_req.expects('post').returns_fake()
                                  .has_attr(text='')
@@ -201,7 +201,7 @@ class TestNotifyApp(TalkToAppTest):
         er = notice.last_error
         assert er.startswith('HTTPError:'), 'Unexpected: %s' % er
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_invalid_app_response(self, fake_req):
         (fake_req.expects('post').returns_fake()
                                  .has_attr(text='<not a valid response>'))
@@ -209,7 +209,7 @@ class TestNotifyApp(TalkToAppTest):
         notice = InappPayNotice.objects.get()
         eq_(notice.success, False)
 
-    @fudge.patch('mkt.inapp_pay.tasks.requests')
+    @fudge.patch('mkt.inapp_pay.utils.requests')
     def test_signed_app_response(self, fake_req):
         app_payment = self.payload()
 
