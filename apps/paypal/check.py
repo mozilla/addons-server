@@ -1,9 +1,10 @@
 import hashlib
 import logging
 import uuid
+from tower import ugettext as _
 
 import paypal
-from amo.helpers import loc
+
 
 log = logging.getLogger('z.paypal')
 
@@ -47,21 +48,21 @@ class Check(object):
         """Check that the paypal id is good."""
         test_id = 'id'
         if not self.paypal_id:
-            self.failure(test_id, loc('No PayPal id provided.'))
+            self.failure(test_id, _('No PayPal ID provided.'))
             return
 
         valid, msg = paypal.check_paypal_id(self.paypal_id)
         if not valid:
-            self.failure(test_id, loc('You do not seem to have'
-                                      ' a PayPal account.'))
+            self.failure(test_id, _('Please enter a valid email.'))
+
         else:
             self.pass_(test_id)
 
     def check_refund(self):
         """Check that we have the refund permission."""
         test_id = 'refund'
-        msg = loc('You have not setup permissions for us to check this '
-                  'paypal account.')
+        msg = _('You have not setup permissions for us to check this '
+                'PayPal account.')
         if not self.addon:
             # If there's no addon there's not even any point checking.
             return
@@ -82,7 +83,7 @@ class Check(object):
             status = paypal.check_permission(token, ['REFUND'])
             if not status:
                 self.state['permissions'] = False
-                self.failure(test_id, loc('No permission to do refunds.'))
+                self.failure(test_id, _('No permission to do refunds.'))
             else:
                 self.pass_(test_id)
         except paypal.PaypalError:
@@ -112,8 +113,8 @@ class Check(object):
                                   'email': self.paypal_id})
                 log.info('Get paykey passed in %s' % currency)
             except paypal.PaypalError:
-                msg = loc('Failed to make a test transaction '
-                          'in %s.' % (currency))
+                msg = _('Failed to make a test transaction '
+                        'in %s.' % (currency))
                 self.failure(test_id, msg)
                 log.info('Get paykey returned an error'
                          'in %s' % currency, exc_info=True)

@@ -46,8 +46,7 @@
       <form method="post">
         {{ csrf() }}
         <div class="brform paypal-inline paypal devhub-form">
-          {{ form_field(paypal_form.business_account) }}
-          {{ form_field(paypal_form.email) }}
+
         </div>
         <footer class="listing-footer">
           <button type="submit" name="form" value="paypal">{{ _('Change') }}</button>

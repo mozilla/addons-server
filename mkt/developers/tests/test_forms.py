@@ -72,24 +72,16 @@ class TestPreviewForm(amo.tests.TestCase):
 
 class TestPaypalSetupForm(amo.tests.TestCase):
 
-    def test_email_not_required(self):
-        data = {'business_account': 'no',
-                'email': ''}
-        assert forms.PaypalSetupForm(data=data).is_valid()
-
     def test_email_required(self):
-        data = {'business_account': 'yes',
-                'email': ''}
+        data = {'email': ''}
         assert not forms.PaypalSetupForm(data=data).is_valid()
 
     def test_email_gotten(self):
-        data = {'business_account': 'yes',
-                'email': 'foo@bar.com'}
+        data = {'email': 'foo@bar.com'}
         assert forms.PaypalSetupForm(data=data).is_valid()
 
     def test_email_malformed(self):
-        data = {'business_account': 'yes',
-                'email': 'foo'}
+        data = {'email': 'foo'}
         assert not forms.PaypalSetupForm(data=data).is_valid()
 
 
@@ -232,7 +224,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], regions)
         eq_(form.initial['other_regions'], False)
-
 
     def test_worldwide_only(self):
         form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)

@@ -13,16 +13,19 @@ def paypal_patterns(prefix):
     return patterns('',
         url('^$', views.paypal_setup,
             name='mkt.developers.%s.paypal_setup' % prefix),
+        url('^bounce$', views.paypal_setup_confirm,
+            name='mkt.developers.%s.paypal_setup_bounce' % prefix,
+            kwargs={'source': 'paypal'}),
         url('^confirm$', views.paypal_setup_confirm,
             name='mkt.developers.%s.paypal_setup_confirm' % prefix,
             kwargs={'source': 'paypal'}),
         url('^details$', views.paypal_setup_confirm,
             name='mkt.developers.%s.paypal_setup_details' % prefix,
             kwargs={'source': 'developers'}),
-        url('^bounce$', views.paypal_setup_bounce,
-            name='mkt.developers.%s.paypal_setup_bounce' % prefix),
         url('^check$', views.paypal_setup_check,
             name='mkt.developers.%s.paypal_setup_check' % prefix),
+        url('^remove$', views.paypal_remove,
+            name='mkt.developers.%s.paypal_remove' % prefix),
     )
 
 

@@ -13,7 +13,6 @@ import waffle
 from quieter_formset.formset import BaseFormSet, BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
-
 import amo
 import addons.forms
 import paypal
@@ -25,8 +24,6 @@ from addons.widgets import CategoriesSelectMultiple
 from amo.utils import raise_required, remove_icons
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
-from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
-                                         RATINGS_BODIES)
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -34,9 +31,11 @@ from translations.widgets import TransInput, TransTextarea
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES
+from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
+                                         RATINGS_BODIES)
 from mkt.inapp_pay.models import InappConfig
 from mkt.reviewers.models import RereviewQueue
-from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
+from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
 
@@ -483,12 +482,12 @@ class PremiumForm(happyforms.Form):
                                    label=_lazy(u'App Price'),
                                    empty_label=None,
                                    required=False)
-    do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
-                                       choices=APP_UPSELL_CHOICES,
-                                       widget=forms.RadioSelect(),
-                                       required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(), required=False,
-                            empty_label='')
+                            label=_lazy(u'This is a paid upgrade of'),
+                            empty_label=_lazy(u'Not an upgrade'))
+    currencies = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        required=False, label=_lazy(u'Supported Non-USD Currencies'))
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
@@ -496,7 +495,6 @@ class PremiumForm(happyforms.Form):
         self.addon = self.extra['addon']
         kw['initial'] = {
             'premium_type': self.addon.premium_type,
-            'do_upsell': 0,
         }
         if self.addon.premium:
             kw['initial']['price'] = self.addon.premium.price
@@ -505,18 +503,30 @@ class PremiumForm(happyforms.Form):
         if upsell:
             kw['initial'].update({
                 'free': upsell.free,
-                'do_upsell': 1,
             })
 
+        if waffle.switch_is_active('currencies'):
+            currencies = self.addon.premium.currencies
+            kw['initial']['currencies'] = currencies
+
         super(PremiumForm, self).__init__(*args, **kw)
+
+        if waffle.switch_is_active('currencies'):
+            choices = (PriceCurrency.objects.values_list('currency', flat=True)
+                       .distinct())
+            self.fields['currencies'].choices = [(k, k)
+                                                 for k in choices if k]
+
         if self.addon.is_webapp():
+            self.fields['premium_type'].label = _lazy(u'Will your app '
+                                                       'use payments?')
             self.fields['price'].label = _(u'App Price')
-            self.fields['do_upsell'].choices = APP_UPSELL_CHOICES
+
         self.fields['free'].queryset = (self.extra['amo_user'].addons
-                                    .exclude(pk=self.addon.pk)
-                                    .filter(premium_type__in=amo.ADDON_FREES,
-                                            status__in=amo.VALID_STATUSES,
-                                            type=self.addon.type))
+            .exclude(pk=self.addon.pk)
+            .filter(premium_type__in=amo.ADDON_FREES,
+                    status__in=amo.VALID_STATUSES,
+                    type=self.addon.type))
         if (not self.initial.get('price') and
             len(list(self.fields['price'].choices)) > 1):
             # Tier 0 (Free) should not be the default selection.
@@ -534,9 +544,6 @@ class PremiumForm(happyforms.Form):
         return self.cleaned_data['price']
 
     def clean_free(self):
-        if (self.cleaned_data['do_upsell']
-            and not self.cleaned_data['free']):
-            raise_required()
         return self.cleaned_data['free']
 
     def save(self):
@@ -549,7 +556,7 @@ class PremiumForm(happyforms.Form):
             premium.save()
 
         upsell = self.addon.upsold
-        if self.cleaned_data['do_upsell'] and self.cleaned_data['free']:
+        if self.cleaned_data['free']:
 
             # Check if this app was already a premium version for another app.
             if upsell and upsell.free != self.cleaned_data['free']:
@@ -559,7 +566,7 @@ class PremiumForm(happyforms.Form):
                 upsell = AddonUpsell(premium=self.addon)
             upsell.free = self.cleaned_data['free']
             upsell.save()
-        elif not self.cleaned_data['do_upsell'] and upsell:
+        elif not self.cleaned_data['free'] and upsell:
             upsell.delete()
 
         # Check for free -> paid for already public apps.
@@ -573,6 +580,11 @@ class PremiumForm(happyforms.Form):
             RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_FREE_TO_PAID)
 
         self.addon.premium_type = premium_type
+
+        if waffle.switch_is_active('currencies'):
+            currencies = self.cleaned_data['currencies']
+            self.addon.premium.update(currencies=currencies)
+
         self.addon.save()
 
         # If they checked later in the wizard and then decided they want
@@ -655,20 +667,12 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 
 class PaypalSetupForm(happyforms.Form):
-    business_account = forms.ChoiceField(widget=forms.RadioSelect, choices=[],
-        label=_lazy(u'Do you already have a PayPal Premier '
-                     'or Business account?'))
     email = forms.EmailField(required=False,
                              label=_lazy(u'PayPal email address'))
 
-    def __init__(self, *args, **kw):
-        super(PaypalSetupForm, self).__init__(*args, **kw)
-        self.fields['business_account'].choices = (('yes', _lazy(u'Yes')),
-                                                   ('no', _lazy(u'No')))
-
     def clean(self):
         data = self.cleaned_data
-        if data.get('business_account') == 'yes' and not data.get('email'):
+        if not data.get('email'):
             msg = _(u'The PayPal email is required.')
             self._errors['email'] = self.error_class([msg])
 
@@ -779,19 +783,6 @@ class AppFormSupport(addons.forms.AddonFormBase):
         (i.get_satisfaction_company,
          i.get_satisfaction_product) = addons.forms.get_satisfaction(url)
         return super(AppFormSupport, self).save(commit)
-
-
-class CurrencyForm(happyforms.Form):
-    currencies = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                           required=False,
-                                           label=_lazy(u'Other currencies'))
-
-    def __init__(self, *args, **kw):
-        super(CurrencyForm, self).__init__(*args, **kw)
-        choices = (PriceCurrency.objects.values_list('currency', flat=True)
-                                .distinct())
-        self.fields['currencies'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
-                                              for k in choices if k]
 
 
 class AppAppealForm(happyforms.Form):

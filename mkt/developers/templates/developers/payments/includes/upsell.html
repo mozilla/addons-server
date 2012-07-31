@@ -1,24 +1,21 @@
 {% from 'developers/includes/macros.html' import some_html_tip %}
 <div class="brform c" id="payments-upsell">
   {% if form.fields['free'].queryset.count() %}
-    {{ form.do_upsell.errors }}
-    {{ form.do_upsell }}
-    <div class="indent">
-      {{ form.free.errors }}
-      <p>{{ form.free }}</p>
-      <p class="extra">
-        {% trans %}
-          Pitch your premium app over the free version. This will appear
-          on the free app's details page.
-        {% endtrans %}
-      </p>
-    </div>
+    {{ form.free.errors }}
+    <label>{{ form.free.label }} {{ required() }}</label>
+    {{ form.free }}
+    <p class="note">
+      {% trans %}
+        Linking this app will promote your premium app next to the free
+        version.
+      {% endtrans %}
+    </p>
   {% else %}
-    <label>{{ _('App upsell') if webapp else _('Add-on upsell') }}</label>
+    <label>{{ _('App Upsell') }}</label>
     <div class="extra">
       {% trans %}
-        If you have a free app, you can pitch your premium app
-        on that free app. Currently you have no free apps.
+        If you have a free app, you can link and promote your premium app
+        next to the free version here.
       {% endtrans %}
     </div>
   {% endif %}

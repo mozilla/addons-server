@@ -52,7 +52,7 @@ from versions.models import Version
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
-                                  AppFormSupport, CategoryForm, CurrencyForm,
+                                  AppFormSupport, CategoryForm,
                                   ImageAssetFormSet, InappConfigForm,
                                   PaypalSetupForm, PreviewFormSet, RegionForm,
                                   trap_duplicate)
@@ -281,71 +281,29 @@ def payments(request, addon_id, addon, webapp=False):
     return _premium(request, addon_id, addon, webapp)
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def paypal_setup(request, addon_id, addon, webapp):
-    if addon.premium_type == amo.ADDON_FREE:
-        messages.error(request, 'Your app does not use payments.')
-        return redirect(addon.get_dev_url('payments'))
-
-    paypal_form = PaypalSetupForm(request.POST or None)
-    currency_form = CurrencyForm(request.POST or None,
-                        initial={'currencies': addon.premium.currencies
-                                               if addon.premium else {}})
-
-    context = {'addon': addon, 'paypal_form': paypal_form,
-               'currency_form': currency_form}
-
-    if request.POST.get('form') == 'paypal' and paypal_form.is_valid():
-        existing = paypal_form.cleaned_data['business_account']
-        if existing != 'yes':
-            # Go create an account.
-            # TODO: this will either become the API or something some better
-            # URL for the future.
-            return redirect(settings.PAYPAL_CGI_URL)
-        else:
-            # Go setup your details on paypal.
-            # TODO(solitude): we will remove this.
-            addon.update(paypal_id=paypal_form.cleaned_data['email'])
-
-            if waffle.flag_is_active(request, 'solitude-payments'):
-                obj = client.create_seller_paypal(addon)
-                client.patch_seller_paypal(pk=obj['resource_pk'],
-                        data={'paypal_id': paypal_form.cleaned_data['email']})
-
-            if addon.premium and addon.premium.paypal_permissions_token:
-                addon.premium.update(paypal_permissions_token='')
-            return redirect(addon.get_dev_url('paypal_setup_bounce'))
-
-    if (waffle.switch_is_active('currencies') and
-        request.POST.get('form') == 'currency' and currency_form.is_valid()):
-        currencies = currency_form.cleaned_data['currencies']
-        addon.premium.update(currencies=currencies)
-        messages.success(request, _('Currencies updated.'))
-        return redirect(addon.get_dev_url('paypal_setup'))
-
-    return jingo.render(request, 'developers/payments/paypal-setup.html',
-                        context)
-
-
 @json_view
 @dev_required(owner_for_post=True, webapp=True)
-def paypal_setup_check(request, addon_id, addon, webapp):
-    if waffle.flag_is_active(request, 'solitude-payments'):
-        data = client.post_account_check(data={'seller': addon})
-        return {'valid': data['passed'], 'message': data['errors']}
-    else:
-        if not addon.paypal_id:
-            return {'valid': False, 'message': ['No PayPal email.']}
+def paypal_setup(request, addon_id, addon, webapp):
+    paypal_form = PaypalSetupForm(request.POST or None)
 
-        check = Check(addon=addon)
-        check.all()
-        return {'valid': check.passed, 'message': check.errors}
+    if paypal_form.is_valid():
+        # Don't save the paypal_id into the addon until we set up permissions
+        # and confirm it as good.
+        request.session['unconfirmed_paypal_id'] = (paypal_form
+                                                    .cleaned_data['email'])
+
+        # Go setup your details on paypal.
+        paypal_url = get_paypal_bounce_url(request, str(addon_id), addon,
+                                           webapp, json_view=True)
+
+        return {'valid': True, 'message': [], 'paypal_url': paypal_url}
+
+    return {'valid': False, 'message': [_('Form not valid')]}
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def paypal_setup_bounce(request, addon_id, addon, webapp):
-    if not addon.paypal_id:
-        messages.error(request, 'We need a PayPal email before continuing.')
+def get_paypal_bounce_url(request, addon_id, addon, webapp, json_view=False):
+    if not addon.paypal_id and not json_view:
+        messages.error(request, _('We need a PayPal email before continuing.'))
         return redirect(addon.get_dev_url('paypal_setup'))
 
     dest = 'developers'
@@ -359,57 +317,7 @@ def paypal_setup_bounce(request, addon_id, addon, webapp):
     # TODO(solitude): remove this.
     else:
         paypal_url = paypal.get_permission_url(addon, dest, perms)
-
-    return jingo.render(request,
-                        'developers/payments/paypal-details-request.html',
-                        {'paypal_url': paypal_url, 'addon': addon})
-
-
-@dev_required(owner_for_post=True, webapp=True)
-def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
-    # If you bounce through paypal as you do permissions changes set the
-    # source to paypal.
-    if source == 'paypal':
-        msg = _('PayPal set up complete.')
-        title = _('Confirm Details')
-        button = _('Continue')
-    # If you just hit this page from the Manage Paypal, show some less
-    # wizardy stuff.
-    else:
-        msg = _('Changes saved.')
-        title = _('Contact Details')
-        button = _('Save')
-
-    data = {}
-    if waffle.flag_is_active(request, 'solitude-payments'):
-        data = client.get_seller_paypal_if_exists(addon) or {}
-
-    # TODO(solitude): remove this bit.
-    # If it's not in solitude, use the local version
-    adp, created = (AddonPaymentData.objects
-                                    .safer_get_or_create(addon=addon))
-    if not data:
-        data = model_to_dict(adp)
-
-    form = forms.PaypalPaymentData(request.POST or data)
-    if request.method == 'POST' and form.is_valid():
-        if waffle.flag_is_active(request, 'solitude-payments'):
-            # TODO(solitude): when the migration of data is completed, we
-            # will be able to remove this.
-            pk = client.create_seller_for_pay(addon)
-            client.patch_seller_paypal(pk=pk, data=form.cleaned_data)
-
-        # TODO(solitude): remove this.
-        adp.update(**form.cleaned_data)
-        messages.success(request, msg)
-        if source == 'paypal' and addon.is_incomplete() and addon.paypal_id:
-            addon.mark_done()
-        return redirect(addon.get_dev_url('paypal_setup'))
-
-    return jingo.render(request,
-                        'developers/payments/paypal-details-confirm.html',
-                        {'addon': addon, 'button': button, 'form': form,
-                         'title': title})
+    return paypal_url
 
 
 @write
@@ -420,12 +328,13 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
     # Set up our redirects.
     if request.GET.get('dest', '') == 'submission':
         on_good = reverse('submit.app.payments.confirm', args=[addon.app_slug])
-        on_error = reverse('submit.app.payments.paypal', args=[addon.app_slug])
+        on_error = reverse('submit.app.payments',
+                           args=[addon.app_slug])
         show_good_msgs = False
     else:
         # The management pages are the default.
         on_good = addon.get_dev_url('paypal_setup_confirm')
-        on_error = addon.get_dev_url('paypal_setup_bounce')
+        on_error = addon.get_dev_url('payments')
         show_good_msgs = True
 
     if 'request_token' not in request.GET:
@@ -455,18 +364,6 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
                                              request.GET['verification_code'])
         data = paypal.get_personal_data(token)
 
-    # TODO(solitude): remove this.
-    email = data.get('email')
-    # If the email from paypal is different, something has gone wrong.
-    if email != addon.paypal_id:
-        paypal_log.debug('Addon paypal_id and personal data differ: '
-                         '%s vs %s' % (email, addon.paypal_id))
-        messages.warning(request, _('The email returned by Paypal, '
-                                    'did not match the PayPal email you '
-                                    'entered. Please login using %s.')
-                         % email)
-        return redirect(on_error)
-
     # TODO(solitude): remove this. Sadly because the permissions tokens
     # are never being traversed back we have a disconnect between what is
     # happening in solitude and here and this will not easily survive flipping
@@ -477,6 +374,22 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
         addonpremium, created = (AddonPremium.objects
                                              .safer_get_or_create(addon=addon))
         addonpremium.update(paypal_permissions_token=token)
+
+    # TODO(solitude): remove this.
+    # Do this after setting permissions token since the previous permissions
+    # token becomes invalid after making a call to get_permissions_token.
+    email = data.get('email')
+    paypal_id = request.session['unconfirmed_paypal_id']
+    # If the email from paypal is different, something has gone wrong.
+    if email != paypal_id:
+        paypal_log.debug('Addon paypal_id and personal data differ: '
+                         '%s vs %s' %
+                         (email, paypal_id))
+        messages.warning(request, _('The email returned by PayPal '
+                                    'did not match the PayPal email you '
+                                    'entered. Please log in using %s.')
+                         % paypal_id)
+        return redirect(on_error)
 
     # Finally update the data returned from PayPal for this addon.
     paypal_log.debug('Updating personal data for: %s' % addon_id)
@@ -497,6 +410,95 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
                                   'received from PayPal.')
     return redirect(on_good)
 # End of new paypal stuff.
+
+
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
+    # If you bounce through paypal as you do permissions changes set the
+    # source to paypal.
+    if source == 'paypal':
+        msg = _('PayPal setup complete.')
+        title = _('Confirm Details')
+        button = _('Continue')
+    # If you just hit this page from the Manage Paypal, show some less
+    # wizardy stuff.
+    else:
+        msg = _('Changes saved.')
+        title = _('Contact Details')
+        button = _('Save')
+
+    data = {}
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        data = client.get_seller_paypal_if_exists(addon) or {}
+
+    # TODO(solitude): remove this bit.
+    # If it's not in solitude, use the local version
+    adp, created = (AddonPaymentData.objects
+                                    .safer_get_or_create(addon=addon))
+    if not data:
+        data = model_to_dict(adp)
+
+    form = forms.PaypalPaymentData(request.POST or data)
+    if request.method == 'POST' and form.is_valid():
+
+        # TODO(solitude): we will remove this.
+        # Everything is finally set up so now save the paypal_id and token
+        # to the addon.
+        addon.update(paypal_id=request.session['unconfirmed_paypal_id'])
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            obj = client.create_seller_paypal(addon)
+            client.patch_seller_paypal(pk=obj['resource_pk'],
+                    data={'paypal_id': addon.paypal_id})
+
+        if waffle.flag_is_active(request, 'solitude-payments'):
+            # TODO(solitude): when the migration of data is completed, we
+            # will be able to remove this.
+            pk = client.create_seller_for_pay(addon)
+            client.patch_seller_paypal(pk=pk, data=form.cleaned_data)
+
+        # TODO(solitude): remove this.
+        adp.update(**form.cleaned_data)
+
+        messages.success(request, msg)
+        if source == 'paypal' and addon.is_incomplete() and addon.paypal_id:
+            addon.mark_done()
+        return redirect(addon.get_dev_url('payments'))
+
+    return jingo.render(request,
+                        'developers/payments/paypal-details-confirm.html',
+                        {'addon': addon, 'button': button, 'form': form,
+                         'title': title})
+
+
+@json_view
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_setup_check(request, addon_id, addon, webapp):
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        data = client.post_account_check(data={'seller': addon})
+        return {'valid': data['passed'], 'message': data['errors']}
+    else:
+        if not addon.paypal_id:
+            return {'valid': False, 'message': [_('No PayPal email.')]}
+
+        check = Check(addon=addon)
+        check.all()
+        return {'valid': check.passed, 'message': check.errors}
+
+
+@json_view
+@dev_required(owner_for_post=True, webapp=True)
+def paypal_remove(request, addon_id, addon, webapp):
+    """
+    Unregisters PayPal account from app.
+    """
+    try:
+        addon.update(paypal_id='')
+        addonpremium, created = (AddonPremium.objects
+                                 .safer_get_or_create(addon=addon))
+        addonpremium.update(paypal_permissions_token='')
+    except Exception as e:
+        return {'success': False, 'error': [e]}
+    return {'success': True, 'error': []}
 
 
 @waffle_switch('in-app-payments')
@@ -583,8 +585,10 @@ def _premium(request, addon_id, addon, webapp=False):
         premium_form.save()
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('payments'))
+
     return jingo.render(request, 'developers/payments/premium.html',
                         dict(addon=addon, webapp=webapp, premium=addon.premium,
+                             paypal_create_url=settings.PAYPAL_CGI_URL,
                              form=premium_form))
 
 

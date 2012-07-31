@@ -4,8 +4,8 @@
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('paypal_setup'),
-                                      _('Manage PayPal')),
+    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('payments'),
+                                      _('Manage Payments')),
                                      (None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
@@ -71,10 +71,10 @@
         </div>
       </fieldset>
       <footer class="listing-footer">
+        <form action="{{ addon.get_dev_url('payments') }}" method="get">
+          <button type="submit">{{ _('Cancel') }}</button>
+        </form>
         <button type="submit">{{ button }}</button>
-        {% trans cancel=addon.get_dev_url('paypal_setup') %}
-          or <a href="{{ cancel }}">Cancel</a>
-        {% endtrans %}
       </footer>
     </form>
   </section>

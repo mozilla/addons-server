@@ -19,29 +19,35 @@
   <section class="primary payments island devhub-form" role="main">
     <form method="post" action="{{ addon.get_dev_url('payments') }}">
       {{ csrf() }}
-      <div class="brform" id="payments-premium-type">
+      <div class="brform" id="premium-type">
         <label for="id_premium_type">
           {{ form.premium_type.label }} {{ required() }}
         </label>
-        <div class="extra">
-          {{ _('How your app will displayed on the Marketplace.') }}
-        </div>
         {{ form.premium_type.errors }}
         <div class="choice">{{ form.premium_type }}</div>
         <p>
           {% trans payments_url='https://developer.mozilla.org/en/Apps/Marketplace_Payments',
                    receipts_url='https://developer.mozilla.org/en/Apps/Validating_a_receipt' %}
            Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.
-           Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts in your app</a>.
+           Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
           {% endtrans %}
         </p>
       </div>
-      {% include 'developers/payments/includes/tier.html' %}
-      {% include 'developers/payments/includes/upsell.html' %}
+      <div class="divider"></div>
+      <div id="premium-detail" class="premium-detail">
+        {% include 'developers/payments/includes/tier.html' %}
+        {% if waffle.switch('currencies') %}
+          {% include 'developers/payments/includes/currencies.html' %}
+        {% endif  %}
+        {% include 'developers/payments/includes/payment_account.html' %}
+        {% include 'developers/payments/includes/upsell.html' %}
+      </div>
       <footer class="listing-footer">
         <button type="submit">{{ _('Save Changes') }}</button>
       </footer>
     </form>
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}
+  {% include 'developers/payments/includes/add_payment_account_choose.html' %}
+  {% include 'developers/payments/includes/add_payment_account_paypal_email.html' %}
 {% endblock %}

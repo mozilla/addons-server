@@ -1,3 +1,5 @@
+import json
+
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -105,11 +107,6 @@ class TestPaypal(amo.tests.TestCase):
     def get_webapp(self):
         return Addon.objects.get(pk=337141)
 
-    def test_not_premium(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 302)
-
     def test_partial_submit(self):
         from mkt.submit.models import AppSubmissionChecklist
         AppSubmissionChecklist.objects.create(addon=self.webapp)
@@ -117,53 +114,21 @@ class TestPaypal(amo.tests.TestCase):
         res = self.client.get(self.url, follow=True)
         self.assertRedirects(res, reverse('submit.app.terms'))
 
-    @mock.patch('mkt.developers.views.waffle.switch_is_active')
-    def test_currencies_fails(self, switch_is_active):
-        switch_is_active.return_value = True
+    def test_paypal_setup_json(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.url, {'currencies': ['GBP', 'EUR'],
-                                          'form': 'currency'})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'currency_form', 'currencies',
-                              [u'Select a valid choice. '
-                                'GBP is not one of the available choices.'])
-
-    @mock.patch('mkt.developers.views.waffle.switch_is_active')
-    def test_currencies_passes(self, switch_is_active):
-        switch_is_active.return_value = True
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.url, {'currencies': ['EUR', 'BRL'],
-                                          'form': 'currency'})
-        eq_(res.status_code, 302)
-        eq_(self.webapp.premium.currencies, ['EUR', 'BRL'])
-
-    def test_later(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.url, {'email': 'a@a.com',
-                                          'business_account': 'yes',
-                                          'form': 'paypal'})
-        self.assertRedirects(res,
-                             self.webapp.get_dev_url('paypal_setup_bounce'))
-
-    @mock.patch('mkt.developers.views.client')
-    @mock.patch('mkt.developers.views.waffle.flag_is_active')
-    def test_later_solitude(self, flag_is_active, client):
-        flag_is_active.return_value = True
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        self.client.post(self.url, {'email': 'a@a.com', 'form': 'paypal',
-                                    'business_account': 'yes'})
-        eq_(client.create_seller_paypal.call_args[0][0], self.webapp)
-        eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
-            'a@a.com')
+        res = json.loads(self.client.post(self.url, {'email':
+                         'a@a.com'}).content)
+        eq_(res['valid'], True)
+        eq_('paypal_url' in res, True)
+        eq_(len(res['message']), 0)
 
     @mock.patch('mkt.developers.views.client')
     def test_bounce_solitude(self, client):
         self.create_flag(name='solitude-payments')
-        url = 'http://foo.com'
-        client.post_permission_url.return_value = {'token': url}
         self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@.com')
         res = self.client.post(self.webapp.get_dev_url('paypal_setup_bounce'))
-        eq_(pq(res.content)('section.primary a.button').attr('href'), url)
+        url = self.webapp.get_dev_url('payments')
+        eq_(pq(res.content)('section.primary form')[1].action, url)
 
 
 class TestPaypalResponse(amo.tests.TestCase):
@@ -174,6 +139,10 @@ class TestPaypalResponse(amo.tests.TestCase):
         self.url = self.webapp.get_dev_url('paypal_setup_confirm')
         self.webapp.update(status=amo.STATUS_NULL)
         self.client.login(username='admin@mozilla.com', password='password')
+
+        session = self.client.session
+        session['unconfirmed_paypal_id'] = 'bob@dog.com'
+        session.save()
 
     def get_webapp(self):
         return Addon.objects.get(pk=337141)

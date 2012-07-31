@@ -241,7 +241,7 @@ class TestDeveloperRoleAccess(amo.tests.TestCase):
         eq_(res.status_code, 403)
 
     def test_urls(self):
-        urls = ['owner', 'payments', 'paypal_setup']
+        urls = ['owner', 'payments']
         for url in urls:
             self._check_it(self.webapp.get_dev_url(url))
 

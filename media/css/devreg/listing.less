@@ -331,7 +331,6 @@
     a {
         color: @note-gray;
         &.more-actions {
-            display: block;
             position: relative;
             &:after {
                 border-color: @note-gray transparent transparent;
@@ -362,7 +361,7 @@
     }
     > ul > li {
         display: inline-block;
-        &:not(:last-child):after {
+        &:not(:first-child):before {
             background-color: @note-gray;
             border-radius: 5em;
             content: "";

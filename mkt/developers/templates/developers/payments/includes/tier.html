@@ -1,14 +1,15 @@
 {% from 'developers/includes/macros.html' import required %}
 <div class="brform" id="payments-price-level">
-  <label for="id_price">{{ form.price.label }} {{ required() }}</label>
   <div class="extra">
     <p>
       {% trans doc_url='https://developer.mozilla.org/en/Apps/Marketplace_Payments#Price_tiers' %}
-        Select a price tier below. Price tiers are based on US Dollars and are fixed for all supported countries.
-        For more information <a href="{{ doc_url }}">view our pricing matrix</a>.
+        To sell your app in the Marketplace, you'll first need to set its price
+        tier below. Price tiers are based on US Dollars and are fixed for all supported
+        currencies. <a href="{{ doc_url }}">Learn more about price tiers</a>.
       {% endtrans %}
     </p>
   </div>
+  <label for="id_price">{{ form.price.label }} {{ required() }}</label>
   {{ form.price.errors }}
   <div>{{ form.price }}</div>
 </div>

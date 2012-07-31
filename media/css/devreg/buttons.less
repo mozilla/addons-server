@@ -38,6 +38,36 @@ button, .button {
     }
 }
 
+.button, button {
+    &.paypal,
+    &.bluevia {
+        font: bold italic 24px/26px Verdana, @sans-stack;
+        padding: 22px 40px 21px;
+        min-width: 175px;
+    }
+    &.paypal {
+        .gradient-two-color(#F8EAC4, #EEC546);
+        color: rgb(51, 70, 118);
+        text-shadow: 1px 1px #EDE8BF;
+        small {
+            font-size: 0.7em;
+        }
+        em {
+            color: rgb(90, 120, 168);
+        }
+        &.disabled em {
+            color: #919497;
+        }
+    }
+    &.bluevia {
+        background: #def url(../../img/mkt/bluevia.png) 50% -20% no-repeat;
+        text-indent: -9999px;
+        &:hover {
+            background-color: fade(#def, 70%);
+        }
+    }
+}
+
 .button {
     display: inline-block;
     &.add { // Green
@@ -81,23 +111,6 @@ button, .button {
     }
     &.premium {
         .gradient-two-color(#E3C17F, #D6913D);
-    }
-    &.paypal {
-        .gradient-two-color(#F8EAC4, #EEC546);
-        color: rgb(51, 70, 118);
-        text-shadow: 1px 1px #EDE8BF;
-        font-style: italic;
-        font-family: Verdana, @sans-stack;
-        background-color: #EEC546;
-        small {
-            font-size: 0.7em;
-        }
-        em {
-            color: rgb(90, 120, 168);
-        }
-        &.disabled em {
-            color: #919497;
-        }
     }
     &.contribute { // Blue
         &.prominent b {

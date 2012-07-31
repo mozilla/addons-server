@@ -14,9 +14,6 @@
         check_addon_ownership(request, addon, support=True) %}
     {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
   {% endif %}
-  {% if addon.needs_paypal() %}
-    {% do urls.insert(4, (addon.get_dev_url('paypal_setup'), _('Manage PayPal'))) %}
-  {% endif %}
   {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
         and waffle.switch('in-app-payments') %}
     {% do urls.insert(4,
@@ -39,7 +36,10 @@
   <div class="island" id="edit-addon-nav">
     <ul class="refinements">
       {% for url, title in urls %}
-        <li{% if request.path.startswith(url) %} class="selected"{% endif %}>
+        {# Hook up PayPal urls under payment urls #}
+        <li{% if request.path.startswith(url)
+              or (request.path.startswith(addon.get_dev_url('paypal_setup'))
+                  and url == addon.get_dev_url('payments')) %} class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
     </ul>

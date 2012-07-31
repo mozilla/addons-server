@@ -1,0 +1,8 @@
+{% from 'developers/includes/macros.html' import required %}
+<div class="brform" id="payments-currencies">
+  <div class="extra">
+  </div>
+  <label for="id_price">{{ form.currencies.label }}</label>
+  {{ form.currencies.errors }}
+  <div class="indent">{{ form.currencies }}</div>
+</div>
