@@ -19,7 +19,7 @@ from files.models import File
 from versions.models import Version
 
 import mkt
-from mkt.developers.tests.test_views import BaseWebAppTest
+from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 

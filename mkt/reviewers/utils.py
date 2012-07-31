@@ -12,6 +12,7 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from editors.models import ReviewerScore
+from files.models import File
 
 from .models import EscalationQueue, RereviewQueue
 
@@ -145,8 +146,9 @@ class ReviewApp(ReviewBase):
     def process_public_waiting(self):
         """Make an app pending."""
         self.set_files(amo.STATUS_PUBLIC_WAITING, self.version.files.all())
-        self.set_addon(highest_status=amo.STATUS_PUBLIC_WAITING,
-                       status=amo.STATUS_PUBLIC_WAITING)
+        if self.addon.status != amo.STATUS_PUBLIC:
+            self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
+                           highest_status=amo.STATUS_PUBLIC_WAITING)
 
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
@@ -160,8 +162,9 @@ class ReviewApp(ReviewBase):
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all())
-        self.set_addon(highest_status=amo.STATUS_PUBLIC,
-                       status=amo.STATUS_PUBLIC)
+        if self.addon.status != amo.STATUS_PUBLIC:
+            self.set_addon(status=amo.STATUS_PUBLIC,
+                           highest_status=amo.STATUS_PUBLIC)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')
@@ -171,13 +174,17 @@ class ReviewApp(ReviewBase):
 
     def process_sandbox(self):
         """Reject an app."""
-        self.set_addon(status=amo.STATUS_REJECTED)
+        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
+                       hide_disabled_file=True)
+        # If there aren't other versions with already reviewed files, it's ok
+        # to reject this addon. Otherwise only reject the files.
+        if (not self.addon.versions.exclude(id=self.version.id)
+                .filter(files__status__in=amo.REVIEWED_STATUSES).exists()):
+            self.set_addon(status=amo.STATUS_REJECTED)
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
-        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
-                       hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('pending_to_sandbox', u'Submission Update: %s')
@@ -213,6 +220,10 @@ class ReviewApp(ReviewBase):
         if not acl.action_allowed(self.request, 'Addons', 'Edit'):
             return
 
+        # Disable disables all files, not just those in this version.
+        self.set_files(amo.STATUS_DISABLED,
+                       File.objects.filter(version__addon=self.addon),
+                       hide_disabled_file=True)
         self.addon.update(status=amo.STATUS_DISABLED)
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
@@ -238,7 +249,8 @@ class ReviewHelper(object):
         self.handler = None
         self.required = {}
         self.addon = addon
-        self.all_files = version.files.all()
+        self.version = version
+        self.all_files = version and version.files.all()
         self.get_review_type(request, addon, version)
         self.actions = self.get_actions()
 
@@ -290,13 +302,15 @@ class ReviewHelper(object):
             'label': _lazy(u'Clear Escalation'),
             'minimal': True,
             'details': _lazy(u'Clear this app from the escalation queue. The '
-                             u'author will get no email or see comments here.')}
+                             u'author will get no email or see comments '
+                             u'here.')}
         clear_rereview = {
             'method': self.handler.process_clear_rereview,
             'label': _lazy(u'Clear Re-review'),
             'minimal': True,
             'details': _lazy(u'Clear this app from the re-review queue. The '
-                             u'author will get no email or see comments here.')}
+                             u'author will get no email or see comments '
+                             u'here.')}
         disable = {
             'method': self.handler.process_disable,
             'label': _lazy(u'Disable app'),
@@ -306,17 +320,24 @@ class ReviewHelper(object):
 
         actions = SortedDict()
 
+        file_status = self.version.files.values_list('status', flat=True)
+
         # Public.
-        if self.addon.status != amo.STATUS_PUBLIC:
+        if (self.addon.status != amo.STATUS_PUBLIC or
+            amo.STATUS_PUBLIC not in file_status):
             actions['public'] = public
 
         # Reject.
-        if self.addon.status not in [amo.STATUS_REJECTED, amo.STATUS_DISABLED]:
+        if (self.addon.status != amo.STATUS_REJECTED and
+            self.addon.status != amo.STATUS_DISABLED or (
+                amo.STATUS_REJECTED not in file_status and
+                amo.STATUS_DISABLED not in file_status)):
             actions['reject'] = reject
 
         # Disable.
-        if (acl.action_allowed(self.handler.request, 'Addons', 'Edit') and
-            self.addon.status != amo.STATUS_DISABLED):
+        if (acl.action_allowed(self.handler.request, 'Addons', 'Edit') and (
+                self.addon.status != amo.STATUS_DISABLED or
+                amo.STATUS_DISABLED not in file_status)):
             actions['disable'] = disable
 
         # Clear escalation.

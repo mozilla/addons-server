@@ -17,11 +17,13 @@ import reviews
 from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonDeviceType, AddonUser
-from amo.tests import app_factory, check_links, formset, initial
+from amo.tests import (app_factory, check_links, formset, initial,
+                       version_factory)
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import ActivityLog, AppLog
 from editors.models import CannedResponse, ReviewerScore
+from files.models import File
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.webapps.models import Webapp
 from reviews.models import Review, ReviewFlag
@@ -196,6 +198,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
     def test_action_buttons_rejected(self):
         # Check action buttons for a previously rejected app.
         self.apps[0].update(status=amo.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_REJECTED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -359,6 +362,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
 
     def test_action_buttons_reject(self):
         self.apps[0].update(status=amo.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_REJECTED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -473,6 +477,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
 
     def test_action_buttons_reject(self):
         self.apps[0].update(status=amo.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_REJECTED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -532,6 +537,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self.app.update(status=amo.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact)
         self.version = self.app.current_version
+        self.version.files.all().update(status=amo.STATUS_PENDING)
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def get_app(self):
@@ -539,7 +545,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
 
     def post(self, data, queue='pending'):
         res = self.client.post(self.url, data)
-        # Purposefully not using assertRedirects.
         self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
 
     def test_review_viewing_ping(self):
@@ -602,7 +607,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
             'comments': 'something',
             'addon_files': files,
         })
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
         self._check_log(amo.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
@@ -623,7 +630,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
             'comments': 'something',
             'addon_files': files,
         })
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
         self._check_log(amo.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
@@ -644,7 +653,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
             'comments': 'something',
             'addon_files': files,
         })
-        eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+        eq_(app.current_version.files.all()[0].status,
+            amo.STATUS_PUBLIC_WAITING)
         self._check_log(amo.LOG.APPROVE_VERSION_WAITING)
 
         eq_(len(mail.outbox), 1)
@@ -654,8 +666,34 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_score(amo.REVIEWED_WEBAPP)
 
     def test_pending_to_reject(self):
+        files = list(self.version.files.values_list('id', flat=True))
         self.post({'action': 'reject', 'comments': 'suxor'})
-        eq_(self.get_app().status, amo.STATUS_REJECTED)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
+        self._check_log(amo.LOG.REJECT_VERSION)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
+        self._check_email_body(msg)
+
+    def test_multiple_versions_reject(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
+        new_version = version_factory(addon=self.app)
+        new_version.files.all().update(status=amo.STATUS_PENDING)
+        files = list(new_version.files.values_list('id', flat=True))
+        self.post({
+            'action': 'reject',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        })
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
@@ -679,7 +717,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
 
         self.app.update(status=amo.STATUS_PUBLIC)
         self.post({'action': 'disable', 'comments': 'disabled ur app'})
-        eq_(self.get_app().status, amo.STATUS_DISABLED)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_DISABLED)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
@@ -704,7 +744,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
             'comments': 'something',
             'addon_files': files,
         }, queue='escalated')
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
         self._check_log(amo.LOG.APPROVE_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
@@ -724,7 +766,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
             'comments': 'something',
             'addon_files': files,
         }, queue='escalated')
-        eq_(self.get_app().status, amo.STATUS_REJECTED)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.REJECT_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
@@ -740,7 +784,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self.app.update(status=amo.STATUS_PUBLIC)
         self.post({'action': 'disable', 'comments': 'disabled ur app'},
                   queue='escalated')
-        eq_(self.get_app().status, amo.STATUS_DISABLED)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_DISABLED)
+        eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)

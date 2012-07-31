@@ -278,7 +278,7 @@ class TestCreateWebApp(BaseWebAppTest):
         addon = self.post_addon()
         files = addon.current_version.files.all()
         eq_(len(files), 1)
-        eq_(files[0].status, amo.STATUS_PUBLIC)
+        eq_(files[0].status, amo.STATUS_PENDING)
 
 
 class TestCreateWebAppFromManifest(BaseWebAppTest):

@@ -1,5 +1,4 @@
 import collections
-import cPickle as pickle
 import glob
 import hashlib
 import json
@@ -56,6 +55,7 @@ def get_filepath(fileorpath):
     if hasattr(fileorpath, 'path'):  # FileUpload
         return fileorpath.path
     return fileorpath
+
 
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
@@ -438,8 +438,7 @@ def parse_addon(pkg, addon=None):
     or files.models.FileUpload.
     """
     name = getattr(pkg, 'name', pkg)
-    if (getattr(pkg, 'is_webapp', False) or
-        name.endswith('.webapp') or name.endswith('.json')):
+    if getattr(pkg, 'is_webapp', False) or name.endswith(('.webapp', '.json')):
         parsed = WebAppParser().parse(pkg, addon)
     elif name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
@@ -447,8 +446,7 @@ def parse_addon(pkg, addon=None):
         parsed = parse_xpi(pkg, addon)
 
     if addon and addon.type != parsed['type']:
-        raise forms.ValidationError(
-            _("<em:type> doesn't match add-on"))
+        raise forms.ValidationError(_("<em:type> doesn't match add-on"))
     return parsed
 
 
