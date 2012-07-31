@@ -213,7 +213,9 @@ def find_files(job):
                         versions__apps__application=job.application.id,
                         versions__apps__max__version_int__gte=current,
                         versions__apps__max__version_int__lt=target)
-                           .exclude(type=amo.ADDON_LPAPP)  # no langpacks
+                           # Exclude lang packs and themes.
+                           .exclude(type__in=[amo.ADDON_LPAPP,
+                                              amo.ADDON_THEME])
                            .no_transforms().values_list("pk", flat=True)
                            .distinct())
     for pks in chunked(addons, 100):

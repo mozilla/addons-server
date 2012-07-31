@@ -281,6 +281,18 @@ class TestBulkValidation(BulkValidationTest):
                         'Lang pack addons should be ignored')
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
+    def test_ignore_themes(self, bulk_validate_file):
+        target_ver = self.appversion('3.7a3').id
+        self.addon.update(type=amo.ADDON_THEME)
+        self.client.post(reverse('zadmin.start_validation'),
+                         {'application': amo.FIREFOX.id,
+                          'curr_max_version': self.curr_max.id,
+                          'target_version': target_ver,
+                          'finish_email': 'fliggy@mozilla.com'})
+        assert not bulk_validate_file.delay.called, (
+                        'Theme addons should be ignored')
+
+    @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_validate_all_non_disabled_addons(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
         for status in (amo.STATUS_PUBLIC, amo.STATUS_LISTED):
