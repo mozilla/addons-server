@@ -484,10 +484,11 @@ h1 .num {
             }
         }
         .grouped-ratings {
+            .border-box;
             display: block;
-            height: 150px;
-            margin-top: 12px;
-            padding: 15px 0 0 20px;
+            min-height: 130px;
+            margin-top: 10px;
+            padding: 15px 15px 0;
             &:before {
                 left: 135px;
             }
@@ -501,26 +502,37 @@ h1 .num {
             .fat-button;
             clear: left;
             margin-top: 14px;
+            padding: 10px 15px;
             text-align: left;
             &:after {
                 top: 14px;
-                right: 16px;
+                right: 15px;
             }
         }
-        .latest-reviews-list li {
+        .reviews-sidebar {
+            float: right;
+            margin-top: 5px;
+            width: 60%;
+        }
+        .latest-reviews-list {
+            border-top: 1px solid @light-gray;
             margin: 0;
-            min-height: 0;
-            font-size: 13px;
+            padding: 0;
+            li {
+                font-size: 13px;
+                margin: 0;
+                min-height: 0;
+            }
         }
         li.review {
-            &:first-child {
-                margin-top: 8px;
-                border-top-color: @light-gray;
-            }
+            .border-box;
             border-width: 1px 0;
-            border-top-color: @white;
-            float: right;
-            width: 60%;
+            border-top: 1px solid @white;
+            border-bottom: 1px solid @light-gray;
+            width: 100%;
+            li + li:before {
+                content: "\00a0\00a0\2022\00a0\00a0";
+            }
         }
         .actions {
             li {
@@ -534,11 +546,19 @@ h1 .num {
             display: block;
             padding: 0;
         }
-        a.view-more {
+        .view-more-reviews {
+            border-top: 1px solid @white;
             clear: both;
-            float: right;
             font-weight: bold;
-            margin-top: 12px;
+            text-align: right;
+            a {
+                display: block;
+                padding: 10px 30px 10px 10px;
+                &:after {
+                    top: 13px;
+                    right: 10px;
+                }
+            }
         }
         .replies {
             display: none;

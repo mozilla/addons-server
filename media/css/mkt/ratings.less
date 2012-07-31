@@ -485,10 +485,17 @@ p.support-link {
     font-size: 13px;
     margin-top: 48px;
 }
+
 @media (max-width: @4col) {
     .support-link {
         clear: left;
         float: none;
         margin-top: 0;
+    }
+    #reviews-detail {
+        .view-more-reviews,
+        .add-edit-review {
+            display: none;
+        }
     }
 }
