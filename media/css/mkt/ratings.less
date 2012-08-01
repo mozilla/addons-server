@@ -57,7 +57,7 @@ li a.delete {
 }
 
 #reviews {
-    margin: 20px 0;
+    margin: 55px 0 15px 0;
     position: relative;
     > div {
         .border-box;
@@ -173,7 +173,7 @@ header.product {
         width: 64px;
         + div {
             float: left;
-            max-width: 206px;
+            max-width: 905px;
         }
     }
     h1 {
@@ -486,6 +486,12 @@ p.support-link {
     margin-top: 48px;
 }
 
+@media (max-width: @7col) {
+    header.product .visual + div {
+        max-width: 615px;
+    }
+}
+
 @media (max-width: @4col) {
     .support-link {
         clear: left;
@@ -497,5 +503,8 @@ p.support-link {
         .add-edit-review {
             display: none;
         }
+    }
+    header.product .visual + div {
+        max-width: 206px;
     }
 }
