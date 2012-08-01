@@ -30,6 +30,14 @@
         }));
     });
 
+    function getBody($body) {
+        var body = $body.clone();
+        // Get the inner *text* of the review body.
+        body.find('.view-reply').remove();
+        body.find('br').replaceWith('\n');
+        return body.text().trim();
+    }
+
     function handleReviewOverlay(overlay) {
         // Stuff that is common to Edit and Reply.
         var $form = overlay.find('form');
@@ -133,9 +141,9 @@
 
     function editReview(reviewEl, action) {
         var overlay = makeOrGetOverlay('edit-review'),
-            body = reviewEl.find('.body').html().trim(),
             rating = reviewEl.data('rating'),
-            action = reviewEl.closest('[data-edit-url]').data('edit-url');
+            action = reviewEl.closest('[data-edit-url]').data('edit-url'),
+            body = getBody(reviewEl.find('.body'));
         overlay.html(format($('#edit-review-template').html(),
                             {action: action, body: body}));
         if (reviewEl.hasClass('reply')) {
@@ -163,7 +171,7 @@
 
     function editReply(reviewEl, action) {
         var overlay = makeOrGetOverlay('edit-reply-review'),
-            body = reviewEl.find('.body').html().trim();
+            body = getBody(reviewEl.find('.body'));
         overlay.html(format($('#edit-reply-review-template').html(),
                             {action: action, body: body}));
         handleReviewOverlay(overlay);
