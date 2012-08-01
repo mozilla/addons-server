@@ -138,8 +138,12 @@
             action = reviewEl.closest('[data-edit-url]').data('edit-url');
         overlay.html(format($('#edit-review-template').html(),
                             {action: action, body: body}));
-        overlay.find('select[name="rating"]').ratingwidget();
-        overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+        if (reviewEl.hasClass('reply')) {
+            overlay.find('select[name="rating"]').remove();
+        } else {
+            overlay.find('select[name="rating"]').ratingwidget();
+            overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+        }
         handleReviewOverlay(overlay);
     }
 
