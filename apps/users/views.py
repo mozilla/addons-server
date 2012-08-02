@@ -220,7 +220,7 @@ def edit(request):
                 send_mail(_('Please confirm your email address '
                             'change at %s' % domain),
                     t.render(Context(c)), None, [amouser.email],
-                    use_blacklist=False)
+                    use_blacklist=False, real_email=True)
 
                 # Reset the original email back.  We aren't changing their
                 # address until they confirm the new one

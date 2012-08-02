@@ -139,7 +139,7 @@ def paginate(request, queryset, per_page=20, count=None):
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
-              manage_url=None, headers=None, cc=None):
+              manage_url=None, headers=None, cc=None, real_email=False):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -150,7 +150,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not recipient_list:
         return True
 
-    connection = get_email_backend()
+    connection = get_email_backend(real_email)
 
     if not from_email:
         from_email = settings.DEFAULT_FROM_EMAIL
@@ -716,12 +716,15 @@ class Token:
         return False
 
 
-def get_email_backend():
+def get_email_backend(real_email=False):
     """Get a connection to an email backend.
 
     If settings.SEND_REAL_EMAIL is False, a debugging backend is returned.
     """
-    backend = None if settings.SEND_REAL_EMAIL else 'amo.mail.FakeEmailBackend'
+    if real_email or settings.SEND_REAL_EMAIL:
+        backend = None
+    else:
+        backend = 'amo.mail.FakeEmailBackend'
     return django.core.mail.get_connection(backend)
 
 
