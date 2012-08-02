@@ -211,7 +211,7 @@
 
     // View reply.
     z.page.on('click', '.review .view-reply', _pd(function() {
-        $(this).closest('.review').siblings('.reply').toggle();
+        $(this).closest('.review').siblings('.replies').find('.reply').toggle();
     }));
 
 })();
