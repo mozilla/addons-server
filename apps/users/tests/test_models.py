@@ -50,7 +50,7 @@ class TestUserProfile(amo.tests.TestCase):
         u.email_confirmation_code()
 
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, 'Please confirm your email')
+        eq_(mail.outbox[0].subject, 'Please confirm your email address')
         assert mail.outbox[0].body.find('%s/confirm/%s' %
                                         (u.id, u.confirmationcode)) > 0
 
@@ -61,7 +61,7 @@ class TestUserProfile(amo.tests.TestCase):
         u.email_confirmation_code()
 
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, 'Please confirm your email')
+        eq_(mail.outbox[0].subject, 'Please confirm your email address')
 
     def test_welcome_name(self):
         u1 = UserProfile(username='sc')
