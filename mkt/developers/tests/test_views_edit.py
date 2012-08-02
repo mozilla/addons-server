@@ -20,8 +20,9 @@ from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
-from addons.models import (Addon, AddonCategory,
-                           AddonDeviceType, AddonUser, Category, DeviceType)
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
+                           Category)
+from constants.applications import DEVICE_TYPES
 from lib.video.tests import files as video_files
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.developers.models import ActivityLog
@@ -136,8 +137,7 @@ class TestEditBasic(TestEdit):
         super(TestEditBasic, self).setUp()
         Switch.objects.create(name='marketplace', active=True)
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
-        self.dtype = DeviceType.objects.create(name='fligphone',
-                                               class_name='phone')
+        self.dtype = DEVICE_TYPES.keys()[0]
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype)
@@ -152,7 +152,7 @@ class TestEditBasic(TestEdit):
 
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
-        result = {'device_types': self.dtype.id, 'name': 'new name',
+        result = {'device_types': self.dtype, 'name': 'new name',
                   'slug': 'test_slug', 'summary': 'new summary',
                   'manifest_url': self.get_webapp().manifest_url}
         result.update(**kw)
@@ -369,20 +369,21 @@ class TestEditBasic(TestEdit):
 
     def test_devices_listed(self):
         r = self.client.post(self.url, self.get_dict())
-        eq_(pq(r.content)('#addon-device-types-edit').text(), self.dtype.name)
+        eq_(pq(r.content)('#addon-device-types-edit').text(),
+            DEVICE_TYPES[self.dtype].name)
 
     def test_edit_devices_add(self):
-        new = DeviceType.objects.create(name='iSlate', class_name='slate')
+        new = DEVICE_TYPES.keys()[1]
         data = self.get_dict()
-        data['device_types'] = [self.dtype.id, new.id]
+        data['device_types'] = [self.dtype, new]
         self.client.post(self.edit_url, data)
         devicetypes = self.get_webapp().device_types
         eq_([d.id for d in devicetypes], list(data['device_types']))
 
     def test_edit_devices_addandremove(self):
-        new = DeviceType.objects.create(name='iSlate', class_name='slate')
+        new = DEVICE_TYPES.keys()[1]
         data = self.get_dict()
-        data['device_types'] = [new.id]
+        data['device_types'] = [new]
         self.client.post(self.edit_url, data)
         devicetypes = self.get_webapp().device_types
         eq_([d.id for d in devicetypes], list(data['device_types']))

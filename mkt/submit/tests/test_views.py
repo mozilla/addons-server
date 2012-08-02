@@ -16,10 +16,11 @@ from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category, DeviceType)
+                           Category)
 from addons.utils import ReverseNameLookup
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
+from constants.applications import DEVICE_TYPES
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
 import mkt
@@ -363,9 +364,9 @@ class TestDetails(TestSubmit):
         AddonUser.objects.create(addon=self.webapp, user=self.user)
 
         # Associate device type with app.
-        self.dtype = DeviceType.objects.create(name='fligphone')
+        self.dtype = DEVICE_TYPES.values()[0]
         AddonDeviceType.objects.create(addon=self.webapp,
-                                       device_type=self.dtype)
+                                       device_type=self.dtype.id)
 
         # Associate category with app.
         self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
@@ -704,11 +705,15 @@ class TestDetails(TestSubmit):
 
     def test_device_types_default(self):
         self._step()
+        # Add the rest of the device types. We already add [0] in _step().
+        for d_id in DEVICE_TYPES.keys()[1:]:
+            AddonDeviceType.objects.create(addon=self.webapp,
+                                           device_type=d_id)
+
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         checkboxes = pq(r.content)('input[name=device_types]')
-        eq_(checkboxes.length, 1)
-        eq_(checkboxes.filter(':checked').length, 1,
+        eq_(checkboxes.filter(':checked').length, checkboxes.length,
             'All device types should be checked by default.')
 
     def test_device_types_default_on_post(self):
@@ -716,7 +721,6 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, self.get_dict(device_types=None))
         eq_(r.status_code, 200)
         checkboxes = pq(r.content)('input[name=device_types]')
-        eq_(checkboxes.length, 1)
         eq_(checkboxes.filter(':checked').length, 0,
             'POSTed values should not get replaced by the defaults.')
 

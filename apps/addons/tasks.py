@@ -16,7 +16,7 @@ from market.models import AddonPremium
 from tags.models import Tag
 from versions.models import Version
 from . import cron, search  # Pull in tasks from cron.
-from .models import (Addon, Category, CompatOverride, DeviceType,
+from .models import (Addon, AddonDeviceType, Category, CompatOverride,
                      IncompatibleVersions, Preview)
 
 
@@ -108,8 +108,8 @@ def index_addons(ids, **kw):
 
 def attach_devices(addons):
     addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
-    devices = (DeviceType.objects.filter(addondevicetype__addon__in=addon_dict)
-               .values_list('addondevicetype__addon', 'id'))
+    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
+               .values_list('addon', 'device_type'))
     for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
         addon_dict[addon].device_ids = [d[1] for d in device_types]
 

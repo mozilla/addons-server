@@ -1340,26 +1340,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.installed.filter(user=user).exists()
 
 
-class DeviceType(amo.models.ModelBase):
-    name = TranslatedField()
-    class_name = models.CharField(max_length=100)
-
-    class Meta:
-        db_table = 'devicetypes'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
-    device_type = models.ForeignKey(DeviceType)
+    device_type = models.PositiveIntegerField(default=amo.DEVICE_DESKTOP,
+        choices=do_dictsort(amo.DEVICE_TYPES), db_index=True)
 
     class Meta:
         db_table = 'addons_devicetypes'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.addon.name, self.device_type.name)
+        return u'%s: %s' % (self.addon.name, self.device.name)
+
+    def device(self):
+        return amo.DEVICE_TYPES[device_type]
 
 
 @receiver(dbsignals.post_save, sender=Addon,

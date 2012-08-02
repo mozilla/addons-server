@@ -5,7 +5,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, AddonDeviceType, Category, DeviceType
+from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -191,12 +191,12 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         self._generate(3)
         for name, idx in DEVICE_CHOICES_IDS.iteritems():
             AddonDeviceType.objects.create(addon=self.apps[idx],
-                device_type=DeviceType.objects.create(name=name, id=idx))
+                device_type=idx)
 
         # Make an app have compatibility for every device.
         for x in xrange(1, 4):
             AddonDeviceType.objects.create(addon=self.apps[0],
-                                           device_type_id=x)
+                                           device_type=x)
 
     def check_device_filter(self, device, selected):
         self.setup_devices()

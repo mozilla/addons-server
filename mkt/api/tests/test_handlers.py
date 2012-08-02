@@ -7,7 +7,7 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon, AddonUser, Category, DeviceType, Preview
+from addons.models import Addon, AddonUser, Category, Preview
 import amo
 from amo.tests import AMOPaths
 from files.models import FileUpload
@@ -143,10 +143,6 @@ class CreateHandler(BaseOAuth):
             self.categories.append(Category.objects.create(
                 name='cat-%s' % x,
                 type=amo.ADDON_WEBAPP))
-        self.devicetypes = []
-        for x in range(0, 2):
-            self.devicetypes.append(DeviceType.objects.create(
-                name='desktop-%s' % x))
 
     def create(self):
         return FileUpload.objects.create(user=self.user, path=self.file,
@@ -243,7 +239,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                 'name': 'mozball',
                 'categories': [c.pk for c in self.categories],
                 'summary': 'wat...',
-                'device_types': ['desktop-1']}
+                'device_types': amo.DEVICE_TYPES.keys()}
 
     def test_put(self):
         app = self.create_app()
@@ -269,7 +265,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data = json.loads(res.content)
         eq_(set(data['categories']), set([c.pk for c in self.categories]))
         eq_(data['premium_type'], 'free')
-        eq_(data['device_types'], ['desktop-1'])
 
     def test_put_wrong_category(self):
         self.create_app()
@@ -300,20 +295,21 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def test_put_desktop_worked(self):
         app = self.create_app()
         data = self.base_data()
-        data['device_types'] = ['desktop-0', 'desktop-1']
+        data['device_types'] = amo.DEVICE_TYPES.keys()[:2]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(set([d for d in app.device_types]),
-            set([d for d in DeviceType.objects.all()]))
+        eq_(set(d for d in app.device_types),
+            set(amo.DEVICE_TYPES[d] for d in amo.DEVICE_TYPES.keys()[:2]))
 
     def test_put_desktop_error_nice(self):
         self.create_app()
         data = self.base_data()
-        data['device_types'] = ['desktop-3']
+        data['device_types'] = [12345]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
-        assert 'desktop-3' in self.get_error(res)['device_types'][0]
+        assert '12345' in self.get_error(res)['device_types'][0], (
+            self.get_error(res))
 
     def test_put_not_mine(self):
         obj = self.create_app()
@@ -450,31 +446,6 @@ class TestCategoryHandler(BaseOAuth):
                               {'resource_name': 'category',
                                'pk': self.other.pk}))
         eq_(res.status_code, 404)
-
-
-class TestDeviceTypeHandler(BaseOAuth):
-
-    def setUp(self):
-        super(TestDeviceTypeHandler, self).setUp()
-
-        self.dt = DeviceType.objects.create(name='Phone')
-        self.dt.name = {'fr': 'Le phone'}
-        self.dt.save()
-        self.list_url = ('api_dispatch_list', {'resource_name': 'devicetype'})
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'devicetype', 'pk': self.dt.pk})
-
-        self.client = OAuthClient(None)
-
-    def test_verbs(self):
-        self._allowed_verbs(self.list_url, ['get'])
-        self._allowed_verbs(self.get_url, ['get'])
-
-    def test_get_devicetypes(self):
-        res = self.client.get(self.list_url)
-        data = json.loads(res.content)
-        eq_(data['meta']['total_count'], 1)
-        eq_(data['objects'][0]['name'], 'phone')
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

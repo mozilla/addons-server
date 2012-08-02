@@ -19,8 +19,8 @@ from amo.fields import ColorField
 from amo.helpers import loc
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           BlacklistedSlug, Category, DeviceType, Persona,
+from addons.models import (Addon, AddonDeviceType, AddonCategory, AddonUser,
+                           BlacklistedSlug, Category, Persona,
                            ReverseNameLookup)
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
@@ -208,31 +208,31 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 
 
 class DeviceTypeForm(forms.Form):
-    device_types = forms.ModelMultipleChoiceField(
-        label=_('Device Types:'),
-        queryset=DeviceType.objects.all(),
-        initial=DeviceType.objects.all(),
-        widget=forms.CheckboxSelectMultiple)
+    device_types = forms.TypedMultipleChoiceField(
+        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
+        coerce=int,
+        label=_lazy(u'Which device types does your app work with?'),
+        initial=amo.DEVICE_TYPES.keys(), widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
         super(DeviceTypeForm, self).__init__(*args, **kwargs)
         device_types = AddonDeviceType.objects.filter(
-            addon=self.addon).values_list('device_type__id', flat=True)
+            addon=self.addon).values_list('device_type', flat=True)
         if device_types:
             self.initial['device_types'] = device_types
 
     def save(self, addon):
         new_types = self.cleaned_data['device_types']
-        old_types = addon.device_types
-
+        old_types = [x.id for x in addon.device_types]
         # Add new AddonDeviceTypes.
         for d in set(new_types) - set(old_types):
             AddonDeviceType(addon=addon, device_type=d).save()
 
         # Remove old AddonDeviceTypes.
         for d in set(old_types) - set(new_types):
-            AddonDeviceType.objects.filter(addon=addon, device_type=d).delete()
+            AddonDeviceType.objects.filter(
+                addon=addon, device_type=d).delete()
 
 
 class CategoryForm(forms.Form):

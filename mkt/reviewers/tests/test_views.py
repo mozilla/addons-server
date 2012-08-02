@@ -16,7 +16,7 @@ import amo
 import reviews
 from abuse.models import AbuseReport
 from access.models import GroupUser
-from addons.models import AddonDeviceType, AddonUser, DeviceType
+from addons.models import AddonDeviceType, AddonUser
 from amo.tests import app_factory, check_links, formset, initial
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -142,7 +142,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
 
 
 class TestAppQueue(AppReviewerTest, AccessMixin):
-    fixtures = ['base/devicetypes', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
 
@@ -224,10 +224,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
         eq_(flags.length, 1)
 
     def test_devices(self):
-        AddonDeviceType.objects.create(
-            addon=self.apps[0], device_type=DeviceType.objects.get(pk=1))
-        AddonDeviceType.objects.create(
-            addon=self.apps[0], device_type=DeviceType.objects.get(pk=2))
+        AddonDeviceType.objects.create(addon=self.apps[0], device_type=1)
+        AddonDeviceType.objects.create(addon=self.apps[0], device_type=2)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(5)')
@@ -294,7 +292,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
 
 
 class TestRereviewQueue(AppReviewerTest, AccessMixin):
-    fixtures = ['base/devicetypes', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
         now = datetime.datetime.now()
@@ -416,7 +414,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin):
-    fixtures = ['base/devicetypes', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
         now = datetime.datetime.now()

@@ -10,9 +10,10 @@ from nose.tools import eq_, raises
 import waffle
 
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
-                           BlacklistedSlug, Category, DeviceType, Preview)
+                           BlacklistedSlug, Category, Preview)
 import amo
 from amo.tests import TestCase, WebappTestCase
+from constants.applications import DEVICE_TYPES
 from market.models import Price
 from files.models import File
 from versions.models import Version
@@ -364,6 +365,9 @@ class TestDomainFromURL(unittest.TestCase):
 class TestTransformer(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube']
 
+    def setUp(self):
+        self.device = DEVICE_TYPES.keys()[0]
+
     @mock.patch('mkt.webapps.models.Addon.transformer')
     def test_addon_transformer_called(self, transformer):
         transformer.return_value = {}
@@ -371,15 +375,13 @@ class TestTransformer(amo.tests.TestCase):
         assert transformer.called
 
     def test_device_types(self):
-        dtype = DeviceType.objects.create(name='fligphone',
-                                          class_name='phone')
-        AddonDeviceType.objects.create(addon_id=337141, device_type=dtype)
+        AddonDeviceType.objects.create(addon_id=337141, device_type=self.device)
         webapps = list(Webapp.objects.filter(id=337141))
 
         with self.assertNumQueries(0):
             for webapp in webapps:
                 assert webapp._device_types
-                eq_(webapp.device_types, [dtype])
+                eq_(webapp.device_types, [DEVICE_TYPES[self.device]])
 
     def test_device_type_cache(self):
         webapp = Webapp.objects.get(id=337141)
@@ -391,7 +393,7 @@ class TestTransformer(amo.tests.TestCase):
 class TestIsComplete(amo.tests.TestCase):
 
     def setUp(self):
-        self.device = DeviceType.objects.create(name='f', class_name='phone')
+        self.device = DEVICE_TYPES.keys()[0]
         self.cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
         self.webapp = Webapp.objects.create(type=amo.ADDON_WEBAPP,
                                             status=amo.STATUS_NULL)

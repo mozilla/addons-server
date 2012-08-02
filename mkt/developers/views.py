@@ -30,6 +30,7 @@ from amo.utils import escape_all
 from amo.urlresolvers import reverse
 from addons import forms as addon_forms
 from addons.decorators import can_become_premium
+from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import AppLog
@@ -127,8 +128,7 @@ def edit(request, addon_id, addon, webapp=False):
        'valid_slug': addon.app_slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.get_previews(),
-       'device_type_form': addon_forms.DeviceTypeForm(request.POST or None,
-                                                      addon=addon),
+       'device_type_form': DeviceTypeForm(request.POST or None, addon=addon),
     }
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
@@ -960,8 +960,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
-        device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
-                                                      addon=addon)
+        device_type_form = DeviceTypeForm(request.POST or None, addon=addon)
 
     elif section == 'media':
         previews = PreviewFormSet(request.POST or None, prefix='files',

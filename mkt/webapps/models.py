@@ -20,6 +20,7 @@ from amo.urlresolvers import reverse
 from addons import query
 from addons.models import (Addon, AddonDeviceType, update_name_table,
                            update_search_index)
+from constants.applications import DEVICE_TYPES
 from versions.models import Version
 
 import mkt
@@ -109,7 +110,8 @@ class Webapp(Addon):
         for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
             if not getattr(apps_dict[adt.addon_id], '_device_types', None):
                 apps_dict[adt.addon_id]._device_types = []
-            apps_dict[adt.addon_id]._device_types.append(adt.device_type)
+            apps_dict[adt.addon_id]._device_types.append(
+                DEVICE_TYPES[adt.device_type])
 
     def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
@@ -190,8 +192,8 @@ class Webapp(Addon):
         # If the transformer attached something, use it.
         if hasattr(self, '_device_types'):
             return self._device_types
-        return [d.device_type for d in
-                self.addondevicetype_set.order_by('device_type__id')]
+        return [DEVICE_TYPES[d.device_type] for d in
+                self.addondevicetype_set.order_by('device_type')]
 
     @property
     def origin(self):

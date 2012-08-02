@@ -30,7 +30,7 @@ import amo
 import mkt.stats.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import Addon, Category, DeviceType, Persona
+from addons.models import Addon, Category, Persona
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -544,7 +544,7 @@ class ESTestCase(TestCase):
     @classmethod
     def tearDownClass(cls):
         # Delete everything in reverse-order of the foreign key dependencies.
-        models = (Platform, Category, DeviceType, File, ApplicationsVersions,
+        models = (Platform, Category, File, ApplicationsVersions,
                   Version, Translation, Addon, Collection, AppVersion,
                   Application)
         for model in models:
