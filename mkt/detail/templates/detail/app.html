@@ -225,8 +225,8 @@
 
   <section id="support" class="support c">
 
-    <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
-      {% if waffle.switch('ratings') %}
+    {% if waffle.switch('ratings') %}
+      <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
         <div class="review-stars-header">
           <h3 class="wide">{{ _('Reviews') }}</h3>
           {% if reviews %}
@@ -272,8 +272,8 @@
             </p>
           </div>
         {% endif %}
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
 
     {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
              pare this down. But until then... code duplication :( #}
