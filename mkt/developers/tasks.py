@@ -5,6 +5,7 @@ import logging
 import os
 import socket
 import sys
+import tempfile
 import traceback
 import urllib2
 import urlparse
@@ -22,16 +23,15 @@ from django_statsd.clients import statsd
 from PIL import Image
 from tower import ugettext as _
 
-from addons.models import Addon
 import amo
+from addons.models import Addon
 from amo.decorators import set_modified_on, write
-from amo.helpers import absolutify
-from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
+from amo.utils import remove_icons, resize_image, strip_bom
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
+from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
 
-from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 log = logging.getLogger('z.mkt.developers.task')
 
@@ -359,10 +359,9 @@ def _fetch_manifest(url):
             raise Exception('Content type is ' + ct)
     except Exception, e:
         log.error('Failed to fetch manifest from %r: %s' % (url, e))
-        raise Exception('No manifest was found at that URL. Check the '
-                        'address and make sure the manifest is served '
-                        'with the HTTP header "Content-Type: '
-                        'application/x-web-app-manifest+json".')
+        raise Exception('No manifest was found at that URL. Check the address and make'
+                        ' sure the manifest is served with the HTTP header '
+                        '"Content-Type: application/x-web-app-manifest+json".')
 
     size_error_message = _('Your manifest must be less than %s bytes.')
     content = get_content_and_check_size(response,
@@ -418,61 +417,3 @@ def subscribe_to_responsys(campaign, address, format='html', source_url='',
         return res.code == 200
     except urllib2.URLError:
         return False
-
-
-@task
-def region_email(ids, regions, **kw):
-    region_names = regions = sorted([unicode(r.name) for r in regions])
-
-    # Format the region names with commas and fanciness.
-    if len(regions) == 2:
-        suffix = 'two'
-        region_names = ' '.join([regions[0], _(u'and'), regions[1]])
-    else:
-        if len(regions) == 1:
-            suffix = 'one'
-        elif len(regions) > 2:
-            suffix = 'many'
-            region_names[-1] = _(u'and') + ' ' + region_names[-1]
-        region_names = ', '.join(region_names)
-
-    log.info('[%s@%s] Emailing devs about new region(s): %s.' %
-             (len(ids), region_email.rate_limit, region_names))
-
-    for id_ in ids:
-        log.info('[Webapp:%s] Emailing devs about new region(s): %s.' %
-                (id_, region_names))
-
-        product = Webapp.objects.get(id=id_)
-        to = set(product.authors.values_list('email', flat=True))
-
-        if len(regions) == 1:
-            subject = _(u'{region} region added to the Mozilla Marketplace'
-                ).format(region=regions[0])
-        else:
-            subject = _(u'New regions added to the Mozilla Marketplace')
-
-        dev_url = absolutify(product.get_dev_url('edit'),
-                             settings.SITE_URL) + '#details'
-        context = {'app': product.name,
-                   'regions': region_names,
-                   'dev_url': dev_url}
-        send_mail_jinja('%s: %s' % (product.name, subject),
-                        'developers/emails/new_regions_%s.ltxt' % suffix,
-                        context, recipient_list=to,
-                        perm_setting='app_regions')
-
-
-@task
-@write
-def region_exclude(ids, regions, **kw):
-    region_names = ', '.join(sorted([unicode(r.name) for r in regions]))
-
-    log.info('[%s@%s] Excluding new region(s): %s.' %
-             (len(ids), region_exclude.rate_limit, region_names))
-
-    for id_ in ids:
-        log.info('[Webapp:%s] Excluding region(s): %s.' %
-                 (id_, region_names))
-        for region in regions:
-            AddonExcludedRegion.objects.create(addon_id=id_, region=region.id)

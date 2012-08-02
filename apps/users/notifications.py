@@ -1,7 +1,5 @@
 from inspect import isclass
 
-from django.conf import settings
-
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
 
@@ -137,22 +135,11 @@ class app_individual_contact(individual_contact):
 class app_surveys(_NOTIFICATION):
     id = 13
     group = 'dev'
-    short = 'app_surveys'
+    short = 'surveys'
     label = _('Mozilla wants to contact me about relevant App Developer news '
               'and surveys')
     mandatory = False
     default_checked = False
-    app = True
-
-
-class app_regions(_NOTIFICATION):
-    id = 14
-    group = 'dev'
-    short = 'app_regions'
-    label = _('Mozilla wants to contact me about new regions added to the '
-              'Marketplace.')
-    mandatory = False
-    default_checked = True
     app = True
 
 
@@ -161,8 +148,6 @@ NOTIFICATION_GROUPS = {'dev': _('Developer'),
 
 APP_NOTIFICATIONS = [app_reply, app_new_review, app_reviewed,
                      app_individual_contact, app_surveys]
-if settings.REGION_STORES:
-    APP_NOTIFICATIONS.append(app_regions)
 APP_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in APP_NOTIFICATIONS)
 APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
 APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]

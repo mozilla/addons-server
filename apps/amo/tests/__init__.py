@@ -341,7 +341,7 @@ class TestCase(RedisTest, test_utils.TestCase):
     def skip_if_disabled(self, setting):
         """Skips a test if a particular setting is disabled."""
         if not setting:
-            raise SkipTest('Skipping since setting is disabled')
+            raise SkipTest('Skipping since setting %r is disabled' % setting)
 
     def grant_permission(self, user_obj, rules):
         """Creates group with rule, and adds user to group."""
@@ -569,13 +569,3 @@ class ESTestCase(TestCase):
         addon_factory()
         addon_factory()
         addon_factory()
-
-
-class WebappTestCase(TestCase):
-    fixtures = ['webapps/337141-steamcube']
-
-    def setUp(self):
-        self.app = self.get_app()
-
-    def get_app(self):
-        return Addon.objects.get(id=337141)

@@ -22,16 +22,14 @@ from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
 from amo.utils import raise_required, remove_icons
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
+from mkt.inapp_pay.models import InappConfig
+from mkt.reviewers.models import RereviewQueue
+from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
+from mkt.webapps.models import Webapp
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TransInput, TransTextarea
-
-import mkt
-from mkt.inapp_pay.models import InappConfig
-from mkt.reviewers.models import RereviewQueue
-from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 from . import tasks
 
@@ -708,64 +706,3 @@ class AppAppealForm(happyforms.Form):
         # Mark app as pending again.
         self.product.mark_done()
         return v
-
-
-class RegionForm(forms.Form):
-    regions = forms.MultipleChoiceField(required=True,
-        label=_lazy(u'Choose at least one region your app will '
-                     'be listed in:'),
-        choices=mkt.regions.REGIONS_CHOICES_NAME[1:],
-        widget=forms.CheckboxSelectMultiple,
-        error_messages={'required':
-            _lazy(u'You must select at least one region.')})
-    other_regions = forms.BooleanField(required=False, initial=True,
-        label=_lazy(u'Other and new regions'))
-
-    def __init__(self, *args, **kw):
-        self.product = kw.pop('product', None)
-        super(RegionForm, self).__init__(*args, **kw)
-
-        # If we have excluded regions, uncheck those.
-        # Otherwise, default to everything checked.
-        self.regions_before = (self.product.get_region_ids() or
-            mkt.regions.REGION_IDS)
-
-        # If we have future excluded regions, uncheck box.
-        self.future_exclusions = self.product.addonexcludedregion.filter(
-            region=mkt.regions.FUTURE.id)
-
-        self.initial = {
-            'regions': self.regions_before,
-            'other_regions': not self.future_exclusions.exists()
-        }
-
-    def save(self):
-        before = set(self.regions_before)
-        after = set(map(int, self.cleaned_data['regions']))
-
-        # Add new region exclusions.
-        for r in before - after:
-            AddonExcludedRegion.objects.get_or_create(addon=self.product,
-                                                      region=r)
-            log.info(u'[Webapp:%s] Added to new region (%s).'
-                     % (self.product, r))
-
-        # Remove old region exclusions.
-        for r in after - before:
-            self.product.addonexcludedregion.filter(region=r).delete()
-            log.info(u'[Webapp:%s] Removed from region (%s).'
-                     % (self.product, r))
-
-        if self.cleaned_data['other_regions']:
-            # Developer wants to be visible in future regions, then
-            # delete excluded regions.
-            self.future_exclusions.delete()
-            log.info(u'[Webapp:%s] No longer excluded from future regions.'
-                     % self.product)
-        else:
-            # Developer does not want future regions, then
-            # exclude all future apps.
-            AddonExcludedRegion.objects.get_or_create(addon=self.product,
-                region=mkt.regions.FUTURE.id)
-            log.info(u'[Webapp:%s] Excluded from future regions.'
-                     % self.product)

@@ -11,7 +11,6 @@ from django.conf import settings
 from django.db import connections, transaction
 from django.db.models import Q, F, Avg
 
-import cronjobs
 import multidb
 import path
 from lib import recommend
@@ -20,6 +19,7 @@ from celeryutils import task
 import waffle
 
 import amo
+import cronjobs
 from amo.utils import chunked
 from addons import search
 from addons.models import Addon, FrozenAddon, AppSupport
