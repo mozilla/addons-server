@@ -4,6 +4,7 @@ import hashlib
 from urlparse import urlparse
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding
@@ -49,9 +50,18 @@ class TestUserProfile(amo.tests.TestCase):
         u.email_confirmation_code()
 
         eq_(len(mail.outbox), 1)
-        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+        eq_(mail.outbox[0].subject, 'Please confirm your email')
         assert mail.outbox[0].body.find('%s/confirm/%s' %
                                         (u.id, u.confirmationcode)) > 0
+
+    @patch.object(settings, 'SEND_REAL_EMAIL', False)
+    def test_email_confirmation_code_even_with_fake_email(self):
+        u = User.objects.get(id='4043307').get_profile()
+        u.confirmationcode = 'blah'
+        u.email_confirmation_code()
+
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject, 'Please confirm your email')
 
     def test_welcome_name(self):
         u1 = UserProfile(username='sc')
