@@ -12,12 +12,14 @@ import waffle
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, DeviceType, Preview)
 import amo
-from amo.tests import TestCase
+from amo.tests import TestCase, WebappTestCase
 from market.models import Price
-from mkt.developers.tests.test_views import BaseWebAppTest
-from mkt.webapps.models import Webapp
 from files.models import File
 from versions.models import Version
+
+import mkt
+from mkt.developers.tests.test_views import BaseWebAppTest
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
 class TestWebapp(TestCase):
@@ -188,6 +190,65 @@ class TestWebapp(TestCase):
     def test_not_premium(self):
         eq_(Webapp().has_price(), False)
 
+    def test_get_region_ids_no_exclusions(self):
+        # This returns IDs for the *included* regions.
+        eq_(Webapp().get_region_ids(), mkt.regions.REGION_IDS)
+
+    def test_get_region_ids_with_exclusions(self):
+        w1 = Webapp.objects.create()
+        w2 = Webapp.objects.create()
+
+        AddonExcludedRegion.objects.create(addon=w1,
+            region=mkt.regions.CA.id)
+        AddonExcludedRegion.objects.create(addon=w1,
+            region=mkt.regions.BR.id)
+        AddonExcludedRegion.objects.create(addon=w2,
+            region=mkt.regions.UK.id)
+
+        w1_regions = list(mkt.regions.REGION_IDS)
+        w1_regions.remove(mkt.regions.CA.id)
+        w1_regions.remove(mkt.regions.BR.id)
+
+        w2_regions = list(mkt.regions.REGION_IDS)
+        w2_regions.remove(mkt.regions.UK.id)
+
+        eq_(sorted(Webapp.objects.get(id=w1.id).get_region_ids()),
+            sorted(w1_regions))
+        eq_(sorted(Webapp.objects.get(id=w2.id).get_region_ids()),
+            sorted(w2_regions))
+
+    def test_get_regions_no_exclusions(self):
+        # This returns the class definitions for the *included* regions.
+        regions = dict(mkt.regions.REGIONS_CHOICES_ID_DICT).values()
+        regions.remove(mkt.regions.WORLDWIDE)
+        eq_(sorted(Webapp().get_regions()), sorted(regions))
+
+    def test_get_regions_with_exclusions(self):
+        w1 = Webapp.objects.create()
+        w2 = Webapp.objects.create()
+
+        AddonExcludedRegion.objects.create(addon=w1,
+            region=mkt.regions.CA.id)
+        AddonExcludedRegion.objects.create(addon=w1,
+            region=mkt.regions.BR.id)
+        AddonExcludedRegion.objects.create(addon=w2,
+            region=mkt.regions.UK.id)
+
+        all_regions = dict(mkt.regions.REGIONS_CHOICES_ID_DICT).values()
+        all_regions.remove(mkt.regions.WORLDWIDE)
+
+        w1_regions = list(all_regions)
+        w1_regions.remove(mkt.regions.CA)
+        w1_regions.remove(mkt.regions.BR)
+
+        w2_regions = list(all_regions)
+        w2_regions.remove(mkt.regions.UK)
+
+        eq_(sorted(Webapp.objects.get(id=w1.id).get_regions()),
+            sorted(w1_regions))
+        eq_(sorted(Webapp.objects.get(id=w2.id).get_regions()),
+            sorted(w2_regions))
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
@@ -310,7 +371,8 @@ class TestTransformer(amo.tests.TestCase):
         assert transformer.called
 
     def test_device_types(self):
-        dtype = DeviceType.objects.create(name='fligphone', class_name='phone')
+        dtype = DeviceType.objects.create(name='fligphone',
+                                          class_name='phone')
         AddonDeviceType.objects.create(addon_id=337141, device_type=dtype)
         webapps = list(Webapp.objects.filter(id=337141))
 
@@ -377,3 +439,32 @@ class TestIsComplete(amo.tests.TestCase):
         AddonPremium.objects.create(addon=self.webapp, currencies=['BRL'],
                                     price=Price.objects.create(price='1'))
         self.fail('email')
+
+
+class TestAddonExcludedRegion(WebappTestCase):
+
+    def setUp(self):
+        super(TestAddonExcludedRegion, self).setUp()
+        self.excluded = self.app.addonexcludedregion
+
+        eq_(list(self.excluded.values_list('id', flat=True)), [])
+        self.er = AddonExcludedRegion.objects.create(addon=self.app,
+            region=mkt.regions.CA.id)
+        eq_(list(self.excluded.values_list('id', flat=True)), [self.er.id])
+
+    def test_exclude_multiple(self):
+        other = AddonExcludedRegion.objects.create(addon=self.app,
+            region=mkt.regions.UK.id)
+        eq_(sorted(self.excluded.values_list('id', flat=True)),
+            sorted([self.er.id, other.id]))
+
+    def test_remove_excluded(self):
+        self.er.delete()
+        eq_(list(self.excluded.values_list('id', flat=True)), [])
+
+    def test_get_region(self):
+        eq_(self.er.get_region(), mkt.regions.CA)
+
+    def test_unicode(self):
+        eq_(unicode(self.er),
+            '%s: %s' % (self.app.name, mkt.regions.CA.slug))

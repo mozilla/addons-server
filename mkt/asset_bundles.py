@@ -179,6 +179,7 @@ JS = {
         # New stuff.
         'js/devreg/devhub.js',
         'js/devreg/submit-details.js',
+        'js/devreg/edit.js',
 
         # Specific stuff for making payments nicer.
         'js/devreg/paypal.js',

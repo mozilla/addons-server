@@ -51,7 +51,7 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CurrencyForm,
                                   InappConfigForm, PaypalSetupForm,
-                                  PreviewFormSet, trap_duplicate)
+                                  PreviewFormSet, RegionForm, trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
 from mkt.webapps.tasks import update_manifests, _update_manifest
@@ -953,7 +953,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise http.Http404()
 
     tags = previews = restricted_tags = []
-    cat_form = device_type_form = None
+    cat_form = device_type_form = region_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
@@ -966,6 +966,9 @@ def addons_section(request, addon_id, addon, section, editable=False,
     elif section == 'media':
         previews = PreviewFormSet(request.POST or None, prefix='files',
             queryset=addon.get_previews())
+
+    elif section == 'details' and settings.REGION_STORES:
+        region_form = RegionForm(request.POST or None, product=addon)
 
     elif (section == 'admin' and
           not acl.action_allowed(request, 'Apps', 'Configure') and
@@ -983,7 +986,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
-            if form.is_valid() and (not previews or previews.is_valid()):
+            if (form.is_valid() and (not previews or previews.is_valid())
+                and (not region_form or region_form.is_valid())):
+
+                if region_form:
+                    region_form.save()
 
                 addon = form.save(addon)
 
@@ -1029,7 +1036,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'cat_form': cat_form,
             'preview_form': previews,
             'valid_slug': valid_slug,
-            'device_type_form': device_type_form}
+            'device_type_form': device_type_form,
+            'region_form': region_form}
 
     return jingo.render(request,
                         'developers/apps/edit/%s.html' % section, data)
