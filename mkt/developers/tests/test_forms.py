@@ -199,9 +199,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
         self.kwargs = {'product': self.app}
         self.skip_if_disabled(settings.REGION_STORES)
 
-    def get_product(self):
-        return Addon.objects.get(pk=337141)
-
     def test_initial_empty(self):
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], mkt.regions.REGION_IDS)
@@ -214,11 +211,11 @@ class TestRegionForm(amo.tests.WebappTestCase):
         regions = list(mkt.regions.REGION_IDS)
         regions.remove(mkt.regions.BR.id)
 
-        eq_(self.get_product().get_region_ids(), regions)
+        eq_(self.get_app().get_region_ids(), regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], regions)
-        eq_(form.initial['other_regions'], False)
+        eq_(form.initial['other_regions'], True)
 
     def test_initial_excluded_in_regions_and_future_regions(self):
         for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.FUTURE]:
@@ -227,8 +224,9 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         regions = list(mkt.regions.REGION_IDS)
         regions.remove(mkt.regions.BR.id)
+        regions.remove(mkt.regions.UK.id)
 
-        eq_(self.get_product().get_region_ids(), regions)
+        eq_(self.get_app().get_region_ids(), regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], regions)
