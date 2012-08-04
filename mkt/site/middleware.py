@@ -4,12 +4,11 @@ from django.conf import settings
 from django.http import SimpleCookie, HttpRequest
 from django.shortcuts import redirect
 from django.utils.cache import patch_vary_headers
-from django.utils.translation.trans_real import parse_accept_lang_header
 
 import tower
 
 import amo
-from amo.urlresolvers import Prefixer
+from amo.urlresolvers import lang_from_accept_header, Prefixer
 from amo.utils import urlparams
 
 import mkt
@@ -112,25 +111,49 @@ class RedirectPrefixedURIMiddleware(object):
             return redirect(urlparams(new_path, **new_qs))
 
 
+def get_accept_language(request):
+    a_l = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+    return lang_from_accept_header(a_l)
+
+
 class LocaleMiddleware(object):
     """Figure out the user's locale and store it in a cookie."""
 
     def process_request(self, request):
-        request.LANG = settings.LANGUAGE_CODE
+        a_l = get_accept_language(request)
+        lang, ov_lang = a_l, ''
+        stored_lang, stored_ov_lang = '', ''
 
-        remembered = request.COOKIES.get('lang', '').lower()
-        if remembered in settings.LANGUAGE_URL_MAP:
-            request.LANG = settings.LANGUAGE_URL_MAP[remembered]
+        remembered = request.COOKIES.get('lang')
+        if remembered:
+            chunks = remembered.split(',')[:2]
 
-        user_defined = Prefixer(request).get_language()
-        if ('lang' in request.GET or not remembered or
-            user_defined != settings.LANGUAGE_CODE):
-            request.LANG = user_defined
+            stored_lang = chunks[0]
+            try:
+                stored_ov_lang = chunks[1]
+            except IndexError:
+                pass
 
-        if not remembered or remembered != request.LANG:
-            request.set_cookie('lang', request.LANG)
+            if stored_lang.lower() in settings.LANGUAGE_URL_MAP:
+                lang = stored_lang
+            if stored_ov_lang.lower() in settings.LANGUAGE_URL_MAP:
+                ov_lang = stored_ov_lang
 
-        tower.activate(request.LANG)
+        if 'lang' in request.GET:
+            # `get_language` uses request.GET['lang'] and does safety checks.
+            ov_lang = a_l
+            lang = Prefixer(request).get_language()
+        elif a_l != ov_lang:
+            # Change if Accept-Language differs from Overridden Language.
+            lang = a_l
+            ov_lang = ''
+
+        # Update cookie if values have changed.
+        if lang != stored_lang or ov_lang != stored_ov_lang:
+            request.set_cookie('lang', ','.join([lang, ov_lang]))
+
+        request.LANG = lang
+        tower.activate(lang)
 
     def process_response(self, request, response):
         patch_vary_headers(response, ['Accept-Language', 'Cookie'])
@@ -143,23 +166,22 @@ class RegionMiddleware(object):
     def process_request(self, request):
         regions = mkt.regions.REGIONS_DICT
 
-        request.REGION = mkt.regions.WORLDWIDE
+        reg = mkt.regions.WORLDWIDE.slug
+        stored_reg = ''
 
-        # This gives us something like: [('en-us', 1.0), ('fr', 0.5)]
-        header = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
-        accept_lang = parse_accept_lang_header(header.lower())
-        if accept_lang:
-            user_defined = accept_lang[0][0]
-        else:
-            user_defined = settings.LANGUAGE_CODE
-
+        # If I have a cookie use that region.
         remembered = request.COOKIES.get('region')
-        if not remembered or user_defined != settings.LANGUAGE_CODE:
+        if remembered in regions:
+            reg = stored_reg = remembered
+
+        # Re-detect my region only if my *Accept-Language* is different from
+        # that of my previous language.
+        lang_changed = request.COOKIES.get('lang', '').endswith(',')
+        if not remembered or lang_changed:
             # TODO: Do geolocation magic.
 
             # If our locale is `en-US`, then exclude the Worldwide region.
-            if (request.LANG == settings.LANGUAGE_CODE and
-                user_defined == request.LANG.lower()):
+            if request.LANG == settings.LANGUAGE_CODE:
                 choices = mkt.regions.REGIONS_CHOICES[1:]
             else:
                 choices = mkt.regions.REGIONS_CHOICES
@@ -167,18 +189,23 @@ class RegionMiddleware(object):
             # Try to find a suitable region.
             for name, region in choices:
                 if region.default_language == request.LANG:
-                    request.REGION = region
+                    reg = region.slug
                     break
-        elif remembered in regions:
-            request.REGION = regions[remembered]
 
         choice = request.GET.get('region')
         if choice in regions:
-            request.REGION = regions[choice]
+            reg = choice
 
-        current = request.REGION.slug
-        if not remembered or remembered.lower() != current:
-            request.set_cookie('region', current)
+        a_l = request.META.get('HTTP_ACCEPT_LANGUAGE')
+        if reg == 'us' and a_l is not None and not a_l.startswith('en'):
+            # Let us default to worldwide if it's not English.
+            reg = mkt.regions.WORLDWIDE.slug
+
+        # Update cookie if value have changed.
+        if reg != stored_reg:
+            request.set_cookie('region', reg)
+
+        request.REGION = regions[reg]
 
     def process_response(self, request, response):
         patch_vary_headers(response, ['Accept-Language', 'Cookie'])
