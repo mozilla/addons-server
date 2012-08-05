@@ -214,6 +214,16 @@
     background-image:         linear-gradient(@color1, @color2);
 }
 
+.gradient-two-color-with-image(@color1, @color2, @image, @position, @repeat) {
+    background: @color2;
+    background: @image @position @repeat, -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
+    background: @image @position @repeat, -webkit-linear-gradient(@color1, @color2);
+    background: @image @position @repeat, -moz-linear-gradient(@color1, @color2);
+    background: @image @position @repeat, -ms-linear-gradient(@color1, @color2);
+    background: @image @position @repeat, -o-linear-gradient(@color1, @color2);
+    background: @image @position @repeat, linear-gradient(@color1, @color2);
+}
+
 .h-gradient-two-color(@color1, @color2) {
     // The background-color fallback is bad for opacity gradients.
     background-color: @color2;
