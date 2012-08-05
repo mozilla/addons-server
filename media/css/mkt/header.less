@@ -11,7 +11,7 @@
     position: fixed;
     text-align: center;
     max-width: 200px;
-    top: 0px;
+    top: 0;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -23,15 +23,13 @@
 }
 
 .home #top {
+    background: url(../../img/mkt/logos/small.png) 0 10px no-repeat;
     text-indent: 30px;
-    background-image: url(../../img/mkt/logo-small.png);
-    background-position: left 10px;
-    background-repeat: no-repeat;
 }
 
 #search {
+    color: #fff;
     display: none;
-    color: white;
 }
 
 #site-header {
@@ -40,9 +38,7 @@
         position: relative;
     }
     .gradient-two-color(#566773, #3e4e59);
-    .box-shadow(0 1px 6px fade(#000, 35%),
-                0 1px fade(#000, 20%));
-
+    .box-shadow(~'0 -1px 0 rgba(0,0,0,.15) inset, 0 0 3px 3px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.1) inset');
     height: 50px;
     line-height: 50px;
     width: 100%;
@@ -53,23 +49,11 @@
     overflow: hidden;
     z-index: 100;
     h1 {
-        float: left;
-        padding: 15px 0;
-        a {
-            .hidetext;
-            background: url(../../img/mkt/logos/wordmark.png) -3px 0 no-repeat;
-            display: block;
-            width: 215px;
-            height: 52px;
-        }
+        display: none;
     }
     nav,
     > section {
         position: relative;
-    }
-    form {
-        display: inline-block;
-        margin-top: 10px;
     }
     .pressed() {
         background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
@@ -87,7 +71,7 @@
         position: absolute;
         height: 34px;
         width: 2px;
-        background: url(../../img/mkt/divider.png);
+        background: url(../../img/mkt/divider.png) no-repeat;
         margin-top: 7px;
     }
     &.right {
@@ -108,25 +92,26 @@
         content: '';
         width: 24px;
         height: 24px;
-        background-image: url(../../img/mkt/header-icons.png);
-        background-repeat: no-repeat;
-        background-position: 0 24px;
+        background: url(../../img/mkt/header-icons.png) 0 24px no-repeat;
         display: block;
         position: absolute;
         top: 13px;
         left: 13px;
     }
     &.settings:before {
-        background-position: 0 0px;
+        background-position: 0 0;
+    }
+    &.cancel:before {
+        background-position: 0 -24px;
     }
     &.search:before {
-        background-position: 0 -24px;
+        background-position: 0 -48px;
     }
     &.back {
         width: 20px;
         #site-header > .pressed;
         &:before {
-            background-position: 0 -48px;
+            background-position: 0 -72px;
             width: 12px;
             left: 4px;
         }
@@ -402,6 +387,22 @@ body {
     &.home {
         .header-button {
             &.search, &.settings {
+                display: block;
+            }
+        }
+    }
+    &.show-search {
+        #top {
+            display: none;
+        }
+        #search {
+            display: block;
+        }
+        .header-button {
+            &.right {
+                display: none;
+            }
+            &.cancel {
                 display: block;
             }
         }
