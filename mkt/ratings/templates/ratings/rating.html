@@ -33,6 +33,8 @@
       {% if is_reply %}
         <b>{{ _('(Developer)') }}</b>
       {% endif %}
+      <a href="{{ review.get_url_path() }}" class="timestamp"
+         title="{{ _('Permalink') }}">{{ _('Permalink') }}</a>
     </span>
     <div class="body">
       {{ review.body|nl2br }}

@@ -11,13 +11,11 @@ import amo.log
 from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory, has_purchased_or_refunded
 from addons.models import Addon
-from amo.helpers import absolutify
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
 
 from reviews.forms import ReviewReplyForm
 from reviews.models import Review
-from reviews.helpers import user_can_delete_review
 from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
 from stats.models import ClientData, Contribution
@@ -62,7 +60,8 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
         qs = qs.filter(is_latest=True)
 
     ctx['ratings'] = ratings = amo.utils.paginate(request, qs, 20)
-    ctx['replies'] = Review.get_replies(ratings.object_list)
+    if not ctx.get('reply'):
+        ctx['replies'] = Review.get_replies(ratings.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
