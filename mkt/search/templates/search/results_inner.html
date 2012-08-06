@@ -1,5 +1,5 @@
 {% if pager.object_list %}
-  <ol class="listing" start="{{ pager.start_index() }}">
+  <ol class="listing c" start="{{ pager.start_index() }}">
     {{ search_results(pager.object_list, field=query.sort, src='mkt-search') }}
   </ol>
   {{ pager|impala_paginator }}

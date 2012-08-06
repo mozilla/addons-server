@@ -8,19 +8,28 @@ from translations.query import order_by_translation
 
 
 @register.function
-def category_slider():
-    return _categories()
-    return caching.cached(lambda: _categories(), 'category-slider-apps')
+def category_slider(rand=False, limit=None):
+    return _categories(rand, limit)
+    return caching.cached(lambda: _categories(rand),
+                          'category-slider-apps-%s-%s' % (rand, limit))
 
 
-def _categories():
+def _categories(rand=False, limit=None):
     public_cats = (AddonCategory.objects
                    .filter(addon__status=amo.STATUS_PUBLIC)
                    .values_list('category', flat=True).distinct())
-    categories = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0,
-                                         id__in=public_cats)
+    categories = (Category.objects
+                  .filter(type=amo.ADDON_WEBAPP, weight__gte=0,
+                          id__in=public_cats))
+
+    if rand:
+        categories = categories.order_by('?')
 
     categories = order_by_translation(categories, 'name')
+
+    if limit:
+        categories = categories[:limit]
+
     t = env.get_template('browse/helpers/category_slider.html')
     return jinja2.Markup(t.render(categories=categories))
 

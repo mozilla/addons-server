@@ -5,7 +5,7 @@
 {% block content %}
   <h1 id="top">{{ _('Firefox Marketplace') }}</h1>
   <section class="featured">
-    <ul class="grid">
+    <ul class="grid c">
       {% for app in featured %}
         <li>
           {{ market_tile(app) }}
@@ -13,5 +13,5 @@
       {% endfor %}
     </ul>
   </section>
-  {{ category_slider() }}
+  {{ category_slider(rand=True, limit=6) }}
 {% endblock %}

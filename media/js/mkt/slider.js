@@ -9,7 +9,7 @@
                 }
                 return;
             }
-            $('.categories h3').linefit();
+            //$('.categories h3').linefit();
             $('.slider').each(mouseSlider);
         }
 

@@ -15,17 +15,24 @@
         width: 64px;
         display: block;
     }
-    h3 {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    .info h3 {
+        .ellipsis;
     }
 }
 
 .grid, .listing {
+    float: left;
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
+}
+
+// TODO: Figure out how we will scale/arrange the tiles on tablet and desktop.
+@media (max-width: 336px) {
+    .grid, .listing {
+        background: @black-border;
+    }
 }
 
 // Listing
@@ -78,27 +85,30 @@
 // center of each row is 1 px wider to provide for proper division by 3.
 
 .grid {
+    margin: -1px -1px 0 0;
+    min-width: 321px;
     li {
         float: left;
+        margin-top: 1px;
         max-width: 107px;
         width: 100%/3;
     }
     .mkt-tile {
         position: relative;
         width: 100%;
-        max-height: 106px;
+        height: 106px;
         .info {
-            .box-shadow(0 0 2px rgba(0,0,0,.1));
-            background: rgba(255,255,255,.7);
+            .box-shadow(0 0 1px rgba(0,0,0,.25));
+            background: rgba(255,255,255,.85);
             height: 40px;
             padding: 6px 4px;
             position: absolute;
             bottom: 0;
-            width: 100%;
+            width: 106px;
         }
         h3, .vital {
             font-size: 12px;
-            line-height: 12px;
+            line-height: 13px;
             margin: 0;
             padding: 0;
         }
@@ -108,6 +118,7 @@
             color: @link;
         }
         .icon {
+            background-color: @white;
             width: 106px;
             height: 106px;
         }
@@ -122,29 +133,41 @@
             display: inline-block;
             vertical-align: middle;
         }
+        .rating {
+            margin-left: 2px;
+        }
         &.category {
-            height: 107px;
             h3 {
-                text-align: center;
-                width: 90px;
+                color: @text-light;
                 padding: 8px;
-                color: white;
+                text-align: center;
                 text-shadow: 0 1px 1px fade(#000, 50%);
-                font-weight: 600;
                 position: absolute;
-                bottom: 0px;
+                bottom: 0;
+                width: 100%;
+            }
+            .icon {
+                background-color: rgba(45,51,55,1);
             }
         }
-        &:hover {
+        &:hover, &:active {
             .info {
-                background: @white;
+                background: rgba(255,255,255,.95);
             }
         }
-        &:active {
-            .depressed;
-            .info {
-                background: rgba(255,255,255,.5);
+        &.category {
+            &:hover, &:active {
+                h3 {
+                    color: @white;
+                }
             }
+        }
+        &:hover .icon {
+            opacity: .8;
+        }
+        &:active .icon,
+        &.category:active h3 {
+            opacity: .4;
         }
     }
 }

@@ -211,6 +211,7 @@ JS = {
         'js/mkt/buttons.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
+        'js/mkt/typography.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
 

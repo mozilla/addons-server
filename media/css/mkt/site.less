@@ -26,9 +26,9 @@ a {
 }
 
 body {
+    background: @grain-src @bg;
     color: @text;
     overflow-x: hidden;
-    background: @grain-src @pale-bg;
 }
 
 .balloon {
@@ -122,9 +122,6 @@ body {
 }
 
 #page {
-    .box-shadow(0 1px 3px fadeOut(#000, 80%));
-    .grain;
-    background-color: @bg;
     position: relative;
     > section {
         &:only-child {
@@ -134,44 +131,6 @@ body {
         &:last-child {
             padding-bottom: 12px;
         }
-    }
-}
-
-#site-footer {
-    background-color: @pale-bg;
-    .grain;
-    padding: 16px;
-    text-align: center;
-    .account {
-        width: auto;
-    }
-    .footer-links {
-        margin: 15px auto;
-        a {
-            &:before {
-                content: "\00b7";
-                display: inline-block;
-                margin: 0 5px 0 3px;
-                color: @gray;
-            }
-            &:first-child:before {
-                content: none;
-            }
-            &:hover:before {
-                text-decoration: none;
-            }
-            &:hover {
-                color: @link-dark;
-            }
-        }
-    }
-    label {
-        display: block;
-        margin-bottom: 2px;
-    }
-    .go {
-        display: inline-block;
-        margin: 0 10px;
     }
 }
 
@@ -201,71 +160,6 @@ body {
     }
     #page > section:last-child {
         padding-bottom: 0;
-    }
-    #site-footer {
-        .box-shadow(inset 0 1px 2px rgba(0,0,0,.15));
-        background: @grain-src darken(@header-dark-bg, 3%);
-        float: left;
-        font-size: 14px;
-        font-weight: 300;
-        text-align: left;
-        text-shadow: 0 1px 0 rgba(0,0,0,.5);
-        width: 100%;
-        padding: 10px 0 0;
-        .logout {
-            display: block;
-        }
-        form {
-            background: @grain-src @pale-bg;
-            margin: 15px 0 0;
-            padding: 20px 10px 0;
-        }
-        label {
-            display: none;
-        }
-        select {
-            width: 100%;
-        }
-        .account.authenticated a.logout, .footer-links a {
-            color: lighten(@link-bright, 10%);
-            &:hover {
-                color: lighten(@link-bright, 25%);
-            }
-        }
-        .account.authenticated a {
-            color: lighten(@link-bright, 25%);
-            &:hover {
-                color: lighten(@link-bright, 30%);
-            }
-        }
-        .account {
-            margin: 5px 10px;
-            color: @white;
-            .button {
-                padding: 5px 0;
-                width: 100%;
-            }
-        }
-        .footer-links {
-            margin: 10px 0;
-            text-align: left;
-            a {
-                display: block;
-                float: left;
-                padding: 6px 10px;
-                width: 50%;
-                &:before {
-                    display: none;
-                }
-                &:active {
-                    .depressed;
-                }
-            }
-        }
-        .go {
-            display: block;
-            margin: 0;
-        }
     }
 }
 
@@ -306,7 +200,6 @@ body {
         color: @darker_text;
     }
     #page {
-        .box-shadow(none);
         margin-top: 0;
     }
     .oneline {

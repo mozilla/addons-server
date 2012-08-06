@@ -45,6 +45,7 @@
 @navy-gray: #394C58;
 @overlay-gray: #2a353c;
 @text: #424f5a;
+@text-light: #e6edf2;
 @subtext: #74828d;
 @darker_text: darken(@text, 25%);
 @medium-gray: #666;
@@ -55,7 +56,8 @@
 @faint-gray: #eee;
 @barely-gray: #fcfcfc;
 @white: #fff;
-@bg: #dee3e6;
+@bg: #eff1f3;
+@black-border: #14171a;
 @bg-lite: lighten(@bg, 2%);
 @pale-bg: #eff1f3;
 @header-bg: #60747f;
@@ -116,6 +118,14 @@
     -ms-transform: @tform;
     -o-transform: @tform;
     transform: @tform;
+}
+
+.transform-origin(@x, @y) {
+    -moz-transform-origin: @x @y;
+    -webkit-transform-origin: @x @y;
+    -ms-transform-origin: @x @y;
+    -o-transform-origin: @x @y;
+    transform-origin: @x @y;
 }
 
 .transition(@property) {
