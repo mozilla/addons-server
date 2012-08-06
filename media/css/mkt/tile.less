@@ -22,7 +22,6 @@
     }
 }
 
-
 .grid, .listing {
     list-style-type: none;
     padding: 0;
@@ -85,15 +84,21 @@
         width: 100%/3;
     }
     .mkt-tile {
+        position: relative;
         width: 100%;
-        height: 145px;
+        height: 106px;
         .info {
-            .gradient-two-color(#d9d9d9, #fff);
-            height: 38px;
-            padding: 4px;
+            .box-shadow(0 0 2px rgba(0,0,0,.1));
+            background: rgba(255,255,255,.7);
+            height: 40px;
+            padding: 6px 4px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
         h3, .vital {
             font-size: 12px;
+            line-height: 12px;
             margin: 0;
             padding: 0;
         }
@@ -103,8 +108,8 @@
             color: @link;
         }
         .icon {
-            width: 107px;
-            height: 107px;
+            width: 106px;
+            height: 106px;
         }
         .button {
             display: none;
@@ -130,10 +135,16 @@
                 bottom: 0px;
             }
         }
-    }
-    li:nth-child(even) .mkt-tile {
-        .info {
-            .gradient-two-color(#fff, #d9d9d9);
+        &:hover {
+            .info {
+                background: @white;
+            }
+        }
+        &:active {
+            .depressed;
+            .info {
+                background: rgba(255,255,255,.5);
+            }
         }
     }
 }
