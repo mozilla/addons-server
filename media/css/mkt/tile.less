@@ -32,7 +32,7 @@
 // name + icon + price + rating in a vertical listview.
 // also used as standalone "card" on detail pages.
 .listing .mkt-tile {
-    height: 66px;
+    min-height: 66px;
     .gradient-two-color(#f7f7f7, @barely-gray);
     padding: 20px 15px;
     h3 {
@@ -165,19 +165,6 @@
     border-top: 1px solid #abb4ba;
     position: relative;
     background: #ccc;
-    &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: -1px;
-        left: 32px;
-        -moz-transform-origin: 0 0;
-        .transform(~'scaleY(.6) rotate(-45deg)');
-        background: #ccc;
-        width: 21px;
-        height: 21px;
-        .box-shadow(-2px 2px 1px fade(#808385, 50%) inset);
-    }
     ul {
         padding: 15px;
         margin: 0;

@@ -22,7 +22,7 @@
 {% set first_cat = cats[0] if cats else None %}
 
 {% block content %}
-  <h1 id="top">{{ _('Details') }}</h1>
+  <h1 id="top">{{ _('App Details') }}</h1>
   {% include 'purchase/error.html' %}
   {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
                             (None, product.name)]) }}
