@@ -61,9 +61,9 @@
     </section>
     <div id="purchased-message"></div>
 
-    {% set summary_len = product.summary.__unicode__()|length %}
-    {% set descr_len = product.description.__unicode__()|length %}
-    {% set comments_len = product.developer_comments.__unicode__()|length %}
+    {% set summary_len = product.summary.__unicode__()|length if product.summary else 0 %}
+    {% set descr_len = product.description.__unicode__()|length if product.description else 0 %}
+    {% set comments_len = product.developer_comments.__unicode__()|length if product.developer_comments else 0 %}
     {% set super_long = (summary_len + descr_len + comments_len) > 700 %}
     <section class="blurbs infobox full">
       <div>
