@@ -1374,7 +1374,7 @@ class TestAdminSettings(TestAdmin):
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
-        eq_(list(webapp.ratings.values_list('ratings_body', 'rating')),
+        eq_(list(webapp.content_ratings.values_list('ratings_body', 'rating')),
             [(0, 2)])
 
     def test_ratings_edit_update(self):
@@ -1388,7 +1388,7 @@ class TestAdminSettings(TestAdmin):
                 }
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
-        eq_(list(webapp.ratings.all().values_list('ratings_body', 'rating')),
+        eq_(list(webapp.content_ratings.all().values_list('ratings_body', 'rating')),
             [(0, 1), (0, 3)])
 
     def test_ratings_view(self):

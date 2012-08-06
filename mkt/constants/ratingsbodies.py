@@ -1,4 +1,3 @@
-
 class DJCTQ_L(object):
     name = 'L'
     id = 0
@@ -48,5 +47,6 @@ for rb in RATINGS_BODIES.values():
 RATINGS_BY_NAME = []
 for rb in RATINGS_BODIES.values():
     for r in rb.ratings:
-        RATINGS_BY_NAME.append((ALL_RATINGS.index(r), '%s - %s' % (rb.name, r.name)))
+        RATINGS_BY_NAME.append((ALL_RATINGS.index(r),
+                                '%s - %s' % (rb.name, r.name)))
         r.ratingsbody = rb

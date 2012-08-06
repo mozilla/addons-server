@@ -86,7 +86,7 @@
         <tr>
           <th>
             <label for="app_ratings">
-              {{ _('Ratings') }}
+              {{ _('Content Ratings') }}
               {{ tip(None,
                      _('Ratings from official ratings bodies for this app.')) }}
             </label>
@@ -96,7 +96,7 @@
               {{ form.app_ratings }}
               {{ form.app_ratings.error }}
             {% else %}
-              {%  for r in addon.ratings.all() %}
+              {%  for r in addon.content_ratings.all() %}
                 <div>{{ r }}</div>
               {% endfor %}
             {% endif %}

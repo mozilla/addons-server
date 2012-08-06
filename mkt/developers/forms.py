@@ -310,7 +310,7 @@ class AdminSettingsForm(PreviewForm):
             self.initial['mozilla_contact'] = addon.mozilla_contact
 
             rs = []
-            for r in addon.ratings.all():
+            for r in addon.content_ratings.all():
                 rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
                 rs.append(ALL_RATINGS.index(rating))
             self.initial['app_ratings'] = rs
@@ -336,8 +336,8 @@ class AdminSettingsForm(PreviewForm):
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
             ratings = set(int(r) for r in ratings)
-            addon.ratings.exclude(rating__in=ratings).delete()
-            for i in ratings - set(addon.ratings.filter(rating__in=ratings)):
+            addon.content_ratings.exclude(rating__in=ratings).delete()
+            for i in ratings - set(addon.content_ratings.filter(rating__in=ratings)):
                 r = ALL_RATINGS[i]
                 ContentRating.objects.create(addon=addon, rating=r.id,
                                              ratings_body=r.ratingsbody.id)
