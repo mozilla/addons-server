@@ -406,7 +406,8 @@ class ContentRating(amo.models.ModelBase):
     """
     addon = models.ForeignKey('addons.Addon', related_name='content_ratings')
     ratings_body = models.PositiveIntegerField(
-        choices=[(k, rb.name) for k, rb in ratingsbodies.RATINGS_BODIES.items()],
+        choices=[(k, rb.name) for k, rb in
+                 ratingsbodies.RATINGS_BODIES.items()],
         null=False)
     rating = models.PositiveIntegerField(null=False)
 
