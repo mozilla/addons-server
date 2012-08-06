@@ -87,11 +87,10 @@ def pay(request, signed_req, pay_req):
     source = request.POST.get('source', '')
     product = pay_req['_config'].addon
     # L10n: {0} is the product name. {1} is the application name.
-    contrib_for = (_(u'Mozilla Marketplace in-app payment for {0} to {1}')
+    contrib_for = (_(u'Firefox Marketplace in-app payment for {0} to {1}')
                    .format(pay_req['request']['name'], product.name))
     # TODO(solitude): solitude lib will create these for us.
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
-
 
     if waffle.flag_is_active(request, 'solitude-payments'):
         # TODO(solitude): when the migration of data is completed, we

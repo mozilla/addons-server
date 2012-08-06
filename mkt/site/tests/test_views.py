@@ -23,7 +23,7 @@ class Test404(amo.tests.TestCase):
 
     def test_404(self):
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header .logo').text(), 'Mozilla Marketplace')
+        eq_(pq(r.content)('#site-header .logo').text(), 'Firefox Marketplace')
 
     def test_404_devhub(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
@@ -31,18 +31,18 @@ class Test404(amo.tests.TestCase):
                                  password='password')
         r = self._test_404('/developers/xxx')
         eq_(pq(r.content)('#site-header .logo').text(),
-            'Mozilla Marketplace Developers')
+            'Firefox Marketplace Developers')
 
     def test_404_consumer_legacy(self):
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header .logo').text(), 'Mozilla Marketplace')
+        eq_(pq(r.content)('#site-header .logo').text(), 'Firefox Marketplace')
 
     def test_404_consumer(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
         r = self._test_404('/xxx')
-        eq_(pq(r.content)('#site-header .logo').text(), 'Mozilla Marketplace')
+        eq_(pq(r.content)('#site-header .logo').text(), 'Firefox Marketplace')
 
 
 class TestManifest(amo.tests.TestCase):
@@ -52,7 +52,7 @@ class TestManifest(amo.tests.TestCase):
         eq_(response.status_code, 200)
         eq_(response['Content-Type'], 'application/x-web-app-manifest+json')
         content = json.loads(response.content)
-        eq_(content['name'], 'Mozilla Marketplace')
+        eq_(content['name'], 'Firefox Marketplace')
         eq_(content['default_locale'], 'en-US')
         url = reverse('manifest.webapp')
         assert 'en-US' not in url and 'firefox' not in url
@@ -90,7 +90,7 @@ class TestMozmarketJS(amo.tests.TestCase):
     @mock.patch.object(settings, 'MINIFY_MOZMARKET', True)
     @mock.patch.object(settings, 'UGLIFY_BIN', None)
     def test_minify_with_yui(self):
-        resp = self.render()  # no errors
+        self.render()  # no errors
 
     @mock.patch.object(settings, 'MINIFY_MOZMARKET', False)
     def test_receiptverifier(self):

@@ -253,10 +253,10 @@ class TestAppSearch(SearchTestMixin, ESTestCase):
         self.verify_result(data)
 
     def test_multiword(self):
-        self.app.name = 'Mozilla Marketplace'
+        self.app.name = 'Firefox Marketplace'
         self.app.save()
         self.refresh()
-        data = self.search(q='mozilla marketplace')
+        data = self.search(q='Firefox Marketplace')
         self.verify_result(data)
 
     def test_by_stem_name(self):

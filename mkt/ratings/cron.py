@@ -36,7 +36,7 @@ def email_daily_ratings():
     for app in apps:
         # Email all reviews in one email for current app in loop.
         author_emails = app.authors.values_list('email', flat=True)
-        subject = 'Mozilla Marketplace reviews for %s on %s' % (app.name,
+        subject = 'Firefox Marketplace reviews for %s on %s' % (app.name,
                                                                 pretty_date)
 
         context = {'reviews': (yesterday_reviews.filter(addon=app).

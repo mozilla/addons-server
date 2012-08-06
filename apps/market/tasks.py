@@ -5,9 +5,11 @@ import time
 from django.conf import settings
 from django.core.cache import cache
 
+from tower import ungettext as _
+
 from addons.models import Addon
 import amo
-from amo.helpers import absolutify, loc
+from amo.helpers import absolutify
 from amo.utils import send_mail
 from market.models import PaypalCheckStatus
 from paypal.check import Check
@@ -109,10 +111,10 @@ def _notify(context):
             authors = [u.email for u in addon.authors.all()]
             if addon.is_webapp():
                 template = 'market/emails/check_developer_app.txt'
-                subject = loc('App disabled on the Mozilla Market.')
+                subject = _('App disabled on the Firefox Marketplace.')
             else:
                 template = 'market/emails/check_developer_addon.txt'
-                subject = loc('Add-on disabled on the Mozilla Market.')
+                subject = _('Add-on disabled on the Firefox Marketplace.')
 
             # Now email the developer and tell them the bad news.
             send_mail(subject,

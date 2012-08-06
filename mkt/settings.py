@@ -44,12 +44,12 @@ MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 MKT_SUPPORT_EMAIL = 'marketplace-developer-support@mozilla.org'
 MARKETPLACE_EMAIL = 'amo-marketplace@mozilla.org'
-ABUSE_EMAIL = 'Mozilla Marketplace <marketplace-abuse@mozilla.org>'
-NOBODY_EMAIL = 'Mozilla Marketplace <nobody@mozilla.org>'
-DEFAULT_FROM_EMAIL = 'Mozilla Marketplace <nobody@mozilla.org>'
+ABUSE_EMAIL = 'Firefox Marketplace <marketplace-abuse@mozilla.org>'
+NOBODY_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
+DEFAULT_FROM_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 
 # Default app name for our webapp as specified in `manifest.webapp`.
-WEBAPP_MANIFEST_NAME = 'Mozilla Marketplace'
+WEBAPP_MANIFEST_NAME = 'Firefox Marketplace'
 
 ROOT_URLCONF = 'mkt.urls'
 

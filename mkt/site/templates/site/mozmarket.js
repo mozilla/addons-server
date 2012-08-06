@@ -1,6 +1,6 @@
 /*
 JS included by any *remote* web app to enable interaction
-with the Mozilla Marketplace.
+with the Firefox Marketplace.
 
 This currently supports
 * in-app payments.

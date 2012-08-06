@@ -41,7 +41,7 @@ def hub_page_title(context, title=None, addon=None):
 @jinja2.contextfunction
 def mkt_page_title(context, title, force_webapps=False):
     title = smart_unicode(title)
-    base_title = _('Mozilla Marketplace')
+    base_title = _('Firefox Marketplace')
     return u'%s | %s' % (title, base_title)
 
 

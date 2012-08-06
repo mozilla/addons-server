@@ -60,7 +60,7 @@ def mail_pending_refunds():
         addons = Addon.objects.filter(pk__in=addon_ids)
         ctx = {'addons': addons, 'refunds': pending,
                'site_url': settings.SITE_URL}
-        send_mail_jinja('Pending refund requests at the Mozilla Marketplace',
+        send_mail_jinja('Pending refund requests at the Firefox Marketplace',
                         'market/emails/refund-nag.txt', ctx,
                         from_email=settings.NOBODY_EMAIL,
                         recipient_list=[owner])

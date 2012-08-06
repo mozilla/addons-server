@@ -19,7 +19,7 @@
         {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
           {{ status(_('You have <b>disabled</b> this app.')|safe) }}
           {{ _("Your app's listing is disabled and will not appear in the
-                Mozilla Marketplace. You may re-enable it at any time below.") }}
+                Firefox Marketplace. You may re-enable it at any time below.") }}
         {% elif addon.status == amo.STATUS_NULL %}
           {{ status(_('This app is <b>incomplete</b>.')|safe) }}
           <a href="{{ url('submit.app.resume', addon.app_slug) }}">
@@ -35,7 +35,7 @@
           {{ _("Your app was disabled by a site administrator. If you have any
                 questions, please email app-reviews@mozilla.org.") }}
         {% elif addon.status == amo.STATUS_REJECTED %}
-          {{ status(_('This app has been <b>rejected</b> by a Mozilla Marketplace reviewer.')|safe) }}
+          {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')|safe) }}
         {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
           {{ status(_('Your app has been <b>approved but is not public</b>.')|safe) }}
           {{ _('It is awaiting your approval to make public.') }}
@@ -108,7 +108,7 @@
           <h3>{{ _('Disable App') }}</h3>
           <p>
             {{ _('Disabling your app will prevent it from appearing anywhere
-                  in the Mozilla Marketplace.') }}
+                  in the Firefox Marketplace.') }}
           </p>
           <p>
             <label>{{ _('Are you sure you wish to disable your app?') }}</label>

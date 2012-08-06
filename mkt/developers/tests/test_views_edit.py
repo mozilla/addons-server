@@ -118,7 +118,7 @@ class TestEditListingWebapp(TestEdit):
         r = self.client.get(self.url)
         eq_(r.context['webapp'], True)
         eq_(pq(r.content)('title').text(),
-            'Edit Listing | %s | Mozilla Marketplace' % self.webapp.name)
+            'Edit Listing | %s | Firefox Marketplace' % self.webapp.name)
 
     def test_nav_links(self):
         r = self.client.get(self.url)

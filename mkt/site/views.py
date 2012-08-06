@@ -49,8 +49,8 @@ def manifest(request):
     ctx = RequestContext(request)
     data = {
         'name': getattr(settings, 'WEBAPP_MANIFEST_NAME',
-                        'Mozilla Marketplace'),
-        'description': 'The Mozilla Marketplace',
+                        'Firefox Marketplace'),
+        'description': 'The Firefox Marketplace',
         'developer': {
             'name': 'Mozilla',
             'url': 'http://mozilla.org',

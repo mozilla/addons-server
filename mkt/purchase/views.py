@@ -36,7 +36,7 @@ def start_purchase(request, addon):
     amount = addon.premium.get_price()
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # L10n: {0} is the addon name.
-    contrib_for = (_(u'Mozilla Marketplace purchase of {0}')
+    contrib_for = (_(u'Firefox Marketplace purchase of {0}')
                    .format(addon.name))
 
     # Default is USD.

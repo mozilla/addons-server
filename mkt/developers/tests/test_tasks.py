@@ -363,7 +363,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
     def test_email_for_one_new_region(self):
         tasks.region_email([self.app.id], [mkt.regions.CA])
         msg = mail.outbox[0]
-        eq_(msg.subject, '%s: Canada region added to the Mozilla Marketplace'
+        eq_(msg.subject, '%s: Canada region added to the Firefox Marketplace'
                          % self.app.name)
         eq_(msg.to, ['steamcube@mozilla.com'])
         dev_url = ('http://omg.org/yes/developers/app/something-something/'
@@ -379,7 +379,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         tasks.region_email([self.app.id],
                            [mkt.regions.UK, mkt.regions.CA])
         msg = mail.outbox[0]
-        eq_(msg.subject, '%s: New regions added to the Mozilla Marketplace'
+        eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                          % self.app.name)
         eq_(msg.to, ['steamcube@mozilla.com'])
         dev_url = ('http://omg.org/yes/developers/app/something-something/'
@@ -395,7 +395,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         tasks.region_email([self.app.id],
                            [mkt.regions.CA, mkt.regions.UK, mkt.regions.BR])
         msg = mail.outbox[0]
-        eq_(msg.subject, '%s: New regions added to the Mozilla Marketplace'
+        eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                           % self.app.name)
         assert ' added a few new ' in msg.body
         assert ': Brazil, Canada, and United Kingdom.' in msg.body

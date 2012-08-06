@@ -447,10 +447,10 @@ def region_email(ids, regions, **kw):
         to = set(product.authors.values_list('email', flat=True))
 
         if len(regions) == 1:
-            subject = _(u'{region} region added to the Mozilla Marketplace'
+            subject = _(u'{region} region added to the Firefox Marketplace'
                 ).format(region=regions[0])
         else:
-            subject = _(u'New regions added to the Mozilla Marketplace')
+            subject = _(u'New regions added to the Firefox Marketplace')
 
         dev_url = absolutify(product.get_dev_url('edit'),
                              settings.SITE_URL) + '#details'

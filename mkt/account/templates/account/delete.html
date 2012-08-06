@@ -25,16 +25,15 @@
           <form method="post">
             {{ csrf() }}
             <div class="notification-box error prose">
-              {% trans %}
+              {# TODO(copy): Update this. This is out of date. #}
               By clicking "delete" your account is going
               to be <strong>permanently removed</strong>.
               That means:
                 <ul>
-                  <li>You are deleting your account on both <strong>Mozilla Marketplace</strong> and <strong>addons.mozilla.org</strong>.</li>
+                  <li>You are deleting your account on both <strong>Firefox Marketplace</strong> and <strong>addons.mozilla.org</strong>.</li>
                   <li>Your reviews and ratings will not be deleted, but they
                       will no longer be associated with you.</li>
                 </ul>
-                {% endtrans %}
             </div>
             <p>
               {{ form_field(form.confirm) }}
