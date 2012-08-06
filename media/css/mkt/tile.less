@@ -38,40 +38,54 @@
 // Listing
 // name + icon + price + rating in a vertical listview.
 // also used as standalone "card" on detail pages.
+
+.product-details,
 .listing .mkt-tile {
-    .gradient-two-color(#f7f7f7, @barely-gray);
+    // TODO: Maybe we don't need this twice. We'll see when we do desktop.
+    .gradient-two-color-with-image(#f7f7f7, @barely-gray, @grain-src);
+}
+
+.listing .mkt-tile {
     min-height: 66px;
-    padding: 20px 15px;
+    padding: 20px 15px 20px 88px;
     h3 {
         font-size: 20px;
-        line-height: 22px;
         font-weight: 400;
+        line-height: 22px;
+        margin: -4px 0 2px;
     }
     .icon {
         float: left;
-        margin-right: 10px;
+        position: absolute;
+        top: 20px;
+        left: 10px;
     }
     .author {
         color: @subtext;
+        font-size: 12px;
+        line-height: 14px;
+        max-height: 28px;
+        margin-bottom: -3px;
+        padding-bottom: 2px;
     }
     .button {
-        position: absolute;
-        bottom: 24px;
-        right: 15px;
+        float: right;
         height: 24px;
         line-height: 24px;
         font-size: 13px;
+        margin-left: 10px;
         padding: 0;
-        width: 102px;
-        top: 65px;
+        width: 100px;
     }
     .rating {
-        margin-top: 8px;
+        clear: both;
+        margin-top: 4px;
         color: @subtext;
         display: block;
         font-size: 11px;
-        &:before {
-            display: none;
+        .cnt {
+            color: @note-gray;
+            font-weight: 600;
         }
     }
     .price {
@@ -182,12 +196,12 @@
 
 // Previews tray.
 .expanded .mkt-tile + .tray {
+    .gradient-two-color-with-image(rgba(221,225,228,.35), rgba(159,164,169,.95), @grain-src);
     height: 232px;
-    .gradient-two-color(#fff, fade(#fff, 0%));
-    border-bottom: 1px solid #edf0f1;
-    border-top: 1px solid #abb4ba;
+    border-bottom: 1px solid rgba(0,0,0,.3);
+    border-top: 1px solid rgba(0,0,0,.05);
     position: relative;
-    background: #ccc;
+    width: 100% !important;  // TODO: This'll probably change with desktop.
     ul {
         padding: 15px;
         margin: 0;
@@ -208,4 +222,9 @@
             max-height: 270px;
         }
     }
+}
+
+// TODO: Maybe later.
+.noApps {
+    display: none;
 }

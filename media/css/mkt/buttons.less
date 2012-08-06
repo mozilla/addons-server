@@ -21,9 +21,8 @@ a.arrow, .img.arrow {
 }
 
 .button, button {
-
     border: 0;
-    color: white;
+    color: @white;
     display: inline-block;
     font: 600 16px/31px @open-stack;
     height: 32px;
@@ -54,7 +53,6 @@ a.arrow, .img.arrow {
         }
     }
 
-
     &.delete, &.manage, &.cancel, &.product.error {
         .gradient-two-color(#e45d56, #de4332);
     }
@@ -64,40 +62,32 @@ a.arrow, .img.arrow {
     }
 
     &:hover {
-
         .box-shadow(0px 4px 1px fadeOut(#000,80%),
                     inset 0px -3px 0px fadeOut(#000, 80%));
         line-height: 28px;
         text-decoration: none;
-
     }
 
     &:active {
-
         .box-shadow(inset 0px 2px 0px 0px fadeOut(#000,80%),
                     inset 0px 12px 24px 6px fadeOut(#000,80%),
                     inset 0px 0px 2px 2px fadeOut(#000,80%));
         .transition-duration(~'.1s, .1s, .1s, .1s');
         line-height: 34px;
-
     }
 
     &[disabled], &.disabled,
     &.purchasing, &.purchased,
     &.installing, &.installed {
-
         color: #919497;
         text-shadow: 0 1px 0 rgba(255,255,255,.5);
         pointer-events: none;
         background-color: @light-gray;
         .gradient-two-color(#ddd, @light-gray);
-
     }
 
     &.installed, &.purchased {
-
         pointer-events: auto;
-
     }
 
     &.good {
@@ -122,7 +112,8 @@ a.arrow, .img.arrow {
 
 @media (max-width: @4col) {
     .button, button {
-        .border-radius(4px);
+        .border-radius(2px);
+        padding: 0 15px;
         &.fat {
             display: block;
             width: 100%;

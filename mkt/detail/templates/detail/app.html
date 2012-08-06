@@ -27,17 +27,9 @@
   {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
                             (None, product.name)]) }}
   {% if not (is_dev or is_admin) and not product.is_public() %}
-    <section class="product-details">
-      <h1>
-        {% if 'id' in request.GET %}
-          <b class="num">#{{ product.id }}</b>
-        {% endif %}
-        {{ product.name }}
-      </h1>
-    </section>
     {{ notification(product, amo, is_dev) }}
   {% else %}
-    <section class="product-details listing expanded">
+    <section class="product-details listing expanded full c">
       {{ market_tile(product, link=False) }}
     </section>
 
@@ -69,36 +61,27 @@
     </section>
     <div id="purchased-message"></div>
 
-    <section class="infobox">
-      <div class="actions wide">
-        {% if is_dev %}
-          <p><a href="{{ product.get_dev_url() }}" class="button manage"
-                target="_blank">{{ _('Manage') }}</a></p>
-        {% endif %}
-        {% if is_reviewer %}
-          <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
-                class="button good reviewer" target="_blank">
-            {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
-        {% endif %}
-      </div>
-    </section>
-
-    <section class="description infobox full">
+    {% set summary_len = product.summary.__unicode__()|length %}
+    {% set descr_len = product.description.__unicode__()|length %}
+    {% set comments_len = product.developer_comments.__unicode__()|length %}
+    {% set super_long = (summary_len + descr_len + comments_len) > 700 %}
+    <section class="blurbs infobox full">
       <div>
         <p class="summary">
           {{ product.summary|nl2br }}
-          {% if product.description %}
-            <a href="#" class="collapse narrow">{{ _('More&hellip;') }}</a>
+          {% if super_long %}
+            <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
           {% endif %}
         </p>
-        {% if product.description or product.developer_comments %}
-          <div class="collapse">
-            {% if product.description %}
-              <div class="more">{{ product.description|nl2br }}</div>
+        {% if descr_len or comments_len %}
+          <div{% if super_long %} class="collapsed"{% endif %}>
+            {% if descr_len %}
+              <h3>{{ _('Description') }}</h3>
+              <div class="description">{{ product.description|nl2br }}</div>
             {% endif %}
-            {% if product.developer_comments %}
+            {% if comments_len %}
               <h3>{{ _('Developer Comments') }}</h3>
-              <div class="developer-comments">{{ product.developer_comments }}</div>
+              <div class="developer-comments">{{ product.developer_comments|nl2br }}</div>
             {% endif %}
           </div>
         {% endif %}
@@ -125,7 +108,7 @@
               </a>
             {% endif %}
           </div>
-          <div class="review-stars">
+          <div class="review-stars wide">
             {% include 'ratings/helpers/grouped_ratings.html' %}
             {% if not reviews %}
               <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
@@ -143,14 +126,7 @@
 
     <section id="support" class="infobox full support c">
       <div>
-        {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
-                 pare this down. But until then... code duplication :( #}
         <ul class="c">
-          {% if False %}
-            {# TODO: Link to Request Support page if I've purchased (up front or in-app). What about for free?
-                     https://bugzilla.mozilla.org/show_bug.cgi?id=760287 #}
-            <li><a href="" class="arrow">{{ _('Support') }}</a></li>
-          {% endif %}
           {% if product.support_email %}
             <li class="support-email">
               {{ emaillink(product.support_email.localized_string,
@@ -198,6 +174,19 @@
           <dd>{{ product.created|timelabel }}</dd>
         </dl>
       </div>
+
+      <div class="actions wide">
+        {% if is_dev %}
+          <p><a href="{{ product.get_dev_url() }}" class="button manage"
+                target="_blank">{{ _('Manage') }}</a></p>
+        {% endif %}
+        {% if is_reviewer %}
+          <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
+                class="button good reviewer" target="_blank">
+            {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
+        {% endif %}
+      </div>
+
     </section>
   {% endif %}
 {% endblock %}

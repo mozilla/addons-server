@@ -10,8 +10,13 @@
   <img class="icon" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
+    {% if product.has_author(request.amo_user) %}
+      {{ market_button(product, 'developer') }}
+    {% else %}
+      {{ market_button(product) }}
+    {% endif %}
     {% if product.listed_authors %}
-      <div class="author vital">{{ product.listed_authors[0].name }}</div>
+      <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
     {% endif %}
     <div class="price vital">{{ product.get_price() }}</div>
     {% if waffle.switch('ratings') %}
@@ -27,11 +32,6 @@
       </div>
     {% endif %}
   </div>
-  {% if product.has_author(request.amo_user) %}
-    {{ market_button(product, 'developer') }}
-  {% else %}
-    {{ market_button(product) }}
-  {% endif %}
 </{{ tag }}>
-<div class="tray previews">
+<div class="tray previews full">
 </div>

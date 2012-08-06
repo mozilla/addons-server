@@ -19,7 +19,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 10;
 }
 
 @media (min-width: @4col) {
@@ -64,7 +64,7 @@
     top: 0;
     left: 0;
     overflow: hidden;
-    z-index: 1;
+    z-index: 10;
     h1 {
         display: none;
     }
@@ -82,10 +82,10 @@
     height: 50px;
     text-indent: -1000%;
     position: relative;
-    z-index: 3;
+    z-index: 11;
     &:after {
         content: '';
-        z-index: 1;
+        z-index: 11;
         position: absolute;
         height: 34px;
         width: 2px;

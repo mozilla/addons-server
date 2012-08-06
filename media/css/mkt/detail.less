@@ -1,13 +1,52 @@
 @import 'lib';
 
-@text-gray: #424f5a;
+@text-gray: #424f5a;  // Why's this not in lib.less?
 @link: #2d87ca;
 
-h1 .num {
-    color: @orange;
-    font-size: 16px;
-    vertical-align: top;
+
+// Description.
+
+.blurbs {
+    clear: both;
+    color: @text-gray;
+    p {
+        font-size: 14px;
+        margin: 0;
+    }
+    h3 {
+        font-size: 16px;
+        line-height: 18px;
+        margin: 15px 0 5px;
+    }
 }
+
+.show-toggle {
+    display: none;
+    float: right;
+    font-weight: bold;
+    margin: -5px -10px 0 0;
+    padding: 5px 10px 10px 10px;
+    text-align: right;
+    text-transform: lowercase;
+    &:before {
+        content: "(";
+        font-weight: 200;
+    }
+    &:after {
+        content: ")";
+        font-weight: 200;
+    }
+}
+
+@media (max-width: @4col) {
+    .collapsed {
+        display: none;
+    }
+    .show-toggle {
+        display: block;
+    }
+}
+
 
 .checkmark {
     display: block;
@@ -251,56 +290,6 @@ h1 .num {
             margin: 10px 0 5px;
         }
     }
-}
-
-
-
-.description {
-    clear: both;
-    color: @text-gray;
-    padding: 15px 30px 15px 0;
-    p {
-        .max-width(14);
-        font-size: 14px;
-    }
-    .more {
-        display: block;
-        + h3 {
-            font-size: 18px;
-            line-height: 20px;
-            margin: 15px 0 5px;
-        }
-    }
-    .collapse {
-        display: none;
-        &.show {
-            display: block;
-        }
-    }
-    a.collapse.wide {
-        .transition(~'.2s opacity');
-        background: url(../../img/mkt/arrows/collapse.png) no-repeat 100% 50%;
-        display: block;
-        float: right;
-        height: 8px;
-        margin-right: -30px;
-        padding: 20px 0;
-        opacity: .7;
-        outline: none;
-        text-indent: -9999px;
-        width: 30px;
-        &:hover,
-        &.expanded {
-            opacity: 1;
-        }
-        &.expanded {
-            .transform(~'scaleY(-1)');
-        }
-    }
-}
-
-.developer-comments {
-    margin-bottom: 10px;
 }
 
 .support {
@@ -554,34 +543,6 @@ h1 .num {
 }
 
 @media (max-width: @4col) {
-    #page > .description {
-        border-width: 1px 0;
-        padding: 10px;
-        .summary {
-            margin: 0 0 5px;
-            max-width: 100%;
-            width: 100%;
-        }
-        .show .more {
-            margin-top: 15px;
-        }
-        a.collapse.narrow {
-            .transition(none);
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            opacity: .9;
-            text-align: right;
-            &:hover,
-            &.expanded {
-                opacity: 1;
-            }
-            &.expanded {
-                display: none;
-                .transform(none);
-            }
-        }
-    }
     .downloads {
         font-size: 12px;
     }
