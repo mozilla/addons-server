@@ -93,12 +93,12 @@ z.page.on('fragmentloaded', function() {
 
     // Navigation toggle.
     var $header = $('#site-header'),
-        $nav = $header.find('nav ul');
+        $nav = $header.find('nav ul'),
+        $outer = $('html, body');
     $header.on('click', '.menu-button', _pd(function() {
         $nav.addClass('active');
         $('.nav-overlay').addClass('show');
     })).on('click', '.region', _pd(function() {
-        var $outer = $('html, body');
         $outer.animate({scrollTop: $outer.height()}, 1000);
     }));
 
@@ -156,5 +156,13 @@ z.page.on('fragmentloaded', function() {
             e.preventDefault();
         }
     });
-});
 
+    // iPhone-style scroll up.
+    z.body.on('click', '#top, header', function(e) {
+        var $target = $(e.target);
+        if (!$target.filter('a, form, input').length) {
+            e.preventDefault();
+            $outer.animate({scrollTop: 0}, 500);
+        }
+    });
+});
