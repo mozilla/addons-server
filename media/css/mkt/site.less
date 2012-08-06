@@ -32,7 +32,6 @@ body {
 }
 
 .balloon {
-    .border-box;
     .border-radius(0 0 5px 5px);
     .transition(.2s top ease-out);
     border: 2px solid #e3873b;
@@ -95,7 +94,6 @@ body {
         border: 1px solid darken(#fd9, 60%);
     }
     &.full {
-        .border-box;
         a {
             font-weight: bold;
         }
@@ -107,7 +105,6 @@ body {
         .width(14);
         margin-left: auto;
         margin-right: auto;
-        .border-box;
         &:after {
             content: '';
             display: block;
@@ -194,7 +191,6 @@ body {
 @media (max-width: @4col) {
     #site-header, #page {
         > section, > section.full > div {
-            .border-box;
             width: 100%;
             min-width: 300px;
         }
@@ -243,7 +239,6 @@ body {
             }
         }
         .account {
-            .border-box;
             margin: 5px 10px;
             color: @white;
             .button {
@@ -255,7 +250,6 @@ body {
             margin: 10px 0;
             text-align: left;
             a {
-                .border-box;
                 display: block;
                 float: left;
                 padding: 6px 10px;
