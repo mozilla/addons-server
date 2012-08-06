@@ -15,7 +15,16 @@
     {% endif %}
     <div class="price vital">{{ product.get_price() }}</div>
     {% if waffle.switch('ratings') %}
-      <div class="rating vital">{{ product.average_rating|float|stars }}</div>
+      <div class="rating vital">
+        {{ product.average_rating|float|stars }}
+        {% if product.total_reviews %}
+          <span class="cnt">
+            {% trans cnt=product.total_reviews|numberfmt %}
+              {{ cnt }} Ratings
+            {% endtrans %}
+          </span>
+       {% endif %}
+      </div>
     {% endif %}
   </div>
   {% if product.has_author(request.amo_user) %}

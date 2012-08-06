@@ -302,7 +302,7 @@ class Webapp(Addon):
     def get_price(self):
         if self.is_premium() and self.premium:
             return self.premium.get_price_locale()
-        return _(u'FREE')
+        return _(u'Free')
 
     @amo.cached_property
     def promo(self):
