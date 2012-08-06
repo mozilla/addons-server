@@ -29,7 +29,7 @@ from amo.helpers import absolutify, urlparams
 from amo.utils import escape_all
 from amo.urlresolvers import reverse
 from addons import forms as addon_forms
-from addons.decorators import can_become_premium, addon_view
+from addons.decorators import can_become_premium
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import AppLog
@@ -46,7 +46,6 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
-from zadmin.decorators import admin_required
 
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
