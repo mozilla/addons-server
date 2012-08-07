@@ -56,6 +56,15 @@
     }
 }
 
+.pages {
+    position: relative;
+    height: 271px;
+    top: 0;
+    left: 0;
+    .transition-duration(.3s);
+    .transition-property(top bottom);
+}
+
 .slider {
     white-space: nowrap;
     position: relative;
@@ -76,6 +85,7 @@
     -webkit-transition: none;
 }
 
+.pages > li,
 .slider > li {
     width: 100%;
     white-space: normal;

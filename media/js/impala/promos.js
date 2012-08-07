@@ -33,3 +33,46 @@ function initPromos($context, module_context, version, platform) {
         }
     });
 }
+
+$.fn.promoPager = function() {
+    $.each(this, function(index, pager) {
+        var $dots = $('.dot', pager);
+        $dots.click(_pd(function(ev) {
+            $('.selected', pager).removeClass('selected');
+            setPage(pager, $dots, $dots.index(ev.target));
+        }));
+    });
+
+    function setPage(pager, dots, pageNum) {
+        var offset = -271 * pageNum + 'px';
+        dots.eq(pageNum).addClass('selected');
+        $(pager).siblings('.pages').css('top', offset);
+    }
+};
+
+(function() {
+    $('#caroline').click(function() {
+        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
+                      'DCS.dcsuri', '/en-US/firefox/',
+                      'WT.ti', 'Link: Firebug',
+                      'WT.dl', 99,
+                      'WT.z_convert', 'FavoriteAdd-ons'
+        );
+    });
+    $('#jason').click(function() {
+        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
+                      'DCS.dcsuri', '/en-US/firefox/',
+                      'WT.ti', 'Link: DownThemAll!',
+                      'WT.dl', 99,
+                      'WT.z_convert', 'FavoriteAdd-ons'
+        );
+    });
+    $('#josh').click(function() {
+        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
+                      'DCS.dcsuri', '/en-US/firefox/',
+                      'WT.ti', 'Link: LastPass',
+                      'WT.dl', 99,
+                      'WT.z_convert', 'FavoriteAdd-ons'
+        );
+    });
+});

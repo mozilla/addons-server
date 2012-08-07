@@ -462,6 +462,52 @@
     background: url(../../img/zamboni/discovery_pane/promos/olympics-bg-large.png) 20% 0;
 }
 
+#contest-winners {
+    position: relative;
+    .contest-winner {
+        span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+    }
+    #caroline {
+        background: url(../../img/zamboni/discovery_pane/promos/contest-caroline.jpg) 100% 0 no-repeat;
+    }
+    #josh {
+        background: url(../../img/zamboni/discovery_pane/promos/contest-josh.jpg) 100% 0 no-repeat;
+    }
+    #jason {
+        background: url(../../img/zamboni/discovery_pane/promos/contest-jason.jpg) 100% 0 no-repeat;
+    }
+    .pager {
+        position: absolute;
+        width: 90px;
+        left: 50%;
+        margin-left: -45px;
+        top: 245px;
+        a {
+            background: url(../../img/zamboni/discovery_pane/pager-nav.png) 100% 0 no-repeat;
+            width: 16px;
+            height: 17px;
+            padding: 0px;
+            margin-right: 12px;
+            background-position: -31px -1px;
+        }
+        a:last-child {
+            margin-right: 0;
+        }
+        a:hover {
+            background-position: -16px -1px;
+        }
+        a.selected {
+            background-position: 0 -1px;
+        }
+    }
+}
+
 .addons li {
     float: left;
     width: 30%;

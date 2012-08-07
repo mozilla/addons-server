@@ -283,3 +283,8 @@ class ValentinesDay(CollectionPromo):
 class Olympics(TemplatePromo):
     slug = 'Olympics'
     template = 'discovery/modules/olympics.html'
+
+
+class ContestWinners(TemplatePromo):
+    slug= 'Contest Winners'
+    template = 'discovery/modules/contest-winners.html'
