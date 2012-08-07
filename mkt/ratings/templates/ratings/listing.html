@@ -42,6 +42,9 @@
           {% include 'ratings/rating.html' %}
         {% endfor %}
         {% if reply %}
+          {% with review=reply.reply_to %}
+            {% include 'ratings/rating.html' %}
+          {% endwith %}
           {% with review=reply %}
             {% include 'ratings/rating.html' %}
           {% endwith %}

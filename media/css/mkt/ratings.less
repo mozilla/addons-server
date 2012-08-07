@@ -25,7 +25,7 @@ li a.delete {
     }
 }
 
-.replies .review.reply {
+section.replies .review.reply {
     display: block;
 }
 
@@ -80,7 +80,7 @@ li a.delete {
 }
 
 #review-list {
-    background: @bg-lite;
+    background: lighten(@bg-lite, 2%);
     border-top: 1px solid darken(@light-gray, 2%);
     border-bottom: 1px solid lighten(@faint-gray, 4%);
 }
@@ -112,9 +112,6 @@ li a.delete {
         + .review {
             border-top: 0;
         }
-    }
-    &.normal:nth-child(2n) {
-        background-color: lighten(@bg, 5%);
     }
     .byline, .timestamp {
         font-size: 12px;
@@ -149,10 +146,17 @@ li a.delete {
         &.hidden {
             display: none;
         }
-        + li:before {
+        &:not(.hidden) + li:before {
             color: @note-gray;
             content: "\00a0\2022\00a0\00a0";
         }
+    }
+}
+
+.review:nth-of-type(2n) {
+    background-color: lighten(@bg, 5%);
+    + .replies .review {
+        background-color: lighten(@bg, 5%);
     }
 }
 
