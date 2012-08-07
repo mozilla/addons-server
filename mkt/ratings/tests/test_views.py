@@ -3,7 +3,6 @@ from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
 import amo
-from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 import amo.tests
 from reviews.models import Review, ReviewFlag
@@ -122,6 +121,22 @@ class TestCreate(ReviewTest):
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
+
+    def test_review_edit_review_initial(self):
+        # Existing review? Then edit that review.
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
+
+        # A reply is not a review.
+        self.reply.user = self.user
+        self.reply.save()
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
+
+        # No review? Then do a new review.
+        self.review.delete()
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('textarea[name=body]').html(), None)
 
     def test_review_success_dup(self):
         Review.objects.create(
@@ -298,7 +313,6 @@ class TestCreate(ReviewTest):
         self.enable_waffle()
         self.webapp.update(total_reviews=2)
         r = self.client.get(self.detail)
-        total = numberfmt(self.webapp.total_reviews)
         eq_(pq(r.content)('.average-rating').text(),
             'Rated 4 out of 5 stars 2 reviews')
 
@@ -369,11 +383,10 @@ class TestCreate(ReviewTest):
         Installed.objects.create(user=self.user, addon=self.webapp,
                                  client_data=client_data_diff_agent)
         Review.objects.all().delete()
-        r = self.client.post(self.add,
-                             {'body': 'x', 'rating': 4},
-                             HTTP_USER_AGENT='test-agent')
-        review = Review.objects.order_by('-created')[0]
-        eq_(review.client_data, client_data)
+
+        self.client.post(self.add, {'body': 'x', 'rating': 4},
+                         HTTP_USER_AGENT='test-agent')
+        eq_(Review.objects.order_by('-created')[0].client_data, client_data)
 
     def test_add_client_data_no_user_agent_match(self):
         self.enable_waffle()
@@ -385,11 +398,10 @@ class TestCreate(ReviewTest):
         Installed.objects.create(user=self.user, addon=self.webapp,
                                  client_data=client_data)
         Review.objects.all().delete()
-        r = self.client.post(self.add,
-                             {'body': 'x', 'rating': 4},
-                             HTTP_USER_AGENT='test-agent-2')
-        review = Review.objects.order_by('-created')[0]
-        eq_(review.client_data, client_data)
+
+        self.client.post(self.add, {'body': 'x', 'rating': 4},
+                         HTTP_USER_AGENT='test-agent-2')
+        eq_(Review.objects.order_by('-created')[0].client_data, client_data)
 
 
 class TestListing(ReviewTest):

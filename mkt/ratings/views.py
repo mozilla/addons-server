@@ -147,8 +147,9 @@ def add(request, addon):
 
     # Try to get an existing review of the app by this user if we can.
     try:
-        existing_review = Review.objects.get(addon=addon, user=request.user)
-    except (Review.DoesNotExist, Review.MultipleObjectsReturned):
+        existing_review = Review.objects.valid().filter(addon=addon,
+                                                        user=request.user)[0]
+    except IndexError:
         # If one doesn't exist, set it to None.
         existing_review = None
 
