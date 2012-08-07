@@ -564,6 +564,7 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
+        assert webapp.get_icon_url(128).endswith('icons/default-128.png')
         assert webapp.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
@@ -579,6 +580,7 @@ class TestEditMedia(TestEdit):
         webapp = self.get_webapp()
 
         assert webapp.get_icon_url(64).endswith('icons/appearance-64.png')
+        assert webapp.get_icon_url(128).endswith('icons/appearance-128.png')
 
         for k in data:
             eq_(unicode(getattr(webapp, k)), data[k])

@@ -26,6 +26,16 @@
           {% if editable %}
             <div id="icon_preview">
               <div class="icon_preview_box">
+                <div class="icon_preview" id="icon_preview_128">
+                  <img src="{{ addon.get_icon_url(128) }}">
+                </div>
+                <div class="edit-media-details">
+                  {# L10n: The size of the icon #}
+                  {{ _('128x128px') }}
+                  {{ tip(None, _('Used on the search pages, browse pages, and homepage.')) }}
+                </div>
+              </div>
+              <div class="icon_preview_box">
                 <div class="icon_preview" id="icon_preview_64">
                   <img src="{{ addon.get_icon_url(64) }}">
                 </div>
@@ -63,7 +73,7 @@
             </div>
             <div class="edit-media-details">
               {% trans %}
-              PNG and JPG supported. Icons resized to 64x64 pixels if larger.
+              PNG and JPG supported. Icons resized to 128x128 pixels if larger.
               {% endtrans %}
             </div>
             <ul class="errorlist">
@@ -72,6 +82,7 @@
           {% else %}
             {% call empty_unless(addon.icon_type) %}
               <div id="icon_preview_readonly">
+                <img src="{{ addon.get_icon_url(128) }}">
                 <img src="{{ addon.get_icon_url(64) }}">
                 <img src="{{ addon.icon_url }}">
               </div>
