@@ -90,9 +90,6 @@ def manifest(request):
         AppSubmissionChecklist.objects.create(addon=addon, terms=True,
                                               manifest=True)
 
-        # Get name to show up (bug 747049).
-        unicode(addon.name)
-
         return redirect('submit.app.details', addon.app_slug)
 
     return jingo.render(request, 'submit/manifest.html', {
