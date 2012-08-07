@@ -354,14 +354,14 @@ h1 .num {
             }
         }
     }
-    a, time {
-        display: inline-block;
-        padding: 5px 20px 5px 0;
-    }
     ul {
         margin: 0;
         list-style-type: none;
         padding: 0;
+        a, time {
+            display: inline-block;
+            padding: 5px 20px 5px 0;
+        }
     }
     li {
         .width(7);
@@ -432,7 +432,7 @@ h1 .num {
 // Anything larger than mobile.
 @media (min-width: @4col) {
     .detail #reviews-detail {
-        margin: 40px 0 20px;
+        margin: 40px 0;
     }
     .support li {
         margin-top: 20px;
