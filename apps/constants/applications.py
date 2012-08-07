@@ -135,6 +135,31 @@ class UNKNOWN_APP(App):
     pretty = _(u'Unknown')
 
 
+class DEVICE_DESKTOP(object):
+    id = 1
+    name = _(u'Desktop')
+    class_name = 'desktop'
+
+
+class DEVICE_MOBILE(object):
+    id = 2
+    name = _(u'Mobile')
+    class_name = 'mobile'
+
+
+class DEVICE_TABLET(object):
+    id = 3
+    name = _(u'Tablet')
+    class_name = 'tablet'
+
+
+DEVICE_TYPES = {
+    DEVICE_DESKTOP.id: DEVICE_DESKTOP,
+    DEVICE_MOBILE.id: DEVICE_MOBILE,
+    DEVICE_TABLET.id: DEVICE_TABLET,
+}
+
+
 # UAs will attempt to match in this order
 APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)

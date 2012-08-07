@@ -225,32 +225,55 @@
 
   <section id="support" class="support c">
 
-    <div id="reviews">
-      {% if waffle.switch('ratings') %}
-        <h3 class="wide">{{ _('Reviews') }}</h3>
+    {% if waffle.switch('ratings') %}
+      <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
+        <div class="review-stars-header">
+          <h3 class="wide">{{ _('Reviews') }}</h3>
+          {% if reviews %}
+            <a class="overall-reviews average-rating arrow"
+               href="{{ product.get_ratings_url() }}">
+              {{ product.average_rating|float|stars }}
+              <span>
+                {% trans cnt=product.total_reviews,
+                         num=product.total_reviews|numberfmt %}
+                  {{ num }} review
+                {% pluralize %}
+                  {{ num }} reviews
+                {% endtrans %}
+              </span>
+            </a>
+          {% endif %}
+        </div>
+        <div class="review-stars">
+          {% include 'ratings/helpers/grouped_ratings.html' %}
+          {% if not reviews %}
+            <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
+          {% endif %}
+          {% if can_review %}
+            <p><a class="overall-reviews add-edit-review arrow" id="add-first-review"
+               href="{{ product.get_ratings_url('add') }}">
+              {{ _('Edit Your Review') if has_review else _('Submit a Review')
+              }}</a></p>
+          {% endif %}
+        </div>
+
         {% if reviews %}
-          <a class="overall-reviews average-rating arrow"
-             href="{{ product.get_ratings_url() }}">
-            {{ product.average_rating|float|stars }}
-            <span>
-              {% trans cnt=product.total_reviews,
-                       num=product.total_reviews|numberfmt %}
-                {{ num }} review
-              {% pluralize %}
-                {{ num }} reviews
-              {% endtrans %}
-            </span>
-          </a>
+         {{ rating_flag() }}
+          <div class="reviews-sidebar">
+            <ol class="latest-reviews-list">
+              {% for review in reviews %}
+                {% with product = review.addon, show_addon = True %}
+                  {% include "ratings/rating.html" %}
+                {% endwith %}
+              {% endfor %}
+            </ol>
+            <p class="view-more-reviews">
+              <a class="arrow" href="{{ product.get_ratings_url('list') }}">{{ _('View More') }}</a>
+            </p>
+          </div>
         {% endif %}
-        {% if can_review %}
-          <p><a class="overall-reviews arrow" id="add-first-review"
-             href="{{ product.get_ratings_url('add') }}">
-            {{ _('Submit a Review') }}</a></p>
-        {% elif not reviews %}
-          <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
-        {% endif %}
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
 
     {# TODO: When we retool desktop/tablet to look like mobile, we will for sure
              pare this down. But until then... code duplication :( #}
@@ -323,23 +346,23 @@
         </li>
       {% endif %}
       {% if product.is_public() or is_reviewer %}
-        <li class="more-info">
-          <h3>{{ _('More Info') }}</h3>
-          {% if product.privacy_policy %}
-            <p class="privacy">
-              <a class="arrow" href="{{ product.get_detail_url('privacy') }}">
-                {{ _('Privacy Policy') }}
-              </a>
-            </p>
-          {% endif %}
-          {% if waffle.switch('app-stats') and product.public_stats %}
-            <p class="view-stats">
-              <a class="arrow" href="{{ url('mkt.stats.overview', product.app_slug) }}">
-                {{ _('Statistics') }}
-              </a>
-            </p>
-          {% endif %}
-        </li>
+        {% if product.privacy_policy or product.public_stats %}
+          <li class="more-info c">
+            <h3>{{ _('More Info') }}</h3>
+              <p class="privacy">
+                <a class="arrow" href="{{ product.get_detail_url('privacy') }}">
+                  {{ _('Privacy Policy') }}
+                </a>
+              </p>
+            {% if waffle.switch('app-stats') and product.public_stats %}
+              <p class="view-stats">
+                <a class="arrow" href="{{ url('mkt.stats.overview', product.app_slug) }}">
+                  {{ _('Statistics') }}
+                </a>
+              </p>
+            {% endif %}
+          </li>
+        {% endif %}
         <li class="published">
           <h3>{{ _('Published') }}</h3>
           <p>

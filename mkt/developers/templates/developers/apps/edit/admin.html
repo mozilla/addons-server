@@ -52,7 +52,8 @@
               </div>
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Add a Promo') }}</a>
-                <input type="file" id="screenshot_upload" name="uploads"
+                <input type="file" name="uploads"
+                       class="screenshot_upload edit-admin-promo"
                        data-allowed-types="image/jpeg|image/png"
                        data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
               </div>
@@ -79,6 +80,25 @@
               {{ form.mozilla_contact.errors }}
             {% else %}
               {{ addon.mozilla_contact }}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="app_ratings">
+              {{ _('Content Ratings') }}
+              {{ tip(None,
+                     _('Ratings from official ratings bodies for this app.')) }}
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.app_ratings }}
+              {{ form.app_ratings.error }}
+            {% else %}
+              {%  for r in addon.content_ratings.all() %}
+                <div>{{ r }}</div>
+              {% endfor %}
             {% endif %}
           </td>
         </tr>

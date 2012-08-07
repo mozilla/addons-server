@@ -2,15 +2,16 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
-from addons.models import Addon
 import amo
-from amo.helpers import numberfmt
+from amo.urlresolvers import reverse
 import amo.tests
 from reviews.models import Review, ReviewFlag
+from stats.models import ClientData, Contribution
 from users.models import UserProfile
+from zadmin.models import DownloadSource
 
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Installed, Webapp
 
 
 class ReviewTest(amo.tests.TestCase):
@@ -121,6 +122,22 @@ class TestCreate(ReviewTest):
             'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
 
+    def test_review_edit_review_initial(self):
+        # Existing review? Then edit that review.
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
+
+        # A reply is not a review.
+        self.reply.user = self.user
+        self.reply.save()
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
+
+        # No review? Then do a new review.
+        self.review.delete()
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('textarea[name=body]').html(), None)
+
     def test_review_success_dup(self):
         Review.objects.create(
             body='This review already exists!',
@@ -138,6 +155,26 @@ class TestCreate(ReviewTest):
         # We're just testing for tracebacks. This should never happen in
         # production; we're handling it because there are reviews like this
         # on staging/dev.
+
+    def test_review_reply_edit(self):
+        self.log_in_dev()
+        old_cnt = Review.objects.filter(reply_to__isnull=False).count()
+        log_count = ActivityLog.objects.count()
+
+        self.client.post(
+            self.webapp.get_ratings_url('reply',
+                                        args=[self.reply.reply_to_id]),
+            {'body': 'revision'})
+        eq_(Review.objects.filter(reply_to__isnull=False).count(), old_cnt)
+        eq_(ActivityLog.objects.count(), log_count + 1,
+            'Expected EDIT_REVIEW entry')
+
+    def test_delete_reply(self):
+        """Test that replies are deleted when reviews are edited."""
+        self.log_in_regular()
+        old_cnt = Review.objects.count()
+        self.client.post(self.add, {'body': 'revision', 'rating': 2})
+        eq_(Review.objects.count(), old_cnt - 1)
 
     def test_can_review_purchased(self):
         self.webapp.addonpurchase_set.create(user=self.user)
@@ -160,7 +197,9 @@ class TestCreate(ReviewTest):
         self.enable_waffle()
         self.client.logout()
         r = self.client.get(self.detail)
-        eq_(pq(r.content)('#add-first-review').length, 1)
+        submit_button = pq(r.content)('#add-first-review')
+        eq_(submit_button.length, 1)
+        eq_(submit_button.text(), 'Submit a Review')
 
     def test_add_link_logged(self):
         # Ensure logged user can see Add Review links.
@@ -223,7 +262,7 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 0)
 
-    def test_no_reviews_premium_add_review_link(self):
+    def test_reviews_premium_add_review_link(self):
         # Ensure 'Review this App' link exists for purchased premium apps.
         self.enable_waffle()
         Review.objects.all().delete()
@@ -232,12 +271,48 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 1)
 
+    def test_reviews_premium_edit_review_link(self):
+        # Ensure 'Review this App' link exists for purchased premium apps.
+        self.enable_waffle()
+        Review.objects.create(
+            rating=4,
+            body={'ru': 'I \u042f so hard.'},
+            addon=self.webapp,
+            user=self.user,
+            ip_address='63.245.213.8'
+        )
+        self.webapp.addonpurchase_set.create(user=self.user)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get(self.detail)
+        submit_button = pq(r.content)('#add-first-review')
+        eq_(submit_button.length, 1)
+        eq_(submit_button.text(), 'Edit Your Review')
+
+    def test_reviews_premium_refunded(self):
+        # Ensure 'Review this App' link exists for refunded premium apps.
+        self.enable_waffle()
+        Review.objects.all().delete()
+        self.webapp.addonpurchase_set.create(user=self.user,
+                                             type=amo.CONTRIB_REFUND)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get(self.detail)
+        eq_(pq(r.content)('#add-first-review').length, 1)
+
+    def test_add_review_premium_refunded(self):
+        # Ensure able to add review for refunded premium apps.
+        self.enable_waffle()
+        Review.objects.all().delete()
+        self.webapp.addonpurchase_set.create(user=self.user,
+                                             type=amo.CONTRIB_REFUND)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        r = self.client.get(self.add)
+        eq_(r.status_code, 200)
+
     def test_review_link_plural(self):
         # We have reviews.
         self.enable_waffle()
         self.webapp.update(total_reviews=2)
         r = self.client.get(self.detail)
-        total = numberfmt(self.webapp.total_reviews)
         eq_(pq(r.content)('.average-rating').text(),
             'Rated 4 out of 5 stars 2 reviews')
 
@@ -248,6 +323,35 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         eq_(pq(r.content)('.average-rating').text(),
             'Rated 4 out of 5 stars 1 review')
+
+    def test_support_link(self):
+        # Test no link if no support url or contribution.
+        self.enable_waffle()
+        r = self.client.get(self.add)
+        eq_(pq(r.content)('.support-link').length, 0)
+
+        # Test support email if no support url.
+        self.webapp.support_email = {'en-US': 'test@test.com'}
+        self.webapp.save()
+        r = self.client.get(self.add)
+        doc = pq(r.content)('.support-link')
+        eq_(doc.length, 1)
+
+        # Test link to support url if support url.
+        self.webapp.support_url = {'en-US': 'test'}
+        self.webapp.save()
+        r = self.client.get(self.add)
+        doc = pq(r.content)('.support-link a')
+        eq_(doc.length, 1)
+        eq_(doc.attr('href'), 'test')
+
+        # Test link to support flow if contribution.
+        c = Contribution.objects.create(addon=self.webapp, user=self.user,
+                                        type=amo.CONTRIB_PURCHASE)
+        r = self.client.get(self.add)
+        doc = pq(r.content)('.support-link a')
+        eq_(doc.length, 1)
+        eq_(doc.attr('href'), reverse('support', args=[c.id]))
 
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.
@@ -261,6 +365,43 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get(self.add)
         self.assertLoginRedirects(r, self.add, 302)
+
+    def test_add_client_data(self):
+        self.enable_waffle()
+        client_data = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent', is_chromeless=False,
+            language='pt-BR', region=3
+        )
+        client_data_diff_agent = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent2',
+            is_chromeless=False, language='pt-BR', region=3
+        )
+        Installed.objects.create(user=self.user, addon=self.webapp,
+                                 client_data=client_data)
+        Installed.objects.create(user=self.user, addon=self.webapp,
+                                 client_data=client_data_diff_agent)
+        Review.objects.all().delete()
+
+        self.client.post(self.add, {'body': 'x', 'rating': 4},
+                         HTTP_USER_AGENT='test-agent')
+        eq_(Review.objects.order_by('-created')[0].client_data, client_data)
+
+    def test_add_client_data_no_user_agent_match(self):
+        self.enable_waffle()
+        client_data = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent-1',
+            is_chromeless=False, language='pt-BR', region=3
+        )
+        Installed.objects.create(user=self.user, addon=self.webapp,
+                                 client_data=client_data)
+        Review.objects.all().delete()
+
+        self.client.post(self.add, {'body': 'x', 'rating': 4},
+                         HTTP_USER_AGENT='test-agent-2')
+        eq_(Review.objects.order_by('-created')[0].client_data, client_data)
 
 
 class TestListing(ReviewTest):
@@ -281,6 +422,7 @@ class TestListing(ReviewTest):
         eq_(reviews.length, Review.objects.count())
         eq_(doc('.average-rating').length, 1)
         eq_(doc('.no-rating').length, 0)
+        eq_(doc('.review-heading-profile').length, 0)
 
         # A review.
         item = reviews.filter('#review-%s' % self.review.id)

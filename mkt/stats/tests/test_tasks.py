@@ -1,4 +1,5 @@
 import datetime
+from decimal import Decimal
 import random
 
 from django.utils import unittest
@@ -7,29 +8,44 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from market.models import Refund
+from market.models import Refund, Price
 from mkt.stats import tasks
 from mkt.stats.search import cut
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from stats.models import Contribution
 
 
-class TestIndexFinanceTotal(amo.tests.ESTestCase):
+class BaseTaskTest(amo.tests.ESTestCase):
+
+    def baseSetUp(self):
+        self.app = amo.tests.app_factory()
+        self.usd_price = .99
+        self.price_tier = Price.objects.create(price=self.usd_price)
+
+        self.inapp = InappConfig.objects.create(
+            addon=self.app, public_key='asd')
+        self.inapp_name = 'test'
+
+
+class TestIndexFinanceTotal(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.baseSetUp()
 
         self.expected = {'revenue': 0, 'count': 5, 'refunds': 2}
         for x in range(self.expected['count']):
-            c = Contribution.objects.create(addon_id=self.app.pk,
-                amount=str(random.randint(0, 10) + .99))
-            self.expected['revenue'] += cut(c.amount)
+            c = Contribution.objects.create(
+                addon_id=self.app.pk,
+                type=amo.CONTRIB_PURCHASE,
+                amount=str(random.randint(0, 10) + .99),
+                price_tier=self.price_tier)
+            self.expected['revenue'] += cut(self.usd_price)
 
             # Create 2 refunds.
             if x % 2 == 1:
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected['revenue'] -= cut(c.amount)
+                self.expected['revenue'] -= cut(self.usd_price)
                 self.expected['count'] -= 1
         self.refresh()
 
@@ -48,10 +64,10 @@ class TestIndexFinanceTotal(amo.tests.ESTestCase):
         eq_(document, self.expected)
 
 
-class TestIndexFinanceTotalBySrc(amo.tests.ESTestCase):
+class TestIndexFinanceTotalBySrc(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.baseSetUp()
 
         self.sources = ['mkt-home', 'front-search', 'featured']
         self.expected = {
@@ -62,13 +78,17 @@ class TestIndexFinanceTotalBySrc(amo.tests.ESTestCase):
         for source in self.sources:
             # Create sales.
             for x in range(self.expected[source]['count']):
-                c = Contribution.objects.create(addon_id=self.app.pk,
-                    source=source, amount=str(random.randint(0, 10) + .99))
-                self.expected[source]['revenue'] += cut(c.amount)
+                c = Contribution.objects.create(
+                    addon_id=self.app.pk, source=source,
+                    type=amo.CONTRIB_PURCHASE,
+                    amount=str(random.randint(0, 10) + .99),
+                    price_tier=self.price_tier)
+                self.expected[source]['revenue'] += cut(self.usd_price)
+
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[source]['revenue'] -= cut(c.amount)
+            self.expected[source]['revenue'] -= cut(self.usd_price)
             self.expected[source]['count'] -= 1
         self.refresh()
 
@@ -91,27 +111,38 @@ class TestIndexFinanceTotalBySrc(amo.tests.ESTestCase):
             eq_(document, self.expected[source])
 
 
-class TestIndexFinanceTotalByCurrency(amo.tests.ESTestCase):
+class TestIndexFinanceTotalByCurrency(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.baseSetUp()
 
         self.currencies = ['CAD', 'USD', 'EUR']
         self.expected = {
-            'CAD': {'revenue': 0, 'count': 3, 'refunds': 1},
-            'USD': {'revenue': 0, 'count': 4, 'refunds': 1},
-            'EUR': {'revenue': 0, 'count': 2, 'refunds': 1}
+            'CAD': {'revenue': 0, 'count': 3, 'refunds': 1,
+                    'revenue_non_normalized': 0},
+            'USD': {'revenue': 0, 'count': 4, 'refunds': 1,
+                    'revenue_non_normalized': 0},
+            'EUR': {'revenue': 0, 'count': 2, 'refunds': 1,
+                    'revenue_non_normalized': 0}
         }
         for currency in self.currencies:
             # Create sales.
             for x in range(self.expected[currency]['count']):
+                amount = str(random.randint(0, 10))
                 c = Contribution.objects.create(addon_id=self.app.pk,
-                    currency=currency, amount=str(random.randint(0, 10) + .99))
-                self.expected[currency]['revenue'] += cut(c.amount)
+                    type=amo.CONTRIB_PURCHASE,
+                    currency=currency,
+                    amount=amount,
+                    price_tier=self.price_tier)
+                self.expected[currency]['revenue'] += cut(self.usd_price)
+                self.expected[currency]['revenue_non_normalized'] += cut(
+                    amount)
+
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[currency]['revenue'] -= cut(c.amount)
+            self.expected[currency]['revenue'] -= cut(self.usd_price)
+            self.expected[currency]['revenue_non_normalized'] -= cut(amount)
             self.expected[currency]['count'] -= 1
         self.refresh()
 
@@ -124,29 +155,37 @@ class TestIndexFinanceTotalByCurrency(amo.tests.ESTestCase):
             # For some reason, query fails if uppercase letter in filter.
             document = (Contribution.search().filter(addon=self.app.pk,
                         currency=currency.lower()).values_dict('currency',
-                        'revenue', 'count', 'refunds')[0])
-            document = {'count': document['count'],
-                        'revenue': int(document['revenue']),
-                        'refunds': document['refunds']}
+                        'revenue', 'count', 'refunds',
+                        'revenue_non_normalized')[0])
+            document = {
+                'count': document['count'],
+                'revenue': int(document['revenue']),
+                'refunds': document['refunds'],
+                'revenue_non_normalized':
+                    int(document['revenue_non_normalized'])}
             self.expected[currency]['revenue'] = (
                 int(self.expected[currency]['revenue'])
+            )
+            self.expected[currency]['revenue_non_normalized'] = (
+                int(self.expected[currency]['revenue_non_normalized'])
             )
             eq_(document, self.expected[currency])
 
 
-class TestIndexFinanceDaily(amo.tests.ESTestCase):
+class TestIndexFinanceDaily(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.baseSetUp()
 
         self.ids = []
         self.expected = {'date': datetime.datetime.today(),
                          'revenue': 0, 'count': 5, 'refunds': 2}
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
-                type=amo.CONTRIB_PURCHASE)
-            self.expected['revenue'] += cut(c.amount)
+                price_tier=self.price_tier)
+            self.expected['revenue'] += cut(self.usd_price)
             self.ids.append(c.id)
 
             # Create 2 refunds.
@@ -155,7 +194,7 @@ class TestIndexFinanceDaily(amo.tests.ESTestCase):
                 c.save()
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected['revenue'] -= cut(c.amount)
+                self.expected['revenue'] -= cut(self.usd_price)
                 self.expected['count'] -= 1
 
     def test_index(self):
@@ -179,30 +218,33 @@ class TestIndexFinanceDaily(amo.tests.ESTestCase):
         eq_(document, self.expected)
 
 
-class TestIndexFinanceTotalInapp(amo.tests.ESTestCase):
+class TestIndexFinanceTotalInapp(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
-        self.inapp = InappConfig.objects.create(
-            addon=self.app, public_key='asd')
+        self.baseSetUp()
 
-        self.inapp_name = 'test'
         self.expected = {
             self.inapp_name: {'revenue': 0, 'count': 5, 'refunds': 2}
         }
+        self.expected_inapp = self.expected[self.inapp_name]
+
         for x in range(self.expected[self.inapp_name]['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
-                amount=str(random.randint(0, 10) + .99))
+                type=amo.CONTRIB_PURCHASE,
+                amount=str(random.randint(0, 10) + .99),
+                price_tier=self.price_tier)
+
             InappPayment.objects.create(config=self.inapp, contribution=c,
                                         name=self.inapp_name)
-            self.expected[self.inapp_name]['revenue'] += cut(c.amount)
+
+            self.expected_inapp['revenue'] += cut(self.usd_price)
 
             # Create 2 refunds.
             if x % 2 == 1:
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected[self.inapp_name]['revenue'] -= cut(c.amount)
-                self.expected[self.inapp_name]['count'] -= 1
+                self.expected_inapp['revenue'] -= cut(self.usd_price)
+                self.expected_inapp['count'] -= 1
         self.refresh()
 
     def test_index(self):
@@ -222,37 +264,48 @@ class TestIndexFinanceTotalInapp(amo.tests.ESTestCase):
         eq_(document, self.expected[self.inapp_name])
 
 
-class TestIndexFinanceTotalInappByCurrency(amo.tests.ESTestCase):
+class TestIndexFinanceTotalInappByCurrency(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
-        self.inapp = InappConfig.objects.create(
-            addon=self.app, public_key='asd')
+        self.baseSetUp()
 
-        self.inapp_name = 'test'
         self.currencies = ['CAD', 'USD', 'EUR']
         self.expected = {
             self.inapp_name: {
-                'CAD': {'revenue': 0, 'count': 3, 'refunds': 1},
-                'USD': {'revenue': 0, 'count': 4, 'refunds': 1},
-                'EUR': {'revenue': 0, 'count': 2, 'refunds': 1}
+                'CAD': {'revenue': 0, 'count': 3, 'refunds': 1,
+                        'revenue_non_normalized': 0},
+                'USD': {'revenue': 0, 'count': 4, 'refunds': 1,
+                        'revenue_non_normalized': 0},
+                'EUR': {'revenue': 0, 'count': 2, 'refunds': 1,
+                        'revenue_non_normalized': 0}
             }
         }
+        expected_inapp = self.expected[self.inapp_name]
+
         for currency in self.currencies:
             # Create sales.
             for x in range(self.expected[self.inapp_name][currency]['count']):
+                amount = str(random.randint(0, 10))
                 c = Contribution.objects.create(addon_id=self.app.pk,
-                    currency=currency, amount=str(random.randint(0, 10) + .99))
+                    type=amo.CONTRIB_PURCHASE,
+                    currency=currency,
+                    amount=amount,
+                    price_tier=self.price_tier)
+
                 InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-                self.expected[self.inapp_name][currency]['revenue'] += cut(
-                    c.amount)
+
+                expected_inapp_curr = expected_inapp[currency]
+                expected_inapp_curr['revenue'] += cut(self.usd_price)
+                expected_inapp_curr['revenue_non_normalized'] += cut(amount)
+
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name][currency]['revenue'] -= cut(
-                c.amount)
+            expected_inapp[currency]['revenue'] -= cut(self.usd_price)
+            expected_inapp[currency]['revenue_non_normalized'] -= cut(amount)
             self.expected[self.inapp_name][currency]['count'] -= 1
+
         self.refresh()
 
     def test_index(self):
@@ -266,24 +319,29 @@ class TestIndexFinanceTotalInappByCurrency(amo.tests.ESTestCase):
                         filter(addon=self.app.pk, inapp=self.inapp_name,
                                currency=currency.lower()).
                         values_dict('currency', 'revenue', 'count',
-                                    'refunds'))[0]
+                                    'refunds',
+                                    'revenue_non_normalized'))[0]
             document = {'count': document['count'],
                         'revenue': int(document['revenue']),
-                        'refunds': document['refunds']}
-            self.expected[self.inapp_name][currency]['revenue'] = (
-                int(self.expected[self.inapp_name][currency]['revenue'])
+                        'refunds': document['refunds'],
+                        'revenue_non_normalized':
+                            int(document['revenue_non_normalized'])}
+
+            expected_inapp = self.expected[self.inapp_name]
+            expected_inapp[currency]['revenue'] = (
+                int(expected_inapp[currency]['revenue'])
             )
-            eq_(document, self.expected[self.inapp_name][currency])
+            expected_inapp[currency]['revenue_non_normalized'] = (
+                int(expected_inapp[currency]['revenue_non_normalized'])
+            )
+            eq_(document, expected_inapp[currency])
 
 
-class TestIndexFinanceTotalInappBySource(amo.tests.ESTestCase):
+class TestIndexFinanceTotalInappBySource(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
-        self.inapp = InappConfig.objects.create(
-            addon=self.app, public_key='asd')
+        self.baseSetUp()
 
-        self.inapp_name = 'test'
         self.sources = ['home', 'mkt-search', 'FEATURED']
         self.expected = {
             self.inapp_name: {
@@ -292,20 +350,25 @@ class TestIndexFinanceTotalInappBySource(amo.tests.ESTestCase):
                 self.sources[2]: {'revenue': 0, 'count': 2, 'refunds': 1}
             }
         }
+        self.expected_inapp = self.expected[self.inapp_name]
+
         for source in self.sources:
             # Create sales.
-            for x in range(self.expected[self.inapp_name][source]['count']):
+            for x in range(self.expected_inapp[source]['count']):
                 c = Contribution.objects.create(addon_id=self.app.pk,
-                    source=source, amount=str(random.randint(0, 10) + .99))
+                    type=amo.CONTRIB_PURCHASE,
+                    source=source,
+                    amount=str(random.randint(0, 10) + .99),
+                    price_tier=self.price_tier)
                 InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-                self.expected[self.inapp_name][source]['revenue'] += cut(
-                    c.amount)
+                self.expected_inapp[source]['revenue'] += cut(self.usd_price)
+
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name][source]['revenue'] -= cut(c.amount)
-            self.expected[self.inapp_name][source]['count'] -= 1
+            self.expected_inapp[source]['revenue'] -= cut(self.usd_price)
+            self.expected_inapp[source]['count'] -= 1
         self.refresh()
 
     def test_index(self):
@@ -323,19 +386,16 @@ class TestIndexFinanceTotalInappBySource(amo.tests.ESTestCase):
             document = {'count': document['count'],
                         'revenue': int(document['revenue']),
                         'refunds': document['refunds']}
-            self.expected[self.inapp_name][source]['revenue'] = (
-                int(self.expected[self.inapp_name][source]['revenue'])
+            self.expected_inapp[source]['revenue'] = (
+                int(self.expected_inapp[source]['revenue'])
             )
-            eq_(document, self.expected[self.inapp_name][source])
+            eq_(document, self.expected_inapp[source])
 
 
-class TestIndexFinanceDailyInapp(amo.tests.ESTestCase):
+class TestIndexFinanceDailyInapp(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
-        self.inapp = InappConfig.objects.create(
-            addon=self.app, public_key='asd')
-        self.inapp_name = 'test'
+        self.baseSetUp()
 
         self.c_ids = []
         self.ids = []
@@ -347,12 +407,13 @@ class TestIndexFinanceDailyInapp(amo.tests.ESTestCase):
         }
         for x in range(self.expected[self.inapp_name]['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                    type=amo.CONTRIB_PURCHASE,
                     amount=str(random.randint(0, 10) + .99),
-                    type=amo.CONTRIB_PURCHASE)
+                    price_tier=self.price_tier)
             self.c_ids.append(c.id)
             i = InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-            self.expected[self.inapp_name]['revenue'] += cut(c.amount)
+            self.expected[self.inapp_name]['revenue'] += cut(self.usd_price)
             self.ids.append(i.id)
 
         for x in range(self.expected[self.inapp_name]['refunds']):
@@ -360,7 +421,7 @@ class TestIndexFinanceDailyInapp(amo.tests.ESTestCase):
             c.update(uuid=123)
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name]['revenue'] -= cut(c.amount)
+            self.expected[self.inapp_name]['revenue'] -= cut(self.usd_price)
             self.expected[self.inapp_name]['count'] -= 1
 
     def test_index(self):
@@ -391,29 +452,33 @@ class TestIndexFinanceDailyInapp(amo.tests.ESTestCase):
         eq_(document, self.expected)
 
 
-class TestAlreadyIndexed(amo.tests.ESTestCase):
+class TestAlreadyIndexed(BaseTaskTest):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.baseSetUp()
+
+        today = datetime.datetime.today()
+        date = datetime.datetime(today.year, today.month, today.day)
 
         self.ids = []
         self.expected = {'addon': self.app.pk,
-                         'date': datetime.datetime.today(),
+                         'date': date,
                          'revenue': 0, 'count': 3,
                          'refunds': 1}
 
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10)),
-                type=amo.CONTRIB_PURCHASE)
+                price_tier=self.price_tier)
             self.refresh(timesleep=1)
             self.ids.append(c.id)
-            self.expected['revenue'] += int(c.amount)
+            self.expected['revenue'] += self.usd_price
 
         c.update(uuid=123)
         Refund.objects.create(contribution=c,
                               status=amo.REFUND_APPROVED)
-        self.expected['revenue'] -= int(c.amount)
+        self.expected['revenue'] -= self.usd_price
         self.expected['count'] -= 1
 
         self.expected['revenue'] = cut(self.expected['revenue'])
@@ -428,7 +493,7 @@ class TestAlreadyIndexed(amo.tests.ESTestCase):
 class TestCut(unittest.TestCase):
 
     def test_basic(self):
-        eq_(cut(0), 0)
-        eq_(cut(1), .7)
-        eq_(cut(10), 7)
-        eq_(cut(33), 23.10)
+        eq_(cut(0), Decimal(str(0)))
+        eq_(cut(1), Decimal(str(.7)))
+        eq_(cut(10), Decimal(str(7)))
+        eq_(cut(33), Decimal(str(23.10)))

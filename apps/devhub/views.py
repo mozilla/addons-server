@@ -1329,7 +1329,8 @@ def version_add_file(request, addon_id, addon, version_id):
     if not form.is_valid():
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
-    new_file = File.from_upload(upload, version, form.cleaned_data['platform'])
+    new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
+                                parse_addon(upload, addon))
     storage.delete(upload.path)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]

@@ -27,11 +27,10 @@ from bandwagon.views import get_collection
 from zadmin.models import SiteEvent
 
 import amo
-from amo.decorators import json_view, login_required
+from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
 from amo.utils import memoize
 
-from .decorators import allow_cross_site_request
 from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
 
 SERIES_GROUPS = ('day', 'week', 'month')

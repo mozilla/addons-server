@@ -27,12 +27,10 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 def send_mail(template, subject, emails, context, perm_setting):
-    cxn = amo.utils.get_email_backend()
     template = loader.get_template(template)
     amo.utils.send_mail(subject, template.render(Context(context,
                                                          autoescape=False)),
-                  recipient_list=emails, perm_setting=perm_setting,
-                  connection=cxn)
+                        recipient_list=emails, perm_setting=perm_setting)
 
 
 @addon_view

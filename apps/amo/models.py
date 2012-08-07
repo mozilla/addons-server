@@ -379,3 +379,10 @@ class BlobField(models.Field):
 
     def db_type(self, **kw):
         return 'blob'
+
+
+class FakeEmail(ModelBase):
+    message = models.TextField()
+
+    class Meta:
+        db_table = 'fake_email'

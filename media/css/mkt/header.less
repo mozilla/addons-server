@@ -37,14 +37,20 @@
         background: url(../../img/mkt/icons/regions/us.png) 15px 50% no-repeat;
         background-size: auto 30px;
         padding: 15px 0 15px 55px;
-        &.brazil {
+        &.au {
+            background-image: url(../../img/mkt/icons/regions/au.png);
+        }
+        &.br {
             background-image: url(../../img/mkt/icons/regions/br.png);
         }
-        &.canada {
+        &.ca {
             background-image: url(../../img/mkt/icons/regions/ca.png);
         }
-        &.spain {
+        &.es {
             background-image: url(../../img/mkt/icons/regions/es.png);
+        }
+        &.nz {
+            background-image: url(../../img/mkt/icons/regions/nz.png);
         }
         &.uk {
             background-image: url(../../img/mkt/icons/regions/uk.png);
@@ -103,7 +109,7 @@
         visibility: hidden;
         top: 32px;
         right: -15px;
-        .width(3);
+        .min-width(3);
         z-index: 9001;
         &.active {
             opacity: 1;
@@ -149,7 +155,7 @@
             display: block;
             font-size: 15px;
             line-height: 35px;
-            padding: 0 15px;
+            padding: 0 35px 0 15px;
             position: relative;
             z-index: 2;
             &:after {

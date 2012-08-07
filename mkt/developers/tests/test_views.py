@@ -29,6 +29,7 @@ from browse.tests import test_default_sort, test_listing_sort
 from devhub.models import UserLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
+from lib.pay_server import client
 from market.models import AddonPremium, Price, Refund
 from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
@@ -377,6 +378,16 @@ class TestPaymentsProfile(amo.tests.TestCase):
         result = json.loads(res.content)
         eq_(result[u'valid'], False)
 
+    @mock.patch('mkt.developers.views.client')
+    def test_checker_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        client.post_account_check.return_value = {'passed': True,
+                                                  'errors': []}
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        result = json.loads(res.content)
+        eq_(result['valid'], True)
+
 
 class MarketplaceMixin(object):
 
@@ -539,6 +550,28 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
                                        verification_code='bar'))
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.premium.paypal_permissions_token, '')
+
+    @mock.patch('mkt.developers.views.client')
+    def test_permissions_token_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        self.setup_premium()
+        url = self.addon.get_dev_url('acquire_refund_permission')
+        client.post_personal_basic.return_value = {'email': 'a@a.com'}
+        res = self.client.get(urlparams(url, request_token='foo',
+                                        verification_code='bar'))
+        self.assertRedirects(res,
+                             self.addon.get_dev_url('paypal_setup_confirm'))
+
+    @mock.patch('mkt.developers.views.client')
+    def test_personal_differs_solitude(self, client):
+        self.create_flag(name='solitude-payments')
+        self.setup_premium()
+        url = self.addon.get_dev_url('acquire_refund_permission')
+        client.post_personal_basic.side_effect = client.Error
+        res = self.client.get(urlparams(url, request_token='foo',
+                                        verification_code='bar'))
+        self.assertRedirects(res,
+                             self.addon.get_dev_url('paypal_setup_bounce'))
 
 
 class TestIssueRefund(amo.tests.TestCase):

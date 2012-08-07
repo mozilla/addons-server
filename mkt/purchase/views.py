@@ -22,7 +22,7 @@ from lib.pay_server import client
 from market.forms import PriceCurrencyForm
 from market.models import AddonPurchase
 import paypal
-from stats.models import Contribution
+from stats.models import ClientData, Contribution
 from mkt.account.views import preapproval as user_preapproval
 from mkt.webapps.models import Webapp
 
@@ -30,17 +30,10 @@ log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
-@login_required
-@addon_view
-@can_be_purchased
-@has_not_purchased
-@write
-@post_required
-def purchase(request, addon):
+def start_purchase(request, addon):
     log.debug('Starting purchase of addon: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
     amount = addon.premium.get_price()
-    source = request.POST.get('source', '')
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # L10n: {0} is the addon name.
     contrib_for = (_(u'Mozilla Marketplace purchase of {0}')
@@ -56,6 +49,25 @@ def purchase(request, addon):
             tier = form.get_tier()
             if tier:
                 amount, currency = tier.price, tier.currency
+
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        # TODO(solitude): when the migration of data is completed, we
+        # will be able to remove this. Seller data is populated in solitude
+        # on submission or devhub changes. If those don't occur, you won't be
+        # able to sell at all.
+        client.create_seller_for_pay(addon)
+
+    return amount, currency, uuid_, contrib_for
+
+
+@login_required
+@addon_view
+@can_be_purchased
+@has_not_purchased
+@write
+@post_required
+def purchase(request, addon):
+    amount, currency, uuid_, contrib_for = start_purchase(request, addon)
 
     if not amount:
         # We won't write a contribution row for this because there
@@ -82,12 +94,6 @@ def purchase(request, addon):
             currency = preapproval.currency
 
     if waffle.flag_is_active(request, 'solitude-payments'):
-        # TODO(solitude): when the migration of data is completed, we
-        # will be able to remove this. Seller data is populated in solitude
-        # on submission or devhub changes. If those don't occur, you won't be
-        # able to sell at all.
-        client.create_seller_for_pay(addon)
-
         # Now call the client.
         result = {}
         try:
@@ -134,10 +140,15 @@ def purchase(request, addon):
     if paykey:
         # TODO(solitude): at some point we'll have to see what to do with
         # contributions.
+        download_source = request.REQUEST.get('src', '')
         contrib = Contribution(addon_id=addon.id, amount=amount,
-                               source=source, source_locale=request.LANG,
+                               source=download_source,
+                               source_locale=request.LANG,
                                uuid=str(uuid_), type=amo.CONTRIB_PENDING,
-                               paykey=paykey, user=request.amo_user)
+                               paykey=paykey, user=request.amo_user,
+                               price_tier=addon.premium.price,
+                               client_data=ClientData.get_or_create(request))
+
         log.debug('Storing contrib for uuid: %s' % uuid_)
 
         # If this was a pre-approval, it's completed already, we'll

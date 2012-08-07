@@ -1,9 +1,8 @@
 from django.conf.urls.defaults import include, patterns, url
 
-import addons.views
-import amo
+from mkt.purchase.urls import app_purchase_patterns
 from mkt.ratings.urls import review_patterns
-from mkt.receipts.urls import purchase_patterns
+from mkt.receipts.urls import app_receipt_patterns
 from . import views
 
 
@@ -14,8 +13,9 @@ urlpatterns = patterns('',
         name='detail.abuse.recaptcha'),
     url('^privacy$', views.privacy, name='detail.privacy'),
 
-    ('^purchase/', include('mkt.purchase.urls')),
-    ('^purchase/', include(purchase_patterns)),
+    # Merge app purchase / receipt patterns.
+    ('^purchase/', include(app_purchase_patterns)),
+    ('^purchase/', include(app_receipt_patterns)),
 
     # Statistics.
     ('^statistics/', include('mkt.stats.urls')),

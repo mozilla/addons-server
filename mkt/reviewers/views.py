@@ -9,23 +9,24 @@ import jingo
 from tower import ugettext as _
 import requests
 
-from access import acl
 import amo
-from amo import messages
-from amo.utils import escape_all
+from abuse.models import AbuseReport
+from access import acl
 from addons.decorators import addon_view
 from addons.models import Version
+from amo import messages
 from amo.decorators import json_view, permission_required
 from amo.urlresolvers import reverse
+from amo.utils import escape_all
 from amo.utils import paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription
 from editors.views import reviewer_required
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
-from reviews.models import Review
+from reviews.forms import ReviewFlagFormSet
+from reviews.models import Review, ReviewFlag
 from zadmin.models import get_config, set_config
-
 from . import forms
 from .models import AppCannedResponse, EscalationQueue, RereviewQueue
 
@@ -53,11 +54,25 @@ def home(request):
     return jingo.render(request, 'reviewers/home.html', data)
 
 
-def queue_counts(type=None, **kw):
+def queue_counts():
+    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+
     counts = {
-        'pending': Webapp.objects.pending().count(),
-        'rereview': RereviewQueue.objects.count(),
-        'escalated': EscalationQueue.objects.count(),
+        'pending': Webapp.uncached.exclude(id__in=excluded_ids)
+                                  .filter(status=amo.WEBAPPS_UNREVIEWED_STATUS,
+                                          disabled_by_user=False)
+                                  .count(),
+        'rereview': RereviewQueue.uncached
+                                 .exclude(addon__in=excluded_ids)
+                                 .filter(addon__disabled_by_user=False)
+                                 .count(),
+        'escalated': EscalationQueue.uncached
+                                    .filter(addon__disabled_by_user=False)
+                                    .count(),
+        'moderated': Review.uncached.filter(reviewflag__isnull=False,
+                                            editorreview=True,
+                                            addon__type=amo.ADDON_WEBAPP)
+                                    .count(),
     }
     rv = {}
     if isinstance(type, basestring):
@@ -76,7 +91,10 @@ def _progress():
     """
 
     days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
-    qs = Webapp.objects.pending()
+    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    qs = (Webapp.uncached.exclude(id__in=excluded_ids)
+                         .filter(status=amo.WEBAPPS_UNREVIEWED_STATUS,
+                                 disabled_by_user=False))
     progress = {
         'new': qs.filter(created__gt=days_ago(5)).count(),
         'med': qs.filter(created__range=(days_ago(10), days_ago(5))).count(),
@@ -195,25 +213,54 @@ def _queue(request, qs, tab, pager_processor=None):
 
 @permission_required('Apps', 'Review')
 def queue_apps(request):
-    qs = (Webapp.objects.pending().filter(disabled_by_user=False)
-                        .order_by('created'))
+    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    qs = (Webapp.uncached.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                         .exclude(id__in=excluded_ids)
+                         .filter(disabled_by_user=False)
+                         .order_by('created'))
     return _queue(request, qs, 'pending')
 
 
 @permission_required('Apps', 'Review')
 def queue_rereview(request):
-    qs = (RereviewQueue.objects.filter(addon__disabled_by_user=False)
-                        .order_by('created'))
+    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    qs = (RereviewQueue.uncached
+                       .exclude(addon__in=excluded_ids)
+                       .filter(addon__disabled_by_user=False)
+                       .order_by('created'))
     return _queue(request, qs, 'rereview',
                   lambda p: [r.addon for r in p.object_list])
 
 
-@permission_required('Apps', 'Review')
+@permission_required('Apps', 'ReviewEscalated')
 def queue_escalated(request):
-    qs = (EscalationQueue.objects.filter(addon__disabled_by_user=False)
+    qs = (EscalationQueue.uncached.filter(addon__disabled_by_user=False)
                          .order_by('created'))
     return _queue(request, qs, 'escalated',
                   lambda p: [r.addon for r in p.object_list])
+
+
+@permission_required('Apps', 'Review')
+def queue_moderated(request):
+    rf = (Review.uncached.exclude(
+                             Q(addon__isnull=True) |
+                             Q(reviewflag__isnull=True))
+                         .filter(addon__type=amo.ADDON_WEBAPP,
+                                 editorreview=True)
+                         .order_by('reviewflag__created'))
+
+    page = paginate(request, rf, per_page=20)
+    flags = dict(ReviewFlag.FLAGS)
+    reviews_formset = ReviewFlagFormSet(request.POST or None,
+                                        queryset=page.object_list)
+
+    if reviews_formset.is_valid():
+        reviews_formset.save()
+        return redirect(reverse('reviewers.apps.queue_moderated'))
+
+    return jingo.render(request, 'reviewers/queue.html',
+                        context(reviews_formset=reviews_formset,
+                                tab='moderated', page=page, flags=flags))
 
 
 @permission_required('Apps', 'Review')
@@ -280,3 +327,13 @@ def app_view_manifest(request, addon):
             # If it's not valid JSON, just return the content as is.
             pass
     return escape_all({'content': content, 'headers': headers})
+
+
+@permission_required('Apps', 'Review')
+@addon_view
+def app_abuse(request, addon):
+    reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
+    total = reports.count()
+    reports = amo.utils.paginate(request, reports, count=total)
+    return jingo.render(request, 'reviewers/abuse.html',
+                        context(addon=addon, reports=reports, total=total))

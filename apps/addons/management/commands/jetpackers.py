@@ -15,11 +15,10 @@ class Command(BaseCommand):
     help = "Send the email for bug 662571"
 
     def handle(self, *args, **options):
-        cxn = amo.utils.get_email_backend()
-        sendmail(cxn)
+        sendmail()
 
 
-def sendmail(cxn):
+def sendmail():
     addrs = set(UserProfile.objects.values_list('email', flat=True)
                 # whoa
                 .filter(addons__versions__files__jetpack_version__isnull=False))
@@ -28,7 +27,7 @@ def sendmail(cxn):
     for addr in addrs:
         count += 1
         try:
-            mail.send_mail(SUBJECT, MSG, FROM, [addr], connection=cxn)
+            mail.send_mail(SUBJECT, MSG, FROM, [addr])
             log.info('%s. DONE: %s' % (count, addr))
         except Exception, e:
             log.info('%s. FAIL: %s (%s)' % (count, addr, e))

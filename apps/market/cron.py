@@ -8,8 +8,9 @@ from django.db.models import Count
 
 from addons.models import Addon, AddonUser
 import amo
-from amo.utils import send_mail_jinja
+from amo.utils import chunked, send_mail_jinja
 from market.models import AddonPremium, Refund
+from devhub.models import ActivityLog
 
 log = commonware.log.getLogger('z.cron')
 
@@ -63,3 +64,19 @@ def mail_pending_refunds():
                         'market/emails/refund-nag.txt', ctx,
                         from_email=settings.NOBODY_EMAIL,
                         recipient_list=[owner])
+
+
+@cronjobs.register
+def mkt_gc(**kw):
+    """Site-wide garbage collections."""
+
+    days_ago = lambda days: datetime.today() - timedelta(days=days)
+
+    log.debug('Collecting data to delete')
+    logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
+            .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
+
+    for chunk in chunked(logs, 100):
+        chunk.sort()
+        log.debug('Deleting log entries: %s' % str(chunk))
+        amo.tasks.delete_logs.delay(chunk)

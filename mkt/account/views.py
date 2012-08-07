@@ -268,8 +268,12 @@ def profile(request, username):
                                user.apps_listed.order_by('-weekly_downloads'),
                                per_page=5)
 
+    reviews = user.reviews.filter(addon__type=amo.ADDON_WEBAPP)
+    reviews = paginate(request, reviews, per_page=5)
+
     data = {'profile': user, 'edit_any_user': edit_any_user,
-            'submissions': submissions, 'own_profile': own_profile}
+            'submissions': submissions, 'own_profile': own_profile,
+            'reviews': reviews}
 
     return jingo.render(request, 'account/profile.html', data)
 
@@ -277,4 +281,5 @@ def profile(request, username):
 @login_required
 def activity_log(request, userid):
     all_apps = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
-    return jingo.render(request, 'account/activity.html', {'log': _get_items(None, all_app)})
+    return jingo.render(request, 'account/activity.html',
+                        {'log': _get_items(None, all_apps)})

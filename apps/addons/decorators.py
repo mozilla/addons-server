@@ -72,6 +72,20 @@ def has_purchased(f):
     return wrapper
 
 
+def has_purchased_or_refunded(f):
+    """
+    If the addon is premium, require a purchase.
+    Must be called after addon_view decorator.
+    """
+    @functools.wraps(f)
+    def wrapper(request, addon, *args, **kw):
+        if addon.is_premium() and not (addon.has_purchased(request.amo_user) or
+                                       addon.is_refunded(request.amo_user)):
+            return http.HttpResponseForbidden()
+        return f(request, addon, *args, **kw)
+    return wrapper
+
+
 def has_not_purchased(f):
     """ The opposite of has_purchased. """
     @functools.wraps(f)

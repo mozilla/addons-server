@@ -14,9 +14,12 @@ from amo.tests.test_helpers import get_image_path
 from addons.models import Addon
 from files.helpers import copyfileobj
 from market.models import Price
+from users.models import UserProfile
+
+import mkt
 from mkt.developers import forms
 from mkt.reviewers.models import RereviewQueue
-from users.models import UserProfile
+from mkt.webapps.models import AddonExcludedRegion
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -185,3 +188,46 @@ class TestFreeToPremium(amo.tests.TestCase):
         assert form.is_valid()
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
+
+
+class TestRegionForm(amo.tests.WebappTestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestRegionForm, self).setUp()
+        self.request = RequestFactory()
+        self.kwargs = {'product': self.app}
+        self.skip_if_disabled(settings.REGION_STORES)
+
+    def test_initial_empty(self):
+        form = forms.RegionForm(data=None, **self.kwargs)
+        eq_(form.initial['regions'], mkt.regions.REGION_IDS)
+        eq_(form.initial['other_regions'], True)
+
+    def test_initial_excluded_in_region(self):
+        AddonExcludedRegion.objects.create(addon=self.app,
+                                           region=mkt.regions.BR.id)
+
+        regions = list(mkt.regions.REGION_IDS)
+        regions.remove(mkt.regions.BR.id)
+
+        eq_(self.get_app().get_region_ids(), regions)
+
+        form = forms.RegionForm(data=None, **self.kwargs)
+        eq_(form.initial['regions'], regions)
+        eq_(form.initial['other_regions'], True)
+
+    def test_initial_excluded_in_regions_and_future_regions(self):
+        for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.FUTURE]:
+            AddonExcludedRegion.objects.create(addon=self.app,
+                                               region=region.id)
+
+        regions = list(mkt.regions.REGION_IDS)
+        regions.remove(mkt.regions.BR.id)
+        regions.remove(mkt.regions.UK.id)
+
+        eq_(self.get_app().get_region_ids(), regions)
+
+        form = forms.RegionForm(data=None, **self.kwargs)
+        eq_(form.initial['regions'], regions)
+        eq_(form.initial['other_regions'], False)

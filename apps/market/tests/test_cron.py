@@ -8,6 +8,8 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from devhub.models import ActivityLog
+from market.cron import clean_out_addonpremium, mail_pending_refunds, mkt_gc
 from addons.models import Addon, AddonUser
 from market.cron import clean_out_addonpremium, mail_pending_refunds
 from market.models import AddonPremium, Refund
@@ -118,3 +120,17 @@ class TestPendingRefunds(amo.tests.TestCase):
         assert '1 request' in email.body
         assert 'not.this.domain.com' in email.body
         eq_(email.to, [self.author.email])
+
+
+class TestGarbage(amo.tests.TestCase):
+
+    def setUp(self):
+        self.user = UserProfile.objects.create(email='gc_test@example.com',
+                name='gc_test')
+        amo.log(amo.LOG.CUSTOM_TEXT, 'testing', user=self.user,
+                created=datetime(2001, 1, 1))
+
+    def test_garbage_collection(self):
+        eq_(ActivityLog.objects.all().count(), 1)
+        mkt_gc()
+        eq_(ActivityLog.objects.all().count(), 0)

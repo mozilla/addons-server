@@ -544,6 +544,21 @@ class APITest(TestCase):
         eq_(doc[0].tag, 'error')
         eq_(response.status_code, 404)
 
+    def test_cross_origin(self):
+        # Add-on details should allow cross-origin requests.
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                   api.CURRENT_VERSION)
+
+        eq_(response['Access-Control-Allow-Origin'], '*')
+        eq_(response['Access-Control-Allow-Methods'], 'GET')
+
+        # Even those that are not found.
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/999' %
+                                   api.CURRENT_VERSION)
+
+        eq_(response['Access-Control-Allow-Origin'], '*')
+        eq_(response['Access-Control-Allow-Methods'], 'GET')
+
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
@@ -1183,6 +1198,22 @@ class SearchTest(ESTestCase):
         # we stored that there are no compatible versions.
         with self.assertNumQueries(0):
             addon.compatible_version(amo.FIREFOX.id, '4.0', 'all', 'strict')
+
+    def test_cross_origin(self):
+        # The search view doesn't allow cross-origin requests.
+        # First we check for a search without results.
+        response = self.client.get('/en-US/firefox/api/%.1f/search/firebug/3' %
+                                   api.CURRENT_VERSION)
+
+        assert not response.has_header('Access-Control-Allow-Origin')
+        assert not response.has_header('Access-Control-Allow-Methods')
+
+        # Now a search with results.
+        response = self.client.get('/en-US/firefox/api/%.1f/search/delicious' %
+                                   api.CURRENT_VERSION)
+
+        assert not response.has_header('Access-Control-Allow-Origin')
+        assert not response.has_header('Access-Control-Allow-Methods')
 
 
 class LanguagePacks(UploadTest):

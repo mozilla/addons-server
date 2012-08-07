@@ -83,10 +83,33 @@
       <div id="my-submissions" class="listing c">
         <h2>{{ _('My Submissions') }}</h2>
         <ol class="items" start="{{ submissions.start_index() }}">
-          {{ search_results(submissions.object_list, src='search') }}
+          {{ search_results(submissions.object_list, src='mkt-user-profile') }}
         </ol>
         {{ submissions|impala_paginator }}
       </div>
     {% endif %}
+
+    {% if waffle.switch('ratings') %}
+    <div class="island primary{{ ' full' if not (own_coll or fav_coll) }}"
+         id="reviews">
+      <h2>{{ _('My Reviews') }}</h2>
+      {% if reviews.object_list %}
+        <ol class="reviews items-profile">
+          {% for review in reviews.object_list %}
+            {% with product = review.addon, show_addon = True %}
+              {% include "ratings/rating.html" %}
+            {% endwith %}
+          {% endfor %}
+        </ol>
+        {% include 'ratings/edit.html' %}
+        {{ reviews|impala_paginator }}
+      {% else %}
+        <p class="no-reviews no-results">
+          {{ _('No app reviews yet.') }}
+        </p>
+      {% endif %}
+    </div>
+    {% endif %}
+
   </section>
 {% endblock %}

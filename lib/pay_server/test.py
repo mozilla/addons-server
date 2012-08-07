@@ -13,6 +13,7 @@ import amo
 from users.models import UserProfile
 from lib.pay_server import (client, filter_encoder, model_to_uid,
                             ZamboniEncoder)
+from lib.pay_server.errors import codes, lookup
 
 
 @patch.object(settings, 'SECLUSION_HOSTS', ('http://localhost'))
@@ -186,3 +187,8 @@ class TestPay(test_utils.TestCase):
     def test_pay_no_url(self, post_pay):
         client.pay(self.data)
         assert 'uuid' in post_pay.call_args[1]['data']['return_url']
+
+
+def test_lookup():
+    eq_(lookup(0, {}), codes['0'])
+    assert 'foo@bar.com' in lookup(100001, {'email': 'foo@bar.com'})

@@ -272,7 +272,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         t = loader.get_template('users/email/restricted.ltxt')
         send_mail(_('Your account has been restricted'),
                   t.render(Context({})), None, [self.email],
-                  use_blacklist=False)
+                  use_blacklist=False, real_email=True)
 
     def unrestrict(self):
         log.info(u'User (%s: <%s>) is being unrestricted.' % (self,
@@ -330,7 +330,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         c = {'domain': domain, 'url': url, }
         send_mail(_("Please confirm your email address"),
                   t.render(Context(c)), None, [self.email],
-                  use_blacklist=False)
+                  use_blacklist=False, real_email=True)
 
     def log_login_attempt(self, successful):
         """Log a user's login attempt"""

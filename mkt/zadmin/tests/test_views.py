@@ -6,13 +6,14 @@ import amo.tests
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 
-from addons.models import Category, AddonCategory
+from addons.models import Addon, AddonCategory, Category
 from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp
 
 
 class TestFeaturedApps(amo.tests.TestCase):
     fixtures = ['base/users']
+
     def setUp(self):
         self.c1 = Category.objects.create(name='awesome',
                                      type=amo.ADDON_WEBAPP)
@@ -46,8 +47,9 @@ class TestFeaturedApps(amo.tests.TestCase):
         r = self.client.get(urlparams(self.url, category=self.c1.id))
         assert not r.content
 
-        f1 = FeaturedApp.objects.create(app=self.a1, category=self.c1)
-        f2 = FeaturedApp.objects.create(app=self.s1, category=self.c2, is_sponsor=True)
+        FeaturedApp.objects.create(app=self.a1, category=self.c1)
+        FeaturedApp.objects.create(app=self.s1, category=self.c2,
+                                   is_sponsor=True)
         r = self.client.get(urlparams(self.url, category=self.c1.id))
         doc = pq(r.content)
         eq_(len(doc), 1)
@@ -59,7 +61,6 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(len(doc), 1)
         eq_(doc('table td').eq(1).text(), 'splendid app 1')
         eq_(doc('table td').eq(4).text(), 'Sponsored')
-
 
     def test_get_categories(self):
         url = reverse('zadmin.featured_categories_ajax')
@@ -108,3 +109,42 @@ class TestFeaturedApps(amo.tests.TestCase):
                              data={'app': f.pk, 'region': 3})
         eq_(r.status_code, 200)
         eq_(FeaturedApp.objects.get(pk=f.pk).region, 3)
+
+
+class TestAddonSearch(amo.tests.ESTestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube', 'base/addon_3615']
+
+    def setUp(self):
+        self.reindex(Addon)
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('zadmin.addon-search')
+
+    def test_lookup_addon(self):
+        res = self.client.get(urlparams(self.url, q='delicious'))
+        eq_(res.status_code, 200)
+        links = pq(res.content)('form + h3 + ul li a')
+        eq_(len(links), 0)
+        self.assertNotContains(res, 'Steamcube')
+
+    def test_lookup_addon_redirect(self):
+        res = self.client.get(urlparams(self.url, q='steamcube'))
+        # There's only one result, so it should just forward us to that page.
+        eq_(res.status_code, 302)
+
+
+class TestAddonAdmin(amo.tests.TestCase):
+    fixtures = ['base/users', 'base/337141-steamcube', 'base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('admin:addons_addon_changelist')
+
+    def test_no_webapps(self):
+        res = self.client.get(self.url, follow=True)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        rows = doc('#result_list tbody tr')
+        eq_(rows.length, 1)
+        eq_(rows.find('a').attr('href'), '337141/')

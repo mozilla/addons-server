@@ -5,6 +5,8 @@
   {% endif %}
   <h2>{{ _('Details') }}</h2>
   <dl>
+    <dt>{{ _('Status') }}</dt>
+    <dd>{{ amo.STATUS_CHOICES[product.status] }}</dd>
     <dt>{{ _('Manifest URL') }}</dt>
     <dd>
       <a href="#" data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}"
@@ -54,7 +56,7 @@
     </dd>
     <dt>{{ _('Abuse Reports') }}</dt>
     <dd>
-      <a href="{{ url('editors.abuse_reports', product.slug) }}">
+      <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
         <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
     </dd>
     {% with device_types = product.device_types %}

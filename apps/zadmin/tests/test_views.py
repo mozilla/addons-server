@@ -19,6 +19,7 @@ import amo.tests
 from amo.tests import (formset, initial, close_to_now, assert_required,
                        assert_no_validation_errors)
 from access.models import Group, GroupUser
+from addons.cron import reindex_addons
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -278,6 +279,18 @@ class TestBulkValidation(BulkValidationTest):
         self.assertRedirects(r, reverse('zadmin.validation'))
         assert not bulk_validate_file.delay.called, (
                         'Lang pack addons should be ignored')
+
+    @mock.patch('zadmin.tasks.bulk_validate_file')
+    def test_ignore_themes(self, bulk_validate_file):
+        target_ver = self.appversion('3.7a3').id
+        self.addon.update(type=amo.ADDON_THEME)
+        self.client.post(reverse('zadmin.start_validation'),
+                         {'application': amo.FIREFOX.id,
+                          'curr_max_version': self.curr_max.id,
+                          'target_version': target_ver,
+                          'finish_email': 'fliggy@mozilla.com'})
+        assert not bulk_validate_file.delay.called, (
+                        'Theme addons should be ignored')
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_validate_all_non_disabled_addons(self, bulk_validate_file):
@@ -1379,6 +1392,47 @@ class TestLookup(amo.tests.TestCase):
     def test_lookup_by_username(self):
         self.check_results(self.user.username, [dict(value=self.user.id,
                                                      label=self.user.email)])
+
+
+class TestAddonSearch(amo.tests.ESTestCase):
+    fixtures = ['base/users','base/337141-steamcube',
+                'base/addon_3615']
+
+    def setUp(self):
+        self.reindex(Addon)
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('zadmin.addon-search')
+
+    def test_lookup_app(self):
+        res = self.client.get(urlparams(self.url, q='steamcube'))
+        eq_(res.status_code, 200)
+        links = pq(res.content)('form + h3 + ul li a')
+        eq_(len(links), 0)
+        if any(li.text().contains('Steamcube') for li in links):
+            raise AssertionError('Did not expect webapp in results.')
+
+    def test_lookup_addon(self):
+        res = self.client.get(urlparams(self.url, q='delicious'))
+        # There's only one result, so it should just forward us to that page.
+        eq_(res.status_code, 302)
+
+
+class TestAddonAdmin(amo.tests.TestCase):
+    fixtures = ['base/users','base/337141-steamcube',
+                'base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('admin:addons_addon_changelist')
+
+    def test_no_webapps(self):
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        rows = doc('#result_list tbody tr')
+        eq_(rows.length, 1)
+        eq_(rows.find('a').attr('href'), '3615/')
 
 
 class TestAddonManagement(amo.tests.TestCase):

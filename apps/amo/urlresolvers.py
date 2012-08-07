@@ -52,10 +52,9 @@ def get_app_redirect(app):
 def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None, add_prefix=True):
     """Wraps django's reverse to prepend the correct locale and app."""
+    prefixer = get_url_prefix()
     if settings.MARKETPLACE and settings.REGION_STORES:
         prefix = None
-        add_prefix = False
-    prefixer = get_url_prefix()
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
@@ -143,19 +142,19 @@ class Prefixer(object):
         return lang_from_accept_header(accept)
 
     def fix(self, path):
-        # In mkt, don't add the app to the URL.
-        with_app = not getattr(settings, 'MARKETPLACE', False)
+        # Marketplace URLs are not prefixed with `/<locale>/<app>`.
+        if settings.MARKETPLACE and settings.REGION_STORES:
+            return path
+
         path = path.lstrip('/')
         url_parts = [self.request.META['SCRIPT_NAME']]
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
-            locale = self.locale if self.locale else self.get_language()
-            url_parts.append(locale)
+            url_parts.append(self.locale or self.get_language())
 
-        if (with_app
-              and path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
-            app = self.app if self.app else self.get_app()
-            url_parts.append(app)
+        if (not settings.MARKETPLACE and
+            path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
+            url_parts.append(self.app or self.get_app())
 
         url_parts.append(path)
 

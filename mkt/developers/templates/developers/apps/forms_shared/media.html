@@ -147,7 +147,7 @@
                 <a class="button" href="#">{% if waffle.switch('video-upload') -%}
                   {{ _('Add a Screenshot or Video...') }}{% else %}
                   {{ _('Add a Screenshot') }}{%- endif %}</a>
-                <input type="file" id="screenshot_upload" name="uploads" multiple
+                <input type="file" class="screenshot_upload" name="uploads" multiple
                        data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
                        data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
               </div>

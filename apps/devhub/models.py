@@ -194,13 +194,15 @@ class ActivityLogManager(amo.models.ManagerBase):
 
     def review_queue(self, webapp=False):
         qs = self._by_type(webapp)
-        return qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
+        return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
+                  .exclude(user__id=settings.TASK_USER_ID))
 
     def total_reviews(self, webapp=False):
         qs = self._by_type(webapp)
         """Return the top users, and their # of reviews."""
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(action__in=amo.LOG_REVIEW_QUEUE)
+                  .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 
@@ -212,6 +214,7 @@ class ActivityLogManager(amo.models.ManagerBase):
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
                           action__in=amo.LOG_REVIEW_QUEUE)
+                  .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 

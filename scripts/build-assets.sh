@@ -33,7 +33,7 @@ fi
 
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS} import *
-
+UGLIFY_BIN = 'uglifyjs'
 SETTINGS
 
 export DJANGO_SETTINGS_MODULE=settings_local

@@ -20,13 +20,14 @@ from mkt.webapps.models import Webapp
 from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
 from users.models import UserProfile
+from zadmin.models import DownloadSource
 
 
-class TestPurchaseEmbedded(amo.tests.TestCase):
+class PurchaseTest(amo.tests.TestCase):
     fixtures = ['base/users', 'market/prices', 'webapps/337141-steamcube']
 
     def setUp(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
+        self.create_switch(name='marketplace')
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -34,10 +35,14 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
         AddonPremium.objects.create(addon=self.addon, price=self.price,
                                     currencies=['BRL'])
         self.purchase_url = self.addon.get_purchase_url()
-        self.client.login(username='regular@mozilla.com', password='password')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
         self.brl = PriceCurrency.objects.create(currency='BRL',
                                                 price=Decimal('0.5'),
                                                 tier_id=1)
+
+
+class TestPurchaseEmbedded(PurchaseTest):
 
     def test_premium_only(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
@@ -151,15 +156,29 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
     @mock.patch('paypal.check_purchase')
     @mock.patch('paypal.get_paykey')
     def post_with_preapproval(self, get_paykey, check_purchase,
-                             check_purchase_result=None):
+                              check_purchase_result=None, data=None):
         get_paykey.return_value = ['some-pay-key', 'COMPLETED']
         check_purchase.return_value = check_purchase_result
-        return self.client.post_ajax(self.purchase_url)
+        return self.client.post_ajax(self.purchase_url, data=data or {})
 
     def test_paykey_pre_approval(self):
         res = self.post_with_preapproval(check_purchase_result='COMPLETED')
         eq_(json.loads(res.content)['status'], 'COMPLETED')
         self.check_contribution(amo.CONTRIB_PURCHASE)
+
+    def test_contrib_tier_usd(self):
+        # Test with currency switch in USD.
+        self.post_with_preapproval(data={'currency': 'USD', 'tier': 1})
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].price_tier.id, 1)
+
+    def test_contrib_tier_non_usd(self):
+        # Test with currency switch in BRL.
+        self.post_with_preapproval(data={'currency': 'BRL', 'tier': 1})
+        cons = Contribution.objects.all()
+        eq_(cons.count(), 1)
+        eq_(cons[0].price_tier.id, 1)
 
     @mock.patch('mkt.purchase.views.client.pay')
     @mock.patch('mkt.purchase.views.client.create_seller_for_pay')
@@ -320,6 +339,27 @@ class TestPurchaseEmbedded(amo.tests.TestCase):
                    .returns(('payKey', 'paymentExecStatus')))
         self.client.post(self.addon.get_purchase_url(),
                          {'result_type': 'json'})
+
+    @mock.patch('paypal.get_paykey')
+    def test_contribution_client_data(self, get_paykey):
+        get_paykey.return_value = ['some-pay-key', '']
+        download_source = DownloadSource.objects.create(name='mkt-home')
+        device_type = 'desktop'
+        user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0)'
+
+        self.client.post_ajax(self.purchase_url,
+                              data={'src': download_source.name,
+                                    'device_type': device_type,
+                                    'is_chromeless': False},
+                              **{'HTTP_USER_AGENT': user_agent})
+        cons = Contribution.objects.filter(type=amo.CONTRIB_PENDING)
+        eq_(cons.count(), 1)
+        eq_(cons[0].client_data.download_source, download_source)
+        eq_(cons[0].client_data.device_type, device_type)
+        eq_(cons[0].client_data.user_agent, user_agent)
+        eq_(cons[0].client_data.is_chromeless, False)
+        eq_(not cons[0].client_data.language, False)
+        eq_(not cons[0].client_data.region, False)
 
 
 class TestPurchaseDetails(amo.tests.TestCase):

@@ -49,6 +49,10 @@ LESS_PREPROCESS = False  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = 'lessc'
 
+# Path to uglifyjs. When not None, this will be used to minify JavaScript
+# instead of YUI.
+UGLIFY_BIN = None
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -1217,7 +1221,7 @@ QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
 SPIDERMONKEY = None
 VALIDATE_ADDONS = True
 # Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 90
+VALIDATOR_TIMEOUT = 110
 
 # When True include full tracebacks in JSON. This is useful for QA on preview.
 EXPOSE_VALIDATOR_TRACEBACKS = False
@@ -1460,11 +1464,6 @@ IN_TEST_SUITE = False
 # Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
 # Flip this on in your local settings to experience the joy of ES tests.
 RUN_ES_TESTS = False
-
-# All JS vendor libraries in this list will be excluded from mozmarket.js.
-# For example, if receiptverifier is broken and you need to disable it, add
-# 'receiptverifier' to the list. See also mkt/site/views.py.
-MOZMARKET_VENDOR_EXCLUDE = []
 
 # The configuration for seclusion the client that speaks to solitude.
 # A tuple of the solitude hosts that seclusion will speak to.

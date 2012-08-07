@@ -17,6 +17,7 @@ from amo.helpers import absolutify, urlparams
 from amo.models import ModelBase, SearchMixin
 from amo.fields import DecimalCharField
 from amo.utils import send_mail, send_mail_jinja
+from zadmin.models import DownloadSource
 
 from .db import StatsDictField
 
@@ -122,11 +123,13 @@ class Contribution(amo.models.ModelBase):
                                 choices=do_dictsort(amo.PAYPAL_CURRENCIES),
                                 default=amo.CURRENCY_DEFAULT)
     source = models.CharField(max_length=255, null=True)
+    client_data = models.ForeignKey('stats.ClientData', null=True)
     source_locale = models.CharField(max_length=10, null=True)
 
     uuid = models.CharField(max_length=255, null=True)
     comment = models.CharField(max_length=255)
     transaction_id = models.CharField(max_length=255, null=True)
+    bluevia_transaction_id = models.CharField(max_length=255, null=True)
     paykey = models.CharField(max_length=255, null=True)
     post_data = StatsDictField(null=True)
 
@@ -222,8 +225,8 @@ class Contribution(amo.models.ModelBase):
                    {'name': self.addon.name, 'amount': amt})
 
     def record_failed_refund(self, e):
-        refund = self.enqueue_refund(amo.REFUND_FAILED,
-                                     rejection_reason=str(e))
+        self.enqueue_refund(amo.REFUND_FAILED,
+                            rejection_reason=str(e))
         self._switch_locale()
         self._mail('users/support/emails/refund-failed.txt',
                    # L10n: the addon name.
@@ -402,3 +405,48 @@ class GlobalStat(caching.base.CachingMixin, models.Model):
         db_table = 'global_stats'
         unique_together = ('name', 'date')
         get_latest_by = 'date'
+
+
+class ClientData(models.Model):
+    """
+    Helps tracks user agent and download source data of installs and purchases.
+    """
+    download_source = models.ForeignKey('zadmin.DownloadSource', null=True)
+    device_type = models.CharField(max_length=255)
+    user_agent = models.CharField(max_length=255)
+    is_chromeless = models.BooleanField()
+    language = models.CharField(max_length=7)
+    region = models.IntegerField(null=True)
+
+    @classmethod
+    def get_or_create(cls, request):
+        """Get or create a client data object based on the current request."""
+        download_source = request.REQUEST.get('src', '')
+        try:
+            download_source = DownloadSource.objects.get(name=download_source)
+        except DownloadSource.DoesNotExist:
+            download_source = None
+        region = None
+        if settings.MARKETPLACE:
+            import mkt
+            if hasattr(request, 'REGION') and request.REGION:
+                region = request.REGION.id
+            else:
+                region = mkt.regions.WORLDWIDE.id
+        if hasattr(request, 'LANG'):
+            lang = request.LANG
+        else:
+            lang = translation.get_language()
+        client_data, c = cls.objects.get_or_create(
+                        download_source=download_source,
+                        device_type=request.POST.get('device_type', ''),
+                        user_agent=request.META.get('HTTP_USER_AGENT', ''),
+                        is_chromeless=request.POST.get('chromeless', False),
+                        language=lang,
+                        region=region)
+        return client_data
+
+    class Meta:
+        db_table = 'client_data'
+        unique_together = ('download_source', 'device_type', 'user_agent',
+                           'is_chromeless', 'language', 'region')

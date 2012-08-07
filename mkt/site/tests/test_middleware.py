@@ -22,26 +22,38 @@ class MiddlewareCase(amo.tests.TestCase):
 
 class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
 
+    def test_redirect_for_good_application(self):
+        for app in amo.APPS:
+            r = self.client.get('/%s/' % app)
+            self.assert3xx(r, '/', 302)
+
+    def test_redirect_for_bad_application(self):
+        r = self.client.get('/mosaic/')
+        eq_(r.status_code, 404)
+
     def test_redirect_for_good_locale(self):
-        locales = [
-            ('en-US', 'en-us'),
-            ('pt-BR', 'pt-br'),
-            ('pt-br', 'pt-br'),
-            ('fr', 'fr'),
-            ('es-PE', 'es'),
+        redirects = [
+            ('/en-US/', '/?lang=en-us'),
+            ('/pt-BR/', '/?lang=pt-br'),
+            ('/pt-br/', '/?lang=pt-br'),
+            ('/fr/', '/?lang=fr'),
+            ('/es-PE/', '/?lang=es'),
         ]
-        for given, expected in locales:
-            r = self.client.get('/%s/' % given)
-            self.assertRedirects(r, '/?lang=%s' % expected, 302)
+        for before, after in redirects:
+            r = self.client.get(before)
+            self.assert3xx(r, after, 302)
 
     def test_preserve_qs_for_lang(self):
+        r = self.client.get('/pt-BR/firefox/privacy-policy?omg=yes')
+        self.assert3xx(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
+
         r = self.client.get('/pt-BR/privacy-policy?omg=yes')
-        self.assertRedirects(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
+        self.assert3xx(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
 
     def test_switch_locale(self):
         # Locale in URL prefix takes precedence.
         r = self.client.get('/pt-BR/?lang=de')
-        self.assertRedirects(r, '/?lang=pt-br', 302)
+        self.assert3xx(r, '/?lang=pt-br', 302)
 
     def test_no_locale(self):
         r = self.client.get('/')
@@ -50,33 +62,35 @@ class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
         eq_(r.status_code, 200)
 
     def test_redirect_for_good_region(self):
-        regions = [
-            ('worldwide', 'worldwide'),
-            ('brazil', 'brazil'),
-            ('usa', 'usa'),
-            ('BRAZIL', 'brazil'),
+        redirects = [
+            ('/worldwide/', '/?region=worldwide'),
+            ('/br/', '/?region=br'),
+            ('/us/', '/?region=us'),
+            ('/BR/', '/?region=br'),
         ]
-        for given, expected in regions:
-            r = self.client.get('/%s/' % given)
-            self.assertRedirects(r, '/?region=%s' % expected, 302)
+        for before, after in redirects:
+            r = self.client.get(before)
+            self.assert3xx(r, after, 302)
 
     def test_redirect_for_good_locale_and_region(self):
-        r = self.client.get('/en-US/brazil/privacy-policy?omg=yes',
+        r = self.client.get('/en-US/br/privacy-policy?omg=yes',
                             follow=True)
         # Can you believe this actually works?
-        self.assertRedirects(r,
-            '/privacy-policy?lang=en-us&region=brazil&omg=yes', 302)
+        self.assert3xx(r,
+            '/privacy-policy?lang=en-us&region=br&omg=yes', 302)
 
     def test_preserve_qs_for_region(self):
-        r = self.client.get('/brazil/privacy-policy?omg=yes')
-        self.assertRedirects(r, '/privacy-policy?region=brazil&omg=yes', 302)
+        r = self.client.get('/br/privacy-policy?omg=yes')
+        self.assert3xx(r, '/privacy-policy?region=br&omg=yes', 302)
 
     def test_switch_region(self):
         r = self.client.get('/worldwide/?region=brazil')
-        self.assertRedirects(r, '/?region=worldwide', 302)
+        self.assert3xx(r, '/?region=worldwide', 302)
 
     def test_404_for_bad_prefix(self):
-        for url in ['/xxx', '/xxx/search/', '/pt/?lang=de', '/pt-XX/brazil/']:
+        for url in ['/xxx', '/xxx/search/',
+                    '/brazil/', '/BRAZIL/',
+                    '/pt/?lang=de', '/pt-XX/brazil/']:
             r = self.client.get(url)
             got = r.status_code
             eq_(got, 404, "For %r: expected '404' but got %r" % (url, got))
@@ -182,20 +196,19 @@ class TestLocaleMiddleware(MiddlewareCase):
 class TestRegionMiddleware(MiddlewareCase):
 
     def test_lang_set_with_region(self):
-        for region in ('worldwide', 'usa', 'brazil'):
+        for region in ('worldwide', 'us', 'br'):
             r = self.client.get('/?region=%s' % region)
             eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_accept_good_region(self):
-        for region in ('worldwide', 'usa', 'brazil'):
+        for region, region_cls in mkt.regions.REGIONS_CHOICES:
             r = self.client.get('/?region=%s' % region)
             eq_(r.cookies['region'].value, region)
-            eq_(r.context['request'].REGION,
-                mkt.regions.REGIONS_DICT[region])
+            eq_(r.context['request'].REGION, region_cls)
 
     def test_already_have_cookie_for_good_region(self):
-        for region in ('worldwide', 'usa', 'brazil'):
+        for region in ('worldwide', 'us', 'br'):
             self.client.cookies['region'] = region
 
             r = self.client.get('/')
@@ -206,7 +219,7 @@ class TestRegionMiddleware(MiddlewareCase):
     def test_ignore_bad_region(self):
         # When no region is specified or the region is invalid, we use
         # whichever region satisfies `Accept-Language`.
-        for region in ('', 'BRAZIL', '<script>alert("ballin")</script>'):
+        for region in ('', 'BR', '<script>alert("ballin")</script>'):
             self.client.cookies.clear()
 
             r = self.client.get('/?region=%s' % region)
@@ -214,7 +227,7 @@ class TestRegionMiddleware(MiddlewareCase):
             eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
 
     def test_already_have_cookie_for_bad_region(self):
-        for region in ('', 'BRAZIL', '<script>alert("ballin")</script>'):
+        for region in ('', 'BR', '<script>alert("ballin")</script>'):
             self.client.cookies['region'] = region
 
             r = self.client.get('/')
@@ -225,15 +238,15 @@ class TestRegionMiddleware(MiddlewareCase):
         locales = [
             ('', 'worldwide'),
             ('de', 'worldwide'),
-            ('en-us, de', 'usa'),
-            ('en-US', 'usa'),
+            ('en-us, de', 'us'),
+            ('en-US', 'us'),
             ('fr, en', 'worldwide'),
             ('pt-XX, xx, yy', 'worldwide'),
             ('pt', 'worldwide'),
             ('pt, de', 'worldwide'),
             ('pt-XX, xx, de', 'worldwide'),
-            ('pt-br', 'brazil'),
-            ('pt-BR', 'brazil'),
+            ('pt-br', 'br'),
+            ('pt-BR', 'br'),
             ('xx, yy, zz', 'worldwide'),
             ('<script>alert("ballin")</script>', 'worldwide'),
             ('en-us;q=0.5, de', 'worldwide'),
@@ -259,13 +272,13 @@ class TestRegionMiddleware(MiddlewareCase):
         # Even though you remembered my previous language, I've since
         # changed it in my browser, so let's respect that.
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
-        eq_(r.cookies['region'].value, 'brazil')
+        eq_(r.cookies['region'].value, 'br')
 
     def test_accept_language_takes_precedence_over_cookie(self):
         self.client.cookies['region'] = 'worldwide'
 
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
-        eq_(r.cookies['region'].value, 'brazil')
+        eq_(r.cookies['region'].value, 'br')
 
 
 class TestVaryMiddleware(MiddlewareCase):
@@ -276,8 +289,6 @@ class TestVaryMiddleware(MiddlewareCase):
         eq_(r['Vary'],
             'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')
 
-        # But we do prevent `Vary: Cookie`.
-        self.client.cookies.clear()
         r = self.client.get('/privacy-policy', follow=True)
         eq_(r['Vary'],
             'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')

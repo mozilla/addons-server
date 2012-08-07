@@ -5,6 +5,7 @@ import json
 from django.conf import settings
 from django.core import mail
 from django.db import models
+from django.test.client import RequestFactory
 from django.utils import translation
 
 import phpserialize as php
@@ -13,10 +14,12 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from stats.models import Contribution
+from stats.models import ClientData, Contribution
 from stats.db import StatsDictField
 from users.models import UserProfile
 from market.models import Refund
+from zadmin.models import DownloadSource
+
 
 class TestStatsDictField(amo.tests.TestCase):
 
@@ -86,6 +89,7 @@ class TestContributionModel(amo.tests.TestCase):
                             type=getattr(amo, ctype))
             assert not self.con.is_instant_refund(), (
                                         'No refund on %s inapp' % ctype)
+
 
 class TestEmail(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
@@ -180,3 +184,25 @@ class TestEmail(amo.tests.TestCase):
         eq_(usermail.to, [self.user.email])
         eq_(devmail.to, [self.addon.support_email])
         assert msg in devmail.body
+
+
+class TestClientData(amo.tests.TestCase):
+
+    def test_get_or_create(self):
+        download_source = DownloadSource.objects.create(name='mkt-home')
+        device_type = 'desktop'
+        user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0)'
+        client = RequestFactory()
+        request = client.post('/somewhere',
+                              data={'src': download_source.name,
+                                    'device_type': device_type,
+                                    'is_chromeless': False},
+                              **{'HTTP_USER_AGENT': user_agent})
+
+        cli = ClientData.get_or_create(request)
+        eq_(cli.download_source, download_source)
+        eq_(cli.device_type, device_type)
+        eq_(cli.user_agent, user_agent)
+        eq_(cli.is_chromeless, False)
+        eq_(cli.language, 'en-us')
+        eq_(cli.region, None)

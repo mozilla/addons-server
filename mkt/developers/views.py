@@ -30,6 +30,7 @@ from amo.utils import escape_all
 from amo.urlresolvers import reverse
 from addons import forms as addon_forms
 from addons.decorators import can_become_premium
+from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import AppLog
@@ -51,10 +52,10 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CurrencyForm,
                                   InappConfigForm, PaypalSetupForm,
-                                  PreviewFormSet, trap_duplicate)
+                                  PreviewFormSet, RegionForm, trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
-from mkt.webapps.tasks import update_manifests
+from mkt.webapps.tasks import update_manifests, _update_manifest
 from mkt.webapps.models import Webapp
 
 from . import forms, tasks
@@ -127,8 +128,7 @@ def edit(request, addon_id, addon, webapp=False):
        'valid_slug': addon.app_slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.get_previews(),
-       'device_type_form': addon_forms.DeviceTypeForm(request.POST or None,
-                                                      addon=addon),
+       'device_type_form': DeviceTypeForm(request.POST or None, addon=addon),
     }
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
@@ -300,12 +300,16 @@ def paypal_setup(request, addon_id, addon, webapp):
 @json_view
 @dev_required(owner_for_post=True, webapp=True)
 def paypal_setup_check(request, addon_id, addon, webapp):
-    if not addon.paypal_id:
-        return {'valid': False, 'message': ['No PayPal email.']}
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        data = client.post_account_check(data={'seller': addon})
+        return {'valid': data['passed'], 'message': data['errors']}
+    else:
+        if not addon.paypal_id:
+            return {'valid': False, 'message': ['No PayPal email.']}
 
-    check = Check(addon=addon)
-    check.all()
-    return {'valid': check.passed, 'message': check.errors}
+        check = Check(addon=addon)
+        check.all()
+        return {'valid': check.passed, 'message': check.errors}
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -314,7 +318,7 @@ def paypal_setup_bounce(request, addon_id, addon, webapp):
         messages.error(request, 'We need a PayPal email before continuing.')
         return redirect(addon.get_dev_url('paypal_setup'))
 
-    dest = 'submission'
+    dest = 'developers'
     perms = ['REFUND', 'ACCESS_BASIC_PERSONAL_DATA',
              'ACCESS_ADVANCED_PERSONAL_DATA']
     if waffle.flag_is_active(request, 'solitude-payments'):
@@ -402,13 +406,27 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
         return redirect(on_error)
 
     paypal_log.debug('User approved permissions for addon: %s' % addon_id)
-    token = paypal.get_permissions_token(request.GET['request_token'],
-                                         request.GET['verification_code'])
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        client.post_permission_token(data={
+            'seller': addon, 'token': request.GET['request_token'],
+            'verifier': request.GET['verification_code'],
+        })
+        try:
+            data = client.post_personal_basic(data={'seller': addon})
+        except client.Error as err:
+            paypal_log.debug('%s for addon %s' % (err.message, addon.id))
+            messages.warning(request, err.message)
+            return redirect(on_error)
 
-    paypal_log.debug('Getting personal data for token: %s' % addon_id)
-    data = paypal.get_personal_data(token)
+        data.update(client.post_personal_advanced(data={'seller': addon}))
+    # TODO(solitude): remove these.
+    else:
+        token = paypal.get_permissions_token(request.GET['request_token'],
+                                             request.GET['verification_code'])
+        data = paypal.get_personal_data(token)
+
+    # TODO(solitude): remove this.
     email = data.get('email')
-
     # If the email from paypal is different, something has gone wrong.
     if email != addon.paypal_id:
         paypal_log.debug('Addon paypal_id and personal data differ: '
@@ -419,16 +437,29 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
                          % email)
         return redirect(on_error)
 
-    # Set the permissions token that we have just successfully used
-    # in get_personal_data.
-    addonpremium, created = (AddonPremium.objects
-                                         .safer_get_or_create(addon=addon))
-    addonpremium.update(paypal_permissions_token=token)
+    # TODO(solitude): remove this. Sadly because the permissions tokens
+    # are never being traversed back we have a disconnect between what is
+    # happening in solitude and here and this will not easily survive flipping
+    # on and off the flag.
+    if not waffle.flag_is_active(request, 'solitude-payments'):
+        # Set the permissions token that we have just successfully used
+        # in get_personal_data.
+        addonpremium, created = (AddonPremium.objects
+                                             .safer_get_or_create(addon=addon))
+        addonpremium.update(paypal_permissions_token=token)
 
     # Finally update the data returned from PayPal for this addon.
     paypal_log.debug('Updating personal data for: %s' % addon_id)
+    # TODO(solitude): delete this, as the data was pulled through solitude
+    # it was saved.
     apd, created = AddonPaymentData.objects.safer_get_or_create(addon=addon)
-    apd.update(**data)
+    # This can be deleted with solitude, but this needs to change because
+    # data will contain more than the fields on the object, this is a quick
+    # workaround.
+    for k, v in data.items():
+        setattr(apd, k, v)
+    apd.save()
+
     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
     if show_good_msgs:
@@ -696,6 +727,13 @@ def upload(request, addon_slug=None, is_standalone=False):
         return redirect('mkt.developers.upload_detail', fu.pk, 'json')
 
 
+@dev_required
+def refresh_manifest(request, addon_id, addon, webapp=False):
+    log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
+    _update_manifest(addon_id)
+    return http.HttpResponse(status=204)
+
+
 @login_required
 @post_required
 @json_view
@@ -915,19 +953,21 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise http.Http404()
 
     tags = previews = restricted_tags = []
-    cat_form = device_type_form = None
+    cat_form = device_type_form = region_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
-        device_type_form = addon_forms.DeviceTypeForm(request.POST or None,
-                                                      addon=addon)
+        device_type_form = DeviceTypeForm(request.POST or None, addon=addon)
 
     elif section == 'media':
         previews = PreviewFormSet(request.POST or None, prefix='files',
             queryset=addon.get_previews())
+
+    elif section == 'details' and settings.REGION_STORES:
+        region_form = RegionForm(request.POST or None, product=addon)
 
     elif (section == 'admin' and
           not acl.action_allowed(request, 'Apps', 'Configure') and
@@ -945,7 +985,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
-            if form.is_valid() and (not previews or previews.is_valid()):
+            if (form.is_valid() and (not previews or previews.is_valid())
+                and (not region_form or region_form.is_valid())):
+
+                if region_form:
+                    region_form.save()
 
                 addon = form.save(addon)
 
@@ -991,7 +1035,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'cat_form': cat_form,
             'preview_form': previews,
             'valid_slug': valid_slug,
-            'device_type_form': device_type_form}
+            'device_type_form': device_type_form,
+            'region_form': region_form}
 
     return jingo.render(request,
                         'developers/apps/edit/%s.html' % section, data)

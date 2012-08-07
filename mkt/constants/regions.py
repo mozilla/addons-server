@@ -3,6 +3,8 @@ import sys
 
 from tower import ugettext_lazy as _lazy
 
+from mkt.constants import ratingsbodies
+
 
 class REGION(object):
     """
@@ -38,6 +40,16 @@ class REGION(object):
     adolescent = True
     mcc = None
     weight = 0
+    ratingsbodies = ()
+
+
+class FUTURE(REGION):
+    """
+    This is for when developers select "Other and new regions" from
+    the devhub. This lets us exclude them from new regions in the future.
+    """
+    id = 999
+    weight = -1
 
 
 class WORLDWIDE(REGION):
@@ -47,20 +59,54 @@ class WORLDWIDE(REGION):
     weight = -1
 
 
-class USA(REGION):
+class US(REGION):
     id = 2
     name = _lazy(u'United States')
-    slug = 'usa'
+    slug = 'us'
     mcc = 310
+    weight = 1
 
 
-class BRAZIL(REGION):
+class CA(REGION):
     id = 3
+    name = _lazy(u'Canada')
+    slug = 'ca'
+    default_currency = 'CAD'
+    mcc = 302
+
+
+class UK(REGION):
+    id = 4
+    name = _lazy(u'United Kingdom')
+    slug = 'uk'
+    default_currency = 'GBP'
+    mcc = 235
+
+
+class AU(REGION):
+    id = 5
+    name = _lazy(u'Australia')
+    slug = 'au'
+    default_currency = 'AUD'
+    mcc = 505
+
+
+class NZ(REGION):
+    id = 6
+    name = _lazy(u'New Zealand')
+    slug = 'nz'
+    default_currency = 'NZD'
+    mcc = 530
+
+
+class BR(REGION):
+    id = 7
     name = _lazy(u'Brazil')
-    slug = 'brazil'
+    slug = 'br'
     default_currency = 'BRL'
     default_language = 'pt-BR'
     mcc = 724
+    ratingsbodies = (ratingsbodies.DJCTQ,)
 
 
 # Create a list of tuples like so (in alphabetical order):
@@ -69,8 +115,25 @@ class BRAZIL(REGION):
 #      ('brazil', <class 'mkt.constants.regions.BRAZIL'>),
 #      ('usa', <class 'mkt.constants.regions.BRAZIL'>)]
 #
+
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),
                  key=lambda x: getattr(x, 'slug', None))
-REGIONS_CHOICES = sorted([(k.lower(), v) for k, v in DEFINED if v.id],
-                         key=lambda x: x[1].weight)
+REGIONS_CHOICES = (
+    [('worldwide', WORLDWIDE)]
+    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight > -1],
+             key=lambda x: x[1].weight, reverse=True)
+)
+
+BY_SLUG = sorted([v for k, v in DEFINED if v.id and v.weight > -1],
+                 key=lambda v: v.slug)
+REGIONS_CHOICES_SLUG = ([('worldwide', WORLDWIDE)] +
+                        [(v.slug, v) for v in BY_SLUG])
+REGIONS_CHOICES_ID = ([(WORLDWIDE.id, WORLDWIDE)] +
+                      [(v.id, v) for v in BY_SLUG])
+REGIONS_CHOICES_NAME = ([(WORLDWIDE.id, WORLDWIDE.name)] +
+                        [(v.id, v.name) for v in BY_SLUG])
+
 REGIONS_DICT = dict(REGIONS_CHOICES)
+REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
+
+REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys()[1:])

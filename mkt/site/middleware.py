@@ -68,6 +68,8 @@ class RequestCookiesMiddleware(object):
 
 class RedirectPrefixedURIMiddleware(object):
     """
+    Strip /<app>/ prefix from URLs.
+
     Redirect /<lang>/ URLs to ?lang=<lang> so `LocaleMiddleware`
     can then set a cookie.
 
@@ -77,20 +79,38 @@ class RedirectPrefixedURIMiddleware(object):
 
     def process_request(self, request):
         request.APP = amo.FIREFOX
-        lang, _, rest = Prefixer(request).split_path(request.path)
-        if lang.lower() in settings.LANGUAGE_URL_MAP:
-            # Strip /<lang> from URL.
-            new_path = request.get_full_path().lstrip('/').partition('/')[2]
-            if not new_path.startswith('/'):
-                new_path = '/' + new_path
-            # I can sleep better with a 302.
-            return redirect(urlparams(new_path, lang=lang.lower()))
 
-        region, _, rest = request.get_full_path().lstrip('/').partition('/')
+        path_ = request.get_full_path()
+        new_path = None
+        new_qs = {}
+
+        lang, app, rest = Prefixer(request).split_path(path_)
+
+        if app:
+            # Strip /<app> from URL.
+            new_path = rest
+
+        if lang:
+            # Strip /<lang> from URL.
+            if not new_path:
+                new_path = rest
+            new_qs['lang'] = lang.lower()
+
+        region, _, rest = path_.lstrip('/').partition('/')
         region = region.lower()
+
         if region in mkt.regions.REGIONS_DICT:
             # Strip /<region> from URL.
-            return redirect(urlparams('/' + rest, region=region))
+            if not new_path:
+                new_path = rest
+            new_qs['region'] = region
+
+        if new_path is not None:
+            if not new_path or new_path[0] != '/':
+                new_path = '/' + new_path
+            # TODO: Make this a 301 when we enable region stores in prod.
+            return redirect(urlparams(new_path, **new_qs))
+
 
 class LocaleMiddleware(object):
     """Figure out the user's locale and store it in a cookie."""
@@ -113,8 +133,7 @@ class LocaleMiddleware(object):
         tower.activate(request.LANG)
 
     def process_response(self, request, response):
-        if 'lang' in request.COOKIES:
-            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
 
 
@@ -162,8 +181,7 @@ class RegionMiddleware(object):
             request.set_cookie('region', current)
 
     def process_response(self, request, response):
-        if 'region' in request.COOKIES:
-            patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
 
 

@@ -7,12 +7,13 @@ from django.utils import translation
 import mock
 from nose.tools import eq_
 
+from amo.models import FakeEmail
 from amo.utils import send_mail
 from users.models import UserProfile, UserNotification
 import users.notifications
 
 
-class SendMailTest(test.TestCase):
+class TestSendMail(test.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -82,7 +83,7 @@ class SendMailTest(test.TestCase):
         eq_(len(mail.outbox), 1)
 
     def test_user_mandatory(self):
-        """ Make sure there's no unsubscribe link in mandatory emails. """
+        # Make sure there's no unsubscribe link in mandatory emails.
         user = UserProfile.objects.all()[0]
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
@@ -106,7 +107,7 @@ class SendMailTest(test.TestCase):
         UserNotification.objects.get_or_create(notification_id=n.id,
                 user=user, enabled=False)
 
-        # Confirm we're reading from the database
+        # Confirm we're reading from the database.
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
@@ -115,16 +116,24 @@ class SendMailTest(test.TestCase):
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 0)
 
-    def test_success(self):
-        to = 'nobody@mozilla.org'
-        settings.EMAIL_BLACKLIST = ()
-        success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False)
-
-        assert success
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    def test_success_real_mail(self):
+        assert send_mail('test subject', 'test body',
+                         recipient_list=['nobody@mozilla.org'],
+                         fail_silently=False)
         eq_(len(mail.outbox), 1)
-        assert mail.outbox[0].subject.find('test subject') == 0
-        assert mail.outbox[0].body.find('test body') == 0
+        eq_(mail.outbox[0].subject.find('test subject'), 0)
+        eq_(mail.outbox[0].body.find('test body'), 0)
+
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    def test_success_fake_mail(self):
+        assert send_mail('test subject', 'test body',
+                         recipient_list=['nobody@mozilla.org'],
+                         fail_silently=False)
+        eq_(len(mail.outbox), 0)
+        eq_(FakeEmail.objects.count(), 1)
+        eq_(FakeEmail.objects.get().message.endswith('test body'), True)
 
     @mock.patch('amo.utils.Context')
     def test_dont_localize(self, fake_Context):

@@ -345,11 +345,6 @@ h1 .num {
 
 .support {
     font-size: 14px;
-    .average-rating {
-        .fat-button;
-        .width(4);
-        margin: 10px 0;
-    }
     .overall-reviews {
         text-align: left;
         &:hover {
@@ -359,14 +354,14 @@ h1 .num {
             }
         }
     }
-    a, time {
-        display: inline-block;
-        padding: 5px 20px 5px 0;
-    }
     ul {
         margin: 0;
         list-style-type: none;
         padding: 0;
+        a, time {
+            display: inline-block;
+            padding: 5px 20px 5px 0;
+        }
     }
     li {
         .width(7);
@@ -436,8 +431,10 @@ h1 .num {
 
 // Anything larger than mobile.
 @media (min-width: @4col) {
-    .detail #reviews {
-        margin: 40px 0 20px;
+    .detail {
+        #reviews-detail, #reviews {
+            margin: 40px 0;
+        }
     }
     .support li {
         margin-top: 20px;
@@ -453,11 +450,148 @@ h1 .num {
             top: 8px;
         }
     }
+
+    #reviews-detail {
+        min-height: 290px;
+        margin: 40px 0 20px;
+
+        .review-stars-header {
+            clear: right;
+            float: left;
+
+            h3 {
+                display: inline;
+                width: 100%;
+            }
+            .average-rating {
+                bottom: 2px;
+                left: 8px;
+                span {
+                    font-weight: bold;
+                    margin-left: 8px;
+                }
+            }
+        }
+        .review-stars {
+            clear: both;
+            float: left;
+            width: 35%;
+        }
+        a.average-rating {
+            &:after {
+                display: none;
+            }
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .grouped-ratings {
+            .border-box;
+            display: block;
+            min-height: 130px;
+            margin-top: 10px;
+            padding: 15px 15px 0;
+            &:before {
+                left: 123px;
+            }
+        }
+        .grouped-ratings li {
+            margin: 0;
+            min-height: 0;
+            width: auto;
+        }
+        .add-edit-review {
+            .fat-button;
+            clear: left;
+            margin-top: 14px;
+            padding: 10px 15px;
+            text-align: left;
+            &:after {
+                top: 14px;
+                right: 15px;
+            }
+        }
+        .reviews-sidebar {
+            float: right;
+            margin-top: 5px;
+            width: 60%;
+        }
+        .latest-reviews-list {
+            border-top: 1px solid @light-gray;
+            margin: 0;
+            padding: 0;
+            li {
+                font-size: 13px;
+                margin: 0;
+                min-height: 0;
+            }
+        }
+        li.review {
+            .border-box;
+            border-width: 1px 0;
+            border-top: 1px solid @white;
+            border-bottom: 1px solid @light-gray;
+            width: 100%;
+            li + li:before {
+                content: "\00a0\00a0\2022\00a0\00a0";
+            }
+        }
+        .actions {
+            li {
+                width: auto;
+            }
+            a {
+                padding: 0;
+            }
+        }
+        .timestamp time, a.timestamp {
+            display: block;
+            padding: 0;
+        }
+        .view-more-reviews {
+            border-top: 1px solid @white;
+            clear: both;
+            font-weight: bold;
+            text-align: right;
+            a {
+                display: block;
+                padding: 10px 30px 10px 10px;
+                &:after {
+                    top: 13px;
+                    right: 10px;
+                }
+            }
+        }
+        .replies {
+            display: none;
+        }
+    }
+    .menu li {
+        width: auto;
+        min-height: 0;
+        margin-bottom: 0;
+        float: none;
+    }
 }
 
-@media (max-width: @7col) {
+@media (min-width: @4col) and (max-width: @10col) {
     .support li {
         .width(2);
+    }
+
+    #reviews-detail {
+        .review-stars-header {
+            h3 {
+                float: left;
+            }
+            .overall-reviews {
+                float: left;
+                left: -8px;
+            }
+        }
+        .grouped-ratings:before {
+            left: 37px;
+        }
     }
 }
 
@@ -637,13 +771,16 @@ h1 .num {
     .support {
         .not-rated,
         .average-rating {
+            .fat-button;
             margin: 20px 0 10px;
+            text-align: left;
+            width: 100%;
+        }
+        .latest-reviews-list {
+            display: none;
         }
         .not-rated {
             color: @medium-gray;
-        }
-        .average-rating {
-            width: 100%;
         }
         a {
             .fat-button;

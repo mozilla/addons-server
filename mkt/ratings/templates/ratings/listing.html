@@ -14,43 +14,25 @@
 {% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None, _('Reviews'))]) }}
-  <section id="review-listing">
-
+  {{ mkt_breadcrumbs(product, [(None if page == 'list' else product.get_ratings_url('list'),
+                                _('Reviews'))]) }}
   {% block review_header %}
-    {{ rating_header(product, title) }}
-    {% if product.can_review(amo_user) %}
-    <p id="add-review">
-      <a href="{{ product.get_ratings_url('add') }}" class="button fat">
-        {{ _('Add a review') if not has_review else _('Edit review') }}
-      </a></p>
-    {% endif %}
-<!--
-        {% if page == 'list' %}
-          <img src="{{ product.get_icon_url(64) }}">
-          <h1>{{ title }}</h1>
-        {% elif reply %}
-          {# L10n: {0} is a developer's name. #}
-          <h1>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h1>
-        {% elif ratings.object_list %}
-          <h1>
-            {% trans cnt=ratings.object_list|length, addon=product.name,
-                     user=ratings.object_list[0].user.name %}
-              Review for {{ addon }} by {{ user }}
-            {% pluralize %}
-              Reviews for {{ addon }} by {{ user }}
-            {% endtrans %}
-          </h1>
-        {% else %}
-          <h1>{{ _('No reviews found.') }}</h1>
-        {% endif %}
--->
+    <section id="review-listing">
+      {{ rating_header(product, title) }}
+      {% if product.can_review(amo_user) %}
+      <p id="add-review">
+        <a href="{{ product.get_ratings_url('add') }}" class="button fat">
+          {{ _('Add a review') if not has_review else _('Edit review') }}
+        </a></p>
+      {% endif %}
+      {% if reply %}
+        <h3>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h3>
+      {% endif %}
+    </section>
   {% endblock %}
 
-  <section class="reviews c" id="reviews">
-    {% if ratings.object_list %}
-      {% include 'ratings/edit.html' %}
-      {% include 'ratings/reply.html' %}
+  <section class="reviews{{ ' replies' if reply }} c" id="reviews">
+    {% if ratings.object_list or reply %}
       {{ rating_flag() }}
       <div class="c" id="reviews-info">
       </div>
@@ -59,12 +41,17 @@
         {% for review in ratings.object_list %}
           {% include 'ratings/rating.html' %}
         {% endfor %}
+        {% if reply %}
+          {% with review=reply.reply_to %}
+            {% include 'ratings/rating.html' %}
+          {% endwith %}
+          {% with review=reply %}
+            {% include 'ratings/rating.html' %}
+          {% endwith %}
+        {% endif %}
       </ul>
-      {% if ratings.object_list|length > 5 %}
-        <a href="{{ ratings.next_page_number() if ratings.has_next() else '#' }}" class="load-more post">{{ _('More reviews') }}</a>
-      {% endif %}
       {{ ratings|impala_paginator }}
-    {% else %}
+    {% elif not reply %}
       {% if product.can_review(amo_user) %}
         <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">
           {{ _('Be the first to write a review.') }}</a><p>

@@ -5,7 +5,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, AddonDeviceType, Category, DeviceType
+from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -86,7 +86,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         a = item.find('h3 a')
         eq_(a.text(), unicode(self.webapp.name))
         eq_(a.attr('href'),
-            urlparams(self.webapp.get_url_path(), src='search'))
+            urlparams(self.webapp.get_url_path(), src='mkt-search'))
 
     def test_results_downloads(self):
         for sort in ('', 'downloads', 'created'):
@@ -191,12 +191,12 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         self._generate(3)
         for name, idx in DEVICE_CHOICES_IDS.iteritems():
             AddonDeviceType.objects.create(addon=self.apps[idx],
-                device_type=DeviceType.objects.create(name=name, id=idx))
+                device_type=idx)
 
         # Make an app have compatibility for every device.
         for x in xrange(1, 4):
             AddonDeviceType.objects.create(addon=self.apps[0],
-                                           device_type_id=x)
+                                           device_type=x)
 
     def check_device_filter(self, device, selected):
         self.setup_devices()
@@ -270,7 +270,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         r = self.client.get(self.url, {'price': 'free'})
         eq_(r.status_code, 200)
         assert 'price' not in dict(r.context['sort_opts']), (
-            'Unexpected price sort')
+            'Unexpected price filter')
 
     def test_paid_price_sort(self):
         for url in [self.url, reverse('browse.apps')]:
@@ -279,9 +279,11 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
     def test_redirect_free_price_sort(self):
         for url in [self.url, reverse('browse.apps')]:
-            # `sort=price` should be removed if `price=free` is in querystring.
+            # `sort=price` should be changed to `sort=downloads` if
+            # `price=free` is in querystring.
             r = self.client.get(url, {'price': 'free', 'sort': 'price'})
-            self.assertRedirects(r, urlparams(url, price='free'))
+            self.assert3xx(r, urlparams(url, price='free', sort='downloads'),
+                           302)
 
 
 class SuggestionsTests(TestAjaxSearch):

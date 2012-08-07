@@ -13,17 +13,18 @@ $.fn.ratingwidget = function() {
                 e.click();
                 showStars(n);
                 rating = n;
-            };
-        for (var i=1; i<=5; i++) {
-            rs += ('<label data-stars="' + i + '">' +
-                   format(ngettext('{0} star', '{0} stars', i), [i]) +
-                   '<input type="radio" name="rating" value="' + i + '"></label>');
-        }
-        var rating = 0;
+            },
+            rating = null;
         // Existing rating found so initialize the widget.
         if ($('option[selected]', $el).length) {
-            rating = $el.val();
-            showStars(rating);
+            var temp_rating = $el.val();
+            setStars(temp_rating);
+            rating = parseInt(temp_rating);
+        }
+        for (var i=1; i<=5; i++) {
+            var checked = rating === i ? ' checked' : '';
+            rs += format('<label data-stars="{0}">{1}<input type="radio" name="rating"{2} value="{3}"></label>',
+                         [i, format(ngettext('{0} star', '{0} stars', i), [i]), checked, i]);
         }
         $widget.click(function(evt) {
             var t = $(evt.target);

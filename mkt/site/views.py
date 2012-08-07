@@ -1,5 +1,7 @@
 import json
+import logging
 import os
+import subprocess
 
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
@@ -7,8 +9,11 @@ from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 
+from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
 import jingo
+from jingo import render_to_string
+import jingo_minify
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 from amo.context_processors import get_collect_timings
@@ -23,6 +28,9 @@ def handler404(request):
         return api.views.handler404(request)
     else:
         return jingo.render(request, 'site/404.html', status=404)
+
+
+log = logging.getLogger('z.mkt.site')
 
 
 def handler500(request):
@@ -102,5 +110,47 @@ def mozmarket_js(request):
         with open(os.path.join(settings.ROOT,
                                'vendor', 'js', path), 'r') as fp:
             vendor_js.append((lib, fp.read()))
-    return jingo.render(request, 'site/mozmarket.js', {'vendor_js': vendor_js},
-                        content_type='text/javascript')
+    js = render_to_string(request, 'site/mozmarket.js',
+                          {'vendor_js': vendor_js})
+    if settings.MINIFY_MOZMARKET:
+        js = minify_js(js)
+    return HttpResponse(js, content_type='text/javascript')
+
+
+@statsd.timer('mkt.mozmarket.minify')
+def minify_js(js):
+    if settings.UGLIFY_BIN:
+        log.info('minifying JS with uglify')
+        return _minify_js_with_uglify(js)
+    else:
+        log.info('minifying JS with YUI')
+        return _minify_js_with_yui(js)
+
+
+def _minify_js_with_uglify(js):
+    sp = _open_pipe([settings.UGLIFY_BIN])
+    js, err = sp.communicate(js)
+    if sp.returncode != 0:
+        raise ValueError('Compressing JS with uglify failed; error: %s'
+                         % err.strip())
+    return js
+
+
+def _minify_js_with_yui(js):
+    jar = os.path.join(os.path.dirname(jingo_minify.__file__), 'bin',
+                       'yuicompressor-2.4.4.jar')
+    if not os.path.exists(jar):
+        raise ValueError('Could not find YUI compressor; tried %r' % jar)
+    sp = _open_pipe([settings.JAVA_BIN, '-jar', jar, '--type', 'js',
+                     '--charset', 'utf8'])
+    js, err = sp.communicate(js)
+    if sp.returncode != 0:
+        raise ValueError('Compressing JS with YUI failed; error: %s'
+                         % err.strip())
+    return js
+
+
+def _open_pipe(cmd):
+    return subprocess.Popen(cmd,
+                            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)

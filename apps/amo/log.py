@@ -488,6 +488,22 @@ class REREVIEW_FREE_TO_PAID(_LOG):
     review_queue = True
 
 
+class REREVIEW_CLEARED(_LOG):
+    id = 72
+    format = _(u'Re-review cleared for {addon}.')
+    short = _(u'Re-review cleared')
+    keep = True
+    review_queue = True
+
+
+class ESCALATE_MANUAL(_LOG):
+    id = 73
+    format = _(u'{addon} escalated by reviewer.')
+    short = _(u'Reviewer escalation')
+    keep = True
+    review_queue = True
+
+
 # TODO(robhudson): Escalation log for editor escalation..
 
 

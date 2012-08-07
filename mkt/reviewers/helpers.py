@@ -2,11 +2,11 @@ import jinja2
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+from access import acl
 from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
 from mkt.developers.helpers import mkt_page_title
-from .views import queue_counts
 
 
 @register.function
@@ -26,7 +26,8 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
     if queue:
         queues = {'pending': _('Apps'),
                   'rereview': _('Re-reviews'),
-                  'escalated': _('Escalations')}
+                  'escalated': _('Escalations'),
+                  'moderated': _('Moderated Reviews')}
 
         if items:
             url = reverse('reviewers.apps.queue_%s' % queue)
@@ -58,13 +59,22 @@ def queue_tabnav(context):
 
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
-    counts = queue_counts()
-    return [
+    counts = context['queue_counts']
+    rv = [
         ('pending', 'queue_pending',
          _('Apps ({0})', counts['pending']).format(counts['pending'])),
         ('rereview', 'queue_rereview',
          _('Re-reviews ({0})', counts['rereview']).format(counts['rereview'])),
-        ('escalated', 'queue_escalated',
-         _('Escalations ({0})',
-           counts['escalated']).format(counts['escalated'])),
     ]
+    if acl.action_allowed(context['request'], 'Apps', 'ReviewEscalated'):
+        rv.append(
+            ('escalated', 'queue_escalated',
+             _('Escalations ({0})',
+               counts['escalated']).format(counts['escalated']))
+        )
+    rv.append(
+        ('moderated', 'queue_moderated',
+         _('Moderated Reviews ({0})',
+           counts['moderated']).format(counts['moderated'])),
+    )
+    return rv

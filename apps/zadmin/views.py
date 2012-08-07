@@ -213,7 +213,9 @@ def find_files(job):
                         versions__apps__application=job.application.id,
                         versions__apps__max__version_int__gte=current,
                         versions__apps__max__version_int__lt=target)
-                           .exclude(type=amo.ADDON_LPAPP)  # no langpacks
+                           # Exclude lang packs and themes.
+                           .exclude(type__in=[amo.ADDON_LPAPP,
+                                              amo.ADDON_THEME])
                            .no_transforms().values_list("pk", flat=True)
                            .distinct())
     for pks in chunked(addons, 100):
@@ -657,7 +659,11 @@ def addon_search(request):
         if q.isdigit():
             qs = Addon.objects.filter(id=int(q))
         else:
-            qs = Addon.search().query(name__text=q.lower())[:100]
+            qs = (Addon.search()
+                       .query(name__text=q.lower())
+                       .filter(type__in=amo.MARKETPLACE_TYPES if
+                                        settings.MARKETPLACE else
+                                        amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs

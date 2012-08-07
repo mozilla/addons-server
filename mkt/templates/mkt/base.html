@@ -37,7 +37,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+  <body class="html-{{ DIR }} {{ CARRIER }} {% block bodyclass %}{% endblock %}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
@@ -93,6 +93,9 @@
 
     {% include 'purchase/start.html' %}
     {% include 'purchase/message.html' %}
+    {% include 'ratings/edit.html' %}
+    {% include 'ratings/reply.html' %}
+    {% include 'ratings/edit_reply.html' %}
 
     <script type="text/template" id="noApps">
       <div class="noApps">You need to be using<br>

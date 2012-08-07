@@ -16,7 +16,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from amo.tests import check_links, formset, initial
+from amo.tests import app_factory, check_links, formset, initial
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
@@ -877,6 +877,21 @@ class TestModeratedQueue(QueueTest):
 
     def test_queue_count(self):
         self._test_queue_count(4, 'Moderated Review', 1)
+
+    def test_queue_count_w_webapp_reviews(self):
+        Addon.objects.update(type=amo.ADDON_WEBAPP)
+        self._test_queue_count(4, 'Moderated Reviews', 0)
+
+    def test_queue_no_webapp_reviews(self):
+        app = app_factory()
+        user = UserProfile.objects.get(email='clouserw@gmail.com')
+        review = Review.objects.create(addon=app, editorreview=True, user=user,
+                                       body='bad', rating=4)
+        ReviewFlag.objects.create(review=review, flag=ReviewFlag.SPAM,
+                                  user=user)
+        res = self.client.get(self.url)
+        assert review not in res.context['page'].object_list, (
+            u'Found a review for a webapp we should not have.')
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Moderated Reviews', None)])

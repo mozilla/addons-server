@@ -6,11 +6,9 @@
     </div>
     <ul class="content">
       {% for product in products %}
-        {% if not preview or preview.filetype != 'video/webm' %}
-          <li>
-            {{ market_tile(product) }}
-          </li>
-        {% endif %}
+        <li>
+          {{ market_tile(product, src=src) }}
+        </li>
       {% endfor %}
     </ul>
   </div>

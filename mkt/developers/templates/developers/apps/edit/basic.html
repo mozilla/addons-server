@@ -56,6 +56,7 @@
             {% if editable %}
               <input type="text" name="manifest_url"{% if not action_allowed('Admin', '%') %} readonly{% endif %} value="{{ addon.manifest_url }}">
               {{ form.manifest_url.errors }}
+              <a class="button" data-url="{{ url('mkt.developers.apps.refresh_manifest', valid_slug) }}">{{ _('Refresh') }}</a>
               <p class="note">
                 {% trans email='app-reviews@mozilla.org' %}
                   Manifest URLs cannot be changed after your app has been

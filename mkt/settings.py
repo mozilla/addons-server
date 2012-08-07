@@ -27,7 +27,18 @@ ENGAGE_ROBOTS = True
 
 # NOTE: If you want to disable this, you have to do it in this file right here
 # since we do a lot of conditional stuff below.
-REGION_STORES = False
+REGION_STORES = True
+
+# Support carrier URLs that prefix all other URLs, such as /telefonica/.
+# NOTE: To set this to False, you need to do so in this file or copy over
+# the conditional middleware removal below.
+USE_CARRIER_URLS = True
+
+# List of URL prefixes that will be interpretted as custom carrier stores.
+# When a URL is prefixed with one of these values, the value will be
+# available in mkt.carriers.get_carrier() and will be hidden from all other
+# url resolvers.
+CARRIER_URLS = ['telefonica']
 
 MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
@@ -89,6 +100,12 @@ if not REGION_STORES:
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('cake.middleware.CookieCleaningMiddleware')
 MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+if USE_CARRIER_URLS:
+    MIDDLEWARE_CLASSES.insert(0,
+        # This needs to come before CommonMiddleware so that APPEND_SLASH
+        # is handled.
+        'mkt.carriers.middleware.CarrierURLMiddleware',
+    )
 if REGION_STORES:
     MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
     MIDDLEWARE_CLASSES += [
@@ -116,6 +133,10 @@ if REGION_STORES:
 TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.site.context_processors.global_settings',
 ]
+if USE_CARRIER_URLS:
+    TEMPLATE_CONTEXT_PROCESSORS.extend([
+        'mkt.carriers.context_processors.carrier_data',
+    ])
 
 # Tests.
 NOSE_ARGS = [
@@ -287,3 +308,11 @@ APPCACHE_MEDIA_DEBUG.extend(asset_bundles.JS['mkt/consumer'])
 
 # Allowed `installs_allowed_from` values for manifest validator.
 VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org']
+
+# All JS vendor libraries in this list will be excluded from mozmarket.js.
+# For example, if receiptverifier is broken and you need to disable it, add
+# 'receiptverifier' to the list. See also mkt/site/views.py.
+MOZMARKET_VENDOR_EXCLUDE = []
+
+# When True, mozmarket.js will be served as minified JavaScript.
+MINIFY_MOZMARKET = True

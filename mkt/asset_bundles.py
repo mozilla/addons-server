@@ -68,6 +68,7 @@ CSS = {
     ),
     'mkt/reviewers': (
         'css/mkt/buttons.less',
+        'css/mkt/ratings.less',
         'css/mkt/reviewers.less',
     ),
     'mkt/consumer': (
@@ -133,7 +134,7 @@ JS = {
         'js/amo2009/addons.js',
         'js/common/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
-        'js/impala/capabilities.js',
+        'js/mkt/capabilities.js',
         'js/lib/format.js',
         'js/lib/jquery.cookie.js',
         'js/zamboni/storage.js',
@@ -178,6 +179,7 @@ JS = {
         # New stuff.
         'js/devreg/devhub.js',
         'js/devreg/submit-details.js',
+        'js/devreg/edit.js',
 
         # Specific stuff for making payments nicer.
         'js/devreg/paypal.js',
@@ -197,6 +199,7 @@ JS = {
         'js/zamboni/truncation.js',
         'js/common/keys.js',
         'js/mkt/capabilities.js',
+        'js/impala/serializers.js',
         'js/mkt/fragments.js',
         'js/mkt/recaptcha.js',
         'js/mkt/overlay.js',
@@ -209,7 +212,6 @@ JS = {
         'js/mkt/apps.js',
         'js/zamboni/outgoing_links.js',
         'js/common/upload-image.js',
-        'js/impala/serializers.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
@@ -238,6 +240,7 @@ JS = {
         'js/lib/stick.js',
     ),
     'mkt/reviewers': (
+        'js/mkt/utils.js',
         'js/mkt/apps.js',
         'js/mkt/install.js',
         'js/mkt/buttons.js',

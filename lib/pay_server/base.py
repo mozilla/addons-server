@@ -34,12 +34,20 @@ mapping = {
     'buyer_paypal': ['paypal', 'buyer', ['get', 'post', 'patch', 'delete']],
     'seller': ['generic', 'seller', ['get', 'post']],
     'seller_paypal': ['paypal', 'seller', ['get', 'post', 'patch']],
-    # PayPal API's
+    'seller_bluevia': ['bluevia', 'seller', ['get', 'post', 'patch']],
+    # BlueVia APIs
+    'prepare_bluevia_pay': ['bluevia', 'prepare-pay', ['post']],
+    'verify_bluevia_jwt': ['bluevia', 'verify-jwt', ['post']],
+    # PayPal APIs
+    'account_check': ['paypal', 'account-check', ['post']],
     'ipn': ['paypal', 'ipn', ['post']],
     'preapproval': ['paypal', 'preapproval', ['post', 'put', 'delete']],
     'pay': ['paypal', 'pay', ['post']],
     'pay_check': ['paypal', 'pay-check', ['post']],
     'permission_url': ['paypal', 'permission-url', ['post']],
+    'permission_token': ['paypal', 'permission-token', ['post']],
+    'personal_basic': ['paypal', 'personal-basic', ['post']],
+    'personal_advanced': ['paypal', 'personal-advanced', ['post']],
     'refund': ['paypal', 'refund', ['post']],
 }
 
@@ -111,7 +119,8 @@ class Client(object):
             except:
                 log.error('Failed to parse error: %s' % result.text)
             code = res.get('error_code', 0)
-            raise SolitudeError(lookup(code), code=code)
+            raise SolitudeError(lookup(code, res.get('error_data', {})),
+                                code=code)
 
     def __getattr__(self, attr):
         try:

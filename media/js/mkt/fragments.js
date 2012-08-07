@@ -132,6 +132,7 @@ function fragmentFilter(el) {
             page.html(content);
             $('html, body').scrollTop(opts.scrollTop || 0);
             page.trigger('fragmentloaded', [href, popped]);
+            page.trigger('postfragmentloaded', [href, popped]);
 
             // We so sneaky.
             var $title = page.find('title');
@@ -194,12 +195,14 @@ function fragmentFilter(el) {
             history.replaceState({path: path}, false, path);
             fragmentCache[path] = page.html();
             page.trigger('fragmentloaded', [path, false]);
+            page.trigger('postfragmentloaded', [path, false]);
         });
         console.log("fragments enabled");
     } else {
         console.warn("fragments not enabled!!");
         $(function() {
             page.trigger('fragmentloaded');
+            page.trigger('postfragmentloaded');
         });
     }
 })(z.page, fragmentFilter);

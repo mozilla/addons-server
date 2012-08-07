@@ -10,15 +10,16 @@ from tastypie.serializers import Serializer
 from tastypie.resources import ALL_WITH_RELATIONS
 
 from addons.forms import CategoryFormSet, DeviceTypeForm
-from addons.models import AddonUser, Category, DeviceType, Preview
+from addons.models import AddonUser, Category, Preview
 import amo
 from amo.decorators import write
 from amo.utils import no_translation
+from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
 from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
-from mkt.api.forms import CategoryForm, UploadForm
+from mkt.api.forms import CategoryForm, UploadForm, StatusForm
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
 from mkt.developers.forms import PreviewForm
@@ -130,8 +131,8 @@ class AppResource(MarketplaceResource):
 
     def devices(self, data):
         with no_translation():
-            names = dict([(str(n.name).lower(), n.pk)
-                          for n in DeviceType.objects.all()])
+            names = dict([(n.class_name, n.id)
+                          for n in DEVICE_TYPES.values()])
         filtered = [names.get(n, n) for n in data.get('device_types', [])]
         return {'device_types': filtered}
 
@@ -185,6 +186,54 @@ class AppResource(MarketplaceResource):
         return bundle
 
 
+class StatusResource(MarketplaceResource):
+
+    class Meta:
+        queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
+        fields = ['status', 'disabled_by_user']
+        list_allowed_methods = []
+        allowed_methods = ['patch', 'get']
+        always_return_data = True
+        authentication = MarketplaceAuthentication()
+        authorization = AppOwnerAuthorization()
+        resource_name = 'status'
+        serializer = Serializer(formats=['json'])
+
+    @write
+    @transaction.commit_on_success
+    def obj_update(self, bundle, request, **kwargs):
+        try:
+            obj = self.get_object_list(bundle.request).get(**kwargs)
+        except Addon.DoesNotExist:
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        form = StatusForm(bundle.data, instance=obj)
+        if not form.is_valid():
+            raise self.form_errors(form)
+
+        form.save()
+        log.info('App status updated: %s' % obj.pk)
+        bundle.obj = obj
+        return bundle
+
+    def obj_get(self, request=None, **kwargs):
+        obj = super(StatusResource, self).obj_get(request=request, **kwargs)
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        log.info('App status retreived: %s' % obj.pk)
+        return obj
+
+    def dehydrate_status(self, bundle):
+        return amo.STATUS_CHOICES_API[int(bundle.data['status'])]
+
+    def hydrate_status(self, bundle):
+        return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
+
+
 class CategoryResource(MarketplaceResource):
 
     class Meta:
@@ -196,23 +245,6 @@ class CategoryResource(MarketplaceResource):
         always_return_data = True
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
-
-
-class DeviceTypeResource(MarketplaceResource):
-
-    class Meta:
-        queryset = DeviceType.objects.all()
-        list_allowed_methods = ['get']
-        allowed_methods = ['get']
-        fields = ['name', 'id']
-        always_return_data = True
-        resource_name = 'devicetype'
-        serializer = Serializer(formats=['json'])
-
-    def dehydrate(self, bundle):
-        with no_translation():
-            bundle.data['name'] = str(bundle.obj.name).lower()
-        return bundle
 
 
 class PreviewResource(MarketplaceResource):

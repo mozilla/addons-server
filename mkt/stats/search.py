@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db.models import Count, Q, Sum
 
 import elasticutils
@@ -21,7 +23,7 @@ def get_finance_total(qs, addon, field=None, **kwargs):
         q = handle_kwargs(q, field, kwargs)
 
     revenue = (qs.values('addon').filter(q, refund=None, **kwargs).
-               annotate(revenue=Sum('amount')))
+               annotate(revenue=Sum('price_tier__price')))
     sales = (qs.values('addon').filter(q, refund=None, **kwargs).
              annotate(sales=Count('id')))
     refunds = (qs.filter(q, refund__isnull=False, **kwargs).
@@ -37,6 +39,15 @@ def get_finance_total(qs, addon, field=None, **kwargs):
         if kwargs_copy[field] == None:
             kwargs_copy[field] = ''
         document[field] = kwargs_copy[field]
+
+        # Non-USD-normalized revenue, calculated from currency's amount rather
+        # than price tier.
+        if field == 'currency':
+            document['revenue_non_normalized'] = cut(qs.values('addon')
+                .filter(q, refund=None, **kwargs)
+                .annotate(revenue=Sum('amount'))
+                [0]['revenue'] if revenue.count() else 0)
+
     return document
 
 
@@ -52,7 +63,7 @@ def get_finance_total_inapp(qs, addon, inapp_name='', field=None, **kwargs):
 
     revenue = (qs.filter(q, contribution__refund=None, **kwargs).
                values('config__addon').annotate(
-               revenue=Sum('contribution__amount')))
+               revenue=Sum('contribution__price_tier__price')))
     sales = (qs.filter(q, contribution__refund=None, **kwargs).
              values('config__addon').
              annotate(sales=Count('id')))
@@ -70,6 +81,15 @@ def get_finance_total_inapp(qs, addon, inapp_name='', field=None, **kwargs):
         if kwargs_copy[field] == None:
             kwargs_copy[field] = ''
         document[field] = kwargs_copy[field]
+
+        # Non-USD-normalized revenue, calculated from currency's amount rather
+        # than price tier.
+        if field == 'currency':
+            document['revenue_non_normalized'] = cut(qs.values('config__addon')
+                .filter(q, contribution__refund=None, **kwargs)
+                .annotate(revenue=Sum('contribution__amount'))
+            [0]['revenue'] if revenue.count() else 0)
+
     return document
 
 
@@ -90,13 +110,15 @@ def get_finance_daily(contribution):
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).count() or 0,
+        # TODO: non-USD-normalized revenue (daily_by_currency)?
         'revenue': cut(Contribution.objects.filter(
             addon__id=addon_id,
             refund=None,
             type=amo.CONTRIB_PURCHASE,
             created__year=date.year,
             created__month=date.month,
-            created__day=date.day).aggregate(Sum('amount'))['amount__sum']
+            created__day=date.day)
+            .aggregate(revenue=Sum('price_tier__price'))['revenue']
             or 0),
         'refunds': Contribution.objects.filter(
             addon__id=addon_id,
@@ -126,14 +148,15 @@ def get_finance_daily_inapp(payment):
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).count() or 0,
+        # TODO: non-USD-normalized revenue (daily_inapp_by_currency)?
         'revenue': cut(InappPayment.objects.filter(
             config__addon__id=addon_id,
             contribution__refund=None,
             contribution__type=amo.CONTRIB_PURCHASE,
             created__year=date.year,
             created__month=date.month,
-            created__day=date.day).aggregate(
-            Sum('contribution__amount'))['contribution__amount__sum']
+            created__day=date.day)
+            .aggregate(rev=Sum('contribution__price_tier__price'))['rev']
             or 0),
         'refunds': InappPayment.objects.filter(
             contribution__addon__id=addon_id,
@@ -180,18 +203,18 @@ def setup_mkt_indexes():
                 'date': {'format': 'dateOptionalTime',
                          'type': 'date'},
                 'count': {'type': 'long'},
+                'revenue': {'type': 'double'},
+
+                # Try to tell ES not to 'analyze' the field to querying with
+                # hyphens and lowercase letters.
+                'currency': {'type': 'string',
+                             'index': 'not_analyzed'},
+                'source': {'type': 'string',
+                           'index': 'not_analyzed'},
+                'inapp': {'type': 'string',
+                          'index': 'not_analyzed'}
             }
         }
-
-        # Try to tell ES not to 'analyze' the field to querying with hyphens
-        # and lowercase letters.
-        if model == Contribution or model == InappPayment:
-            mapping['properties']['currency'] = {'type': 'string',
-                                                 'index': 'not_analyzed'}
-            mapping['properties']['source'] = {'type': 'string',
-                                               'index': 'not_analyzed'}
-            mapping['properties']['inapp'] = {'type': 'string',
-                                              'index': 'not_analyzed'}
 
         es.put_mapping(model._meta.db_table, mapping,
                        model._get_index())
@@ -201,7 +224,8 @@ def cut(revenue):
     """
     Takes away Marketplace's cut from developers' revenue.
     """
-    return round(float(revenue) * MKT_CUT, 2)
+    return Decimal(str(round(Decimal(str(revenue)) *
+                   Decimal(str(MKT_CUT)), 2)))
 
 
 def handle_kwargs(q, field, kwargs, join_field=None):

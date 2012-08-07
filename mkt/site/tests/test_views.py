@@ -74,17 +74,32 @@ class TestMozmarketJS(amo.tests.TestCase):
         return self.client.get(reverse('site.mozmarket_js'))
 
     @mock.patch.object(settings, 'SITE_URL', 'https://secure-mkt.com/')
+    @mock.patch.object(settings, 'MINIFY_MOZMARKET', False)
     def test_render(self):
         resp = self.render()
         self.assertContains(resp, "var server = 'https://secure-mkt.com/'")
         eq_(resp['Content-Type'], 'text/javascript')
 
+    @mock.patch.object(settings, 'SITE_URL', 'https://secure-mkt.com/')
+    @mock.patch.object(settings, 'MINIFY_MOZMARKET', True)
+    def test_minify(self):
+        resp = self.render()
+        # Check for no space after equal sign.
+        self.assertContains(resp, '="https://secure-mkt.com/"')
+
+    @mock.patch.object(settings, 'MINIFY_MOZMARKET', True)
+    @mock.patch.object(settings, 'UGLIFY_BIN', None)
+    def test_minify_with_yui(self):
+        resp = self.render()  # no errors
+
+    @mock.patch.object(settings, 'MINIFY_MOZMARKET', False)
     def test_receiptverifier(self):
         resp = self.render()
         self.assertContains(resp, 'exports.receipts.Verifier')
 
     @mock.patch.object(settings, 'MOZMARKET_VENDOR_EXCLUDE',
                        ['receiptverifier'])
+    @mock.patch.object(settings, 'MINIFY_MOZMARKET', False)
     def test_exclude(self):
         resp = self.render()
         self.assertNotContains(resp, 'exports.receipts.Verifier')

@@ -26,7 +26,7 @@
     </div>
   </section>
   <section class="featured full slider">
-    {{ featured|promo_slider(feature=True) }}
+    {{ featured|promo_slider(feature=True, src='mkt-home') }}
   </section>
   {% if popular %}
     <section class="popular tabbed narrow full">
@@ -44,7 +44,7 @@
       </div>
     </section>
     <section data-group="popular" data-shown class="popular grid full">
-      {{ popular|promo_grid }}
+      {{ popular|promo_grid(src='mkt-home') }}
     </section>
     <section data-group="popular" data-shown class="narrow popular view-more full">
       <div>
@@ -57,7 +57,7 @@
         {{ _('New') }}</a></h2>
     </section>
     <section data-group="new" class="narrow popular grid full">
-      {{ latest|promo_grid }}
+      {{ latest|promo_grid(src='mkt-home') }}
     </section>
     <section data-group="new" class="narrow popular view-more full">
       <div>

@@ -12,7 +12,6 @@
   <p>
     <label>Status:</label> {{ form.status }}<br>
     <label>Highest:</label> {{ form.highest_status }}<br>
-    <label>Outstanding:</label> {{ form.outstanding }}<br>
   </p>
   {% if versions %}
   <h3>Versions &amp; Files</h3>
@@ -22,7 +21,6 @@
           <th>Date</th>
           <th>Version ID</th>
           <th>File ID</th>
-          <th>Platform</th>
           <th>Status</th>
           <th>Hash</th>
           <th>Copied</th>
@@ -32,7 +30,29 @@
       {% for v in versions %}
         <tr>
           <td>{{ v.created|datetime }}</td>
-          <td><a href="{{ url('editors.review', addon.slug) }}" title="{{ v.version }}">{{ v.id }}</a></td>
+          <td><a href="{{ url('reviewers.apps.review', addon.app_slug) }}" title="{{ v.version }}">{{ v.id }}</a></td>
+          {% with files = file_map.get(v.id, []) %}
+            {% if files %}
+              {% for file in files %}
+                {% if not loop.first %}</tr><tr><td colspan="2">{% endif %}
+                <td>{{ file.id }} - {{ file.filename }}</td>
+                <td>
+                  {{ form_map[file.id].status }}
+                  {% for hidden in form_map[file.id].hidden_fields() %}
+                    {{ hidden }}
+                  {% endfor %}
+                </td>
+                <td><span title="{{ file.hash }}">{{ file.hash[:13] }}...{{ file.hash[-6:] }}</td>
+                <td>
+                  {% if file.is_mirrorable() %}
+                    {{ "Copied" if file.has_been_copied() else "Not Copied" }}
+                  {% endif %}
+                </td>
+              {% endfor %}
+            {% else %}
+              <td colspan="4"></td>
+            {% endif %}
+          {% endwith %}
         </tr>
       {% endfor %}
     </table>

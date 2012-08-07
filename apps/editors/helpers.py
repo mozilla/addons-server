@@ -629,8 +629,18 @@ class ReviewBase(object):
                    [settings.SENIOR_EDITORS_EMAIL],
                    Context(self.get_context_data()))
 
+    def process_comment(self):
+        self.version.update(has_editor_comment=True)
+        self.log_action(amo.LOG.COMMENT_VERSION)
+
 
 class ReviewAddon(ReviewBase):
+
+    def __init__(self, *args, **kwargs):
+        super(ReviewAddon, self).__init__(*args, **kwargs)
+
+        self.is_upgrade = (self.addon.status is amo.STATUS_LITE_AND_NOMINATED and
+                           self.review_type == 'nominated')
 
     def set_data(self, data):
         self.data = data
@@ -661,7 +671,14 @@ class ReviewAddon(ReviewBase):
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
-        self.set_addon(status=amo.STATUS_NULL)
+
+        if (not self.is_upgrade or
+            not self.addon.versions.exclude(id=self.version.id)
+                          .filter(files__status__in=amo.REVIEWED_STATUSES)):
+            self.set_addon(status=amo.STATUS_NULL)
+        else:
+            self.set_addon(status=amo.STATUS_LITE)
+
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
@@ -708,10 +725,6 @@ class ReviewAddon(ReviewBase):
         self.notify_email('author_super_review',
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
         self.send_super_mail()
-
-    def process_comment(self):
-        self.version.update(has_editor_comment=True)
-        self.log_action(amo.LOG.COMMENT_VERSION)
 
 
 class ReviewFiles(ReviewBase):
@@ -788,7 +801,3 @@ class ReviewFiles(ReviewBase):
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
 
         self.send_super_mail()
-
-    def process_comment(self):
-        self.version.update(has_editor_comment=True)
-        self.log_action(amo.LOG.COMMENT_VERSION)

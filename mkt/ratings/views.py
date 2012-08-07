@@ -8,20 +8,21 @@ from tower import ugettext as _
 from access import acl
 import amo
 import amo.log
-from addons.decorators import addon_view_factory, has_purchased
+from amo.urlresolvers import reverse
+from addons.decorators import addon_view_factory, has_purchased_or_refunded
 from addons.models import Addon
-from amo.helpers import absolutify
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
 
 from reviews.forms import ReviewReplyForm
 from reviews.models import Review
-from reviews.helpers import user_can_delete_review
 from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
+from stats.models import ClientData, Contribution
 
 from mkt.site import messages
 from mkt.ratings.forms import ReviewForm
+from mkt.webapps.models import Installed
 
 
 log = commonware.log.getLogger('mkt.ratings')
@@ -59,7 +60,8 @@ def review_list(request, addon, review_id=None, user_id=None, rating=None):
         qs = qs.filter(is_latest=True)
 
     ctx['ratings'] = ratings = amo.utils.paginate(request, qs, 20)
-    ctx['replies'] = Review.get_replies(ratings.object_list)
+    if not ctx.get('reply'):
+        ctx['replies'] = Review.get_replies(ratings.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
@@ -99,8 +101,15 @@ def reply(request, addon, review_id):
             setattr(reply, k, v)
         reply.save()
         action = 'New' if new else 'Edited'
+        if new:
+            amo.log(amo.LOG.ADD_REVIEW, addon, reply)
+        else:
+            amo.log(amo.LOG.EDIT_REVIEW, addon, reply)
+
         log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
-        messages.success(request, _('Your reply was successfully added!'))
+        messages.success(request,
+                         _('Your reply was successfully added.') if new else
+                         _('Your reply was successfully updated.'))
 
     return http.HttpResponse()
 
@@ -108,18 +117,39 @@ def reply(request, addon, review_id):
 @addon_view
 @login_required
 @restricted_content
-@has_purchased
+@has_purchased_or_refunded
 def add(request, addon):
     if addon.has_author(request.user):
         # Don't let app owners review their own apps.
         return http.HttpResponseForbidden()
 
+    # Get user agent of user submitting review. If there is an install with
+    # logged user agent that matches the current user agent, hook up that
+    # install's client data with the rating. If there aren't any install that
+    # match, use the most recent install. This implies that user must have an
+    # install to submit a review, but not sure if that logic is worked in, so
+    # default client_data to None.
+    client_data = None
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    install = (Installed.objects.filter(user=request.user, addon=addon)
+                                .order_by('-created'))
+    install_w_user_agent = (install.filter(client_data__user_agent=user_agent)
+                                   .order_by('-created'))
+    try:
+        if install_w_user_agent:
+            client_data = install_w_user_agent[0].client_data
+        elif install:
+            client_data = install[0].client_data
+    except ClientData.DoesNotExist:
+        client_data = None
+
     data = request.POST or None
 
     # Try to get an existing review of the app by this user if we can.
     try:
-        existing_review = Review.objects.get(addon=addon, user=request.user)
-    except (Review.DoesNotExist, Review.MultipleObjectsReturned):
+        existing_review = Review.objects.valid().filter(addon=addon,
+                                                        user=request.user)[0]
+    except IndexError:
         # If one doesn't exist, set it to None.
         existing_review = None
 
@@ -147,13 +177,25 @@ def add(request, addon):
                                                         request.user.id))
                 messages.success(request,
                                  _('Your review was updated successfully!'))
+
+                # If there is a developer reply to the review, delete it. We do
+                # this per bug 777059.
+                try:
+                    reply = existing_review.replies.all()[0]
+                except IndexError:
+                    pass
+                else:
+                    log.debug('[Review:%s] Deleted reply to %s' %
+                                  (reply.id, existing_review.id))
+                    reply.delete()
+
             else:
                 # If there isn't a review to overwrite, create a new review.
-                review = Review.objects.create(
+                review = Review.objects.create(client_data=client_data,
                         **_review_details(request, addon, form))
                 amo.log(amo.LOG.ADD_REVIEW, addon, review)
-                log.debug('[Review:%s] Created by user %s ' % (review.id,
-                                                               request.user.id))
+                log.debug('[Review:%s] Created by user %s ' %
+                          (review.id, request.user.id))
                 messages.success(request,
                                  _('Your review was successfully added!'))
 
@@ -173,5 +215,21 @@ def add(request, addon):
         # just show a blank version of the form.
         form = ReviewForm()
 
+    # Get app's support url, either from support flow if contribution exists or
+    # author's support url.
+    support_email = str(addon.support_email) if addon.support_email else None
+    try:
+        contrib_id = (Contribution.objects
+                      .filter(user=request.user, addon=addon,
+                              type__in=(amo.CONTRIB_PURCHASE,
+                                        amo.CONTRIB_INAPP,
+                                        amo.CONTRIB_REFUND))
+                      .order_by('-created')[0].id)
+        support_url = reverse('support', args=[contrib_id])
+    except IndexError:
+        support_url = addon.support_url
+
     return jingo.render(request, 'ratings/add.html',
-                        {'product': addon, 'form': form})
+                        {'product': addon, 'form': form,
+                         'support_url': support_url,
+                         'support_email': support_email})

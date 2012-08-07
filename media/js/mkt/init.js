@@ -15,12 +15,11 @@ var z = {
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
-
 (function() {
     _.extend(z, {'nav': BrowserUtils()});
     if (!z.nav.browser.firefox ||
-        z.nav.browser.mobile || z.nav.browser.android || z.nav.browser.maemo ||
-        VersionCompare.compareVersions(z.nav.browserVersion, '15.0a1') < 0) {
+        z.nav.browser.mobile || z.nav.os.maemo ||
+        VersionCompare.compareVersions(z.nav.browserVersion, '16.0a1') < 0) {
         z.canInstallApps = false;
     }
 })();
@@ -90,7 +89,7 @@ z.page.on('fragmentloaded', function() {
         baseline = $body.attr('class').split(' ')[0],
         device = z.capabilities.touch ? 'touch' : 'desktop';
     baseline += ' ' + device;
-    $body.data('class', baseline).addClass(device);
+    $body.attr('data-class', baseline).addClass(device);
 
     // Navigation toggle.
     var $header = $('#site-header'),

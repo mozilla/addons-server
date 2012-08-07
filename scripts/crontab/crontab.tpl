@@ -44,6 +44,7 @@ HOME=/tmp
 30 1 * * * {{ z_cron }} update_user_ratings
 40 1 * * * {{ z_cron }} update_weekly_downloads
 50 1 * * * {{ z_cron }} gc
+45 1 * * * {{ z_cron }} mkt_gc --settings=settings_local_mkt
 30 2 * * * {{ z_cron }} mail_pending_refunds --settings=settings_local_mkt
 45 2 * * * {{ django }} process_addons --task=update_manifests --settings=settings_local_mkt
 30 3 * * * {{ django }} cleanup

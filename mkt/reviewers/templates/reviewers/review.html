@@ -47,7 +47,7 @@
   </div>
 </div>
 
-<div id="addon" data-id="{{ product.id }}">
+<div id="addon" data-id="{{ product.id }}" data-url="{{ url('editors.review_viewing') }}">
 
 <section class="island">
   {% include 'reviewers/includes/details.html' %}
@@ -117,7 +117,7 @@
                     <div>By {{ user }} on {{ date }}</div>
                   {% endtrans %}
                   {% if record.details %}
-                    <div class="log-comments">{{ record.details.comments|safe }}</div>
+                    <div class="log-comments">{{ record.details.comments|nl2br }}</div>
                   {% endif %}
                 </td>
               </tr>
@@ -142,6 +142,7 @@
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
       {{ form.action }}
+      {{ form.action.errors }}
     </div>
 
     <div id="review-actions-form">

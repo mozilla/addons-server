@@ -335,8 +335,10 @@ def queue_counts(type=None, **kw):
               'nominated': construct_query(ViewFullReviewQueue, **kw),
               'prelim': construct_query(ViewPreliminaryQueue, **kw),
               'fast_track': construct_query(ViewFastTrackQueue, **kw),
-              'moderated': Review.objects.filter(reviewflag__isnull=False,
-                                                 editorreview=1).count,
+              'moderated': (
+                  Review.objects.exclude(addon__type=amo.ADDON_WEBAPP)
+                                .filter(reviewflag__isnull=False,
+                                        editorreview=1).count),
               'apps': Webapp.objects.pending().count}
     rv = {}
     if isinstance(type, basestring):
@@ -374,8 +376,11 @@ def queue_fast_track(request):
 
 @reviewer_required
 def queue_moderated(request):
-    rf = (Review.objects.filter(editorreview=1, reviewflag__isnull=False,
-                                addon__isnull=False)
+    rf = (Review.objects.exclude(
+                            Q(addon__type=amo.ADDON_WEBAPP) |
+                            Q(addon__isnull=True) |
+                            Q(reviewflag__isnull=True))
+                        .filter(editorreview=1)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)

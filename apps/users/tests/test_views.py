@@ -163,11 +163,11 @@ class TestEdit(UserViewBase):
     def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf', }
+                'display_name': 'DJ SurfNTurf'}
 
         r = self.client.post(self.url, data, follow=True)
         self.assertRedirects(r, self.url)
-        self.assertContains(r, "An email has been sent to %s" % data['email'])
+        self.assertContains(r, 'An email has been sent to %s' % data['email'])
 
         # The email shouldn't change until they confirm, but the name should
         u = User.objects.get(id='4043307').get_profile()
@@ -175,8 +175,18 @@ class TestEdit(UserViewBase):
         self.assertEquals(u.email, 'jbalogh@mozilla.com')
 
         eq_(len(mail.outbox), 1)
-        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+        eq_(mail.outbox[0].subject.find('Please confirm your email'), 0)
         assert mail.outbox[0].body.find('%s/emailchange/' % self.user.id) > 0
+
+    @patch.object(settings, 'SEND_REAL_EMAIL', False)
+    def test_email_change_mail_send_even_with_fake_email(self):
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh.changed@mozilla.com',
+                'display_name': 'DJ SurfNTurf'}
+
+        self.client.post(self.url, data, follow=True)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject.find('Please confirm your email'), 0)
 
     @patch.object(settings, 'APP_PREVIEW', True)
     def test_email_cant_change(self):
