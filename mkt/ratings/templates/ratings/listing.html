@@ -47,9 +47,6 @@
           {% endwith %}
         {% endif %}
       </ul>
-      {% if ratings.object_list|length > 5 %}
-        <a href="{{ ratings.next_page_number() if ratings.has_next() else '#' }}" class="load-more post">{{ _('More reviews') }}</a>
-      {% endif %}
       {{ ratings|impala_paginator }}
     {% elif not reply %}
       {% if product.can_review(amo_user) %}

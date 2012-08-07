@@ -1,6 +1,6 @@
 (function() {
-    z.page.on('postfragmentloaded', function() {
 
+    z.page.on('postfragmentloaded', function() {
         flagOverlay = makeOrGetOverlay('flag-review');
 
         // Hijack <select> with stars.
@@ -11,23 +11,6 @@
         if (!z.capabilities.mobile) {
             initCharCount();
         }
-
-        // "More reviews" button.
-        var $more = $('.load-more');
-        $more.on('click', _pd(function() {
-            var $new = $('#review-list .review:visible:last ~ .review:lt(5)');
-            $new.show();
-            if ($new.attr('id')) {
-                // Jump to top of new reviews.
-                window.location = '#' + $new.attr('id');
-            }
-            // If all the reviews are visible, fetch more.
-            if (!$('#review-list .review:hidden').length) {
-                // TODO: Pull in more reviews.
-                //$.get($more.attr('href'), function(data) {
-                //});
-            }
-        }));
     });
 
     function getBody($body) {
