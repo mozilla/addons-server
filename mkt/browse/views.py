@@ -15,11 +15,11 @@ def _landing(request, category=None):
         category = get_object_or_404(
             Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0),
             slug=category)
-        featured = Webapp.featured(category, region)
-        popular = Webapp.popular().filter(category=category.id)
+        featured = Webapp.featured(cat=category, region=region)
+        popular = Webapp.popular(cat=category, region=region)
     else:
-        popular = Webapp.popular()
-        featured = Webapp.featured(None, region)
+        popular = Webapp.popular(region=region)
+        featured = Webapp.featured(region=region)
 
     return jingo.render(request, 'browse/landing.html', {
         'category': category,

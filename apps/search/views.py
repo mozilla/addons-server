@@ -7,6 +7,7 @@ from django.utils.encoding import smart_str
 from django.views.decorators.vary import vary_on_headers
 from django.utils import translation
 
+from elasticutils.contrib.django import F, S
 import commonware.log
 import jingo
 from mobility.decorators import mobile_template
@@ -21,6 +22,9 @@ from amo.helpers import locale_url, urlparams
 from amo.utils import MenuItem, sorted_groupby
 from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_int, version_dict
+
+import mkt
+from mkt.webapps.models import Webapp
 
 from .forms import ESSearchForm, SecondarySearchForm, sort_by
 
@@ -316,7 +320,7 @@ class BaseAjaxSearch(object):
 
     def queryset(self):
         """Get items based on ID or search by name."""
-        results = []
+        results = Addon.objects.none()
         q = self.request.GET.get(self.key)
         if q:
             pk = None
@@ -329,7 +333,9 @@ class BaseAjaxSearch(object):
                 qs = Addon.objects.filter(id=int(q), disabled_by_user=False)
             elif len(q) > 2:
                 # Oh, how I wish I could elastically exclude terms.
-                qs = (Addon.search().query(or_=name_only_query(q.lower()))
+                # (You can now, but I forgot why I was complaining to
+                # begin with.)
+                qs = (S(Addon).query(or_=name_only_query(q.lower()))
                       .filter(is_disabled=False))
             if qs:
                 results = qs.filter(type__in=self.types,
@@ -384,6 +390,18 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
         res = SearchSuggestionsAjax.queryset(self)
         if self.category:
             res = res.filter(category__in=[self.category])
+
+        region = getattr(self.request, 'REGION', mkt.regions.WORLDWIDE)
+        if region:
+            excluded = Webapp.get_excluded_in(region)
+            if excluded:
+                if isinstance(res, S):
+                    # ES? Do fanciness.
+                    return res.filter(~F(id__in=excluded))
+                else:
+                    # Django ORM? Do an `exclude`.
+                    return res.exclude(id__in=excluded)
+
         return res
 
 

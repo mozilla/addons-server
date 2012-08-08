@@ -2,7 +2,7 @@ from collections import defaultdict
 
 from celeryutils import task
 import commonware.log
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 
 from . import search
 from mkt.inapp_pay.models import InappPayment

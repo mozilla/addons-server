@@ -29,7 +29,7 @@ class SearchResource(MarketplaceResource):
             raise self.form_errors(form)
 
         # Search specific processing of the results.
-        qs = _get_query(request, form, form.cleaned_data)
+        qs = _get_query(request)
         qs = _filter_search(qs, form.cleaned_data)
         res = amo.utils.paginate(request, qs)
 

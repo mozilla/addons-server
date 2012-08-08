@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
 import os
 import urlparse
 import uuid
@@ -12,6 +11,7 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
+from elasticutils.contrib.django import F, S
 import waffle
 from tower import ugettext as _
 
@@ -218,6 +218,7 @@ class Webapp(Addon):
         return 'icons' in data
 
     def get_manifest_json(self):
+        import json
         try:
             # The first file created for each version of the web app
             # is the manifest.
@@ -409,20 +410,30 @@ class Webapp(Addon):
                     .values_list('addon', flat=True))
 
     @classmethod
-    def from_search(cls):
-        return cls.search().filter(type=amo.ADDON_WEBAPP,
-                                   status=amo.STATUS_PUBLIC,
-                                   is_disabled=False)
+    def from_search(cls, cat=None, region=None):
+        filters = dict(type=amo.ADDON_WEBAPP,
+                       status=amo.STATUS_PUBLIC,
+                       is_disabled=False)
+
+        if cat:
+            filters.update(category=cat.id)
+
+        if region:
+            excluded = cls.get_excluded_in(region)
+            if excluded:
+                return S(cls).query(**filters).filter(~F(id__in=excluded))
+
+        return S(cls).query(**filters)
 
     @classmethod
-    def popular(cls):
+    def popular(cls, cat=None, region=None):
         """Elastically grab the most popular apps."""
-        return cls.from_search().order_by('-weekly_downloads')
+        return cls.from_search(cat, region).order_by('-weekly_downloads')
 
     @classmethod
-    def latest(cls):
+    def latest(cls, cat=None, region=None):
         """Elastically grab the most recent apps."""
-        return cls.from_search().order_by('-created')
+        return cls.from_search(cat, region).order_by('-created')
 
     @classmethod
     def category(cls, slug):

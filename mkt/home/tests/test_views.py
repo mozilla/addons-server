@@ -1,6 +1,6 @@
 from nose.tools import eq_
 
-from amo.tests import app_factory
+from amo.tests import app_factory, mock_es
 from amo.urlresolvers import reverse
 
 import mkt
@@ -17,18 +17,21 @@ class TestHome(BrowseBase):
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
 
+    @mock_es
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'home/home.html')
 
+    @mock_es
     def test_featured(self):
-        a, b, c = self.setup_featured()
-        # Check that the Home featured app is shown only in US region.
-        for region in mkt.regions.REGIONS_DICT:
-            eq_(self.get_pks('featured', self.url, {'region': region}),
-                [c.id] if region == 'us' else [])
+        self._test_featured()
 
+    @mock_es
+    def test_featured_region_exclusions(self):
+        self._test_featured_region_exclusions()
+
+    @mock_es
     def test_featured_fallback_to_worldwide(self):
         a, b, c = self.setup_featured()
 
@@ -49,6 +52,7 @@ class TestHome(BrowseBase):
                 expected)
 
     def test_popular(self):
-        a, b = self.setup_popular()
-        # Check that these apps are shown.
-        self._test_popular(self.url, [self.webapp.id, a.id, b.id])
+        self._test_popular()
+
+    def test_popular_region_exclusions(self):
+        self._test_popular_region_exclusions()

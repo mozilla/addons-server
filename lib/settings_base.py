@@ -1200,7 +1200,8 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
                  RECAPTCHA_PUBLIC_KEY)
-RECAPTCHA_AJAX_URL = 'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js'
+RECAPTCHA_AJAX_URL = (
+    'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js')
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
@@ -1341,7 +1342,7 @@ BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
                         'sdk-versions/')
 
-## Elastic Search
+## elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
 ES_INDEXES = {'default': 'amo',
               'update_counts': 'amo_stats',

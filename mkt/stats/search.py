@@ -2,7 +2,7 @@ from decimal import Decimal
 
 from django.db.models import Count, Q, Sum
 
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import pyes.exceptions as pyes
 
 import amo

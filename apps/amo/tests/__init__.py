@@ -16,7 +16,7 @@ from django.forms.fields import Field
 from django.test.client import Client
 from django.utils import translation
 
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import mock
 import pyes.exceptions as pyes
 import test_utils
@@ -177,6 +177,11 @@ class TestClient(Client):
             return partial(method, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         else:
             raise AttributeError
+
+
+# Test decorator for mocking elasticsearch calls in ESTestCase if we don't
+# care about ES results.
+mock_es = lambda x: mock.patch('elasticutils.get_es', spec=True, new=mock.Mock)
 
 
 ES_patcher = mock.patch('elasticutils.get_es', spec=True)

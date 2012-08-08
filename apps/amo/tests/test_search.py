@@ -1,6 +1,6 @@
 from django.core import paginator
 
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import mock
 from nose.tools import eq_
 

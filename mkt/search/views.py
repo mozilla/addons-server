@@ -9,7 +9,10 @@ from amo.decorators import json_view
 from amo.urlresolvers import reverse
 from apps.addons.models import Category
 from apps.search.views import name_query, WebappSuggestionsAjax
+
+import mkt
 from mkt.webapps.models import Webapp
+
 from . import forms
 
 
@@ -100,11 +103,9 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(request, form, query):
-    return (Webapp.search()
-            .query(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                   is_disabled=False)
-            .facet(categories={'terms': {'field': 'category', 'size': 200}}))
+def _get_query(request):
+    region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+    return Webapp.from_search(region=region).facet('category')
 
 
 def _app_search(request, category=None, browse=None):
@@ -118,11 +119,11 @@ def _app_search(request, category=None, browse=None):
                                                 sort='downloads',
                                                 price='free')}
 
-    qs = _get_query(request, form, query)
+    qs = _get_query(request)
     qs = _filter_search(qs, query)
 
     pager = amo.utils.paginate(request, qs)
-    facets = pager.object_list.facets
+    facets = pager.object_list.facet_counts()
 
     if category or browse:
         if query.get('price') == 'free':
@@ -136,7 +137,7 @@ def _app_search(request, category=None, browse=None):
         else:
             sort_opts = form.fields['sort'].choices
 
-    cats = [f['term'] for f in facets['categories']]
+    cats = [f['term'] for f in facets['category']]
     categories = Category.objects.filter(type=amo.ADDON_WEBAPP, id__in=cats)
 
     # If category is not listed as a facet, then remove `cat` and redirect.
