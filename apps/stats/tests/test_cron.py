@@ -7,11 +7,9 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
-from mkt.webapps.models import Installed
 from stats.models import (Contribution, DownloadCount, GlobalStat,
                           UpdateCount)
-from stats import cron, search, tasks
-from users.models import UserProfile
+from stats import cron, tasks
 
 
 class TestGlobalStats(amo.tests.TestCase):
@@ -136,26 +134,3 @@ class TestIndexLatest(amo.tests.ESTestCase):
             cron.index_latest_stats()
             call.assert_called_with('index_stats', addons=None,
                                     date='%s:%s' % (start, finish))
-
-
-class TestIndexInstalled(amo.tests.ESTestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.today = datetime.date.today()
-        self.webapp = Addon.objects.get(pk=337141)
-        self.user = UserProfile.objects.get(pk=999)
-        self.other_user = UserProfile.objects.get(pk=4043307)
-
-    def test_search(self):
-        in_ = Installed.objects.create(addon=self.webapp, user=self.user)
-        res = search.extract_installed_count(in_)
-        eq_(res['count'], 1)
-        eq_(res['date'], self.today)
-        eq_(res['addon'], self.webapp.pk)
-
-    @mock.patch('mkt.webapps.models.Installed.index')
-    def test_index(self, index):
-        in_ = Installed.objects.create(addon=self.webapp, user=self.user)
-        tasks.index_installed_counts([in_.pk])
-        assert index.called
