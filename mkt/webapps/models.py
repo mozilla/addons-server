@@ -341,6 +341,14 @@ class Webapp(Addon):
         """Elastically grab the most recent apps."""
         return cls.from_search().order_by('-created')
 
+    @property
+    def uses_flash(self):
+        """
+        Convenience property until more sophisticated per-version
+        checking is done for packaged apps.
+        """
+        return self.versions.latest().files.latest().uses_flash
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

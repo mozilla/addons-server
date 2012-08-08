@@ -289,6 +289,7 @@ class AdminSettingsForm(PreviewForm):
     app_ratings = forms.MultipleChoiceField(
         required=False,
         choices=RATINGS_BY_NAME)
+    flash = forms.BooleanField(required=False)
 
     class Meta:
         model = Preview
@@ -341,6 +342,8 @@ class AdminSettingsForm(PreviewForm):
                 r = ALL_RATINGS[i]
                 ContentRating.objects.create(addon=addon, rating=r.id,
                                              ratings_body=r.ratingsbody.id)
+        uses_flash = self.cleaned_data.get('flash')
+        addon.versions.latest().files.latest().update(uses_flash=bool(uses_flash))
         return addon
 
 

@@ -1391,7 +1391,8 @@ class TestAdminSettings(TestAdmin):
                 }
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
-        eq_(list(webapp.content_ratings.all().values_list('ratings_body', 'rating')),
+        eq_(list(webapp.content_ratings.all().values_list('ratings_body',
+                                                          'rating')),
             [(0, 1), (0, 3)])
 
     def test_ratings_view(self):
@@ -1404,6 +1405,43 @@ class TestAdminSettings(TestAdmin):
         eq_(txt,
             '%s - %s' % (RATINGS_BODIES[0].name,
                          RATINGS_BODIES[0].ratings[2].name))
+
+
+    def test_set_flash(self):
+        self.log_in_with('Apps:Configure')
+        r = self.client.post(self.edit_url,
+                         {'caption': 'x',
+                          'position': '1',
+                          'upload_hash': 'abcdef',
+                          'flash': 'checked'})
+        eq_(r.status_code, 200)
+        assert self.webapp.uses_flash
+
+    def test_unset_flash(self):
+        self.webapp.versions.latest().files.latest().update(uses_flash=True)
+        self.log_in_with('Apps:Configure')
+        r = self.client.post(self.edit_url,
+                         {'caption': 'x',
+                          'position': '1',
+                          'upload_hash': 'abcdef',
+                          'flash': ''})
+        eq_(r.status_code, 200)
+        assert not self.webapp.uses_flash
+
+    def test_flash_set_view(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        self.webapp.versions.latest().files.latest().update(uses_flash=True)
+        r = self.client.get(self.url)
+        checkbox = pq(r.content)[0].xpath(
+            "//label[@for='flash']/../../td/input")[0]
+        eq_(checkbox.get('checked'), 'checked')
+
+    def test_flash_unset_view(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        r = self.client.get(self.url)
+        checkbox = pq(r.content)[0].xpath(
+            "//label[@for='flash']/../../td/input")[0]
+        eq_(checkbox.get('checked'), None)
 
 
 class TestPromoUpload(TestAdmin):
