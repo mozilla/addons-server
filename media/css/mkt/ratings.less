@@ -142,7 +142,8 @@ section.replies .review.reply {
         &.hidden {
             display: none;
         }
-        &:not(.hidden) + li:before {
+        &:not(.hidden) + li:before,
+        + li.hidden + li:before {
             color: @note-gray;
             content: "\00a0\2022\00a0\00a0";
         }
