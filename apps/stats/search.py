@@ -45,8 +45,15 @@ def extract_update_count(update, all_apps=None):
     if update.oses:
         os = collections.defaultdict(int)
         for key, count in update.oses.items():
-            if key.lower() in amo.PLATFORM_DICT:
-                os[amo.PLATFORM_DICT[key.lower()].name] += count
+            platform = None
+
+            if str(key).lower() in amo.PLATFORM_DICT:
+                platform = amo.PLATFORM_DICT[str(key).lower()]
+            elif key in amo.PLATFORMS:
+                platform = amo.PLATFORMS[key]
+
+            if platform is not None:
+                os[platform.name] += count
                 doc['os'] = es_dict((unicode(k), v) for k, v in os.items())
 
     # Case-normalize locales.
