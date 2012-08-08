@@ -347,7 +347,7 @@ class Webapp(Addon):
         Convenience property until more sophisticated per-version
         checking is done for packaged apps.
         """
-        return self.versions.latest().files.latest().uses_flash
+        return self.get_latest_file().uses_flash
 
 
 # Pull all translated_fields from Addon over to Webapp.
