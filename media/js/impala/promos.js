@@ -75,4 +75,13 @@ $.fn.promoPager = function() {
                       'WT.z_convert', 'FavoriteAdd-ons'
         );
     });
-});
+
+    $('#olympics .view-button a').click(function() {
+        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
+                      'DCS.dcsuri', '/en-US/firefox/',
+                      'WT.ti', 'Link: Flags 2012 Collection',
+                      'WT.dl', 99,
+                      'WT.z_convert', 'Olympics'
+        );
+    });
+})();
