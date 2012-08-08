@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 import urlparse
 import uuid
 
@@ -11,17 +12,21 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
+import waffle
 from tower import ugettext as _
 
 import amo
-from amo.decorators import skip_cache
 import amo.models
-from amo.urlresolvers import reverse
+import amo.utils
 from addons import query
 from addons.models import (Addon, AddonDeviceType, update_name_table,
                            update_search_index)
+from amo.decorators import skip_cache
+from amo.storage_utils import copy_stored_file
+from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
-from versions.models import Version
+from files.models import nfd_str
+from files.utils import parse_addon
 
 import mkt
 from mkt.constants import ratingsbodies
@@ -227,12 +232,30 @@ class Webapp(Addon):
         return reverse('apps.share', args=[self.app_slug])
 
     def manifest_updated(self, manifest, upload):
-        """The manifest has updated, create a version and file."""
+        """The manifest has updated, update the version and file.
 
-        # This does most of the heavy work.
-        Version.from_upload(upload, self, [])
-        # Triggering this ensures that the current_version gets updated.
-        self.update_version()
+        This is intended to be used for hosted apps only, which have only a
+        single version and a single file.
+        """
+        data = parse_addon(upload, self)
+        version = self.versions.latest()
+        version.update(version=data['version'])
+        path = amo.utils.smart_path(nfd_str(upload.path))
+        file = version.files.latest()
+        file.filename = file.generate_filename(extension='.webapp')
+        file.size = int(max(1, round(storage.size(path) / 1024, 0)))
+        file.hash = (file.generate_hash(path) if
+                     waffle.switch_is_active('file-hash-paranoia') else
+                     upload.hash)
+        log.info('Updated file hash to %s' % file.hash)
+        file.save()
+
+        # Move the uploaded file from the temp location.
+        copy_stored_file(path, os.path.join(version.path_prefix,
+                                            nfd_str(file.filename)))
+        log.info('[Webapp:%s] Copied updated manifest to %s' % (
+            self, version.path_prefix))
+
         amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
     def is_complete(self):

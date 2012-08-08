@@ -24,14 +24,12 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
 from lib.video.tests import files as video_files
-from mkt.constants.ratingsbodies import RATINGS_BODIES
-from mkt.developers.models import ActivityLog
-from mkt.webapps.models import ContentRating
 from users.models import UserProfile
 
 import mkt
+from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import AddonExcludedRegion
+from mkt.webapps.models import AddonExcludedRegion, ContentRating
 
 response_mock = mock.Mock()
 response_mock.read.return_value = '''
@@ -262,8 +260,7 @@ class TestEditBasic(TestEdit):
         eq_(self.webapp.manifest_url, url)
         eq_(self.webapp.app_domain, 'https://ballin.com')
         eq_(self.webapp.current_version.version, '1.0')
-        eq_(sorted(self.webapp.versions.values_list('version', flat=True)),
-            sorted(['1.0', '1.0']))
+        eq_(self.webapp.versions.count(), 1)
 
     @mock.patch('devhub.tasks.urllib2.urlopen')
     def test_view_manifest_changed_dupe_app_domain(self, mock_urlopen):
@@ -1405,7 +1402,6 @@ class TestAdminSettings(TestAdmin):
         eq_(txt,
             '%s - %s' % (RATINGS_BODIES[0].name,
                          RATINGS_BODIES[0].ratings[2].name))
-
 
     def test_set_flash(self):
         self.log_in_with('Apps:Configure')

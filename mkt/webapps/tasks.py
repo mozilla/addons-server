@@ -113,8 +113,7 @@ def _update_manifest(id):
                     msg += u'* %s\n' % m['message']
             msg += u'\nValidation Result:\n%s' % v8n_url
             _log(webapp, msg, rereview=True)
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
-                               msg)
+            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
             return
     else:
         _log(webapp,
