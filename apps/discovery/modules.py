@@ -286,5 +286,10 @@ class Olympics(TemplatePromo):
 
 
 class ContestWinners(TemplatePromo):
-    slug= 'Contest Winners'
+    slug = 'Contest Winners'
     template = 'discovery/modules/contest-winners.html'
+
+    def render(self, module_context='discovery'):
+        # Hide on discovery pane.
+        if module_context == 'home':
+            return super(ContestWinners, self).render()
