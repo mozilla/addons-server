@@ -98,6 +98,10 @@ def log_configure():
             'z': {'handlers': ['syslog'], 'level': logging.INFO},
         },
         'root': {},
+        # Since this configuration is applied at import time
+        # in verify.py we don't want it to clobber other logs
+        # when imported into the marketplace Django app.
+        'disable_existing_loggers': False,
     }
     dictconfig.dictConfig(cfg)
 
