@@ -15,6 +15,10 @@ var z = {
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
+if (screen && screen.mozLockOrientation) {
+    screen.mozLockOrientation('portrait-primary');
+}
+
 (function() {
     _.extend(z, {'nav': BrowserUtils()});
     if (!z.nav.browser.firefox ||
