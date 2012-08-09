@@ -18,17 +18,16 @@
           {% endif %}
         </td>
         <td>{% if row.is_sponsor %}Sponsored{% else %}Not sponsored{% endif %}</td>
-        <td><select class="localepicker"
-                    data-url="{{ url('zadmin.set_region_ajax') }}"
-                    data-id="{{ row.pk }}">
-            {% for locName, loc in regions %}
+        <td>
+          <select class="localepicker" multiple
+                  data-url="{{ url('zadmin.set_region_ajax') }}"
+                  data-id="{{ row.pk }}">
+            {%- for locName, loc in regions -%}
               <option value="{{ loc.slug }}"
-              {%- if loc.slug == row.region -%}
-                      selected="selected"
-              {%- endif -%}
-                 >{{ loc.name }}</option>
+                {%- if loc.slug == row.region %} selected{%- endif -%}
+                >{{ loc.name }}</option>
             {%- endfor -%}
-            </select>
+          </select>
         </td>
       </tr>
     </table>
