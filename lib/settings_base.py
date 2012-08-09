@@ -1121,6 +1121,7 @@ LOGGING = {
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
+        's.client': {'level': logging.INFO},
         'nose': {'level': logging.WARNING},
     },
 }
