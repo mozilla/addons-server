@@ -191,7 +191,10 @@ JS = {
         'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/lib/format.js',
+
+        # slider lib
         'js/lib/flipsnap.js',
+
         'js/common/tracking.js',
         'js/mkt/utils.js',
         'js/lib/csrf.js',

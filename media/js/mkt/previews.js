@@ -29,8 +29,11 @@
     }
 
     z.page.on('fragmentloaded', function() {
-        $('.listing.expanded .mkt-tile + .tray').each(populateTray);
-        Flipsnap('#page .slider .content', {distance: 195});
+        var trays = $('.listing.expanded .mkt-tile + .tray');
+        trays.each(populateTray);
+        if (trays.length) {
+            Flipsnap('#page .slider .content', {distance: 195});
+        }
     });
 
 })();
