@@ -83,7 +83,7 @@ def pay_status(request, addon, contrib_uuid):
 @post_required
 def postback(request):
     """Verify signature from BlueVia and set contribution to paid."""
-    signed_jwt = request.raw_post_data
+    signed_jwt = request.read()  # request.raw_post_data fails tests randomly
     result = client.verify_bluevia_jwt(signed_jwt)
     if not result['valid']:
         ip = (request.META.get('HTTP_X_FORWARDED_FOR', '') or
