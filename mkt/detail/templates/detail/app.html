@@ -29,7 +29,7 @@
   {% if not (is_dev or is_admin) and not product.is_public() %}
     {{ notification(product, amo, is_dev) }}
   {% else %}
-    <section class="product-details listing expanded full c">
+    <section class="product-details listing expanded c">
       {{ market_tile(product, link=False) }}
     </section>
 

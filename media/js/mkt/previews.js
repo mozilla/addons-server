@@ -3,6 +3,10 @@
     var sliderTemplate = template($('#preview-tray').html());
     var previewTemplate = template($('#single-preview').html());
 
+    z.page.on('dragstart', function(e) {
+        e.preventDefault();
+    });
+
     function populateTray() {
         // preview trays expect to immediately follow a .mkt-tile.
         var $tray = $(this);
@@ -15,10 +19,18 @@
             previewsHTML += previewTemplate(p);
         });
         $tray.html(sliderTemplate({previews: previewsHTML}));
+
+        var width = $tray.find('li').length * 195 - 15;
+
+        $tray.find('.content').css({
+            'width': width + 'px',
+            'margin': '0 ' + ($tray.width() - 180) / 2 + 'px'
+        });
     }
 
     z.page.on('fragmentloaded', function() {
         $('.listing.expanded .mkt-tile + .tray').each(populateTray);
+        Flipsnap('#page .slider .content', {distance: 195});
     });
 
 })();

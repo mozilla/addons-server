@@ -21,7 +21,6 @@
 }
 
 .grid, .listing {
-    float: left;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -186,7 +185,7 @@
     }
 }
 .listing {
-    li {
+    > li {
         border-top: 1px solid @light-gray;
         &:first-child {
             border-top: 0;
@@ -201,23 +200,24 @@
     border-bottom: 1px solid rgba(0,0,0,.3);
     border-top: 1px solid rgba(0,0,0,.05);
     position: relative;
-    width: 100% !important;  // TODO: This'll probably change with desktop.
+    overflow: hidden;
     ul {
-        padding: 15px;
-        margin: 0;
+        padding: 15px 0;
+        margin: 0 auto;
         list-style-type: none;
-        text-align: center;
         white-space: nowrap;
-        overflow: hidden;
         height: 232px;
     }
     li {
         margin-left: 15px;
-        display: inline-block;
+        float: left;
+        width: 180px;
+        height: 270px;
         &:first-child {
-            margin-left: 0px;
+            margin-left: 0;
         }
         img {
+            -moz-user-select: none;
             width: 180px;
             max-height: 270px;
         }
