@@ -4,7 +4,7 @@ Reviews
 -----------
 {% for review in reviews -%}
 {{ review.get_url_path()|absolutify(base_url) }}
-Rating: {{ review.rating }}
+Rating: {{ review.rating }}/5
 Comment: {{ review.body }}
 User: {{ review.user.name }}
 -----------
