@@ -6,22 +6,19 @@ from django.shortcuts import redirect
 from django.db import transaction
 
 import amo
-from amo import messages
-from amo.decorators import write, json_view
-from amo.urlresolvers import reverse
-from addons.models import Category, AddonCategory
-from bandwagon.models import CollectionAddon
+from amo.decorators import write
+from addons.models import Category
+from zadmin.decorators import admin_required
 
 import mkt
 from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
 from mkt.ecosystem.models import MdnCache
-from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp
 
 
 @transaction.commit_on_success
 @write
-@admin.site.admin_view
+@admin_required
 def featured_apps_admin(request):
     return jingo.render(request, 'zadmin/featuredapp.html')
 
@@ -41,7 +38,7 @@ def ecosystem(request):
     return jingo.render(request, 'zadmin/ecosystem.html', ctx)
 
 
-@admin.site.admin_view
+@admin_required
 def featured_apps_ajax(request):
     if request.GET:
         cat = request.GET.get('category', None) or None
@@ -67,7 +64,8 @@ def featured_apps_ajax(request):
                         {'apps': apps,
                          'regions': mkt.regions.REGIONS_CHOICES})
 
-@admin.site.admin_view
+
+@admin_required
 def set_region_ajax(request):
     region = request.POST.get('region', None)
     app = request.POST.get('app', None)
@@ -75,7 +73,8 @@ def set_region_ajax(request):
         FeaturedApp.objects.filter(pk=app).update(region=region)
     return HttpResponse()
 
-@admin.site.admin_view
+
+@admin_required
 def featured_categories_ajax(request):
     cats = Category.objects.filter(type=amo.ADDON_WEBAPP)
     return jingo.render(request, 'zadmin/featured_categories_ajax.html', {

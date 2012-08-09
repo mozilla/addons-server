@@ -7,6 +7,8 @@ from amo.utils import urlparams
 from amo.urlresolvers import reverse
 
 from addons.models import Addon, AddonCategory, Category
+from users.models import UserProfile
+
 from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp
 
@@ -42,6 +44,13 @@ class TestFeaturedApps(amo.tests.TestCase):
 
         self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('zadmin.featured_apps_ajax')
+
+    def test_staff_access(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'AdminTools:View')
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
 
     def test_get_featured_apps(self):
         r = self.client.get(urlparams(self.url, category=self.c1.id))
