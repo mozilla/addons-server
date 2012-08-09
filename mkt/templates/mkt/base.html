@@ -48,16 +48,21 @@
         {% if not logged %}data-recaptcha="{{ settings.RECAPTCHA_PUBLIC_KEY }}"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
+
     {% block siteheader %}
       {% include 'mkt/header.html' %}
     {% endblock %}
 
-    <div id="page" role="main">
-      {# `outer_content` is for stuff you want above `content` on every page. #}
-      {% block outer_content %}
-        {% include 'site/messages/display.html' %}
-      {% endblock %}
-      {% block content %}
+    <div id="container">
+      {% block fragment %}
+        <div id="page" role="main">
+          {# `outer_content` is for stuff you want above `content` on every page. #}
+          {% block outer_content %}
+            {% include 'site/messages/display.html' %}
+          {% endblock %}
+          {% block content %}
+          {% endblock %}
+        </div>
       {% endblock %}
     </div>
 
