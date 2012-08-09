@@ -1,0 +1,106 @@
+@import '../mkt/lib';
+
+.design-wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+}
+
+.secondary-landing nav.design {
+    float: left;
+    margin-bottom: 40px;
+    padding-right: 20px;
+    width: 205px;
+    ol, ul {
+        padding-left: 10px;
+    }
+    ol {
+        > li {
+            > a {
+                font-size: 13px;
+                font-weight: normal;
+            }
+        }
+    }
+    ul {
+        > li {
+            color: @dark-gray;
+            font-size: 15px;
+            > a, > span {
+                background-color: #f4f4f4;
+                color: @dark-gray;
+                display: block;
+                font-size: 15px;
+                font-weight: normal;
+                margin-bottom: 2px;
+                padding: 5px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.secondary-landing article {
+    float: left;
+    margin: 25px 0 20px 20px;
+    width: 660px;
+
+    h1 {
+        margin-top: 0;
+    }
+
+    h2 {
+        font-size: 26px;
+        margin: 30px 0 10px;
+    }
+
+    &.marketing-block {
+        padding-top: 0px;
+    }
+}
+
+.sample-run-js {
+    clear: both;
+    float: left;
+    margin: 10px 0 30px;
+    outline: none;
+    width: 100%;
+
+    p {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 10px;
+    }
+}
+
+.tips {
+    clear: both;
+    display: block;
+    float: left;
+    margin-left: 20px;
+    width: 95%;
+
+    > ul {
+        clear: both;
+        display: block;
+        float: left;
+        padding: 0 0 20px;
+        width: 95%;
+    }
+
+    li {
+        clear: both;
+        display: block;
+        float: left;
+        line-height: 23px;
+        width: 100%;
+    }
+}
+
+#page > section.document-breadcrumb {
+    padding-top: 15px;
+    width: 960px;
+    a, span {
+        font-size: 25px;
+    }
+}

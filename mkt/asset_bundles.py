@@ -109,7 +109,14 @@ CSS = {
     ),
     'mkt/ecosystem': (
         'css/ecosystem/landing.less',
+        'css/ecosystem/documentation.less',
         'css/ecosystem/footer.less',
+        'css/ecosystem/xtags/alert-popup.css',
+        'css/ecosystem/xtags/dialog-toast.css',
+        'css/ecosystem/xtags/listview.css',
+        'css/ecosystem/xtags/slidebox.css',
+        'css/ecosystem/xtags/slider.css',
+        'css/ecosystem/xtags/tabbox.css',
     ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
@@ -292,5 +299,14 @@ JS = {
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
         'js/mkt/lookup-tool.js',
+    ),
+    'mkt/xtags': (
+        'js/mkt/xtags/x-tag.js',
+        'js/mkt/xtags/alert-popup.js',
+        'js/mkt/xtags/dialog-toast.js',
+        'js/mkt/xtags/listview.js',
+        'js/mkt/xtags/slidebox.js',
+        'js/mkt/xtags/slider.js',
+        'js/mkt/xtags/tabbox.js',
     ),
 }

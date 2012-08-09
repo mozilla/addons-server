@@ -8,8 +8,6 @@ from django.http import Http404
 import bleach
 from celeryutils import task
 import commonware.log
-from lxml import etree
-from pyquery import PyQuery
 
 from models import MdnCache
 
@@ -49,9 +47,44 @@ ALLOWED_ATTRIBUTES.update(dict((x, ['id', ]) for x in (
 
 tutorials = [
     {
-        'title': 'Apps Tutorial',
-        'name': 'apps',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/Apps/Tracks/General'
+        'title': 'Introduction to HTML5',
+        'name': 'html5',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/HTML/HTML5/Introduction_to_HTML5?raw=1&macros=true'
+    },
+    {
+        'title': 'Manifests',
+        'name': 'manifests',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Manifest?raw=1&macros=true'
+    },
+    {
+        'title': 'Manifest FAQ',
+        'name': 'manifest_faq',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/FAQs/About_app_manifests?raw=1&macros=true'
+    },
+    {
+        'title': 'Design Guidelines',
+        'name': 'design_guidelines',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines?raw=1&macros=true'
+    },
+    {
+        'title': 'Design Principles',
+        'name': 'design_principles',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Design_Principles?raw=1&macros=true'
+    },
+    {
+        'title': 'Purpose of your App',
+        'name': 'purpose_of_your_app',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Purpose_of_your_app?raw=1&macros=true'
+    },
+    {
+        'title': 'Design Patterns',
+        'name': 'design_patterns',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Design_patterns?raw=1&macros=true'
+    },
+    {
+        'title': 'References',
+        'name': 'references',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/References?raw=1&macros=true'
     },
 ]
 
@@ -59,7 +92,7 @@ tutorials = [
 # locale, we are going to try each locale in this array for each tutorial
 # page entry.  We may get some 404s, but that's ok if some translations
 # are not finished yet.  We grab the ones that are completed.
-locales = ['en']
+locales = ['en-US']
 
 
 @task
@@ -83,7 +116,7 @@ def _update_mdn_items(items):
             log.info('Fetching MDN article "%s": %s' % (name, url))
 
             try:
-                toc, content = _fetch_mdn_page(url)
+                content = _fetch_mdn_page(url)
             except Http404:
                 log.error(u'404 on MDN article "%s": %s' % (name, url))
                 continue
@@ -96,7 +129,6 @@ def _update_mdn_items(items):
                 name=item['name'], locale=locale)
 
             model.title = item['title']
-            model.toc = toc
             model.content = content
             model.permalink = url
             model.save()
@@ -107,24 +139,14 @@ def _update_mdn_items(items):
 
 
 def _fetch_mdn_page(url):
-    data = bleach.clean(_get_page(url), attributes=ALLOWED_ATTRIBUTES,
+    return bleach.clean(_get_page(url), attributes=ALLOWED_ATTRIBUTES,
                         tags=ALLOWED_TAGS, strip_comments=False)
-
-    root = PyQuery(data)
-    toc = root.find('#article-nav div.page-toc ol')[0]
-    content = root.find('#pageText')[0]
-
-    toc.set('id', 'mdn-toc')
-    content.set('id', 'mdn-content')
-
-    return (etree.tostring(toc, pretty_print=True),
-        etree.tostring(content, pretty_print=True))
 
 
 def _get_page(url):
     try:
         return urllib2.urlopen(url).read()
-    except URLError as e:
+    except urllib2.URLError as e:
         if e.code == 404:
             raise Http404
         else:

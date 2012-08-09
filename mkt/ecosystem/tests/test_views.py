@@ -24,41 +24,64 @@ class TestLanding(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'ecosystem/landing.html')
 
 
-class TestTutorialsHome(amo.tests.TestCase):
+class TestDevHub(amo.tests.TestCase):
+
+    def test_building(self):
+        r = self.client.get(reverse('ecosystem.building'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/building.html')
+
+    def test_partners(self):
+        r = self.client.get(reverse('ecosystem.partners'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/partners.html')
+
+    def test_support(self):
+        r = self.client.get(reverse('ecosystem.support'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/support.html')
+
+
+class TestDeveloperBuilding(amo.tests.TestCase):
+
+    def test_xtag_list(self):
+        r = self.client.get(reverse('ecosystem.building_xtag', args=['list']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/design/xtag_list.html')
+
+
+class TestMdnDocumentation(amo.tests.TestCase):
     fixtures = ['ecosystem/mdncache-item']
 
     def setUp(self):
-        self.url = reverse('ecosystem.tutorial')
+        self.url = reverse('ecosystem.documentation')
 
-    def test_tutorials_default(self):
+    def test_mdn_content_default(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/tutorial.html')
+        self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/index.html')
 
-    def test_tutorials_expicit(self):
+    def test_mdn_content_design(self):
+        r = self.client.get(reverse('ecosystem.documentation',
+                            args=['design_principles']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/design.html')
+
+    def test_mdn_content_explicit(self):
         r = self.client.get(self.url + 'old')
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/tutorial.html')
+        self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/index.html')
 
-    def test_tutorials_unknown(self):
+    def test_mdn_content_unknown(self):
         r = self.client.get(self.url + 'pizza')
         eq_(r.status_code, 404)
         self.assertTemplateUsed(r, 'site/404.html')
 
-    def test_display_of_content(self):
-        a = MdnCache.objects.filter(name='apps', locale='en')[0]
+    def test_mdn_content_content(self):
+        a = MdnCache.objects.filter(name='html5', locale='en-US')[0]
         a.content = '<strong>pizza</strong>'
         a.save()
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#content strong').text(), 'pizza')
-
-    def test_display_of_toc(self):
-        a = MdnCache.objects.filter(name='apps', locale='en')[0]
-        a.toc = '<strong>pizza</strong>'
-        a.save()
-
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('#nav strong').text(), 'pizza')
+        eq_(pq(r.content)('strong').text(), 'pizza')

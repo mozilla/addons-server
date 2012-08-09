@@ -1,0 +1,43 @@
+{% macro navigation(section) -%}
+  <section class="document-breadcrumb">
+    <ul class="marketing-horz four-cols">
+      <li>
+        {% if section == 'get_started' %}
+          <span>{{ _('Get Started') }}</span>
+        {% else %}
+          <a href="#">{{ _('Get Started') }}</a>
+        {% endif %}
+      </li>
+      <li>
+        {% if section == 'design' %}
+          <span>{{ _('Design') }}</span>
+        {% else %}
+          <a href="{{ url('ecosystem.documentation',
+             page='design_principles') }}">
+            {{ _('Design') }}
+          </a>
+        {% endif %}
+      </li>
+      <li>
+        {% if section == 'code' %}
+          <span>{{ _('SDK') }}</span>
+        {% else %}
+          <a href="{{ url('ecosystem.documentation',
+             page='code_it') }}">
+             {{ _('SDK') }}
+          </a>
+        {% endif %}
+      </li>
+      <li>
+        {% if section == 'publish' %}
+          <span>{{ _('Publish') }}</span>
+        {% else %}
+          <a href="{{ url('ecosystem.documentation',
+             page='publish_it') }}">
+            {{ _('Publish') }}
+          </a>
+        {% endif %}
+      </li>
+    </ul>
+  </section>
+{% endmacro -%}

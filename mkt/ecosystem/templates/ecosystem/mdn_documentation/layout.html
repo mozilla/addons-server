@@ -1,0 +1,18 @@
+{% extends "ecosystem/base.html" %}
+
+{% block title %}
+  {{ _('Mozilla | Get Started | ') }}
+  {{ title }} | {{ super() }}
+{% endblock %}
+
+{% block bodyclass %}secondary-landing{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block siteheader %}
+  {% include 'ecosystem/header.html' %}
+{% endblock %}
+
+{% block content %}{% endblock %}

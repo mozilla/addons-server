@@ -12,8 +12,8 @@ test_items = [
     {
         'title': 'Test Mdn Page',
         'name': 'test',
-        'local': 'en',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/HTML/HTML5'
+        'local': 'en-US',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/HTML/HTML5?raw=1&macros=true'
     }
 ]
 
@@ -44,44 +44,37 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
 
     def setUp(self):
         for item in test_items:
-            item['url'] = item['mdn'] % {'locale': 'en'}
+            item['url'] = item['mdn'] % {'locale': 'en-US'}
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_get_page_content(self):
         content = _fetch_mdn_page(test_items[0]['url'])
-        eq_(2, len(content))
+        eq_(401, len(content))
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_refresh_mdn_cache(self):
         _update_mdn_items(test_items)
         eq_('test', MdnCache.objects.get(name=test_items[0]['name'],
-                                         locale='en').name)
+                                         locale='en-US').name)
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_refresh_mdn_cache_with_old_data(self):
         eq_('old', MdnCache.objects.get(name='old',
-                                        locale='en').name)
+                                        locale='en-US').name)
         _update_mdn_items(test_items)
         eq_('test', MdnCache.objects.get(name=test_items[0]['name'],
-                                         locale='en').name)
+                                         locale='en-US').name)
         eq_(1, MdnCache.objects.count())
 
         with self.assertRaises(MdnCache.DoesNotExist):
-            MdnCache.objects.get(name='old', locale='en')
+            MdnCache.objects.get(name='old', locale='en-US')
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_ensure_content_xss_safe(self):
         content = _fetch_mdn_page(test_items[0]['url'])
-        assert '<script>' not in content[1]
-        assert '&lt;script&gt;alert' in content[1]
-        assert '<b>hi</b>' in content[1]
-
-    @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
-    def test_ensure_toc_xss_safe(self):
-        content = _fetch_mdn_page(test_items[0]['url'])
-        assert '<script>' not in content[0]
-        assert '&lt;script&gt;alert' in content[0]
-        assert '<li>' in content[0]
+        assert '<script>' not in content
+        assert '&lt;script&gt;alert' in content
+        assert '<b>hi</b>' in content
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=raise_exception)
     def test_dont_delete_on_exception(self):

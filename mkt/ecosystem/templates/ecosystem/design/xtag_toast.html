@@ -1,0 +1,40 @@
+{% extends "ecosystem/design/xtag.html" %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block description %}
+  <p>A toast is a small popup that either provides immediate and non-intrusive feedback
+  on the user's action (email saved), or a notification of an event (new email).</p>
+
+  <p>It contains very few text, does not require user interaction, and automatically
+  disappears after a few seconds. It can include text, image, or both.</p>
+{% endblock %}
+
+{% block use_it %}
+  When the information you want to present is, or corresponds to a set of unique
+  images, i.e. image folders.
+{% endblock %}
+
+{% block tips %}
+  <h2>Do's</h2>
+  <ul>
+    <li>use very little text</li>
+  </ul>
+
+  <h2>Dont's</h2>
+  <ul>
+    <li>don't use it to provide information irrelevant to the user's activity
+      at that moment</li>
+    <li>don't use it when action is required. Use an alert or select list
+      instead.</li>
+    <li>if explanation is necessary, use a short text label</li>
+  </ul>
+{% endblock %}
+
+{% block code_live %}
+  <x-toast data-duration="2000" data-exclude-close="true">
+    This is a toast message.
+  </x-toast>
+{% endblock %}

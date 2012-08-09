@@ -1,0 +1,50 @@
+{% extends "ecosystem/base.html" %}
+
+{% block title %}{{ _('Partners') }} | {{ super() }}{% endblock %}
+
+{% block bodyclass %}secondary-landing{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block siteheader %}
+  {% include 'ecosystem/header.html' %}
+{% endblock %}
+
+{% block content %}
+  <div id="landing-page" class="partners">
+    <h1>{{ _('Partners') }}</h1>
+    <section class="primary full marketing-block reach">
+      <h2>{{ _('Reach') }}</h2>
+      <ul>
+        <li>{{ _('Enter &amp; excite emerging markets') }}</li>
+        <li>{{ _('Default app store on the Firefox OS') }}</li>
+        <li>{{ _('Reach new smartphones users') }}</li>
+        <li>
+          {% trans %}
+            Access to massive distribution via Mozilla &amp; Telefónica
+          {% endtrans %}
+        </li>
+      </ul>
+    </section>
+    <section class="primary full marketing-block choice">
+      <h2>{{ _('Choice') }}</h2>
+      <ul>
+        <li>{{ _('Direct User-Developer relationship') }}</li>
+        <li>{{ _('Content owners keep direct connection to audience') }}</li>
+        <li>{{ _('No need to resubmit apps for updated content') }}</li>
+        <li>{{ _('Content owners control app releases') }}</li>
+        <li>{{ _('Light approval process') }}</li>
+      </ul>
+    </section>
+    <section class="primary full marketing-block open">
+      <h2>{{ _('Open') }}</h2>
+      <ul>
+        <li>{{ _('Based on Standard web technologies') }}</li>
+        <li>{{ _('Limits/eliminates fragmentation issues') }}</li>
+        <li>{{ _('Open &amp; non proprietary') }}</li>
+      </ul>
+    </section>
+  </div>
+{% endblock %}

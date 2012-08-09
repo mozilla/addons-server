@@ -1,0 +1,42 @@
+{% extends "ecosystem/design/xtag.html" %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block description %}
+  A slider lets users adjust and select a value from a predefined
+  range by moving a handle. The changes are immediately noticeable
+  so that the users can fine tune the values accordingly (i.e.
+  brightness). When it is easier for the user to enter a value
+  directly, use a text box.
+{% endblock %}
+
+{% block use_it %}
+  When the values are relative to the users and you could provide
+  immediate feedback of the use’s action.
+{% endblock %}
+
+{% block tips %}
+  <h2>Do's</h2>
+  <ul>
+    <li>provide a label and define those values</li>
+  </ul>
+  <h2>Dont's</h2>
+  <ul>
+    <li>don't use it when the user probably know the exact target
+      number. Use a text box instead</li>
+  </ul>
+{% endblock %}
+
+{% block code_live %}
+  <x-selectlist>
+  </x-selectlist>
+{% endblock %}
+
+{% block related_links %}
+  <p>
+    Related: <a href="{{ url('ecosystem.building_xtag',
+      xtag='picker') }}">Date/Time Picker</a>
+  </p>
+{% endblock %}

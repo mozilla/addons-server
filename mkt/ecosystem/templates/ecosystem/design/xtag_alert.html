@@ -1,0 +1,52 @@
+{% extends "ecosystem/design/xtag.html" %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block description %}
+  An alert popup dialog is a small window which demands user's input related
+  to the current activity. It disables all current activities and only
+  disappears after the user confirms an action or dismisses the dialog.
+{% endblock %}
+
+{% block use_it %}
+  When the current activity absolutely requires user input, usually validation (i.e.
+  delete all contacts?) or authorization (i.e. enable GPS?).
+{% endblock %}
+
+{% block tips %}
+  <h2>Do's</h2>
+  <ul>
+    <li>action oriented (i.e. delete all contacts?)</li>
+    <li>do not use an extra title unless the action has severe consequences (ex:
+      delete all contacts?)</li>
+    <li>short questions or statements</li>
+    <li>as a rule of thumb, place the positive button on the right, and the
+      negative button on the left</li>
+    <li>use descriptive, free standing labels such as &quot;Connect&quot;</li>
+  </ul>
+
+  <h2>Dont's</h2>
+  <ul>
+    <li>don't use negation in your question or statement</li>
+    <li>don't use it when the action is trivial and reversible. Use a toast
+      instead.</li>
+    <li>don't use it when you want the user to make a trivial choices.
+      Consider a select list instead.</li>
+  </ul>
+{% endblock %}
+
+{% block code_live %}
+  <x-alert data-fade-duration="500" data-secondary-text="Cancel">
+    <h3>Delete all contacts?</h3>
+    Contacts will be deleted forever!
+  </x-alert>
+{% endblock %}
+
+{% block related_links %}
+  <p>
+    Related: <a href="{{ url('ecosystem.building_xtag',
+      xtag='toast') }}">Toast Popup</a>
+  </p>
+{% endblock %}

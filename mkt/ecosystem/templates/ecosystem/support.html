@@ -1,0 +1,75 @@
+{% extends "ecosystem/base.html" %}
+
+{% block title %}{{ _('Support') }} | {{ super() }}{% endblock %}
+
+{% block bodyclass %}secondary-landing{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block siteheader %}
+  {% include 'ecosystem/header.html' %}
+{% endblock %}
+
+{% block content %}
+  <div id="landing-page">
+    <h1>{{ _('Support') }}</h1>
+    <section class="primary half marketing-block">
+      <h2>{{ _('Frequently Asked Questions') }}</h2>
+      <ul class="marketing-horz support-content">
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/FAQs/About_apps">
+            {{ _('What should I know before creating an App?') }}
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/FAQs/Marketplace">
+            {{ _('How can I upload my App to the Firefox Marketplace?') }}
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/FAQs/About_app_manifests">
+            {{ _('I need help with the App Manifest.') }}
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/Apps_JavaScript_API">
+            {{ _('How do I create an installable App?') }}
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/Marketplace_Payments/FAQ">
+            {{ _('How do payments work?') }}
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/Marketplace_Payments/Tax_FAQ">
+            {{ _('How do I manage the taxes of my sales?') }}
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/docs/Apps/FAQs/Known_issues">
+            {{ _('Known issues') }}
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section class="secondary half marketing-block">
+      <h2>{{ _('Do you still have questions?') }}</h2>
+      <p>
+        {% trans %}
+          While we are working on creating a set of channels to help you with your
+          issues you can visit StackOverflow to resolve all your questions related
+          to the development of Web Apps.
+        {% endtrans %}
+      </p>
+
+      <a href="http://stackoverflow.com/questions/tagged/web-applications"
+         title="{{ _('Stack Overflow') }}">
+        <img src="{{ media('img/ecosystem/stackoverflow_logo.jpg') }}"
+             class="logo" alt="{{ _('Stack Overflow') }}">
+      </a>
+    </section>
+  </div>
+{% endblock %}

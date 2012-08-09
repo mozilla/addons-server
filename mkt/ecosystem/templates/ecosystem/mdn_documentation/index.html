@@ -1,0 +1,44 @@
+{% extends "ecosystem/mdn_documentation/layout.html" %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block content %}
+  {{ navigation('get_started') }}
+
+  <div class="design-wrapper">
+    <nav class="marketing-block no-pad design">
+      <ul>
+        <li>
+          <span>{{ _('Get Started') }}</span>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='html5') }}">
+                {{ _('HTML5') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='manifests') }}">
+                {{ _('Manifests') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='manifest_faq') }}">
+                {{ _('Manifest FAQ') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='example_apps') }}">
+                {{ _('Example Apps') }}
+              </a>
+            </li>
+          </ol>
+        </li>
+      </ul>
+    </nav>
+
+    <article class="marketing-block">
+      <h1>{{ title }}</h1>
+
+      {{ content|xssafe }}
+    </article>
+  </div>
+{% endblock %}

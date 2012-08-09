@@ -6,11 +6,32 @@
 {% endblock %}
 
 {% block siteheader %}
-  {% include 'ecosystem/header.html' %}
+  <header id="site-header">
+    <section>
+      <div class="wrapper">
+        <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
+          {{ _('Mozilla Marketplace Developers') }}</a></h1>
+        <nav role="navigation">
+          {% if not request.user.is_authenticated() %}
+            <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">
+              {{ _('Log in / Register') }}</a>
+            <a class="external" href="https://developer.mozilla.org/en-US/apps">
+              {{ _('Reference') }}</a>
+          {% else %}
+            <a href="{{ url('submit.app') }}">
+              {{ _('Submit an App') }}</a>
+            <a href="{{ url('mkt.developers.apps') }}">{{ _('My Apps') }}</a>
+            <a class="external" href="https://developer.mozilla.org/en-US/apps">{{ _('Reference') }}</a>
+            <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+          {% endif %}
+        </nav>
+      </div>
+    </section>
+  </header>
 {% endblock %}
 
 {% block sitefooter %}
-  <footer id="site-footer">
+  <footer id="site-footer" class="ecosystem">
     <div class="center">
       <ul>
         <li><a href="{{ url('site.privacy') }}">
@@ -21,7 +42,7 @@
           {{ _('Report Trademark Abuse') }}</a></li>
       </ul>
       <h1 id="footzilla">mozilla</h1>
-      <p>
+      <p class="legal">
         {% trans %}
           Except where otherwise
           <a href="http://mozilla.com/about/legal.html#site">noted</a>,
@@ -33,6 +54,32 @@
       </p>
 
       {% block sitefooter_append %}
+        <ul class="user-actions">
+        {% if not request.user.is_authenticated() %}
+          <li>
+            <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">
+              {{ _('Log in / Register') }}</a>
+          </li>
+          <li>
+            <a class="external" href="https://developer.mozilla.org/en-US/apps">
+              {{ _('Reference') }}</a>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ url('submit.app') }}">
+              {{ _('Submit an App') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('mkt.developers.apps') }}">{{ _('My Apps') }}</a>
+          </li>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/apps">{{ _('Reference') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('users.logout') }}">{{ _('Logout') }}</a>
+          </li>
+        {% endif %}
+        </ul>
       {% endblock %}
     </div>
   </footer>

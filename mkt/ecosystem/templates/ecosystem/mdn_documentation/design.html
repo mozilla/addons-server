@@ -1,0 +1,21 @@
+{% extends "ecosystem/mdn_documentation/layout.html" %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ _('Mozilla') }} | {{ _('Design') }} |
+  {{ title }} | {{ super() }}
+{% endblock %}
+
+{% block content %}
+  {{ navigation('get_started') }}
+
+  <div class="design-wrapper">
+    {% include 'ecosystem/mdn_documentation/design_nav.html' %}
+
+    <article class="marketing-block">
+      <h1>{{ title }}</h1>
+
+      {{ content|xssafe }}
+    </article>
+  </div>
+{% endblock %}

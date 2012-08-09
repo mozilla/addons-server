@@ -1,0 +1,32 @@
+{% extends "ecosystem/design/xtag.html" %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block description %}
+  Tabs are usually used in a group to switch between different panes.
+{% endblock %}
+
+{% block use_it %}
+  When the information displayed can be view in several different
+  ways (ex:most popular, most discussed).
+{% endblock %}
+
+{% block tips %}
+  <h2>Do's</h2>
+  <ul>
+    <li>display the most important pane by default</li>
+    <li>use short and and predictable tab labels</li>
+  </ul>
+  <h2>Dont's</h2>
+  <ul>
+    <li>don’t separate content which needs to be viewed in context
+      with each other in different panes</li>
+  </ul>
+{% endblock %}
+
+{% block code_live %}
+  <x-tabbox>
+  </x-tabbox>
+{% endblock %}

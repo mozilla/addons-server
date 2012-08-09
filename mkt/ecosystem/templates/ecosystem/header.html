@@ -8,18 +8,9 @@
           <a href="{{ url('ecosystem.tutorial') }}">Tutorials</a>
         #}
 
-        {% if not request.user.is_authenticated() %}
-          <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">
-            {{ _('Log in / Register') }}</a>
-          <a class="external" href="https://developer.mozilla.org/en-US/apps">
-            {{ _('Reference') }}</a>
-        {% else %}
-         <a href="{{ url('submit.app') }}">
-           {{ _('Submit an App') }}</a>
-         <a href="{{ url('mkt.developers.apps') }}">{{ _('My Apps') }}</a>
-         <a class="external" href="https://developer.mozilla.org/en-US/apps">{{ _('Reference') }}</a>
-         <a href="{{ url('users.logout') }}">{{ _('Logout') }}</a>
-        {% endif %}
+        <a href="{{ url('ecosystem.building') }}">{{ _('Developers') }}</a>
+        <a href="{{ url('ecosystem.partners') }}">{{ _('Partners') }}</a>
+        <a href="{{ url('ecosystem.support') }}">{{ _('Support') }}</a>
       </nav>
     </div>
   </section>

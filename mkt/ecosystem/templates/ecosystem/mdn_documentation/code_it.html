@@ -1,0 +1,49 @@
+{% extends "ecosystem/mdn_documentation/layout.html" %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ _('Mozilla }} | {{ _('SDK') }} |
+  {{ title }} | {{ super() }}
+{% endblock %}
+
+{% block content %}
+  {{ navigation('code_it') }}
+
+  <div class="design-wrapper">
+    <nav class="marketing-block no-pad design">
+      <ul>
+        <li>
+          <span>{{ _('SDK') }}</span>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='devtools') }}">
+                {{ _('Firefox Dev Tools') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='tutorials') }}">
+                {{ _('Tutorials') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='templates') }}">
+                {{ _('Templates') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='web_components') }}">
+                {{ _('Web Components') }}
+              </a>
+            </li>
+          </ol>
+        </li>
+      </ul>
+    </nav>
+
+    <article class="marketing-block">
+      <h1>{{ title }}</h1>
+
+      {{ content|xssafe }}
+    </article>
+  </div>
+{% endblock %}

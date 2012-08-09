@@ -1,0 +1,49 @@
+{% extends "ecosystem/mdn_documentation/layout.html" %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ _('Mozilla') }} | {{ _('Publish') }} |
+  {{ title }} | {{ super() }}
+{% endblock %}
+
+{% block content %}
+  {{ navigation('publish') }}
+
+  <div class="design-wrapper">
+    <nav class="marketing-block no-pad design">
+      <ul>
+        <li>
+          <span>{{ _('Publish It') }}</span>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='mkt_submission') }}">
+                {{ _('Marketplace Submission') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='hosting') }}">
+                {{ _('Hosting / Packaging') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='payments') }}">
+                {{ _('Payments') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='metrics') }}">
+                {{ _('Metrics') }}
+              </a>
+            </li>
+          </ol>
+        </li>
+      </ul>
+    </nav>
+
+    <article class="marketing-block">
+      <h1>{{ title }}</h1>
+
+      {{ content|xssafe }}
+    </article>
+  </div>
+{% endblock %}
