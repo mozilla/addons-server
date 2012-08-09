@@ -7,7 +7,7 @@
 <{{ tag }} class="{{ classes }}"
   {% if link %}href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
   {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
-  <img class="icon" src="{{ product.get_icon_url(64) }}">
+  <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
     {% if product.has_author(request.amo_user) %}
