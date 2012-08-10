@@ -44,8 +44,6 @@ class TestPurchase(PurchaseTest):
 
     @fudge.patch('lib.pay_server.base.requests.post')
     def test_prepare_pay(self, api_post):
-        from nose.exc import SkipTest
-        raise SkipTest('the signature randomly fails, will fix this later')
 
         def good_data(da):
             da = json.loads(da)
@@ -173,7 +171,7 @@ class TestPostback(PurchaseTest):
                                              text='{"valid": true}'))
         req = self.jwt()
         self.post(req=req)
-        resp = self.post()
+        resp = self.post(req=req)
         eq_(resp.status_code, 200)
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
