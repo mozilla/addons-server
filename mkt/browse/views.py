@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import amo
 from addons.models import Category
+import mkt
 from mkt.search.views import _app_search
 from mkt.webapps.models import Webapp
 
@@ -9,15 +10,16 @@ import jingo
 
 
 def _landing(request, category=None):
+    region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
     if category:
         category = get_object_or_404(
             Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0),
             slug=category)
-        featured = Webapp.featured(category)
+        featured = Webapp.featured(category, region)
         popular = Webapp.popular().filter(category=category.id)
     else:
         popular = Webapp.popular()
-        featured = Webapp.featured(None)
+        featured = Webapp.featured(None, region)
 
     return jingo.render(request, 'browse/landing.html', {
         'category': category,

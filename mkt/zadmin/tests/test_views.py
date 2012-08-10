@@ -10,7 +10,7 @@ from addons.models import Addon, AddonCategory, Category
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
-from mkt.zadmin.models import FeaturedApp
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 class TestFeaturedApps(amo.tests.TestCase):
@@ -113,11 +113,13 @@ class TestFeaturedApps(amo.tests.TestCase):
 
     def test_set_region(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
-        eq_(f.region, 1)
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
         r = self.client.post(reverse('zadmin.set_region_ajax'),
-                             data={'app': f.pk, 'region': 3})
+                             data={'app': f.pk, 'region[]': (3, 2)})
         eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).region, 3)
+        eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
+                    'region', flat=True)),
+            [2, 3])
 
 
 class TestAddonSearch(amo.tests.ESTestCase):

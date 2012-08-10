@@ -13,7 +13,7 @@ from zadmin.decorators import admin_required
 import mkt
 from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
 from mkt.ecosystem.models import MdnCache
-from mkt.zadmin.models import FeaturedApp
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 @transaction.commit_on_success
@@ -54,23 +54,35 @@ def featured_apps_ajax(request):
                                        app__id=int(deleteid)).delete()
         appid = request.POST.get('add', None)
         if appid:
-            FeaturedApp.objects.get_or_create(category_id=cat,
-                                              app_id=int(appid))
+            app, created = FeaturedApp.objects.get_or_create(category_id=cat,
+                                                             app_id=int(appid))
+            if created:
+                FeaturedAppRegion.objects.create(featured_app=app,
+                                                region=mkt.regions.WORLDWIDE.id)
     else:
         cat = None
-
-    apps = FeaturedApp.objects.filter(category__id=cat)
+    apps_regions = []
+    for app in FeaturedApp.objects.filter(category__id=cat):
+        regions = app.regions.values_list('region', flat=True)
+        apps_regions.append((app, regions))
     return jingo.render(request, 'zadmin/featured_apps_ajax.html',
-                        {'apps': apps,
+                        {'apps_regions': apps_regions,
                          'regions': mkt.regions.REGIONS_CHOICES})
 
 
 @admin_required
 def set_region_ajax(request):
-    region = request.POST.get('region', None)
+    regions = request.POST.getlist('region[]')
     app = request.POST.get('app', None)
-    if region and app:
-        FeaturedApp.objects.filter(pk=app).update(region=region)
+    if regions and app:
+        fa = FeaturedApp.objects.get(pk=app)
+        regions = set(int(r) for r in regions)
+        fa.regions.exclude(region__in=regions).delete()
+        to_create = regions - set(fa.regions.filter(region__in=regions)
+                                  .values_list('region', flat=True))
+        for i in to_create:
+            FeaturedAppRegion.objects.create(featured_app=fa, region=i)
+
     return HttpResponse()
 
 

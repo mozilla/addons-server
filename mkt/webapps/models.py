@@ -340,10 +340,11 @@ class Webapp(Addon):
         return sorted(regions, key=lambda x: x.slug)
 
     @classmethod
-    def featured(cls, cat):
+    def featured(cls, cat, region):
         return [fa.app for fa in
                 (models.get_model('zadmin', 'FeaturedApp').objects.filter(
                     category=cat,
+                    regions__region=region.id,
                     app__status=amo.STATUS_PUBLIC,
                     app__disabled_by_user=False).
                  order_by('-app__weekly_downloads'))[:6]]

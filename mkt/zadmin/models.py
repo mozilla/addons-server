@@ -15,10 +15,8 @@ class FeaturedApp(models.Model):
         db_table = 'zadmin_featuredapp'
 
 
-class FeaturedAppRegionExclusion(models.Model):
-    featured_app = models.ForeignKey(FeaturedApp, null=False)
+class FeaturedAppRegion(models.Model):
+    featured_app = models.ForeignKey(FeaturedApp, null=False,
+                                     related_name='regions')
     region = models.PositiveIntegerField(default=mkt.regions.WORLDWIDE.id,
                                          db_index=True)
-
-    class Meta:
-        db_table = 'zadmin_featuredapp_regionexclusion'

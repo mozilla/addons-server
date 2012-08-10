@@ -1,5 +1,5 @@
 {% block content %}
-{% for row in apps -%}
+{% for row, selected_regions in apps_regions -%}
 <tr>
   <td>
     <table>
@@ -23,8 +23,8 @@
                   data-url="{{ url('zadmin.set_region_ajax') }}"
                   data-id="{{ row.pk }}">
             {%- for locName, loc in regions -%}
-              <option value="{{ loc.slug }}"
-                {%- if loc.slug == row.region %} selected{%- endif -%}
+              <option value="{{ loc.id }}"
+                {%- if loc.id in selected_regions %} selected{%- endif -%}
                 >{{ loc.name }}</option>
             {%- endfor -%}
           </select>
