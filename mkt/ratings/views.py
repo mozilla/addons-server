@@ -15,7 +15,7 @@ from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
 
 from reviews.forms import ReviewReplyForm
-from reviews.models import Review
+from reviews.models import Review, ReviewFlag
 from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
 from stats.models import ClientData, Contribution
@@ -157,8 +157,8 @@ def add(request, addon):
     if data:
         form = ReviewForm(data)
         if form.is_valid():
+            cleaned = form.cleaned_data
             if existing_review:
-                cleaned = form.cleaned_data
                 # If there's a review to overwrite, overwrite it.
                 if (cleaned['body'] != existing_review.body or
                     cleaned['rating'] != existing_review.rating):
@@ -166,7 +166,14 @@ def add(request, addon):
                     existing_review.rating = cleaned['rating']
                     ip = request.META.get('REMOTE_ADDR', '')
                     existing_review.ip_address = ip
-
+                    if 'flag' in cleaned and cleaned['flag']:
+                        existing_review.flag = True
+                        existing_review.editorreview = True
+                        rf = ReviewFlag(review=existing_review,
+                                user_id=request.user.id,
+                                flag=ReviewFlag.OTHER,
+                                note='URLs')
+                        rf.save()
                     existing_review.save()
                     # Update ratings and review counts.
                     addon_review_aggregates.delay(addon.id,
@@ -193,6 +200,12 @@ def add(request, addon):
                 # If there isn't a review to overwrite, create a new review.
                 review = Review.objects.create(client_data=client_data,
                         **_review_details(request, addon, form))
+                if 'flag' in cleaned and cleaned['flag']:
+                    rf = ReviewFlag(review=review,
+                                user_id=request.user.id,
+                                flag=ReviewFlag.OTHER,
+                                note='URLs')
+                    rf.save()
                 amo.log(amo.LOG.ADD_REVIEW, addon, review)
                 log.debug('[Review:%s] Created by user %s ' %
                           (review.id, request.user.id))
