@@ -50,7 +50,14 @@ app_detail_patterns = patterns('',
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
     # PayPal-specific stuff.
     url('^paypal/', include(paypal_patterns('apps'))),
-    url('^paypal/', include(paypal_patterns('addons'))),
+
+    # Bluevia-specific stuff.
+    url('^bluevia$', views.get_bluevia_url,
+        name='mkt.developers.apps.get_bluevia_url'),
+    url('^bluevia/callback$', views.bluevia_callback,
+        name='mkt.developers.apps.bluevia_callback'),
+    url('^bluevia/remove$', views.bluevia_remove,
+        name='mkt.developers.apps.bluevia_remove'),
 
     # in-app payments.
     url('^in-app-config$', views.in_app_config,

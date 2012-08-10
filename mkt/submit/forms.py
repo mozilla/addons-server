@@ -68,8 +68,10 @@ class NewWebappForm(happyforms.Form):
 
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect, choices=[],
-        label=_(u'Do you already have a PayPal Premier or Business account?'))
-    email = forms.EmailField(required=False, label=_(u'PayPal email address'))
+        label=_lazy(u'Do you already have a PayPal Premier '
+                    'or Business account?'))
+    email = forms.EmailField(required=False,
+                             label=_lazy(u'PayPal email address'))
 
     def __init__(self, *args, **kw):
         super(PaypalSetupForm, self).__init__(*args, **kw)

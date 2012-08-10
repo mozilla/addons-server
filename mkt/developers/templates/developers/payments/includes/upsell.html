@@ -2,7 +2,7 @@
 <div class="brform c" id="payments-upsell">
   {% if form.fields['free'].queryset.count() %}
     {{ form.free.errors }}
-    <label>{{ form.free.label }} {{ required() }}</label>
+    <label for="{{ form.free.auto_id }}">{{ form.free.label }} {{ required() }}</label>
     {{ form.free }}
     <p class="note">
       {% trans %}

@@ -1,0 +1,9 @@
+<script type="text/template" id="bluevia-iframe-template">
+  <section class="add-bluevia-iframe">
+    <h2>{{ _('Add BlueVia Account') }}</h2>
+    <a class="close">{{ _('close') }}</a>
+    <iframe data-bluevia-url="{{ addon.get_dev_url('get_bluevia_url') }}"
+            data-bluevia-callback="{{ addon.get_dev_url('bluevia_callback') }}"
+            target="_blank"></iframe>
+  </section>
+</script>

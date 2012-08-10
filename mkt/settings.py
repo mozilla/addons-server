@@ -273,6 +273,11 @@ STATSD_RECORD_KEYS = [
 
 PISTON_DISPLAY_ERRORS = False
 
+# Key for signing requests to BlueVia for developer registration.
+BLUEVIA_SECRET = ''
+BLUEVIA_ORIGIN = 'https://opentel20.tidprojects.com'
+BLUEVIA_URL = BLUEVIA_ORIGIN + '/en/mozilla/?req='
+
 # Link to the appcache manifest (activate it) when True.
 USE_APPCACHE = False
 

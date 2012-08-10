@@ -1,6 +1,7 @@
 import hashlib
 import logging
 import uuid
+
 from tower import ugettext as _
 
 import paypal

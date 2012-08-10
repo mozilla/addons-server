@@ -12,6 +12,9 @@
         cursor: default;
         text-decoration: none;
     }
+    .item-actions ul li a {
+        color: @light-gray;
+    }
     span.req, #payments-payment-account p, .status-fail {
         color: @light-gray !important;
     }
@@ -165,7 +168,7 @@
 }
 
 /* paypal-setup */
-.paypal-inline {
+.paypal-inline, .bluevia-inline {
     &.brform {
         p, li label {
             margin: 0;
@@ -246,5 +249,21 @@ section.add-paypal-email {
     .redirect-info {
         margin-top: 10px;
         font-style: italic;
+    }
+}
+section.add-bluevia {
+    max-width: 400px;
+    .redirect-info {
+        margin-top: 13px;
+    }
+}
+section.add-bluevia-iframe {
+    height: 80%;
+    overflow: hidden;
+    width: 80%;
+    iframe {
+        height: 90%;
+        margin-top: 13px;
+        width: 100%;
     }
 }

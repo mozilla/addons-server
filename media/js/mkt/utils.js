@@ -123,6 +123,18 @@ function initCharCount() {
 }
 
 
+function successNotification(msg) {
+    var success = $('.success h2');
+    if (success.length) {
+        success.text(msg);
+    } else {
+        $('#page').prepend($('<section class="full notification-box">' +
+                             '<div class="success"><h2>' + msg +
+                             '</h2></div></section>'));
+    }
+}
+
+
 $('html').ajaxSuccess(function(event, xhr, ajaxSettings) {
     $(window).trigger('resize'); // Redraw what needs to be redrawn.
 });

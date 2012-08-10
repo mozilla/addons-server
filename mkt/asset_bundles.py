@@ -213,7 +213,7 @@ JS = {
         'js/devreg/edit.js',
 
         # Specific stuff for making payments nicer.
-        'js/devreg/paypal.js',
+        'js/devreg/payments.js',
         'js/zamboni/validator.js',
     ),
     'mkt/consumer': (

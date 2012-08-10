@@ -35,6 +35,8 @@ exports.payment_setup = function() {
         overlay.html($('#choose-payment-account-template').html());
         handlePaymentOverlay(overlay);
 
+        var emailRe = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
         // PayPal chosen.
         $('button.paypal').click(_pd(function(e) {
             $('.overlay').remove();
@@ -43,7 +45,6 @@ exports.payment_setup = function() {
             handlePaymentOverlay(overlay);
 
             // Email entered and submitted.
-            var emailRe = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             var continue_button = $('.continue');
             continue_button.click(function(e) {
                 // Validate email.
@@ -63,44 +64,77 @@ exports.payment_setup = function() {
             });
         }));
 
+        // Bluevia chosen.
         $('button.bluevia').click(_pd(function(e) {
-            alert('TODO: bluevia onboarding');
+            // Open Bluevia iframe.
+            $('.overlay').remove();
+            var overlay = makeOrGetOverlay('bluevia-iframe');
+            overlay.html($('#bluevia-iframe-template').html());
+            handlePaymentOverlay(overlay);
+
+            // Set iframe src with the JWT.
+            var blueviaFrame = $('.add-bluevia-iframe iframe');
+            var blueviaOrigin;
+            $.get(blueviaFrame.data('bluevia-url'), function(data) {
+                if (!data.error) {
+                    blueviaOrigin = data.bluevia_origin;
+                    blueviaFrame.attr('src', data.bluevia_url);
+                } else {
+                    successNotification(data.message);
+                }
+            });
+
+            // Set up postMessage handler.
+            z.receiveMessage(function(msg) {
+                // Ensure that this came from only BlueVia.
+                if (msg.origin !== blueviaOrigin) {
+                    return;
+                }
+                var postData = JSON.parse(msg.data);
+                switch (postData.status) {
+                    case 'failed':
+                        // TODO: Log this.
+                        successNotification(gettext('There was an error setting up your BlueVia account.'));
+                        break;
+                    case 'canceled':
+                        overlay.remove();
+                        return;
+                    case 'loggedin': case 'registered':
+                        // User already existed or new registration.
+                        $.post(blueviaFrame.data('bluevia-callback'), postData, function(data) {
+                            $('#bluevia').remove();
+                            $('#payments-payment-account').append(data.html);
+                            successNotification(data.message[0]);
+                            $('.bluevia-actions #remove-account').on('click', _pd(function(e) {
+                                removeAccount('bluevia', 'BlueVia');
+                            }));
+                        });
+                        $('#no-payment-providers').addClass('js-hidden');
+                        break;
+                }
+                overlay.remove();
+            });
         }));
     };
 
-    // Remove PayPal account from app.
-    var paypalRemove = _pd(function(e) {
-        var success = $('.success h2');
-
-        var $remove = $('.paypal-actions #remove-account');
-        var resp = $.get($remove.data('remove-url'));
-        if (!resp.success) {
-            if (success.length) {
-                success.text(gettext('There was an error removing the Paypal account.'));
-            } else {
-                $('#page').prepend($('<section class="full notification-box">' +
-                    '<div class="success"><h2>' +
-                    gettext('There was an error removing the PayPal account.') +
-                        '</h2></div></section>'));
-            }
+    function removeAccount(type, typePretty) {
+        var $remove = $('.' + type + '-actions #remove-account');
+        var resp = $.post($remove.data('remove-url'));
+        if (resp.error) {
+            // L10n: first parameter is the name of a payment provider.
+            successNotification(format(gettext('There was an error removing the {0} account.'), typePretty));
         }
-
-        var $paypal = $('#paypal');
-        $paypal.addClass('deleting');
+        var $account = $('#' + type);
+        $account.addClass('deleting');
         setTimeout(function() {
-            $paypal.addClass('deleted');
-
-            // If already existing Django message, replace message.
-            if (success.length) {
-                success.text(gettext('PayPal account successfully removed from app.'));
-            } else {
-                $('#page').prepend($('<section class="full notification-box">' +
-                    '<div class="success"><h2>' +
-                    gettext('PayPal account successfully removed from app.') +
-                        '</h2></div></section>'));
+            $account.addClass('deleted').remove();
+            // L10n: first parameter is the name of a payment provider.
+            successNotification(format(gettext('{0} account successfully removed from app.'), typePretty));
+            if (!$('.payment-option').length) {
+                $('#no-payment-providers').removeClass('js-hidden');
             }
         }, 500);
-    });
+    }
 
     var update_forms = function(value) {
         var fields = [
@@ -143,7 +177,12 @@ exports.payment_setup = function() {
             });
 
             $('.payment-account-actions').on('click', _pd(newPaymentAccount));
-            $('#remove-account').on('click', _pd(paypalRemove));
+            $('.paypal-actions #remove-account').on('click', _pd(function(e) {
+                removeAccount('paypal', 'PayPal');
+            }));
+            $('.bluevia-actions #remove-account').on('click', _pd(function(e) {
+                removeAccount('bluevia', 'BlueVia');
+            }));
         });
     };
 
@@ -166,8 +205,7 @@ exports.payment_setup = function() {
     }
 
     function handlePaymentOverlay(overlay) {
-        overlay.addClass('show');
-        overlay.on('click', '.close', _pd(function() {
+        overlay.addClass('show').on('click', '.close', _pd(function() {
             overlay.remove();
         }));
     }
@@ -202,7 +240,7 @@ exports.check_with_paypal = function() {
 
                 // Make error messages inactive when initial premium type is
                 // free.
-                if ($.inArray($('section.payments input[name=premium_type]:checked').val(), [0, 3, 4])) {
+                if ($.inArray($('section.payments input[name=premium_type]:checked').val(), [0, 3, 4]) > -1) {
                     $('.status-fail').addClass('inactive');
                 }
             }

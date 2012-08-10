@@ -1,0 +1,19 @@
+<div id="bluevia" class="indent payment-option">
+  <label for="bluevia-account">BlueVia</label>
+  <span>
+    {% trans time=bluevia.created %}
+      BlueVia account set up on {{ time }}.
+    {% endtrans %}
+  </span>
+  <span id="check-passed" class="check-icon"></span>
+  <div class="item-actions bluevia-actions">
+    <ul>
+      <li>
+        <a id="remove-account"
+           data-remove-url="{{ addon.get_dev_url('bluevia_remove') }}">
+          {{ _('Remove Account') }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -103,7 +103,15 @@ function escape_(s) {
 }
 
 
-z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'))
+z.receiveMessage = function(cb) {
+    // Because jQuery chokes, do cross-browser receiving for `postMessage`.
+    if (window.addEventListener) {
+        window.addEventListener('message', cb, false);
+    } else {
+        window.attachEvent('onmessage', cb);
+    }
+};
+z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'));
 z.media_url = document.body.getAttribute('data-media-url');
 z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 z.apps = true;
