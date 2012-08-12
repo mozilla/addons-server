@@ -58,7 +58,7 @@ def featured_apps_ajax(request):
                                                              app_id=int(appid))
             if created:
                 FeaturedAppRegion.objects.create(featured_app=app,
-                                                region=mkt.regions.WORLDWIDE.id)
+                    region=mkt.regions.WORLDWIDE.id)
     else:
         cat = None
     apps_regions = []

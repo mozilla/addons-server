@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -7,8 +9,10 @@ import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from addons.models import AddonCategory, Category
+
+import mkt
 from mkt.webapps.models import Webapp
-from mkt.zadmin.models import FeaturedApp
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 class BrowseBase(amo.tests.ESTestCase):
@@ -29,6 +33,8 @@ class BrowseBase(amo.tests.ESTestCase):
         return sorted(x.id for x in r.context[key])
 
     def setup_featured(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
         amo.tests.addon_factory()
 
         # Category featured.
@@ -41,6 +47,11 @@ class BrowseBase(amo.tests.ESTestCase):
         # Home featured.
         c = amo.tests.app_factory()
         FeaturedApp.objects.create(app=c, category=None)
+
+        # Make these featured in the US region.
+        for f in FeaturedApp.objects.all():
+            FeaturedAppRegion.objects.create(featured_app=f,
+                                             region=mkt.regions.US.id)
 
         return a, b, c
 
@@ -102,8 +113,10 @@ class TestIndexLanding(BrowseBase):
 
     def test_featured(self):
         a, b, c = self.setup_featured()
-        # Check that these apps are featured on the category landing page.
-        eq_(self.get_pks('featured', self.url), sorted([c.id]))
+        # Check that the non-category-featured app is shown only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('featured', self.url, {'region': region}),
+                [c.id] if region == 'us' else [])
 
     def test_popular(self):
         a, b = self.setup_popular()
@@ -170,8 +183,11 @@ class TestCategoryLanding(BrowseBase):
     def test_featured(self):
         a, b, c = self.setup_featured()
 
-        # Check that these apps are featured for this category.
-        eq_(self.get_pks('featured', self.url), sorted([a.id, b.id]))
+        # Check that these apps are featured for this category -
+        # and only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('featured', self.url, {'region': region}),
+                [a.id, b.id] if region == 'us' else [])
 
         # Check that these apps are not featured for another category.
         new_cat_url = reverse('browse.apps', args=[self.get_new_cat().slug])

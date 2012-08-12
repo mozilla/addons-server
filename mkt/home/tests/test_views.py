@@ -2,6 +2,7 @@ from nose.tools import eq_
 
 from amo.urlresolvers import reverse
 
+import mkt
 from mkt.browse.tests.test_views import BrowseBase
 
 
@@ -21,8 +22,10 @@ class TestHome(BrowseBase):
 
     def test_featured(self):
         a, b, c = self.setup_featured()
-        # Check that these apps are featured.
-        eq_(self.get_pks('featured', self.url), [c.id])
+        # Check that the Home featured app is shown only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('featured', self.url, {'region': region}),
+                [c.id] if region == 'us' else [])
 
     def test_popular(self):
         a, b = self.setup_popular()
