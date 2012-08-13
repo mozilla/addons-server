@@ -21,8 +21,8 @@ from editors.helpers import (ReviewHelper, ReviewAddon, ReviewFiles,
 from files.models import File
 
 
-ACTION_FILTERS = (('', ''), ('approved', _lazy('Approved reviews')),
-                  ('deleted', _lazy('Deleted reviews')))
+ACTION_FILTERS = (('', ''), ('approved', _lazy(u'Approved reviews')),
+                  ('deleted', _lazy(u'Deleted reviews')))
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_REVIEW,
                    deleted=amo.LOG.DELETE_REVIEW)
@@ -233,23 +233,23 @@ class NonValidatingChoiceField(forms.ChoiceField):
 
 class ReviewAddonForm(happyforms.Form):
     addon_files = AddonFilesMultipleChoiceField(required=False,
-            queryset=File.objects.none(), label=_lazy('Files:'),
+            queryset=File.objects.none(), label=_lazy(u'Files:'),
             widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
-                               label=_lazy('Comments:'))
+                               label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     operating_systems = forms.CharField(required=False,
-                                        label=_lazy('Operating systems:'))
+                                        label=_lazy(u'Operating systems:'))
     applications = forms.CharField(required=False,
-                                   label=_lazy('Applications:'))
+                                   label=_lazy(u'Applications:'))
     notify = forms.BooleanField(required=False,
-                                label=_lazy('Notify me the next time this '
+                                label=_lazy(u'Notify me the next time this '
                                             'add-on is updated. (Subsequent '
                                             'updates will not generate an '
                                             'email)'))
     adminflag = forms.BooleanField(required=False,
-                                   label=_lazy('Clear Admin Review Flag'))
+                                   label=_lazy(u'Clear Admin Review Flag'))
 
     def is_valid(self):
         result = super(ReviewAddonForm, self).is_valid()

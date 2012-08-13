@@ -133,10 +133,10 @@ class LicenseForm(AMOModelForm):
                         widget=forms.RadioSelect(attrs={'class': 'license'},
                                                  renderer=LicenseChoiceRadio))
     name = forms.CharField(widget=TranslationTextInput(),
-                           label=_("What is your license's name?"),
+                           label=_lazy(u"What is your license's name?"),
                            required=False, initial=_('Custom License'))
     text = forms.CharField(widget=TranslationTextarea(), required=False,
-                           label=_('Provide the text of your license.'))
+                           label=_lazy(u'Provide the text of your license.'))
 
     def __init__(self, *args, **kw):
         addon = kw.pop('addon', None)
@@ -468,8 +468,8 @@ def verify_app_domain(manifest_url):
 class NewWebappForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
+        error_messages={'invalid_choice': _lazy(u'There was an error with your'
+                                                ' upload. Please try again.')})
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
@@ -480,8 +480,8 @@ class NewWebappForm(happyforms.Form):
 class NewAddonForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
+        error_messages={'invalid_choice': _lazy(u'There was an error with your'
+                                                ' upload. Please try again.')})
     desktop_platforms = forms.ModelMultipleChoiceField(
             queryset=Platform.objects,
             widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -528,8 +528,8 @@ class NewVersionForm(NewAddonForm):
 class NewFileForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
+        error_messages={'invalid_choice': _lazy(u'There was an error with your'
+                                                ' upload. Please try again.')})
     platform = File._meta.get_field('platform').formfield(empty_label=None,
                     widget=forms.RadioSelect(attrs={'class': 'platform'}))
     platform.choices = sorted((p.id, p.name)
@@ -977,7 +977,7 @@ class PremiumForm(happyforms.Form):
     """
     paypal_id = forms.CharField()
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_('Add-on price'),
+                                   label=_lazy(u'Add-on price'),
                                    empty_label=None)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
                                        choices=UPSELL_CHOICES,

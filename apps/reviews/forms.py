@@ -84,9 +84,10 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
 class ModerateReviewFlagForm(happyforms.ModelForm):
 
     action_choices = [(reviews.REVIEW_MODERATE_KEEP,
-                       _lazy('Keep review; remove flags')),
-                      (reviews.REVIEW_MODERATE_SKIP, _lazy('Skip for now')),
-                      (reviews.REVIEW_MODERATE_DELETE, _lazy('Delete review'))]
+                       _lazy(u'Keep review; remove flags')),
+                      (reviews.REVIEW_MODERATE_SKIP, _lazy(u'Skip for now')),
+                      (reviews.REVIEW_MODERATE_DELETE,
+                       _lazy(u'Delete review'))]
     action = forms.ChoiceField(choices=action_choices, required=False,
                                initial=0, widget=forms.RadioSelect())
 

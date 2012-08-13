@@ -24,10 +24,6 @@ from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
 from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
                                          RATINGS_BODIES)
-from mkt.inapp_pay.models import InappConfig
-from mkt.reviewers.models import RereviewQueue
-from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.webapps.models import Webapp, ContentRating
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -37,7 +33,7 @@ import mkt
 from mkt.inapp_pay.models import InappConfig
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
 
 from . import tasks
 
@@ -336,14 +332,15 @@ class AdminSettingsForm(PreviewForm):
             addon.update(mozilla_contact=contact)
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
-            ratings = set(int(r) for r in ratings)
-            addon.content_ratings.exclude(rating__in=ratings).delete()
-            for i in ratings - set(addon.content_ratings.filter(rating__in=ratings)):
+            before = set(addon.content_ratings.filter(rating__in=ratings))
+            after = set(int(r) for r in ratings)
+            addon.content_ratings.exclude(rating__in=after).delete()
+            for i in after - before:
                 r = ALL_RATINGS[i]
                 ContentRating.objects.create(addon=addon, rating=r.id,
                                              ratings_body=r.ratingsbody.id)
         uses_flash = self.cleaned_data.get('flash')
-        addon.versions.latest().files.latest().update(uses_flash=bool(uses_flash))
+        addon.get_latest_file().update(uses_flash=bool(uses_flash))
         return addon
 
 
@@ -389,7 +386,7 @@ class PremiumForm(happyforms.Form):
         coerce=lambda x: int(x), choices=amo.ADDON_PREMIUM_TYPES.items(),
         widget=forms.RadioSelect())
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_('Add-on Price'),
+                                   label=_lazy(u'App Price'),
                                    empty_label=None,
                                    required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
@@ -575,13 +572,15 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect, choices=[],
-        label=_(u'Do you already have a PayPal Premier or Business account?'))
-    email = forms.EmailField(required=False, label=_(u'PayPal email address'))
+        label=_lazy(u'Do you already have a PayPal Premier '
+                     'or Business account?'))
+    email = forms.EmailField(required=False,
+                             label=_lazy(u'PayPal email address'))
 
     def __init__(self, *args, **kw):
         super(PaypalSetupForm, self).__init__(*args, **kw)
-        self.fields['business_account'].choices = (('yes', _lazy('Yes')),
-                                                   ('no', _lazy('No')))
+        self.fields['business_account'].choices = (('yes', _lazy(u'Yes')),
+                                                   ('no', _lazy(u'No')))
 
     def clean(self):
         data = self.cleaned_data
@@ -608,8 +607,8 @@ class PaypalPaymentData(happyforms.Form):
 
 class AppFormDetails(addons.forms.AddonFormBase):
     description = TransField(required=False,
-        label=_(u'Provide a more detailed description of your app'),
-        help_text=_(u'This description will appear on the details page.'),
+        label=_lazy(u'Provide a more detailed description of your app'),
+        help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea)
     default_locale = forms.TypedChoiceField(required=False,
                                             choices=Addon.LOCALES)
@@ -701,7 +700,7 @@ class AppFormSupport(addons.forms.AddonFormBase):
 class CurrencyForm(happyforms.Form):
     currencies = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                            required=False,
-                                           label=_('Other currencies'))
+                                           label=_lazy(u'Other currencies'))
 
     def __init__(self, *args, **kw):
         super(CurrencyForm, self).__init__(*args, **kw)
@@ -718,7 +717,7 @@ class AppAppealForm(happyforms.Form):
     """
 
     release_notes = forms.CharField(
-        label=_(u'Your comments'),
+        label=_lazy(u'Your comments'),
         required=False, widget=forms.Textarea(attrs={'rows': 2}))
 
     def __init__(self, *args, **kw):
