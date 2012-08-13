@@ -12,19 +12,21 @@ import amo
 from amo.decorators import login_required
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
-from addons.forms import CategoryFormSet, DeviceTypeForm
+from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from lib.pay_server import client
 from market.models import AddonPaymentData
-from mkt.developers import tasks
-from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (AppFormMedia, PaypalPaymentData,
-                                  PreviewFormSet)
-from mkt.submit.forms import (AppDetailsBasicForm, PaypalSetupForm)
-from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from files.models import Platform
 from users.models import UserProfile
+
+from mkt.developers import tasks
+from mkt.developers.decorators import dev_required
+from mkt.developers.forms import (AppFormMedia, CategoryForm,
+                                  PaypalPaymentData, PreviewFormSet)
+from mkt.submit.forms import AppDetailsBasicForm, PaypalSetupForm
+from mkt.submit.models import AppSubmissionChecklist
+
 from . import forms
 from .decorators import submit_step
 
@@ -105,8 +107,8 @@ def details(request, addon_id, addon):
     # Homepage URL, Support URL, Support Email.
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
-    form_cats = CategoryFormSet(request.POST or None, addon=addon,
-                                request=request)
+    form_cats = CategoryForm(request.POST or None, product=addon,
+                             request=request)
     form_devices = DeviceTypeForm(request.POST or None, addon=addon)
     form_icon = AppFormMedia(request.POST or None, request.FILES or None,
                              instance=addon, request=request)

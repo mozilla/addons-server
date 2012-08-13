@@ -141,20 +141,16 @@ class TestEditBasic(TestEdit):
                                        device_type=self.dtype)
         self.url = self.get_url('basic')
         self.edit_url = self.get_url('basic', edit=True)
-        ctx = self.client.get(self.edit_url).context
-        self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
-        del self.cat_initial['application']
 
     def get_webapp(self):
         return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
-        fs = formset(self.cat_initial, initial_count=1)
         result = {'device_types': self.dtype, 'name': 'new name',
                   'slug': 'test_slug', 'summary': 'new summary',
-                  'manifest_url': self.get_webapp().manifest_url}
+                  'manifest_url': self.get_webapp().manifest_url,
+                  'categories': [self.cat.id]}
         result.update(**kw)
-        result.update(fs)
         return result
 
     def test_form_url(self):
@@ -302,66 +298,54 @@ class TestEditBasic(TestEdit):
         eq_(pq(r.content)('#manifest-url a').attr('href'), new_url)
 
     def test_categories_listed(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#addon-categories-edit').text(),
+            unicode(self.cat.name))
+
         r = self.client.post(self.url)
-        ul = pq(r.content)('#addon-categories-edit ul')
-        li = ul.find('li')
-        eq_(li.length, 1)
-        eq_(li.text(), unicode(self.cat.name))
+        eq_(pq(r.content)('#addon-categories-edit').text(),
+            unicode(self.cat.name))
 
     def test_edit_categories_add(self):
         new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [self.cat.id, new.id]
-        self.client.post(self.edit_url, self.get_dict())
+        cats = [self.cat.id, new.id]
+        self.client.post(self.edit_url, self.get_dict(categories=cats))
         app_cats = self.get_webapp().categories.values_list('id', flat=True)
-        eq_(sorted(app_cats), self.cat_initial['categories'])
+        eq_(sorted(app_cats), cats)
 
     def test_edit_categories_addandremove(self):
         new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [new.id]
-        self.client.post(self.edit_url, self.get_dict())
+        cats = [new.id]
+        self.client.post(self.edit_url, self.get_dict(categories=cats))
         app_cats = self.get_webapp().categories.values_list('id', flat=True)
-        eq_(sorted(app_cats), self.cat_initial['categories'])
+        eq_(sorted(app_cats), cats)
 
     def test_edit_categories_required(self):
-        del self.cat_initial['categories']
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        assert_required(r.context['cat_form'].errors[0]['categories'][0])
+        r = self.client.post(self.edit_url, self.get_dict(categories=[]))
+        assert_required(r.context['cat_form'].errors['categories'][0])
 
     def test_edit_categories_xss(self):
         new = Category.objects.create(name='<script>alert("xss");</script>',
                                       type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [self.cat.id, new.id]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
+        cats = [self.cat.id, new.id]
+        r = self.client.post(self.edit_url, self.get_dict(categories=cats))
 
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
 
-    def test_edit_categories_other_failure(self):
-        new = Category.objects.create(type=amo.ADDON_WEBAPP, misc=True)
-        self.cat_initial['categories'] = [self.cat.id, new.id]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['The miscellaneous category cannot be combined with additional '
-             'categories.'])
-
     def test_edit_categories_nonexistent(self):
-        self.cat_initial['categories'] = [100]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        r = self.client.post(self.edit_url, self.get_dict(categories=[100]))
+        eq_(r.context['cat_form'].errors['categories'],
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
 
     def test_edit_categories_max(self):
         new1 = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
         new2 = Category.objects.create(name='Lifestyle', type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [self.cat.id, new1.id, new2.id]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        cats = [self.cat.id, new1.id, new2.id]
+
+        r = self.client.post(self.edit_url, self.get_dict(categories=cats))
+        eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
 
     def test_devices_listed(self):

@@ -50,7 +50,7 @@ from users.views import _login
 
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
-                                  AppFormSupport, CurrencyForm,
+                                  AppFormSupport, CategoryForm, CurrencyForm,
                                   InappConfigForm, PaypalSetupForm,
                                   PreviewFormSet, RegionForm, trap_duplicate)
 from mkt.developers.utils import check_upload
@@ -957,8 +957,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
-        cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                               addon=addon, request=request)
+        cat_form = CategoryForm(request.POST or None, product=addon,
+                                request=request)
         restricted_tags = addon.tags.filter(restricted=True)
         device_type_form = DeviceTypeForm(request.POST or None, addon=addon)
 

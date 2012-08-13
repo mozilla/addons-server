@@ -372,10 +372,6 @@ class TestDetails(TestSubmit):
         self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
         AddonCategory.objects.create(addon=self.webapp, category=self.cat1)
 
-        # Create initial formset for categories.
-        ctx = self.client.get(self.url).context['form_cats']
-        self.cat_initial = amo.tests.initial(ctx.initial_forms[0])
-
     def test_anonymous(self):
         self._test_anonymous()
 
@@ -437,6 +433,7 @@ class TestDetails(TestSubmit):
             'support_url': 'http://www.goodreads.com/user_challenges/351558',
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'device_types': [self.dtype.id],
+            'categories': [self.cat1.id],
         }
         # Add the required screenshot.
         data.update(self.preview_formset({
@@ -444,8 +441,6 @@ class TestDetails(TestSubmit):
             'position': 0
         }))
         data.update(**kw)
-        # Build formset for categories.
-        data.update(amo.tests.formset(self.cat_initial, initial_count=1))
         # Remove fields without values.
         data = dict((k, v) for k, v in data.iteritems() if v is not None)
         return data
@@ -726,9 +721,8 @@ class TestDetails(TestSubmit):
 
     def test_categories_required(self):
         self._step()
-        del self.cat_initial['categories']
-        r = self.client.post(self.url, self.get_dict())
-        eq_(r.context['form_cats'].errors[0]['categories'],
+        r = self.client.post(self.url, self.get_dict(categories=[]))
+        eq_(r.context['form_cats'].errors['categories'],
             ['This field is required.'])
 
     def test_categories_max(self):
@@ -736,26 +730,25 @@ class TestDetails(TestSubmit):
         eq_(amo.MAX_CATEGORIES, 2)
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
         cat3 = Category.objects.create(type=amo.ADDON_WEBAPP, name='blang')
-        self.cat_initial['categories'] = [self.cat1.id, cat2.id, cat3.id]
-        r = self.client.post(self.url, self.get_dict())
-        eq_(r.context['form_cats'].errors[0]['categories'],
+        cats = [self.cat1.id, cat2.id, cat3.id]
+        r = self.client.post(self.url, self.get_dict(categories=cats))
+        eq_(r.context['form_cats'].errors['categories'],
             ['You can have only 2 categories.'])
 
     def _post_cats(self, cats):
-        self.cat_initial['categories'] = [c.id for c in cats]
-        self.client.post(self.url, self.get_dict())
+        self.client.post(self.url, self.get_dict(categories=cats))
         eq_(sorted(self.get_webapp().categories.values_list('id', flat=True)),
-            sorted(c.id for c in cats))
+            sorted(cats))
 
     def test_categories_add(self):
         self._step()
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        self._post_cats([self.cat1, cat2])
+        self._post_cats([self.cat1.id, cat2.id])
 
     def test_categories_add_and_remove(self):
         self._step()
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        self._post_cats([cat2])
+        self._post_cats([cat2.id])
 
     def test_categories_remove(self):
         # Add another category here so it gets added to the initial formset.
@@ -764,7 +757,7 @@ class TestDetails(TestSubmit):
         self._step()
 
         # `cat2` should get removed.
-        self._post_cats([self.cat1])
+        self._post_cats([self.cat1.id])
 
 
 class TestPayments(TestSubmit):

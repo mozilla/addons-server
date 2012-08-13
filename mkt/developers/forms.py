@@ -10,15 +10,17 @@ import commonware
 import happyforms
 import waffle
 from quieter_formset.formset import BaseModelFormSet
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
+
 
 import amo
 import addons.forms
 import paypal
 from access import acl
 from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
-from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
-                           Preview)
+from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
+                           BlacklistedSlug, Category, Preview)
+from addons.widgets import CategoriesSelectMultiple
 from amo.utils import raise_required, remove_icons
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
@@ -793,3 +795,56 @@ class RegionForm(forms.Form):
                 region=mkt.regions.FUTURE.id)
             log.info(u'[Webapp:%s] Excluded from future regions.'
                      % self.product)
+
+
+class CategoryForm(happyforms.Form):
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
+        widget=CategoriesSelectMultiple)
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request', None)
+        self.product = kw.pop('product', None)
+        super(CategoryForm, self).__init__(*args, **kw)
+
+        self.cats_before = list(self.product.categories
+                                .values_list('id', flat=True))
+
+        self.initial['categories'] = self.cats_before
+
+        # If this app is featured, category changes are forbidden.
+        self.disabled = (
+            not acl.action_allowed(self.request, 'Addons', 'Edit') and
+            Webapp.featured(cat=self.cats_before)
+        )
+
+    def clean_categories(self):
+        categories = self.cleaned_data['categories']
+        total = categories.count()
+        max_cat = amo.MAX_CATEGORIES
+
+        if self.disabled:
+            raise forms.ValidationError(
+                _('Categories cannot be changed while your app is featured.'))
+
+        if total > max_cat:
+            # L10n: {0} is the number of categories.
+            raise forms.ValidationError(ngettext(
+                'You can have only {0} category.',
+                'You can have only {0} categories.',
+                max_cat).format(max_cat))
+
+        return categories
+
+    def save(self):
+        after = list(self.cleaned_data['categories']
+                     .values_list('id', flat=True))
+        before = self.cats_before
+
+        # Add new categories.
+        for c in set(after) - set(before):
+            AddonCategory.objects.create(addon=self.product, category_id=c)
+
+        # Remove old categories.
+        for c in set(before) - set(after):
+            self.product.addoncategory_set.filter(category=c).delete()

@@ -340,16 +340,21 @@ class Webapp(Addon):
         return sorted(regions, key=lambda x: x.slug)
 
     @classmethod
-    def featured(cls, cat=None, region=None):
+    def featured(cls, cat=None, region=None, limit=6):
         FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
         qs = (FeaturedApp.objects
-              .filter(category=cat,
-                      app__status=amo.STATUS_PUBLIC,
+              .filter(app__status=amo.STATUS_PUBLIC,
                       app__disabled_by_user=False)
               .order_by('-app__weekly_downloads'))
+        if isinstance(cat, list):
+            qs = qs.filter(category__in=cat)
+        else:
+            qs = qs.filter(category=cat)
         if region:
             qs = qs.filter(regions__region=region.id)
-        return [fa.app for fa in qs[:6]]
+        if limit:
+            qs = qs[:limit]
+        return [fa.app for fa in qs]
 
     @classmethod
     def from_search(cls):
