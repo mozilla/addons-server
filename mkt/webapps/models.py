@@ -375,7 +375,7 @@ class Webapp(Addon):
         if worldwide_qs:
             combined = ([fa.app for fa in locale_qs] +
                         [fa.app for fa in worldwide_qs])
-            return combined[:limit]
+            return list(set(combined))[:limit]
 
         return [fa.app for fa in locale_qs]
 
