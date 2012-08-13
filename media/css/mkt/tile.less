@@ -184,6 +184,39 @@
             opacity: .4;
         }
     }
+    &.featured {
+        .grain;
+        .mkt-tile {
+            height: 55px;
+            img {
+                display: none;
+            }
+            .info {
+                background: none;
+                top: 5px;
+                .box-shadow(none);
+                padding: 6px 10px;
+            }
+            .vital {
+                font-size: 10px;
+            }
+            .rating {
+                color: @note-gray;
+                width: 52px;
+                .ellipsis;
+            }
+            h3 {
+                color: @white;
+            }
+        }
+        li {
+            border-right: 1px solid @black-border;
+            border-bottom: 1px solid @black-border;
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
 }
 .listing {
     > li {
@@ -192,6 +225,11 @@
             border-top: 0;
         }
     }
+}
+
+// This should be fine as it's a one-off featured apps search mini-list.
+#search-featured {
+    margin-top: -10px;
 }
 
 // Previews tray.

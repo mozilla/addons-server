@@ -21,6 +21,9 @@
             $this.addClass('active');
         }
     });
+    $('#site-header .expand').click(_pd(function(e) {
+        $('ol.listing').toggleClass('expanded');
+    }));
     function turnPages(e) {
         if (fieldFocused(e)) {
             return;
