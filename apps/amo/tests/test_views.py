@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+import json
 import urllib
 
 from django import test
@@ -334,3 +335,30 @@ class TestOtherStuff(amo.tests.TestCase):
                           'appVersion=20120215223356&'
                           'clientOS=Windows%20NT%205.1&'
                           'chromeLocale=en-US&appRelease=10.0.2'))
+
+
+@mock.patch('amo.views.log_cef')
+class TestCSP(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('amo.csp.report')
+        self.create_sample(name='csp-store-reports')
+
+    def test_get_document(self, log_cef):
+        eq_(self.client.get(self.url).status_code, 405)
+
+    def test_malformed(self, log_cef):
+        res = self.client.post(self.url, 'f', content_type='application/json')
+        eq_(res.status_code, 400)
+
+    def test_document_uri(self, log_cef):
+        url = 'http://foo.com'
+        self.client.post(self.url,
+                         json.dumps({'csp-report': {'document-uri': url}}),
+                         content_type='application/json')
+        eq_(log_cef.call_args[0][2]['PATH_INFO'], url)
+
+    def test_no_document_uri(self, log_cef):
+        self.client.post(self.url, json.dumps({'csp-report': {}}),
+                         content_type='application/json')
+        eq_(log_cef.call_args[0][2]['PATH_INFO'], '/services/csp/report')

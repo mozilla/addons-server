@@ -115,18 +115,16 @@ def cspreport(request):
 
     try:
         v = json.loads(request.raw_post_data)['csp-report']
-        # CEF module wants a dictionary of environ, we want request
-        # to be the page with error on it, that's contained in the csp-report
-        # so we need to modify the meta before we pass in to the logger
+        # If possible, alter the PATH_INFO to contain the request of the page
+        # the error occurred on, spec: http://mzl.la/P82R5y
         meta = request.META.copy()
-        method, url = v['request'].split(' ', 1)
-        meta.update({'REQUEST_METHOD': method, 'PATH_INFO': url})
+        meta['PATH_INFO'] = v.get('document-uri', meta['PATH_INFO'])
         v = [(k, v[k]) for k in report if k in v]
         log_cef('CSP Violation', 5, meta, username=request.user,
                 signature='CSPREPORT',
                 msg='A client reported a CSP violation',
                 cs7=v, cs7Label='ContentPolicy')
-    except Exception, e:
+    except (KeyError, ValueError), e:
         log.debug('Exception in CSP report: %s' % e, exc_info=True)
         return HttpResponseBadRequest()
 
