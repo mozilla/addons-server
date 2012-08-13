@@ -346,15 +346,47 @@ class Webapp(Addon):
               .filter(app__status=amo.STATUS_PUBLIC,
                       app__disabled_by_user=False)
               .order_by('-app__weekly_downloads'))
+
         if isinstance(cat, list):
             qs = qs.filter(category__in=cat)
         else:
-            qs = qs.filter(category=cat)
+            qs = qs.filter(category=cat.id if cat else None)
+
+        locale_qs = FeaturedApp.objects.none()
+        worldwide_qs = FeaturedApp.objects.none()
+
         if region:
-            qs = qs.filter(regions__region=region.id)
+            excluded = cls.get_excluded_in(region)
+            locale_qs = (qs.filter(regions__region=region.id)
+                         .exclude(app__id__in=excluded))
+
+            # Fill the empty spots with Worldwide-featured apps.
+            if limit:
+                empty_spots = limit - locale_qs.count()
+                if empty_spots and region != mkt.regions.WORLDWIDE:
+                    ww = mkt.regions.WORLDWIDE.id
+                    worldwide_qs = (qs.filter(regions__region=ww)
+                                    .exclude(id__in=[x.id for x in locale_qs])
+                                    .exclude(app__id__in=excluded))[:limit]
+
         if limit:
-            qs = qs[:limit]
-        return [fa.app for fa in qs]
+            locale_qs = locale_qs[:limit]
+
+        if worldwide_qs:
+            combined = ([fa.app for fa in locale_qs] +
+                        [fa.app for fa in worldwide_qs])
+            return combined[:limit]
+
+        return [fa.app for fa in locale_qs]
+
+    @classmethod
+    def get_excluded_in(cls, region):
+        """Return IDs of Webapp objects excluded from a particular region."""
+        # Worldwide is a subset of Future regions.
+        if region == mkt.regions.WORLDWIDE:
+            region = mkt.regions.FUTURE
+        return list(AddonExcludedRegion.objects.filter(region=region.id)
+                    .values_list('addon', flat=True))
 
     @classmethod
     def from_search(cls):
