@@ -31,6 +31,8 @@ urlpatterns = decorate(write, patterns('',
     # App submission.
     url('^$', views.submit, name='submit.app'),
     url('^terms$', views.terms, name='submit.app.terms'),
+    url('^choose$', views.choose, name='submit.app.choose'),
     url('^manifest$', views.manifest, name='submit.app.manifest'),
+    url('^package$', views.package, name='submit.app.package'),
     ('', include(submit_apps_patterns)),
 ))

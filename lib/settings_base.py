@@ -787,6 +787,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/devhub': (
             'js/zamboni/truncation.js',
+            'js/common/upload-base.js',
             'js/common/upload-addon.js',
             'js/common/upload-image.js',
             'js/impala/formset.js',

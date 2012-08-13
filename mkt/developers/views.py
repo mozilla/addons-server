@@ -4,8 +4,8 @@ import sys
 import traceback
 
 from django import http
-from django.conf import settings
 from django import forms as django_forms
+from django.conf import settings
 from django.db import models, transaction
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404, redirect
@@ -14,35 +14,34 @@ from django.views.decorators.csrf import csrf_view_exempt
 
 import commonware.log
 import jingo
-from session_csrf import anonymous_csrf
-from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
+from session_csrf import anonymous_csrf
+from tower import ugettext as _, ugettext_lazy as _lazy
 from waffle.decorators import waffle_switch
 
-from access import acl
-from applications.models import Application, AppVersion
 import amo
 import amo.utils
-from amo import messages
-from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import absolutify, urlparams
-from amo.utils import escape_all
-from amo.urlresolvers import reverse
+import paypal
+from access import acl
 from addons import forms as addon_forms
 from addons.decorators import can_become_premium
 from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from amo import messages
+from amo.decorators import json_view, login_required, post_required, write
+from amo.helpers import absolutify, urlparams
+from amo.urlresolvers import reverse
+from amo.utils import escape_all
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from lib.cef_loggers import inapp_cef
 from lib.pay_server import client
 from market.models import AddonPaymentData, AddonPremium, Refund
+from paypal import PaypalError
 from paypal.check import Check
 from paypal.decorators import handle_paypal_error
-import paypal
-from paypal import PaypalError
 from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -707,17 +706,13 @@ def validate_addon(request):
 def upload(request, addon_slug=None, is_standalone=False):
     filedata = request.FILES['upload']
 
-    fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
-    log.info('FileUpload created: %s' % fu.pk)
+    fu = FileUpload.from_post(filedata, filedata.name, filedata.size,
+                              is_webapp=True)
+    log.info('Packaged App FileUpload created: %s' % fu.pk)
     if request.user.is_authenticated():
         fu.user = request.amo_user
         fu.save()
-    if request.POST.get('app_id') and request.POST.get('version_id'):
-        app = get_object_or_404(Application, pk=request.POST['app_id'])
-        ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
-        tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
-    else:
-        tasks.validator.delay(fu.pk)
+    tasks.validator.delay(fu.pk)
     if addon_slug:
         return redirect('mkt.developers.upload_detail_for_addon',
                         addon_slug, fu.pk)
@@ -863,35 +858,18 @@ def json_upload_detail(request, upload, addon_slug=None):
     if addon_slug:
         addon = get_object_or_404(Addon, slug=addon_slug)
     result = upload_validation_context(request, upload, addon=addon)
-    plat_exclude = []
     if result['validation']:
         if result['validation']['errors'] == 0:
             try:
-                pkg = parse_addon(upload, addon=addon)
-                app_ids = set([a.id for a in pkg.get('apps', [])])
-                supported_platforms = []
-                for app in (amo.MOBILE, amo.ANDROID):
-                    if app.id in app_ids:
-                        supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
-                        app_ids.remove(app.id)
-                if len(app_ids):
-                    # Targets any other non-mobile app:
-                    supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
-                s = amo.SUPPORTED_PLATFORMS.keys()
-                plat_exclude = set(s) - set(supported_platforms)
-                plat_exclude = [str(p) for p in plat_exclude]
+                parse_addon(upload, addon=addon)
             except django_forms.ValidationError, exc:
                 m = []
                 for msg in exc.messages:
-                    # Simulate a validation error so the UI displays
-                    # it as such
-                    m.append({'type': 'error',
-                              'message': msg, 'tier': 1})
-                v = make_validation_result(
-                        dict(error='', validation=dict(messages=m)))
+                    # Simulate a validation error so the UI displays it.
+                    m.append({'type': 'error', 'message': msg, 'tier': 1})
+                v = make_validation_result(dict(error='',
+                                                validation=dict(messages=m)))
                 return json_view.error(v)
-
-    result['platforms_to_exclude'] = plat_exclude
     return result
 
 
@@ -901,6 +879,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
         addon = get_object_or_404(Addon, slug=addon_slug)
     if not settings.VALIDATE_ADDONS:
         upload.task_error = ''
+        upload.is_webapp = True
         upload.validation = json.dumps({'errors': 0, 'messages': [],
                                         'metadata': {}, 'notices': 0,
                                         'warnings': 0})

@@ -195,15 +195,22 @@ class WebAppParser(object):
         return ex
 
     def parse(self, fileorpath, addon=None):
-        f = get_file(fileorpath)
-        data = f.read()
+        path = get_filepath(fileorpath)
+        if zipfile.is_zipfile(path):
+            zf = SafeUnzip(path)
+            zf.is_valid()  # Raises forms.ValidationError if problems.
+            data = zf.extract_path('manifest.webapp')
+        else:
+            file_ = get_file(fileorpath)
+            data = file_.read()
+            file_.close()
         enc_guess = chardet.detect(data)
         data = strip_bom(data)
         try:
             data = json.loads(data.decode(enc_guess['encoding']))
         except (ValueError, UnicodeDecodeError), exc:
             msg = 'Error parsing webapp %r (encoding: %r %.2f%% sure): %s: %s'
-            log.error(msg % (f.name, enc_guess['encoding'],
+            log.error(msg % (fileorpath, enc_guess['encoding'],
                              enc_guess['confidence'] * 100.0,
                              exc.__class__.__name__, exc))
             raise forms.ValidationError(

@@ -40,17 +40,9 @@ $(document).ready(function() {
     });
 
     // Add-on uploader
-    if($('#upload-addon').length) {
+    if($('#upload-app').length) {
         var opt = {'cancel': $('.upload-file-cancel') };
-        if($('#addon-compat-upload').length) {
-            opt.appendFormData = function(formData) {
-                formData.append('app_id',
-                                $('#id_application option:selected').val());
-                formData.append('version_id',
-                                $('#id_app_version option:selected').val());
-            };
-        }
-        $('#upload-addon').addonUploader(opt);
+        $('#upload-app').packagedAppUploader(opt);
     }
 
     var $webapp_url = $('#upload-webapp-url');

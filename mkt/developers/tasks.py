@@ -9,29 +9,30 @@ import traceback
 import urllib2
 import urlparse
 import uuid
+import zipfile
 from datetime import date
 
+from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.management import call_command
 from django.utils.http import urlencode
 
-import validator.constants as validator_constants
+from appvalidator import validate_app, validate_packaged_app
 from celeryutils import task
 from django_statsd.clients import statsd
 from PIL import Image
 from tower import ugettext as _
 
-from addons.models import Addon
 import amo
+from addons.models import Addon
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
 from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
-from applications.management.commands import dump_apps
-from applications.models import Application, AppVersion
 from files.models import FileUpload, File, FileValidation
+from files.utils import SafeUnzip
 
 from mkt.webapps.models import AddonExcludedRegion, Webapp
+
 
 log = logging.getLogger('z.mkt.developers.task')
 
@@ -41,47 +42,14 @@ log = logging.getLogger('z.mkt.developers.task')
 def validator(upload_id, **kw):
     if not settings.VALIDATE_ADDONS:
         return None
-    log.info('VALIDATING: %s' % upload_id)
-    upload = FileUpload.objects.get(pk=upload_id)
-    force_validation_type = None
-    if upload.is_webapp:
-        force_validation_type = validator_constants.PACKAGE_WEBAPP
+    log.info(u'[FileUpload:%s] Validating app.' % upload_id)
     try:
-        result = run_validator(upload.path,
-                               force_validation_type=force_validation_type)
-        upload.validation = result
-        upload.save()  # We want to hit the custom save().
-    except:
-        # Store the error with the FileUpload job, then raise
-        # it for normal logging.
-        tb = traceback.format_exception(*sys.exc_info())
-        upload.update(task_error=''.join(tb))
-        raise
-
-
-@task
-@write
-def compatibility_check(upload_id, app_guid, appversion_str, **kw):
-    if not settings.VALIDATE_ADDONS:
-        return None
-    log.info('COMPAT CHECK for upload %s / app %s version %s'
-             % (upload_id, app_guid, appversion_str))
-    upload = FileUpload.objects.get(pk=upload_id)
-    app = Application.objects.get(guid=app_guid)
-    appver = AppVersion.objects.get(application=app, version=appversion_str)
+        upload = FileUpload.objects.get(pk=upload_id)
+    except FileUpload.DoesNotExist:
+        log.info(u'[FileUpload:%s] Does not exist.' % upload_id)
+        return
     try:
-        result = run_validator(upload.path,
-                               for_appversions={app_guid: [appversion_str]},
-                               test_all_tiers=True,
-                               # Ensure we only check compatibility
-                               # against this one specific version:
-                               overrides={'targetapp_minVersion':
-                                                {app_guid: appversion_str},
-                                          'targetapp_maxVersion':
-                                                {app_guid: appversion_str}})
-        upload.validation = result
-        upload.compat_with_app = app
-        upload.compat_with_appver = appver
+        upload.validation = run_validator(upload.path)
         upload.save()  # We want to hit the custom save().
     except:
         # Store the error with the FileUpload job, then raise
@@ -96,51 +64,20 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
 def file_validator(file_id, **kw):
     if not settings.VALIDATE_ADDONS:
         return None
-    log.info('VALIDATING file: %s' % file_id)
-    file = File.objects.get(pk=file_id)
-    # Unlike upload validation, let the validator
-    # raise an exception if there is one.
+    log.info(u'[File:%s] Validating file.' % file_id)
+    try:
+        file = File.objects.get(pk=file_id)
+    except File.DoesNotExist:
+        log.info(u'[File:%s] Does not exist.' % file_id)
+        return
+    # Unlike upload validation, let the validator raise an exception if there
+    # is one.
     result = run_validator(file.file_path)
     return FileValidation.from_json(file, result)
 
 
-def run_validator(file_path, for_appversions=None, test_all_tiers=False,
-                  overrides=None, force_validation_type=None):
-    """A pre-configured wrapper around the addon validator.
-
-    *file_path*
-        Path to addon / extension file to validate.
-
-    *for_appversions=None*
-        An optional dict of application versions to validate this addon
-        for. The key is an application GUID and its value is a list of
-        versions.
-
-    *test_all_tiers=False*
-        When False (default) the validator will not continue if it
-        encounters fatal errors.  When True, all tests in all tiers are run.
-        See bug 615426 for discussion on this default.
-
-    *overrides=None*
-        Normally the validator gets info from install.rdf but there are a
-        few things we need to override. See validator for supported overrides.
-        Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
-
-    *force_validation_type=None*
-        Set this to a value in validator.constants like PACKAGE_WEBAPP
-        when you need to force detection of a package. Otherwise the type
-        will be inferred from the filename extension.
-
-    To validate the addon for compatibility with Firefox 5 and 6,
-    you'd pass in::
-
-        for_appversions={amo.FIREFOX.guid: ['5.0.*', '6.0.*']}
-
-    Not all application versions will have a set of registered
-    compatibility tests.
-    """
-
-    from validator.validate import validate_app
+def run_validator(file_path):
+    """A pre-configured wrapper around the app validator."""
 
     # TODO(Kumar) remove this when validator is fixed, see bug 620503
     from validator.testcases import scripting
@@ -148,16 +85,20 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     import validator.constants
     validator.constants.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
 
-    apps = dump_apps.Command.JSON_PATH
-    if not os.path.exists(apps):
-        call_command('dump_apps')
-
-    if not force_validation_type:
-        force_validation_type = validator.constants.PACKAGE_ANY
     with statsd.timer('mkt.developers.validator'):
-            return validate_app(
-                storage.open(file_path).read() if file_path else '',
-                market_urls=settings.VALIDATOR_IAF_URLS)
+        is_packaged = zipfile.is_zipfile(file_path)
+        if is_packaged:
+            log.info(u'Running `validate_packaged_app` for path: %s'
+                     % (file_path))
+            with statsd.timer('mkt.developers.validate_packaged_app'):
+                return validate_packaged_app(file_path,
+                    market_urls=settings.VALIDATOR_IAF_URLS,
+                    timeout=settings.VALIDATOR_TIMEOUT)
+        else:
+            log.info(u'Running `validate_app` for path: %s' % (file_path))
+            with statsd.timer('mkt.developers.validate_app'):
+                return validate_app(storage.open(file_path).read(),
+                    market_urls=settings.VALIDATOR_IAF_URLS)
 
 
 @task
@@ -224,25 +165,6 @@ def get_preview_sizes(ids, **kw):
             except Exception, err:
                 log.error('Failed to find size of preview: %s, error: %s'
                           % (addon.pk, err))
-
-
-@task
-@write
-def convert_purified(ids, **kw):
-    log.info('[%s@%s] Converting fields to purified starting at id: %s...'
-             % (len(ids), convert_purified.rate_limit, ids[0]))
-    fields = ['the_reason', 'the_future']
-    for addon in Addon.objects.filter(pk__in=ids):
-        flag = False
-        for field in fields:
-            value = getattr(addon, field)
-            if value:
-                value.clean()
-                if (value.localized_string_clean != value.localized_string):
-                    flag = True
-        if flag:
-            log.info('Saving addon: %s to purify fields' % addon.pk)
-            addon.save()
 
 
 def failed_validation(*messages):
@@ -331,22 +253,35 @@ def fetch_icon(webapp, **kw):
         image_string = icon_url.split('base64,')[1]
         content = base64.decodestring(image_string)
     else:
-        if not urlparse.urlparse(icon_url).scheme:
-            icon_url = webapp.origin + icon_url
+        if webapp.is_packaged:
+            # Get icons from package.
+            if icon_url.startswith('/'):
+                icon_url = icon_url[1:]
+            try:
+                zf = SafeUnzip(webapp.get_latest_file().file_path)
+                zf.is_valid()
+                content = zf.extract_path(icon_url)
+            except (KeyError, forms.ValidationError):  # Not found in archive.
+                log.error(u'[Webapp:%s] Icon %s not found in archive'
+                          % (webapp, icon_url))
+                return
+        else:
+            if not urlparse.urlparse(icon_url).scheme:
+                icon_url = webapp.origin + icon_url
 
-        try:
-            response = _fetch_content(icon_url)
-        except Exception, e:
-            log.error('Failed to fetch icon for webapp %s: %s'
-                      % (webapp.pk, e.message))
-            # Set the icon type to empty.
-            webapp.update(icon_type='')
-            return
+            try:
+                response = _fetch_content(icon_url)
+            except Exception, e:
+                log.error(u'[Webapp:%s] Failed to fetch icon for webapp: %s'
+                          % (webapp, e.message))
+                # Set the icon type to empty.
+                webapp.update(icon_type='')
+                return
 
-        size_error_message = _('Your icon must be less than %s bytes.')
-        content = get_content_and_check_size(response,
-                                             settings.MAX_ICON_UPLOAD_SIZE,
-                                             size_error_message)
+            size_error_message = _('Your icon must be less than %s bytes.')
+            content = get_content_and_check_size(response,
+                                                 settings.MAX_ICON_UPLOAD_SIZE,
+                                                 size_error_message)
 
     save_icon(webapp, content)
 

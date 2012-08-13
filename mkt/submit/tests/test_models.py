@@ -45,7 +45,7 @@ class TestAppSubmissionChecklist(amo.tests.TestCase):
         self.cl.update(terms=True, manifest=True, payments=True)
         eq_(self.cl.get_next(), 'details')
 
-    def test_next_payments(self):
+    def test_next_skipped_payments(self):
         self.cl.update(terms=True, manifest=True, details=True)
         eq_(self.cl.get_next(), 'payments')
 

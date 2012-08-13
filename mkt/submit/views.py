@@ -5,10 +5,12 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 from django.utils.translation.trans_real import to_language
 
+import commonware.log
 import jingo
 import waffle
 
 import amo
+import paypal
 from amo.decorators import login_required
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
@@ -16,7 +18,6 @@ from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from lib.pay_server import client
 from market.models import AddonPaymentData
-import paypal
 from files.models import Platform
 from users.models import UserProfile
 
@@ -28,7 +29,10 @@ from mkt.submit.forms import AppDetailsBasicForm, PaypalSetupForm
 from mkt.submit.models import AppSubmissionChecklist
 
 from . import forms
-from .decorators import submit_step
+from .decorators import read_dev_agreement_required, submit_step
+
+
+log = commonware.log.getLogger('z.submit')
 
 
 @login_required
@@ -37,6 +41,8 @@ def submit(request):
     # If dev has already agreed, continue to next step.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
+        if waffle.switch_is_active('allow-packaged-app-uploads'):
+            return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
     else:
         return redirect('submit.app.terms')
@@ -46,16 +52,18 @@ def submit(request):
 @submit_step('terms')
 def terms(request):
     # If dev has already agreed, continue to next step.
-    # TODO: When this code is finalized, use request.amo_user instead.
-    user = UserProfile.objects.get(pk=request.user.id)
-    if user.read_dev_agreement:
-        # TODO: Have decorator redirect to next step.
+    if request.amo_user.read_dev_agreement:
+        if waffle.switch_is_active('allow-packaged-app-uploads'):
+            return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
 
     agreement_form = forms.DevAgreementForm(
-        request.POST or {'read_dev_agreement': True}, instance=user)
+        request.POST or {'read_dev_agreement': True},
+        instance=request.amo_user)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
+        if waffle.switch_is_active('allow-packaged-app-uploads'):
+            return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
     return jingo.render(request, 'submit/terms.html', {
         'step': 'terms',
@@ -64,21 +72,27 @@ def terms(request):
 
 
 @login_required
+@read_dev_agreement_required
+@submit_step('manifest')
+def choose(request):
+    if not waffle.switch_is_active('allow-packaged-app-uploads'):
+        return redirect('submit.app.manifest')
+    return jingo.render(request, 'submit/choose.html', {
+        'step': 'manifest',
+    })
+
+
+@login_required
+@read_dev_agreement_required
 @submit_step('manifest')
 @transaction.commit_on_success
 def manifest(request):
-    # TODO: Have decorator handle the redirection.
-    user = UserProfile.objects.get(pk=request.user.id)
-    if not user.read_dev_agreement:
-        # And we start back at one...
-        return redirect('submit.app')
-
     form = forms.NewWebappForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        data = form.cleaned_data
+        addon = Addon.from_upload(
+            form.cleaned_data['upload'],
+            [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
 
-        plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-        addon = Addon.from_upload(data['upload'], plats)
         if addon.has_icon_in_manifest():
             # Fetch the icon, do polling.
             addon.update(icon_type='image/png')
@@ -97,6 +111,37 @@ def manifest(request):
     return jingo.render(request, 'submit/manifest.html', {
         'step': 'manifest',
         'form': form,
+    })
+
+
+@login_required
+@read_dev_agreement_required
+@submit_step('manifest')
+def package(request):
+    form = forms.NewWebappForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        addon = Addon.from_upload(
+            form.cleaned_data['upload'],
+            [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
+        addon.get_latest_file().update(is_packaged=True)
+
+        if addon.has_icon_in_manifest():
+            # Fetch the icon, do polling.
+            addon.update(icon_type='image/png')
+            tasks.fetch_icon.delay(addon)
+        else:
+            # In this case there is no need to do any polling.
+            addon.update(icon_type='')
+
+        AddonUser(addon=addon, user=request.amo_user).save()
+        AppSubmissionChecklist.objects.create(addon=addon, terms=True,
+                                              manifest=True)
+
+        return redirect('submit.app.details', addon.app_slug)
+
+    return jingo.render(request, 'submit/upload.html', {
+        'form': form,
+        'step': 'manifest',
     })
 
 

@@ -128,9 +128,20 @@ class TestValidator(amo.tests.TestCase):
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
 
-    @mock.patch('validator.validate.validate_app')
-    def test_validate_manifest(self, _mock):
+    @mock.patch('mkt.developers.tasks.validate_app')
+    @mock.patch('mkt.developers.tasks.storage.open')
+    def test_validate_manifest(self, _open, _mock):
         self.get_upload().update(is_webapp=True)
+        _open.return_value = StringIO('')
+        _mock.return_value = '{"errors": 0}'
+        tasks.validator(self.upload.pk)
+        assert _mock.called
+
+    @mock.patch('mkt.developers.tasks.validate_packaged_app')
+    @mock.patch('zipfile.is_zipfile')
+    def test_validate_packaged_app(self, _zipfile, _mock):
+        self.get_upload().update(is_webapp=True)
+        _zipfile.return_value = True
         _mock.return_value = '{"errors": 0}'
         tasks.validator(self.upload.pk)
         assert _mock.called
@@ -347,10 +358,25 @@ class TestFetchIcon(BaseWebAppTest):
         response = mock.Mock()
         response.read.return_value = ''
         webapp = mock.Mock()
+        webapp.is_packaged = False
         url = 'http://foo.com/bar'
         webapp.get_manifest_json.return_value = {'icons': {'128': url}}
         tasks.fetch_icon(webapp)
         assert url in fetch.call_args[0][0]
+
+    @mock.patch('mkt.developers.tasks.SafeUnzip')
+    @mock.patch('mkt.developers.tasks.save_icon')
+    def test_packaged_icon(self, save, zip):
+        response = mock.Mock()
+        response.read.return_value = ''
+        zf = mock.Mock()
+        zip.return_value = zf
+        webapp = mock.Mock()
+        webapp.is_packaged = True
+        url = '/path/to/icon.png'
+        webapp.get_manifest_json.return_value = {'icons': {'128': url}}
+        tasks.fetch_icon(webapp)
+        assert url[1:] in zf.extract_path.call_args[0][0]
 
 
 class TestRegionEmail(amo.tests.WebappTestCase):

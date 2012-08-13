@@ -17,8 +17,13 @@
       <footer class="listing-footer button-wrapper">
         <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">
           {{ _('Manage My App') }}</a>
-        <a href="{{ url('submit.app.manifest') }}" class="button prominent">
-          {{ _('Submit Another App') }}</a>
+        {% if waffle.switch('allow-packaged-app-uploads') %}
+          <a href="{{ url('submit.app.choose') }}" class="button prominent">
+            {{ _('Submit Another App') }}</a>
+        {% else %}
+          <a href="{{ url('submit.app.manifest') }}" class="button prominent">
+            {{ _('Submit Another App') }}</a>
+        {% endif %}
       </footer>
     </div>
   </section>

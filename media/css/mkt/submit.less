@@ -1,0 +1,23 @@
+@import 'lib';
+#submit-choose {
+    .island {
+        .border-box();
+        float: left;
+        width: 48%;
+        + .island {
+            float: right;
+        }
+    }
+    ul {
+        color: @medium-gray;
+        list-style: disc;
+        margin-left: 15px;
+    }
+    p {
+        text-align: center;
+        padding-bottom: 0;
+    }
+    a {
+        margin-bottom: -5px;
+    }
+}

@@ -23,10 +23,6 @@
         {{ timestamp|datetime }}</time>
       </dd>
     {% endif %}
-    {% if result_type == 'compat' %}
-      <dt>{{ _('Tested for compatibility against:') }}</dt>
-      <dd>{{ amo.APP_IDS[target_app.pk].pretty }} {{ target_version }}</dd>
-    {% endif %}
   </dl>
 </div>
 

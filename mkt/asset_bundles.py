@@ -56,6 +56,7 @@ CSS = {
         'css/devreg/submit-manifest.less',
         'css/devreg/submit-details.less',
         'css/devreg/validation.less',
+        'css/mkt/submit.less',
 
         # Developer Log In / Registration.
         'css/devreg/login.less',
@@ -176,6 +177,8 @@ JS = {
 
         # Developer Hub-specific scripts.
         'js/zamboni/truncation.js',
+        'js/common/upload-base.js',
+        'js/common/upload-packaged-app.js',
         'js/common/upload-image.js',
 
         # New stuff.

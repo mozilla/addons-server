@@ -10,8 +10,9 @@ from pyquery import PyQuery as pq
 import waffle
 
 import amo
-from amo.helpers import urlparams
 import amo.tests
+import paypal
+from amo.helpers import urlparams
 from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -23,12 +24,12 @@ from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
-import paypal
 from translations.models import Translation
 from users.models import UserProfile
 
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
+from mkt.submit.decorators import read_dev_agreement_required
 from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
@@ -86,7 +87,7 @@ class TestTerms(TestSubmit):
 
     def test_jump_to_step(self):
         r = self.client.get(reverse('submit.app'), follow=True)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
 
     def test_page(self):
         r = self.client.get(self.url)
@@ -100,8 +101,9 @@ class TestTerms(TestSubmit):
         self._test_progress_display([], 'terms')
 
     def test_agree(self):
+        self.create_switch(name='allow-packaged-app-uploads')
         r = self.client.post(self.url, {'read_dev_agreement': True})
-        self.assertRedirects(r, reverse('submit.app.manifest'))
+        self.assert3xx(r, reverse('submit.app.choose'))
         #dt = self.get_user().read_dev_agreement
         #assert close_to_now(dt), (
         #    'Expected date of agreement read to be close to now. Was %s' % dt)
@@ -109,9 +111,10 @@ class TestTerms(TestSubmit):
         eq_(UserNotification.objects.count(), 0)
 
     def test_agree_and_sign_me_up(self):
+        self.create_switch(name='allow-packaged-app-uploads')
         r = self.client.post(self.url, {'read_dev_agreement': True,
                                         'newsletter': True})
-        self.assertRedirects(r, reverse('submit.app.manifest'))
+        self.assert3xx(r, reverse('submit.app.choose'))
         #dt = self.get_user().read_dev_agreement
         #assert close_to_now(dt), (
         #    'Expected date of agreement read to be close to now. Was %s' % dt)
@@ -126,6 +129,18 @@ class TestTerms(TestSubmit):
         eq_(r.status_code, 200)
         eq_(self.user.read_dev_agreement, False)
         eq_(UserNotification.objects.count(), 0)
+
+    def test_read_dev_agreement_required(self):
+        f = mock.Mock()
+        f.__name__ = 'function'
+        request = mock.Mock()
+        request.amo_user.read_dev_agreement = False
+        request.get_full_path.return_value = self.url
+        func = read_dev_agreement_required(f)
+        res = func(request)
+        assert not f.called
+        eq_(res.status_code, 302)
+        eq_(res['Location'], reverse('submit.app'))
 
 
 class TestManifest(TestSubmit):
@@ -146,14 +161,18 @@ class TestManifest(TestSubmit):
     def test_cannot_skip_prior_step(self):
         r = self.client.get(self.url, follow=True)
         # And we start back at one...
-        self.assertRedirects(r, reverse('submit.app.terms'))
+        self.assert3xx(r, reverse('submit.app.terms'))
 
     def test_jump_to_step(self):
         # I already read the Terms.
         self._step()
         # So jump me to the Manifest step.
         r = self.client.get(reverse('submit.app'), follow=True)
-        self.assertRedirects(r, reverse('submit.app.manifest'))
+        self.assert3xx(r, reverse('submit.app.manifest'))
+        # Now with waffles!
+        self.create_switch(name='allow-packaged-app-uploads')
+        r = self.client.get(reverse('submit.app'), follow=True)
+        self.assert3xx(r, reverse('submit.app.choose'))
 
     def test_page(self):
         self._step()
@@ -187,12 +206,10 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()
-        self.manifest = os.path.join(settings.ROOT, 'mkt', 'submit', 'tests',
-                                     'webapps', 'mozball.webapp')
+        self.manifest = self.manifest_path('mozball.webapp')
         self.manifest_url = 'http://allizom.org/mozball.webapp'
         self.upload = self.get_upload(abspath=self.manifest)
-        self.upload.name = self.manifest_url
-        self.upload.save()
+        self.upload.update(name=self.manifest_url, is_webapp=True)
         self.url = reverse('submit.app.manifest')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
@@ -211,7 +228,7 @@ class TestCreateWebApp(BaseWebAppTest):
     def test_post_app_redirect(self):
         r = self.post()
         webapp = Webapp.objects.get()
-        self.assertRedirects(r,
+        self.assert3xx(r,
             reverse('submit.app.details', args=[webapp.app_slug]))
 
     def test_no_hint(self):
@@ -327,6 +344,49 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         eq_(rs.status_code, 302)
 
 
+class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(BasePackagedAppTest, self).setUp()
+        self.package = self.packaged_app_path('mozball.zip')
+        self.upload = self.get_upload(abspath=self.package)
+        self.upload.update(name='mozball.zip', is_webapp=True)
+        self.url = reverse('submit.app.package')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        # Complete first step.
+        self.client.post(reverse('submit.app.terms'),
+                         {'read_dev_agreement': True})
+
+    def post_addon(self):
+        eq_(Addon.objects.count(), 0)
+        self.post()
+        return Addon.objects.get()
+
+
+class TestCreatePackagedApp(BasePackagedAppTest):
+
+    def test_post_app_redirect(self):
+        res = self.post()
+        webapp = Webapp.objects.get()
+        self.assert3xx(res,
+            reverse('submit.app.details', args=[webapp.app_slug]))
+
+    def test_app_from_uploaded_package(self):
+        addon = self.post_addon()
+        eq_(addon.type, amo.ADDON_WEBAPP)
+        eq_(addon.current_version.version, '1.0')
+        eq_(addon.is_packaged, True)
+        eq_(addon.guid, None)
+        eq_(unicode(addon.name), u'Packaged MozillaBall ょ')
+        eq_(addon.slug, 'app-%s' % addon.id)
+        eq_(addon.app_slug, u'packaged-mozillaball-ょ')
+        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+            u'Azione aperta emozionante di sviluppo di fotoricettore!')
+
+
 class TestDetails(TestSubmit):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
@@ -381,8 +441,8 @@ class TestDetails(TestSubmit):
         payments_url = reverse('submit.app.payments',
                                args=[self.webapp.app_slug])
         r = self.client.get(payments_url, follow=True)
-        self.assertRedirects(r, reverse('submit.app.details',
-                                        args=[self.webapp.app_slug]))
+        self.assert3xx(r, reverse('submit.app.details',
+                                  args=[self.webapp.app_slug]))
 
     def test_resume_later(self):
         self._step()
@@ -391,7 +451,7 @@ class TestDetails(TestSubmit):
                            premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(reverse('submit.app.resume',
                                       args=[self.webapp.app_slug]))
-        self.assertRedirects(res, self.webapp.get_dev_url('paypal_setup'))
+        self.assert3xx(res, self.webapp.get_dev_url('paypal_setup'))
 
     def test_not_owner(self):
         self._step()
@@ -825,14 +885,14 @@ class TestPayments(TestSubmit):
         res = self.client.post(self.get_url('payments'),
                                {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('done'))
+        self.assert3xx(res, self.get_url('done'))
         eq_(self.get_webapp().status, expected_status)
 
     def test_valid_pending(self):
         res = self.client.post(self.get_url('payments'),
                                {'premium_type': amo.ADDON_FREE})
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('done'))
+        self.assert3xx(res, self.get_url('done'))
         eq_(self.get_webapp().status, amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def test_premium(self):
@@ -840,19 +900,19 @@ class TestPayments(TestSubmit):
             res = self.client.post(self.get_url('payments'),
                                   {'premium_type': type_})
             eq_(res.status_code, 302)
-            self.assertRedirects(res, self.get_url('payments.upsell'))
+            self.assert3xx(res, self.get_url('payments.upsell'))
 
     def test_free_inapp(self):
         res = self.client.post(self.get_url('payments'),
                                {'premium_type': amo.ADDON_FREE_INAPP})
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('payments.paypal'))
+        self.assert3xx(res, self.get_url('payments.paypal'))
 
     def test_premium_other(self):
         res = self.client.post(self.get_url('payments'),
                                {'premium_type': amo.ADDON_OTHER_INAPP})
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('done'))
+        self.assert3xx(res, self.get_url('done'))
 
     def test_price(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
@@ -860,7 +920,7 @@ class TestPayments(TestSubmit):
                                {'price': self.price.pk})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium.price.pk, self.price.pk)
-        self.assertRedirects(res, self.get_url('payments.paypal'))
+        self.assert3xx(res, self.get_url('payments.paypal'))
 
     def _make_upsell(self):
         free = Addon.objects.create(type=amo.ADDON_WEBAPP)
@@ -909,7 +969,7 @@ class TestPayments(TestSubmit):
         eq_(self.get_webapp().upsold.free.pk, free.pk)
         eq_(self.get_webapp().upsold.premium.pk, self.get_webapp().pk)
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('payments.paypal'))
+        self.assert3xx(res, self.get_url('payments.paypal'))
 
     def test_no_upsell(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
@@ -941,7 +1001,7 @@ class TestPayments(TestSubmit):
                                 'email': 'foo@bar.com'})
         eq_(self.get_webapp().paypal_id, 'foo@bar.com')
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('payments.bounce'))
+        self.assert3xx(res, self.get_url('payments.bounce'))
 
     @mock.patch('mkt.submit.views.client')
     @mock.patch('mkt.submit.views.waffle.flag_is_active')
@@ -954,7 +1014,7 @@ class TestPayments(TestSubmit):
         eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
             'foo@bar.com')
         client.post_permissions_url.return_value = {'token': 'http://foo/'}
-        self.assertRedirects(res, self.get_url('payments.bounce'))
+        self.assert3xx(res, self.get_url('payments.bounce'))
 
     @mock.patch('mkt.submit.views.client')
     def test_bounce_solitude(self, client):
@@ -976,7 +1036,7 @@ class TestPayments(TestSubmit):
         res = self.client.post(self.get_url('payments.paypal'),
                                {'business_account': 'later'})
         eq_(res.status_code, 302)
-        self.assertRedirects(res, self.get_url('done'))
+        self.assert3xx(res, self.get_url('done'))
 
     def get_acquire_url(self):
         url = self.webapp.get_dev_url('acquire_refund_permission')
@@ -992,7 +1052,7 @@ class TestPayments(TestSubmit):
         get_permissions_token.return_value = 'foo'
         get_personal_data.return_value = {'email': 'a@a.com'}
         res = self.client.get(self.get_acquire_url())
-        self.assertRedirects(res, self.get_url('payments.confirm'))
+        self.assert3xx(res, self.get_url('payments.confirm'))
 
     @mock.patch('mkt.submit.views.client')
     def test_confirm_solitude(self, client):
@@ -1025,7 +1085,7 @@ class TestPayments(TestSubmit):
         get_permissions_token.return_value = 'foo'
         get_personal_data.return_value = {'email': 'a@a.com'}
         res = self.client.get(self.get_acquire_url())
-        self.assertRedirects(res, self.get_url('payments.paypal'))
+        self.assert3xx(res, self.get_url('payments.paypal'))
 
     @mock.patch('paypal.get_permissions_token')
     def test_bounce_result_fails_paypal_error(self, get_permissions_token):

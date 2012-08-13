@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import urlparse
 import uuid
+import zipfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -17,13 +19,13 @@ from tower import ugettext as _
 
 import amo
 import amo.models
-import amo.utils
 from addons import query
 from addons.models import (Addon, AddonDeviceType, Category,
                            update_name_table, update_search_index)
 from amo.decorators import skip_cache
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
+from amo.utils import smart_path
 from constants.applications import DEVICE_TYPES
 from files.models import nfd_str
 from files.utils import parse_addon
@@ -210,15 +212,21 @@ class Webapp(Addon):
         return 'icons' in data
 
     def get_manifest_json(self):
-        import json
+        file_path = self.get_latest_file().file_path
         try:
-            # The first file created for each version of the web app
-            # is the manifest.
-            with storage.open(self.get_latest_file().file_path, 'r') as mf:
-                return json.load(mf)
+            if zipfile.is_zipfile(file_path):
+                zf = zipfile.ZipFile(file_path)
+                data = zf.open('manifest.webapp').read()
+                zf.close()
+                return json.loads(data)
+            else:
+                file = storage.open(file_path, 'r')
+                data = file.read()
+                return json.loads(data)
+
         except Exception, e:
-            log.error('Failed to open saved manifest %r for webapp %s, %s.'
-                      % (self.manifest_url, self.pk, e))
+            log.error(u'[Webapp:%s] Failed to open saved file %r, %s.'
+                      % (self, file_path, e))
             raise
 
     def share_url(self):
@@ -233,7 +241,7 @@ class Webapp(Addon):
         data = parse_addon(upload, self)
         version = self.versions.latest()
         version.update(version=data['version'])
-        path = amo.utils.smart_path(nfd_str(upload.path))
+        path = smart_path(nfd_str(upload.path))
         file = version.files.latest()
         file.filename = file.generate_filename(extension='.webapp')
         file.size = int(max(1, round(storage.size(path) / 1024, 0)))
@@ -434,6 +442,19 @@ class Webapp(Addon):
                     .filter(type=amo.ADDON_WEBAPP, slug=slug))[0]
         except IndexError:
             return None
+
+    @amo.cached_property
+    def is_packaged(self):
+        """
+        Whether this app's latest version is a packaged app.
+
+        Note: This isn't using `current_version` since current version only
+        gets valid versions and we need to use this during the submission flow.
+        """
+        version = self.versions.latest()
+        if version:
+            return version.all_files[0].is_packaged
+        return False
 
     @amo.cached_property
     def has_packaged_files(self):

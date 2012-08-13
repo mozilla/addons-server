@@ -250,10 +250,12 @@ class TestWebapp(TestCase):
         eq_(sorted(Webapp.objects.get(id=w2.id).get_regions()),
             sorted(w2_regions))
 
-    def test_has_packaged_files(self):
+    def test_package_helpers(self):
         app1 = app_factory()
+        eq_(app1.is_packaged, False)
         eq_(app1.has_packaged_files, False)
         app2 = app_factory(file_kw=dict(is_packaged=True))
+        eq_(app2.is_packaged, True)
         eq_(app2.has_packaged_files, True)
 
 

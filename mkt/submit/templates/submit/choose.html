@@ -1,0 +1,44 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('Submit an App') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+
+  {# Needs real text. See bug 783418 #}
+
+  {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
+  <h1>{{ _('Submit an App') }}</h1>
+  {{ progress(request, addon=None, step=step) }}
+  <section id="submit-choose" class="primary">
+    <h2>{{ _('Choose Your Adventure') }}</h2>
+    <section id="upload-file">
+      <div class="island">
+        <h3>Host-It-Yourself Apps</h3>
+        <ul>
+          <li><i>You</i> host your app</li>
+          <li>CSS, JS, Python, PHP, whatever your server can handle you can use</li>
+          <li>Changed content gets updated immediately</li>
+          <li>Deploys must happen manually on your server</li>
+          <li>Stability dependent on your server</li>
+          <li>Works everywhere</li>
+          <li>Apps are awesome</li>
+        </ul>
+        <p class="listing-footer"><a href="{{ url('submit.app.manifest') }}" class="button prominent">Proceed</a></p>
+      </div>
+      <div class="island">
+        <h3>Packaged Apps</h3>
+        <ul>
+          <li><i>Mozilla</i> hosts your packaged app</li>
+          <li>Limited to client-side CSS and JS</li>
+          <li>CSP capabilities</li>
+          <li>External content must be loaded via AJAX</li>
+          <li>Access to privileged APIs</li>
+          <li>Versioned content</li>
+        </ul>
+        <p class="listing-footer"><a href="{{ url('submit.app.package') }}" class="button prominent">Proceed</a></p>
+      </div>
+    </section>
+  </section>
+{% endblock %}

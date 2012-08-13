@@ -403,6 +403,10 @@ class AMOPaths(object):
         return os.path.join(settings.ROOT,
                             'mkt/developers/tests/addons/mozball-128.png')
 
+    def packaged_app_path(self, name):
+        return os.path.join(
+            settings.ROOT, 'mkt/submit/tests/packaged/%s' % name)
+
 
 def close_to_now(dt):
     """
