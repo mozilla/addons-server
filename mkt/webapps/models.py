@@ -363,7 +363,7 @@ class Webapp(Addon):
             # Fill the empty spots with Worldwide-featured apps.
             if limit:
                 empty_spots = limit - locale_qs.count()
-                if empty_spots and region != mkt.regions.WORLDWIDE:
+                if empty_spots > 0 and region != mkt.regions.WORLDWIDE:
                     ww = mkt.regions.WORLDWIDE.id
                     worldwide_qs = (qs.filter(regions__region=ww)
                                     .exclude(id__in=[x.id for x in locale_qs])
