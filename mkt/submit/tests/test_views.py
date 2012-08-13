@@ -23,12 +23,13 @@ from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
-import mkt
-from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from translations.models import Translation
 from users.models import UserProfile
-from mkt.webapps.models import Webapp
+
+import mkt
+from mkt.submit.models import AppSubmissionChecklist
+from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -758,6 +759,24 @@ class TestDetails(TestSubmit):
 
         # `cat2` should get removed.
         self._post_cats([self.cat1.id])
+
+    def test_games_default_excluded_in_brazil(self):
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        self._step()
+
+        r = self.client.post(self.url, self.get_dict(categories=[games.id]))
+        self.assertNoFormErrors(r)
+        eq_(list(AER.objects.values_list('region', flat=True)),
+            [mkt.regions.BR.id])
+
+    def test_other_categories_are_not_excluded(self):
+        # Keep the category around for good measure.
+        Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        self._step()
+
+        r = self.client.post(self.url, self.get_dict())
+        self.assertNoFormErrors(r)
+        eq_(AER.objects.count(), 0)
 
 
 class TestPayments(TestSubmit):

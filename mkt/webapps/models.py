@@ -19,8 +19,8 @@ import amo
 import amo.models
 import amo.utils
 from addons import query
-from addons.models import (Addon, AddonDeviceType, update_name_table,
-                           update_search_index)
+from addons.models import (Addon, AddonDeviceType, Category,
+                           update_name_table, update_search_index)
 from amo.decorators import skip_cache
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
@@ -29,7 +29,6 @@ from files.models import nfd_str
 from files.utils import parse_addon
 
 import mkt
-from mkt.constants import ratingsbodies
 
 log = commonware.log.getLogger('z.addons')
 
@@ -42,7 +41,8 @@ class WebappManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet).filter(type=amo.ADDON_WEBAPP)
+        qs = qs._clone(klass=query.IndexQuerySet).filter(
+            type=amo.ADDON_WEBAPP)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Webapp.transformer)
@@ -339,6 +339,26 @@ class Webapp(Addon):
                                 for r in self.get_region_ids()])
         return sorted(regions, key=lambda x: x.slug)
 
+    def listed_in(self, region):
+        return region.id in self.get_region_ids()
+
+    def content_rated_in(self, region):
+        """
+        This is kind of stupid since I have the method below.
+        And, I'll probably remove this.
+        """
+        rb = [x.id for x in region.ratingsbodies]
+        return (self.content_ratings
+                .filter(ratings_body__in=rb).exists())
+
+    def content_rating_in(self, region):
+        rb = [x.id for x in region.ratingsbodies]
+        try:
+            return (self.content_ratings
+                    .filter(ratings_body__in=rb))[0].get_name()
+        except IndexError:
+            pass
+
     @classmethod
     def featured(cls, cat=None, region=None, limit=6):
         FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
@@ -403,6 +423,14 @@ class Webapp(Addon):
     def latest(cls):
         """Elastically grab the most recent apps."""
         return cls.from_search().order_by('-created')
+
+    @classmethod
+    def category(cls, slug):
+        try:
+            return (Category.objects
+                    .filter(type=amo.ADDON_WEBAPP, slug=slug))[0]
+        except IndexError:
+            return None
 
     @property
     def uses_flash(self):
@@ -472,7 +500,7 @@ class AddonExcludedRegion(amo.models.ModelBase):
 
     def __unicode__(self):
         region = self.get_region()
-        return u'%s: %s' % (self.addon.name, region.slug if region else None)
+        return u'%s: %s' % (self.addon, region.slug if region else None)
 
     def get_region(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT.get(self.region)
@@ -485,11 +513,20 @@ class ContentRating(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='content_ratings')
     ratings_body = models.PositiveIntegerField(
         choices=[(k, rb.name) for k, rb in
-                 ratingsbodies.RATINGS_BODIES.items()],
+                 mkt.ratingsbodies.RATINGS_BODIES.items()],
         null=False)
     rating = models.PositiveIntegerField(null=False)
 
     def __unicode__(self):
-        rb = ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        return '%s - %s' % (rb.name,
-                            rb.ratings[self.rating].name)
+        return '%s: %s - %s' % (self.addon, self.get_name())
+
+    def get_body(self):
+        rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        return rb.name
+
+    def get_rating(self):
+        rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        return rb.ratings[self.rating].name
+
+    def get_name(self):
+        return u'%s - %s' % (self.get_body(), self.get_rating())

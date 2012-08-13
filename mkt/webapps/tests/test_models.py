@@ -475,5 +475,4 @@ class TestAddonExcludedRegion(WebappTestCase):
         eq_(self.er.get_region(), mkt.regions.CA)
 
     def test_unicode(self):
-        eq_(unicode(self.er),
-            '%s: %s' % (self.app.name, mkt.regions.CA.slug))
+        eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.CA.slug))

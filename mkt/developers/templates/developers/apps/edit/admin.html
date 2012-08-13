@@ -97,7 +97,7 @@
               {{ form.app_ratings.error }}
             {% else %}
               {%  for r in addon.content_ratings.all() %}
-                <div>{{ r }}</div>
+                <div>{{ r.get_name() }}</div>
               {% endfor %}
             {% endif %}
           </td>
@@ -123,7 +123,7 @@
             {% endif %}
           </td>
         </tr>
- 
+
       </tbody>
     </table>
     {% if editable %}
