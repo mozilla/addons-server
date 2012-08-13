@@ -678,10 +678,34 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
-    def test_multiple_versions_reject(self):
+    def test_multiple_versions_reject_hosted(self):
         self.app.update(status=amo.STATUS_PUBLIC)
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
+        new_version.files.all().update(status=amo.STATUS_PENDING)
+        files = list(new_version.files.values_list('id', flat=True))
+        self.post({
+            'action': 'reject',
+            'operating_systems': '',
+            'applications': '',
+            'comments': 'something',
+            'addon_files': files,
+        })
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
+        self._check_log(amo.LOG.REJECT_VERSION)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
+        self._check_email_body(msg)
+
+    def test_multiple_versions_reject_packaged(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
+        new_version = version_factory(addon=self.app,
+                                      file_kw=dict(is_packaged=True))
         new_version.files.all().update(status=amo.STATUS_PENDING)
         files = list(new_version.files.values_list('id', flat=True))
         self.post({
