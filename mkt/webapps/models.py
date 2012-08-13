@@ -380,6 +380,13 @@ class Webapp(Addon):
         """
         return self.get_latest_file().uses_flash
 
+    @amo.cached_property
+    def has_packaged_files(self):
+        """
+        Whether this app has any versions that are a packaged app.
+        """
+        return self.versions.filter(files__is_packaged=True).exists()
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields
