@@ -8,8 +8,7 @@
       <p>{{ loc('Update the receipt for this app.') }}</p>
       {{ market_button(app) }}
     {% else %}
-      <p>{{ loc('Our records show that you have not purchased this app.') }}</p>
-      <a class="button" href="{{ app.get_detail_url() }}">Purchase app</a>
+      <a class="button" href="{{ app.get_detail_url() }}">{{ _('Purchase') }}</a>
     {% endif %}
   </section>
 {% endblock %}
