@@ -358,6 +358,31 @@ class TestVaryMiddleware(MiddlewareCase):
             'User-Agent should not be in the "Vary" header.')
 
 
+class TestMobileMiddleware(amo.tests.TestCase):
+
+    def test_no_effect(self):
+        r = self.client.get('/', follow=True)
+        assert not r.cookies.get('mobile')
+        assert not r.context['request'].MOBILE
+
+    def test_force_mobile(self):
+        r = self.client.get('/?mobile=true', follow=True)
+        eq_(r.cookies['mobile'].value, 'true')
+        assert r.context['request'].MOBILE
+
+    def test_force_unset_mobile(self):
+        r = self.client.get('/?mobile=true', follow=True)
+        assert r.cookies.get('mobile')
+
+        r = self.client.get('/?mobile=false', follow=True)
+        eq_(r.cookies['mobile'].value, '')
+        assert not r.context['request'].MOBILE
+
+        r = self.client.get('/', follow=True)
+        eq_(r.cookies.get('mobile'), None)
+        assert not r.context['request'].MOBILE
+
+
 def normal_view(request):
     return ''
 

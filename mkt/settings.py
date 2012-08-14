@@ -106,16 +106,19 @@ if USE_CARRIER_URLS:
         # is handled.
         'mkt.carriers.middleware.CarrierURLMiddleware',
     )
+
+MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
+
 if REGION_STORES:
     MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
     MIDDLEWARE_CLASSES += [
-        'mkt.site.middleware.RequestCookiesMiddleware',
         'mkt.site.middleware.RedirectPrefixedURIMiddleware',
         'mkt.site.middleware.LocaleMiddleware',
         'mkt.site.middleware.RegionMiddleware',
     ]
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.VaryOnAJAXMiddleware',
+    'mkt.site.middleware.MobileDetectionMiddleware',
 
     # TODO: Remove this when we remove `request.can_view_consumer`.
     'amo.middleware.DefaultConsumerMiddleware',

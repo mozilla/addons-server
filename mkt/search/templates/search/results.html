@@ -95,7 +95,9 @@
       <ul class="facets island pjax-trigger">
         {{ facet(_('Category'), 'category-facets', categories, active=active.categories) }}
         {{ facet(_('Price'), 'price-facets', prices, active=active.prices) }}
-        {{ facet(_('Optimized for'), 'device-facets', devices, active=active.devices) }}
+        {% if not request.MOBILE %}
+          {{ facet(_('Optimized for'), 'device-facets', devices, active=active.devices) }}
+        {% endif %}
       </ul>
       {{ num_results() }}
     </section>

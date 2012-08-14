@@ -1,6 +1,6 @@
 import json
 
-from nose.tools import eq_
+from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
 import amo
@@ -354,3 +354,96 @@ class TestSuggestions(TestAjaxSearch):
             'region=ca&q=app&category=%d' % self.c1.id, addons=[self.w1])
         self.check_suggestions(self.url,
             'region=ca&q=app&category=%d' % self.c2.id, addons=[self.w2])
+
+
+class TestFilterMobileCompat(amo.tests.ESTestCase):
+    """
+    Test that apps that are incompatible with mobile are hidden from any
+    listings.
+    """
+
+    def setUp(self):
+        self.app_name = 'Basta Pasta'
+        self.webapp = Webapp.objects.create(name=self.app_name,
+                                            type=amo.ADDON_WEBAPP,
+                                            status=amo.STATUS_PUBLIC)
+        AddonDeviceType.objects.create(addon=self.webapp,
+                                       device_type=amo.DEVICE_DESKTOP.id)
+        self.reindex(Webapp)
+
+        self.mcompat = None
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    @nottest
+    def test_url(self, url, app_is_mobile=True, browser_is_mobile=False):
+        """
+        Test a view to make sure that it excludes mobile-incompatible apps
+        from its listings.
+        """
+        url = urlparams(url, mobile='true' if browser_is_mobile else 'false')
+
+        if app_is_mobile and not self.mcompat:
+            # If the app is supposed to be mobile and we haven't created the
+            # AddonDeviceType object yet, create it.
+            self.mcompat = AddonDeviceType.objects.create(
+                addon=self.webapp, device_type=amo.DEVICE_MOBILE.id)
+            self.mcompat.save()
+            self.reindex(Webapp)
+        elif not app_is_mobile and self.mcompat:
+            # If the app is not mobile and we haven't destroyed the
+            # AddonDeviceType from a previous test, destroy it now.
+            self.mcompat.delete()
+            self.reindex(Webapp)
+            self.mcompat = None
+
+        self.refresh()
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 200)
+
+        # If the browser is mobile and the app is not mobile compatible, assert
+        # that the app doesn't show up in the listing.
+        if browser_is_mobile and not app_is_mobile:
+            assert self.app_name not in r.content, (
+                'Found non-mobile app for %s' % url)
+        else:
+            # Otherwise assert that it does.
+            assert self.app_name in r.content, (
+                "Couldn't find mobile app for %s" % url)
+
+    def _generate(self):
+        views = [reverse('home'),
+                 reverse('browse.apps'),
+                 reverse('search.search') + '?q=Basta',
+                 reverse('search.suggestions') + '?q=Basta&cat=apps']
+
+        for view in views:
+            for app_is_mobile in (True, False):
+                for browser_is_mobile in (False, True):
+                    yield self.test_url, view, app_is_mobile, browser_is_mobile
+
+    def test_generator(self):
+        # This is necessary until we can get test generator methods worked out
+        # to run properly.
+        for test_params in self._generate():
+            func, params = test_params[0], test_params[1:]
+            func(*params)
+
+    def test_mobile_applied_filters(self):
+        # Test that we don't show the controls to search by device type in the
+        # search results.
+        url = urlparams(reverse('search.search'), q='Basta')
+
+        resp_desktop = self.client.get(url, {'mobile': 'false'})
+        resp_mobile = self.client.get(url, {'mobile': 'true'})
+
+        eq_(resp_desktop.status_code, 200)
+        eq_(resp_mobile.status_code, 200)
+
+        p_desktop = pq(resp_desktop.content)
+        p_mobile = pq(resp_mobile.content)
+
+        assert p_desktop('#device-facets')
+        assert not p_mobile('#device-facets')
+
+        assert not p_desktop('.applied-filters')
+        assert not p_mobile('.applied-filters')

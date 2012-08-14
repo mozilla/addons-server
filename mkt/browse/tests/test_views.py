@@ -59,6 +59,14 @@ class BrowseBase(amo.tests.ESTestCase):
         # When run individually these tests always pass fine.
         # But when run alongside all the other tests, they sometimes fail.
         # WTMF.
+        # TODO: Figure out why ES flakes out on every other test run!
+        # (I'm starting to think the "elastic" in elasticsearch is symbolic
+        # of how our problems keep bouncing back. I thought elastic had more
+        # potential. Maybe it's too young? I play with an elastic instrument;
+        # would you like to join my rubber band? Our sounds will resin-ate
+        # across this vulcan land. [P.S. If you can help in any
+        # way, pun-wise or code-wise, please don't hesitate to do so.] In the
+        # meantime, SkipTest is the rubber band to our elastic problems.)
         raise SkipTest
         self.skip_if_disabled(settings.REGION_STORES)
 

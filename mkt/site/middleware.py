@@ -217,3 +217,23 @@ class VaryOnAJAXMiddleware(object):
     def process_response(self, request, response):
         patch_vary_headers(response, ['X-Requested-With'])
         return response
+
+
+class MobileDetectionMiddleware(object):
+    """
+    If the user has flagged that they are mobile or we were able to detect that
+    the user is a mobile user, store that the user is a mobile user. If we find
+    that we've previously stored that the user is on mobile, tell the request
+    that the user is a mobile user.
+    """
+
+    def process_request(self, request):
+        mobile_qs = request.GET.get('mobile', False)
+        if mobile_qs:
+            if mobile_qs == 'false':
+                request.delete_cookie('mobile')
+            else:
+                request.set_cookie('mobile', 'true')
+
+        request.MOBILE = (request.MOBILE or
+                          bool(request.COOKIES.get('mobile', False)))

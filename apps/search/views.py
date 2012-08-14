@@ -402,6 +402,9 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
                     # Django ORM? Do an `exclude`.
                     return res.exclude(id__in=excluded)
 
+        if getattr(self.request, 'REGION', False):
+            res = res.filter(device=amo.DEVICE_MOBILE.id)
+
         return res
 
 
@@ -419,7 +422,7 @@ def ajax_search(request):
 def ajax_search_suggestions(request):
     results = []
     q = request.GET.get('q')
-    if q and (q.isdigit() or (not q.isdigit() and len(q) > 2)):
+    if q and (q.isdigit() or len(q) > 2):
         q_ = q.lower()
 
         cat = request.GET.get('cat', 'all')

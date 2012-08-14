@@ -44,7 +44,7 @@ def _filter_search(qs, query, filters=None, sorting=None,
     # Intersection of the form fields present and the filters we want to apply.
     filters = filters or DEFAULT_FILTERS
     sorting = sorting or DEFAULT_SORTING
-    show = [f for f in filters if query.get(f)]
+    show = filter(query.get, filters)
 
     if query.get('q'):
         qs = qs.query(or_=name_query(query['q'].lower()))
@@ -119,8 +119,17 @@ def _app_search(request, category=None, browse=None):
                                                 sort='downloads',
                                                 price='free')}
 
+    # On mobile, always only show mobile apps. Bug 767620
+    if request.MOBILE:
+        query['device'] = 'mobile'
+
     qs = _get_query(request)
     qs = _filter_search(qs, query)
+
+    # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
+    # Mobile")
+    if request.MOBILE:
+        del query['device']
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facet_counts()
