@@ -812,7 +812,8 @@ class RegionForm(forms.Form):
         if games:
             r = mkt.regions.BR
 
-            if (self.product.listed_in(r) and
+            if (self.product.categories.filter(id=games.id) and
+                self.product.listed_in(r) and
                 not self.product.content_rated_in(r)):
 
                 g, c = AddonExcludedRegion.objects.get_or_create(

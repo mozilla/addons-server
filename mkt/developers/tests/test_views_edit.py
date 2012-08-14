@@ -1096,13 +1096,15 @@ class TestEditDetails(TestEdit):
 
     def test_exclude_region(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        to_exclude = list(mkt.regions.REGION_IDS)
-        to_exclude.remove(mkt.regions.CA.id)
-        data = self.get_dict(regions=to_exclude, other_regions=True)
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
+        regions = list(mkt.regions.REGION_IDS)
+        for region_id in regions:
+            to_exclude = list(regions)
+            to_exclude.remove(region_id)
+            data = self.get_dict(regions=to_exclude, other_regions=True)
+            r = self.client.post(self.edit_url, data)
+            self.assertNoFormErrors(r)
 
-        eq_(self.get_excluded_ids(), [mkt.regions.CA.id])
+            eq_(self.get_excluded_ids(), [region_id])
 
     def test_cannot_exclude_all_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
