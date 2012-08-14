@@ -122,7 +122,6 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
     anonymize = forms.BooleanField(required=False)
     restricted = forms.BooleanField(required=False)
 
-
     def save(self, *args, **kw):
         profile = super(AdminUserEditForm, self).save()
         if self.cleaned_data['anonymize']:
@@ -130,7 +129,8 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
                     self.cleaned_data['admin_log'])
             profile.anonymize()  # This also logs.
         else:
-            if 'restricted' in self.changed_data and self.cleaned_data['restricted']:
+            if ('restricted' in self.changed_data and
+                self.cleaned_data['restricted']):
                 amo.log(amo.LOG.ADMIN_USER_RESTRICTED, self.instance,
                         self.cleaned_data['admin_log'])
                 profile.restrict()

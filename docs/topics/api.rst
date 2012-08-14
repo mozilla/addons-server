@@ -31,11 +31,8 @@ team`_, letting them know which Marketplace user account you would like to use
 for authentication. Changing this later will give problems accessing old data.
 
 The user account that is used **must** accept the Terms of Service for the
-marketplace by logging into the Marketplace, viewing the terms and accepting
+marketplace by logging into the Marketplace, viewing the `terms`_ and accepting
 them.
-
-TODO: add in URL once https://bugzilla.mozilla.org/show_bug.cgi?id=772295 is
-done.
 
 Once you've got your token, you will need to ensure that the OAuth token is
 sent correctly in each request.
@@ -399,3 +396,4 @@ Example, to specify a category sorted by rating::
 .. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
 .. _`AMO api on MDN`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
 .. _`example marketplace client`: https://github.com/mozilla/MarketplaceClientExample
+.. _`terms`: https://marketplace.mozilla.org/developers/terms

@@ -895,3 +895,16 @@ class CategoryForm(happyforms.Form):
                 self.product.addonexcludedregion.filter(region=r).delete()
                 log.info(u'[Webapp:%s] Game no longer exluded from region '
                           '(%s).' % (self.product, r))
+
+
+class DevAgreementForm(happyforms.Form):
+    read_dev_agreement = forms.BooleanField(label=_lazy(u'Agree'),
+                                            widget=forms.HiddenInput)
+
+    def __init__(self, *args, **kw):
+        self.instance = kw.pop('instance')
+        super(DevAgreementForm, self).__init__(*args, **kw)
+
+    def save(self):
+        self.instance.read_dev_agreement = True
+        self.instance.save()

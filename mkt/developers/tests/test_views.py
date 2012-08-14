@@ -1533,3 +1533,39 @@ class TestRemoveLocale(amo.tests.TestCase):
     def test_delete_default_locale(self):
         r = self.client.post(self.url, {'locale': self.webapp.default_locale})
         eq_(r.status_code, 400)
+
+
+class TestTerms(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = self.get_user()
+        self.client.login(username=self.user.email, password='password')
+        self.url = reverse('mkt.developers.apps.terms')
+
+    def get_user(self):
+        return UserProfile.objects.get(email='regular@mozilla.com')
+
+    def test_login_required(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_accepted(self):
+        self.user.update(read_dev_agreement=True)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#dev-agreement').length, 1)
+        eq_(doc('#agreement-form').length, 0)
+
+    def test_not_accepted(self):
+        self.user.update(read_dev_agreement=False)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#dev-agreement').length, 1)
+        eq_(doc('#agreement-form').length, 1)
+
+    def test_accept(self):
+        self.user.update(read_dev_agreement=False)
+        res = self.client.post(self.url, {'read_dev_agreement': 'yeah'})
+        eq_(res.status_code, 200)
+        eq_(self.get_user().read_dev_agreement, True)

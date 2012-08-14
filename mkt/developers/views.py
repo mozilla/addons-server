@@ -1199,3 +1199,16 @@ def docs(request, doc_name=None, doc_page=None):
         return redirect('ecosystem.landing')
 
     return jingo.render(request, 'developers/docs/%s' % filename)
+
+
+@login_required
+def terms(request):
+    form = forms.DevAgreementForm({'read_dev_agreement': True},
+                                  instance=request.amo_user)
+    if request.POST and form.is_valid():
+        form.save()
+        log.info('Dev agreement agreed for user: %s' % request.amo_user.pk)
+        messages.success(request, _('Terms of service accepted.'))
+    return jingo.render(request, 'developers/terms.html',
+                        {'accepted': request.amo_user.read_dev_agreement,
+                         'agreement_form': form})
