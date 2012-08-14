@@ -1,4 +1,5 @@
 from collections import defaultdict
+import copy
 
 from celeryutils import task
 import commonware.log
@@ -354,4 +355,14 @@ def already_indexed(model, data):
         except AttributeError:
             pass
 
-    return list(model.search().filter(**data).values_dict(data.keys()[0]))
+    filter_data = copy.deepcopy(data)
+
+    # Search floating point number with string (bug 770037 fix attempt #100).
+    if 'revenue' in filter_data:
+        try:
+            filter_data['revenue'] = str(filter_data['revenue'])
+        except AttributeError:
+            pass
+
+    return list(model.search().filter(**filter_data)
+                .values_dict(data.keys()[0]))
