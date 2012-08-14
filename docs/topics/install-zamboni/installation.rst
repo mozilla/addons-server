@@ -333,7 +333,7 @@ Updating
 
 This updates zamboni::
 
-    git checkout master && git pull && git submodule update --init
+    git checkout master && git pull && git submodule update --init --recursive
 
 This updates zamboni-lib in the ``vendor/`` directory::
 
