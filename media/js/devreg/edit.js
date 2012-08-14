@@ -11,7 +11,7 @@
     })).on('editLoaded.disableCheckboxes', function(e) {
         // Disable individual checkbox fields when we see them.
         // (Customizing Django's CheckboxSelectMultiple widget is stupid.)
-        $('.checkbox-choices').each(function() {
+        $('.checkbox-choices[data-disabled]').each(function() {
             $this = $(this);
             var choices = JSON.parse($this.attr('data-disabled'));
             var selectors = _.map(choices, function(val) {
