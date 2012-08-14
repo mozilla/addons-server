@@ -56,6 +56,12 @@ echo "Updating vendor..."
 git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
+if [ -z $SET_ES_TESTS ]; then
+    RUN_ES_TESTS=False
+else
+    RUN_ES_TESTS=True
+fi
+
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *
 LOG_LEVEL = logging.ERROR
@@ -68,6 +74,7 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 CACHE_BACKEND = 'caching.backends.locmem://'
 CELERY_ALWAYS_EAGER = True
+RUN_ES_TESTS = ${RUN_ES_TESTS}
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
 
