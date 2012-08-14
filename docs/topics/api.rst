@@ -53,6 +53,11 @@ Example headers (new lines added for clarity)::
                        oauth_version="1.0",
                        oauth_signature="Nb8..."
 
+If requests are failing and returning a 401 response, then there will likely be
+a reason contained in the response. For example::
+
+        {u'reason': u'Terms of service not accepted.'}
+
 Errors
 ======
 

@@ -1,3 +1,4 @@
+import json
 from urlparse import urljoin
 
 from django.conf import settings
@@ -6,6 +7,7 @@ from django.contrib.auth.models import AnonymousUser
 import commonware.log
 import oauth2
 from piston.models import Consumer
+from tastypie import http
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 
@@ -45,6 +47,14 @@ class OAuthError(RuntimeError):
         self.message = message
 
 
+errors = {
+    'consumer': 'OAuth consumer not accepted.',
+    'headers': 'Error with OAuth headers',
+    'roles': 'Cannot be a user with roles.',
+    'terms': 'Terms of service not accepted.',
+}
+
+
 class MarketplaceAuthentication(Authentication):
     """
     This is based on https://github.com/amrox/django-tastypie-two-legged-oauth
@@ -53,6 +63,10 @@ class MarketplaceAuthentication(Authentication):
 
     def __init__(self, realm='API'):
         self.realm = realm
+
+    def _error(self, reason):
+        return http.HttpUnauthorized(content=json.dumps({'reason':
+                                                         errors[reason]}))
 
     def is_authenticated(self, request, **kwargs):
         oauth_server, oauth_request = initialize_oauth_server_request(request)
@@ -70,14 +84,14 @@ class MarketplaceAuthentication(Authentication):
             request.user = consumer.user
 
         except:
-            log.error(u'Error get OAuth headers', exc_info=True)
+            log.error(u'Error getting OAuth headers', exc_info=True)
             request.user = AnonymousUser()
-            return False
+            return self._error('headers')
 
         # Check that consumer is valid.
         if consumer.status != 'accepted':
             log.info(u'Consumer not accepted: %s' % consumer)
-            return False
+            return self._error('consumer')
 
         ACLMiddleware().process_request(request)
 
@@ -85,14 +99,14 @@ class MarketplaceAuthentication(Authentication):
         if not request.amo_user.read_dev_agreement:
             log.info(u'Attempt to use API without dev agreement: %s'
                      % request.amo_user.pk)
-            return False
+            return self._error('terms')
 
         # Do not allow any user with any roles to use the API.
         # Just in case.
         if request.amo_user.groups.all():
             log.info(u'Attempt to use API with roles, user: %s'
                      % request.amo_user.pk)
-            return False
+            return self._error('roles')
 
         return True
 

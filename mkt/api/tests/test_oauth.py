@@ -36,6 +36,7 @@ from amo.tests import TestCase
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from files.models import FileUpload
+from mkt.api.authentication import errors
 
 
 def get_absolute_url(url):
@@ -174,15 +175,21 @@ class TestBaseOAuth(BaseOAuth):
 
     def test_no_agreement(self):
         self.user.get_profile().update(read_dev_agreement=False)
-        eq_(self.client.get(self.url).status_code, 401)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'], errors['terms'])
 
     def test_cancelled(self):
         self.client = OAuthClient(self.canceled_consumer)
-        eq_(self.client.get(self.url).status_code, 401)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'], errors['consumer'])
 
     def test_pending(self):
         client = OAuthClient(self.pending_consumer)
-        eq_(client.get(self.url).status_code, 401)
+        res = client.get(self.url)
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'], errors['consumer'])
 
     def test_request_token_fake(self):
         c = Mock()
@@ -191,6 +198,7 @@ class TestBaseOAuth(BaseOAuth):
         self.client = OAuthClient(c)
         res = self.client.get(self.url)
         eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'], errors['headers'])
 
     def test_request_no_user(self):
         self.user.delete()
@@ -200,4 +208,6 @@ class TestBaseOAuth(BaseOAuth):
         admin = User.objects.get(email='admin@mozilla.com')
         self.accepted_consumer.user = admin
         self.accepted_consumer.save()
-        eq_(self.client.get(self.url).status_code, 401)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'], errors['roles'])
