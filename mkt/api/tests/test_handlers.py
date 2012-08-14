@@ -164,6 +164,13 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         self.create_app()
         self._allowed_verbs(self.get_url, ['get', 'put'])
 
+    def test_not_accepted_tos(self):
+        self.user.update(read_dev_agreement=False)
+        obj = self.create()
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'manifest': obj.uuid}))
+        eq_(res.status_code, 401)
+
     def test_not_valid(self):
         obj = self.create()
         obj.update(valid=False)

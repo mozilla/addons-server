@@ -80,6 +80,13 @@ class MarketplaceAuthentication(Authentication):
             return False
 
         ACLMiddleware().process_request(request)
+
+        # Do not allow access without agreeing to the dev agreement.
+        if not request.amo_user.read_dev_agreement:
+            log.info(u'Attempt to use API without dev agreement: %s'
+                     % request.amo_user.pk)
+            return False
+
         # Do not allow any user with any roles to use the API.
         # Just in case.
         if request.amo_user.groups.all():

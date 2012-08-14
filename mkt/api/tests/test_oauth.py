@@ -123,6 +123,7 @@ class BaseOAuth(TestCase):
 
     def setUp(self):
         self.user = User.objects.get(pk=2519)
+        self.user.get_profile().update(read_dev_agreement=True)
 
         for status in ('accepted', 'pending', 'canceled', ):
             c = Consumer(name='a', status=status, user=self.user)
@@ -170,6 +171,10 @@ class TestBaseOAuth(BaseOAuth):
 
     def test_accepted(self):
         eq_(self.client.get(self.url).status_code, 200)
+
+    def test_no_agreement(self):
+        self.user.get_profile().update(read_dev_agreement=False)
+        eq_(self.client.get(self.url).status_code, 401)
 
     def test_cancelled(self):
         self.client = OAuthClient(self.canceled_consumer)

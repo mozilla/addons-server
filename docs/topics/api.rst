@@ -30,6 +30,13 @@ For more information on creating an OAuth token, contact the `marketplace
 team`_, letting them know which Marketplace user account you would like to use
 for authentication. Changing this later will give problems accessing old data.
 
+The user account that is used **must** accept the Terms of Service for the
+marketplace by logging into the Marketplace, viewing the terms and accepting
+them.
+
+TODO: add in URL once https://bugzilla.mozilla.org/show_bug.cgi?id=772295 is
+done.
+
 Once you've got your token, you will need to ensure that the OAuth token is
 sent correctly in each request.
 
