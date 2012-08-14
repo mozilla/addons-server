@@ -25,7 +25,7 @@ from files.models import FileUpload
 
 import mkt
 from mkt.developers import tasks
-from mkt.developers.tests.test_views import BaseWebAppTest
+from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER
 
 

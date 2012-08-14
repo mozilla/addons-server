@@ -63,18 +63,30 @@ function appslistXHR(verb, data) {
 
 $(document).ready(function(){
     $("#featured-webapps").delegate(
-        '.remove', 'click', _pd(function() {
-            deleteFromAppsList($("#categories"),
-                               $(this).data("id"));
-                              }));
-    $("#featured-webapps").delegate(
-      "select.localepicker", "change", _pd(function (e) {
+        '.remove',
+        'click',
+        _pd(function() {
+            deleteFromAppsList($("#categories"), $(this).data("id"));
+        })
+    );
+    $('#featured-webapps').delegate(
+        'select.localepicker',
+        'change',
+        _pd(function (e) {
             var region = $(e.target);
-            $.ajax({type: 'POST',
-                   url: region.data("url"),
-                   data: {"region": region.val(),
-                          "app": region.data("id")}});
-            }));
+            $.ajax({
+                type: 'POST',
+                url: region.data('url'),
+                data: {
+                    'region':
+                        _(region.children('option'))
+                            .filter(function(opt) {return opt.selected})
+                            .map(function(sopt) {return sopt.value}),
+                    'app': region.data('id')
+                }
+            });
+        })
+    );
     var categories = $("#categories");
     var appslist = $("#featured-webapps");
     var p = $.ajax({type: 'GET',

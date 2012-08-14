@@ -15,7 +15,7 @@ from django.views import debug
 from django.views.decorators.cache import never_cache
 
 import commonware.log
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import jinja2
 import jingo
 from hera.contrib.django_forms import FlushForm

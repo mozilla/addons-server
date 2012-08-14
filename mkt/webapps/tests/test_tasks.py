@@ -1,5 +1,6 @@
 import datetime
 import json
+import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -10,7 +11,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from files.models import File
+from files.models import File, FileUpload
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import Webapp
@@ -48,8 +49,10 @@ new = {
     }
 
 
-ohash = 'sha256:fc11fba25f251d64343a7e8da4dfd812a57a121e61eb53c78c567536ab39b10d'
-nhash = 'sha256:409fbe87dca5a4a7937e3dea27b69cb3a3d68caf39151585aef0c7ab46d8ee1e'
+ohash = ('sha256:'
+         'fc11fba25f251d64343a7e8da4dfd812a57a121e61eb53c78c567536ab39b10d')
+nhash = ('sha256:'
+         '409fbe87dca5a4a7937e3dea27b69cb3a3d68caf39151585aef0c7ab46d8ee1e')
 
 
 class TestUpdateManifest(amo.tests.TestCase):
@@ -71,17 +74,17 @@ class TestUpdateManifest(amo.tests.TestCase):
         # This is the hash to set the get_content_hash to, for showing
         # that the webapp has been updated.
         self._hash = nhash
-        self._data = json.dumps(new)
+        self.new = new.copy()
 
         urlopen_patch = mock.patch('urllib2.urlopen')
         self.urlopen_mock = urlopen_patch.start()
         self.addCleanup(urlopen_patch.stop)
 
-        response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(new)
-        response_mock.headers = {
+        self.response_mock = mock.Mock()
+        self.response_mock.read.return_value = self._data()
+        self.response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
-        self.urlopen_mock.return_value = response_mock
+        self.urlopen_mock.return_value = self.response_mock
 
     @mock.patch('mkt.webapps.tasks._get_content_hash')
     def _run(self, _get_content_hash):
@@ -89,26 +92,40 @@ class TestUpdateManifest(amo.tests.TestCase):
         _get_content_hash.return_value = self._hash
         update_manifests(ids=(self.addon.pk,))
 
-    def test_new_version(self):
+    def _data(self):
+        return json.dumps(self.new)
+
+    @mock.patch('mkt.webapps.models.copy_stored_file')
+    def test_new_version_not_created(self, _copy_stored_file):
+        # Test that update_manifest doesn't create multiple versions/files.
         eq_(self.addon.versions.count(), 1)
         old_version = self.addon.current_version
-        old_file = self.addon.get_latest_file
+        old_file = self.addon.get_latest_file()
         self._run()
+
+        new = Webapp.objects.get(pk=self.addon.pk)
+        version = new.current_version
+        file = new.get_latest_file()
 
         # Test that our new version looks good
-        new = Webapp.objects.get(pk=self.addon.pk)
-        eq_(new.versions.count(), 2)
-        assert new.current_version != old_version, 'Version not updated'
-        assert new.get_latest_file() != old_file, 'File not updated'
+        eq_(new.versions.count(), 1)
+        assert version == old_version, 'Version created'
+        assert file == old_file, 'File created'
 
-    def test_new_version_multiple(self):
+        path = FileUpload.objects.all()[0].path
+        _copy_stored_file.assert_called_with(path,
+                                             os.path.join(version.path_prefix,
+                                                          file.filename))
+
+    def test_version_updated(self):
         self._run()
-        self._data = self._data.replace('1.0', '1.1')
+        self.new['version'] = '1.1'
+        self.response_mock.read.return_value = self._data()
         self._hash = 'foo'
         self._run()
 
         new = Webapp.objects.get(pk=self.addon.pk)
-        eq_(new.versions.count(), 3)
+        eq_(new.versions.latest().version, '1.1')
 
     def test_not_log(self):
         self._hash = ohash

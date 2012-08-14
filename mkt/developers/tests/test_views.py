@@ -29,7 +29,6 @@ from browse.tests import test_default_sort, test_listing_sort
 from devhub.models import UserLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
-from lib.pay_server import client
 from market.models import AddonPremium, Price, Refund
 from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
@@ -1455,69 +1454,6 @@ def assert_json_field(request, field, msg):
     content = json.loads(request.content)
     assert field in content, '%r not in %r' % (field, content)
     eq_(content[field], msg)
-
-
-class BaseWebAppTest(BaseUploadTest, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
-
-    def setUp(self):
-        super(BaseWebAppTest, self).setUp()
-        self.manifest = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                                     'addons', 'mozball.webapp')
-        self.upload = self.get_upload(abspath=self.manifest)
-        self.url = reverse('submit.app.manifest')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.client.post(reverse('submit.app.terms'),
-                         {'read_dev_agreement': True})
-
-    def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
-             expect_errors=False):
-        d = dict(upload=self.upload.pk,
-                 desktop_platforms=[p.id for p in desktop_platforms],
-                 mobile_platforms=[p.id for p in mobile_platforms])
-        r = self.client.post(self.url, d, follow=True)
-        eq_(r.status_code, 200)
-        if not expect_errors:
-            # Show any unexpected form errors.
-            if r.context and 'new_addon_form' in r.context:
-                eq_(r.context['new_addon_form'].errors.as_text(), '')
-        return r
-
-    def post_addon(self):
-        eq_(Addon.objects.count(), 0)
-        self.post()
-        return Addon.objects.get()
-
-
-class TestCreateWebApp(BaseWebAppTest):
-
-    def test_post_app_redirect(self):
-        r = self.post()
-        addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('submit.app.details',
-                                        args=[addon.app_slug]))
-
-    def test_addon_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        eq_(addon.type, amo.ADDON_WEBAPP)
-        eq_(addon.guid, None)
-        eq_(unicode(addon.name), 'MozillaBall')
-        eq_(addon.slug, 'app-%s' % addon.id)
-        eq_(addon.app_slug, 'mozillaball')
-        eq_(addon.summary, u'Exciting Open Web development action!')
-        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
-            u'Azione aperta emozionante di sviluppo di fotoricettore!')
-
-    def test_version_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        eq_(addon.current_version.version, '1.0')
-
-    def test_file_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        files = addon.current_version.files
-        eq_(files.count(), 1)
-        eq_(files.all()[0].status, amo.STATUS_PUBLIC)
 
 
 class TestDeleteApp(amo.tests.TestCase):

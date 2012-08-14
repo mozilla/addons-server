@@ -69,9 +69,16 @@
                 <a href="#" class="none">{{ _('None') }}</a>
               </p>
               {{ region_form.regions.errors }}
-              <div class="checkbox-choices">
+              <div class="checkbox-choices"
+                   data-disabled="{{ region_form.disabled_regions|json }}">
                 {{ region_form.regions }}
               </div>
+              {% if region_form.disabled_regions %}
+                <p class="note disabled-regions">
+                  <a href="https://developer.mozilla.org/en/Apps/Marketplace_Review" target="_blank">
+                    {{ _('Learn why some regions are restricted.') }}</a>
+                </p>
+              {% endif %}
               <div class="other-regions">
                 {{ region_form.other_regions }}
                 {{ region_form.other_regions.label_tag() }}

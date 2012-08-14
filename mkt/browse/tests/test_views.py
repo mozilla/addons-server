@@ -1,14 +1,19 @@
+from django.conf import settings
+
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.tests import mock_es
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from addons.models import AddonCategory, Category
-from mkt.webapps.models import Webapp
-from mkt.zadmin.models import FeaturedApp
+
+import mkt
+from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 class BrowseBase(amo.tests.ESTestCase):
@@ -28,54 +33,75 @@ class BrowseBase(amo.tests.ESTestCase):
         eq_(r.status_code, 200)
         return sorted(x.id for x in r.context[key])
 
+    def make_featured(self, app, category=None):
+        f = FeaturedApp.objects.create(app=app, category=category)
+        # Feature in the US region.
+        FeaturedAppRegion.objects.create(featured_app=f,
+                                         region=mkt.regions.US.id)
+
     def setup_featured(self):
-        amo.tests.addon_factory()
+        self.skip_if_disabled(settings.REGION_STORES)
 
         # Category featured.
         a = amo.tests.app_factory()
-        FeaturedApp.objects.create(app=a, category=self.cat)
+        self.make_featured(app=a, category=self.cat)
 
         b = amo.tests.app_factory()
-        FeaturedApp.objects.create(app=b, category=self.cat)
+        self.make_featured(app=b, category=self.cat)
 
         # Home featured.
         c = amo.tests.app_factory()
-        FeaturedApp.objects.create(app=c, category=None)
+        self.make_featured(app=c, category=None)
 
         return a, b, c
 
     def setup_popular(self):
-        # TODO: Figure out why ES flakes out on every other test run!
-        # (I'm starting to think the "elastic" in elasticsearch is symbolic
-        # of how our problems keep bouncing back. I thought elastic had more
-        # potential. Maybe it's too young? I play with an elastic instrument;
-        # would you like to join my rubber band? [P.S. If you can help in any
-        # way, pun-wise or code-wise, please don't hesitate to do so.] In the
-        # meantime, SkipTest is the rubber band to our elastic problems.)
+        # When run individually these tests always pass fine.
+        # But when run alongside all the other tests, they sometimes fail.
+        # WTMF.
         raise SkipTest
-
-        amo.tests.addon_factory()
-
-        # Popular without a category.
-        a = amo.tests.app_factory()
-        self.refresh()
+        self.skip_if_disabled(settings.REGION_STORES)
 
         # Popular for this category.
-        b = amo.tests.app_factory()
-        AddonCategory.objects.create(addon=b, category=self.cat)
-        b.save()
+        a = amo.tests.app_factory()
+        AddonCategory.objects.create(addon=a, category=self.cat)
+        a.save()
 
         # Popular and category featured and home featured.
-        self.make_featured(webapp=self.webapp, group='category')
-        self.make_featured(webapp=self.webapp, group='home')
-        self.webapp.save()
+        self.make_featured(app=self.webapp, category=self.cat)
+        self.make_featured(app=self.webapp, category=None)
 
-        # Something's really up.
         self.refresh()
 
-        return a, b
+        return a
 
-    def _test_popular(self, url, pks):
+    def _test_featured(self):
+        """This is common to / and /apps/, so let's be DRY."""
+        a, b, c = self.setup_featured()
+        # Check that the Home featured app is shown only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('featured', self.url, {'region': region}),
+                [c.id] if region == 'us' else [])
+
+    def _test_featured_region_exclusions(self):
+        a, b, c = self.setup_featured()
+        AER.objects.create(addon=c, region=mkt.regions.BR.id)
+
+        # Feature this app in all regions.
+        f = c.featuredapp_set.all()[0]
+
+        for region_id in mkt.regions.REGIONS_CHOICES_ID_DICT:
+            # `setup_featured` already added this to the US region.
+            if region_id == mkt.regions.US.id:
+                continue
+            FeaturedAppRegion.objects.create(featured_app=f,
+                                             region=region_id)
+
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('featured', self.url, {'region': region}),
+                [] if region == 'br' else [c.id])
+
+    def _test_popular_pks(self, url, pks):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         results = r.context['popular']
@@ -88,6 +114,19 @@ class BrowseBase(amo.tests.ESTestCase):
                           reverse=True)
         eq_(list(results), expected)
 
+    def _test_popular(self):
+        a = self.setup_popular()
+        # Check that these apps are shown.
+        self._test_popular_pks(self.url, [self.webapp.id, a.id])
+
+    def _test_popular_region_exclusions(self):
+        a = self.setup_popular()
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
+
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('popular', self.url, {'region': region}),
+               [a.id] if region == 'br' else [self.webapp.id, a.id])
+
 
 class TestIndexLanding(BrowseBase):
 
@@ -95,20 +134,25 @@ class TestIndexLanding(BrowseBase):
         super(TestIndexLanding, self).setUp()
         self.url = reverse('browse.apps')
 
+    @mock_es
     def test_good_cat(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/landing.html')
 
+    @mock_es
     def test_featured(self):
-        a, b, c = self.setup_featured()
-        # Check that these apps are featured on the category landing page.
-        eq_(self.get_pks('featured', self.url), sorted([c.id]))
+        self._test_featured()
+
+    @mock_es
+    def test_featured_region_exclusions(self):
+        self._test_featured_region_exclusions()
 
     def test_popular(self):
-        a, b = self.setup_popular()
-        # Check that these apps are shown on the category landing page.
-        self._test_popular(self.url, [self.webapp.id, a.id, b.id])
+        self._test_popular()
+
+    def test_popular_region_exclusions(self):
+        self._test_popular_region_exclusions()
 
 
 class TestIndexSearch(BrowseBase):
@@ -150,11 +194,13 @@ class TestCategoryLanding(BrowseBase):
         return Category.objects.create(name='Slap Tickling', slug='booping',
                                        type=amo.ADDON_WEBAPP)
 
+    @mock_es
     def test_good_cat(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/landing.html')
 
+    @mock_es
     def test_bad_cat(self):
         r = self.client.get(reverse('browse.apps', args=['xxx']))
         eq_(r.status_code, 404)
@@ -170,23 +216,37 @@ class TestCategoryLanding(BrowseBase):
     def test_featured(self):
         a, b, c = self.setup_featured()
 
-        # Check that these apps are featured for this category.
-        eq_(self.get_pks('featured', self.url), sorted([a.id, b.id]))
+        # Check that these apps are featured for this category -
+        # and only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            eq_(self.get_pks('featured', self.url, {'region': region}),
+                [a.id, b.id] if region == 'us' else [])
 
         # Check that these apps are not featured for another category.
         new_cat_url = reverse('browse.apps', args=[self.get_new_cat().slug])
         eq_(self.get_pks('featured', new_cat_url), [])
 
     def test_popular(self):
-        a, b = self.setup_popular()
+        a = self.setup_popular()
 
         # Check that these apps are shown for this category.
-        self._test_popular(self.url, [self.webapp.id, b.id])
+        self._test_popular_pks(self.url, [self.webapp.id, a.id])
 
         # Check that these apps are not shown for another category.
         new_cat_url = reverse('browse.apps', args=[self.get_new_cat().slug])
         eq_(self.get_pks('popular', new_cat_url), [])
 
+    def test_popular_region_exclusions(self):
+        a = self.setup_popular()
+
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
+
+        for region in mkt.regions.REGIONS_DICT:
+            print region, self.get_pks('popular', self.url, {'region': region})
+            eq_(self.get_pks('popular', self.url, {'region': region}),
+                [a.id] if region == 'br' else [self.webapp.id, a.id])
+
+    @mock_es
     def test_search_category(self):
         # Ensure category got set in the search form.
         r = self.client.get(self.url)
@@ -200,11 +260,13 @@ class TestCategorySearch(BrowseBase):
         self.url = reverse('browse.apps',
                            args=[self.cat.slug]) + '?sort=downloads'
 
+    @mock_es
     def test_good_cat(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'search/results.html')
 
+    @mock_es
     def test_bad_cat(self):
         r = self.client.get(reverse('browse.apps', args=['xxx']),
                             {'sort': 'downloads'})
@@ -234,6 +296,7 @@ class TestCategorySearch(BrowseBase):
             urlparams(reverse('search.search'), cat=self.cat.id,
                       sort='downloads'))
 
+    @mock_es
     def test_search_category(self):
         # Ensure category got preserved in search term.
         r = self.client.get(self.url)

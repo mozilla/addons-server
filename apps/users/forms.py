@@ -103,7 +103,7 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
 
 
 class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
-    new_password1 = forms.CharField(label=_("New password"),
+    new_password1 = forms.CharField(label=_lazy(u'New password'),
                                     min_length=PasswordMixin.min_length,
                                     error_messages=PasswordMixin.error_msg,
                                     widget=PasswordMixin.widget())
@@ -173,11 +173,11 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     details here, so we'd have to rewrite most of it anyway.
     """
     username = forms.CharField(max_length=50)
-    display_name = forms.CharField(label=_lazy('Display Name'), max_length=50,
+    display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
                                    required=False)
-    location = forms.CharField(label=_lazy('Location'), max_length=100,
+    location = forms.CharField(label=_lazy(u'Location'), max_length=100,
                                required=False)
-    occupation = forms.CharField(label=_lazy('Occupation'), max_length=100,
+    occupation = forms.CharField(label=_lazy(u'Occupation'), max_length=100,
                                  required=False)
     password = forms.CharField(max_length=255,
                                min_length=PasswordMixin.min_length,
@@ -187,7 +187,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     password2 = forms.CharField(max_length=255,
                                 widget=forms.PasswordInput(render_value=False))
     recaptcha = captcha.fields.ReCaptchaField()
-    homepage = forms.URLField(label=_lazy('Homepage'), required=False)
+    homepage = forms.URLField(label=_lazy(u'Homepage'), required=False)
 
     class Meta:
         model = UserProfile

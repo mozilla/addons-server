@@ -24,14 +24,12 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
 from lib.video.tests import files as video_files
-from mkt.constants.ratingsbodies import RATINGS_BODIES
-from mkt.developers.models import ActivityLog
-from mkt.webapps.models import ContentRating
 from users.models import UserProfile
 
 import mkt
+from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import AddonExcludedRegion
+from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
 response_mock = mock.Mock()
 response_mock.read.return_value = '''
@@ -143,20 +141,16 @@ class TestEditBasic(TestEdit):
                                        device_type=self.dtype)
         self.url = self.get_url('basic')
         self.edit_url = self.get_url('basic', edit=True)
-        ctx = self.client.get(self.edit_url).context
-        self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
-        del self.cat_initial['application']
 
     def get_webapp(self):
         return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
-        fs = formset(self.cat_initial, initial_count=1)
         result = {'device_types': self.dtype, 'name': 'new name',
                   'slug': 'test_slug', 'summary': 'new summary',
-                  'manifest_url': self.get_webapp().manifest_url}
+                  'manifest_url': self.get_webapp().manifest_url,
+                  'categories': [self.cat.id]}
         result.update(**kw)
-        result.update(fs)
         return result
 
     def test_form_url(self):
@@ -262,8 +256,7 @@ class TestEditBasic(TestEdit):
         eq_(self.webapp.manifest_url, url)
         eq_(self.webapp.app_domain, 'https://ballin.com')
         eq_(self.webapp.current_version.version, '1.0')
-        eq_(sorted(self.webapp.versions.values_list('version', flat=True)),
-            sorted(['1.0', '1.0']))
+        eq_(self.webapp.versions.count(), 1)
 
     @mock.patch('devhub.tasks.urllib2.urlopen')
     def test_view_manifest_changed_dupe_app_domain(self, mock_urlopen):
@@ -305,67 +298,82 @@ class TestEditBasic(TestEdit):
         eq_(pq(r.content)('#manifest-url a').attr('href'), new_url)
 
     def test_categories_listed(self):
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#addon-categories-edit').text(),
+            unicode(self.cat.name))
+
         r = self.client.post(self.url)
-        ul = pq(r.content)('#addon-categories-edit ul')
-        li = ul.find('li')
-        eq_(li.length, 1)
-        eq_(li.text(), unicode(self.cat.name))
+        eq_(pq(r.content)('#addon-categories-edit').text(),
+            unicode(self.cat.name))
 
     def test_edit_categories_add(self):
         new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [self.cat.id, new.id]
-        self.client.post(self.edit_url, self.get_dict())
+        cats = [self.cat.id, new.id]
+        self.client.post(self.edit_url, self.get_dict(categories=cats))
         app_cats = self.get_webapp().categories.values_list('id', flat=True)
-        eq_(sorted(app_cats), self.cat_initial['categories'])
+        eq_(sorted(app_cats), cats)
 
     def test_edit_categories_addandremove(self):
         new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [new.id]
-        self.client.post(self.edit_url, self.get_dict())
+        cats = [new.id]
+        self.client.post(self.edit_url, self.get_dict(categories=cats))
         app_cats = self.get_webapp().categories.values_list('id', flat=True)
-        eq_(sorted(app_cats), self.cat_initial['categories'])
+        eq_(sorted(app_cats), cats)
 
     def test_edit_categories_required(self):
-        del self.cat_initial['categories']
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        assert_required(r.context['cat_form'].errors[0]['categories'][0])
+        r = self.client.post(self.edit_url, self.get_dict(categories=[]))
+        assert_required(r.context['cat_form'].errors['categories'][0])
 
     def test_edit_categories_xss(self):
         new = Category.objects.create(name='<script>alert("xss");</script>',
                                       type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [self.cat.id, new.id]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                          initial_count=1))
+        cats = [self.cat.id, new.id]
+        r = self.client.post(self.edit_url, self.get_dict(categories=cats))
 
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
 
-    def test_edit_categories_other_failure(self):
-        new = Category.objects.create(type=amo.ADDON_WEBAPP, misc=True)
-        self.cat_initial['categories'] = [self.cat.id, new.id]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
-            ['The miscellaneous category cannot be combined with additional '
-             'categories.'])
-
     def test_edit_categories_nonexistent(self):
-        self.cat_initial['categories'] = [100]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        r = self.client.post(self.edit_url, self.get_dict(categories=[100]))
+        eq_(r.context['cat_form'].errors['categories'],
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
 
     def test_edit_categories_max(self):
         new1 = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
         new2 = Category.objects.create(name='Lifestyle', type=amo.ADDON_WEBAPP)
-        self.cat_initial['categories'] = [self.cat.id, new1.id, new2.id]
-        r = self.client.post(self.edit_url, formset(self.cat_initial,
-                                                    initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        cats = [self.cat.id, new1.id, new2.id]
+
+        r = self.client.post(self.edit_url, self.get_dict(categories=cats))
+        eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
+
+    def test_exclude_games_in_brazil(self):
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+
+        r = self.client.post(self.edit_url,
+                             self.get_dict(categories=[games.id]))
+        self.assertNoFormErrors(r)
+        eq_(list(AER.objects.values_list('region', flat=True)),
+            [mkt.regions.BR.id])
+
+    def test_games_already_excluded_in_brazil(self):
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+
+        r = self.client.post(self.edit_url,
+                             self.get_dict(categories=[games.id]))
+        self.assertNoFormErrors(r)
+        eq_(list(AER.objects.values_list('region', flat=True)),
+            [mkt.regions.BR.id])
+
+    def test_edit_other_categories_are_not_excluded(self):
+        # Keep the category around for good measure.
+        Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+
+        r = self.client.post(self.url, self.get_dict())
+        self.assertNoFormErrors(r)
+        eq_(AER.objects.count(), 0)
 
     def test_devices_listed(self):
         r = self.client.post(self.url, self.get_dict())
@@ -564,6 +572,7 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
+        assert webapp.get_icon_url(128).endswith('icons/default-128.png')
         assert webapp.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
@@ -579,6 +588,7 @@ class TestEditMedia(TestEdit):
         webapp = self.get_webapp()
 
         assert webapp.get_icon_url(64).endswith('icons/appearance-64.png')
+        assert webapp.get_icon_url(128).endswith('icons/appearance-128.png')
 
         for k in data:
             eq_(unicode(getattr(webapp, k)), data[k])
@@ -953,6 +963,10 @@ class TestEditDetails(TestEdit):
         data.update(kw)
         return data
 
+    def get_excluded_ids(self):
+        return sorted(AER.objects.filter(addon=self.webapp)
+                         .values_list('region', flat=True))
+
     def test_form_url(self):
         self.check_form_url('details')
 
@@ -1062,8 +1076,7 @@ class TestEditDetails(TestEdit):
 
     def test_excluded_regions_not_listed(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        AddonExcludedRegion.objects.create(addon=self.webapp,
-                                           region=mkt.regions.BR.id)
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
 
         expected = [unicode(name) for id_, name in
                     mkt.regions.REGIONS_CHOICES_NAME[1:]
@@ -1076,8 +1089,7 @@ class TestEditDetails(TestEdit):
     def test_excluded_all_regions_not_listed(self):
         self.skip_if_disabled(settings.REGION_STORES)
         for region in mkt.regions.REGION_IDS:
-            AddonExcludedRegion.objects.create(addon=self.webapp,
-                                               region=region)
+            AER.objects.create(addon=self.webapp, region=region)
 
         r = self.client.get(self.url)
         eq_(pq(r.content)('#regions .empty').length, 1)
@@ -1090,11 +1102,7 @@ class TestEditDetails(TestEdit):
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
-        excluded = list(AddonExcludedRegion.objects
-                        .filter(addon=self.webapp)
-                        .values_list('region', flat=True))
-
-        eq_(excluded, [mkt.regions.CA.id])
+        eq_(self.get_excluded_ids(), [mkt.regions.CA.id])
 
     def test_cannot_exclude_all_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
@@ -1103,7 +1111,7 @@ class TestEditDetails(TestEdit):
 
         eq_(r.context['region_form'].errors,
             {'regions': ['You must select at least one region.']})
-        eq_(AddonExcludedRegion.objects.count(), 0)
+        eq_(AER.objects.count(), 0)
 
     def test_exclude_future_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
@@ -1112,55 +1120,133 @@ class TestEditDetails(TestEdit):
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
-        excluded = list(AddonExcludedRegion.objects
-                          .filter(addon=self.webapp)
-                          .values_list('region', flat=True))
-        eq_(excluded, [mkt.regions.FUTURE.id])
+        eq_(self.get_excluded_ids(), [mkt.regions.FUTURE.id])
 
     def test_include_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        AddonExcludedRegion.objects.create(addon=self.webapp,
-                                           region=mkt.regions.BR.id)
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
                              other_regions=True)
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
-        excluded = list(AddonExcludedRegion.objects
-                        .filter(addon=self.webapp)
-                        .values_list('region', flat=True))
-        eq_(excluded, [])
+        eq_(self.get_excluded_ids(), [])
 
     def test_include_future_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        AddonExcludedRegion.objects.create(addon=self.webapp,
-                                           region=mkt.regions.FUTURE.id)
+        AER.objects.create(addon=self.webapp, region=mkt.regions.FUTURE.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
                              other_regions=True)
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
-        excluded = list(AddonExcludedRegion.objects
-                        .filter(addon=self.webapp)
-                        .values_list('region', flat=True))
-        eq_(excluded, [])
+        eq_(self.get_excluded_ids(), [])
 
     def test_include_all_and_future_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        AddonExcludedRegion.objects.create(addon=self.webapp,
-                                           region=mkt.regions.FUTURE.id)
+        AER.objects.create(addon=self.webapp, region=mkt.regions.FUTURE.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
                              other_regions=True)
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
-        excluded = list(AddonExcludedRegion.objects
-                        .filter(addon=self.webapp)
-                        .values_list('region', flat=True))
-        eq_(excluded, [])
+        eq_(self.get_excluded_ids(), [])
+
+    def test_brazil_games_excluded(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.post(self.edit_url,
+                             self.get_dict(regions=mkt.regions.REGION_IDS,
+                                           other_regions=True))
+
+        # Developers should still be able to save form OK, even
+        # if they pass a bad region. Think of the grandfathered developers.
+        self.assertNoFormErrors(r)
+
+        # No matter what the developer tells us, still exclude Brazilian
+        # games.
+        eq_(self.get_excluded_ids(), [mkt.regions.BR.id])
+
+    def test_brazil_games_already_excluded(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.post(self.edit_url,
+                             self.get_dict(regions=mkt.regions.REGION_IDS,
+                                           other_regions=True))
+        self.assertNoFormErrors(r)
+
+        eq_(self.get_excluded_ids(), [mkt.regions.BR.id])
+
+    def test_brazil_games_with_content_rating(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        # This game has a government content rating!
+        rb = mkt.regions.BR.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp,
+            ratings_body=rb.id, rating=rb.ratings[0].id)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.post(self.edit_url,
+                             self.get_dict(regions=mkt.regions.REGION_IDS,
+                                           other_regions=True))
+        self.assertNoFormErrors(r)
+
+        eq_(self.get_excluded_ids(), [])
+
+    def test_brazil_games_form_disabled(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.get(self.edit_url, self.get_dict())
+        self.assertNoFormErrors(r)
+
+        td = pq(r.content)('#regions')
+        eq_(td.find('div[data-disabled]').attr('data-disabled'),
+            json.dumps([mkt.regions.BR.id]))
+        eq_(td.find('.note.disabled-regions').length, 1)
+
+    def test_brazil_games_form_enabled_with_content_rating(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        rb = mkt.regions.BR.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp,
+            ratings_body=rb.id, rating=rb.ratings[0].id)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.get(self.edit_url, self.get_dict())
+        self.assertNoFormErrors(r)
+
+        td = pq(r.content)('#regions')
+        eq_(td.find('div[data-disabled]').attr('data-disabled'),
+            json.dumps([]))
+        eq_(td.find('.note.disabled-regions').length, 0)
+
+    def test_brazil_other_cats_form_enabled(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        r = self.client.get(self.edit_url, self.get_dict())
+        self.assertNoFormErrors(r)
+
+        td = pq(r.content)('#regions')
+        eq_(td.find('div[data-disabled]').attr('data-disabled'),
+            json.dumps([]))
+        eq_(td.find('.note.disabled-regions').length, 0)
 
 
 class TestEditSupport(TestEdit):
@@ -1389,7 +1475,8 @@ class TestAdminSettings(TestAdmin):
                 }
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
-        eq_(list(webapp.content_ratings.all().values_list('ratings_body', 'rating')),
+        eq_(list(webapp.content_ratings.all().values_list('ratings_body',
+                                                          'rating')),
             [(0, 1), (0, 3)])
 
     def test_ratings_view(self):
@@ -1402,6 +1489,42 @@ class TestAdminSettings(TestAdmin):
         eq_(txt,
             '%s - %s' % (RATINGS_BODIES[0].name,
                          RATINGS_BODIES[0].ratings[2].name))
+
+    def test_set_flash(self):
+        self.log_in_with('Apps:Configure')
+        r = self.client.post(self.edit_url,
+                         {'caption': 'x',
+                          'position': '1',
+                          'upload_hash': 'abcdef',
+                          'flash': 'checked'})
+        eq_(r.status_code, 200)
+        assert self.webapp.uses_flash
+
+    def test_unset_flash(self):
+        self.webapp.versions.latest().files.latest().update(uses_flash=True)
+        self.log_in_with('Apps:Configure')
+        r = self.client.post(self.edit_url,
+                         {'caption': 'x',
+                          'position': '1',
+                          'upload_hash': 'abcdef',
+                          'flash': ''})
+        eq_(r.status_code, 200)
+        assert not self.webapp.uses_flash
+
+    def test_flash_set_view(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        self.webapp.versions.latest().files.latest().update(uses_flash=True)
+        r = self.client.get(self.url)
+        checkbox = pq(r.content)[0].xpath(
+            "//label[@for='flash']/../../td/input")[0]
+        eq_(checkbox.get('checked'), 'checked')
+
+    def test_flash_unset_view(self):
+        self.log_in_with('Apps:ViewConfiguration')
+        r = self.client.get(self.url)
+        checkbox = pq(r.content)[0].xpath(
+            "//label[@for='flash']/../../td/input")[0]
+        eq_(checkbox.get('checked'), None)
 
 
 class TestPromoUpload(TestAdmin):

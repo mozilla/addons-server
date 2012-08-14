@@ -8,7 +8,7 @@ from PIL import Image
 from django.conf import settings
 
 import commonware.log
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 
 from amo.utils import memoize
 from applications.management.commands import dump_apps

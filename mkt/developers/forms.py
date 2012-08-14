@@ -10,24 +10,22 @@ import commonware
 import happyforms
 import waffle
 from quieter_formset.formset import BaseModelFormSet
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
+
 
 import amo
 import addons.forms
 import paypal
 from access import acl
 from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
-from addons.models import (Addon, AddonUpsell, AddonUser, BlacklistedSlug,
-                           Preview)
+from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
+                           BlacklistedSlug, Category, Preview)
+from addons.widgets import CategoriesSelectMultiple
 from amo.utils import raise_required, remove_icons
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
 from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
                                          RATINGS_BODIES)
-from mkt.inapp_pay.models import InappConfig
-from mkt.reviewers.models import RereviewQueue
-from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.webapps.models import Webapp, ContentRating
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -37,7 +35,7 @@ import mkt
 from mkt.inapp_pay.models import InappConfig
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
 
 from . import tasks
 
@@ -289,6 +287,7 @@ class AdminSettingsForm(PreviewForm):
     app_ratings = forms.MultipleChoiceField(
         required=False,
         choices=RATINGS_BY_NAME)
+    flash = forms.BooleanField(required=False)
 
     class Meta:
         model = Preview
@@ -335,12 +334,15 @@ class AdminSettingsForm(PreviewForm):
             addon.update(mozilla_contact=contact)
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
-            ratings = set(int(r) for r in ratings)
-            addon.content_ratings.exclude(rating__in=ratings).delete()
-            for i in ratings - set(addon.content_ratings.filter(rating__in=ratings)):
+            before = set(addon.content_ratings.filter(rating__in=ratings))
+            after = set(int(r) for r in ratings)
+            addon.content_ratings.exclude(rating__in=after).delete()
+            for i in after - before:
                 r = ALL_RATINGS[i]
                 ContentRating.objects.create(addon=addon, rating=r.id,
                                              ratings_body=r.ratingsbody.id)
+        uses_flash = self.cleaned_data.get('flash')
+        addon.get_latest_file().update(uses_flash=bool(uses_flash))
         return addon
 
 
@@ -386,7 +388,7 @@ class PremiumForm(happyforms.Form):
         coerce=lambda x: int(x), choices=amo.ADDON_PREMIUM_TYPES.items(),
         widget=forms.RadioSelect())
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_('Add-on Price'),
+                                   label=_lazy(u'App Price'),
                                    empty_label=None,
                                    required=False)
     do_upsell = forms.TypedChoiceField(coerce=lambda x: bool(int(x)),
@@ -572,13 +574,15 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 class PaypalSetupForm(happyforms.Form):
     business_account = forms.ChoiceField(widget=forms.RadioSelect, choices=[],
-        label=_(u'Do you already have a PayPal Premier or Business account?'))
-    email = forms.EmailField(required=False, label=_(u'PayPal email address'))
+        label=_lazy(u'Do you already have a PayPal Premier '
+                     'or Business account?'))
+    email = forms.EmailField(required=False,
+                             label=_lazy(u'PayPal email address'))
 
     def __init__(self, *args, **kw):
         super(PaypalSetupForm, self).__init__(*args, **kw)
-        self.fields['business_account'].choices = (('yes', _lazy('Yes')),
-                                                   ('no', _lazy('No')))
+        self.fields['business_account'].choices = (('yes', _lazy(u'Yes')),
+                                                   ('no', _lazy(u'No')))
 
     def clean(self):
         data = self.cleaned_data
@@ -605,8 +609,8 @@ class PaypalPaymentData(happyforms.Form):
 
 class AppFormDetails(addons.forms.AddonFormBase):
     description = TransField(required=False,
-        label=_(u'Provide a more detailed description of your app'),
-        help_text=_(u'This description will appear on the details page.'),
+        label=_lazy(u'Provide a more detailed description of your app'),
+        help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea)
     default_locale = forms.TypedChoiceField(required=False,
                                             choices=Addon.LOCALES)
@@ -698,7 +702,7 @@ class AppFormSupport(addons.forms.AddonFormBase):
 class CurrencyForm(happyforms.Form):
     currencies = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                            required=False,
-                                           label=_('Other currencies'))
+                                           label=_lazy(u'Other currencies'))
 
     def __init__(self, *args, **kw):
         super(CurrencyForm, self).__init__(*args, **kw)
@@ -715,7 +719,7 @@ class AppAppealForm(happyforms.Form):
     """
 
     release_notes = forms.CharField(
-        label=_(u'Your comments'),
+        label=_lazy(u'Your comments'),
         required=False, widget=forms.Textarea(attrs={'rows': 2}))
 
     def __init__(self, *args, **kw):
@@ -761,21 +765,31 @@ class RegionForm(forms.Form):
             'other_regions': not self.future_exclusions.exists()
         }
 
+        # Games cannot be listed in Brazil without a content rating.
+        self.disabled_regions = []
+        games = Webapp.category('games')
+        if (games and self.product.categories.filter(id=games.id).exists()
+            and not self.product.content_rated_in(mkt.regions.BR)):
+            self.disabled_regions.append(mkt.regions.BR.id)
+
     def save(self):
         before = set(self.regions_before)
         after = set(map(int, self.cleaned_data['regions']))
 
         # Add new region exclusions.
-        for r in before - after:
-            AddonExcludedRegion.objects.get_or_create(addon=self.product,
-                                                      region=r)
-            log.info(u'[Webapp:%s] Added to new region (%s).'
-                     % (self.product, r))
+        to_add = before - after
+        for r in to_add:
+            g, c = AddonExcludedRegion.objects.get_or_create(
+                addon=self.product, region=r)
+            if c:
+                log.info(u'[Webapp:%s] Excluded from new region (%s).'
+                         % (self.product, r))
 
         # Remove old region exclusions.
-        for r in after - before:
+        to_remove = after - before
+        for r in to_remove:
             self.product.addonexcludedregion.filter(region=r).delete()
-            log.info(u'[Webapp:%s] Removed from region (%s).'
+            log.info(u'[Webapp:%s] No longer exluded from region (%s).'
                      % (self.product, r))
 
         if self.cleaned_data['other_regions']:
@@ -787,7 +801,96 @@ class RegionForm(forms.Form):
         else:
             # Developer does not want future regions, then
             # exclude all future apps.
-            AddonExcludedRegion.objects.get_or_create(addon=self.product,
-                region=mkt.regions.FUTURE.id)
-            log.info(u'[Webapp:%s] Excluded from future regions.'
-                     % self.product)
+            g, c = AddonExcludedRegion.objects.get_or_create(
+                addon=self.product, region=mkt.regions.FUTURE.id)
+            if c:
+                log.info(u'[Webapp:%s] Excluded from future regions.'
+                         % self.product)
+
+        # Disallow games in Brazil without a rating.
+        games = Webapp.category('games')
+        if games:
+            r = mkt.regions.BR
+
+            if (self.product.listed_in(r) and
+                not self.product.content_rated_in(r)):
+
+                g, c = AddonExcludedRegion.objects.get_or_create(
+                    addon=self.product, region=r.id)
+                if c:
+                    log.info(u'[Webapp:%s] Game excluded from new region '
+                              '(%s).' % (self.product, r.id))
+
+
+class CategoryForm(happyforms.Form):
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
+        widget=CategoriesSelectMultiple)
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request', None)
+        self.product = kw.pop('product', None)
+        super(CategoryForm, self).__init__(*args, **kw)
+
+        self.cats_before = list(self.product.categories
+                                .values_list('id', flat=True))
+
+        self.initial['categories'] = self.cats_before
+
+        # If this app is featured, category changes are forbidden.
+        self.disabled = (
+            not acl.action_allowed(self.request, 'Addons', 'Edit') and
+            Webapp.featured(cat=self.cats_before)
+        )
+
+    def clean_categories(self):
+        categories = self.cleaned_data['categories']
+        total = categories.count()
+        max_cat = amo.MAX_CATEGORIES
+
+        if self.disabled:
+            raise forms.ValidationError(
+                _('Categories cannot be changed while your app is featured.'))
+
+        if total > max_cat:
+            # L10n: {0} is the number of categories.
+            raise forms.ValidationError(ngettext(
+                'You can have only {0} category.',
+                'You can have only {0} categories.',
+                max_cat).format(max_cat))
+
+        return categories
+
+    def save(self):
+        after = list(self.cleaned_data['categories']
+                     .values_list('id', flat=True))
+        before = self.cats_before
+
+        # Add new categories.
+        to_add = set(after) - set(before)
+        for c in to_add:
+            AddonCategory.objects.create(addon=self.product, category_id=c)
+
+        # Remove old categories.
+        to_remove = set(before) - set(after)
+        for c in to_remove:
+            self.product.addoncategory_set.filter(category=c).delete()
+
+        # Disallow games in Brazil without a rating.
+        games = Webapp.category('games')
+        if (games and self.product.listed_in(mkt.regions.BR) and
+            not self.product.content_rated_in(mkt.regions.BR)):
+
+            r = mkt.regions.BR.id
+
+            if games.id in to_add:
+                g, c = AddonExcludedRegion.objects.get_or_create(
+                    addon=self.product, region=r)
+                if c:
+                    log.info(u'[Webapp:%s] Game excluded from new region '
+                              '(%s).' % (self.product, r))
+
+            elif games.id in to_remove:
+                self.product.addonexcludedregion.filter(region=r).delete()
+                log.info(u'[Webapp:%s] Game no longer exluded from region '
+                          '(%s).' % (self.product, r))

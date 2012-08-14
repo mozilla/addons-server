@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db.models import Count, Max
 
 import cronjobs
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 
 import amo
 import amo.utils

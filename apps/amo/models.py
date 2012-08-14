@@ -6,7 +6,7 @@ from django.db import models, transaction
 from django.utils import translation
 
 import caching.base
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import multidb.pinning
 import pyes.exceptions
 import queryset_transform

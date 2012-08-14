@@ -29,5 +29,5 @@ class ReviewAppLogForm(ReviewLogForm):
         super(ReviewAppLogForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs = {
             # L10n: Descript of what can be searched for.
-            'placeholder': _lazy('app, reviewer, or comment'),
+            'placeholder': _lazy(u'app, reviewer, or comment'),
             'size': 30}

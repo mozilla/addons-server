@@ -55,6 +55,10 @@ $(document).ready(function(){
             btnPrev: '#promos .nav-prev a',
             circular: true
         });
+
+        // Intialize the pager for any paging promos
+        $('.pager', $promos).promoPager();
+
         initTrunc();
         // Initialize install button.
         $('.install', $promos).installButton();

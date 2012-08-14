@@ -9,11 +9,12 @@ from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from mkt.search.forms import DEVICE_CHOICES_IDS
-from mkt.webapps.models import Webapp
-from mkt.webapps.tests.test_views import PaidAppMixin
-
 from search.tests.test_views import TestAjaxSearch
+
+import mkt
+from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.webapps.tests.test_views import PaidAppMixin
+from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
 class SearchBase(amo.tests.ESTestCase):
@@ -69,6 +70,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             self.apps.append(app)
         self.refresh()
 
+    @amo.tests.mock_es
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -130,6 +132,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def test_known_cat(self):
         self.check_cat_filter({'cat': self.cat.id})
 
+    @amo.tests.mock_es
     def test_unknown_cat(self):
         # `cat=999` should get removed from the querystring.
         r = self.client.get(self.url, {'price': 'free', 'cat': '999'})
@@ -285,38 +288,69 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             self.assert3xx(r, urlparams(url, price='free', sort='downloads'),
                            302)
 
+    def test_region_exclusions(self):
+        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
+        for region in mkt.regions.REGIONS_DICT:
+            self.check_results({'q': 'Steam', 'region': region},
+                               [] if region == 'br' else [self.webapp.id])
 
-class SuggestionsTests(TestAjaxSearch):
+
+class TestSuggestions(TestAjaxSearch):
+
+    def setUp(self):
+        super(TestSuggestions, self).setUp()
+        self.url = reverse('search.apps_ajax')
+
+        self.c1 = Category.objects.create(name='groovy',
+            type=amo.ADDON_WEBAPP)
+        self.c2 = Category.objects.create(name='awesome',
+            type=amo.ADDON_WEBAPP)
+
+        self.w1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+            name='groovy app 1')
+        self.w2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+            name='awesome app 2')
+
+        AddonCategory.objects.create(category=self.c1, addon=self.w1)
+        AddonCategory.objects.create(category=self.c2, addon=self.w2)
+
+        self.reindex(Webapp)
 
     def check_suggestions(self, url, params, addons=()):
         r = self.client.get(url + '?' + params)
         eq_(r.status_code, 200)
+
         data = json.loads(r.content)
-        data.sort(key=lambda x: x['id'])
-        addons.sort(key=lambda x: x.id)
         eq_(len(data), len(addons))
+
+        data = sorted(data, key=lambda x: int(x['id']))
+        addons = sorted(addons, key=lambda x: x.id)
+
         for got, expected in zip(data, addons):
             eq_(int(got['id']), expected.id)
             eq_(got['name'], unicode(expected.name))
 
     def test_webapp_search(self):
-        url = reverse('search.apps_ajax')
-        c1 = Category.objects.create(name='groovy',
-                                     type=amo.ADDON_WEBAPP)
-        c2 = Category.objects.create(name='awesome',
-                                     type=amo.ADDON_WEBAPP)
-        g1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
-                                   name='groovy app 1',
-                                   type=amo.ADDON_WEBAPP)
-        a2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
-                                   name='awesome app 2',
-                                   type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(category=c1, addon=g1)
-        AddonCategory.objects.create(category=c2, addon=a2)
-        self.client.login(username='admin@mozilla.com', password='password')
-        for a in Webapp.objects.all():
-            a.save()
-        self.refresh()
-        self.check_suggestions(url, "q=app&category=", addons=[g1, a2])
-        self.check_suggestions(url, "q=app&category=%d" % c1.id, addons=[g1])
-        self.check_suggestions(url, "q=app&category=%d" % c2.id, addons=[a2])
+        self.check_suggestions(self.url,
+            'q=app&category=', addons=[self.w1, self.w2])
+        self.check_suggestions(self.url,
+            'q=app&category=%d' % self.c1.id, addons=[self.w1])
+        self.check_suggestions(self.url,
+            'q=app&category=%d' % self.c2.id, addons=[self.w2])
+
+    def test_region_exclusions(self):
+        AER.objects.create(addon=self.w2, region=mkt.regions.BR.id)
+
+        self.check_suggestions(self.url,
+            'region=br&q=app&category=', addons=[self.w1])
+        self.check_suggestions(self.url,
+            'region=br&q=app&category=%d' % self.c1.id, addons=[self.w1])
+        self.check_suggestions(self.url,
+            'region=br&q=app&category=%d' % self.c2.id, addons=[])
+
+        self.check_suggestions(self.url,
+            'region=ca&q=app&category=', addons=[self.w1, self.w2])
+        self.check_suggestions(self.url,
+            'region=ca&q=app&category=%d' % self.c1.id, addons=[self.w1])
+        self.check_suggestions(self.url,
+            'region=ca&q=app&category=%d' % self.c2.id, addons=[self.w2])

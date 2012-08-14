@@ -372,6 +372,19 @@ section#featured-addons {
     box-shadow: none;
 }
 
+.pages {
+    position: relative;
+    height: 271px;
+    top: 0;
+    left: 0;
+    transition-duration: .3s;
+    transition-property: top, bottom;
+    -moz-transition-duration: .3s;
+    -moz-transition-property: top, bottom;
+    -webkit-transition-duration: .3s;
+    -webkit-transition-property: top, bottom;
+}
+
 .slider {
     white-space: nowrap;
     position: relative;
@@ -387,6 +400,7 @@ section#featured-addons {
     -webkit-transition: none;
 }
 
+.pages > li,
 .slider > li {
     width: 100%;
     white-space: normal;

@@ -1,7 +1,7 @@
 import logging
 from operator import itemgetter
 
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 from django_statsd.clients import statsd
 
 

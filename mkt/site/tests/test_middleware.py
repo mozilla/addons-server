@@ -100,47 +100,89 @@ class TestLocaleMiddleware(MiddlewareCase):
 
     def test_accept_good_locale(self):
         locales = [
-            ('en-US', 'en-US'),
-            ('pt-BR', 'pt-BR'),
-            ('pt-br', 'pt-BR'),
-            ('fr', 'fr'),
-            ('es-PE', 'es'),
+            ('en-US', 'en-US', 'en-US,en-US'),
+            ('pt-BR', 'pt-BR', 'pt-BR,en-US'),
+            ('pt-br', 'pt-BR', None),
+            ('fr', 'fr', 'fr,en-US'),
+            ('es-PE', 'es', 'es,en-US'),
+            ('fr', 'fr', 'fr,en-US'),
         ]
-        for given, expected in locales:
-            r = self.client.get('/?lang=%s' % given)
-            eq_(r.cookies['lang'].value, expected)
-            eq_(r.context['request'].LANG, expected)
+        for locale, r_lang, c_lang in locales:
+            r = self.client.get('/?lang=%s' % locale)
+            if c_lang:
+                eq_(r.cookies['lang'].value, c_lang)
+            else:
+                eq_(r.cookies.get('lang'), None)
+            eq_(r.context['request'].LANG, r_lang)
 
-    def test_already_have_cookie_for_good_locale(self):
-        for locale in ('pt-BR', 'pt-br'):
-            self.client.cookies['lang'] = locale
+    def test_accept_language_and_cookies(self):
+        # Your cookie tells me pt-BR but your browser tells me en-US.
+        self.client.cookies['lang'] = 'pt-BR,pt-BR'
+        r = self.client.get('/')
+        eq_(r.cookies['lang'].value, 'en-US,')
+        eq_(r.context['request'].LANG, 'en-US')
 
-            r = self.client.get('/')
-            eq_(r.cookies['lang'].value, 'pt-BR')
-            eq_(r.context['request'].LANG, 'pt-BR')
+        # Your cookie tells me pt-br but your browser tells me en-US.
+        self.client.cookies['lang'] = 'pt-br,fr'
+        r = self.client.get('/')
+        eq_(r.cookies['lang'].value, 'en-US,')
+        eq_(r.context['request'].LANG, 'en-US')
+
+        # Your cookie tells me pt-BR and your browser tells me pt-BR.
+        self.client.cookies['lang'] = 'pt-BR,pt-BR'
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(r.cookies.get('lang'), None)
+        eq_(r.context['request'].LANG, 'pt-BR')
+
+        # You explicitly changed to fr, and your browser still tells me pt-BR.
+        # So no new cookie!
+        self.client.cookies['lang'] = 'fr,pt-BR'
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(r.cookies.get('lang'), None)
+        eq_(r.context['request'].LANG, 'fr')
+
+        # You explicitly changed to fr, but your browser still tells me es.
+        # So make a new cookie!
+        self.client.cookies['lang'] = 'fr,pt-BR'
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='es')
+        eq_(r.cookies['lang'].value, 'es,')
+        eq_(r.context['request'].LANG, 'es')
 
     def test_ignore_bad_locale(self):
-        for locale in ('', 'xxx', '<script>alert("ballin")</script>'):
+        # Good? Store language.
+        r = self.client.get('/?lang=ar')
+        eq_(r.cookies['lang'].value, 'ar,en-US')
+
+        # Bad? Reset language.
+        r = self.client.get('/?lang=')
+        eq_(r.cookies['lang'].value, 'en-US,en-US')
+
+        # Still bad? Don't change language.
+        for locale in ('xxx', '<script>alert("ballin")</script>'):
             r = self.client.get('/?lang=%s' % locale)
-            eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
+            eq_(r.cookies.get('lang'), None)
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
+
+        # Good? Change language.
+        r = self.client.get('/?lang=fr')
+        eq_(r.cookies['lang'].value, 'fr,en-US')
 
     def test_already_have_cookie_for_bad_locale(self):
         for locale in ('', 'xxx', '<script>alert("ballin")</script>'):
             self.client.cookies['lang'] = locale
 
             r = self.client.get('/')
-            eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
+            eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_no_cookie(self):
         r = self.client.get('/')
-        eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
+        eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
         eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_cookie_gets_set_once(self):
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
-        eq_(r.cookies['lang'].value, 'de')
+        eq_(r.cookies['lang'].value, 'de,')
 
         # Since we already made a request above, we should remember the lang.
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
@@ -168,7 +210,7 @@ class TestLocaleMiddleware(MiddlewareCase):
             r = self.client.get('/', HTTP_ACCEPT_LANGUAGE=given)
 
             got = r.cookies['lang'].value
-            eq_(got, expected,
+            eq_(got, expected + ',',
                 'For %r: expected %r but got %r' % (given, expected, got))
 
             got = r.context['request'].LANG
@@ -179,18 +221,18 @@ class TestLocaleMiddleware(MiddlewareCase):
 
     def test_accept_language_takes_precedence_over_previous_request(self):
         r = self.client.get('/')
-        eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
+        eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
 
         # Even though you remembered my previous language, I've since
         # changed it in my browser, so let's respect that.
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
-        eq_(r.cookies['lang'].value, 'fr')
+        eq_(r.cookies['lang'].value, 'fr,')
 
     def test_accept_language_takes_precedence_over_cookie(self):
         self.client.cookies['lang'] = 'pt-BR'
 
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
-        eq_(r.cookies['lang'].value, 'fr')
+        eq_(r.cookies['lang'].value, 'fr,')
 
 
 class TestRegionMiddleware(MiddlewareCase):
@@ -198,7 +240,11 @@ class TestRegionMiddleware(MiddlewareCase):
     def test_lang_set_with_region(self):
         for region in ('worldwide', 'us', 'br'):
             r = self.client.get('/?region=%s' % region)
-            eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE)
+            if region == 'worldwide':
+                # Set cookie for first time only.
+                eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
+            else:
+                eq_(r.cookies.get('lang'), None)
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_accept_good_region(self):
@@ -209,6 +255,7 @@ class TestRegionMiddleware(MiddlewareCase):
 
     def test_already_have_cookie_for_good_region(self):
         for region in ('worldwide', 'us', 'br'):
+            self.client.cookies['lang'] = 'en-US,en-US'
             self.client.cookies['region'] = region
 
             r = self.client.get('/')
@@ -221,16 +268,10 @@ class TestRegionMiddleware(MiddlewareCase):
         # whichever region satisfies `Accept-Language`.
         for region in ('', 'BR', '<script>alert("ballin")</script>'):
             self.client.cookies.clear()
+            self.client.cookies['lang'] = 'fr,fr'
 
-            r = self.client.get('/?region=%s' % region)
-            eq_(r.cookies['region'].value, 'worldwide')
-            eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
-
-    def test_already_have_cookie_for_bad_region(self):
-        for region in ('', 'BR', '<script>alert("ballin")</script>'):
-            self.client.cookies['region'] = region
-
-            r = self.client.get('/')
+            r = self.client.get('/?region=%s' % region,
+                                HTTP_ACCEPT_LANGUAGE='fr')
             eq_(r.cookies['region'].value, 'worldwide')
             eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
 
@@ -267,7 +308,7 @@ class TestRegionMiddleware(MiddlewareCase):
 
     def test_accept_language_takes_precedence_over_previous_request(self):
         r = self.client.get('/')
-        eq_(r.cookies['region'].value, 'worldwide')
+        eq_(r.cookies['region'].value, 'us')
 
         # Even though you remembered my previous language, I've since
         # changed it in my browser, so let's respect that.
@@ -275,9 +316,10 @@ class TestRegionMiddleware(MiddlewareCase):
         eq_(r.cookies['region'].value, 'br')
 
     def test_accept_language_takes_precedence_over_cookie(self):
+        self.client.cookies['lang'] = 'ar,ja'
         self.client.cookies['region'] = 'worldwide'
 
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(r.cookies['region'].value, 'br')
 
 

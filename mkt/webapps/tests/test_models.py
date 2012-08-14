@@ -12,14 +12,14 @@ import waffle
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, Preview)
 import amo
-from amo.tests import TestCase, WebappTestCase
+from amo.tests import app_factory, TestCase, WebappTestCase
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from files.models import File
 from versions.models import Version
 
 import mkt
-from mkt.developers.tests.test_views import BaseWebAppTest
+from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
@@ -250,6 +250,12 @@ class TestWebapp(TestCase):
         eq_(sorted(Webapp.objects.get(id=w2.id).get_regions()),
             sorted(w2_regions))
 
+    def test_has_packaged_files(self):
+        app1 = app_factory()
+        eq_(app1.has_packaged_files, False)
+        app2 = app_factory(file_kw=dict(is_packaged=True))
+        eq_(app2.has_packaged_files, True)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
@@ -375,7 +381,8 @@ class TestTransformer(amo.tests.TestCase):
         assert transformer.called
 
     def test_device_types(self):
-        AddonDeviceType.objects.create(addon_id=337141, device_type=self.device)
+        AddonDeviceType.objects.create(addon_id=337141,
+                                       device_type=self.device)
         webapps = list(Webapp.objects.filter(id=337141))
 
         with self.assertNumQueries(0):
@@ -468,5 +475,4 @@ class TestAddonExcludedRegion(WebappTestCase):
         eq_(self.er.get_region(), mkt.regions.CA)
 
     def test_unicode(self):
-        eq_(unicode(self.er),
-            '%s: %s' % (self.app.name, mkt.regions.CA.slug))
+        eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.CA.slug))

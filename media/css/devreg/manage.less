@@ -290,11 +290,16 @@ form .char-count b {
 /* @group Add-on category selection */
 
 .addon-app-cats {
-    margin: 0 0 1.5em;
     > label {
         display: block;
         margin-bottom: 5px;
     }
+}
+
+#addon-categories-edit .note {
+    border-top: 1px dotted @light-gray;
+    margin-top: 10px;
+    padding-top: 5px;
 }
 
 #edit-addon-basic {
@@ -311,12 +316,6 @@ form .char-count b {
     }
 }
 
-#edit-addon-basic .addon-app-cats {
-    border-top: 1px dotted #add0dc;
-    margin: 8px 0 0;
-    padding-top: 8px;
-}
-#edit-addon-basic input + .addon-app-cats,
 #edit-addon-basic p.addon-app-cats:first-child {
     border-top-width: 0;
     margin-top: 0;
@@ -332,18 +331,12 @@ td .checkbox-choices {
     .column-count(2);
 }
 
-.addon-misc-category,
-.addon-app-cats-inline {
+.addon-misc-category {
     margin: 0;
 }
 
-.checkbox-choices label,
-.addon-misc-category label {
+.checkbox-choices label {
     font-weight: normal;
-}
-
-.addon-app-cats-inline li b {
-    margin-right: 0.25em;
 }
 
 .other-regions .devhub-form .hint {

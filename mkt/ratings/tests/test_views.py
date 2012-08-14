@@ -94,6 +94,25 @@ class TestCreate(ReviewTest):
         r = self.client.post(self.add, {'body': 'no rating'})
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
 
+    def test_body_has_url(self):
+        """ test that both the create and revise reviews segments properly
+            note reviews that contain URL like patterns for editorial review
+        """
+        for body in ['url http://example.com', 'address 127.0.0.1',
+                'url https://example.com/foo/bar', 'host example.org',
+                'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
+            self.client.post(self.add, {'body': body, 'rating': 2})
+            ff = Review.objects.filter(addon=self.webapp)
+            rf = ReviewFlag.objects.filter(review=ff[0])
+            eq_(ff[0].flag, True)
+            eq_(ff[0].editorreview, True)
+            eq_(rf[0].note, 'URLs')
+            rf.delete()
+            # Clear the flags so we can test review revision flagging
+            ff[0].flag = False
+            ff[0].editorreview = False
+            ff[0].save()
+
     def test_review_success(self):
         Review.objects.all().delete()
 

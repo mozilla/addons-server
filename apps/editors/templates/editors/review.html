@@ -26,7 +26,7 @@
   <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
 </hgroup>
 
-<div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
+<div id="addon" class="primary" role="main" data-id="{{ addon.id }}" data-url="{{ url('editors.review_viewing') }}">
 
 {% include 'addons/details_box.html' %}
 

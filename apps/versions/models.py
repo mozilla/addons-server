@@ -83,7 +83,7 @@ class Version(amo.models.ModelBase):
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
         if addon.type in [amo.ADDON_SEARCH, amo.ADDON_WEBAPP]:
-            # Search extensions are always for all platforms.
+            # Search extensions and webapps are always for all platforms.
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         else:
             platforms = cls._make_safe_platform_files(platforms)
@@ -92,8 +92,7 @@ class Version(amo.models.ModelBase):
             File.from_upload(upload, v, platform, parse_data=data)
 
         v.disable_old_files()
-        # After the upload has been copied to all
-        # platforms, remove the upload.
+        # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
@@ -385,8 +384,9 @@ class Version(amo.models.ModelBase):
     def disable_old_files(self):
         if not self.files.filter(status=amo.STATUS_BETA).exists():
             qs = File.objects.filter(version__addon=self.addon_id,
-                                     version__lt=self,
-                                     status=amo.STATUS_UNREVIEWED)
+                                     version__lt=self.id,
+                                     status__in=[amo.STATUS_UNREVIEWED,
+                                                 amo.STATUS_PENDING])
             # Use File.update so signals are triggered.
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)

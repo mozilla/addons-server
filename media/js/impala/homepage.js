@@ -12,6 +12,10 @@
             btnPrev: $('.prev', $promos),
             btnNext: $('.next', $promos)
         });
+
+        // Intialize the pager for any paging promos
+        $('.pager', $promos).promoPager();
+
         $('.addons h3', $promos).truncate({dir: 'h'});
         $('.addons .desc', $promos).truncate({dir: 'v'});
         $('.install', $promos).installButton();

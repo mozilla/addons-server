@@ -33,7 +33,21 @@ for authentication. Changing this later will give problems accessing old data.
 Once you've got your token, you will need to ensure that the OAuth token is
 sent correctly in each request.
 
-*TODO*: insert example and more notes on OAuth.
+To correctly sign an OAuth request, you'll need the OAuth consumer key and
+secret and then sign the request using your favourite OAuth library. An example
+of this can be found in the `example marketplace client`_.
+
+Example headers (new lines added for clarity)::
+
+        Content-type: application/json
+        Authorization: OAuth realm="",
+                       oauth_body_hash="2jm...",
+                       oauth_nonce="06731830",
+                       oauth_timestamp="1344897064",
+                       oauth_consumer_key="some-consumer-key",
+                       oauth_signature_method="HMAC-SHA1",
+                       oauth_version="1.0",
+                       oauth_signature="Nb8..."
 
 Errors
 ======
@@ -217,22 +231,6 @@ Returns the status of the app::
          "name": "My cool app",
          ...}
 
-Delete
-======
-
-This API requires authentication and a successfully created app.
-
-Deletes an app::
-
-        DELETE /en-US/api/apps/app/<app id>/
-
-The app will only be hard deleted if it is incomplete. Otherwise it will be
-soft deleted. A soft deleted app will not appear publicly in any listings
-pages, but it will remain so that receipts, purchasing and other components
-work.
-
-*TODO*: implement this.
-
 Screenshots or videos
 =====================
 
@@ -330,6 +328,9 @@ Valid transitions that users can initiate are:
                             "You must provide at least one category.",
                             "You must upload at least one screenshot or video."]}}
 
+* *disabled_by_user*: by changing this value from `True` to `False` you can
+  enable or disable an app.
+
 Other APIs
 ----------
 
@@ -386,9 +387,8 @@ Example, to specify a category sorted by rating::
 
         GET /en-US/api/apps/search/?cat=1&sort=rating
 
-Sorting options:
-
 .. _`MDN`: https://developer.mozilla.org
 .. _`marketplace team`: marketplace-team@mozilla.org
 .. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
 .. _`AMO api on MDN`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
+.. _`example marketplace client`: https://github.com/mozilla/MarketplaceClientExample

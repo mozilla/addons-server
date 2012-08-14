@@ -83,10 +83,10 @@ def get_search_groups(app):
 
 
 SEARCH_CHOICES = (
-    ('all', _lazy('search for add-ons')),
-    ('collections', _lazy('search for collections')),
-    ('personas', _lazy('search for personas')),
-    ('apps', _lazy('search for apps')))
+    ('all', _lazy(u'search for add-ons')),
+    ('collections', _lazy(u'search for collections')),
+    ('personas', _lazy(u'search for personas')),
+    ('apps', _lazy(u'search for apps')))
 
 
 class SimpleSearchForm(forms.Form):
@@ -117,28 +117,28 @@ def SearchForm(request):
 
         # This gets replaced by a <select> with js.
         lver = forms.ChoiceField(
-                # L10n: {0} is the name of an app. Ex: Firefox
-                label=_(u'{0} Version').format(unicode(current_app.pretty)),
-                choices=get_app_versions(current_app), required=False)
+            # L10n: {0} is the name of an app. Ex: Firefox
+            label=_lazy(u'{0} Version').format(unicode(current_app.pretty)),
+            choices=get_app_versions(current_app), required=False)
         appver = forms.CharField(required=False)
 
-        atype = forms.TypedChoiceField(label=_('Type'),
+        atype = forms.TypedChoiceField(label=_lazy(u'Type'),
             choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES],
             required=False, coerce=int, empty_value=amo.ADDON_ANY)
 
-        pid = forms.TypedChoiceField(label=_('Platform'),
-                choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
-                         if p[1] != amo.PLATFORM_ANY], required=False,
-                coerce=int, empty_value=amo.PLATFORM_ANY.id)
+        pid = forms.TypedChoiceField(label=_lazy(u'Platform'),
+            choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
+                     if p[1] != amo.PLATFORM_ANY], required=False,
+            coerce=int, empty_value=amo.PLATFORM_ANY.id)
         platform = forms.ChoiceField(required=False,
             choices=[[p.shortname, p.id] for p in amo.PLATFORMS.values()])
 
-        sort = forms.ChoiceField(label=_('Sort By'), choices=sort_by,
+        sort = forms.ChoiceField(label=_lazy(u'Sort By'), choices=sort_by,
                                  required=False)
 
-        pp = forms.TypedChoiceField(label=_('Per Page'),
-               choices=zip(per_page, per_page), required=False, coerce=int,
-               empty_value=per_page[0])
+        pp = forms.TypedChoiceField(label=_lazy(u'Per Page'),
+           choices=zip(per_page, per_page), required=False, coerce=int,
+           empty_value=per_page[0])
 
         advanced = forms.BooleanField(widget=forms.HiddenInput, required=False)
         tag = forms.CharField(widget=forms.HiddenInput, required=False)

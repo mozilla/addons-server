@@ -225,6 +225,12 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f = File.objects.get(id=67442)
         eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
 
+    def test_generate_filename_webapp(self):
+        f = File.objects.get(id=67442)
+        f.version.addon.app_slug = 'testing-123'
+        f.version.addon.type = amo.ADDON_WEBAPP
+        eq_(f.generate_filename(), 'testing-123-2.1.072.webapp')
+
     def test_pretty_filename(self):
         f = File.objects.get(id=67442)
         f.generate_filename()
@@ -259,7 +265,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         if not storage.exists(f.file_path):
             with storage.open(f.file_path, 'w') as fp:
                 fp.write('sample data\n')
-
 
     def test_copy_to_mirror(self):
         f = File.objects.get(id=67442)
@@ -574,7 +579,8 @@ class TestFileUpload(UploadTest):
                 "id": "gkobes@gkobes",
             }
         })
-        upload = self.get_upload(filename='extension.xpi', validation=validation)
+        upload = self.get_upload(filename='extension.xpi',
+                                 validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)
@@ -595,7 +601,8 @@ class TestFileUpload(UploadTest):
                 "id": "gkobes@gkobes",
             }
         })
-        upload = self.get_upload(filename='extension.xpi', validation=validation)
+        upload = self.get_upload(filename='extension.xpi',
+                                 validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)
@@ -616,7 +623,8 @@ class TestFileUpload(UploadTest):
                 "requires_chrome": True
             }
         })
-        upload = self.get_upload(filename='extension.xpi', validation=validation)
+        upload = self.get_upload(filename='extension.xpi',
+                                 validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
         plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
         file_ = File.from_upload(upload, version, plat)

@@ -23,12 +23,13 @@ from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import Price
-import mkt
-from mkt.submit.models import AppSubmissionChecklist
 import paypal
 from translations.models import Translation
 from users.models import UserProfile
-from mkt.webapps.models import Webapp
+
+import mkt
+from mkt.submit.models import AppSubmissionChecklist
+from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -278,7 +279,7 @@ class TestCreateWebApp(BaseWebAppTest):
         addon = self.post_addon()
         files = addon.current_version.files.all()
         eq_(len(files), 1)
-        eq_(files[0].status, amo.STATUS_PUBLIC)
+        eq_(files[0].status, amo.STATUS_PENDING)
 
 
 class TestCreateWebAppFromManifest(BaseWebAppTest):
@@ -372,10 +373,6 @@ class TestDetails(TestSubmit):
         self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
         AddonCategory.objects.create(addon=self.webapp, category=self.cat1)
 
-        # Create initial formset for categories.
-        ctx = self.client.get(self.url).context['form_cats']
-        self.cat_initial = amo.tests.initial(ctx.initial_forms[0])
-
     def test_anonymous(self):
         self._test_anonymous()
 
@@ -437,6 +434,7 @@ class TestDetails(TestSubmit):
             'support_url': 'http://www.goodreads.com/user_challenges/351558',
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'device_types': [self.dtype.id],
+            'categories': [self.cat1.id],
         }
         # Add the required screenshot.
         data.update(self.preview_formset({
@@ -444,8 +442,6 @@ class TestDetails(TestSubmit):
             'position': 0
         }))
         data.update(**kw)
-        # Build formset for categories.
-        data.update(amo.tests.formset(self.cat_initial, initial_count=1))
         # Remove fields without values.
         data = dict((k, v) for k, v in data.iteritems() if v is not None)
         return data
@@ -726,9 +722,8 @@ class TestDetails(TestSubmit):
 
     def test_categories_required(self):
         self._step()
-        del self.cat_initial['categories']
-        r = self.client.post(self.url, self.get_dict())
-        eq_(r.context['form_cats'].errors[0]['categories'],
+        r = self.client.post(self.url, self.get_dict(categories=[]))
+        eq_(r.context['form_cats'].errors['categories'],
             ['This field is required.'])
 
     def test_categories_max(self):
@@ -736,26 +731,25 @@ class TestDetails(TestSubmit):
         eq_(amo.MAX_CATEGORIES, 2)
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
         cat3 = Category.objects.create(type=amo.ADDON_WEBAPP, name='blang')
-        self.cat_initial['categories'] = [self.cat1.id, cat2.id, cat3.id]
-        r = self.client.post(self.url, self.get_dict())
-        eq_(r.context['form_cats'].errors[0]['categories'],
+        cats = [self.cat1.id, cat2.id, cat3.id]
+        r = self.client.post(self.url, self.get_dict(categories=cats))
+        eq_(r.context['form_cats'].errors['categories'],
             ['You can have only 2 categories.'])
 
     def _post_cats(self, cats):
-        self.cat_initial['categories'] = [c.id for c in cats]
-        self.client.post(self.url, self.get_dict())
+        self.client.post(self.url, self.get_dict(categories=cats))
         eq_(sorted(self.get_webapp().categories.values_list('id', flat=True)),
-            sorted(c.id for c in cats))
+            sorted(cats))
 
     def test_categories_add(self):
         self._step()
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        self._post_cats([self.cat1, cat2])
+        self._post_cats([self.cat1.id, cat2.id])
 
     def test_categories_add_and_remove(self):
         self._step()
         cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        self._post_cats([cat2])
+        self._post_cats([cat2.id])
 
     def test_categories_remove(self):
         # Add another category here so it gets added to the initial formset.
@@ -764,7 +758,25 @@ class TestDetails(TestSubmit):
         self._step()
 
         # `cat2` should get removed.
-        self._post_cats([self.cat1])
+        self._post_cats([self.cat1.id])
+
+    def test_games_default_excluded_in_brazil(self):
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        self._step()
+
+        r = self.client.post(self.url, self.get_dict(categories=[games.id]))
+        self.assertNoFormErrors(r)
+        eq_(list(AER.objects.values_list('region', flat=True)),
+            [mkt.regions.BR.id])
+
+    def test_other_categories_are_not_excluded(self):
+        # Keep the category around for good measure.
+        Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        self._step()
+
+        r = self.client.post(self.url, self.get_dict())
+        self.assertNoFormErrors(r)
+        eq_(AER.objects.count(), 0)
 
 
 class TestPayments(TestSubmit):

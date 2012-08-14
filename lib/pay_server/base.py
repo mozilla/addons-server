@@ -113,11 +113,13 @@ class Client(object):
         if result.status_code in (200, 201, 202, 204):
             return json.loads(result.text) if result.text else {}
         else:
+            log.error('Solitude error with %s: %r' % (url, result.text))
             res = {}
             try:
                 res = json.loads(result.text) if result.text else {}
             except:
-                log.error('Failed to parse error: %s' % result.text)
+                # Not a JSON error.
+                pass
             code = res.get('error_code', 0)
             raise SolitudeError(lookup(code, res.get('error_data', {})),
                                 code=code)

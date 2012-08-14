@@ -171,7 +171,7 @@ class TestPostback(PurchaseTest):
                                              text='{"valid": true}'))
         req = self.jwt()
         self.post(req=req)
-        resp = self.post()
+        resp = self.post(req=req)
         eq_(resp.status_code, 200)
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)

@@ -113,30 +113,8 @@ def _update_manifest(id):
                     msg += u'* %s\n' % m['message']
             msg += u'\nValidation Result:\n%s' % v8n_url
             _log(webapp, msg, rereview=True)
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
-                               msg)
+            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
             return
-    else:
-        _log(webapp,
-             u'Validation for upload UUID %s has no result' % upload.uuid)
-
-    # Get the old manifest before we overwrite it.
-    new = json.loads(content)
-    old = _open_manifest(webapp, file_)
-
-    # New manifest is different and validates, create a new version.
-    try:
-        webapp.manifest_updated(content, upload)
-    except:
-        _log(webapp, u'Failed to create version', exc_info=True)
-
-    # Check for any name changes for re-review.
-    if (old and old.get('name') and old.get('name') != new.get('name')):
-        msg = u'Manifest name changed from "%s" to "%s"' % (
-            old.get('name'), new.get('name'))
-        _log(webapp, msg, rereview=True)
-        RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
-        return
     else:
         _log(webapp,
              u'Validation for upload UUID %s has no result' % upload.uuid)

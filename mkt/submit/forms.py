@@ -3,7 +3,7 @@ import datetime
 from django import forms
 
 import happyforms
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUpsell
@@ -171,7 +171,7 @@ class AppDetailsBasicForm(AddonFormBasic):
     slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(max_length=250,
-        label=_lazy(u"Brief summary:"),
+        label=_lazy(u"Brief Summary:"),
         help_text=_lazy(u'This summary will be shown in listings and '
                          'searches.'),
         widget=TransTextarea(attrs={'rows': 2, 'class': 'full'}))
@@ -180,7 +180,7 @@ class AppDetailsBasicForm(AddonFormBasic):
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
     privacy_policy = TransField(widget=TransTextarea(attrs={'rows': 6}),
-         label=_lazy("Privacy Policy:"),
+         label=_lazy(u'Privacy Policy:'),
          help_text=_lazy(u"A privacy policy that explains what "
                           "data is transmitted from a user's computer and how "
                           "it is used is required."))

@@ -97,13 +97,9 @@
 
       <div id="addon-categories-edit"
            data-max-categories="{{ amo.MAX_CATEGORIES }}">
-        {{ form_cats.non_form_errors() }}
-        {{ form_cats.management_form }}
-        {% for form in form_cats.initial_forms %}
-          {% if not form.disabled %}
-            {{ select_cats_submission(amo.MAX_CATEGORIES, form) }}
-          {% endif %}
-        {% endfor %}
+        {% if not form_cats.disabled %}
+          {{ select_cats_submission(amo.MAX_CATEGORIES, form_cats) }}
+        {% endif %}
       </div>
 
       {{ form_field(form_basic.description, hint=True, some_html=True) }}

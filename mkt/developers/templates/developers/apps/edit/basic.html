@@ -114,52 +114,28 @@
           <td id="addon-categories-edit"
               data-max-categories="{{ amo.MAX_CATEGORIES }}">
             {% if editable %}
-              {{ cat_form.non_form_errors() }}
-              {{ cat_form.management_form }}
-              {% for form in cat_form.initial_forms %}
-                {% if form.disabled %}
-                  <p class="addon-app-cats addon-app-cats-inline">
-                    {% if form.app %}
-                      <b>{{ form.app.pretty }}:</b>
-                    {% endif %}
-                    {% set cats = dict(addon.app_categories).get(form.app, []) %}
-                    {{ cats|join(' &middot; ')|safe }}
-                  </p>
-                  <p>
-                    {% if webapp %}
-                      {# TODO(apps): Finalize copy. #}
-                      {% with email='amo-editors@mozilla.org' %}
-                        Categories cannot be changed while your app is
-                        featured. Please email
-                        <a href="mailto:{{ email }}">{{ email }}</a> if there
-                        is a reason you need to modify your categories.
-                      {% endwith %}
-                    {% else %}
-                      {% trans email='amo-editors@mozilla.org' %}
-                        Categories cannot be changed while your add-on is
-                        featured for this application. Please email
-                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
-                        a reason you need to modify your categories.
-                      {% endtrans %}
-                    {% endif %}
-                  </p>
-                {% else %}
-                  {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
-                {% endif %}
-              {% endfor %}
+              {% if cat_form.disabled %}
+                <p>
+                  {% set categories = addon.categories.all() %}
+                  {% call empty_unless(categories) %}
+                    {{ categories|join(', ') }}
+                  {% endcall %}
+                </p>
+                <p class="note">
+                  {% trans email=settings.MKT_REVIEWERS_EMAIL %}
+                    Categories cannot be changed while your app is
+                    featured. Please email
+                    <a href="mailto:{{ email }}">{{ email }}</a> if there
+                    is a reason you need to modify your categories.
+                  {% endtrans %}
+                </p>
+              {% else %}
+                {{ select_cats(amo.MAX_CATEGORIES, cat_form, webapp) }}
+              {% endif %}
             {% else %}
-              {% set categories = addon.app_categories %}
+              {% set categories = addon.categories.all() %}
               {% call empty_unless(categories) %}
-                <ul class="addon-app-cats-inline">
-                  {% for app, cats in categories %}
-                    <li>
-                      {% if not webapp %}
-                        <b>{{ app.pretty }}:</b>
-                      {% endif %}
-                      {{ cats|join(' &middot; ')|safe }}
-                    </li>
-                  {% endfor %}
-                </ul>
+                {{ categories|join(', ') }}
               {% endcall %}
             {% endif %}
           </td>

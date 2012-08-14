@@ -7,8 +7,10 @@ from amo.utils import urlparams
 from amo.urlresolvers import reverse
 
 from addons.models import Addon, AddonCategory, Category
+from users.models import UserProfile
+
 from mkt.webapps.models import Webapp
-from mkt.zadmin.models import FeaturedApp
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 class TestFeaturedApps(amo.tests.TestCase):
@@ -42,6 +44,13 @@ class TestFeaturedApps(amo.tests.TestCase):
 
         self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('zadmin.featured_apps_ajax')
+
+    def test_staff_access(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'AdminTools:View')
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
 
     def test_get_featured_apps(self):
         r = self.client.get(urlparams(self.url, category=self.c1.id))
@@ -104,11 +113,13 @@ class TestFeaturedApps(amo.tests.TestCase):
 
     def test_set_region(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
-        eq_(f.region, 1)
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
         r = self.client.post(reverse('zadmin.set_region_ajax'),
-                             data={'app': f.pk, 'region': 3})
+                             data={'app': f.pk, 'region[]': (3, 2)})
         eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).region, 3)
+        eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
+                    'region', flat=True)),
+            [2, 3])
 
 
 class TestAddonSearch(amo.tests.ESTestCase):

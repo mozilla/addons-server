@@ -1,10 +1,9 @@
-from django.conf import settings
 from django.db import models
 
-import amo
+from amo.models import ModelBase
 
 
-class MdnCache(amo.models.ModelBase):
+class MdnCache(ModelBase):
 
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255, default='', blank=True)

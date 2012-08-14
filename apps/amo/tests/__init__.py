@@ -16,14 +16,14 @@ from django.forms.fields import Field
 from django.test.client import Client
 from django.utils import translation
 
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import mock
 import pyes.exceptions as pyes
 import test_utils
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from redisutils import mock_redis, reset_redis
-from waffle.models import Flag, Switch
+from waffle.models import Flag, Sample, Switch
 
 import addons.search
 import amo
@@ -179,6 +179,11 @@ class TestClient(Client):
             raise AttributeError
 
 
+# Test decorator for mocking elasticsearch calls in ESTestCase if we don't
+# care about ES results.
+mock_es = lambda x: mock.patch('elasticutils.get_es', spec=True, new=mock.Mock)
+
+
 ES_patcher = mock.patch('elasticutils.get_es', spec=True)
 
 
@@ -329,6 +334,10 @@ class TestCase(RedisTest, test_utils.TestCase):
                                              price='1.00', tier=price)
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price)
+
+    def create_sample(self, **kw):
+        kw.setdefault('percent', 100)
+        Sample.objects.create(**kw)
 
     def create_switch(self, **kw):
         kw.setdefault('active', True)

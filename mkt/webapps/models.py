@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import json
+import os
 import urlparse
 import uuid
 
@@ -11,20 +11,24 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
+from elasticutils.contrib.django import F, S
+import waffle
 from tower import ugettext as _
 
 import amo
-from amo.decorators import skip_cache
 import amo.models
-from amo.urlresolvers import reverse
+import amo.utils
 from addons import query
-from addons.models import (Addon, AddonDeviceType, update_name_table,
-                           update_search_index)
+from addons.models import (Addon, AddonDeviceType, Category,
+                           update_name_table, update_search_index)
+from amo.decorators import skip_cache
+from amo.storage_utils import copy_stored_file
+from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
-from versions.models import Version
+from files.models import nfd_str
+from files.utils import parse_addon
 
 import mkt
-from mkt.constants import ratingsbodies
 
 log = commonware.log.getLogger('z.addons')
 
@@ -37,7 +41,8 @@ class WebappManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet).filter(type=amo.ADDON_WEBAPP)
+        qs = qs._clone(klass=query.IndexQuerySet).filter(
+            type=amo.ADDON_WEBAPP)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Webapp.transformer)
@@ -213,6 +218,7 @@ class Webapp(Addon):
         return 'icons' in data
 
     def get_manifest_json(self):
+        import json
         try:
             # The first file created for each version of the web app
             # is the manifest.
@@ -227,12 +233,30 @@ class Webapp(Addon):
         return reverse('apps.share', args=[self.app_slug])
 
     def manifest_updated(self, manifest, upload):
-        """The manifest has updated, create a version and file."""
+        """The manifest has updated, update the version and file.
 
-        # This does most of the heavy work.
-        Version.from_upload(upload, self, [])
-        # Triggering this ensures that the current_version gets updated.
-        self.update_version()
+        This is intended to be used for hosted apps only, which have only a
+        single version and a single file.
+        """
+        data = parse_addon(upload, self)
+        version = self.versions.latest()
+        version.update(version=data['version'])
+        path = amo.utils.smart_path(nfd_str(upload.path))
+        file = version.files.latest()
+        file.filename = file.generate_filename(extension='.webapp')
+        file.size = int(max(1, round(storage.size(path) / 1024, 0)))
+        file.hash = (file.generate_hash(path) if
+                     waffle.switch_is_active('file-hash-paranoia') else
+                     upload.hash)
+        log.info('Updated file hash to %s' % file.hash)
+        file.save()
+
+        # Move the uploaded file from the temp location.
+        copy_stored_file(path, os.path.join(version.path_prefix,
+                                            nfd_str(file.filename)))
+        log.info('[Webapp:%s] Copied updated manifest to %s' % (
+            self, version.path_prefix))
+
         amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
     def is_complete(self):
@@ -316,30 +340,123 @@ class Webapp(Addon):
                                 for r in self.get_region_ids()])
         return sorted(regions, key=lambda x: x.slug)
 
-    @classmethod
-    def featured(cls, cat):
-        return [fa.app for fa in
-                (models.get_model('zadmin', 'FeaturedApp').objects.filter(
-                    category=cat,
-                    app__status=amo.STATUS_PUBLIC,
-                    app__disabled_by_user=False).
-                 order_by('-app__weekly_downloads'))[:6]]
+    def listed_in(self, region):
+        return region.id in self.get_region_ids()
+
+    def content_rated_in(self, region):
+        """
+        This is kind of stupid since I have the method below.
+        And, I'll probably remove this.
+        """
+        rb = [x.id for x in region.ratingsbodies]
+        return (self.content_ratings
+                .filter(ratings_body__in=rb).exists())
+
+    def content_rating_in(self, region):
+        rb = [x.id for x in region.ratingsbodies]
+        try:
+            return (self.content_ratings
+                    .filter(ratings_body__in=rb))[0].get_name()
+        except IndexError:
+            pass
 
     @classmethod
-    def from_search(cls):
-        return cls.search().filter(type=amo.ADDON_WEBAPP,
-                                   status=amo.STATUS_PUBLIC,
-                                   is_disabled=False)
+    def featured(cls, cat=None, region=None, limit=6):
+        FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
+        qs = (FeaturedApp.objects
+              .filter(app__status=amo.STATUS_PUBLIC,
+                      app__disabled_by_user=False)
+              .order_by('-app__weekly_downloads'))
+
+        if isinstance(cat, list):
+            qs = qs.filter(category__in=cat)
+        else:
+            qs = qs.filter(category=cat.id if cat else None)
+
+        locale_qs = FeaturedApp.objects.none()
+        worldwide_qs = FeaturedApp.objects.none()
+
+        if region:
+            excluded = cls.get_excluded_in(region)
+            locale_qs = (qs.filter(regions__region=region.id)
+                         .exclude(app__id__in=excluded))
+
+            # Fill the empty spots with Worldwide-featured apps.
+            if limit:
+                empty_spots = limit - locale_qs.count()
+                if empty_spots > 0 and region != mkt.regions.WORLDWIDE:
+                    ww = mkt.regions.WORLDWIDE.id
+                    worldwide_qs = (qs.filter(regions__region=ww)
+                                    .exclude(id__in=[x.id for x in locale_qs])
+                                    .exclude(app__id__in=excluded))[:limit]
+
+        if limit:
+            locale_qs = locale_qs[:limit]
+
+        if worldwide_qs:
+            combined = ([fa.app for fa in locale_qs] +
+                        [fa.app for fa in worldwide_qs])
+            return list(set(combined))[:limit]
+
+        return [fa.app for fa in locale_qs]
 
     @classmethod
-    def popular(cls):
+    def get_excluded_in(cls, region):
+        """Return IDs of Webapp objects excluded from a particular region."""
+        # Worldwide is a subset of Future regions.
+        if region == mkt.regions.WORLDWIDE:
+            region = mkt.regions.FUTURE
+        return list(AddonExcludedRegion.objects.filter(region=region.id)
+                    .values_list('addon', flat=True))
+
+    @classmethod
+    def from_search(cls, cat=None, region=None):
+        filters = dict(type=amo.ADDON_WEBAPP,
+                       status=amo.STATUS_PUBLIC,
+                       is_disabled=False)
+
+        if cat:
+            filters.update(category=cat.id)
+
+        if region:
+            excluded = cls.get_excluded_in(region)
+            if excluded:
+                return S(cls).query(**filters).filter(~F(id__in=excluded))
+
+        return S(cls).query(**filters)
+
+    @classmethod
+    def popular(cls, cat=None, region=None):
         """Elastically grab the most popular apps."""
-        return cls.from_search().order_by('-weekly_downloads')
+        return cls.from_search(cat, region).order_by('-weekly_downloads')
 
     @classmethod
-    def latest(cls):
+    def latest(cls, cat=None, region=None):
         """Elastically grab the most recent apps."""
-        return cls.from_search().order_by('-created')
+        return cls.from_search(cat, region).order_by('-created')
+
+    @classmethod
+    def category(cls, slug):
+        try:
+            return (Category.objects
+                    .filter(type=amo.ADDON_WEBAPP, slug=slug))[0]
+        except IndexError:
+            return None
+
+    @property
+    def uses_flash(self):
+        """
+        Convenience property until more sophisticated per-version
+        checking is done for packaged apps.
+        """
+        return self.get_latest_file().uses_flash
+
+    @amo.cached_property
+    def has_packaged_files(self):
+        """
+        Whether this app has any versions that are a packaged app.
+        """
+        return self.versions.filter(files__is_packaged=True).exists()
 
 
 # Pull all translated_fields from Addon over to Webapp.
@@ -394,7 +511,7 @@ class AddonExcludedRegion(amo.models.ModelBase):
 
     def __unicode__(self):
         region = self.get_region()
-        return u'%s: %s' % (self.addon.name, region.slug if region else None)
+        return u'%s: %s' % (self.addon, region.slug if region else None)
 
     def get_region(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT.get(self.region)
@@ -407,11 +524,20 @@ class ContentRating(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='content_ratings')
     ratings_body = models.PositiveIntegerField(
         choices=[(k, rb.name) for k, rb in
-                 ratingsbodies.RATINGS_BODIES.items()],
+                 mkt.ratingsbodies.RATINGS_BODIES.items()],
         null=False)
     rating = models.PositiveIntegerField(null=False)
 
     def __unicode__(self):
-        rb = ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        return '%s - %s' % (rb.name,
-                            rb.ratings[self.rating].name)
+        return '%s: %s - %s' % (self.addon, self.get_name())
+
+    def get_body(self):
+        rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        return rb.name
+
+    def get_rating(self):
+        rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
+        return rb.ratings[self.rating].name
+
+    def get_name(self):
+        return u'%s - %s' % (self.get_body(), self.get_rating())

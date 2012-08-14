@@ -72,6 +72,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # file, used for default to compatible.
     binary_components = models.BooleanField(default=False, db_index=True)
 
+    # Whether a webapp uses flash or not.
+    uses_flash = models.BooleanField(default=False, db_index=True)
+
+    # Whether the app is packaged or not (aka hosted).
+    is_packaged = models.BooleanField(default=False, db_index=True)
+
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
@@ -147,20 +153,19 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, version, platform, parse_data={}):
+        is_webapp = version.addon.is_webapp()
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
-        ext = os.path.splitext(upload.path)[1]
-        f.filename = f.generate_filename(extension=ext or '.xpi')
+        f.filename = f.generate_filename(os.path.splitext(upload.path)[1])
         # Size in kilobytes.
-        f.size = int(max(1, round(storage.size(upload.path) / 1024, 0)))
+        f.size = int(max(1, round(storage.size(upload.path) / 1024)))
         data = cls.get_jetpack_metadata(upload.path)
         f.jetpack_version = data['sdkVersion']
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if version.addon.is_webapp():
-            # Files don't really matter for webapps, just make them public.
-            f.status = amo.STATUS_PUBLIC
+        if is_webapp:
+            f.status = amo.STATUS_PENDING
         elif version.addon.status == amo.STATUS_PUBLIC:
             if amo.VERSION_BETA.search(parse_data.get('version', '')):
                 f.status = amo.STATUS_BETA
@@ -217,25 +222,32 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 hash.update(chunk)
         return 'sha256:%s' % hash.hexdigest()
 
-    def generate_filename(self, extension='.xpi'):
+    def generate_filename(self, extension=None):
         """
         Files are in the format of:
         {addon_name}-{version}-{apps}-{platform}
         """
         parts = []
+        addon = self.version.addon
         # slugify drops unicode so we may end up with an empty string.
         # Apache did not like serving unicode filenames (bug 626587).
-        name = slugify(self.version.addon.name).replace('-', '_') or 'addon'
-        parts.append(name)
-        parts.append(self.version.version)
+        if addon.is_webapp():
+            extension = extension or '.webapp'
+            parts.append(addon.app_slug)
+            parts.append(self.version.version)
+        else:
+            extension = extension or '.xpi'
+            name = slugify(addon.name).replace('-', '_') or 'addon'
+            parts.append(name)
+            parts.append(self.version.version)
 
-        if self.version.compatible_apps:
-            apps = '+'.join([a.shortername for a in
-                             self.version.compatible_apps])
-            parts.append(apps)
+            if self.version.compatible_apps:
+                apps = '+'.join([a.shortername for a in
+                                 self.version.compatible_apps])
+                parts.append(apps)
 
-        if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
-            parts.append(amo.PLATFORMS[self.platform_id].shortname)
+            if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
+                parts.append(amo.PLATFORMS[self.platform_id].shortname)
 
         self.filename = '-'.join(parts) + extension
         return self.filename
