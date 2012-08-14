@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 
+import mock
 from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
@@ -13,11 +14,13 @@ from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from search.tests.test_views import TestAjaxSearch
+from stats.models import ClientData
+from users.models import UserProfile
 
 import mkt
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.tests.test_views import PaidAppMixin
-from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
+from mkt.webapps.models import AddonExcludedRegion as AER, Installed, Webapp
 
 
 class SearchBase(amo.tests.ESTestCase):
@@ -50,6 +53,7 @@ class SearchBase(amo.tests.ESTestCase):
         got = self.get_results(r)
         eq_(got, expected,
             'Got: %s. Expected: %s. Parameters: %s' % (got, expected, params))
+        return r
 
 
 class TestWebappSearch(PaidAppMixin, SearchBase):
@@ -239,7 +243,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
     def test_results_sort_default(self):
         self._generate(3)
-        self.check_sort_links(None, 'Relevance', 'weekly_downloads')
+        self.check_sort_links(None, 'Relevance', 'popularity')
 
     def test_results_sort_unknown(self):
         self._generate(3)
@@ -267,7 +271,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def test_price_sort_visible_for_paid_browse(self):
         # 'Sort by Price' option should be removed if filtering by free apps.
         r = self.client.get(reverse('browse.apps'),
-                            {'price': 'free', 'sort': 'downloads'})
+                            {'price': 'free', 'sort': 'popularity'})
         eq_(r.status_code, 200)
         assert 'price' not in dict(r.context['sort_opts']), (
             'Unexpected price sort')
@@ -289,7 +293,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             # `sort=price` should be changed to `sort=downloads` if
             # `price=free` is in querystring.
             r = self.client.get(url, {'price': 'free', 'sort': 'price'})
-            self.assert3xx(r, urlparams(url, price='free', sort='downloads'),
+            self.assert3xx(r, urlparams(url, price='free', sort='popularity'),
                            302)
 
     def test_region_exclusions(self):
@@ -299,6 +303,81 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         for region in mkt.regions.REGIONS_DICT:
             self.check_results({'q': 'Steam', 'region': region},
                                [] if region == 'br' else [self.webapp.id])
+
+    @mock.patch.object(mkt.regions.BR, 'adolescent', True)
+    def test_adolescent_popularity(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        # Adolescent regions use global popularity.
+
+        # Webapp:   Global: 0, Regional: 0
+        # Unknown1: Global: 1, Regional: 1 + 10 * 1 = 11
+        # Unknown2: Global: 2, Regional: 0
+
+        user = UserProfile.objects.all()[0]
+        cd = ClientData.objects.create(region=mkt.regions.BR.id)
+
+        unknown1 = amo.tests.app_factory()
+        Installed.objects.create(addon=unknown1, user=user, client_data=cd)
+
+        unknown2 = amo.tests.app_factory()
+        Installed.objects.create(addon=unknown2, user=user)
+        Installed.objects.create(addon=unknown2, user=user)
+
+        self.reindex(Webapp)
+
+        r = self.check_results({'sort': 'popularity',
+                                'region': mkt.regions.BR.slug},
+                               [unknown2.id, unknown1.id, self.webapp.id])
+
+        # Check the actual popularity scores.
+        by_popularity = list(r.context['pager'].object_list
+                              .values_dict('popularity'))
+        eq_(by_popularity,
+            [{'id': unknown2.id, 'popularity': 2},
+             {'id': unknown1.id, 'popularity': 1},
+             {'id': self.webapp.id, 'popularity': 0}])
+
+    @mock.patch.object(mkt.regions.BR, 'adolescent', False)
+    def test_mature_popularity(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        # Mature regions use regional popularity.
+
+        # Webapp:   Global: 1, Regional: 1 * 2 + 10 * 1 = 12
+        # Unknown1: Global: 1, Regional: 1 * 2 + 10 * 2 = 22
+        # Unknown2: Global: 2, Regional: 2
+
+        region = mkt.regions.BR
+
+        user = UserProfile.objects.all()[0]
+        cd = ClientData.objects.create(region=region.id)
+
+        Installed.objects.get_or_create(addon=self.webapp, user=user)
+        Installed.objects.create(addon=self.webapp, user=user, client_data=cd)
+
+        unknown1 = amo.tests.app_factory()
+        Installed.objects.create(addon=unknown1, user=user, client_data=cd)
+        Installed.objects.create(addon=unknown1,
+            user=UserProfile.objects.create(), client_data=cd)
+
+        unknown2 = amo.tests.app_factory()
+        Installed.objects.create(addon=unknown2, user=user)
+        Installed.objects.create(addon=unknown2, user=user)
+
+        self.reindex(Webapp)
+
+        r = self.check_results({'sort': 'popularity',
+                                'region': region.slug},
+                               [unknown1.id, self.webapp.id, unknown2.id])
+
+        # Check the actual popularity scores.
+        by_popularity = list(r.context['pager'].object_list
+                              .values_dict('popularity_%s' % region.id))
+        eq_(by_popularity,
+            [{'id': unknown1.id, 'popularity_7': 22},
+             {'id': self.webapp.id, 'popularity_7': 12},
+             {'id': unknown2.id, 'popularity_7': 2}])
 
 
 class TestSuggestions(TestAjaxSearch):

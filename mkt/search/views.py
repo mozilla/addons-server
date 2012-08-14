@@ -29,6 +29,8 @@ class FacetLink(object):
 
 DEFAULT_FILTERS = ['cat', 'price', 'device', 'sort']
 DEFAULT_SORTING = {
+    'popularity': '-popularity',
+    # TODO: Should popularity replace downloads?
     'downloads': '-weekly_downloads',
     'rating': '-bayesian_rating',
     'created': '-created',
@@ -39,7 +41,7 @@ DEFAULT_SORTING = {
 
 
 def _filter_search(qs, query, filters=None, sorting=None,
-                   sorting_default='-weekly_downloads'):
+                   sorting_default='-popularity', region=None):
     """Filter an ES queryset based on a list of filters."""
     # Intersection of the form fields present and the filters we want to apply.
     filters = filters or DEFAULT_FILTERS
@@ -58,8 +60,24 @@ def _filter_search(qs, query, filters=None, sorting=None,
     if 'device' in show:
         qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
     if 'sort' in show:
-        qs = qs.order_by(sorting[query['sort']])
+        sort_by = sorting[query['sort']]
+
+        # For "Adolescent" regions popularity is global installs + reviews.
+
+        if query['sort'] == 'popularity' and region and not region.adolescent:
+            # For "Mature" regions popularity becomes installs + reviews
+            # from only that region.
+            sort_by = '-popularity_%s' % region.id
+
+        qs = qs.order_by(sort_by)
     elif not query.get('q'):
+
+        if (sorting_default == 'popularity' and region and
+            not region.adolescent):
+            # For "Mature" regions popularity becomes installs + reviews
+            # from only that region.
+            sorting_default = '-popularity_%s' % region.id
+
         # Sort by a default if there was no query so results are predictable.
         qs = qs.order_by(sorting_default)
 
@@ -103,8 +121,7 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(request):
-    region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+def _get_query(region):
     return Webapp.from_search(region=region).facet('category')
 
 
@@ -116,16 +133,18 @@ def _app_search(request, category=None, browse=None):
     # Remove `sort=price` if `price=free`.
     if query.get('price') == 'free' and query.get('sort') == 'price':
         return {'redirect': amo.utils.urlparams(request.get_full_path(),
-                                                sort='downloads',
+                                                sort='popularity',
                                                 price='free')}
 
-    qs = _get_query(request)
+    region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+
+    qs = _get_query(region)
     # On mobile, always only show mobile apps. Bug 767620
     if request.MOBILE:
         qs = qs.filter(uses_flash=False)
         query['device'] = 'mobile'
 
-    qs = _filter_search(qs, query)
+    qs = _filter_search(qs, query, region=region)
 
     # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
     # Mobile")

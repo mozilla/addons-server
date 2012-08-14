@@ -428,7 +428,7 @@ class Webapp(Addon):
     @classmethod
     def popular(cls, cat=None, region=None):
         """Elastically grab the most popular apps."""
-        return cls.from_search(cat, region).order_by('-weekly_downloads')
+        return cls.from_search(cat, region).order_by('-popularity')
 
     @classmethod
     def latest(cls, cat=None, region=None):

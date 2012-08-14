@@ -1,6 +1,8 @@
 import logging
 from operator import attrgetter
 
+from django.db.models import Count
+
 import elasticutils.contrib.django as elasticutils
 import pyes.exceptions as pyes
 
@@ -8,8 +10,12 @@ import amo
 from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
+from stats.models import ClientData
 from users.models import UserProfile
 from versions.compare import version_int
+
+import mkt
+from mkt.webapps.models import Installed
 
 
 log = logging.getLogger('z.es')
@@ -54,6 +60,24 @@ def extract(addon):
         d['weekly_downloads'] = addon.persona.popularity
         # Boost on popularity.
         d['_boost'] = addon.persona.popularity ** .2
+    elif addon.type == amo.ADDON_WEBAPP:
+        installed_ids = list(Installed.objects.filter(addon=addon)
+                             .values_list('id', flat=True))
+        d['popularity'] = d['_boost'] = len(installed_ids)
+
+        # Calculate regional popularity for "mature regions"
+        # (installs + reviews/installs from that region).
+        installs = dict(ClientData.objects.filter(installed__in=installed_ids)
+                        .annotate(region_counts=Count('region'))
+                        .values_list('region', 'region_counts').distinct())
+        for region in mkt.regions.ALL_REGION_IDS:
+            cnt = installs.get(region, 0)
+            if cnt:
+                # Magic number (like all other scores up in this piece).
+                d['popularity_%s' % region] = d['popularity'] + cnt * 10
+            else:
+                d['popularity_%s' % region] = len(installed_ids)
+            d['_boost'] += cnt * 10
     else:
         # Boost by the number of users on a logarithmic scale. The maximum
         # boost (11,000,000 users for adblock) is about 5x.

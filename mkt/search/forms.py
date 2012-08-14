@@ -9,6 +9,7 @@ import amo
 
 SORT_CHOICES = [
     (None, _lazy(u'Relevance')),
+    ('popularity', _lazy(u'Popularity')),
     ('downloads', _lazy(u'Weekly Downloads')),
     ('rating', _lazy(u'Top Rated')),
     ('price', _lazy(u'Price')),

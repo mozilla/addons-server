@@ -2,6 +2,8 @@ from tastypie.serializers import Serializer
 
 import amo
 from amo.helpers import absolutify
+
+import mkt
 from mkt.api.base import MarketplaceResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
@@ -29,8 +31,9 @@ class SearchResource(MarketplaceResource):
             raise self.form_errors(form)
 
         # Search specific processing of the results.
-        qs = _get_query(request)
-        qs = _filter_search(qs, form.cleaned_data)
+        region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+        qs = _get_query(region)
+        qs = _filter_search(qs, form.cleaned_data, region=region)
         res = amo.utils.paginate(request, qs)
 
         # Rehydrate the results as per tastypie.
