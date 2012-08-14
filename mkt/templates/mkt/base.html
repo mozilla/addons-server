@@ -37,7 +37,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {{ CARRIER }} {% block bodyclass %}{% endblock %}"
+  <body class="html-{{ DIR }} {{ CARRIER }}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
@@ -54,16 +54,16 @@
     {% endblock %}
 
     <div id="container">
-      {% block fragment %}
-        <div id="page" role="main">
-          {# `outer_content` is for stuff you want above `content` on every page. #}
-          {% block outer_content %}
-            {% include 'site/messages/display.html' %}
-          {% endblock %}
-          {% block content %}
-          {% endblock %}
-        </div>
-      {% endblock %}
+      <div id="page" role="main"
+           data-type="{% block pagetype %}leaf{% endblock %}"
+           data-bodyclass="{% block bodyclass %}{% endblock %}">
+        {# `outer_content` is for stuff you want above `content` on every page. #}
+        {% block outer_content %}
+          {% include 'site/messages/display.html' %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+      </div>
     </div>
 
     {% include 'purchase/start.html' %}

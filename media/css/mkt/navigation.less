@@ -1,0 +1,51 @@
+// when to show what header buttons where.
+// not certain if this is how we'll do this yet.
+body {
+    .header-button {
+        display: none;
+    }
+    &[data-page-type='search'] {
+        .header-button {
+            &.home {
+                display: block;
+            }
+            // TODO: Temporary - this is the wrong expand trigger.
+            &.expand {
+                display: block;
+                text-indent: 0;
+                color: #fff;
+            }
+
+        }
+    }
+    &[data-page-type='leaf'] {
+        .header-button {
+            &.home {
+                display: block;
+            }
+        }
+    }
+    &[data-page-type='root'] {
+        .header-button {
+            &.search, &.settings {
+                display: block;
+            }
+        }
+    }
+    &.show-search {
+        #top {
+            display: none;
+        }
+        #search {
+            display: block;
+        }
+        .header-button {
+            &.right {
+                display: none;
+            }
+            &.cancel {
+                display: block;
+            }
+        }
+    }
+}

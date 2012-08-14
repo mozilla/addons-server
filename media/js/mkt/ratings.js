@@ -1,6 +1,6 @@
 (function() {
 
-    z.page.on('postfragmentloaded', function() {
+    z.page.on('fragmentloaded', function() {
         flagOverlay = makeOrGetOverlay('flag-review');
 
         // Hijack <select> with stars.

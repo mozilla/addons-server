@@ -14,7 +14,7 @@ function fragmentFilter(el) {
             $(el).hasClass('post');
 }
 
-(function(page, nodeFilter) {
+(function(container, nodeFilter) {
     var threshold = 250,
         timeout = false,
         fragmentCache = {};
@@ -33,29 +33,6 @@ function fragmentFilter(el) {
             e.preventDefault();
             fetchFragment({path: href});
         });
-
-        // capture form tomfoolery
-        // page.on('submit', 'form', function(e) {
-        //     return;
-        //     window.foo = this;
-        //     console.log('gotcha!');
-        //     if (nodeFilter(this)) {
-        //         return;
-        //     }
-        //     e.preventDefault();
-
-        //     // extract form info
-        //     var url = this.getAttribute('action'),
-        //         method = $(this).attr('method') || 'get',
-        //         data = $(this).serialize();
-        //     $.ajax(url, {
-        //         data: data,
-        //         type: method,
-        //         complete: function() {
-        //             window.foo = arguments;
-        //         }
-        //     });
-        // });
 
         // preserve scrollTop like a real boy
         function markScrollTop() {
@@ -116,7 +93,8 @@ function fragmentFilter(el) {
                     console.log('caching fragment');
                     fragmentCache[href] = d;
                     updateContent(d, href, popped, {scrollTop: state.scrollTop});
-                }).error(function() {
+                }).error(function(e) {
+                    console.log('fetch error!');
                     window.location = href;
                 });
             }
@@ -126,27 +104,32 @@ function fragmentFilter(el) {
         // pump content into our page, clean up after ourselves.
         function updateContent(content, href, popped, opts) {
             endLoading();
-            var newState = {path: href, scrollTop: $(document).scrollTop()};
-            if (!popped) history.pushState(newState, false, href);
 
-            page.html(content);
+            container.html(content);
+            var page = container.find('#page');
+            if (!page.length) {
+                throw "something has gone terribly wrong";
+            }
+
+            // scroll to the right spot.
             $('html, body').scrollTop(opts.scrollTop || 0);
-            page.trigger('fragmentloaded', [href, popped]);
-            page.trigger('postfragmentloaded', [href, popped]);
 
             // We so sneaky.
-            var $title = page.find('title');
-            document.title = $title.text();
-            $title.remove();
+            var title = page.data('title');
+            document.title = title;
 
-            // We so classy.
-            var $body = $('body');
-            if ($body.data('class')) {
-                var $newclass = page.find('meta[name=bodyclass]');
-                $body.attr('class', $body.data('class') + ' ' +
-                                    $newclass.attr('content'));
-                $newclass.remove();
-            }
+            var type = page.data('type');
+
+            var newState = {
+                path: href,
+                type: type,
+                title: title,
+                scrollTop: $(document).scrollTop()
+            };
+            if (!popped) history.pushState(newState, false, href);
+
+            container.trigger('fragmentloaded', [href, popped, newState]);
+
         }
 
         z.page.on('fragmentloaded', function() {
@@ -192,17 +175,21 @@ function fragmentFilter(el) {
 
         $(function() {
             var path = window.location.pathname + window.location.search + window.location.hash;
-            history.replaceState({path: path}, false, path);
-            fragmentCache[path] = page.html();
-            page.trigger('fragmentloaded', [path, false]);
-            page.trigger('postfragmentloaded', [path, false]);
+            var type = container.find('#page').data('type');
+            var state = {
+                path: path,
+                type: type
+            };
+            history.replaceState(state, false, path);
+            container.find('#page').attr('data-title', document.title);
+            fragmentCache[path] = container.html();
+            container.trigger('fragmentloaded', [path, false, state]);
         });
         console.log("fragments enabled");
     } else {
         console.warn("fragments not enabled!!");
         $(function() {
-            page.trigger('fragmentloaded');
-            page.trigger('postfragmentloaded');
+            container.trigger('fragmentloaded');
         });
     }
 })(z.page, fragmentFilter);

@@ -134,37 +134,11 @@ body {
     }
 }
 
-// 10 columns (portrait tablet)
-@media (max-width: @10col) {
-    #site-header, #page {
-        > section, > section.full > div {
-            .width(10);
-        }
+@media (min-width: @10col) {
+    #site-header section, #page {
+        .width(14);
+        margin: 0 auto;
     }
-    #site-header > section {
-        .width(10);
-    }
-}
-
-// 4 columns (landscape smartphone)
-@media (max-width: @4col) {
-    #site-header, #page {
-        > section, > section.full > div {
-            width: 100%;
-            min-width: 300px;
-        }
-        > section {
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
-    #page > section:last-child {
-        padding-bottom: 0;
-    }
-}
-
-// 3 columns (portrait smartphone)
-@media (max-width: @3col) {
 }
 
 .row {
@@ -188,25 +162,6 @@ body {
     }
 }
 
-@media (max-width: @7col) {
-    .col {
-        float: none;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: @4col) {
-    body {
-        color: @darker_text;
-    }
-    #page {
-        margin-top: 0;
-    }
-    .oneline {
-        .ellipsis;
-        max-width: 100%;
-    }
-}
 
 // TODO potch: Belongs with the "collapsible" widget.
 .more {

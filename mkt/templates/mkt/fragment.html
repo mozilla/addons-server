@@ -1,5 +1,11 @@
-<meta name="bodyclass" content="{% block bodyclass %}{% endblock %}">
-<title>{% block title %}{% endblock %}</title>
-
-{% block fragment %}
-{% endblock %}
+<div id="page" role="main"
+     data-type="{% block pagetype %}leaf{% endblock %}"
+     data-title="{% block title %}{% endblock %}"
+     data-bodyclass="{% block bodyclass %}{% endblock %}">
+  {# `outer_content` is for stuff you want above `content` on every page. #}
+  {% block outer_content %}
+    {% include 'site/messages/display.html' %}
+  {% endblock %}
+  {% block content %}
+  {% endblock %}
+</div>

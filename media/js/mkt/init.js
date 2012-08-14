@@ -87,14 +87,6 @@ z.page.on('fragmentloaded', function() {
         $(window).trigger('app_install_disabled');
     }
 
-    // Set body classes and store baseline classes in $('body').data for
-    // fragment-loading jazz.
-    var $body = $('body'),
-        baseline = $body.attr('class').split(' ')[0],
-        device = z.capabilities.touch ? 'touch' : 'desktop';
-    baseline += ' ' + device;
-    $body.attr('data-class', baseline).addClass(device);
-
     // Navigation toggle.
     var $header = $('#site-header'),
         $nav = $header.find('nav ul'),
@@ -145,10 +137,6 @@ z.page.on('fragmentloaded', function() {
             $('#filters').hide();
         } else if ($this.hasClass('filter')) {
             $('#filters').show();
-        } else if ($this.hasClass('back')) {
-            history.back();
-            $btns.blur();
-            e.preventDefault();
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');
             $btns.blur();
