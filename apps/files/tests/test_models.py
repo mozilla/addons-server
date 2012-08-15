@@ -329,6 +329,11 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon.premium_type = amo.ADDON_PREMIUM
         eq_(f.is_mirrorable(), False)
 
+    def test_dont_mirror_apps(self):
+        f = File.objects.get(pk=67442)
+        f.version.addon.update(type=amo.ADDON_WEBAPP)
+        eq_(f.is_mirrorable(), False)
+
 
 class TestParseXpi(amo.tests.TestCase):
     fixtures = ['base/apps']
@@ -1123,6 +1128,11 @@ class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
         assert url not in self.file.latest_xpi_url()
         self.file.version.addon.update(premium_type=amo.ADDON_PREMIUM)
         assert url in self.file.latest_xpi_url()
+
+    def test_dont_watermark_apps(self):
+        url = reverse('downloads.watermarked', args=[self.file.id])
+        self.file.version.addon.update(type=amo.ADDON_WEBAPP)
+        assert url not in self.file.latest_xpi_url()
 
 
 class TestWatermarkCleanup(amo.tests.TestCase, amo.tests.AMOPaths):

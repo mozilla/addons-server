@@ -25,6 +25,7 @@ class TestMarketButton(amo.tests.TestCase):
         self.user = UserProfile.objects.get(pk=999)
         request = mock.Mock()
         request.amo_user = self.user
+        request.groups = ()
         request.check_ownership.return_value = False
         request.GET = {'src': 'foo'}
         request.groups = ()
@@ -105,11 +106,9 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(json.loads(data['currencies'])['USD'], '$1.00')
         eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
 
-    def test_reviewers(self):
-        # Make ourselves a reviewer!
-        amo_user = UserProfile.objects.get(pk=5497308)
-        self.context['request'].amo_user = amo_user
-        self.context['request'].groups = amo_user.groups.all()
+    @mock.patch('mkt.site.helpers.acl.check_reviewer')
+    def test_reviewers(self, check_reviewer):
+        check_reviewer.return_value = True
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         issue = urlparams(reverse('receipt.issue',
@@ -123,3 +122,16 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['categories'],
             [str(cat.name) for cat in self.webapp.categories.all()])
+
+    def test_is_packaged(self):
+        self.webapp.current_version.files.all()[0].update(is_packaged=True)
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('a').attr('data-product'))
+        eq_(data['is_packaged'], True)
+        assert data['package_url'].startswith('/downloads')
+
+    def test_is_not_packaged(self):
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('a').attr('data-product'))
+        eq_(data['is_packaged'], False)
+        eq_(data['package_url'], '')

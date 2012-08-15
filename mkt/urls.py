@@ -11,9 +11,9 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
 from mkt.account.urls import (purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
+from mkt.developers.views import login
 from mkt.purchase.urls import bluevia_services_patterns
 from mkt.themes.urls import theme_patterns
-from mkt.developers.views import login
 
 admin.autodiscover()
 
@@ -113,6 +113,8 @@ urlpatterns = patterns('',
     url('^api/', include('mkt.api.urls')),
 
     url('^appcache/', include('django_appcache.urls')),
+
+    url('^downloads/', include('mkt.downloads.urls')),
 
     # Try and keep urls without a prefix at the bottom of the list for
     # minor performance reasons.
