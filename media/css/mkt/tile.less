@@ -229,8 +229,15 @@
 
 // Previews tray.
 .expanded .mkt-tile + .tray {
-    .gradient-two-color-with-image(rgba(221,225,228,.35), rgba(159,164,169,.95), @grain-src);
+    display: block;
     height: 232px;
+}
+.mkt-tile + .tray {
+    display: none;
+    // some day
+    /*transition: .3s height ease-out;*/
+    .gradient-two-color-with-image(rgba(221,225,228,.35), rgba(159,164,169,.95), @grain-src);
+    height: 0px;
     border-bottom: 1px solid rgba(0,0,0,.3);
     border-top: 1px solid rgba(0,0,0,.05);
     position: relative;
