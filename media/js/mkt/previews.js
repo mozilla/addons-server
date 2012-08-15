@@ -28,7 +28,7 @@
         });
     }
 
-    z.page.on('fragmentloaded', function() {
+    z.page.on('fragmentloaded populatetray', function() {
         var trays = $('.listing.expanded .mkt-tile + .tray');
         trays.each(populateTray);
         if (trays.length) {
