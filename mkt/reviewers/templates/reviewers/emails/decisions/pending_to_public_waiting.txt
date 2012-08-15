@@ -1,8 +1,8 @@
 {% extends 'reviewers/emails/base.txt' %}
 {% block content %}
-Congratulations! Your submission has been approved for the Mozilla Marketplace. Because you requested to make the available to public when you want, you will need to log into the Mozilla Marketplace and make it public manually. To enable it, visit its <a href="{{ status_url }}">Manage Status page</a>.
+Congratulations! Your App has been approved for the Mozilla Marketplace. Because you requested to make the App available to public when you want, you will need to log into the Mozilla Marketplace and make it public manually. To enable it, visit its <a href="{{ status_url }}">Manage Status page</a>.
 
-Follow Mozilla Hacks (http://hacks.mozilla.org, http://twitter.com/mozhacks) to stay updated on when we plan to open for consumer testing and app installation.
+Follow Mozilla Hacks (http://hacks.mozilla.org, http://twitter.com/mozhacks) to stay updated on when we plan to open for consumer testing and App installation.
 
 {% include 'reviewers/emails/decisions/includes/details.txt' %}
 
