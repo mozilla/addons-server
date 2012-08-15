@@ -104,7 +104,7 @@ Flipsnap.prototype.init = function(element, opts) {
 
 	self.element.addEventListener(touchStartEvent, self, false);
 	self.element.addEventListener(touchMoveEvent, self, false);
-	self.element.addEventListener(touchEndEvent, self, false);
+	self.element.parentNode.addEventListener(touchEndEvent, self, false);
 
 	return self;
 };
@@ -291,7 +291,7 @@ Flipsnap.prototype._touchMove = function(event) {
 
 		// When distX is 0, use one previous value.
 		// For android firefox. When touchend fired, touchmove also
-		// fired and distX is certainly set to 0. 
+		// fired and distX is certainly set to 0.
 		self.directionX =
 			distX === 0 ? self.directionX :
 			distX > 0 ? -1 : 1;

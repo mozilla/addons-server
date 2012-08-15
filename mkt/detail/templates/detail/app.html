@@ -65,7 +65,7 @@
     {% set descr_len = product.description.__unicode__()|length if product.description else 0 %}
     {% set comments_len = product.developer_comments.__unicode__()|length if product.developer_comments else 0 %}
     {% set super_long = (summary_len + descr_len + comments_len) > 700 %}
-    <section class="blurbs infobox full">
+    <section class="blurbs infobox">
       <div>
         <p class="summary">
           {{ product.summary|nl2br }}
@@ -89,7 +89,7 @@
     </section>
 
     {% if waffle.switch('ratings') %}
-      <section class="reviews c infobox full">
+      <section class="reviews c infobox">
         <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
           <div class="review-stars-header">
             <h3 class="wide">{{ _('Reviews') }}</h3>
@@ -124,7 +124,7 @@
       </section>
     {% endif %}
 
-    <section id="support" class="infobox full support c">
+    <section id="support" class="infobox support c">
       <div>
         <ul class="c">
           {% if product.support_email %}
