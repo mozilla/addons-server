@@ -2,7 +2,7 @@
 {% block content %}
 Dear Superheroes,
 
-A reviewer has escalated the following app due to security, copyright, or other administrative concerns.
+A reviewer has escalated the following App due to security, copyright, or other administrative concerns.
 
 Please open your plethora of knowledge and wield your mighty administrative sword of decision making in the general vicinity of:
 
