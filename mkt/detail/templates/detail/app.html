@@ -21,19 +21,27 @@
 {% set cats = product.all_categories %}
 {% set first_cat = cats[0] if cats else None %}
 
+{# Content ratings for games in Brazil. #}
+{% set brazil_game = request.REGION == mkt.regions.BR and product.listed_in(category='games') %}
+{% if brazil_game %}
+  {% set content_ratings = product.content_ratings_in(mkt.regions.BR) %}
+  {% set unrated_brazil_game = not content_ratings %}
+{% endif %}
+
 {% block content %}
   <h1 id="top">{{ _('App Details') }}</h1>
   {% include 'purchase/error.html' %}
   {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
                             (None, product.name)]) }}
-  {% if not (is_dev or is_admin) and not product.is_public() %}
-    {{ notification(product, amo, is_dev) }}
+  {% if not product.is_visible(request) %}
+    {{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
   {% else %}
+
     <section class="product-details listing expanded c">
       {{ market_tile(product, link=False) }}
     </section>
 
-    {{ notification(product, amo, is_dev) }}
+    {{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
 
     <section id="installed">
       <div>
@@ -175,6 +183,23 @@
           <dt>{{ _('Published') }}</dt>
           <dd>{{ product.created|timelabel }}</dd>
         </dl>
+        {% if content_ratings %}
+          <div class="content-ratings c">
+            <h3>
+              {% trans DEJUS=mkt.ratingsbodies.DJCTQ.full_name,
+                       DEJUS_URL=mkt.ratingsbodies.DJCTQ.url %}
+                Rating by the <a href="{{ DEJUS_URL }}" target="_blank" title="{{ DEJUS }}">DEJUS</a>
+              {% endtrans %}
+            </h3>
+            {% for content_rating in content_ratings %}
+              {% set rating = content_rating.get_rating() %}
+              <div class="content-rating c">
+                <div class="icon icon-{{ rating.name }}">{{ rating.name }}</div>
+                <p class="description">{{ rating.description }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
 
       <div class="actions wide">

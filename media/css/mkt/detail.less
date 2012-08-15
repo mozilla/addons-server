@@ -38,6 +38,64 @@
     }
 }
 
+.content-ratings {
+    margin-top: 15px;
+}
+
+.content-rating {
+    color: @text-gray;
+    display: table;
+    font-size: 12px;
+    margin: 15px 0;
+    .icon {
+        .border-radius(5px);
+        background: @black;
+        color: @white;
+        float: left;
+        font: 600 32px/64px @open-stack;
+        height: 64px;
+        margin-right: 15px;
+        text-align: center;
+        vertical-align: middle;
+        width: 64px;
+    }
+    .icon-L {
+        background: @box-green;
+    }
+    .icon-10 {
+        background: @box-blue;
+    }
+    .icon-12 {
+        background: @box-yellow;
+    }
+    .icon-14 {
+        background: @box-orange;
+    }
+    .icon-16 {
+        background: @box-red;
+    }
+    .description {
+        display: table-cell;
+        font-weight: 400;
+        margin: 0;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
+// At desktop width, let's float the content ratings.
+@media (min-width: @7col) {
+    // TODO: Remove non-force-mobile selector when desktop lands.
+    body:not(.force-mobile) .content-rating {
+        float: left;
+        padding: 0 5px 0 0;
+        width: 50%;
+        &:nth-child(2n+1) {
+            padding: 0 0 0 5px;
+        }
+    }
+}
+
 .checkmark {
     display: block;
     color: @black;
@@ -316,7 +374,9 @@
         min-height: 100px;
     }
     h3 {
-        font-size: 22px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
     }
     p {
         margin: 0;
@@ -324,7 +384,7 @@
 }
 
 .html-rtl .support {
-    p a, time {
+    ul a, time {
         padding: 5px 0 5px 20px;
     }
 }

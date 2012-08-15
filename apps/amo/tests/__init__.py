@@ -30,7 +30,7 @@ import amo
 import mkt.stats.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import Addon, Category, Persona
+from addons.models import Addon, AddonCategory, Category, Persona
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -39,6 +39,9 @@ from files.models import File, Platform
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
+
+import mkt
+from mkt.webapps.models import ContentRating
 
 
 def formset(*args, **kw):
@@ -601,3 +604,16 @@ class WebappTestCase(TestCase):
 
     def get_app(self):
         return Addon.objects.get(id=337141)
+
+    def make_game(self, rated=False):
+        cat, created = Category.objects.get_or_create(slug='games',
+            type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.get_or_create(addon=self.app, category=cat)
+        if rated:
+            ContentRating.objects.get_or_create(addon=self.app,
+                ratings_body=mkt.ratingsbodies.DJCTQ.id,
+                rating=mkt.ratingsbodies.DJCTQ_18.id)
+            ContentRating.objects.get_or_create(addon=self.app,
+                ratings_body=mkt.ratingsbodies.DJCTQ.id,
+                rating=mkt.ratingsbodies.DJCTQ_L.id)
+        self.app = self.get_app()

@@ -14,7 +14,7 @@ import waffle
 
 from abuse.models import AbuseReport
 import amo
-from amo.helpers import external_url, numberfmt, urlparams
+from amo.helpers import external_url, urlparams
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
@@ -22,6 +22,7 @@ from devhub.models import ActivityLog
 from market.models import PreApprovalUser
 from users.models import UserProfile
 
+import mkt
 from mkt.webapps.models import Webapp
 
 
@@ -29,15 +30,12 @@ def get_clean(selection):
     return strip_whitespace(str(selection))
 
 
-class DetailBase(amo.tests.TestCase):
+class DetailBase(amo.tests.WebTestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.webapp = self.get_webapp()
-        self.url = self.webapp.get_detail_url()
-
-    def get_webapp(self):
-        return Webapp.objects.get(id=337141)
+        super(DetailBase, self).setUp()
+        self.url = self.app.get_detail_url()
 
     def get_user(self):
         return UserProfile.objects.get(email='regular@mozilla.com')
@@ -45,7 +43,7 @@ class DetailBase(amo.tests.TestCase):
     def get_pq(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        return pq(r.content)
+        return pq(r.content.decode('utf-8'))
 
 
 class TestDetail(DetailBase):
@@ -59,7 +57,7 @@ class TestDetail(DetailBase):
         raise SkipTest
         cat = Category.objects.create(name='Lifestyle', slug='lifestyle',
                                       type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=self.webapp, category=cat)
+        AddonCategory.objects.create(addon=self.app, category=cat)
         links = self.get_pq()('.cats a')
         eq_(links.length, 1)
         eq_(links.attr('href'), cat.get_url_path())
@@ -79,7 +77,7 @@ class TestDetail(DetailBase):
     def test_free_install_button_for_dev(self):
         user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=user.email, password='password')
-        AddonUser.objects.create(addon=self.webapp, user=user)
+        AddonUser.objects.create(addon=self.app, user=user)
         doc = self.get_pq()
         eq_(doc('.button.product').length, 1)
         eq_(doc('.manage').length, 1)
@@ -93,16 +91,16 @@ class TestDetail(DetailBase):
 
     def test_paid_install_button_for_anon(self):
         # This purchase should not be faked.
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         doc = self.get_pq()
         eq_(doc('.product.premium.button').length, 1)
 
     def dev_receipt_url(self):
         return urlparams(reverse('receipt.issue',
-                                 args=[self.webapp.app_slug]), src='')
+                                 args=[self.app.app_slug]), src='')
 
     def test_paid_install_button_for_owner(self):
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
         doc = self.get_pq()
@@ -112,10 +110,10 @@ class TestDetail(DetailBase):
         eq_(doc('.manage').length, 1)
 
     def test_paid_install_button_for_dev(self):
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=user.email, password='password')
-        AddonUser.objects.create(addon=self.webapp, user=user)
+        AddonUser.objects.create(addon=self.app, user=user)
         doc = self.get_pq()
         eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
             self.dev_receipt_url())
@@ -124,7 +122,7 @@ class TestDetail(DetailBase):
 
     def test_no_paid_public_install_button_for_reviewer(self):
         # Too bad. Reviewers can review the app from the Reviewer Tools.
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         doc = self.get_pq()
@@ -133,8 +131,8 @@ class TestDetail(DetailBase):
 
     def test_no_paid_pending_install_button_for_reviewer(self):
         # Too bad. Reviewers can review the app from the Reviewer Tools.
-        self.webapp.update(status=amo.STATUS_PENDING)
-        self.make_premium(self.webapp)
+        self.app.update(status=amo.STATUS_PENDING)
+        self.make_premium(self.app)
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         doc = self.get_pq()
@@ -154,7 +152,7 @@ class TestDetail(DetailBase):
     def test_manage_button_for_dev(self):
         user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=user.email, password='password')
-        AddonUser.objects.create(addon=self.webapp, user=user)
+        AddonUser.objects.create(addon=self.app, user=user)
         eq_(self.get_pq()('.manage').length, 1)
 
     def test_no_manage_button_for_nondev(self):
@@ -174,7 +172,7 @@ class TestDetail(DetailBase):
         eq_(doc('.button.reviewer').text(), 'Review History')
 
         # Pending apps get "Approve / Reject" button.
-        self.webapp.update(status=amo.STATUS_PENDING)
+        self.app.update(status=amo.STATUS_PENDING)
         doc = self.get_pq()
         eq_(doc('.button.reviewer').length, 1)
         eq_(doc('.button.reviewer').text(), 'Approve / Reject')
@@ -182,7 +180,7 @@ class TestDetail(DetailBase):
     def test_upsell(self):
         eq_(self.get_pq()('#upsell').length, 0)
         premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
-        AddonUpsell.objects.create(free=self.webapp, premium=premie,
+        AddonUpsell.objects.create(free=self.app, premium=premie,
                                    text='XXX')
         upsell = self.get_pq()('#upsell')
         eq_(upsell.length, 1)
@@ -190,58 +188,58 @@ class TestDetail(DetailBase):
         eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(32))
 
     def test_no_summary_no_description(self):
-        self.webapp.summary = self.webapp.description = ''
-        self.webapp.save()
+        self.app.summary = self.app.description = ''
+        self.app.save()
         description = self.get_pq()('.blurbs')
         eq_(description.find('.summary').text(), '')
 
     def test_has_summary(self):
-        self.webapp.summary = 'sumthang brief'
-        self.webapp.description = ''
-        self.webapp.save()
+        self.app.summary = 'sumthang brief'
+        self.app.description = ''
+        self.app.save()
         description = self.get_pq()('.summary')
-        eq_(description.text(), self.webapp.summary)
+        eq_(description.text(), self.app.summary)
 
     def test_has_description(self):
-        self.webapp.summary = ''
-        self.webapp.description = 'a whole lotta text'
-        self.webapp.save()
+        self.app.summary = ''
+        self.app.description = 'a whole lotta text'
+        self.app.save()
         description = self.get_pq()('.description')
-        eq_(description.text(), self.webapp.description)
+        eq_(description.text(), self.app.description)
 
     def test_no_developer_comments(self):
         eq_(self.get_pq()('.developer-comments').length, 0)
 
     def test_has_developer_comments(self):
-        self.webapp.developer_comments = 'hot ish is coming brah'
-        self.webapp.save()
+        self.app.developer_comments = 'hot ish is coming brah'
+        self.app.save()
         eq_(self.get_pq()('.developer-comments').text(),
-            self.webapp.developer_comments)
+            self.app.developer_comments)
 
     def test_no_support(self):
         eq_(self.get_pq()('.developer-comments').length, 0)
 
     def test_has_support_email(self):
-        self.webapp.support_email = 'gkoberger@mozilla.com'
-        self.webapp.save()
+        self.app.support_email = 'gkoberger@mozilla.com'
+        self.app.save()
         email = self.get_pq()('.support .support-email')
         eq_(email.length, 1)
         eq_(email.remove('a').remove('span.i').text().replace(' ', ''),
             'moc.allizom@regrebokg', 'Email should be reversed')
 
     def test_has_support_url(self):
-        self.webapp.support_url = 'http://omg.org/yes'
-        self.webapp.save()
+        self.app.support_url = 'http://omg.org/yes'
+        self.app.save()
         url = self.get_pq()('.support .support-url')
         eq_(url.length, 1)
-        eq_(url.find('a').attr('href'), external_url(self.webapp.support_url))
+        eq_(url.find('a').attr('href'), external_url(self.app.support_url))
 
     def test_has_support_both(self):
         # I don't know what this was meant to test.
         raise SkipTest
-        self.webapp.support_email = 'gkoberger@mozilla.com'
-        self.webapp.support_url = 'http://omg.org/yes'
-        self.webapp.save()
+        self.app.support_email = 'gkoberger@mozilla.com'
+        self.app.support_url = 'http://omg.org/yes'
+        self.app.save()
         li = self.get_pq()('.support .contact-support')
         eq_(li.find('.support-email').length, 1)
         eq_(li.find('.support-url').length, 1)
@@ -250,42 +248,41 @@ class TestDetail(DetailBase):
         eq_(self.get_pq()('.support .homepage').length, 0)
 
     def test_has_homepage(self):
-        self.webapp.homepage = 'http://omg.org/yes'
-        self.webapp.save()
+        self.app.homepage = 'http://omg.org/yes'
+        self.app.save()
         url = self.get_pq()('.support .homepage')
         eq_(url.length, 1)
-        eq_(url.find('a').attr('href'), external_url(self.webapp.homepage))
+        eq_(url.find('a').attr('href'), external_url(self.app.homepage))
 
     def test_no_stats_without_waffle(self):
         # No stats on consumer pages for now.
         raise SkipTest
         # TODO: Remove this test when `app-stats` switch gets unleashed.
-        self.webapp.update(public_stats=True)
-        eq_(self.get_webapp().public_stats, True)
+        self.app.update(public_stats=True)
+        eq_(self.get_app().public_stats, True)
         eq_(self.get_pq()('.more-info .view-stats').length, 0)
 
     def test_no_public_stats(self):
         # No stats on consumer pages for now.
         raise SkipTest
         waffle.Switch.objects.create(name='app-stats', active=True)
-        eq_(self.webapp.public_stats, False)
+        eq_(self.app.public_stats, False)
         eq_(self.get_pq()('.more-info .view-stats').length, 0)
 
     def test_public_stats(self):
         # No stats on consumer pages for now.
         raise SkipTest
         waffle.Switch.objects.create(name='app-stats', active=True)
-        self.webapp.update(public_stats=True)
-        eq_(self.get_webapp().public_stats, True)
+        self.app.update(public_stats=True)
+        eq_(self.get_app().public_stats, True)
         p = self.get_pq()('.more-info .view-stats')
         eq_(p.length, 1)
         eq_(p.find('a').attr('href'),
-            reverse('mkt.stats.overview', args=[self.webapp.app_slug]))
+            reverse('mkt.stats.overview', args=[self.app.app_slug]))
 
     def test_free_no_preapproval(self):
         doc = self.get_pq()
         eq_(json.loads(doc('body').attr('data-user'))['pre_auth'], False)
-
 
     def test_free_preapproval_enabled(self):
         PreApprovalUser.objects.create(user=self.get_user(), paypal_key='xyz')
@@ -293,19 +290,19 @@ class TestDetail(DetailBase):
         eq_(json.loads(doc('body').attr('data-user'))['pre_auth'], False)
 
     def test_paid_no_preapproval_anonymous(self):
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         doc = self.get_pq()
         eq_(json.loads(doc('body').attr('data-user'))['pre_auth'], False)
 
     def test_paid_no_preapproval_authenticated(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         doc = self.get_pq()
         eq_(json.loads(doc('body').attr('data-user'))['pre_auth'], False)
 
     def test_paid_preapproval_enabled(self):
-        self.make_premium(self.webapp)
+        self.make_premium(self.app)
         user = self.get_user()
         assert self.client.login(username=user.email, password='password')
         PreApprovalUser.objects.create(user=user, paypal_key='xyz')
@@ -325,8 +322,10 @@ class TestDetailPagePermissions(DetailBase):
         assert self.client.login(username=username, password='password')
 
     def get_pq(self, **kw):
-        self.webapp.update(**kw)
-        r = self.client.get(self.url)
+        data = kw.pop('data', {})
+        if kw:
+            self.app.update(**kw)
+        r = self.client.get(self.url, data)
         eq_(r.status_code, 200)
         return pq(r.content)
 
@@ -340,7 +339,7 @@ class TestDetailPagePermissions(DetailBase):
             eq_(doc.find('.actions').length, 1,
                 'The rest of the page should be visible')
         else:
-            url = self.webapp.get_dev_url('versions')
+            url = self.app.get_dev_url('versions')
             eq_(status.find('a[href="%s"]' % url).length,
                 0, 'There should be no Manage Status link')
             eq_(doc.find('.actions').length, 0,
@@ -359,7 +358,7 @@ class TestDetailPagePermissions(DetailBase):
     @mock.patch.object(settings, 'ENGAGE_ROBOTS', True)
     def test_no_engaged_robots_for_disabled(self):
         # Check that disabled apps do not get indexed.
-        self.webapp.update(disabled_by_user=True)
+        self.app.update(disabled_by_user=True)
         eq_(self.get_pq()('meta[content=noindex]').length, 1)
 
     def test_public(self):
@@ -368,7 +367,7 @@ class TestDetailPagePermissions(DetailBase):
         eq_(doc('.actions').length, 1, 'The rest of the page should visible')
 
     def test_deleted(self):
-        self.webapp.update(status=amo.STATUS_DELETED)
+        self.app.update(status=amo.STATUS_DELETED)
         r = self.client.get(self.url)
         eq_(r.status_code, 404)
 
@@ -395,7 +394,7 @@ class TestDetailPagePermissions(DetailBase):
         assert 'approved' in txt and 'unavailable' in txt, (
             'Expected something about it being approved and unavailable: %s' %
             txt)
-        url = self.webapp.get_dev_url('versions')
+        url = self.app.get_dev_url('versions')
         eq_(msg.find('a[href="%s"]' % url).length, 0,
             'There should be no Manage Status link')
 
@@ -415,7 +414,7 @@ class TestDetailPagePermissions(DetailBase):
         txt = msg.text()
         assert 'invisible' in txt, (
             'Expected something about it being incomplete: %s' % txt)
-        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+        eq_(msg.find('a').attr('href'), self.app.get_dev_url('versions'),
             'Expected a Manage Status link')
 
     def _test_dev_rejected(self):
@@ -424,7 +423,7 @@ class TestDetailPagePermissions(DetailBase):
         txt = msg.text()
         assert 'invisible' in txt, (
             'Expected something about it being invisible: %s' % txt)
-        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+        eq_(msg.find('a').attr('href'), self.app.get_dev_url('versions'),
             'Expected a Manage Status link')
 
     def _test_dev_pending(self):
@@ -433,16 +432,16 @@ class TestDetailPagePermissions(DetailBase):
         txt = msg.text()
         assert 'awaiting review' in txt, (
             'Expected something about it being pending: %s' % txt)
-        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+        eq_(msg.find('a').attr('href'), self.app.get_dev_url('versions'),
             'Expected a Manage Status link')
 
     def _test_dev_public_waiting(self):
         # I'm a developer or an admin.
         msg = self.get_msg(visible=True, status=amo.STATUS_PUBLIC_WAITING)
         txt = msg.text()
-        assert ' approved ' and ' awaiting ' in txt, (
+        assert ' approved ' in txt and ' awaiting ' in txt, (
             'Expected something about it being approved and waiting: %s' % txt)
-        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+        eq_(msg.find('a').attr('href'), self.app.get_dev_url('versions'),
             'Expected a Manage Status link')
 
     def _test_dev_disabled_by_mozilla(self):
@@ -460,7 +459,7 @@ class TestDetailPagePermissions(DetailBase):
         txt = msg.text()
         assert 'invisible' in txt, (
             'Expected something about it being invisible: %s' % txt)
-        eq_(msg.find('a').attr('href'), self.webapp.get_dev_url('versions'),
+        eq_(msg.find('a').attr('href'), self.app.get_dev_url('versions'),
             'Expected a Manage Status link')
 
     def test_owner_incomplete(self):
@@ -511,37 +510,167 @@ class TestDetailPagePermissions(DetailBase):
         self.log_in_as('admin')
         self._test_dev_disabled_by_user()
 
+    def test_unrated_pending_brazil_game(self):
+        # If I'm a regular user, I should never see the
+        # "apply for a rating" text.
+
+        self.make_game()
+        self.app.update(status=amo.STATUS_PENDING)
+
+        for region in mkt.regions.REGIONS_DICT:
+            doc = self.get_pq(data={'region': region})
+            disclaimer = doc('#product-rating-status')
+
+            if region == mkt.regions.BR.slug:
+                # Unrated games should be blocked in only Brazil.
+                eq_(disclaimer.length, 1)
+                txt = disclaimer.text()
+                assert (' unavailable in your region ' in txt and
+                        'Brazil' in txt), ('Expected message about '
+                                           'invisible in Brazil: %s' % txt)
+            else:
+                eq_(disclaimer.length, 0)
+
+            eq_(doc('.button.product').length, 0)
+            eq_(doc('.content-ratings').length, 0)
+
+    def test_unrated_public_brazil_game(self):
+        # If I'm a regular user, I should see the
+        # "not available in your region" text.
+
+        self.make_game()
+
+        for region in mkt.regions.REGIONS_DICT:
+            doc = self.get_pq(data={'region': region})
+            disclaimer = doc('#product-rating-status')
+
+            if region == mkt.regions.BR.slug:
+                # Unrated games should be blocked in only Brazil.
+                eq_(disclaimer.length, 1)
+                txt = disclaimer.text()
+                assert (' unavailable in your region ' in txt and
+                        'Brazil' in txt), ('Expected message about '
+                                           'invisible in Brazil: %s' % txt)
+                eq_(doc('.button.product').length, 0)
+            else:
+                eq_(disclaimer.length, 0)
+                eq_(doc('.button.product').length, 1)
+
+            eq_(doc('.content-ratings').length, 0)
+
+    def test_unrated_brazil_game_apply_message_for_owner_or_admin(self):
+        # If I'm an owner or admin, I should always see the
+        # "apply for a rating" text. Even outside of the Brazil store.
+
+        self.make_game()
+
+        for status in (amo.STATUS_PENDING,
+                       amo.STATUS_DISABLED,
+                       amo.STATUS_PUBLIC):
+            self.app.update(status=status)
+
+            for user in ('owner', 'admin'):
+                self.log_in_as(user)
+
+                for region in mkt.regions.REGIONS_DICT:
+                    doc = self.get_pq(data={'region': region})
+                    disclaimer = doc('#product-rating-status')
+
+                    eq_(disclaimer.length, 1,
+                        'Missing disclaimer in %r for %r when %r'
+                        % (region, user, status))
+
+                    txt = disclaimer.text()
+                    assert ' unavailable to users in Brazil' in txt, (
+                        'Expected message about invisible in Brazil: %s' % txt)
+
+                    eq_(doc('.button.product').length, 1)
+                    eq_(doc('.content-ratings').length, 0)
+
+    def test_rated_pending_brazil_game_message_for_user(self):
+        # If I'm a regular user, I should the "pending" text and I should
+        # not see ratings for a pending, rated game.
+
+        self.make_game(rated=True)
+        self.app.update(status=amo.STATUS_PENDING)
+
+        for region in mkt.regions.REGIONS_DICT:
+            doc = self.get_pq(data={'region': region})
+            eq_(doc('#product-rating-status').length, 0,
+                'Unrated notice should not be shown')
+            eq_(doc('#product-status').length, 1,
+                'Pending notice should be shown')
+            eq_(doc('.button.product').length, 0,
+                'Install button should never be exposed for pending app')
+            eq_(doc('.content-ratings').length, 0,
+                'Ratings should never be exposed for pending app')
+
+    def test_rated_public_brazil_game_ratings(self):
+        # If I'm anyone, I should should see ratings for a public,
+        # rated game but only in Brazil.
+
+        self.make_game(rated=True)
+
+        for region in mkt.regions.REGIONS_DICT:
+            doc = self.get_pq(data={'region': region})
+            eq_(doc('#product-rating-status').length, 0,
+                'Unrated notice should not be shown for rated app')
+            eq_(doc('.button.product').length, 1,
+                'Install button should be exposed for rated app')
+
+            ratings = doc('.content-ratings')
+            if region == mkt.regions.BR.slug:
+                eq_(ratings.length, 1)
+
+                ratings = ratings.find('.content-rating')
+                eq_(ratings.length, 2)
+
+                # First content rating (ORDER BY vileness ASC).
+                first = ratings.eq(0)
+                cr = mkt.ratingsbodies.DJCTQ_L
+                eq_(first.find('.icon-L').text(), cr.name)
+                eq_(first.find('.description').text(), cr.description)
+
+                # Second content rating.
+                second = ratings.eq(1)
+                cr = mkt.ratingsbodies.DJCTQ_18
+                eq_(second.find('.icon-18').text(), cr.name)
+                eq_(second.find('.description').text(), cr.description)
+            else:
+                eq_(doc('.content-ratings').length, 0,
+                    'Should see ratings in Brazil only')
+
 
 class TestPrivacy(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.webapp = Webapp.objects.get(id=337141)
-        self.url = self.webapp.get_detail_url('privacy')
+        self.app = Webapp.objects.get(id=337141)
+        self.url = self.app.get_detail_url('privacy')
 
     def test_app_statuses(self):
-        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, amo.STATUS_PUBLIC)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
         # Incomplete or pending apps should 404.
         for status in (amo.STATUS_NULL, amo.STATUS_PENDING):
-            self.webapp.update(status=status)
+            self.app.update(status=status)
             r = self.client.get(self.url)
             eq_(r.status_code, 404)
 
         # Public-yet-disabled apps should 404.
-        self.webapp.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        self.app.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         eq_(self.client.get(self.url).status_code, 404)
 
     def test_policy(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.policy-statement').text(),
-            strip_tags(get_clean(self.webapp.privacy_policy)))
+            strip_tags(get_clean(self.app.privacy_policy)))
 
     def test_policy_html(self):
-        self.webapp.privacy_policy = """
+        self.app.privacy_policy = """
             <strong> what the koberger..</strong>
             <ul>
                 <li>papparapara</li>
@@ -556,7 +685,7 @@ class TestPrivacy(amo.tests.TestCase):
                 <li>todotodotodo2</li>
             </ol>
             """
-        self.webapp.save()
+        self.app.save()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)('.policy-statement')
@@ -573,7 +702,7 @@ class TestReportAbuse(DetailBase):
 
     def setUp(self):
         super(TestReportAbuse, self).setUp()
-        self.url = self.webapp.get_detail_url('abuse')
+        self.url = self.app.get_detail_url('abuse')
 
         patcher = mock.patch.object(settings, 'TASK_USER_ID', 4043307)
         patcher.start()
@@ -613,12 +742,12 @@ class TestReportAbuse(DetailBase):
         eq_(report.reporter.email, 'regular@mozilla.com')
 
     def test_abuse_name(self):
-        self.webapp.name = 'Bmrk.ru Социальные закладки'
-        self.webapp.save()
+        self.app.name = 'Bmrk.ru Социальные закладки'
+        self.app.save()
         self.log_in()
         self.client.post(self.url, {'text': 'spammy'})
         assert 'spammy' in mail.outbox[0].body
-        assert AbuseReport.objects.get(addon=self.webapp)
+        assert AbuseReport.objects.get(addon=self.app)
 
 
 class TestActivity(amo.tests.TestCase):
