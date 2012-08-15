@@ -1,6 +1,6 @@
 {% extends 'reviewers/emails/base.txt' -%}
 {% block content %}
-Your app, {{ name }}, has been disabled by a reviewer.
+Your App, {{ name }}, has been disabled by an admin or senior reviewer.
 
 {% include 'reviewers/emails/decisions/includes/details.txt' %}
 
