@@ -198,16 +198,26 @@
 
         // Transform xAxis based on time grouping (day, week, month) and range.
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
+        var dateRangeDays = (end - start) / dayMsecs;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
+        baseConfig.xAxis.tickInterval = null;
         if (group == 'week') {
             $('a.days-7').addClass('inactive').bind('click', false);
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.maxZoom = 7 * dayMsecs;
+
+            if (dateRangeDays <= 90) {
+                baseConfig.xAxis.tickInterval = 7 * dayMsecs;
+            }
         } else if (group == 'month') {
             $('a.days-7, a.days-30').addClass('inactive').bind('click', false);
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.maxZoom = 31 * dayMsecs;
+
+            if (dateRangeDays <= 365) {
+                baseConfig.xAxis.tickInterval = 30 * dayMsecs;
+            }
         }
 
         // Disable group links if they don't fit into the date range.
