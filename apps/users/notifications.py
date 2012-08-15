@@ -150,7 +150,7 @@ class app_regions(_NOTIFICATION):
     group = 'dev'
     short = 'app_regions'
     label = _('Mozilla wants to contact me about new regions added to the '
-              'Marketplace.')
+              'Marketplace')
     mandatory = False
     default_checked = True
     app = True
