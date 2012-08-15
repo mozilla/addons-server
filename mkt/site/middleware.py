@@ -150,12 +150,16 @@ class LocaleMiddleware(object):
 
         # Update cookie if values have changed.
         if lang != stored_lang or ov_lang != stored_ov_lang:
-            request.set_cookie('lang', ','.join([lang, ov_lang]))
+            request.LANG_COOKIE = ','.join([lang, ov_lang])
 
         request.LANG = lang
         tower.activate(lang)
 
     def process_response(self, request, response):
+        # We want to change the cookie, but didn't have the response in
+        # process request.
+        if hasattr(request, 'LANG_COOKIE'):
+            response.set_cookie('lang', request.LANG_COOKIE)
         patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
 
@@ -176,7 +180,8 @@ class RegionMiddleware(object):
 
         # Re-detect my region only if my *Accept-Language* is different from
         # that of my previous language.
-        lang_changed = request.COOKIES.get('lang', '').endswith(',')
+        lang_changed = (get_accept_language(request)
+                        not in request.COOKIES.get('lang', '').split(','))
         if not remembered or lang_changed:
             # TODO: Do geolocation magic.
 

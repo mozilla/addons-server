@@ -322,6 +322,12 @@ class TestRegionMiddleware(MiddlewareCase):
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(r.cookies['region'].value, 'br')
 
+    def test_not_stuck(self):
+        self.client.cookies['lang'] = 'en-US,'
+        self.client.cookies['region'] = 'br'
+        r = self.client.get('/')
+        assert not r.cookies
+
 
 class TestVaryMiddleware(MiddlewareCase):
 
