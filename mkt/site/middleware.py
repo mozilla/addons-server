@@ -235,5 +235,5 @@ class MobileDetectionMiddleware(object):
             else:
                 request.set_cookie('mobile', 'true')
 
-        request.MOBILE = (request.MOBILE or
+        request.MOBILE = (getattr(request, 'MOBILE', False) or
                           bool(request.COOKIES.get('mobile', False)))

@@ -402,7 +402,7 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
                     # Django ORM? Do an `exclude`.
                     return res.exclude(id__in=excluded)
 
-        if getattr(self.request, 'REGION', False):
+        if getattr(self.request, 'MOBILE', False):
             res = res.filter(device=amo.DEVICE_MOBILE.id)
 
         return res

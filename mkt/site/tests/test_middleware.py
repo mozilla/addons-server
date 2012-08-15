@@ -343,6 +343,7 @@ class TestVaryMiddleware(MiddlewareCase):
         'mkt.site.middleware.RequestCookiesMiddleware',
         'mkt.site.middleware.LocaleMiddleware',
         'mkt.site.middleware.RegionMiddleware',
+        'mkt.site.middleware.MobileDetectionMiddleware',
     ])
     def test_no_user_agent(self):
         # We've toggled the middleware to not rewrite the application and also
