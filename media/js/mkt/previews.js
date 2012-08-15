@@ -26,14 +26,13 @@
             'width': width + 'px',
             'margin': '0 ' + ($tray.width() - 180) / 2 + 'px'
         });
+
+        Flipsnap($tray.find('.content')[0], {distance: 195});
     }
 
     z.page.on('fragmentloaded populatetray', function() {
         var trays = $('.listing.expanded .mkt-tile + .tray');
         trays.each(populateTray);
-        if (trays.length) {
-            Flipsnap('#page .slider .content', {distance: 195});
-        }
     });
 
 })();
