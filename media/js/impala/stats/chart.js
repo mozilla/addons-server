@@ -203,14 +203,24 @@
 
         // Transform xAxis based on time grouping (day, week, month) and range.
         var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
+        var dateRangeDays = (end - start) / dayMsecs;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
+        baseConfig.xAxis.tickInterval = null;
         if (group == 'week') {
             pointInterval = 7 * dayMsecs;
             baseConfig.xAxis.maxZoom = 7 * dayMsecs;
+
+            if (dateRangeDays <= 90) {
+                baseConfig.xAxis.tickInterval = 7 * dayMsecs;
+            }
         } else if (group == 'month') {
             pointInterval = 30 * dayMsecs;
             baseConfig.xAxis.maxZoom = 31 * dayMsecs;
+
+            if (dateRangeDays <= 365) {
+                baseConfig.xAxis.tickInterval = 30 * dayMsecs;
+            }
         }
 
         // Set minimum max value for yAxis to prevent duplicate yAxis values.
