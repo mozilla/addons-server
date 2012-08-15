@@ -19,7 +19,7 @@ class BaseTaskTest(amo.tests.ESTestCase):
 
     def baseSetUp(self):
         self.app = amo.tests.app_factory()
-        self.usd_price = .99
+        self.usd_price = '0.99'
         self.price_tier = Price.objects.create(price=self.usd_price)
 
         self.inapp = InappConfig.objects.create(
@@ -463,7 +463,7 @@ class TestAlreadyIndexed(BaseTaskTest):
         self.ids = []
         self.expected = {'addon': self.app.pk,
                          'date': date,
-                         'revenue': 0, 'count': 3,
+                         'revenue': Decimal('0'), 'count': 3,
                          'refunds': 1}
 
         for x in range(self.expected['count']):
@@ -473,12 +473,12 @@ class TestAlreadyIndexed(BaseTaskTest):
                 price_tier=self.price_tier)
             self.refresh(timesleep=1)
             self.ids.append(c.id)
-            self.expected['revenue'] += self.usd_price
+            self.expected['revenue'] += Decimal(self.usd_price)
 
         c.update(uuid=123)
         Refund.objects.create(contribution=c,
                               status=amo.REFUND_APPROVED)
-        self.expected['revenue'] -= self.usd_price
+        self.expected['revenue'] -= Decimal(self.usd_price)
         self.expected['count'] -= 1
 
         self.expected['revenue'] = cut(self.expected['revenue'])

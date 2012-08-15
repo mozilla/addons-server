@@ -232,7 +232,7 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
     def setUp(self):
         # Create apps and contributions to index.
         self.app = amo.tests.app_factory()
-        price_tier = Price.objects.create(price=.99)
+        price_tier = Price.objects.create(price='0.99')
 
         # Create a sale for each day in the expected range.
         self.expected_days = (1, 2, 3, 4, 5)
@@ -240,7 +240,7 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
             # Create different amounts of contribs for each day.
             for x in range(0, day):
                 c = Contribution.objects.create(addon_id=self.app.pk,
-                                                amount=.99,
+                                                amount='0.99',
                                                 price_tier=price_tier,
                                                 type=amo.CONTRIB_PURCHASE)
                 c.update(created=datetime.datetime(2012, 5, day, 0, 0, 0))
@@ -288,7 +288,7 @@ class TestGetSeriesColumn(amo.tests.ESTestCase):
     def setUp(self):
         # Create apps and contributions to index.
         self.app = amo.tests.app_factory()
-        price_tier = Price.objects.create(price=.99)
+        price_tier = Price.objects.create(price='0.99')
 
         # Create some revenue for several different currencies.
         self.expected = [
