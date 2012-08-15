@@ -9,7 +9,7 @@ import amo.tests
 from amo.tests import mock_es
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from addons.models import AddonCategory, Category
+from addons.models import AddonCategory, Category, AddonDeviceType
 
 import mkt
 from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
@@ -161,6 +161,26 @@ class TestIndexLanding(BrowseBase):
 
     def test_popular_region_exclusions(self):
         self._test_popular_region_exclusions()
+
+    def test_popular_flash(self):
+        a = self.setup_popular()
+        a.get_latest_file().update(uses_flash=True)
+        self.refresh()
+        # Check that these apps are shown on the category landing page.
+        self._test_popular_pks(self.url, [self.webapp.id, a.id])
+
+    @amo.tests.mobile_test
+    def test_no_flash_on_mobile(self):
+        a = self.setup_popular()
+        AddonDeviceType.objects.create(addon=self.webapp,
+                                       device_type=amo.DEVICE_MOBILE.id)
+        AddonDeviceType.objects.create(addon=a,
+                                       device_type=amo.DEVICE_MOBILE.id)
+        a.get_latest_file().update(uses_flash=True)
+        a.save()
+        self.webapp.save()
+        self.refresh()
+        self._test_popular_pks(self.url, [self.webapp.id])
 
 
 class TestIndexSearch(BrowseBase):

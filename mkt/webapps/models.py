@@ -205,14 +205,6 @@ class Webapp(Addon):
         parsed = urlparse.urlparse(self.manifest_url)
         return '%s://%s' % (parsed.scheme, parsed.netloc)
 
-    def get_latest_file(self):
-        """Get the latest file from the current version."""
-        cur = self.current_version
-        if cur:
-            res = cur.files.order_by('-created')
-            if res:
-                return res[0]
-
     def has_icon_in_manifest(self):
         data = self.get_manifest_json()
         return 'icons' in data
@@ -442,14 +434,6 @@ class Webapp(Addon):
                     .filter(type=amo.ADDON_WEBAPP, slug=slug))[0]
         except IndexError:
             return None
-
-    @property
-    def uses_flash(self):
-        """
-        Convenience property until more sophisticated per-version
-        checking is done for packaged apps.
-        """
-        return self.get_latest_file().uses_flash
 
     @amo.cached_property
     def has_packaged_files(self):

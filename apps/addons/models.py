@@ -1339,6 +1339,25 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return self.installed.filter(user=user).exists()
 
+    def get_latest_file(self):
+        """Get the latest file from the current version."""
+        cur = self.current_version
+        if cur:
+            res = cur.files.order_by('-created')
+            if res:
+                return res[0]
+
+    @property
+    def uses_flash(self):
+        """
+        Convenience property until more sophisticated per-version
+        checking is done for packaged apps.
+        """
+        f = self.get_latest_file()
+        if not f:
+            return False
+        return f.uses_flash
+
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
@@ -1352,7 +1371,7 @@ class AddonDeviceType(amo.models.ModelBase):
         return u'%s: %s' % (self.addon.name, self.device.name)
 
     def device(self):
-        return amo.DEVICE_TYPES[device_type]
+        return amo.DEVICE_TYPES[self.device_type]
 
 
 @receiver(dbsignals.post_save, sender=Addon,

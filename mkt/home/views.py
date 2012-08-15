@@ -7,7 +7,8 @@ from mkt.webapps.models import Webapp
 
 def _add_mobile_filter(request, qs):
     if request.MOBILE:
-        qs = qs.filter(device=DEVICE_MOBILE.id)
+        qs = qs.filter(device=DEVICE_MOBILE.id,
+                       uses_flash=False)
     return qs
 
 

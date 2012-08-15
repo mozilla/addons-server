@@ -119,11 +119,12 @@ def _app_search(request, category=None, browse=None):
                                                 sort='downloads',
                                                 price='free')}
 
+    qs = _get_query(request)
     # On mobile, always only show mobile apps. Bug 767620
     if request.MOBILE:
+        qs = qs.filter(uses_flash=False)
         query['device'] = 'mobile'
 
-    qs = _get_query(request)
     qs = _filter_search(qs, query)
 
     # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:

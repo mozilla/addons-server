@@ -19,7 +19,8 @@ def extract(addon):
     """Extract indexable attributes from an add-on."""
     attrs = ('id', 'slug', 'app_slug', 'created', 'last_updated',
              'weekly_downloads', 'bayesian_rating', 'average_daily_users',
-             'status', 'type', 'hotness', 'is_disabled', 'premium_type')
+             'status', 'type', 'hotness', 'is_disabled', 'premium_type',
+             'uses_flash')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()

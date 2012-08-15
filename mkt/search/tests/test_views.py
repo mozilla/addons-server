@@ -449,3 +449,24 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
 
         assert not p_desktop('.applied-filters')
         assert not p_mobile('.applied-filters')
+
+
+    @amo.tests.mobile_test
+    def test_mobile_no_flash(self):
+        a = amo.tests.app_factory()
+        a.name = 'Basta Addendum'
+        AddonDeviceType.objects.create(
+            addon=self.webapp,
+            device_type=amo.DEVICE_MOBILE.id)
+        AddonDeviceType.objects.create(
+            addon=a,
+            device_type=amo.DEVICE_MOBILE.id)
+        a.save()
+        af = a.get_latest_file()
+        af.uses_flash = True
+        af.save()
+        a.save()
+        self.reindex(Webapp)
+        r = self.client.get(urlparams(reverse('search.search'), q='Basta'))
+        eq_(r.status_code, 200)
+        eq_(list(r.context['pager'].object_list), [self.webapp])
