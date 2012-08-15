@@ -22,7 +22,8 @@ z.capabilities = {
     'nativeScroll': (function() {
         return 'WebkitOverflowScrolling' in document.createElement('div').style;
     })(),
-    'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance)
+    'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
+    'navPay': !!navigator.mozPay
 };
 z.capabilities.getDeviceType = function() {
     return this.desktop ? 'desktop' : (this.tablet ? 'tablet' : 'mobile');

@@ -1,4 +1,6 @@
+import calendar
 import sys
+import time
 from urllib import urlencode
 import urlparse
 
@@ -8,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import commonware.log
 import jwt
 from moz_inapp_pay.verify import verify_claims, verify_keys
+import waffle
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
@@ -24,6 +27,25 @@ from .views import start_purchase
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
+
+
+def prepare_bluevia_pay(data):
+    # TODO(Kumar) once we agree on how to sign this JWT, we can move
+    # it to Solitude.
+    issued_at = calendar.timegm(time.gmtime())
+    purchase = {'iss': 'marketplaceID',  # placeholder
+                'typ': 'tu.com/payments/inapp/v1',
+                'iat': issued_at,
+                'exp': issued_at + 3600,  # expires in 1 hour
+                'request': {
+                    'name': data['app_name'],
+                    'description': data['app_description'],
+                    'price': data['amount'],
+                    'currencyCode': data['currency'],
+                    'postbackURL': data['postback_url'],
+                    'chargebackURL': data['chargeback_url'],
+                    'productData': data['product_data']}}
+    return jwt.encode(purchase, 'marketplaceSecret')  # placeholder
 
 
 @login_required
@@ -44,7 +66,7 @@ def prepare_pay(request, addon):
                                 paykey=None, user=request.amo_user,
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
-    data = {'amount': amount, 'currency': currency,
+    data = {'amount': str(amount), 'currency': currency,
             'app_name': unicode(addon.name),
             'app_description': unicode(addon.description),
             'postback_url': absolutify(reverse('bluevia.postback')),
@@ -52,10 +74,17 @@ def prepare_pay(request, addon):
             'seller': addon.pk,
             'product_data': urlencode({'contrib_uuid': uuid_,
                                        'addon_id': addon.pk}),
+            'typ': 'tu.com/payments/inapp/v1',
+            'aud': 'tu.com',
             'memo': contrib_for}
 
-    return {'bluevia_jwt': client.prepare_bluevia_pay(data),
-            'contrib_uuid': uuid_}
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        bluevia_jwt = client.prepare_bluevia_pay(data)
+    else:
+        bluevia_jwt = prepare_bluevia_pay(data)
+    return {'blueviaJWT': bluevia_jwt,
+            'contribStatusURL': reverse('bluevia.pay_status',
+                                        args=[addon.app_slug, uuid_])}
 
 
 @login_required
@@ -78,13 +107,24 @@ def pay_status(request, addon, contrib_uuid):
     return {'status': 'complete' if qs.exists() else 'incomplete'}
 
 
+def verify_bluevia_jwt(signed_jwt):
+    # TODO(Kumar) once we can agree on how this JWT is signed, we can update
+    # Solitude to verify it correctly.
+    jwt.decode(signed_jwt, 'marketplaceSecret')
+    return {'valid': True}  # simulate Solitude
+
+
 @csrf_exempt
 @write
 @post_required
 def postback(request):
     """Verify signature from BlueVia and set contribution to paid."""
     signed_jwt = request.raw_post_data
-    result = client.verify_bluevia_jwt(signed_jwt)
+    if waffle.flag_is_active(request, 'solitude-payments'):
+        result = client.verify_bluevia_jwt(signed_jwt)
+    else:
+        result = verify_bluevia_jwt(signed_jwt)
+
     if not result['valid']:
         ip = (request.META.get('HTTP_X_FORWARDED_FOR', '') or
               request.META.get('REMOTE_ADDR', ''))

@@ -40,6 +40,8 @@ def market_button(context, product, receipt_type=None):
         label = product.get_price()
         product_dict = product_as_dict(request, product, purchased=purchased,
                                        receipt_type=receipt_type)
+        product_dict['prepareNavPay'] = reverse('bluevia.prepare_pay',
+                                                args=[product.app_slug])
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
             'manifestUrl': product.manifest_url

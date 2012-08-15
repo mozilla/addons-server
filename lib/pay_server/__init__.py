@@ -98,6 +98,7 @@ class ZamboniClient(Client):
         if not obj['paypal_id']:
             client.patch_seller_paypal(pk=obj['resource_pk'],
                                        data={'paypal_id': addon.paypal_id})
+
         return obj['resource_pk']
 
     def make_uuid(self):
@@ -148,29 +149,6 @@ class ZamboniClient(Client):
         """
         Return a JWT for BlueVia's navigator.pay() to purchase an app on B2G.
         """
-        # TODO(Kumar) move all this to solitude because that's where
-        # the BlueVia developer credentials are stored. bug 777933.
-        #import json
-        #import calendar
-        #import time
-        #dev_secret = 'get this from the bluevia API'
-        #dev_id = 'get this from data[seller] in solitude'
-        #issued_at = calendar.timegm(time.gmtime())
-        #purchase = {'iss': dev_id,
-        #            'typ': 'tu.com/payments/inapp/v1',
-        #            'iat': issued_at,
-        #            'exp': issued_at + 3600,  # expires in 1 hour
-        #            'request': {
-        #                'name': data['app_name'],
-        #                'description': data['app_description'],
-        #                'price': str(data['amount']),
-        #                'currencyCode': data['currency'],
-        #                'postbackURL': data['postback_url'],
-        #                'chargebackURL': data['chargeback_url'],
-        #                'productData': 'contrib_uuid=%s'
-        #                               % data['contrib_uuid']}}
-        #import jwt
-        #return jwt.encode(purchase, dev_secret)
         return self.post_prepare_bluevia_pay(data=data)
 
     def verify_bluevia_jwt(self, bluevia_jwt):

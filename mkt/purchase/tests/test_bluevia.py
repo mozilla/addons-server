@@ -28,6 +28,7 @@ class TestPurchase(PurchaseTest):
         super(TestPurchase, self).setUp()
         self.prepare_pay = reverse('bluevia.prepare_pay',
                                    kwargs={'app_slug': self.addon.app_slug})
+        self.create_flag(name='solitude-payments')
 
     def _req(self, method, url):
         req = getattr(self.client, method)
@@ -43,12 +44,17 @@ class TestPurchase(PurchaseTest):
         return self._req('post', url, **kw)
 
     @fudge.patch('lib.pay_server.base.requests.post')
-    def test_prepare_pay(self, api_post):
+    @fudge.patch('lib.pay_server.client.create_seller_paypal')  # TODO(Kumar)
+    def test_prepare_pay(self, api_post, create_seller):
+        create_seller.is_callable().returns({'paypal_id': 123,
+                                             'resource_pk': 321})
 
         def good_data(da):
             da = json.loads(da)
             # TODO(Kumar) fix this when we have default currencies (bug 777747)
             eq_(da['currency'], 'USD')
+            eq_(da['typ'], 'tu.com/payments/inapp/v1')
+            eq_(da['aud'], 'tu.com')
             eq_(da['amount'], str(self.price.price))
             eq_(da['app_name'], unicode(self.addon.name))
             eq_(da['app_description'], unicode(self.addon.description))
@@ -70,11 +76,11 @@ class TestPurchase(PurchaseTest):
                  .returns(Mock(text=json.dumps(bluevia_jwt),
                                status_code=200)))
         data = self.post(self.prepare_pay)
-        cn = Contribution.objects.get(uuid=data['contrib_uuid'])
+        cn = Contribution.objects.get()
         eq_(cn.type, amo.CONTRIB_PENDING)
         eq_(cn.user, self.user)
         eq_(cn.price_tier, self.price)
-        eq_(data['bluevia_jwt'], bluevia_jwt)
+        eq_(data['blueviaJWT'], bluevia_jwt)
 
     def test_require_login(self):
         self.client.logout()
@@ -132,6 +138,7 @@ class TestPostback(PurchaseTest):
                                         user=self.user)
         self.bluevia_dev_id = '<stored in solitude>'
         self.bluevia_dev_secret = '<stored in solitude>'
+        self.create_flag(name='solitude-payments')
 
     def post(self, req=None):
         if not req:

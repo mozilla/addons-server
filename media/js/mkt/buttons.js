@@ -76,8 +76,10 @@
         // TODO: We should remove this eventually.
         console.log('Error code:', msg);
 
-        // From the old apps.js
         switch (msg) {
+            // mozApps error codes, defined in
+            // https://developer.mozilla.org/en-US/docs/Apps/Apps_JavaScript_API/Error_object
+            case 'MKT_CANCELLED':
             case 'DENIED':
                 msg = 'cancelled';
                 break;
@@ -92,6 +94,13 @@
                 break;
             case 'INVALID_MANIFEST':
                 errSummary = gettext('App manifest is invalid.');
+                break;
+            // Marketplace specific error codes.
+            case 'MKT_SERVER_ERROR':
+                errSummary = gettext('Internal server error.');
+                break;
+            case 'MKT_INSTALL_ERROR':
+                errSummary = gettext('Internal server error on app installation.');
                 break;
             default:
                 errSummary = gettext('Unknown error.');

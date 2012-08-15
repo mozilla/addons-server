@@ -12,10 +12,72 @@
             'src': z.getVars().src,
             'device_type': z.capabilities.getDeviceType()
         },
-        oneTimePayClicked = false;
+        oneTimePayClicked = false,
+        simulateNavPay = $('body').data('simulate-nav-pay');
 
     if (z.capabilities.chromeless) {
         data.chromeless = 1;
+    }
+
+    var _giveUp;
+    var _abortCheck = false;
+
+    function waitForPayment($def, product, blueviaJWT, contribStatusURL) {
+        if (_abortCheck) {
+            return;
+        }
+        var selfArgs = arguments;
+        var nextCheck = window.setTimeout(function() {
+            waitForPayment.apply(this, selfArgs);
+        }, 2000);
+        if (!_giveUp) {
+            _giveUp = window.setTimeout(function() {
+                _abortCheck = true;
+                $def.reject(product, 'MKT_INSTALL_ERROR');
+            }, 60000);
+        }
+        $.get(contribStatusURL)
+            .done(function(result) {
+                if (result.status == 'complete') {
+                    window.clearTimeout(nextCheck);
+                    window.clearTimeout(_giveUp);
+                    $def.resolve(product);
+                }
+            })
+            .fail(function() {
+                $def.reject(product, 'MKT_SERVER_ERROR');
+            });
+    }
+
+    if (simulateNavPay && !z.capabilities.navPay) {
+        navigator.mozPay = function(jwts) {
+            var request = {
+                onsuccess: function() {
+                    console.warning('handler did not define request.onsuccess');
+                },
+                onerror: function() {
+                    console.warning('handler did not define request.onerror');
+                }
+            };
+            console.log('STUB navigator.mozPay received', jwts);
+            console.log('calling onsuccess() in 3 seconds...');
+            window.setTimeout(function() {
+                console.log('calling onsuccess()');
+                request.onsuccess();
+            }, 3000);
+            return request;
+        }
+        console.log('stubbed out navigator.mozPay()');
+    }
+
+    function callNavPay($def, product, blueviaJWT, contribStatusURL) {
+        var request = navigator.mozPay([blueviaJWT]);
+        request.onsuccess = function() {
+            waitForPayment($def, product, blueviaJWT, contribStatusURL);
+        }
+        request.onerror = function() {
+            $def.reject(product, 'MKT_CANCELLED');
+        }
     }
 
     function beginPurchase(prod) {
@@ -27,6 +89,17 @@
         $def = $.Deferred();
         product = prod;
         oneTimePayClicked = false;
+
+        if (z.capabilities.navPay || simulateNavPay) {
+            $.post(product.prepareNavPay, {})
+                .fail(function() {
+                    $def.reject(product, 'MKT_SERVER_ERROR');
+                })
+                .done(function(result) {
+                    callNavPay($def, product, result.blueviaJWT, result.contribStatusURL);
+                });
+            return $def.promise();
+        }
 
         // If the user is pre-authed or the app has zero price, just call
         // the purchase method right away.

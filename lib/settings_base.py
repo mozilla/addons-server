@@ -40,8 +40,8 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # need to view JS errors on a remote device? (requires node)
 # > npm install now
 # > node media/js/debug/remote_debug_server.node.js
-# REMOTE_JS_DEBUG = '<yourhost>:37767'
-# then connect to <yourhost>:8080 to view
+# REMOTE_JS_DEBUG = 'localhost:37767'
+# then connect to http://localhost:8080/ to view
 REMOTE_JS_DEBUG = False
 
 # LESS CSS OPTIONS (Debug only)
@@ -1476,3 +1476,7 @@ SECLUSION_SECRET = ''
 # The timeout we'll give seclusion. Since this often involves calling Paypal or
 # other servers, we are including that in this.
 SECLUSION_TIMEOUT = 10
+
+# Temporary flag to work with navigator.mozPay() on devices that don't
+# support it natively.
+SIMULATE_NAV_PAY = False
