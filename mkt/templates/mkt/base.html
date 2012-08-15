@@ -109,11 +109,10 @@
           <div class="new">
             <h2>{{ _('Please sign in') }}</h2>
             <p>
-              {# TODO(copy): Localize when BrowserID is called Persona. #}
-              {% with personaid_url='https://browserid.org/' %}
+              {% trans url='https://persona.org/' %}
                 Just log in or register with your
-                <a href="{{ personaid_url }}">BrowserID</a> account below.
-              {% endwith %}
+                <a href="{{ url }}">Persona</a> account below.
+              {% endtrans %}
             </p>
             <footer>
               <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
@@ -182,7 +181,7 @@
       {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
       {% if not logged %}
         {# We need Persona for only non-authenticated users. #}
-        <script async defer src="https://browserid.org/include.js"></script>
+        <script async defer src="https://login.persona.org/include.js"></script>
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
       {{ js('mkt/consumer') }}

@@ -38,22 +38,21 @@
 
       <div class="simple-field c">
         <div class="form-label">
-          {{ _('BrowserID Email') }}
+          {{ _('Persona Email') }}
         </div>
         <div class="form-col">
           <input type="text" readonly id="email" value="{{ amouser.email }}">
-          <a href="https://browserid.org/signin" target="_blank">
+          <a href="https://login.persona.org/signin" target="_blank">
             {{ _('Manage Account') }}</a>
         </div>
       </div>
 
       <div class="simple-field c">
         <div class="form-label">
-          {{ _('BrowserID Password') }}
+          {{ _('Persona Password') }}
         </div>
         <div class="form-col">
-          <input type="text" disabled id="fake-password" value="•••••">
-          <a href="https://browserid.org/signin" target="_blank">
+          <a href="https://login.persona.org/signin" target="_blank">
             {{ _('Change Password') }}</a>
         </div>
       </div>

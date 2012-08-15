@@ -230,7 +230,7 @@ form {
     }
     .form-label {
         padding: 5px 0;
-        font-weight: bold;
+        font-weight: 400;
         min-height: 1px;
         width: 25%;
     }
@@ -242,14 +242,19 @@ form {
         }
     }
     .form-col p,
-    input + a {
+    input + a,
+    .form-col a:only-child {
         color: @medium-gray;
     }
     .form-col p,
     input + a,
+    .form-col a:only-child,
     .errorlist {
         font-size: 11px;
         line-height: 13px;
+    }
+    .form-col a:only-child {
+        line-height: 28px;
     }
     .form-footer {
         border-top: 1px solid @light-gray;
