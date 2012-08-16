@@ -192,7 +192,6 @@ def mock_es(f):
 
 
 ES_patchers = [mock.patch('elasticutils.get_es', spec=True),
-               mock.patch('amo.search.ES', spec=True),
                mock.patch('elasticutils.contrib.django', spec=True)]
 
 
