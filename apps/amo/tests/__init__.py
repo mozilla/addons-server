@@ -192,6 +192,7 @@ def mock_es(f):
 
 
 ES_patchers = [mock.patch('elasticutils.get_es', spec=True),
+               mock.patch('amo.search.ES', spec=True),
                mock.patch('elasticutils.contrib.django', spec=True)]
 
 
@@ -202,9 +203,9 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestCase, cls).setUpClass()
         if cls.mock_es:
             [p.start() for p in ES_patchers]
+        super(TestCase, cls).setUpClass()
 
     @classmethod
     def tearDownClass(cls):
