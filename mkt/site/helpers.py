@@ -136,8 +136,10 @@ def market_tile(context, product, link=True, src=''):
     request = context['request']
     if product.is_webapp():
         classes = ['product', 'mkt-tile']
-        product_dict = product_as_dict(request, product, purchased=purchased,
-                               receipt_type=receipt_type)
+        purchased = (request.amo_user and
+                     product.pk in request.amo_user.purchase_ids())
+
+        product_dict = product_as_dict(request, product, purchased=purchased)
         product_dict['prepareNavPay'] = reverse('bluevia.prepare_pay',
                                                 args=[product.app_slug])
 
