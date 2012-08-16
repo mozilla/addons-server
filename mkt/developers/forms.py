@@ -313,6 +313,7 @@ class AdminSettingsForm(PreviewForm):
                 rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
                 rs.append(ALL_RATINGS.index(rating))
             self.initial['app_ratings'] = rs
+            self.initial['flash'] = addon.uses_flash
 
     def clean_caption(self):
         return '__promo__'
