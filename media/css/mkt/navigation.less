@@ -6,16 +6,12 @@ body {
     }
     &[data-page-type='search'] {
         .header-button {
-            &.home {
+            &.home, &.expand, &.filter {
                 display: block;
             }
-            // TODO: Temporary - this is the wrong expand trigger.
-            &.expand {
-                display: block;
-                text-indent: 0;
-                color: #fff;
-            }
-
+        }
+        #search {
+            display: block;
         }
     }
     &[data-page-type='leaf'] {
