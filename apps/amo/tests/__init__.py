@@ -209,9 +209,11 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        super(TestCase, cls).tearDownClass()
-        if cls.mock_es:
-            [p.stop() for p in ES_patchers]
+        try:
+            super(TestCase, cls).tearDownClass()
+        finally:
+            if cls.mock_es:
+                [p.stop() for p in ES_patchers]
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
