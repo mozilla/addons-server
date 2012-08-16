@@ -74,6 +74,7 @@ INSTALLED_APPS += (
     'mkt.home',
     'mkt.inapp_pay',
     'mkt.lookup',
+    'mkt.offline',
     'mkt.purchase',
     'mkt.ratings',
     'mkt.receipts',
