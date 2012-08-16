@@ -27,7 +27,7 @@ ENGAGE_ROBOTS = True
 
 # NOTE: If you want to disable this, you have to do it in this file right here
 # since we do a lot of conditional stuff below.
-REGION_STORES = True
+REGION_STORES = False
 
 # Support carrier URLs that prefix all other URLs, such as /telefonica/.
 # NOTE: To set this to False, you need to do so in this file or copy over
