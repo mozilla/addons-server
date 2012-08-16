@@ -1,6 +1,8 @@
 from jingo import env, register
 import jinja2
 
+from access import acl
+
 
 @register.filter
 @jinja2.contextfilter
@@ -23,6 +25,9 @@ def user_header(account, title, is_admin=False, page_type=''):
 
 # page_type is used for setting the link 'sel' class
 @register.function
-def app_header(app, page_type=''):
+@jinja2.contextfunction
+def app_header(context, app, page_type=''):
     t = env.get_template('lookup/helpers/app_header.html')
-    return jinja2.Markup(t.render(app=app, page_type=page_type))
+    is_admin = acl.action_allowed(context['request'], 'Users', 'Edit')
+    return jinja2.Markup(t.render(app=app, page_type=page_type,
+                                  is_admin=is_admin))
