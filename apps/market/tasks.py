@@ -5,7 +5,7 @@ import time
 from django.conf import settings
 from django.core.cache import cache
 
-from tower import ungettext as _
+from tower import ugettext as _
 
 from addons.models import Addon
 import amo
