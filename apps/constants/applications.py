@@ -27,6 +27,13 @@ class FIREFOX(App):
     user_agent_string = 'Firefox'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
+    @classmethod
+    def matches_user_agent(cls, user_agent):
+        matches = cls.user_agent_string in user_agent
+        if 'Android' in user_agent or 'Mobile' in user_agent:
+            matches = False
+        return matches
+
 
 class THUNDERBIRD(App):
     id = 18
@@ -102,15 +109,18 @@ class ANDROID(App):
     user_agent_string = 'Fennec'
     # Mobile and Android have the same user agent. The only way to distinguish
     # is by the version number.
-    user_agent_re = re.compile('Fennec/([\d.]+)')
+    user_agent_re = [re.compile('Fennec/([\d.]+)'),
+                     re.compile('Android; Mobile; rv:([\d.]+)')]
     platforms = 'mobile'
     latest_version = None
 
     @classmethod
     def matches_user_agent(cls, user_agent):
-        match = cls.user_agent_re.search(user_agent)
-        if match:
-            return vint(cls.min_display_version) <= vint(match.groups()[0])
+        for user_agent_re in cls.user_agent_re:
+            match = user_agent_re.search(user_agent)
+            if match:
+                v = match.groups()[0]
+                return vint(cls.min_display_version) <= vint(v)
 
 
 class MOZILLA(App):
@@ -160,7 +170,7 @@ DEVICE_TYPES = {
 }
 
 
-# UAs will attempt to match in this order
+# UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
 APPS = dict((app.short, app) for app in _apps)
