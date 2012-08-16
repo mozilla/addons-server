@@ -4,13 +4,7 @@
 Marketplace API
 ======================
 
-Before you go any further *please note the following*:
-
-* This is currently a document in progress, prior to the API's being written so
-  don't expect this to work. Formal API documentation will go on to `MDN`_ when
-  it's ready.
-* There is a seperate AMO set of APIs. You can find documentation of those on
-  `AMO api on MDN`_.
+This API is for Apps. There is a seperate set of APIs for Add-ons. You can find documentation of those on `MDN`_.
 
 Overall notes
 -------------
