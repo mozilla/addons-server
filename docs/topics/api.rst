@@ -4,7 +4,7 @@
 Marketplace API
 ======================
 
-This API is for Apps. There is a seperate set of APIs for Add-ons. You can find documentation of those on `MDN`_.
+This API is for Apps. There is a seperate set of `APIs for Add-ons`_.
 
 Overall notes
 -------------
@@ -393,6 +393,6 @@ Example, to specify a category sorted by rating::
 .. _`MDN`: https://developer.mozilla.org
 .. _`marketplace team`: marketplace-team@mozilla.org
 .. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
-.. _`AMO api on MDN`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
+.. _`APIs for Add-ons`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
 .. _`example marketplace client`: https://github.com/mozilla/MarketplaceClientExample
 .. _`terms`: https://marketplace.mozilla.org/developers/terms
