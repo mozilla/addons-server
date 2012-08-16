@@ -3,6 +3,7 @@ from django.db import models
 import amo
 from apps.addons.models import Addon
 from apps.editors.models import CannedResponse, EscalationQueue
+from users.models import UserForeignKey
 
 
 class AppCannedResponseManager(amo.models.ManagerBase):
@@ -32,6 +33,15 @@ class RereviewQueue(amo.models.ModelBase):
                     details={'comments': message})
         else:
             amo.log(event, addon, addon.current_version)
+
+
+class ThemeLock(amo.models.ModelBase):
+    theme = models.OneToOneField('addons.Persona')
+    reviewer = UserForeignKey()
+    expiry = models.DateTimeField()
+
+    class Meta:
+        db_table = 'theme_locks'
 
 
 def cleanup_queues(sender, instance, **kwargs):

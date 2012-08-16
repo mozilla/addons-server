@@ -1,0 +1,83 @@
+{% extends "reviewers/base.html" %}
+
+{% set title_text = _('Theme Review Queue') %}
+
+{% block title %}
+  {{ editor_page_title(title_text) }}
+{% endblock %}
+
+{% block log_url %}
+    {{ url('reviewers.themes.logs') }}
+{% endblock %}
+
+{% block content %}
+
+{{ reviewers_breadcrumbs(queue='themes') }}
+
+<h1>{% block page_header %}{{ title_text }}{% endblock %}</h1>
+
+<span id="action-constants" data-actions="{{ actions }}"></span>
+
+<div class="sidebar"><div {% block fixed_sidebar %}class="sidebar-fixed"{% endblock %}>
+  {% block queue_options %}
+    <form class="box options">
+      <h2>{{ _('Review Options') }}</h2>
+      <fieldset>
+        <div class="option">
+          <label for="rq-advance">
+            <input type="checkbox" id="rq-advance" value="advance" checked>
+            {{ _('Auto-advance after review') }}
+          </label>
+        </div>
+        <div class="option">
+          <label for="rq-shortcuts">
+            <input type="checkbox" id="rq-shortcuts" value="shortcuts" checked>
+            {{ _('Enable keyboard shortcuts') }}
+          </label>
+        </div>
+      </fieldset>
+    </form>
+  {% endblock %}
+
+  {% if reviewable %}
+    <div class="box shortcuts">
+      <h2>{{ _('Keyboard Shortcuts') }}</h2>
+      <ul>
+        {% block multi_theme_nav_shortcuts %}
+          <li><strong>J</strong> <span>{{ _('Next Theme') }}</span></li>
+          <li><strong>K</strong> <span>{{ _('Previous Theme') }}</span></li>
+        {% endblock %}
+        <li><strong>A</strong> <span>{{ _('Approve') }}</span></li>
+        <li><strong>R</strong> <span>{{ _('Reject') }}</span></li>
+        <li><strong>D</strong> <span>{{ _('Duplicate') }}</span></li>
+        <li><strong>F</strong> <span>{{ _('Flag') }}</span></li>
+        <li><strong>M</strong> <span>{{ _('Request More Info') }}</span></li>
+      </ul>
+    </div>
+  {% endif %}
+
+  <div><a class="button review-history" href="{{ url('reviewers.themes.history') }}">{{ _('Your Review History') }}</a></div>
+
+  {% if reviewable %}
+    <button id="commit" type="submit">{{ _('Commit Reviews') }}</button>
+    <button id="more" type="submit">{{ _('Load More') }}</button>
+    <div id="queue-details">
+       {{ _('{0} out of {1} reviewed').format('<span id="reviewed-count">0</span>'|safe,
+                                              '<span id="total">%d</span>'|safe % theme_count) }}
+    </div>
+  {% endif %}
+</div></div>
+
+<div class="theme-queue details single" data-max-locks="{{ max_locks }}" data-more-url="{{ more_url }}">
+  {% if not theme_count %}
+    <strong>{{ _('There are currently no Themes to review.') }}</strong>
+  {% endif %}
+
+  <form id="theme-queue-form" action="{{ url('reviewers.themes.commit') }}" method="post">
+    {{ csrf() }}
+    {{ formset.management_form }}
+    {% include 'reviewers/themes/themes.html' %}
+  </form>
+  {% block review_history %}{% endblock %}
+</div>
+{% endblock %}

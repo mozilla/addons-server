@@ -1,0 +1,13 @@
+{% extends "reviewers/themes/queue.html" %}
+
+{% set title_text_child = _('Theme Review History for {0}')|f(username) %}
+
+{% block title %}
+  {{ editor_page_title(title_text_child) }}
+{% endblock %}
+
+{% block content %}
+  {{ reviewers_breadcrumbs(items=[(None, _('Theme Review Log'))]) }}
+  <h1>{{ title_text_child }}</h1>
+  {% include "reviewers/themes/history_table.html" %}
+{% endblock %}

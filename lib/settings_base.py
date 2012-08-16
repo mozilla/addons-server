@@ -798,7 +798,11 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
-            'js/lib/highcharts.src.js'
+            'js/lib/highcharts.src.js',
+            'js/impala/formset.js',
+            'js/lib/jquery.hoverIntent.js',
+            'js/lib/jquery.zoomBox.js',
+            'js/mkt/themes_review.js',
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',

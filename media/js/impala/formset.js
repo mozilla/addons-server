@@ -3,7 +3,7 @@ function updateTotalForms(prefix, inc) {
         $maxForms = $('#id_' + prefix + '-MAX_NUM_FORMS'),
         inc = inc || 1,
         num = parseInt($totalForms.val(), 10) + inc;
-    if ($maxForms.length) {
+    if ($maxForms.length && $maxForms.val().length) {
         var maxNum = parseInt($maxForms.val(), 10);
         if (num > maxNum) {
             return num - 1;

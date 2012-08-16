@@ -1,0 +1,96 @@
+{% from 'includes/forms.html' import required %}
+
+{% for theme, form in theme_formsets %}
+  <div class="theme" data-id="{{ loop.index0 + (initial_count or 0) }}">
+    {{ form }}
+    <h3><a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a></h3>
+    <div class="status"></div>
+    <dl class="meta">
+      <dt>{{ _('Artist') }}</dt><dd>{{ theme.author }}</dd>
+      <dt>{{ _('Categories') }}</dt>
+          <dd>
+          {% for category in theme.addon.categories.all() %}
+            <a href="{{ url('themes.browse', category.slug) }}">{{ category.name }}</a>{{ ', ' if not loop.last }}
+          {% endfor %}
+          </dd>
+      </dt>
+      <dt>{{ _('Submitted') }}</dt><dd>{{ theme.addon.created|datetime('%Y-%m-%d') }}</dd>
+    </dl>
+    <dl class="meta">
+      <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
+    </dl>
+
+    <div class="preview">
+      <img src="{{ theme.header_url }}" width="1250" height="100">
+    </div>
+    <div class="header zoombox">
+      <img src="{{ theme.header_url }}" width="2500" height="200">
+    </div>
+    <div class="footer zoombox">
+      <img src="{{ theme.footer_url }}" width="2500" height="100">
+    </div>
+
+    {% if theme.addon.description %}
+      <div class="desc"><strong>{{ _('Description') }}: </strong>{{ theme.addon.description }}</div>
+    {% endif %}
+
+    {% if reviewable %}
+      <div class="choices">
+        <div class="group">
+          <button class="moreinfo">{{ _('Request More Info') }} &#9662;</button>
+        </div>
+        <div class="group">
+          <button class="flag">{{ _('Flag') }} &#9662;</button>
+          <button class="duplicate">{{ _('Duplicate') }} &#9662;</button>
+          <button class="reject">{{ _('Reject') }} &#9662;</button>
+        </div>
+        <div class="group">
+          <button class="approve">{{ _('Approve') }}</button>
+        </div>
+      </div>
+
+      <div class="c"></div>
+
+      {% macro required_styled() -%}
+        <strong class="error-required">{{ required() }} {{ _('Field required') }}</strong>
+      {%- endmacro %}
+
+      <div class="duplicate-dropdown rq-dropdown">
+        <label>{{ _('Enter the ID or URL of the duplicate') }}:</label>
+        <textarea></textarea>
+        {{ required_styled() }}
+        <button>{{ _('Continue') }}</button>
+      </div>
+      <div class="reject-reason-dropdown rq-dropdown">
+        <label>{{ _('Select a reason for rejection') }}:</label>
+        <ul>
+          {% for reject_id, val in reject_reasons %}
+            <li class="reject_reason" data-id="{{ reject_id }}">
+              <strong>{{ reject_id }}</strong>
+              <span>{{ val }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="reject-reason-detail-dropdown rq-dropdown">
+        <label>{{ _('Describe your reason for rejection') }}:</label>
+        <textarea></textarea>
+        {{ required_styled() }}
+        <button>{{ _('Continue') }}</button>
+      </div>
+      <div class="moreinfo-dropdown rq-dropdown">
+        <label>{{ _('Ask a question to the artist') }}:</label>
+        <textarea></textarea>
+        {{ required_styled() }}
+        <button>{{ _('Continue') }}</button>
+      </div>
+      <div class="flag-dropdown rq-dropdown">
+        <label>{{ _('Describe your reason for flagging') }}:</label>
+        <textarea></textarea>
+        {{ required_styled() }}
+        <button>{{ _('Continue') }}</button>
+      </div>
+    {% endif %}
+
+  </div>
+{% endfor %}

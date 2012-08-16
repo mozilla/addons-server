@@ -30,5 +30,17 @@ urlpatterns = (
     url(r'^queue_viewing$', queue_viewing, name='editors.queue_viewing'),
     url(r'^review_viewing$', review_viewing, name='editors.review_viewing'),
 
+    url('^themes/queue/$', views.themes_queue,
+        name='reviewers.themes.queue_themes'),
+    url('^themes/queue/commit$', views.themes_commit,
+        name='reviewers.themes.commit'),
+    url('^themes/queue/more$', views.themes_more,
+        name='reviewers.themes.more'),
+    url('^themes/queue/single/(?P<slug>[^ /]+)$', views.themes_single,
+        name='reviewers.themes.single'),
+    url('^themes/history/(?P<username>[^ /]+)?$',
+        views.themes_history, name='reviewers.themes.history'),
+    url(r'^themes/logs$', views.themes_logs, name='reviewers.themes.logs'),
+
     url(r'^receipt/', include(receipt_patterns))
 )

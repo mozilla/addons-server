@@ -5,26 +5,30 @@ import sys
 import traceback
 
 from django.conf import settings
+from django.forms.formsets import formset_factory
 from django.db.models import Q
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.datastructures import MultiValueDictKeyError
 
 import jingo
 from tower import ugettext as _
 import requests
+from waffle.decorators import waffle_switch
 
 import amo
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
-from addons.models import Version
+from addons.models import Persona, Version
 from amo import messages
-from amo.decorators import json_view, permission_required
+from amo.decorators import json_view, permission_required, post_required
 from amo.urlresolvers import reverse
 from amo.utils import escape_all, JSONEncoder, smart_decode, paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
 from files.models import File
+import mkt.constants.reviewers as rvw
 from mkt.developers.models import ActivityLog
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
@@ -32,7 +36,7 @@ from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from zadmin.models import get_config, set_config
 from . import forms
-from .models import AppCannedResponse, RereviewQueue
+from .models import AppCannedResponse, ThemeLock, RereviewQueue
 
 
 QUEUE_PER_PAGE = 100
@@ -89,6 +93,9 @@ def queue_counts():
                                             reviewflag__isnull=False,
                                             editorreview=True)
                                     .count(),
+        'themes': Persona.objects.no_cache()
+                                 .filter(addon__status=amo.STATUS_PENDING)
+                                 .count(),
     }
     rv = {}
     if isinstance(type, basestring):
@@ -335,7 +342,7 @@ def logs(request):
                     Q(user__display_name__icontains=term) |
                     Q(user__username__icontains=term)).distinct()
 
-    pager = amo.utils.paginate(request, approvals, 50)
+    pager = paginate(request, approvals, 50)
     data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID)
     return jingo.render(request, 'reviewers/logs.html', data)
 
@@ -379,6 +386,265 @@ def app_view_manifest(request, addon):
 def app_abuse(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
-    reports = amo.utils.paginate(request, reports, count=total)
+    reports = paginate(request, reports, count=total)
     return jingo.render(request, 'reviewers/abuse.html',
                         context(addon=addon, reports=reports, total=total))
+
+
+@waffle_switch('mkt-themes')
+@reviewer_required('persona')
+def themes_queue(request):
+    reviewer = request.amo_user
+    theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
+    theme_locks_count = theme_locks.count()
+
+    if theme_locks_count < rvw.THEME_INITIAL_LOCKS:
+        themes = get_themes(reviewer,
+            rvw.THEME_INITIAL_LOCKS - theme_locks_count)
+    else:
+        # Update the expiry on currently checked-out themes.
+        theme_locks.update(expiry=get_updated_expiry())
+    # Combine currently checked-out themes with newly checked-out ones by
+    # re-evaluating theme_locks.
+    themes = [theme_lock.theme for theme_lock in theme_locks]
+
+    ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
+    formset = ThemeReviewFormset(
+        initial=[{'theme': theme.id} for theme in themes])
+
+    # By default, redirect back to the queue after a commit.
+    request.session['theme_redirect_url'] = reverse('reviewers.themes.'
+                                                    'queue_themes')
+
+    return jingo.render(request, 'reviewers/themes/queue.html', context(
+    **{
+        'formset': formset,
+        'theme_formsets': zip(themes, formset),
+        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+        'theme_count': len(themes),
+        'max_locks': rvw.THEME_MAX_LOCKS,
+        'more_url': reverse('reviewers.themes.more'),
+        'actions': rvw.REVIEW_ACTIONS,
+        'reviewable': True,
+        'queue_counts': queue_counts(),
+        'actions': get_actions_json(),
+    }))
+
+
+def get_themes(reviewer, num):
+    # Check out themes from the pool if none or not enough checked out.
+    themes = Persona.objects.no_cache().filter(
+        addon__status=amo.STATUS_PENDING, themelock=None)[:num]
+
+    # Set a lock on the checked-out themes
+    expiry = get_updated_expiry()
+    for theme in list(themes):
+        ThemeLock.objects.create(theme=theme, reviewer=reviewer,
+                                 expiry=expiry)
+
+    # Empty pool? Go look for some expired locks.
+    if not themes:
+        expired_locks = (ThemeLock.objects
+            .filter(expiry__lte=datetime.datetime.now())
+            [:rvw.THEME_INITIAL_LOCKS])
+        # Steal expired locks.
+        for theme_lock in expired_locks:
+            theme_lock.reviewer = reviewer
+            theme_lock.expiry = expiry
+            theme_lock.save()
+            themes = [theme_lock.theme for theme_lock
+                      in expired_locks]
+    return themes
+
+
+@waffle_switch('mkt-themes')
+@post_required
+@reviewer_required('persona')
+def themes_commit(request):
+    reviewer = request.amo_user
+    ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
+    formset = ThemeReviewFormset(request.POST)
+
+    for form in formset:
+        try:
+            theme_lock = ThemeLock.objects.filter(
+                theme_id=form.data[form.prefix + '-theme'],
+                reviewer=reviewer)
+        except MultiValueDictKeyError:
+            # Address off-by-one error caused by management form.
+            continue
+        if theme_lock and form.is_valid():
+            form.save()
+
+    if 'theme_redirect_url' in request.session:
+        return redirect(request.session['theme_redirect_url'])
+    else:
+        return redirect(reverse('reviewers.themes.queue_themes'))
+
+
+@json_view
+@reviewer_required('persona')
+def themes_more(request):
+    reviewer = request.amo_user
+    theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
+    theme_locks_count = theme_locks.count()
+
+    # Maximum number of locks.
+    if theme_locks_count >= rvw.THEME_MAX_LOCKS:
+        return {
+            'themes': [],
+            'message': _('You have reached the maximum number of Themes to '
+                         'review at once. Please commit your outstanding '
+                         'reviews.')}
+
+    # Logic to not take over than the max number of locks. If the next checkout
+    # round would cause the reviewer to go over the max, ask for fewer themes
+    # from get_themes.
+    if theme_locks_count > rvw.THEME_MAX_LOCKS - rvw.THEME_INITIAL_LOCKS:
+        wanted_locks = rvw.THEME_MAX_LOCKS - theme_locks_count
+    else:
+        wanted_locks = rvw.THEME_INITIAL_LOCKS
+    themes = get_themes(reviewer, wanted_locks)
+
+    # Create forms, which will need to be manipulated to fit with the currently
+    # existing forms.
+    ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
+    formset = ThemeReviewFormset(
+        initial=[{'theme': theme.id} for theme in themes])
+
+    html = jingo.render(request, 'reviewers/themes/themes.html', {
+        'theme_formsets': zip(themes, formset),
+        'max_locks': rvw.THEME_MAX_LOCKS,
+        'reviewable': True,
+        'initial_count': theme_locks_count
+    }).content
+
+    return {'html': html,
+            'count': ThemeLock.objects.filter(reviewer=reviewer).count()}
+
+
+@waffle_switch('mkt-themes')
+@reviewer_required('persona')
+def themes_single(request, slug):
+    """
+    Like a detail page, manually review a single theme if it is pending
+    and isn't locked.
+    """
+    reviewer = request.amo_user
+    reviewable = True
+
+    # Don't review an already reviewed theme.
+    theme = get_object_or_404(Persona, addon__slug=slug)
+    if theme.addon.status != amo.STATUS_PENDING:
+        reviewable = False
+
+    # Don't review a locked theme (that's not locked to self).
+    try:
+        theme_lock = theme.themelock
+        if (theme_lock.reviewer.id != reviewer.id and
+            theme_lock.expiry > datetime.datetime.now()):
+            reviewable = False
+        elif (theme_lock.reviewer.id != reviewer.id and
+             theme_lock.expiry < datetime.datetime.now()):
+            # Steal expired lock.
+            theme_lock.reviewer = reviewer,
+            theme_lock.expiry = get_updated_expiry()
+            theme_lock.save()
+        else:
+            # Update expiry.
+            theme_lock.expiry = get_updated_expiry()
+            theme_lock.save()
+    except ThemeLock.DoesNotExist:
+        # Create lock if not created.
+        ThemeLock.objects.create(theme=theme, reviewer=reviewer,
+                                 expiry=get_updated_expiry())
+
+    ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
+    formset = ThemeReviewFormset(initial=[{'theme': theme.id}])
+
+    # Since we started the review on the single page, we want to return to the
+    # single page rather than get shot back to the queue.
+    request.session['theme_redirect_url'] = reverse('reviewers.themes.single',
+        args=[theme.addon.slug])
+
+    return jingo.render(request, 'reviewers/themes/single.html', context(
+    **{
+        'formset': formset,
+        'theme': theme,
+        'theme_formsets': zip([theme], formset),
+        'theme_reviews': paginate(request, ActivityLog.objects.filter(
+            action=amo.LOG.THEME_REVIEW.id,
+            _arguments__contains=theme.addon.id)),
+        'max_locks': 0,  # Setting this to 0 makes sure more Themes aren't
+                         # loaded from more().
+        'actions': get_actions_json(),
+        'theme_count': 1,
+        'reviewable': reviewable,
+        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+        'action_dict': rvw.REVIEW_ACTIONS,
+    }))
+
+
+@waffle_switch('mkt-themes')
+@reviewer_required('persona')
+def themes_logs(request):
+    data = request.GET.copy()
+
+    if not data.get('start') and not data.get('end'):
+        today = datetime.date.today()
+        data['start'] = datetime.date(today.year, today.month, 1)
+
+    form = forms.ReviewAppLogForm(data)
+
+    theme_logs = ActivityLog.objects.filter(
+        action=amo.LOG.THEME_REVIEW.id)
+
+    if form.is_valid():
+        data = form.cleaned_data
+        if data.get('start'):
+            theme_logs = theme_logs.filter(created__gte=data['start'])
+        if data.get('end'):
+            theme_logs = theme_logs.filter(created__lt=data['end'])
+        if data.get('search'):
+            term = data['search']
+            theme_logs = theme_logs.filter(
+                    Q(_details__icontains=term) |
+                    Q(user__display_name__icontains=term) |
+                    Q(user__username__icontains=term)).distinct()
+
+    pager = paginate(request, theme_logs, 30)
+    data = context(form=form, pager=pager, ACTION_DICT=rvw.REVIEW_ACTIONS)
+    return jingo.render(request, 'reviewers/themes/logs.html', data)
+
+
+@waffle_switch('mkt-themes')
+@reviewer_required('persona')
+def themes_history(request, username):
+    if not username:
+        username = request.amo_user.username
+
+    return jingo.render(request, 'reviewers/themes/history.html', context(
+    **{
+        'theme_reviews': paginate(request, ActivityLog.objects.filter(
+                                    action=amo.LOG.THEME_REVIEW.id,
+                                    user__username=username), 20),
+        'user_history': True,
+        'username': username,
+        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+        'action_dict': rvw.REVIEW_ACTIONS,
+    }))
+
+
+def get_actions_json():
+    return json.dumps({
+        'moreinfo': rvw.ACTION_MOREINFO,
+        'flag': rvw.ACTION_FLAG,
+        'duplicate': rvw.ACTION_DUPLICATE,
+        'reject': rvw.ACTION_REJECT,
+        'approve': rvw.ACTION_APPROVE,
+    })
+
+
+def get_updated_expiry():
+    return (datetime.datetime.now() +
+            datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))

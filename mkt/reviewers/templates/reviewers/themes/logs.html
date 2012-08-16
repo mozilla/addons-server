@@ -1,13 +1,17 @@
 {% extends "reviewers/base.html" %}
 
 {% block breadcrumbs %}
-  {{ reviewers_breadcrumbs(items=[(None, _('App Review Log'))]) }}
+  {{ reviewers_breadcrumbs(items=[(None, _('Theme Review Log'))]) }}
+{% endblock %}
+
+{% block log_url %}
+    {{ url('reviewers.themes.logs') }}
 {% endblock %}
 
 {% block content %}
 
-  {% include reviewers/logs_filters.html %}
-  <h1>{{ _('App Review Log') }}</h1>
+  {% include "reviewers/logs_filter.html" %}
+  <h1>{{ _('Theme Review Log') }}</h1>
 
   <section class="island">
     {% if pager.object_list %}
@@ -25,19 +29,8 @@
             <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
               <td>{{ item.created|babel_datetime }}</td>
               <td>
-                {% if item.arguments.0 %}
-                  {{ item.arguments.0|link }}
-                  {% if item.arguments|count >= 2 %}
-                    {{ item.arguments[1] }}
-                    <a href="{{ url('reviewers.apps.review', item.arguments[0].app_slug) }}">
-                      {{ ACTION_DICT.get(item.action).short }}
-                    </a>
-                  {% else %}
-                    {{ ACTION_DICT.get(item.action).short }}
-                  {% endif %}
-                {% else %}
-                    {{ _('App has been deleted.') }}
-                {% endif %}
+                  <a href="{{ url('reviewers.themes.single', item.arguments.0.slug) }}">{{ item.arguments.0.name }}</a>
+                  {{ ACTION_DICT.get(item.details.action) }}
               </td>
               <td>{{ item.user.display_name }}</td>
               <td>
@@ -47,9 +40,8 @@
             </tr>
             <tr class="comments hide">
               <td>&nbsp;</td>
-              <td colspan="4">{{ item.details['comments'] }}</td>
+              <td colspan="4">{{ item.details.comment }}</td>
             </tr>
-            <tr class="hide"><td>{{ item.action }}</td></tr>
           {% endfor %}
         </tbody>
       </table>

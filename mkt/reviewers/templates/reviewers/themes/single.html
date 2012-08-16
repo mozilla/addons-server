@@ -1,0 +1,24 @@
+{% extends "reviewers/themes/queue.html" %}
+
+{% set title_text_child = _('Theme Review for {0}')|f(theme.addon.name) %}
+
+{% block title %}
+  {{ editor_page_title(title_text_child) }}
+{% endblock %}
+
+{% block page_header %}
+  {{ title_text_child }}
+{% endblock %}
+
+{% block queue_options %}{% endblock %}
+
+{% block multi_theme_nav_shortcuts %}{% endblock %}
+
+{% block history %}{% endblock %}
+
+{% block fixed_sidebar %}{% endblock %}
+
+{% block review_history %}
+  <h2 class="history-header">{{ _('Review History') }}</h2>
+  {% include "reviewers/themes/history_table.html" %}
+{% endblock %}

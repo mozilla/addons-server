@@ -26,15 +26,20 @@
           <li>
             <a href="#" class="controller">{{ _('Queues') }}</a>
             <ul>
-              {% for this, loc, text in queue_tabnav() %}
+              {% for prefix, this, loc, text in queue_tabnav() %}
                 <li>
-                  <a href="{{ url('reviewers.apps.%s' % loc) }}">{{ text }}</a>
+                  <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
                 </li>
               {% endfor %}
             </ul>
           </li>
-          <li class="slim">
-            <a href="{{ url('reviewers.apps.logs') }}">{{ _('Logs') }}</a>
+          <li>
+            <a href="#" class="controller">{{ _('Logs') }}</a>
+            <ul>
+              {% for loc, text in logs_tabnav() %}
+                <li><a href="{{ url(loc) }}">{{ text }}</a></li>
+              {% endfor %}
+            </ul>
           </li>
           {% if action_allowed('AppReviewerMOTD', 'Edit') %}
             <li class="slim">

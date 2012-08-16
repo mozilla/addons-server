@@ -26,7 +26,6 @@ function dispatchPersonaEvent(aType, aNode, callback, forceHttps)
           var event = events[i];
           var eventObject = document.createEvent('Events');
           eventObject.initEvent(event, true, false);
-          aNode.dispatchEvent(eventObject);
         }
         if (callback) {
             callback();

@@ -504,6 +504,7 @@ class ESCALATE_MANUAL(_LOG):
     review_queue = True
 # TODO(robhudson): Escalation log for editor escalation..
 
+
 class VIDEO_ERROR(_LOG):
     id = 74
     format = _(u'Video removed from {addon} because of a problem with '
@@ -567,6 +568,12 @@ class EDIT_REVIEW(_LOG):
     id = 107
     action_class = 'review'
     format = _(u'{review} for {addon} updated.')
+
+
+class THEME_REVIEW(_LOG):
+    id = 108
+    action_class = 'review'
+    format = _(u'{theme} reviewed.')
 
 
 LOGS = [x for x in vars().values()

@@ -13,9 +13,9 @@
 {% endif %}
 
   <ul class="tabnav">
-    {% for this, loc, text in queue_tabnav() %}
+    {% for prefix, this, loc, text in queue_tabnav() %}
       <li class="{% if tab == this %}selected{% endif %}">
-        <a href="{{ url('reviewers.apps.%s' % loc) }}">{{ text }}</a></li>
+        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a></li>
     {% endfor %}
   </ul>
 

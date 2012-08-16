@@ -1,9 +1,16 @@
-from tower import ugettext_lazy as _lazy
+from django import forms
+
+import happyforms
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from amo.utils import raise_required
+from addons.models import Persona
 from editors.forms import ReviewAddonForm, ReviewLogForm
-
 from mkt.reviewers.utils import ReviewHelper
+import mkt.constants.reviewers as rvw
+from .models import ThemeLock
+from .tasks import send_mail
 
 
 class ReviewAppForm(ReviewAddonForm):
@@ -31,3 +38,62 @@ class ReviewAppLogForm(ReviewLogForm):
             # L10n: Descript of what can be searched for.
             'placeholder': _lazy(u'app, reviewer, or comment'),
             'size': 30}
+
+
+class ThemeReviewForm(happyforms.Form):
+    theme = forms.IntegerField(widget=forms.HiddenInput())
+    action = forms.TypedChoiceField(
+        choices=rvw.REVIEW_ACTIONS.items(),
+        widget=forms.HiddenInput(attrs={'class': 'action'}),
+        coerce=int, empty_value=None
+    )
+    # Duplicate is the same as rejecting but has its own flow.
+    reject_reason = forms.TypedChoiceField(
+        choices=rvw.THEME_REJECT_REASONS.items() + [('duplicate', '')],
+        widget=forms.HiddenInput(attrs={'class': 'reject-reason'}),
+        required=False, coerce=int, empty_value=None)
+    comment = forms.CharField(required=False,
+        widget=forms.HiddenInput(attrs={'class': 'comment'}))
+
+    def clean_theme(self):
+        try:
+            Persona.objects.get(id=self.cleaned_data['theme'])
+        except Persona.DoesNotExist:
+            raise forms.ValidationError(_('Theme does not exist.'))
+        return self.cleaned_data['theme']
+
+    def clean_action(self):
+        if self.cleaned_data.get('action') not in rvw.REVIEW_ACTIONS:
+            raise forms.ValidationError(_('Action not recognized.'))
+        return self.cleaned_data['action']
+
+    def clean_reject_reason(self):
+        reject_reason = self.cleaned_data.get('reject_reason', None)
+        if (self.cleaned_data.get('action') == rvw.ACTION_REJECT
+            and reject_reason == None):
+            raise_required()
+        return reject_reason
+
+    def clean_comment(self):
+        # Comment field needed for duplicate, flag, moreinfo, and other reject
+        # reason.
+        action = self.cleaned_data.get('action')
+        reject_reason = self.cleaned_data.get('reject_reason')
+        comment = self.cleaned_data.get('comment')
+        if (not comment and (action == rvw.ACTION_FLAG or
+                             action == rvw.ACTION_MOREINFO or
+                             (action == rvw.ACTION_REJECT and
+                              reject_reason == 0))):
+            raise_required()
+        return comment
+
+    def save(self):
+        try:
+            theme = Persona.objects.get(id=self.cleaned_data['theme'])
+            theme_lock = ThemeLock.objects.get(theme=theme)
+        except (Persona.DoesNotExist, ThemeLock.DoesNotExist):
+            # This shouldn't happen so just discard the review.
+            return
+
+        send_mail(self.cleaned_data, theme, theme_lock)
+        theme_lock.delete()
