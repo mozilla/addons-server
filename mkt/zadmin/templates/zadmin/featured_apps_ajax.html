@@ -7,7 +7,7 @@
         <td><img src="{{ row.app.icon_url }}"></td>
         <td>{{ row.app.name }}</td>
         <td>{% for dt in row.app.device_types %}
-          {{ dt }}
+          {{ dt.name }}{% if not loop.last %}, {% endif%}
           {% endfor %}</td>
       </tr>
       <tr>

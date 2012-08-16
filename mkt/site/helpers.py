@@ -161,7 +161,7 @@ def promo_slider(context, products, feature=False):
     c = {
         'products': products,
         'feature': feature,
-        'request': request,
+        'request': context['request'],
     }
     t = env.get_template('site/promo_slider.html')
     return jinja2.Markup(t.render(c))
@@ -239,7 +239,7 @@ def admin_site_links():
     return {
         'addons': [
             ('Search for apps by name or id', reverse('zadmin.addon-search')),
-            ('Featured add-ons', reverse('zadmin.featured_apps')),
+            ('Featured apps', reverse('zadmin.featured_apps')),
             ('Fake mail', reverse('zadmin.mail')),
             ('Flagged reviews', reverse('zadmin.flagged')),
         ],
