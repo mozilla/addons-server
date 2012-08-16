@@ -384,19 +384,13 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
         """
         url = urlparams(url, mobile='true' if browser_is_mobile else 'false')
 
-        if app_is_mobile and not self.mcompat:
+        if app_is_mobile:
             # If the app is supposed to be mobile and we haven't created the
             # AddonDeviceType object yet, create it.
             self.mcompat = AddonDeviceType.objects.create(
                 addon=self.webapp, device_type=amo.DEVICE_MOBILE.id)
             self.mcompat.save()
             self.reindex(Webapp)
-        elif not app_is_mobile and self.mcompat:
-            # If the app is not mobile and we haven't destroyed the
-            # AddonDeviceType from a previous test, destroy it now.
-            self.mcompat.delete()
-            self.reindex(Webapp)
-            self.mcompat = None
 
         self.refresh()
         r = self.client.get(url, follow=True)
@@ -412,9 +406,18 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
             assert self.app_name in r.content, (
                 "Couldn't find mobile app for %s" % url)
 
+        # Cleanup
+        if app_is_mobile:
+            # If the app is not mobile and we haven't destroyed the
+            # AddonDeviceType from a previous test, destroy it now.
+            self.mcompat.delete()
+            self.reindex(Webapp)
+            self.mcompat = None
+
     def _generate(self):
         views = [reverse('home'),
                  reverse('browse.apps'),
+                 reverse('search.search') + '?q=',
                  reverse('search.search') + '?q=Basta',
                  reverse('search.suggestions') + '?q=Basta&cat=apps']
 
