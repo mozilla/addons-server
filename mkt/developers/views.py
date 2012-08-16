@@ -49,11 +49,13 @@ from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
 
+from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CategoryForm, CurrencyForm,
-                                  InappConfigForm, PaypalSetupForm,
-                                  PreviewFormSet, RegionForm, trap_duplicate)
+                                  ImageAssetFormSet, InappConfigForm,
+                                  PaypalSetupForm, PreviewFormSet, RegionForm,
+                                  trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
 from mkt.submit.forms import NewWebappForm
@@ -128,6 +130,7 @@ def edit(request, addon_id, addon, webapp=False):
        'addon': addon,
        'webapp': webapp,
        'valid_slug': addon.app_slug,
+       'image_sizes': APP_IMAGE_SIZES,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.get_previews(),
        'device_type_form': DeviceTypeForm(request.POST or None, addon=addon),
@@ -959,7 +962,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if section not in models:
         raise http.Http404()
 
-    tags = previews = restricted_tags = []
+    tags = image_assets = previews = restricted_tags = []
     cat_form = device_type_form = region_form = None
 
     if section == 'basic':
@@ -970,7 +973,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
         device_type_form = DeviceTypeForm(request.POST or None, addon=addon)
 
     elif section == 'media':
-        previews = PreviewFormSet(request.POST or None, prefix='files',
+        image_assets = ImageAssetFormSet(
+            request.POST or None, prefix='images', app=addon)
+        previews = PreviewFormSet(
+            request.POST or None, prefix='files',
             queryset=addon.get_previews())
 
     elif section == 'details' and settings.REGION_STORES:
@@ -992,8 +998,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
-            if (form.is_valid() and (not previews or previews.is_valid())
-                and (not region_form or region_form.is_valid())):
+            if (form.is_valid()
+                and (not previews or previews.is_valid())
+                and (not region_form or region_form.is_valid())
+                and (not image_assets or image_assets.is_valid())):
 
                 if region_form:
                     region_form.save()
@@ -1008,6 +1016,9 @@ def addons_section(request, addon_id, addon, section, editable=False,
                 if previews:
                     for preview in previews.forms:
                         preview.save(addon)
+
+                if image_assets:
+                    image_assets.save()
 
                 editable = False
                 if section == 'media':
@@ -1039,8 +1050,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'editable': editable,
             'tags': tags,
             'restricted_tags': restricted_tags,
+            'image_sizes': APP_IMAGE_SIZES,
             'cat_form': cat_form,
             'preview_form': previews,
+            'image_asset_form': image_assets,
             'valid_slug': valid_slug,
             'device_type_form': device_type_form,
             'region_form': region_form}

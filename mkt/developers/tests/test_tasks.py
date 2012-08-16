@@ -24,9 +24,10 @@ from amo.utils import ImageCheck
 from files.models import FileUpload
 
 import mkt
+from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers import tasks
 from mkt.submit.tests.test_views import BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
+from mkt.webapps.models import AddonExcludedRegion as AER, ImageAsset, Webapp
 
 
 def test_resize_icon_shrink():
@@ -75,7 +76,9 @@ def _uploader(resize_size, final_size):
     # resize_icon removes the original
     shutil.copyfile(img, src.name)
 
-    src_image = Image.open(src.name)
+    with storage.open(src.name) as fp:
+        src_image = Image.open(fp)
+        src_image.load()
     eq_(src_image.size, original_size)
 
     if isinstance(final_size, list):
@@ -83,7 +86,9 @@ def _uploader(resize_size, final_size):
             dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
 
             tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
-            dest_image = Image.open("%s-%s.png" % (dest_name, rsize))
+            with storage.open("%s-%s.png" % (dest_name, rsize)) as fp:
+                dest_image = Image.open(fp)
+                dest_image.load()
             eq_(dest_image.size, fsize)
 
             if os.path.exists(dest_image.filename):
@@ -92,7 +97,9 @@ def _uploader(resize_size, final_size):
     else:
         dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
         tasks.resize_icon(src.name, dest.name, resize_size, locally=True)
-        dest_image = Image.open(dest.name)
+        with storage.open(dest.name) as fp:
+            dest_image = Image.open(fp)
+            dest_image.load()
         eq_(dest_image.size, final_size)
 
     assert not os.path.exists(src.name)
@@ -145,6 +152,35 @@ class TestValidator(amo.tests.TestCase):
         _mock.return_value = '{"errors": 0}'
         tasks.validator(self.upload.pk)
         assert _mock.called
+
+
+class TestGenerateImageAssets(amo.tests.TestCase):
+    """Test that image assets get generated properly."""
+
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        self.app = Webapp.objects.get(id=337141)
+        self.app.get_icon_dir = lambda: os.path.join(
+            os.path.dirname(__file__), 'icons/')
+
+    def test_generated_image_assets(self):
+        tasks.generate_image_assets(self.app)
+        for asset in APP_IMAGE_SIZES:
+            ia = ImageAsset.objects.get(addon=self.app,
+                                        slug=asset['slug'])
+            with storage.open(ia.image_path) as fp:
+                im = Image.open(fp)
+                im.load()
+            eq_(im.size, asset['size'])
+
+    def test_get_hue(self):
+        with storage.open(os.path.join(os.path.dirname(__file__),
+                                       self.app.get_icon_dir(),
+                                       '%d-128.png' % self.app.id)) as fp:
+            im = Image.open(fp)
+            im.load()
+        eq_(tasks.get_hue(im), 42)
 
 
 class TestFetchManifest(amo.tests.TestCase):

@@ -30,6 +30,17 @@
     background: @black-border;
 }
 
+.product-details .mkt-tile .icon.mobile_tile {
+    display: none;
+}
+
+.featured .mkt-tile .icon {
+    display: none;
+    &.mobile_tile {
+        display: block;
+    }
+}
+
 // Listing
 // name + icon + price + rating in a vertical listview.
 // also used as standalone "card" on detail pages.

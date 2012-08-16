@@ -1,5 +1,6 @@
 import base64
 import json
+import os
 import tempfile
 
 from django.conf import settings
@@ -12,7 +13,9 @@ import amo
 from amo.tests import AMOPaths
 from files.models import FileUpload
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
-from mkt.webapps.models import Webapp
+from mkt.constants import APP_IMAGE_SIZES
+from mkt.developers import tasks
+from mkt.webapps.models import ImageAsset, Webapp
 from users.models import UserProfile
 
 
@@ -150,6 +153,12 @@ class CreateHandler(BaseOAuth):
                                          name=self.file, valid=True)
 
 
+def _mock_fetch_content(url):
+    return open(os.path.join(os.path.dirname(__file__),
+                             '..', '..', 'developers', 'tests', 'icons',
+                             '337141-128.png'))
+
+
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppCreateHandler(CreateHandler, AMOPaths):
 
@@ -219,6 +228,12 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'app', 'pk': pk})
         return Webapp.objects.get(pk=pk)
+
+    @patch('mkt.developers.tasks._fetch_content', _mock_fetch_content)
+    def test_imageassets(self):
+        asset_count = ImageAsset.objects.count()
+        self.create_app()
+        eq_(ImageAsset.objects.count() - len(APP_IMAGE_SIZES), asset_count)
 
     def test_get(self):
         self.create_app()

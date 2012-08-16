@@ -68,6 +68,8 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.upload_preview'),
     url('^upload_icon$', views.upload_media, {'upload_type': 'icon'},
         name='mkt.developers.apps.upload_icon'),
+    url('^upload_image$', views.upload_media, {'upload_type': 'image'},
+        name='mkt.developers.apps.upload_image'),
 
     url('^profile$', views.profile, name='mkt.developers.apps.profile'),
     url('^profile/remove$', views.remove_profile,

@@ -54,7 +54,7 @@ class PreviewJSONForm(happyforms.Form):
             raise forms.ValidationError('File must be a dictionary.')
 
         file_obj = StringIO.StringIO(base64.b64decode(file_['data']))
-        errors, hash_ = check_upload(file_obj, 'image', file_['type'])
+        errors, hash_ = check_upload(file_obj, 'graphic', file_['type'])
         if errors:
             raise forms.ValidationError(errors)
 

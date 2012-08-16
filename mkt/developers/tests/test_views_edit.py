@@ -1,3 +1,4 @@
+from itertools import repeat
 import json
 import os
 import tempfile
@@ -27,9 +28,11 @@ from lib.video.tests import files as video_files
 from users.models import UserProfile
 
 import mkt
+from mkt.constants import APP_IMAGE_SIZES
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
+from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
+                                ImageAsset)
 
 response_mock = mock.Mock()
 response_mock.read.return_value = '''
@@ -544,14 +547,20 @@ class TestEditMedia(TestEdit):
         blank.update(**kw)
         return blank
 
-    def formset_media(self, blank_kw=None, *args, **kw):
-        blank_kw = blank_kw or {}
+    def formset_media(self, prev_blank=None, *args, **kw):
+        prev_blank = prev_blank or {}
         kw.setdefault('initial_count', 0)
         kw.setdefault('prefix', 'files')
 
-        fs = formset(*[a for a in args] + [self.formset_new_form(**blank_kw)],
-                     **kw)
-        return dict([(k, '' if v is None else v) for k, v in fs.items()])
+        # Preview formset
+        fs = formset(*list(args) + [self.formset_new_form(**prev_blank)], **kw)
+
+        # Image asset formset
+        assets = len(APP_IMAGE_SIZES)
+        kw = {'initial_count': assets, 'prefix': 'images'}
+        fs.update(formset(*repeat({'upload_hash': ''}, assets), **kw))
+
+        return dict((k, '' if v is None else v) for k, v in fs.items())
 
     def new_preview_hash(self):
         # At least one screenshot is required.
@@ -565,7 +574,7 @@ class TestEditMedia(TestEdit):
 
     def test_edit_defaulticon(self):
         data = dict(icon_type='')
-        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+        data_formset = self.formset_media(prev_blank=self.new_preview_hash(),
                                           **data)
 
         r = self.client.post(self.edit_url, data_formset)
@@ -580,7 +589,7 @@ class TestEditMedia(TestEdit):
 
     def test_edit_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
-        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+        data_formset = self.formset_media(prev_blank=self.new_preview_hash(),
                                           **data)
 
         r = self.client.post(self.edit_url, data_formset)
@@ -605,7 +614,7 @@ class TestEditMedia(TestEdit):
         # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
                     icon_upload_hash=response_json['upload_hash'])
-        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+        data_formset = self.formset_media(prev_blank=self.new_preview_hash(),
                                           **data)
 
         r = self.client.post(self.edit_url, data_formset)
@@ -647,7 +656,7 @@ class TestEditMedia(TestEdit):
         # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
                     icon_upload_hash=response_json['upload_hash'])
-        data_formset = self.formset_media(blank_kw=self.new_preview_hash(),
+        data_formset = self.formset_media(prev_blank=self.new_preview_hash(),
                                           **data)
 
         r = self.client.post(self.edit_url, data_formset)
@@ -857,6 +866,29 @@ class TestEditMedia(TestEdit):
         self.preview_add()
         eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
 
+    def imageasset_set(self, id=0):
+        # Generate the proper form: a blank preview entry (that won't get
+        # saved) and add an upload hash to the image asset so it WILL get
+        # saved.
+        preview = self.get_webapp().previews.all()[0]
+        edited = {'upload_hash': '', 'id': preview.id}
+        data_formset = self.formset_media(edited, initial_count=1)
+        data_formset['images-%d-upload_hash' % id] = self.new_preview_hash()
+
+        r = self.client.post(self.edit_url, data_formset)
+        self.assertNoFormErrors(r)
+
+    def test_edit_imageasset_add(self):
+        assets_before = ImageAsset.objects.count()
+        self.preview_add()
+        eq_(assets_before, ImageAsset.objects.count())
+
+        self.imageasset_set(0)
+        eq_(assets_before + 1, ImageAsset.objects.count())
+
+        self.imageasset_set(1)
+        eq_(assets_before + 2, ImageAsset.objects.count())
+
     def test_edit_preview_edit(self):
         self.preview_add()
         preview = self.get_webapp().previews.all()[0]
@@ -873,6 +905,14 @@ class TestEditMedia(TestEdit):
         previews = self.get_webapp().previews
         eq_(str(previews.all()[0].caption), 'bye')
         eq_(previews.count(), 1)
+
+    def test_edit_imageasset_edit(self):
+        self.preview_add()
+        self.imageasset_set(0)
+        assets_before = ImageAsset.objects.count()
+
+        self.imageasset_set(0)
+        eq_(assets_before, ImageAsset.objects.count())
 
     def test_edit_preview_reorder(self):
         self.preview_add(3)

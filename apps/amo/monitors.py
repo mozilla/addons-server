@@ -111,6 +111,7 @@ def path():
           settings.COLLECTIONS_ICON_PATH,
           settings.PACKAGER_PATH,
           settings.PREVIEWS_PATH,
+          settings.IMAGEASSETS_PATH,
           settings.PERSONAS_PATH,
           settings.USERPICS_PATH,
           settings.WATERMARKED_ADDONS_PATH,

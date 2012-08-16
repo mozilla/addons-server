@@ -188,6 +188,8 @@ def details(request, addon_id, addon):
         for preview in form_previews.forms:
             preview.save(addon)
 
+        tasks.generate_image_assets.delay(addon)
+
         checklist = AppSubmissionChecklist.objects.get(addon=addon)
 
         if waffle.switch_is_active('disabled-payments'):

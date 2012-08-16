@@ -17,6 +17,7 @@ def check_upload(file_obj, upload_type, content_type):
     errors = []
     upload_hash = ''
     is_icon = upload_type == 'icon'
+    is_image_asset = upload_type == 'image'
     is_video = (content_type in amo.VIDEO_TYPES and
                 waffle.switch_is_active('video-upload'))
 
@@ -60,6 +61,7 @@ def check_upload(file_obj, upload_type, content_type):
                 errors.append(_('Images cannot be animated.'))
 
     max_size = (settings.MAX_ICON_UPLOAD_SIZE if is_icon else
+                settings.MAX_IMAGE_UPLOAD_SIZE if is_image_asset else
                 settings.MAX_VIDEO_UPLOAD_SIZE if is_video else None)
 
     if max_size and file_obj.size > max_size:

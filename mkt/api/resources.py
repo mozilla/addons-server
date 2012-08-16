@@ -2,6 +2,7 @@ import json
 
 from django.db import transaction
 
+from celery_tasktree import TaskTree
 import commonware.log
 from tastypie import http
 from tastypie.exceptions import ImmediateHttpResponse
@@ -118,9 +119,17 @@ class AppResource(MarketplaceResource):
         # Create app, user and fetch the icon.
         bundle.obj = Addon.from_upload(form.obj, plats)
         AddonUser(addon=bundle.obj, user=request.amo_user).save()
-        tasks.fetch_icon.delay(bundle.obj)
+
+        self._icons_and_images(bundle.obj)
+
         log.info('App created: %s' % bundle.obj.pk)
         return bundle
+
+    def _icons_and_images(self, bundle_obj):
+        pipeline = TaskTree()
+        pipeline.push(tasks.fetch_icon, args=[bundle_obj])
+        pipeline.push(tasks.generate_image_assets, args=[bundle_obj])
+        pipeline.apply_async()
 
     def obj_get(self, request=None, **kwargs):
         obj = super(AppResource, self).obj_get(request=request, **kwargs)

@@ -36,6 +36,7 @@ $(document).ready(function() {
     // Submission > Media
     $('#submit-media').exists(function() {
         initUploadIcon();
+        initUploadImages();
         initUploadPreview();
     });
 
@@ -374,6 +375,7 @@ function initEditAddon() {
     // Init icon javascript.
     hideSameSizedIcons();
     initUploadIcon();
+    initUploadImages();
     initUploadPreview();
 }
 
@@ -643,6 +645,75 @@ function initUploadIcon() {
         var $data = $(elem);
         if ($data.val()) {
             $('#submit-media #icon_preview img').attr('src', $data.val());
+        }
+    });
+}
+
+function initUploadImages() {
+    var forms = {},
+        form;
+
+    function upload_start_all(e) {
+        // Remove old errors.
+        $(this).closest('.image_preview').find('.errorlist').hide();
+        // Don't let users submit a form.
+        $('.edit-media-button button, #submit-media button.prominent').attr('disabled', true);
+    }
+
+    function upload_finished_all(e) {
+        // They can submit again
+        $('.edit-media-button button, #submit-media button.prominent').attr('disabled', false);
+    }
+
+    function upload_start(e, file) {
+        var $input = $(this);
+        forms['form_' + file.instance] = form = $input.closest('.image_preview');
+
+        var $thumb = form.show().find('.image');
+        $thumb.addClass('loading');
+        $thumb.find('img').attr('src', file.dataURL);
+    }
+
+    function upload_finished(e, file) {
+        form = forms['form_' + file.instance];
+        form.find('.image').removeClass('loading');
+    }
+
+    function upload_success(e, file, upload_hash) {
+        form = forms['form_' + file.instance];
+        form.find('[name$="upload_hash"]').val(upload_hash);
+        form.find('[name$="unsaved_image_data"]').val(file.dataURL);
+    }
+
+    function upload_errors(e, file, errors) {
+        var form = forms['form_' + file.instance],
+            $error_list = form.find('.errorlist');
+
+        $.each(errors, function(i, v){
+            $error_list.append('<li>' + v + '</li>');
+        });
+
+        form.find('.image').addClass('error-loading');
+    }
+    if (z.capabilities.fileAPI) {
+        var $f = $('.edit-media, #submit-media');
+        $f.delegate('.image_asset_upload', 'upload_finished', upload_finished)
+          .delegate('.image_asset_upload', 'upload_success', upload_success)
+          .delegate('.image_asset_upload', 'upload_start', upload_start)
+          .delegate('.image_asset_upload', 'upload_errors', upload_errors)
+          .delegate('.image_asset_upload', 'upload_start_all', upload_start_all)
+          .delegate('.image_asset_upload', 'upload_finished_all', upload_finished_all)
+          .delegate('.image_asset_upload', 'change', function(e) {
+            $(this).imageUploader();
+          });
+    }
+
+    // Display images that were already uploaded but not yet saved
+    // because of other non-related form errors.
+    $('.image_preview_box [name$="unsaved_image_data"]').each(function(i, elem) {
+        var $data = $(elem);
+        if ($data.val()) {
+            $data.parents('.image_preview_box').find('.image img').attr('src', $data.val());
         }
     });
 }

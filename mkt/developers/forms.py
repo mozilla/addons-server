@@ -5,12 +5,12 @@ import socket
 
 from django import forms
 from django.conf import settings
-from django.forms.models import modelformset_factory
+from django.forms.models import formset_factory, modelformset_factory
 
 import commonware
 import happyforms
 import waffle
-from quieter_formset.formset import BaseModelFormSet
+from quieter_formset.formset import BaseFormSet, BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 
@@ -33,10 +33,12 @@ from translations.models import Translation
 from translations.widgets import TransInput, TransTextarea
 
 import mkt
+from mkt.constants import APP_IMAGE_SIZES
 from mkt.inapp_pay.models import InappConfig
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField, APP_UPSELL_CHOICES
-from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
+from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
+                                Webapp)
 
 from . import tasks
 
@@ -283,6 +285,53 @@ class PreviewForm(happyforms.ModelForm):
         fields = ('caption', 'file_upload', 'upload_hash', 'id', 'position')
 
 
+class ImageAssetForm(happyforms.Form):
+    file_upload = forms.FileField(required=False)
+    upload_hash = forms.CharField(required=False)
+    # This lets us POST the data URIs of the unsaved previews so we can still
+    # show them if there were form errors.
+    unsaved_image_data = forms.CharField(required=False,
+                                         widget=forms.HiddenInput)
+
+    def setup(self, data):
+        self.size = data.get('size')
+        self.required = data.get('required')
+        self.slug = data.get('slug')
+        self.name = data.get('name')
+        self.description = data.get('description')
+
+    def get_id(self):
+        return '_'.join(map(str, self.size))
+
+    def save(self, addon):
+        if self.cleaned_data:
+
+            if self.cleaned_data['upload_hash']:
+                if not self.instance:
+                    self.instance = ImageAsset.objects.create(
+                        addon=addon, slug=self.slug)
+                else:
+                    self.instance.addon = addon
+                upload_hash = self.cleaned_data['upload_hash']
+                upload_path = os.path.join(settings.TMP_PATH, 'image',
+                                           upload_hash)
+                filetype = (os.path.splitext(upload_hash)[1][1:]
+                                   .replace('-', '/'))
+                self.instance.update(filetype='image/png')
+                tasks.resize_imageasset.delay(upload_path, self.instance,
+                                              self.size,
+                                              set_modified_on=[self.instance])
+
+    def clean(self):
+        self.cleaned_data = super(ImageAssetForm, self).clean()
+        if self.required and not self.cleaned_data['upload_hash']:
+            raise forms.ValidationError(
+                # L10n: {0} is the name of the image asset type.
+                _('The {0} image asset is required.').format(self.name))
+
+        return self.cleaned_data
+
+
 class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
     mozilla_contact = forms.EmailField(required=False)
@@ -376,6 +425,36 @@ class BasePreviewFormSet(BaseModelFormSet):
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       form=PreviewForm, can_delete=True,
                                       extra=1)
+
+
+class BaseImageAssetFormSet(BaseFormSet):
+
+    def __init__(self, *args, **kw):
+        self.app = kw.pop('app')
+        super(BaseImageAssetFormSet, self).__init__(*args, **kw)
+
+        self.initial = APP_IMAGE_SIZES
+
+        # Reconstruct the forms according to the initial data.
+        self._construct_forms()
+        for data, form in zip(APP_IMAGE_SIZES, self.forms):
+            form.setup(data)
+            form.app = self.app
+
+            try:
+                form.instance = ImageAsset.objects.get(addon=self.app,
+                                                       slug=form.slug)
+            except ImageAsset.DoesNotExist:
+                form.instance = None
+
+    def save(self):
+        for f in self.forms:
+            f.save(self.app)
+
+
+ImageAssetFormSet = formset_factory(form=ImageAssetForm,
+                                    formset=BaseImageAssetFormSet,
+                                    can_delete=False, extra=0)
 
 
 class NewManifestForm(happyforms.Form):
