@@ -1,5 +1,7 @@
 import json
 
+from django.conf import settings
+
 from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
@@ -291,6 +293,8 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
                            302)
 
     def test_region_exclusions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
         for region in mkt.regions.REGIONS_DICT:
             self.check_results({'q': 'Steam', 'region': region},
@@ -341,6 +345,8 @@ class TestSuggestions(TestAjaxSearch):
             'q=app&category=%d' % self.c2.id, addons=[self.w2])
 
     def test_region_exclusions(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
         AER.objects.create(addon=self.w2, region=mkt.regions.BR.id)
 
         self.check_suggestions(self.url,
@@ -452,7 +458,6 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
 
         assert not p_desktop('.applied-filters')
         assert not p_mobile('.applied-filters')
-
 
     @amo.tests.mobile_test
     def test_mobile_no_flash(self):
