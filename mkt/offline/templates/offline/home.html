@@ -1,7 +1,11 @@
 {% extends 'mkt/base.html' %}
 
+{% block pagetype %}root{% endblock %}
+
 {% block content %}
-  <section>
-    {{ _('Sorry, you need to be online to access the Marketplace') }}
+  <section class="infobox">
+    <p>
+      {{ _('Sorry, you need to be online to access the Marketplace') }}
+    </p>
   </section>
 {% endblock %}
