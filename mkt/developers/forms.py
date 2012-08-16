@@ -342,7 +342,9 @@ class AdminSettingsForm(PreviewForm):
                 ContentRating.objects.create(addon=addon, rating=r.id,
                                              ratings_body=r.ratingsbody.id)
         uses_flash = self.cleaned_data.get('flash')
-        addon.get_latest_file().update(uses_flash=bool(uses_flash))
+        af = addon.get_latest_file()
+        if af is not None:
+            af.update(uses_flash=bool(uses_flash))
         return addon
 
 
