@@ -8,4 +8,4 @@ def run():
     if games:
         apps = Webapp.objects.filter(categories=games.id)
         for app in apps:
-            AER.objects.create(addon=app, region=mkt.regions.BR.id)
+            AER.objects.get_or_create(addon=app, region=mkt.regions.BR.id)
