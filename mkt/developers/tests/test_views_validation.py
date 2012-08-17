@@ -74,6 +74,14 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(wp['version'], '1.0')
         eq_(wp['default_locale'], 'en-US')
 
+    def test_no_manifest_at_root(self):
+        with self.assertRaises(forms.ValidationError) as exc:
+            WebAppParser().parse(
+                self.packaged_app_path('no-manifest-at-root.zip'))
+        m = exc.exception.messages[0]
+        assert m.startswith('The file "manifest.webapp" was not found'), (
+            'Unexpected: %s' % m)
+
     def test_no_locales(self):
         wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
                                                    description='summary')))

@@ -199,7 +199,12 @@ class WebAppParser(object):
         if zipfile.is_zipfile(path):
             zf = SafeUnzip(path)
             zf.is_valid()  # Raises forms.ValidationError if problems.
-            data = zf.extract_path('manifest.webapp')
+            try:
+                data = zf.extract_path('manifest.webapp')
+            except KeyError:
+                raise forms.ValidationError(
+                    _('The file "manifest.webapp" was not found at the root '
+                      'of the packaged app archive.'))
         else:
             file_ = get_file(fileorpath)
             data = file_.read()
