@@ -192,25 +192,22 @@ class TestDetail(DetailBase):
     def test_no_summary_no_description(self):
         self.webapp.summary = self.webapp.description = ''
         self.webapp.save()
-        description = self.get_pq()('.description')
+        description = self.get_pq()('.blurbs')
         eq_(description.find('.summary').text(), '')
-        eq_(description.find('.more').length, 0)
 
     def test_has_summary(self):
         self.webapp.summary = 'sumthang brief'
         self.webapp.description = ''
         self.webapp.save()
-        description = self.get_pq()('.description')
-        eq_(description.find('.summary').text(), self.webapp.summary)
-        eq_(description.find('.more').length, 0)
+        description = self.get_pq()('.summary')
+        eq_(description.text(), self.webapp.summary)
 
     def test_has_description(self):
         self.webapp.summary = ''
         self.webapp.description = 'a whole lotta text'
         self.webapp.save()
         description = self.get_pq()('.description')
-        eq_(description.find('.summary').remove('.collapse').text(), '')
-        eq_(description.find('.more').text(), self.webapp.description)
+        eq_(description.text(), self.webapp.description)
 
     def test_no_developer_comments(self):
         eq_(self.get_pq()('.developer-comments').length, 0)
@@ -286,11 +283,13 @@ class TestDetail(DetailBase):
             reverse('mkt.stats.overview', args=[self.webapp.app_slug]))
 
     def test_free_no_preapproval(self):
+        doc = self.get_pq()
         eq_(json.loads(doc('body').attr('data-user'))['pre_auth'], False)
 
 
     def test_free_preapproval_enabled(self):
         PreApprovalUser.objects.create(user=self.get_user(), paypal_key='xyz')
+        doc = self.get_pq()
         eq_(json.loads(doc('body').attr('data-user'))['pre_auth'], False)
 
     def test_paid_no_preapproval_anonymous(self):

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.cache import cache
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -122,6 +123,8 @@ class TestFooter(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def test_developers_links_to_dashboard(self):
+        # No footer in current designs.
+        raise SkipTest
         # I've already submitted an app.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
@@ -132,6 +135,8 @@ class TestFooter(amo.tests.TestCase):
         eq_(links.attr('href'), reverse('mkt.developers.apps'))
 
     def test_developers_links_to_landing(self):
+        # No footer in current designs.
+        raise SkipTest
         # I've ain't got no apps.
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
@@ -142,6 +147,8 @@ class TestFooter(amo.tests.TestCase):
         eq_(links.attr('href'), reverse('ecosystem.landing'))
 
     def test_language_selector(self):
+        # No footer in current designs.
+        raise SkipTest
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
@@ -151,6 +158,8 @@ class TestFooter(amo.tests.TestCase):
             'en-us')
 
     def test_language_selector_variables(self):
+        # No footer in current designs.
+        raise SkipTest
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
