@@ -27,6 +27,7 @@ class TestMarketButton(amo.tests.TestCase):
         request.amo_user = self.user
         request.check_ownership.return_value = False
         request.GET = {'src': 'foo'}
+        request.groups = ()
         self.context = {'request': request}
 
     def test_not_webapp(self):
@@ -105,6 +106,10 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
 
     def test_reviewers(self):
+        # Make ourselves a reviewer!
+        amo_user = UserProfile.objects.get(pk=5497308)
+        self.context['request'].amo_user = amo_user
+        self.context['request'].groups = amo_user.groups.all()
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         issue = urlparams(reverse('receipt.issue',

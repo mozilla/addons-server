@@ -7,6 +7,7 @@ from django.forms.models import model_to_dict
 
 import mock
 from jingo.helpers import datetime as datetime_filter
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -111,6 +112,8 @@ class TestAccountSettings(amo.tests.TestCase):
             'Email address should not have changed')
 
     def test_edit_bio(self):
+        # We're not doing user profiles right now.
+        raise SkipTest
         eq_(self.get_user().bio, None)
 
         data = {'username': 'jbalogh',
@@ -154,6 +157,8 @@ class TestAccountSettings(amo.tests.TestCase):
         self.check_default_choices(choices=choices, checked=[])
 
     def test_edit_notifications(self):
+        # We don't have notification settings right now
+        raise SkipTest
         # Make jbalogh a developer.
         self.user.update(read_dev_agreement=True)
 
@@ -595,6 +600,10 @@ class PurchaseBase(amo.tests.TestCase):
 
 
 class TestPurchases(PurchaseBase):
+
+    # We don't have this page/flow right now. It will be back.
+    def setUp(self):
+        raise SkipTest
 
     def get_support_url(self, pk=None, *args):
         return reverse('support', args=[pk or self.con.pk] + list(args))
