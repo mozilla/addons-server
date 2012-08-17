@@ -10,11 +10,7 @@
   <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
-    {% if product.has_author(request.amo_user) %}
-      {{ market_button(product, 'developer') }}
-    {% else %}
-      {{ market_button(product) }}
-    {% endif %}
+    {{ market_button(product) }}
     {% if product.listed_authors %}
       <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
     {% endif %}

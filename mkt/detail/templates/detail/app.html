@@ -140,7 +140,9 @@
             </li>
           {% endif %}
           {% if product.homepage %}
-            <li><a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a></li>
+            <li class="homepage">
+              <a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a>
+            </li>
           {% endif %}
           {% if product.is_public() or is_reviewer %}
             {% if product.privacy_policy %}

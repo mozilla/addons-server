@@ -40,7 +40,7 @@ class TestReissue(amo.tests.TestCase):
         has_purchased.return_value = False
         res = self.client.get(self.url)
         eq_(res.context['reissue'], False)
-        eq_(len(pq(res.content)('a.install')), 0)
+        eq_(len(pq(res.content)('button.install')), 0)
 
     @mock.patch('addons.models.Addon.has_purchased')
     def test_reissue_premium_purchased(self, has_purchased):
@@ -48,7 +48,7 @@ class TestReissue(amo.tests.TestCase):
         has_purchased.return_value = True
         res = self.client.get(self.url)
         eq_(res.context['reissue'], True)
-        eq_(len(pq(res.content)('a.install')), 1)
+        eq_(len(pq(res.content)('button.install')), 1)
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',

@@ -14,7 +14,7 @@ from market.models import AddonPremium, AddonPurchase
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
-from mkt.site.helpers import market_button
+from mkt.site.helpers import market_button, market_tile
 
 
 class TestMarketButton(amo.tests.TestCase):
@@ -36,8 +36,8 @@ class TestMarketButton(amo.tests.TestCase):
                           self.context, self.webapp)
 
     def test_is_webapp(self):
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['manifestUrl'], self.webapp.manifest_url)
         eq_(data['recordUrl'], urlparams(self.webapp.get_detail_url('record'),
                                          src='foo'))
@@ -48,8 +48,8 @@ class TestMarketButton(amo.tests.TestCase):
 
     def test_is_premium_webapp(self):
         self.make_premium(self.webapp)
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['manifestUrl'], self.webapp.manifest_url)
         eq_(data['price'], 1.0)
         eq_(data['priceLocale'], '$1.00')
@@ -59,16 +59,16 @@ class TestMarketButton(amo.tests.TestCase):
     def test_is_premium_webapp_foreign(self):
         self.make_premium(self.webapp)
         with self.activate('fr'):
-            doc = pq(market_button(self.context, self.webapp))
-            data = json.loads(doc('a').attr('data-product'))
+            doc = pq(market_tile(self.context, self.webapp))
+            data = json.loads(doc('.mkt-tile').attr('data-product'))
             eq_(data['price'], 1.0)
             eq_(data['priceLocale'], u'1,00 €')
 
     def test_is_premium_purchased(self):
         AddonPurchase.objects.create(user=self.user, addon=self.webapp)
         self.make_premium(self.webapp)
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['isPurchased'], True)
 
     def test_xss(self):
@@ -82,15 +82,15 @@ class TestMarketButton(amo.tests.TestCase):
         self.webapp.save()
         Webapp.transformer([self.webapp])  # Transform `listed_authors`, etc.
 
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['name'], escaped)
         eq_(data['author'], escaped)
 
     def test_default_supported_currencies(self):
         self.make_premium(self.webapp)
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         assert 'currencies' not in data
 
     @mock.patch('mkt.site.helpers.waffle.switch_is_active')
@@ -99,14 +99,14 @@ class TestMarketButton(amo.tests.TestCase):
         self.make_premium(self.webapp, currencies=['CAD'])
         ad = AddonPremium.objects.get(addon=self.webapp)
         ad.update(currencies=['USD', 'CAD'])
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(json.loads(data['currencies'])['USD'], '$1.00')
         eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
 
     def test_reviewers(self):
-        doc = pq(market_button(self.context, self.webapp, 'reviewer'))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         issue = urlparams(reverse('receipt.issue',
                                   args=[self.webapp.app_slug]), src='foo')
         eq_(data['recordUrl'], issue)
@@ -114,7 +114,7 @@ class TestMarketButton(amo.tests.TestCase):
     def test_category(self):
         c = Category.objects.create(name='test-cat', type=amo.ADDON_WEBAPP)
         AddonCategory.objects.create(addon=self.webapp, category=c)
-        doc = pq(market_button(self.context, self.webapp))
-        data = json.loads(doc('a').attr('data-product'))
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['categories'],
             [str(cat.name) for cat in self.webapp.categories.all()])

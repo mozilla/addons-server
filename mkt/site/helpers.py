@@ -5,6 +5,7 @@ import jinja2
 from tower import ugettext as _
 import waffle
 
+from access import acl
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder
@@ -139,7 +140,11 @@ def market_tile(context, product, link=True, src=''):
         purchased = (request.amo_user and
                      product.pk in request.amo_user.purchase_ids())
 
-        product_dict = product_as_dict(request, product, purchased=purchased)
+        is_dev = product.has_author(request.amo_user)
+        is_reviewer = acl.check_reviewer(request)
+        receipt_type = 'developer' if is_dev or is_reviewer else None
+        product_dict = product_as_dict(request, product, purchased=purchased,
+                                       receipt_type=receipt_type)
         product_dict['prepareNavPay'] = reverse('bluevia.prepare_pay',
                                                 args=[product.app_slug])
 
