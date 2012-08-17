@@ -136,13 +136,12 @@ z.page.on('fragmentloaded', function() {
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');
             $btns.blur();
-            e.preventDefault();
         } else if ($this.hasClass('cancel')) {
             z.body.removeClass('show-search');
             $('#search-q').blur();
             $btns.blur();
-            e.preventDefault();
         }
+        e.preventDefault();
     });
 
     // iPhone-style scroll up.

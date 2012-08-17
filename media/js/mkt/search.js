@@ -21,10 +21,13 @@
             $this.addClass('active');
         }
     });
+
+    // Toggle app listing graphical/compact view.
     $('#site-header .expand').click(_pd(function(e) {
         $('ol.listing').toggleClass('expanded');
         z.page.trigger('populatetray');
     }));
+
     function turnPages(e) {
         if (fieldFocused(e)) {
             return;
