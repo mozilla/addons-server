@@ -50,7 +50,7 @@
 
             var ui_parent = $('<div>', {'class': 'invisible-upload prominent cta', 'id': 'upload-file-widget'}),
                 ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
-                ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your packaged app should end with .zip')});
+                ui_details = $('<div>', {'class': 'upload-details', 'html': gettext('Your packaged app should end with <code>.zip</code>.')});
 
             $upload_field.attr('disabled', false);
             $upload_field.wrap(ui_parent);

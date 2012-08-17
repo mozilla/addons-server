@@ -62,20 +62,29 @@
         }
     }
     .upload-status {
-        margin-bottom: 10px;
+        margin: 20px 0;
         #upload-status-results strong {
             display: block;
+            ~ ul {
+                margin-bottom: 10px;
+            }
+            ~ a {
+                display: block;
+                margin-top: 5px;
+            }
         }
     }
     .upload-details {
+        .transition(padding-top .3s ease);
         color: @note-gray;
         font-size: 11px;
         margin: 1em 0 10px;
-
-        .transition(padding-top .3s ease);
         position: relative;
         &.show-tip {
             padding-top: 36px;
+        }
+        + .submission-buttons {
+            margin-top: 20px;
         }
     }
     /* Pretty Tooltip. */
@@ -143,6 +152,15 @@
     list-style: disc inside none;
     margin: 0 0 0 24px;
     padding-top: 3px;
+}
+
+#upload-status-text {
+    display: block;
+    margin: 20px 0 5px;
+}
+
+#upload-status-results {
+    margin: 20px 0;
 }
 
 #upload-status-results {
