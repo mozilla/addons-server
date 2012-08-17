@@ -10,6 +10,7 @@ from mkt.webapps.models import Webapp
 import jingo
 
 
+# Currently unused.
 def _landing(request, category=None):
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
     if category:
@@ -32,10 +33,12 @@ def _landing(request, category=None):
 
 def _search(request, category=None):
     ctx = {'browse': True}
+    #region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
     if category is not None:
         qs = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
         ctx['category'] = get_object_or_404(qs, slug=category)
+        #ctx['featured'] = Webapp.featured(cat=category, region=region)
 
         # Do a search filtered by this category and sort by Weekly Downloads.
         # TODO: Listen to andy and do not modify `request.GET` but at least
@@ -54,8 +57,7 @@ def _search(request, category=None):
     return jingo.render(request, 'search/results.html', ctx)
 
 
+# mushi says there will likely be a landing page at some point otherwise this
+# extra function is useless.
 def browse_apps(request, category=None):
-    if request.GET.get('sort'):
-        return _search(request, category)
-    else:
-        return _landing(request, category)
+    return _search(request, category)
