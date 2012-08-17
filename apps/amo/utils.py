@@ -38,10 +38,12 @@ from babel import Locale
 import bleach
 from cef import log_cef as _log_cef
 from easy_thumbnails import processors
+import elasticutils.contrib.django as elasticutils
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
 import jinja2
+import pyes.exceptions as pyes
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
 
@@ -907,3 +909,17 @@ def rm_local_tmp_file(path):
     path managed by the Django Storage API.
     """
     return os.unlink(path)
+
+
+def create_es_index_if_missing(index, config=None):
+    es = elasticutils.get_es()
+    if settings.IN_TEST_SUITE:
+        if not config:
+            config = {}
+        # Be nice to ES running on ci.mozilla.org
+        config.update({'number_of_shards': 3,
+                       'number_of_replicas': 0})
+    try:
+        es.create_index_if_missing(index, settings=config)
+    except pyes.ElasticSearchException, exc:
+        log.info('ES error creating index: %s' % exc)

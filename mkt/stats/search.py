@@ -3,9 +3,9 @@ from decimal import Decimal
 from django.db.models import Count, Q, Sum
 
 import elasticutils.contrib.django as elasticutils
-import pyes.exceptions as pyes
 
 import amo
+from amo.utils import create_es_index_if_missing
 from mkt import MKT_CUT
 from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Installed
@@ -192,10 +192,7 @@ def setup_mkt_indexes():
     es = elasticutils.get_es()
     for model in [Contribution, InappPayment]:
         index = model._get_index()
-        try:
-            es.create_index_if_missing(index)
-        except pyes.ElasticSearchException:
-            pass
+        create_es_index_if_missing(index)
 
         mapping = {
             'properties': {

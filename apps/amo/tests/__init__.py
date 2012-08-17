@@ -538,7 +538,8 @@ class ESTestCase(TestCase):
         cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
 
         for key, index in settings.ES_INDEXES.items():
-            settings.ES_INDEXES[key] = 'test_%s' % index
+            if not index.startswith('test_'):
+                settings.ES_INDEXES[key] = 'test_%s' % index
         try:
             cls.es.cluster_health()
         except Exception, e:
@@ -550,10 +551,8 @@ class ESTestCase(TestCase):
         for index in settings.ES_INDEXES.values():
             try:
                 cls.es.delete_index(index)
-            except pyes.IndexMissingException:
-                pass
-            except:
-                raise
+            except pyes.IndexMissingException, exc:
+                print 'Could not delete index %r: %s' % (index, exc)
 
         addons.search.setup_mapping()
         stats.search.setup_indexes()
