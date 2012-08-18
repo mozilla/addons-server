@@ -79,7 +79,7 @@ def abuse_recaptcha(request, addon):
 
 @login_required
 @permission_required('AccountLookup', 'View')
-@addon_view
+@addon_all_view
 def app_activity(request, addon):
     """Shows the app activity age for single app."""
 
