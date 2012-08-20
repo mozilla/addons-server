@@ -6,15 +6,16 @@ from pyquery import PyQuery as pq
 from nose.exc import SkipTest
 from nose.tools import eq_
 
+import amo
 from abuse.models import AbuseReport
 from addons.cron import reindex_addons
 from addons.models import Addon, AddonUser
-import amo
+from amo.helpers import urlparams
+from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
-from amo.tests import TestCase, ESTestCase, app_factory, addon_factory
 from devhub.models import ActivityLog
-from market.models import Refund, AddonPaymentData, Price, AddonPremium
-from mkt.webapps.models import Webapp, Installed
+from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from mkt.webapps.models import Installed, Webapp
 from stats.models import Contribution, DownloadCount
 from users.cron import reindex_users
 from users.models import UserProfile
@@ -652,7 +653,8 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(doc('div.info a').attr('href'), self.app.get_detail_url())
+        eq_(doc('ol.listing a.mkt-tile').attr('href'),
+            urlparams(self.app.get_detail_url(), src=''))
 
     def test_no_support_link(self):
         for type_ in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]:
