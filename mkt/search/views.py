@@ -211,13 +211,17 @@ def _app_search(request, category=None, browse=None):
 
 def app_search(request):
     ctx = _app_search(request)
-    cat = ctx.get('query').get('cat') or None
+    if 'query' in ctx and 'cat' in ctx['query']:
+        cat = ctx['query']['cat']
+    else:
+        cat = None
 
     # If we're supposed to redirect, then do that.
     if ctx.get('redirect'):
         return redirect(ctx['redirect'])
 
-    ctx['featured'] = Webapp.featured(cat=cat)[:3]
+    if cat:
+        ctx['featured'] = Webapp.featured(cat=cat)[:3]
 
     # Otherwise render results.
     return jingo.render(request, 'search/results.html', ctx)
