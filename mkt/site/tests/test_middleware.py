@@ -356,7 +356,7 @@ class TestVaryMiddleware(MiddlewareCase):
         # not vary headers based on User-Agent.
         self.client.login(username='31337', password='password')
 
-        r = self.client.get('/apps/', follow=True)
+        r = self.client.get('/', follow=True)
         eq_(r.status_code, 200)
 
         assert 'firefox' not in r.request['PATH_INFO'], (
