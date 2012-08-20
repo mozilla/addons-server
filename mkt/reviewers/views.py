@@ -1,5 +1,7 @@
 import datetime
 import json
+import sys
+import traceback
 
 from django.conf import settings
 from django.db.models import Q
@@ -317,8 +319,8 @@ def app_view_manifest(request, addon):
         try:
             req = requests.get(addon.manifest_url, verify=False)
             content, headers = req.content, req.headers
-        except Exception, e:
-            content = e
+        except Exception:
+            content = ''.join(traceback.format_exception(*sys.exc_info()))
 
         try:
             # Reindent the JSON.

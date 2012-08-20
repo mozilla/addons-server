@@ -11,6 +11,7 @@ import mock
 import waffle
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
+import requests
 
 import amo
 import reviews
@@ -964,6 +965,23 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'content': u'كك some foreign ish',
                                     'headers': {}})
+
+    @mock.patch('mkt.reviewers.views.requests.get')
+    def test_manifest_json_traceback_in_response(self, mock_get):
+        m = mock.Mock()
+        m.content = {'name': 'Some name'}
+        m.headers = {}
+        mock_get.side_effect = requests.exceptions.SSLError
+        mock_get.return_value = m
+
+        # We should not 500 on a traceback.
+
+        r = self.client.get(reverse('reviewers.apps.review.manifest',
+                                    args=[self.app.app_slug]))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        assert data['content'], 'There should be a content with the traceback'
+        eq_(data['headers'], {})
 
     def test_abuse(self):
         AbuseReport.objects.create(addon=self.app, message='!@#$')
