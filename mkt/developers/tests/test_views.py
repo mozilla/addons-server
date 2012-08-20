@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 
+from nose import SkipTest
 import mock
 import waffle
 from dateutil.parser import parse as parse_dt
@@ -146,7 +147,6 @@ class TestAppDashboard(AppHubTest):
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
         expected = [
-            ('Manage Developer Profile', app.get_dev_url('profile')),
             ('Manage Status', app.get_dev_url('versions')),
         ]
         amo.tests.check_links(expected, doc('.more-actions-popup a'))
@@ -187,11 +187,10 @@ class TestAppDashboard(AppHubTest):
             self.make_mine()
             doc = pq(self.client.get(self.url).content)
             expected = [
-                ('Manage Developer Profile', app.get_dev_url('profile')),
+                ('Manage Status', app.get_dev_url('versions')),
                 ('Manage In-App Payments', app.get_dev_url('in_app_config')),
                 ('Manage PayPal', app.get_dev_url('paypal_setup')),
                 ('Manage Refunds', app.get_dev_url('refunds')),
-                ('Manage Status', app.get_dev_url('versions')),
             ]
             amo.tests.check_links(expected, doc('.more-actions-popup a'))
 
@@ -1117,6 +1116,8 @@ class TestProfileStatusBar(TestProfileBase):
         self.remove_url = self.webapp.get_dev_url('profile.remove')
 
     def test_nav_link(self):
+        # Removed links to "Manage Developer Profile" in bug 742902.
+        raise SkipTest
         r = self.client.get(self.url)
         eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
             self.url)

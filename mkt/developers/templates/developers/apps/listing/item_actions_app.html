@@ -46,7 +46,6 @@
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
       {% set manage_urls = [
-        (addon.get_dev_url('profile'), _('Manage Developer Profile')),
         (addon.get_dev_url('versions'), _('Manage Status')),
       ] %}
       {% if waffle.switch('allow-refund') and addon.needs_paypal() and
