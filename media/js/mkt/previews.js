@@ -11,7 +11,9 @@
         // preview trays expect to immediately follow a .mkt-tile.
         var $tray = $(this);
         var $tile = $tray.prev();
-        if (!$tile.hasClass('mkt-tile')) return;
+        if (!$tile.hasClass('mkt-tile') || $tray.find('.slider').length) {
+            return;
+        }
         var product = $tile.data('product');
         var previewsHTML = '';
         _.each(product.previews, function(p) {

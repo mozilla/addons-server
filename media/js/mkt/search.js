@@ -22,12 +22,34 @@
         }
     });
 
+    var expandListings = false;
+    var $expandToggle = $('#site-header .expand');
+
     // Toggle app listing graphical/compact view.
-    $('#site-header .expand').click(_pd(function(e) {
-        $('ol.listing').toggleClass('expanded');
-        $(this).toggleClass('active', $('ol.listing').hasClass('expanded'));
-        z.page.trigger('populatetray');
+    $expandToggle.click(_pd(function(e) {
+        expandListings = !expandListings;
+        setTrays(expandListings);
     }));
+
+    z.page.on('fragmentloaded', function() {
+        if (z.body.data('page-type') === 'search') {
+            expandListings = localStorage.getItem('expand-listings') === 'true';
+            if (expandListings) {
+                setTrays(true);
+            }
+        }
+    });
+
+
+    function setTrays(expanded) {
+        $('ol.listing').toggleClass('expanded', expanded);
+        $expandToggle.toggleClass('active', expanded);
+        localStorage.setItem('expand-listings', expanded);
+        if (expanded) {
+            z.page.trigger('populatetray');
+        }
+    }
+
 
     function turnPages(e) {
         if (fieldFocused(e)) {
