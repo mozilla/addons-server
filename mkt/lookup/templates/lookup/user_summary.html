@@ -60,7 +60,7 @@
         <dt>{{ _('Read agreement') }}:</dt>
         <dd>
           {% if account.read_dev_agreement %}
-            {{ _('Yes') }}
+            {{ account.read_dev_agreement|datetime }}
           {% else %}
             {{ _('No') }}
           {% endif %}
