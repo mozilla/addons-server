@@ -25,6 +25,7 @@
     // Toggle app listing graphical/compact view.
     $('#site-header .expand').click(_pd(function(e) {
         $('ol.listing').toggleClass('expanded');
+        $(this).toggleClass('active', $('ol.listing').hasClass('expanded'));
         z.page.trigger('populatetray');
     }));
 

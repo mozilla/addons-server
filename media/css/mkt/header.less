@@ -78,11 +78,12 @@
 }
 
 .header-button {
-    width: 50px;
+    width: 54px;
     height: 50px;
     color: #fff;
     position: relative;
     z-index: 11;
+    text-align: center;
     &:after {
         content: '';
         z-index: 11;
@@ -148,8 +149,23 @@
         &:before {
             width: 18px;
             left: 5px;
-            background-position: 0 -72px;
+            background-position: 0 -96px;
         }
+    }
+
+    &.expand {
+        width: 78px;
+        &:after {
+            content: none;
+        }
+    }
+    &.expand:before {
+        width: 54px;
+        height: 24px;
+        background: url(../../img/mkt/expand-toggle.png) 0 0 no-repeat;
+    }
+    &.expand.active:before {
+        background-position: 0 -24px;
     }
 }
 

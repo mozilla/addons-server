@@ -9,7 +9,7 @@
       <a href="#" class="header-button icon search right">{{ _('Search') }}</a>
       <a href="#" class="header-button icon cancel right">{{ _('Cancel') }}</a>
       <a href="#" class="header-button filter right">{{ _('Filter') }}</a>
-      <a href="#" class="header-button expand right">{{ _('Expand') }}</a>
+      <a href="#" class="header-button icon expand right">{{ _('Expand') }}</a>
       {% block search %}
         {% set data = {'cat': category.id} if category else request.GET %}
         {% set search_form = SimpleSearchForm(data) %}
