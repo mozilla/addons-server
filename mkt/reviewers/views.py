@@ -315,7 +315,7 @@ def app_view_manifest(request, addon):
     content, headers = '', {}
     if addon.manifest_url:
         try:
-            req = requests.get(addon.manifest_url)
+            req = requests.get(addon.manifest_url, verify=False)
             content, headers = req.content, req.headers
         except Exception, e:
             content = e
