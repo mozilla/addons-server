@@ -95,14 +95,17 @@
               <td><div class="addon-locked"></div></td>
               <td><a href="{{ url('reviewers.apps.review', addon.app_slug) }}">{{ addon.name|xssafe }}</a></td>
               <td>{# Flags #}
-                {% if addon.admin_review %}
-                  <div class="app-icon ed-sprite-admin-review" title="{{ _('Admin Review') }}"></div>
+                {% if addon.is_packaged %}
+                  <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
+                {% endif %}
+                {% if addon.is_premium() %}
+                  <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
                 {% endif %}
                 {% if addon.current_version.has_info_request %}
-                  <div class="app-icon ed-sprite-info" title="{{ _('More Information Requested') }}"></div>
+                  <div class="sprite-reviewer sprite-reviewer-info" title="{{ _('More Information Requested') }}"></div>
                 {% endif %}
                 {% if addon.current_version.has_editor_comment %}
-                  <div class="app-icon ed-sprite-editor" title="{{ _('Contains Editor Comment') }}"></div>
+                  <div class="sprite-reviewer sprite-reviewer-editor" title="{{ _('Contains Editor Comment') }}"></div>
                 {% endif %}
               </td>
               <td>{{ addon.created|timesince }}</td>

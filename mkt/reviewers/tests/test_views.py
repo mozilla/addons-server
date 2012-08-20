@@ -144,7 +144,44 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         eq_(table.find('td').eq(3).text(), u'1')
 
 
-class TestAppQueue(AppReviewerTest, AccessMixin):
+class FlagsMixin(object):
+
+    def test_flag_packaged_app(self):
+        self.apps[0].get_latest_file().update(is_packaged=True)
+        eq_(self.apps[0].is_packaged, True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.sprite-reviewer-packaged-app')
+        eq_(flags.length, 1)
+
+    def test_flag_premium_app(self):
+        self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
+        eq_(self.apps[0].is_premium(), True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.sprite-reviewer-premium')
+        eq_(flags.length, 1)
+
+    def test_flag_info(self):
+        self.apps[0].current_version.update(has_info_request=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.sprite-reviewer-info')
+        eq_(flags.length, 1)
+
+    def test_flag_comment(self):
+        self.apps[0].current_version.update(has_editor_comment=True)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        flags = tds('div.sprite-reviewer-editor')
+        eq_(flags.length, 1)
+
+
+class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -210,22 +247,6 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
             (u'Comment', 'comment'),
         ]
         self.check_actions(expected, actions)
-
-    def test_flag_info(self):
-        self.apps[0].current_version.update(has_info_request=True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
-        flags = tds('div.ed-sprite-info')
-        eq_(flags.length, 1)
-
-    def test_flag_comment(self):
-        self.apps[0].current_version.update(has_editor_comment=True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
-        flags = tds('div.ed-sprite-editor')
-        eq_(flags.length, 1)
 
     def test_devices(self):
         AddonDeviceType.objects.create(addon=self.apps[0], device_type=1)
@@ -295,7 +316,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin):
     #        str(self.apps[1].id))
 
 
-class TestRereviewQueue(AppReviewerTest, AccessMixin):
+class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -418,7 +439,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin):
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestEscalationQueue(AppReviewerTest, AccessMixin):
+class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -490,22 +511,6 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin):
             (u'Comment', 'comment'),
         ]
         self.check_actions(expected, actions)
-
-    def test_flag_info(self):
-        self.apps[0].current_version.update(has_info_request=True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
-        flags = tds('div.ed-sprite-info')
-        eq_(flags.length, 1)
-
-    def test_flag_comment(self):
-        self.apps[0].current_version.update(has_editor_comment=True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
-        flags = tds('div.ed-sprite-editor')
-        eq_(flags.length, 1)
 
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
