@@ -3,7 +3,7 @@
   <h3>{{ loc('Marketplace') }}</h3>
   {% if not webapp and addon.status == amo.STATUS_UNREVIEWED %}
     <div class="notification-box warning">
-      {{ loc('Your add-on must have a full review to be in the Mozilla Marketplace.
+      {{ loc('Your add-on must have a full review to be in the Firefox Marketplace.
       This add-on is currently in the Preliminary Review Queue, so at the end of this wizard
       we will move your add-on to the Full Review queue.') }}
     </div>
@@ -27,7 +27,7 @@
   {% else %}
     <p>{% with doc_url=url('devhub.docs', doc_name='marketplace'),
                 agree_url=url('devhub.docs', doc_name='policies', doc_page='agreement') %}
-      Thanks for your interest in selling your add-on in the Mozilla Marketplace.
+      Thanks for your interest in selling your add-on in the Firefox Marketplace.
       {# TODO(marketplace-docs):
       Please be sure to read our <a href="{{ doc_url }}">Marketplace Documentation and Policies</a>
       before continuing, as well as the <a href="{{ agree_url }}">Developer Agreement</a> you agreed
@@ -42,7 +42,7 @@
   </div>
   {% if not webapp %}
     <p>{{ loc('If this is the free version of your add-on, please create a new UUID
-      for your premium add-on and submit it separately before enrolling in Mozilla Marketplace.') }}
+      for your premium add-on and submit it separately before enrolling in Firefox Marketplace.') }}
     </p>
   {% endif %}
   <a class="button" href="{{ addon.get_dev_url('market.1') }}"

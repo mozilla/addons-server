@@ -10,7 +10,7 @@
     <section>
       <div class="wrapper">
         <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
-          {{ _('Mozilla Marketplace Developers') }}</a></h1>
+          {{ _('Firefox Marketplace Developers') }}</a></h1>
         <nav role="navigation">
           {% if not request.user.is_authenticated() %}
             <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">
