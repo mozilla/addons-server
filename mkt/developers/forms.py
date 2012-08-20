@@ -335,7 +335,8 @@ class AdminSettingsForm(PreviewForm):
             addon.update(mozilla_contact=contact)
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
-            before = set(addon.content_ratings.filter(rating__in=ratings))
+            before = set(addon.content_ratings.filter(rating__in=ratings)
+                         .values_list('rating', flat=True))
             after = set(int(r) for r in ratings)
             addon.content_ratings.exclude(rating__in=after).delete()
             for i in after - before:

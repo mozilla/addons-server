@@ -534,7 +534,7 @@ class ContentRating(amo.models.ModelBase):
     rating = models.PositiveIntegerField(null=False)
 
     def __unicode__(self):
-        return '%s: %s - %s' % (self.addon, self.get_name())
+        return '%s: %s' % (self.addon, self.get_name())
 
     def get_body(self):
         rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
