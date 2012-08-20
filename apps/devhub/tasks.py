@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import base64
-from datetime import date
 import json
 import logging
 import os
@@ -14,7 +13,6 @@ import uuid
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
-from django.utils.http import urlencode
 
 from celeryutils import task
 from django_statsd.clients import statsd
@@ -154,8 +152,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
             return validate(path,
                             for_appversions=for_appversions,
                             format='json',
-                            # When False, this flag says to stop testing after one
-                            # tier fails.
+                            # When False, this flag says to stop testing after
+                            # one tier fails.
                             determined=test_all_tiers,
                             approved_applications=apps,
                             spidermonkey=settings.SPIDERMONKEY,
@@ -254,11 +252,9 @@ def get_preview_sizes(ids, **kw):
         for preview in previews:
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
-                sizes = {
-                    'thumbnail':  Image.open(storage.open(preview.thumbnail_path)).size,
-                    'image':  Image.open(storage.open(preview.image_path)).size,
-                }
-                preview.update(sizes=sizes)
+                thumb = Image.open(storage.open(preview.thumbnail_path)).size
+                img = Image.open(storage.open(preview.image_path)).size
+                preview.update(sizes={'thumbnail': thumb, 'image': img})
             except Exception, err:
                 log.error('Failed to find size of preview: %s, error: %s'
                           % (addon.pk, err))
@@ -333,16 +329,6 @@ def _fetch_content(url):
             raise Exception(str(e.reason))
 
 
-def check_content_type(response, content_type,
-                       no_ct_message, wrong_ct_message):
-    if not response.headers.get('Content-Type', '').startswith(content_type):
-        if 'Content-Type' in response.headers:
-            raise Exception(wrong_ct_message %
-                            (content_type, response.headers['Content-Type']))
-        else:
-            raise Exception(no_ct_message % content_type)
-
-
 def get_content_and_check_size(response, max_size, error_message):
     # Read one extra byte. Reject if it's too big so we don't have issues
     # downloading huge files.
@@ -405,13 +391,6 @@ def fetch_manifest(url, upload_pk=None, **kw):
 
     try:
         response = _fetch_content(url)
-
-        no_ct_message = _('Your manifest must be served with the HTTP '
-                          'header "Content-Type: %s".')
-        wrong_ct_message = _('Your manifest must be served with the HTTP '
-                             'header "Content-Type: %s". We saw "%s".')
-        check_content_type(response, 'application/x-web-app-manifest+json',
-                           no_ct_message, wrong_ct_message)
 
         size_error_message = _('Your manifest must be less than %s bytes.')
         content = get_content_and_check_size(response,

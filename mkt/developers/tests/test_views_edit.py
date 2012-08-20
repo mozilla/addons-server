@@ -47,8 +47,6 @@ response_mock.read.return_value = '''
         "installs_allowed_from": [ "https://marketplace.mozilla.org" ]
     }
 '''
-response_mock.headers = {'Content-Type':
-                         'application/x-web-app-manifest+json'}
 
 
 def get_section_url(addon, section, edit=False):

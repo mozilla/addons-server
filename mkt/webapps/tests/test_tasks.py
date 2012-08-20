@@ -82,8 +82,6 @@ class TestUpdateManifest(amo.tests.TestCase):
 
         self.response_mock = mock.Mock()
         self.response_mock.read.return_value = self._data()
-        self.response_mock.headers = {
-            'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = self.response_mock
 
     @mock.patch('mkt.webapps.tasks._get_content_hash')
@@ -168,8 +166,6 @@ class TestUpdateManifest(amo.tests.TestCase):
         n['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
         response_mock.read.return_value = json.dumps(n)
-        response_mock.headers = {
-            'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
 
         eq_(RereviewQueue.objects.count(), 0)
@@ -189,8 +185,6 @@ class TestUpdateManifest(amo.tests.TestCase):
         n['locale'] = 'en-US'
         response_mock = mock.Mock()
         response_mock.read.return_value = json.dumps(n)
-        response_mock.headers = {
-            'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
 
         eq_(RereviewQueue.objects.count(), 0)

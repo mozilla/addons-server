@@ -289,15 +289,9 @@ def fetch_icon(webapp, **kw):
 def _fetch_manifest(url):
     try:
         response = _fetch_content(url)
-        ct = response.headers.get('Content-Type', '')
-        if not ct.startswith('application/x-web-app-manifest+json'):
-            raise Exception('Content type is ' + ct)
     except Exception, e:
         log.error('Failed to fetch manifest from %r: %s' % (url, e))
-        raise Exception('No manifest was found at that URL. Check the '
-                        'address and make sure the manifest is served '
-                        'with the HTTP header "Content-Type: '
-                        'application/x-web-app-manifest+json".')
+        raise Exception('No manifest was found at that URL.')
 
     size_error_message = _('Your manifest must be less than %s bytes.')
     content = get_content_and_check_size(response,

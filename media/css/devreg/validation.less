@@ -1,5 +1,19 @@
 @import 'lib';
 
+#upload-package .upload-status {
+    margin: 20px 0;
+    #upload-status-results strong {
+        display: block;
+        ~ ul {
+            margin-bottom: 10px;
+        }
+        ~ a {
+            display: block;
+            margin-top: 5px;
+        }
+    }
+}
+
 #upload-file {
     margin-top: 15px;
     #validate-field {
@@ -58,19 +72,6 @@
                                 0 -1px rgba(0, 0, 0, 0.1) inset,
                                 0 0 100px rgba(255, 255, 255, 0.4) inset);
                 }
-            }
-        }
-    }
-    .upload-status {
-        margin: 20px 0;
-        #upload-status-results strong {
-            display: block;
-            ~ ul {
-                margin-bottom: 10px;
-            }
-            ~ a {
-                display: block;
-                margin-top: 5px;
             }
         }
     }
