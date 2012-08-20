@@ -25,25 +25,37 @@
 
       {{ grid_field(form.display_name) }}
 
-      {#
-        TODO: This div below should be removed (here for visual reminder).
-        Use {% include 'site/includes/languages.html' %} once gaia-ui is
-        merged into master.
-      #}
       <div class="simple-field two-col c">
         <div class="col-a">
           <label for="language">{{ _('Language') }}:</label>
         </div>
         <div class="col-b">
-          <select id="language" dir="ltr" class="hmm">
+          <select id="language" name="lang" dir="ltr">
             {% for code, name in LANGUAGES|dictsort -%}
-              <option value="{{ code }}"{% if code == LANG|lower %}
+              <option value="{{ code }}"{% if code == request.LANG|lower %}
                                            selected{% endif %}>
               {{ name }}</option>
             {%- endfor %}
           </select>
         </div>
       </div>
+
+      {% if settings.REGION_STORES %}
+        <div class="simple-field two-col c">
+          <div class="col-a">
+            <label for="region">{{ _('Region') }}:</label>
+          </div>
+          <div class="col-b">
+            <select id="region" name="region">
+              {% for code, region in mkt.regions.REGIONS_CHOICES_SLUG -%}
+              <option value="{{ code }}"{% if code == request.REGION.slug %}
+                      selected{% endif %}>
+                {{ region.name }}</option>
+              {%- endfor %}
+            </select>
+          </div>
+        </div>
+      {% endif %}
 
       {% if 'admin_log' in form.fields %}
         <h3>Administration</h3>
@@ -55,10 +67,16 @@
 
       <footer class="form-footer">
         <button type="submit">{{ _('Save Changes') }}</button>
-        {% if 'admin_log' in form.fields %}
+        <div class="extras">
+          <a href="{{ url('users.logout') }}" class="post logout">
+            {{ _('Log out') }}
+          </a>
+        </div>
+        {# TODO: This will have to come back for desktop. #}
+        {# if 'admin_log' in form.fields %}
           <a href="{{ url('admin:users_userprofile_delete', amouser.id) }}"
              class="delete">Delete Account</a>
-        {% endif %}
+        {% endif #}
       </footer>
     </form>
   </section>

@@ -140,7 +140,7 @@ class LocaleMiddleware(object):
             if stored_ov_lang.lower() in settings.LANGUAGE_URL_MAP:
                 ov_lang = stored_ov_lang
 
-        if 'lang' in request.GET:
+        if ('lang' in request.GET) or ('lang' in request.POST):
             # `get_language` uses request.GET['lang'] and does safety checks.
             ov_lang = a_l
             lang = Prefixer(request).get_language()
@@ -216,7 +216,7 @@ class RegionMiddleware(object):
                         reg = region.slug
                         break
 
-        choice = request.GET.get('region')
+        choice = (request.GET or request.POST).get('region')
         if choice in regions:
             reg = choice
 

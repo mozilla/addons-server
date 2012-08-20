@@ -130,8 +130,9 @@ class Prefixer(object):
         user's Accept Language header to determine which is best.  This
         mostly follows the RFCs but read bug 439568 for details.
         """
-        if 'lang' in self.request.GET:
-            lang = self.request.GET['lang'].lower()
+        data = (self.request.GET or self.request.POST)
+        if 'lang' in data:
+            lang = data['lang'].lower()
             if lang in settings.LANGUAGE_URL_MAP:
                 return settings.LANGUAGE_URL_MAP[lang]
             prefix = lang.split('-')[0]

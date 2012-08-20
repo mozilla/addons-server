@@ -200,8 +200,7 @@ def purchases(request, product_id=None, template=None):
 def account_settings(request):
     # Don't use `request.amo_user` because it's too cached.
     amo_user = request.amo_user.user.get_profile()
-    form = forms.UserEditForm(request.POST or None, request.FILES or None,
-                              request=request, instance=amo_user)
+    form = forms.UserEditForm(request.POST or None, instance=amo_user)
     if request.method == 'POST':
         if form.is_valid():
             form.save()

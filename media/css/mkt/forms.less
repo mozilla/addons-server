@@ -306,11 +306,32 @@ form {
         width: 100%;
         font-size: 14px;
     }
+    .extras {
+        margin: 20px 0;
+        padding: 20px;
+        border-top: 1px solid @light-gray;
+    }
     a {
         display: inline-block;
         margin-left: 5px;
         &:only-child {
             margin: 0;
+        }
+        &.logout {
+            min-width: 50%;
+            line-height: 33px;
+            border: 1px solid #cdcbcb;
+            display: inline-block;
+            text-align: center;
+            .gradient-two-color(#f7f7f7, @faint-gray);
+            font-weight: 600;
+            color: @text;
+            .ellipsis();
+            font-size: 14px;
+            .border-radius(5px);
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }

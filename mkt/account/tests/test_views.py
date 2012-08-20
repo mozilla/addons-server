@@ -74,7 +74,8 @@ class TestAccountSettings(amo.tests.TestCase):
         self.url = reverse('account.settings')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
                      'oldpassword': 'foo', 'password': 'longenough',
-                     'password2': 'longenough', 'bio': 'boop'}
+                     'password2': 'longenough', 'bio': 'boop',
+                     'lang': 'fr', 'region': 'br'}
         self.extra_data = {'homepage': 'http://omg.org/',
                            'occupation': 'bro', 'location': 'desk 42',
                            'display_name': 'Fligtar Scott'}
@@ -90,11 +91,15 @@ class TestAccountSettings(amo.tests.TestCase):
         eq_((ActivityLog.objects.filter(action=amo.LOG.USER_EDITED.id)
                                 .count()), 1)
         # Check that the values got updated appropriately.
-        user = self.get_user()
-        for field, expected in self.extra_data.iteritems():
-            eq_(unicode(getattr(user, field)), expected)
-            # TODO: Add back when settings is more complete.
-            #eq_(doc('#id_' + field).val(), expected)
+        # TODO: Add back when settings is more complete.
+        # user = self.get_user()
+        # for field, expected in self.extra_data.iteritems():
+        #     eq_(unicode(getattr(user, field)), expected)
+        #     eq_(doc('#id_' + field).val(), expected)
+
+        eq_(doc('#id_display_name').val(), 'Fligtar Scott')
+        eq_(doc('#language option[selected]').attr('value'), 'fr')
+        eq_(doc('#region option[selected]').attr('value'), 'br')
 
     def test_no_password_changes(self):
         self.client.post(self.url, self.data)
@@ -191,6 +196,8 @@ class TestAccountSettings(amo.tests.TestCase):
         self.post_notifications(email.APP_NOTIFICATIONS_CHOICES_NOT_DEV)
 
     def test_edit_non_dev_notifications_error(self):
+        # We don't have notification settings right now
+        raise SkipTest
         # jbalogh isn't a developer so he can't set developer notifications.
         self.data['notifications'] = [email.app_surveys.id]
         r = self.client.post(self.url, self.data)
@@ -210,6 +217,14 @@ class TestAccountSettings(amo.tests.TestCase):
         eq_(log.count(), 1)
         eq_(self.get_user().picture_type, '')
         assert delete_photo_task.delay.called
+
+    def test_lang_region_selector(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(r.status_code, 200)
+        eq_(doc('#language option[selected]').attr('value'), 'en-us')
+        eq_(doc('#region option[selected]').attr('value'), 'us')
 
 
 class TestAdminAccountSettings(amo.tests.TestCase):
