@@ -72,7 +72,7 @@ function initBrowserID(win, ctx) {
         e.preventDefault();
         $el.addClass('loading-submit');
         $('.primary .notification-box', ctx).remove();
-        navigator.id.watch(
+        navigator.id.watch({
             onlogin: function(assertion) {
                 gotVerifiedEmail(assertion, redirectTo);
             },
