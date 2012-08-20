@@ -500,8 +500,7 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
             self.mcompat = None
 
     def _generate(self):
-        views = [reverse('home'),
-                 reverse('browse.apps'),
+        views = [reverse('browse.apps'),
                  reverse('search.search') + '?q=',
                  reverse('search.search') + '?q=Basta',
                  reverse('search.suggestions') + '?q=Basta&cat=apps']
