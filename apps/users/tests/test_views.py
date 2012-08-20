@@ -113,6 +113,20 @@ class TestAjax(UserViewBase):
         r = self.client.get(reverse('users.ajax'))
         eq_(r.status_code, 401)
 
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_dev_only_read(self):
+        r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com',
+                                                    'dev': 1})
+        eq_(json.loads(r.content)['status'], 1)
+
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_dev_only(self):
+        up = UserProfile.objects.get(email='fligtar@gmail.com')
+        up.update(read_dev_agreement=None)
+        r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com',
+                                                    'dev': 1})
+        eq_(json.loads(r.content)['status'], 0)
+
 
 class TestEdit(UserViewBase):
 

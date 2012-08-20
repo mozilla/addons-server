@@ -122,7 +122,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     resetcode = models.CharField(max_length=255, default='', blank=True)
     resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
                                              blank=True)
-    read_dev_agreement = models.BooleanField(default=False)
+    read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     last_login_attempt = models.DateTimeField(null=True, editable=False)

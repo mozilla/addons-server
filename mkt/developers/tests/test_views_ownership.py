@@ -1,4 +1,6 @@
 """Tests related to the ``mkt.developers.addons.owner`` view."""
+import datetime
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
@@ -21,7 +23,7 @@ class TestOwnership(amo.tests.TestCase):
                                  password='password')
         # Users are required to have read the dev agreement to become owners.
         UserProfile.objects.filter(id__in=[31337, 999]).update(
-            read_dev_agreement=True)
+            read_dev_agreement=datetime.datetime.now())
 
     def formset(self, *args, **kw):
         return formset(*args, **kw)

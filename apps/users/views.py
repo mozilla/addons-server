@@ -86,7 +86,7 @@ def ajax(request):
 
     user = UserProfile.objects.filter(email=email)
     if dev_only:
-        user = user.filter(read_dev_agreement=True)
+        user = user.exclude(read_dev_agreement=None)
 
     msg = _('A user with that email address does not exist.')
     msg_dev = _('A user with that email address does not exist, or the user '

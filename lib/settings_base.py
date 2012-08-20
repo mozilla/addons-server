@@ -1481,3 +1481,6 @@ SECLUSION_TIMEOUT = 10
 # Temporary flag to work with navigator.mozPay() on devices that don't
 # support it natively.
 SIMULATE_NAV_PAY = False
+
+# Set this to True if you want region stores (eg: marketplace).
+REGION_STORES = False

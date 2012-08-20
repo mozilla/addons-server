@@ -1551,21 +1551,21 @@ class TestTerms(amo.tests.TestCase):
         self.assertLoginRequired(self.client.get(self.url))
 
     def test_accepted(self):
-        self.user.update(read_dev_agreement=True)
+        self.user.update(read_dev_agreement=datetime.datetime.now())
         res = self.client.get(self.url)
         doc = pq(res.content)
         eq_(doc('#dev-agreement').length, 1)
         eq_(doc('#agreement-form').length, 0)
 
     def test_not_accepted(self):
-        self.user.update(read_dev_agreement=False)
+        self.user.update(read_dev_agreement=None)
         res = self.client.get(self.url)
         doc = pq(res.content)
         eq_(doc('#dev-agreement').length, 1)
         eq_(doc('#agreement-form').length, 1)
 
     def test_accept(self):
-        self.user.update(read_dev_agreement=False)
+        self.user.update(read_dev_agreement=None)
         res = self.client.post(self.url, {'read_dev_agreement': 'yeah'})
         eq_(res.status_code, 200)
-        eq_(self.get_user().read_dev_agreement, True)
+        assert self.get_user().read_dev_agreement

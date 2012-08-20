@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import os
 import socket
 
@@ -910,5 +911,5 @@ class DevAgreementForm(happyforms.Form):
         super(DevAgreementForm, self).__init__(*args, **kw)
 
     def save(self):
-        self.instance.read_dev_agreement = True
+        self.instance.read_dev_agreement = datetime.now()
         self.instance.save()

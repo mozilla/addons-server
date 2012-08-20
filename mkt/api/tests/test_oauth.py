@@ -19,6 +19,7 @@ With headers:
     oauth_nonce="1008F707-37E6-4ABF-8322-C6B658771D88",
     oauth_version="1.0"
 """
+from datetime import datetime
 import json
 import urllib
 import urlparse
@@ -124,7 +125,7 @@ class BaseOAuth(TestCase):
 
     def setUp(self):
         self.user = User.objects.get(pk=2519)
-        self.user.get_profile().update(read_dev_agreement=True)
+        self.user.get_profile().update(read_dev_agreement=datetime.now())
 
         for status in ('accepted', 'pending', 'canceled', ):
             c = Consumer(name='a', status=status, user=self.user)
@@ -174,7 +175,7 @@ class TestBaseOAuth(BaseOAuth):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_no_agreement(self):
-        self.user.get_profile().update(read_dev_agreement=False)
+        self.user.get_profile().update(read_dev_agreement=None)
         res = self.client.get(self.url)
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'], errors['terms'])

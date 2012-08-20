@@ -96,7 +96,7 @@ class TestPaypal(amo.tests.TestCase):
         self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url('paypal_setup')
         user = UserProfile.objects.get(email='admin@mozilla.com')
-        user.update(read_dev_agreement=False)
+        user.update(read_dev_agreement=None)
 
         self.client.login(username='admin@mozilla.com', password='password')
         self.price = Price.objects.all()[0]

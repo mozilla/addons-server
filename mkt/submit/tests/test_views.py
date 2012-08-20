@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import os
 
@@ -13,7 +14,7 @@ import amo
 import amo.tests
 import paypal
 from amo.helpers import urlparams
-from amo.tests import formset, initial
+from amo.tests import close_to_now, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
@@ -77,7 +78,7 @@ class TestTerms(TestSubmit):
 
     def setUp(self):
         super(TestTerms, self).setUp()
-        self.user.update(read_dev_agreement=False)
+        self.user.update(read_dev_agreement=None)
         self.url = reverse('submit.app.terms')
 
     def test_anonymous(self):
@@ -104,21 +105,20 @@ class TestTerms(TestSubmit):
         self.create_switch(name='allow-packaged-app-uploads')
         r = self.client.post(self.url, {'read_dev_agreement': True})
         self.assert3xx(r, reverse('submit.app.choose'))
-        #dt = self.get_user().read_dev_agreement
-        #assert close_to_now(dt), (
-        #    'Expected date of agreement read to be close to now. Was %s' % dt)
-        eq_(self.get_user().read_dev_agreement, True)
+        dt = self.get_user().read_dev_agreement
+        assert close_to_now(dt), (
+            'Expected date of agreement read to be close to now. Was %s' % dt)
         eq_(UserNotification.objects.count(), 0)
 
     def test_agree_and_sign_me_up(self):
         self.create_switch(name='allow-packaged-app-uploads')
-        r = self.client.post(self.url, {'read_dev_agreement': True,
+        r = self.client.post(self.url, {'read_dev_agreement':
+                                        datetime.datetime.now(),
                                         'newsletter': True})
         self.assert3xx(r, reverse('submit.app.choose'))
-        #dt = self.get_user().read_dev_agreement
-        #assert close_to_now(dt), (
-        #    'Expected date of agreement read to be close to now. Was %s' % dt)
-        eq_(self.get_user().read_dev_agreement, True)
+        dt = self.get_user().read_dev_agreement
+        assert close_to_now(dt), (
+            'Expected date of agreement read to be close to now. Was %s' % dt)
         eq_(UserNotification.objects.count(), 1)
         notes = UserNotification.objects.filter(user=self.user, enabled=True,
                                                 notification_id=app_surveys.id)
@@ -127,14 +127,14 @@ class TestTerms(TestSubmit):
     def test_disagree(self):
         r = self.client.post(self.url)
         eq_(r.status_code, 200)
-        eq_(self.user.read_dev_agreement, False)
+        eq_(self.user.read_dev_agreement, None)
         eq_(UserNotification.objects.count(), 0)
 
     def test_read_dev_agreement_required(self):
         f = mock.Mock()
         f.__name__ = 'function'
         request = mock.Mock()
-        request.amo_user.read_dev_agreement = False
+        request.amo_user.read_dev_agreement = None
         request.get_full_path.return_value = self.url
         func = read_dev_agreement_required(f)
         res = func(request)
@@ -148,12 +148,11 @@ class TestManifest(TestSubmit):
 
     def setUp(self):
         super(TestManifest, self).setUp()
-        self.user.update(read_dev_agreement=False)
+        self.user.update(read_dev_agreement=None)
         self.url = reverse('submit.app.manifest')
 
     def _step(self):
-        #self.user.update(read_dev_agreement=datetime.datetime.now())
-        self.user.update(read_dev_agreement=True)
+        self.user.update(read_dev_agreement=datetime.datetime.now())
 
     def test_anonymous(self):
         self._test_anonymous()
@@ -416,8 +415,7 @@ class TestDetails(TestSubmit):
         return json.loads(rp.content)['upload_hash']
 
     def _step(self):
-        #self.user.update(read_dev_agreement=datetime.datetime.now())
-        self.user.update(read_dev_agreement=True)
+        self.user.update(read_dev_agreement=datetime.datetime.now())
         self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
             terms=True, manifest=True)
 

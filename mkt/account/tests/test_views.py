@@ -179,7 +179,7 @@ class TestAccountSettings(amo.tests.TestCase):
         eq_(doc('input[name=notifications]:checked').length, total)
 
     def test_edit_all_notifications(self):
-        self.user.update(read_dev_agreement=True)
+        self.user.update(read_dev_agreement=datetime.now())
         self.post_notifications(email.APP_NOTIFICATIONS_CHOICES)
 
     def test_edit_non_dev_notifications(self):
