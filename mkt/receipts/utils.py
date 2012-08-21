@@ -21,8 +21,7 @@ def create_receipt(installed_pk, flavour=None):
 
     installed = Installed.objects.get(pk=installed_pk)
     webapp = installed.addon
-    origin = (absolutify(webapp.get_detail_url())
-              if webapp.is_packaged else webapp.origin)
+    origin = (settings.SITE_URL if webapp.is_packaged else webapp.origin)
     time_ = calendar.timegm(time.gmtime())
 
     product = {'url': origin, 'storedata': urlencode({'id': int(webapp.pk)})}
