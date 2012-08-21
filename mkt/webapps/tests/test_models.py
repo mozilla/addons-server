@@ -258,6 +258,11 @@ class TestWebapp(TestCase):
         eq_(app2.is_packaged, True)
         eq_(app2.has_packaged_files, True)
 
+    def test_package_no_version(self):
+        webapp = Webapp.objects.create(manifest_url='http://foo.com')
+        eq_(webapp.is_packaged, False)
+        eq_(webapp.has_packaged_files, False)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']

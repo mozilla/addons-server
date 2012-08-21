@@ -20,29 +20,29 @@ def create_receipt(installed_pk, flavour=None):
            'Invalid flavour: %s' % flavour)
 
     installed = Installed.objects.get(pk=installed_pk)
-    addon_pk = installed.addon.pk
+    webapp = installed.addon
+    origin = webapp.get_detail_url() if webapp.is_packaged else webapp.origin
     time_ = calendar.timegm(time.gmtime())
-    product = {'url': installed.addon.origin,
-               'storedata': urlencode({'id': int(addon_pk)})}
+
+    product = {'url': origin, 'storedata': urlencode({'id': int(webapp.pk)})}
 
     # Generate different receipts for reviewers or developers.
     expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
     if flavour:
         if not (acl.action_allowed_user(installed.user, 'Apps', 'Review') or
-                installed.addon.has_author(installed.user)):
+                webapp.has_author(installed.user)):
             raise ValueError('User %s is not a reviewer or developer' %
                              installed.user.pk)
 
         if flavour == 'reviewer':
             expiry = time_ + (60 * 60 * 24)
         product['type'] = flavour
-        verify = absolutify(reverse('receipt.verify',
-                                    args=[installed.addon.app_slug]))
+        verify = absolutify(reverse('receipt.verify', args=[webapp.app_slug]))
     else:
-        verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, addon_pk)
+        verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, webapp.pk)
 
-    detail = reverse('account.purchases.receipt', args=[addon_pk])
-    reissue = installed.addon.get_purchase_url('reissue')
+    detail = reverse('account.purchases.receipt', args=[webapp.pk])
+    reissue = webapp.get_purchase_url('reissue')
     receipt = dict(detail=absolutify(detail), exp=expiry, iat=time_,
                    iss=settings.SITE_URL, nbf=time_, product=product,
                    reissue=absolutify(reissue), typ='purchase-receipt',

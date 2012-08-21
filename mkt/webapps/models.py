@@ -451,7 +451,13 @@ class Webapp(Addon):
         Note: This isn't using `current_version` since current version only
         gets valid versions and we need to use this during the submission flow.
         """
-        version = self.versions.latest()
+        version = None
+        try:
+            # If the webapp has no version at all (which it shouldn't)
+            # .latest() raises a DoesNotExist.
+            version = self.versions.latest()
+        except models.ObjectDoesNotExist:
+            pass
         if version:
             return version.all_files[0].is_packaged
         return False
