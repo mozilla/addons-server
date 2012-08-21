@@ -1,6 +1,7 @@
 {% if request.is_ajax() and not SKIP_FRAGMENT %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
+{% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') else '' %}
 {% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}"
@@ -37,7 +38,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {{ CARRIER }}"
+  <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
