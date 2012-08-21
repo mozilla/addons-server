@@ -17,4 +17,4 @@ def download_file(request, file_id, type=None):
                                          ignore_disabled=True):
             raise http.Http404()
 
-    return HttpResponseSendFile(request, file.guarded_file_path)
+    return HttpResponseSendFile(request, file.file_path)
