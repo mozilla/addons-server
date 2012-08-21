@@ -1,11 +1,16 @@
 from django import http
 from django.shortcuts import get_object_or_404
 
+import commonware.log
+
 from access import acl
 from addons.models import Addon
 import amo
 from amo.utils import HttpResponseSendFile
 from files.models import File
+
+
+log = commonware.log.getLogger('z.downloads')
 
 
 def download_file(request, file_id, type=None):
@@ -17,4 +22,5 @@ def download_file(request, file_id, type=None):
                                          ignore_disabled=True):
             raise http.Http404()
 
+    log.info('Downloading: %s from %s' % (webapp.id, file.file_path))
     return HttpResponseSendFile(request, file.file_path)
