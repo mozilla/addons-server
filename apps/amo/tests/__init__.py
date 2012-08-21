@@ -119,7 +119,7 @@ def check_links(expected, elements, selected=None, verify=True):
                 eq_(Client().head(link, follow=True).status_code, 200,
                     '%r is dead' % link)
         if text is not None and selected is not None:
-            e = e.filter('.selected') or e.parents('.selected')
+            e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
             eq_(bool(e.length), text == selected)
 
 
