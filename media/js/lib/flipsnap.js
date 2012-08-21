@@ -103,8 +103,8 @@ Flipsnap.prototype.init = function(element, opts) {
 	self.refresh();
 
 	self.element.addEventListener(touchStartEvent, self, false);
-	self.element.addEventListener(touchMoveEvent, self, false);
-	self.element.parentNode.addEventListener(touchEndEvent, self, false);
+	window.addEventListener(touchMoveEvent, self, false);
+	window.addEventListener(touchEndEvent, self, false);
 
 	return self;
 };
