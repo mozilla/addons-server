@@ -50,8 +50,8 @@ exports.install = function(product, opt) {
             $def.reject();
         }
         var installRequest = product.is_packaged ?
-                             opt.navigator.mozApps.installPackage(manifestUrl, opt.data) :
-                             opt.navigator.mozApps.install(package_url, opt.data);
+                             opt.navigator.mozApps.installPackage(package_url, opt.data) :
+                             opt.navigator.mozApps.install(manifestUrl, opt.data);
         installRequest.onsuccess = function() {
             $def.resolve(product);
         };
