@@ -15,7 +15,8 @@ log = commonware.log.getLogger('z.downloads')
 
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
-    webapp = get_object_or_404(Addon.objects, pk=file.version.addon_id)
+    webapp = get_object_or_404(Addon.objects, pk=file.version.addon_id,
+                               type=amo.ADDON_WEBAPP)
 
     if webapp.is_disabled or file.status == amo.STATUS_DISABLED:
         if not acl.check_addon_ownership(request, webapp, viewer=True,

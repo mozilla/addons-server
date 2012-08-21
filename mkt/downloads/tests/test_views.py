@@ -33,3 +33,7 @@ class TestDownload(amo.tests.TestCase):
         self.client.login(username='admin@mozilla.com',
                           password='password')
         eq_(self.client.get(self.url).status_code, 200)
+
+    def test_not_webapp(self):
+        self.webapp.update(type=amo.ADDON_EXTENSION)
+        eq_(self.client.get(self.url).status_code, 404)
