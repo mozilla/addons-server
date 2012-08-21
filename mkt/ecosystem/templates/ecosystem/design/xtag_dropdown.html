@@ -1,13 +1,9 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  A dropdown menu presents a list of options related to the current
-  activity. It is opened when the user touches the dropdown icon. It
-  can include text, image, or both.
+  A dropdown menu presents a list of options related to the current activity.
+  It is opened when the user touches the dropdown icon. It can include text,
+  image or both.
 {% endblock %}
 
 {% block use_it %}
@@ -17,29 +13,58 @@
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>concise wording. Ex: say &quot;camera&quot; instead of &quot;use
+    <li>concise wording. Example: say &quot;camera&quot; instead of &quot;use
       camera&quot;</li>
   </ul>
 
   <h2>Dont's</h2>
   <ul>
-    <li>don't use it when you have a long list (more than 5 items). Use
-      select list instead.</li>
-    <li>avoid nesting in dropdown since it is not very user friendly on
-      small screens.</li>
+    <li>don't use it when you have a long list (more than 5 items). Use select
+      list instead.</li>
+    <li>avoid nesting in dropdown since it is not very user friendly on small
+      screens.</li>
   </ul>
 {% endblock %}
 
 {% block code_live %}
-  <x-dropdown>
-  </x-dropdown>
+  <x-dropdown-menu data-fade-duration="500">
+    <label>This is</label>
+    <menu>
+      <li>an item</li>
+      <li>
+        <label>some item</label>
+        <menu>
+          <li>some other item</li>
+          <li>
+            <label>an interesting item</label>
+            <menu>
+              <li>a triple-nested item</li>
+              <li>just an item</li>
+              <li>just another item</li>
+            </menu>
+          </li>
+          <li>an intriguing item</li>
+        </menu>
+      </li>
+      <li>many items</li>
+      <li>
+        <label>a myriad of items</label>
+        <menu>
+          <li>100 items</li>
+          <li>200 items</li>
+          <li>1000 items</li>
+          <li>2000 items</li>
+        </menu>
+      </li>
+    </menu>
+  </x-dropdown-menu>
 {% endblock %}
 
 {% block related_links %}
   <p>
     Related: <a href="{{ url('ecosystem.building_xtag',
-      xtag='picker') }}">Date/Time Picker</a>,
+      xtag='picker') }}">Date/time picker</a>,
       <a href="{{ url('ecosystem.building_xtag',
-      xtag='select_list') }}">Select List</a>
+      xtag='select_list') }}">Select list</a>
   </p>
 {% endblock %}

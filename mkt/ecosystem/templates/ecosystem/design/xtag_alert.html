@@ -1,39 +1,42 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  An alert popup dialog is a small window which demands user's input related
+  An alert popup dialog is a small window which demands user input related
   to the current activity. It disables all current activities and only
   disappears after the user confirms an action or dismisses the dialog.
 {% endblock %}
 
 {% block use_it %}
-  When the current activity absolutely requires user input, usually validation (i.e.
-  delete all contacts?) or authorization (i.e. enable GPS?).
+  When the current activity absolutely requires user input, usually validation
+  (e.g.&quot;delete all contacts?&quot;) or authorization (e.g. &quot;enable
+  GPS?&quot;).
 {% endblock %}
 
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>action oriented (i.e. delete all contacts?)</li>
-    <li>do not use an extra title unless the action has severe consequences (ex:
-      delete all contacts?)</li>
+    <li>use action oriented questions or statements (e.g. &quot;delete all
+      contacts?&quot;).</li>
+    <li>use action labels such as &quot;Save&quot; instead of
+      &quot;OK&quot; on the buttons.</li>
     <li>short questions or statements</li>
-    <li>as a rule of thumb, place the positive button on the right, and the
-      negative button on the left</li>
-    <li>use descriptive, free standing labels such as &quot;Connect&quot;</li>
+    <li>as a rule of thumb, place the primary button like &quot;Save&quot;
+      on the right, and the secondary button like &quot;Discard&quot; or
+      &quot;Reset&quot; on the left.</li>
+    <li>visually reduce the importance of secondary button like
+      &quot;Cancel&quot; (e.g. use a gray background for the secondary
+      button).</li>
   </ul>
 
   <h2>Dont's</h2>
   <ul>
+    <li>don't use a title unless the action has severe consequences (e.g.
+      Warning: &quot;delete all contacts?&quot;).</li>
     <li>don't use negation in your question or statement</li>
-    <li>don't use it when the action is trivial and reversible. Use a toast
-      instead.</li>
-    <li>don't use it when you want the user to make a trivial choices.
-      Consider a select list instead.</li>
+    <li>don't use an alert when the action is trivial and reversible. Use
+      a toast instead.</li>
+    <li>don't use an alert to prompt for make trivial choices. Consider a
+      select list instead.</li>
   </ul>
 {% endblock %}
 
@@ -47,6 +50,8 @@
 {% block related_links %}
   <p>
     Related: <a href="{{ url('ecosystem.building_xtag',
-      xtag='toast') }}">Toast Popup</a>
+      xtag='toast') }}">Toast popup</a>,
+      <a href="{{ url('ecosystem.building_xtag',
+      xtag='select_list') }}">Select list</a>
   </p>
 {% endblock %}

@@ -1,32 +1,65 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  Tabs are usually used in a group to switch between different panes.
+  Tabs are usually used in a group to switch between different display panes.
 {% endblock %}
 
 {% block use_it %}
-  When the information displayed can be view in several different
-  ways (ex:most popular, most discussed).
+  When tabs are usually used in a group to switch between different display
+  panes.
 {% endblock %}
 
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>display the most important pane by default</li>
-    <li>use short and and predictable tab labels</li>
+    <li>display the most important pane by default.</li>
+    <li>use short and and predictable tab labels.</li>
   </ul>
   <h2>Dont's</h2>
   <ul>
-    <li>don’t separate content which needs to be viewed in context
-      with each other in different panes</li>
+    <li>don’t separate content into into different tabs when context is
+      important.</li>
   </ul>
 {% endblock %}
 
 {% block code_live %}
-  <x-tabbox>
+  <x-tabbox id="tabbox">
+    <x-tabs>
+      <x-tab selected="true">Tab 1</x-tab>
+      <x-tab>Tab 2</x-tab>
+      <x-tab>Tab 3</x-tab>
+    </x-tabs>
+
+    <x-tabpanels>
+      <x-tabpanel selected="true">
+        <p>
+          Tabboxes are great for showing users only the content they need
+          to see, while providing users an easy way to access additional
+          content on-demand.
+        </p>
+      </x-tabpanel>
+
+      <x-tabpanel>
+        <p>
+          Examples of use-cases for tabboxes include: a set of step-wise
+          directions, grouping like content elements together, or as a
+          building block for a tabbed viewing interface in a mobile web app.
+        </p>
+      </x-tabpanel>
+
+      <x-tabpanel>
+        <p>
+          In short, tabboxes are pretty freaking cool, and when you pair
+          them with CSS animations/transitions, you can do things with a
+          few styles that used to take a ton of JavaScript and custom code.
+        </p>
+      </x-tabpanel>
+    </x-tabpanels>
   </x-tabbox>
+{% endblock %}
+
+{% block related_links %}
+  <p>
+    Related: Accordion
+  </p>
 {% endblock %}

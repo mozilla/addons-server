@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block content %}
-
   <div id="top-marketing">
     <section  class="primary full call-to-action">
       <img id="rotator" class="placeholder img-rotator"
-        src="{{ MEDIA_URL }}img/ecosystem/hero.png">
+        src="{{ MEDIA_URL }}img/ecosystem/hero.png"
+        alt="{{ _('Open Web Apps') }}">
       <div>
-        <h1>Open Web Apps</h1>
+        <h1>{{ _('Open Web Apps') }}</h1>
         <p>
           {% trans %}
-            Put an HTML5 Web App in the hands of 500 million users.
+            Develop HTML5 web apps for an open marketplace.
           {% endtrans %}
         </p>
       </div>
@@ -26,32 +26,18 @@
   </div>
 
   <div id="landing-page">
-    <section class="primary full marketing-block no-pad">
+    <section class="primary half marketing-block no-pad">
       <ul class="marketing-horz">
-        <li>
-          <a href="{{ url('ecosystem.building') }}" class="link-panel">
+        <li class="splash">
+          <a href="{{ url('ecosystem.developers') }}" class="link-panel">
             <div>
               <img class="placeholder"
                 src="{{ MEDIA_URL }}img/ecosystem/html_icon.png">
               <h2>{{ _('Developers') }}</h2>
               <p>
                 {% trans %}
-                  Build apps for multiple platforms with standards-based technologies.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('ecosystem.partners') }}" class="link-panel">
-            <div>
-              <img class="placeholder"
-                src="{{ MEDIA_URL }}img/ecosystem/open_icon.png">
-              <h2>{{ _('Partners') }}</h2>
-              <p>
-                {% trans %}
-                  No walled gardens and a stack that moves at the speed of innovation
-                  - it's the web, you drive.
+                  Build and distribute cross-platform apps powered by web
+                  standards.
                 {% endtrans %}
               </p>
             </div>
@@ -59,7 +45,27 @@
         </li>
       </ul>
     </section>
-    <section class="primary single marketing-block no-pad">
+    <section class="half marketing-block no-pad">
+      <ul class="marketing-horz">
+        <li class="splash">
+          <a href="{{ url('ecosystem.partners') }}" class="link-panel">
+            <div>
+              <img class="placeholder"
+                src="{{ MEDIA_URL }}img/ecosystem/open_icon.png"
+                alt="{{ _('Partners') }}">
+              <h2>{{ _('Business Partners') }}</h2>
+              <p>
+                {% trans %}
+                  Great app experiences delivered across multiple platforms
+                  and devices.
+                {% endtrans %}
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section class="single marketing-block no-pad">
       <ul class="marketing-horz">
         <li>
           <a href="{{ url('ecosystem.support') }}" class="link-panel">
@@ -67,7 +73,8 @@
               <h2>{{ _('Support') }}</h2>
               <p>
                 {% trans %}
-                  Build apps for multiple platforms with standards-based technologies.
+                  Frequently asked questions about web apps and the Firefox
+                  Marketplace.
                 {% endtrans %}
               </p>
             </div>

@@ -4,7 +4,7 @@ import commonware.log
 import jingo
 
 from .models import MdnCache
-from .tasks import locales
+from .tasks import locales, refresh_mdn_cache, tutorials
 
 
 log = commonware.log.getLogger('z.ecosystem')
@@ -15,9 +15,15 @@ def landing(request):
     return jingo.render(request, 'ecosystem/landing.html')
 
 
-def building(request):
+def developers(request):
     """Landing page for developers."""
-    return jingo.render(request, 'ecosystem/building.html')
+    return jingo.render(request, 'ecosystem/developers.html')
+
+
+def building_blocks(request):
+    """Landing page for developers."""
+    return jingo.render(request,
+        'ecosystem/mdn_documentation/building_blocks.html')
 
 
 def building_xtag(request, xtag=None):
@@ -61,18 +67,19 @@ def documentation(request, page=None):
     ctx = {
         'page': page,
         'title': data.title,
-        'content': data.content
+        'content': data.content,
     }
 
     page_name = 'index.html'
 
     if page in ['design_guidelines', 'purpose_of_your_app',
-                'design_principles', 'navigation', 'resources', 'layout']:
+                'design_principles', 'navigation', 'resources', 'layout',
+                'design_patterns']:
         page_name = 'design.html'
-    elif page in ['code_it']:
-        page_name = 'code_it.html'
-    elif page in ['publish_it']:
+    elif page in ['devtools', 'templates', 'web_components']:
+        page_name = 'sdk.html'
+    elif page in ['mkt_hosting', 'mkt_submission']:
         page_name = 'publish_it.html'
 
-    return jingo.render(request, 'ecosystem/mdn_documentation/%s' % page_name,
-                        ctx)
+    return jingo.render(request, 'ecosystem/mdn_documentation/%s' %
+                        page_name, ctx)

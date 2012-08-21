@@ -1,0 +1,68 @@
+{% extends "ecosystem/base.html" %}
+
+{% block title %}{{ _('Building Apps') }} | {{ super() }}{% endblock %}
+
+{% block bodyclass %}secondary-landing{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block siteheader %}
+  {% include 'ecosystem/header.html' %}
+{% endblock %}
+
+{% block content %}
+  <div id="landing-page">
+    <h1>{{ _('Developers') }}</h1>
+    <section class="primary full marketing-block get-started linkable">
+      <a href="{{ url('ecosystem.documentation', page='html5') }}">
+        <h2>{{ _('Get Started') }}</h2>
+        <ul>
+          <li>
+            {% trans %}
+              Learn about what an HMTL5 app is and how to set it up.
+            {% endtrans %}
+          </li>
+        </ul>
+      </a>
+    </section>
+    <section class="primary full marketing-block design linkable">
+      <a href="{{ url('ecosystem.documentation', page='design_guidelines') }}">
+        <h2>{{ _('Design') }}</h2>
+        <ul>
+          <li>
+            {% trans %}
+              Understand how to design your app and how to use x-tags.
+            {% endtrans %}
+          </li>
+        </ul>
+      </a>
+    </section>
+    <section class="primary full marketing-block sdk linkable">
+      <a href="{{ url('ecosystem.documentation', page='sdk') }}">
+        <h2>{{ _('SDK') }}</h2>
+        <ul>
+          <li>
+            {% trans %}
+              Look up information on the technical details of implemention
+              using various SDKs.
+            {% endtrans %}
+          </li>
+        </ul>
+      </a>
+    </section>
+    <section class="primary full marketing-block publish linkable">
+      <a href="{{ url('ecosystem.documentation', page='mkt_hosting') }}">
+        <h2>{{ _('Publish') }}</h2>
+        <ul>
+          <li>
+            {% trans %}
+              Ready to show your app to the world? Learn how to publish it!
+            {% endtrans %}
+          </li>
+        </ul>
+      </a>
+    </section>
+  </div>
+{% endblock %}

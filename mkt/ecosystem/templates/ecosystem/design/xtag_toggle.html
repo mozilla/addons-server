@@ -1,12 +1,8 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  A toggle switch allows the users to choose from two states
-  and the changes are immediate.
+  A toggle switch allows the user to choose between two states. Changes are
+  immediate and the user can switch back and forth.
 {% endblock %}
 
 {% block use_it %}
@@ -16,19 +12,26 @@
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>provide a label</li>
-    <li>use it when you have a binary setting because it's cognitively
-      less demanding than a checkbox</li>
+    <li>provide a label.</li>
+    <li>use it when you have a binary setting because it's cognitively less
+      demanding than a checkbox.</li>
   </ul>
   <h2>Dont's</h2>
   <ul>
-    <li>don't rename the on/off label unless you have a good reason. Don't
-      use it when you have more than two values and use radio buttons or
+    <li>don't rename the on/off label unless you have a good reason.</li>
+    <li>don't use it when you have more than two values. Use radio buttons or
       checkboxes instead.</li>
   </ul>
 {% endblock %}
 
 {% block code_live %}
-  <x-selectlist>
-  </x-selectlist>
+  <x-toggle-switch>
+    <label>Wireless</label>
+  </x-toggle-switch>
+{% endblock %}
+
+{% block related_links %}
+  <p>
+    Related: Radio button, Checkbox
+  </p>
 {% endblock %}

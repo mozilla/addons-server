@@ -47,9 +47,9 @@ ALLOWED_ATTRIBUTES.update(dict((x, ['id', ]) for x in (
 
 tutorials = [
     {
-        'title': 'Introduction to HTML5',
+        'title': 'Parts of an HTML5 App',
         'name': 'html5',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/HTML/HTML5/Introduction_to_HTML5?raw=1&macros=true'
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Parts_of_an_HTML5_app?raw=1&macros=true'
     },
     {
         'title': 'Manifests',
@@ -60,6 +60,26 @@ tutorials = [
         'title': 'Manifest FAQ',
         'name': 'manifest_faq',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/FAQs/About_app_manifests?raw=1&macros=true'
+    },
+    {
+        'title': 'General',
+        'name': 'tutorial_general',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General?raw=1&macros=true'
+    },
+    {
+        'title': 'Weather App',
+        'name': 'tutorial_weather',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/Weather_app_tutorial?raw=1&macros=true'
+    },
+    {
+        'title': 'Marketplace Submission',
+        'name': 'mkt_submission',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Submitting_an_app?raw=1&macros=true'
+    },
+    {
+        'title': 'Hosting',
+        'name': 'mkt_hosting',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Publishing_the_app?raw=1&macros=true'
     },
     {
         'title': 'Design Guidelines',
@@ -79,12 +99,17 @@ tutorials = [
     {
         'title': 'Design Patterns',
         'name': 'design_patterns',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Design_patterns?raw=1&macros=true'
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Intro_to_responsive_design?raw=1&macros=true'
     },
     {
         'title': 'References',
         'name': 'references',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/References?raw=1&macros=true'
+    },
+    {
+        'title': 'Templates',
+        'name': 'templates',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/App_templates?raw=1&macros=true'
     },
 ]
 

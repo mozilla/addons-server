@@ -12,7 +12,7 @@ test_items = [
     {
         'title': 'Test Mdn Page',
         'name': 'test',
-        'local': 'en-US',
+        'locale': 'en-US',
         'mdn': 'https://developer.mozilla.org/%(locale)s/HTML/HTML5?raw=1&macros=true'
     }
 ]

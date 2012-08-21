@@ -1,6 +1,8 @@
 {% extends "ecosystem/mdn_documentation/layout.html" %}
 {% from "ecosystem/macros.html" import navigation with context %}
 
+{% block bodyclass %}secondary-landing mdn-ecosystem{% endblock %}
+
 {% block content %}
   {{ navigation('get_started') }}
 
@@ -25,9 +27,19 @@
                 {{ _('Manifest FAQ') }}
               </a>
             </li>
+          </ol>
+        </li>
+        <li>
+          <span>{{ _('Tutorials and Example Apps') }}</span>
+          <ol>
             <li>
-              <a href="{{ url('ecosystem.documentation', page='example_apps') }}">
-                {{ _('Example Apps') }}
+              <a href="{{ url('ecosystem.documentation', page='tutorial_general') }}">
+                {{ _('General') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='tutorial_weather') }}">
+                {{ _('Mortar') }}
               </a>
             </li>
           </ol>

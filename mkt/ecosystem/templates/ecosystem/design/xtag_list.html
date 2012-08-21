@@ -1,9 +1,5 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
   A list is a group of vertically arranged elements which can consists
   of text, icons, checkboxes, radio buttons, etc. A list often has a
@@ -17,15 +13,14 @@
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>use action words whenever possible if users need to make a decision</li>
-    <li>be concise so it's easy to scan</li>
-    <li>use a section divider if the items could be grouped</li>
+    <li>be concise so that it is easy to scan.</li>
+    <li>use a section divider if the items could be grouped.</li>
   </ul>
 
   <h2>Dont's</h2>
   <ul>
     <li>don't visually overload users by including too much information
-      in one row</li>
+      in one row.</li>
   </ul>
 {% endblock %}
 
@@ -65,7 +60,6 @@
 
 {% block related_links %}
   <p>
-    Related: <a href="{{ url('ecosystem.building_xtag',
-      xtag='grid_list') }}">Grid List</a>
+    Related: Grid List
   </p>
 {% endblock %}

@@ -1,35 +1,70 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  Slide box moves either horizontally or vertically, but not both.
+  A slide box is a rotating slide display with previous/ next navigation
+  that moves either horizontally or vertically, but not both.
 {% endblock %}
 
 {% block use_it %}
-  When you want the users to browse through multiple slides (ex:
-  an image gallery) and the user should be aware of the current
-  activity (ex: the user has chosen to browser in the image gallery).
+  When you want the users to browse through multiple slides (e.g. an image
+  gallery), where user has actively selected a slide-viewing activity
+  (e.g. the user has chosen to browse in an image gallery).
 {% endblock %}
 
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>use slide box for previous/ next navigation</li>
+    <li>use a slide box for previous/next navigation.</li>
   </ul>
   <h2>Dont's</h2>
   <ul>
-    <li>it is risky to use slide box as your primary navigation without
-      any other indications that the boxes can slide. Also, there’s no
-      direct translation of the slide movement on non- touch devices.
-      Consider adding visual indications like an arrow, or display a
-      portion of the previous and next elements.</li>
+    <li>it is risky to use a slide box as primary navigation without any
+      other indications that the boxes can slide. Also, there’s no direct
+      translation for slide movement on non-touch devices. Consider adding
+      a visual indicator like an arrow, or display a portion of the previous
+      and next elements.</li>
   </ul>
 {% endblock %}
 
 {% block code_live %}
-  <x-slidebox>
-  </x-slidebox>
+  <div id="tags">
+    <dl>
+      <dt>Slide box</dt>
+      <dd id="slidebox">
+        <nav class="actions" id="slidebox-nav">
+          <button data-action-type="slidePrevious">&lt;- Previous Slide</button>
+          <button data-action-type="slideNext">Next Slide -&gt;</button>
+          <button data-action-type="slideTo">Slide To 3</button>
+          <button data-action-type="slideOrientation">Toggle orientation</button>
+        </nav>
+
+        <x-slidebox id="slidebox_demo" data-orientation="x">
+          <x-slides>
+            <x-slide>
+              <img src="{{ MEDIA_URL }}img/ecosystem/xtags/birnimal-calendar.png"
+                   alt="Calendar">
+            </x-slide>
+            <x-slide>
+              <img src="{{ MEDIA_URL }}img/ecosystem/xtags/birnimal-graph.png"
+                   alt="Graph">
+            </x-slide>
+            <x-slide>
+              <img src="{{ MEDIA_URL }}img/ecosystem/xtags/birnimal-detail.png"
+                   alt="Detail">
+            </x-slide>
+            <x-slide>
+              <img src="{{ MEDIA_URL }}img/ecosystem/xtags/birnimal-settings.png"
+                   alt="Settings">
+            </x-slide>
+          </x-slides>
+        </x-slidebox>
+      </dd>
+    </dl>
+  </div>
+{% endblock %}
+
+{% block related_links %}
+  <p>
+    Related: Flip box
+  </p>
 {% endblock %}

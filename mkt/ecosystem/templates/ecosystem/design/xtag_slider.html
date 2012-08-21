@@ -1,42 +1,56 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  A slider lets users adjust and select a value from a predefined
-  range by moving a handle. The changes are immediately noticeable
-  so that the users can fine tune the values accordingly (i.e.
-  brightness). When it is easier for the user to enter a value
-  directly, use a text box.
+  A slider lets the user adjust and select a value from a predefined range
+  by moving a handle. Changes are immediately noticeable so that the user
+  can fine-tune the values accordingly (e.g. brightness). When it is easier
+  for the user to enter a value directly, use a text box.
 {% endblock %}
 
 {% block use_it %}
-  When the values are relative to the users and you could provide
-  immediate feedback of the use’s action.
+  When the values are relative to the user and you can provide immediate
+  feedback on the user's action.
 {% endblock %}
 
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>provide a label and define those values</li>
+    <li>provide a label and define the range of values.</li>
   </ul>
   <h2>Dont's</h2>
   <ul>
-    <li>don't use it when the user probably know the exact target
-      number. Use a text box instead</li>
+    <li>don't use it when the user probably knows the exact target number.
+      Use a text box instead.</li>
   </ul>
 {% endblock %}
 
 {% block code_live %}
-  <x-selectlist>
-  </x-selectlist>
+  <x-slider
+    data-name="weight"
+    data-min-label="min"
+    data-max-label="max"
+    data-label="Weight"
+    data-snap
+    data-step="1"
+    data-start-value="5"
+    data-min="0"
+    data-max="10">
+  </x-slider>
+  <x-slider
+    data-name="weight"
+    data-min-label="personal"
+    data-max-label="huge"
+    data-label="Pizza Size"
+    data-start-value="15"
+    data-step="5"
+    data-min="0"
+    data-max="100">
+  </x-slider>
 {% endblock %}
 
 {% block related_links %}
   <p>
-    Related: <a href="{{ url('ecosystem.building_xtag',
-      xtag='picker') }}">Date/Time Picker</a>
+    Related: Text box, <a href="{{ url('ecosystem.building_xtag',
+      xtag='picker') }}">Date/Time picker</a>
   </p>
 {% endblock %}

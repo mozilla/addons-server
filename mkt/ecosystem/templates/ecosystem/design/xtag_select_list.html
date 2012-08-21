@@ -1,16 +1,11 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  A select list is a popup dialog that presents a list of options
-  related to the current activity. It disables all current
-  activities and only disappears after the user confirms an action
-  or dismisses the dialog. A normal list allows one item to be
-  selected, and a multiselect list allows multiple selections.
-  It can include text, image, or both.
+  A select list is a popup dialog that presents a list of options related
+  to the current activity. It disables all current activities and only
+  disappears after the user confirms an action or dismisses the dialog. A
+  normal list allows the user to select one item, and a multi-select list
+  allows multiple selections. It can include text, image, or both.
 {% endblock %}
 
 {% block use_it %}
@@ -20,17 +15,24 @@
 {% block tips %}
   <h2>Do's</h2>
   <ul>
-    <li>include a title when possible</li>
+    <li>include a title when possible.</li>
   </ul>
   <h2>Dont's</h2>
   <ul>
-    <li>include more than one line of text in each list item</li>
+    <li>include more than one line of text for each list item.</li>
   </ul>
 {% endblock %}
 
 {% block code_live %}
-  <x-selectlist>
-  </x-selectlist>
+  <x-select-list data-fade-duration="500" data-multi-select="true">
+    <h3>Attach</h3>
+    <ul>
+      <li>Items</li>
+      <li>More items</li>
+      <li>Even more items</li>
+      <li>Too many items</li>
+    </ul>
+  </x-select-list>
 {% endblock %}
 
 {% block related_links %}

@@ -10,9 +10,15 @@
   {% include 'ecosystem/header.html' %}
 {% endblock %}
 
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+  {{ css('mkt/xtags') }}
+{% endblock %}
+
 {% block bodyclass %}secondary-landing{% endblock %}
 
 {% block content %}
+  {{ navigation('design') }}
   <div class="design-wrapper">
     {% include 'ecosystem/mdn_documentation/design_nav.html' %}
 
@@ -41,8 +47,6 @@
       {% block related_links %}{% endblock %}
     </article>
   </div>
-
-  {{ navigation('design') }}
 {% endblock %}
 
 {% block js %}

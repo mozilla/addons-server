@@ -1,13 +1,9 @@
 {% extends "ecosystem/design/xtag.html" %}
 
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
 {% block description %}
-  A picker allows the users to quickly choose the time, date or other
-  information such as locations from a predefined set of values. It
-  also ensures the data is entered in the correct format.
+  A picker lets the user quickly choose time, date or other information
+  such as a location from a predefined set of values. It also ensures the
+  data is entered in the correct format.
 {% endblock %}
 
 {% block use_it %}
@@ -16,9 +12,14 @@
 {% endblock %}
 
 {% block tips %}
+  <h2>Do's</h2>
+  <ul>
+    <li>use it with a finite selection of predefined values, like time or
+      date.</li>
+  </ul>
   <h2>Dont's</h2>
   <ul>
-    <li>don't use a picker for action items. Consider dropdown menu or
+    <li>don't use a picker for action items. Consider a dropdown menu or a
       select list instead.</li>
   </ul>
 {% endblock %}
@@ -33,6 +34,6 @@
     Related: <a href="{{ url('ecosystem.building_xtag',
       xtag='dropdown') }}">Dropdown menu</a>,
       <a href="{{ url('ecosystem.building_xtag',
-      xtag='select_list') }}">Select List</a>
+      xtag='select_list') }}">Select list</a>
   </p>
 {% endblock %}

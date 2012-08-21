@@ -13,17 +13,16 @@
           <span>{{ _('Design') }}</span>
         {% else %}
           <a href="{{ url('ecosystem.documentation',
-             page='design_principles') }}">
+             page='design_guidelines') }}">
             {{ _('Design') }}
           </a>
         {% endif %}
       </li>
       <li>
-        {% if section == 'code' %}
+        {% if section == 'sdk' %}
           <span>{{ _('SDK') }}</span>
         {% else %}
-          <a href="{{ url('ecosystem.documentation',
-             page='code_it') }}">
+          <a href="{{ url('ecosystem.documentation', page='devtools') }}">
              {{ _('SDK') }}
           </a>
         {% endif %}
@@ -32,8 +31,7 @@
         {% if section == 'publish' %}
           <span>{{ _('Publish') }}</span>
         {% else %}
-          <a href="{{ url('ecosystem.documentation',
-             page='publish_it') }}">
+          <a href="{{ url('ecosystem.documentation', page='mkt_hosting') }}">
             {{ _('Publish') }}
           </a>
         {% endif %}
