@@ -118,7 +118,7 @@ def manifest(request):
 @read_dev_agreement_required
 @submit_step('manifest')
 def package(request):
-    form = forms.NewWebappForm(request.POST or None)
+    form = forms.NewWebappForm(request.POST or None, is_packaged=True)
     if request.method == 'POST' and form.is_valid():
         addon = Addon.from_upload(
             form.cleaned_data['upload'],
