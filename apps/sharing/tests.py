@@ -97,7 +97,7 @@ def test_share_view_for_webapp():
     obj.get_url_path.return_value = s
     res = sharing.views.share(request, obj, s, s)
     qs = parse_qs(urlparse(res['Location']).query)
-    assert 'Apps Marketplace' in qs['status'][0], (
+    assert 'Firefox Marketplace' in qs['status'][0], (
                                     'Unexpected status: %s' % qs['status'][0])
 
 
