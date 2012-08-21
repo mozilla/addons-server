@@ -135,13 +135,13 @@
           {% endif %}
           {% if product.support_url %}
             <li class="support-url">
-              <a href="{{ product.support_url|external_url }}">
+              <a {{ product.support_url|external_href }}>
                 {{ _('Support Site') }}</a>
             </li>
           {% endif %}
           {% if product.homepage %}
             <li class="homepage">
-              <a href="{{ product.homepage|external_url }}">{{ _('Homepage') }}</a>
+              <a {{ product.homepage|external_href }}>{{ _('Homepage') }}</a>
             </li>
           {% endif %}
           {% if product.is_public() or is_reviewer %}

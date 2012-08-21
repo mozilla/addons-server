@@ -7,7 +7,7 @@ import waffle
 
 from access import acl
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse
+from amo.urlresolvers import reverse, get_outgoing_url
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
 
@@ -287,3 +287,9 @@ def admin_site_links():
             ('Site Status', reverse('amo.monitor')),
         ],
     }
+
+
+@register.filter
+def external_href(url):
+    t = 'target="_blank" href="%s"' % get_outgoing_url(unicode(url))
+    return jinja2.Markup(t)
