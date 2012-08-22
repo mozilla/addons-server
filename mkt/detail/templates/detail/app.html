@@ -158,7 +158,7 @@
                 {{ _('Privacy Policy') }}</a></li>
             {% endif %}
             {% if waffle.switch('app-stats') and product.public_stats %}
-              <li><a href="{{ url('mkt.stats.overview', product.app_slug) }}">
+              <li><a target="_blank" href="{{ url('mkt.stats.overview', product.app_slug) }}">
                 {{ _('Statistics') }}</a></li>
             {% endif %}
           {% endif %}
