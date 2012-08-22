@@ -8,6 +8,7 @@ from test_utils import RequestFactory
 import amo.tests
 from amo.decorators import no_login_required
 from amo.middleware import LoginRequiredMiddleware
+from amo.urlresolvers import reverse
 
 import mkt
 
@@ -438,3 +439,16 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
         eq_(res.status_code, 302)
         assert res._headers['location'][1].endswith('?to=%2Fdevelopers'), (
             '/developers should redirect to /?to=/developers')
+
+    # Patching MIDDLEWARE_CLASSES to enable and test walled garden.
+    @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
+        settings.MIDDLEWARE_CLASSES + [
+            'amo.middleware.NoConsumerMiddleware',
+            'amo.middleware.LoginRequiredMiddleware'
+        ]
+    )
+    def test_proper_redirects_with_region_stores(self):
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        r = self.client.get('/')
+        self.assert3xx(r, reverse('users.login'))
