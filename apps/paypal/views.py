@@ -158,7 +158,7 @@ def _parse_currency(value):
 
 def _paypal(request):
     # raw_post_data has to be accessed before request.POST. wtf django?
-    raw, post = request.raw_post_data, request.POST.copy()
+    raw, post = request.read(), request.POST.copy()
     paypal_log.info('IPN received: %s' % raw)
 
     # Check that the request is valid and coming from PayPal.

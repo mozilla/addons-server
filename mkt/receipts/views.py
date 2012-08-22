@@ -142,7 +142,7 @@ def record(request, addon):
 @addon_all_view
 @post_required
 def verify(request, addon):
-    receipt = request.raw_post_data
+    receipt = request.read()
     verify = Verify(addon.pk, receipt, request)
     output = verify(check_purchase=False)
 
