@@ -249,6 +249,8 @@ class TestAdminAccountSettings(amo.tests.TestCase):
         return UserProfile.objects.get(pk=999)
 
     def test_get(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_forbidden(self):
@@ -262,17 +264,23 @@ class TestAdminAccountSettings(amo.tests.TestCase):
         self.assertLoginRedirects(r, self.url)
 
     def test_anonymize(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         r = self.client.post(self.url, self.get_data(anonymize=True))
         self.assertRedirects(r, reverse('zadmin.index'))
         eq_(self.get_user().password, 'sha512$Anonymous$Password')
 
     def test_restrict(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         Group.objects.create(name='Restricted', rules='Restricted:UGC')
         r = self.client.post(self.url, self.get_data(restricted=True))
         self.assertRedirects(r, reverse('zadmin.index'))
         assert self.get_user().groups.filter(rules='Restricted:UGC').exists()
 
     def test_anonymize_fails_with_other_changed_fields(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         # We don't let an admin change a field whilst anonymizing.
         data = self.get_data(anonymize=True, display_name='something@else.com')
         r = self.client.post(self.url, data)
@@ -280,12 +288,16 @@ class TestAdminAccountSettings(amo.tests.TestCase):
         eq_(self.get_user().password, self.regular.password)  # Hasn't changed.
 
     def test_admin_logs_edit(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         self.client.post(self.url, self.get_data(email='something@else.com'))
         r = ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_EDITED.id)
         eq_(r.count(), 1)
         assert self.get_data()['admin_log'] in r[0]._arguments
 
     def test_admin_logs_anonymize(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         self.client.post(self.url, self.get_data(anonymize=True))
         r = (ActivityLog.objects
                           .filter(action=amo.LOG.ADMIN_USER_ANONYMIZED.id))
@@ -293,6 +305,8 @@ class TestAdminAccountSettings(amo.tests.TestCase):
         assert self.get_data()['admin_log'] in r[0]._arguments
 
     def test_admin_no_password(self):
+        # Admin settings don't exist for now.
+        raise SkipTest
         data = self.get_data(password='pass1234', password2='pass1234',
                              oldpassword='password')
         self.client.post(self.url, data)

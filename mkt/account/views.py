@@ -223,7 +223,7 @@ def account_about(request):
 def admin_edit(request, user_id):
     amouser = get_object_or_404(UserProfile, pk=user_id)
     form = forms.AdminUserEditForm(request.POST or None, request.FILES or None,
-                                   request=request, instance=amouser)
+                                   instance=amouser)
     if request.method == 'POST' and form.is_valid():
         form.save()
         messages.success(request, _('Profile Updated'))
