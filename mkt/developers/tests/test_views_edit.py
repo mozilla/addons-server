@@ -1486,9 +1486,8 @@ class TestAdminSettings(TestAdmin):
         del data['app_ratings']
 
         r = self.client.post(self.edit_url, data)
-        eq_(list(webapp.content_ratings.all().values_list('ratings_body',
-                                                          'rating')),
-            [])
+        assert not webapp.content_ratings.exists()
+
 
     def test_ratings_view(self):
         self.log_in_with('Apps:ViewConfiguration')
