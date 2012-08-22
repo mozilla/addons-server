@@ -4,7 +4,7 @@
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
-  <strong class="status {{ status_class(addon) }}">{{ msg }}</strong>
+  <strong class="status {{ mkt_status_class(addon) }}">{{ msg }}</strong>
 {% endmacro %}
 
 {% block content %}
@@ -106,9 +106,9 @@
                 <h4>Version {{ version.version }}</h4>
                 <small>
                   {% if addon.disabled_by_user %}
-                    <span class="{{ file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
+                    <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
                   {% else %}
-                    <span class="{{ file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
+                    <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
                   {% endif %}
                 </small>
                 <small>Submitted <span title="{{ version.created|isotime }}">{{ version.created|datetime }}</span></small>

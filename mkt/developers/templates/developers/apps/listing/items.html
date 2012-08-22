@@ -20,9 +20,9 @@
             <strong>{{ _('Status:') }}</strong>
             <a href="{{ addon.get_dev_url('versions') }}">
               {% if addon.disabled_by_user %}
-                <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
+                <span class="{{ mkt_status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}
-                <span class="{{ status_class(addon) }}">
+                <span class="{{ mkt_status_class(addon) }}">
                   <b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
               {% endif %}
             </a>

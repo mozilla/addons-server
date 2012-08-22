@@ -146,7 +146,7 @@ def dev_files_status(files, addon):
 
 
 @register.function
-def status_class(addon):
+def mkt_status_class(addon):
     if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
         cls = 'disabled'
     else:
@@ -155,7 +155,7 @@ def status_class(addon):
 
 
 @register.function
-def file_status_class(addon, version):
+def mkt_file_status_class(addon, version):
     if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
         cls = 'disabled'
     else:
