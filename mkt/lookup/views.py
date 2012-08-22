@@ -15,9 +15,8 @@ from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
-from devhub import helpers  # for templates?
 from devhub.models import ActivityLog
-from market.models import Refund
+from market.models import AddonPaymentData, Refund
 from mkt.account.utils import purchase_list
 from mkt.webapps.models import Installed
 from stats.models import DownloadCount, Contribution
@@ -50,9 +49,11 @@ def user_summary(request, user_id):
     user_addons = paginate(request, user_addons, per_page=15)
     paypal_ids = (user.addons.exclude(paypal_id='').distinct('paypal_id')
                              .values_list('paypal_id', flat=True))
-    payment_data = []
-    for ad in user.addons.exclude(payment_data=None):
-        payment_data.append(ad.payment_data)
+
+    payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
+                    .values(*AddonPaymentData.address_fields())
+                    .distinct())
+
     return jingo.render(request, 'lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,

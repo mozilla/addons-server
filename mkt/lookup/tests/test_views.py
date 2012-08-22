@@ -59,6 +59,17 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         eq_(res.status_code, expected_status)
         return res
 
+    def payment_data(self):
+        return {'full_name': 'Ed Peabody Jr.',
+                'business_name': 'Mr. Peabody',
+                'phone': '(1) 773-111-2222',
+                'address_one': '1111 W Leland Ave',
+                'address_two': 'Apt 1W',
+                'city': 'Chicago',
+                'post_code': '60640',
+                'country': 'USA',
+                'state': 'Illinois'}
+
     def test_home_auth(self):
         self.client.logout()
         res = self.client.get(reverse('lookup.home'))
@@ -131,30 +142,33 @@ class TestAcctSummary(AcctLookupTest, TestCase):
         eq_(list(res.context['paypal_ids']), [])
 
     def test_payment_data(self):
+        payment_data = self.payment_data()
         AddonPaymentData.objects.create(addon=self.steamcube,
-                                        full_name='Ed Peabody Jr.',
-                                        business_name='Mr. Peabody',
-                                        phone='(1) 773-111-2222',
-                                        address_one='1111 W Leland Ave',
-                                        address_two='Apt 1W',
-                                        city='Chicago',
-                                        post_code='60640',
-                                        country='USA',
-                                        state='Illinois')
+                                        **payment_data)
         res = self.summary()
         pd = res.context['payment_data'][0]
-        eq_(pd.full_name, 'Ed Peabody Jr.')
-        eq_(pd.business_name, 'Mr. Peabody')
-        eq_(pd.address_one, '1111 W Leland Ave')
-        eq_(pd.address_two, 'Apt 1W')
-        eq_(pd.city, 'Chicago')
-        eq_(pd.state, 'Illinois')
-        eq_(pd.post_code, '60640')
-        eq_(pd.country, 'USA')
+        for key, value in payment_data.iteritems():
+            eq_(pd[key], value)
 
     def test_no_payment_data(self):
         res = self.summary()
-        eq_(res.context['payment_data'], [])
+        eq_(len(res.context['payment_data']), 0)
+
+    def test_no_duplicate_payment_data(self):
+        role = AddonUser.objects.create(user=self.user,
+                                        addon=self.otherapp,
+                                        role=amo.AUTHOR_ROLE_DEV)
+        self.otherapp.addonuser_set.add(role)
+        payment_data = self.payment_data()
+        AddonPaymentData.objects.create(addon=self.steamcube,
+                                        **payment_data)
+        AddonPaymentData.objects.create(addon=self.otherapp,
+                                        **payment_data)
+        res = self.summary()
+        eq_(len(res.context['payment_data']), 1)
+        pd = res.context['payment_data'][0]
+        for key, value in payment_data.iteritems():
+            eq_(pd[key], value)
 
 
 class SearchTestMixin(AcctLookupTest):

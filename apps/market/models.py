@@ -365,6 +365,11 @@ class AddonPaymentData(amo.models.ModelBase):
     class Meta:
         db_table = 'addon_payment_data'
 
+    @classmethod
+    def address_fields(cls):
+        return [field.name for field in cls._meta.fields
+                if isinstance(field, (models.CharField, models.EmailField))]
+
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.addon)
 
