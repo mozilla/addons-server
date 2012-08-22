@@ -832,7 +832,8 @@ class TestEditMedia(TestEdit):
         res = self.add_json(open(video_files['good'], 'rb'))
         assert res['errors'][0].startswith('Please use')
 
-    def test_edit_preview_video_add(self):
+    @mock.patch('lib.video.tasks.resize_video')
+    def test_edit_preview_video_add(self, resize_video):
         Switch.objects.create(name='video-upload', active=True)
         self.preview_video_add()
         eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')

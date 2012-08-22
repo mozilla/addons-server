@@ -59,7 +59,8 @@ class TestPreviewForm(amo.tests.TestCase):
         form.save(self.addon)
         return self.addon.previews.all()[0].filetype
 
-    def test_preview_good_file_type(self):
+    @mock.patch('lib.video.tasks.resize_video')
+    def test_preview_good_file_type(self, resize_video):
         eq_(self.check_file_type('x.video-webm'), 'video/webm')
 
     def test_preview_other_file_type(self):
