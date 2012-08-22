@@ -30,10 +30,10 @@ class VideoBase(object):
     def _call(self):
         raise NotImplementedError
 
-    def get_encoded(self):
+    def get_encoded(self, size):
         raise NotImplementedError
 
-    def get_screenshot(self):
+    def get_screenshot(self, size):
         raise NotImplementedError
 
     def get_meta(self):
