@@ -320,3 +320,12 @@ MOZMARKET_VENDOR_EXCLUDE = []
 
 # When True, mozmarket.js will be served as minified JavaScript.
 MINIFY_MOZMARKET = True
+
+# GeoIP server settings
+# This flag overrides the GeoIP server functions and will force the
+# return of the GEOIP_DEFAULT_VAL
+GEOIP_NOOP = 1
+GEOIP_HOST = 'localhost'
+GEOIP_PORT = '5309'
+GEOIP_DEFAULT_VAL = 'us'
+GEOIP_DEFAULT_TIMEOUT = .2

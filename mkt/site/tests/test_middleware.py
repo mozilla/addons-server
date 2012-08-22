@@ -1,3 +1,5 @@
+import socket
+
 from django.conf import settings
 
 import mock
@@ -328,6 +330,43 @@ class TestRegionMiddleware(MiddlewareCase):
         self.client.cookies['region'] = 'br'
         r = self.client.get('/')
         assert not r.cookies
+
+    # To actually test these calls with a valid GeoIP server,
+    # please remove the GEOIP_NOOP overrides.
+    @mock.patch.object(settings, 'GEOIP_NOOP', True)
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    def test_geoip_missing_worldwide(self):
+        """ Test for worldwide region """
+        # The remote address by default is 127.0.0.1
+        # Use 'sa-US' as the language to defeat the lanugage sniffer
+        # Note: This may be problematic should we ever offer
+        # apps in US specific derivation of SanskritRight.
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        eq_(r.cookies['region'].value, 'worldwide')
+
+    @mock.patch.object(settings, 'GEOIP_NOOP', True)
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
+    def test_geoip_missing_lang(self):
+        """ Test for US region """
+        r = self.client.get('/', REMOTE_ADDR='mozilla.com')
+        eq_(r.cookies['region'].value, 'us')
+
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
+    @mock.patch('socket.socket')
+    def test_geoip_down(self, mock_socket):
+        """ Test that we fail gracefully if the GeoIP server is down. """
+        mock_socket.connect.side_effect = IOError
+        r = self.client.get('/', REMOTE_ADDR='mozilla.com')
+        eq_(r.cookies['region'].value, 'us')
+
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
+    @mock.patch('socket.socket')
+    def test_geoip_timeout(self, mock_socket):
+        """ Test that we fail gracefully if the GeoIP server times out. """
+        mock_socket.return_value.connect.return_value = True
+        mock_socket.return_value.send.side_effect = socket.timeout
+        r = self.client.get('/', REMOTE_ADDR='mozilla.com')
+        eq_(r.cookies['region'].value, 'us')
 
 
 class TestVaryMiddleware(MiddlewareCase):
