@@ -12,9 +12,11 @@ from django.conf import settings
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
+from devhub.models import UserLog
 from lib.video import get_library
 from lib.video import ffmpeg, totem
 from lib.video.tasks import resize_video
+from users.models import UserProfile
 
 files = {
     'good': os.path.join(os.path.dirname(__file__),
@@ -192,6 +194,23 @@ class TestTask(amo.tests.TestCase):
         self.mock.thumbnail_path = tempfile.mkstemp()[1]
         self.mock.image_path = tempfile.mkstemp()[1]
         self.mock.pk = 1
+
+    @patch('lib.video.tasks._resize_video')
+    def test_resize_error(self, _resize_video):
+        user = UserProfile.objects.create(email='a@a.com')
+        _resize_video.side_effect = ValueError
+        with self.assertRaises(ValueError):
+            resize_video(files['good'], self.mock, user=user)
+        assert self.mock.delete.called
+        assert UserLog.objects.filter(user=user,
+                        activity_log__action=amo.LOG.VIDEO_ERROR.id).exists()
+
+    @patch('lib.video.tasks._resize_video')
+    def test_resize_failed(self, _resize_video):
+        user = UserProfile.objects.create(email='a@a.com')
+        _resize_video.return_value = None
+        resize_video(files['good'], self.mock, user=user)
+        assert self.mock.delete.called
 
     @patch('lib.video.ffmpeg.Video.get_encoded')
     def test_resize_video_no_encode(self, get_encoded):

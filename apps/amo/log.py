@@ -502,9 +502,13 @@ class ESCALATE_MANUAL(_LOG):
     short = _(u'Reviewer escalation')
     keep = True
     review_queue = True
-
-
 # TODO(robhudson): Escalation log for editor escalation..
+
+class VIDEO_ERROR(_LOG):
+    id = 74
+    format = _(u'Video removed from {addon} because of a problem with '
+                'the video. ')
+    short = _(u'Video removed')
 
 
 class CUSTOM_TEXT(_LOG):

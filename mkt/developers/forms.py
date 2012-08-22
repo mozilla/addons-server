@@ -271,6 +271,7 @@ class PreviewForm(happyforms.ModelForm):
                 if filetype in amo.VIDEO_TYPES:
                     self.instance.update(filetype=filetype)
                     vtasks.resize_video.delay(upload_path, self.instance,
+                                              user=amo.get_user(),
                                               set_modified_on=[self.instance])
                 else:
                     self.instance.update(filetype='image/png')

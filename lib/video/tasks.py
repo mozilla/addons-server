@@ -18,7 +18,30 @@ time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
 # Video decoding can take a while, so let's increase these limits.
 @task(time_limit=time_limits['hard'], soft_time_limit=time_limits['soft'])
 @set_modified_on
-def resize_video(src, instance, **kw):
+def resize_video(src, instance, user=None, **kw):
+    """Try and resize a video and cope if it fails."""
+    try:
+        result = _resize_video(src, instance, **kw)
+    except Exception, err:
+        log.error('Error on processing video: %s' % err)
+        _resize_error(src, instance, user)
+        raise
+
+    if not result:
+        log.error('Error on processing video, _resize_video not True.')
+        _resize_error(src, instance, user)
+
+    log.info('Video resize complete.')
+    return
+
+
+def _resize_error(src, instance, user):
+    """An error occurred in processing the video, deal with that approp."""
+    amo.log(amo.LOG.VIDEO_ERROR, instance, user=user)
+    instance.delete()
+
+
+def _resize_video(src, instance, **kw):
     """
     Given a preview object and a file somewhere: encode into the full
     preview size and generate a thumbnail.
@@ -74,3 +97,4 @@ def resize_video(src, instance, **kw):
                       'image': amo.ADDON_PREVIEW_SIZES[1]}
     instance.save()
     log.info('Completed encoding video: %s' % instance.pk)
+    return True
