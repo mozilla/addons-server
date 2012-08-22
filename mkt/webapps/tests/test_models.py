@@ -551,8 +551,7 @@ class TestIsVisible(amo.tests.WebappTestCase):
 
         for status in self.hidden_statuses:
             self.app.update(status=status)
-            eq_(self.app.is_visible(self.request), True,
-                'oops for %s' % status)
+            eq_(self.app.is_visible(self.request), True)
 
     def test_reviewer(self):
         # Only pending and public should be visible.
@@ -563,11 +562,9 @@ class TestIsVisible(amo.tests.WebappTestCase):
         for status in self.hidden_statuses:
             self.app.update(status=status)
             if status == amo.STATUS_PENDING:
-                eq_(self.app.is_visible(self.request), True,
-                    'oops for %s' % status)
+                eq_(self.app.is_visible(self.request), True)
             else:
-                eq_(self.app.is_visible(self.request), False,
-                    'oops for %s' % status)
+                eq_(self.app.is_visible(self.request), False)
 
     def test_unrated_game_regular_user(self):
         # Only public+unrated games should be visible.

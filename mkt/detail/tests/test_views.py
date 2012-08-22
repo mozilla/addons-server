@@ -30,7 +30,7 @@ def get_clean(selection):
     return strip_whitespace(str(selection))
 
 
-class DetailBase(amo.tests.WebTestCase):
+class DetailBase(amo.tests.WebappTestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):

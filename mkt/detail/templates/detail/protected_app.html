@@ -30,9 +30,9 @@
           </p>
           <p>
             {% trans DEJUS=mkt.ratingsbodies.DJCTQ.full_name,
-                     dejus_url='http://portal.mj.gov.br/classificacao/data/Pages/MJ6BC270E8PTBRNN.htm',
+                     DEJUS_URL=mkt.ratingsbodies.DJCTQ.url,
                      apply_url='http://portal.mj.gov.br/classificacao/main.asp?Team={49798573-B4FD-44A7-B6FB-81E0B8B69A19}' %}
-              A qualification rating is mandatory for all games released in Brazil. The <a href="{{ dejus_url }}" target="_blank" title="{{ DEJUS }}">DEJUS</a> rates movies, games, and television programs in Brazil. <a href="{{ apply_url }}" target="_blank">Apply here for a free rating.</a>
+              A qualification rating is mandatory for all games released in Brazil. The <a href="{{ DEJUS_URL }}" target="_blank" title="{{ DEJUS }}">DEJUS</a> rates movies, games, and television programs in Brazil. <a href="{{ apply_url }}" target="_blank">Apply here for a free rating.</a>
             {% endtrans %}
           </p>
         {% elif unrated_brazil_game %}
