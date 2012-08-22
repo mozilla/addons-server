@@ -1483,6 +1483,12 @@ class TestAdminSettings(TestAdmin):
         eq_(list(webapp.content_ratings.all().values_list('ratings_body',
                                                           'rating')),
             [(0, 1), (0, 3)])
+        del data['app_ratings']
+
+        r = self.client.post(self.edit_url, data)
+        eq_(list(webapp.content_ratings.all().values_list('ratings_body',
+                                                          'rating')),
+            [])
 
     def test_ratings_view(self):
         self.log_in_with('Apps:ViewConfiguration')
