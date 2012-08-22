@@ -130,7 +130,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                                              editable=False)
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
-
+    source = models.PositiveIntegerField(default=amo.LOGIN_SOURCE_UNKNOWN,
+                                         editable=False)
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
 
     class Meta:
@@ -221,6 +222,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @amo.cached_property
     def needs_tougher_password(user):
+        if user.source == amo.LOGIN_SOURCE_BROWSERID:
+            return False
         from access import acl
         return (acl.action_allowed_user(user, 'Admin', '%') or
                 acl.action_allowed_user(user, 'Addons', 'Edit') or
@@ -303,6 +306,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             delete_user.delete()
 
     def check_password(self, raw_password):
+        # BrowserID does not store a password.
+        if self.source == amo.LOGIN_SOURCE_BROWSERID:
+            return True
         if '$' not in self.password:
             valid = (get_hexdigest('md5', '', raw_password) == self.password)
             if valid:
