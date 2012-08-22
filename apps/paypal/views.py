@@ -51,7 +51,7 @@ def paypal(request):
 
 
 def ipn(request):
-    result = client.post_ipn(data={'data': request.raw_post_data})
+    result = client.post_ipn(data={'data': request.read()})
     paypal_log.info('Solitude IPN returned: %s' % result['status'])
 
     # PayPal could not verify this result.
@@ -157,8 +157,8 @@ def _parse_currency(value):
 
 
 def _paypal(request):
-    # raw_post_data has to be accessed before request.POST. wtf django?
-    raw, post = request.read(), request.POST.copy()
+    # Must be this way around.
+    post, raw = request.POST.copy(), request.read()
     paypal_log.info('IPN received: %s' % raw)
 
     # Check that the request is valid and coming from PayPal.
