@@ -99,7 +99,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return True
 
     def is_mirrorable(self):
-        if self.version.addon_id and self.version.addon.is_premium():
+        if (self.version.addon_id and
+            (self.version.addon.is_premium() or
+             self.version.addon.type == amo.ADDON_WEBAPP)):
             return False
         return self.status in amo.MIRROR_STATUSES
 
@@ -143,7 +145,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         # In most cases we have an addon in the calling context.
         if not addon:
             addon = self.version.addon
-        if addon.is_premium():
+        if addon.is_premium() and addon.type != amo.ADDON_WEBAPP:
             url = reverse('downloads.watermarked', args=[self.id])
         else:
             url = reverse('downloads.file', args=[self.id])
@@ -272,7 +274,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         kw = {'addon_id': addon.pk}
         if self.platform_id != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform_id
-        if addon.is_premium():
+        if addon.is_premium() and addon.type != amo.ADDON_WEBAPP:
             url = reverse('downloads.watermarked', args=[self.id])
         else:
             url = reverse('downloads.latest', kwargs=kw)

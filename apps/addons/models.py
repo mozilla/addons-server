@@ -255,9 +255,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     thankyou_note = TranslatedField()
 
     get_satisfaction_company = models.CharField(max_length=255, blank=True,
-                                               null=True)
+                                                null=True)
     get_satisfaction_product = models.CharField(max_length=255, blank=True,
-                                               null=True)
+                                                null=True)
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')

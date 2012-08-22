@@ -32,7 +32,7 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
-from amo.utils import chunked, sorted_groupby
+from amo.utils import chunked, create_es_index_if_missing, sorted_groupby
 from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
 from compat.cron import compatibility_report
@@ -567,7 +567,7 @@ def elastic(request):
             setup_mapping()
             setup_indexes()
             setup_mkt_indexes()
-            es.create_index_if_missing(INDEX)
+            create_es_index_if_missing(INDEX)
             messages.info(request, 'Deleting %s index.' % INDEX)
         if request.POST.get('reindex') in mappings:
             name = request.POST['reindex']

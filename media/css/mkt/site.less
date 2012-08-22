@@ -94,8 +94,15 @@ body {
         border: 1px solid darken(#fd9, 60%);
     }
     &.full {
-        a {
+        a:last-child {
             font-weight: bold;
+        }
+        p {
+            margin: 0;
+            + p {
+                font-size: 12px;
+                margin-top: 5px;
+            }
         }
     }
 }

@@ -774,7 +774,7 @@ class RegionForm(forms.Form):
         self.disabled_regions = []
         games = Webapp.category('games')
         if (games and self.product.categories.filter(id=games.id).exists()
-            and not self.product.content_rated_in(mkt.regions.BR)):
+            and not self.product.content_ratings_in(mkt.regions.BR)):
             self.disabled_regions.append(mkt.regions.BR.id)
 
     def save(self):
@@ -819,7 +819,7 @@ class RegionForm(forms.Form):
 
             if (self.product.categories.filter(id=games.id) and
                 self.product.listed_in(r) and
-                not self.product.content_rated_in(r)):
+                not self.product.content_ratings_in(r)):
 
                 g, c = AddonExcludedRegion.objects.get_or_create(
                     addon=self.product, region=r.id)
@@ -885,7 +885,7 @@ class CategoryForm(happyforms.Form):
         # Disallow games in Brazil without a rating.
         games = Webapp.category('games')
         if (games and self.product.listed_in(mkt.regions.BR) and
-            not self.product.content_rated_in(mkt.regions.BR)):
+            not self.product.content_ratings_in(mkt.regions.BR)):
 
             r = mkt.regions.BR.id
 

@@ -7,6 +7,7 @@ import elasticutils.contrib.django as elasticutils
 import pyes.exceptions as pyes
 
 import amo
+from amo.utils import create_es_index_if_missing
 from .models import Addon
 from bandwagon.models import Collection
 from compat.models import AppCompat
@@ -150,10 +151,7 @@ def setup_mapping():
     # we'll get burned later on.
     for model in Addon, AppCompat, Collection, UserProfile:
         index = model._get_index()
-        try:
-            es.create_index_if_missing(index)
-        except pyes.ElasticSearchException:
-            pass
+        create_es_index_if_missing(index)
         try:
             es.put_mapping(model._meta.db_table, mapping, index)
         except pyes.ElasticSearchException, e:

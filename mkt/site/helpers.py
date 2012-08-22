@@ -7,7 +7,7 @@ import waffle
 
 from access import acl
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse
+from amo.urlresolvers import reverse, get_outgoing_url
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
 
@@ -65,6 +65,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
 
     url = (reverse('receipt.issue', args=[product.app_slug])
            if receipt_type else product.get_detail_url('record'))
+    src = request.GET.get('src', '')
     ret = {
         'id': product.id,
         'name': product.name,
@@ -73,10 +74,13 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
         'manifestUrl': product.manifest_url,
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
-        'recordUrl': urlparams(url, src=request.GET.get('src', '')),
+        'recordUrl': urlparams(url, src=src),
         'author': author,
         'author_url': author_url,
-        'iconUrl': product.get_icon_url(64)
+        'iconUrl': product.get_icon_url(64),
+        'is_packaged': product.has_packaged_files,
+        'package_url': (product.current_version.all_files[0].get_url_path(src)
+                        if product.has_packaged_files else ''),
     }
 
     # Add in previews to the dict.
@@ -107,7 +111,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
 
     # Jinja2 escape everything except this whitelist so that bool is retained
     # for the JSON encoding.
-    wl = ('isPurchased', 'price', 'currencies', 'categories', 'previews')
+    wl = ('isPurchased', 'price', 'currencies', 'categories', 'previews',
+          'is_packaged')
     return dict([k, jinja2.escape(v) if k not in wl else v]
                 for k, v in ret.items())
 
@@ -282,3 +287,9 @@ def admin_site_links():
             ('Site Status', reverse('amo.monitor')),
         ],
     }
+
+
+@register.filter
+def external_href(url):
+    t = 'target="_blank" href="%s"' % get_outgoing_url(unicode(url))
+    return jinja2.Markup(t)

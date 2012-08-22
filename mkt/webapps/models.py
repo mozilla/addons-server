@@ -17,6 +17,7 @@ from elasticutils.contrib.django import F, S
 import waffle
 from tower import ugettext as _
 
+from access.acl import action_allowed, check_reviewer
 import amo
 import amo.models
 from addons import query
@@ -304,6 +305,36 @@ class Webapp(Addon):
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
 
+    def is_visible(self, request):
+        region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+
+        # See if it's a game without a content rating.
+        if (region == mkt.regions.BR and
+            not self.content_ratings_in(mkt.regions.BR, 'games')):
+            unrated_brazil_game = True
+        else:
+            unrated_brazil_game = False
+
+        # Let developers see it always.
+        can_see = (self.has_author(request.amo_user) or
+                   action_allowed(request, 'Apps', 'Edit'))
+
+        # Let app reviewers see it only when it's pending.
+        if check_reviewer(request, only='app') and self.is_pending():
+            can_see = True
+
+        visible = False
+
+        if can_see:
+            # Developers and reviewers should see it always.
+            visible = True
+        elif self.is_public() and not unrated_brazil_game:
+            # Everyone else can see it only if it's public -
+            # and if it's a game, it must have a content rating.
+            visible = True
+
+        return visible
+
     def has_price(self):
         return bool(self.is_premium() and self.premium and self.premium.price)
 
@@ -322,11 +353,15 @@ class Webapp(Addon):
         except IndexError:
             pass
 
-    def get_region_ids(self):
+    def get_region_ids(self, worldwide=False):
         """Return IDs of regions in which this app is listed."""
+        if worldwide:
+            all_ids = mkt.regions.ALL_REGION_IDS
+        else:
+            all_ids = mkt.regions.REGION_IDS
         excluded = list(self.addonexcludedregion
                             .values_list('region', flat=True))
-        return list(set(mkt.regions.REGION_IDS) - set(excluded))
+        return list(set(all_ids) - set(excluded))
 
     def get_regions(self):
         """
@@ -340,25 +375,29 @@ class Webapp(Addon):
                                 for r in self.get_region_ids()])
         return sorted(regions, key=lambda x: x.slug)
 
-    def listed_in(self, region):
-        return region.id in self.get_region_ids()
+    def listed_in(self, region=None, category=None):
+        listed = []
+        if region:
+            listed.append(region.id in self.get_region_ids(worldwide=True))
+        if category:
+            if isinstance(category, basestring):
+                filters = {'slug': category}
+            else:
+                filters = {'id': category.id}
+            listed.append(self.category_set.filter(**filters).exists())
+        return all(listed or [False])
 
-    def content_rated_in(self, region):
-        """
-        This is kind of stupid since I have the method below.
-        And, I'll probably remove this.
-        """
-        rb = [x.id for x in region.ratingsbodies]
-        return (self.content_ratings
-                .filter(ratings_body__in=rb).exists())
+    def content_ratings_in(self, region, category=None):
+        """Give me the content ratings for a game listed in Brazil."""
 
-    def content_rating_in(self, region):
+        # If we want to find games in Brazil with content ratings, then
+        # make sure it's actually listed in Brazil and it's a game.
+        if category and not self.listed_in(region, category):
+            return []
+
         rb = [x.id for x in region.ratingsbodies]
-        try:
-            return (self.content_ratings
-                    .filter(ratings_body__in=rb))[0].get_name()
-        except IndexError:
-            pass
+        return list(self.content_ratings.filter(ratings_body__in=rb)
+                        .order_by('rating'))
 
     @classmethod
     def featured(cls, cat=None, region=None, limit=6):
@@ -451,7 +490,13 @@ class Webapp(Addon):
         Note: This isn't using `current_version` since current version only
         gets valid versions and we need to use this during the submission flow.
         """
-        version = self.versions.latest()
+        version = None
+        try:
+            # If the webapp has no version at all (which it shouldn't)
+            # .latest() raises a DoesNotExist.
+            version = self.versions.latest()
+        except models.ObjectDoesNotExist:
+            pass
         if version:
             return version.all_files[0].is_packaged
         return False
@@ -534,15 +579,16 @@ class ContentRating(amo.models.ModelBase):
     rating = models.PositiveIntegerField(null=False)
 
     def __unicode__(self):
-        return '%s: %s' % (self.addon, self.get_name())
+        return u'%s: %s' % (self.addon, self.get_label())
 
     def get_body(self):
-        rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        return rb.name
+        """Gives us something like DEJUS."""
+        return mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
 
     def get_rating(self):
-        rb = mkt.ratingsbodies.RATINGS_BODIES[self.ratings_body]
-        return rb.ratings[self.rating].name
+        """Gives us the rating class (containing the name and description)."""
+        return self.get_body().ratings[self.rating]
 
-    def get_name(self):
-        return u'%s - %s' % (self.get_body(), self.get_rating())
+    def get_label(self):
+        """Gives us the name to be used for the form options."""
+        return u'%s - %s' % (self.get_body().name, self.get_rating().name)

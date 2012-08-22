@@ -27,7 +27,7 @@
     <div>
       {% if prices %}
         <h2>{{ _('Filter by price') }}</h2>
-        <ul class="toggles c">
+        <ul class="toggles c" id="filter-prices">
           {% for price in prices %}
             <li>
               <a{% if price.selected %} class="sel"{% endif %}
@@ -42,7 +42,7 @@
 
       {% if categories %}
         <h2>{{ _('Filter by category') }}</h2>
-        <ul class="toggles c">
+        <ul class="toggles c" id="filter-categories">
           {% for category in categories %}
             <li>
               <a {% if category.selected %} class="sel"{% endif %}
@@ -57,7 +57,7 @@
 
       {# TODO: This needs to be implemented. #}
       <h2>{{ _('Sort by') }}</h2>
-      <ul class="toggles c">
+      <ul class="toggles c" id="filter-sort">
         <li><a href="#">Relevancy</a></li>
         <li><a href="#" class="sel">Rating</a></li>
       </ul>

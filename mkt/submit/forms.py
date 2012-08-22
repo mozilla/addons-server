@@ -46,10 +46,15 @@ class NewWebappForm(happyforms.Form):
         error_messages={'invalid_choice': _lazy(u'There was an error with your'
                                                 ' upload. Please try again.')})
 
+    def __init__(self, *args, **kw):
+        self.is_packaged = kw.pop('is_packaged', False)
+        super(NewWebappForm, self).__init__(*args, **kw)
+
     def clean_upload(self):
         upload = self.cleaned_data['upload']
-        # Throw an error if this is a dupe.
-        verify_app_domain(upload.name)  # JS sets manifest as `upload.name`.
+        if not self.is_packaged:
+            # Throw an error if this is a dupe.
+            verify_app_domain(upload.name)  # JS sets manifest as `upload.name`.
         return upload
 
 

@@ -7,13 +7,13 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
-  {% if not (is_dev or is_admin) and not product.is_public() %}
+  {% if not product.is_visible(request) %}
     <section class="product-details">
       <h1>{{ product.name }}</h1>
     </section>
-    {{ notification(product, amo, is_dev) }}
+    {{ notification(product, amo, mkt, is_dev) }}
   {% else %}
-    {{ notification(product, amo, is_dev) }}
+    {{ notification(product, amo, mkt, is_dev) }}
     <section>
       <div class="prose">
         <h1>{{ _('Privacy Policy') }}</h1>

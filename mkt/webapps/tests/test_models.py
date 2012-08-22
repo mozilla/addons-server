@@ -16,6 +16,7 @@ from amo.tests import app_factory, TestCase, WebappTestCase
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from files.models import File
+from users.models import UserProfile
 from versions.models import Version
 
 import mkt
@@ -258,6 +259,11 @@ class TestWebapp(TestCase):
         eq_(app2.is_packaged, True)
         eq_(app2.has_packaged_files, True)
 
+    def test_package_no_version(self):
+        webapp = Webapp.objects.create(manifest_url='http://foo.com')
+        eq_(webapp.is_packaged, False)
+        eq_(webapp.has_packaged_files, False)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
@@ -478,3 +484,303 @@ class TestAddonExcludedRegion(WebappTestCase):
 
     def test_unicode(self):
         eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.CA.slug))
+
+
+class TestIsVisible(amo.tests.WebappTestCase):
+    fixtures = amo.tests.WebappTestCase.fixtures + ['base/users']
+
+    def setUp(self):
+        super(TestIsVisible, self).setUp()
+
+        self.skip_if_disabled(settings.REGION_STORES)
+
+        self.regular = UserProfile.objects.get(username='regularuser')
+        self.partner = UserProfile.objects.get(username='partner')
+        self.dev = self.app.authors.all()[0]
+        self.admin = UserProfile.objects.get(username='admin')
+        self.reviewer = UserProfile.objects.get(username='editor')
+
+        self.statuses = list(amo.MARKET_STATUSES)
+        self.hidden_statuses = list(self.statuses)
+        self.hidden_statuses.remove(amo.STATUS_PUBLIC)
+
+    def set_request(self, user=None, region=None):
+        if not hasattr(self, 'request'):
+            self.request = mock.Mock()
+        if user:
+            self.request.amo_user = user
+            self.request.groups = user.groups.all()
+        if region:
+            self.request.REGION = region
+
+    def test_regular_user(self):
+        # Only public apps should be visible.
+        self.set_request(user=self.regular)
+
+        eq_(self.app.is_visible(self.request), True)
+
+        for status in self.hidden_statuses:
+            self.app.update(status=status)
+            eq_(self.app.is_visible(self.request), False)
+
+    def test_partner(self):
+        # Only public apps should be visible.
+        self.set_request(user=self.partner)
+
+        eq_(self.app.is_visible(self.request), True)
+
+        for status in self.hidden_statuses:
+            self.app.update(status=status)
+            eq_(self.app.is_visible(self.request), False)
+
+    def test_developer(self):
+        # All statuses should be visible.
+        self.set_request(user=self.dev)
+
+        eq_(self.app.is_visible(self.request), True)
+
+        for status in self.hidden_statuses:
+            self.app.update(status=status)
+            eq_(self.app.is_visible(self.request), True)
+
+    def test_admin(self):
+        # All statuses should be visible.
+        self.set_request(user=self.admin)
+
+        eq_(self.app.is_visible(self.request), True)
+
+        for status in self.hidden_statuses:
+            self.app.update(status=status)
+            eq_(self.app.is_visible(self.request), True)
+
+    def test_reviewer(self):
+        # Only pending and public should be visible.
+        self.set_request(user=self.reviewer)
+
+        eq_(self.app.is_visible(self.request), True)
+
+        for status in self.hidden_statuses:
+            self.app.update(status=status)
+            if status == amo.STATUS_PENDING:
+                eq_(self.app.is_visible(self.request), True)
+            else:
+                eq_(self.app.is_visible(self.request), False)
+
+    def test_unrated_game_regular_user(self):
+        # Only public+unrated games should be visible.
+        self.make_game(rated=False)
+        self.set_request(user=self.regular)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status == amo.STATUS_PUBLIC and region != mkt.regions.BR:
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
+    def test_unrated_game_partner(self):
+        # Only public+unrated games should be visible.
+        self.make_game(rated=False)
+        self.set_request(user=self.partner)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status == amo.STATUS_PUBLIC and region != mkt.regions.BR:
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
+    def test_unrated_game_developer(self):
+        # All statuses should be visible.
+        self.make_game(rated=False)
+        self.set_request(user=self.dev)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                eq_(self.app.is_visible(self.request), True)
+
+    def test_unrated_game_admin(self):
+        # All statuses should be visible.
+        self.make_game(rated=False)
+        self.set_request(user=self.dev)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                eq_(self.app.is_visible(self.request), True)
+
+    def test_unrated_game_reviewer(self):
+        # Only pending+unrated and public+unrated should be visible.
+        self.make_game(rated=False)
+        self.set_request(user=self.reviewer)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status == amo.STATUS_PENDING:
+                    eq_(self.app.is_visible(self.request), True)
+                elif status == amo.STATUS_PUBLIC and region != mkt.regions.BR:
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
+    def test_rated_game_regular_user(self):
+        # Public, rated games should be visible everywhere for regular users.
+        self.make_game(rated=True)
+        self.set_request(user=self.regular)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status == amo.STATUS_PUBLIC:
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
+    def test_rated_game_partner(self):
+        # Only public, unrated games should be visible.
+        self.make_game(rated=True)
+        self.set_request(user=self.partner)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status == amo.STATUS_PUBLIC:
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
+    def test_rated_game_developer(self):
+        # All statuses should be visible.
+        self.make_game(rated=True)
+        self.set_request(user=self.dev)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                eq_(self.app.is_visible(self.request), True)
+
+    def test_rated_game_admin(self):
+        # All statuses should be visible.
+        self.make_game(rated=True)
+        self.set_request(user=self.dev)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                eq_(self.app.is_visible(self.request), True)
+
+    def test_rated_game_reviewer(self):
+        # Only pending+rated and public+rated should be visible.
+        self.make_game(rated=True)
+        self.set_request(user=self.reviewer)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status in (amo.STATUS_PENDING, amo.STATUS_PUBLIC):
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
+
+class TestListedIn(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        super(TestListedIn, self).setUp()
+        self.skip_if_disabled(settings.REGION_STORES)
+
+    def test_nowhere(self):
+        eq_(self.app.listed_in(), False)
+
+    def test_not_in_region(self):
+        for region in mkt.regions.ALL_REGIONS:
+            AddonExcludedRegion.objects.create(addon=self.app,
+                region=region.id)
+            eq_(self.get_app().listed_in(region=region), False)
+
+    def test_not_in_category(self):
+        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
+        eq_(self.app.listed_in(category='games'), False)
+        eq_(self.app.listed_in(category=cat), False)
+
+    def test_not_in_region_and_category(self):
+        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.listed_in(region=region, category='games'), False)
+            eq_(self.app.listed_in(region=region, category=cat), False)
+
+    def test_in_region(self):
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.get_app().listed_in(region=region), True)
+
+    def test_in_category(self):
+        self.make_game()
+        cat = Category.objects.get(slug='games')
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.listed_in(category='games'), True)
+            eq_(self.app.listed_in(category=cat), True)
+
+    def test_in_region_and_category(self):
+        self.make_game()
+        cat = Category.objects.get(slug='games')
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.listed_in(region=region, category='games'), True)
+            eq_(self.app.listed_in(region=region, category=cat), True)
+
+    def test_in_region_and_not_in_category(self):
+        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.listed_in(region=region, category='games'), False)
+            eq_(self.app.listed_in(region=region, category=cat), False)
+
+
+class TestContentRatingsIn(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        super(TestContentRatingsIn, self).setUp()
+        self.skip_if_disabled(settings.REGION_STORES)
+
+    def test_not_in_region(self):
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.content_ratings_in(region=region), [])
+
+        for region in mkt.regions.ALL_REGIONS:
+            AddonExcludedRegion.objects.create(addon=self.app,
+                region=region.id)
+            eq_(self.get_app().content_ratings_in(region=region), [])
+
+    def test_in_for_region_and_category(self):
+        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.content_ratings_in(region=region, category='games'),
+                [])
+            eq_(self.app.content_ratings_in(region=region, category=cat), [])
+
+    def test_in_region_and_category(self):
+        self.make_game()
+        cat = Category.objects.get(slug='games')
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.listed_in(region=region, category='games'), True)
+            eq_(self.app.listed_in(region=region, category=cat),
+                True)
+
+    def test_in_region_and_not_in_category(self):
+        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
+        for region in mkt.regions.ALL_REGIONS:
+            eq_(self.app.content_ratings_in(region=region, category='games'),
+                [])
+            eq_(self.app.content_ratings_in(region=region, category=cat), [])

@@ -8,7 +8,6 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -242,8 +241,7 @@ class TestCreateWebApp(BaseWebAppTest):
             'Unexpected validation error (verify_app_domain)')
 
     def test_hint_for_same_manifest(self):
-        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
-                                            active=True)
+        self.create_switch(name='webapps-unique-by-domain')
         self.post_addon()
         self.upload = self.get_upload(abspath=self.manifest)
         r = self.client.post(reverse('mkt.developers.upload_manifest'),
@@ -253,8 +251,7 @@ class TestCreateWebApp(BaseWebAppTest):
             'Expected oops')
 
     def test_no_hint_for_same_manifest_different_author(self):
-        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
-                                            active=True)
+        self.create_switch(name='webapps-unique-by-domain')
         self.post_addon()
 
         # Submit same manifest as different user.
@@ -317,8 +314,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         return rs
 
     def test_duplicate_domain(self):
-        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
-                                            active=True)
+        self.create_switch(name='webapps-unique-by-domain')
         rs = self.upload_webapp('http://existing-app.com/my.webapp',
                                 expect_errors=True)
         eq_(rs.context['form'].errors,
@@ -330,8 +326,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         self.upload_webapp('http://existing-app.com/my.webapp')  # No errors.
 
     def test_duplicate_domain_from_js(self):
-        waffle.models.Switch.objects.create(name='webapps-unique-by-domain',
-                                            active=True)
+        self.create_switch(name='webapps-unique-by-domain')
         data = self.post_manifest('http://existing-app.com/my.webapp')
         eq_(data['validation']['errors'], 1)
         eq_(data['validation']['messages'][0]['message'],
@@ -348,6 +343,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     def setUp(self):
         super(BasePackagedAppTest, self).setUp()
+        self.create_switch(name='allow-packaged-app-uploads')
         self.package = self.packaged_app_path('mozball.zip')
         self.upload = self.get_upload(abspath=self.package)
         self.upload.update(name='mozball.zip', is_webapp=True)
@@ -384,6 +380,13 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(addon.summary, u'Exciting Open Web development action!')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
+
+    @mock.patch('mkt.submit.forms.verify_app_domain')
+    def test_packaged_app_not_unique_by_domain(self, _verify):
+        self.create_switch(name='webapps-unique-by-domain')
+        self.post()
+        assert not _verify.called, ('`verify_app_domain` should not be called'
+                                    ' for packaged apps.')
 
 
 class TestDetails(TestSubmit):
@@ -544,7 +547,7 @@ class TestDetails(TestSubmit):
             'image/jpeg|image/png')
 
     def test_video_types(self):
-        waffle.models.Switch.objects.create(name='video-upload', active=True)
+        self.create_switch(name='video-upload')
         self._step()
         res = self.client.get(self.url)
         doc = pq(res.content)
@@ -623,7 +626,7 @@ class TestDetails(TestSubmit):
             ['You must upload at least one screenshot.'])
 
     def test_screenshot_or_video_required(self):
-        waffle.models.Switch.objects.create(name='video-upload', active=True)
+        self.create_switch(name='video-upload')
         self._step()
         data = self.get_dict()
         for k in data:
@@ -1002,8 +1005,8 @@ class TestPayments(TestSubmit):
         self.assert3xx(res, self.get_url('payments.bounce'))
 
     @mock.patch('mkt.submit.views.client')
-    @mock.patch('mkt.submit.views.waffle.flag_is_active')
-    def test_paypal_solitude(self, flag_is_active, client):
+    def test_paypal_solitude(self, client):
+        self.create_flag(name='solitude-payments')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.paypal'),
                                {'business_account': 'yes',
