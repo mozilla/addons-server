@@ -235,7 +235,6 @@ def edit(request):
                                       'resubmit.'))
     else:
         form = forms.UserEditForm(instance=amouser, webapp=webapp)
-
     return jingo.render(request, 'users/edit.html',
                         {'form': form, 'amouser': amouser, 'webapp': webapp})
 
@@ -339,7 +338,9 @@ def browserid_authenticate(request, assertion):
               'Learn more</a>')
         return (None, _m)
     profile = UserProfile.objects.create(username=username, email=email,
+                                         source=amo.LOGIN_SOURCE_BROWSERID,
                                          display_name=username)
+
     profile.create_django_user()
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
     if settings.APP_PREVIEW:
@@ -652,6 +653,12 @@ def register(request):
             return http.HttpResponseRedirect(reverse('users.login'))
 
         elif mkt_user.exists():
+            # Handle BrowserID
+            if (mkt_user.count() == 1 and
+                mkt_user[0].source == amo.LOGIN_SOURCE_BROWSERID):
+                messages.info(request, _('You already have an account.'))
+                form = None
+            else:
                 f = PasswordResetForm()
                 f.users_cache = [mkt_user[0]]
                 f.save(use_https=request.is_secure(),

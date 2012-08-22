@@ -430,3 +430,7 @@ REVIEWED_SCORES = {
 
 # Percentage of what developers earn after Marketplace's cut.
 MKT_CUT = .70
+
+# Login credential source
+LOGIN_SOURCE_UNKNOWN = 0
+LOGIN_SOURCE_BROWSERID = 1
