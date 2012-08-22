@@ -94,7 +94,37 @@
         {% endif %}
       </p>
     </div>
+
+    {% if addon.is_packaged %}
+      {% set versions = addon.versions.all() %}
+      {% if versions %}
+        <h2>{{ _('Packaged Versions') }}</h2>
+        <div class="island c">
+          <ul id="version-list">
+            {% for version in versions %}
+              <li>
+                <h4>Version {{ version.version }}</h4>
+                <small>
+                  {% if addon.disabled_by_user %}
+                    <span class="{{ file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
+                  {% else %}
+                    <span class="{{ file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
+                  {% endif %}
+                </small>
+                <small>Submitted <span title="{{ version.created|isotime }}">{{ version.created|datetime }}</span></small>
+                <div class="buttons">
+                  <a href="{{ version.all_files[0].get_url_path('devhub') }}" class="button download">Download</a>
+                  {# TODO: Install and delete buttons #}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endif %}
+
   </section>
+
   <div id="modals">
     {% if addon.can_be_deleted() %}
       <div id="modal-delete" class="modal modal-delete">

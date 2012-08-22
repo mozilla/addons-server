@@ -147,21 +147,20 @@ def dev_files_status(files, addon):
 
 @register.function
 def status_class(addon):
-    classes = {
-        amo.STATUS_NULL: 'incomplete',
-        amo.STATUS_UNREVIEWED: 'unreviewed',
-        amo.STATUS_NOMINATED: 'nominated',
-        amo.STATUS_PUBLIC: 'fully-approved',
-        amo.STATUS_DISABLED: 'admin-disabled',
-        amo.STATUS_LITE: 'lite',
-        amo.STATUS_LITE_AND_NOMINATED: 'lite-nom',
-        amo.STATUS_PURGATORY: 'purgatory',
-        amo.STATUS_PUBLIC_WAITING: 'waiting',
-    }
     if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
         cls = 'disabled'
     else:
-        cls = classes.get(addon.status, 'none')
+        cls = amo.STATUS_CHOICES_API.get(addon.status, 'none')
+    return 'status-' + cls
+
+
+@register.function
+def file_status_class(addon, version):
+    if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
+        cls = 'disabled'
+    else:
+        file = version.all_files[0]
+        cls = amo.STATUS_CHOICES_API.get(file.status, 'none')
     return 'status-' + cls
 
 

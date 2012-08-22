@@ -1,6 +1,5 @@
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -33,7 +32,7 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#modal-disable').length, 1)
 
     def test_soft_delete_items(self):
-        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        self.create_switch(name='soft_delete')
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)
         eq_(doc('#version-list').length, 0)
@@ -48,17 +47,12 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#delete-addon').length, 1)
         eq_(doc('#modal-delete').length, 1)
 
-    def test_no_version_list(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('#version-list').length, 0)
-
     def test_pending(self):
         self.webapp.update(status=amo.STATUS_PENDING)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('#version-status .status-none').length, 1)
+        eq_(doc('#version-status .status-pending').length, 1)
         eq_(doc('#rejection').length, 0)
 
     def test_public(self):
@@ -66,7 +60,7 @@ class TestAppStatus(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('#version-status .status-fully-approved').length, 1)
+        eq_(doc('#version-status .status-public').length, 1)
         eq_(doc('#rejection').length, 0)
 
     def test_rejected(self):
@@ -92,3 +86,33 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(webapp.status, amo.STATUS_PENDING,
             'Reapplied apps should get marked as pending')
         eq_(unicode(webapp.versions.all()[0].releasenotes), my_reply)
+
+    def test_items_packaged(self):
+        self.webapp.get_latest_file().update(is_packaged=True)
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#version-status').length, 1)
+        eq_(doc('#version-list').length, 1)
+        eq_(doc('#delete-addon').length, 0)
+        eq_(doc('#modal-delete').length, 0)
+        eq_(doc('#modal-disable').length, 1)
+
+    def test_version_list_packaged(self):
+        self.webapp.get_latest_file().update(is_packaged=True)
+        amo.tests.version_factory(addon=self.webapp, version='2.0',
+                                  file_kw=dict(is_packaged=True,
+                                               status=amo.STATUS_PENDING))
+        self.webapp = self.get_webapp()
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#version-status').length, 1)
+        eq_(doc('#version-list li').length, 2)
+        # 1 pending and 1 public.
+        eq_(doc('#version-list span.status-pending').length, 1)
+        eq_(doc('#version-list span.status-public').length, 1)
+        # Check version strings and order of versions.
+        eq_(map(lambda x: x.text, doc('#version-list h4')),
+            ['Version 2.0', 'Version 1.0'])
+        # Check download url.
+        eq_(doc('#version-list a.button.download').eq(0).attr('href'),
+            self.webapp.versions.all()[0].all_files[0].get_url_path('devhub'))
+        eq_(doc('#version-list a.button.download').eq(1).attr('href'),
+            self.webapp.versions.all()[1].all_files[0].get_url_path('devhub'))

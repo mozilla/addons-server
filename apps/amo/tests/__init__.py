@@ -480,8 +480,8 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
 def version_factory(file_kw={}, **kw):
     min_app_version = kw.pop('min_app_version', '4.0')
     max_app_version = kw.pop('max_app_version', '5.0')
-    v = Version.objects.create(version='%.1f' % random.uniform(0, 2),
-                               **kw)
+    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    v = Version.objects.create(version=version, **kw)
     if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
         a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
         av_min, _ = AppVersion.objects.get_or_create(application=a,
@@ -497,8 +497,9 @@ def version_factory(file_kw={}, **kw):
 def file_factory(**kw):
     v = kw['version']
     p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
+    status = kw.pop('status', amo.STATUS_PUBLIC)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=p, status=amo.STATUS_PUBLIC, **kw)
+                            platform=p, status=status, **kw)
     return f
 
 

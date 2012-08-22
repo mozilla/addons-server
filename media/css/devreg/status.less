@@ -45,9 +45,10 @@
     color: @medium-gray;
 }
 
-.status-lite-nom i,
+.status-lite-nominated i,
 .status-nominated b,
-.status-unreviewed b {
+.status-unreviewed b,
+.status-pending b {
     font-style: normal;
     color: #3e7987;
 }
@@ -55,14 +56,15 @@
 .status-incomplete b,
 .status-disabled b,
 .status-admin-disabled b,
-.status-purgatory b,
-.status-waiting b {
+.status-purgatory b {
     color: #851006;
 }
 
 .status-fully-approved b,
+.status-public b,
 .status-lite b,
-.status-lite-nom b {
+.status-lite-nom b,
+.status-waiting b {
     color: #329902;
 }
 
@@ -79,4 +81,38 @@
     .gradient-two-color(#f77, #c22, #c22);
     border-color: #ad1212;
     text-shadow: 0 -1px #e00;
+}
+
+#version-list {
+    li {
+        .border-box;
+        float: left;
+        padding: 10px 0;
+        width: 100%;
+        + li {
+            border-top: 1px dotted #eef;
+        }
+        &:first-child h4 {
+            background: #ded;
+            color: @green;
+        }
+        h4 {
+            background: #f3f3f3;
+            float: left;
+            padding: 5px 10px;
+        }
+        small {
+            border-left: 1px solid @faint-gray;
+            color: @note-gray;
+            display: block;
+            float: left;
+            font-size: 90%;
+            line-height: 10px;
+            margin: 4px 0 0 10px;
+            padding: 7px 0 7px 10px;
+        }
+        .buttons {
+            float: right;
+        }
+    }
 }
