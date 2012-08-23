@@ -46,9 +46,10 @@ from mkt.webapps.models import Webapp
 
 
 class TestAddonManager(amo.tests.TestCase):
-    fixtures = ['addons/featured', 'addons/test_manager', 'base/collections',
-                'base/featured', 'bandwagon/featured_collections',
-                'base/addon_5299_gcal']
+    fixtures = ['base/apps', 'base/appversion', 'base/users',
+                'base/addon_3615', 'addons/featured', 'addons/test_manager',
+                'base/collections', 'base/featured',
+                'bandwagon/featured_collections', 'base/addon_5299_gcal']
 
     def setUp(self):
         set_user(None)
@@ -59,7 +60,7 @@ class TestAddonManager(amo.tests.TestCase):
     def test_listed(self):
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
-        eq_(len(q.all()), 4)
+        eq_(len(q.all()), 5)
 
         addon = q[0]
         eq_(addon.id, 2464)
@@ -69,19 +70,19 @@ class TestAddonManager(amo.tests.TestCase):
         addon.save()
 
         # Should be 3 now, since the one is now disabled.
-        eq_(q.count(), 3)
+        eq_(q.count(), 4)
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(q.count(), 3)
+        eq_(q.count(), 4)
         eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
                                  amo.STATUS_UNREVIEWED).count(), 4)
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        eq_(q.count(), 3)
+        eq_(q.count(), 4)
 
     def test_public(self):
         public = Addon.objects.public()
@@ -207,8 +208,10 @@ class TestNewAddonVsWebapp(amo.tests.TestCase):
 
 class TestAddonModels(amo.tests.TestCase):
     fixtures = ['base/apps',
+                'base/appversion',
                 'base/collections',
                 'base/featured',
+                'base/platforms',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
@@ -1305,7 +1308,8 @@ class TestAddonGetURLPath(amo.tests.TestCase):
 
 
 class TestAddonModelsFeatured(amo.tests.TestCase):
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+    fixtures = ['base/apps', 'base/appversion', 'base/users',
+                'addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured']
 
     def setUp(self):
@@ -1469,7 +1473,11 @@ class TestAddonRecommendations(amo.tests.TestCase):
 
 
 class TestAddonDependencies(amo.tests.TestCase):
-    fixtures = ['base/addon_5299_gcal',
+    fixtures = ['base/apps',
+                'base/appversion',
+                'base/platforms',
+                'base/users',
+                'base/addon_5299_gcal',
                 'base/addon_3615',
                 'base/addon_3723_listed',
                 'base/addon_6704_grapple',
@@ -1505,7 +1513,11 @@ class TestListedAddonTwoVersions(amo.tests.TestCase):
 
 
 class TestFlushURLs(amo.tests.TestCase):
-    fixtures = ['base/addon_5579',
+    fixtures = ['base/apps',
+                'base/appversion',
+                'base/platforms',
+                'base/users',
+                'base/addon_5579',
                 'base/previews',
                 'base/addon_4664_twitterbar',
                 'addons/persona']
