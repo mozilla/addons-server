@@ -15,9 +15,22 @@
         "fields": {
             "localized_string_clean": "We always thrive to perform better.  Moreover this project is still in its Beta version, so we are doing a little more than our Best to make it more user friendly, easier to use and valuable.  For feedback, bugs, comments, compliments or any type of communication, feel free to contact us at quicklinkto@googlemail.com or write a review here.  We will be more than happy to reply.",
             "created": "2010-08-28 23:22:30",
+            "modified": "2010-08-28 23:22:30",
             "locale": "en-US",
             "id": 1277089,
             "localized_string": "We always thrive to perform better.  Moreover this project is still in its Beta version, so we are doing a little more than our Best to make it more user friendly, easier to use and valuable.  For feedback, bugs, comments, compliments or any type of communication, feel free to contact us at quicklinkto@googlemail.com or write a review here.  We will be more than happy to reply."
+        }
+    },
+    {
+        "pk": 1349883,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Quick Link to the World URL",
+            "created": "2010-08-28 23:22:30",
+            "modified": "2010-08-28 23:22:30",
+            "locale": "en-US",
+            "id": 1276305,
+            "localized_string": "Quick Link to the World URL"
         }
     },
     {
@@ -54,7 +67,7 @@
             "total_contributions": "0.00",
             "guid": "qlt@vik.josh",
             "weekly_downloads": 0,
-            "support_url": 1277096,
+            "support_url": null,
             "disabled_by_user": false,
             "paypal_id": "",
             "average_rating": 0.0,
@@ -62,8 +75,8 @@
             "average_daily_users": 0,
             "bayesian_rating": 0.0,
             "share_count": 0,
-            "homepage": 1276308,
-            "support_email": 1276309,
+            "homepage": null,
+            "support_email": null,
             "public_stats": false,
             "status": 10,
             "description": 1276307,

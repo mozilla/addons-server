@@ -34,7 +34,8 @@ from . test_models import create_addon_file
 
 
 class EditorTest(amo.tests.TestCase):
-    fixtures = ['base/users', 'editors/pending-queue', 'base/approvals']
+    fixtures = ['base/users', 'base/platforms', 'base/approvals',
+                'editors/pending-queue']
 
     def login_as_admin(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -785,7 +786,7 @@ class TestPreliminaryQueue(QueueTest):
 
 
 class TestModeratedQueue(QueueTest):
-    fixtures = ['base/users', 'reviews/dev-reply']
+    fixtures = ['base/users', 'base/platforms', 'reviews/dev-reply']
 
     def setUp(self):
         super(TestModeratedQueue, self).setUp()
