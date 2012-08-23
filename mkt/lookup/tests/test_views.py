@@ -21,14 +21,14 @@ from users.cron import reindex_users
 from users.models import UserProfile
 
 
-class AcctLookupTest:
+class AcctLookupTest(TestCase):
 
     def setUp(self):
         assert self.client.login(username='support-staff@mozilla.com',
                                  password='password')
 
 
-class TestAcctSummary(AcctLookupTest, TestCase):
+class TestAcctSummary(AcctLookupTest):
     fixtures = ['base/users', 'base/addon_3615',
                 'webapps/337141-steamcube']
 
