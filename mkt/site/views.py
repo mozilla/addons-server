@@ -122,6 +122,9 @@ def minify_js(js):
         log.info('minifying JS with uglify')
         return _minify_js_with_uglify(js)
     else:
+        # The YUI fallback here is important
+        # because YUI compressor is bundled with jingo
+        # minify and therefore doesn't require any deps.
         log.info('minifying JS with YUI')
         return _minify_js_with_yui(js)
 
@@ -137,7 +140,7 @@ def _minify_js_with_uglify(js):
 
 def _minify_js_with_yui(js):
     jar = os.path.join(os.path.dirname(jingo_minify.__file__), 'bin',
-                       'yuicompressor-2.4.4.jar')
+                       'yuicompressor-2.4.7.jar')
     if not os.path.exists(jar):
         raise ValueError('Could not find YUI compressor; tried %r' % jar)
     sp = _open_pipe([settings.JAVA_BIN, '-jar', jar, '--type', 'js',
