@@ -23,6 +23,7 @@
         "model": "stats.contribution",
         "fields": {
             "created": "2009-07-27",
+            "modified": "2009-07-27",
             "addon": 59
         }
 
@@ -32,6 +33,7 @@
         "model": "devhub.activitylog",
         "fields": {
             "created": "2000-01-01",
+            "modified": "2009-07-27",
             "action": 99
         }
     },
@@ -40,6 +42,7 @@
         "model": "bandwagon.collection",
         "fields": {
             "created": "2000-01-01",
+            "modified": "2009-07-27",
             "type": 6
         }
     }
