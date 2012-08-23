@@ -1222,7 +1222,8 @@ class TestMonthlyPick(amo.tests.TestCase):
 
 
 class TestFeatures(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/collections']
+    fixtures = ['base/apps', 'base/users', 'base/collections',
+                'base/addon_3615.json']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
