@@ -2,7 +2,7 @@ from django.db import models
 
 import amo
 from apps.addons.models import Addon
-from apps.editors.models import CannedResponse
+from apps.editors.models import CannedResponse, EscalationQueue
 
 
 class AppCannedResponseManager(amo.models.ManagerBase):
@@ -32,13 +32,6 @@ class RereviewQueue(amo.models.ModelBase):
                     details={'comments': message})
         else:
             amo.log(event, addon, addon.current_version)
-
-
-class EscalationQueue(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='+')
-
-    class Meta:
-        db_table = 'escalation_queue'
 
 
 def cleanup_queues(sender, instance, **kwargs):

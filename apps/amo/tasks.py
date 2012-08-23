@@ -13,9 +13,8 @@ from addons.models import Addon
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from devhub.models import ActivityLog, AppLog, LegacyAddonLog
-from editors.models import EventLog
+from editors.models import EscalationQueue, EventLog
 from market.models import Refund
-from mkt.reviewers.models import EscalationQueue
 from reviews.models import Review
 from stats.models import Contribution
 from users.utils import get_task_user

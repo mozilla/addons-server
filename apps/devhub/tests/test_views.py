@@ -1373,6 +1373,7 @@ class TestRefunds(amo.tests.TestCase):
         for key, status in self.queues.iteritems():
             eq_(list(r.context[key]), [])
 
+    @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def test_queues(self):
         self.generate_refunds()
         r = self.client.get(self.url)
@@ -1387,6 +1388,7 @@ class TestRefunds(amo.tests.TestCase):
         for key in self.queues.keys():
             eq_(doc('.no-results#queue-%s' % key).length, 1)
 
+    @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def test_tables(self):
         self.generate_refunds()
         r = self.client.get(self.url)
@@ -1397,6 +1399,7 @@ class TestRefunds(amo.tests.TestCase):
             table = doc('#queue-%s' % key)
             eq_(table.length, 1)
 
+    @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def test_timestamps(self):
         self.generate_refunds()
         r = self.client.get(self.url)

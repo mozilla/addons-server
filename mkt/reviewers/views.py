@@ -22,7 +22,7 @@ from amo.urlresolvers import reverse
 from amo.utils import escape_all
 from amo.utils import paginate
 from editors.forms import MOTDForm
-from editors.models import EditorSubscription
+from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
@@ -30,7 +30,7 @@ from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from zadmin.models import get_config, set_config
 from . import forms
-from .models import AppCannedResponse, EscalationQueue, RereviewQueue
+from .models import AppCannedResponse, RereviewQueue
 
 
 QUEUE_PER_PAGE = 100

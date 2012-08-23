@@ -11,10 +11,10 @@ from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
-from editors.models import ReviewerScore
+from editors.models import EscalationQueue, ReviewerScore
 from files.models import File
 
-from .models import EscalationQueue, RereviewQueue
+from .models import RereviewQueue
 
 
 log = commonware.log.getLogger('z.mailer')

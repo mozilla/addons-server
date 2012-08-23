@@ -11,8 +11,8 @@ from abuse.models import AbuseReport
 from amo.tasks import find_abuse_escalations, find_refund_escalations
 from amo.tests import app_factory
 from devhub.models import AppLog
+from editors.models import EscalationQueue
 from market.models import AddonPurchase, Refund
-from mkt.reviewers.models import EscalationQueue
 from stats.models import Contribution
 from users.models import UserProfile
 

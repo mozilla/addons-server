@@ -23,9 +23,9 @@ from amo.tests import (app_factory, check_links, formset, initial,
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from devhub.models import ActivityLog, AppLog
-from editors.models import CannedResponse, ReviewerScore
+from editors.models import CannedResponse, EscalationQueue, ReviewerScore
 from files.models import File
-from mkt.reviewers.models import EscalationQueue, RereviewQueue
+from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import Webapp
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile

@@ -521,3 +521,10 @@ class ReviewerScore(amo.models.ModelBase):
         }
         cache.set(key, val, 0)
         return val
+
+
+class EscalationQueue(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon, related_name='+')
+
+    class Meta:
+        db_table = 'escalation_queue'
