@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import json
 import os
 import socket
@@ -1335,7 +1336,8 @@ class TestRefunds(amo.tests.TestCase):
             for x in xrange(status + 1):
                 c = Contribution.objects.create(addon=self.addon,
                     user=self.user, type=amo.CONTRIB_PURCHASE)
-                r = Refund.objects.create(contribution=c, status=status)
+                r = Refund.objects.create(contribution=c, status=status,
+                                          requested=datetime.now())
                 self.expected.setdefault(status, []).append(r)
 
     def test_anonymous(self):
