@@ -101,10 +101,12 @@ def deploy_app(ctx):
 @hostgroups(settings.CELERY_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
 def update_celery(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
-    ctx.remote("/sbin/service %s restart" % settings.CELERY_SERVICE_PREFIX)
-    ctx.remote("/sbin/service %s-devhub restart" % settings.CELERY_SERVICE_PREFIX)
-    ctx.remote("/sbin/service %s-bulk restart" % settings.CELERY_SERVICE_PREFIX)
-    ctx.remote("/sbin/service %s restart" % settings.CELERY_SERVICE_MKT_PREFIX)
+    if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
+        ctx.remote("/sbin/service %s restart" % settings.CELERY_SERVICE_PREFIX)
+        ctx.remote("/sbin/service %s-devhub restart" % settings.CELERY_SERVICE_PREFIX)
+        ctx.remote("/sbin/service %s-bulk restart" % settings.CELERY_SERVICE_PREFIX)
+    if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
+        ctx.remote("/sbin/service %s restart" % settings.CELERY_SERVICE_MKT_PREFIX)
 
 
 @task
