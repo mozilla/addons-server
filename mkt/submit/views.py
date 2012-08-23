@@ -188,8 +188,16 @@ def details(request, addon_id, addon):
         form_icon.save(addon)
         for preview in form_previews.forms:
             preview.save(addon)
-        AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
-        return redirect('submit.app.payments', addon.app_slug)
+
+        checklist = AppSubmissionChecklist.objects.get(addon=addon)
+
+        if waffle.switch_is_active('disable-payments'):
+            checklist.update(details=True, payments=True)
+            addon.mark_done()
+            return redirect('submit.app.done', addon.app_slug)
+        else:
+            checklist.update(details=True)
+            return redirect('submit.app.payments', addon.app_slug)
 
     ctx = {
         'step': 'details',

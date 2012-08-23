@@ -1,5 +1,6 @@
 from jingo import register, env
 import jinja2
+import waffle
 
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
@@ -37,8 +38,11 @@ def progress(request, addon, step):
     if not completed and step and step != 'terms':
         completed = ['terms']
 
+    if waffle.switch_is_active('disable-payments'):
+        steps = del_by_key(steps, 'payments')
+
     # Payments step was skipped, so remove it.
-    if step == 'done' and 'payments' not in completed:
+    elif step == 'done' and 'payments' not in completed:
         steps = del_by_key(steps, 'payments')
 
     c = dict(steps=steps, current=step, completed=completed)

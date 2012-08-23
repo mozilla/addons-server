@@ -43,6 +43,9 @@ class TestSubmit(amo.tests.TestCase):
     def get_user(self):
         return UserProfile.objects.get(username='regularuser')
 
+    def get_url(self, url):
+        return reverse('submit.app.%s' % url, args=[self.webapp.app_slug])
+
     def _test_anonymous(self):
         self.client.logout()
         r = self.client.get(self.url, follow=True)
@@ -448,11 +451,17 @@ class TestDetails(TestSubmit):
     def test_resume_later(self):
         self._step()
         self.webapp.appsubmissionchecklist.update(details=True, payments=True)
-        self.webapp.update(status=amo.STATUS_NULL, paypal_id='',
-                           premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(paypal_id='', premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(reverse('submit.app.resume',
                                       args=[self.webapp.app_slug]))
         self.assert3xx(res, self.webapp.get_dev_url('paypal_setup'))
+
+    def test_disabled_payments_resume_later(self):
+        self.create_switch(name='disable-payments')
+        self._step()
+        r = self.client.get(reverse('submit.app.resume',
+                                    args=[self.webapp.app_slug]))
+        assert r['Location'].endswith(self.url), 'Expected: %s' % self.url
 
     def test_not_owner(self):
         self._step()
@@ -534,8 +543,19 @@ class TestDetails(TestSubmit):
         # Post and be redirected.
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
-        # TODO: Assert redirects when we go to next step.
         self.check_dict(data=data)
+        self.webapp = self.get_webapp()
+        self.assert3xx(r, self.get_url('payments'))
+
+    def test_disabled_payments_success(self):
+        self.create_switch(name='disable-payments')
+        self._step()
+        data = self.get_dict()
+        r = self.client.post(self.url, data)
+        self.assertNoFormErrors(r)
+        self.check_dict(data=data)
+        self.webapp = self.get_webapp()
+        self.assert3xx(r, self.get_url('done'))
 
     def test_no_video_types(self):
         self._step()
@@ -851,9 +871,6 @@ class TestPayments(TestSubmit):
         self.price = Price.objects.create(price='1.00')
         self._step()
 
-    def get_url(self, url):
-        return reverse('submit.app.%s' % url, args=[self.webapp.app_slug])
-
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
 
@@ -1114,13 +1131,19 @@ class TestDone(TestSubmit):
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
 
-    def _step(self):
-        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
-            terms=True, manifest=True, details=True, payments=True)
+    def _step(self, **kw):
+        data = dict(addon=self.webapp, terms=True, manifest=True,
+                    details=True, payments=True)
+        data.update(kw)
+        self.cl = AppSubmissionChecklist.objects.create(**data)
         AddonUser.objects.create(addon=self.webapp, user=self.user)
 
     def test_anonymous(self):
         self._test_anonymous()
+
+    def test_progress_display(self):
+        self._step()
+        self._test_progress_display(['terms', 'manifest', 'details'], 'done')
 
     def test_done(self):
         self._step()
