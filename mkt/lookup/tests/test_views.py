@@ -21,14 +21,7 @@ from users.cron import reindex_users
 from users.models import UserProfile
 
 
-class AcctLookupTest(TestCase):
-
-    def setUp(self):
-        assert self.client.login(username='support-staff@mozilla.com',
-                                 password='password')
-
-
-class TestAcctSummary(AcctLookupTest):
+class TestAcctSummary(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'webapps/337141-steamcube']
 
@@ -40,6 +33,8 @@ class TestAcctSummary(AcctLookupTest):
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary',
                                    args=[self.user.pk])
+        assert self.client.login(username='support-staff@mozilla.com',
+                                 password='password')
 
     def buy_stuff(self, contrib_type):
         for i in range(3):
@@ -171,7 +166,7 @@ class TestAcctSummary(AcctLookupTest):
             eq_(pd[key], value)
 
 
-class SearchTestMixin(AcctLookupTest):
+class SearchTestMixin(object):
 
     def search(self, expect_results=True, **data):
         res = self.client.get(self.url, data)
@@ -190,7 +185,7 @@ class SearchTestMixin(AcctLookupTest):
         eq_(data['results'], [])
 
 
-class TestAcctSearch(SearchTestMixin, ESTestCase):
+class TestAcctSearch(ESTestCase, SearchTestMixin):
     fixtures = ['base/users']
 
     @classmethod
@@ -202,6 +197,8 @@ class TestAcctSearch(SearchTestMixin, ESTestCase):
         super(TestAcctSearch, self).setUp()
         self.url = reverse('lookup.user_search')
         self.user = UserProfile.objects.get(username='clouserw')
+        assert self.client.login(username='support-staff@mozilla.com',
+                                 password='password')
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.user.username)
@@ -240,7 +237,7 @@ class TestAcctSearch(SearchTestMixin, ESTestCase):
         self.verify_result(data)
 
 
-class TestAppSearch(SearchTestMixin, ESTestCase):
+class TestAppSearch(ESTestCase, SearchTestMixin):
     fixtures = ['base/users', 'webapps/337141-steamcube',
                 'base/addon_3615']
 
@@ -253,6 +250,8 @@ class TestAppSearch(SearchTestMixin, ESTestCase):
         super(TestAppSearch, self).setUp()
         self.url = reverse('lookup.app_search')
         self.app = Addon.objects.get(pk=337141)
+        assert self.client.login(username='support-staff@mozilla.com',
+                                 password='password')
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.app.name.localized_string)
@@ -299,7 +298,7 @@ class TestAppSearch(SearchTestMixin, ESTestCase):
         self.verify_result(data)
 
 
-class AppSummaryTest(AcctLookupTest):
+class AppSummaryTest(TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube',
                 'base/addon_3615', 'market/prices']
 
@@ -307,6 +306,8 @@ class AppSummaryTest(AcctLookupTest):
         self.app = Addon.objects.get(pk=337141)
         self.url = reverse('lookup.app_summary',
                            args=[self.app.pk])
+        assert self.client.login(username='support-staff@mozilla.com',
+                                 password='password')
 
     def summary(self, expected_status=200):
         res = self.client.get(self.url)
@@ -314,7 +315,7 @@ class AppSummaryTest(AcctLookupTest):
         return res
 
 
-class TestAppSummary(AppSummaryTest, TestCase):
+class TestAppSummary(AppSummaryTest):
 
     def setUp(self):
         super(TestAppSummary, self).setUp()
@@ -375,7 +376,7 @@ class TestAppSummary(AppSummaryTest, TestCase):
         raise SkipTest('we do not support permissions yet')
 
 
-class DownloadSummaryTest(AppSummaryTest, TestCase):
+class DownloadSummaryTest(AppSummaryTest):
 
     def setUp(self):
         super(DownloadSummaryTest, self).setUp()
@@ -428,7 +429,7 @@ class TestAppDownloadSummary(DownloadSummaryTest, TestCase):
         eq_(res.context['downloads']['alltime'], 2)
 
 
-class TestAppSummaryPurchases(AppSummaryTest, TestCase):
+class TestAppSummaryPurchases(AppSummaryTest):
 
     def setUp(self):
         super(TestAppSummaryPurchases, self).setUp()
@@ -514,7 +515,7 @@ class TestAppSummaryPurchases(AppSummaryTest, TestCase):
             [u'100.0% of purchases via PayPal'])
 
 
-class TestAppSummaryRefunds(AppSummaryTest, TestCase):
+class TestAppSummaryRefunds(AppSummaryTest):
 
     def setUp(self):
         super(TestAppSummaryRefunds, self).setUp()
