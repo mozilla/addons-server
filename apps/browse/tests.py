@@ -475,7 +475,7 @@ class TestFeeds(amo.tests.TestCase):
 
 
 class TestFeaturedLocale(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/addon_3615',
+    fixtures = ['base/apps', 'base/category', 'base/users', 'base/addon_3615',
                 'base/featured', 'addons/featured', 'browse/nameless-addon',
                 'base/collections', 'bandwagon/featured_collections',
                 'base/addon_3615_featuredcollection']
