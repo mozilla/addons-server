@@ -89,12 +89,8 @@ def install_cron(ctx):
 def deploy_app(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
     if getattr(settings, 'GUNICORN', False):
-        ctx.remote("/sbin/service gunicorn-addons graceful")
-        ctx.remote("/sbin/service gunicorn-addons-services graceful")
-        ctx.remote("/sbin/service gunicorn-addons-update graceful")
-        ctx.remote("/sbin/service gunicorn-marketplace graceful")
-        ctx.remote("/sbin/service gunicorn-receiptcheck-marketplace graceful")
-        ctx.remote("/sbin/service gunicorn-pfs graceful")
+        for gservice in settings.GUNICORN:
+            ctx.remote("/sbin/service %s graceful" % gservice)
     else:
         ctx.remote("/bin/touch %s/wsgi/zamboni.wsgi" % settings.REMOTE_APP)
         ctx.remote("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
