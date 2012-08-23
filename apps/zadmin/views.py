@@ -615,8 +615,7 @@ def email_devs(request):
         qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
                                                  amo.AUTHOR_ROLE_OWNER),
                                        addon__status__in=listed)
-                               .exclude(user__email=None)
-                               .distinct(['user__email']))
+                               .exclude(user__email=None))
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)
         elif data['recipients'] == 'sdk':
@@ -628,7 +627,8 @@ def email_devs(request):
             # Clear out the last batch of previewed emails.
             preview.filter().delete()
         total = 0
-        for emails in chunked(qs.values_list('user__email', flat=True), 100):
+        for emails in chunked(set(qs.values_list('user__email', flat=True)),
+                              100):
             total += len(emails)
             tasks.admin_email.delay(emails, data['subject'], data['message'],
                                     preview_only=data['preview_only'],
@@ -699,9 +699,9 @@ def general_search(request, app_id, model_id):
     # This is a hideous api, but uses the builtin admin search_fields API.
     # Expecting this to get replaced by ES so soon, that I'm not going to lose
     # too much sleep about it.
-    cl = ChangeList(request, obj.model, [], [], [], [],
-                    obj.search_fields, [], limit, [], obj)
-    qs = cl.get_query_set()
+    cl = ChangeList(request, obj.model, [], [], [], [], obj.search_fields, [],
+                    obj.list_max_show_all, limit, [], obj)
+    qs = cl.get_query_set(request)
     # Override search_fields_response on the ModelAdmin object
     # if you'd like to pass something else back to the front end.
     lookup = getattr(obj, 'search_fields_response', None)
