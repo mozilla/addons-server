@@ -174,7 +174,7 @@ def _get_key(timestamp=None):
 
 class InappPayLog(amo.models.ModelBase):
     action = models.IntegerField()
-    session_key = models.CharField(max_length=64)
+    session_key = models.CharField(max_length=64, null=True, blank=True)
     app_public_key = models.CharField(max_length=255, null=True, blank=True)
     user = models.ForeignKey('users.UserProfile', null=True, blank=True)
     config = models.ForeignKey(InappConfig, null=True, blank=True)

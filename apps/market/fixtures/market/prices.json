@@ -1,5 +1,29 @@
 [
   {
+    "pk": 1241126,
+    "model": "translations.translation",
+    "fields": {
+      "localized_string_clean": null,
+      "created": "2010-07-02 01:26:32",
+      "locale": "en-US",
+      "modified": "2010-01-02 12:34:56",
+      "id": 1241126,
+      "localized_string": ""
+    }
+  },
+  {
+    "pk": 1241127,
+    "model": "translations.translation",
+    "fields": {
+      "localized_string_clean": null,
+      "created": "2010-07-02 01:26:32",
+      "locale": "en-US",
+      "modified": "2010-01-02 12:34:56",
+      "id": 1241127,
+      "localized_string": ""
+    }
+  },
+  {
     "pk": 1,
     "model": "market.price",
     "fields": {
@@ -19,30 +43,6 @@
       "modified": "2011-08-10 04:21:42",
       "name": 1241127,
       "created": "2011-08-10 04:21:42"
-    }
-  },
-  {
-    "pk": 1241126,
-    "model": "translations.translation",
-    "fields": {
-      "localized_string_clean": null,
-      "created": "2010-07-02 01:26:32",
-      "locale": "en-US",
-      "modified": "2010-01-02 12:34:56",
-      "id": 1171641,
-      "localized_string": "full metal A simbolo"
-    }
-  },
-  {
-    "pk": 1241127,
-    "model": "translations.translation",
-    "fields": {
-      "localized_string_clean": null,
-      "created": "2010-07-02 01:26:32",
-      "locale": "en-US",
-      "modified": "2010-01-02 12:34:56",
-      "id": 1171642,
-      "localized_string": ""
     }
   },
   {
