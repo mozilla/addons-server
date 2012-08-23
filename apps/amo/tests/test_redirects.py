@@ -14,33 +14,33 @@ class TestRedirects(amo.tests.TestCase):
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /personas/film-and-tv"""
-        r = self.client.get('personas/film and tv', follow=True)
+        r = self.client.get('/personas/film and tv', follow=True)
         assert r.redirect_chain[-1][0].endswith(
                 '/en-US/firefox/personas/film-and-tv')
 
     def test_top_tags(self):
         """`/top-tags/?` should 301 to `/tags/top`."""
-        response = self.client.get(u'top-tags/', follow=True)
+        response = self.client.get(u'/top-tags/', follow=True)
         self.assertRedirects(response, '/en-US/firefox/tags/top',
                              status_code=301)
 
     def test_persona(self):
         """`/persona/\d+` should go to `/addon/\d+`."""
-        r = self.client.get(u'persona/813', follow=True)
+        r = self.client.get('/persona/813', follow=True)
         self.assertRedirects(r, '/en-US/firefox/addon/a15663/',
                              status_code=301)
 
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to
            `/addon/\d+/contribute/installed`."""
-        r = self.client.get(u'addon/5326/about', follow=True)
+        r = self.client.get(u'/addon/5326/about', follow=True)
         redirect = r.redirect_chain[-1][0]
         assert redirect.endswith(
                         '/en-US/firefox/addon/5326/contribute/installed/')
 
     def test_contribute(self):
         """`/addons/contribute/$id` should go to `/addon/$id/contribute`."""
-        response = self.client.get(u'addon/5326/contribute', follow=True)
+        response = self.client.get(u'/addon/5326/contribute', follow=True)
         redirect = response.redirect_chain[-1][0]
         assert redirect.endswith('/en-US/firefox/addon/5326/contribute/')
 
