@@ -12,23 +12,21 @@ from users.models import UserProfile
 @no_login_required
 def credits(request):
 
-    contributor_groups = ['Developers Credits', 'Past Developers Credits',
-                          'Other Contributors Credits']
     developers = (UserProfile.objects
         .exclude(display_name=None)
         .filter(groupuser__group__name='Developers Credits')
         .order_by('display_name')
-        .distinct('id'))
+        .distinct())
     past_developers = (UserProfile.objects
         .exclude(display_name=None)
         .filter(groupuser__group__name='Past Developers Credits')
         .order_by('display_name')
-        .distinct('id'))
+        .distinct())
     other_contribs = (UserProfile.objects
         .exclude(display_name=None)
         .filter(groupuser__group__name='Other Contributors Credits')
         .order_by('display_name')
-        .distinct('id'))
+        .distinct())
 
     languages = sorted(list(
         set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
@@ -40,7 +38,7 @@ def credits(request):
             .exclude(display_name=None)
             .filter(groupuser__group__name='%s Localizers' % lang)
             .order_by('display_name')
-            .distinct('id'))
+            .distinct())
         if users:
             localizers.append((lang, users))
 
