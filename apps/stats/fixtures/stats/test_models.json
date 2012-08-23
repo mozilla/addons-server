@@ -215,7 +215,8 @@
             "uuid": null,
             "transaction_id": "0HX69660HR839625E",
             "post_data": "a:3:{s:11:\"payer_email\";s:18:\"nobody@mozilla.com\";s:10:\"first_name\";s:5:\"First\";s:9:\"last_name\";s:4:\"Last\";}",
-            "created": "2009-06-02 17:55:23"
+            "created": "2009-06-02 17:55:23",
+            "modified": "2009-06-02 17:55:23"
         }
     },
     {
@@ -232,7 +233,8 @@
             "uuid": null,
             "transaction_id": "0HX96990HR526938E",
             "post_data": "a:1:{s:11:\"payer_email\";s:18:\"snowbody@mozilla.com\";}",
-            "created": "2009-06-02 18:55:23"
+            "created": "2009-06-02 17:55:23",
+            "modified": "2009-06-02 17:55:23"
         }
     },
     {
@@ -249,7 +251,8 @@
             "uuid": "123-abc-456-xyz",
             "transaction_id": null,
             "post_data": null,
-            "created": "2009-06-02 17:55:23"
+            "created": "2009-06-02 17:55:23",
+            "modified": "2009-06-02 17:55:23"
         }
     },
     {
@@ -266,7 +269,8 @@
             "uuid": null,
             "transaction_id": "0HY96990HR526938E",
             "post_data": "a:1:{s:11:\"payer_email\";s:18:\"snowbody@mozilla.com\";}",
-            "created": "2009-06-01 18:55:23"
+            "created": "2009-06-01 18:55:23",
+            "modified": "2009-06-01 18:55:23"
         }
     }
 ]
