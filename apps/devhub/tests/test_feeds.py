@@ -190,7 +190,7 @@ class TestActivity(HubTest):
         r = self.get_response()
         key = RssKey.objects.get()
         r = self.get_response(privaterss=key.key)
-        eq_(r['content-type'], 'application/rss+xml')
+        eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
 
     def test_rss_single(self):
         self.log_creates(5)
@@ -200,7 +200,7 @@ class TestActivity(HubTest):
         r = self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         r = self.get_response(privaterss=key.key)
-        eq_(r['content-type'], 'application/rss+xml')
+        eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
         eq_(len(pq(r.content)('item')), 5)
 
     def test_rss_ignores_apps(self):
