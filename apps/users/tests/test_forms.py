@@ -171,8 +171,8 @@ class TestUserAdminForm(UserFormBase):
         r = self.client.post(reverse('admin:auth_user_change',
                                      args=[self.user.id]),
                              data)
-        eq_(pq(r.content)('#user_form div.password .errorlist').text(),
-            'Ensure this value has at most 255 characters (it has 489).')
+        eq_(pq(r.content)('#id_password strong').text(),
+            'Invalid password format or unknown hashing algorithm.')
 
 
 class TestUserEditForm(UserFormBase):
