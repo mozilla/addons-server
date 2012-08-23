@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 import json
 import os
 import socket
@@ -12,34 +11,34 @@ from django.utils.http import urlencode
 from django.core.files.storage import default_storage as storage
 
 import jingo
-from jingo.helpers import datetime as datetime_filter
 import mock
+import waffle
+from jingo.helpers import datetime as datetime_filter
 from nose.plugins.attrib import attr
-from nose.tools import eq_, assert_not_equal, assert_raises
+from nose.tools import assert_not_equal, assert_raises, eq_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
-import waffle
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers
 
 import amo
 import amo.tests
+import files
 import paypal
-from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
-                         timesince)
-from amo.tests import (formset, initial, close_to_now, addon_factory,
-                       assert_no_validation_errors)
-from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 from addons import cron
 from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            Category, Charity)
+from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
+                         timesince)
+from amo.tests import (addon_factory, assert_no_validation_errors,
+                       close_to_now, formset, initial)
+from amo.tests.test_helpers import get_image_path
+from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
 from devhub import tasks
-import files
 from files.models import File, FileUpload, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
@@ -2741,6 +2740,7 @@ class TestVersionAddFile(UploadTest):
 
         data = formset(form, platform=platform, upload=self.upload.pk,
                        initial_count=1, prefix='files')
+        data.update(formset(total_count=1, initial_count=1))
 
         r = self.client.post(self.edit_url, data)
         doc = pq(r.content)
