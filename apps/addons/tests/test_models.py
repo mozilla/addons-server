@@ -58,9 +58,12 @@ class TestAddonManager(amo.tests.TestCase):
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 3)
 
     def test_listed(self):
+        # We need this for the fixtures, but it messes up the tests.
+        Addon.objects.get(pk=3615).update(disabled_by_user=True)
+        # No continue as normal.
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
-        eq_(len(q.all()), 5)
+        eq_(len(q.all()), 4)
 
         addon = q[0]
         eq_(addon.id, 2464)
@@ -70,19 +73,19 @@ class TestAddonManager(amo.tests.TestCase):
         addon.save()
 
         # Should be 3 now, since the one is now disabled.
-        eq_(q.count(), 4)
+        eq_(q.count(), 3)
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(q.count(), 4)
+        eq_(q.count(), 3)
         eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
                                  amo.STATUS_UNREVIEWED).count(), 4)
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        eq_(q.count(), 4)
+        eq_(q.count(), 3)
 
     def test_public(self):
         public = Addon.objects.public()
