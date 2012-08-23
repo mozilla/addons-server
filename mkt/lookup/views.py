@@ -47,8 +47,8 @@ def user_summary(request, user_id):
     user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
                               .order_by('-created'))
     user_addons = paginate(request, user_addons, per_page=15)
-    paypal_ids = (user.addons.exclude(paypal_id='').distinct('paypal_id')
-                             .values_list('paypal_id', flat=True))
+    paypal_ids = set(user.addons.exclude(paypal_id='').values_list('paypal_id',
+                                                                   flat=True))
 
     payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
                     .values(*AddonPaymentData.address_fields())
