@@ -19,8 +19,7 @@ function fragmentFilter(el) {
         timeout = false,
         fragmentCache = {};
     if (z.capabilities.replaceState) {
-        var $loading = $('<div>', {'class': 'loading balloon',
-                                   'html': gettext('Loading&hellip;')})
+        var $loading = $('<div>', {'class': 'loading-fragment'})
                         .prependTo($('#site-header'));
 
         // capture clicks in our target environment
