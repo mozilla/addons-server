@@ -462,7 +462,10 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.bayesian_rating = random.uniform(1, 5)
     a.average_daily_users = popularity or random.randint(200, 2000)
     a.weekly_downloads = popularity or random.randint(200, 2000)
-    a.created = a.last_updated = datetime(2011, 6, 6, random.randint(0, 23),
+    a.created = a.last_updated = datetime(2011,
+                                          random.randint(1, 12),
+                                          random.randint(1, 28),
+                                          random.randint(0, 23),
                                           random.randint(0, 59))
     version_factory(file_kw, addon=a, **version_kw)  # Save 2.
     a.update_version()

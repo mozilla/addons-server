@@ -103,7 +103,6 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 'base/collections',
                 'base/global-stats',
                 'base/featured',
-                'base/collections',
                 'addons/featured',
                 'bandwagon/featured_collections']
 
@@ -1420,8 +1419,9 @@ class TestReportAbuse(amo.tests.TestCase):
 
 
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
-    fixtures = ['addons/featured', 'base/apps', 'base/addon_3615',
-                'base/featured', 'bandwagon/featured_collections']
+    fixtures = ['addons/featured', 'base/apps', 'base/users',
+                'base/addon_3615', 'base/featured',
+                'bandwagon/featured_collections']
 
 
 class TestMobileHome(TestMobile):

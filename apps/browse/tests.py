@@ -156,9 +156,10 @@ def test_locale_display_name():
 
 
 class TestListing(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/featured',
-                'addons/featured', 'addons/listed', 'base/collections',
-                'bandwagon/featured_collections']
+    fixtures = ['base/apps', 'base/appversion', 'base/users', 'base/category',
+                'base/featured', 'addons/featured', 'addons/listed',
+                'base/collections', 'bandwagon/featured_collections',
+                'base/addon_3615']
 
     def setUp(self):
         self.reset_featured_addons()
@@ -238,7 +239,7 @@ class TestListing(amo.tests.TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).created
             eq_(item('.updated').text(),
-                'Added %s' % strip_whitespace(datetime_filter(ts)))
+                u'Added %s' % strip_whitespace(datetime_filter(ts)))
 
     def test_updated_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
@@ -247,7 +248,7 @@ class TestListing(amo.tests.TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).last_updated
             eq_(item('.updated').text(),
-                'Updated %s' % strip_whitespace(datetime_filter(ts)))
+                u'Updated %s' % strip_whitespace(datetime_filter(ts)))
 
     def test_users_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
@@ -325,7 +326,8 @@ class TestLanguageTools(amo.tests.TestCase):
 
 
 class TestThemes(amo.tests.TestCase):
-    fixtures = ('base/category', 'base/addon_6704_grapple', 'base/addon_3615')
+    fixtures = ('base/category', 'base/platforms', 'base/addon_6704_grapple',
+                'base/addon_3615')
 
     def setUp(self):
         super(TestThemes, self).setUp()
@@ -384,9 +386,10 @@ class TestThemes(amo.tests.TestCase):
 
 
 class TestFeeds(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/featured',
-                'addons/featured', 'addons/listed', 'base/collections',
-                'bandwagon/featured_collections']
+    fixtures = ['base/apps', 'base/appversion', 'base/users', 'base/category',
+                'base/featured', 'addons/featured', 'addons/listed',
+                'base/collections', 'bandwagon/featured_collections',
+                'base/addon_3615']
 
     def setUp(self):
         self.reset_featured_addons()
@@ -475,9 +478,10 @@ class TestFeeds(amo.tests.TestCase):
 
 
 class TestFeaturedLocale(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/users', 'base/addon_3615',
-                'base/featured', 'addons/featured', 'browse/nameless-addon',
-                'base/collections', 'bandwagon/featured_collections',
+    fixtures = ['base/apps', 'base/appversion', 'base/category', 'base/users',
+                'base/addon_3615', 'base/featured', 'addons/featured',
+                'browse/nameless-addon', 'base/collections',
+                'bandwagon/featured_collections',
                 'base/addon_3615_featuredcollection']
 
     def setUp(self):
@@ -780,8 +784,8 @@ class TestListingByStatus(amo.tests.TestCase):
 
 
 class BaseSearchToolsTest(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/featured', 'addons/featured',
-                'base/category', 'addons/listed')
+    fixtures = ('base/apps', 'base/appversion', 'base/featured',
+                'addons/featured', 'base/category', 'addons/listed')
 
     def setUp(self):
         super(BaseSearchToolsTest, self).setUp()
@@ -1108,7 +1112,8 @@ class TestCategoriesFeed(amo.tests.TestCase):
 
 class TestFeaturedFeed(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
-                'base/collections', 'base/featured', 'base/users',
+                'base/appversion', 'base/appversion', 'base/collections',
+                'base/featured', 'base/users',
                 'bandwagon/featured_collections']
 
     def test_feed_elements_present(self):
@@ -1126,8 +1131,8 @@ class TestFeaturedFeed(amo.tests.TestCase):
 
 
 class TestPersonas(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/featured', 'addons/featured',
-                'addons/persona')
+    fixtures = ('base/apps', 'base/appversion', 'base/featured',
+                'addons/featured', 'addons/persona')
 
     def test_personas_grid(self):
         """Show grid page if there are fewer than 5 Personas."""
