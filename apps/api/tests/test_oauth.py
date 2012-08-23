@@ -183,7 +183,7 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
 
 
 class BaseOAuth(TestCase):
-    fixtures = ['base/users', 'base/appversion', 'base/platforms',
+    fixtures = ['base/users', 'base/apps', 'base/appversion', 'base/platforms',
                 'base/licenses']
 
     def setUp(self):

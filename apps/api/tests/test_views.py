@@ -562,7 +562,7 @@ class APITest(TestCase):
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
-    fixtures = ['base/apps', 'base/addon_3615', 'base/featured',
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615', 'base/featured',
                 'addons/featured', 'bandwagon/featured_collections',
                 'base/collections']
 
