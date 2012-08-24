@@ -572,6 +572,8 @@ class ReviewBase(object):
                    'reviewtype': self.review_type}
         if self.files:
             details['files'] = [f.id for f in self.files]
+        if self.version:
+            details['version'] = self.version.version
 
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
                 created=datetime.datetime.now(), details=details)
@@ -639,8 +641,8 @@ class ReviewAddon(ReviewBase):
     def __init__(self, *args, **kwargs):
         super(ReviewAddon, self).__init__(*args, **kwargs)
 
-        self.is_upgrade = (self.addon.status is amo.STATUS_LITE_AND_NOMINATED and
-                           self.review_type == 'nominated')
+        self.is_upgrade = (self.addon.status is amo.STATUS_LITE_AND_NOMINATED
+                           and self.review_type == 'nominated')
 
     def set_data(self, data):
         self.data = data

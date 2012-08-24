@@ -18,6 +18,14 @@ CELERY_HOSTGROUP = "addons-celery-dev"
 SSH_KEY = None
 
 # assumes mod_wsgi if False
-GUNICORN = False
+# Gunicorn default services that need to be restarted on deploy
+GUNICORN = [
+            'gunicorn-addons',
+            'gunicorn-addons-services',
+            'gunicorn-addons-update',
+            'gunicorn-marketplace',
+            'gunicorn-receiptcheck-marketplace',
+            'gunicorn-pfs',
+           ]
 
 CRON_NAME = "addons-dev"

@@ -132,8 +132,9 @@ def download_file(request, file_id, type=None):
         return http.HttpResponseForbidden()
 
     if addon.is_disabled or file.status == amo.STATUS_DISABLED:
-        if acl.check_addon_ownership(request, addon, viewer=True,
-                                     ignore_disabled=True):
+        if (acl.check_addon_ownership(request, addon, viewer=True,
+                                      ignore_disabled=True) or
+            acl.check_reviewer(request)):
             return HttpResponseSendFile(request, file.guarded_file_path,
                                         content_type='application/xp-install')
         else:

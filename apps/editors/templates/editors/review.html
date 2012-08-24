@@ -49,8 +49,7 @@
 <div class="results">
   <div class="results-inner">
     <table id="review-files" class="item-history">
-      {% for i in range(pager.object_list.count(), 0, -1) %}
-      {% set version = pager.object_list[i-1] %}
+      {% for version in pager.object_list|reverse %}
       <tr class="listing-header">
         <th colspan="2">
           {% trans version = version.version, created = version.created|datetime, version_status = version.status|join(',') %}
@@ -60,38 +59,42 @@
       </tr>
       <tr class="listing-body">
         <td class="files">
-          <div><strong>{{ _('Files in this version:') }}</strong></div>
-          <ul>
           {# Hide files until files and versions make sense for apps. #}
           {% set version_files = [] if addon.is_webapp() else version.all_files %}
-          {% for file in version_files %}
-          <li class="file-info">
-            <span class="light">
-              <strong><a href="{{ file.get_url_path('editor') }}" class="editors-install"
-                  data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.platform }}</a></strong>
-              <div>
-                {{ file_review_status(addon, file) }}
-              </div>
-              <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
-              &middot;
-              <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
-              {% if show_diff %}
-              &middot;
-              <a class="compare" href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
-              {% endif %}
-            </span>
-          </li>
-          {% endfor %}
-          </ul>
-          <div><strong>{{ _('Compatibility:') }}</strong></div>
-          <ul>
-            {% for app, compat in version.compatible_apps_ordered %}
-            <li>
-              <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
-              {{ compat }}
+          {% if version_files %}
+            <div><strong>{{ _('Files in this version:') }}</strong></div>
+            <ul>
+            {% for file in version_files %}
+            <li class="file-info">
+              <span class="light">
+                <strong><a href="{{ file.get_url_path('editor') }}" class="editors-install"
+                    data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.platform }}</a></strong>
+                <div>
+                  {{ file_review_status(addon, file) }}
+                </div>
+                <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
+                &middot;
+                <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
+                {% if show_diff %}
+                &middot;
+                <a class="compare" href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
+                {% endif %}
+              </span>
             </li>
             {% endfor %}
-          </ul>
+            </ul>
+          {% endif %}
+          {% if version.compatible_apps_ordered %}
+            <div><strong>{{ _('Compatibility:') }}</strong></div>
+            <ul>
+              {% for app, compat in version.compatible_apps_ordered %}
+              <li>
+                <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
+                {{ compat }}
+              </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </td>
         <td>
           <table class="activity">

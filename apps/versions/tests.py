@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import os
+import shutil
 
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -465,7 +466,7 @@ class TestFeeds(amo.tests.TestCase):
 
 
 class TestDownloadsBase(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_5299_gcal', 'base/admin']
+    fixtures = ['base/apps', 'base/addon_5299_gcal', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=5299)
@@ -525,7 +526,13 @@ class TestDownloads(TestDownloadsBase):
         self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.file_url).status_code, 404)
 
-    def test_file_disabled_404(self):
+    def test_file_disabled_anon_404(self):
+        self.file.update(status=amo.STATUS_DISABLED)
+        eq_(self.client.get(self.file_url).status_code, 404)
+
+    def test_file_disabled_unprivileged_404(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
         self.file.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.file_url).status_code, 404)
 
@@ -534,9 +541,14 @@ class TestDownloads(TestDownloadsBase):
         assert self.client.login(username='g@gmail.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
+    def test_file_disabled_ok_for_editor(self):
+        self.file.update(status=amo.STATUS_DISABLED)
+        self.client.login(username='editor@mozilla.com', password='password')
+        self.assert_served_internally(self.client.get(self.file_url))
+
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(username='admin@mozilla.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_admin_disabled_ok_for_author(self):
@@ -548,7 +560,7 @@ class TestDownloads(TestDownloadsBase):
 
     def test_admin_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(username='admin@mozilla.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_author(self):
@@ -558,7 +570,7 @@ class TestDownloads(TestDownloadsBase):
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(disabled_by_user=True)
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(username='admin@mozilla.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_type_attachment(self):
