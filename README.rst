@@ -14,6 +14,6 @@ created a base template for new websites.
 
 .. _`addons.mozilla.org`: https://addons.mozilla.org
 .. _`Remora`: https://wiki.mozilla.org/Update:Remora
-.. _`install docs`: http://mozilla.github.com/zamboni/topics/install-zamboni/index.html
+.. _`install docs`: http://zamboni.readthedocs.org/en/latest/topics/install-zamboni/index.html
 .. _`irc://irc.mozilla.org/amo`: irc://irc.mozilla.org/amo
 .. _`Playdoh`: https://github.com/mozilla/playdoh
