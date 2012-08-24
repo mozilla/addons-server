@@ -571,16 +571,6 @@ class ESTestCase(TestCase):
         cls.refresh()
 
     @classmethod
-    def tearDownClass(cls):
-        # Delete everything in reverse-order of the foreign key dependencies.
-        models = (Platform, Category, File, ApplicationsVersions,
-                  Version, Translation, Addon, Collection, AppVersion,
-                  Application)
-        for model in models:
-            model.objects.all().delete()
-        super(ESTestCase, cls).tearDownClass()
-
-    @classmethod
     def refresh(cls, index='default', timesleep=0):
         cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
 
