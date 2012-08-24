@@ -1,3 +1,5 @@
+import datetime
+
 import jingo
 
 from django.contrib import admin
@@ -71,8 +73,11 @@ def featured_apps_ajax(request):
 
 
 @admin_required
-def set_region_ajax(request):
+def set_attrs_ajax(request):
     regions = request.POST.getlist('region[]')
+    startdate = request.POST.get('startdate', None)
+    enddate = request.POST.get('enddate', None)
+
     app = request.POST.get('app', None)
     if regions and app:
         fa = FeaturedApp.objects.get(pk=app)
@@ -83,6 +88,14 @@ def set_region_ajax(request):
         for i in to_create:
             FeaturedAppRegion.objects.create(featured_app=fa, region=i)
 
+    if startdate and app:
+        FeaturedApp.objects.update(
+            start_date=datetime.datetime.strptime(startdate,
+                                                 '%Y-%m-%d'))
+    if enddate and app:
+        FeaturedApp.objects.update(
+            end_date=datetime.datetime.strptime(enddate,
+                                               '%Y-%m-%d'))
     return HttpResponse()
 
 

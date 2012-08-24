@@ -1,3 +1,5 @@
+from datetime import date
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -114,12 +116,29 @@ class TestFeaturedApps(amo.tests.TestCase):
     def test_set_region(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
         FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        r = self.client.post(reverse('zadmin.set_region_ajax'),
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
                              data={'app': f.pk, 'region[]': (3, 2)})
         eq_(r.status_code, 200)
         eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
                     'region', flat=True)),
             [2, 3])
+
+
+    def test_set_startdate(self):
+        f = FeaturedApp.objects.create(app=self.a1, category=None)
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
+                             data={'app': f.pk, 'startdate': '2012-08-01'})
+        eq_(r.status_code, 200)
+        eq_(FeaturedApp.objects.get(pk=f.pk).startdate, date(2012, 8, 1))
+
+    def test_set_enddate(self):
+        f = FeaturedApp.objects.create(app=self.a1, category=None)
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
+                             data={'app': f.pk, 'enddate': '2012-08-31'})
+        eq_(r.status_code, 200)
+        eq_(FeaturedApp.objects.get(pk=f.pk).enddate, date(2012, 8, 31))
 
 
 class TestAddonSearch(amo.tests.ESTestCase):

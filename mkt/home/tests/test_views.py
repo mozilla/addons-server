@@ -1,3 +1,5 @@
+import datetime
+
 from nose.tools import eq_
 
 from amo.tests import app_factory, mock_es
@@ -5,6 +7,7 @@ from amo.urlresolvers import reverse
 
 import mkt
 from mkt.browse.tests.test_views import BrowseBase
+from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
@@ -56,3 +59,28 @@ class TestHome(BrowseBase):
 
     def test_popular_region_exclusions(self):
         self._test_popular_region_exclusions()
+
+    def make_time_limited_feature(self):
+        a = app_factory()
+        fa = self.make_featured(app=a, category=None)
+        fa.startdate = datetime.date(2012, 1, 1)
+        fa.enddate = datetime.date(2012, 2, 1)
+        fa.save()
+        return a
+
+    @mock_es
+    def test_featured_time_excluded(self):
+        a = self.make_time_limited_feature()
+        for d in [datetime.date(2012, 1, 1),
+                  datetime.date(2012, 1, 15),
+                  datetime.date(2012, 2, 1)]:
+            Webapp.now = staticmethod(lambda: d)
+            eq_(self.get_pks('featured', self.url,  {'region': 'us'}),
+                [a.id])
+
+    def test_featured_time_included(self):
+        self.make_time_limited_feature()
+        for d in [datetime.date(2011, 12, 15),
+                  datetime.date(2012, 2, 2)]:
+            Webapp.now = staticmethod(lambda: d)
+            eq_(self.get_pks('featured', self.url, {'region': 'us'}), [])

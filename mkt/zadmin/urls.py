@@ -12,6 +12,6 @@ urlpatterns = patterns(
         name='zadmin.featured_apps_ajax'),
     url('^apps/featured_categories_ajax$', views.featured_categories_ajax,
         name='zadmin.featured_categories_ajax'),
-    url('^apps/set_region_ajax$', views.set_region_ajax,
-        name='zadmin.set_region_ajax'),
+    url('^apps/set_attrs_ajax$', views.set_attrs_ajax,
+        name='zadmin.set_attrs_ajax'),
 )

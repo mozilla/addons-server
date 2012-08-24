@@ -2,7 +2,7 @@
 {% for row, selected_regions in apps_regions -%}
 <tr>
   <td>
-    <table>
+    <table data-app-id="{{ row.pk }}" data-url="{{ url('zadmin.set_attrs_ajax') }}">
       <tr>
         <td><img src="{{ row.app.icon_url }}"></td>
         <td>{{ row.app.name }}</td>
@@ -19,15 +19,31 @@
         </td>
         <td>{% if row.is_sponsor %}Sponsored{% else %}Not sponsored{% endif %}</td>
         <td>
-          <select class="localepicker" multiple
-                  data-url="{{ url('zadmin.set_region_ajax') }}"
-                  data-id="{{ row.pk }}">
+          <select class="localepicker" multiple>
             {%- for locName, loc in regions -%}
               <option value="{{ loc.id }}"
                 {%- if loc.id in selected_regions %} selected{%- endif -%}
                 >{{ loc.name }}</option>
             {%- endfor -%}
           </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ _('Start date') }}
+        </td>
+        <td>
+          <input type="date" class="date-range-start" value="{{ row.start_date }}">
+          <div class="start-date-picker"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ _('End date') }}
+        </td>
+        <td>
+          <input type="date" class="date-range-end" value="{{ row.end_date }}">
+          <div class="end-date-picker"></div>
         </td>
       </tr>
     </table>
