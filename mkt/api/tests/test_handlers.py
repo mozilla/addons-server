@@ -52,6 +52,7 @@ class TestAddValidationHandler(ValidationHandler):
         res = self.create()
         eq_(res.status_code, 201)  # Note! This should be a 202.
         content = json.loads(res.content)
+        eq_(content['processed'], True)
         obj = FileUpload.objects.get(uuid=content['id'])
         eq_(obj.user, self.user)
 
