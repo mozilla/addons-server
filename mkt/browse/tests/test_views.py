@@ -1,4 +1,3 @@
-import datetime
 from django.conf import settings
 
 from nose import SkipTest
@@ -39,7 +38,6 @@ class BrowseBase(amo.tests.ESTestCase):
         # Feature in the US region.
         FeaturedAppRegion.objects.create(featured_app=f,
                                          region=mkt.regions.US.id)
-        return f
 
     def setup_featured(self):
         self.skip_if_disabled(settings.REGION_STORES)

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import datetime
 import json
 import os
 import urlparse
@@ -401,18 +400,11 @@ class Webapp(Addon):
                         .order_by('rating'))
 
     @classmethod
-    def now(cls):
-        return datetime.date.today()
-
-    @classmethod
     def featured(cls, cat=None, region=None, limit=6):
         FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
         qs = (FeaturedApp.objects
               .filter(app__status=amo.STATUS_PUBLIC,
-                      app__disabled_by_user=False,
-                      startdate__lte=cls.now(),
-                      enddate__gte=cls.now()
-                      )
+                      app__disabled_by_user=False)
               .order_by('-app__weekly_downloads'))
 
         if isinstance(cat, list):

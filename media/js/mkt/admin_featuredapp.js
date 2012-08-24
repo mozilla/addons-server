@@ -24,54 +24,11 @@ function registerAddonAutocomplete(node) {
     };
 }
 
-function registerDatepicker(node) {
-    var $startPicker = node.find('.start-date-picker');
-    var $tabl = $startPicker.closest('table');
-    var url = $tabl.data('url');
-    var appid = $tabl.data('app-id');
-    debugger;
-    $startPicker.datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText) {
-            node.find('.date-range-start').val(dateText);
-            saveFeaturedDate('startdate', url, appid, dateText);
-        }
-    });
-    var $endPicker = node.find('.end-date-picker');
-    $endPicker.datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText) {
-            node.find('.date-range-end').val(dateText);
-            saveFeaturedDate('enddate', url, appid, dateText);
-        }
-    });
-
-  var $start = node.find('.date-range-start');
-    $start.change(
-      function (e) {
-        saveFeaturedDate('startdate', $tabl.data('url'), $tabl.data('app-id'), $start.val());
-      });
-  var $end = node.find('.date-range-end');
-    $end.change(
-      function (e) {
-        saveFeaturedDate('enddate', $tabl.data('url'), $tabl.data('app-id'), $end.val());
-      });
-
-}
-
-function saveFeaturedDate(which, url, appid, val) {
-    var data = {};
-    data[which] = val;
-    data.app = appid;
-    $.ajax({type: 'POST', url: url, data: data });
-};
-
 function newAddonSlot(id) {
     var $tbody = $("#featured-webapps");
     var $form = $tbody.next().children("tr").clone();
     var $input = $form.find('input.placeholder');
     registerAddonAutocomplete($input);
-    registerDatepicker($form);
     $tbody.append($form);
 }
 
@@ -116,17 +73,16 @@ $(document).ready(function(){
         'select.localepicker',
         'change',
         _pd(function (e) {
-            var $region = $(e.target);
-            var $tabl = $region.closest('table');
+            var region = $(e.target);
             $.ajax({
                 type: 'POST',
-                url: $tabl.data('url'),
+                url: region.data('url'),
                 data: {
                     'region':
-                        _($region.children('option'))
+                        _(region.children('option'))
                             .filter(function(opt) {return opt.selected})
                             .map(function(sopt) {return sopt.value}),
-                    'app': $tabl.data('app-id')
+                    'app': region.data('id')
                 }
             });
         })
@@ -137,16 +93,10 @@ $(document).ready(function(){
                     url: categories.data("src")});
     p.then(function(data) {
         categories.html(data);
-        showAppsList(categories).then(
-            function () {
-                registerDatepicker(appslist);
-            });
+        showAppsList(categories);
     });
     categories.change(function (e) {
-        showAppsList(categories).then(
-            function () {
-                registerDatepicker(appslist);
-            });
+        showAppsList(categories);
     });
     $('#featured-add').click(_pd(function() { newAddonSlot(); }));
 });
