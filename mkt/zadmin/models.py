@@ -10,6 +10,8 @@ class FeaturedApp(models.Model):
     app = models.ForeignKey(Webapp, null=False)
     category = models.ForeignKey(Category, null=True)
     is_sponsor = models.BooleanField(default=False)
+    startdate = models.DateField(null=True)
+    enddate = models.DateField(null=True)
 
     class Meta:
         db_table = 'zadmin_featuredapp'

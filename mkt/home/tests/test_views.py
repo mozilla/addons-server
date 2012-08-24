@@ -5,6 +5,7 @@ from amo.urlresolvers import reverse
 
 import mkt
 from mkt.browse.tests.test_views import BrowseBase
+from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
@@ -56,3 +57,24 @@ class TestHome(BrowseBase):
 
     def test_popular_region_exclusions(self):
         self._test_popular_region_exclusions()
+
+
+    @mock_es
+    def test_featured_time_limitation(self):
+        # Home featured.
+        a = app_factory()
+        fa = self.make_featured(app=a, category=None)
+        fa.startdate = datetime.date(2012, 1, 1)
+        fa.enddate = datetime.date(2012, 2, 1)
+        fa.save()
+        for d in [datetime.date(2012, 1, 1),
+                  datetime.date(2012, 1, 15),
+                  datetime.date(2012, 2, 1)]:
+            Webapp.now = staticmethod(lambda: d)
+            eq_(self.get_pks('featured', self.url,  {'region': 'us'}),
+                [a.id])
+
+        for d in [datetime.date(2011, 12, 15),
+                  datetime.date(2012, 2, 2)]:
+            Webapp.now = staticmethod(lambda: d)
+            eq_(self.get_pks('featured', self.url, {'region': 'us'}), [])
