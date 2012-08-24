@@ -1514,6 +1514,53 @@ class TestReview(ReviewBase):
             eq_(td.find('th').text(), 'Preliminarily approved')
             eq_(td.find('td a').text(), self.editor.display_name)
 
+    def generate_deleted_versions(self):
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                          name=u'something')
+        self.url = reverse('editors.review', args=[self.addon.slug])
+
+        versions = ({'version': '0.1', 'action': 'comment',
+                     'comments': 'millenium hand and shrimp'},
+                    {'version': '0.1', 'action': 'prelim',
+                     'comments': 'buggrit'},
+                    {'version': '0.2', 'action': 'comment',
+                     'comments': 'I told em'},
+                    {'version': '0.3'})
+
+        for i, version in enumerate(versions):
+            a = create_addon_file(self.addon.name, version['version'],
+                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)
+
+            v = a['version']
+            v.update(created=v.created + timedelta(days=i))
+
+            if 'action' in version:
+                d = dict(action=version['action'], operating_systems='win',
+                         applications='something', comments=version['comments'],
+                         addon_files=[v.files.all()[0].pk])
+                self.client.post(self.url, d)
+                v.delete()
+
+    def test_item_history_deleted(self):
+        self.generate_deleted_versions()
+
+        r = self.client.get(self.url)
+        table = pq(r.content)('#review-files')
+
+        # Check the history for all versions.
+        ths = table.children('tr > th')
+        eq_(ths.length, 3)  # The two with the same number will be coalesced
+        eq_('0.1' in ths.eq(0).text(), True)
+        eq_('0.2' in ths.eq(1).text(), True)
+        eq_('0.3' in ths.eq(2).text(), True)
+        for idx in xrange(2):
+            eq_('Deleted' in ths.eq(idx).text(), True)
+
+        bodies = table.children('.listing-body')
+        eq_('millenium hand and shrimp' in bodies.eq(0).text(), True)
+        eq_('buggrit' in bodies.eq(0).text(), True)
+        eq_('I told em' in bodies.eq(1).text(), True)
+
     def test_item_history_compat_ordered(self):
         """ Make sure that apps in compatibility are ordered. """
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
@@ -1743,7 +1790,7 @@ class TestReview(ReviewBase):
         doc = pq(r.content)
         ths = doc('table#review-files > tr > th:first-child')
 
-        eq_(ths.length, 1)
+        eq_(ths.length, 2)
         assert '0.1' in ths.text()
 
     def review_version(self, version, url):

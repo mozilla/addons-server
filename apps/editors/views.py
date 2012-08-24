@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import date, datetime, timedelta
 import functools
 import json
@@ -22,7 +23,7 @@ from addons.models import Addon, Version
 from amo.decorators import json_view, login_required, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, CommentLog
 from editors import forms
 from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
@@ -494,7 +495,44 @@ def _review(request, addon):
                                .transform(Version.transformer_activity)
                                .transform(Version.transformer))
 
-    pager = amo.utils.paginate(request, versions, 10)
+    class PseudoVersion(object):
+        def __init__(self):
+            self.all_activity = []
+
+        all_files = ()
+        approvalnotes = None
+        compatible_apps_ordered = ()
+        releasenotes = None
+        status = 'Deleted',
+
+        @property
+        def created(self):
+            return self.all_activity[0].created
+
+        @property
+        def version(self):
+            return (self.all_activity[0].activity_log
+                        .details.get('version', '[deleted]'))
+
+    # Grab review history for deleted versions of this add-on
+    comments = (CommentLog.objects
+                          .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
+                                  activity_log__versionlog=None,
+                                  activity_log__addonlog__addon=addon)
+                          .order_by('created')
+                          .select_related('activity_log'))
+
+    comment_versions = defaultdict(PseudoVersion)
+    for c in comments:
+        c.version = c.activity_log.details.get('version', c.created)
+        comment_versions[c.version].all_activity.append(c)
+
+    all_versions = comment_versions.values()
+    all_versions.extend(versions)
+    all_versions.sort(key=lambda v: v.created,
+                      reverse=True)
+
+    pager = amo.utils.paginate(request, all_versions, 10)
 
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
