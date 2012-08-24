@@ -238,7 +238,10 @@
     border-bottom: 1px solid rgba(0,0,0,.3);
     border-top: 1px solid rgba(0,0,0,.05);
     position: relative;
-    overflow: hidden;
+    .slider {
+        height: 230px;
+        overflow: hidden;
+    }
     ul {
         padding: 15px 0;
         margin: 0 auto;
@@ -258,6 +261,34 @@
             -moz-user-select: none;
             width: 180px;
             max-height: 270px;
+        }
+    }
+}
+
+.tray {
+    .dots {
+        width: 100%;
+        position: absolute;
+        top: -4px;
+        text-align: center;
+        height: 6px;
+        line-height: 6px;
+    }
+    .dot {
+        display: inline-block;
+        vertical-align: top;
+        width: 6px;
+        height: 6px;
+        .border-radius(3px);
+        margin: 0 3px;
+        .gradient-two-color(#667480, #828f99);
+        .box-shadow(0 0 1px fade(#fff, 50%),
+                    1px 0 2px 2px fade(#000, 21%) inset,
+                    0 1px 1px fade(#000,.5));
+        &.current {
+            .gradient-two-color(#368dd9, #57a9fa);
+            .box-shadow(0 -1px 1px fade(#03101a, 35%) inset,
+                        0 0 4px fade(#0091ff, 56%));
         }
     }
 }

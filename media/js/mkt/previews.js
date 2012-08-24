@@ -16,11 +16,14 @@
         }
         var product = $tile.data('product');
         var previewsHTML = '';
+         if (!product.previews) return;
         _.each(product.previews, function(p) {
             p.typeclass = (p.type === 'video/webm') ? 'video' : 'img';
             previewsHTML += previewTemplate(p);
         });
-        $tray.html(sliderTemplate({previews: previewsHTML}));
+
+        var dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
+        $tray.html(sliderTemplate({previews: previewsHTML, dots: dotHTML}));
 
         var width = $tray.find('li').length * 195 - 15;
 
@@ -29,7 +32,17 @@
             'margin': '0 ' + ($tray.width() - 180) / 2 + 'px'
         });
 
-        Flipsnap($tray.find('.content')[0], {distance: 195});
+        var slider = Flipsnap($tray.find('.content')[0], {distance: 195});
+        var $pointer = $tray.find('.dots .dot');
+        setActiveDot();
+        slider.element.addEventListener('fsmoveend', setActiveDot, false);
+        function setActiveDot() {
+            $pointer.filter('.current').removeClass('current');
+            $pointer.eq(slider.currentPoint).addClass('current');
+        }
+        $tray.on('click', '.dot', function() {
+            slider.moveToPoint($(this).index());
+        });
     }
 
     z.page.on('fragmentloaded populatetray', function() {
