@@ -370,6 +370,7 @@ def browserid_login(request):
             if profile.needs_tougher_password:
                 return http.HttpResponse("", status=400)
             auth.login(request, profile.user)
+            profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
     return http.HttpResponse(msg, status=401)
 

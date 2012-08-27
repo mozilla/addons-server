@@ -594,6 +594,17 @@ class TestLogin(UserViewBase):
         # If they're already logged in we return fast.
         eq_(self.client.post(url).status_code, 200)
 
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('users.models.UserProfile.log_login_attempt')
+    @patch('httplib2.Http.request')
+    def test_browserid_login_logged(self, http_request, log_login_attempt):
+        url = reverse('users.browserid_login')
+        http_request.return_value = (200, json.dumps({'status': 'okay',
+                                          'email': 'jbalogh@mozilla.com'}))
+        self.client.post(url, data=dict(assertion='fake-assertion',
+                                        audience='fakeamo.org'))
+        log_login_attempt.assert_called_once_with(True)
+
     def _make_admin_user(self, email):
         """
         Create a user with at least one admin privilege.
