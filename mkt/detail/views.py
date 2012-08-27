@@ -33,7 +33,8 @@ def detail(request, addon):
         'flags': get_flags(request, reviews),
         'has_review': request.user.is_authenticated() and
                       reviews.filter(user=request.user.id).exists(),
-        'grouped_ratings': GroupedRating.get(addon.id)
+        'grouped_ratings': GroupedRating.get(addon.id),
+        'details_page': True
     }
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)

@@ -1,11 +1,7 @@
 {% extends 'mkt/base.html' %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
-{% set title = _('Reviews') %}
-{% set page_title = _('Reviews for {0}')|f(product.name) %}
-{% block title %}{{ mkt_page_title(page_title) }}{% endblock %}
-
-{% block bodyclass %}reviews listing{% endblock %}
+{% block bodyclass %}reviews-listing{% endblock %}
 
 {% block extrahead %}
   {{ super() }}
@@ -14,33 +10,26 @@
 {% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None if page == 'list' else product.get_ratings_url('list'),
-                                _('Reviews'))]) }}
+  <h1 id="top">{{ _('Reviews') }}</h1>
   {% block review_header %}
     <section id="review-listing">
-      {{ rating_header(product, title) }}
-      {% if product.can_review(amo_user) %}
       <p id="add-review">
         <a href="{{ product.get_ratings_url('add') }}" class="button fat">
           {{ _('Add a review') if not has_review else _('Edit review') }}
-        </a></p>
-      {% endif %}
-      {% if reply %}
-        <h3>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h3>
-      {% endif %}
+        </a>
+      </p>
     </section>
   {% endblock %}
 
-  <section class="reviews{{ ' replies' if reply }} c" id="reviews">
+  <section class="{{ 'replies' if reply }} c" id="reviews">
     {% if ratings.object_list or reply %}
       {{ rating_flag() }}
-      <div class="c" id="reviews-info">
-      </div>
       <ul id="review-list"
           data-edit-url="{{ product.get_ratings_url('add') }}">
         {% for review in ratings.object_list %}
           {% include 'ratings/rating.html' %}
         {% endfor %}
+
         {% if reply %}
           {% with review=reply.reply_to %}
             {% include 'ratings/rating.html' %}

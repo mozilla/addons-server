@@ -5,41 +5,8 @@ select[name=rating] {
     display: none;
 }
 
-li a.delete {
-    color: @red;
-    &:hover {
-        color: @maroon;
-    }
-}
-
 section.replies .review.reply {
     display: block;
-}
-
-.listing {
-    header img {
-        float: left;
-        margin-right: 10px;
-    }
-    .reviews {
-        margin-bottom: 5px;
-        figure,
-        figure + div {
-            float: left;
-        }
-        figure {
-            width: 40%;
-            + div {
-                width: 25%;
-            }
-        }
-        #submit-review {
-            bottom: 20px;
-        }
-    }
-    #review-list + .paginator {
-        margin-top: 15px;
-    }
 }
 
 #reviews-info {
@@ -58,30 +25,18 @@ section.replies .review.reply {
         margin: 10px 0;
     }
     .not-rated {
-        margin-bottom: 5px;
+        margin: 5px 0;
         + p a {
             padding: 5px 20px 5px 0;
         }
     }
 }
 
-#review-list {
-    background: lighten(@bg-lite, 2%);
-    border-top: 1px solid darken(@light-gray, 2%);
-    border-bottom: 1px solid lighten(@faint-gray, 4%);
-}
-
 .review {
     .transition(~'.3s all');
-    border: 1px solid darken(@light-gray, 2%);
-    border-width: 0 1px;
-    border-bottom: 1px solid darken(@light-gray, 2%);
     list-style-type: none;
-    padding: 10px;
+    padding: 10px 16px;
     position: relative;
-    + .review {
-        border-top: 1px solid @white;
-    }
     &.reply {
         background: url(../../img/mkt/icons/reply.png) 10px 15px no-repeat;
         display: none;
@@ -140,10 +95,50 @@ section.replies .review.reply {
     }
 }
 
-#review-list .review:nth-of-type(2n) {
-    background-color: lighten(@bg, 5%);
+// This applies to and "app details" pages only.
+.reviews {
+    border-top: 1px solid rgba(255,255,255,.5);
+    border-bottom: 1px solid rgba(3,16,26,.13);
+    > div {
+        padding: 20px 15px;
+    }
+}
+
+// This applies to "reviews list" pages only.
+// TODO: make proper review tiles. This is an interim solution.
+.reviews-listing {
+    #add-review {
+        margin: 30px 16px;
+    }
+    .button.fat {
+        line-height: 35px;
+        height: 35px;
+        &:hover {
+            line-height: 35px;
+        }
+    }
+    .review {
+        border-top: 1px solid #bcc0c2;
+        border-bottom: 1px solid #bcc0c2;
+        &:nth-of-type(2n) {
+            border-top: 1px solid #eceff0;
+            border-bottom: 0;
+        }
+    }
+}
+
+#reviews-detail ul {
+    padding: 0;
+    margin: 0 0 10px 0;
+    .review {
+        padding: 10px 0;
+    }
+}
+
+#review-list .review:nth-of-type(2n + 1) {
+    background-color: darken(@bg, 5%);
     + .replies .review {
-        background-color: lighten(@bg, 5%);
+        background-color: darken(@bg, 5%);
     }
 }
 
@@ -203,6 +198,7 @@ header.product {
 }
 
 #submit-review {
+    padding: 0 15px;
     header.product .simple-field,
     &.friendly header .errorlist {
         margin: 5px 0 0;
@@ -429,29 +425,6 @@ header.product {
     }
 }
 
-@media (max-width: @4col) {
-    #submit-review p.reminder {
-        display: none;
-    }
-    #reviews #review-list {
-        margin: 0 -10px -5px;
-        .review {
-            border-left: 0;
-            border-right: 0;
-            .byline, .timestamp {
-                font-size: 12px;
-            }
-            .body {
-                font-size: 14px;
-                line-height: 1.2;
-            }
-        }
-        .review:nth-child(5) ~ .review {
-            display: none;
-        }
-    }
-}
-
 .items-profile {
     padding: 0;
 
@@ -499,27 +472,4 @@ p.support-link {
     float: right;
     font-size: 13px;
     margin-top: 48px;
-}
-
-@media (max-width: @7col) {
-    header.product .visual + div {
-        max-width: 615px;
-    }
-}
-
-@media (max-width: @4col) {
-    .support-link {
-        clear: left;
-        float: none;
-        margin-top: 0;
-    }
-    #reviews-detail {
-        .view-more-reviews,
-        .add-edit-review {
-            display: none;
-        }
-    }
-    header.product .visual + div {
-        max-width: 206px;
-    }
 }

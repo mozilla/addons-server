@@ -439,7 +439,6 @@ class TestListing(ReviewTest):
         reviews = doc('#reviews .review')
         eq_(Review.objects.count(), 2)
         eq_(reviews.length, Review.objects.count())
-        eq_(doc('.average-rating').length, 1)
         eq_(doc('.no-rating').length, 0)
         eq_(doc('.review-heading-profile').length, 0)
 
@@ -464,7 +463,6 @@ class TestListing(ReviewTest):
         doc = pq(r.content)
         eq_(doc('#reviews .item').length, 0)
         eq_(doc('#add-first-review').length, 1)
-        eq_(doc('.average-rating.no-rating').length, 1)
 
     def get_flags(self, actions):
         return sorted(c.get('class').replace(' post', '')

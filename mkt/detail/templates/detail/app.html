@@ -97,12 +97,24 @@
     </section>
 
     {% if waffle.switch('ratings') %}
-      <section class="reviews c infobox">
+      <section class="reviews c">
         <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
           <div class="review-stars-header">
-            <h3 class="wide">{{ _('Reviews') }}</h3>
+            <ul data-edit-url="{{ product.get_ratings_url('add') }}">
+              {% for review in reviews %}
+                {% include 'ratings/rating.html' %}
+              {% endfor %}
+              {% if reply %}
+                {% with review=reply.reply_to %}
+                  {% include 'ratings/rating.html' %}
+                {% endwith %}
+                {% with review=reply %}
+                  {% include 'ratings/rating.html' %}
+                {% endwith %}
+              {% endif %}
+            </ul>
             {% if reviews %}
-              <a class="overall-reviews average-rating arrow"
+              <a class="overall-reviews average-rating"
                  href="{{ product.get_ratings_url() }}">
                 {{ product.average_rating|float|stars }}
                 <span>
@@ -122,7 +134,7 @@
               <p class="not-rated">{{ _('This app is not yet rated.') }}</p>
             {% endif %}
             {% if can_review %}
-              <p><a class="overall-reviews add-edit-review arrow" id="add-first-review"
+              <p><a class="overall-reviews add-edit-review" id="add-first-review"
                  href="{{ product.get_ratings_url('add') }}">
                 {{ _('Edit Your Review') if has_review else _('Submit a Review')
                 }}</a></p>
@@ -179,10 +191,6 @@
             </a>
           {% endif %}
         {% endif %}
-        <dl class="narrow">
-          <dt>{{ _('Published') }}</dt>
-          <dd>{{ product.created|timelabel }}</dd>
-        </dl>
         {% if content_ratings %}
           <div class="content-ratings c">
             <h3>

@@ -1,24 +1,26 @@
 {% from 'includes/forms.html' import required_note %}
 
+{# TODO:
+#
+# This page should be replaced with an overlay: http://cl.ly/0o1E1z0i0M3B1C1B2D3e
+#
+#}
+
 {% extends 'mkt/base.html' %}
 
 {% if not has_review %}
   {% set title = _('Add a review') %}
-  {% set page_title = _('Add a review for {0}')|f(product.name) %}
 {% else %}
   {% set title = _('Edit review') %}
-  {% set page_title = _('Edit review for {0}')|f(product.name) %}
 {% endif %}
-{% block title %}{{ mkt_page_title(page_title) }}{% endblock %}
 
-{% block bodyclass %}reviews{% endblock %}
+{% block bodyclass %}review-add{% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None, title)]) }}
+  <h1 id="top">{{ title }}</h1>
   <section id="submit-review" class="friendly">
     <form method="post">
       {{ csrf() }}
-      {{ rating_header(product, title) }}
       <p class="reminder">
         {% trans %}
           Please keep reviews clean, avoid the use of improper language, and do
