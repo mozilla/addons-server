@@ -181,20 +181,23 @@ class TestClient(Client):
             raise AttributeError
 
 
+ES_patchers = [mock.patch('elasticutils.get_es', spec=True),
+               mock.patch('elasticutils.contrib.django', spec=True)]
+
+
 def mock_es(f):
     """
     Test decorator for mocking elasticsearch calls in ESTestCase if we don't
     care about ES results.
     """
     @wraps(f)
-    @mock.patch('elasticutils.contrib.django', spec=True, new=mock.Mock)
     def decorated(request, *args, **kwargs):
-        return f(request, *args, **kwargs)
+        [p.start() for p in ES_patchers]
+        try:
+            return f(request, *args, **kwargs)
+        finally:
+            [p.stop() for p in ES_patchers]
     return decorated
-
-
-ES_patchers = [mock.patch('elasticutils.get_es', spec=True),
-               mock.patch('elasticutils.contrib.django', spec=True)]
 
 
 class TestCase(RedisTest, test_utils.TestCase):
