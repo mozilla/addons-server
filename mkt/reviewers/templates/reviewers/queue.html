@@ -93,7 +93,7 @@
           {% for addon in addons %}
             <tr data-addon="{{ addon.id }}" class="addon-row" id="addon-{{ addon.id }}">
               <td><div class="addon-locked"></div></td>
-              <td><a href="{{ url('reviewers.apps.review', addon.app_slug) }}">{{ addon.name|xssafe }}</a></td>
+              <td><a href="{{ url('reviewers.apps.review', addon.app_slug) }}">{{ addon.name }}</a></td>
               <td>{# Flags #}
                 {% if addon.is_packaged %}
                   <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>

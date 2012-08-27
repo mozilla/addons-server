@@ -181,7 +181,20 @@ class FlagsMixin(object):
         eq_(flags.length, 1)
 
 
-class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin):
+class XSSMixin(object):
+
+    def test_xss_in_queue(self):
+        a = self.apps[0]
+        a.name = '<script>alert("xss")</script>'
+        a.save()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        tbody = pq(res.content)('#addon-queue tbody').html()
+        assert '&lt;script&gt;' in tbody
+        assert '<script>' not in tbody
+
+
+class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
     fixtures = ['base/users']
 
     def setUp(self):
