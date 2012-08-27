@@ -232,3 +232,10 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], regions)
         eq_(form.initial['other_regions'], False)
+
+
+    def test_worldwide_only(self):
+        form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)
+        assert form.is_valid()
+        form.save()
+        eq_(self.app.get_region_ids(True), [mkt.regions.WORLDWIDE.id])

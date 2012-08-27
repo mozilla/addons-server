@@ -745,7 +745,7 @@ class AppAppealForm(happyforms.Form):
 
 
 class RegionForm(forms.Form):
-    regions = forms.MultipleChoiceField(required=True,
+    regions = forms.MultipleChoiceField(required=False,
         label=_lazy(u'Choose at least one region your app will '
                      'be listed in:'),
         choices=mkt.regions.REGIONS_CHOICES_NAME[1:],
