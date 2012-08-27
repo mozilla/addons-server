@@ -5,15 +5,16 @@
         {% if section == 'get_started' %}
           <span>{{ _('Get Started') }}</span>
         {% else %}
-          <a href="#">{{ _('Get Started') }}</a>
+          <a href="{{ url('ecosystem.documentation',
+             page='html5') }}">{{ _('Get Started') }}</a>
         {% endif %}
       </li>
       <li>
         {% if section == 'design' %}
           <span>{{ _('Design') }}</span>
         {% else %}
-          <a href="{{ url('ecosystem.documentation',
-             page='design_guidelines') }}">
+          <a href="{{ url('ecosystem.documentation_design',
+             page='guidelines') }}">
             {{ _('Design') }}
           </a>
         {% endif %}

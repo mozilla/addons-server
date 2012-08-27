@@ -72,9 +72,9 @@ def documentation(request, page=None):
 
     page_name = 'index.html'
 
-    if page in ['design_guidelines', 'purpose_of_your_app',
-                'design_principles', 'navigation', 'resources', 'layout',
-                'design_patterns']:
+    if page in ['guidelines', 'purpose',
+                'principles', 'navigation', 'resources', 'layout',
+                'patterns', 'references']:
         page_name = 'design.html'
     elif page in ['devtools', 'templates', 'web_components']:
         page_name = 'sdk.html'

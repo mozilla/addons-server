@@ -17,10 +17,17 @@
       <div>
         <h1>{{ _('Open Web Apps') }}</h1>
         <p>
-          {% trans %}
+          {%- trans %}
             Develop HTML5 web apps for an open marketplace.
-          {% endtrans %}
+          {% endtrans -%}
         </p>
+        {%- if request.user.is_authenticated() %}
+          <a href="{{ url('submit.app') }}" class="button">
+        {% else %}
+          <a href="{{ url('users.login') }}?to={{ url('submit.app') }}"
+             class="button browserid">
+        {%- endif -%}
+          {{ _('Submit an App') }}</a>
       </div>
     </section>
   </div>

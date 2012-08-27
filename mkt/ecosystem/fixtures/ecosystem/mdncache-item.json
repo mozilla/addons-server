@@ -25,7 +25,7 @@
         "pk": 3,
         "model": "ecosystem.mdncache",
         "fields": {
-            "name": "design_principles",
+            "name": "principles",
             "locale": "en-US",
             "title": "Design Principles",
             "content": "<strong>DRAFT</strong>",

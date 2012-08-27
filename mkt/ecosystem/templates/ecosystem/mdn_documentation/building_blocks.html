@@ -4,12 +4,11 @@
 {% block bodyclass %}secondary-landing mdn-ecosystem{% endblock %}
 
 {% block title %}
-  {{ _('Mozilla') }} | {{ _('Design') }} |
-  {{ title }} | {{ super() }}
+  {{ _('Mozilla') }} | {{ _('Design') }} | {{ _('Building Blocks') }}
 {% endblock %}
 
 {% block content %}
-  {{ navigation('get_started') }}
+  {{ navigation('design') }}
 
   <div class="design-wrapper">
     {% include 'ecosystem/mdn_documentation/design_nav.html' %}

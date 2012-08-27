@@ -69,7 +69,7 @@ class TestMdnDocumentation(amo.tests.TestCase):
 
     def test_mdn_content_design(self):
         r = self.client.get(reverse('ecosystem.documentation',
-                            args=['design_principles']))
+                            args=['principles']))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/design.html')
 
