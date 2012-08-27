@@ -625,6 +625,11 @@ def email_devs(request):
                                .exclude(user__email=None))
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)
+        elif data['recipients'] == 'payments':
+            qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
+            qs = qs.exclude(addon__paypal_id=None)
+            qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
+                                                     amo.ADDON_OTHER_INAPP))
         elif data['recipients'] == 'sdk':
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         else:

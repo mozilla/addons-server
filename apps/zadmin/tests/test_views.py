@@ -1914,6 +1914,14 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
+    def test_only_apps_with_payments(self):
+        self.addon.update(type=amo.ADDON_WEBAPP,
+                          paypal_id='fliggy@fligtar.net',
+                          premium_type=amo.ADDON_PREMIUM)
+        res = self.post(recipients='payments')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
     def test_ignore_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
         res = self.post()
