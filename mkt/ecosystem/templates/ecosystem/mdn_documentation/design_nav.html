@@ -1,17 +1,20 @@
 <nav class="marketing-block no-pad design">
   <ul>
     <li>
-      <a href="{{ url('ecosystem.documentation', page='design_principles') }}">
+      <a href="{{ url('ecosystem.documentation_design',
+         page='principles') }}">
         {{ _('UX Design Principles') }}
       </a>
     </li>
     <li>
-      <a href="{{ url('ecosystem.documentation', page='purpose_of_your_app') }}">
+      <a href="{{ url('ecosystem.documentation_design',
+         page='purpose') }}">
         {{ _('Purpose of your App') }}
       </a>
     </li>
     <li>
-      <a href="{{ url('ecosystem.documentation', page='design_patterns') }}">
+      <a href="{{ url('ecosystem.documentation_design',
+         page='patterns') }}">
         {{ _('Design Patterns') }}
       </a>
     </li>
@@ -22,7 +25,8 @@
       {%  include 'ecosystem/mdn_documentation/xtag_links.html' %}
     </li>
     <li>
-      <a href="{{ url('ecosystem.documentation', page='references') }}">
+      <a href="{{ url('ecosystem.documentation_design',
+         page='references') }}">
         {{ _('References') }}</a>
     </li>
   </ul>

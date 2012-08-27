@@ -28,6 +28,7 @@ def fake_page(url):
                 </section>
                 <section id='pageText'>
                     <b>hi</b><script>alert('xss');</script>
+                    <a href="/relative/url">some MDN link</a>
                 </section>"""
 
 
@@ -49,7 +50,7 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_get_page_content(self):
         content = _fetch_mdn_page(test_items[0]['url'])
-        eq_(401, len(content))
+        eq_(410, len(content))
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_refresh_mdn_cache(self):
@@ -75,6 +76,13 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
         assert '<script>' not in content
         assert '&lt;script&gt;alert' in content
         assert '<b>hi</b>' in content
+
+    @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
+    def test_ensure_relative_url_is_absolute(self):
+        content = _fetch_mdn_page(test_items[0]['url'])
+        assert '<a href="/relative/url">' not in content
+        assert('<a href="https://developer.mozilla.org/relative/url'
+            in content)
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=raise_exception)
     def test_dont_delete_on_exception(self):
