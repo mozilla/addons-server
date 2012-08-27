@@ -75,9 +75,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Whether a webapp uses flash or not.
     uses_flash = models.BooleanField(default=False, db_index=True)
 
-    # Whether the app is packaged or not (aka hosted).
-    is_packaged = models.BooleanField(default=False, db_index=True)
-
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 

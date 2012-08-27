@@ -490,32 +490,6 @@ class Webapp(Addon):
         except IndexError:
             return None
 
-    @amo.cached_property
-    def is_packaged(self):
-        """
-        Whether this app's latest version is a packaged app.
-
-        Note: This isn't using `current_version` since current version only
-        gets valid versions and we need to use this during the submission flow.
-        """
-        version = None
-        try:
-            # If the webapp has no version at all (which it shouldn't)
-            # .latest() raises a DoesNotExist.
-            version = self.versions.latest()
-        except models.ObjectDoesNotExist:
-            pass
-        if version:
-            return version.all_files[0].is_packaged
-        return False
-
-    @amo.cached_property
-    def has_packaged_files(self):
-        """
-        Whether this app has any versions that are a packaged app.
-        """
-        return self.versions.filter(files__is_packaged=True).exists()
-
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()
 

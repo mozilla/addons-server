@@ -122,8 +122,7 @@ def package(request):
     if request.method == 'POST' and form.is_valid():
         addon = Addon.from_upload(
             form.cleaned_data['upload'],
-            [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
-        addon.get_latest_file().update(is_packaged=True)
+            [Platform.objects.get(id=amo.PLATFORM_ALL.id)], is_packaged=True)
 
         if addon.has_icon_in_manifest():
             # Fetch the icon, do polling.

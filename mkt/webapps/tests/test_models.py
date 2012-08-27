@@ -255,15 +255,12 @@ class TestWebapp(TestCase):
     def test_package_helpers(self):
         app1 = app_factory()
         eq_(app1.is_packaged, False)
-        eq_(app1.has_packaged_files, False)
-        app2 = app_factory(file_kw=dict(is_packaged=True))
+        app2 = app_factory(is_packaged=True)
         eq_(app2.is_packaged, True)
-        eq_(app2.has_packaged_files, True)
 
     def test_package_no_version(self):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
         eq_(webapp.is_packaged, False)
-        eq_(webapp.has_packaged_files, False)
 
 
 class TestWebappVersion(amo.tests.TestCase):

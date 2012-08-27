@@ -78,9 +78,9 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
         'author': author,
         'author_url': author_url,
         'iconUrl': product.get_icon_url(64),
-        'is_packaged': product.has_packaged_files,
+        'is_packaged': product.is_packaged,
         'package_url': (product.current_version.all_files[0].get_url_path(src)
-                        if product.has_packaged_files else ''),
+                        if product.is_packaged else ''),
     }
 
     # Add in previews to the dict.

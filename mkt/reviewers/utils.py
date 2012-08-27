@@ -176,9 +176,10 @@ class ReviewApp(ReviewBase):
         """Reject an app."""
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
-        # If this app does not have any packaged apps or if there aren't other
-        # versions with already reviewed files, reject the app also.
-        if (not self.addon.has_packaged_files or
+        # If this app is not packaged (packaged apps can have multiple
+        # versions) or if there aren't other versions with already reviewed
+        # files, reject the app also.
+        if (not self.addon.is_packaged or
             not self.addon.versions.exclude(id=self.version.id)
                 .filter(files__status__in=amo.REVIEWED_STATUSES).exists()):
             self.set_addon(status=amo.STATUS_REJECTED)

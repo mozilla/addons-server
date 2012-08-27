@@ -279,14 +279,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _backup_version = models.ForeignKey(Version, related_name='___backup',
             db_column='backup_version', null=True, on_delete=models.SET_NULL)
     _latest_version = None
+    make_public = models.DateTimeField(null=True)
+    mozilla_contact = models.EmailField()
+
+    # Whether the app is packaged or not (aka hosted).
+    is_packaged = models.BooleanField(default=False, db_index=True)
 
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)
 
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
-    make_public = models.DateTimeField(null=True)
-    mozilla_contact = models.EmailField()
 
     class Meta:
         db_table = 'addons'
@@ -412,7 +415,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def from_upload(cls, upload, platforms):
+    def from_upload(cls, upload, platforms, is_packaged=False):
         from files.utils import parse_addon
         data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
@@ -425,6 +428,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if addon.is_webapp():
             addon.manifest_url = upload.name
             addon.app_domain = addon.domain_from_url(addon.manifest_url)
+            addon.is_packaged = is_packaged
         addon.save()
         Version.from_upload(upload, addon, platforms)
         amo.log(amo.LOG.CREATE_ADDON, addon)

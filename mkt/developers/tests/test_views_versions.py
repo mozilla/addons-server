@@ -88,7 +88,7 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(unicode(webapp.versions.all()[0].releasenotes), my_reply)
 
     def test_items_packaged(self):
-        self.webapp.get_latest_file().update(is_packaged=True)
+        self.webapp.update(is_packaged=True)
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)
         eq_(doc('#version-list').length, 1)
@@ -97,10 +97,9 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#modal-disable').length, 1)
 
     def test_version_list_packaged(self):
-        self.webapp.get_latest_file().update(is_packaged=True)
+        self.webapp.update(is_packaged=True)
         amo.tests.version_factory(addon=self.webapp, version='2.0',
-                                  file_kw=dict(is_packaged=True,
-                                               status=amo.STATUS_PENDING))
+                                  file_kw=dict(status=amo.STATUS_PENDING))
         self.webapp = self.get_webapp()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)

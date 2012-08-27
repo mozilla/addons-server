@@ -1,8 +1,8 @@
 from nose.tools import eq_
 
-from addons.models import Addon
 import amo
 import amo.tests
+from addons.models import Addon
 from amo.urlresolvers import reverse
 
 
@@ -11,8 +11,8 @@ class TestDownload(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = Addon.objects.get(pk=337141)
+        self.webapp.update(is_packaged=True)
         self.file = self.webapp.get_latest_file()
-        self.file.update(is_packaged=True)
         self.url = reverse('downloads.file', args=[self.file.pk])
 
     def test_download(self):

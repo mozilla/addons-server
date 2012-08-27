@@ -124,7 +124,7 @@ class TestMarketButton(amo.tests.TestCase):
             [str(cat.name) for cat in self.webapp.categories.all()])
 
     def test_is_packaged(self):
-        self.webapp.current_version.files.all()[0].update(is_packaged=True)
+        self.webapp.update(is_packaged=True)
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], True)
