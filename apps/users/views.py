@@ -1,8 +1,10 @@
 from datetime import datetime, timedelta
 from functools import partial
+from urlparse import urlparse
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import SuspiciousOperation
 from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
@@ -288,26 +290,20 @@ def emailchange(request, user_id, token, hash):
 
 def _clean_next_url(request):
     gets = request.GET.copy()
-    url = gets['to']
-
-    if not url:
-        url = settings.LOGIN_REDIRECT_URL
-
-    # We want to not redirect outside of AMO via login/logout (also see
-    # "domain" below)
-    if '://' in url:
-        url = '/'
-
-    # TODO(davedash): This is a remora-ism, let's remove this after remora and
-    # since all zamboni 'to' parameters will begin with '/'.
-    if url and not url.startswith('/'):
-        url = '/' + url
+    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
 
     gets['to'] = url
+
+    parsed = urlparse(url)
+    if ((parsed.scheme and parsed.scheme not in ['http', 'https'])
+        or parsed.netloc):
+        raise SuspiciousOperation('Unsafe redirect to %s' % url)
 
     domain = gets.get('domain', None)
     if domain in settings.VALID_LOGIN_REDIRECTS.keys():
         gets['to'] = "%s%s" % (settings.VALID_LOGIN_REDIRECTS[domain], url)
+    else:
+        gets['to'] = url
 
     request.GET = gets
     return request
