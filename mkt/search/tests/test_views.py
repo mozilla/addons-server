@@ -114,21 +114,19 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             '%s != %s' % (self.url, urlparams(self.url, **params or {})))
 
         doc = pq(r.content)('#filter-categories')
-        a = doc.children('li:first-child a')
+        a = pq(r.content)('#filter-categories').children('li').eq(0).find('a')
         # Note: PyQuery's `hasClass` matches children's classes, so yeah.
         eq_(a.attr('class'), 'sel' if not cat_selected else None,
             "'Any Category' should be selected")
         eq_(a.length, 1)
         eq_(a.text(), 'Any Category')
 
-        a = doc('li:last a')
+        a = doc('li:last').find('a')
+        eq_(a.text(), unicode(self.cat.name))
         eq_(a.attr('class'), 'sel' if cat_selected else None,
             '%r should be selected' % unicode(self.cat.name))
-        eq_(a.text(), unicode(self.cat.name))
         params.update(cat=self.cat.id)
         eq_(a.attr('href'), urlparams(self.url, **params))
-        eq_(json.loads(a.attr('data-params')),
-            {'cat': self.cat.id, 'page': None})
 
     def test_no_cat(self):
         self.check_cat_filter({})
