@@ -176,6 +176,7 @@ def create_persona_preview_image(src, dst, img_basename, **kw):
         orig_w, orig_h = full
         with storage.open(src) as fp:
             i = Image.open(fp)
+            assert i.verify(), 'Not a valid image.'
             # Crop image from the right.
             i = i.crop((orig_w - (new_h * 2), 0, orig_w, orig_h))
             i = i.resize(preview, Image.ANTIALIAS)

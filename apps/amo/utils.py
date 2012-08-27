@@ -478,7 +478,7 @@ class ImageCheck(object):
         try:
             self._img.seek(0)
             self.img = Image.open(self._img)
-            return True
+            return self.img.verify()
         except IOError:
             return False
 
