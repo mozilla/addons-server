@@ -478,8 +478,12 @@ class ImageCheck(object):
         try:
             self._img.seek(0)
             self.img = Image.open(self._img)
+            # PIL doesn't tell us what errors it will raise at this point,
+            # just "suitable ones", so let's catch them all.
+            self.img.verify()
             return True
-        except IOError:
+        except:
+            log.error('Error decoding image', exc_info=True)
             return False
 
     def is_animated(self, size=100000):
