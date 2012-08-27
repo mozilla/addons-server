@@ -96,14 +96,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(a.attr('href'),
             urlparams(self.webapp.get_url_path(), src='mkt-search'))
 
-    def test_results_downloads(self):
-        for sort in ('', 'downloads', 'created'):
-            r = self.client.get(urlparams(self.url, sort=sort))
-            dls = pq(r.content)('.item .downloads')
-            eq_(dls.text().split()[0],
-                numberfmt(self.webapp.weekly_downloads),
-                'Missing downloads for %s' % sort)
-
     def check_cat_filter(self, params):
         cat_selected = params.get('cat') == self.cat.id
         r = self.client.get(self.url)
