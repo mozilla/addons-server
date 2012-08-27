@@ -1358,6 +1358,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return False
         return f.uses_flash
 
+    def in_escalation_queue(self):
+        return self.escalationqueue_set.exists()
+
+    def in_rereview_queue(self):
+        # Rereview is part of marketplace and not AMO, so setting for False
+        # to avoid having to catch NotImplemented errors.
+        return False
+
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)

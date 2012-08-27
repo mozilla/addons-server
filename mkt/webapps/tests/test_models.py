@@ -20,6 +20,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 import mkt
+from mkt.reviewers.models import RereviewQueue
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
@@ -784,3 +785,11 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
             eq_(self.app.content_ratings_in(region=region, category='games'),
                 [])
             eq_(self.app.content_ratings_in(region=region, category=cat), [])
+
+
+class TestQueue(amo.tests.WebappTestCase):
+
+    def test_in_queue(self):
+        assert not self.app.in_rereview_queue()
+        RereviewQueue.objects.create(addon=self.app)
+        assert self.app.in_rereview_queue()

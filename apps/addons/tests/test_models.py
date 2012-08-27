@@ -34,6 +34,7 @@ from applications.models import Application, AppVersion
 from compat.models import CompatReport
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
+from editors.models import EscalationQueue
 from files.models import File, Platform
 from files.tests.test_models import TestLanguagePack, UploadTest
 from market.models import AddonPaymentData, AddonPremium, Price
@@ -2277,3 +2278,12 @@ class TestIncompatibleVersions(amo.tests.TestCase):
 
         version2.delete()
         eq_(IncompatibleVersions.objects.count(), 0)
+
+
+class TestQueue(amo.tests.TestCase):
+
+    def test_in_queue(self):
+        addon = Addon.objects.create(guid='f', type=amo.ADDON_EXTENSION)
+        assert not addon.in_escalation_queue()
+        EscalationQueue.objects.create(addon=addon)
+        assert addon.in_escalation_queue()

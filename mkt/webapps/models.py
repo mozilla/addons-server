@@ -516,6 +516,9 @@ class Webapp(Addon):
         """
         return self.versions.filter(files__is_packaged=True).exists()
 
+    def in_rereview_queue(self):
+        return self.rereviewqueue_set.exists()
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

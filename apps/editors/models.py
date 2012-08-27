@@ -524,7 +524,7 @@ class ReviewerScore(amo.models.ModelBase):
 
 
 class EscalationQueue(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='+')
+    addon = models.ForeignKey(Addon)
 
     class Meta:
         db_table = 'escalation_queue'

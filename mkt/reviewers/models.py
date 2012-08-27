@@ -19,7 +19,7 @@ class AppCannedResponse(CannedResponse):
 
 
 class RereviewQueue(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='+')
+    addon = models.ForeignKey(Addon)
 
     class Meta:
         db_table = 'rereview_queue'

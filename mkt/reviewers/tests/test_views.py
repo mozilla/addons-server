@@ -570,6 +570,18 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(self.client.post(reverse('editors.review_viewing')).status_code,
             200)
 
+    @mock.patch('mkt.webapps.models.Webapp.in_rereview_queue')
+    def test_rereview(self, is_rereview_queue):
+        is_rereview_queue.return_value = True
+        content = pq(self.client.get(self.url).content)
+        assert content('#queue-rereview').length
+
+    @mock.patch('mkt.webapps.models.Webapp.in_escalation_queue')
+    def test_escalated(self, in_escalation_queue):
+        in_escalation_queue.return_value = True
+        content = pq(self.client.get(self.url).content)
+        assert content('#queue-escalation').length
+
     @mock.patch.object(settings, 'DEBUG', False)
     def test_cannot_review_my_app(self):
         AddonUser.objects.create(addon=self.app,
