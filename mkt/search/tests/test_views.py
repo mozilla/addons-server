@@ -332,47 +332,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
              {'id': unknown1.id, 'popularity': 1},
              {'id': self.webapp.id, 'popularity': 0}])
 
-    @mock.patch.object(mkt.regions.BR, 'adolescent', False)
-    def test_mature_popularity(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
-        # Mature regions use regional popularity.
-
-        # Webapp:   Global: 1, Regional: 1 * 2 + 10 * 1 = 12
-        # Unknown1: Global: 1, Regional: 1 * 2 + 10 * 2 = 22
-        # Unknown2: Global: 2, Regional: 2
-
-        region = mkt.regions.BR
-
-        user = UserProfile.objects.all()[0]
-        cd = ClientData.objects.create(region=region.id)
-
-        Installed.objects.get_or_create(addon=self.webapp, user=user)
-        Installed.objects.create(addon=self.webapp, user=user, client_data=cd)
-
-        unknown1 = amo.tests.app_factory()
-        Installed.objects.create(addon=unknown1, user=user, client_data=cd)
-        Installed.objects.create(addon=unknown1,
-            user=UserProfile.objects.create(), client_data=cd)
-
-        unknown2 = amo.tests.app_factory()
-        Installed.objects.create(addon=unknown2, user=user)
-        Installed.objects.create(addon=unknown2, user=user)
-
-        self.reindex(Webapp)
-
-        r = self.check_results({'sort': 'popularity',
-                                'region': region.slug},
-                               [unknown1.id, self.webapp.id, unknown2.id])
-
-        # Check the actual popularity scores.
-        by_popularity = list(r.context['pager'].object_list
-                              .values_dict('popularity_%s' % region.id))
-        eq_(by_popularity,
-            [{'id': unknown1.id, 'popularity_7': 22},
-             {'id': self.webapp.id, 'popularity_7': 12},
-             {'id': unknown2.id, 'popularity_7': 2}])
-
 
 class TestSuggestions(TestAjaxSearch):
 
