@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Q, Max, signals as dbsignals
@@ -730,8 +731,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         "Returns the current_version field or updates it if needed."
         if self.type == amo.ADDON_PERSONA:
             return
-        if not self._current_version:
-            self.update_version()
+        try:
+            if not self._current_version:
+                self.update_version()
+        except ObjectDoesNotExist:
+            return
         return self._current_version
 
     @amo.cached_property
