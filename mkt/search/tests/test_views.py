@@ -206,6 +206,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
                                            device_type=x)
 
     def check_device_filter(self, device, selected):
+        raise SkipTest('See bug 785898')
         self.setup_devices()
         self.reindex(Webapp)
 
