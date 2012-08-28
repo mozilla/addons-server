@@ -141,6 +141,10 @@ z.page.on('fragmentloaded', function() {
             $('#search-q').blur();
             $btns.blur();
         }
+
+        z.page.on('fragmentloaded', function() {
+            z.body.removeClass('show-search');
+        });
         e.preventDefault();
     });
 

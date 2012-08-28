@@ -22,6 +22,13 @@ function fragmentFilter(el) {
         var $loading = $('<div>', {'class': 'loading-fragment'})
                         .prependTo($('#site-header'));
 
+        z.body.on('submit', 'form', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var path = form.attr('action') + '?' + form.serialize();
+            form.trigger('loadfragment', path);
+        });
+
         // capture clicks in our target environment
         z.body.on('click', 'a', function(e) {
             var href = this.getAttribute('href');
