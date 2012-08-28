@@ -309,9 +309,9 @@ class TestContributeEmbedded(amo.tests.TestCase):
         res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
-    @patch('urllib2.OpenerDirector.open')
-    def test_paypal_other_error_json(self, opener, **kwargs):
-        opener.return_value = StringIO(other_error)
+    @patch('paypal.requests.post')
+    def test_paypal_other_error_json(self, post, **kwargs):
+        post.return_value.text = other_error
         res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
