@@ -5,6 +5,14 @@
         <h4><a href="#general-tests">{{ _('General Tests') }}</a></h4>
         <div class="tier-summary"></div>
       </div>
+      <div class="test-tier" data-tier="2">
+        <h4><a href="#package-tests">{{ _('Package Tests') }}</a></h4>
+        <div class="tier-summary"></div>
+      </div>
+      <div class="test-tier" data-tier="3">
+        <h4><a href="#content-tests">{{ _('Content Tests') }}</a></h4>
+        <div class="tier-summary"></div>
+      </div>
     </div>
     <div class="suite-summary">
       <span></span>
@@ -14,10 +22,42 @@
 <div class="results">
   <div class="result" id="suite-results-tier-1">
     <div class="result-header">
+      <ul class="result-nav">
+        {# L10n: abbreviation of 'previous' #}
+        <li>{{ _('Prev') }}</li>
+        <li><a href="#addon-validator-suite">{{ _('Top') }}</a></li>
+        <li><a href="#suite-results-tier-2">{{ _('Next') }}</a></li>
+      </ul>
       <h4 id="general-tests">{{ _('General Tests') }}</h4>
       {# The dot fixes layout for a few secs when the page first loads. #}
       <div class="result-summary">.</div>
     </div>
     <div class="tier-results" data-tier="1"></div>
+  </div>
+  <div class="result" id="suite-results-tier-2">
+    <div class="result-header">
+      <ul class="result-nav">
+        {# L10n: abbreviation of 'previous' #}
+        <li><a href="#suite-results-tier-1">{{ _('Prev') }}</a></li>
+        <li><a href="#addon-validator-suite">{{ _('Top') }}</a></li>
+        <li><a href="#suite-results-tier-3">{{ _('Next') }}</a></li>
+      </ul>
+      <h4 id="package-tests">{{ _('Package Tests') }}</h4>
+      <div class="result-summary">.</div>
+    </div>
+    <div class="tier-results" data-tier="2"></div>
+  </div>
+  <div class="result" id="suite-results-tier-3">
+    <div class="result-header">
+      <ul class="result-nav">
+        {# L10n: abbreviation of 'previous' #}
+        <li><a href="#suite-results-tier-2">{{ _('Prev') }}</a></li>
+        <li><a href="#addon-validator-suite">{{ _('Top') }}</a></li>
+        <li>{{ _('Next') }}</li>
+      </ul>
+      <h4 id="content-tests">{{ _('Content Tests') }}</h4>
+      <div class="result-summary">.</div>
+    </div>
+    <div class="tier-results" data-tier="3"></div>
   </div>
 </div>

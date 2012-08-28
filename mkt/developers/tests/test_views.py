@@ -1437,6 +1437,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(suite.attr('data-validateurl'),
             reverse('mkt.developers.standalone_upload_detail',
                     args=[upload.uuid]))
+        eq_(suite('#suite-results-tier-2').length, 1)
 
 
 def assert_json_error(request, field, msg):
