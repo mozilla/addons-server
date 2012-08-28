@@ -1105,15 +1105,6 @@ class TestEditDetails(TestEdit):
 
             eq_(self.get_excluded_ids(), [region_id])
 
-    def test_cannot_exclude_all_regions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-        data = self.get_dict(regions=[], other_regions=True)
-        r = self.client.post(self.edit_url, data)
-
-        eq_(r.context['region_form'].errors,
-            {'regions': ['You must select at least one region.']})
-        eq_(AER.objects.count(), 0)
-
     def test_exclude_future_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
