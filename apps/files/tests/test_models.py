@@ -417,6 +417,14 @@ class TestParseXpi(amo.tests.TestCase):
         result = self.parse(filename='dictionary-test.xpi')
         eq_(result['type'], amo.ADDON_DICT)
 
+    def test_parse_dictionary_explicit_type(self):
+        result = self.parse(filename='dictionary-explicit-type-test.xpi')
+        eq_(result['type'], amo.ADDON_DICT)
+
+    def test_parse_dictionary_extension(self):
+        result = self.parse(filename='dictionary-extension-test.xpi')
+        eq_(result['type'], amo.ADDON_EXTENSION)
+
     def test_parse_jar(self):
         result = self.parse(filename='theme.jar')
         eq_(result['type'], amo.ADDON_THEME)

@@ -69,7 +69,7 @@ def get_file(fileorpath):
 class Extractor(object):
     """Extract add-on info from an install.rdf."""
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
-             '8': amo.ADDON_LPAPP}
+             '8': amo.ADDON_LPAPP, "64": amo.ADDON_DICT}
     App = collections.namedtuple('App', 'appdata id min max')
     manifest = u'urn:mozilla:install-manifest'
 
@@ -95,6 +95,13 @@ class Extractor(object):
         return cls(install_rdf).data
 
     def find_type(self):
+        # If the extension declares a type that we know about, use
+        # that.
+        # FIXME: Fail if it declares a type we don't know about.
+        declared_type = self.find('type')
+        if declared_type and declared_type in self.TYPES:
+            return self.TYPES[declared_type]
+
         # Look for themes.
         if self.path.endswith('.jar') or self.find('internalName'):
             return amo.ADDON_THEME
@@ -105,7 +112,7 @@ class Extractor(object):
             return amo.ADDON_DICT
 
         # Consult <em:type>.
-        return self.TYPES.get(self.find('type'), amo.ADDON_EXTENSION)
+        return self.TYPES.get(declared_type, amo.ADDON_EXTENSION)
 
     def uri(self, name):
         namespace = 'http://www.mozilla.org/2004/em-rdf'
