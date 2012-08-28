@@ -63,7 +63,7 @@
 }
 
 #controls-inner {
-    padding-bottom: 1ex;
+    padding-bottom: .5em;
 }
 
 .collapsed-files #files {
@@ -106,6 +106,7 @@
 
 .collapsed-files .command,
 .collapsed-files #toggle-known-container,
+.collapsed-files #jetpack-version,
 .collapsed-files #tab-stops-container {
     display: none !important;
 }
@@ -300,7 +301,7 @@ div.diff-bar {
 }
 
 #commands td {
-    padding: 0 0 0 1ex;
+    padding: 0 0 0 .5em;
 }
 
 #diff, #content {
@@ -465,10 +466,13 @@ td.gutter, td.code {
 
 #tab-stops-container {
     display: none;
-    margin: 1ex 0;
+    margin: .5em 0;
 }
 
 #toggle-known-container {
     margin-top: .3em;
 }
 
+#jetpack-version {
+    margin: .5em 0;
+}
