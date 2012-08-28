@@ -59,9 +59,9 @@
       <h2>{{ _('Do you still have questions?') }}</h2>
       <p>
         {% trans %}
-          While we are working on creating a set of channels to help you with your
-          issues you can visit StackOverflow to resolve all your questions related
-          to the development of Web Apps.
+          While we are working on creating a set of channels to help you with
+          your issues you can visit StackOverflow to resolve all your
+          questions related to the development of Web Apps.
         {% endtrans %}
       </p>
 
@@ -70,6 +70,25 @@
         <img src="{{ media('img/ecosystem/stackoverflow_logo.jpg') }}"
              class="logo" alt="{{ _('Stack Overflow') }}">
       </a>
+
+      <p>
+        {% trans %}
+          If you want to engage with other developers, join our vibrant
+          communities in these mailing lists:
+        {% endtrans %}
+        <ul>
+          <li>
+            <a href="https://lists.mozilla.org/listinfo/webapps">
+              {{ _('Mozilla Web Apps (English)') }}
+            </a>
+          </li>
+          <li>
+            <a href="https://lists.mozilla.org/listinfo/webapps-pt-br">
+              {{ _('Mozilla Web Apps (Brazilian Portuguese)') }}
+            </a>
+          </li>
+        </ul>
+      </p>
     </section>
   </div>
 {% endblock %}

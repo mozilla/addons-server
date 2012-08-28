@@ -12,7 +12,6 @@ urlpatterns = patterns('',
     url('^docs/xtags/(?P<xtag>\w+)$', views.building_xtag,
         name='ecosystem.building_xtag'),
 
-    url('^docs$', views.developers, name='ecosystem.developers'),
     url('^partners$', views.partners, name='ecosystem.partners'),
     url('^support$', views.support, name='ecosystem.support'),
     url('^docs/design/(?P<page>\w+)?$', views.documentation,

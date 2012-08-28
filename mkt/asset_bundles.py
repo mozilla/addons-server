@@ -125,6 +125,10 @@ CSS = {
         '//raw.github.com/mozilla/xtag-elements/master/slidebox/slidebox.css',
         '//raw.github.com/mozilla/xtag-elements/master/slider/slider.css',
         '//raw.github.com/mozilla/xtag-elements/master/tabbox/tabbox.css',
+        '//raw.github.com/mozilla/xtag-elements/master/select-list/select-list.css',
+        '//raw.github.com/mozilla/xtag-elements/master/date-time-picker/date-time-picker.css',
+        '//raw.github.com/mozilla/xtag-elements/master/dropdown-menu/dropdown-menu.css',
+        '//raw.github.com/mozilla/xtag-elements/master/toggle-switch/toggle-switch.css',
     ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
@@ -316,5 +320,10 @@ JS = {
         '//raw.github.com/mozilla/xtag-elements/master/slidebox/slidebox.js',
         '//raw.github.com/mozilla/xtag-elements/master/slider/slider.js',
         '//raw.github.com/mozilla/xtag-elements/master/tabbox/tabbox.js',
+        '//raw.github.com/mozilla/xtag-elements/master/select-list/select-list.js',
+        '//raw.github.com/mozilla/xtag-elements/master/date-time-picker/date-time-picker.js',
+        '//raw.github.com/mozilla/xtag-elements/master/dropdown-menu/dropdown-menu.js',
+        '//raw.github.com/mozilla/xtag-elements/master/toggle-switch/toggle-switch.js',
+        'js/mkt/xtag-demos.js',
     ),
 }

@@ -192,9 +192,9 @@ body {
         li.splash {
             min-height: 300px;
             margin: 0 auto;
-            max-width: 462px;
+            max-width: 480px;
             text-align: center;
-            width: 462px;
+            width: 480px;
         }
     }
 
@@ -254,6 +254,14 @@ body {
             color: @medium-gray;
             display: block;
             text-decoration: none;
+
+            ul {
+                padding: 0;
+
+                li {
+                    list-style: none;
+                }
+            }
         }
     }
 }
@@ -274,6 +282,10 @@ body {
         }
         h2, ul {
             padding-left: 300px;
+        }
+
+        ul li {
+            list-style: none;
         }
     }
 }
