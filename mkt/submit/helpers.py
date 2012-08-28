@@ -38,7 +38,7 @@ def progress(request, addon, step):
     if not completed and step and step != 'terms':
         completed = ['terms']
 
-    if waffle.switch_is_active('disable-payments'):
+    if waffle.switch_is_active('disabled-payments'):
         steps = del_by_key(steps, 'payments')
 
     # Payments step was skipped, so remove it.

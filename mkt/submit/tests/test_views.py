@@ -457,7 +457,7 @@ class TestDetails(TestSubmit):
         self.assert3xx(res, self.webapp.get_dev_url('paypal_setup'))
 
     def test_disabled_payments_resume_later(self):
-        self.create_switch(name='disable-payments')
+        self.create_switch(name='disabled-payments')
         self._step()
         r = self.client.get(reverse('submit.app.resume',
                                     args=[self.webapp.app_slug]))
@@ -548,7 +548,7 @@ class TestDetails(TestSubmit):
         self.assert3xx(r, self.get_url('payments'))
 
     def test_disabled_payments_success(self):
-        self.create_switch(name='disable-payments')
+        self.create_switch(name='disabled-payments')
         self._step()
         data = self.get_dict()
         r = self.client.post(self.url, data)

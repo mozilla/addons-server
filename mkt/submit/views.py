@@ -190,7 +190,7 @@ def details(request, addon_id, addon):
 
         checklist = AppSubmissionChecklist.objects.get(addon=addon)
 
-        if waffle.switch_is_active('disable-payments'):
+        if waffle.switch_is_active('disabled-payments'):
             checklist.update(details=True, payments=True)
             addon.mark_done()
             return redirect('submit.app.done', addon.app_slug)
