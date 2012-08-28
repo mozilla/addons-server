@@ -26,11 +26,6 @@ class TestLanding(amo.tests.TestCase):
 
 class TestDevHub(amo.tests.TestCase):
 
-    def test_developers(self):
-        r = self.client.get(reverse('ecosystem.developers'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/developers.html')
-
     def test_building_blocks(self):
         r = self.client.get(reverse('ecosystem.building_blocks'))
         eq_(r.status_code, 200)

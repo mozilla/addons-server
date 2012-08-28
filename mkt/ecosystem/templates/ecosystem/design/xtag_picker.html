@@ -25,8 +25,12 @@
 {% endblock %}
 
 {% block code_live %}
-  <x-picker>
-  </x-picker>
+  <x-date-time-picker id="datePicker" data-start-time="2012-10-30"
+                      data-columns="MM|dd"></x-date-time-picker>
+  <x-date-time-picker id="datePicker" data-type="date"></x-date-time-picker>
+  <x-date-time-picker id="timePicker" data-type="time"></x-date-time-picker>
+  <x-date-time-picker id="dateTimePicker" data-type="datetime">
+  </x-date-time-picker>
 {% endblock %}
 
 {% block related_links %}

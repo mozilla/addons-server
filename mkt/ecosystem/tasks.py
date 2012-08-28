@@ -118,12 +118,12 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/References?raw=1&macros=true'
     },
     {
-        'title': 'Firefox Dev Tools',
+        'title': 'Dev Tools',
         'name': 'devtools',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/marketplace/App_developer_tools?raw=1&macros=true'
     },
     {
-        'title': 'Templates',
+        'title': 'App Templates',
         'name': 'templates',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/App_templates?raw=1&macros=true'
     },
@@ -185,6 +185,7 @@ def _fetch_mdn_page(url):
 
     root = pq(data)
     anchors = root.find('a')
+    images = root.find('img')
 
     if anchors:
         # We only want anchors that have an href attribute available.
@@ -192,8 +193,14 @@ def _fetch_mdn_page(url):
         external_links.each(lambda e: e.attr('target', '_blank'))
         mdn_links = external_links.filter(
             lambda i: str(pq(this).attr('href')).startswith('/'))
-        mdn_links.each(lambda e: e.attr('href',
-            'https://developer.mozilla.org%s' % e.attr('href')))
+        mdn_links.each(lambda e: e.attr(
+            'href', 'https://developer.mozilla.org%s' % e.attr('href'))
+        )
+
+    if images:
+        images.each(lambda e: e.attr(
+            'src', 'https://developer.mozilla.org%s' % e.attr('src'))
+        )
 
     return str(root)
 

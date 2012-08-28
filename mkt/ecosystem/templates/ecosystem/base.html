@@ -1,4 +1,7 @@
-{% set logged = request.user.is_authenticated() %}
+{% if request.is_ajax() and not SKIP_FRAGMENT %}
+  {% extends 'mkt/fragment.html' %}
+{% endif %}
+{% set logged = False %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}"
   {% if settings.USE_APPCACHE and OFFLINE_MANIFEST %}
@@ -9,10 +12,15 @@
     {% if not settings.ENGAGE_ROBOTS %}
       <meta name="robots" content="noindex">
     {% endif %}
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+                                   initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     {% block extrameta %}{% endblock %}
-    <title>{% block title %}{{ _('Mozilla Marketplace') }}{% endblock %}</title>
+    <title>
+      {%- block title %}
+        {{ _('Mozilla Marketplace') }}
+      {% endblock -%}
+    </title>
 
     <link rel="shortcut icon" type="image/x-icon"
           href="{{ MEDIA_URL }}img/mkt/logos/128.png" sizes="128x128">
@@ -26,16 +34,12 @@
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
-
-    {% block debug %}
-      {% include "mobile/head_debug.html" %}
-    {% endblock %}
-    {% if logged %}
-      <meta name="csrf" content="{{ csrf_token }}">
-    {% endif %}
   </head>
-  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
-        {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
+  <body id="{{ request.user.is_authenticated() }}"
+        class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+        {% if waffle.switch('anonymous-free-installs') %}
+          data-allow-anon-installs="true"
+        {% endif %}
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
@@ -51,17 +55,9 @@
             <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
               {{ _('Firefox Marketplace Developers') }}</a></h1>
             <nav role="navigation">
-              {% if not request.user.is_authenticated() %}
-                <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">
-                  {{ _('Log in / Register') }}</a>
-                <a class="external" href="https://developer.mozilla.org/en-US/apps">
-                  {{ _('Reference') }}</a>
-              {% else %}
-                <a href="{{ url('submit.app') }}">
-                  {{ _('Submit an App') }}</a>
+              {% if request.user.is_authenticated() %}
                 <a href="{{ url('mkt.developers.apps') }}">{{ _('My Apps') }}</a>
-                <a class="external" href="https://developer.mozilla.org/en-US/apps">{{ _('Reference') }}</a>
-                <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+                <a href="{{ url('users.logout') }}" class="post">{{ _('Log out') }}</a>
               {% endif %}
             </nav>
           </div>
@@ -100,65 +96,20 @@
               </a> or any later version.
             {% endtrans %}
           </p>
-
-          {% block sitefooter_append %}
-            <ul class="user-actions">
-            {% if not request.user.is_authenticated() %}
-              <li>
-                <a class="browserid" href="{{ url('users.login') }}?to={{ url('ecosystem.landing') }}">
-                  {{ _('Log in / Register') }}</a>
-              </li>
-              <li>
-                <a class="external" href="https://developer.mozilla.org/en-US/apps">
-                  {{ _('Reference') }}</a>
-              </li>
-            {% else %}
-              <li>
-                <a href="{{ url('submit.app') }}">
-                  {{ _('Submit an App') }}</a>
-              </li>
-              <li>
-                <a href="{{ url('mkt.developers.apps') }}">{{ _('My Apps') }}</a>
-              </li>
-              <li>
-                <a href="https://developer.mozilla.org/en-US/apps">{{ _('Reference') }}</a>
-              </li>
-              <li>
-                <a href="{{ url('users.logout') }}">{{ _('Logout') }}</a>
-              </li>
-            {% endif %}
-            </ul>
-          {% endblock %}
+          {% if request.user.is_authenticated() %}
+            <p>
+              <a href="{{ url('users.logout') }}"
+                 class="post">{{ _('Log out') }}</a>
+              </a>
+            </p>
+          {% endif %}
         </div>
       </footer>
     {% endblock %}
 
-
-    {% include 'purchase/start.html' %}
-    {% include 'purchase/message.html' %}
-
-    <script type="text/template" id="noApps">
-      <div class="noApps">You need to be using<br>
-      <a href="http://nightly.mozilla.org/" target="_blank">
-      Firefox Nightly</a><br>to install this app.</div>
-    </script>
-
-    {% if not logged %}
+    {% if logged %}
       <div id="login" class="overlay">
         <section>
-          <div class="new">
-            <h2>{{ _('Please sign in') }}</h2>
-            <p>
-              {# TODO(copy): Localize when BrowserID is called Persona. #}
-              {% with personaid_url='https://browserid.org/' %}
-                Just log in or register with your
-                <a href="{{ personaid_url }}">BrowserID</a> account below.
-              {% endwith %}
-            </p>
-            <footer>
-              <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
-            </footer>
-          </div>
           <div class="old">
             <h2>Additional authorization required</h2>
             <form method="post" action="{{ url('users.login') }}"
@@ -189,50 +140,17 @@
       </div>
     {% endif %}
 
-    <svg height="0">
-      <mask id="tabMaskStart" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-        <rect width="1" height="1" x="0" y="0.5" fill="white" />
-        <circle cx="1" cy="0.5" r="0.5" fill="white" />
-        <circle cx="-.1" cy="0.4" r="0.6" />
-      </mask>
-      <mask id="tabMaskEnd" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-        <rect width="1" height="1" x="0" y="0.5" fill="white" />
-        <circle cx="0" cy="0.5" r="0.5" fill="white" />
-        <circle cx="1.1" cy="0.4" r="0.6" />
-      </mask>
-    </svg>
-
-    <style>
-      .tabnav span:before {
-        mask: url(#tabMaskStart);
-        -webkit-mask-box-image: url(#tabMaskEnd);
-      }
-      .tabnav span:after {
-        mask: url(#tabMaskEnd);
-        -webkit-mask-box-image: url(#tabMaskEnd);
-      }
-    </style>
-
     {% block dbgoverlay %}{% endblock %}
 
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      {# When bug 755694 is solved, expose the shim again. #}
-      {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
       {% if not logged %}
         {# We need Persona for only non-authenticated users. #}
-        <script async defer src="https://browserid.org/include.js"></script>
+        <script async defer src="https://login.persona.org/include.js"></script>
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
       {{ js('mkt/consumer') }}
-    {% endblock %}
-
-    {% block paypal_js %}
-      {% if logged %}
-        {# We need PayPal for only authenticated users. #}
-        <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
-      {% endif %}
     {% endblock %}
 
     {% block js %}{% endblock %}

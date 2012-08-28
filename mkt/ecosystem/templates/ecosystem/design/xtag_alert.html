@@ -41,10 +41,8 @@
 {% endblock %}
 
 {% block code_live %}
-  <x-alert data-fade-duration="500" data-secondary-text="Cancel">
-    <h3>Delete all contacts?</h3>
-    Contacts will be deleted forever!
-  </x-alert>
+  <a id="trigger-alert" class="button">Trigger</a>
+  <div id="demo-block"></div>
 {% endblock %}
 
 {% block related_links %}
