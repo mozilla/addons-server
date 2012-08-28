@@ -318,14 +318,14 @@ class TestUserLoginForm(UserFormBase):
         self.assertEqual(code, 302)
 
     def test_redirect_after_login_evil(self):
-        "http://foo.com is a bad value for redirection."
-        url = urlparams(self._get_login_url(), to="http://foo.com")
+        url = urlparams(self._get_login_url(), to='http://foo.com')
         with self.assertRaises(SuspiciousOperation):
             self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
 
-        url = urlparams(self._get_login_url(), to="/en-US/firefox",
-                domain="http://evil.com")
+    def test_redirect_after_login_domain(self):
+        url = urlparams(self._get_login_url(), to='/en-US/firefox',
+                        domain='http://evil.com')
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')

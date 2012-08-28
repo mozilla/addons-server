@@ -292,8 +292,6 @@ def _clean_next_url(request):
     gets = request.GET.copy()
     url = gets.get('to', settings.LOGIN_REDIRECT_URL)
 
-    gets['to'] = url
-
     parsed = urlparse(url)
     if ((parsed.scheme and parsed.scheme not in ['http', 'https'])
         or parsed.netloc):
@@ -301,10 +299,9 @@ def _clean_next_url(request):
 
     domain = gets.get('domain', None)
     if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        gets['to'] = "%s%s" % (settings.VALID_LOGIN_REDIRECTS[domain], url)
-    else:
-        gets['to'] = url
+        url = "%s%s" % (settings.VALID_LOGIN_REDIRECTS[domain], url)
 
+    gets['to'] = url
     request.GET = gets
     return request
 
