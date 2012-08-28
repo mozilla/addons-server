@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
+from django.core.exceptions import SuspiciousOperation
 from django.utils.http import int_to_base36
 
 from django.conf import settings
@@ -301,14 +302,14 @@ class TestUserLoginForm(UserFormBase):
         assert self.client.session.get_expiry_age() > age
 
     def test_redirect_after_login(self):
-        url = urlparams(self._get_login_url(), to="en-US/firefox/about")
+        url = urlparams(self._get_login_url(), to="/en-US/firefox/about")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
         self.assertRedirects(r, '/en-US/about')
 
         # Test a valid domain.  Note that assertRedirects doesn't work on
         # external domains
-        url = urlparams(self._get_login_url(), to="addon/new",
+        url = urlparams(self._get_login_url(), to="/addon/new",
                         domain="builder")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
@@ -319,9 +320,9 @@ class TestUserLoginForm(UserFormBase):
     def test_redirect_after_login_evil(self):
         "http://foo.com is a bad value for redirection."
         url = urlparams(self._get_login_url(), to="http://foo.com")
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+        with self.assertRaises(SuspiciousOperation):
+            self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
 
         url = urlparams(self._get_login_url(), to="/en-US/firefox",
                 domain="http://evil.com")
