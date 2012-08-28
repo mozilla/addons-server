@@ -174,6 +174,11 @@ class TestWebapp(TestCase):
         get_manifest_json.return_value = {'icons': {}}
         eq_(webapp.has_icon_in_manifest(), True)
 
+    def test_no_version(self):
+        webapp = Webapp()
+        eq_(webapp.get_manifest_json(), None)
+        eq_(webapp.current_version, None)
+
     def test_has_price(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         webapp._premium = mock.Mock()

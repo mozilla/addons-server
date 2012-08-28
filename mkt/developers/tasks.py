@@ -238,7 +238,7 @@ def fetch_icon(webapp, **kw):
     """
     log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
     manifest = webapp.get_manifest_json()
-    if not 'icons' in manifest:
+    if not manifest or not 'icons' in manifest:
         # Set the icon type to empty.
         webapp.update(icon_type='')
         return

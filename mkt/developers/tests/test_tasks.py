@@ -26,7 +26,7 @@ from files.models import FileUpload
 import mkt
 from mkt.developers import tasks
 from mkt.submit.tests.test_views import BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
 def test_resize_icon_shrink():
@@ -282,6 +282,10 @@ class TestFetchIcon(BaseWebAppTest):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         return self.post_addon()
+
+    def test_no_version(self):
+        app = Webapp()
+        eq_(tasks.fetch_icon(app), None)
 
     def test_no_icons(self):
         path = os.path.join(self.apps_path, 'noicon.webapp')

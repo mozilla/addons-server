@@ -214,7 +214,11 @@ class Webapp(Addon):
         return 'icons' in data
 
     def get_manifest_json(self):
-        file_path = self.get_latest_file().file_path
+        latest = self.get_latest_file()
+        if not latest:
+            return
+
+        file_path = latest.file_path
         try:
             if zipfile.is_zipfile(file_path):
                 zf = zipfile.ZipFile(file_path)
