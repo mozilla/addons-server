@@ -293,3 +293,15 @@ def admin_site_links():
 def external_href(url):
     t = 'target="_blank" href="%s"' % get_outgoing_url(unicode(url))
     return jinja2.Markup(t)
+
+
+@register.function
+@jinja2.contextfunction
+def get_login_link(context, to=None):
+    url = reverse('users.login')
+    # If to is given use that, otherwise get from request.
+    to = to or context['request'].GET.get('to')
+    # Don't allow loop backs to login.
+    if to == url:
+        to = None
+    return urlparams(url, to=to)

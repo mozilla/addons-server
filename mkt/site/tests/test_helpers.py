@@ -14,7 +14,7 @@ from market.models import AddonPremium, AddonPurchase
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
-from mkt.site.helpers import market_button, market_tile
+from mkt.site.helpers import get_login_link, market_button, market_tile
 
 
 class TestMarketButton(amo.tests.TestCase):
@@ -135,3 +135,18 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], False)
         eq_(data['package_url'], '')
+
+
+def test_login_link():
+    request = mock.Mock()
+    request.GET = {}
+    eq_(reverse('users.login'), get_login_link({'request': request}))
+
+    request.GET = {'to': '/login'}
+    eq_(reverse('users.login'), get_login_link({'request': request}))
+
+    request.GET = {'to': 'foo'}
+    eq_(urlparams(reverse('users.login'), to='foo'),
+        get_login_link({'request': request}))
+    eq_(urlparams(reverse('users.login'), to='bar'),
+        get_login_link({'request': request}, 'bar'))
