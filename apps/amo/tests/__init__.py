@@ -349,15 +349,21 @@ class TestCase(RedisTest, test_utils.TestCase):
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price)
 
-    def create_sample(self, **kw):
+    def create_sample(self, name=None, **kw):
+        if name is not None:
+            kw['name'] = name
         kw.setdefault('percent', 100)
         Sample.objects.create(**kw)
 
-    def create_switch(self, **kw):
+    def create_switch(self, name=None, **kw):
+        if name is not None:
+            kw['name'] = name
         kw.setdefault('active', True)
         Switch.objects.create(**kw)
 
-    def create_flag(self, **kw):
+    def create_flag(self, name=None, **kw):
+        if name is not None:
+            kw['name'] = name
         kw.setdefault('everyone', True)
         Flag.objects.create(**kw)
 

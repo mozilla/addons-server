@@ -15,6 +15,7 @@
     {#{{ l10n_menu(addon.default_locale) }}#}
     <h1>{{ title }}</h1>
   </header>
+  {{ disabled_payments_notice() }}
   <section class="primary payments island devhub-form" role="main">
     <form method="post" action="{{ addon.get_dev_url('payments') }}">
       {{ csrf() }}

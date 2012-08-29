@@ -124,9 +124,6 @@ class TestAppBreadcrumbs(AppHubTest):
 
 class TestAppDashboard(AppHubTest):
 
-    def setUp(self):
-        super(TestAppDashboard, self).setUp()
-
     def test_no_apps(self):
         Addon.objects.all().delete()
         r = self.client.get(self.url)
@@ -161,8 +158,7 @@ class TestAppDashboard(AppHubTest):
         eq_(doc('.more-actions-popup').length, 0)
 
     def test_action_links(self):
-        waffle.models.Switch.objects.get_or_create(name='app-stats',
-                                                   active=True)
+        self.create_switch('app-stats')
         app = self.get_app()
         app.update(public_stats=True)
         self.make_mine()
@@ -177,10 +173,25 @@ class TestAppDashboard(AppHubTest):
         amo.tests.check_links([('View Statistics', app.get_stats_url())],
             doc('a.stats-link'), verify=False)
 
+    def test_disabled_payments_action_links(self):
+        self.create_switch('app-stats')
+        self.create_switch('disabled-payments')
+        app = self.get_app()
+        app.update(public_stats=True)
+        self.make_mine()
+        doc = pq(self.client.get(self.url).content)
+        expected = [
+            ('Edit Listing', app.get_dev_url()),
+            ('Manage Authors', app.get_dev_url('owner')),
+            ('Manage Status', app.get_dev_url('versions')),
+            ('View Listing', app.get_url_path()),
+            ('View Statistics', app.get_stats_url()),
+        ]
+        amo.tests.check_links(expected, doc('a.action-link'), verify=False)
+
     def test_action_links_with_payments(self):
-        waffle.models.Switch.objects.create(name='allow-refund', active=True)
-        waffle.models.Switch.objects.create(name='in-app-payments',
-            active=True)
+        self.create_switch('allow-refund')
+        self.create_switch('in-app-payments')
         app = self.get_app()
         for status in [amo.ADDON_PREMIUM_INAPP, amo.ADDON_FREE_INAPP]:
             app.update(premium_type=status)
@@ -192,7 +203,22 @@ class TestAppDashboard(AppHubTest):
                 ('Manage PayPal', app.get_dev_url('paypal_setup')),
                 ('Manage Refunds', app.get_dev_url('refunds')),
             ]
+            eq_(doc('.status-link').length, 0)
             amo.tests.check_links(expected, doc('.more-actions-popup a'))
+
+    def test_disabled_payments_action_links_with_payments(self):
+        self.create_switch('allow-refund')
+        self.create_switch('in-app-payments')
+        self.create_switch('disabled-payments')
+        app = self.get_app()
+        for status in [amo.ADDON_PREMIUM_INAPP, amo.ADDON_FREE_INAPP]:
+            app.update(premium_type=status)
+            self.make_mine()
+            doc = pq(self.client.get(self.url).content)
+            status_link = doc('.status-link')
+            eq_(status_link.length, 1)
+            eq_(status_link.attr('href'), app.get_dev_url('versions'))
+            eq_(doc('.more-actions-popup').length, 0)
 
 
 class TestManageLinks(AppHubTest):

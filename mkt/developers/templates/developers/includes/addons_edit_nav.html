@@ -1,24 +1,28 @@
 {% set urls = [
   (addon.get_dev_url(), _('Edit Listing')),
   (addon.get_dev_url('owner'), _('Manage Authors')),
-  (addon.get_dev_url('payments'), _('Manage Payments')),
 ] %}
 {# TODO(cvan): Remove this when we fix/remove all the add-ons tests. #}
 {% if addon.is_webapp() %}
   {% do urls.append((addon.get_dev_url('versions'), _('Manage Status'))) %}
 {% endif %}
-{% if waffle.switch('allow-refund') and addon.needs_paypal() and
-      check_addon_ownership(request, addon, support=True) %}
-  {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
+{% if not waffle.switch('disabled-payments') or addon.is_premium() %}
+  {% do urls.append((addon.get_dev_url('payments'), _('Manage Payments'))) %}
 {% endif %}
-{% if addon.needs_paypal() %}
-  {% do urls.insert(4, (addon.get_dev_url('paypal_setup'), _('Manage PayPal'))) %}
-{% endif %}
-{% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
-      and waffle.switch('in-app-payments') %}
-  {% do urls.insert(4,
-    (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
-  ) %}
+{% if not waffle.switch('disabled-payments') %}
+  {% if waffle.switch('allow-refund') and addon.needs_paypal() and
+        check_addon_ownership(request, addon, support=True) %}
+    {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
+  {% endif %}
+  {% if addon.needs_paypal() %}
+    {% do urls.insert(4, (addon.get_dev_url('paypal_setup'), _('Manage PayPal'))) %}
+  {% endif %}
+  {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
+        and waffle.switch('in-app-payments') %}
+    {% do urls.insert(4,
+      (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
+    ) %}
+  {% endif %}
 {% endif %}
 {% if request.can_view_consumer %}
   {% do urls.append(

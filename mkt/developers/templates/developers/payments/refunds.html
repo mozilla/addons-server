@@ -68,6 +68,7 @@
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
+  {{ disabled_payments_notice() }}
   <section id="refunds" class="primary payments devhub-form" role="main">
     {% if not addon.needs_paypal() %}
       <div id="enable-payments" class="error item">

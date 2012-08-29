@@ -10,6 +10,7 @@
   {{ progress(request, addon=addon, step=step) }}
   <section id="submit-payments" class="primary">
     <h2>{{ title }}</h2>
+    {{ disabled_payments_notice() }}
     <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}

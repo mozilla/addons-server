@@ -197,3 +197,13 @@ def display_url(url):
     bytes = urllib.unquote(url)
     c = chardet.detect(bytes)
     return bytes.decode(c['encoding'], 'replace')
+
+
+@register.inclusion_tag('developers/helpers/disabled_payments_notice.html')
+@jinja2.contextfunction
+def disabled_payments_notice(context):
+    """
+    If payments are disabled, we show a friendly message urging the developer
+    to make his/her app free.
+    """
+    return {'request': context.get('request'), 'addon': context.get('addon')}

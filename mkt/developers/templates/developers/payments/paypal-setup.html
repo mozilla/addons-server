@@ -13,6 +13,7 @@
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
+  {{ disabled_payments_notice() }}
   <section class="primary payments devhub-form" role="main">
     {% if addon.paypal_id %}
     <div class="island">
