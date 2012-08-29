@@ -22,10 +22,17 @@ function fragmentFilter(el) {
         var $loading = $('<div>', {'class': 'loading-fragment'})
                         .prependTo($('#site-header'));
 
+        // Hijack <form> submission
         z.body.on('submit', 'form', function(e) {
-            e.preventDefault();
             var form = $(this);
-            var path = form.attr('action') + '?' + form.serialize();
+            // only trap GETs for now.
+            if (form.attr('method').toLowerCase() !== "get") return;
+            e.preventDefault();
+            var action = form.attr('action');
+            //strip existing queryparams off the action.
+            var link = document.createElement('a');
+            link.href = action;
+            var path = link.pathname + '?' + form.serialize();
             form.trigger('loadfragment', path);
         });
 
