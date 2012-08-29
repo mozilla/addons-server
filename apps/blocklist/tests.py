@@ -323,6 +323,21 @@ class BlocklistPluginTest(BlocklistTest):
         self.plugin.update(guid=amo.FIREFOX.guid, severity=1, min='1', max='2')
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
+        assert not vr.getAttribute('vulnerabilitystatus')
+
+        app = vr.getElementsByTagName('targetApplication')[0]
+        eq_(app.getAttribute('id'), amo.FIREFOX.guid)
+
+        vr = app.getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('minVersion'), '1')
+        eq_(vr.getAttribute('maxVersion'), '2')
+
+    def test_plugin_with_target_app_with_vulnerability(self):
+        self.plugin.update(guid=amo.FIREFOX.guid, severity=0, min='1', max='2',
+                           vulnerability_status=2)
+        vr = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('severity'), '0')
+        eq_(vr.getAttribute('vulnerabilitystatus'), '2')
 
         app = vr.getElementsByTagName('targetApplication')[0]
         eq_(app.getAttribute('id'), amo.FIREFOX.guid)
@@ -335,11 +350,29 @@ class BlocklistPluginTest(BlocklistTest):
         self.plugin.update(guid=None, severity=1)
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
+        assert not vr.getAttribute('vulnerabilitystatus')
         eq_(vr.getAttribute('minVersion'), '')
         eq_(vr.getAttribute('maxVersion'), '')
 
         eq_(vr.getElementsByTagName('targetApplication'), [],
             'There should not be a <targetApplication> if there was no app')
+
+    def test_plugin_without_severity_and_with_vulnerability(self):
+        self.plugin.update(guid=None, severity=0, vulnerability_status=1)
+        vr = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('severity'), '0')
+        eq_(vr.getAttribute('vulnerabilitystatus'), '1')
+        eq_(vr.getAttribute('minVersion'), '')
+        eq_(vr.getAttribute('maxVersion'), '')
+
+    def test_plugin_without_severity_and_with_vulnerability_and_minmax(self):
+        self.plugin.update(guid=None, severity=0, vulnerability_status=1,
+                           min='2.0', max='3.0')
+        vr = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('severity'), '0')
+        eq_(vr.getAttribute('vulnerabilitystatus'), '1')
+        eq_(vr.getAttribute('minVersion'), '2.0')
+        eq_(vr.getAttribute('maxVersion'), '3.0')
 
     def test_plugin_apiver_lt_3(self):
         self.plugin.update(severity='2')

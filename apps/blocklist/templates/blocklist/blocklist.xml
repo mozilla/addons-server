@@ -30,9 +30,9 @@
       {% if plugin.name %}<match name="name" exp="{{ plugin.name }}" />{% endif %}
       {% if plugin.description %}<match name="description" exp="{{ plugin.description }}" />{% endif %}
       {% if plugin.filename %}<match name="filename" exp="{{ plugin.filename }}" />{% endif %}
-      {% if plugin.severity or plugin.min or plugin.max %}
+      {% if plugin.severity or plugin.min or plugin.max or plugin.get_vulnerability_status %}
         {% if plugin.guid %}
-        <versionRange {{ attrs(severity=plugin.severity) }}>
+        <versionRange {{ attrs(severity=plugin.severity, vulnerabilitystatus=plugin.get_vulnerability_status) }}>
           {% if apiver > 2 and plugin.min and plugin.max %}
             <targetApplication id="{{ plugin.guid }}">
               <versionRange {{ attrs(minVersion=plugin.min, maxVersion=plugin.max) }} />
@@ -40,9 +40,11 @@
           {% endif %}
         </versionRange>
         {% elif apiver > 2 and plugin.min and plugin.max %}
-        <versionRange {{ attrs(severity=plugin.severity, minVersion=plugin.min, maxVersion=plugin.max) }}></versionRange>
+        <versionRange {{ attrs(severity=plugin.severity, minVersion=plugin.min, maxVersion=plugin.max, vulnerabilitystatus=plugin.get_vulnerability_status) }}></versionRange>
         {% elif plugin.severity and not (plugin.min or plugin.max) %}
         <versionRange {{ attrs(severity=plugin.severity) }}></versionRange>
+        {% elif plugin.vulnerability_status %}
+        <versionRange {{ attrs(severity=plugin.severity, vulnerabilitystatus=plugin.get_vulnerability_status) }}></versionRange>
         {% endif %}
       {% endif %}
     </pluginItem>

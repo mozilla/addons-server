@@ -91,6 +91,10 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
     description = models.CharField(max_length=255, blank=True, null=True)
     filename = models.CharField(max_length=255, blank=True, null=True)
     severity = models.SmallIntegerField(blank=True, null=True)
+    vulnerability_status = models.SmallIntegerField(blank=True, null=True,
+                                                    choices=
+                                                    ((1, 'update available'),
+                                                     (2, 'update unavailable')))
     details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta(amo.models.ModelBase.Meta):
@@ -99,6 +103,16 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s - %s' % (self.name or self.guid or self.filename,
                                     self.min, self.max)
+
+    @property
+    def get_vulnerability_status(self):
+        """Returns vulnerability status per bug 778365
+
+        Returns None when criteria aren't met so jinja2 excludes it from when
+        using the attrs filter.
+        """
+        if self.severity == 0 and self.vulnerability_status in (1,2):
+            return self.vulnerability_status
 
     def flush_urls(self):
         return ['/blocklist*']  # no lang/app
