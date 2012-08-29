@@ -7,7 +7,7 @@
   <dl>
     <dt>{{ _('Status') }}</dt>
     <dd>{{ amo.STATUS_CHOICES[product.status] }}
-      {% if product.in_rereview_queue() %}&middot; <b id="queue-rereview">{{ _('In rereview queue') }}</b>{% endif %}
+      {% if product.in_rereview_queue() %}&middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b>{% endif %}
       {% if product.in_escalation_queue() %}&middot; <b id="queue-escalation">{{ _('In escalation queue') }}</b>{% endif %}
     </dd>
     <dt>{{ _('Manifest URL') }}</dt>
