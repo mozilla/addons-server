@@ -138,6 +138,7 @@ z.page.on('fragmentloaded', function() {
 
         z.page.on('fragmentloaded', function() {
             z.body.removeClass('show-search');
+            $('#search-q').blur();
         });
         e.preventDefault();
     });
