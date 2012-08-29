@@ -20,48 +20,55 @@
   {{ mkt_breadcrumbs(product, crumbs) }}
   <section id="filters">
     <header class="classic-header">
-      <a href="#" class="header-button icon home left dismiss"><b></b></a>
+      <a href="#" class="header-button icon back left dismiss"><b></b></a>
+      <a href="#" class="header-button apply right">{{ _('Apply') }}</a>
       <h1>{{ _('Filter') }}</h1>
     </header>
 
-    <div>
-      {% if prices %}
-        <h2>{{ _('Filter by price') }}</h2>
-        <ul class="toggles c" id="filter-prices">
-          {% for price in prices %}
-            <li>
-              <a{% if price.selected %} class="sel"{% endif %}
-                 href="{{ search_url|urlparams(page=None,
-                                               **price.urlparams) }}">
-                {{ price.text }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+    <form action="{{ url('search.search') }}" method="get">
+      <div>
+        {% if prices %}
+          <h2>{{ _('Filter by price') }}</h2>
+          <ul class="toggles c" id="filter-prices">
+            {% for price in prices %}
+              <li>
+                <a{% if price.selected %} class="sel"{% endif %}
+                   href="{{ search_url|urlparams(page=None,
+                                                 **price.urlparams) }}">
+                  {{ price.text }}
+                </a>
+              </li>
+            {% endfor %}
+            <input type="hidden" name="price" value="">
+          </ul>
+        {% endif %}
 
-      {% if categories %}
-        <h2>{{ _('Filter by category') }}</h2>
-        <ul class="toggles c" id="filter-categories">
-          {% for category in categories %}
-            <li>
-              <a {% if category.selected %} class="sel"{% endif %}
-                 href="{{ search_url|urlparams(page=None,
-                                               **category.urlparams) }}">
-                {{ category.text }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+        {% if categories %}
+          <h2>{{ _('Filter by category') }}</h2>
+          <ul class="toggles c" id="filter-categories">
+            {% for category in categories %}
+              <li>
+                <a {% if category.selected %} class="sel"{% endif %}
+                   href="{{ search_url|urlparams(page=None,
+                                                 **category.urlparams) }}">
+                  {{ category.text }}
+                </a>
+              </li>
+            {% endfor %}
+            <input type="hidden" name="cat" value="">
+          </ul>
+        {% endif %}
 
-      {# TODO: This needs to be implemented. #}
-      <h2>{{ _('Sort by') }}</h2>
-      <ul class="toggles c" id="filter-sort">
-        <li><a href="#">Relevancy</a></li>
-        <li><a href="#" class="sel">Rating</a></li>
-      </ul>
-    </div>
+        {# We're not iterating over all the sort options on purpose. #}
+        <h2>{{ _('Sort by') }}</h2>
+        <ul class="toggles c" id="filter-sort">
+          <li><a href="#">{{ _('Relevancy') }}</a></li>
+          <li><a href="/search/?sort=rating" class="sel">
+            {{ _('Rating') }}</a></li>
+          <input type="hidden" name="sort" value="">
+        </ul>
+      </div>
+    </form>
   </section>
   <section id="search-results" class="full c">
     {% with search_url=search_url %}

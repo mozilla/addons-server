@@ -1,91 +1,39 @@
 @import 'lib';
 
-.no-results {
-    font-size: 24px;
-    font-weight: bold;
-    opacity: .5;
-    padding: 20px;
-    text-align: center;
+#search {
+    position: relative;
+    margin: 0;
+    max-width: 200px;
+    top: 10px;
+    margin-left: 15px;
+    float: right;
 }
 
-.vitals {
-    font-size: 11px;
-    span {
-        display: inline-block;
-        + .vital, + .rating {
-            &:before {
-                color: @note-gray;
-                content: "\00B7";
-            }
-        }
-    }
-    .downloads,
-    .price {
-        color: @green;
-    }
-    .price {
-        background: fadeOut(@green, 40%);
-        color: fadeOut(@white, 5%);
-        height: 16px;
-        font-weight: bold;
-        margin: 0 2px 0 8px;
-        padding: 0 4px 0 3px;
-        position: relative;
-        &:after {
-            border: 8px solid transparent;
-            border-right-color: fadeOut(@green, 40%);
-            content: "\00b0";  /* degree sign */
-            color: fadeOut(@white, 60%);
-            font-size: 8px;
-            line-height: 3px;
-            margin: 0 4px 0 -16px;
-            position: absolute;
-            text-indent: 5px;
-            top: 0;
-            left: 0;
-            height: 0;
-            width: 0;
-        }
+#search-q {
+    .border-radius(5px);
+    .box-shadow(0 1px 0 fadeOut(#fff, 80%),
+                0 1px 0 rgba(0,0,0,.5) inset,
+                0 1px 1px rgba(0,0,0,.5) inset);
+    .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), ~'8px 8px', no-repeat);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    color: lighten(#99abb9, 2%);
+    display: block;
+    font: 17px/30px @open-stack;
+    height: 30px;
+    outline: none;
+    padding: 0 5px 0 30px;
+    z-index: 2;
+    width: 185px;
+    &:focus {
+        .box-shadow(0 1px 1px rgba(0, 0, 0, 0.06) inset,
+                    0 0 8px rgba(80, 160, 220, 0.6));
+        color: @white;
     }
 }
 
-#search-results {
-    .width(10);
-}
-
-.selected > a {
-    color: @orange;
-}
-
-@media (max-width: @7col) {
-    #search-results {
-        float: none;
-        .width(7);
-    }
-}
-
-// Move this to lib.less if it's needed elsewhere.
-@subtext: #74828d;
-
-@media (max-width: @4col) {
-    #breadcrumbs {
-        display: none;
-    }
-    #search-results {
-        .width(4);
-    }
-    #page {
-        #search-results {
-            width: 100%;
-        }
-    }
-    #page #search-facets {
-        width: 100%;
-    }
-}
-
-@media (max-width: @3col) {
-    #search-results, #search-facets {
-        .width(3);
-    }
+.html-rtl #site-header #search-q {
+    background-position: 0 50%;
+    padding: 5px 15px 5px 50px;
 }
