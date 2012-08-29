@@ -17,18 +17,27 @@ from translations.helpers import truncate
 
 @jinja2.contextfunction
 @register.function
-def css(context, bundle, media=False, debug=settings.TEMPLATE_DEBUG):
+def css(context, bundle, media=False, debug=None):
+    if debug is None:
+        debug = settings.TEMPLATE_DEBUG
+
+    # ?debug=true gives you unminified CSS for testing on -dev/prod.
     if context['request'].GET.get('debug'):
         debug = True
+
     return jingo_minify_helpers.css(bundle, media, debug)
 
 
 @jinja2.contextfunction
 @register.function
-def js(context, bundle, debug=settings.TEMPLATE_DEBUG, defer=False,
-       async=False):
+def js(context, bundle, debug=None, defer=False, async=False):
+    if debug is None:
+        debug = settings.TEMPLATE_DEBUG
+
+    # ?debug=true gives you unminified JS for testing on -dev/prod.
     if context['request'].GET.get('debug'):
         debug = True
+
     return jingo_minify_helpers.js(bundle, debug, defer, async)
 
 
