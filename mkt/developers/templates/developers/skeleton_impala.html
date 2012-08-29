@@ -18,7 +18,7 @@
 
     <link href="{{ MEDIA_URL }}css/mkt/tabzilla.css" rel="stylesheet">
 
-    {{ css('mkt/devreg') }}
+    {{ css('mkt/devreg', debug=request.GET.get('debug')) }}
 
     {% block site_css %}
       <!--[if lt IE 9]>
@@ -129,7 +129,7 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      {{ js('mkt/devreg') }}
+      {{ js('mkt/devreg', debug=request.GET.get('debug')) }}
       {% if logged and not waffle.switch('disabled-payments') %}
         <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       {% endif %}
