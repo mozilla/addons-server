@@ -3,7 +3,7 @@ import datetime
 from django import forms
 
 import happyforms
-from tower import ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUpsell
@@ -12,6 +12,7 @@ from amo.utils import raise_required
 from apps.users.notifications import app_surveys
 from apps.users.models import UserNotification
 from files.models import FileUpload
+from files.utils import parse_addon
 from market.models import AddonPremium, Price
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
@@ -47,12 +48,20 @@ class NewWebappForm(happyforms.Form):
                                                 ' upload. Please try again.')})
 
     def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon', None)
         self.is_packaged = kw.pop('is_packaged', False)
         super(NewWebappForm, self).__init__(*args, **kw)
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
-        if not self.is_packaged:
+        if self.is_packaged:
+            pkg = parse_addon(upload, self.addon)
+            ver = pkg.get('version')
+            if (ver and self.addon and
+                self.addon.versions.filter(version=ver).exists()):
+                raise forms.ValidationError(
+                    _(u'Version %s already exists') % ver)
+        else:
             # Throw an error if this is a dupe.
             verify_app_domain(upload.name)  # JS sets manifest as `upload.name`.
         return upload

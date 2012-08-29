@@ -36,7 +36,6 @@ from bandwagon.models import Collection
 from files.helpers import copyfileobj
 from files.models import File, Platform
 from market.models import AddonPremium, Price, PriceCurrency
-from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 
 import mkt
@@ -371,6 +370,9 @@ class TestCase(RedisTest, test_utils.TestCase):
         """Creates group with rule, and adds user to group."""
         group = Group.objects.create(name='Test Group', rules=rules)
         GroupUser.objects.create(group=group, user=user_obj)
+
+    def days_ago(self, days):
+        return datetime.now() - timedelta(days=days)
 
 
 class AMOPaths(object):

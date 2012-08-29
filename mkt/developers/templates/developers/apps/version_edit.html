@@ -1,0 +1,57 @@
+{% extends 'developers/base_impala.html' %}
+{% from 'developers/includes/macros.html' import some_html_tip, tip %}
+
+{% set title = _('Manage Version') + ' %s' % version.version %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% macro status(msg) %}
+  <strong class="status {{ mkt_status_class(addon) }}">{{ msg }}</strong>
+{% endmacro %}
+
+{% block content %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+  <section id="edit-version" class="primary devhub-form manage">
+    <div class="island">
+      <form method="post">
+        {{ csrf() }}
+        <table>
+          <tr>
+            <th>
+              <label data-for="{{ form.releasenotes.auto_id }}">{{ _('Version Notes') }}
+              {{ tip(None, _('Information about changes in this release, new features,
+                              known bugs, and other useful information specific to this
+                              release/version. This information is also shown in the
+                              Apps Manager when updating.')) }}
+              </label>
+            </th>
+            <td>
+              {{ form.releasenotes.errors }}
+              {{ form.releasenotes }}
+              {{ some_html_tip() }}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="{{ form.approvalnotes.auto_id }}">{{ _('Notes for Reviewers') }}</label>
+              {{ tip(None, _('Optionally, enter any information that may be useful
+                              to the Reviewer reviewing this app, such as test
+                              account information.')) }}
+            </th>
+            <td>
+              {{ form.approvalnotes.errors }}
+              {{ form.approvalnotes }}
+            </td>
+          </tr>
+        </table>
+        <div class="listing-footer">
+          <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+          <a href="{{ addon.get_dev_url('versions') }}">{{ _('Cancel') }}</a>
+        </div>
+      </form>
+    </div>
+  </section>
+  {% include 'developers/includes/addons_edit_nav.html' %}
+{% endblock %}

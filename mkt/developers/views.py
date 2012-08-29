@@ -33,6 +33,7 @@ from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
+from devhub.forms import VersionForm
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -46,6 +47,7 @@ from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
+from versions.models import Version
 
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
@@ -54,6 +56,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   PreviewFormSet, RegionForm, trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
+from mkt.submit.forms import NewWebappForm
 from mkt.webapps.tasks import update_manifests, _update_manifest
 from mkt.webapps.models import Webapp
 
@@ -185,13 +188,24 @@ def publicise(request, addon_id, addon):
 @dev_required(webapp=True)
 def status(request, addon_id, addon, webapp=False):
     form = forms.AppAppealForm(request.POST, product=addon)
+    upload_form = NewWebappForm(request.POST or None, is_packaged=True,
+                                addon=addon)
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        messages.success(request, _('App successfully resubmitted.'))
-        return redirect(addon.get_dev_url('versions'))
+    if request.method == 'POST':
+        if 'resubmit-app' in request.POST and form.is_valid():
+            form.save()
+            messages.success(request, _('App successfully resubmitted.'))
+            return redirect(addon.get_dev_url('versions'))
 
-    ctx = {'addon': addon, 'webapp': webapp, 'form': form}
+        elif 'upload-version' in request.POST and upload_form.is_valid():
+            ver = Version.from_upload(upload_form.cleaned_data['upload'],
+                                      addon, [amo.PLATFORM_ALL])
+            log.info('[Webapp:%s] New version created id=%s from upload: %s'
+                     % (addon, ver.pk, upload_form.cleaned_data['upload']))
+            return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
+
+    ctx = {'addon': addon, 'webapp': webapp, 'form': form,
+           'upload_form': upload_form}
 
     if addon.status == amo.STATUS_REJECTED:
         try:
@@ -205,6 +219,20 @@ def status(request, addon_id, addon, webapp=False):
         ctx['rejection'] = entry and entry.activity_log
 
     return jingo.render(request, 'developers/apps/status.html', ctx)
+
+
+@dev_required
+def version_edit(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    form = VersionForm(request.POST or None, instance=version)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, _('Changes successfully saved.'))
+        return redirect(addon.get_dev_url('versions.edit', args=[version.pk]))
+
+    return jingo.render(request, 'developers/apps/version_edit.html', {
+        'addon': addon, 'version': version, 'form': form})
 
 
 @dev_required(owner_for_post=True, webapp=True)

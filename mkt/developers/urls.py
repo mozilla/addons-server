@@ -40,6 +40,10 @@ app_detail_patterns = patterns('',
     url('^publicise$', views.publicise, name='mkt.developers.apps.publicise'),
     url('^status$', views.status, name='mkt.developers.apps.versions'),
 
+    # TODO: '^versions/$'
+    url('^versions/(?P<version_id>\d+)$', views.version_edit,
+        name='mkt.developers.apps.versions.edit'),
+
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
     # PayPal-specific stuff.
     url('^paypal/', include(paypal_patterns('apps'))),

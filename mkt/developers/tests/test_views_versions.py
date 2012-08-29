@@ -3,8 +3,10 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from users.models import UserProfile
+
+from mkt.submit.tests.test_views import BasePackagedAppTest
 
 
 class TestAppStatus(amo.tests.TestCase):
@@ -79,7 +81,8 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#rejection blockquote').text(), comments)
 
         my_reply = 'fixed just for u, brah'
-        r = self.client.post(self.url, {'release_notes': my_reply})
+        r = self.client.post(self.url, {'release_notes': my_reply,
+                                        'resubmit-app': ''})
         self.assertRedirects(r, self.url, 302)
 
         webapp = self.get_webapp()
@@ -108,10 +111,65 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#version-list span.status-pending').length, 1)
         eq_(doc('#version-list span.status-public').length, 1)
         # Check version strings and order of versions.
-        eq_(map(lambda x: x.text, doc('#version-list h4')),
+        eq_(map(lambda x: x.text, doc('#version-list h4 a')),
             ['Version 2.0', 'Version 1.0'])
         # Check download url.
         eq_(doc('#version-list a.button.download').eq(0).attr('href'),
             self.webapp.versions.all()[0].all_files[0].get_url_path('devhub'))
         eq_(doc('#version-list a.button.download').eq(1).attr('href'),
             self.webapp.versions.all()[1].all_files[0].get_url_path('devhub'))
+
+
+class TestAddVersion(BasePackagedAppTest):
+
+    def setUp(self):
+        super(TestAddVersion, self).setUp()
+        self.app = amo.tests.app_factory(is_packaged=True,
+                                         version_kw=dict(version='1.0'))
+        self.url = self.app.get_dev_url('versions')
+        self.user = UserProfile.objects.get(username='regularuser')
+        AddonUser.objects.create(user=self.user, addon=self.app)
+
+    def _post(self, expected_status=200):
+        res = self.client.post(self.url, {'upload': self.upload.pk,
+                                          'upload-version': ''})
+        eq_(res.status_code, expected_status)
+        return res
+
+    def test_post(self):
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        self._post(302)
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+
+    def test_unique_version(self):
+        res = self._post(200)
+        self.assertFormError(res, 'upload_form', 'upload',
+                             'Version 1.0 already exists')
+
+
+class TestEditVersion(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.app = amo.tests.app_factory(is_packaged=True,
+                                         version_kw=dict(version='1.0'))
+        version = self.app.current_version
+        self.url = self.app.get_dev_url('versions.edit', [version.pk])
+        self.user = UserProfile.objects.get(username='regularuser')
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_post(self):
+        rn = u'Release Notes'
+        an = u'Approval Notes'
+        res = self.client.post(self.url, {'releasenotes': rn,
+                                          'approvalnotes': an})
+        eq_(res.status_code, 302)
+        ver = self.app.versions.latest()
+        eq_(ver.releasenotes, rn)
+        eq_(ver.approvalnotes, an)

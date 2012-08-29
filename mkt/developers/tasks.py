@@ -79,12 +79,6 @@ def file_validator(file_id, **kw):
 def run_validator(file_path):
     """A pre-configured wrapper around the app validator."""
 
-    # TODO(Kumar) remove this when validator is fixed, see bug 620503
-    from validator.testcases import scripting
-    scripting.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
-    import validator.constants
-    validator.constants.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
-
     with statsd.timer('mkt.developers.validator'):
         is_packaged = zipfile.is_zipfile(file_path)
         if is_packaged:
@@ -93,7 +87,8 @@ def run_validator(file_path):
             with statsd.timer('mkt.developers.validate_packaged_app'):
                 return validate_packaged_app(file_path,
                     market_urls=settings.VALIDATOR_IAF_URLS,
-                    timeout=settings.VALIDATOR_TIMEOUT)
+                    timeout=settings.VALIDATOR_TIMEOUT,
+                    spidermonkey=settings.SPIDERMONKEY)
         else:
             log.info(u'Running `validate_app` for path: %s' % (file_path))
             with statsd.timer('mkt.developers.validate_app'):

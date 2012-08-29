@@ -69,7 +69,7 @@
               </p>
             {% endif %}
             {{ form_field(form.release_notes, opt=True) }}
-            <p><button type="submit">{{ _('Resubmit App') }}</button></p>
+            <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
           </form>
         {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
           <form method="post" action="{{ addon.get_dev_url('publicise') }}">
@@ -103,7 +103,7 @@
           <ul id="version-list">
             {% for version in versions %}
               <li>
-                <h4>Version {{ version.version }}</h4>
+                <h4><a href="{{ addon.get_dev_url('versions.edit', [version.pk]) }}">Version {{ version.version }}</a></h4>
                 <small>
                   {% if addon.disabled_by_user %}
                     <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
@@ -113,7 +113,7 @@
                 </small>
                 <small>Submitted <span title="{{ version.created|isotime }}">{{ version.created|datetime }}</span></small>
                 <div class="buttons">
-                  <a href="{{ version.all_files[0].get_url_path('devhub') }}" class="button download">Download</a>
+                  <a href="{{ version.all_files[0].get_url_path('devhub') }}" class="button download">{{ _('Download') }}</a>
                   {# TODO: Install and delete buttons #}
                 </div>
               </li>
@@ -121,6 +121,29 @@
           </ul>
         </div>
       {% endif %}
+
+      <h2>{{ _('Upload New Version') }}</h2>
+      <div class="island">
+        <form method="post" id="create-addon" class="item">
+          {{ csrf() }}
+          <p>
+          {% trans %}
+            Use the fields below to upload your packaged app. After upload, a
+            series of automated validation tests will be run on your file.
+          {% endtrans %}
+          </p>
+          <div id="submit-upload upload-file">
+            <div class="hidden">{{ upload_form.upload }}</div>
+            <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload') }}">
+            {{ upload_form.errors }}
+            <div class="submission-buttons addon-submission-field">
+              <button class="prominent addon-upload-dependant" disabled id="submit-upload-file-finish" type="submit" name="upload-version">
+                {{ _('Continue') }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     {% endif %}
 
   </section>
