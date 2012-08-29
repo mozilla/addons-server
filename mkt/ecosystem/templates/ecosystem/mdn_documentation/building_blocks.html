@@ -14,12 +14,16 @@
     {% include 'ecosystem/mdn_documentation/design_nav.html' %}
 
     <article class="marketing-block">
-      <h1>Building Blocks</h1>
+      <h1>{{ _('Building Blocks') }}</h1>
 
-      <p>X-tags are custom HTML elements that give you a collection of
-        building blocks for developing HTML5 apps. If you don't see the
-        component you need, you can deﬁne your own x-tag and use it like
-        any other native HTML tag. Interactive examples included.</p>
+      <p>
+        {%- trans %}
+          X-tags are custom HTML elements that give you a collection of
+          building blocks for developing HTML5 apps. If you don't see the
+          component you need, you can deﬁne your own x-tag and use it like
+          any other native HTML tag. Interactive examples included.
+        {% endtrans -%}
+      </p>
 
       {%  include 'ecosystem/mdn_documentation/xtag_links.html' %}
     </article>

@@ -191,14 +191,21 @@ def _fetch_mdn_page(url):
         # We only want anchors that have an href attribute available.
         external_links = anchors.filter(lambda i: pq(this).attr('href'))
         external_links.each(lambda e: e.attr('target', '_blank'))
+        # PyQuery doesn't like the idea of filtering like
+        # external_links.filter('a[href^="/"'), so we'll just do as they
+        # suggest for now.
         mdn_links = external_links.filter(
-            lambda i: str(pq(this).attr('href')).startswith('/'))
+            lambda i: str(pq(this).attr('href')).startswith('/')
+        )
         mdn_links.each(lambda e: e.attr(
             'href', 'https://developer.mozilla.org%s' % e.attr('href'))
         )
 
     if images:
-        images.each(lambda e: e.attr(
+        image_links = images.filter(
+            lambda i: str(pq(this).attr('src')).startswith('/')
+        )
+        image_links.each(lambda e: e.attr(
             'src', 'https://developer.mozilla.org%s' % e.attr('src'))
         )
 

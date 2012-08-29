@@ -32,7 +32,6 @@ def building_xtag(request, xtag=None):
     are not yet on MDN. Once they are officially on there, then we can pull
     everything directly from the database instead.
     """
-
     if not xtag:
         xtag = 'list'
 
