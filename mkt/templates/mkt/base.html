@@ -26,7 +26,7 @@
           href="{{ MEDIA_URL }}img/mkt/logos/32.png" sizes="32x32">
 
     {% block site_css %}
-      {{ css('mkt/consumer', debug=request.GET.get('debug')) }}
+      {{ css('mkt/consumer') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
@@ -168,7 +168,7 @@
         <script async defer src="https://login.persona.org/include.js"></script>
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
-      {{ js('mkt/consumer', debug=request.GET.get('debug')) }}
+      {{ js('mkt/consumer') }}
     {% endblock %}
 
     {% block paypal_js %}

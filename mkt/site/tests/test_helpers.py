@@ -14,7 +14,8 @@ from market.models import AddonPremium, AddonPurchase
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
-from mkt.site.helpers import get_login_link, market_button, market_tile
+from mkt.site.helpers import (css, get_login_link, js, market_button,
+                              market_tile)
 
 
 class TestMarketButton(amo.tests.TestCase):

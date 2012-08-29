@@ -1,6 +1,9 @@
 import json
 
+from django.conf import settings
+
 from jingo import register, env
+from jingo_minify import helpers as jingo_minify_helpers
 import jinja2
 from tower import ugettext as _
 import waffle
@@ -10,6 +13,23 @@ from amo.helpers import urlparams
 from amo.urlresolvers import reverse, get_outgoing_url
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
+
+
+@jinja2.contextfunction
+@register.function
+def css(context, bundle, media=False, debug=settings.TEMPLATE_DEBUG):
+    if context['request'].GET.get('debug'):
+        debug = True
+    return jingo_minify_helpers.css(bundle, media, debug)
+
+
+@jinja2.contextfunction
+@register.function
+def js(context, bundle, debug=settings.TEMPLATE_DEBUG, defer=False,
+       async=False):
+    if context['request'].GET.get('debug'):
+        debug = True
+    return jingo_minify_helpers.js(bundle, debug, defer, async)
 
 
 def new_context(context, **kw):
