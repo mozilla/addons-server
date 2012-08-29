@@ -413,11 +413,12 @@ class Webapp(Addon):
         FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
         qs = (FeaturedApp.objects
               .filter(app__status=amo.STATUS_PUBLIC,
-                      app__disabled_by_user=False,
-                      start_date__lte=cls.now(),
-                      end_date__gte=cls.now()
-                      )
+                      app__disabled_by_user=False)
               .order_by('-app__weekly_downloads'))
+        qs = (qs.filter(start_date__lte=cls.now())
+            | qs.filter(start_date__isnull=True))
+        qs = (qs.filter(end_date__gte=cls.now())
+            | qs.filter(end_date__isnull=True))
 
         if isinstance(cat, list):
             qs = qs.filter(category__in=cat)
