@@ -1,8 +1,13 @@
 (function() {
 
     var overlay = $('#pay'),
-        paymentsTemplate = template($('#pay-template').html()),
-        product,
+        paymentsTemplate = getTemplate($('#pay-template'));
+
+    if (!paymentsTemplate) {
+        return;
+    }
+
+    var product,
         purchaseInProgress = true,
         $def,
         message = $('#purchased-message'),

@@ -83,6 +83,14 @@ function makeOrGetOverlay(id) {
     return $(el);
 }
 
+function getTemplate($el) {
+    // If the element exists, return the template.
+    if ($el.length) {
+        return template($el.html());
+    }
+    // Otherwise, return undefined.
+}
+
 // Initializes character counters for textareas.
 function initCharCount() {
     var countChars = function(el, cc) {

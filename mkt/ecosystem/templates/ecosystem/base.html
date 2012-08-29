@@ -1,7 +1,7 @@
 {% if request.is_ajax() and not SKIP_FRAGMENT %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
-{% set logged = False %}
+{% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}"
   {% if settings.USE_APPCACHE and OFFLINE_MANIFEST %}
@@ -107,7 +107,7 @@
       </footer>
     {% endblock %}
 
-    {% if logged %}
+    {% if not logged %}
       <div id="login" class="overlay">
         <section>
           <div class="old">

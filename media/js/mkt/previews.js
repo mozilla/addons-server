@@ -1,7 +1,11 @@
 (function() {
 
-    var sliderTemplate = template($('#preview-tray').html());
-    var previewTemplate = template($('#single-preview').html());
+    var sliderTemplate = getTemplate($('#preview-tray'));
+    var previewTemplate = getTemplate($('#single-preview'));
+
+    if (!sliderTemplate || !previewTemplate) {
+        return;
+    }
 
     z.page.on('dragstart', function(e) {
         e.preventDefault();
