@@ -18,6 +18,7 @@
 
 {% block content %}
 <section id="devhub-sidebar" class="secondary devhub-sidebar">
+  {% if not recent_addons %}
   <div class="item">
     <h3>{{ _('Calling All Add-ons!') }}</h3>
     <p>
@@ -27,15 +28,57 @@
     </p>
     <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
   </div>
-  {% if amo_user.is_developer %}
-    <div id="editor-promo" class="item">
-      <h3>{{ _('AMO Editors') }}</h3>
-      <p>
-        {{ _('Get ahead! Become an AMO Editor today and get your add-ons reviewed faster.') }}
-      </p>
-      <p><a href="https://wiki.mozilla.org/AMO:Editors" class="button">
-        {{ _('Become an Editor') }}</a></p>
+  {% else %}
+  <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
+  <div id="my-addons" class="item">
+    <h3>{{ _('My Addons') }}</h3>
+    {% for item in recent_addons %}
+    <div class="addon-item">
+      <div class="addon-details">
+        <p>
+          <a class="addon-name" href="{{ item.addon.get_dev_url('edit') }}">
+            <img class="addon-icon" src="{{ item.addon.icon_url }}">
+            <strong>{{ item.addon.name }}</strong>
+          </a>
+        </p>
+        <p>
+          <strong>{{ _('Status:') }}</strong>
+          <span class="{{ status_class(item.addon) }}"><b>{{ amo.STATUS_CHOICES[item.addon.status] }}</b></span>
+        </p>
+        {% if item.addon.current_version %}
+        <p>
+          <strong>{{ _('Latest Version:') }}</strong>
+          <a href="{{ item.addon.current_version.get_url_path() }}">
+            {{ item.addon.current_version.version }}
+          </a>
+        </p>
+        {% endif %}
+        {% if item.position %}
+        <p>
+          <strong>{{ _('Queue Position:') }}</strong>
+          {% trans position=item.position.pos|numberfmt,
+                   total=item.position.total|numberfmt %}
+            {{ position }} of {{ total }}
+          {% endtrans %}
+        </p>
+        {% endif %}
+        <p class="upload-new-version">
+          <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
+            {{ _('Upload New Version') }}</a>
+        </p>
+      </div>
     </div>
+    {% endfor %}
+    <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
+  </div>
+  <div id="editor-promo" class="item">
+    <h3>{{ _('AMO Editors') }}</h3>
+    <p>
+      {{ _('Get ahead! Become an AMO Editor today and get your add-ons reviewed faster.') }}
+    </p>
+    <p><a href="https://wiki.mozilla.org/AMO:Editors" class="button">
+      {{ _('Become an Editor') }}</a></p>
+  </div>
   {% endif %}
   {% include "devhub/includes/blog_posts.html" %}
 </section>

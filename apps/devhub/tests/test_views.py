@@ -1401,7 +1401,7 @@ class TestDelete(amo.tests.TestCase):
 
 
 class TestHome(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -1419,6 +1419,43 @@ class TestHome(amo.tests.TestCase):
         Addon.objects.all().delete()
         # Regular users (non-devs) should not see this promo.
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 0)
+
+    def test_my_addons(self):
+        addon = Addon.objects.get(id=3615)
+        
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
+                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
+                    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
+
+        for addon_status in statuses:
+            addon.status = addon_status[0]
+            addon.save()
+
+            file = addon.latest_version.files.all()[0]
+            file.status = addon_status[1]
+            file.save()
+        
+        self.client.login(email='del@icio.us', password='password')
+        doc = self.get_pq()
+        addon_item = doc('#my-addons .addon-item')
+        eq_(addon_item.length, 1)
+        eq_(addon_item.find('.addon-name').attr('href'),
+            addon.get_dev_url('edit'))
+        eq_(addon_item.find('p').eq(2).find('a').attr('href'),
+            addon.current_version.get_url_path())
+        eq_('Queue Position: 1 of 1', addon_item.find('p').eq(3).text())
+        eq_(addon_item.find('p').eq(4).find('a').attr('href'),
+            addon.get_dev_url('versions') + '#version-upload')
+
+        addon.status = statuses[1][0]
+        addon.save()
+        doc = self.get_pq()
+        addon_item = doc('#my-addons .addon-item')
+        eq_('Status: ' + unicode(amo.STATUS_CHOICES[addon.status]),
+            addon_item.find('p').eq(1).text())
+
+        Addon.objects.all().delete()
+        eq_(self.get_pq()('#my-addons').length, 0)
 
 
 class TestActivityFeed(amo.tests.TestCase):

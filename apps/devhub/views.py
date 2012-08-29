@@ -100,8 +100,17 @@ def index(request):
     if settings.APP_PREVIEW:
         # This can be a permanent redirect when we finalize devhub for apps.
         return redirect('devhub.apps')
-    return jingo.render(request, 'devhub/index.html',
-                        {'blog_posts': _get_posts()})
+
+    ctx = {'blog_posts': _get_posts()}
+    if request.amo_user:
+        user_addons = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
+        recent_addons = user_addons.order_by('-modified')[:3]
+        ctx['recent_addons'] = []
+        for addon in recent_addons:
+            ctx['recent_addons'].append({'addon': addon,
+                                         'position': get_position(addon)})
+
+    return jingo.render(request, 'devhub/index.html', ctx)
 
 
 @login_required

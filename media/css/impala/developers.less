@@ -13,17 +13,62 @@
             line-height: 40px;
         }
     }
-    #page #masthead .site-title {
-        margin-top: -10px;
+    #page {
+        #masthead .site-title {
+            margin-top: -10px;
+        }
+        #homepage {
+            margin-right: 240px;
+        }
+        #devhub-sidebar {
+            width: 220px;
+        }
     }
     &.apps #page #masthead .site-title {
         margin-top: 0;
     }
 }
 
+.status-none b {
+    color: #999;
+}
+
+.status-lite-nom i,
+.status-nominated b,
+.status-unreviewed b {
+    font-style: normal;
+    color: #3e7987;
+}
+
+.status-incomplete b,
+.status-disabled b,
+.status-admin-disabled b,
+.status-purgatory b {
+    color: #851006;
+}
+
+.status-fully-approved b,
+.status-lite b,
+.status-lite-nom b {
+    color: #329902;
+}
+
 .html-rtl.developer-hub {
     .menu-nav {
         margin-right: 0;
+    }
+    #page #homepage {
+        margin: 0 0 0 240px;
+    }
+    .secondary.devhub-sidebar {
+        .addon-item {
+            .addon-details {
+                margin: 0 38px 10px 0;
+            }
+            img {
+                right: 0;
+            }
+        }
     }
 }
 
@@ -210,6 +255,9 @@
 }
 
 .devhub-sidebar {
+    p {
+        padding: 0;
+    }
     border-bottom: 1px solid #ccc;
     div.item {
         border-top: 1px solid #ccc;
@@ -251,6 +299,46 @@
         color: @note-gray;
         font-size: 10px;
         margin-top: 0.15em;
+    }
+}
+
+.secondary.devhub-sidebar {
+    .addon-item {
+        position: relative;
+        padding: 4px;
+        padding-bottom: 10px;
+        border-bottom: 1px dotted lighten(@border-blue, 7%);
+        margin-bottom: 5px;
+        .addon-name,
+        .upload-new-version a {
+            display: block;
+        }
+        img {
+            position: absolute;
+            top: 5px;
+            left: 0;
+        }
+        .addon-details {
+            margin-left: 38px;
+            font-size: 12px;
+        }
+        p {
+            margin-bottom: 0;
+        }
+        .more {
+            padding: 3px;
+        }
+        .upload-new-version {
+            font-size: 11px;
+            font-weight: bold;
+        }
+    }
+    .button {
+        display: block;
+    }
+    #link-view-all {
+        display: block;
+        margin-top: 12px;
     }
 }
 
