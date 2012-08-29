@@ -39,3 +39,7 @@ users_patterns = patterns('',
     url(r'''(?P<username>[^/<>"']+)$''', views.profile,
         name='users.profile'),
 )
+
+abuse_patterns = patterns('',
+    url(r'^abuse$', views.abuse, name='users.abuse')
+)

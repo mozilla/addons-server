@@ -12,6 +12,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
 
+from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 import amo
 import amo.tests
@@ -829,3 +830,33 @@ class TestPurchases(PurchaseBase):
             "Expected '.item' to have 'reversed' class")
         assert not item.find('a.request-support'), (
             "Unexpected 'Request Support' link")
+
+
+class TestAbuse(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.url = reverse('users.abuse', args=[self.user.pk])
+
+    def test_add(self):
+        self.client.login(username='editor@mozilla.com', password='password')
+        res = self.client.post(self.url, data={'text':'test'})
+        eq_(res.status_code, 302)
+        eq_(AbuseReport.objects.filter(user=self.user).count(), 1)
+
+    @mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    def test_no_recaptcha(self):
+        res = self.client.post(self.url, data={'text':'test'})
+        eq_(res.status_code, 200)
+        self.assertFormError(res, 'abuse_form', 'recaptcha',
+                             'This field is required.')
+
+    @mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @mock.patch('captcha.fields.ReCaptchaField.clean')
+    def test_recaptcha(self, clean):
+        clean.return_value = ''
+        res = self.client.post(self.url, data={'text':'test', 'recaptcha': '',
+                                               'recaptcha_shown': ''})
+        eq_(res.status_code, 302)
+        eq_(AbuseReport.objects.filter(user=self.user).count(), 1)

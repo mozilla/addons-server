@@ -9,7 +9,8 @@ import amo
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
-from mkt.account.urls import (purchases_patterns, settings_patterns,
+from mkt.account.urls import (abuse_patterns, purchases_patterns,
+                              settings_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.developers.views import login
 from mkt.purchase.urls import bluevia_services_patterns
@@ -66,6 +67,8 @@ urlpatterns = patterns('',
     # Support (e.g., refunds, FAQs).
     ('^support/', include('mkt.support.urls')),
 
+    # Override the legacy abuse page for one that works.
+    ('^user/(?P<user_id>\d+)/', include(abuse_patterns)),
     # Users (Legacy).
     ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
     ('^users/', include(users_users_patterns)),

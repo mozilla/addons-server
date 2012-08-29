@@ -6,13 +6,16 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 from commonware.response.decorators import xframe_allow
 import jingo
+from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 import waffle
 
+from abuse.models import send_abuse_report
 from access import acl
 import amo
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
+from amo.forms import AbuseForm
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import paginate
@@ -286,3 +289,20 @@ def activity_log(request, userid):
     all_apps = request.amo_user.addons.filter(type=amo.ADDON_WEBAPP)
     return jingo.render(request, 'account/activity.html',
                         {'log': _get_items(None, all_apps)})
+
+
+@anonymous_csrf_exempt
+def abuse(request, user_id):
+    user = get_object_or_404(UserProfile, pk=user_id)
+    form = AbuseForm(request.POST or None, request=request)
+    if request.method == 'POST' and form.is_valid():
+        send_abuse_report(request, user, form.cleaned_data['text'])
+        messages.success(request, _('Abuse reported.'))
+        # We don't have a profile page to redirect back to. Once the abuse
+        # is reported, that would be the place I'd recommend redirecting
+        # back to.
+        return redirect('/')
+    else:
+        return jingo.render(request, 'account/abuse.html',
+                            {'user': user, 'abuse_form': form})
+

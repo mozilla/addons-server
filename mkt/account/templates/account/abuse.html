@@ -2,8 +2,8 @@
 
 {% set title = _('Report Abuse') %}
 {% block title %}
-  {# L10n: {0} is the name of the app. #}
-  {{ mkt_page_title(_('Report abuse for {0}')|f(product.name)) }}
+  {# L10n: {0} is the name of the user. #}
+  {{ mkt_page_title(_('Report abuse for {0}')|f(user.name)) }}
 {% endblock %}
 
 {% block content %}
@@ -13,12 +13,10 @@
       <h1>{{ title }}</h1>
       <p>
         <label id="recap-label" for="{{ abuse_form.text.auto_id }}">
-          {% trans policies_url='https://developer.mozilla.org/en/Apps/'
-                                'Marketplace_Review' %}
-            If you suspect this app violates
-            <a target="_blank" href="{{ policies_url }}">our policies</a> or has security or
-            privacy issues, please use the form below to describe your
-            concerns. Please do not use this form for any other reason.
+          {% trans %}
+            If you suspect this user violates our policies, please use the
+            form below to describe your concerns. Please do not use this form
+            for any other reason.
           {% endtrans %}
         </label>
       </p>
@@ -26,7 +24,8 @@
         {% include 'site/helpers/abuse.html' %}
         <p class="form-footer">
           <button type="submit">{{ _('Send Report') }}</button> {{ _('or') }}
-          <a href="{{ product.get_detail_url() }}">{{ _('Cancel') }}</a>
+          {# TODO: bounce to somewhere more useful #}
+          <a href="/">{{ _('Cancel') }}</a>
         </p>
       </form>
     </div>
