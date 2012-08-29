@@ -5,6 +5,7 @@ from urlparse import urlparse
 from django import http
 from django.conf import settings
 from django.core.exceptions import SuspiciousOperation
+from django.core.urlresolvers import NoReverseMatch
 from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
@@ -400,7 +401,10 @@ def _login(request, template=None, data=None, dont_redirect=False):
         request = _clean_next_url(request)
 
     if request.user.is_authenticated():
-        return redirect(request.GET.get('to', settings.LOGIN_REDIRECT_URL))
+        try:
+            return redirect(request.GET.get('to', settings.LOGIN_REDIRECT_URL))
+        except NoReverseMatch:
+            return redirect(reverse('home'))
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None

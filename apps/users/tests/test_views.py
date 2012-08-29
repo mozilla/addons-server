@@ -467,6 +467,11 @@ class TestLogin(UserViewBase):
         r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
         self.assertRedirects(r, '/de/firefox/')
 
+    def test_no_reverse(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        r = self.client.get(self.url + "?to='", follow=True)
+        self.assertRedirects(r, '/en-US/firefox/')
+
     def test_bad_redirects(self):
         r = self.client.post(self.url, self.data, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
