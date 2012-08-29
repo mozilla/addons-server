@@ -77,6 +77,13 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['isPurchased'], True)
 
+    def test_is_premium_disabled(self):
+        self.make_premium(self.webapp)
+        self.create_switch(name='disabled-payments')
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disable' in cls, 'Unexpected: %r' % cls
+
     def test_xss(self):
         nasty = '<script>'
         escaped = '&lt;script&gt;'

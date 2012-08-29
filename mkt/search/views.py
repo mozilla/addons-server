@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 
 import jingo
 from tower import ugettext as _
+import waffle
 
 import amo
 import amo.utils
@@ -52,7 +53,9 @@ def _filter_search(qs, query, filters=None, sorting=None,
         qs = qs.query(or_=name_query(query['q'].lower()))
     if 'cat' in show:
         qs = qs.filter(category=query['cat'])
-    if 'price' in show:
+    if waffle.switch_is_active('disabled-payments'):
+        qs = qs.filter(premium_type__in=amo.ADDON_FREES, price=0)
+    elif 'price' in show:
         if query['price'] == 'paid':
             qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
         elif query['price'] == 'free':

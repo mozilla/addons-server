@@ -10,7 +10,6 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import AddonCategory, AddonDeviceType, Category
-from amo.helpers import numberfmt
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from search.tests.test_views import TestAjaxSearch
@@ -146,6 +145,14 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(res.status_code, 200)
         assert 'Bad Cats' not in res.content, (
             'Category of unreviewed apps should not show up in facets.')
+
+    def test_hide_paid_apps_when_disabled(self):
+        self.create_switch(name='disabled-payments')
+        self.setup_paid()
+        self.refresh()
+        rs = self.client.get(self.url)
+        eq_(set(rs.context['pager'].object_list),
+            set(self.free))
 
     def check_price_filter(self, price, selected, type_=None):
         self.setup_paid(type_=type_)
@@ -375,6 +382,13 @@ class TestSuggestions(TestAjaxSearch):
             'q=app&category=%d' % self.c1.id, addons=[self.w1])
         self.check_suggestions(self.url,
             'q=app&category=%d' % self.c2.id, addons=[self.w2])
+
+    def test_hide_paid_apps_when_disabled(self):
+        self.create_switch(name='disabled-payments')
+        self.w1.update(premium_type=amo.ADDON_PREMIUM)
+        self.refresh()
+        self.check_suggestions(self.url,
+            'q=app&category=', addons=[self.w2])
 
     def test_region_exclusions(self):
         self.skip_if_disabled(settings.REGION_STORES)

@@ -73,6 +73,8 @@ def market_button(context, product, receipt_type=None):
         }
         if product.is_premium() and product.premium:
             classes.append('premium')
+            if waffle.switch_is_active('disabled-payments'):
+                classes.append('disabled')
         if not product.is_premium() or purchased:
             classes.append('install')
             label = _('Install')

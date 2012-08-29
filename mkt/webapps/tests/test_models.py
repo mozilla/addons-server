@@ -12,12 +12,13 @@ import waffle
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, Preview)
 import amo
-from amo.tests import app_factory, TestCase, WebappTestCase
+from amo.tests import app_factory, ESTestCase, TestCase, WebappTestCase
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from files.models import File
 from users.models import UserProfile
 from versions.models import Version
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 import mkt
 from mkt.reviewers.models import RereviewQueue
@@ -327,6 +328,31 @@ class TestWebappManager(TestCase):
         # And user-disabled.
         w.update(disabled_by_user=True)
         self.listed_eq()
+
+
+class TestDisabledPayments(ESTestCase):
+
+    def setUp(self):
+        self.create_switch(name='disabled-payments')
+        wa = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                   premium_type=amo.ADDON_PREMIUM,
+                                   disabled_by_user=False)
+        now = datetime.now()
+        fa = FeaturedApp.objects.create(app=wa,
+                                        start_date=now - timedelta(days=1),
+                                        end_date=now + timedelta(days=1))
+        FeaturedAppRegion.objects.create(featured_app=fa,
+                                         region=mkt.regions.WORLDWIDE.id)
+        self.refresh()
+
+    def test_disable_paid_featured_apps(self):
+        eq_(list(Webapp.featured(region=mkt.regions.WORLDWIDE)), [])
+
+    def test_disable_paid_popular_apps(self):
+        eq_(list(Webapp.popular(region=mkt.regions.WORLDWIDE)), [])
+
+    def test_disable_paid_latest_apps(self):
+        eq_(list(Webapp.latest(region=mkt.regions.WORLDWIDE)), [])
 
 
 class TestManifest(BaseWebAppTest):
