@@ -12,6 +12,14 @@
   <p>
     <label>Status:</label> {{ form.status }}<br>
     <label>Highest:</label> {{ form.highest_status }}<br>
+    <label>In queues:</label>
+    {% if addon.in_escalation_queue() %}
+      <a href="{{ url('reviewers.apps.queue_escalated') }}">escalation</a>
+    {% endif %}
+    {% if addon.in_rereview_queue() %}
+      <a href="{{ url('reviewers.apps.queue_rereview') }}">rereview</a>
+    {% endif %}
+    <br/>
   </p>
   {% if versions %}
   <h3>Versions &amp; Files</h3>
