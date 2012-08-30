@@ -23,8 +23,6 @@
 
         $myUL.find('a').removeClass('sel');
 
-        // This isn't ideal as it relies on specific GET param names.
-        // This will break if we rename &sort= to &snort= etc.
         if ($myUL[0].id == 'filter-prices') {
             val = vars.price || '';
         } else if ($myUL[0].id == 'filter-categories') {
@@ -37,7 +35,7 @@
     }
 
     // Apply filters button.
-    $('#filters .header-button.apply').click(_pd(function() {
+    z.page.on('click', '#filters .header-button.apply', _pd(function() {
         $('#filters form').submit();
     }));
 

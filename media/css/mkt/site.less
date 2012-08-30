@@ -31,16 +31,19 @@ body {
     overflow-x: hidden;
 }
 
-.loading-fragment {
-    position: fixed;
-    display: none;
-    height: 100%;
-    width: 100%;
-    // TODO: Redo the math below for other screen dimensions.
-    background: url(../../img/mkt/loading-16.png) no-repeat 152px 257px;
+// Specificified!
+body .loading-fragment {
     background-color: rgba(0,0,0,0.5);
-    &.active {
-        display: block;
+    z-index: 9;
+    em {
+        background: url(../../img/mkt/loading-16.png) no-repeat 0 0;
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 24px 0 0 -8px;
     }
 }
 

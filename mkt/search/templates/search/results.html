@@ -63,8 +63,8 @@
         <h2>{{ _('Sort by') }}</h2>
         <ul class="toggles c" id="filter-sort">
           <li><a href="#">{{ _('Relevancy') }}</a></li>
-          <li><a href="/search/?sort=rating" class="sel">
-            {{ _('Rating') }}</a></li>
+          <li><a href="{{ request.get_full_path()|urlparams(sort='rating') }}"
+                 class="sel">{{ _('Rating') }}</a></li>
           <input type="hidden" name="sort" value="">
         </ul>
       </div>

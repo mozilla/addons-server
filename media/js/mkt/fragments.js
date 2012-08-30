@@ -19,8 +19,9 @@ function fragmentFilter(el) {
         timeout = false,
         fragmentCache = {};
     if (z.capabilities.replaceState) {
-        var $loading = $('<div>', {'class': 'loading-fragment'})
-                        .prependTo($('#site-header'));
+        var $loading = $('<div>', {'class': 'loading-fragment overlay',
+                                   'html': '<em></em>'})
+                        .prependTo($('body'));
 
         // Hijack <form> submission
         z.body.on('submit', 'form', function(e) {
@@ -58,7 +59,7 @@ function fragmentFilter(el) {
         // start the loading indicator
         function startLoading() {
             timeout = setTimeout(function() {
-                $loading.addClass('active');
+                $loading.addClass('show');
             }, threshold);
             loadTimer = new Date().getTime();
         }
@@ -67,7 +68,7 @@ function fragmentFilter(el) {
         function endLoading() {
             clearTimeout(timeout);
             _.delay(function() {
-                $loading.removeClass('active');
+                $loading.removeClass('show');
             }, 400);
             stick.custom({
                 'window.performance.timing.fragment.loaded':
