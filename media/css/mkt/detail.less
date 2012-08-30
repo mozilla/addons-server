@@ -135,7 +135,14 @@
 }
 
 .actions {
+    p {
+        display: inline-block;
+        + p {
+            margin-left: 10px;
+        }
+    }
     .button {
+        min-width: 200px;
         position: relative;
         z-index: 1;
     }
