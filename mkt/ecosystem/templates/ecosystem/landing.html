@@ -25,7 +25,7 @@
           <a href="{{ url('submit.app') }}" class="button">
         {% else %}
           <a href="{{ get_login_link(url('submit.app')) }}"
-             class="button browserid">
+             class="button{{ ' browserid' if not request.user.is_authenticated() }}">
         {%- endif -%}
           {{ _('Submit an App') }}</a>
       </div>
