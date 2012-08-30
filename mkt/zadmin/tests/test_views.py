@@ -140,6 +140,26 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(FeaturedApp.objects.get(pk=f.pk).end_date, date(2012, 8, 31))
 
+    def test_remove_startdate(self):
+        f = FeaturedApp.objects.create(app=self.a1, category=None)
+        f.start_date = date(2012, 8, 1)
+        f.save()
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
+                             data={'app': f.pk})
+        eq_(r.status_code, 200)
+        eq_(FeaturedApp.objects.get(pk=f.pk).start_date, None)
+
+    def test_remove_enddate(self):
+        f = FeaturedApp.objects.create(app=self.a1, category=None)
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
+        f.end_date = date(2012, 8, 1)
+        f.save()
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
+                             data={'app': f.pk})
+        eq_(r.status_code, 200)
+        eq_(FeaturedApp.objects.get(pk=f.pk).end_date, None)
+
 
 class TestAddonSearch(amo.tests.ESTestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube', 'base/addon_3615']
