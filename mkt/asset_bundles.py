@@ -1,5 +1,7 @@
 # A list of our CSS and JS assets for jingo-minify.
 
+X_TAGS_ELEMENTS = '//raw.github.com/mozilla/x-tag-elements/master'
+
 CSS = {
     'mkt/devreg': (
         # Contains reset, clearfix, etc.
@@ -120,16 +122,16 @@ CSS = {
         'css/ecosystem/footer.less',
     ),
     'mkt/xtags': (
-        '//raw.github.com/mozilla/xtag-elements/master/alert-popup/alert-popup.css',
-        '//raw.github.com/mozilla/xtag-elements/master/dialog-toast/dialog-toast.css',
-        '//raw.github.com/mozilla/xtag-elements/master/list-view/listview.css',
-        '//raw.github.com/mozilla/xtag-elements/master/slidebox/slidebox.css',
-        '//raw.github.com/mozilla/xtag-elements/master/slider/slider.css',
-        '//raw.github.com/mozilla/xtag-elements/master/tabbox/tabbox.css',
-        '//raw.github.com/mozilla/xtag-elements/master/select-list/select-list.css',
-        '//raw.github.com/mozilla/xtag-elements/master/date-time-picker/date-time-picker.css',
-        '//raw.github.com/mozilla/xtag-elements/master/dropdown-menu/dropdown-menu.css',
-        '//raw.github.com/mozilla/xtag-elements/master/toggle-switch/toggle-switch.css',
+        X_TAGS_ELEMENTS + '/alert-popup/alert-popup.css',
+        X_TAGS_ELEMENTS + '/dialog-toast/dialog-toast.css',
+        X_TAGS_ELEMENTS + '/list-view/listview.css',
+        X_TAGS_ELEMENTS + '/slidebox/slidebox.css',
+        X_TAGS_ELEMENTS + '/slider/slider.css',
+        X_TAGS_ELEMENTS + '/tabbox/tabbox.css',
+        X_TAGS_ELEMENTS + '/select-list/select-list.css',
+        X_TAGS_ELEMENTS + '/date-time-picker/date-time-picker.css',
+        X_TAGS_ELEMENTS + '/dropdown-menu/dropdown-menu.css',
+        X_TAGS_ELEMENTS + '/toggle-switch/toggle-switch.css',
     ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
@@ -315,16 +317,16 @@ JS = {
     ),
     'mkt/xtags': (
         '//raw.github.com/mozilla/x-tag/master/x-tag.js',
-        '//raw.github.com/mozilla/xtag-elements/master/alert-popup/alert-popup.js',
-        '//raw.github.com/mozilla/xtag-elements/master/dialog-toast/dialog-toast.js',
-        '//raw.github.com/mozilla/xtag-elements/master/list-view/listview.js',
-        '//raw.github.com/mozilla/xtag-elements/master/slidebox/slidebox.js',
-        '//raw.github.com/mozilla/xtag-elements/master/slider/slider.js',
-        '//raw.github.com/mozilla/xtag-elements/master/tabbox/tabbox.js',
-        '//raw.github.com/mozilla/xtag-elements/master/select-list/select-list.js',
-        '//raw.github.com/mozilla/xtag-elements/master/date-time-picker/date-time-picker.js',
-        '//raw.github.com/mozilla/xtag-elements/master/dropdown-menu/dropdown-menu.js',
-        '//raw.github.com/mozilla/xtag-elements/master/toggle-switch/toggle-switch.js',
+        X_TAGS_ELEMENTS + '/alert-popup/alert-popup.js',
+        X_TAGS_ELEMENTS + '/dialog-toast/dialog-toast.js',
+        X_TAGS_ELEMENTS + '/list-view/listview.js',
+        X_TAGS_ELEMENTS + '/slidebox/slidebox.js',
+        X_TAGS_ELEMENTS + '/slider/slider.js',
+        X_TAGS_ELEMENTS + '/tabbox/tabbox.js',
+        X_TAGS_ELEMENTS + '/select-list/select-list.js',
+        X_TAGS_ELEMENTS + '/date-time-picker/date-time-picker.js',
+        X_TAGS_ELEMENTS + '/dropdown-menu/dropdown-menu.js',
+        X_TAGS_ELEMENTS + '/toggle-switch/toggle-switch.js',
         'js/mkt/xtag-demos.js',
     ),
 }
