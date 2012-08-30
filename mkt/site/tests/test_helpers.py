@@ -8,17 +8,16 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from addons.models import AddonCategory, Category
 import amo
 import amo.tests
+from addons.models import AddonCategory, Category
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from market.models import AddonPremium, AddonPurchase
 from users.models import UserProfile
 
+from mkt.site.helpers import get_login_link, market_button, market_tile
 from mkt.webapps.models import Webapp
-from mkt.site.helpers import (css, get_login_link, js, market_button,
-                              market_tile)
 
 
 class TestMarketButton(amo.tests.TestCase):
@@ -146,6 +145,19 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], False)
         eq_(data['package_url'], '')
+
+    def test_packaged_no_valid_status(self):
+        self.webapp.update(is_packaged=True)
+        version = self.webapp.versions.latest()
+        version.all_files[0].update(status=amo.STATUS_REJECTED)
+        self.webapp.update_version()  # Reset cached `_current_version`.
+
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('a').attr('data-product'))
+        eq_(data['is_packaged'], True)
+        eq_(data['package_url'], '')
+        # The install button should not be shown if no current_version.
+        eq_(doc('.product button').length, 0)
 
 
 def test_login_link():

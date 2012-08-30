@@ -10,7 +10,10 @@
   <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
-    {{ market_button(product) }}
+    {# `current_version` won't show versions with invalid statuses #}
+    {% if product.current_version %}
+      {{ market_button(product) }}
+    {% endif %}
     {% if product.listed_authors %}
       <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
     {% endif %}

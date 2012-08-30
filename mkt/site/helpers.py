@@ -97,6 +97,11 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
     url = (reverse('receipt.issue', args=[product.app_slug])
            if receipt_type else product.get_detail_url('record'))
     src = request.GET.get('src', '')
+    if product.is_packaged and product.current_version:
+        package_url = product.current_version.all_files[0].get_url_path(src)
+    else:
+        package_url = ''
+
     ret = {
         'id': product.id,
         'name': product.name,
@@ -110,8 +115,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
         'author_url': author_url,
         'iconUrl': product.get_icon_url(64),
         'is_packaged': product.is_packaged,
-        'package_url': (product.current_version.all_files[0].get_url_path(src)
-                        if product.is_packaged else ''),
+        'package_url': package_url,
     }
 
     # Add in previews to the dict.
