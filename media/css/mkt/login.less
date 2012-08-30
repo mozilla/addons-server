@@ -35,17 +35,16 @@
     }
     #welcome {
         min-height: 210px;
-        padding-top: 25px;
         position: relative;
         &:before {
-            background: url(../../img/mkt/crate.png) 57% 100% no-repeat;
-            .background-size(auto 100%);
+            background: url(../../img/mkt/crate.png) 100% 0 no-repeat;
+            .background-size(auto 60%);
             content: "";
             display: block;
             float: right;
             height: 233px;
             position: absolute;
-            top: 60px;
+            top: 50px;
             width: 100%;
         }
         > div {
@@ -108,6 +107,12 @@
             clear: both;
         }
     }
+}
+#page .login #welcome {
+    padding: 25px 0;
+}
+.notification-box.error {
+    background-color: @white;
 }
 
 @media (max-width: @10col) {
@@ -182,6 +187,7 @@
         #welcome {
             min-height: 230px;
 //            margin: 0 10px;
+            padding: 0 15px;
             &:before {
                 content: none;
             }

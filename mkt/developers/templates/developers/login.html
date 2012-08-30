@@ -5,6 +5,7 @@
 {% block bodyclass %}login {{ super() }}{% endblock %}
 
 {% block content %}
+  <h1 id="top">{{ _('Firefox Marketplace') }}</h1>
   {% set dst = request.GET.get('to') %}
   {% if dst and dst not in (url('ecosystem.landing'), url('mkt.developers.apps')) %}
     <section class="notification-box error full">
