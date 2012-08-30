@@ -156,7 +156,8 @@ class TestFeaturedApps(amo.tests.TestCase):
         f.end_date = date(2012, 8, 1)
         f.save()
         r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk})
+                             data={'app': f.pk, 'startdate': '2012-07-01',
+                                   'enddate': ''})
         eq_(r.status_code, 200)
         eq_(FeaturedApp.objects.get(pk=f.pk).end_date, None)
 

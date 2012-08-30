@@ -15,7 +15,10 @@ function registerAddonAutocomplete(node) {
     },
     select: function(event, ui) {
         updateAppsList($("#categories"),
-                       ui.item.id);
+                       ui.item.id).then(
+                           function(x) {
+                               registerDatepickers($("#featured-webapps"));
+                           });
         return false;
         }
     }).data('autocomplete')._renderItem = function(ul, item) {
@@ -24,9 +27,13 @@ function registerAddonAutocomplete(node) {
     };
 }
 
+function registerDatepickers() {
+    $("#featured-webapps .featured-app").each(function (i, n) { registerDatepicker($(n));});
+}
+
 function registerDatepicker(node) {
     var $startPicker = node.find('.start-date-picker');
-    var $tabl = $startPicker.closest('table');
+    var $tabl = $startPicker.closest('table').last();
     var url = $tabl.data('url');
     var appid = $tabl.data('app-id');
     var $start = node.find('.date-range-start');
@@ -71,7 +78,6 @@ function newAddonSlot(id) {
     var $form = $tbody.next().children("tr").clone();
     var $input = $form.find('input.placeholder');
     registerAddonAutocomplete($input);
-    registerDatepicker($form);
     $tbody.append($form);
 }
 
@@ -132,20 +138,19 @@ $(document).ready(function(){
         })
     );
     var categories = $("#categories");
-    var appslist = $("#featured-webapps");
     var p = $.ajax({type: 'GET',
                     url: categories.data("src")});
     p.then(function(data) {
         categories.html(data);
         showAppsList(categories).then(
             function () {
-                registerDatepicker(appslist);
+                registerDatepickers();
             });
     });
     categories.change(function (e) {
         showAppsList(categories).then(
             function () {
-                registerDatepicker(appslist);
+                registerDatepickers();
             });
     });
     $('#featured-add').click(_pd(function() { newAddonSlot(); }));
