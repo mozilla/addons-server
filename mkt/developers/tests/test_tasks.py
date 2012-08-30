@@ -151,6 +151,7 @@ class TestFetchManifest(amo.tests.TestCase):
 
     def setUp(self):
         self.upload = FileUpload.objects.create()
+        self.content_type = 'application/x-web-app-manifest+json'
 
         patcher = mock.patch('mkt.developers.tasks.urllib2.urlopen')
         self.urlopen_mock = patcher.start()
@@ -166,6 +167,7 @@ class TestFetchManifest(amo.tests.TestCase):
     def patch_urlopen(self):
         response_mock = mock.Mock()
         response_mock.read.return_value = '<default>'
+        response_mock.headers = {'Content-Type': self.content_type}
         yield response_mock
         self.urlopen_mock.return_value = response_mock
 
@@ -173,6 +175,7 @@ class TestFetchManifest(amo.tests.TestCase):
     def test_success_add_file(self, validator_mock):
         with self.patch_urlopen() as ur:
             ur.read.return_value = 'woo'
+            ur.headers = {'Content-Type': self.content_type}
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
@@ -183,7 +186,8 @@ class TestFetchManifest(amo.tests.TestCase):
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_call_validator(self, validator_mock):
         with self.patch_urlopen() as ur:
-            ur.read.return_value = 'woo'
+            ct = self.content_type + '; charset=utf-8'
+            ur.headers = {'Content-Type': ct}
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         assert validator_mock.called
@@ -200,33 +204,48 @@ class TestFetchManifest(amo.tests.TestCase):
         reason = socket.gaierror(8, 'nodename nor servname provided')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
         tasks.fetch_manifest('url', self.upload.pk)
-        self.check_validation('No manifest was found at that URL.')
+        self.check_validation(
+            'No manifest was found at that URL. Check the address and make'
+            ' sure the manifest is served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
 
     def test_url_timeout(self):
         reason = socket.timeout('too slow')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
         tasks.fetch_manifest('url', self.upload.pk)
-        self.check_validation('No manifest was found at that URL.')
+        self.check_validation(
+            'No manifest was found at that URL. Check the address and make'
+            ' sure the manifest is served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
 
     def test_other_url_error(self):
         reason = Exception('Some other failure.')
         self.urlopen_mock.side_effect = urllib2.URLError(reason)
         tasks.fetch_manifest('url', self.upload.pk)
-        self.check_validation('No manifest was found at that URL.')
+        self.check_validation(
+            'No manifest was found at that URL. Check the address and make'
+            ' sure the manifest is served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
 
-    def test_no_content_type_bad_json(self):
+    def test_no_content_type(self):
         with self.patch_urlopen() as ur:
             ur.headers = {}
 
         tasks.fetch_manifest('url', self.upload.pk)
-        self.check_validation('JSON Parse Error')
+        self.check_validation(
+            'No manifest was found at that URL. Check the address and make'
+            ' sure the manifest is served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
 
-    def test_bad_content_type_bad_json(self):
+    def test_bad_content_type(self):
         with self.patch_urlopen() as ur:
             ur.headers = {'Content-Type': 'x'}
 
         tasks.fetch_manifest('url', self.upload.pk)
-        self.check_validation('JSON Parse Error')
+        self.check_validation(
+            'No manifest was found at that URL. Check the address and make'
+            ' sure the manifest is served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
 
     def test_response_too_large(self):
         with self.patch_urlopen() as ur:
@@ -240,7 +259,10 @@ class TestFetchManifest(amo.tests.TestCase):
         self.urlopen_mock.side_effect = urllib2.HTTPError(
             'url', 404, 'Not Found', [], None)
         tasks.fetch_manifest('url', self.upload.pk)
-        self.check_validation('No manifest was found at that URL.')
+        self.check_validation(
+            'No manifest was found at that URL. Check the address and make'
+            ' sure the manifest is served with the HTTP header '
+            '"Content-Type: application/x-web-app-manifest+json".')
 
     def test_strip_utf8_bom(self):
         with self.patch_urlopen() as ur:

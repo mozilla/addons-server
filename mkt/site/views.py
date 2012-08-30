@@ -65,7 +65,8 @@ def manifest(request):
         'locales': {},
         'default_locale': 'en-US'
     }
-    return HttpResponse(json.dumps(data))
+    return HttpResponse(json.dumps(data),
+                        mimetype='application/x-web-app-manifest+json')
 
 
 def robots(request):

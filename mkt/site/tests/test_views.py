@@ -23,22 +23,22 @@ class Test404(amo.tests.TestCase):
         return r
 
     def test_404(self):
-        self._test_404('/xxx')
+        r = self._test_404('/xxx')
 
     def test_404_devhub(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
-        self._test_404('/developers/xxx')
+        r = self._test_404('/developers/xxx')
 
     def test_404_consumer_legacy(self):
-        self._test_404('/xxx')
+        r = self._test_404('/xxx')
 
     def test_404_consumer(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
-        self._test_404('/xxx')
+        r = self._test_404('/xxx')
 
 
 class TestManifest(amo.tests.TestCase):
@@ -46,6 +46,7 @@ class TestManifest(amo.tests.TestCase):
     def test_manifest(self):
         response = self.client.get(reverse('manifest.webapp'))
         eq_(response.status_code, 200)
+        eq_(response['Content-Type'], 'application/x-web-app-manifest+json')
         content = json.loads(response.content)
         eq_(content['name'], 'Firefox Marketplace')
         eq_(content['default_locale'], 'en-US')

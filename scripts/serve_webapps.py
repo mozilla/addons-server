@@ -31,7 +31,7 @@ def fileapp(environ, start_response):
         body = "".join(out)
     else:
         f = open(full_path, 'r')
-        if full_path.endswith(('.webapp', '.json')):
+        if full_path.endswith('.webapp') or full_path.endswith('.json'):
             content_type = 'application/x-web-app-manifest+json'
         body = f.read()  # optimized for small files :)
 

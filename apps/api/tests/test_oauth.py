@@ -800,6 +800,8 @@ class TestCreateApp(BaseOAuth):
 
         response_mock = Mock()
         response_mock.read.return_value = '{"name": "Some App"}'
+        response_mock.headers = {'Content-Type':
+                                 'application/x-web-app-manifest+json'}
 
         self.urlopen_mock = patcher.start()
         self.urlopen_mock.return_value = response_mock
