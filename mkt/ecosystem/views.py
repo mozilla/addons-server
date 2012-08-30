@@ -4,7 +4,7 @@ import commonware.log
 import jingo
 
 from .models import MdnCache
-from .tasks import locales, refresh_mdn_cache, tutorials
+from .tasks import locales
 
 
 log = commonware.log.getLogger('z.ecosystem')
@@ -32,11 +32,24 @@ def building_xtag(request, xtag=None):
     are not yet on MDN. Once they are officially on there, then we can pull
     everything directly from the database instead.
     """
-    if not xtag:
+    titles = {
+        'list': 'Display List',
+        'alert': 'Alert Popup',
+        'toggle': 'Toggle Switch',
+        'tabbox': 'Tab box',
+        'picker': 'Date/Time Picker',
+        'slider': 'Slider',
+        'slidebox': 'Slidebox',
+        'dropdown': 'Dropdown',
+        'select_list': 'Select List',
+        'toast': 'Toast',
+    }
+
+    if xtag not in titles:
         xtag = 'list'
 
     return jingo.render(request, 'ecosystem/design/xtag_%s.html' % xtag,
-                        {'title': xtag.replace('_', ' ').capitalize()})
+                        {'title': titles[xtag]})
 
 
 def partners(request):
