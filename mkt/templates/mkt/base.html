@@ -67,11 +67,10 @@
       </div>
       {% block sitefooter %}
         <footer id="site-footer" class="c">
-          <div class="account{{ ' authenticated' if logged }}">
+          <div class="account {{ 'authenticated' if logged else 'anonymous' }}">
             {% if logged %}
-              {% trans profile_url=request.user.get_profile().get_url_path(),
-                       user=request.amo_user.email %}
-                Signed in as <a href="{{ profile_url }}">{{ user }}</a>
+              {% trans user=request.amo_user.email %}
+                Signed in as <b>{{ user }}</b>
               {% endtrans %}
               <a href="{{ url('users.logout') }}" class="logout">
                 ({{ _('Log Out') }})</a>

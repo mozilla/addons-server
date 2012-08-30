@@ -119,11 +119,14 @@ function fragmentFilter(el) {
         function updateContent(content, href, popped, opts) {
             endLoading();
 
-            container.html(content);
             var page = container.find('#page');
             if (!page.length) {
                 throw "something has gone terribly wrong";
             }
+
+            // Replace #page.
+            console.log(page);
+            page.replaceWith(content);
 
             // scroll to the right spot.
             $('html, body').scrollTop(opts.scrollTop || 0);
@@ -143,7 +146,6 @@ function fragmentFilter(el) {
             if (!popped) history.pushState(newState, false, href);
 
             container.trigger('fragmentloaded', [href, popped, newState]);
-
         }
 
         z.page.on('fragmentloaded', function() {
