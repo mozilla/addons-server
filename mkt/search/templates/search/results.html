@@ -62,8 +62,9 @@
         {# We're not iterating over all the sort options on purpose. #}
         <h2>{{ _('Sort by') }}</h2>
         <ul class="toggles c" id="filter-sort">
+          {# TODO: This should be Popularity when on (category) browse pages. #}
           <li><a href="#">{{ _('Relevancy') }}</a></li>
-          <li><a href="{{ request.get_full_path()|urlparams(sort='rating') }}"
+          <li><a href="{{ search_url|urlparams(page=None, sort='rating') }}"
                  class="sel">{{ _('Rating') }}</a></li>
           <input type="hidden" name="sort" value="">
         </ul>
