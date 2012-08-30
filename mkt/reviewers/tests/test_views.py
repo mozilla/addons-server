@@ -1059,9 +1059,11 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def setUp(self):
         self.login_as_editor()
         super(TestReviewLog, self).setUp()
-        self.apps = [app_factory(name='XXX',
+        # Note: if `created` is not specified, `addon_factory`/`app_factory`
+        # uses a randomly generated timestamp.
+        self.apps = [app_factory(name='XXX', created='now',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
-                     app_factory(name='YYY',
+                     app_factory(name='YYY', created='now',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
         self.url = reverse('reviewers.apps.logs')
 
