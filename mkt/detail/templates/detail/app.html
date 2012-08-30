@@ -180,7 +180,8 @@
           {% endif %}
         </ul>
         {% set upsell = product.upsell %}
-        {% if upsell %}
+        {# no payments for now #}
+        {# if upsell %}
           {% set prm = upsell.premium_addon %}
           {% if prm %}
             <a id="upsell" class="narrow"
@@ -190,7 +191,7 @@
                <span class="name">{{ prm.name }}</span>
             </a>
           {% endif %}
-        {% endif %}
+        {% endif #}
         {% if content_ratings %}
           <div class="content-ratings c">
             <h3>
