@@ -151,8 +151,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         self.setup_paid()
         self.refresh()
         rs = self.client.get(self.url)
-        eq_(set(rs.context['pager'].object_list),
-            set(self.free))
+        eq_(set(rs.context['pager'].object_list), set(self.free))
 
     def check_price_filter(self, price, selected, type_=None):
         self.setup_paid(type_=type_)

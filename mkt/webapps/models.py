@@ -480,7 +480,7 @@ class Webapp(Addon):
                 srch = srch.filter(~F(id__in=excluded))
 
         if waffle.switch_is_active('disabled-payments'):
-            srch = srch.filter(premium_type__in=amo.ADDON_FREES)
+            srch = srch.filter(premium_type__in=amo.ADDON_FREES, price=0)
 
         return srch
 
