@@ -81,14 +81,14 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#rejection blockquote').text(), comments)
 
         my_reply = 'fixed just for u, brah'
-        r = self.client.post(self.url, {'release_notes': my_reply,
+        r = self.client.post(self.url, {'notes': my_reply,
                                         'resubmit-app': ''})
         self.assertRedirects(r, self.url, 302)
 
         webapp = self.get_webapp()
         eq_(webapp.status, amo.STATUS_PENDING,
             'Reapplied apps should get marked as pending')
-        eq_(unicode(webapp.versions.all()[0].releasenotes), my_reply)
+        eq_(unicode(webapp.versions.all()[0].approvalnotes), my_reply)
 
     def test_items_packaged(self):
         self.webapp.update(is_packaged=True)

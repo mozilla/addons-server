@@ -726,7 +726,7 @@ class AppAppealForm(happyforms.Form):
     another review.
     """
 
-    release_notes = forms.CharField(
+    notes = forms.CharField(
         label=_lazy(u'Your comments'),
         required=False, widget=forms.Textarea(attrs={'rows': 2}))
 
@@ -735,9 +735,8 @@ class AppAppealForm(happyforms.Form):
         super(AppAppealForm, self).__init__(*args, **kw)
 
     def save(self):
-        v = self.product.versions.order_by('-created')[0]
-        v.releasenotes = self.cleaned_data['release_notes']
-        v.save()
+        v = self.product.versions.latest()
+        v.update(approvalnotes=self.cleaned_data['notes'])
         amo.log(amo.LOG.EDIT_VERSION, v.addon, v)
         # Mark app as pending again.
         self.product.mark_done()
