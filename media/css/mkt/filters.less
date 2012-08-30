@@ -28,6 +28,8 @@
             display: block;
             color: @white;
             text-align: center;
+            position: absolute;
+            width: 100%;
         }
     }
 }
@@ -46,21 +48,8 @@
         .box-shadow(0 1px 0 0 #f2f4f5);
         height: 35px;
         a {
-            line-height: 33px;
-            border: 1px solid #cdcbcb;
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            .gradient-two-color(#f7f7f7, @faint-gray);
-            font-weight: 600;
-            color: @text;
-            .ellipsis();
             &:hover {
                 text-decoration: none;
-            }
-            &.sel, &:active {
-                background: rgba(68,82,91,.08);
-                border-top: 1px solid #a5b0b6;
             }
         }
         &:first-child, &:first-child a, &:nth-child(3n+1), &:nth-child(3n+1) a {
@@ -68,6 +57,87 @@
         }
         &:last-child, &:last-child a, &:nth-child(3n), &:nth-child(3n) a {
             .border-radius(0 5px 5px 0);
+        }
+    }
+}
+.toggles li a, .picker {
+    line-height: 33px;
+    border: 1px solid #cdcbcb;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    .gradient-two-color(#f7f7f7, @faint-gray);
+    font-weight: 600;
+    color: @text;
+    .ellipsis();
+    &.sel, &:active {
+        background: rgba(68,82,91,.08);
+        border-top: 1px solid #a5b0b6;
+    }
+}
+.picker {
+    margin: 0;
+    .border-radius(5px);
+    cursor: pointer;
+    font-size: 14px;
+    width: auto;
+    padding: 0 15px;
+}
+.confirm-action {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    bottom: 0;
+    left: 0;
+    padding: 21px 19px;
+    .gradient-two-color(#fff, #888);
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    .border-radius(5px 5px 0 0);
+    .box-shadow(0 0 5px 2px rgba(0,0,0,0.5));
+    li {
+        a {
+            .border-radius(5px);
+            width: 100%;
+            margin-bottom: 6px;
+            &.cancel {
+                margin-top: 13px;
+            }
+        }
+    }
+    &.two-col {
+        li {
+            float: left;
+            width: 50%;
+            text-align: left;
+            a {
+                width: 138px;
+            }
+            &:nth-child(2n) {
+                text-align: right;
+            }
+            &:last-child {
+                float: none;
+                width: 100%;
+                a {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &.show {
+        display: block;
+    }
+}
+.footer-action {
+    top: auto;
+    bottom: 0;
+    text-align: center;
+    a {
+        padding: 0 30px;
+        &:hover {
+            line-height: 31px;
         }
     }
 }
