@@ -595,6 +595,24 @@ class TestIsVisible(amo.tests.WebappTestCase):
             else:
                 eq_(self.app.is_visible(self.request), False)
 
+    def test_non_game_regular_user(self):
+        # Public apps not categorized as a game should be visible.
+        cat, created = Category.objects.get_or_create(slug='education',
+                                                      type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.get_or_create(addon=self.app, category=cat)
+        self.app = self.get_app()
+        self.set_request(user=self.regular)
+
+        for region in mkt.regions.ALL_REGIONS:
+            self.set_request(region=region)
+            for status in self.statuses:
+                self.app.update(status=status)
+                if status == amo.STATUS_PUBLIC:
+                    # Region (Brazil or other) doesn't matter for non-games.
+                    eq_(self.app.is_visible(self.request), True)
+                else:
+                    eq_(self.app.is_visible(self.request), False)
+
     def test_unrated_game_regular_user(self):
         # Only public+unrated games should be visible.
         self.make_game(rated=False)
