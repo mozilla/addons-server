@@ -201,9 +201,10 @@ def display_url(url):
 
 @register.inclusion_tag('developers/helpers/disabled_payments_notice.html')
 @jinja2.contextfunction
-def disabled_payments_notice(context):
+def disabled_payments_notice(context, addon=None):
     """
     If payments are disabled, we show a friendly message urging the developer
     to make his/her app free.
     """
-    return {'request': context.get('request'), 'addon': context.get('addon')}
+    addon = context.get('addon', addon)
+    return {'request': context.get('request'), 'addon': addon}

@@ -95,6 +95,12 @@ class TestDetail(DetailBase):
         doc = self.get_pq()
         eq_(doc('.product.premium.button').length, 1)
 
+    def test_disabled_payments_notice(self):
+        self.create_switch('disabled-payments')
+        self.make_premium(self.app)
+        doc = self.get_pq()
+        eq_(doc('.no-payments.notification-box').length, 1)
+
     def dev_receipt_url(self):
         return urlparams(reverse('receipt.issue',
                                  args=[self.app.app_slug]), src='')
