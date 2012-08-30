@@ -9,9 +9,9 @@ import urllib
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import Http404, HttpResponsePermanentRedirect
+from django.http import (Http404, HttpResponseRedirect,
+                         HttpResponsePermanentRedirect)
 from django.middleware import common
-from django.shortcuts import redirect
 from django.utils.cache import patch_vary_headers, patch_cache_control
 from django.utils.encoding import iri_to_uri, smart_str
 
@@ -246,10 +246,11 @@ class LoginRequiredMiddleware(ViewMiddleware):
             path_info = request.path_info
             if path_info.lstrip('/') and path_info != settings.LOGIN_URL:
                 redirect_url = urlparams(redirect_url, to=request.path)
-            return redirect(redirect_url)
+            return HttpResponseRedirect(redirect_url)
         else:
-            return redirect('/%s/%s%s' % (request.LANG, request.APP.short,
-                                          settings.LOGIN_URL))
+            return HttpResponseRedirect('/%s/%s%s' % (request.LANG,
+                                                      request.APP.short,
+                                                      settings.LOGIN_URL))
 
 
 class DefaultConsumerMiddleware(ViewMiddleware):
