@@ -257,7 +257,7 @@ def spam(request):
 
         for reason in spam.reasons():
             spam.redis.srem(reason, review.id)
-        return redirect(request.path)
+        return http.HttpResponseRedirect(request.path)
 
     buckets = {}
     for reason in spam.reasons():

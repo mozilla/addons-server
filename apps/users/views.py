@@ -402,7 +402,8 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
     if request.user.is_authenticated():
         try:
-            return redirect(request.GET.get('to', settings.LOGIN_REDIRECT_URL))
+            return http.HttpResponseRedirect(
+                        request.GET.get('to', settings.LOGIN_REDIRECT_URL))
         except NoReverseMatch:
             return redirect(reverse('home'))
 
