@@ -138,7 +138,7 @@ body .loading-fragment {
 }
 
 @media (min-width: @10col) {
-    #site-header section, #page {
+    #site-header section, #page, #site-footer {
         .width(14);
         margin: 0 auto;
     }
@@ -189,5 +189,45 @@ body .loading-fragment {
     #site-header > section, #page {
         width: 320px;
         margin: 0 auto;
+    }
+}
+
+#site-footer {
+    display: none;
+}
+
+@media (min-width: @7col) {
+    #site-footer {
+        border-top: 1px solid rgba(255,255,255,.5);
+        display: block;
+        padding: 15px 0 30px;
+        .account {
+            color: @dark-gray;
+            font-weight: 400;
+            margin-bottom: 5px;
+            a {
+                font-weight: 600;
+            }
+            .logout {
+                font-weight: 200;
+            }
+        }
+        .footer-links {
+            p {
+                margin: 0;
+                + p {
+                    margin-top: 5px;
+                }
+            }
+            a:first-child {
+                padding-right: 5px;
+            }
+            a + a {
+                border-left: 1px solid @light-gray;
+                padding-left: 10px;
+                padding-right: 5px;
+                line-height: 15px;
+            }
+        }
     }
 }

@@ -25,8 +25,9 @@ def global_settings(request):
         context['is_reviewer'] = acl.check_reviewer(request)
         if getattr(request, 'can_view_consumer', True):
             account_links = [
-                {'text': _('Account History'),
-                 'href': reverse('account.purchases')},
+                # TODO: Coming soon with payments.
+                # {'text': _('Account History'),
+                #  'href': reverse('account.purchases')},
                 {'text': _('Account Settings'),
                  'href': reverse('account.settings')},
             ]
@@ -36,12 +37,11 @@ def global_settings(request):
             {'text': _('Log out'), 'href': reverse('users.logout')},
         ]
         if '/developers/' not in request.path:
+            tools_links.append({'text': _('Developer Hub'),
+                                'href': reverse('ecosystem.landing')})
             if amo_user.is_app_developer:
                 tools_links.append({'text': _('My Submissions'),
                                     'href': reverse('mkt.developers.apps')})
-            else:
-                tools_links.append({'text': _('Developers'),
-                                    'href': reverse('ecosystem.landing')})
         if '/reviewers/' not in request.path and context['is_reviewer']:
             tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('reviewers.home')})

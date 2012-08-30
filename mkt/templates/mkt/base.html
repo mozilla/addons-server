@@ -65,6 +65,40 @@
         {% block content %}
         {% endblock %}
       </div>
+      {% block sitefooter %}
+        <footer id="site-footer" class="c">
+          <div class="account{{ ' authenticated' if logged }}">
+            {% if logged %}
+              {% trans profile_url=request.user.get_profile().get_url_path(),
+                       user=request.amo_user.email %}
+                Signed in as <a href="{{ profile_url }}">{{ user }}</a>
+              {% endtrans %}
+              <a href="{{ url('users.logout') }}" class="logout">
+                ({{ _('Log Out') }})</a>
+            {% else %}
+              <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
+            {% endif %}
+          </div>
+          <nav class="footer-links c" role="navigation">
+            <p>
+              {% if logged %}
+                {% for link in tools_links %}
+                  <a href="{{ link.href }}" rel="external">{{ link.text }}</a>
+                {% endfor %}
+                {% if request.can_view_consumer %}
+                  {# TODO: Coming soon with payments. #}
+                  {#<a href="{{ url('account.purchases') }}">{{ _('Account History') }}</a>#}
+                  <a href="{{ url('account.settings') }}">{{ _('Account Settings') }}</a>
+                {% endif %}
+              {% endif %}
+            </p>
+            <p>
+              <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
+              <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
+            </p>
+          </nav>
+        </footer>
+      {% endblock %}
     </div>
 
     {% include 'purchase/start.html' %}
