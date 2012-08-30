@@ -29,38 +29,39 @@ function registerDatepicker(node) {
     var $tabl = $startPicker.closest('table');
     var url = $tabl.data('url');
     var appid = $tabl.data('app-id');
+    var $start = node.find('.date-range-start');
+    var $end = node.find('.date-range-end');
     $startPicker.datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
-            node.find('.date-range-start').val(dateText);
-            saveFeaturedDate('startdate', url, appid, dateText);
+                $start.val(dateText);
+            saveFeaturedDate(url, appid, dateText, $end.val());
         }
     });
     var $endPicker = node.find('.end-date-picker');
     $endPicker.datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
-            node.find('.date-range-end').val(dateText);
-            saveFeaturedDate('enddate', url, appid, dateText);
+                $end.val(dateText);
+            saveFeaturedDate(url, appid, $start.val(), dateText);
         }
     });
 
-  var $start = node.find('.date-range-start');
     $start.change(
       function (e) {
-        saveFeaturedDate('startdate', $tabl.data('url'), $tabl.data('app-id'), $start.val());
+        saveFeaturedDate($tabl.data('url'), $tabl.data('app-id'), $start.val(), $end.val());
       });
-  var $end = node.find('.date-range-end');
     $end.change(
       function (e) {
-        saveFeaturedDate('enddate', $tabl.data('url'), $tabl.data('app-id'), $end.val());
+        saveFeaturedDate($tabl.data('url'), $tabl.data('app-id'), $start.val(), $end.val());
       });
 
 }
 
-function saveFeaturedDate(which, url, appid, val) {
+function saveFeaturedDate(url, appid, start, end) {
     var data = {};
-    data[which] = val;
+    data["startdate"] = start;
+    data["enddate"] = end;
     data.app = appid;
     $.ajax({type: 'POST', url: url, data: data});
 }
