@@ -1,8 +1,8 @@
 from collections import defaultdict
 
+from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import redirect
 from django.utils.encoding import smart_str
 from django.views.decorators.vary import vary_on_headers
 from django.utils import translation
@@ -592,7 +592,8 @@ def search(request, tag_name=None, template=None):
         extra_params = None
     fixed = fix_search_query(request.GET, extra_params=extra_params)
     if fixed is not request.GET:
-        return redirect(urlparams(request.path, **fixed), permanent=True)
+        return http.HttpResponsePermanentRedirect(urlparams(request.path,
+                                                            **fixed))
 
     form = ESSearchForm(request.GET or {})
     form.is_valid()  # Let the form try to clean data.
