@@ -135,6 +135,7 @@ def add(request, addon):
                                 .order_by('-created'))
     install_w_user_agent = (install.filter(client_data__user_agent=user_agent)
                                    .order_by('-created'))
+    has_review = False
     try:
         if install_w_user_agent:
             client_data = install_w_user_agent[0].client_data
