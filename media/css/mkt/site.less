@@ -186,7 +186,7 @@ body .loading-fragment {
 }
 
 .force-mobile {
-    #site-header > section, #page {
+    #site-header > section, #page, #site-footer {
         width: 320px;
         margin: 0 auto;
     }
@@ -212,6 +212,8 @@ body .loading-fragment {
                 font-weight: 200;
             }
         }
+    }
+    body:not(.force-mobile) {
         .footer-links {
             p {
                 margin: 0;
@@ -227,6 +229,28 @@ body .loading-fragment {
                 padding-left: 10px;
                 padding-right: 5px;
                 line-height: 15px;
+            }
+        }
+    }
+    .force-mobile {
+        .account, .footer-links a {
+            padding: 4px;
+        }
+        .footer-links {
+            p {
+                margin: 0;
+            }
+            a {
+                display: block;
+                &:hover {
+                    background-color: rgba(255,255,255,.35);
+                    color: @link-dark;
+                    text-decoration: underline;
+                }
+            }
+            p + p,
+            a + a {
+                border-top: 1px solid @light-gray;
             }
         }
     }

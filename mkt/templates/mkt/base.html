@@ -1,7 +1,7 @@
 {% if request.is_ajax() and not SKIP_FRAGMENT %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
-{% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') else '' %}
+{% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') %}
 {% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}"
