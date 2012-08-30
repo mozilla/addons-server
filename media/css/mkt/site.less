@@ -34,16 +34,17 @@ body {
 // Specificified!
 body .loading-fragment {
     background-color: rgba(0,0,0,0.5);
-    z-index: 9;
+    z-index: 11;  // To cover the header.
     em {
-        background: url(../../img/mkt/loading-16.png) no-repeat 0 0;
+        .border-radius(4px);
+        background: url(../../img/zamboni/mobile/loading-white.png) rgba(0,0,0,.25) 50% 50% no-repeat;
         display: inline-block;
-        height: 16px;
-        width: 16px;
+        height: 66px;
+        width: 66px;
         position: absolute;
         top: 50%;
         left: 50%;
-        margin: 24px 0 0 -8px;
+        margin: -33px 0 0 -33px;
     }
 }
 
