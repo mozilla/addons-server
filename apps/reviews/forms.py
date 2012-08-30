@@ -1,3 +1,6 @@
+from urllib2 import unquote
+import re
+
 from django import forms
 from django.forms.models import modelformset_factory
 
@@ -26,6 +29,27 @@ class ReviewReplyForm(forms.Form):
 
 class ReviewForm(ReviewReplyForm):
     rating = forms.ChoiceField(zip(range(1, 6), range(1, 6)))
+    flags = re.I | re.L | re.U | re.M
+    # This matches the following three types of patterns:
+    # http://... or https://..., RFC 3986 compliant host names, and IPv4
+    # octets. It does not match IPv6 addresses or long strings such as
+    # "example dot com".
+    # This is much lighter weight than parsing and recompiling a string
+    # then sending it through a DOM tree generator and searching for tokens.
+    # Please note that bleach.linkify also currently recognizes only 23
+    # potential patterns for TLDs, not the unlimited ICANN set.
+    link_pattern = re.compile('((https?://[^\s]+)|(([a-z][0-9a-z\-%]+){1,63}'
+            '\.)(([0-9a-z\-%]+){1,63}\.)*([\da-z\-]+){1,63})|((\d{1,3}\.){3}'
+            '(\d{1,3}))', flags)
+
+    def _post_clean(self):
+        # Unquote the body in case someone tries 'example%2ecom'.
+        data = unquote(self.cleaned_data.get('body', ''))
+        if '<br>' in data:
+            self.cleaned_data['body'] = re.sub('<br>', '\n', data)
+        if self.link_pattern.search(data) is not None:
+            self.cleaned_data['flag'] = True
+            self.cleaned_data['editorreview'] = True
 
 
 class ReviewFlagForm(forms.ModelForm):

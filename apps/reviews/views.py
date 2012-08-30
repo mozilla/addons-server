@@ -183,6 +183,13 @@ def add(request, addon, template=None):
         not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
         review = Review.objects.create(**details)
+        if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
+            rf = ReviewFlag(review=review,
+                        user_id=request.user.id,
+                        flag=ReviewFlag.OTHER,
+                        note='URLs')
+            rf.save()
+
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
 
