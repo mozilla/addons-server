@@ -219,6 +219,16 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url + '?sort=averagerating')
         self.assertRedirects(r, self.url + '?sort=rating', status_code=301)
 
+    def test_legacy_redirects_to_non_ascii(self):
+        # see http://sentry.dmz.phx1.mozilla.com/addons/group/2186/
+        url = '/ga-IE/seamonkey/tag/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2'
+        from_ = ('?sort=updated&lver=1.0&advancedsearch=1'
+                 '&tag=dearbhair&cat=4%2C84')
+        to = ('?sort=updated&advancedsearch=1&appver=1.0'
+              '&tag=dearbhair&cat=4%2C84')
+        r = self.client.get(url + from_)
+        self.assertRedirects(r, url + to, status_code=301)
+
     def check_platform_filters(self, platform, expected=None):
         r = self.client.get('%s?platform=%s' % (self.url, platform),
                             follow=True)
