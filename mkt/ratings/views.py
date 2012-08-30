@@ -223,6 +223,7 @@ def add(request, addon):
         # the form with their existing review and rating.
         form = ReviewForm({'rating': existing_review.rating or 1,
                            'body': existing_review.body})
+        has_review = True
     else:
         # If the user isn't posting back and doesn't have an existing review,
         # just show a blank version of the form.
@@ -245,4 +246,5 @@ def add(request, addon):
     return jingo.render(request, 'ratings/add.html',
                         {'product': addon, 'form': form,
                          'support_url': support_url,
+                         'has_review': has_review,
                          'support_email': support_email})
