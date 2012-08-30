@@ -2,7 +2,7 @@
 {% for row, selected_regions in apps_regions -%}
 <tr>
   <td>
-    <table data-app-id="{{ row.pk }}" data-url="{{ url('zadmin.set_attrs_ajax') }}">
+    <table class="featured-app" data-app-id="{{ row.pk }}" data-url="{{ url('zadmin.set_attrs_ajax') }}">
       <tr>
         <td><img src="{{ row.app.icon_url }}"></td>
         <td>{{ row.app.name }}</td>
