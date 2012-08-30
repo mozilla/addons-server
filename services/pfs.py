@@ -218,7 +218,7 @@ def get_output(data):
 
         plugin.update(
             name='Java Runtime Environment',
-            version='1.7 u4',
+            version='1.7 u7',
             manualInstallationURL='http://java.com/downloads',
             InstallerShowsUI='false',
             needsRestart='false')
@@ -231,12 +231,12 @@ def get_output(data):
             plugin.update(
                 guid='{fbe640ef-4375-4f45-8d79-767d60bf75b8}',
                 InstallerLocation='http://java.com/firefoxjre_exe',
-                InstallerHash='sha1:fd67d63faa58945d875ec2f7666a43d79dedc3b1')
+                InstallerHash='sha1:661a55518096c1609b5e297d5173c0f61c9cb79f')
         elif g['clientOS'].startswith('Win'):
             plugin.update(
                 guid='{92a550f2-dfd2-4d2f-a35d-a98cfda73595}',
                 InstallerLocation='http://java.com/firefoxjre_exe',
-                InstallerHash='sha1:fd67d63faa58945d875ec2f7666a43d79dedc3b1',
+                InstallerHash='sha1:661a55518096c1609b5e297d5173c0f61c9cb79f',
                 XPILocation='http://java.com/jre-install.xpi')
         else:
             plugin.update(
