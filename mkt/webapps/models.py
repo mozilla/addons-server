@@ -314,7 +314,7 @@ class Webapp(Addon):
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
         # See if it's a game without a content rating.
-        if (region == mkt.regions.BR and
+        if (region == mkt.regions.BR and self.listed_in(category='games') and
             not self.content_ratings_in(mkt.regions.BR, 'games')):
             unrated_brazil_game = True
         else:
