@@ -24,6 +24,10 @@
     <article class="marketing-block">
       <h1>{{ title }}</h1>
 
+      <p>
+        {% block description %}{% endblock %}
+      </p>
+
       <h2>{{ _('Use It') }}</h2>
       <p>
         {% block use_it %}{% endblock %}

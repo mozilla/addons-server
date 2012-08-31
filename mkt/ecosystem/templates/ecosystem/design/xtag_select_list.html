@@ -1,5 +1,13 @@
 {% extends "ecosystem/design/xtag.html" %}
 
+{% block description %}
+  A select list is a popup dialog that presents a list of options related
+  to the current activity. It disables all current activities and only
+  disappears after the user confirms an action or dismisses the dialog. A
+  normal list allows the user to select one item, and a multi-select list
+  allows multiple selections. It can include text, image, or both.
+{% endblock %}
+
 {% block use_it %}
   When the user has to choose one or more items from a list.
 {% endblock %}

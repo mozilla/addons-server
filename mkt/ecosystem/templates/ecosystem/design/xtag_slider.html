@@ -1,5 +1,12 @@
 {% extends "ecosystem/design/xtag.html" %}
 
+{% block description %}
+  A slider lets the user adjust and select a value from a predefined range
+  by moving a handle. Changes are immediately noticeable so that the user
+  can fine-tune the values accordingly (e.g. brightness). When it is easier
+  for the user to enter a value directly, use a text box.
+{% endblock %}
+
 {% block use_it %}
   When the values are relative to the user and you can provide immediate
   feedback on the user's action.
