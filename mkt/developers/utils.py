@@ -74,6 +74,7 @@ def check_upload(file_obj, upload_type, content_type):
         file_obj.seek(0)
         try:
             im = Image.open(file_obj)
+            im.verify()
         except IOError:
             errors.append(_('Icon could not be opened'))
         else:
