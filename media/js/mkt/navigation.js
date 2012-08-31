@@ -57,8 +57,12 @@ var nav = (function() {
     }
 
     function back() {
-        stack.shift();
-        $(window).trigger('loadfragment', stack[0].path);
+        if (stack.length > 1) {
+            stack.shift();
+            $(window).trigger('loadfragment', stack[0].path);
+        } else {
+            console.log('attempted nav.back at root!');
+        }
     }
 
     $('#nav-back').on('click', _pd(back));

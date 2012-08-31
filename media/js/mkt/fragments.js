@@ -118,16 +118,11 @@ function fragmentFilter(el) {
         function updateContent(content, href, popped, opts) {
             endLoading();
 
+            container.html(content);
             var page = container.find('#page');
             if (!page.length) {
                 throw "something has gone terribly wrong";
             }
-
-            // Replace #page.
-            console.log(page);
-            page.replaceWith(content);
-            // `page` still contains the old selected elements. Make it be the new ones.
-            page = container.find('#page');
 
             // scroll to the right spot.
             $('html, body').scrollTop(opts.scrollTop || 0);
