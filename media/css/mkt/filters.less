@@ -101,6 +101,8 @@
             .border-radius(5px);
             width: 100%;
             margin-bottom: 6px;
+            font-size: 14px;
+            .ellipsis();
             &.cancel {
                 margin-top: 13px;
             }
@@ -140,4 +142,10 @@
             line-height: 31px;
         }
     }
+}
+// Ugh!
+.force-mobile .confirm-action {
+    max-width: 320px;
+    left: 50%;
+    margin-left: -160px;
 }
