@@ -824,5 +824,5 @@ def report_abuse(request, addon):
 @cache_control(max_age=60 * 60 * 24)
 def persona_redirect(request, persona_id):
     persona = get_object_or_404(Persona, persona_id=persona_id)
-    return http.HttpResponsePermanentRedirect('addons.detail',
-                                              persona.addon.slug)
+    to = reverse('addons.detail', args=[persona.addon.slug])
+    return http.HttpResponsePermanentRedirect(to)
