@@ -26,6 +26,16 @@ incoming_data = {
 }
 
 
+class TestIndex(amo.tests.TestCase):
+
+    # TODO: Test valid version processing here.
+
+    def test_no_version_redirect(self):
+        res = self.client.get(reverse('compat.index'))
+        self.assert3xx(res, reverse('compat.index',
+                                    args=[settings.COMPAT[0]['main']]))
+
+
 class TestIncoming(amo.tests.TestCase):
 
     def setUp(self):
