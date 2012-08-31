@@ -28,7 +28,7 @@ def test_delete_photo():
 
 
 def test_resize_photo():
-    somepic = get_image_path('mozilla.png')
+    somepic = get_image_path('sunbird-small.png')
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False, dir=settings.TMP_PATH)
@@ -39,12 +39,12 @@ def test_resize_photo():
     shutil.copyfile(somepic, src.name)
 
     src_image = Image.open(src.name)
-    eq_(src_image.size, (82, 31))
+    eq_(src_image.size, (64, 64))
     resize_photo(src.name, dest.name, locally=True)
 
     # Image is smaller than 200x200 so it should stay the same.
     dest_image = Image.open(dest.name)
-    eq_(dest_image.size, (82, 31))
+    eq_(dest_image.size, (64, 64))
 
     assert not os.path.exists(src.name)
 
@@ -56,10 +56,10 @@ def test_resize_photo_poorly():
                                       delete=False, dir=settings.TMP_PATH)
     shutil.copyfile(somepic, src.name)
     src_image = Image.open(src.name)
-    eq_(src_image.size, (82, 31))
+    eq_(src_image.size, (339, 128))
 
     resize_photo(src.name, src.name)
 
     # assert nothing happenned
     src_image = Image.open(src.name)
-    eq_(src_image.size, (82, 31))
+    eq_(src_image.size, (339, 128))
