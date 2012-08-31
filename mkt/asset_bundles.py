@@ -113,6 +113,7 @@ CSS = {
         'css/mkt/reset.less',
         'css/mkt/typography.less',
         'css/mkt/login.less',
+        'css/mkt/forms.less',
         'css/ecosystem/site.less',
         'css/ecosystem/header.less',
         'css/ecosystem/buttons.less',
