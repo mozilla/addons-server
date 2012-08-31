@@ -25,9 +25,7 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 urlpatterns = patterns('',
     # Home.
-    # NOTICE: This is just a placeholder until the carrier stores middleware
-    # goes live with regional stores.
-    url('^(?:telefonica/)?$', 'mkt.home.views.home', name='home'),
+    url('^$', 'mkt.home.views.home', name='home'),
 
     # App Detail pages.
     ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
