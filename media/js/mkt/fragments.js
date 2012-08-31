@@ -1,4 +1,3 @@
-
 // is the captured node exempt from fragment loading?
 function fragmentFilter(el) {
     var href = el.getAttribute('href') || el.getAttribute('action');
@@ -127,6 +126,8 @@ function fragmentFilter(el) {
             // Replace #page.
             console.log(page);
             page.replaceWith(content);
+            // `page` still contains the old selected elements. Make it be the new ones.
+            page = container.find('#page');
 
             // scroll to the right spot.
             $('html, body').scrollTop(opts.scrollTop || 0);
