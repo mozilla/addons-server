@@ -104,9 +104,9 @@ def price_sidebar(query):
     free = qprice == 'free'
     paid = qprice == 'paid'
     return [
-        FacetLink(_('Any Price'), dict(price=None), not (paid or free)),
-        FacetLink(_('Free Only'), dict(price='free'), free),
-        FacetLink(_('Premium Only'), dict(price='paid'), paid),
+        FacetLink(_('All'), dict(price=None), not (paid or free)),
+        FacetLink(_('Free'), dict(price='free'), free),
+        FacetLink(_('Paid'), dict(price='paid'), paid),
     ]
 
 
