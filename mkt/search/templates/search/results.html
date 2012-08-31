@@ -2,6 +2,11 @@
 
 {% set query_term = query.q %}
 {% set search_url = request.get_full_path() %}
+{% if active['categories'] %}
+  {% set active_cat = active['categories'].text %}
+{% else %}
+  {% set active_cat = None %}
+{% endif %}
 
 {% block title %}{{ mkt_page_title(_('Search Results')) }}{% endblock %}
 
@@ -21,7 +26,6 @@
   <section id="filters">
     <header class="classic-header">
       <a href="#" class="header-button icon back left dismiss"><b></b></a>
-      <a href="#" class="header-button apply right">{{ _('Apply') }}</a>
       <h1>{{ _('Filter') }}</h1>
     </header>
 
@@ -39,24 +43,26 @@
                 </a>
               </li>
             {% endfor %}
-            <input type="hidden" name="price" value="">
           </ul>
+          <input type="hidden" name="price" value="">
         {% endif %}
 
         {% if categories %}
           <h2>{{ _('Filter by category') }}</h2>
-          <ul class="toggles c" id="filter-categories">
+          <p class="picker">{{ active_cat or _('Any') }}</p>
+          <ul class="confirm-action c" id="filter-categories">
             {% for category in categories %}
               <li>
-                <a {% if category.selected %} class="sel"{% endif %}
+                <a class="button{% if category.selected %} sel{% endif %}"
                    href="{{ search_url|urlparams(page=None,
                                                  **category.urlparams) }}">
                   {{ category.text }}
                 </a>
               </li>
             {% endfor %}
-            <input type="hidden" name="cat" value="">
+            <li><a href="#" class="button cancel">{{ _('Cancel') }}</a></li>
           </ul>
+          <input type="hidden" name="cat" value="">
         {% endif %}
 
         {# We're not iterating over all the sort options on purpose. #}
@@ -66,8 +72,12 @@
           <li><a href="#">{{ _('Relevancy') }}</a></li>
           <li><a href="{{ search_url|urlparams(page=None, sort='rating') }}"
                  class="sel">{{ _('Rating') }}</a></li>
-          <input type="hidden" name="sort" value="">
         </ul>
+        <input type="hidden" name="sort" value="">
+
+        <div class="footer-action">
+          <a href="#" class="button apply">{{ _('Apply') }}</a>
+        </div>
       </div>
     </form>
   </section>

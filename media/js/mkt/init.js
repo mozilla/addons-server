@@ -10,7 +10,9 @@ var z = {
         return '-' + z.prefix + '-' + property;
     },
     canInstallApps: true,
-    allowAnonInstalls: !!$('body').data('allow-anon-installs')
+    allowAnonInstalls: !!$('body').data('allow-anon-installs'),
+    // if ($('#myDialog li').length > z.confirmBreakNum) add class 'two-col'.
+    confirmBreakNum: 6
 };
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
