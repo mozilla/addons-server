@@ -5,7 +5,7 @@ import uuid
 from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -195,10 +195,10 @@ def purchase(request, addon):
 
     # This is the non-Ajax fallback.
     if status != 'COMPLETED':
-        return redirect(url)
+        return http.HttpResponseRedirect(url)
 
     messages.success(request, _('Purchase complete'))
-    return redirect(addon.get_detail_url())
+    return http.HttpResponseRedirect(addon.get_detail_url())
 
 
 @csrf_exempt

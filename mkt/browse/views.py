@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404, redirect
+from django import http
+from django.shortcuts import get_object_or_404
 
 import amo
 from addons.models import Category
@@ -52,7 +53,7 @@ def _search(request, category=None):
 
     # If category is not listed as a facet, then remove redirect to search.
     if ctx.get('redirect'):
-        return redirect(ctx['redirect'])
+        return http.HttpResponseRedirect(ctx['redirect'])
 
     return jingo.render(request, 'search/results.html', ctx)
 

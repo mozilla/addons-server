@@ -8,9 +8,10 @@ from tower import ugettext as _
 import waffle
 from waffle.decorators import waffle_switch
 
+from django import http
 from django.conf import settings
 from django.db import transaction
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 import amo
 from amo.decorators import login_required, post_required, write
@@ -207,7 +208,7 @@ def pay(request, signed_req, pay_req):
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
 
     if status != 'COMPLETED':
-        return redirect(url)
+        return http.HttpResponseRedirect(url)
 
     # Payment was completed using pre-auth. Woo!
     _payment_done(request, payment)

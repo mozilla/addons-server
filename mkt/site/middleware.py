@@ -1,8 +1,8 @@
 from types import MethodType
 
+from django import http
 from django.conf import settings
 from django.http import SimpleCookie, HttpRequest
-from django.shortcuts import redirect
 from django.utils.cache import patch_vary_headers
 
 import tower
@@ -109,7 +109,7 @@ class RedirectPrefixedURIMiddleware(object):
             if not new_path or new_path[0] != '/':
                 new_path = '/' + new_path
             # TODO: Make this a 301 when we enable region stores in prod.
-            return redirect(urlparams(new_path, **new_qs))
+            return http.HttpResponseRedirect(urlparams(new_path, **new_qs))
 
 
 def get_accept_language(request):

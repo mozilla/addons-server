@@ -1,5 +1,5 @@
+from django import http
 from django.conf.urls.defaults import patterns, url, include
-from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
@@ -99,7 +99,7 @@ ajax_patterns = patterns('',
 urlpatterns = decorate(write, patterns('',
     # Redirect people who have /apps/ instead of /app/.
     ('^apps/\d+/.*',
-     lambda r: redirect(r.path.replace('apps', 'app', 1))),
+     lambda r: http.HttpResponseRedirect(r.path.replace('apps', 'app', 1))),
 
     # There's no validator yet, but this is where it will go.
     ## Standalone validator:
