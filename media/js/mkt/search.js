@@ -13,51 +13,30 @@
     z.page.on('click', '#filters .toggles a', function() {
         selectMe($(this));
         return false;
-    }).on('click', '#filters .confirm-action a', function() {
-        var $this = $(this);
-        selectMe($this);
-        $this.closest('.confirm-action').removeClass('show');
-        $('.picker').toggleClass('sel');
-        return false;
     });
 
 
     function selectMe($elm) {
-        var $myUL = $elm.closest('ul'),
+        var $myUL = $elm.closest('.toggles'),
             val = '',
             vars = z.getVars($elm[0].search);
 
-        if ($elm.hasClass('cancel')) {
-            return;
-        }
         $myUL.find('a').removeClass('sel');
-
 
         if ($myUL[0].id == 'filter-prices') {
             val = vars.price || '';
         } else if ($myUL[0].id == 'filter-categories') {
             val = vars.cat || '';
-            $('.picker').text($elm.text());
         } else if ($myUL[0].id == 'filter-sort') {
             val = vars.sort || '';
         }
-        $myUL.find('+ input[type=hidden]').val(val);
+        $myUL.find('input[type=hidden]').val(val);
         $elm.addClass('sel');
     }
 
     // Apply filters button.
-    z.page.on('click', '#filters .button.apply', _pd(function() {
+    z.page.on('click', '#filters .header-button.apply', _pd(function() {
         $('#filters form').submit();
-    })).on('click', '#filters .picker', _pd(function() {
-        $('#filter-categories').addClass('show');
-        if ($('#filter-categories li').length > z.confirmBreakNum) {
-            $('#filter-categories').addClass('two-col');
-        } else {
-            $('#filter-categories').removeClass('two-col');
-        }
-        $(this).toggleClass('sel');
-    })).on('click', '.confirm-action .cancel', _pd(function(e) {
-        $(e.target).closest('.confirm-action').removeClass('show');
     }));
 
     var expandListings = false;
