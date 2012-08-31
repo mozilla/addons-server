@@ -44,6 +44,8 @@
         {% elif plugin.severity and not (plugin.min or plugin.max) %}
         <versionRange {{ attrs(severity=plugin.severity) }}></versionRange>
         {% endif %}
+      {% elif plugin.severity == 0 %}
+        <versionRange {{ attrs(severity=plugin.severity) }}></versionRange>
       {% endif %}
     </pluginItem>
   {% endfor %}
