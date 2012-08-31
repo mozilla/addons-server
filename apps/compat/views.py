@@ -8,7 +8,6 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 import jingo
-import redisutils
 from tower import ugettext as _
 
 import amo.utils
@@ -29,7 +28,8 @@ def index(request, version=None):
     if not COMPAT:
         return jingo.render(request, template, {'results': False})
     if version not in compat_dict:
-        return http.HttpResponseRedirect('compat.index', COMPAT[0]['main'])
+        return http.HttpResponseRedirect(reverse('compat.index',
+                                                 args=[COMPAT[0]['main']]))
     qs = AppCompat.search()
     binary = None
 
@@ -92,7 +92,6 @@ def version_compat(qs, compat, app, binary):
 
 def usage_stats(request, compat, app, binary=None):
     # Get the list of add-ons for usage stats.
-    redis = redisutils.connections['master']
     qs = AppCompat.search().order_by('-usage.%s' % app).values_dict()
     if request.GET.get('previous'):
         qs = qs.filter(**{
