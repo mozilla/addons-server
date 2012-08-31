@@ -401,11 +401,8 @@ def _login(request, template=None, data=None, dont_redirect=False):
         request = _clean_next_url(request)
 
     if request.user.is_authenticated():
-        try:
-            return http.HttpResponseRedirect(
+        return http.HttpResponseRedirect(
                         request.GET.get('to', settings.LOGIN_REDIRECT_URL))
-        except NoReverseMatch:
-            return redirect(reverse('home'))
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
