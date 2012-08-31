@@ -72,6 +72,8 @@ class TestAppStatus(amo.tests.TestCase):
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=amo.STATUS_REJECTED)
+        (self.webapp.versions.latest()
+                             .all_files[0].update(status=amo.STATUS_DISABLED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -88,6 +90,8 @@ class TestAppStatus(amo.tests.TestCase):
         webapp = self.get_webapp()
         eq_(webapp.status, amo.STATUS_PENDING,
             'Reapplied apps should get marked as pending')
+        eq_(webapp.versions.latest().all_files[0].status, amo.STATUS_PENDING,
+            'Files for reapplied apps should get marked as pending')
         eq_(unicode(webapp.versions.all()[0].approvalnotes), my_reply)
 
     def test_items_packaged(self):
