@@ -85,12 +85,12 @@
 }
 .confirm-action {
     display: none;
-    position: fixed;
+    position: absolute; // This should be 'fixed' but FF18 can't repaint it.
     z-index: 99;
     bottom: 0;
     left: 0;
     padding: 21px 19px;
-    .gradient-two-color(#fff, #888);
+    .gradient-two-color(#fff, #5c6973);
     list-style-type: none;
     width: 100%;
     margin: 0;
