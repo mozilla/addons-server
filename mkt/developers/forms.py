@@ -725,7 +725,6 @@ class AppAppealForm(happyforms.Form):
     If a developer's app is rejected he can make changes and request
     another review.
     """
-
     notes = forms.CharField(
         label=_lazy(u'Your comments'),
         required=False, widget=forms.Textarea(attrs={'rows': 2}))
@@ -735,12 +734,13 @@ class AppAppealForm(happyforms.Form):
         super(AppAppealForm, self).__init__(*args, **kw)
 
     def save(self):
-        v = self.product.versions.latest()
-        v.update(approvalnotes=self.cleaned_data['notes'])
-        amo.log(amo.LOG.EDIT_VERSION, v.addon, v)
-        # Mark app as pending again.
-        self.product.mark_done()
-        return v
+        version = self.product.versions.latest()
+        version.update(approvalnotes=self.cleaned_data['notes'])
+        amo.log(amo.LOG.EDIT_VERSION, self.product, version)
+        # Mark app and file as pending again.
+        self.product.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        version.all_files[0].update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        return version
 
 
 class RegionForm(forms.Form):
