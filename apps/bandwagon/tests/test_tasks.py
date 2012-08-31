@@ -23,7 +23,7 @@ def test_resize_icon():
     shutil.copyfile(somepic, src.name)
 
     src_image = Image.open(src.name)
-    eq_(src_image.size, (82, 31))
+    eq_(src_image.size, (339, 128))
     resize_icon(src.name, dest.name, locally=True)
 
     dest_image = Image.open(dest.name)
@@ -39,10 +39,10 @@ def test_resize_icon_poorly():
                                       delete=False, dir=settings.TMP_PATH)
     shutil.copyfile(somepic, src.name)
     src_image = Image.open(src.name)
-    eq_(src_image.size, (82, 31))
+    eq_(src_image.size, (339, 128))
 
     resize_icon(src.name, src.name, locally=True)
 
     # assert nothing happenned
     src_image = Image.open(src.name)
-    eq_(src_image.size, (82, 31))
+    eq_(src_image.size, (339, 128))
