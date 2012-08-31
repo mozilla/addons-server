@@ -19,9 +19,9 @@ SORT_CHOICES = [
 FREE_SORT_CHOICES = [(k, v) for k, v in SORT_CHOICES if k != 'price']
 
 PRICE_CHOICES = [
-    (None, _lazy(u'Free & Premium')),
-    ('free', _lazy(u'Free Only')),
-    ('paid', _lazy(u'Premium Only')),
+    (None, _lazy(u'All')),
+    ('free', _lazy(u'Free')),
+    ('paid', _lazy(u'Paid')),
 ]
 
 DEVICE_CHOICES = [
