@@ -1,6 +1,7 @@
 // is the captured node exempt from fragment loading?
 function fragmentFilter(el) {
-    var href = el.getAttribute('href') || el.getAttribute('action');
+    var href = el.getAttribute('href') || el.getAttribute('action'),
+        $el = $(el);
     return !href || href.substr(0,4) == 'http' ||
             href.substr(0,7) === 'mailto:' ||
             href.substr(0,11) === 'javascript:' ||
@@ -10,7 +11,7 @@ function fragmentFilter(el) {
             href.indexOf('/statistics/') !== -1 ||
             href.indexOf('?modified=') !== -1 ||
             el.getAttribute('target') === '_blank' ||
-            $(el).hasClass('post');
+            $el.hasClass('post') || $el.hasClass('sync');
 }
 
 (function(container, nodeFilter) {
