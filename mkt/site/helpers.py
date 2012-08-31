@@ -333,9 +333,15 @@ def external_href(url):
 @register.function
 @jinja2.contextfunction
 def get_login_link(context, to=None):
+    request = context['request']
+
+    # If logged in, just return the URL.
+    if request.user.is_authenticated():
+        return to
+
     url = reverse('users.login')
     # If to is given use that, otherwise get from request.
-    to = to or context['request'].GET.get('to')
+    to = to or request.GET.get('to')
     # Don't allow loop backs to login.
     if to == url:
         to = None
