@@ -4,7 +4,7 @@ $.fn.highlightTerm = function(val) {
     var pat = new RegExp(val, 'gi');
     this.each(function() {
         var $this = $(this),
-            txt = escape_($this.html()),
+            txt = $this.html(),
             matchedTxt = txt.replace(pat, '<b>$&</b>');
         if (txt != matchedTxt) {
             $this.html(matchedTxt);
