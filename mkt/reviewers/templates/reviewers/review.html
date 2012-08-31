@@ -25,7 +25,10 @@
     <div class="currently_viewing_warning"></div>
     <ul id="actions">
       <li class="app-install">
-        {{ market_button(product, 'reviewer') }}
+        <div class="product"
+          {%- for k, v in product_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
+          {{ market_button(product, 'reviewer') }}
+        </div>
         <div class="no-apps">You need to be using<br>
           <a href="http://nightly.mozilla.org/" target="_blank">
           Firefox Nightly</a><br>to install this app.
