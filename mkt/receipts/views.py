@@ -1,5 +1,4 @@
 from django import http
-from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -54,7 +53,7 @@ def _record(request, addon):
 
     # Require login for premium.
     if not logged and (premium or not allow_anon_install):
-        return redirect(reverse('users.login'))
+        return http.HttpResponseRedirect(reverse('users.login'))
 
     ctx = {'addon': addon.pk}
 

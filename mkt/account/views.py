@@ -72,7 +72,7 @@ def payment(request, status=None):
                 # If there is a target, bounce to it and don't show a message
                 # we'll let whatever set this up worry about that.
                 if data.get('complete'):
-                    return redirect(data['complete'])
+                    return http.HttpResponseRedirect(data['complete'])
 
                 messages.success(request,
                     _("You're all set for instant app purchases with PayPal."))
@@ -82,7 +82,7 @@ def payment(request, status=None):
             # The user has chosen to cancel out of PayPal. Nothing really
             # to do here, PayPal just bounce to the cancel page if defined.
             if data.get('cancel'):
-                return redirect(data['cancel'])
+                return http.HttpResponseRedirect(data['cancel'])
 
             messages.success(request,
                 _('Your payment pre-approval has been cancelled.'))
@@ -183,7 +183,7 @@ def preapproval(request, complete=None, cancel=None):
 
     paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
     request.session['setup-preapproval'] = store
-    return redirect(url)
+    return http.HttpResponseRedirect(url)
 
 
 def purchases(request, product_id=None, template=None):
@@ -305,4 +305,3 @@ def abuse(request, user_id):
     else:
         return jingo.render(request, 'account/abuse.html',
                             {'user': user, 'abuse_form': form})
-
