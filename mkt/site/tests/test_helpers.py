@@ -163,6 +163,8 @@ class TestMarketButton(amo.tests.TestCase):
 
 def test_login_link():
     request = mock.Mock()
+    request.user = mock.Mock()
+    request.user.is_authenticated.return_value = False
     request.GET = {}
     eq_(reverse('users.login'), get_login_link({'request': request}))
 
@@ -174,6 +176,9 @@ def test_login_link():
         get_login_link({'request': request}))
     eq_(urlparams(reverse('users.login'), to='bar'),
         get_login_link({'request': request}, 'bar'))
+
+    request.user.is_authenticated.return_value = True
+    eq_(get_login_link({'request': request}, to='foo'), 'foo')
 
 
 class TestCSS(amo.tests.TestCase):
