@@ -29,7 +29,7 @@ def index(request, version=None):
     if not COMPAT:
         return jingo.render(request, template, {'results': False})
     if version not in compat_dict:
-        return redirect('compat.index', COMPAT[0]['main'])
+        return http.HttpResponseRedirect('compat.index', COMPAT[0]['main'])
     qs = AppCompat.search()
     binary = None
 
@@ -43,7 +43,7 @@ def index(request, version=None):
                 new = reverse('compat.index', args=[ver], add_prefix=False)
                 url = '/%s%s' % (amo.APP_IDS[int(app)].short, new)
                 type_ = form.cleaned_data['type'] or None
-                return redirect(urlparams(url, type=type_))
+                return http.HttpResponseRedirect(urlparams(url, type=type_))
 
         if form.cleaned_data['type'] != 'all':
             binary = form.cleaned_data['type'] == 'binary'

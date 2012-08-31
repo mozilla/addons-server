@@ -576,10 +576,10 @@ def purchase(request, addon):
 
     # This is the non-Ajax fallback.
     if status != 'COMPLETED':
-        return redirect(url)
+        return http.HttpResponseRedirect(url)
 
     messages.success(request, _('Purchase complete'))
-    return redirect(shared_url('addons.detail', addon))
+    return http.HttpResponseRedirect(shared_url('addons.detail', addon))
 
 
 # TODO(andym): again, remove this once we figure out logged out flow.
@@ -631,7 +631,7 @@ def purchase_complete(request, addon, status):
     # For mobile, bounce back to the details page.
     if request.MOBILE:
         url = urlparams(shared_url('detail', addon), **context)
-        return redirect(url)
+        return http.HttpResponseRedirect(url)
 
     context.update({'addon': addon})
     response = jingo.render(request, 'addons/paypal_result.html', context)
@@ -815,7 +815,7 @@ def report_abuse(request, addon):
     if request.method == "POST" and form.is_valid():
         send_abuse_report(request, addon, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
-        return redirect(addon.get_url_path())
+        return http.HttpResponseRedirect(addon.get_url_path())
     else:
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
@@ -824,4 +824,5 @@ def report_abuse(request, addon):
 @cache_control(max_age=60 * 60 * 24)
 def persona_redirect(request, persona_id):
     persona = get_object_or_404(Persona, persona_id=persona_id)
-    return redirect('addons.detail', persona.addon.slug, permanent=True)
+    return http.HttpResponsePermanentRedirect('addons.detail',
+                                              persona.addon.slug)
