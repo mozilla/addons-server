@@ -310,6 +310,11 @@ class BlocklistPluginTest(BlocklistTest):
         v = self.dom().getElementsByTagName('versionRange')[0]
         eq_(v.getAttribute('severity'), '2')
 
+    def test_plugin_severity_zero(self):
+        self.plugin.update(severity=0)
+        v = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(v.getAttribute('severity'), '0')
+
     def test_plugin_no_target_app(self):
         self.plugin.update(guid=None, severity=1, min='1', max='2')
         vr = self.dom().getElementsByTagName('versionRange')[0]
