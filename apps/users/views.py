@@ -1044,4 +1044,5 @@ def preapproval(request):
             'key': result['preapprovalKey'],
             'expiry': data['endDate'],
             }
-    return redirect(paypal.get_preapproval_url(result['preapprovalKey']))
+    to = paypal.get_preapproval_url(result['preapprovalKey'])
+    return http.HttpResponseRedirect(to)

@@ -1,8 +1,8 @@
 from functools import wraps
 
+from django import http
 from django.conf import settings
 from django.http import Http404
-from django.shortcuts import redirect
 
 from amo.urlresolvers import reverse
 
@@ -14,7 +14,8 @@ def locale_switcher(f):
         new_userlang = request.GET.get('userlang')
         if new_userlang in settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES:
             kwargs['locale_code'] = new_userlang
-            return redirect(reverse(decorated, args=args, kwargs=kwargs))
+            to = reverse(decorated, args=args, kwargs=kwargs)
+            return http.HttpResponseRedirect(to)
         else:
             return f(request, *args, **kwargs)
     return decorated

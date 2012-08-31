@@ -302,7 +302,8 @@ def recs_debug(request):
             fragment = urlparse.urlparse(url).fragment
             guids = json.loads(urlparse.unquote(fragment)).keys()
             qs = ','.join(map(str, get_addon_ids(guids)))
-            return redirect(reverse('discovery.recs.debug') + '?ids=' + qs)
+            to = reverse('discovery.recs.debug') + '?ids=' + qs
+            return http.HttpResponseRedirect(to)
 
     ctx = {'ids': request.GET.get('ids')}
     if 'ids' in request.GET:

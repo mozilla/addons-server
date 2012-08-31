@@ -294,9 +294,9 @@ def _queue(request, TableObj, tab, qs=None):
                 # Force a limit query for efficiency:
                 start = review_num - 1
                 row = qs[start: start + 1][0]
-                return redirect('%s?num=%s' % (
-                                TableObj.review_url(row),
-                                review_num))
+                return http.HttpResponseRedirect('%s?num=%s' % (
+                                                 TableObj.review_url(row),
+                                                 review_num))
             except IndexError:
                 pass
     order_by = request.GET.get('sort', TableObj.default_order_by())

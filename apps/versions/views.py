@@ -54,7 +54,8 @@ def _find_version_page(qs, addon, version_num):
     url = reverse('addons.versions', args=[addon.slug])
     if version_num in ids:
         page = 1 + ids.index(version_num) / PER_PAGE
-        return redirect(urlparams(url, 'version-%s' % version_num, page=page))
+        to = urlparams(url, 'version-%s' % version_num, page=page)
+        return http.HttpResponseRedirect(to)
     else:
         raise http.Http404()
 
@@ -169,4 +170,4 @@ def download_latest(request, addon, type='xpi', platform=None):
     url = posixpath.join(reverse(pattern, args=args), file.filename)
     if request.GET:
         url += '?' + request.GET.urlencode()
-    return redirect(url)
+    return http.HttpResponseRedirect(url)

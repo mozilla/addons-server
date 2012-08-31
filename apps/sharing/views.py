@@ -1,5 +1,4 @@
 from django import http
-from django.shortcuts import redirect
 from django.utils.encoding import smart_unicode as u
 
 from amo.helpers import page_title
@@ -26,4 +25,4 @@ def share(request, obj, name, description):
         'description': description,
     })
     form.full_clean()
-    return redirect(service.url.format(**form.cleaned_data))
+    return http.HttpResponseRedirect(service.url.format(**form.cleaned_data))
