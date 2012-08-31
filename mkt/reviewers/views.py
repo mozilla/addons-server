@@ -19,12 +19,12 @@ from addons.models import Version
 from amo import messages
 from amo.decorators import json_view, permission_required
 from amo.urlresolvers import reverse
-from amo.utils import escape_all
-from amo.utils import paginate
+from amo.utils import escape_all, JSONEncoder, paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
 from mkt.developers.models import ActivityLog
+from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
@@ -174,6 +174,13 @@ def _review(request, addon):
                                .transform(Version.transformer_activity)
                                .transform(Version.transformer))
 
+    product_attrs = {
+        'product': json.dumps(
+            product_as_dict(request, addon, False, 'developer'),
+            cls=JSONEncoder),
+        'manifestUrl': addon.manifest_url,
+    }
+
     pager = paginate(request, versions, 10)
 
     num_pages = pager.paginator.num_pages
@@ -186,7 +193,7 @@ def _review(request, addon):
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
-                  tab=queue_type)
+                  tab=queue_type, product_attrs=product_attrs)
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 
