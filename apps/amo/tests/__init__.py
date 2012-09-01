@@ -613,13 +613,15 @@ class ESTestCase(TestCase):
     def setUpClass(cls):
         if not settings.RUN_ES_TESTS:
             raise SkipTest('ES disabled')
-        super(ESTestCase, cls).setUpClass()
         cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
 
+        # The ES setting are set before we call super()
+        # because we may have indexation occuring in upper classes.
         for key, index in settings.ES_INDEXES.items():
             if not index.startswith('test_'):
                 settings.ES_INDEXES[key] = 'test_%s' % index
 
+        super(ESTestCase, cls).setUpClass()
         try:
             cls.es.cluster_health()
         except Exception, e:
@@ -629,6 +631,14 @@ class ESTestCase(TestCase):
             raise
 
         for index in set(settings.ES_INDEXES.values()):
+            # getting the index that's pointed by the alias
+            try:
+                indices = cls.es.get_alias(index)
+                index = indices[0]
+            except pyes.IndexMissingException:
+                pass
+
+            # this removes any alias as well
             try:
                 cls.es.delete_index(index)
             except pyes.IndexMissingException, exc:

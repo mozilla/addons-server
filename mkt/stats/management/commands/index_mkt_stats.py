@@ -46,6 +46,8 @@ class Command(BaseCommand):
                          '(inclusive).'),
         make_option('--fixup', action='store_true',
                     help='Find and index rows we missed.'),
+        make_option('--index',
+                    help='The name of the index to use.'),
     )
     help = HELP
 
@@ -54,27 +56,27 @@ class Command(BaseCommand):
             fixup()
 
         from mkt.webapps.models import Installed
-        addons, dates = kw['addons'], kw['date']
+        addons, dates, index = kw['addons'], kw['date'], kw.get('index')
 
         queries = [
             (Webapp.objects, tasks.index_finance_total,
-                {'date': 'created'}),
+                 {'date': 'created', 'index': index}),
             (Webapp.objects, tasks.index_finance_total_by_src,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (Webapp.objects, tasks.index_finance_total_by_currency,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (Contribution.objects, tasks.index_finance_daily,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (Installed.objects, tasks.index_installed_daily,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (Webapp.objects, tasks.index_finance_total_inapp,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (Webapp.objects, tasks.index_finance_total_inapp_by_currency,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (Webapp.objects, tasks.index_finance_total_inapp_by_src,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
             (InappPayment.objects, tasks.index_finance_daily_inapp,
-                {'date': 'created'}),
+                {'date': 'created', 'index': index}),
         ]
 
         for qs, task, fields in queries:

@@ -107,7 +107,7 @@ def extract(addon):
     return d
 
 
-def setup_mapping():
+def setup_mapping(index=None, aliased=True):
     """Set up the addons index mapping."""
     # Mapping describes how elasticsearch handles a document during indexing.
     # Most fields are detected and mapped automatically.
@@ -154,8 +154,8 @@ def setup_mapping():
     # across all doc types in an index. If we forget to adjust one of them
     # we'll get burned later on.
     for model in Addon, AppCompat, Collection, UserProfile:
-        index = model._get_index()
-        create_es_index_if_missing(index)
+        index = index or model._get_index()
+        index = create_es_index_if_missing(index, aliased=aliased)
         try:
             es.put_mapping(model._meta.db_table, mapping, index)
         except pyes.ElasticSearchException, e:

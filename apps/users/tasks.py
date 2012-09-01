@@ -4,6 +4,7 @@ from django.core.files.storage import default_storage as storage
 import commonware.log
 import elasticutils.contrib.django as elasticutils
 from celeryutils import task
+from lib.es.utils import index_objects
 
 from amo.decorators import set_modified_on
 from amo.utils import resize_image
@@ -44,11 +45,9 @@ def resize_photo(src, dst, locally=False, **kw):
 
 @task
 def index_users(ids, **kw):
-    es = elasticutils.get_es()
     task_log.debug('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
-    for c in UserProfile.objects.filter(id__in=ids):
-        UserProfile.index(search.extract(c), bulk=True, id=c.id)
-    es.flush_bulk(forced=True)
+    index = kw.pop('index', None)
+    index_objects(ids, UserProfile, search, index)
 
 
 @task

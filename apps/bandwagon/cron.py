@@ -184,10 +184,10 @@ def _drop_collection_recs(**kw):
 
 
 @cronjobs.register
-def reindex_collections():
+def reindex_collections(index=None, aliased=True):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)
            .values_list('id', flat=True))
-    taskset = [tasks.index_collections.subtask(args=[chunk])
+    taskset = [tasks.index_collections.subtask(args=[chunk], kwargs=dict(index=index))
                for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(taskset).apply_async()
