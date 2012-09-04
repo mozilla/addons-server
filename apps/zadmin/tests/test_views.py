@@ -739,6 +739,15 @@ class TestBulkValidationTask(BulkValidationTest):
             % (self.curr_max.version, self.new_max.version))
         eq_(mail.outbox[0].to, ['fliggy@mozilla.com'])
 
+    @mock.patch('validator.validate.validate')
+    def test_validator_bulk_compat_flag(self, validate):
+        try:
+            self.start_validation()
+        except Exception:
+            # We only care about the call to `validate()`, not the result.
+            pass
+        assert validate.call_args[1].get('compat_test')
+
     @mock.patch('zadmin.tasks.run_validator')
     def test_task_error(self, run_validator):
         run_validator.side_effect = RuntimeError('validation error')

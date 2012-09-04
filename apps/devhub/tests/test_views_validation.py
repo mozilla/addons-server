@@ -268,6 +268,13 @@ class TestValidateFile(BaseUploadTest):
         addon = Addon.objects.get(pk=self.addon.id)
         eq_(addon.binary, True)
 
+    @mock.patch('validator.validate.validate')
+    def test_validator_sets_binary_flag_for_extensions(self, v):
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                             follow=True)
+        assert not v.call_args[1].get('compat_test', True)
+
     @mock.patch('devhub.tasks.run_validator')
     def test_ending_tier_is_preserved(self, v):
         v.return_value = json.dumps({

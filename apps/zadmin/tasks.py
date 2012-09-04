@@ -90,7 +90,8 @@ def bulk_validate_file(result_id, **kw):
                      'targetapp_maxVersion':
                                 {target.application.guid: target.version}}
         validation = run_validator(res.file.file_path, for_appversions=ver,
-                                   test_all_tiers=True, overrides=overrides)
+                                   test_all_tiers=True, overrides=overrides,
+                                   compat=True)
     except:
         task_error = sys.exc_info()
         log.error(u"bulk_validate_file exception on file %s (%s): %s: %s"

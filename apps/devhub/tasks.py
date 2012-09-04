@@ -99,7 +99,7 @@ def file_validator(file_id, **kw):
 
 
 def run_validator(file_path, for_appversions=None, test_all_tiers=False,
-                  overrides=None):
+                  overrides=None, compat=False):
     """A pre-configured wrapper around the addon validator.
 
     *file_path*
@@ -120,6 +120,11 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
         few things we need to override. See validator for supported overrides.
         Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
 
+    *compat=False*
+        Set this to `True` when performing a bulk validation. This allows the
+        validator to ignore certain tests that should not be run during bulk
+        validation (see bug 735841).
+
     To validate the addon for compatibility with Firefox 5 and 6,
     you'd pass in::
 
@@ -130,12 +135,6 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     """
 
     from validator.validate import validate
-
-    # TODO(Kumar) remove this when validator is fixed, see bug 620503
-    from validator.testcases import scripting
-    scripting.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
-    import validator.constants
-    validator.constants.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
 
     apps = dump_apps.Command.JSON_PATH
     if not os.path.exists(apps):
@@ -160,7 +159,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                             approved_applications=apps,
                             spidermonkey=settings.SPIDERMONKEY,
                             overrides=overrides,
-                            timeout=settings.VALIDATOR_TIMEOUT)
+                            timeout=settings.VALIDATOR_TIMEOUT,
+                            compat_test=compat)
     finally:
         if temp:
             os.remove(path)
