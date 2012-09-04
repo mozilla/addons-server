@@ -4,8 +4,9 @@ import json
 import time
 from itertools import cycle
 
-from django.core import mail
 from django.conf import settings
+from django.core import mail
+from django.core.files.storage import default_storage as storage
 
 import mock
 import waffle
@@ -18,7 +19,7 @@ import reviews
 from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonDeviceType, AddonUser
-from amo.tests import (app_factory, check_links, formset, initial,
+from amo.tests import (AMOPaths, app_factory, check_links, formset, initial,
                        version_factory)
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -546,7 +547,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestReviewApp(AppReviewerTest, AccessMixin):
+class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
@@ -994,6 +995,20 @@ class TestReviewApp(AppReviewerTest, AccessMixin):
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'content': u'كك some foreign ish',
                                     'headers': {}})
+
+    @mock.patch('mkt.reviewers.views.requests.get')
+    def test_manifest_json_encoding(self, mock_get):
+        m = mock.Mock()
+        with storage.open(self.manifest_path('non-utf8.webapp')) as fp:
+            m.content = fp.read()
+        m.headers = {}
+        mock_get.return_value = m
+
+        r = self.client.get(reverse('reviewers.apps.review.manifest',
+                                    args=[self.app.app_slug]))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        assert u'"name": "W2MO\u017d"' in data['content']
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_traceback_in_response(self, mock_get):

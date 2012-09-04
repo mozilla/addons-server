@@ -1,0 +1,36 @@
+{
+  "version": "3.8",
+  "name": "W2MO�",
+  "description": "W2MO: Logistics 3D-Simulation, Optimization, Workforce Planning",
+  "icons": {
+    "16": "/img/icon-16.PNG",
+    "48": "/img/icon-48.PNG",
+    "128": "/img/icon-128.PNG"
+  },
+  "developer": {
+    "name": "Logivations GmbH",
+    "url": "https://w2mo.logivations.com"
+  },
+  "locales": {
+    "de": {
+      "description": "W2MO: Logistikoptimierung, 3D-Simulation, Personalplanung"    },
+    "en": {
+      "description": "W2MO: Logistics 3D-Simulation, Optimization, Workforce Planning"
+    },
+    "fr": {
+      "description": "W2MO: Conception logistique, 3D-simulation, optimisation, planification du personnel"    },
+    "nl": {
+      "description": "W2MO: Logistiek planning. 3D Simulatie, optimalisatie, arbeidskrachten planning"    },
+    "es": {
+      "description": "W2MO: diseño logístico, simulación 3D, optimización, planificación de la plantilla"    },
+    "pt-br": {
+      "description": "W2MO: logística, simulação 3D e animação, otimização, planejamento de pessoal"    },
+    "pt-pt": {
+      "description": "W2MO: logística, simulação 3D e animação, otimização, planejamento de pessoal"    },
+    "ru": {
+      "description": "W2MO: Логистический дизайн, 3D-симуляция, оптимизация, кадровое планирование, расчет стоимости"    },
+    "cn": {
+      "description": "W2MO: Логістичний дизайн, 3D-симуляція, оптимізація, планування персоналу, калькуляція витрат"    }
+  },
+  "default_locale": "en"
+}

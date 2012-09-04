@@ -311,8 +311,8 @@ def motd(request):
     if acl.action_allowed(request, 'AppReviewerMOTD', 'Edit'):
         form = MOTDForm(request.POST or None, initial={'motd': motd})
     if form and request.method == 'POST' and form.is_valid():
-            set_config(u'mkt_reviewers_motd', form.cleaned_data['motd'])
-            return redirect(reverse('reviewers.apps.motd'))
+        set_config(u'mkt_reviewers_motd', form.cleaned_data['motd'])
+        return redirect(reverse('reviewers.apps.motd'))
     data = context(form=form)
     return jingo.render(request, 'reviewers/motd.html', data)
 
@@ -321,13 +321,13 @@ def motd(request):
 @addon_view
 @json_view
 def app_view_manifest(request, addon):
-    content, headers = '', {}
+    content, headers = u'', {}
     if addon.manifest_url:
         try:
             req = requests.get(addon.manifest_url, verify=False)
             content, headers = req.content, req.headers
         except Exception:
-            content = ''.join(traceback.format_exception(*sys.exc_info()))
+            content = u''.join(traceback.format_exception(*sys.exc_info()))
 
         try:
             # Reindent the JSON.

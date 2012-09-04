@@ -1,3 +1,4 @@
+import chardet
 import codecs
 import collections
 import contextlib
@@ -802,7 +803,7 @@ def no_translation():
 def escape_all(v):
     """Escape html in JSON value, including nested items."""
     if isinstance(v, basestring):
-        v = jinja2.escape(smart_unicode(v))
+        v = jinja2.escape(smart_unicode(smart_decode(v)))
         v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
         return v
     elif isinstance(v, list):
@@ -876,6 +877,20 @@ def strip_bom(data):
             data = data[len(bom):]
             break
     return data
+
+
+def smart_decode(s):
+    """Guess the encoding of a string and decode it."""
+    enc_guess = chardet.detect(s)
+    data = strip_bom(s)
+    try:
+        return data.decode(enc_guess['encoding'])
+    except UnicodeDecodeError, exc:
+        msg = 'Error decoding string (encoding: %r %.2f%% sure): %s: %s'
+        log.error(msg % (enc_guess['encoding'],
+                         enc_guess['confidence'] * 100.0,
+                         exc.__class__.__name__, exc))
+        return unicode(data, errors='replace')
 
 
 def attach_trans_dict(model, addons):
