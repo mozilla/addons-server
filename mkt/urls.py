@@ -46,7 +46,7 @@ urlpatterns = patterns('',
     ('^developers/', include('mkt.developers.urls')),
 
     # Submission.
-    ('^developers/submit/app/', include('mkt.submit.urls')),
+    ('^developers/submit/', include('mkt.submit.urls')),
 
     # In-app payments.
     ('^inapp-pay/', include('mkt.inapp_pay.urls')),

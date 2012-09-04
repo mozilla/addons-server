@@ -2,8 +2,10 @@ from django.conf.urls import include, patterns, url
 
 from lib.misc.urlconf_decorator import decorate
 
+from addons.urls import ADDON_ID
 import amo
 from amo.decorators import write
+from devhub import views as devhub_views
 from . import views
 
 
@@ -18,12 +20,19 @@ submit_apps_patterns = patterns('',
 
 # Decorate all the views as @write so as to bypass cache.
 urlpatterns = decorate(write, patterns('',
+    url('^theme$', views.submit_theme, name='submit.theme'),
+    url('^theme/upload/'
+        '(?P<upload_type>persona_header|persona_footer)$',
+        devhub_views.ajax_upload_image, name='submit.theme.upload'),
+    url('^theme/%s$' % ADDON_ID, views.submit_theme_done,
+        name='submit.theme.done'),
+
     # App submission.
-    url('^$', views.submit, name='submit.app'),
-    url('^proceed$', views.proceed, name='submit.app.proceed'),
-    url('^terms$', views.terms, name='submit.app.terms'),
-    url('^choose$', views.choose, name='submit.app.choose'),
-    url('^manifest$', views.manifest, name='submit.app.manifest'),
-    url('^package$', views.package, name='submit.app.package'),
-    ('', include(submit_apps_patterns)),
+    url('^app$', views.submit, name='submit.app'),
+    url('^app/proceed$', views.proceed, name='submit.app.proceed'),
+    url('^app/terms$', views.terms, name='submit.app.terms'),
+    url('^app/choose$', views.choose, name='submit.app.choose'),
+    url('^app/manifest$', views.manifest, name='submit.app.manifest'),
+    url('^app/package$', views.package, name='submit.app.package'),
+    ('^app/', include(submit_apps_patterns)),
 ))

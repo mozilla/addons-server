@@ -180,7 +180,7 @@ def create_persona_preview_image(src, dst, img_basename, **kw):
         with storage.open(src) as fp:
             i = Image.open(fp)
             # Crop image from the right.
-            i = i.crop((orig_w - (new_h * 2), 0, orig_w, orig_h))
+            i = i.crop((orig_w - (new_w * 2), 0, orig_w, orig_h))
             i = i.resize(preview, Image.ANTIALIAS)
             i.load()
             with storage.open(os.path.join(dst, img_basename), 'wb') as fp:

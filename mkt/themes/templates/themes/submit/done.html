@@ -1,0 +1,25 @@
+{% extends "developers/base_impala.html" %}
+
+{% block title %}{{ hub_page_title(_('Submission Complete')) }}{% endblock %}
+
+{% block content %}
+<section class="primary">
+  <h1>{{ _("You're done!") }}</h1>
+  <div class="prose">
+    <p>
+    {% trans %}
+      <p>Your Theme has been submitted to the Review queue.</p>
+
+      <p>You'll receive an email once your Theme has been reviewed by an editor.</p>
+    {% endtrans %}
+    </p>
+    <h2>{{ _('Next steps:') }}</h2>
+    <ul class="done-next-steps">
+      <li>
+        {{ _('View your theme\'s <a href="{0}">listing page</a>.')|f(url('themes.detail', addon.slug))|safe }}
+      </li>
+      <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21')|safe }}</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

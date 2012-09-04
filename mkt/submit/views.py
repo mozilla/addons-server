@@ -6,6 +6,7 @@ from django.utils.translation.trans_real import to_language
 import commonware.log
 import jingo
 import waffle
+from waffle.decorators import waffle_switch
 
 import amo
 from amo.decorators import login_required
@@ -20,6 +21,7 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
+from mkt.themes.forms import NewThemeForm
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step
@@ -247,3 +249,26 @@ def _resume(addon, step):
                                 args=[addon.app_slug]))
 
     return redirect(addon.get_dev_url('edit'))
+
+
+@waffle_switch('mkt-themes')
+@login_required
+def submit_theme(request):
+    form = NewThemeForm(data=request.POST or None,
+                        files=request.FILES or None,
+                        request=request)
+    if request.method == 'POST' and form.is_valid():
+        addon = form.save()
+        return redirect('submit.theme.done', addon.slug)
+    return jingo.render(request, 'themes/submit/submit.html',
+                        dict(form=form))
+
+
+@waffle_switch('mkt-themes')
+@login_required
+@dev_required
+def submit_theme_done(request, addon_id, addon):
+    if addon.is_public():
+        return redirect(addon.get_url_path())
+    return jingo.render(request, 'themes/submit/done.html',
+                        dict(addon=addon))

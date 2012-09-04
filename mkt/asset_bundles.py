@@ -58,6 +58,8 @@ CSS = {
         'css/devreg/submit-details.less',
         'css/devreg/validation.less',
         'css/devreg/submit.less',
+        'css/impala/personas.less',
+        'css/impala/colorpicker.less',
 
         # Developer Log In / Registration.
         'css/devreg/login.less',
@@ -198,6 +200,8 @@ JS = {
         'js/devreg/devhub.js',
         'js/devreg/submit.js',
         'js/devreg/edit.js',
+        'js/impala/persona_creation.js',
+        'js/lib/jquery.minicolors.js',
 
         # Specific stuff for making payments nicer.
         'js/devreg/payments.js',
