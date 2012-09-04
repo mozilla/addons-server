@@ -5,7 +5,7 @@ from mkt.webapps.models import Webapp
 
 
 def run():
-    for chunk in chunked(Webapp.objects.all()):
+    for chunk in chunked(Webapp.objects.all(), 50):
         for app in chunk:
             try:
                 generate_image_assets.delay(app)
