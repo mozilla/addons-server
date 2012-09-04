@@ -43,11 +43,13 @@
             {{ _('How do payments work?') }}
           </a>
         </li>
-        <li>
-          <a href="https://developer.mozilla.org/docs/Apps/Marketplace_Payments/Tax_FAQ">
-            {{ _('How do I manage the taxes of my sales?') }}
-          </a>
-        </li>
+        {% if not waffle.switch('disabled-payments') %}
+          <li>
+            <a href="https://developer.mozilla.org/docs/Apps/Marketplace_Payments/Tax_FAQ">
+              {{ _('How do I manage the taxes of my sales?') }}
+            </a>
+          </li>
+        {% endif %}
         <li>
           <a href="https://developer.mozilla.org/docs/Apps/FAQs/Known_issues">
             {{ _('Known issues') }}
