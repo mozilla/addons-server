@@ -127,18 +127,18 @@ AMO_LANGUAGES = (
 HIDDEN_LANGUAGES = ('cy', 'sr', 'sr-Latn', 'tr')
 
 
-def lazy_langs():
+def lazy_langs(languages):
     from product_details import product_details
     if not product_details.languages:
         return {}
     return dict([(i.lower(), product_details.languages[i]['native'])
-                 for i in AMO_LANGUAGES])
+                 for i in languages])
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('lib/product_json')
 
 # Override Django's built-in with our native names
-LANGUAGES = lazy(lazy_langs, dict)()
+LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])

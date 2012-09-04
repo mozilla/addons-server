@@ -329,3 +329,8 @@ GEOIP_HOST = 'localhost'
 GEOIP_PORT = '5309'
 GEOIP_DEFAULT_VAL = 'us'
 GEOIP_DEFAULT_TIMEOUT = .2
+
+# A smaller range of languages for the Marketplace.
+AMO_LANGUAGES = ('en-US', 'es', 'pt-BR')
+LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])

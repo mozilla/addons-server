@@ -23,6 +23,9 @@ class MiddlewareCase(amo.tests.TestCase):
             raise SkipTest
 
 
+_langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
+
+@mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
 
     def test_redirect_for_good_application(self):
@@ -99,6 +102,9 @@ class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
             eq_(got, 404, "For %r: expected '404' but got %r" % (url, got))
 
 
+@mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
+@mock.patch.object(settings, 'LANGUAGE_URL_MAP',
+                   dict([x.lower(), x] for x in _langs))
 class TestLocaleMiddleware(MiddlewareCase):
 
     def test_accept_good_locale(self):
@@ -153,8 +159,8 @@ class TestLocaleMiddleware(MiddlewareCase):
 
     def test_ignore_bad_locale(self):
         # Good? Store language.
-        r = self.client.get('/?lang=ar')
-        eq_(r.cookies['lang'].value, 'ar,en-US')
+        r = self.client.get('/?lang=fr')
+        eq_(r.cookies['lang'].value, 'fr,en-US')
 
         # Bad? Reset language.
         r = self.client.get('/?lang=')
@@ -238,6 +244,8 @@ class TestLocaleMiddleware(MiddlewareCase):
         eq_(r.cookies['lang'].value, 'fr,')
 
 
+@mock.patch.object(settings, 'LANGUAGE_URL_MAP',
+                   dict([x.lower(), x] for x in _langs))
 class TestRegionMiddleware(MiddlewareCase):
 
     def test_lang_set_with_region(self):
