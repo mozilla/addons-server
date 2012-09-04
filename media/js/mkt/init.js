@@ -128,6 +128,20 @@ z.page.on('fragmentloaded', function() {
             // Dismiss looks like back but actually just dismisses an overlay.
             $('#filters').hide();
         } else if ($this.hasClass('filter')) {
+            // Yea...
+            var sortoption = z.getVars(location.href);
+
+            // This will not scale if we have more than two.
+            $('#filter-sort li a').removeClass('sel');
+            switch(sortoption.sort) {
+                case 'relevancy':
+                case 'popularity':
+                    $('#filter-sort li.popularity a').addClass('sel');
+                    break;
+                case 'rating':
+                    $('#filter-sort li.rating a').addClass('sel');
+
+            }
             $('#filters').show();
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');

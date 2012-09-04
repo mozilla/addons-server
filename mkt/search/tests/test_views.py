@@ -106,18 +106,29 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
         doc = pq(r.content)('#filter-categories')
         a = pq(r.content)('#filter-categories').children('li').eq(0).find('a')
-        # Note: PyQuery's `hasClass` matches children's classes, so yeah.
-        eq_(a.attr('class'), 'sel' if not cat_selected else None,
-            "'Any Category' should be selected")
-        eq_(a.length, 1)
-        eq_(a.text(), 'Any Category')
 
-        a = doc('li:last').find('a')
+        # :last will no longer work
+        a = doc('li').eq(1).find('a')
         eq_(a.text(), unicode(self.cat.name))
-        eq_(a.attr('class'), 'sel' if cat_selected else None,
-            '%r should be selected' % unicode(self.cat.name))
+        if cat_selected:
+            eq_(a.filter('.sel').length, 1,
+                '%r should be selected' % unicode(self.cat.name))
+        else:
+            eq_(a.filter('.button').length, 1,
+                '%r should be selected' % unicode(self.cat.name))
+
         params.update(cat=self.cat.id)
         eq_(a.attr('href'), urlparams(self.url, **params))
+
+        sorts = pq(r.content)('#filter-sort')
+        href = sorts('li:first-child a').attr('href')
+
+        if cat_selected:
+            self.assertNotEqual(href.find('sort=popularity'), -1,
+                'Category found - first sort option should be Popularity')
+        else:
+            eq_(href, '/search/?sort=None',
+                'Category found - first sort option should be Relevancy')
 
     def test_no_cat(self):
         self.check_cat_filter({})
