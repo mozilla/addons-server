@@ -1,5 +1,8 @@
 from datetime import date
 
+import json
+
+from django.conf import settings
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -27,6 +30,43 @@ class TestEcosystem(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
+
+class TestGenerateError(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.metlog = settings.METLOG
+        self.metlog.sender.msgs.clear()
+
+    def test_metlog_statsd(self):
+        self.url = reverse('zadmin.generate-error')
+        self.client.post(self.url,
+                         {'error': 'metlog_statsd'})
+
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
+
+        eq_(msg['severity'], 6)
+        eq_(msg['logger'], 'zamboni')
+        eq_(msg['payload'], '1')
+        eq_(msg['type'], 'counter')
+        eq_(msg['fields']['rate'], 1.0)
+        eq_(msg['fields']['name'], 'z.zadmin')
+
+    def test_metlog_json(self):
+        self.url = reverse('zadmin.generate-error')
+        self.client.post(self.url,
+                         {'error': 'metlog_json'})
+
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
+
+        eq_(msg['type'], 'metlog_json')
+        eq_(msg['logger'], 'zamboni')
+        eq_(msg['fields']['foo'], 'bar')
+        eq_(msg['fields']['secret'], 42)
 
 
 class TestFeaturedApps(amo.tests.TestCase):

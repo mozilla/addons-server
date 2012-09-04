@@ -114,5 +114,7 @@ def log_configure():
 
     dictconfig.dictConfig(cfg)
 
+    # logging.getLogger() accesses a singleton, this just binds
+    # in the SentryHandler to error level messages
     tastypie = logging.getLogger('django.request.tastypie')
     tastypie.addHandler(SentryHandler())

@@ -3,6 +3,8 @@ import tempfile
 
 from django.utils.functional import lazy
 
+from metlog.config import client_from_dict_config
+
 _tmpdirs = set()
 
 
@@ -81,6 +83,7 @@ INAPP_REQUIRE_HTTPS = True
 # Make sure debug toolbar output is disabled so it doesn't interfere with any
 # html tests.
 
+
 def custom_show_toolbar(request):
     return False
 
@@ -89,7 +92,7 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
     'HIDE_DJANGO_SQL': True,
     'TAG': 'div',
-    'ENABLE_STACKTRACES' : False,
+    'ENABLE_STACKTRACES': False,
 }
 
 MOZMARKET_VENDOR_EXCLUDE = []
@@ -97,6 +100,8 @@ SECLUSION_HOSTS = ('http://localhost/',)
 
 # These are the default languages. If you want a constrainted set for your
 # tests, you should add those in the tests.
+
+
 def lazy_langs(languages):
     from product_details import product_details
     if not product_details.languages:
@@ -112,3 +117,12 @@ AMO_LANGUAGES = (
 )
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
+
+METLOG_CONF = {
+    'logger': 'zamboni',
+    'sender': {
+        'class': 'metlog.senders.DebugCaptureSender',
+    },
+}
+
+METLOG = client_from_dict_config(METLOG_CONF)

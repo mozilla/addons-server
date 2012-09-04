@@ -25,7 +25,8 @@ from compat.forms import CompatForm as BaseCompatForm
 from files.models import File
 from zadmin.models import SiteEvent, ValidationJob
 
-log = commonware.log.getLogger('z.zadmin')
+LOGGER_NAME = 'z.zadmin'
+log = commonware.log.getLogger(LOGGER_NAME)
 
 
 class DevMailerForm(happyforms.Form):
@@ -277,13 +278,21 @@ class CompatForm(BaseCompatForm):
 class GenerateErrorForm(happyforms.Form):
     error = forms.ChoiceField(choices=(
                     ['zerodivisionerror', 'Zero Division Error (will email)'],
-                    ['iorequesterror', 'IORequest Error (no email)']))
+                    ['iorequesterror', 'IORequest Error (no email)'],
+                    ['metlog_statsd', 'Metlog statsd message'],
+                    ['metlog_json', 'Metlog JSON message']))
 
     def explode(self):
         error = self.cleaned_data.get('error')
+
         if error == 'zerodivisionerror':
-            1/0
+            1 / 0
         elif error == 'iorequesterror':
             class IOError(Exception):
                 pass
             raise IOError('request data read error')
+        elif error == 'metlog_statsd':
+            settings.METLOG.incr(name=LOGGER_NAME)
+        elif error == 'metlog_json':
+            settings.METLOG.metlog(type="metlog_json",
+                    fields={'foo': 'bar', 'secret': 42})

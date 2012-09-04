@@ -6,6 +6,7 @@ import logging
 import socket
 
 from django.utils.functional import lazy
+from metlog.config import client_from_dict_config
 
 WAFFLE_TABLE_SUFFIX = 'amo'
 LOG_TABLE_SUFFIX = ''
@@ -1126,10 +1127,22 @@ LOGGING = {
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
+        'z.metlog': {'level': logging.INFO},
         's.client': {'level': logging.INFO},
         'nose': {'level': logging.WARNING},
     },
 }
+
+
+METLOG_CONF = {
+    'logger': 'zamboni',
+    'sender': {
+        'class': 'metlog.senders.logging.StdLibLoggingSender',
+        'logger_name': 'z.metlog',
+    },
+}
+
+METLOG = client_from_dict_config(METLOG_CONF)
 
 CEF_PRODUCT = "amo"
 

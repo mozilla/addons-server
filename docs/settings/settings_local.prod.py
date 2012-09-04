@@ -40,3 +40,23 @@ INSTALLED_APPS = tuple(app for app in INSTALLED_APPS if app not in DEV_APPS)
 LOG_LEVEL = logging.WARNING
 
 DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
+
+
+# Sample metlog configuration. Uncommented, this would override what is in
+# lib/settings_base.py.
+
+# METLOG_CONF = {
+#     'logger': 'zamboni',
+#     'sender': {
+#         'class': 'metlog.senders.UdpSender',
+#         'host': '127.0.0.1',
+#         'port': '5566',
+#     },
+#     'plugins': {
+#         'raven': ('metlog_raven.raven_plugin.config_plugin',
+#                   {'sentry_project_id': 1}),
+#     },
+# }
+#
+# from metlog.config import client_from_dict_config
+# METLOG = client_from_dict_config(METLOG_CONF)
