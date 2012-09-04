@@ -318,9 +318,9 @@ class ImageAssetForm(happyforms.Form):
                 filetype = (os.path.splitext(upload_hash)[1][1:]
                                    .replace('-', '/'))
                 self.instance.update(filetype='image/png')
-                tasks.resize_imageasset.delay(upload_path, self.instance,
-                                              self.size,
-                                              set_modified_on=[self.instance])
+                tasks.resize_imageasset.delay(
+                    upload_path, self.instance.image_path, self.size,
+                    set_modified_on=[self.instance])
 
     def clean(self):
         self.cleaned_data = super(ImageAssetForm, self).clean()

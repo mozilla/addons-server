@@ -144,12 +144,17 @@ def resize_preview(src, instance, **kw):
 
 @task
 @set_modified_on
-def resize_imageasset(src, instance, size, **kw):
+def resize_imageasset(src, full_dst, size, **kw):
     """Resizes image assets and puts them where they need to be."""
-    full_dst = instance.image_path
+
     log.info('[1@None] Resizing image asset: %s' % full_dst)
     try:
-        resize_image(src, full_dst, size, remove_src=False)
+        with storage.open(src, 'rb') as fp:
+            im = Image.open(fp)
+            im = im.convert('RGBA')
+            im = im.resize(size)
+        with storage.open(full_dst, 'wb') as fp:
+            im.save(fp, 'png')
         return True
     except Exception, e:
         log.error('Error saving image asset: %s' % e)
@@ -173,10 +178,12 @@ def get_hue(image):
     return hues.index(max(hues))
 
 
-def _generate_image_asset_backdrop(hue):
+def _generate_image_asset_backdrop(hue, size=None):
     with storage.open(os.path.join(settings.MEDIA_ROOT,
                                    'img/hub/assetback.png')) as assetback:
         im = Image.open(assetback)
+        if size:
+            im = im.resize(size)
         im_width = im.size[0]
 
         # Change the hue of the background by iterating each pixel.
@@ -204,12 +211,22 @@ def generate_image_assets(addon, **kw):
             icon.load()
     except IOError:
         log.error('[1@None] Could not read 128x128 icon for %s' % addon.id)
-        return None
+        try:
+            with storage.open(os.path.join(
+                    addon.get_icon_dir(), '%s-64.png' % addon.id)) as raw_icon:
+                icon = Image.open(raw_icon)
+                icon.load()
+        except IOError:
+            log.error('[1@None] Could not read 64x64 icon for %s' % addon.id)
+            return None
 
     # The index of the hue with the most tallies is the hue of the icon. Divide
     # by 255.0 because colorsys works with 0-1.0 floats.
     icon_hue = get_hue(icon) / 255.0
-    backdrop = _generate_image_asset_backdrop(icon_hue)
+    biggest_size = max(
+        APP_IMAGE_SIZES, key=lambda x: x['size'][0] * x['size'][1])['size']
+
+    backdrop = _generate_image_asset_backdrop(icon_hue, biggest_size)
 
     for asset in APP_IMAGE_SIZES:
         try:
