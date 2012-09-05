@@ -210,11 +210,9 @@ def url_fix(s, charset='utf-8'):
 
 def lang_from_accept_header(header):
     # Map all our lang codes and any prefixes to the locale code.
-    langs = [(k.lower(), v) for k, v in
-             sorted(settings.LANGUAGE_URL_MAP.items())]
-    # Start with prefixes so any real matches override them.
-    lang_url_map = dict((k.split('-')[0], v) for k, v in langs)
-    lang_url_map.update(langs)
+    lang_url_map = settings.SHORTER_LANGUAGES.copy()
+    lang_url_map.update((k.lower(), v) for k, v in
+                        settings.LANGUAGE_URL_MAP.items())
 
     # If we have a lang or a prefix of the lang, return the locale code.
     for lang, _ in parse_accept_lang_header(header.lower()):

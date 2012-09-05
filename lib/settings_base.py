@@ -122,6 +122,11 @@ AMO_LANGUAGES = (
     'zh-CN', 'zh-TW',
 )
 
+# Explicit conversion of a shorter language code into a more specific one.
+SHORTER_LANGUAGES = {
+    'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
+}
+
 # Not shown on the site, but .po files exist and these are available on the
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'sr', 'sr-Latn', 'tr')
