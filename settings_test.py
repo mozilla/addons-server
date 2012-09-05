@@ -1,6 +1,7 @@
 import atexit
 import tempfile
 
+from django.utils.functional import lazy
 
 _tmpdirs = set()
 
@@ -93,3 +94,21 @@ DEBUG_TOOLBAR_CONFIG = {
 
 MOZMARKET_VENDOR_EXCLUDE = []
 SECLUSION_HOSTS = ('http://localhost/',)
+
+# These are the default languages. If you want a constrainted set for your
+# tests, you should add those in the tests.
+def lazy_langs(languages):
+    from product_details import product_details
+    if not product_details.languages:
+        return {}
+    return dict([(i.lower(), product_details.languages[i]['native'])
+                 for i in languages])
+
+AMO_LANGUAGES = (
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
+    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'zh-CN', 'zh-TW',
+)
+LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
