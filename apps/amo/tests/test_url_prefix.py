@@ -219,7 +219,8 @@ def test_outgoing_url():
 
         # Regular URLs must be escaped.
         eq_(s,
-            'http://example.net/6119a8f8ce0e9f9a5ec803e7e0c120b2243ffcb6/'
+            'http://example.net/bc7d4bb262c9f0b0f6d3412ede7d3252c2e311bb1d55f6'
+            '2315f636cb8a70913b/'
             'http%3A//example.com')
 
         # No double-escaping of outgoing URLs.
