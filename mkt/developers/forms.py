@@ -372,6 +372,15 @@ class AdminSettingsForm(PreviewForm):
     def clean_position(self):
         return -1
 
+    def clean_app_ratings(self):
+        ratings_ids = self.cleaned_data.get('app_ratings')
+        ratings = [ALL_RATINGS[int(i)] for i in ratings_ids]
+        ratingsbodies = set([r.ratingsbody for r in ratings])
+        if len(ratingsbodies) != len(ratings):
+            raise forms.ValidationError(_('Only one rating from each ratings '
+                                          'body may be selected.'))
+        return ratings_ids
+
     def save(self, addon, commit=True):
         if (self.cleaned_data.get('DELETE') and
             'upload_hash' not in self.changed_data and self.promo.id):

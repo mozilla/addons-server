@@ -1508,6 +1508,20 @@ class TestAdminSettings(TestAdmin):
         eq_(list(webapp.content_ratings.values_list('ratings_body', 'rating')),
             [(0, 2)])
 
+
+    def test_ratings_edit_add_dupe(self):
+        self.log_in_with('Apps:Configure')
+
+        data = {'caption': 'ball so hard that ish cray',
+                'position': '1',
+                'upload_hash': 'abcdef',
+                'app_ratings': ('1', '2')
+                }
+        r = self.client.post(self.edit_url, data)
+        self.assertFormError(r, 'form', 'app_ratings',
+                             'Only one rating from each ratings body '
+                             'may be selected.')
+
     def test_ratings_edit_update(self):
         self.log_in_with('Apps:Configure')
         webapp = self.get_webapp()
@@ -1515,18 +1529,18 @@ class TestAdminSettings(TestAdmin):
         data = {'caption': 'ball so hard that ish cray',
                 'position': '1',
                 'upload_hash': 'abcdef',
-                'app_ratings': ('1', '3')
+                'app_ratings': '3',
                 }
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
         eq_(list(webapp.content_ratings.all().values_list('ratings_body',
                                                           'rating')),
-            [(0, 1), (0, 3)])
+            [(0, 3)])
         #a second update doesn't duplicate existing ratings
         r = self.client.post(self.edit_url, data)
         eq_(list(webapp.content_ratings.all().values_list('ratings_body',
                                                           'rating')),
-            [(0, 1), (0, 3)])
+            [(0, 3)])
         del data['app_ratings']
 
         r = self.client.post(self.edit_url, data)
