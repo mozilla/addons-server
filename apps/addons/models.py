@@ -1903,7 +1903,6 @@ def freezer(sender, instance, **kw):
 class AddonUpsell(amo.models.ModelBase):
     free = models.ForeignKey(Addon, related_name='_upsell_from')
     premium = models.ForeignKey(Addon, related_name='_upsell_to')
-    text = PurifiedField()
 
     class Meta:
         db_table = 'addon_upsell'

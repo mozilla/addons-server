@@ -186,8 +186,7 @@ class TestDetail(DetailBase):
     def test_upsell(self):
         eq_(self.get_pq()('#upsell').length, 0)
         premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
-        AddonUpsell.objects.create(free=self.app, premium=premie,
-                                   text='XXX')
+        AddonUpsell.objects.create(free=self.app, premium=premie)
         upsell = self.get_pq()('#upsell')
         eq_(upsell.length, 1)
         eq_(upsell.find('.name').text(), unicode(premie.name))

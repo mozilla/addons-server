@@ -986,7 +986,6 @@ class PremiumForm(happyforms.Form):
     free = forms.ModelChoiceField(queryset=Addon.objects.none(),
                                   required=False,
                                   empty_label='')
-    text = forms.CharField(widget=forms.Textarea(), required=False)
     support_email = forms.EmailField()
 
     def __init__(self, *args, **kw):
@@ -1004,7 +1003,6 @@ class PremiumForm(happyforms.Form):
         upsell = self.addon.upsold
         if upsell:
             kw['initial'].update({
-                'text': upsell.text,
                 'free': upsell.free,
                 'do_upsell': 1,
             })
@@ -1065,11 +1063,6 @@ class PremiumForm(happyforms.Form):
                                      'been set up or has recently expired.'))
         return self.cleaned_data
 
-    def clean_text(self):
-        if self.cleaned_data['do_upsell'] and not self.cleaned_data['text']:
-            raise_required()
-        return self.cleaned_data['text']
-
     def clean_free(self):
         if self.cleaned_data['do_upsell'] and not self.cleaned_data['free']:
             raise_required()
@@ -1090,8 +1083,7 @@ class PremiumForm(happyforms.Form):
             premium.save()
 
         upsell = self.addon.upsold
-        if (self.cleaned_data['do_upsell'] and
-            self.cleaned_data['text'] and self.cleaned_data['free']):
+        if self.cleaned_data['do_upsell'] and self.cleaned_data['free']:
 
             # Check if this app was already a premium version for another app.
             if upsell and upsell.free != self.cleaned_data['free']:
@@ -1099,7 +1091,6 @@ class PremiumForm(happyforms.Form):
 
             if not upsell:
                 upsell = AddonUpsell(premium=self.addon)
-            upsell.text = self.cleaned_data['text']
             upsell.free = self.cleaned_data['free']
             upsell.save()
         elif not self.cleaned_data['do_upsell'] and upsell:

@@ -6,22 +6,6 @@
     <div class="indent">
       {{ form.free.errors }}
       <p>{{ form.free }}</p>
-      <p class="extra">
-        {% if webapp %}
-          {{ loc("Pitch your premium app, describing the added benefits
-                  and functionality over the free version. This will appear
-                  on the free app's details page.") }}
-        {% else %}
-          {% trans %}
-            Pitch your premium add-on, describing the added benefits
-            and functionality over the free version. This will appear
-            on the free add-on's details page.
-          {% endtrans %}
-        {% endif %}
-      </p>
-      {{ form.text.errors }}
-      {{ form.text }}
-      {{ some_html_tip() }}
     </div>
   {% else %}
     <label>{{ loc('App upsell') if webapp else _('Add-on upsell') }}</label>

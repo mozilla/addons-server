@@ -459,7 +459,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
             'price': self.price.pk,
             'free': self.other_addon.pk,
             'do_upsell': 1,
-            'text': 'some upsell',
             'premium_type': amo.ADDON_PREMIUM,
             'support_email': 'c@c.com',
         }
@@ -503,11 +502,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(len(res.context['form'].errors['free']), 1)
         eq_(len(self.addon._upsell_to.all()), 0)
 
-    def test_set_upsell_required(self):
-        self.setup_premium()
-        res = self.client.post(self.url, data=self.get_data(text=''))
-        eq_(res.status_code, 200)
-
     def test_set_upsell_not_mine(self):
         self.setup_premium()
         self.other_addon.authors.clear()
@@ -522,31 +516,22 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.client.post(self.url, data=self.get_data(do_upsell=0))
         eq_(len(self.addon._upsell_to.all()), 0)
 
-    def test_change_upsell(self):
-        self.setup_premium()
-        AddonUpsell.objects.create(free=self.other_addon,
-                                   premium=self.addon, text='foo')
-        eq_(self.addon._upsell_to.all()[0].text, 'foo')
-        self.client.post(self.url, data=self.get_data(text='bar'))
-        eq_(self.addon._upsell_to.all()[0].text, 'bar')
-
     def test_replace_upsell(self):
         self.setup_premium()
         # Make this add-on an upsell of some free add-on.
-        AddonUpsell.objects.create(free=self.other_addon,
-                                   premium=self.addon, text='foo')
+        upsell = AddonUpsell.objects.create(free=self.other_addon,
+                                            premium=self.addon)
         # And this will become our new upsell, replacing the one above.
         new = Addon.objects.create(type=amo.ADDON_WEBAPP,
-                                   premium_type=amo.ADDON_FREE)
-        new.update(status=amo.STATUS_PUBLIC)
+                                   premium_type=amo.ADDON_FREE,
+                                   status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
 
-        eq_(self.addon._upsell_to.all()[0].text, 'foo')
-        self.client.post(self.url, self.get_data(free=new.id, text='bar'))
+        eq_(self.addon._upsell_to.all()[0], upsell)
+        self.client.post(self.url, self.get_data(free=new.id))
         upsell = self.addon._upsell_to.all()
         eq_(len(upsell), 1)
         eq_(upsell[0].free, new)
-        eq_(upsell[0].text, 'bar')
 
     def test_no_free(self):
         self.setup_premium()

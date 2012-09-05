@@ -21,9 +21,6 @@
           {% endtrans %}
         {% endif %}
       </p>
-      {{ form.text.errors }}
-      {{ form.text }}
-      {{ some_html_tip() }}
     </div>
   {% else %}
     <label>{{ _('App upsell') if webapp else _('Add-on upsell') }}</label>

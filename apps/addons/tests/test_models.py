@@ -1989,11 +1989,11 @@ class TestAddonUpsell(amo.tests.TestCase):
         self.two = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                         name='premium')
         self.upsell = AddonUpsell.objects.create(free=self.one,
-                                                 premium=self.two, text='yup')
+                                                 premium=self.two)
 
     def test_create_upsell(self):
+        eq_(self.one.upsell.free, self.one)
         eq_(self.one.upsell.premium, self.two)
-        eq_(self.one.upsell.text, 'yup')
         eq_(self.two.upsell, None)
 
 
