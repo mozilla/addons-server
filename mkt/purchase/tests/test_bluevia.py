@@ -11,6 +11,7 @@ import jwt
 import mock
 from mock import Mock
 from moz_inapp_pay.exc import RequestExpired
+from moz_inapp_pay.verify import verify_claims, verify_keys
 from nose.tools import eq_, raises
 
 import amo
@@ -121,6 +122,51 @@ class TestPurchase(PurchaseTest):
         data = self.get(reverse('bluevia.pay_status',
                                 args=[self.addon.app_slug, '<garbage>']))
         eq_(data['status'], 'incomplete')
+
+
+class TestPurchaseJWT(PurchaseTest):
+
+    def setUp(self):
+        super(TestPurchaseJWT, self).setUp()
+        self.prepare_pay = reverse('bluevia.prepare_pay',
+                                   kwargs={'app_slug': self.addon.app_slug})
+        # This test relies on *not* setting the solitude-payments flag.
+
+    def pay_jwt(self):
+        resp = self.client.post(self.prepare_pay)
+        return json.loads(resp.content)['blueviaJWT']
+
+    def pay_jwt_dict(self):
+        return jwt.decode(str(self.pay_jwt()), verify=False)
+
+    def test_claims(self):
+        verify_claims(self.pay_jwt_dict())
+
+    def test_keys(self):
+        verify_keys(self.pay_jwt_dict(),
+                    ('iss',
+                     'typ',
+                     'aud',
+                     'iat',
+                     'exp',
+                     'request.name',
+                     'request.description',
+                     'request.price',
+                     'request.defaultPrice',
+                     'request.postbackURL',
+                     'request.chargebackURL',
+                     'request.productData'))
+
+    def test_prices(self):
+        data = self.pay_jwt_dict()
+        prices = sorted(data['request']['price'],
+                        key=lambda p: p['currency'])
+
+        eq_(prices[0], {'currency': 'BRL', 'amount': '0.50'})
+        eq_(prices[1], {'currency': 'CAD', 'amount': '3.01'})
+        eq_(prices[2], {'currency': 'EUR', 'amount': '5.01'})
+        eq_(prices[3], {'currency': 'USD', 'amount': '0.99'})
+        eq_(data['request']['defaultPrice'], 'USD')
 
 
 @mock.patch.object(settings, 'SECLUSION_HOSTS', ['host'])

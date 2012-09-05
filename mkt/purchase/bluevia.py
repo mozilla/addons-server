@@ -18,6 +18,7 @@ import amo
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from apps.market.models import PriceCurrency
 from lib.pay_server import client
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
@@ -35,13 +36,14 @@ def prepare_bluevia_pay(data):
     issued_at = calendar.timegm(time.gmtime())
     purchase = {'iss': 'marketplaceID',  # placeholder
                 'typ': 'tu.com/payments/inapp/v1',
+                'aud': 'tu.com',
                 'iat': issued_at,
                 'exp': issued_at + 3600,  # expires in 1 hour
                 'request': {
                     'name': data['app_name'],
                     'description': data['app_description'],
-                    'price': data['amount'],
-                    'currencyCode': data['currency'],
+                    'price': data['prices'],
+                    'defaultPrice': data['currency'],
                     'postbackURL': data['postback_url'],
                     'chargebackURL': data['chargeback_url'],
                     'productData': data['product_data']}}
@@ -66,7 +68,12 @@ def prepare_pay(request, addon):
                                 paykey=None, user=request.amo_user,
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
-    data = {'amount': str(amount), 'currency': currency,
+
+    prices = [{'currency': cur, 'amount': str(tier.price)}
+              for cur, tier in addon.premium.price.currencies()]
+
+    data = {'amount': str(amount),
+            'prices': prices, 'currency': currency,
             'app_name': unicode(addon.name),
             'app_description': unicode(addon.description),
             'postback_url': absolutify(reverse('bluevia.postback')),
