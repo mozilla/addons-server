@@ -317,7 +317,8 @@ class TranslationTestCase(ExtraAppTestCase):
         m = FancyModel.objects.create(linkified=s)
         eq_(m.linkified.localized_string_clean,
             'I like <a href="http://example.com/'
-            '45cfcbcc274c1b6a4bbff81584f3463dd5a08221/http%3A//example.org/'
+            '40979175e3ef6d7a9081085f3b99f2f05447b22ba790130517dd62b7ee59ef94/'
+            'http%3A//example.org/'
             'awesomepage.html" rel="nofollow">http://example.org/awesomepage'
             '.html</a> .')
         eq_(m.linkified.localized_string, s)
