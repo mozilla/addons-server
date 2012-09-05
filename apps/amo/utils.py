@@ -803,7 +803,7 @@ def no_translation():
 def escape_all(v):
     """Escape html in JSON value, including nested items."""
     if isinstance(v, basestring):
-        v = jinja2.escape(smart_unicode(smart_decode(v)))
+        v = jinja2.escape(smart_unicode(v))
         v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
         return v
     elif isinstance(v, list):
@@ -873,14 +873,18 @@ def strip_bom(data):
                 codecs.BOM_UTF16_BE,
                 codecs.BOM_UTF16_LE,
                 codecs.BOM_UTF8):
-        if data.startswith(bom):
-            data = data[len(bom):]
-            break
+        # Basta wrote this. I'll let him explain.
+        # Basta says, "This functions like `startswith()` without performing
+        # any encode or decode operations on any of the strings."
+        if all(ord(x) == ord(y) for x, y in zip(data[:len(bom)], bom)):
+            return data[len(bom):]
     return data
 
 
 def smart_decode(s):
     """Guess the encoding of a string and decode it."""
+    if isinstance(s, unicode):
+        return s
     enc_guess = chardet.detect(s)
     data = strip_bom(s)
     try:

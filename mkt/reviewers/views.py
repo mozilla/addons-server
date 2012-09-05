@@ -19,7 +19,7 @@ from addons.models import Version
 from amo import messages
 from amo.decorators import json_view, permission_required
 from amo.urlresolvers import reverse
-from amo.utils import escape_all, JSONEncoder, paginate
+from amo.utils import escape_all, JSONEncoder, smart_decode, paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
@@ -335,7 +335,7 @@ def app_view_manifest(request, addon):
         except:
             # If it's not valid JSON, just return the content as is.
             pass
-    return escape_all({'content': content, 'headers': headers})
+    return escape_all({'content': smart_decode(content), 'headers': headers})
 
 
 @permission_required('Apps', 'Review')
