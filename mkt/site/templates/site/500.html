@@ -4,17 +4,20 @@
 
 {% block title %}{{ mkt_page_title(_('Oops')) }}{% endblock %}
 
+{% block pagetype %}notice{% endblock %}
+
 {# TODO(apps): Finalize copy. #}
 
 {% block content %}
   <section class="primary">
     <header>
-      <h1>Oops! We had an error.</h1>
+      <h1 id="top">{{ _('Server Error (500)') }}</h1>
+      <h2>{{ _('Oops! We had an error.') }}</h2>
     </header>
     <div class="island hero prose">
-      <p>We'll get to fixing that soon.</p>
+      <p>{{ _("We'll get to fixing that soon.") }}</p>
       <p>
-        You can try refreshing the page, or try again later.
+        {{ _('You can try refreshing the page, or try again later.') }}
       </p>
     </div>
   </section>

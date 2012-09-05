@@ -4,17 +4,16 @@
 
 {% block title %}{{ mkt_page_title(_('Oops')) }}{% endblock %}
 
+{% block pagetype %}notice{% endblock %}
+
 {% block content %}
   <section class="primary">
-    {% trans %}
-      <h1>Oops! Not allowed.</h1>
-      <p>You tried to do something that you weren't allowed to.</p>
-    {% endtrans %}
+      <h1 id="top">{{ _('Not allowed (403)') }}</h1>
+      <h2>{{ _('Oops! Not allowed.') }}</h2>
+      <p>{{ _("You tried to do something that you weren't allowed to.") }}</p>
     {% if because_csrf %}
-      {% trans %}
-      <p>Try going back to the previous page, refreshing
-      and then trying again.</p>
-      {% endtrans %}
+      <p>{{ _('Try going back to the previous page, refreshing and trying
+              again.') }}</p>
     {% endif %}
   </section>
 {% endblock %}

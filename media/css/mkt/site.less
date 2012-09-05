@@ -196,6 +196,18 @@ body .loading-fragment {
     display: none;
 }
 
+// Controlling styles this way causes style repaints when JS applies the type.
+body[data-page-type=notice] {
+    section.primary {
+        padding: 15px;
+        h2 {
+            font-size: 20px;
+            border-bottom: 1px solid @dark-gray;
+            padding-bottom: 10px;
+        }
+    }
+}
+
 @media (min-width: @7col) {
     #site-footer {
         border-top: 1px solid rgba(0,0,0,.3);

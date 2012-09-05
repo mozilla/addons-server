@@ -31,6 +31,14 @@ body {
             }
         }
     }
+    // Simple single pages like 404/500/Terms etc.
+    &[data-page-type='notice'] {
+        .header-button {
+            &.home {
+                display: block;
+            }
+        }
+    }
     &.show-search {
         #top {
             display: none;
