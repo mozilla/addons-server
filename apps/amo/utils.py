@@ -873,11 +873,9 @@ def strip_bom(data):
                 codecs.BOM_UTF16_BE,
                 codecs.BOM_UTF16_LE,
                 codecs.BOM_UTF8):
-        # Basta wrote this. I'll let him explain.
-        # Basta says, "This functions like `startswith()` without performing
-        # any encode or decode operations on any of the strings."
-        if all(ord(x) == ord(y) for x, y in zip(data[:len(bom)], bom)):
-            return data[len(bom):]
+        if data.startswith(bom):
+            data = data[len(bom):]
+            break
     return data
 
 
@@ -886,15 +884,14 @@ def smart_decode(s):
     if isinstance(s, unicode):
         return s
     enc_guess = chardet.detect(s)
-    data = strip_bom(s)
     try:
-        return data.decode(enc_guess['encoding'])
+        return s.decode(enc_guess['encoding'])
     except UnicodeDecodeError, exc:
         msg = 'Error decoding string (encoding: %r %.2f%% sure): %s: %s'
         log.error(msg % (enc_guess['encoding'],
                          enc_guess['confidence'] * 100.0,
                          exc.__class__.__name__, exc))
-        return unicode(data, errors='replace')
+        return unicode(s, errors='replace')
 
 
 def attach_trans_dict(model, addons):
