@@ -97,5 +97,5 @@ def get_addon_search_types():
 
 def get_admin_search_types():
     types = get_addon_search_types()
-    types.append(amo.ADDON_PLUGIN)
+    types.append(ADDON_PLUGIN)
     return types
