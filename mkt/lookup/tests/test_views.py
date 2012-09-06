@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 
+from babel import numbers
 from pyquery import PyQuery as pq
 from nose.exc import SkipTest
 from nose.tools import eq_
@@ -437,7 +438,13 @@ class TestAppSummaryPurchases(AppSummaryTest):
 
     def assert_totals(self, data):
         eq_(data['total'], 6)
-        eq_(sorted(data['amounts']), [u'$6.00', u'\u20ac3.00'])
+        six_bucks = numbers.format_currency(6,
+                'USD',
+                locale=numbers.LC_NUMERIC)
+        three_euro = numbers.format_currency(3,
+                'EUR',
+                locale=numbers.LC_NUMERIC)
+        eq_(sorted(data['amounts']), [six_bucks, three_euro])
 
     def assert_empty(self, data):
         eq_(data['total'], 0)
