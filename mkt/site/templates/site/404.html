@@ -11,7 +11,7 @@
 {% block content %}
   <section class="primary">
     <header>
-      <h1 id="top">{{ _('Page Not Found (404)') }}</h1>
+      <h1 id="top">{{ _('Page Not Found') }}</h1>
       <h2>
         {{ _("We're sorry, but we can't find what you're looking for.") }}
       </h2>
@@ -26,8 +26,9 @@
         <li>{{ _("If you typed in the address, please double check the
                  spelling.") }}</li>
         <li>
-            {{ _('Visit the') }}<a href="{{ url('home') }}">
-            {{ _('Firefox Marketplace front page') }}</a>.
+            {% trans home=url('home') %}
+              Visit the <a href="{{ home }}">Firefox Marketplace front page</a>.
+            {% endtrans %}
         </li>
       </ul>
     </div>
