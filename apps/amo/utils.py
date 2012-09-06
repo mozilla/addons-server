@@ -35,22 +35,23 @@ from django.utils import translation
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
-from babel import Locale
 import bleach
-from cef import log_cef as _log_cef
-from easy_thumbnails import processors
 import elasticutils.contrib.django as elasticutils
 import html5lib
-from html5lib.serializer.htmlserializer import HTMLSerializer
-from jingo import env
 import jinja2
 import pyes.exceptions as pyes
 import pytz
+from babel import Locale
+from bleach.callbacks import nofollow
+from cef import log_cef as _log_cef
+from easy_thumbnails import processors
+from html5lib.serializer.htmlserializer import HTMLSerializer
+from jingo import env
 from PIL import Image, ImageFile, PngImagePlugin
 
 import amo.search
 from amo import ADDON_ICON_SIZES
-from amo.urlresolvers import get_outgoing_url, reverse
+from amo.urlresolvers import get_outgoing_url_for_bleach, reverse
 from translations.models import Translation
 from users.models import UserNotification
 from users.utils import UnsubscribeCode
@@ -802,9 +803,10 @@ def no_translation():
 
 def escape_all(v):
     """Escape html in JSON value, including nested items."""
+    callbacks = [nofollow, get_outgoing_url_for_bleach]
     if isinstance(v, basestring):
         v = jinja2.escape(smart_unicode(v))
-        v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
+        v = bleach.linkify(v, callbacks=callbacks)
         return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):
