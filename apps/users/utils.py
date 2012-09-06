@@ -1,7 +1,6 @@
 import base64
 from functools import partial
 import hashlib
-import hmac
 import time
 import uuid
 
@@ -56,8 +55,8 @@ class EmailResetCode():
 
     @classmethod
     def make_secret(cls, token):
-        return hmac.new(settings.SECRET_KEY, msg=token,
-                        digestmod=hashlib.sha256).hexdigest()
+        key = settings.SECRET_KEY
+        return hashlib.sha256("%s%s" % (token, key)).hexdigest()
 
 
 class UnsubscribeCode():
@@ -85,8 +84,8 @@ class UnsubscribeCode():
 
     @classmethod
     def make_secret(cls, token):
-        return hmac.new(settings.SECRET_KEY, msg=token,
-                        digestmod=hashlib.sha256).hexdigest()
+        key = settings.SECRET_KEY
+        return hashlib.sha256("%s%s" % (token, key)).hexdigest()
 
 
 def get_task_user():

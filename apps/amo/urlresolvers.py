@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 import hashlib
-import hmac
 import urllib
 from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
@@ -178,11 +177,10 @@ def get_outgoing_url(url):
         return url
 
     url = encoding.smart_str(jinja2.utils.Markup(url).unescape())
-    sig = hmac.new(settings.REDIRECT_SECRET_KEY,
-                   msg=url, digestmod=hashlib.sha256).hexdigest()
+    hash = hashlib.sha1(settings.REDIRECT_SECRET_KEY + url).hexdigest()
     # Let '&=' through so query params aren't escaped.  We probably shouldn't
     # bother to quote the query part at all.
-    return '/'.join([settings.REDIRECT_URL.rstrip('/'), sig,
+    return '/'.join([settings.REDIRECT_URL.rstrip('/'), hash,
                      urllib.quote(url, safe='/&=')])
 
 
