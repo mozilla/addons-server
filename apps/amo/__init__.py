@@ -89,7 +89,7 @@ MOBILE.latest_version = FIREFOX.latest_version
 
 
 def get_addon_search_types():
-    types = ADDON_SEARCH_TYPES.copy()
+    types = ADDON_SEARCH_TYPES[:]
     if not settings.SEARCH_EXCLUDE_PERSONAS:
         types.append(ADDON_PERSONA)
     return types
