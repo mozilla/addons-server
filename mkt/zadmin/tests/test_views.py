@@ -15,6 +15,20 @@ from mkt.webapps.models import Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
+class TestEcosystem(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('mkt.zadmin.ecosystem')
+
+    def test_staff_access(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'AdminTools:View')
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
+
 class TestFeaturedApps(amo.tests.TestCase):
     fixtures = ['base/users']
 
@@ -122,7 +136,6 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
                     'region', flat=True)),
             [2, 3])
-
 
     def test_set_startdate(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)

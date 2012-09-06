@@ -2,7 +2,6 @@ import datetime
 
 import jingo
 
-from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.db import transaction
@@ -25,7 +24,7 @@ def featured_apps_admin(request):
     return jingo.render(request, 'zadmin/featuredapp.html')
 
 
-@admin.site.admin_view
+@admin_required
 def ecosystem(request):
     if request.method == 'POST':
         refresh_mdn_cache()
