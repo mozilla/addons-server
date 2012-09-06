@@ -81,7 +81,22 @@
     cursor: pointer;
     font-size: 14px;
     width: auto;
-    padding: 0 15px;
+    padding: 0 30px 0 15px;
+    position: relative;
+    &:after {
+        border-color: @note-gray transparent transparent;
+        border-style: solid;
+        border-width: 5px 5px 0;
+        content: "";
+        margin: 5px 0 0 5px;
+        position: absolute;
+        height: 0;
+        top: 10px;
+        width: 0;
+    }
+    &:hover:after {
+        border-top-color: #333;
+    }
 }
 .confirm-action {
     display: none;
