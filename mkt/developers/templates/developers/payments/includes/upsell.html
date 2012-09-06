@@ -7,35 +7,19 @@
       {{ form.free.errors }}
       <p>{{ form.free }}</p>
       <p class="extra">
-        {% if webapp %}
-          {% trans %}
-            Pitch your premium app, describing the added benefits
-            and functionality over the free version. This will appear
-            on the free app's details page.
-          {% endtrans %}
-        {% else %}
-          {% trans %}
-            Pitch your premium add-on, describing the added benefits
-            and functionality over the free version. This will appear
-            on the free add-on's details page.
-          {% endtrans %}
-        {% endif %}
+        {% trans %}
+          Pitch your premium app over the free version. This will appear
+          on the free app's details page.
+        {% endtrans %}
       </p>
     </div>
   {% else %}
     <label>{{ _('App upsell') if webapp else _('Add-on upsell') }}</label>
     <div class="extra">
-      {% if webapp %}
-        {% trans %}
-          If you have a free app, you can pitch your premium app
-          on that free app. Currently you have no free apps.
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-          If you have a free add-on, you can pitch your premium add-on
-          on that free add-on. Currently you have no free add-ons.
-        {% endtrans %}
-      {% endif %}
+      {% trans %}
+        If you have a free app, you can pitch your premium app
+        on that free app. Currently you have no free apps.
+      {% endtrans %}
     </div>
   {% endif %}
 </div>
