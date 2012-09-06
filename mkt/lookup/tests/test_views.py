@@ -1,8 +1,8 @@
-from babel import numbers
 from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 
+from babel import numbers
 from pyquery import PyQuery as pq
 from nose.exc import SkipTest
 from nose.tools import eq_
