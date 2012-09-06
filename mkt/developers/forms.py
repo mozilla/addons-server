@@ -308,10 +308,8 @@ class ImageAssetForm(happyforms.Form):
 
             if self.cleaned_data['upload_hash']:
                 if not self.instance:
-                    self.instance = ImageAsset.objects.create(
+                    self.instance = ImageAsset.objects.get_or_create(
                         addon=addon, slug=self.slug)
-                else:
-                    self.instance.addon = addon
                 upload_hash = self.cleaned_data['upload_hash']
                 upload_path = os.path.join(settings.TMP_PATH, 'image',
                                            upload_hash)
