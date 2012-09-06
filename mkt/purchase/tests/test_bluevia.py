@@ -132,12 +132,15 @@ class TestPurchaseJWT(PurchaseTest):
                                    kwargs={'app_slug': self.addon.app_slug})
         # This test relies on *not* setting the solitude-payments flag.
 
-    def pay_jwt(self):
-        resp = self.client.post(self.prepare_pay)
+    def pay_jwt(self, lang=None):
+        if not lang:
+            lang = 'en-US'
+        resp = self.client.post(self.prepare_pay,
+                                HTTP_ACCEPT_LANGUAGE=lang)
         return json.loads(resp.content)['blueviaJWT']
 
-    def pay_jwt_dict(self):
-        return jwt.decode(str(self.pay_jwt()), verify=False)
+    def pay_jwt_dict(self, lang=None):
+        return jwt.decode(str(self.pay_jwt(lang=lang)), verify=False)
 
     def test_claims(self):
         verify_claims(self.pay_jwt_dict())
@@ -166,6 +169,16 @@ class TestPurchaseJWT(PurchaseTest):
         eq_(prices[1], {'currency': 'CAD', 'amount': '3.01'})
         eq_(prices[2], {'currency': 'EUR', 'amount': '5.01'})
         eq_(prices[3], {'currency': 'USD', 'amount': '0.99'})
+        eq_(data['request']['defaultPrice'], 'USD')
+
+    @mock.patch.object(settings, 'REGION_STORES', True)
+    def test_brl_for_brazil(self):
+        data = self.pay_jwt_dict(lang='pt-BR')
+        eq_(data['request']['defaultPrice'], 'BRL')
+
+    @mock.patch.object(settings, 'REGION_STORES', True)
+    def test_usd_for_usa(self):
+        data = self.pay_jwt_dict(lang='en-US')
         eq_(data['request']['defaultPrice'], 'USD')
 
 

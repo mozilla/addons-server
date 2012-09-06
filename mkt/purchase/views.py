@@ -21,10 +21,10 @@ from addons.decorators import (addon_view_factory, can_be_purchased,
 from lib.pay_server import client
 from market.forms import PriceCurrencyForm
 from market.models import AddonPurchase
-import paypal
-from stats.models import ClientData, Contribution
 from mkt.account.views import preapproval as user_preapproval
 from mkt.webapps.models import Webapp
+import paypal
+from stats.models import ClientData, Contribution
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
@@ -39,8 +39,8 @@ def start_purchase(request, addon):
     contrib_for = (_(u'Firefox Marketplace purchase of {0}')
                    .format(addon.name))
 
-    # Default is USD.
-    amount, currency = addon.premium.get_price(), 'USD'
+    amount, currency = (addon.premium.get_price(),
+                        request.REGION.default_currency)
 
     # If tier is specified, then let's look it up.
     if waffle.switch_is_active('currencies'):
