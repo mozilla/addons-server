@@ -1,8 +1,6 @@
 from datetime import datetime
 import re
 
-from django.conf import settings
-
 from tower import ugettext_lazy as _
 
 
@@ -185,11 +183,6 @@ ADDON_SEARCH_TYPES = [
     ADDON_SEARCH,
     ADDON_LPAPP,
 ]
-if not settings.SEARCH_EXCLUDE_PERSONAS:
-    ADDON_SEARCH_TYPES.append(ADDON_PERSONA)
-
-# Types searchable via the admin console
-ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
 
 MARKETPLACE_TYPES = [ADDON_PERSONA, ADDON_WEBAPP]
 

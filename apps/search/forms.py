@@ -123,7 +123,8 @@ def SearchForm(request):
         appver = forms.CharField(required=False)
 
         atype = forms.TypedChoiceField(label=_lazy(u'Type'),
-            choices=[(t, amo.ADDON_TYPE[t]) for t in amo.ADDON_SEARCH_TYPES],
+            choices=[(t, amo.ADDON_TYPE[t])
+                     for t in amo.get_addon_search_types()],
             required=False, coerce=int, empty_value=amo.ADDON_ANY)
 
         pid = forms.TypedChoiceField(label=_lazy(u'Platform'),

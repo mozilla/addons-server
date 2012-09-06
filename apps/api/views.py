@@ -345,7 +345,7 @@ class SearchView(APIView):
         filters.update(qs_filters)
         if 'type' not in filters:
             # Filter by ALL types, which is really all types except for apps.
-            filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
+            filters['type__in'] = list(amo.get_addon_search_types())
         qs = qs.filter(**filters)
 
         addons = qs[:limit]

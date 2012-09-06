@@ -117,7 +117,7 @@ def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
     if addon_type:
         try:
             atype = int(addon_type)
-            if atype in amo.ADDON_SEARCH_TYPES:
+            if atype in amo.get_addon_search_types():
                 filters['type'] = atype
         except ValueError:
             # `addon_type` is not a digit. Try to find it in ADDON_SEARCH_SLUGS.

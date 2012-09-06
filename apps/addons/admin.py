@@ -48,7 +48,7 @@ class AddonAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         types = (amo.MARKETPLACE_TYPES if settings.MARKETPLACE else
-                 amo.ADDON_ADMIN_SEARCH_TYPES)
+                 amo.get_admin_search_types())
         return models.Addon.objects.filter(type__in=types)
 
 

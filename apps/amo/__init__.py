@@ -4,6 +4,8 @@ Miscellaneous helpers that make Django compatible with AMO.
 import re
 import threading
 
+from django.conf import settings
+
 import commonware.log
 
 from product_details import product_details
@@ -84,3 +86,16 @@ class CachedProperty(object):
 FIREFOX.latest_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
 THUNDERBIRD.latest_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
 MOBILE.latest_version = FIREFOX.latest_version
+
+
+def get_addon_search_types():
+    types = ADDON_SEARCH_TYPES.copy()
+    if not settings.SEARCH_EXCLUDE_PERSONAS:
+        types.append(ADDON_PERSONA)
+    return types
+
+
+def get_admin_search_types():
+    types = get_addon_search_types()
+    types.append(amo.ADDON_PLUGIN)
+    return types
