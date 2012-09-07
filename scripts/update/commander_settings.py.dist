@@ -6,6 +6,8 @@ REMORA_DIR = "/data/addons-dev/src/addons-dev.allizom.org-remora"
 REMOTE_APP = "/data/www/addons-dev.allizom.org/zamboni"
 REMOTE_UPDATE_SCRIPT = "/data/bin/update-www.sh"
 
+DEPLOY_SCRIPT = "/data/addons-dev/deploy -n addons-dev.allizom.org"
+
 CELERY_SERVICE_PREFIX = "celeryd-dev"
 CELERY_SERVICE_MKT_PREFIX = "celeryd-marketplace-dev"
 

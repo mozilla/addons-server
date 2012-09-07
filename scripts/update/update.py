@@ -61,13 +61,6 @@ def update_code(ctx, ref='origin/master'):
 
 
 @task
-def update_remora(ctx):
-    with ctx.lcd(settings.REMORA_DIR):
-        ctx.local('svn revert -R .')
-        ctx.local('svn up')
-
-
-@task
 def update_info(ctx, ref='origin/master'):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git status")
@@ -78,7 +71,7 @@ def update_info(ctx, ref='origin/master'):
 
 @task
 def checkin_changes(ctx):
-    ctx.local("/usr/bin/rsync -aq --exclude '.git*' --delete %s/ %s/" % (settings.SRC_DIR, settings.WWW_DIR))
+    ctx.local(settings.DEPLOY_SCRIPT)
 
 
 @task
