@@ -149,13 +149,6 @@ def builder_pingback(request):
     return http.HttpResponse()
 
 
-def graphite(request, site):
-    ctx = {'width': 586, 'height': 308}
-    ctx.update(request.GET.items())
-    ctx['site'] = site
-    return jingo.render(request, 'services/graphite.html', ctx)
-
-
 @csrf_exempt
 @post_required
 def record(request):
