@@ -452,9 +452,11 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
 
     def setUp(self):
         app1 = app_factory(is_packaged=True, name='XXX',
-                           version_kw={'version': '1.0'})
+                           version_kw={'version': '1.0',
+                                       'created': self.days_ago(2)})
         app2 = app_factory(is_packaged=True, name='YYY',
-                           version_kw={'version': '1.0'})
+                           version_kw={'version': '1.0',
+                                       'created': self.days_ago(2)})
 
         version_factory(addon=app1, version='1.1', created=self.days_ago(1),
                         file_kw={'status': amo.STATUS_PENDING})
