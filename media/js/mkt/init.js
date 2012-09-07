@@ -134,7 +134,9 @@ z.page.on('fragmentloaded', function() {
             // This will not scale if we have more than two.
             $('#filter-sort li a').removeClass('sel');
             switch(sortoption.sort) {
-                case 'relevancy':
+                case 'None':
+                    $('#filter-sort li.relevancy a').addClass('sel');
+                    break;
                 case 'popularity':
                     $('#filter-sort li.popularity a').addClass('sel');
                     break;

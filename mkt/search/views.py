@@ -63,7 +63,9 @@ def _filter_search(qs, query, filters=None, sorting=None,
     if 'device' in show:
         qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
     if 'sort' in show:
-        sort_by = sorting[query['sort']]
+        sort_by = None
+        if query['sort'] in sorting:
+            sort_by = sorting[query['sort']]
 
         # For "Adolescent" regions popularity is global installs + reviews.
 
@@ -72,7 +74,8 @@ def _filter_search(qs, query, filters=None, sorting=None,
             # from only that region.
             sort_by = '-popularity_%s' % region.id
 
-        qs = qs.order_by(sort_by)
+        if sort_by:
+            qs = qs.order_by(sort_by)
     elif not query.get('q'):
 
         if (sorting_default == 'popularity' and region and
