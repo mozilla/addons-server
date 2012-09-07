@@ -124,6 +124,36 @@ class Webapp(Addon):
             apps_dict[adt.addon_id]._device_types.append(
                 DEVICE_TYPES[adt.device_type])
 
+    @staticmethod
+    def version_and_file_transformer(apps):
+        """Attach all the versions and files to the apps."""
+        if not apps:
+            return
+
+        # Avoids circular imports and uses Django's app cache.
+        Version = models.get_model('versions', 'Version')
+        File = models.get_model('files', 'File')
+
+        ids = set(app.id for app in apps)
+        versions = (Version.uncached.filter(addon__in=ids)
+                                    .select_related('addon'))
+        vids = [v.id for v in versions]
+        files = (File.uncached.filter(version__in=vids)
+                              .select_related('version'))
+
+        # Attach the files to the versions.
+        f_dict = dict((k, list(vs)) for k, vs in
+                      amo.utils.sorted_groupby(files, 'version_id'))
+        for version in versions:
+            version.all_files = f_dict.get(version.id, [])
+        # Attach the versions to the apps.
+        v_dict = dict((k, list(vs)) for k, vs in
+                      amo.utils.sorted_groupby(versions, 'addon_id'))
+        for app in apps:
+            app.all_versions = v_dict.get(app.id, [])
+
+        return apps
+
     def get_url_path(self, more=False, add_prefix=True):
         # We won't have to do this when Marketplace absorbs all apps views,
         # but for now pretend you didn't see this.

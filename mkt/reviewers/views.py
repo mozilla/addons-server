@@ -1,3 +1,4 @@
+import collections
 import datetime
 import json
 import sys
@@ -23,6 +24,7 @@ from amo.utils import escape_all, JSONEncoder, smart_decode, paginate
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
+from files.models import File
 from mkt.developers.models import ActivityLog
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
@@ -60,20 +62,31 @@ def queue_counts():
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
 
     counts = {
-        'pending': Webapp.uncached.exclude(id__in=excluded_ids)
-                                  .filter(status=amo.WEBAPPS_UNREVIEWED_STATUS,
-                                          disabled_by_user=False)
-                                  .count(),
+        'pending': Webapp.uncached
+                         .exclude(id__in=excluded_ids)
+                         .filter(type=amo.ADDON_WEBAPP,
+                                 disabled_by_user=False,
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                         .count(),
         'rereview': RereviewQueue.uncached
                                  .exclude(addon__in=excluded_ids)
                                  .filter(addon__disabled_by_user=False)
                                  .count(),
+        # This will work as long as we disable files of existing unreviewed
+        # versions when a new version is uploaded.
+        'updates': File.uncached
+                       .exclude(version__addon__id__in=excluded_ids)
+                       .filter(version__addon__type=amo.ADDON_WEBAPP,
+                               version__addon__disabled_by_user=False,
+                               version__addon__is_packaged=True,
+                               status=amo.STATUS_PENDING)
+                       .count(),
         'escalated': EscalationQueue.uncached
                                     .filter(addon__disabled_by_user=False)
                                     .count(),
-        'moderated': Review.uncached.filter(reviewflag__isnull=False,
-                                            editorreview=True,
-                                            addon__type=amo.ADDON_WEBAPP)
+        'moderated': Review.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+                                            reviewflag__isnull=False,
+                                            editorreview=True)
                                     .count(),
     }
     rv = {}
@@ -204,17 +217,15 @@ def app_review(request, addon):
     return _review(request, addon)
 
 
-def _queue(request, qs, tab, pager_processor=None):
-    per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
-    pager = paginate(request, qs, per_page)
+QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 
-    if pager_processor:
-        addons = pager_processor(pager)
-    else:
-        addons = pager.object_list
+
+def _queue(request, apps, tab, pager_processor=None):
+    per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
+    pager = paginate(request, apps, per_page)
 
     return jingo.render(request, 'reviewers/queue.html', context(**{
-        'addons': addons,
+        'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
     }))
@@ -223,30 +234,53 @@ def _queue(request, qs, tab, pager_processor=None):
 @permission_required('Apps', 'Review')
 def queue_apps(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    qs = (Webapp.uncached.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+    qs = (Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
+                                 disabled_by_user=False,
+                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)
                          .exclude(id__in=excluded_ids)
-                         .filter(disabled_by_user=False)
                          .order_by('created'))
-    return _queue(request, qs, 'pending')
+    apps = [QueuedApp(app, app.created) for app in qs]
+
+    return _queue(request, apps, 'pending')
 
 
 @permission_required('Apps', 'Review')
 def queue_rereview(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     qs = (RereviewQueue.uncached
+                       .filter(addon__type=amo.ADDON_WEBAPP,
+                               addon__disabled_by_user=False)
                        .exclude(addon__in=excluded_ids)
-                       .filter(addon__disabled_by_user=False)
                        .order_by('created'))
-    return _queue(request, qs, 'rereview',
-                  lambda p: [r.addon for r in p.object_list])
+    apps = [QueuedApp(rq.addon, rq.created) for rq in qs]
+
+    return _queue(request, apps, 'rereview')
+
+
+@permission_required('Apps', 'Review')
+def queue_updates(request):
+    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    addon_ids = (File.objects.filter(status=amo.STATUS_PENDING,
+                                     version__addon__is_packaged=True,
+                                     version__addon__type=amo.ADDON_WEBAPP,
+                                     version__addon__disabled_by_user=False)
+                             .values_list('version__addon_id', flat=True))
+    qs = (Webapp.uncached.exclude(id__in=excluded_ids)
+                         .filter(id__in=addon_ids))
+    apps = Webapp.version_and_file_transformer(qs)
+    apps = [QueuedApp(app, app.all_versions[0].all_files[0].created)
+            for app in qs]
+    apps = sorted(apps, key=lambda a: a.created)
+    return _queue(request, apps, 'updates')
 
 
 @permission_required('Apps', 'ReviewEscalated')
 def queue_escalated(request):
-    qs = (EscalationQueue.uncached.filter(addon__disabled_by_user=False)
+    qs = (EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+                                          addon__disabled_by_user=False)
                          .order_by('created'))
-    return _queue(request, qs, 'escalated',
-                  lambda p: [r.addon for r in p.object_list])
+    apps = [QueuedApp(eq.addon, eq.created) for eq in qs]
+    return _queue(request, apps, 'escalated')
 
 
 @permission_required('Apps', 'Review')

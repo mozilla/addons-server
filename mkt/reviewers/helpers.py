@@ -26,6 +26,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
     if queue:
         queues = {'pending': _('Apps'),
                   'rereview': _('Re-reviews'),
+                  'updates': _('Updates'),
                   'escalated': _('Escalations'),
                   'moderated': _('Moderated Reviews')}
 
@@ -65,6 +66,8 @@ def queue_tabnav(context):
          _('Apps ({0})', counts['pending']).format(counts['pending'])),
         ('rereview', 'queue_rereview',
          _('Re-reviews ({0})', counts['rereview']).format(counts['rereview'])),
+        ('updates', 'queue_updates',
+         _('Updates ({0})', counts['updates']).format(counts['updates'])),
     ]
     if acl.action_allowed(context['request'], 'Apps', 'ReviewEscalated'):
         rv.append(

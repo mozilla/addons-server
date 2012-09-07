@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import datetime
 import json
 import time
 from itertools import cycle
@@ -22,7 +21,6 @@ from addons.models import AddonDeviceType, AddonUser
 from amo.tests import (AMOPaths, app_factory, check_links, formset, initial,
                        version_factory)
 from amo.urlresolvers import reverse
-from amo.utils import urlparams
 from devhub.models import ActivityLog, AppLog
 from editors.models import CannedResponse, EscalationQueue, ReviewerScore
 from files.models import File
@@ -101,12 +99,9 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         EscalationQueue.objects.create(addon=escalated)
 
     def test_stats_waiting(self):
-        now = datetime.datetime.now()
-        days_ago = lambda n: now - datetime.timedelta(days=n)
-
-        self.apps[0].update(created=days_ago(1))
-        self.apps[1].update(created=days_ago(5))
-        self.apps[2].update(created=days_ago(15))
+        self.apps[0].update(created=self.days_ago(1))
+        self.apps[1].update(created=self.days_ago(5))
+        self.apps[2].update(created=self.days_ago(15))
 
         doc = pq(self.client.get(self.url).content)
 
@@ -152,9 +147,9 @@ class FlagsMixin(object):
         eq_(self.apps[0].is_packaged, True)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
-        flags = tds('div.sprite-reviewer-packaged-app')
-        eq_(flags.length, 1)
+        td = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)').eq(0)
+        flag = td('div.sprite-reviewer-packaged-app')
+        eq_(flag.length, 1)
 
     def test_flag_premium_app(self):
         self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
@@ -199,17 +194,13 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
     fixtures = ['base/users']
 
     def setUp(self):
-
-        now = datetime.datetime.now()
-        days_ago = lambda n: now - datetime.timedelta(days=n)
-
         self.apps = [app_factory(name='XXX',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='YYY',
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
                      app_factory(name='ZZZ')]
-        self.apps[0].update(created=days_ago(2))
-        self.apps[1].update(created=days_ago(1))
+        self.apps[0].update(created=self.days_ago(2))
+        self.apps[1].update(created=self.days_ago(1))
 
         RereviewQueue.objects.create(addon=self.apps[2])
 
@@ -217,7 +208,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
         self.url = reverse('reviewers.apps.queue_pending')
 
     def review_url(self, app):
-        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
+        return reverse('reviewers.apps.review', args=[app.app_slug])
 
     def test_queue_viewing_ping(self):
         eq_(self.client.post(reverse('editors.queue_viewing')).status_code,
@@ -250,7 +241,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
     def test_action_buttons_rejected(self):
         # Check action buttons for a previously rejected app.
         self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -297,7 +288,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -306,21 +298,23 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         res = self.client.get(self.url)
         # self.apps[2] is not pending so doesn't show up either.
-        eq_(list(res.context['addons']), [self.apps[1]])
+        eq_([a.app for a in res.context['addons']], [self.apps[1]])
 
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (1)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (1)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     # TODO(robhudson): Add sorting back in.
     #def test_sort(self):
@@ -334,25 +328,22 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
     fixtures = ['base/users']
 
     def setUp(self):
-        now = datetime.datetime.now()
-        days_ago = lambda n: now - datetime.timedelta(days=n)
-
         self.apps = [app_factory(name='XXX'),
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
         rq1 = RereviewQueue.objects.create(addon=self.apps[0])
-        rq1.update(created=days_ago(5))
+        rq1.update(created=self.days_ago(5))
         rq2 = RereviewQueue.objects.create(addon=self.apps[1])
-        rq2.update(created=days_ago(3))
+        rq2.update(created=self.days_ago(3))
         rq3 = RereviewQueue.objects.create(addon=self.apps[2])
-        rq3.update(created=days_ago(1))
+        rq3.update(created=self.days_ago(1))
 
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_rereview')
 
     def review_url(self, app):
-        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
+        return reverse('reviewers.apps.review', args=[app.app_slug])
 
     def test_template_links(self):
         r = self.client.get(self.url)
@@ -398,7 +389,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
 
     def test_action_buttons_reject(self):
         self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -422,7 +413,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -431,20 +423,22 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         res = self.client.get(self.url)
-        eq_(res.context['addons'], self.apps[1:])
+        eq_([a.app for a in res.context['addons']], self.apps[1:])
 
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (2)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (1)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_addon_deleted(self):
         self.create_switch(name='soft_delete')
@@ -453,29 +447,153 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
+class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        app1 = app_factory(is_packaged=True, name='XXX',
+                           version_kw={'version': '1.0'})
+        app2 = app_factory(is_packaged=True, name='YYY',
+                           version_kw={'version': '1.0'})
+
+        version_factory(addon=app1, version='1.1',
+                        file_kw={'status': amo.STATUS_PENDING})
+        version_factory(addon=app2, version='1.1',
+                        file_kw={'status': amo.STATUS_PENDING})
+
+        self.apps = list(Webapp.objects.order_by('id'))
+        self.login_as_editor()
+        self.url = reverse('reviewers.apps.queue_updates')
+
+    def review_url(self, app):
+        return reverse('reviewers.apps.review', args=[app.app_slug])
+
+    def test_template_links(self):
+        self.apps[0].versions.latest().files.update(created=self.days_ago(2))
+        self.apps[1].versions.latest().files.update(created=self.days_ago(1))
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
+        expected = [
+            (unicode(self.apps[0].name), self.review_url(self.apps[0])),
+            (unicode(self.apps[1].name), self.review_url(self.apps[1])),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_action_buttons_public_senior_reviewer(self):
+        self.apps[0].versions.latest().files.update(status=amo.STATUS_PUBLIC)
+        self.login_as_senior_reviewer()
+
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Reject', 'reject'),
+            (u'Disable app', 'disable'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    def test_action_buttons_public(self):
+        self.apps[0].versions.latest().files.update(status=amo.STATUS_PUBLIC)
+
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Reject', 'reject'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    def test_action_buttons_reject(self):
+        self.apps[0].versions.latest().files.update(status=amo.STATUS_DISABLED)
+
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Reject', 'reject'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    def test_invalid_page(self):
+        r = self.client.get(self.url, {'page': 999})
+        eq_(r.status_code, 200)
+        eq_(r.context['pager'].number, 1)
+
+    def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (2)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+
+    def test_queue_count_senior_reviewer(self):
+        self.login_as_senior_reviewer()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (2)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
+
+    def test_escalated_not_in_queue(self):
+        self.login_as_senior_reviewer()
+        EscalationQueue.objects.create(addon=self.apps[0])
+        res = self.client.get(self.url)
+        eq_([a.app for a in res.context['addons']], self.apps[1:])
+
+        doc = pq(res.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (1)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
+
+    def test_order(self):
+        self.apps[0].update(created=self.days_ago(10))
+        self.apps[1].update(created=self.days_ago(5))
+        self.apps[0].versions.latest().files.update(created=self.days_ago(1))
+        self.apps[1].versions.latest().files.update(created=self.days_ago(4))
+        res = self.client.get(self.url)
+        apps = list(res.context['addons'])
+        eq_(apps[0].app, self.apps[1])
+        eq_(apps[1].app, self.apps[0])
+
+
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
     fixtures = ['base/users']
 
     def setUp(self):
-        now = datetime.datetime.now()
-        days_ago = lambda n: now - datetime.timedelta(days=n)
-
         self.apps = [app_factory(name='XXX'),
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
         eq1 = EscalationQueue.objects.create(addon=self.apps[0])
-        eq1.update(created=days_ago(5))
+        eq1.update(created=self.days_ago(5))
         eq2 = EscalationQueue.objects.create(addon=self.apps[1])
-        eq2.update(created=days_ago(3))
+        eq2.update(created=self.days_ago(3))
         eq3 = EscalationQueue.objects.create(addon=self.apps[2])
-        eq3.update(created=days_ago(1))
+        eq3.update(created=self.days_ago(1))
 
         self.login_as_senior_reviewer()
         self.url = reverse('reviewers.apps.queue_escalated')
 
     def review_url(self, app):
-        return urlparams(reverse('reviewers.apps.review', args=[app.app_slug]))
+        return reverse('reviewers.apps.review', args=[app.app_slug])
 
     def test_no_access_regular_reviewer(self):
         # Since setUp added a new group, remove all groups and start over.
@@ -513,7 +631,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
 
     def test_action_buttons_reject(self):
         self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -537,8 +655,9 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (3)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (3)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_addon_deleted(self):
         self.create_switch(name='soft_delete')
@@ -1402,7 +1521,8 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Moderated Reviews (2)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (2)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -1411,5 +1531,6 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
         doc = pq(r.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
         eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Escalations (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (2)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (2)')

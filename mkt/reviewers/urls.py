@@ -13,6 +13,8 @@ urlpatterns = (
         name='reviewers.apps.queue_pending'),
     url(r'^apps/queue/rereview/$', views.queue_rereview,
         name='reviewers.apps.queue_rereview'),
+    url(r'^apps/queue/updates/$', views.queue_updates,
+        name='reviewers.apps.queue_updates'),
     url(r'^apps/queue/escalated/$', views.queue_escalated,
         name='reviewers.apps.queue_escalated'),
     url(r'^apps/queue/moderated$', views.queue_moderated,
