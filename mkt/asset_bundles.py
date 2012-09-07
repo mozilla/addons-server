@@ -145,6 +145,7 @@ CSS = {
     ),
     'mkt/lookup': (
         'css/mkt/lookup-tool.less',
+        'css/mkt/activity.less',
     ),
     'mkt/themes': (
         'css/mkt/themes.less',

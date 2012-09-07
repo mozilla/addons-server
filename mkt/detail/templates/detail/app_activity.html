@@ -1,13 +1,12 @@
-{% extends 'detail/protected_app.html' %}
+{% extends 'lookup/base.html' %}
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
-                            (None, product.name)]) }}
-
   <section class="island c">
-    <section id="activity-info">
+    {{ app_header(product, 'activity') }}
+
+    <section id="activity-info" class="column-b">
       <h2>{{ product.name }} - {{ _('Activity') }}</h2>
       <ol class="simple-log">
         {% for item in user_items %}
