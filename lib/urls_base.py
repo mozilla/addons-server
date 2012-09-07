@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog

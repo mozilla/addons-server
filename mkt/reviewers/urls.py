@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import include, url
+from django.conf.urls import include, url
 
 import amo
 from apps.editors.views import queue_viewing, review_viewing

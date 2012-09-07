@@ -1,7 +1,7 @@
 import csp.views
 from waffle.views import wafflejs
 
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import include, patterns, url
 from django.views.decorators.cache import never_cache
 
 from . import views, install

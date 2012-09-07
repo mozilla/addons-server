@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import include, patterns, url
 
 from mkt.ratings.feeds import RatingsRss
 from reviews.views import delete as amo_delete, flag as amo_flag

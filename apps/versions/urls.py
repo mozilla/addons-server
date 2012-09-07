@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from versions.feeds import VersionsRss
 
 from addons.urls import ADDON_ID

@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import include, patterns, url
 
 from . import views, feeds
 

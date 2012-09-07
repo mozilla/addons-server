@@ -1,5 +1,5 @@
 from django.contrib.auth import views as auth_views
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import include, patterns, url
 
 from session_csrf import anonymous_csrf
 

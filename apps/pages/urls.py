@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from django.http import HttpResponsePermanentRedirect as perma_redirect
 
 from jingo.views import direct_to_template

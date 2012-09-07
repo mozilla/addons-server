@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import include, patterns, url
+from django.conf.urls import include, patterns, url
 
 from mkt.purchase.urls import app_purchase_patterns
 from mkt.ratings.urls import review_patterns

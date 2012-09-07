@@ -1,5 +1,5 @@
 from django import http
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls import include, patterns, url
 
 from lib.misc.urlconf_decorator import decorate
 

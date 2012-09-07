@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import include, patterns, url
+from django.conf.urls import include, patterns, url
 from django.shortcuts import redirect
 
 from amo.urlresolvers import reverse
