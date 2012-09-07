@@ -17,7 +17,7 @@ def create_virtualenv(ctx):
     ctx.local("virtualenv --distribute --system-site-packages --never-download %s" % venv)
     ctx.local("rm -f %s/lib64 && ln -s ./lib %s/lib64" % (venv, venv))
     ctx.local("%s/bin/pip install -I --download-cache=/tmp/pip-cache -i https://mrepo.mozilla.org/pypi/simple/ -r %s/requirements/prod.txt" % (venv, settings.SRC_DIR))
-    ctx.local("virtual --relocatable %s" % venv)
+    ctx.local("virtualenv --relocatable %s" % venv)
 
 
 @task
