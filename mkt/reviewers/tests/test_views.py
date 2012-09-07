@@ -582,6 +582,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         apps = [a.app for a in res.context['addons']]
         assert app not in apps, (
             'Unexpected: Found a new packaged app in the updates queue.')
+        eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):

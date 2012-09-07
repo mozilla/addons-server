@@ -79,6 +79,7 @@ def queue_counts():
                        .filter(version__addon__type=amo.ADDON_WEBAPP,
                                version__addon__disabled_by_user=False,
                                version__addon__is_packaged=True,
+                               version__addon__status=amo.STATUS_PUBLIC,
                                status=amo.STATUS_PENDING)
                        .count(),
         'escalated': EscalationQueue.uncached
