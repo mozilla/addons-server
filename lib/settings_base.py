@@ -234,11 +234,6 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 # /mnt/netapp_amo/addons.mozilla.org-remora/public-staging
 MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/admin-media/'
-
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',
