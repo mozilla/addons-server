@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime, timedelta
 import unittest
 import urllib
 
@@ -15,6 +16,7 @@ from amo.tests.test_helpers import render
 from addons.models import Addon
 from mkt.developers import helpers
 from files.models import File, Platform
+from users.models import UserProfile
 from versions.models import Version
 
 
@@ -202,3 +204,36 @@ class TestDevFilesStatus(amo.tests.TestCase):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_DISABLED
         self.expect(amo.STATUS_CHOICES[amo.STATUS_DISABLED])
+
+
+class TestDevAgreement(amo.tests.TestCase):
+
+    def setUp(self):
+        self.user = UserProfile()
+
+    def test_none(self):
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=None):
+            eq_(helpers.dev_agreement_ok(self.user), True)
+
+    def test_date_oops(self):
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=('wat?')):
+            eq_(helpers.dev_agreement_ok(self.user), True)
+
+    def test_not_agreed(self):
+        # The user has never agreed to it so in this case we don't need to
+        # worry them about changes.
+        self.user.update(read_dev_agreement=None)
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=
+                           self.days_ago(10).date()):
+            eq_(helpers.dev_agreement_ok(self.user), True)
+
+    def test_past_agreed(self):
+        self.user.update(read_dev_agreement=self.days_ago(10))
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days_ago(5).date()):
+            eq_(helpers.dev_agreement_ok(self.user), False)
+
+    def test_not_past(self):
+        self.user.update(read_dev_agreement=self.days_ago(5))
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=
+                           self.days_ago(10).date()):
+            eq_(helpers.dev_agreement_ok(self.user), True)

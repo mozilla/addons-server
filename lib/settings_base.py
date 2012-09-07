@@ -1546,3 +1546,9 @@ SIMULATE_NAV_PAY = False
 
 # Set this to True if you want region stores (eg: marketplace).
 REGION_STORES = False
+
+# When the dev. agreement gets updated and you need users to re-accept it
+# change this date. You won't want to do this for minor format changes.
+# The tuple is passed through to datetime.date, so please use a valid date
+# tuple. If the value is None, then it will just not be used at all.
+DEV_AGREEMENT_LAST_UPDATED = None

@@ -83,7 +83,7 @@
         {% endblock %}
       {% endblock site_header %}
     </section>
-    {% if ADMIN_MESSAGE or settings.READ_ONLY %}
+    {% if ADMIN_MESSAGE or settings.READ_ONLY or not dev_agreement_ok(amo_user) %}
       <div id="site-notice">
         <div class="pad">
           {% if ADMIN_MESSAGE %}
@@ -95,9 +95,16 @@
               website maintenance. We'll be back to full capacity shortly.
               {% endtrans %}</p>
           {% endif %}
+          {% if not dev_agreement_ok(amo_user) %}
+             <p>{% trans url=url('mkt.developers.apps.terms') %}
+               The Terms of Service have changed since you last agreed to them.
+               Please read and agree to the <a href="{{ url }}">new terms</a>.
+               {% endtrans %}</p>
+          {% endif %}
         </div>
       </div>
     {% endif %}
+
     <div id="wrap">
       <div id="page" class="pad section c" role="main">
         {# Overridden in base_side_categories, which expands categories

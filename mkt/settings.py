@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from lib.settings_base import *
@@ -381,3 +382,6 @@ HIDDEN_LANGUAGES = (
     # The hidden list from AMO's settings:
     'cy', 'sr', 'sr-Latn', 'tr',
 )
+
+# Update this each time there's a major update.
+DEV_AGREEMENT_LAST_UPDATED = datetime.date(2012, 2, 23)

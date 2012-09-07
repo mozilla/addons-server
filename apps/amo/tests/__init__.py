@@ -199,6 +199,10 @@ def mock_es(f):
     return decorated
 
 
+def days_ago(days):
+    return datetime.now() - timedelta(days=days)
+
+
 class TestCase(RedisTest, test_utils.TestCase):
     """Base class for all amo tests."""
     client_class = TestClient
@@ -378,7 +382,7 @@ class TestCase(RedisTest, test_utils.TestCase):
         GroupUser.objects.create(group=group, user=user_obj)
 
     def days_ago(self, days):
-        return datetime.now() - timedelta(days=days)
+        return days_ago(days)
 
 
 class AMOPaths(object):

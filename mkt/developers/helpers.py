@@ -1,12 +1,13 @@
 from collections import defaultdict
 import urllib
 
+from django.conf import settings
 from django.utils.encoding import smart_unicode
 
 import chardet
 import jinja2
 from jingo import register
-from jingo.helpers import datetime
+from jingo.helpers import datetime as jingo_datetime
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
@@ -125,11 +126,11 @@ def status_choices(addon):
 def file_status_message(file, addon, file_history=False):
     choices = status_choices(addon)
     return {'fileid': file.id, 'platform': file.amo_platform.name,
-            'created': datetime(file.created),
+            'created': jingo_datetime(file.created),
             'status': choices[file.status],
             'file_history': file_history,
             'actions': amo.LOG_REVIEW_EMAIL_USER,
-            'status_date': datetime(file.datestatuschanged)}
+            'status_date': jingo_datetime(file.datestatuschanged)}
 
 
 @register.function
@@ -208,3 +209,23 @@ def disabled_payments_notice(context, addon=None):
     """
     addon = context.get('addon', addon)
     return {'request': context.get('request'), 'addon': addon}
+
+
+@register.function
+def dev_agreement_ok(user):
+    latest = settings.DEV_AGREEMENT_LAST_UPDATED
+    if not latest:
+        # Value not set for last updated.
+        return True
+
+    if not user.read_dev_agreement:
+        # If you don't have any apps, we we won't worry about this because
+        # you'll be prompted on the first submission.
+        return True
+
+    current = user.read_dev_agreement
+    if current and current.date() < latest:
+        # The dev agreement has been updated since you last submitted.
+        return False
+
+    return True

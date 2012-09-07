@@ -88,4 +88,3 @@ def check_upload(file_obj, upload_type, content_type):
                 errors.append(_('Icons must be square.'))
 
     return errors, upload_hash
-

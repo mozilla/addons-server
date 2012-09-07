@@ -1649,3 +1649,30 @@ class TestTerms(amo.tests.TestCase):
         res = self.client.post(self.url, {'read_dev_agreement': 'yeah'})
         eq_(res.status_code, 200)
         assert self.get_user().read_dev_agreement
+
+    @mock.patch.object(settings, 'DEV_AGREEMENT_LAST_UPDATED',
+                       amo.tests.days_ago(-5).date())
+    def test_update(self):
+        past = self.days_ago(10)
+        self.user.update(read_dev_agreement=past)
+        res = self.client.post(self.url, {'read_dev_agreement': 'yeah'})
+        eq_(res.status_code, 200)
+        assert self.get_user().read_dev_agreement != past
+
+    @mock.patch.object(settings, 'DEV_AGREEMENT_LAST_UPDATED',
+                       amo.tests.days_ago(-5).date())
+    def test_past(self):
+        past = self.days_ago(10)
+        self.user.update(read_dev_agreement=past)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#site-notice').length, 1)
+        eq_(doc('#dev-agreement').length, 1)
+        eq_(doc('#agreement-form').length, 1)
+
+    def test_not_past(self):
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        eq_(doc('#site-notice').length, 0)
+        eq_(doc('#dev-agreement').length, 1)
+        eq_(doc('#agreement-form').length, 0)
