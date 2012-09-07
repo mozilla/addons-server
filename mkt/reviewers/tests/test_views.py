@@ -456,9 +456,9 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         app2 = app_factory(is_packaged=True, name='YYY',
                            version_kw={'version': '1.0'})
 
-        version_factory(addon=app1, version='1.1',
+        version_factory(addon=app1, version='1.1', created=self.days_ago(1),
                         file_kw={'status': amo.STATUS_PENDING})
-        version_factory(addon=app2, version='1.1',
+        version_factory(addon=app2, version='1.1', created=self.days_ago(1),
                         file_kw={'status': amo.STATUS_PENDING})
 
         self.apps = list(Webapp.objects.order_by('id'))
@@ -518,7 +518,6 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Push to public', 'public'),
-            (u'Reject', 'reject'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),

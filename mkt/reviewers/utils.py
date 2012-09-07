@@ -324,9 +324,11 @@ class ReviewHelper(object):
         actions = SortedDict()
 
         file_status = self.version.files.values_list('status', flat=True)
-        has_multiple_versions = self.addon.versions.exclude(
-            id=self.version.id).filter(
-            files__status__in=amo.REVIEWED_STATUSES).exists()
+        multiple_versions = (File.objects.exclude(version=self.version)
+                                         .filter(
+                                             version__addon=self.addon,
+                                             status__in=amo.REVIEWED_STATUSES)
+                                         .exists())
 
         # Public.
         if ((self.addon.is_packaged and amo.STATUS_PUBLIC not in file_status)
@@ -338,12 +340,11 @@ class ReviewHelper(object):
         if self.addon.is_packaged:
             # Packaged apps reject the file only, or the app itself if there's
             # only a single version.
-            if (not has_multiple_versions and
+            if (not multiple_versions and
                 self.addon.status not in [amo.STATUS_REJECTED,
                                           amo.STATUS_DISABLED]):
                 actions['reject'] = reject
-            elif (has_multiple_versions and
-                  amo.STATUS_DISABLED not in file_status):
+            elif multiple_versions and amo.STATUS_DISABLED not in file_status:
                 actions['reject'] = reject
         else:
             # Hosted apps reject the app itself.

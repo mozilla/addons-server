@@ -457,6 +457,26 @@ def app_factory(**kw):
     return amo.tests.addon_factory(**kw)
 
 
+def _get_created(created):
+    """
+    Returns a datetime.
+
+    If `created` is "now", it returns `datetime.datetime.now()`. If `created`
+    is set use that. Otherwise generate a random datetime in the year 2011.
+    """
+    if created == 'now':
+        return datetime.now()
+    elif created:
+        return created
+    else:
+        return datetime(2011,
+                        random.randint(1, 12),  # Month
+                        random.randint(1, 28),  # Day
+                        random.randint(0, 23),  # Hour
+                        random.randint(0, 59),  # Minute
+                        random.randint(0, 59))  # Seconds
+
+
 def addon_factory(version_kw={}, file_kw={}, **kw):
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
@@ -472,17 +492,7 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
     a.bayesian_rating = random.uniform(1, 5)
     a.average_daily_users = popularity or random.randint(200, 2000)
     a.weekly_downloads = popularity or random.randint(200, 2000)
-    created = kw.pop('created', None)
-    if created == 'now':
-        a.created = a.last_updated = datetime.now()
-    elif created:
-        a.created = a.last_updated = created
-    else:
-        a.created = a.last_updated = datetime(2011,
-                                              random.randint(1, 12),
-                                              random.randint(1, 28),
-                                              random.randint(0, 23),
-                                              random.randint(0, 59))
+    a.created = a.last_updated = _get_created(kw.pop('created', None))
     version_factory(file_kw, addon=a, **version_kw)  # Save 2.
     a.update_version()
     a.status = amo.STATUS_PUBLIC
@@ -501,6 +511,8 @@ def version_factory(file_kw={}, **kw):
     max_app_version = kw.pop('max_app_version', '5.0')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
     v = Version.objects.create(version=version, **kw)
+    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
+    v.save()
     if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
         a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
         av_min, _ = AppVersion.objects.get_or_create(application=a,
