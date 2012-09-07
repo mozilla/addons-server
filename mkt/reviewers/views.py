@@ -262,6 +262,7 @@ def queue_updates(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     addon_ids = (File.objects.filter(status=amo.STATUS_PENDING,
                                      version__addon__is_packaged=True,
+                                     version__addon__status=amo.STATUS_PUBLIC,
                                      version__addon__type=amo.ADDON_WEBAPP,
                                      version__addon__disabled_by_user=False)
                              .values_list('version__addon_id', flat=True))

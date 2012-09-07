@@ -573,6 +573,17 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(apps[0].app, self.apps[1])
         eq_(apps[1].app, self.apps[0])
 
+    def test_only_updates_in_queue(self):
+        # Add new packaged app, which should only show up in the pending queue.
+        app = app_factory(is_packaged=True, name='ZZZ',
+                          status=amo.STATUS_PENDING,
+                          version_kw={'version': '1.0'},
+                          file_kw={'status': amo.STATUS_PENDING})
+        res = self.client.get(self.url)
+        apps = [a.app for a in res.context['addons']]
+        assert app not in apps, (
+            'Unexpected: Found a new packaged app in the updates queue.')
+
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
     fixtures = ['base/users']
