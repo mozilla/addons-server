@@ -52,12 +52,10 @@ def update_code(ctx, ref='origin/master'):
         ctx.local("git fetch && git fetch -t")
         ctx.local("git checkout -f %s" % ref)
         ctx.local("git submodule sync")
-        # `submodule sync` doesn't do `--recursive` yet. (P.S. We `sync` twice
-        # to git around the git bug 'fatal: reference not in tree'.)
-        ctx.local("git submodule --quiet foreach 'git submodule --quiet sync "
-                  "&& git submodule --quiet sync "
-                  "&& git submodule update --init --recursive'")
-        ctx.local("git submodule update --init --recursive")  # at the top
+        ctx.local("git submodule update --init --recursive")
+        # Recursively run submodule sync and update to get all the right repo URLs.
+        ctx.local("git submodule foreach 'git submodule sync --quiet'")
+        ctx.local("git submodule foreach 'git submodule update --init --recursive'")
 
 
 @task
