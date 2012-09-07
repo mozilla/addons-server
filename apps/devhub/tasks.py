@@ -74,7 +74,8 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
                                overrides={'targetapp_minVersion':
                                                 {app_guid: appversion_str},
                                           'targetapp_maxVersion':
-                                                {app_guid: appversion_str}})
+                                                {app_guid: appversion_str}},
+                               compat=True)
         upload.validation = result
         upload.compat_with_app = app
         upload.compat_with_appver = appver
