@@ -6,19 +6,6 @@ import site
 import sys
 import warnings
 
-# Bug 775430
-#
-# runs pymysql instead of python-mysqldb
-# the proper way to do this is to create
-# a pymysql backend in Django itself
-#
-# Will do cleaner if the gevent stack works correctly
-try:
-    import pymysql
-    pymysql.install_as_MySQLdb()
-except ImportError:
-        pass
-
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 if os.path.splitext(os.path.basename(__file__))[0] == 'cProfile':
@@ -81,33 +68,6 @@ if setting in ('settings', ''):
 res = imp.find_module(setting)
 settings = imp.load_module(setting, *res)
 os.environ['DJANGO_SETTINGS_MODULE'] = setting
-
-# Bug 775430
-try:
-    import pymysql
-    # a few conversions functions glitches
-    # looks like pymysql is a tad different in his
-    # typecast_* function
-    def _with_more_args(function):
-        def __with_more_args(data, *args):
-            if len(args) > 0:
-                data = args[-1]
-                return function(data)
-        return __with_more_args
-
-    from pymysql.constants import FIELD_TYPE
-    from django.db.backends.mysql.base import django_conversions
-    from django.db.backends import util
-
-    django_conversions.update({
-            FIELD_TYPE.TIME: _with_more_args(util.typecast_time),
-            FIELD_TYPE.DECIMAL: _with_more_args(util.typecast_decimal),
-            FIELD_TYPE.NEWDECIMAL: _with_more_args(util.typecast_decimal),
-                })
-except ImportError:
-        pass
-
-
 
 if not settings.DEBUG:
     warnings.simplefilter('ignore')
