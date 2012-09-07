@@ -12,6 +12,15 @@ _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
 
 
 @task
+def create_virtualenv(ctx):
+    venv = settings.VIRTUAL_ENV
+    ctx.local("virtualenv --distribute --system-site-packages --never-download %s" % venv)
+    ctx.local("rm -f %s/lib64 && ln -s ./lib %s/lib64" % (venv, venv))
+    ctx.local("%s/bin/pip isntall -I --download-cache=/tmp/pip-cache -i https://mrepo.mozilla.org/pypi/simple/ -r %s/requirements/prod.txt" % (venv, settings.SRC_DIR))
+    ctx.local("virtual --relocatable %s" % venv)
+
+
+@task
 def update_locales(ctx):
     with ctx.lcd(_src_dir("locale")):
         ctx.local("svn revert -R .")

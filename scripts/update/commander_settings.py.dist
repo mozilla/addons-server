@@ -29,3 +29,5 @@ GUNICORN = [
            ]
 
 CRON_NAME = "addons-dev"
+
+VIRTUAL_ENV = "/data/www/addons-dev.allizom.org/venv"
