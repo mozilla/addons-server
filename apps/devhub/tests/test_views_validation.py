@@ -21,11 +21,13 @@ from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion, Application
+from constants.applications import FIREFOX
+from devhub.tasks import compatibility_check
+from devhub.views import make_validation_result
 from files.helpers import copyfileobj
 from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon
-from devhub.views import make_validation_result
 from users.models import UserProfile
 from zadmin.models import ValidationResult
 
@@ -481,6 +483,27 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(res.content)
         # Again, make sure we don't see a dupe UUID error:
         eq_(data['validation']['messages'], [])
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_compatibility_check(self, run_validator):
+        run_validator.return_value = json.dumps({
+            'errors': 0,
+            'success': True,
+            'warnings': 0,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [],
+            'metadata': {}
+        })
+        addon = Addon.objects.get(pk=3615)
+        xpi = self.get_upload('extension.xpi')
+        AppVersion.objects.create(
+            application=Application.objects.get(guid=FIREFOX.guid),
+            version='10.0.*')
+
+        compatibility_check(xpi, FIREFOX.guid, '10.0.*')
+
+        eq_(run_validator.call_args[1]['compat'], True)
 
 
 class TestCompatibilityResults(amo.tests.TestCase):
