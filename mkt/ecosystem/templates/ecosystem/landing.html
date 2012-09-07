@@ -1,98 +1,105 @@
-{% extends "ecosystem/base.html" %}
+{% extends 'developers/base_impala.html' %}
 
-{% block title %}{{ _('Developers') }} | {{ super() }}{% endblock %}
-
-{% block bodyclass %}home{% endblock %}
+{% block title %}{{ hub_page_title() }}{% endblock %}
 
 {% block extrahead %}
   {{ css('mkt/ecosystem') }}
 {% endblock %}
 
+{% block site_header_title %}
+{% endblock %}
+
+{% block user_actions %}
+  {% if request.user.is_authenticated() %}
+    <li class="nomenu">
+      <a href="{{ url('mkt.developers.apps') }}">
+        {{ _('My Submissions') }}
+      </a>
+    </li>
+  {% endif %}
+{% endblock %}
+
+{% block bodyclass %}landing developer-hub{% endblock %}
+
 {% block content %}
-  <div id="top-marketing">
-    <section class="primary full call-to-action">
-      <img id="rotator" class="placeholder img-rotator"
-        src="{{ MEDIA_URL }}img/ecosystem/hero.png"
-        alt="{{ _('Open Web Apps') }}">
-      <div>
+  <div id="landing-page">
+    <section class="half first">
+      <div class="panel">
         <h1>{{ _('Developer Hub') }}</h1>
         <p>
           {%- trans %}
             Develop HTML5 Web apps for an open marketplace.
           {% endtrans -%}
         </p>
-        {%- if request.user.is_authenticated() %}
-          <a href="{{ url('submit.app') }}" class="button">
-        {% else %}
-          <a href="{{ get_login_link(url('submit.app')) }}" class="button browserid">
-        {%- endif -%}
-          {{ _('Submit an App') }}</a>
+        <div class="button-wrapper">
+          {%- if request.user.is_authenticated() %}
+            <a href="{{ url('submit.app') }}" class="button prominent">
+          {% else %}
+            <a href="{{ get_login_link(url('submit.app')) }}"
+               class="button prominent browserid">
+          {%- endif -%}
+            {{ _('Submit an App') }}</a>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>
+          <a href="{{ url('ecosystem.partners') }}">
+            {{ _('Business Partners') }}
+          </a>
+        </h2>
+        <p>
+          {% trans %}
+            Great app experiences delivered across multiple platforms
+            and devices.
+          {% endtrans %}
+        </p>
+        <h2>
+          <a href="{{ url('ecosystem.support') }}">
+            {{ _('Support') }}
+          </a>
+        </h2>
+        <p>
+          {% trans %}
+            Frequently asked questions about Web apps and the Firefox
+              Marketplace.
+          {% endtrans %}
+        </p>
       </div>
     </section>
-  </div>
-
-  <div id="landing-page">
-    <section class="primary half marketing-block no-pad">
-      <ul class="marketing-horz">
-        <li class="splash">
-          <a href="{{ url('ecosystem.documentation',
-             page='html5') }}" class="link-panel">
-            <div>
-              <img class="placeholder"
-                src="{{ MEDIA_URL }}img/ecosystem/html_icon.png">
-              <h2>{{ _('Developers') }}</h2>
-              <p>
-                {% trans %}
-                  Build and distribute cross-platform apps powered by web
-                  standards.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <section class="half marketing-block no-pad">
-      <ul class="marketing-horz">
-        <li class="splash">
-          <a href="{{ url('ecosystem.partners') }}" class="link-panel">
-            <div>
-              <img class="placeholder"
-                src="{{ MEDIA_URL }}img/ecosystem/open_icon.png"
-                alt="{{ _('Partners') }}">
-              <h2>{{ _('Business Partners') }}</h2>
-              <p>
-                {% trans %}
-                  Great app experiences delivered across multiple platforms
-                  and devices.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <section class="single marketing-block no-pad">
-      <ul class="marketing-horz">
+    <section class="half sections">
+      <ul>
         <li>
-          <a href="{{ url('ecosystem.support') }}" class="link-panel">
-            <div>
-              <h2>{{ _('Support') }}</h2>
-              <p>
-                {% trans %}
-                  Frequently asked questions about Web apps and the Firefox
-                  Marketplace.
-                {% endtrans %}
-              </p>
-            </div>
+          <a href="{{ url('ecosystem.documentation', page='principles') }}">
+            {{ _('Design') }}
           </a>
+          <p>
+            {% trans %}
+              Learn basic tips on how to design your app.
+            {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <a href="{{ url('ecosystem.documentation', page='devtools') }}">
+            {{ _('Code') }}
+          </a>
+          <p>
+            {% trans %}
+              Build and distribute cross-platform apps powered by Web
+              standards.
+            {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <a href="{{ url('ecosystem.documentation', page='html5') }}">
+            {{ _('Publish') }}
+          </a>
+          <p>
+            {% trans %}
+              Find out where you can host and submit your app.
+            {% endtrans %}
+          </p>
         </li>
       </ul>
     </section>
   </div>
-{% endblock %}
-
-{% block sitefooter_append %}
-    <p>HTML5 Logo by <a href="http://www.w3.org/">
-      <abbr title="World Wide Web Consortium">W3C</abbr></a></p>
 {% endblock %}

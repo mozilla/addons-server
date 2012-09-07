@@ -1,6 +1,9 @@
 {% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}">
+<html lang="{{ LANG }}" dir="{{ DIR }}"
+  {% if settings.USE_APPCACHE and OFFLINE_MANIFEST %}
+    {{ appcache_manifest_link()|safe }}
+  {% endif %}>
   <head>
     <meta charset="utf-8">
     {% if not settings.ENGAGE_ROBOTS %}
@@ -37,17 +40,19 @@
 
     {% include 'mobile/head_debug.html' %}
 
-    {% if request.user.is_authenticated() %}
+    {% if logged %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
+  <body class="html-{{ DIR }} {{ request.APP.short }}
+               moz-header-slim {% block bodyclass %}{% endblock %}"
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-login-url="{{ url('users.browserid_login') }}"
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
     <section id="site-header">
@@ -58,9 +63,11 @@
           </div>
           <nav id="aux-nav" role="navigation" class="menu-nav c">
             <ul>
-              {% if not settings.READ_ONLY %}
-                {% include 'impala/user_login.html' %}
-              {% endif %}
+              {% block user_actions %}
+                {% if not settings.READ_ONLY %}
+                  {% include 'impala/user_login.html' %}
+                {% endif %}
+              {% endblock %}
               {% block aux_nav %}{% endblock %}
             </ul>
           </nav>
@@ -126,9 +133,50 @@
         </ul>
       </div>
     </footer>
+
+    {% if not logged %}
+      <div id="login" class="overlay">
+        <section>
+          <div class="old">
+            <h2>Additional authorization required</h2>
+            <form method="post" action="{{ get_login_link() }}"
+                  class="form-grid">
+              <div class="simple-field row c">
+                <div class="form-label">
+                  <label for="id_username">Email address</label>
+                </div>
+                <div class="form-col">
+                  <input id="id_username" name="username" maxlength="50" type="email">
+                </div>
+              </div>
+              <div class="simple-field row c password">
+                <div class="form-label">
+                  <label for="id_password">Password</label>
+                </div>
+                <div class="form-col">
+                  <input name="password" id="id_password" type="password">
+                </div>
+              </div>
+              <input type="hidden" name="rememberme" value="1">
+              <footer class="listing-footer">
+                <button id="login-submit" type="submit">Log in</button>
+              </footer>
+            </form>
+          </div>
+        </section>
+      </div>
+    {% endif %}
+
+    {% block dbgoverlay %}{% endblock %}
+
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
+      {% if not logged %}
+        {# We need Persona for only non-authenticated users. #}
+        <script async defer src="https://login.persona.org/include.js"></script>
+        <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
+      {% endif %}
       {{ js('mkt/devreg') }}
       {% if logged and not waffle.switch('disabled-payments') and waffle.switch('enabled-paypal') %}
         <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>

@@ -1,7 +1,5 @@
 # A list of our CSS and JS assets for jingo-minify.
 
-X_TAGS_ELEMENTS = '//raw.github.com/mozilla/x-tag-elements/master'
-
 CSS = {
     'mkt/devreg': (
         # Contains reset, clearfix, etc.
@@ -115,25 +113,8 @@ CSS = {
         'css/mkt/typography.less',
         'css/mkt/login.less',
         'css/mkt/forms.less',
-        'css/ecosystem/site.less',
-        'css/ecosystem/header.less',
-        'css/ecosystem/buttons.less',
         'css/ecosystem/landing.less',
-        'css/mkt/overlay.less',
         'css/ecosystem/documentation.less',
-        'css/ecosystem/footer.less',
-    ),
-    'mkt/xtags': (
-        X_TAGS_ELEMENTS + '/alert-popup/alert-popup.css',
-        X_TAGS_ELEMENTS + '/dialog-toast/dialog-toast.css',
-        X_TAGS_ELEMENTS + '/list-view/listview.css',
-        X_TAGS_ELEMENTS + '/slidebox/slidebox.css',
-        X_TAGS_ELEMENTS + '/slider/slider.css',
-        X_TAGS_ELEMENTS + '/tabbox/tabbox.css',
-        X_TAGS_ELEMENTS + '/select-list/select-list.css',
-        X_TAGS_ELEMENTS + '/date-time-picker/date-time-picker.css',
-        X_TAGS_ELEMENTS + '/dropdown-menu/dropdown-menu.css',
-        X_TAGS_ELEMENTS + '/toggle-switch/toggle-switch.css',
     ),
     'mkt/in-app-payments': (
         'css/mkt/reset.less',
@@ -170,6 +151,8 @@ JS = {
         'js/common/keys.js',
         'js/impala/serializers.js',
         'js/mkt/utils.js',
+        'js/mkt/browserid.js',
+        'js/mkt/login.js',
 
         # jQuery UI.
         'js/lib/jquery-ui/jquery.ui.core.js',
@@ -320,19 +303,5 @@ JS = {
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
         'js/mkt/lookup-tool.js',
-    ),
-    'mkt/xtags': (
-        '//raw.github.com/mozilla/x-tag/master/x-tag.js',
-        X_TAGS_ELEMENTS + '/alert-popup/alert-popup.js',
-        X_TAGS_ELEMENTS + '/dialog-toast/dialog-toast.js',
-        X_TAGS_ELEMENTS + '/list-view/listview.js',
-        X_TAGS_ELEMENTS + '/slidebox/slidebox.js',
-        X_TAGS_ELEMENTS + '/slider/slider.js',
-        X_TAGS_ELEMENTS + '/tabbox/tabbox.js',
-        X_TAGS_ELEMENTS + '/select-list/select-list.js',
-        X_TAGS_ELEMENTS + '/date-time-picker/date-time-picker.js',
-        X_TAGS_ELEMENTS + '/dropdown-menu/dropdown-menu.js',
-        X_TAGS_ELEMENTS + '/toggle-switch/toggle-switch.js',
-        'js/mkt/xtag-demos.js',
     ),
 }

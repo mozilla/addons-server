@@ -1,8 +1,6 @@
 from datetime import datetime
 import urllib2
 
-from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 
 import bleach
@@ -93,11 +91,6 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Publishing_the_app?raw=1&macros=true'
     },
     {
-        'title': 'Design Guidelines',
-        'name': 'guidelines',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines?raw=1&macros=true'
-    },
-    {
         'title': 'Design Principles',
         'name': 'principles',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Design_Principles?raw=1&macros=true'
@@ -127,6 +120,11 @@ tutorials = [
         'name': 'templates',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/App_templates?raw=1&macros=true'
     },
+    {
+        'title': 'Custom Elements',
+        'name': 'custom_elements',
+        'mdn': 'https://developer.mozilla.org/en-US/docs/Apps/Custom_Elements?raw=1&macros=true'
+    }
 ]
 
 # Instead of duplicating the tutorials entry above for each possible
@@ -210,6 +208,7 @@ def _fetch_mdn_page(url):
         )
 
     return str(root)
+
 
 def _get_page(url):
     try:

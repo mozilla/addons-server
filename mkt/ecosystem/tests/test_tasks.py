@@ -13,7 +13,8 @@ test_items = [
         'title': 'Test Mdn Page',
         'name': 'test',
         'locale': 'en-US',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/HTML/HTML5?raw=1&macros=true'
+        'mdn': 'https://developer.mozilla.org/%(locale)s/HTML/HTML5?raw=1'
+               '&macros=true'
     }
 ]
 
@@ -83,14 +84,14 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
         content = _fetch_mdn_page(test_items[0]['url'])
         assert '<a href="/relative/url">' not in content
         assert('<a href="https://developer.mozilla.org/relative/url'
-            in content)
+                in content)
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_ensure_relative_image_is_absolute(self):
         content = _fetch_mdn_page(test_items[0]['url'])
         assert '<img src="/relative/url">' not in content
         assert('<img src="https://developer.mozilla.org/relative/url'
-            in content)
+                in content)
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=raise_exception)
     def test_dont_delete_on_exception(self):

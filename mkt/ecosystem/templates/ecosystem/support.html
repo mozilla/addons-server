@@ -1,21 +1,25 @@
-{% extends "ecosystem/base.html" %}
+{% extends 'developers/base_impala.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
 
-{% block title %}{{ _('Support') }} | {{ super() }}{% endblock %}
+{% block title %}
+  {{ title }}
+{% endblock %}
 
-{% block bodyclass %}secondary-landing{% endblock %}
 
 {% block extrahead %}
   {{ css('mkt/ecosystem') }}
 {% endblock %}
 
-{% block siteheader %}
-  {% include 'ecosystem/header.html' %}
+{% block site_header_title %}
+  {% include 'ecosystem/nav.html' %}
 {% endblock %}
 
 {% block content %}
-  <div id="landing-page">
-    <h1>{{ _('Support') }}</h1>
-    <section class="primary half marketing-block support">
+  <div class="doc-wrapper">
+    {{ navigation('partners') }}
+
+    <article>
+      <h1>{{ _('Support') }}</h1>
       <h2>{{ _('Frequently Asked Questions') }}</h2>
       <ul class="marketing-horz support-content">
         <li>
@@ -56,8 +60,7 @@
           </a>
         </li>
       </ul>
-    </section>
-    <section class="secondary half marketing-block support">
+
       <h2>{{ _('Do you still have questions?') }}</h2>
       <p>
         {% trans %}
@@ -91,6 +94,6 @@
           </li>
         </ul>
       </p>
-    </section>
+    </article>
   </div>
 {% endblock %}

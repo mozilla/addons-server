@@ -15,51 +15,16 @@ def landing(request):
     return jingo.render(request, 'ecosystem/landing.html')
 
 
-def developers(request):
-    """Landing page for developers."""
-    return jingo.render(request, 'ecosystem/developers.html')
-
-
-def building_blocks(request):
-    """Landing page for developers."""
-    return jingo.render(request,
-        'ecosystem/mdn_documentation/building_blocks.html')
-
-
-def building_xtag(request, xtag=None):
-    """Page for using a particular x-tag.
-    The process of generating the x-tag title is temporary as these pages
-    are not yet on MDN. Once they are officially on there, then we can pull
-    everything directly from the database instead.
-    """
-    titles = {
-        'list': 'Display List',
-        'alert': 'Alert Popup',
-        'toggle': 'Toggle Switch',
-        'tabbox': 'Tab box',
-        'picker': 'Date/Time Picker',
-        'slider': 'Slider',
-        'slidebox': 'Slidebox',
-        'dropdown': 'Dropdown',
-        'select_list': 'Select List',
-        'toast': 'Toast',
-    }
-
-    if xtag not in titles:
-        xtag = 'list'
-
-    return jingo.render(request, 'ecosystem/design/xtag_%s.html' % xtag,
-                        {'title': titles[xtag]})
-
-
 def partners(request):
     """Landing page for partners."""
-    return jingo.render(request, 'ecosystem/partners.html')
+    return jingo.render(request, 'ecosystem/partners.html',
+           {'page': 'partners'})
 
 
 def support(request):
     """Landing page for support."""
-    return jingo.render(request, 'ecosystem/support.html')
+    return jingo.render(request, 'ecosystem/support.html',
+           {'page': 'support'})
 
 
 def documentation(request, page=None):
@@ -82,16 +47,4 @@ def documentation(request, page=None):
         'content': data.content,
     }
 
-    page_name = 'index.html'
-
-    if page in ['guidelines', 'purpose',
-                'principles', 'navigation', 'resources', 'layout',
-                'patterns', 'references']:
-        page_name = 'design.html'
-    elif page in ['devtools', 'templates', 'web_components']:
-        page_name = 'sdk.html'
-    elif page in ['mkt_hosting', 'mkt_submission']:
-        page_name = 'publish_it.html'
-
-    return jingo.render(request, 'ecosystem/mdn_documentation/%s' %
-                        page_name, ctx)
+    return jingo.render(request, 'ecosystem/documentation.html', ctx)

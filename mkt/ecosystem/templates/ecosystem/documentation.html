@@ -1,0 +1,26 @@
+{% extends 'developers/base_impala.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title() }} | {{ title }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block site_header_title %}
+  {% include 'ecosystem/nav.html' %}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation(page) }}
+
+    <article>
+      <h1>{{ title }}</h1>
+
+      {{ content|xssafe }}
+    </article>
+  </div>
+{% endblock %}

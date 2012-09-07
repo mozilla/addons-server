@@ -26,12 +26,6 @@ class TestLanding(amo.tests.TestCase):
 
 class TestDevHub(amo.tests.TestCase):
 
-    def test_building_blocks(self):
-        r = self.client.get(reverse('ecosystem.building_blocks'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r,
-            'ecosystem/mdn_documentation/building_blocks.html')
-
     def test_partners(self):
         r = self.client.get(reverse('ecosystem.partners'))
         eq_(r.status_code, 200)
@@ -43,14 +37,6 @@ class TestDevHub(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'ecosystem/support.html')
 
 
-class TestDeveloperBuilding(amo.tests.TestCase):
-
-    def test_xtag_list(self):
-        r = self.client.get(reverse('ecosystem.building_xtag', args=['list']))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/design/xtag_list.html')
-
-
 class TestMdnDocumentation(amo.tests.TestCase):
     fixtures = ['ecosystem/mdncache-item']
 
@@ -60,18 +46,18 @@ class TestMdnDocumentation(amo.tests.TestCase):
     def test_mdn_content_default(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/index.html')
+        self.assertTemplateUsed(r, 'ecosystem/documentation.html')
 
     def test_mdn_content_design(self):
         r = self.client.get(reverse('ecosystem.documentation',
                             args=['principles']))
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/design.html')
+        self.assertTemplateUsed(r, 'ecosystem/documentation.html')
 
     def test_mdn_content_explicit(self):
         r = self.client.get(self.url + 'old')
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/mdn_documentation/index.html')
+        self.assertTemplateUsed(r, 'ecosystem/documentation.html')
 
     def test_mdn_content_unknown(self):
         r = self.client.get(self.url + 'pizza')
