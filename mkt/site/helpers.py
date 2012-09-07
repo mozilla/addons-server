@@ -315,7 +315,6 @@ def admin_site_links():
             ('Manage EcoSystem', reverse('mkt.zadmin.ecosystem')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Purge pages from zeus', reverse('zadmin.hera')),
-            ('View graphite trends', reverse('amo.graphite', args=['addons'])),
             ('Create a new OAuth Consumer',
              reverse('zadmin.oauth-consumer-create')),
             ('Generate error', reverse('zadmin.generate-error')),

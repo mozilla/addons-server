@@ -37,7 +37,6 @@ def admin_site_links():
             ('Manage elasticsearch', url('zadmin.elastic')),
             ('Purge data from memcache', url('zadmin.memcache')),
             ('Purge pages from zeus', url('zadmin.hera')),
-            ('View graphite trends', url('amo.graphite', 'addons')),
             ('Create a new OAuth Consumer',
              url('zadmin.oauth-consumer-create')),
             ('View event log', url('admin:editors_eventlog_changelist')),
