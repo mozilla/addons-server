@@ -122,7 +122,7 @@ def cspreport(request):
         log_cef('CSP Violation', 5, meta, username=request.user,
                 signature='CSPREPORT',
                 msg='A client reported a CSP violation',
-                cs7=v, cs7Label='ContentPolicy')
+                cs6=v, cs6Label='ContentPolicy')
     except (KeyError, ValueError), e:
         log.debug('Exception in CSP report: %s' % e, exc_info=True)
         return HttpResponseBadRequest()
