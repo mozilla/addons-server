@@ -506,8 +506,9 @@ class PremiumForm(happyforms.Form):
             })
 
         if waffle.switch_is_active('currencies'):
-            currencies = self.addon.premium.currencies
-            kw['initial']['currencies'] = currencies
+            currencies = getattr(self.addon.premium, 'currencies', None)
+            if currencies:
+                kw['initial']['currencies'] = currencies
 
         super(PremiumForm, self).__init__(*args, **kw)
 

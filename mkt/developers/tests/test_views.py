@@ -469,7 +469,12 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         data.update(kw)
         return data
 
-    def test_initial(self):
+    def test_initial_free(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['form'].initial, {'premium_type': amo.ADDON_FREE})
+
+    def test_initial_paid(self):
         self.setup_premium()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
