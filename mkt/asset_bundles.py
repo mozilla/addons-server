@@ -45,7 +45,7 @@ CSS = {
         'css/devreg/prose.less',
         'css/devreg/authors.less',
         'css/devreg/in-app-config.less',
-        'css/devreg/paypal.less',
+        'css/devreg/payments.less',
         'css/devreg/refunds.less',
         'css/devreg/status.less',
 
