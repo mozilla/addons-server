@@ -130,7 +130,7 @@
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
       {{ js('mkt/devreg') }}
-      {% if logged and not waffle.switch('disabled-payments') %}
+      {% if logged and not waffle.switch('disabled-payments') and waffle.switch('enabled-paypal') %}
         <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       {% endif %}
     {% endblock %}

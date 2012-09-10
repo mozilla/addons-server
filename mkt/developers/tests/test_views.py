@@ -93,6 +93,27 @@ class TestHome(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'developers/apps/dashboard.html')
 
 
+class TestPayPalJS(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('mkt.developers.apps')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
+    def test_no_paypal_js(self):
+        self.create_switch('enabled-paypal', active=False)
+        resp = self.client.get(self.url)
+        assert not settings.PAYPAL_JS_URL in resp.content, (
+                    'When paypal is disabled, its JS lib should not load')
+
+    def test_load_paypal_js(self):
+        self.create_switch('enabled-paypal')
+        resp = self.client.get(self.url)
+        assert settings.PAYPAL_JS_URL in resp.content, (
+                    'When paypal is enabled, its JS lib should load')
+
+
 class TestAppBreadcrumbs(AppHubTest):
 
     def setUp(self):
