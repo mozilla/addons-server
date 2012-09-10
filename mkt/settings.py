@@ -67,6 +67,7 @@ INSTALLED_APPS += (
     'django_appcache',
     'mkt.site',
     'mkt.account',
+    'mkt.api',
     'mkt.browse',
     'mkt.detail',
     'mkt.developers',

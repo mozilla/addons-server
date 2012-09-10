@@ -26,7 +26,6 @@ class ValidationHandler(BaseOAuth):
         super(ValidationHandler, self).setUp()
         self.list_url = ('api_dispatch_list', {'resource_name': 'validation'})
         self.get_url = None
-        self.consumer = self.accepted_consumer
         self.user = UserProfile.objects.get(pk=2519)
 
     def create(self):

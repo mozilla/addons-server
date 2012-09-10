@@ -137,6 +137,7 @@ urlpatterns = decorate(write, patterns('',
     url('^ajax/app/%s/' % amo.APP_SLUG, include(ajax_patterns)),
 
     url('^terms$', views.terms, name='mkt.developers.apps.terms'),
+    url(r'^api$', views.api, name='mkt.developers.apps.api'),
 
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',

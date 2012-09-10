@@ -33,7 +33,7 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import absolutify, urlparams
+from amo.helpers import absolutify, loc, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
 from devhub.forms import VersionForm
@@ -52,6 +52,7 @@ from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
 
+from mkt.api.models import Access, generate
 from mkt.constants import APP_IMAGE_SIZES, regions
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
@@ -1322,3 +1323,36 @@ def terms(request):
     return jingo.render(request, 'developers/terms.html',
                         {'accepted': request.amo_user.read_dev_agreement,
                          'agreement_form': form})
+
+
+@waffle_switch('create-api-tokens')
+@login_required
+def api(request):
+    try:
+        access = Access.objects.get(user=request.user)
+    except Access.DoesNotExist:
+        access = None
+
+    if not request.amo_user.read_dev_agreement:
+        messages.error(request, loc('You must accept the terms of service.'))
+
+    elif request.method == 'POST':
+        if 'delete' in request.POST:
+            if access:
+                access.delete()
+                messages.success(request, loc('API key deleted.'))
+
+        else:
+            if not access:
+                key = 'mkt:%s:%s' % (request.amo_user.pk,
+                                     request.amo_user.email)
+                access = Access.objects.create(key=key, user=request.user,
+                                               secret=generate())
+            else:
+                access.update(secret=generate())
+            messages.success(request, loc('New API key generated.'))
+
+        return redirect(reverse('mkt.developers.apps.api'))
+
+    return jingo.render(request, 'developers/api.html',
+                        {'consumer': access, 'profile': profile})

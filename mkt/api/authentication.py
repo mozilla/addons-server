@@ -6,12 +6,12 @@ from django.contrib.auth.models import AnonymousUser
 
 import commonware.log
 import oauth2
-from piston.models import Consumer
 from tastypie import http
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 
 from access.middleware import ACLMiddleware
+from mkt.api.models import Access
 
 log = commonware.log.getLogger('z.api')
 
@@ -48,7 +48,6 @@ class OAuthError(RuntimeError):
 
 
 errors = {
-    'consumer': 'OAuth consumer not accepted.',
     'headers': 'Error with OAuth headers',
     'roles': 'Cannot be a user with roles.',
     'terms': 'Terms of service not accepted.',
@@ -78,20 +77,20 @@ class MarketplaceAuthentication(Authentication):
             if not key:
                 return None
 
-            consumer = get_consumer(key)
+            consumer = Access.objects.get(key=key)
             oauth_server.verify_request(oauth_request, consumer, None)
             # Set the current user to be the consumer owner.
             request.user = consumer.user
+
+        except Access.DoesNotExist:
+            log.error(u'Cannot find APIAccess token with that key: %s' % key)
+            request.user = AnonymousUser()
+            return self._error('headers')
 
         except:
             log.error(u'Error getting OAuth headers', exc_info=True)
             request.user = AnonymousUser()
             return self._error('headers')
-
-        # Check that consumer is valid.
-        if consumer.status != 'accepted':
-            log.info(u'Consumer not accepted: %s' % consumer)
-            return self._error('consumer')
 
         ACLMiddleware().process_request(request)
 
@@ -163,15 +162,3 @@ def get_oauth_consumer_key_from_header(auth_header_value):
             raise OAuthError('Unable to parse OAuth parameters from '
                     'Authorization header.')
     return key
-
-
-def get_consumer(key):
-    try:
-        consumer = Consumer.objects.get(key=key)
-    except Consumer.DoesNotExist:
-        raise OAuthError('Invalid consumer')
-
-    # This insanity prevents a hash error inside oauth2.
-    consumer.key = str(consumer.key)
-    consumer.secret = str(consumer.secret)
-    return consumer

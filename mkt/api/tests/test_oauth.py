@@ -1,24 +1,3 @@
-"""
-Verifies basic OAUTH functionality in AMO.
-
-Sample request_token query:
-    /en-US/firefox/oauth/request_token/?
-        oauth_consumer_key=GYKEp7m5fJpj9j8Vjz&
-        oauth_nonce=A7A79B47-B571-4D70-AA6C-592A0555E94B&
-        oauth_signature_method=HMAC-SHA1&
-        oauth_timestamp=1282950712&
-        oauth_version=1.0
-
-With headers:
-
-    Authorization: OAuth realm="",
-    oauth_consumer_key="GYKEp7m5fJpj9j8Vjz",
-    oauth_signature_method="HMAC-SHA1",
-    oauth_signature="JBCA4ah%2FOQC0lLWV8aChGAC+15s%3D",
-    oauth_timestamp="1282950995",
-    oauth_nonce="1008F707-37E6-4ABF-8322-C6B658771D88",
-    oauth_version="1.0"
-"""
 from datetime import datetime
 import json
 import urllib
@@ -31,7 +10,7 @@ from django.test.client import Client, FakePayload
 import oauth2 as oauth
 from mock import Mock, patch
 from nose.tools import eq_
-from piston.models import Consumer
+from mkt.api.models import Access, generate
 
 from amo.tests import TestCase
 from amo.helpers import urlparams
@@ -58,23 +37,23 @@ class OAuthClient(Client):
     """
     signature_method = oauth.SignatureMethod_HMAC_SHA1()
 
-    def __init__(self, consumer):
+    def __init__(self, access):
         super(OAuthClient, self).__init__(self)
-        self.consumer = consumer
+        self.access = access
 
     def header(self, method, url):
-        if not self.consumer:
+        if not self.access:
             return None
 
         parsed = urlparse.urlparse(url)
         args = dict(urlparse.parse_qs(parsed.query))
 
-        req = oauth.Request.from_consumer_and_token(self.consumer,
+        req = oauth.Request.from_consumer_and_token(self.access,
             token=None, http_method=method,
             http_url=urlparse.urlunparse(parsed._replace(query='')),
             parameters=args)
 
-        req.sign_request(self.signature_method, self.consumer, None)
+        req.sign_request(self.signature_method, self.access, None)
         return req.to_header()['Authorization']
 
     def get(self, url, **kw):
@@ -125,15 +104,12 @@ class BaseOAuth(TestCase):
 
     def setUp(self):
         self.user = User.objects.get(pk=2519)
-        self.user.get_profile().update(read_dev_agreement=datetime.now())
+        self.profile = self.user.get_profile()
+        self.profile.update(read_dev_agreement=datetime.now())
 
-        for status in ('accepted', 'pending', 'canceled', ):
-            c = Consumer(name='a', status=status, user=self.user)
-            c.generate_random_codes()
-            c.save()
-            setattr(self, '%s_consumer' % status, c)
-
-        self.client = OAuthClient(self.accepted_consumer)
+        self.access = Access.objects.create(key='foo', secret=generate(),
+                                            user=self.user)
+        self.client = OAuthClient(self.access)
 
     def _allowed_verbs(self, url, allowed):
         """
@@ -161,7 +137,7 @@ class TestBaseOAuth(BaseOAuth):
     def setUp(self):
         super(TestBaseOAuth, self).setUp()
         FileUpload.objects.create(uuid='123',
-                user=self.accepted_consumer.user.get_profile())
+                user=self.access.user.get_profile())
         self.url = ('api_dispatch_detail',
                     {'resource_name': 'validation',
                      'pk': '123'})
@@ -180,35 +156,19 @@ class TestBaseOAuth(BaseOAuth):
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'], errors['terms'])
 
-    def test_cancelled(self):
-        self.client = OAuthClient(self.canceled_consumer)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'], errors['consumer'])
-
-    def test_pending(self):
-        client = OAuthClient(self.pending_consumer)
-        res = client.get(self.url)
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'], errors['consumer'])
-
     def test_request_token_fake(self):
         c = Mock()
-        c.key = self.accepted_consumer.key
+        c.key = self.access.key
         c.secret = 'mom'
         self.client = OAuthClient(c)
         res = self.client.get(self.url)
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'], errors['headers'])
 
-    def test_request_no_user(self):
-        self.user.delete()
-        eq_(self.client.get(self.url).status_code, 401)
-
     def test_request_no_groups_for_you(self):
         admin = User.objects.get(email='admin@mozilla.com')
-        self.accepted_consumer.user = admin
-        self.accepted_consumer.save()
+        self.access.user = admin
+        self.access.save()
         res = self.client.get(self.url)
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'], errors['roles'])
