@@ -206,7 +206,7 @@
     {% endblock %}
 
     {% block paypal_js %}
-      {% if logged %}
+      {% if logged and waffle.switch('enabled-paypal') %}
         {# We need PayPal for only authenticated users. #}
         <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
       {% endif %}

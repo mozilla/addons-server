@@ -1,5 +1,7 @@
 import datetime
 
+from django.conf import settings
+
 from nose.tools import eq_
 
 from amo.tests import app_factory, mock_es
@@ -19,6 +21,20 @@ class TestHome(BrowseBase):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
+
+    @mock_es
+    def test_no_paypal_js(self):
+        self.create_switch('enabled-paypal', active=False)
+        resp = self.client.get(self.url)
+        assert not settings.PAYPAL_JS_URL in resp.content, (
+                    'When paypal is disabled, its JS lib should not load')
+
+    @mock_es
+    def test_load_paypal_js(self):
+        self.create_switch('enabled-paypal')
+        resp = self.client.get(self.url)
+        assert settings.PAYPAL_JS_URL in resp.content, (
+                    'When paypal is enabled, its JS lib should load')
 
     @mock_es
     def test_page(self):
