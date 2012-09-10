@@ -2,7 +2,7 @@
 <div class="brform" id="payments-payment-account">
   <label id="payment-label" for="id_payment_account">{{ _('Use Payment Account') }} {{ required() }}</label>
 
-  {% if waffle.switch('enabled-bluevia') and waffle.switch('enabled-paypal') %}
+  {% if waffle.switch('enabled-bluevia') or waffle.switch('enabled-paypal') %}
     <div class="extra">
       <a href="#" class="payment-account-actions" data-action="add">{{ _('Add Account') }}</a>
     </div>
