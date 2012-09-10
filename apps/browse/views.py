@@ -129,9 +129,12 @@ def language_tools(request, category=None):
                       target_locale__isnull=False).exclude(target_locale=''))
     locales = _get_locales(addons)
     lang_addons = _get_locales(addons.filter(target_locale=request.LANG))
+    addon_ids = addons.values_list('pk', flat=True)
     return jingo.render(request, 'browse/language_tools.html',
-                        {'locales': locales, 'addons': addons,
-                         'lang_addons': lang_addons,
+                        {'locales': list(locales),
+                         #pass keys separately so only IDs get cached
+                         'addons': addon_ids,
+                         'lang_addons': list(lang_addons),
                          'search_cat': '%s,0' % amo.ADDON_DICT})
 
 

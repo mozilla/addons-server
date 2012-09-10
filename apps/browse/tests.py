@@ -278,8 +278,6 @@ class TestLanguageTools(amo.tests.TestCase):
         cache.clear()
         self.url = reverse('browse.language-tools')
         response = self.client.get(self.url, follow=True)
-        # For some reason the context doesn't get loaded the first time.
-        response = self.client.get(self.url, follow=True)
         self.locales = list(response.context['locales'])
 
     def test_sorting(self):
