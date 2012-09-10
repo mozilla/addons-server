@@ -29,6 +29,7 @@ from users.views import logout
 from mkt.account.forms import CurrencyForm
 from mkt.site import messages
 from . import forms
+from .decorators import profile_view
 from .utils import purchase_list
 
 log = commonware.log.getLogger('mkt.account')
@@ -258,12 +259,8 @@ def delete_photo(request):
     return http.HttpResponse()
 
 
-def profile(request, username):
-    if username.isdigit():
-        user = get_object_or_404(UserProfile, id=username)
-    else:
-        user = get_object_or_404(UserProfile, username=username)
-
+@profile_view
+def profile(request, user):
     edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
@@ -292,16 +289,13 @@ def activity_log(request, userid):
 
 
 @anonymous_csrf_exempt
-def abuse(request, user_id):
-    user = get_object_or_404(UserProfile, pk=user_id)
+@profile_view
+def abuse(request, profile):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
-        send_abuse_report(request, user, form.cleaned_data['text'])
+        send_abuse_report(request, profile, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
-        # We don't have a profile page to redirect back to. Once the abuse
-        # is reported, that would be the place I'd recommend redirecting
-        # back to.
-        return redirect('/')
+        return redirect(reverse('users.profile', args=[profile.username]))
     else:
         return jingo.render(request, 'account/abuse.html',
-                            {'user': user, 'abuse_form': form})
+                            {'abuse_form': form, 'profile': profile})

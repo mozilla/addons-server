@@ -36,10 +36,8 @@ users_patterns = patterns('',
     # Keeping the same URL pattern since admin pages already know about this.
     url(r'^(?:(?P<user_id>\d+)/)?edit$', views.admin_edit,
         name='users.admin_edit'),
-    url(r'''(?P<username>[^/<>"']+)$''', views.profile,
+    url(r'''^(?P<username>[^/<>"']+)$''', views.profile,
         name='users.profile'),
-)
-
-abuse_patterns = patterns('',
-    url(r'^abuse$', views.abuse, name='users.abuse')
+    url(r'''^(?P<username>[^/<>"']+)/abuse$''', views.abuse,
+        name='users.abuse')
 )

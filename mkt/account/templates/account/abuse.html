@@ -3,7 +3,7 @@
 {% set title = _('Report Abuse') %}
 {% block title %}
   {# L10n: {0} is the name of the user. #}
-  {{ mkt_page_title(_('Report abuse for {0}')|f(user.name)) }}
+  {{ mkt_page_title(_('Report abuse for {0}')|f(profile.name)) }}
 {% endblock %}
 
 {% block content %}
@@ -24,8 +24,7 @@
         {% include 'site/helpers/abuse.html' %}
         <p class="form-footer">
           <button type="submit">{{ _('Send Report') }}</button> {{ _('or') }}
-          {# TODO: bounce to somewhere more useful #}
-          <a href="/">{{ _('Cancel') }}</a>
+          <a href="{{ url('users.profile', profile.username) }}">{{ _('Cancel') }}</a>
         </p>
       </form>
     </div>
