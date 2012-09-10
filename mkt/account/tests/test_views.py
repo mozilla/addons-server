@@ -858,7 +858,6 @@ class TestAbuse(amo.tests.TestCase):
         clean.return_value = ''
         res = self.client.post(self.url, data={'text':'test', 'recaptcha': '',
                                                'recaptcha_shown': ''})
-        eq_(res.status_code, 302)
-        self.assertRedirects(res, reverse('users.profile',
-                                          args=[self.user.username]))
+        self.assert3xx(res, reverse('users.profile',
+                       args=[self.user.username]))
         eq_(AbuseReport.objects.filter(user=self.user).count(), 1)
