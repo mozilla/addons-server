@@ -82,7 +82,7 @@
     <dt>{{ _('Authors') }}</dd>
     <dd>
       {% for author in product.authors.all() %}
-        <a href="{{ url('users.profile', author.slug or author.id) }}">
+        <a href="{{ url('users.profile', author.username) }}">
           {{ author.name }}</a>{% if not loop.last %}, {% endif %}
       {% endfor %}
     </dd>

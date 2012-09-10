@@ -491,15 +491,14 @@ class TestProfileLinks(amo.tests.TestCase):
     def log_in(self):
         assert self.client.login(username=self.user.email, password='password')
 
-    def test_id_or_username(self):
-        args = [self.user.id, self.user.username]
-        for arg in args:
-            r = self.client.get(reverse('users.profile', args=[arg]))
-            eq_(r.status_code, 200)
+    def test_username(self):
+        r = self.client.get(reverse('users.profile',
+                            args=[self.user.username]))
+        eq_(r.status_code, 200)
 
-    def get_profile_links(self, id=None, username=None):
+    def get_profile_links(self, username):
         """Grab profile, return edit links."""
-        url = reverse('users.profile', args=[id or username])
+        url = reverse('users.profile', args=[username])
         r = self.client.get(url)
         eq_(r.status_code, 200)
         return pq(r.content)('#profile-actions a')
@@ -507,7 +506,7 @@ class TestProfileLinks(amo.tests.TestCase):
     def test_viewing_my_profile(self):
         # Me as (non-admin) viewing my own profile.
         self.log_in()
-        links = self.get_profile_links(self.user.id)
+        links = self.get_profile_links(self.user.username)
         eq_(links.length, 1)
         eq_(links.eq(0).attr('href'), reverse('account.settings'))
 
@@ -515,18 +514,18 @@ class TestProfileLinks(amo.tests.TestCase):
         # Ensure no edit buttons are shown.
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        links = self.get_profile_links(self.user.id)
+        links = self.get_profile_links(self.user.username)
         eq_(links.length, 0, 'No edit buttons should be shown.')
 
     def test_viewing_my_profile_as_anonymous(self):
         # Ensure no edit buttons are shown.
-        links = self.get_profile_links(self.user.id)
+        links = self.get_profile_links(self.user.username)
         eq_(links.length, 0, 'No edit buttons should be shown.')
 
     def test_viewing_other_profile(self):
         self.log_in()
         # Me as (non-admin) viewing someone else's my own profile.
-        eq_(self.get_profile_links(id=999).length, 0)
+        eq_(self.get_profile_links('regularuser').length, 0)
 
     def test_viewing_my_profile_as_admin(self):
         self.log_in()
@@ -534,7 +533,7 @@ class TestProfileLinks(amo.tests.TestCase):
         GroupUser.objects.create(
             group=Group.objects.create(rules='Users:Edit'), user=self.user)
         assert self.client.login(username=self.user.email, password='password')
-        links = self.get_profile_links(self.user.id)
+        links = self.get_profile_links(self.user.username)
         eq_(links.length, 1)
         eq_(links.eq(0).attr('href'), reverse('account.settings'))
 
@@ -544,7 +543,7 @@ class TestProfileLinks(amo.tests.TestCase):
         GroupUser.objects.create(
             group=Group.objects.create(rules='Users:Edit'), user=self.user)
         assert self.client.login(username=self.user.email, password='password')
-        links = self.get_profile_links(999)
+        links = self.get_profile_links('regularuser')
         eq_(links.length, 1)
         eq_(links.eq(0).attr('href'), reverse('users.admin_edit', args=[999]))
 
@@ -837,7 +836,7 @@ class TestAbuse(amo.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.url = reverse('users.abuse', args=[self.user.pk])
+        self.url = reverse('users.abuse', args=[self.user.username])
 
     def test_add(self):
         self.client.login(username='editor@mozilla.com', password='password')
