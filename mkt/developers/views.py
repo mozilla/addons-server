@@ -332,16 +332,10 @@ def get_paypal_bounce_url(request, addon_id, addon, webapp, json_view=False):
 def acquire_refund_permission(request, addon_id, addon, webapp=False):
     """This is the callback from Paypal."""
     # Set up our redirects.
-    if request.GET.get('dest', '') == 'submission':
-        on_good = reverse('submit.app.payments.confirm', args=[addon.app_slug])
-        on_error = reverse('submit.app.payments',
-                           args=[addon.app_slug])
-        show_good_msgs = False
-    else:
-        # The management pages are the default.
-        on_good = addon.get_dev_url('paypal_setup_confirm')
-        on_error = addon.get_dev_url('payments')
-        show_good_msgs = True
+    # The management pages are the default.
+    on_good = addon.get_dev_url('paypal_setup_confirm')
+    on_error = addon.get_dev_url('payments')
+    show_good_msgs = True
 
     if 'request_token' not in request.GET:
         paypal_log.debug('User did not approve permissions for'

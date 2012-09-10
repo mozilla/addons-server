@@ -11,8 +11,6 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-import paypal
-from amo.helpers import urlparams
 from amo.tests import close_to_now, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -23,7 +21,6 @@ from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
 from files.tests.test_models import UploadTest as BaseUploadTest
-from market.models import Price
 from translations.models import Translation
 from users.models import UserProfile
 
@@ -440,28 +437,12 @@ class TestDetails(TestSubmit):
     def test_anonymous(self):
         self._test_anonymous()
 
-    def test_resume_step(self):
-        self._step()
-        payments_url = reverse('submit.app.payments',
-                               args=[self.webapp.app_slug])
-        r = self.client.get(payments_url, follow=True)
-        self.assert3xx(r, reverse('submit.app.details',
-                                  args=[self.webapp.app_slug]))
-
     def test_resume_later(self):
         self._step()
-        self.webapp.appsubmissionchecklist.update(details=True, payments=True)
-        self.webapp.update(paypal_id='', premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(reverse('submit.app.resume',
-                                      args=[self.webapp.app_slug]))
-        self.assert3xx(res, self.webapp.get_dev_url('paypal_setup'))
-
-    def test_disabled_payments_resume_later(self):
-        self.create_switch(name='disabled-payments')
-        self._step()
+        self.webapp.appsubmissionchecklist.update(details=True)
         r = self.client.get(reverse('submit.app.resume',
                                     args=[self.webapp.app_slug]))
-        assert r['Location'].endswith(self.url), 'Expected: %s' % self.url
+        self.assert3xx(r, self.webapp.get_dev_url('edit'))
 
     def test_not_owner(self):
         self._step()
@@ -538,17 +519,6 @@ class TestDetails(TestSubmit):
         eq_(list(addon.device_types), [self.dtype])
 
     def test_success(self):
-        self._step()
-        data = self.get_dict()
-        # Post and be redirected.
-        r = self.client.post(self.url, data)
-        self.assertNoFormErrors(r)
-        self.check_dict(data=data)
-        self.webapp = self.get_webapp()
-        self.assert3xx(r, self.get_url('payments'))
-
-    def test_disabled_payments_success(self):
-        self.create_switch(name='disabled-payments')
         self._step()
         data = self.get_dict()
         r = self.client.post(self.url, data)
@@ -860,270 +830,6 @@ class TestDetails(TestSubmit):
         eq_(AER.objects.count(), 0)
 
 
-class TestPayments(TestSubmit):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        super(TestPayments, self).setUp()
-        self.webapp = self.get_webapp()
-        self.webapp.update(status=amo.STATUS_NULL)
-        self.url = self.get_url('payments')
-        self.price = Price.objects.create(price='1.00')
-        self._step()
-
-    def get_webapp(self):
-        return Webapp.objects.get(id=337141)
-
-    def _step(self):
-        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
-            terms=True, manifest=True, details=True)
-        AddonUser.objects.create(addon=self.webapp, user=self.user)
-
-    def test_anonymous(self):
-        self._test_anonymous()
-
-    def test_required(self):
-        res = self.client.post(self.url, {'premium_type': ''})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'form', 'premium_type',
-                             'This field is required.')
-
-    def test_premium_type_not_valid(self):
-        res = self.client.post(self.url, {'premium_type': 124})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'form', 'premium_type',
-            'Select a valid choice. 124 is not one of the available choices.')
-
-    def test_premium_type_valid(self):
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
-
-    def _test_valid(self, expected_status):
-        res = self.client.post(self.get_url('payments'),
-                               {'premium_type': amo.ADDON_FREE})
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('done'))
-        eq_(self.get_webapp().status, expected_status)
-
-    def test_valid_pending(self):
-        res = self.client.post(self.get_url('payments'),
-                               {'premium_type': amo.ADDON_FREE})
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('done'))
-        eq_(self.get_webapp().status, amo.WEBAPPS_UNREVIEWED_STATUS)
-
-    def test_premium(self):
-        for type_ in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP]:
-            res = self.client.post(self.get_url('payments'),
-                                  {'premium_type': type_})
-            eq_(res.status_code, 302)
-            self.assert3xx(res, self.get_url('payments.upsell'))
-
-    def test_free_inapp(self):
-        res = self.client.post(self.get_url('payments'),
-                               {'premium_type': amo.ADDON_FREE_INAPP})
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('payments.paypal'))
-
-    def test_premium_other(self):
-        res = self.client.post(self.get_url('payments'),
-                               {'premium_type': amo.ADDON_OTHER_INAPP})
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('done'))
-
-    def test_price(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'),
-                               {'price': self.price.pk})
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().premium.price.pk, self.price.pk)
-        self.assert3xx(res, self.get_url('payments.paypal'))
-
-    def _make_upsell(self):
-        free = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        free.update(status=amo.STATUS_PUBLIC)
-        AddonUser.objects.create(addon=free, user=self.user)
-        return free
-
-    def test_immediate(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'),
-                               {'price': self.price.pk,
-                                'make_public': 0})
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().make_public, amo.PUBLIC_IMMEDIATELY)
-
-    def test_wait(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'),
-                               {'price': self.price.pk,
-                                'make_public': 1})
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().make_public, amo.PUBLIC_WAIT)
-
-    def test_upsell_states(self):
-        free = self._make_upsell()
-        free.update(status=amo.STATUS_NULL)
-        res = self.client.get(self.get_url('payments.upsell'))
-        eq_(len(res.context['form'].fields['free'].choices), 0)
-
-    def test_upsell_states_inapp(self):
-        free = self._make_upsell()
-        free.update(premium_type=amo.ADDON_FREE_INAPP)
-        res = self.client.get(self.get_url('payments.upsell'))
-        eq_(len(res.context['form'].fields['free'].choices), 1)
-
-    def test_upsell(self):
-        free = self._make_upsell()
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'),
-                               {'price': self.price.pk,
-                                'free': free.pk})
-        eq_(self.get_webapp().premium.price.pk, self.price.pk)
-        eq_(self.get_webapp().upsold.free.pk, free.pk)
-        eq_(self.get_webapp().upsold.premium.pk, self.get_webapp().pk)
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('payments.paypal'))
-
-    def test_no_upsell(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(self.get_url('payments.upsell'),
-                               {'price': self.price.pk})
-        eq_(res.status_code, 200)
-        eq_(len(pq(res.content)('div.brform')), 3)
-
-    def test_upsell_missing(self):
-        free = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        AddonUser.objects.create(addon=free, user=self.user)
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'),
-                               {'price': self.price.pk,
-                                'free': free.id})
-        eq_(res.status_code, 200)
-
-    def test_bad_upsell(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.upsell'), {'price': ''})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'form', 'price', 'This field is required.')
-
-    def test_paypal(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.paypal'),
-                               {'business_account': 'yes',
-                                'email': 'foo@bar.com'})
-        eq_(self.get_webapp().paypal_id, 'foo@bar.com')
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('payments.bounce'))
-
-    @mock.patch('mkt.submit.views.client')
-    def test_paypal_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.paypal'),
-                               {'business_account': 'yes',
-                                'email': 'foo@bar.com'})
-        eq_(client.create_seller_paypal.call_args[0][0], self.webapp)
-        eq_(client.patch_seller_paypal.call_args[1]['data']['paypal_id'],
-            'foo@bar.com')
-        client.post_permissions_url.return_value = {'token': 'http://foo/'}
-        self.assert3xx(res, self.get_url('payments.bounce'))
-
-    @mock.patch('mkt.submit.views.client')
-    def test_bounce_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        url = 'http://foo.com'
-        client.post_permission_url.return_value = {'token': url}
-        res = self.client.post(self.get_url('payments.bounce'))
-        eq_(pq(res.content)('section.primary a.button').attr('href'), url)
-
-    def test_no_paypal(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.paypal'),
-                               {'business_account': 'no'})
-        eq_(res.status_code, 302)
-        eq_(res._headers['location'][1], settings.PAYPAL_CGI_URL)
-
-    def test_later_paypal(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.post(self.get_url('payments.paypal'),
-                               {'business_account': 'later'})
-        eq_(res.status_code, 302)
-        self.assert3xx(res, self.get_url('done'))
-
-    def get_acquire_url(self):
-        url = self.webapp.get_dev_url('acquire_refund_permission')
-        return urlparams(url, dest='submission', request_token='foo',
-                         verification_code='foo')
-
-    @mock.patch('paypal.get_permissions_token')
-    @mock.patch('paypal.get_personal_data')
-    def test_bounce_result_works(self, get_personal_data,
-                                 get_permissions_token):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
-                           paypal_id='a@a.com')
-        session = self.client.session
-        session['unconfirmed_paypal_id'] = self.webapp.paypal_id
-        session.save()
-
-        get_permissions_token.return_value = 'foo'
-        get_personal_data.return_value = {'email': 'a@a.com'}
-        res = self.client.get(self.get_acquire_url())
-        self.assert3xx(res, self.get_url('payments.confirm'))
-
-    @mock.patch('mkt.submit.views.client')
-    def test_confirm_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
-                           paypal_id='a@a.com')
-        client.get_seller_paypal_if_exists.return_value = {'country': 'fr'}
-        res = self.client.get(self.get_url('payments.confirm'))
-        eq_(res.context['form'].data['country'], 'fr')
-
-    @mock.patch('mkt.submit.views.client')
-    def test_confirm_solitude_saves(self, client):
-        self.create_flag(name='solitude-payments')
-        client.get_seller_paypal_if_exists.return_value = None
-        client.create_seller_for_pay.return_value = 1
-        res = self.client.post(self.get_url('payments.confirm'),
-                               {'country': 'uk',
-                                'address_one': '123 bob st.'})
-        args = client.patch_seller_paypal.call_args[1]
-        eq_(args['data']['address_one'], '123 bob st.')
-        eq_(args['pk'], 1)
-        eq_(res.status_code, 302)
-
-    @mock.patch('paypal.get_permissions_token')
-    @mock.patch('paypal.get_personal_data')
-    def test_bounce_result_fails_email(self, get_personal_data,
-                                 get_permissions_token):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
-                           paypal_id='b@b.com')
-        session = self.client.session
-        session['unconfirmed_paypal_id'] = self.webapp.paypal_id
-        session.save()
-
-        get_permissions_token.return_value = 'foo'
-        get_personal_data.return_value = {'email': 'a@a.com'}
-        res = self.client.get(self.get_acquire_url())
-        self.assert3xx(res, self.get_url('payments'))
-
-    @mock.patch('paypal.get_permissions_token')
-    def test_bounce_result_fails_paypal_error(self, get_permissions_token):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        get_permissions_token.side_effect = paypal.PaypalError
-        res = self.client.get(self.get_acquire_url())
-        eq_(res.status_code, 500)
-        self.assertTemplateUsed(res, 'site/500_paypal.html')
-
-        doc = pq(res.content)
-        eq_(doc('div.prose form a').attr('href'),
-            self.get_url('payments.bounce'))
-        eq_(doc('div.prose form').attr('action'),
-            self.get_url('payments.paypal'))
-
-
 class TestDone(TestSubmit):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
@@ -1137,7 +843,7 @@ class TestDone(TestSubmit):
 
     def _step(self, **kw):
         data = dict(addon=self.webapp, terms=True, manifest=True,
-                    details=True, payments=True)
+                    details=True)
         data.update(kw)
         self.cl = AppSubmissionChecklist.objects.create(**data)
         AddonUser.objects.create(addon=self.webapp, user=self.user)

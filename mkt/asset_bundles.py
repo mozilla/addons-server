@@ -57,7 +57,7 @@ CSS = {
         'css/devreg/submit-manifest.less',
         'css/devreg/submit-details.less',
         'css/devreg/validation.less',
-        'css/mkt/submit.less',
+        'css/devreg/submit.less',
 
         # Developer Log In / Registration.
         'css/devreg/login.less',

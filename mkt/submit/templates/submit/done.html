@@ -4,24 +4,28 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
+{% set payments = waffle.switch('enabled-paypal') or waffle.switch('bluevia') %}
+
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
   <h1>{{ title }}</h1>
   {{ progress(request, addon=addon, step=step) }}
-  <section id="submit-payment" class="primary">
+  <section id="submit-done" class="primary{{ ' payments' if payments }}">
     <h2>{{ _('Success! What happens now?') }}</h2>
     <div class="island devhub-form c">
       <p>{{ _("We've got your app saved and ready to go! Your app is currently
                awaiting review, and will show up on listing pages and in search once it is reviewed.
                Until then, feel free to tweak your app's details and settings.") }}</p>
       <footer class="listing-footer button-wrapper">
+        {% if payments %}
+          <a href="{{ addon.get_dev_url('payments') }}" class="button prominent">
+            {{ _('Set Up Payments') }}</a>
+          <span class="or">{{ _('or') }}</span>
+        {% endif %}
         <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">
           {{ _('Manage My App') }}</a>
-        {% if waffle.switch('allow-packaged-app-uploads') %}
-          <a href="{{ url('submit.app.choose') }}" class="button prominent">
-            {{ _('Submit Another App') }}</a>
-        {% else %}
-          <a href="{{ url('submit.app.manifest') }}" class="button prominent">
+        {% if not payments %}
+          <a href="{{ url('submit.app.choose') if waffle.switch('allow-packaged-app-uploads') else url('submit.app.manifest') }}" class="button prominent">
             {{ _('Submit Another App') }}</a>
         {% endif %}
       </footer>

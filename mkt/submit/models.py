@@ -9,7 +9,6 @@ class AppSubmissionChecklist(amo.models.ModelBase):
     terms = models.BooleanField()
     manifest = models.BooleanField()
     details = models.BooleanField()
-    payments = models.BooleanField()
 
     class Meta:
         db_table = 'submission_checklist_apps'

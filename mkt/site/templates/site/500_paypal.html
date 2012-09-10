@@ -16,19 +16,7 @@
          We tried to communicate with PayPal to complete that request, but
          we got an error back. It could be on our end or it might be on the other.
       </p>
-      {% if submission and addon %}
-        <form method="post" action="{{ url('submit.app.payments.paypal', addon.app_slug) }}">
-          {{ csrf() }}
-          <input type="hidden" name="business_account" value="later" />
-          <p>Setting up PayPal is required if you'd like to sell your app on
-             the Marketplace.</p>
-          <p>
-            <input type="submit" class="button" value="Set up PayPal later"> or
-            <a href="{{ url('submit.app.payments.bounce', addon.app_slug) }}">try again</a>.
-          </p>
-      {% else %}
-        <p>You can try refreshing the page, or try again later.</p>
-      {% endif %}
+      <p>You can try refreshing the page, or try again later.</p>
     </div>
   </section>
 {% endblock %}

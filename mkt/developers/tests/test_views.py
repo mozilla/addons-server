@@ -1309,22 +1309,21 @@ class TestResumeStep(amo.tests.TestCase):
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.get_addon().get_dev_url('edit'), 302)
+        self.assertRedirects(r, self.webapp.get_dev_url('edit'), 302)
 
     def test_step_redirects(self):
         AppSubmissionChecklist.objects.create(addon=self.webapp,
                                               terms=True, manifest=True)
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, reverse('submit.app.details',
-                                        args=[self.webapp.app_slug]))
+        self.assert3xx(r, reverse('submit.app.details',
+                                  args=[self.webapp.app_slug]))
 
-    def test_redirect_from_other_pages(self):
+    def test_no_resume_when_done(self):
         AppSubmissionChecklist.objects.create(addon=self.webapp,
                                               terms=True, manifest=True,
                                               details=True)
         r = self.client.get(self.webapp.get_dev_url('edit'), follow=True)
-        self.assertRedirects(r, reverse('submit.app.payments',
-                                        args=[self.webapp.app_slug]))
+        eq_(r.status_code, 200)
 
     def test_resume_without_checklist(self):
         r = self.client.get(reverse('submit.app.details',
