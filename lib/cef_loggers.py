@@ -47,8 +47,9 @@ class CEFLogger:
              'cef.version': getattr(settings, 'CEF_VERSION', '0'),
              'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
              'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
-
-        kwargs = {'username': getattr(environ, 'amo_user', ''),
+        user = getattr(environ, 'amo_user', None)
+        kwargs = {'username': getattr(user, 'name', ''),
+                  'suid': str(getattr(user, 'pk', '')),
                   'signature': '%s%s' % (self.sig_prefix, msg.upper()),
                   'msg': longer, 'config': c,
                   'cs2': app, 'cs2Label': self.cs2label}
