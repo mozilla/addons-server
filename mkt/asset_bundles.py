@@ -167,6 +167,7 @@ JS = {
         'js/lib/jquery.cookie.js',
         'js/zamboni/storage.js',
         'js/zamboni/tabs.js',
+        'js/common/keys.js',
         'js/impala/serializers.js',
         'js/mkt/utils.js',
 
@@ -215,6 +216,7 @@ JS = {
         # Specific stuff for making payments nicer.
         'js/devreg/payments.js',
         'js/zamboni/validator.js',
+        'js/mkt/overlay.js',
     ),
     'mkt/consumer': (
         'js/lib/jquery-1.8.js',

@@ -3,9 +3,6 @@
   (addon.get_dev_url('owner'), _('Manage Authors')),
 ] %}
 {# TODO(cvan): Remove this when we fix/remove all the add-ons tests. #}
-{% if addon.is_webapp() %}
-  {% do urls.append((addon.get_dev_url('versions'), _('Manage Status'))) %}
-{% endif %}
 {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
   {% do urls.append((addon.get_dev_url('payments'), _('Manage Payments'))) %}
 {% endif %}
@@ -20,6 +17,9 @@
       (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
     ) %}
   {% endif %}
+{% endif %}
+{% if addon.is_webapp() %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Manage Status'))) %}
 {% endif %}
 {% if request.can_view_consumer %}
   {% do urls.append(

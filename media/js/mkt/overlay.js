@@ -15,20 +15,20 @@
     z.page.on('fragmentloaded', function(e) {
         // Dismiss overlay when we load a new fragment.
         dismiss();
+    });
 
-        // Dismiss overlay when we click outside of it.
-        $(document).on('click', '.overlay', function(e) {
-            if ($(e.target).parent('body').length) {
-                dismiss();
-            }
-        });
+    // Dismiss overlay when we click outside of it.
+    $(document).on('click', '.overlay', function(e) {
+        if ($(e.target).parent('body').length) {
+            dismiss();
+        }
+    });
 
-        // Dismiss overlay when we press escape.
-        $(window).bind('keydown.overlayDismiss', function(e) {
-            if (!fieldFocused(e) && e.which == z.keys.ESCAPE) {
-                e.preventDefault();
-                dismiss();
-            }
-        });
+    // Dismiss overlay when we press escape.
+    $(window).on('keydown.overlayDismiss', function(e) {
+        if (!fieldFocused(e) && e.which == z.keys.ESCAPE) {
+            e.preventDefault();
+            dismiss();
+        }
     });
 })();

@@ -1,6 +1,15 @@
 var z = {
-    page: $('#page'),
-    canInstallApps: true
+    body: $(document.body),
+    page: $('#container'),
+    prefix: (function() {
+        var s = window.getComputedStyle(document.body, '');
+        return (Array.prototype.slice.call(s).join('').match(/moz|webkit|ms|khtml/)||(s.OLink===''&&['o']))[0];
+    })(),
+    prefixed: function(property) {
+        if (!z.prefix) return property;
+        return '-' + z.prefix + '-' + property;
+    },
+    canInstallApps: true,
 };
 
 (function() {
