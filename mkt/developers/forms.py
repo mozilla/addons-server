@@ -501,14 +501,10 @@ class PremiumForm(happyforms.Form):
 
         upsell = self.addon.upsold
         if upsell:
-            kw['initial'].update({
-                'free': upsell.free,
-            })
+            kw['initial']['free'] = upsell.free
 
-        if waffle.switch_is_active('currencies'):
-            currencies = getattr(self.addon.premium, 'currencies', None)
-            if currencies:
-                kw['initial']['currencies'] = currencies
+        if self.addon.premium and waffle.switch_is_active('currencies'):
+            kw['initial']['currencies'] = self.addon.premium.currencies
 
         super(PremiumForm, self).__init__(*args, **kw)
 
@@ -582,7 +578,7 @@ class PremiumForm(happyforms.Form):
 
         self.addon.premium_type = premium_type
 
-        if waffle.switch_is_active('currencies'):
+        if self.addon.premium and waffle.switch_is_active('currencies'):
             currencies = self.cleaned_data['currencies']
             self.addon.premium.update(currencies=currencies)
 
@@ -590,7 +586,7 @@ class PremiumForm(happyforms.Form):
 
         # If they checked later in the wizard and then decided they want
         # to keep it free, push to pending.
-        if (not self.addon.needs_paypal() and self.addon.is_incomplete()):
+        if not self.addon.needs_paypal() and self.addon.is_incomplete():
             self.addon.mark_done()
 
 

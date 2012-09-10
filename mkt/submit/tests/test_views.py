@@ -979,10 +979,7 @@ class TestPayments(TestSubmit):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.upsell'),
                                {'price': self.price.pk,
-                                'do_upsell': 1,
-                                'free': free.pk,
-                                'text': 'some upsell',
-                                })
+                                'free': free.pk})
         eq_(self.get_webapp().premium.price.pk, self.price.pk)
         eq_(self.get_webapp().upsold.free.pk, free.pk)
         eq_(self.get_webapp().upsold.premium.pk, self.get_webapp().pk)
@@ -1002,8 +999,7 @@ class TestPayments(TestSubmit):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.post(self.get_url('payments.upsell'),
                                {'price': self.price.pk,
-                                'do_upsell': 1,
-                                })
+                                'free': free.id})
         eq_(res.status_code, 200)
 
     def test_bad_upsell(self):

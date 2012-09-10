@@ -480,6 +480,10 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(res.context['form'].initial['price'], self.price)
 
+    def test_set_free(self):
+        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
+        self.assert3xx(res, self.url)
+
     def test_set(self):
         self.setup_premium()
         res = self.client.post(self.url, data=self.get_data(price=self.

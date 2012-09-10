@@ -8,7 +8,6 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUpsell
 import amo
-from amo.utils import raise_required
 from apps.users.notifications import app_surveys
 from apps.users.models import UserNotification
 from files.models import FileUpload
@@ -103,7 +102,7 @@ class UpsellForm(happyforms.Form):
     make_public = forms.TypedChoiceField(choices=APP_PUBLIC_CHOICES,
                                     widget=forms.RadioSelect(),
                                     label=_lazy(u'When should your app be '
-                                            'made available for sale?'),
+                                                 'made available for sale?'),
                                     coerce=int,
                                     required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(),
@@ -111,10 +110,6 @@ class UpsellForm(happyforms.Form):
                             empty_label='',
                             label=_lazy(u'App to upgrade from'),
                             widget=forms.Select())
-    text = forms.CharField(widget=forms.Textarea(),
-                           help_text=_lazy(u'Describe the added benefits.'),
-                           required=False,
-                           label=_lazy(u'Pitch your app'))
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
@@ -140,18 +135,6 @@ class UpsellForm(happyforms.Form):
             self.initial['price'] = (Price.objects.active()
                                      .exclude(price='0.00')[0])
 
-    def clean_text(self):
-        if (self.cleaned_data['do_upsell']
-            and not self.cleaned_data['text']):
-            raise_required()
-        return self.cleaned_data['text']
-
-    def clean_free(self):
-        if (self.cleaned_data['do_upsell']
-            and not self.cleaned_data['free']):
-            raise_required()
-        return self.cleaned_data['free']
-
     def clean_make_public(self):
         return (amo.PUBLIC_WAIT if self.cleaned_data.get('make_public')
                                 else None)
@@ -166,8 +149,7 @@ class UpsellForm(happyforms.Form):
             premium.save()
 
         upsell = self.addon.upsold
-        if (self.cleaned_data['do_upsell'] and
-            self.cleaned_data['text'] and self.cleaned_data['free']):
+        if self.cleaned_data['free']:
 
             # Check if this app was already a premium version for another app.
             if upsell and upsell.free != self.cleaned_data['free']:
@@ -175,10 +157,9 @@ class UpsellForm(happyforms.Form):
 
             if not upsell:
                 upsell = AddonUpsell(premium=self.addon)
-            upsell.text = self.cleaned_data['text']
             upsell.free = self.cleaned_data['free']
             upsell.save()
-        elif not self.cleaned_data['do_upsell'] and upsell:
+        elif upsell:
             upsell.delete()
 
         self.addon.update(make_public=self.cleaned_data['make_public'])
