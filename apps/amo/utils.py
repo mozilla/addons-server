@@ -785,11 +785,12 @@ def log_cef(name, severity, env, *args, **kwargs):
     # test runner.  Good luck with that.
     if isinstance(env, HttpRequest):
         r = env.META.copy()
+        if 'PATH_INFO' in r:
+            r['PATH_INFO'] = env.build_absolute_uri(r['PATH_INFO'])
     elif isinstance(env, dict):
         r = env
     else:
         r = {}
-
     return _log_cef(name, severity, r, *args, config=c, **kwargs)
 
 
