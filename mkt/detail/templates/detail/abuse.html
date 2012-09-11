@@ -7,11 +7,10 @@
 {% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None, title)]) }}
   <section id="abuse" class="friendly">
     <div>
-      <h1>{{ title }}</h1>
-      <p>
+      <h1 id="top">{{ title }}</h1>
+      <p class="intro">
         <label id="recap-label" for="{{ abuse_form.text.auto_id }}">
           {% trans policies_url='https://developer.mozilla.org/en/Apps/'
                                 'Marketplace_Review' %}

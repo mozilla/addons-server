@@ -2,8 +2,11 @@
 
 .friendly {
     p, ul, label {
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 16px;
+        line-height: 22px;
+        &.intro {
+            margin-top: 0;
+        }
     }
     .req,
     .errorlist {
@@ -26,6 +29,7 @@
     input, textarea {
         color: @note-gray;
         font-size: 16px;
+        max-height: 160px;
         &:focus {
             color: @medium-gray;
         }
