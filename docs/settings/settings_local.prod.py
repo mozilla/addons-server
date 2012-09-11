@@ -49,8 +49,8 @@ DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 #     'logger': 'zamboni',
 #     'sender': {
 #         'class': 'metlog.senders.UdpSender',
-#         'host': '127.0.0.1',
-#         'port': '5566',
+#         'host': ['10.0.1.5', '10.0.1.10']
+#         'port': 5566
 #     },
 #     'plugins': {
 #         'raven': ('metlog_raven.raven_plugin.config_plugin',
