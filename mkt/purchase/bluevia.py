@@ -5,6 +5,7 @@ from urllib import urlencode
 import urlparse
 
 from django import http
+from django.db.transaction import commit_on_success
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -19,6 +20,8 @@ from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from apps.market.models import PriceCurrency
+from lib.crypto.bluevia import (get_uuid, InvalidSender, parse_from_bluevia,
+                                sign_bluevia_jwt)
 from lib.pay_server import client
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
@@ -31,10 +34,9 @@ addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
 def prepare_bluevia_pay(data):
-    # TODO(Kumar) once we agree on how to sign this JWT, we can move
-    # it to Solitude.
     issued_at = calendar.timegm(time.gmtime())
-    purchase = {'iss': 'marketplaceID',  # placeholder
+    return sign_bluevia_jwt({
+                'iss': 'marketplaceID',  # placeholder
                 'typ': 'tu.com/payments/inapp/v1',
                 'aud': 'tu.com',
                 'iat': issued_at,
@@ -46,8 +48,24 @@ def prepare_bluevia_pay(data):
                     'defaultPrice': data['currency'],
                     'postbackURL': data['postback_url'],
                     'chargebackURL': data['chargeback_url'],
-                    'productData': data['product_data']}}
-    return jwt.encode(purchase, 'marketplaceSecret')  # placeholder
+                    'productData': data['product_data']
+                }
+            })
+
+
+def prepare_bluevia_refund(data):
+    issued_at = calendar.timegm(time.gmtime())
+    return sign_bluevia_jwt({
+                'iss': 'developerIdentifier',  # placeholder
+                'typ': 'tu.com/payments/v1/refund',
+                'aud': 'tu.com',
+                'iat': issued_at,
+                'exp': issued_at + 3600,  # expires in 1 hour
+                'request': {
+                    'refund': data['id'],
+                    'reason': 'refund'
+                }
+            })
 
 
 @login_required
@@ -85,11 +103,7 @@ def prepare_pay(request, addon):
             'aud': 'tu.com',
             'memo': contrib_for}
 
-    if waffle.flag_is_active(request, 'solitude-payments'):
-        bluevia_jwt = client.prepare_bluevia_pay(data)
-    else:
-        bluevia_jwt = prepare_bluevia_pay(data)
-    return {'blueviaJWT': bluevia_jwt,
+    return {'blueviaJWT': prepare_bluevia_pay(data),
             'contribStatusURL': reverse('bluevia.pay_status',
                                         args=[addon.app_slug, uuid_])}
 
@@ -114,44 +128,18 @@ def pay_status(request, addon, contrib_uuid):
     return {'status': 'complete' if qs.exists() else 'incomplete'}
 
 
-def verify_bluevia_jwt(signed_jwt):
-    # TODO(Kumar) once we can agree on how this JWT is signed, we can update
-    # Solitude to verify it correctly.
-    jwt.decode(signed_jwt, 'marketplaceSecret')
-    return {'valid': True}  # simulate Solitude
-
-
 @csrf_exempt
 @write
 @post_required
 def postback(request):
     """Verify signature from BlueVia and set contribution to paid."""
     signed_jwt = request.raw_post_data
-    if waffle.flag_is_active(request, 'solitude-payments'):
-        result = client.verify_bluevia_jwt(signed_jwt)
-    else:
-        result = verify_bluevia_jwt(signed_jwt)
+    try:
+        data = parse_from_bluevia(signed_jwt, request.META.get('REMOTE_ADDR'))
+    except InvalidSender:
+        return http.HttpResponseBadRequest()
 
-    if not result['valid']:
-        ip = (request.META.get('HTTP_X_FORWARDED_FOR', '') or
-              request.META.get('REMOTE_ADDR', ''))
-        if not ip:
-            ip = '(unknown)'
-        log.info('Received invalid bluevia postback from IP %s' % ip)
-        return http.HttpResponseBadRequest('invalid request')
-    # From here on, let all exceptions raise. The JWT comes from BlueVia
-    # so if anything fails we want to know ASAP.
-    data = jwt.decode(signed_jwt, verify=False)
-    verify_claims(data)
-    iss, aud, product_data, trans_id = verify_keys(data,
-                                            ('iss',
-                                             'aud',
-                                             'request.productData',
-                                             'response.transactionID'))
-    log.info('received BlueVia postback JWT: iss:%s aud:%s '
-             'trans_id:%s product_data:%s'
-             % (iss, aud, trans_id, product_data))
-    pd = urlparse.parse_qs(product_data)
+    pd = urlparse.parse_qs(data['request']['productData'])
     contrib_uuid = pd['contrib_uuid'][0]
     try:
         contrib = Contribution.objects.get(uuid=contrib_uuid)
@@ -159,18 +147,85 @@ def postback(request):
         etype, val, tb = sys.exc_info()
         raise LookupError('BlueVia JWT (iss:%s, aud:%s) for trans_id %s '
                           'links to contrib %s which doesn\'t exist'
-                          % (iss, aud, trans_id, contrib_uuid)), None, tb
+                          % (data['iss'], data['aud'],
+                             data['response']['transactionID'],
+                             contrib_uuid)), None, tb
+
     contrib.update(type=amo.CONTRIB_PURCHASE,
-                   bluevia_transaction_id=trans_id)
+                   bluevia_transaction_id=data['response']['transactionID'])
 
     tasks.purchase_notify.delay(signed_jwt, contrib.pk)
-    return http.HttpResponse(trans_id)
+    return http.HttpResponse(data['response']['transactionID'])
+
+
+@addon_view
+@post_required
+@login_required
+@json_view
+@write
+@commit_on_success
+def prepare_refund(request, addon, uuid):
+    """
+    Prepare a BlueVia JWT to pass into navigator.pay()
+    for a specific transaction.
+    """
+    try:
+        # Looks up the contribution based upon the BlueVia transaction id.
+        to_refund = Contribution.objects.get(user=request.amo_user,
+                                             bluevia_transaction_id=uuid,
+                                             addon=addon)
+    except Contribution.DoesNotExist:
+        log.info('Not found: %s, %s' % (request.amo_user.pk, uuid))
+        return http.HttpResponseBadRequest()
+
+    # The refund must be within 30 minutes, give or take and the transaction
+    # must not already be refunded.
+    if to_refund.type != amo.CONTRIB_PURCHASE:
+        log.info('Not a purchase: %s' % uuid)
+        return http.HttpResponseBadRequest()
+
+    if not to_refund.is_instant_refund(period=30 * 60 + 10):
+        log.info('Over 30 minutes ago: %s' % uuid)
+        return http.HttpResponseBadRequest()
+
+    if to_refund.is_refunded():
+        log.info('Already refunded: %s' % uuid)
+        return http.HttpResponseBadRequest()
+
+    data = {'id': to_refund.bluevia_transaction_id}
+    return {'blueviaJWT': prepare_bluevia_refund(data)}
 
 
 @csrf_exempt
+@write
 @post_required
 def chargeback(request):
     """
-    Verify signature from BlueVia, process refund, and notify dev chargeback.
+    Verify signature from BlueVia and create a refund contribution tied
+    to the original transaction.
     """
-    # TODO(Kumar) bug 777007
+    signed_jwt = request.read()
+    # Check the JWT we've got is valid.
+    try:
+        data = parse_from_bluevia(signed_jwt, request.META.get('REMOTE_ADDR'))
+    except InvalidSender:
+        return http.HttpResponseBadRequest()
+
+    uuid = data['response']['transactionID']
+    # Check that we've got a valid uuid.
+    # Looks up the contribution based upon the BlueVia transaction id.
+    try:
+        original = Contribution.objects.get(bluevia_transaction_id=uuid)
+    except Contribution.DoesNotExist:
+        log.info('Not found: %s' % uuid)
+        return http.HttpResponseBadRequest()
+
+    # Create a refund in our end.
+    Contribution.objects.create(addon_id=original.addon_id,
+        amount=-original.amount, currency=original.currency, paykey=None,
+        price_tier_id=original.price_tier_id, related=original,
+        source=request.REQUEST.get('src', ''), source_locale=request.LANG,
+        type=amo.CONTRIB_REFUND, user_id=original.user_id, uuid=get_uuid())
+
+    tasks.chargeback_notify.delay(signed_jwt, original.pk)
+    return http.HttpResponse(uuid)

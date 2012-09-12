@@ -50,13 +50,6 @@ def start_purchase(request, addon):
             if tier:
                 amount, currency = tier.price, tier.currency
 
-    if waffle.flag_is_active(request, 'solitude-payments'):
-        # TODO(solitude): when the migration of data is completed, we
-        # will be able to remove this. Seller data is populated in solitude
-        # on submission or devhub changes. If those don't occur, you won't be
-        # able to sell at all.
-        client.create_seller_for_pay(addon)
-
     return amount, currency, uuid_, contrib_for
 
 

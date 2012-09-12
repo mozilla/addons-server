@@ -18,6 +18,8 @@ app_purchase_patterns = patterns('',
         name='purchase.done'),
     url('^bluevia/prepare_pay$', bluevia.prepare_pay,
         name='bluevia.prepare_pay'),
+    url('^prepare/prepare_refund/(?P<uuid>[^/]+)$', bluevia.prepare_refund,
+        name='bluevia.prepare_refund'),
     url('^bluevia/pay_status/(?P<contrib_uuid>[^/]+)$', bluevia.pay_status,
         name='bluevia.pay_status'),
 )

@@ -365,10 +365,10 @@ class Contribution(amo.models.ModelBase):
     def get_absolute_refund_url(self):
         return absolutify(self.get_refund_url())
 
-    def is_instant_refund(self):
+    def is_instant_refund(self, period=settings.PAYPAL_REFUND_INSTANT):
         if self.type != amo.CONTRIB_PURCHASE:
             return False
-        limit = datetime.timedelta(seconds=settings.PAYPAL_REFUND_INSTANT)
+        limit = datetime.timedelta(seconds=period)
         return datetime.datetime.now() < (self.created + limit)
 
     def is_refunded(self):

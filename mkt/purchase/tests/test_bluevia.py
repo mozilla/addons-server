@@ -12,6 +12,7 @@ import mock
 from mock import Mock
 from moz_inapp_pay.exc import RequestExpired
 from moz_inapp_pay.verify import verify_claims, verify_keys
+from nose.exc import SkipTest
 from nose.tools import eq_, raises
 
 import amo
@@ -20,6 +21,7 @@ from amo.urlresolvers import reverse
 from stats.models import Contribution
 
 from .test_views import PurchaseTest
+from .samples import non_existant_pay
 
 
 @mock.patch.object(settings, 'SECLUSION_HOSTS', ['host'])
@@ -44,11 +46,7 @@ class TestPurchase(PurchaseTest):
     def post(self, url, **kw):
         return self._req('post', url, **kw)
 
-    @fudge.patch('lib.pay_server.base.requests.post')
-    @fudge.patch('lib.pay_server.client.create_seller_paypal')  # TODO(Kumar)
-    def test_prepare_pay(self, api_post, create_seller):
-        create_seller.is_callable().returns({'paypal_id': 123,
-                                             'resource_pk': 321})
+    def test_prepare_pay(self):#, api_post, create_seller):
 
         def good_data(da):
             da = json.loads(da)
@@ -69,19 +67,13 @@ class TestPurchase(PurchaseTest):
             return True
 
         # Sample of BlueVia JWT but not complete.
-        bluevia_jwt = {'typ': 'tu.com/payments/inapp/v1'}
-
-        (api_post.expects_call()
-                 .with_args(arg.any(), data=arg.passes_test(good_data),
-                            timeout=arg.any(), headers=arg.any())
-                 .returns(Mock(text=json.dumps(bluevia_jwt),
-                               status_code=200)))
         data = self.post(self.prepare_pay)
         cn = Contribution.objects.get()
         eq_(cn.type, amo.CONTRIB_PENDING)
         eq_(cn.user, self.user)
         eq_(cn.price_tier, self.price)
-        eq_(data['blueviaJWT'], bluevia_jwt)
+        eq_(jwt.decode(data['blueviaJWT'].encode('ascii'),
+                       verify=False)['typ'], 'tu.com/payments/inapp/v1')
 
     def test_require_login(self):
         self.client.logout()
@@ -197,7 +189,6 @@ class TestPostback(PurchaseTest):
                                         user=self.user)
         self.bluevia_dev_id = '<stored in solitude>'
         self.bluevia_dev_secret = '<stored in solitude>'
-        self.create_flag(name='solitude-payments')
 
     def post(self, req=None):
         if not req:
@@ -231,42 +222,35 @@ class TestPostback(PurchaseTest):
     def jwt(self, **kw):
         return jwt.encode(self.jwt_dict(**kw), self.bluevia_dev_secret)
 
-    @fudge.patch('lib.pay_server.base.requests.post')
-    def test_valid(self, tasks, api_post):
-        api_post.expects_call().returns(Mock(status_code=200,
-                                             text='{"valid": true}'))
-        req = self.jwt()
-        self.post(req=req)
-        resp = self.post(req=req)
+    @fudge.patch('lib.crypto.bluevia.jwt.decode')
+    def test_valid(self, tasks, decode):
+        jwt_dict = self.jwt_dict()
+        jwt_encoded = jwt.encode(jwt_dict, self.bluevia_dev_secret)
+        decode.expects_call().returns(jwt_dict)
+        self.post()
+        resp = self.post()
         eq_(resp.status_code, 200)
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
         eq_(cn.bluevia_transaction_id, '<BlueVia-trans-id>')
-        tasks.purchase_notify.delay.assert_called_with(req, cn.pk)
+        tasks.purchase_notify.delay.assert_called_with(jwt_encoded, cn.pk)
 
-    @fudge.patch('lib.pay_server.base.requests.post')
-    def test_invalid(self, tasks, api_post):
-        api_post.expects_call().returns(Mock(status_code=200,
-                                             text='{"valid": false}'))
+    def test_invalid(self, tasks):
         resp = self.post()
         eq_(resp.status_code, 400)
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PENDING)
 
     @raises(RequestExpired)
-    @fudge.patch('lib.pay_server.base.requests.post')
-    def test_invalid_claim(self, tasks, api_post):
-        api_post.expects_call().returns(Mock(status_code=200,
-                                             text='{"valid": true}'))
+    @fudge.patch('lib.crypto.bluevia.jwt.decode')
+    def test_invalid_claim(self, tasks, decode):
         iat = calendar.timegm(time.gmtime()) - 3601  # too old
-        req = self.jwt(issued_at=iat)
-        self.post(req=req)
+        decode.expects_call().returns(self.jwt_dict(issued_at=iat))
+        self.post()
 
     @raises(LookupError)
-    @fudge.patch('lib.pay_server.base.requests.post')
-    def test_unknown_contrib(self, tasks, api_post):
-        api_post.expects_call().returns(Mock(status_code=200,
-                                             text='{"valid": true}'))
-        req = self.jwt(contrib_uuid='<bogus>')
-        self.post(req=req)
+    @fudge.patch('mkt.purchase.bluevia.parse_from_bluevia')
+    def test_unknown_contrib(self, tasks, parse_from_bluevia):
+        parse_from_bluevia.expects_call().returns(non_existant_pay)
+        self.post()

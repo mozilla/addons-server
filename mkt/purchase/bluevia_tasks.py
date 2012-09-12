@@ -28,7 +28,7 @@ def chargeback_notify(signed_notice, contrib_id, **kw):
     """
     Notify the app of a chargeback for B2G app purchase.
     """
-    # TODO(Kumar) bug 777007
+    _notify(signed_notice, contrib_id, chargeback_notify)
 
 
 def _notify(signed_notice, contrib_id, notifier_task):
