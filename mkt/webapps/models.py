@@ -420,10 +420,11 @@ class Webapp(Addon):
             [<class 'mkt.constants.regions.BR'>,
              <class 'mkt.constants.regions.CA'>,
              <class 'mkt.constants.regions.UK'>,
-             <class 'mkt.constants.regions.US'>]
+             <class 'mkt.constants.regions.US'>,
+             <class 'mkt.constants.regions.WORLDWIDE'>]
         """
-        regions = filter(None, [mkt.regions.REGIONS_CHOICES_ID_DICT.get(r)
-                                for r in self.get_region_ids()])
+        regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get,
+                      self.get_region_ids(worldwide=True))
         return sorted(regions, key=lambda x: x.slug)
 
     def listed_in(self, region=None, category=None):

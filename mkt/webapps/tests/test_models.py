@@ -228,9 +228,8 @@ class TestWebapp(TestCase):
 
     def test_get_regions_no_exclusions(self):
         # This returns the class definitions for the *included* regions.
-        regions = dict(mkt.regions.REGIONS_CHOICES_ID_DICT).values()
-        regions.remove(mkt.regions.WORLDWIDE)
-        eq_(sorted(Webapp().get_regions()), sorted(regions))
+        eq_(sorted(Webapp().get_regions()),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
 
     def test_get_regions_with_exclusions(self):
         w1 = Webapp.objects.create()
@@ -243,8 +242,7 @@ class TestWebapp(TestCase):
         AddonExcludedRegion.objects.create(addon=w2,
             region=mkt.regions.UK.id)
 
-        all_regions = dict(mkt.regions.REGIONS_CHOICES_ID_DICT).values()
-        all_regions.remove(mkt.regions.WORLDWIDE)
+        all_regions = mkt.regions.REGIONS_CHOICES_ID_DICT.values()
 
         w1_regions = list(all_regions)
         w1_regions.remove(mkt.regions.CA)

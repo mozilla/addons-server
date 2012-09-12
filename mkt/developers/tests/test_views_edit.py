@@ -1122,16 +1122,18 @@ class TestEditDetails(TestEdit):
         self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get(self.url)
         eq_(strip_whitespace(pq(r.content)('#regions').text()),
-            ', '.join([unicode(name) for id_, name in
-                       mkt.regions.REGIONS_CHOICES_NAME[1:]]))
+            ', '.join(sorted(unicode(name) for id_, name in
+                             mkt.regions.REGIONS_CHOICES_NAME)))
 
     def test_excluded_regions_not_listed(self):
         self.skip_if_disabled(settings.REGION_STORES)
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
 
-        expected = [unicode(name) for id_, name in
-                    mkt.regions.REGIONS_CHOICES_NAME[1:]
-                    if id_ != mkt.regions.BR.id]
+        # This looks at the included regions and prints out the names
+        # so we can compare it to what's shown under "Regions".
+        expected = sorted(unicode(name) for id_, name in
+                          mkt.regions.REGIONS_CHOICES_NAME
+                          if id_ != mkt.regions.BR.id)
 
         r = self.client.get(self.url)
         eq_(strip_whitespace(pq(r.content)('#regions').text()),
@@ -1139,7 +1141,7 @@ class TestEditDetails(TestEdit):
 
     def test_excluded_all_regions_not_listed(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        for region in mkt.regions.REGION_IDS:
+        for region in mkt.regions.ALL_REGION_IDS:
             AER.objects.create(addon=self.webapp, region=region)
 
         r = self.client.get(self.url)
@@ -1508,7 +1510,6 @@ class TestAdminSettings(TestAdmin):
         eq_(list(webapp.content_ratings.values_list('ratings_body', 'rating')),
             [(0, 2)])
 
-
     def test_ratings_edit_add_dupe(self):
         self.log_in_with('Apps:Configure')
 
@@ -1545,7 +1546,6 @@ class TestAdminSettings(TestAdmin):
 
         r = self.client.post(self.edit_url, data)
         assert not webapp.content_ratings.exists()
-
 
     def test_ratings_view(self):
         self.log_in_with('Apps:ViewConfiguration')

@@ -822,8 +822,7 @@ class RegionForm(forms.Form):
 
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
-        self.regions_before = (self.product.get_region_ids() or
-            mkt.regions.REGION_IDS)
+        self.regions_before = self.product.get_region_ids()
 
         # If we have future excluded regions, uncheck box.
         self.future_exclusions = self.product.addonexcludedregion.filter(
