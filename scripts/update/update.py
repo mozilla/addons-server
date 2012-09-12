@@ -32,19 +32,19 @@ def update_locales(ctx):
 @task
 def update_products(ctx):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('python2.6 manage.py update_product_details')
+        ctx.local('%s manage.py update_product_details' % settings.PYTHON)
 
 
 @task
 def compress_assets(ctx, arg=''):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local("python2.6 manage.py compress_assets %s" % arg)
+        ctx.local("%s manage.py compress_assets %s" % (settings.PYTHON, arg))
 
 
 @task
 def schematic(ctx):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local("python2.6 ./vendor/src/schematic/schematic migrations")
+        ctx.local("%s ./vendor/src/schematic/schematic migrations" % settings.PYTHON)
 
 
 @task
@@ -81,8 +81,8 @@ def disable_cron(ctx):
 @task
 def install_cron(ctx):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('python2.6 ./scripts/crontab/gen-cron.py -z %s -r %s/bin -u apache > /etc/cron.d/.%s' %
-                  (settings.SRC_DIR, settings.REMORA_DIR, settings.CRON_NAME))
+        ctx.local('%s ./scripts/crontab/gen-cron.py -z %s -r %s/bin -u apache > /etc/cron.d/.%s' %
+                  (settings.PYTHON, settings.SRC_DIR, settings.REMORA_DIR, settings.CRON_NAME))
         ctx.local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME, settings.CRON_NAME))
 
 
@@ -117,7 +117,7 @@ def deploy(ctx):
     deploy_app()
     update_celery()
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('python2.6 manage.py cron cleanup_validation_results')
+        ctx.local('%s manage.py cron cleanup_validation_results' % settings.PYTHON)
 
 
 @task
@@ -125,6 +125,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
     ctx.local('date')
     disable_cron()
     update_code(ref)
+    create_virtualenv()
     update_info(ref)
 
 
@@ -136,6 +137,6 @@ def update(ctx):
     compress_assets(arg='--settings=settings_local_mkt')
     schematic()
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('python2.6 manage.py --settings=settings_local_mkt build_appcache')
-        ctx.local('python2.6 manage.py dump_apps')
-        ctx.local('python2.6 manage.py statsd_ping --key=update')
+        ctx.local('%s manage.py --settings=settings_local_mkt build_appcache' % settings.PYTHON)
+        ctx.local('%s manage.py dump_apps' % settings.PYTHON)
+        ctx.local('%s manage.py statsd_ping --key=update' % settings.PYTHON)
