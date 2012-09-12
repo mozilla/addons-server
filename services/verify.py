@@ -26,7 +26,7 @@ from lib.cef_loggers import receipt_cef
 # This has to be imported after the settings (utils).
 import receipts  # used for patching in the tests
 from receipts import certs
-from statsd import statsd
+from django_statsd.clients import statsd
 
 
 class VerificationError(Exception):

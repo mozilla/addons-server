@@ -16,7 +16,7 @@ from django.utils.http import urlencode
 import settings_local as settings
 setup_environ(settings)
 # This has to be imported after the settings so statsd knows where to log to.
-from statsd import statsd
+from django_statsd.clients import statsd
 
 try:
     from compare import version_int

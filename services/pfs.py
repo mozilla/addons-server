@@ -17,7 +17,7 @@ import settings_local as settings
 setup_environ(settings)
 
 # This has to be imported after the settings so statsd knows where to log to.
-from statsd import statsd
+from django_statsd.clients import statsd
 
 # Go configure the log.
 log_configure()

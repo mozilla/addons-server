@@ -8,7 +8,7 @@ from django import forms
 from django.conf import settings
 
 import jwt
-from statsd import statsd
+from django_statsd.clients import statsd
 
 import amo
 from market.models import Price

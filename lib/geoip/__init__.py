@@ -1,7 +1,7 @@
 import json
 import logging
 import socket
-from statsd import statsd
+from django_statsd.clients import statsd
 
 from mkt import regions
 
