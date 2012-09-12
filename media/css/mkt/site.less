@@ -201,7 +201,9 @@ body .loading-fragment {
 }
 
 // Controlling styles this way causes style repaints when JS applies the type.
-body[data-page-type=notice] {
+// 'Notice' pages have a padded body and a home icon in the header.
+// 'Alpha' pages have a padded body and a back icon.
+body[data-page-type=notice], body[data-page-type=alpha] {
     section.primary {
         padding: 15px;
         h2 {

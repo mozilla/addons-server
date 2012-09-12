@@ -4,10 +4,12 @@
 
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
+{% block pagetype %}alpha{% endblock %}
+
 {% block content %}
   <section id="terms-of-use" class="primary prose">
     <div>
-    <h1>{{ title }}</h1>
+    <h1 id="top">{{ title }}</h1>
     <p>Note: The proposed full version of the Terms of Use for the Firefox Marketplace is currently under review and comment on our <a href="http://groups.google.com/group/mozilla.governance/topics">governance mailing list</a>. &nbsp;When the Firefox Marketplace is fully launched, we will ask for your consent to the final Terms of Use.</p>
 
     <p>February 23, 2012</p>

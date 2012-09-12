@@ -17,7 +17,7 @@ body {
             width: 144px;
         }
     }
-    &[data-page-type='leaf'] {
+    &[data-page-type='leaf'], &[data-page-type='alpha'] {
         .header-button {
             &.back {
                 display: block;
@@ -31,7 +31,7 @@ body {
             }
         }
     }
-    // Simple single pages like 404/500/Terms etc.
+    // Simple single pages with a home icon.
     &[data-page-type='notice'] {
         .header-button {
             &.home {
