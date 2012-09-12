@@ -62,7 +62,7 @@
             {% endfor %}
             <li><a href="#" class="button cancel">{{ _('Cancel') }}</a></li>
           </ul>
-          <input type="hidden" name="cat" value="">
+          <input type="hidden" name="cat" value="{{ query['cat'] or '' }}">
         {% endif %}
 
         {# We're not iterating over all the sort options on purpose. #}
@@ -86,7 +86,7 @@
                class="sel">{{ _('Rating') }}</a>
           </li>
         </ul>
-        <input type="hidden" name="sort" value="None">
+        <input type="hidden" name="sort" value="{{ query['sort'] or 'none' }}">
 
         <div class="footer-action">
           <a href="#" class="button apply">{{ _('Apply') }}</a>
