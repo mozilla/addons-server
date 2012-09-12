@@ -6,19 +6,21 @@
 {% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None, _('Privacy Policy'))]) }}
+
+  {# TODO: Is this still really used? We just show an empty page with a title #}
   {% if not product.is_visible(request) %}
-    <section class="product-details">
-      <h1>{{ product.name }}</h1>
+    <section class="infobox">
+      <h1 id="top">{{ _('Privacy Policy') }}</h1>
+      <div>
+        <h2>{{ product.name }}</h2>
+      </div>
     </section>
     {{ notification(product, amo, mkt, is_dev) }}
   {% else %}
     {{ notification(product, amo, mkt, is_dev) }}
-    <section>
-      <div class="prose">
-        <h1>{{ _('Privacy Policy') }}</h1>
+    <section class="infobox">
+        <h1 id="top">{{ _('Privacy Policy') }}</h1>
         <div class="policy-statement">{{ product.privacy_policy|nl2br }}</div>
-      </div>
     </section>
   {% endif %}
 {% endblock %}
