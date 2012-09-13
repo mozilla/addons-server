@@ -37,7 +37,15 @@ class TestGenerateError(amo.tests.TestCase):
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        self.metlog = settings.METLOG
+        metlog = settings.METLOG
+        METLOG_CONF = {
+            'logger': 'zamboni',
+            'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', 
+                                {'override': True})},
+            'sender': {'class': 'metlog.senders.DebugCaptureSender'},
+        }
+        from metlog.config import client_from_dict_config
+        self.metlog = client_from_dict_config(METLOG_CONF, metlog)
         self.metlog.sender.msgs.clear()
 
     def test_metlog_statsd(self):
@@ -67,6 +75,17 @@ class TestGenerateError(amo.tests.TestCase):
         eq_(msg['logger'], 'zamboni')
         eq_(msg['fields']['foo'], 'bar')
         eq_(msg['fields']['secret'], 42)
+
+    def test_metlog_cef(self):
+        self.url = reverse('zadmin.generate-error')
+        self.client.post(self.url,
+                         {'error': 'metlog_cef'})
+
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
+
+        eq_(msg['type'], 'cef')
+        eq_(msg['logger'], 'zamboni')
 
 
 class TestFeaturedApps(amo.tests.TestCase):

@@ -43,7 +43,6 @@ import pyes.exceptions as pyes
 import pytz
 from babel import Locale
 from bleach.callbacks import nofollow
-from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
@@ -57,6 +56,8 @@ from users.models import UserNotification
 from users.utils import UnsubscribeCode
 
 from . import logger_log as log
+
+metlog = settings.METLOG
 
 
 def urlparams(url_, hash=None, **query):
@@ -626,7 +627,7 @@ def cache_ns_key(namespace, increment=False):
             cache.set(ns_key, ns_val, 0)
     else:
         ns_val = cache.get(ns_key)
-        if ns_val == None:
+        if ns_val is None:
             ns_val = epoch(datetime.datetime.now())
             cache.set(ns_key, ns_val, 0)
     return '%s:%s' % (ns_val, ns_key)
@@ -791,7 +792,7 @@ def log_cef(name, severity, env, *args, **kwargs):
         r = env
     else:
         r = {}
-    return _log_cef(name, severity, r, *args, config=c, **kwargs)
+    return metlog.cef(name, severity, r, *args, config=c, **kwargs)
 
 
 @contextlib.contextmanager
