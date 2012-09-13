@@ -185,12 +185,10 @@
             z-index: 3;
             > a {
                 .border-radius(0);
-                .ellipsis;
                 display: block;
                 line-height: 32px;
                 height: 32px;
                 padding: 0 1em;
-                max-width: 150px;
                 &:after {
                     display: inline-block;
                     vertical-align: middle;
@@ -265,6 +263,13 @@
             right: 4px;
             left: auto;
         }
+    }
+}
+
+@media (max-width: @landscape-max) {
+    #aux-nav > ul > li > a {
+        .ellipsis;
+        max-width: 150px;
     }
 }
 
