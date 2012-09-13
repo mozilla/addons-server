@@ -79,8 +79,13 @@ def check_upload(file_obj, upload_type, content_type):
             errors.append(_('Icon could not be opened'))
         else:
             size_x, size_y = im.size
+            # TODO: This should go away when we allow uploads for individual
+            # icon sizes.
             if size_x < 128 or size_y < 128:
                 errors.append(_('Icons must be at least 128px by 128px.'))
+
+            if size_x != size_y:
+                errors.append(_('Icons must be square.'))
 
     return errors, upload_hash
 

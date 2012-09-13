@@ -603,7 +603,7 @@ class TestEditMedia(TestEdit):
             eq_(unicode(getattr(webapp, k)), data[k])
 
     def test_edit_uploadedicon(self):
-        img = get_image_path('mozilla.png')
+        img = get_image_path('mozilla-sq.png')
         src_image = open(img, 'rb')
 
         response = self.client.post(self.icon_upload,
@@ -635,7 +635,7 @@ class TestEditMedia(TestEdit):
 
         eq_(storage.exists(dest), True)
 
-        eq_(Image.open(storage.open(dest)).size, (32, 12))
+        eq_(Image.open(storage.open(dest)).size, (32, 32))
 
     def test_edit_icon_log(self):
         self.test_edit_uploadedicon()
@@ -696,11 +696,15 @@ class TestEditMedia(TestEdit):
 
     def check_image_type(self, url, msg):
         img = '%s/js/zamboni/devhub.js' % settings.MEDIA_ROOT
+        self.check_image_type_path(img, url, msg)
+
+    def check_image_type_path(self, img, url, msg):
         src_image = open(img, 'rb')
 
         res = self.client.post(url, {'upload_image': src_image})
         response_json = json.loads(res.content)
-        assert any(e == msg for e in response_json['errors'])
+        assert any(e == msg for e in response_json['errors']), (
+            response_json['errors'])
 
     # The check_image_type method uploads js, so let's try sending that
     # to ffmpeg to see what it thinks.
@@ -731,6 +735,11 @@ class TestEditMedia(TestEdit):
         open(self.preview.thumbnail_path, 'w')
 
         self.url = self.webapp.get_dev_url('ajax.image.status')
+
+    def test_icon_square(self):
+        img = get_image_path('mozilla.png')
+        self.check_image_type_path(img, self.icon_upload,
+                                   'Icons must be square.')
 
     def test_icon_status_no_choice(self):
         self.webapp.update(icon_type='')
