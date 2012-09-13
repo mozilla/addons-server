@@ -29,5 +29,5 @@ INSERT INTO `waffle_switch_mkt` (name, active, note)
                                  'Developer Hub (and soon in consumer pages).');
 
 INSERT INTO `waffle_switch_mkt` (name, active, note)
-    VALUES ('enabled-bluevia', 1, 'Enable this to enable BlueVia payments in '
+    VALUES ('enabled-bluevia', 0, 'Enable this to enable BlueVia payments in '
                                   'Developer Hub (and soon in consumer pages).');
