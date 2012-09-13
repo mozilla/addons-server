@@ -1,3 +1,5 @@
 Django==1.4.1
+django-statsd-mozilla==0.3.7
 gunicorn==0.14.6
 metlog-py==0.9.7
+statsd==1.0.0
