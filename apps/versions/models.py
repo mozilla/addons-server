@@ -153,6 +153,7 @@ class Version(amo.models.ModelBase):
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
     def delete(self):
+        log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
         super(Version, self).delete()
 

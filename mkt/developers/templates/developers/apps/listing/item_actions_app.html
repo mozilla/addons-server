@@ -36,7 +36,7 @@
   {% endif %}
   {% if waffle.switch('disabled-payments') %}
     <li>
-      <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">{{ _('Manage Status') }}</a>
+      <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">{% if addon.is_packaged %}{{ _('Manage Status &amp; Versions') }}{% else %}{{ _('Manage Status') }}{% endif %}</a>
     </li>
   {% endif %}
   {% if request.can_view_consumer %}
@@ -54,7 +54,7 @@
       <a href="#" class="more-actions">{{ _('More') }}</a>
       <div class="more-actions-popup popup hidden">
         {% set manage_urls = [
-          (addon.get_dev_url('versions'), _('Manage Status')),
+          (addon.get_dev_url('versions'), _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status')),
         ] %}
         {% if waffle.switch('allow-refund') and addon.needs_paypal() and
               check_addon_ownership(request, addon, support=True) %}

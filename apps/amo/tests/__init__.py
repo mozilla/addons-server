@@ -282,7 +282,7 @@ class TestCase(RedisTest, test_utils.TestCase):
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
         # is good, but bad for assertRedirects which will fail.
-        self.assertRedirects(response,
+        self.assert3xx(response,
             '%s?to=%s' % (reverse('users.login'), to), status_code)
 
     def assert3xx(self, response, expected_url, status_code=302,

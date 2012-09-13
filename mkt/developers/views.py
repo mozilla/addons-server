@@ -216,6 +216,13 @@ def status(request, addon_id, addon, webapp=False):
     ctx = {'addon': addon, 'webapp': webapp, 'form': form,
            'upload_form': upload_form}
 
+    # Used in the delete version modal.
+    if addon.is_packaged:
+        versions = addon.versions.values('id', 'version')
+        version_strings = dict((v['id'], v) for v in versions)
+        version_strings['num'] = len(versions)
+        ctx['version_strings'] = json.dumps(version_strings)
+
     if addon.status == amo.STATUS_REJECTED:
         try:
             entry = (AppLog.objects
@@ -242,6 +249,18 @@ def version_edit(request, addon_id, addon, version_id):
 
     return jingo.render(request, 'developers/apps/version_edit.html', {
         'addon': addon, 'version': version, 'form': form})
+
+
+@dev_required
+@post_required
+@transaction.commit_on_success
+def version_delete(request, addon_id, addon):
+    version_id = request.POST.get('version_id')
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version.delete()
+    messages.success(request,
+                     _('Version "{0}" deleted.').format(version.version))
+    return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required(owner_for_post=True, webapp=True)

@@ -1,6 +1,10 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Status') %}
+{% if addon.is_packaged %}
+  {% set title = _('Manage Status & Versions') %}
+{% else %}
+  {% set title = _('Manage Status') %}
+{% endif %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
@@ -14,7 +18,7 @@
   </header>
   <section id="edit-addon" class="primary devhub-form manage">
     <h2>{{ _('Current Status') }}</h2>
-    <div class="island" id="version-status">
+    <div class="island" id="version-status" data-status="{{ addon.status }}">
       <p class="status">
         {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
           {{ status(_('You have <b>disabled</b> this app.')|safe) }}
@@ -114,7 +118,7 @@
                 <small>Submitted <span title="{{ version.created|isotime }}">{{ version.created|datetime }}</span></small>
                 <div class="buttons">
                   <a href="{{ version.all_files[0].get_url_path('devhub') }}" class="button download">{{ _('Download') }}</a>
-                  {# TODO: Install and delete buttons #}
+                  <a href="#" class="button delete-button delete-version" data-version="{{ version.id }}">{{ _('Delete') }}</a>
                 </div>
               </li>
             {% endfor %}
@@ -171,9 +175,32 @@
             {{ _('or') }} <a href="#" class="cancel close">{{ _('Cancel') }}</a>
           </p>
         </form>
-        <a href="#" class="close">{{ _('Cancel') }}</a>
       </div>
     {% endif %}
+    {% if addon.is_packaged %}
+      <div id="modal-delete-version" class="modal modal-delete" data-versions="{{ version_strings }}">
+        <form method="post" action="{{ addon.get_dev_url('versions.delete') }}">
+          {{ csrf() }}
+          <h3 data-tmpl="{{ _('Delete Version &quot;{version}&quot;') }}"></h3>
+          <p id="last-version" class="hidden">{{ _('Deleting the only version will result in the following:') }}</p>
+          <p id="not-last-version" class="hidden">{{ _('Deleting this version will result in the following:') }}</p>
+          <ul class="indent">
+            <li>{{ _('all associated user reviews will be deleted') }}</li>
+            <li id="last-version-other" class="hidden">{{ _('the app status will be marked as &quot;incomplete&quot;') }}</li>
+            <li id="last-version-pending" class="hidden">{{ _('the app will be removed from our review queue') }}</li>
+            <li id="last-version-public" class="hidden">{{ _('the app will not be listed in our public pages') }}</li>
+          </ul>
+          <p>{{ _('These changes cannot be undone.') }}</p>
+          <p class="call-to-action">{{ _('Are you sure you wish to delete this version?') }}</label></p>
+          <input type="hidden" name="version_id" class="version-id">
+          <p class="listing-footer">
+            <button type="submit">{{ _('Delete Version') }}</button>
+            {{ _('or') }} <a href="#" class="cancel close">{{ _('Cancel') }}</a>
+          </p>
+        </form>
+      </div>
+    {% endif %}
+
   </div>
   {% include 'developers/includes/addons_edit_nav.html' %}
 {% endblock %}

@@ -46,6 +46,8 @@ app_detail_patterns = patterns('',
     # TODO: '^versions/$'
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='mkt.developers.apps.versions.edit'),
+    url('^versions/delete$', views.version_delete,
+        name='mkt.developers.apps.versions.delete'),
 
     url('^payments$', views.payments, name='mkt.developers.apps.payments'),
     # PayPal-specific stuff.

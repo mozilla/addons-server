@@ -2,7 +2,6 @@
   (addon.get_dev_url(), _('Edit Listing')),
   (addon.get_dev_url('owner'), _('Manage Authors')),
 ] %}
-{# TODO(cvan): Remove this when we fix/remove all the add-ons tests. #}
 {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
   {% do urls.append((addon.get_dev_url('payments'), _('Manage Payments'))) %}
 {% endif %}
@@ -18,7 +17,9 @@
     {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
   {% endif %}
 {% endif %}
-{% if addon.is_webapp() %}
+{% if addon.is_packaged %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Manage Status &amp; Versions'))) %}
+{% else %}
   {% do urls.append((addon.get_dev_url('versions'), _('Manage Status'))) %}
 {% endif %}
 {% if request.can_view_consumer %}

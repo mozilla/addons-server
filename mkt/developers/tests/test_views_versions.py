@@ -4,12 +4,14 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
+from devhub.models import ActivityLog
 from users.models import UserProfile
+from versions.models import Version
 
 from mkt.submit.tests.test_views import BasePackagedAppTest
 
 
-class TestAppStatus(amo.tests.TestCase):
+class TestVersion(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
@@ -32,6 +34,7 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#delete-addon').length, 0)
         eq_(doc('#modal-delete').length, 0)
         eq_(doc('#modal-disable').length, 1)
+        eq_(doc('#modal-delete-version').length, 0)
 
     def test_soft_delete_items(self):
         self.create_switch(name='soft_delete')
@@ -41,6 +44,7 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(doc('#delete-addon').length, 1)
         eq_(doc('#modal-delete').length, 1)
         eq_(doc('#modal-disable').length, 1)
+        eq_(doc('#modal-delete-version').length, 0)
 
     def test_delete_link(self):
         # Hard "Delete App" link should be visible for only incomplete apps.
@@ -93,35 +97,6 @@ class TestAppStatus(amo.tests.TestCase):
         eq_(webapp.versions.latest().all_files[0].status, amo.STATUS_PENDING,
             'Files for reapplied apps should get marked as pending')
         eq_(unicode(webapp.versions.all()[0].approvalnotes), my_reply)
-
-    def test_items_packaged(self):
-        self.webapp.update(is_packaged=True)
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#version-status').length, 1)
-        eq_(doc('#version-list').length, 1)
-        eq_(doc('#delete-addon').length, 0)
-        eq_(doc('#modal-delete').length, 0)
-        eq_(doc('#modal-disable').length, 1)
-
-    def test_version_list_packaged(self):
-        self.webapp.update(is_packaged=True)
-        amo.tests.version_factory(addon=self.webapp, version='2.0',
-                                  file_kw=dict(status=amo.STATUS_PENDING))
-        self.webapp = self.get_webapp()
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('#version-status').length, 1)
-        eq_(doc('#version-list li').length, 2)
-        # 1 pending and 1 public.
-        eq_(doc('#version-list span.status-pending').length, 1)
-        eq_(doc('#version-list span.status-public').length, 1)
-        # Check version strings and order of versions.
-        eq_(map(lambda x: x.text, doc('#version-list h4 a')),
-            ['Version 2.0', 'Version 1.0'])
-        # Check download url.
-        eq_(doc('#version-list a.button.download').eq(0).attr('href'),
-            self.webapp.versions.all()[0].all_files[0].get_url_path('devhub'))
-        eq_(doc('#version-list a.button.download').eq(1).attr('href'),
-            self.webapp.versions.all()[1].all_files[0].get_url_path('devhub'))
 
 
 class TestAddVersion(BasePackagedAppTest):
@@ -177,3 +152,80 @@ class TestEditVersion(amo.tests.TestCase):
         ver = self.app.versions.latest()
         eq_(ver.releasenotes, rn)
         eq_(ver.approvalnotes, an)
+
+
+class TestVersionPackaged(amo.tests.WebappTestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestVersionPackaged, self).setUp()
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+        self.app.update(is_packaged=True)
+        self.app = self.get_app()
+        self.url = self.app.get_dev_url('versions')
+        self.delete_url = self.app.get_dev_url('versions.delete')
+
+    def test_items_packaged(self):
+        self.create_switch(name='soft_delete')
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#version-status').length, 1)
+        eq_(doc('#version-list').length, 1)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#modal-delete').length, 1)
+        eq_(doc('#modal-disable').length, 1)
+        eq_(doc('#modal-delete-version').length, 1)
+
+    def test_version_list_packaged(self):
+        self.app.update(is_packaged=True)
+        amo.tests.version_factory(addon=self.app, version='2.0',
+                                  file_kw=dict(status=amo.STATUS_PENDING))
+        self.app = self.get_app()
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('#version-status').length, 1)
+        eq_(doc('#version-list li').length, 2)
+        # 1 pending and 1 public.
+        eq_(doc('#version-list span.status-pending').length, 1)
+        eq_(doc('#version-list span.status-public').length, 1)
+        # Check version strings and order of versions.
+        eq_(map(lambda x: x.text, doc('#version-list h4 a')),
+            ['Version 2.0', 'Version 1.0'])
+        # There should be 2 delete buttons.
+        eq_(doc('#version-list a.delete-version').length, 2)
+        # Check download url.
+        eq_(doc('#version-list a.button.download').eq(0).attr('href'),
+            self.app.versions.all()[0].all_files[0].get_url_path('devhub'))
+        eq_(doc('#version-list a.button.download').eq(1).attr('href'),
+            self.app.versions.all()[1].all_files[0].get_url_path('devhub'))
+
+    def test_delete_version(self):
+        version = self.app.versions.latest()
+        version.update(version='<script>alert("xss")</script>')
+        res = self.client.get(self.url)
+        assert not '<script>alert(' in res.content
+        assert '&lt;script&gt;alert(' in res.content
+        # Now do the POST to delete.
+        res = self.client.post(self.delete_url, dict(version_id=version.pk),
+                               follow=True)
+        assert not Version.objects.filter(pk=version.pk).exists()
+        eq_(ActivityLog.objects.filter(action=amo.LOG.DELETE_VERSION.id)
+                               .count(), 1)
+        # Since this was the last version, the app status should be incomplete.
+        eq_(self.get_app().status, amo.STATUS_NULL)
+        # Check xss in success flash message.
+        assert not '<script>alert(' in res.content
+        assert '&lt;script&gt;alert(' in res.content
+
+    def test_anonymous_delete_redirects(self):
+        self.client.logout()
+        version = self.app.versions.latest()
+        res = self.client.post(self.delete_url, dict(version_id=version.pk))
+        self.assertLoginRedirects(res, self.delete_url)
+
+    def test_non_dev_no_delete_for_you(self):
+        self.client.logout()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        version = self.app.versions.latest()
+        res = self.client.post(self.delete_url, dict(version_id=version.pk))
+        eq_(res.status_code, 403)

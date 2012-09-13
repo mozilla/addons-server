@@ -808,8 +808,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def update_status(self, using=None):
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
-            or self.is_disabled
-            or self.is_webapp() or self.is_persona()):
+            or self.is_disabled or self.is_persona()):
             return
 
         def logit(reason, old=self.status):

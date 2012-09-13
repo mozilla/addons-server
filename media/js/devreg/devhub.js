@@ -200,10 +200,34 @@ $(document).ready(function() {
     });
     $('#modal-disable').modal('#disable-addon', {
         width: 400,
-        callback: function(d){
+        callback: function(d) {
             $('.version_id', this).val($(d.click_target).attr('data-version'));
             return true;
         }
+    });
+
+    $('#version-list').exists(function() {
+        var status = $('#version-status').data('status');
+        var versions = $('#modal-delete-version').data('versions');
+        $('#modal-delete-version').modal('.delete-version', {
+            width: 400,
+            callback: function(d) {
+                var version = versions[$(d.click_target).data('version')],
+                    $header = $('h3', this);
+                $header.text(format($header.attr('data-tmpl'), version));
+                $('.version-id', this).val(version.id);
+                if (versions.num == 1) {
+                    $('#last-version, #last-version-other').show();
+                    if (status == 2) {  // PENDING
+                        $('#last-version-pending').show();
+                    } else if (status == 4) {  // PUBLIC
+                        $('#last-version-public').show();
+                    }
+                } else {
+                    $('#not-last-version').show();
+                }
+            }
+        });
     });
 
     // In-app payments config.
