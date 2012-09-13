@@ -32,6 +32,8 @@ You can get a development environment with ::
 Using the vendor library
 ------------------------
 
+**Note**: this is deprecated, all packages should be added in requirements.
+
 The other method is to use the /vendor library of all packages and
 repositories.  These are maintained by Hudson in the zamboni-lib repository.
 
@@ -48,6 +50,8 @@ or from ::
 
 Adding new packages
 -------------------
+
+**Note**: this is deprecated, all packages should be added in requirements.
 
 The vendor repo was seeded with ::
 
@@ -78,6 +82,9 @@ hit any snags like that.
 
 Adding submodules
 ~~~~~~~~~~~~~~~~~
+
+**Note**: this is deprecated, all packages should be added in requirements.
+
 ::
 
     for f in src/*

@@ -145,7 +145,7 @@ Finish the install
 
 From inside your activated virtualenv, run::
 
-    pip install -r requirements/compiled.txt
+    pip install -r requirements/dev.txt -r requirements/compiled.txt
 
 pip installs a few packages into our new virtualenv that we can't distribute in
 ``zamboni-lib``.  These require a C compiler.
