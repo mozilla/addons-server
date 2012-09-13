@@ -211,7 +211,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['other_regions'], True)
 
     def test_initial_excluded_in_regions_and_future_regions(self):
-        for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.FUTURE]:
+        for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.WORLDWIDE]:
             AddonExcludedRegion.objects.create(addon=self.app,
                                                region=region.id)
 
@@ -227,6 +227,13 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
     def test_worldwide_only(self):
         form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)
-        assert form.is_valid()
+        eq_(form.is_valid(), True)
         form.save()
         eq_(self.app.get_region_ids(True), [mkt.regions.WORLDWIDE.id])
+
+    def test_no_regions(self):
+        form = forms.RegionForm(data={}, **self.kwargs)
+        eq_(form.is_valid(), False)
+        eq_(form.errors,
+            {'__all__': ['You must select at least one region or '
+                         '"Other and new regions."']})

@@ -505,9 +505,6 @@ class Webapp(Addon):
     @classmethod
     def get_excluded_in(cls, region):
         """Return IDs of Webapp objects excluded from a particular region."""
-        # Worldwide is a subset of Future regions.
-        if region == mkt.regions.WORLDWIDE:
-            region = mkt.regions.FUTURE
         return list(AddonExcludedRegion.objects.filter(region=region.id)
                     .values_list('addon', flat=True))
 

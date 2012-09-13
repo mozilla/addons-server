@@ -1175,7 +1175,7 @@ class TestEditDetails(TestEdit):
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
-        eq_(self.get_excluded_ids(), [mkt.regions.FUTURE.id])
+        eq_(self.get_excluded_ids(), [mkt.regions.WORLDWIDE.id])
 
     def test_include_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
@@ -1190,7 +1190,7 @@ class TestEditDetails(TestEdit):
 
     def test_include_future_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        AER.objects.create(addon=self.webapp, region=mkt.regions.FUTURE.id)
+        AER.objects.create(addon=self.webapp, region=mkt.regions.WORLDWIDE.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
                              other_regions=True)
@@ -1201,7 +1201,7 @@ class TestEditDetails(TestEdit):
 
     def test_include_all_and_future_regions(self):
         self.skip_if_disabled(settings.REGION_STORES)
-        AER.objects.create(addon=self.webapp, region=mkt.regions.FUTURE.id)
+        AER.objects.create(addon=self.webapp, region=mkt.regions.WORLDWIDE.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
                              other_regions=True)

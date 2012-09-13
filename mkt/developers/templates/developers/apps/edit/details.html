@@ -63,6 +63,7 @@
           </th>
           <td id="regions">
             {% if editable %}
+              {{ region_form.non_field_errors() }}
               {{ region_form.regions.label }}
               <p class="toggles">
                 <a href="#" class="all">{{ _('Select All') }}</a> &middot;

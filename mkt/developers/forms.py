@@ -807,8 +807,7 @@ class AppAppealForm(happyforms.Form):
 
 class RegionForm(forms.Form):
     regions = forms.MultipleChoiceField(required=False,
-        label=_lazy(u'Choose at least one region your app will '
-                     'be listed in:'),
+        label=_lazy(u'Choose the regions your app will be listed in:'),
         choices=mkt.regions.REGIONS_CHOICES_NAME[1:],
         widget=forms.CheckboxSelectMultiple,
         error_messages={'required':
@@ -826,7 +825,7 @@ class RegionForm(forms.Form):
 
         # If we have future excluded regions, uncheck box.
         self.future_exclusions = self.product.addonexcludedregion.filter(
-            region=mkt.regions.FUTURE.id)
+            region=mkt.regions.WORLDWIDE.id)
 
         self.initial = {
             'regions': self.regions_before,
@@ -839,6 +838,14 @@ class RegionForm(forms.Form):
         if (games and self.product.categories.filter(id=games.id).exists()
             and not self.product.content_ratings_in(mkt.regions.BR)):
             self.disabled_regions.append(mkt.regions.BR.id)
+
+    def clean(self):
+        data = self.cleaned_data
+        if not data.get('regions') and not data.get('other_regions'):
+            raise forms.ValidationError(
+                _('You must select at least one region or '
+                  '"Other and new regions."'))
+        return data
 
     def save(self):
         before = set(self.regions_before)
@@ -870,7 +877,7 @@ class RegionForm(forms.Form):
             # Developer does not want future regions, then
             # exclude all future apps.
             g, c = AddonExcludedRegion.objects.get_or_create(
-                addon=self.product, region=mkt.regions.FUTURE.id)
+                addon=self.product, region=mkt.regions.WORLDWIDE.id)
             if c:
                 log.info(u'[Webapp:%s] Excluded from future regions.'
                          % self.product)

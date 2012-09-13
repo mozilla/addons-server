@@ -19,7 +19,7 @@ def send_new_region_emails(regions):
     """Email app developers notifying them of new regions added."""
     excluded = (AddonExcludedRegion.objects
                 .filter(region__in=[r.id for r in regions] +
-                                   [mkt.regions.FUTURE.id])
+                                   [mkt.regions.WORLDWIDE.id])
                 .values_list('addon', flat=True))
     ids = Webapp.objects.exclude(id__in=excluded).values_list('id', flat=True)
     _region_email(ids, regions)
@@ -38,5 +38,5 @@ def exclude_new_region(regions):
     automatically added to new regions.
     """
     ids = (AddonExcludedRegion.objects.values_list('addon', flat=True)
-           .filter(region=mkt.regions.FUTURE.id))
+           .filter(region=mkt.regions.WORLDWIDE.id))
     _region_exclude(ids, regions)

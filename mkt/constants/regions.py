@@ -43,15 +43,6 @@ class REGION(object):
     ratingsbodies = ()
 
 
-class FUTURE(REGION):
-    """
-    This is for when developers select "Other and new regions" from
-    the devhub. This lets us exclude them from new regions in the future.
-    """
-    id = 999
-    weight = -1
-
-
 class WORLDWIDE(REGION):
     id = 1
     name = _lazy(u'Worldwide')

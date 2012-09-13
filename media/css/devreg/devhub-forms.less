@@ -598,15 +598,17 @@ input ~ label {
     cursor: pointer;
 }
 
+td > .errorlist:first-child {
+    margin-bottom: 15px;
+}
+
 p.toggles {
     color: @note-gray;
     font-size: 11px;
+    margin: 0 0 10px;
     padding-top: 5px;
     a {
         text-transform: lowercase;
-    }
-    + .errorlist {
-        margin-bottom: 10px;
     }
 }
 
