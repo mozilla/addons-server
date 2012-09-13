@@ -24,7 +24,7 @@ while True:
     r = requests.get(DEV_URL)
     dev_sha = r.content.strip()
 
-    if git_sha != dev_sha:
+    if git_sha == dev_sha:
         msg = '-dev is up to date\n%s - %s' % (obj['commit']['author']['name'],
                                                obj['commit']['message'])
         alert(msg)
