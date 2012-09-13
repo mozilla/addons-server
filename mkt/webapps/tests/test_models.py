@@ -309,9 +309,7 @@ class TestWebappManager(TestCase):
 
     def test_listed(self):
         # Public status, non-null current version, non-user-disabled.
-        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
-        w._current_version = Version.objects.create(addon=w)
-        w.save()
+        w = app_factory(status=amo.STATUS_PUBLIC)
         self.listed_eq([w])
 
     def test_unlisted(self):
