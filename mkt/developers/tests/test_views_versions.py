@@ -1,3 +1,4 @@
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -222,10 +223,32 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         res = self.client.post(self.delete_url, dict(version_id=version.pk))
         self.assertLoginRedirects(res, self.delete_url)
 
-    def test_non_dev_no_delete_for_you(self):
+    def test_non_author_no_delete_for_you(self):
         self.client.logout()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         version = self.app.versions.latest()
         res = self.client.post(self.delete_url, dict(version_id=version.pk))
         eq_(res.status_code, 403)
+
+    @mock.patch.object(Version, 'delete')
+    def test_roles_and_delete(self, mock_version):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon_user = AddonUser.objects.create(user=user, addon=self.app)
+        allowed = [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV]
+        for role in [r[0] for r in amo.AUTHOR_CHOICES]:
+            self.client.logout()
+            addon_user.role = role
+            addon_user.save()
+            assert self.client.login(username='regular@mozilla.com',
+                                     password='password')
+            version = self.app.versions.latest()
+            res = self.client.post(self.delete_url,
+                                   dict(version_id=version.pk))
+            if role in allowed:
+                self.assert3xx(res, self.url)
+                assert mock_version.called, ('Unexpected: `Version.delete` '
+                                             'should have been called.')
+                mock_version.reset_mock()
+            else:
+                eq_(res.status_code, 403)
