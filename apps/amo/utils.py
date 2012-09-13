@@ -889,7 +889,7 @@ def smart_decode(s):
     enc_guess = chardet.detect(s)
     try:
         return s.decode(enc_guess['encoding'])
-    except UnicodeDecodeError, exc:
+    except (UnicodeDecodeError, TypeError), exc:
         msg = 'Error decoding string (encoding: %r %.2f%% sure): %s: %s'
         log.error(msg % (enc_guess['encoding'],
                          enc_guess['confidence'] * 100.0,
