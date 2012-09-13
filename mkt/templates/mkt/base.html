@@ -68,7 +68,7 @@
     </div>
 
     {% block sitefooter %}
-      <footer id="site-footer" class="c">
+      <footer id="site-footer" class="c{{ ' reviewer' if is_reviewer }}">
         <div class="account {{ 'authenticated' if logged else 'anonymous' }}">
           {% if logged %}
             {% trans user=request.amo_user.email %}

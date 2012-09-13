@@ -84,7 +84,7 @@
                 border-color: transparent;
                 border-width: 1px 1px 0;
             }
-            &:hover, &.open {
+            &:not(.open):hover, &.open {
                 > ul {
                     display: block;
                 }
@@ -107,7 +107,7 @@
                     padding: 6px 8px;
                     word-wrap: break-word;
                     &:hover {
-                        background: darken(@faded-taupe, 15%);
+                        background: lighten(@border-blue, 10%);
                     }
                 }
                 &.two-col {
@@ -184,11 +184,13 @@
             margin-left: 1px;
             z-index: 3;
             > a {
+                .border-radius(0);
+                .ellipsis;
                 display: block;
                 line-height: 32px;
                 height: 32px;
                 padding: 0 1em;
-                .border-radius(0);
+                max-width: 150px;
                 &:after {
                     display: inline-block;
                     vertical-align: middle;

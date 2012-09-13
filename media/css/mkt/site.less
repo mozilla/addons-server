@@ -196,10 +196,6 @@ body .loading-fragment {
     }
 }
 
-#site-footer {
-    display: none;
-}
-
 // Controlling styles this way causes style repaints when JS applies the type.
 // 'Notice' pages have a padded body and a home icon in the header.
 // 'Alpha' pages have a padded body and a back icon.
@@ -214,22 +210,30 @@ body[data-page-type=notice], body[data-page-type=alpha] {
     }
 }
 
+#site-footer {
+    border-top: 1px solid rgba(0,0,0,.3);
+    display: none;
+    padding: 15px 0 30px;
+    .account {
+        color: @dark-gray;
+        font-weight: 400;
+        margin-bottom: 5px;
+        a {
+            font-weight: 600;
+        }
+        .logout {
+            font-weight: 200;
+        }
+    }
+    // Reviewers should always see a footer.
+    &.reviewer {
+        display: block;
+    }
+}
+
 @media (min-width: @7col) {
     #site-footer {
-        border-top: 1px solid rgba(0,0,0,.3);
         display: block;
-        padding: 15px 0 30px;
-        .account {
-            color: @dark-gray;
-            font-weight: 400;
-            margin-bottom: 5px;
-            a {
-                font-weight: 600;
-            }
-            .logout {
-                font-weight: 200;
-            }
-        }
     }
     body:not(.force-mobile) {
         .account.anonymous,
@@ -257,26 +261,27 @@ body[data-page-type=notice], body[data-page-type=alpha] {
             }
         }
     }
-    .force-mobile {
-        .account, .footer-links a {
-            padding: 4px;
+}
+
+.force-mobile {
+    .account, .footer-links a {
+        padding: 4px;
+    }
+    .footer-links {
+        p {
+            margin: 0;
         }
-        .footer-links {
-            p {
-                margin: 0;
+        a {
+            display: block;
+            &:hover {
+                background-color: rgba(255,255,255,.35);
+                color: @link-dark;
+                text-decoration: underline;
             }
-            a {
-                display: block;
-                &:hover {
-                    background-color: rgba(255,255,255,.35);
-                    color: @link-dark;
-                    text-decoration: underline;
-                }
-            }
-            p + p,
-            a + a {
-                border-top: 1px solid @light-gray;
-            }
+        }
+        p + p,
+        a + a {
+            border-top: 1px solid @light-gray;
         }
     }
 }

@@ -35,7 +35,7 @@ $(function() {
         initPerformanceStats();
     }
 
-    if($('#scroll_sidebar').exists()) {
+    if($('#scroll_sidebar').exists() && !$('body.mobile, body.tablet').length) {
         initScrollingSidebar();
     }
 
