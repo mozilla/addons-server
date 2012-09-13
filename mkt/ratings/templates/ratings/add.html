@@ -9,9 +9,9 @@
 {% extends 'mkt/base.html' %}
 
 {% if not has_review %}
-  {% set title = _('Add a review') %}
+  {% set title = _('Write a review') %}
 {% else %}
-  {% set title = _('Edit review') %}
+  {% set title = _('Edit your review') %}
 {% endif %}
 
 {% block bodyclass %}review-add{% endblock %}
