@@ -16,48 +16,47 @@ django-statsd-mozilla==0.3.7
 django-tastypie==0.9.11
 easy-thumbnails==1.1
 gunicorn==0.14.6
-jingo==0.4
-jstestnetlib==0.2
+jstestnetlib==0.3
 metlog-py==0.9.7
 moz_inapp_pay==1.0.2
 oauth2==1.5.211
-PyBrowserID==0.8.0
+PyBrowserID==0.6
 PyMySQL==0.5
 receipts==0.2.3
 requests==0.14.0
 statsd==1.0.0
 
 
-# Commenting out -e reqs until we figure out a better way to install them.
 ## Not on pypi.
-#-e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
-#-e git://github.com/mozilla/amo-validator.git@b3ef9d1a2c6b2309bcea2c16b3d8d0dbd56a9ea4#egg=amo-validator
-#-e git://github.com/mozilla/app-validator.git@ecae218dfda8cb5a6f31f1011bdf796e6b1013fc#egg=app-validator
-#-e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
-#-e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
-#-e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
-#-e git://github.com/andymckay/django-radagast@4ea83aa714787a0cc352d39aaed27473139fc9db#egg=django-radagast
-#-e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
-#-e git://github.com/mattbasta/fastchardet.git@ec642492f47b5121c71f0cea5fa6b6b543092d4c#egg=fastchardet
-#-e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
-#-e git://github.com/clouserw/hera.git@a8011947b5bfb8da229b11a4e11f47421873cb99#egg=hera
-#-e git://github.com/jsocol/jingo-minify.git@fe483ffb0c7d3419dd5bfdaee4a5cbb70fae84ec#egg=jingo-minify
-#-e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
-#-e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
-#-e git://github.com/jbalogh/schematic.git@f996182b857769541cfa7659d4f9e864360cddf4#egg=schematic
-#-e git://github.com/jbalogh/test-utils.git@3c2214d193d1b0c0d74c77b3731c8afb0173e669#egg=test-utils
+-e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
+-e git://github.com/mozilla/amo-validator.git@b3ef9d1a2c6b2309bcea2c16b3d8d0dbd56a9ea4#egg=amo-validator
+-e git://github.com/mozilla/app-validator.git@ecae218dfda8cb5a6f31f1011bdf796e6b1013fc#egg=app-validator
+-e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
+-e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
+-e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
+-e git://github.com/andymckay/django-radagast@4ea83aa714787a0cc352d39aaed27473139fc9db#egg=django-radagast
+-e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
+-e git://github.com/mattbasta/fastchardet.git@ec642492f47b5121c71f0cea5fa6b6b543092d4c#egg=fastchardet
+-e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
+-e git://github.com/clouserw/hera.git@a8011947b5bfb8da229b11a4e11f47421873cb99#egg=hera
+-e git://github.com/jsocol/jingo-minify.git@d1b668ad7c0423fe8cc639df36d433da5c168cac#egg=jingo-minify
+-e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
+-e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
+-e git://github.com/jbalogh/schematic.git@f996182b857769541cfa7659d4f9e864360cddf4#egg=schematic
+-e git://github.com/jbalogh/test-utils.git@3c2214d193d1b0c0d74c77b3731c8afb0173e669#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
-#
+
 ## Forked.
-#-e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
-#-e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
-#-e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
-#-e git://github.com/washort/django-waffle.git@acc8e4adb41e7713be9778460fc3e99e034b7511#egg=django-waffle
-#
+-e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
+-e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
+-e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
+-e git://github.com/washort/django-waffle.git@5986e8b466871f0847bbeafcfce59b8709680c3f#egg=django-waffle
+
 ## Out of date or not sure on pypi.
-#-e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
-#-e git://github.com/jbalogh/django-pylibmc.git@e3343cefd95162f0237b2839069fb2495753d9df#egg=django-pylibmc
-#-e git://github.com/jsocol/django-ratelimit@a148254a1fb4248a34cf753d594af1e73bec455c#egg=django-ratelimit
-#-e git://github.com/mozilla/elasticutils.git@98f210e2b3fe2451b63ad6abbf50e8ab690ef5a3#egg=elasticutils
-#-e git://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
-#-e git://github.com/clouserw/tower.git@1dfa7345019e79eb7dfce6315c0493e68e6b134a#egg=tower
+-e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
+-e git://github.com/jbalogh/django-pylibmc.git@e3343cefd95162f0237b2839069fb2495753d9df#egg=django-pylibmc
+-e git://github.com/jbalogh/jingo.git@b4ecca1066bcd1eac87358b4c82902442d4eedc4#egg=jingo
+-e git://github.com/jsocol/django-ratelimit@a148254a1fb4248a34cf753d594af1e73bec455c#egg=django-ratelimit
+-e git://github.com/mozilla/elasticutils.git@98f210e2b3fe2451b63ad6abbf50e8ab690ef5a3#egg=elasticutils
+-e git://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
+-e git://github.com/clouserw/tower.git@1dfa7345019e79eb7dfce6315c0493e68e6b134a#egg=tower
