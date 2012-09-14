@@ -19,14 +19,42 @@ Currently only two legged OAuth authentication is supported. This is focused on
 clients who would like to create multiple apps on the app store from an end
 point.
 
-To get started you will need to get an OAuth token created in the site for you.
-For more information on creating an OAuth token, contact the `marketplace
-team`_, letting them know which Marketplace user account you would like to use
-for authentication. Changing this later will give problems accessing old data.
+When you are first developing your API to communicate with the Marketplace, you
+should use the staging server to test your API. When it's complete, you can
+request a production token.
 
-The user account that is used **must** accept the Terms of Service for the
-marketplace by logging into the Marketplace, viewing the `terms`_ and accepting
-them.
+Staging server
+++++++++++++++
+
+The staging server is at https://marketplace.allizom.org.
+
+We make no guarantees on the uptime of the staging server. Also data may be
+occasionally purged, causing the deletion of apps and tokens.
+
+1. Login to the staging server using Persona:
+   https://marketplace.allizom.org/login
+
+2. Once logged in, read and accept the terms of service for the Marketplace
+   at: https://marketplace.allizom.org/developers/terms
+
+3. Generate a new key at: https://marketplace.allizom.org/developers/api
+
+Production server
++++++++++++++++++
+
+The production server is at https://marketplace.mozilla.org.
+
+1. Login to the production server using Persona:
+   https://marketplace.mozilla.org
+
+2. Once logged in, read and accept the terms of service for the Marketplace
+   at: https://marketplace.mozilla.org/developers/terms
+
+3. You cannot generate your own tokens. Please contact a `Marketplace
+   representative`_.
+
+Using OAuth Tokens
+^^^^^^^^^^^^^^^^^^
 
 Once you've got your token, you will need to ensure that the OAuth token is
 sent correctly in each request.
@@ -391,8 +419,7 @@ Example, to specify a category sorted by rating::
         GET /en-US/api/apps/search/?cat=1&sort=rating
 
 .. _`MDN`: https://developer.mozilla.org
-.. _`marketplace team`: marketplace-team@mozilla.org
+.. _`Marketplace representative`: marketplace-team@mozilla.org
 .. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
 .. _`APIs for Add-ons`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
 .. _`example marketplace client`: https://github.com/mozilla/MarketplaceClientExample
-.. _`terms`: https://marketplace.mozilla.org/developers/terms
