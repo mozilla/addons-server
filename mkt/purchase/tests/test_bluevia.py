@@ -219,21 +219,25 @@ class TestPostback(PurchaseTest):
                     'transactionID': '<BlueVia-trans-id>'
                 }}
 
-    def jwt(self, **kw):
-        return jwt.encode(self.jwt_dict(**kw), self.bluevia_dev_secret)
+    def jwt(self, req=None, **kw):
+        if not req:
+            req = self.jwt_dict(**kw)
+        return jwt.encode(req, self.bluevia_dev_secret)
 
     @fudge.patch('lib.crypto.bluevia.jwt.decode')
     def test_valid(self, tasks, decode):
         jwt_dict = self.jwt_dict()
+        jwt_encoded = self.jwt(req=jwt_dict)
         decode.expects_call().returns(jwt_dict)
-        self.post()
-        resp = self.post()
+        resp = self.post(req=jwt_encoded)
         eq_(resp.status_code, 200)
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
         eq_(cn.bluevia_transaction_id, '<BlueVia-trans-id>')
-        tasks.purchase_notify.delay.assert_called()
+        # This verifies that we notify the downstream app
+        # using the same exact JWT.
+        tasks.purchase_notify.delay.assert_called_with(jwt_encoded, cn.pk)
 
     def test_invalid(self, tasks):
         resp = self.post()
