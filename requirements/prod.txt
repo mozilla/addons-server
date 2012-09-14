@@ -1,6 +1,7 @@
 bleach==1.1.5
 celery-tasktree==0.3.2
 Django==1.4.1
+django_appcache==1.0
 django-browserid==0.6
 django-cache-machine==0.6
 django-cronjobs==0.2.3
@@ -16,7 +17,9 @@ django-tastypie==0.9.11
 easy-thumbnails==1.1
 gunicorn==0.14.6
 jingo==0.4
+jstestnetlib==0.2
 metlog-py==0.9.7
+moz_inapp_pay==1.0.2
 oauth2==1.5.211
 PyBrowserID==0.8.0
 PyMySQL==0.5
@@ -35,13 +38,10 @@ statsd==1.0.0
 #-e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 #-e git://github.com/andymckay/django-radagast@4ea83aa714787a0cc352d39aaed27473139fc9db#egg=django-radagast
 #-e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
-#-e git://github.com/kumar303/django_appcache.git@ce7e002a64d3dc33b06294f7b252655478717e8b#egg=django_appcache
 #-e git://github.com/mattbasta/fastchardet.git@ec642492f47b5121c71f0cea5fa6b6b543092d4c#egg=fastchardet
 #-e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 #-e git://github.com/clouserw/hera.git@a8011947b5bfb8da229b11a4e11f47421873cb99#egg=hera
 #-e git://github.com/jsocol/jingo-minify.git@fe483ffb0c7d3419dd5bfdaee4a5cbb70fae84ec#egg=jingo-minify
-#-e git://github.com/kumar303/jstestnetlib.git@c815ca3ee0395fd6d95fafe3c17c9f5ff87c7652#egg=jstestnetlib
-#-e git://github.com/kumar303/moz_inapp_pay.git@16d0c19314aad944762dc050cd9a843c22f30a99#egg=moz_inapp_pay
 #-e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 #-e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
 #-e git://github.com/jbalogh/schematic.git@f996182b857769541cfa7659d4f9e864360cddf4#egg=schematic
