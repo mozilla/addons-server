@@ -9,6 +9,7 @@ from translations.query import order_by_translation
 
 @register.function
 def category_slider(rand=False, limit=None):
+    # TODO: Remove this eventually.
     return _categories(rand, limit)
     return caching.cached(lambda: _categories(rand),
                           'category-slider-apps-%s-%s' % (rand, limit))
@@ -20,10 +21,10 @@ def _categories(rand=False, limit=None):
                    .values_list('category', flat=True).distinct())
     categories = (Category.objects
                   .filter(type=amo.ADDON_WEBAPP, weight__gte=0,
-                          id__in=public_cats))
+                          id__in=public_cats).order_by('-weight'))
 
     if rand:
-        categories = categories.order_by('?')
+        categories = categories.order_by('-weight', '?')
 
     categories = order_by_translation(categories, 'name')
 
@@ -63,8 +64,10 @@ def _categories_themes():
                    .filter(addon__status=amo.STATUS_PUBLIC,
                            category__type=amo.ADDON_PERSONA)
                    .values_list('category', flat=True).distinct())
-    categories = Category.objects.filter(type=amo.ADDON_PERSONA, weight__gte=0,
-                                         id__in=public_cats)
+    categories = (Category.objects
+                  .filter(type=amo.ADDON_PERSONA, weight__gte=0,
+                          id__in=public_cats)
+                  .order_by('-weight'))
     categories = order_by_translation(categories, 'name')
 
     t = env.get_template('browse/helpers/category_slider.html')
