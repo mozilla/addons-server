@@ -1,1 +1,6 @@
 -r prod.txt
+
+django-debug-toolbar==0.9.4
+django-fixture-magic==0.0.3
+
+-e git://github.com/jbalogh/check.git@18dc8f0d249fb7b781ad91c7cc5cf9e8f32804ce#egg=check
