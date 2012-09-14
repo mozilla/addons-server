@@ -46,9 +46,9 @@ statsd==1.0.0
 #-e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
 #-e git://github.com/jbalogh/schematic.git@f996182b857769541cfa7659d4f9e864360cddf4#egg=schematic
 #-e git://github.com/jbalogh/test-utils.git@3c2214d193d1b0c0d74c77b3731c8afb0173e669#egg=test-utils
+-e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
 #
 ## Forked.
-#-e git://github.com/andymckay/django-mozilla-product-details.git@950020bd2e9f671f6420f2831d89afa5a2b3ccc3#egg=django-mozilla-product-details
 #-e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
 #-e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 #-e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
