@@ -37,6 +37,8 @@ def update_last_updated(addon_id):
     addon = Addon.objects.get(pk=addon_id)
     if addon.is_persona():
         q = 'personas'
+    elif addon.is_webapp():
+        q = 'webapps'
     elif addon.status == amo.STATUS_PUBLIC:
         q = 'public'
     elif addon.status == amo.STATUS_LISTED:

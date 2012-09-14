@@ -1,3 +1,5 @@
+import json
+
 from django import http
 from django.shortcuts import redirect
 
@@ -39,6 +41,29 @@ def detail(request, addon):
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)
     return jingo.render(request, 'detail/app.html', ctx)
+
+
+@addon_all_view
+def manifest(request, addon):
+    """
+    Returns the "mini" manifest for packaged apps.
+
+    If not a packaged app, returns an empty JSON doc.
+
+    """
+    is_reviewer = acl.check_reviewer(request)
+    is_dev = addon.has_author(request.amo_user)
+    is_public = addon.status == amo.STATUS_PUBLIC
+
+    if (not addon.is_packaged or addon.disabled_by_user or (
+            not is_public and not (is_reviewer or is_dev))):
+        return http.HttpResponse(
+            json.dumps({}), content_type='application/x-web-app-manifest+json')
+
+    # TODO: Caching headers, bug 791843.
+    return http.HttpResponse(
+        addon.get_cached_manifest(),
+        content_type='application/x-web-app-manifest+json')
 
 
 @addon_all_view

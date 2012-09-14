@@ -165,6 +165,8 @@ class ReviewApp(ReviewBase):
         if self.addon.status != amo.STATUS_PUBLIC:
             self.set_addon(status=amo.STATUS_PUBLIC,
                            highest_status=amo.STATUS_PUBLIC)
+        # Call update_version, so various other bits of data update.
+        self.addon.update_version()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')

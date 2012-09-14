@@ -8,6 +8,7 @@ import uuid
 import zipfile
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
@@ -15,26 +16,28 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
+import waffle
 from elasticutils.contrib.django import F, S
 from tower import ugettext as _
-import waffle
 
-from access.acl import action_allowed, check_reviewer
 import amo
 import amo.models
+from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, Category,
                            update_name_table, update_search_index)
+from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import smart_path
+from amo.utils import JSONEncoder, smart_path
 from constants.applications import DEVICE_TYPES
 from files.models import nfd_str
 from files.utils import parse_addon
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES
+
 
 log = commonware.log.getLogger('z.addons')
 
@@ -549,6 +552,52 @@ class Webapp(Addon):
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()
 
+    def get_cached_manifest(self, force=False):
+        """
+        Creates the "mini" manifest for packaged apps and caches it.
+
+        Call this with `force=True` whenever we need to update the cached
+        version of this manifest, e.g., when a new version of the packaged app
+        is approved.
+
+        If the addon is not a packaged app, this will not cache anything.
+
+        """
+        if not self.is_packaged:
+            return
+
+        key = 'webapp:{0}:manifest'.format(self.pk)
+
+        if not force:
+            data = cache.get(key)
+            if data:
+                return data
+
+        version = self.current_version
+        if not version:
+            data = {}
+        else:
+            file = version.all_files[0]
+            manifest = self.get_manifest_json()
+
+            data = {
+                'name': self.name,
+                'version': version.version,
+                'size': file.size * 1024,  # TODO: Bug 791363.
+                'release_notes': version.releasenotes,
+                'package_path': file.get_url_path('manifest'),
+            }
+            if 'icons' in manifest:
+                data['icons'] = manifest['icons']
+            if 'locales' in manifest:
+                data['locales'] = manifest['locales']
+
+        data = json.dumps(data, cls=JSONEncoder)
+
+        cache.set(key, data, 0)
+
+        return data
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields
@@ -558,6 +607,13 @@ models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='mkt.webapps.index')
 models.signals.post_save.connect(update_name_table, sender=Webapp,
                                  dispatch_uid='mkt.webapps.update.name.table')
+
+
+@receiver(version_changed, dispatch_uid='update_cached_manifests')
+def update_cached_manifests(sender, **kw):
+    if not kw.get('raw'):
+        from mkt.webapps.tasks import update_cached_manifests
+        update_cached_manifests.delay(sender.id)
 
 
 class ImageAsset(amo.models.ModelBase):

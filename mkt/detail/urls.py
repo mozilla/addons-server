@@ -8,6 +8,7 @@ from . import views
 
 urlpatterns = patterns('',
     url('^$', views.detail, name='detail'),
+    url('^manifest.webapp$', views.manifest, name='detail.manifest'),
     url('^abuse$', views.abuse, name='detail.abuse'),
     url('^abuse/recaptcha$', views.abuse_recaptcha,
         name='detail.abuse.recaptcha'),
