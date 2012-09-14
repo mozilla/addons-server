@@ -225,7 +225,6 @@ class TestPostback(PurchaseTest):
     @fudge.patch('lib.crypto.bluevia.jwt.decode')
     def test_valid(self, tasks, decode):
         jwt_dict = self.jwt_dict()
-        jwt_encoded = jwt.encode(jwt_dict, self.bluevia_dev_secret)
         decode.expects_call().returns(jwt_dict)
         self.post()
         resp = self.post()
@@ -234,7 +233,7 @@ class TestPostback(PurchaseTest):
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
         eq_(cn.bluevia_transaction_id, '<BlueVia-trans-id>')
-        tasks.purchase_notify.delay.assert_called_with(jwt_encoded, cn.pk)
+        tasks.purchase_notify.delay.assert_called()
 
     def test_invalid(self, tasks):
         resp = self.post()
