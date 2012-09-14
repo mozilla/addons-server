@@ -126,12 +126,12 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
     ctx.local('date')
     disable_cron()
     update_code(ref)
-    create_virtualenv()
     update_info(ref)
 
 
 @task
 def update(ctx):
+    create_virtualenv()
     update_locales()
     update_products()
     compress_assets()
