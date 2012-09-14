@@ -130,7 +130,7 @@ class TestRefundsEscalationTask(amo.tests.TestCase):
             # Needed because these tests can run in the same second and the
             # refund detection task depends on timestamp logic for when to
             # escalate.
-            applog = AppLog.objects.all().order_by('-created')[0]
+            applog = AppLog.objects.all().order_by('-created', '-id')[0]
             applog.update(created=created)
 
     def test_multiple_refunds_same_user(self):

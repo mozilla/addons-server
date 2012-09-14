@@ -188,7 +188,7 @@ def find_refund_escalations(addon_id, **kw):
         # it has been detected and dealt with already.
         logs = (AppLog.objects.filter(
             activity_log__action=amo.LOG.ESCALATED_HIGH_REFUNDS.id,
-            addon=addon).order_by('-created'))
+            addon=addon).order_by('-created', '-id'))
         if logs:
             since_ratio = Refund.recent_refund_ratio(addon.id, logs[0].created)
             # If not high enough ratio since the last logged, do not add to
