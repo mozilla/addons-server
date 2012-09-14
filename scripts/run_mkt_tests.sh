@@ -34,7 +34,7 @@ fi
 
 source $VENV/bin/activate
 
-pip install -q -r requirements/compiled.txt
+pip install -q -r requirements/compiled.txt -r requirements/prod.txt
 
 # Create paths we want for addons
 if [ ! -d "/tmp/warez" ]; then
