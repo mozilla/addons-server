@@ -36,7 +36,8 @@ statsd==1.0.0
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git://github.com/mattbasta/fastchardet.git@ec642492f47b5121c71f0cea5fa6b6b543092d4c#egg=fastchardet
 -e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
--e git://github.com/clouserw/hera.git@a8011947b5bfb8da229b11a4e11f47421873cb99#egg=hera
+# Temporary fork.
+-e git://github.com/andymckay/hera.git@d72c667ee48717b7a6e7ea33cd42d947c3b8600b#egg=hera
 -e git://github.com/jsocol/jingo-minify.git@d1b668ad7c0423fe8cc639df36d433da5c168cac#egg=jingo-minify
 -e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
