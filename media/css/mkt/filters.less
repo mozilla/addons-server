@@ -27,9 +27,10 @@
             line-height: 50px;
             display: block;
             color: @white;
-            text-align: center;
+            text-align: left;
             position: absolute;
             width: 100%;
+            padding-left: 36px;
         }
     }
 }
@@ -41,7 +42,7 @@
     margin: 0;
     list-style-type: none;
     font-size: 14px;
-    .border-radius(5px);
+    .border-radius(3px);
     li {
         float: left;
         width: 33%;
@@ -53,31 +54,48 @@
             }
         }
         &:first-child, &:first-child a, &:nth-child(3n+1), &:nth-child(3n+1) a {
-            .border-radius(5px 0 0 5px);
+            .border-radius(3px 0 0 3px);
         }
         &:last-child, &:last-child a, &:nth-child(3n), &:nth-child(3n) a {
-            .border-radius(0 5px 5px 0);
+            .border-radius(0 3px 3px 0);
         }
     }
 }
-.toggles li a, .picker {
-    line-height: 33px;
+.toggles.two-col {
+    li {
+        width: 50%;
+    }
+}
+.toggles li a, .picker, .footer-action .apply {
+    line-height: 40px;
     border: 1px solid #cdcbcb;
     display: inline-block;
     width: 100%;
     text-align: center;
     .gradient-two-color(#f7f7f7, @faint-gray);
-    font-weight: 600;
+    font-weight: 500;
     color: @text;
     .ellipsis();
     &.sel, &:active {
-        background: rgba(68,82,91,.08);
-        border-top: 1px solid #a5b0b6;
+        .gradient-two-color(#328ccc, #2475b3);
+        color: @white;
+        border-color: #235f8c;
+        .box-shadow(0 0 3px 1px rgba(0,0,0,0.3) inset);
+        text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
+    }
+}
+.footer-action .apply {
+    font-size: 14px;
+    width: auto;
+    padding: 0 15px;
+    .border-radius(3px);
+    &:hover {
+        text-decoration: none;
     }
 }
 .picker {
     margin: 0;
-    .border-radius(5px);
+    .border-radius(3px);
     cursor: pointer;
     font-size: 14px;
     width: auto;
@@ -91,7 +109,7 @@
         margin: 5px 0 0 5px;
         position: absolute;
         height: 0;
-        top: 10px;
+        top: 13px;
         width: 0;
     }
     &:hover:after {
@@ -113,7 +131,7 @@
     .box-shadow(0 0 5px 2px rgba(0,0,0,0.5));
     li {
         a {
-            .border-radius(5px);
+            .border-radius(3px);
             width: 100%;
             margin-bottom: 6px;
             font-size: 14px;
@@ -148,19 +166,16 @@
     }
 }
 .footer-action {
-    top: auto;
-    bottom: 0;
-    text-align: center;
-    a {
-        padding: 0 30px;
-        &:hover {
-            line-height: 31px;
-        }
-    }
+    text-align: right;
+    margin: 30px 0 10px;
+    padding-top: 20px;
+    border-top: 1px solid #cdcbcb;
 }
 // Ugh!
-.force-mobile .confirm-action {
-    max-width: 320px;
-    left: 50%;
-    margin-left: -160px;
+.force-mobile {
+    .confirm-action {
+        max-width: 320px;
+        left: 50%;
+        margin-left: -160px;
+    }
 }

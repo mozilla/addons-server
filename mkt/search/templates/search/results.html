@@ -67,7 +67,7 @@
 
         {# We're not iterating over all the sort options on purpose. #}
         <h2>{{ _('Sort by') }}</h2>
-        <ul class="toggles c" id="filter-sort">
+        <ul class="toggles two-col c" id="filter-sort">
           {% if active_cat %}
             <li class="popularity">
               <a href="{{ search_url|urlparams(page=None,
@@ -89,7 +89,7 @@
         <input type="hidden" name="sort" value="{{ query['sort'] }}">
 
         <div class="footer-action">
-          <a href="#" class="button apply">{{ _('Apply') }}</a>
+          <a href="#" class="apply">{{ _('Apply') }}</a>
         </div>
       </div>
     </form>
