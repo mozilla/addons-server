@@ -1,9 +1,4 @@
-@import '../devreg/lib';
-@import 'documentation';
-
-.landing #wrap {
-    background: @grain-src @grain;
-}
+@import './documentation';
 
 #landing-page {
     color: @medium-gray;
@@ -16,7 +11,8 @@
 
     h1 {
         color: @dark-gray;
-        font-size: 40px;
+        font-size: 45px;
+        font-weight: 100;
         margin-bottom: 20px;
         text-shadow: #fff 0 1px 1px;
     }
@@ -38,64 +34,34 @@
 }
 
 #landing-page .half {
-    .box-shadow(@dark-gray 0 3px 3px);
+    background-color: #fff;
+    .box-shadow(@light-gray 0 3px 3px);
     float: left;
+    margin: 20px 0;
+    padding: 30px 20px 20px;
     position: relative;
-    width: 100%;
+    width: 900px;
 
-    &.first {
-        background-color: #f1f1f1;
-        .border-radius(5px 5px 0 0);
-        font-size: 13px;
-        padding: 30px 20px 20px;
+    .panel {
+        float: left;
 
-        .panel {
-            float: left;
-
-            &:first-child {
-                border-right: 1px solid @light-gray;
-                text-align: center;
-                width: 50%;
-            }
-
-            &:last-child {
-                border-left: 1px solid #fff;
-                width: 370px;
-                padding: 0 30px;
-            }
-
-            h2 {
-                margin-bottom: 5px;
-            }
-
-            p {
-                margin-top: 0;
-            }
+        &:first-child {
+            border-right: 1px solid @faint-gray;
+            text-align: center;
+            width: 50%;
         }
-    }
 
-    &.sections {
-        background-color: #fff;
-        .border-radius(0 0 5px 5px);
-        margin-bottom: 40px;
-        padding: 20px 20px 0;
-        text-align: center;
+        &:last-child {
+            width: 370px;
+            padding: 0 30px;
+        }
 
-        ul {
-            margin: 0;
-            padding: 0;
+        h2 {
+            margin-bottom: 5px;
+        }
 
-            li {
-                float: left;
-                padding: 10px 20px 20px;
-                width: 280px;
-
-                > a {
-                    display: block;
-                    font-size: 30px;
-                    margin-bottom: 15px;
-                }
-            }
+        p {
+            margin-top: 0;
         }
     }
 }

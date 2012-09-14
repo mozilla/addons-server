@@ -2,14 +2,47 @@
 
 @devhub-box-shadow: #bbb 0 2px 3px;
 
-.doc-wrapper, .upper-header, .site-nav {
+.doc-wrapper, .upper-header, #site-nav .menu-nav {
     margin: 0 auto;
     width: 960px;
 }
 
-#site-nav ul {
-    margin: 0;
-    padding: 0;
+#site-nav.devhub-categories {
+    background: @grain-src @grain;
+    border: 0;
+    ul {
+        margin: 0 auto;
+        padding: 0;
+        width: 800px;
+
+        li {
+            border-left: 0;
+            margin: 0;
+            padding: 0 15px;
+            width: 240px;
+            text-align: center;
+
+            a {
+                display: block;
+                color: @faint-gray;
+                font-size: 25px;
+                font-weight: 400;
+                line-height: 25px;
+                padding: 10px 5px;
+                text-align: center;
+                text-shadow: @dark-gray 1px 1px 2px;
+                text-transform: none;
+                width: 100%;
+
+                &:hover, &.selected {
+                    background: @bg-light-gray @grain-src;
+                    color: @dark-gray;
+                    text-decoration: none;
+                    text-shadow: #fff 0 1px 1px;
+                }
+            }
+        }
+    }
 }
 
 #aux-nav li ul {
@@ -29,15 +62,15 @@
 
         li > h2 {
             color: @dark-gray;
-            font-size: 15px;
-            line-height: 20px;
+            font-size: 18px;
+            line-height: 22px;
             margin: 0;
-            text-transform: uppercase;
+            text-transform: none;
         }
     }
 
     ol {
-        margin-top: 2px;
+        margin-top: 5px;
         padding: 0;
 
         li {

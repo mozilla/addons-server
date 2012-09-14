@@ -1,17 +1,12 @@
-{% extends 'developers/base_impala.html' %}
+{% extends 'ecosystem/base.html' %}
 {% from "ecosystem/macros.html" import navigation with context %}
 
 {% block title %}
   {{ title }}
 {% endblock %}
 
-
 {% block extrahead %}
   {{ css('mkt/ecosystem') }}
-{% endblock %}
-
-{% block site_header_title %}
-  {% include 'ecosystem/nav.html' %}
 {% endblock %}
 
 {% block content %}

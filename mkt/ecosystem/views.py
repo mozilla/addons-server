@@ -18,13 +18,13 @@ def landing(request):
 def partners(request):
     """Landing page for partners."""
     return jingo.render(request, 'ecosystem/partners.html',
-           {'page': 'partners'})
+           {'page': 'partners', 'category': 'publish'})
 
 
 def support(request):
     """Landing page for support."""
     return jingo.render(request, 'ecosystem/support.html',
-           {'page': 'support'})
+           {'page': 'support', 'category': 'build'})
 
 
 def documentation(request, page=None):
@@ -41,10 +41,21 @@ def documentation(request, page=None):
 
     data = get_object_or_404(MdnCache, name=page, locale=locale)
 
+    if page in ('html5', 'manifests', 'manifest_faq', 'firefox_os',
+                'tutorial_general', 'tutorial_weather', 'tutorial_serpent',
+                'devtools', 'templates'):
+        category = 'build'
+    elif page in ('principles', 'purpose', 'patterns', 'references',
+                  'custom_elements'):
+        category = 'design'
+    else:
+        category = 'publish'
+
     ctx = {
         'page': page,
         'title': data.title,
         'content': data.content,
+        'category': category
     }
 
     return jingo.render(request, 'ecosystem/documentation.html', ctx)

@@ -2,115 +2,123 @@
   <section id="document-navigation">
     <ul>
       <li>
-        <h2>{{ _('Get Started') }}</h2>
-        <ol>
-          <li>
-            <a href="{{ url('ecosystem.documentation', page='html5') }}"
-              {% if page == 'html5' %}class="selected"{% endif %}>
-              {{ _('HTML5') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation', page='manifests') }}"
-               {% if page == 'manifests' %}class="selected"{% endif %}>
-              {{ _('Manifests') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation', page='manifest_faq') }}"
-               {% if page == 'manifest_faq' %}class="selected"{% endif %}>
-              {{ _('Manifest FAQ') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='firefox_os') }}"
-               {% if page == 'firefox_os' %}class="selected"{% endif %}>
-              {{ _('Firefox OS') }}
-            </a>
-          </li>
-        </ol>
-      </li>
-      <li>
-        <h2>{{ _('Design') }}</h2>
-        <ol>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='principles') }}"
-               {% if page == 'principles' %}class="selected"{% endif %}>
-              {{ _('Design Principles') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='purpose') }}"
-               {% if page == 'purpose' %}class="selected"{% endif %}>
-              {{ _('Purpose of your App') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='patterns') }}"
-               {% if page == 'patterns' %}class="selected"{% endif %}>
-              {{ _('Design Patterns') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='custom_elements') }}"
-               {% if page == 'custom_elements' %}class="selected"{% endif %}>
-              {{ _('Custom Elements') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='references') }}"
-               {% if page == 'references' %}class="selected"{% endif %}>
-              {{ _('References') }}</a>
-          </li>
-        </ol>
-      </li>
-      <li>
-        <h2>{{ _('SDK') }}</h2>
-        <ol>
-          <li>
-            <a href="{{ url('ecosystem.documentation', page='devtools') }}"
-               {% if page == 'devtools' %}class="selected"{% endif %}>
-              {{ _('Dev Tools') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation', page='templates') }}"
-               {% if page == 'templates' %}class="selected"{% endif %}>
-              {{ _('App Templates') }}
-            </a>
-          </li>
-        </ol>
-      </li>
-      <li>
-        <h2>{{ _('Publish') }}</h2>
-        <ol>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='mkt_hosting') }}"
-               {% if page == 'hosting' %}class="selected"{% endif %}>
-              {{ _('Hosting') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.documentation',
-               page='mkt_submission') }}"
-               {% if page == 'mkt_submission' %}class="selected"{% endif %}>
-              {{ _('Marketplace Submission') }}
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('ecosystem.partners') }}"
-               {% if page == 'partners' %}class="selected"{% endif %}>
-              {{ _('Business Partners') }}
-            </a>
-          </li>
-        </ol>
+        {% if category == 'build' %}
+          <h2>{{ _('Getting Started') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='html5') }}"
+                {% if page == 'html5' %}class="selected"{% endif %}>
+                {{ _('HTML5') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='manifests') }}"
+                 {% if page == 'manifests' %}class="selected"{% endif %}>
+                {{ _('Manifests') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='manifest_faq') }}"
+                 {% if page == 'manifest_faq' %}class="selected"{% endif %}>
+                {{ _('Manifest FAQ') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='firefox_os') }}"
+                 {% if page == 'firefox_os' %}class="selected"{% endif %}>
+                {{ _('Firefox OS') }}
+              </a>
+            </li>
+          </ol>
+          <h2>{{ _('Build') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ get_login_link(url('submit.app')) }}">
+                {{ _('Submit an App') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='devtools') }}"
+                 {% if page == 'devtools' %}class="selected"{% endif %}>
+                {{ _('Dev Tools') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='templates') }}"
+                 {% if page == 'templates' %}class="selected"{% endif %}>
+                {{ _('App Templates') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.support') }}"
+                 {% if page == 'support' %}class="selected"{% endif %}>
+                {{ _('Support') }}
+              </a>
+            </li>
+          </ol>
+        {% elif category == 'design' %}
+          <h2>{{ _('Design') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='principles') }}"
+                 {% if page == 'principles' %}class="selected"{% endif %}>
+                {{ _('Design Principles') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='purpose') }}"
+                 {% if page == 'purpose' %}class="selected"{% endif %}>
+                {{ _('Purpose of your App') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='patterns') }}"
+                 {% if page == 'patterns' %}class="selected"{% endif %}>
+                {{ _('Design Patterns') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='custom_elements') }}"
+                 {% if page == 'custom_elements' %}class="selected"{% endif %}>
+                {{ _('Custom Elements') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='references') }}"
+                 {% if page == 'references' %}class="selected"{% endif %}>
+                {{ _('References') }}</a>
+            </li>
+          </ol>
+        {% else %}
+          <h2>{{ _('Publish') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='mkt_hosting') }}"
+                 {% if page == 'mkt_hosting' %}class="selected"{% endif %}>
+                {{ _('Hosting') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='mkt_submission') }}"
+                 {% if page == 'mkt_submission' %}class="selected"{% endif %}>
+                {{ _('Marketplace Submission') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.partners') }}"
+                 {% if page == 'partners' %}class="selected"{% endif %}>
+                {{ _('Business Partners') }}
+              </a>
+            </li>
+          </ol>
+        {% endif %}
       </li>
     </ul>
   </section>

@@ -1,0 +1,63 @@
+{% extends 'developers/base_impala.html' %}
+
+{% block title %}{{ hub_page_title() }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block user_actions %}
+  {% if request.user.is_authenticated() %}
+    <li class="nomenu">
+      <a href="{{ url('mkt.developers.apps') }}">
+        {{ _('My Submissions') }}
+      </a>
+      <ul>
+        {% set my_apps = request.amo_user.my_apps() %}
+        {% for addon in my_apps %}
+          {% if loop.index == 8 %}
+            <li><a href="{{ url('mkt.developers.apps') }}">
+              {{ _('more apps...') }}</a></li>
+          {% else %}
+            <li><a href="{{ addon.get_dev_url() }}">
+              {{ addon.name }}</a></li>
+          {% endif %}
+        {% endfor %}
+        <li><em><a href="{{ url('submit.app') }}">
+          {{ _('Submit a New App') }}</a></em></li>
+      </ul>
+    </li>
+    <li class="nomenu logout">
+      <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+    </li>
+  {% endif %}
+{% endblock %}
+
+{% block site_header_title %}
+  <div id="site-nav" class="devhub-categories">
+    <div class="pad">
+      <nav class="menu-nav app-nav no-img" role="navigation">
+        <ul class="c">
+          <li>
+            <a href="{{ url('ecosystem.documentation',
+                        page='principles') }}"
+               {% if category == 'design' %}class="selected"{% endif %}>
+              {{ _('Design') }}
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('ecosystem.documentation', page='html5') }}"
+               {% if category == 'build' %}class="selected"{% endif %}>
+              {{ _('Build') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('ecosystem.documentation',
+                        page='mkt_hosting') }}"
+               {% if category == 'publish' %}class="selected"{% endif %}>
+              {{ _('Publish') }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+{% endblock %}

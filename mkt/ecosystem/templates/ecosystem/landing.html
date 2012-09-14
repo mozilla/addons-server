@@ -1,23 +1,4 @@
-{% extends 'developers/base_impala.html' %}
-
-{% block title %}{{ hub_page_title() }}{% endblock %}
-
-{% block extrahead %}
-  {{ css('mkt/ecosystem') }}
-{% endblock %}
-
-{% block site_header_title %}
-{% endblock %}
-
-{% block user_actions %}
-  {% if request.user.is_authenticated() %}
-    <li class="nomenu">
-      <a href="{{ url('mkt.developers.apps') }}">
-        {{ _('My Submissions') }}
-      </a>
-    </li>
-  {% endif %}
-{% endblock %}
+{% extends 'ecosystem/base.html' %}
 
 {% block bodyclass %}landing developer-hub{% endblock %}
 
@@ -65,41 +46,6 @@
           {% endtrans %}
         </p>
       </div>
-    </section>
-    <section class="half sections">
-      <ul>
-        <li>
-          <a href="{{ url('ecosystem.documentation', page='principles') }}">
-            {{ _('Design') }}
-          </a>
-          <p>
-            {% trans %}
-              Learn basic tips on how to design your app.
-            {% endtrans %}
-          </p>
-        </li>
-        <li>
-          <a href="{{ url('ecosystem.documentation', page='devtools') }}">
-            {{ _('Code') }}
-          </a>
-          <p>
-            {% trans %}
-              Build and distribute cross-platform apps powered by Web
-              standards.
-            {% endtrans %}
-          </p>
-        </li>
-        <li>
-          <a href="{{ url('ecosystem.documentation', page='html5') }}">
-            {{ _('Publish') }}
-          </a>
-          <p>
-            {% trans %}
-              Find out where you can host and submit your app.
-            {% endtrans %}
-          </p>
-        </li>
-      </ul>
     </section>
   </div>
 {% endblock %}
