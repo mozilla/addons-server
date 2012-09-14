@@ -1,6 +1,6 @@
 celery-tasktree==0.3.2
 Django==1.4.1
-django_appcache==1.0
+django_appcache==1.1
 django-browserid==0.6
 django-cache-machine==0.6
 django-cronjobs==0.2.3
