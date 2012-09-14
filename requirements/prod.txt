@@ -15,7 +15,6 @@ django-statsd-mozilla==0.3.7
 django-tastypie==0.9.11
 easy-thumbnails==1.1
 gunicorn==0.14.6
-jstestnetlib==0.3
 metlog-py==0.9.7
 moz_inapp_pay==1.0.2
 oauth2==1.5.211
