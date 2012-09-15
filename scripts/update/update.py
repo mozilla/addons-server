@@ -19,7 +19,7 @@ def create_virtualenv(ctx):
     ctx.local("rm -f %s/lib64 && ln -s ./lib %s/lib64" % (venv, venv))
     ctx.local("%s/bin/pip install --exists-action=w --no-deps -I --download-cache=/tmp/pip-cache -i %s -r %s/requirements/prod.txt" %
                 (venv, settings.PYPI_MIRROR, settings.SRC_DIR))
-    ctx.local("virtualenv --relocatable %s" % venv)
+    ctx.local("%s/bin/python /usr/bin/virtualenv --relocatable %s" % (venv, venv))
 
 
 @task
