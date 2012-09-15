@@ -49,7 +49,7 @@ statsd==1.0.0
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
 -e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 -e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
--e git://github.com/washort/django-waffle.git@5986e8b466871f0847bbeafcfce59b8709680c3f#egg=django-waffle
+-e git://github.com/washort/django-waffle.git@19fe01f48008efc02e357554d49cc3b6e0b1c854#egg=django-waffle
 
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
