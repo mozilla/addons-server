@@ -176,13 +176,13 @@ def _app_search(request, category=None, browse=None):
     categories = Category.objects.filter(type=amo.ADDON_WEBAPP, id__in=cats)
 
     # If category is not listed as a facet, then remove `cat` and redirect.
-    if (query.get('cat') and
-        query['cat'] not in categories.values_list('id', flat=True)):
-        if category:
-            return {'redirect': reverse('search.search')}
-        else:
-            return {'redirect': amo.utils.urlparams(request.get_full_path(),
-                                                    cat=None)}
+    # if (query.get('cat') and
+    #     query['cat'] not in categories.values_list('id', flat=True)):
+    #     if category:
+    #         return {'redirect': reverse('search.search')}
+    #     else:
+    #         return {'redirect': amo.utils.urlparams(request.get_full_path(),
+    #                                                 cat=None)}
 
     ctx = {
         'pager': pager,
