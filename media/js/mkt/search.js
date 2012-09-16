@@ -46,7 +46,7 @@
     }
 
     // Apply filters button.
-    z.page.on('click', '#filters .button.apply', _pd(function() {
+    z.page.on('click', '#filters .apply', _pd(function() {
         $('#filters form').submit();
     })).on('click', '#filters .picker', _pd(function() {
         $('#filter-categories').addClass('show');
