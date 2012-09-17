@@ -280,7 +280,9 @@ class GenerateErrorForm(happyforms.Form):
                     ['zerodivisionerror', 'Zero Division Error (will email)'],
                     ['iorequesterror', 'IORequest Error (no email)'],
                     ['metlog_statsd', 'Metlog statsd message'],
-                    ['metlog_json', 'Metlog JSON message']))
+                    ['metlog_json', 'Metlog JSON message'],
+                    ['metlog_cef', 'Metlog CEF message'],
+                    ))
 
     def explode(self):
         error = self.cleaned_data.get('error')
@@ -291,6 +293,19 @@ class GenerateErrorForm(happyforms.Form):
             class IOError(Exception):
                 pass
             raise IOError('request data read error')
+        elif error == 'metlog_cef':
+            environ = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
+                            'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
+                            'HTTP_USER_AGENT': 'MySuperBrowser'}
+
+            config = {'cef.version': '0',
+                           'cef.vendor': 'mozilla',
+                           'cef.device_version': '3',
+                           'cef.product': 'zamboni',
+                           'cef': True}
+
+            settings.METLOG.cef('xx\nx|xx\rx', 5, environ, config,
+                    username='me', ext1='ok=ok', ext2='ok\\ok')
         elif error == 'metlog_statsd':
             settings.METLOG.incr(name=LOGGER_NAME)
         elif error == 'metlog_json':
