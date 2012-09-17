@@ -415,7 +415,9 @@ class TestDetails(TestSubmit):
         with open(image_file, 'rb') as data:
             rp = self.client.post(url, {'upload_image': data})
         eq_(rp.status_code, 200)
-        return json.loads(rp.content)['upload_hash']
+        hash_ = json.loads(rp.content)['upload_hash']
+        assert hash_, 'No hash: %s' % rp.content
+        return hash_
 
     def _step(self):
         self.user.update(read_dev_agreement=datetime.datetime.now())
