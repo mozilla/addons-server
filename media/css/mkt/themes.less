@@ -1,18 +1,29 @@
 @import 'lib';
 
 .product-details {
+    background: none;
     font-size: 14px;
     text-shadow: 0 1px 0 @white;
+    margin-top: 10px;
+    .description {
+        border-bottom: 1px solid rgba(3, 16, 26, .13);
+        padding: 10px 0;
+        text-align: center;
+    }
     .actions {
-        .min-width(3);
-        .max-width(4);
-        float: right;
-        margin-bottom: 16px;
+        border-top: 1px solid rgba(255, 255, 255, .5);
+        display: block;
+        float: none;
+        margin-bottom: 10px;
+        max-width: none;
+        padding: 15px 0;
         .button {
             display: block;
+            padding-top: 8px;
+            margin-bottom: 15px;
+            width: 100%;
         }
         .theme-details {
-            margin-top: 20px;
             p {
                 margin: 0;
             }
@@ -21,7 +32,7 @@
     .vitals {
         float: left;
         margin-left: 0;
-        .max-width(9);
+        max-width: 320px;
         &.vitals-landing {
             .max-width(16);
         }
@@ -45,21 +56,23 @@
                 padding-right: 3px;
             }
         }
-        .downloads {
-            display: inline-block;
-            margin: 5px 0 0;
-        }
         p {
+            display: block;
             font-size: 14px;
             &.more {
-                display: block;
+                background-color: rgba(45, 51, 55, 1);
+                display: inline;
+                float: right;
+                &:hover {
+                    background-color: rgba(45, 51, 55, .9);
+                }
                 a {
+                    .border-radius(5px);
+                    color: @text-light;
                     display: block;
                     text-align: right;
-                    margin-bottom: 10px;
+                    text-shadow: none;
                     line-height: 20px;
-                    .h-gradient-two-color(rgba(255,255,255,0), @white);
-                    .border-radius(5px);
                     padding: 2px 6px;
                 }
             }
@@ -68,38 +81,44 @@
     .theme-details {
         clear: both;
         .theme {
+            width: 100%;
             .users {
                 color: #390;
             }
         }
-        .theme-inner {
-            position: relative;
-            .border-radius(5px);
-        }
         .theme-small {
-            .theme-inner {
-                float: left;
-                width: 200px;
-                margin-right: 11px;
+            margin: 0 0 10px 15px;
+            &:first-child {
+                margin-top: 10px;
             }
-            .theme-inner-landing {
-                margin: 30px 60px 0 0;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .theme-preview {
+                float: left;
+                height: 67px;
+                width: 200px;
             }
             .theme-preview [data-browsertheme] {
                 height: 67px;
+                width: 200px;
                 .border-radius(5px);
                 em {
                     line-height: 67px;
                     width: 100px;
                 }
             }
+            .more {
+                margin-top: 0;
+                a {
+                    padding: 24px 20px;
+                }
+            }
         }
         .theme-large {
-            .theme-inner {
-                width: 680px;
-            }
             .theme-preview {
                 padding: 8px 0 4px;
+                width: 320px;
                 [data-browsertheme] {
                     height: 100px;
                     .border-radius(5px);
@@ -107,6 +126,7 @@
             }
         }
         .theme-preview {
+            .border-radius(5px);
             position: relative;
             display: block;
             line-height: 1;
@@ -143,10 +163,19 @@
                 cursor: pointer;
             }
         }
+        dt {
+            font-weight: normal;
+        }
+        .updated {
+            float: left;
+            width: 50%;
+        }
+        .daily-users {
+            float: right;
+        }
         .license-info {
             h3 {
                 font-size: 14px;
-                font-weight: bold;
             }
             ul {
                 list-style-type: none;
@@ -181,7 +210,7 @@
     margin-bottom: 20px;
     h3 {
         font-size: 18px;
-        margin: 8px 0 6px;
+        margin: 10px 0;
     }
     .more-link {
         display: block;
@@ -197,10 +226,4 @@
     &.two-col {
         width: 425px;
     }
-}
-#more-artist {
-    float: right;
-}
-#more-themes {
-    width: 691px;
 }

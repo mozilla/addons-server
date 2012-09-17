@@ -293,6 +293,7 @@ JS = {
         'js/mkt/stats/stats.js',
     ),
     'mkt/themes': (
+        'js/lib/jquery.hoverIntent.js',
         'js/zamboni/personas_core.js',
         'js/zamboni/personas.js',
         'js/mkt/themes.js',

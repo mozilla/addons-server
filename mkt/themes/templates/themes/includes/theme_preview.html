@@ -1,5 +1,4 @@
-<div class="theme theme-{{ size }}">
-  <div class="theme-inner {{ 'theme-inner-landing' if landing }}">
+<div class="theme theme-{{ size }} {{ 'landing' if landing }} c">
     <div class="theme-preview">
       {% set addon_url = url_ or addon.get_url_path() %}
       <div style="background-image:url('{{ preview }}')"
@@ -26,10 +25,8 @@
         {% endif %}
         <em class="hidden">{{ _('Reset') }}</em>
       </div>
-
-      {% if linked %}
-        <p class="more"><a href="{{ addon_url }}">{{ _('More') }}</a></p>
-      {% endif %}
     </div>
-  </div>
+  {% if linked %}
+    <p class="more"><a href="{{ addon_url }}">{{ _('Info') }}</a></p>
+  {% endif %}
 </div>

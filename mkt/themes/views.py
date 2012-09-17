@@ -23,7 +23,8 @@ def detail(request, addon):
     """Theme details page."""
     theme = addon.persona
 
-    categories = addon.all_categories
+    categories = [category for category in addon.all_categories if
+                  category.application.id == amo.FIREFOX.id]
     if categories:
         qs = Addon.objects.public().filter(categories=categories[0])
         category_themes = _category_themes(qs, limit=6)

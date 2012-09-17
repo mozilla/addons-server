@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% if category %}
-  {% set title = category.name %}
+  {# L10n: {0} is a category name, such as Nature #}
+  {% set title = _('{0} Themes')|f(category.name) %}
   {% set heading = title %}
   {% set crumbs = [(url('themes.browse'), _('Themes')),
                    (None, title)] %}
 {% else %}
-  {% set title = _('Themes') %}
+  {% set title = _('Featured Themes') %}
   {% set heading = title %}
   {% set crumbs = [(None, title)] %}
 {% endif %}
@@ -24,11 +25,17 @@
       {% if not category %}
         <h1 class="hidden">{{ _('Apps') }}</h1>
       {% endif %}
-      <h2 class="sticky">{{ title if category else _('Featured') }}</h2>
+      {% if featured %}
+        <h2>{{ title }}</h2>
+      {% endif %}
     </div>
   </section>
-  <section class="featured full slider">
-    {{ featured|promo_slider(feature=True) }}
+  <section class="product-details">
+    <div class="vitals vitals-landing theme-details theme-list c">
+      {% for theme in featured %}
+        {{ theme_preview(theme.persona, size='small', landing=True) }}
+      {% endfor %}
+    </div>
   </section>
   {% if popular %}
     <section class="popular subheading full">
@@ -36,12 +43,12 @@
         <h2 class="see-all c">
           <a href="{{ request.path|urlparams(category=category.slug or None,
                                              sort='downloads') }}">
-          <span>{{ _('By popularity') }}</span> <em>{{ _('See all') }}</em></a>
+          <span>{{ _('By Popularity') }}</span></a>
         </h2>
       </div>
     </section>
     <section class="product-details">
-      <div class="vitals vitals-landing theme-details c theme-list four-col-padding">
+      <div class="vitals vitals-landing theme-details c theme-list">
         {% for theme in popular %}
           {{ theme_preview(theme.persona, size='small', landing=True) }}
         {% endfor %}
@@ -52,3 +59,5 @@
   {% endif %}
   {{ category_slider_themes() }}
 {% endblock %}
+
+{% block js %}{{ js('mkt/themes') }}{% endblock %}
