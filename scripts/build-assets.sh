@@ -24,7 +24,7 @@ fi
 
 source $VENV/bin/activate
 
-pip install -q -r requirements/compiled.txt -r requirements/test.txt
+pip install -U --exists-action=w --no-deps -q -r requirements/compiled.txt -r requirements/test.txt
 
 if [ ! -d "$VENDOR" ]; then
     echo "No vendor lib?  Cloning..."
