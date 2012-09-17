@@ -100,7 +100,12 @@ def _uploader(resize_size, final_size):
         with storage.open(dest.name) as fp:
             dest_image = Image.open(fp)
             dest_image.load()
-        eq_(dest_image.size, final_size)
+        
+        # Assert that the width is always identical.
+        eq_(dest_image.size[0], final_size[0])
+        # Assert that the height can be a wee bit fuzzy.
+        assert -1 <= dest_image.size[1] - final_size[1] <= 1, (
+            "Got width %d, expected %d" % (final_size[1], dest_image.size[1]))
 
     assert not os.path.exists(src.name)
 
