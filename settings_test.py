@@ -120,6 +120,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 METLOG_CONF = {
     'logger': 'zamboni',
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
     'sender': {
         'class': 'metlog.senders.DebugCaptureSender',
     },
