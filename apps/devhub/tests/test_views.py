@@ -80,14 +80,6 @@ class HubTest(amo.tests.TestCase):
         return ids
 
 
-class TestHome(HubTest):
-
-    def test_addons(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'devhub/index.html')
-
-
 class TestNav(HubTest):
 
     def test_navbar(self):
@@ -1411,6 +1403,11 @@ class TestHome(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         return pq(r.content)
+
+    def test_addons(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'devhub/index.html')
 
     def test_editor_promo(self):
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 1)
