@@ -1136,6 +1136,7 @@ LOGGING = {
 
 METLOG_CONF = {
     'logger': 'zamboni',
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
     'sender': {
         'class': 'metlog.senders.logging.StdLibLoggingSender',
         'logger_name': 'z.metlog',
