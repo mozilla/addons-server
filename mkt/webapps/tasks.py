@@ -135,3 +135,18 @@ def _update_manifest(id):
             old.get('name'), new.get('name'))
         _log(webapp, msg, rereview=True)
         RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+
+
+@task
+def update_cached_manifests(id, **kw):
+    try:
+        webapp = Webapp.objects.get(pk=id)
+    except Webapp.DoesNotExist:
+        _log(id, u'Webapp does not exist')
+
+    if not webapp.is_packaged:
+        return
+
+    # Rebuilds the packaged app mini manifest and stores it in cache.
+    webapp.get_cached_manifest(force=True)
+    _log(webapp, u'Updated cached mini manifest')

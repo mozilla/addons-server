@@ -1177,8 +1177,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         personas = (Addon.uncached.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
+        webapps = (
+            Addon.uncached.filter(type=amo.ADDON_WEBAPP,
+                                  status=amo.STATUS_PUBLIC,
+                                  versions__files__status=amo.STATUS_PUBLIC)
+                          .values('id')
+                          .annotate(last_updated=Max('versions__created')))
+
         return dict(public=public, exp=exp, listed=listed, personas=personas,
-                    lite=lite)
+                    lite=lite, webapps=webapps)
 
     @amo.cached_property(writable=True)
     def all_categories(self):

@@ -795,3 +795,76 @@ class TestActivity(amo.tests.TestCase):
         doc = pq(res.content)
         assert 'created' in doc('li.item').eq(0).text()
         assert 'edited' in doc('li.item').eq(1).text()
+
+
+class TestPackagedManifest(DetailBase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.app.update(is_packaged=True)
+        self.url = self.app.get_detail_url('manifest')
+
+    def _mocked_json(self):
+        data = {
+            u'name': u'Packaged App √',
+            u'version': u'1.0',
+            u'size': 123456,
+            u'release_notes': u'Bug fixes',
+            u'packaged_path': u'/path/to/file.zip',
+        }
+        return json.dumps(data)
+
+    def login_as_reviewer(self):
+        self.client.logout()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+
+    def login_as_author(self):
+        self.client.logout()
+        user = UserProfile.objects.get(username='regularuser')
+        AddonUser.objects.create(addon=self.app, user=user)
+        assert self.client.login(username=user.email, password='password')
+
+    def test_non_packaged(self):
+        self.app.update(is_packaged=False)
+        res = self.client.get(self.url)
+        eq_(json.loads(res.content), {})
+
+    def test_disabled_by_user(self):
+        self.app.update(disabled_by_user=True)
+        res = self.client.get(self.url)
+        eq_(json.loads(res.content), {})
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_app_public(self, _mock):
+        _mock.return_value = self._mocked_json()
+        res = self.client.get(self.url)
+        eq_(res.content, self._mocked_json())
+        eq_(res._headers['content-type'],
+            ('Content-Type', 'application/x-web-app-manifest+json'))
+
+    def test_app_pending(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        res = self.client.get(self.url)
+        eq_(json.loads(res.content), {})
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_app_pending_reviewer(self, _mock):
+        self.login_as_reviewer()
+        self.app.update(status=amo.STATUS_PENDING)
+        _mock.return_value = self._mocked_json()
+        res = self.client.get(self.url)
+        eq_(res.content, self._mocked_json())
+        eq_(res._headers['content-type'],
+            ('Content-Type', 'application/x-web-app-manifest+json'))
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_app_pending_author(self, _mock):
+        self.login_as_author()
+        self.app.update(status=amo.STATUS_PENDING)
+        _mock.return_value = self._mocked_json()
+        res = self.client.get(self.url)
+        eq_(res.content, self._mocked_json())
+        eq_(res._headers['content-type'],
+            ('Content-Type', 'application/x-web-app-manifest+json'))

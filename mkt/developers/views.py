@@ -191,6 +191,8 @@ def publicise(request, addon_id, addon):
     if addon.status == amo.STATUS_PUBLIC_WAITING:
         addon.update(status=amo.STATUS_PUBLIC)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+        # Call update_version, so various other bits of data update.
+        addon.update_version()
     return redirect(addon.get_dev_url('versions'))
 
 

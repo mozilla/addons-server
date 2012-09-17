@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import json
 import unittest
+import zipfile
 
 from django.conf import settings
 
@@ -12,7 +13,8 @@ import waffle
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, Preview)
 import amo
-from amo.tests import app_factory, ESTestCase, TestCase, WebappTestCase
+from amo.tests import (app_factory, ESTestCase, TestCase, version_factory,
+                       WebappTestCase)
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from files.models import File
@@ -22,7 +24,7 @@ from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 import mkt
 from mkt.reviewers.models import RereviewQueue
-from mkt.submit.tests.test_views import BaseWebAppTest
+from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
@@ -360,6 +362,45 @@ class TestManifest(BaseWebAppTest):
         with open(self.manifest, 'r') as mf:
             manifest_json = json.load(mf)
             eq_(webapp.get_manifest_json(), manifest_json)
+
+
+class TestPackagedManifest(BasePackagedAppTest):
+
+    def _get_manifest_json(self):
+        zf = zipfile.ZipFile(self.package)
+        data = zf.open('manifest.webapp').read()
+        zf.close()
+        return json.loads(data)
+
+    def test_get_manifest_json(self):
+        webapp = self.post_addon()
+        eq_(webapp.status, amo.STATUS_NULL)
+        assert webapp.current_version
+        assert webapp.current_version.has_files
+        mf = self._get_manifest_json()
+        eq_(webapp.get_manifest_json(), mf)
+
+    def test_get_manifest_json_multiple_versions(self):
+        # Post the real app/version, but backfill an older version.
+        webapp = self.post_addon()
+        webapp.update(status=amo.STATUS_PUBLIC, _current_version=None)
+        version = version_factory(addon=webapp, version='0.5',
+                                  created=self.days_ago(1))
+        version.files.update(created=self.days_ago(1))
+        webapp = Webapp.objects.get(pk=webapp.pk)
+        webapp.update_version()
+        assert webapp.current_version
+        assert webapp.current_version.has_files
+        mf = self._get_manifest_json()
+        eq_(webapp.get_manifest_json(), mf)
+
+    def test_cached_manifest(self):
+        webapp = self.post_addon()
+        # First call does queries and caches results.
+        webapp.get_cached_manifest()
+        # Subsequent calls are cached.
+        with self.assertNumQueries(0):
+            webapp.get_cached_manifest()
 
 
 class TestDomainFromURL(unittest.TestCase):

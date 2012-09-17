@@ -53,21 +53,25 @@
         <tr id="manifest-url">
           <th class="label">{{ _('Manifest URL') }}</th>
           <td>
-            {% if editable %}
-              <input type="text" name="manifest_url"{% if not action_allowed('Admin', '%') %} readonly{% endif %} value="{{ addon.manifest_url }}">
-              {{ form.manifest_url.errors }}
-              <a class="button" data-url="{{ url('mkt.developers.apps.refresh_manifest', valid_slug) }}">{{ _('Refresh') }}</a>
-              <p class="note">
-                {% trans email='app-reviews@mozilla.org' %}
-                  Manifest URLs cannot be changed after your app has been
-                  submitted. Please email
-                  <a href="mailto:{{ email }}">{{ email }}</a> if there is a
-                  reason you need to modify your manifest URL.
-                {% endtrans %}
-              </p>
+            {% if addon.is_packaged %}
+                <a href="{{ addon.get_detail_url('manifest')|absolutify }}" target="_blank">{{ addon.get_detail_url('manifest')|absolutify }}</a>
             {% else %}
-              <a href="{{ addon.manifest_url }}" target="_blank">
-                {{ addon.manifest_url }}</a>
+              {% if editable %}
+                <input type="text" name="manifest_url"{{ ' readonly' if not action_allowed('Admin', '%') }} value="{{ addon.manifest_url }}">
+                {{ form.manifest_url.errors }}
+                <a class="button" data-url="{{ url('mkt.developers.apps.refresh_manifest', valid_slug) }}">{{ _('Refresh') }}</a>
+                <p class="note">
+                  {% trans email='app-reviews@mozilla.org' %}
+                    Manifest URLs cannot be changed after your app has been
+                    submitted. Please email
+                    <a href="mailto:{{ email }}">{{ email }}</a> if there is a
+                    reason you need to modify your manifest URL.
+                  {% endtrans %}
+                </p>
+              {% else %}
+                <a href="{{ addon.manifest_url }}" target="_blank">
+                  {{ addon.manifest_url }}</a>
+              {% endif %}
             {% endif %}
           </td>
         </tr>
