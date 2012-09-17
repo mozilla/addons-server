@@ -211,7 +211,7 @@ JS = {
 
         # slider lib
         'js/lib/flipsnap.js',
-
+        'js/mkt/offline.js',
         'js/common/tracking.js',
         'js/mkt/utils.js',
         'js/lib/csrf.js',

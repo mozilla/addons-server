@@ -19,6 +19,7 @@ from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from amo.context_processors import get_collect_timings
 from amo.decorators import post_required, no_login_required
 from amo.helpers import media
+from amo.urlresolvers import reverse
 import api.views
 
 
@@ -63,7 +64,8 @@ def manifest(request):
         },
         # TODO: when we have specific locales, add them in here.
         'locales': {},
-        'default_locale': 'en-US'
+        'default_locale': 'en-US',
+        'appcache_path': reverse('django_appcache.manifest')
     }
     return HttpResponse(json.dumps(data),
                         mimetype='application/x-web-app-manifest+json')

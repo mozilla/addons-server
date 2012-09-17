@@ -285,13 +285,17 @@ USE_APPCACHE = False
 # These are absolute paths to add to the cache. Wildcards are not allowed here.
 # These paths will be added as-is to the cache section.
 APPCACHE_TO_CACHE = [
-    '/favicon.ico',
-    'https://login.persona.org/include.js'
+    'https://login.persona.org/include.js',
+    '/media/img/mkt/grain.png',
 ]
 
 APPCACHE_NET_PATHS = [
     '*'
 ]
+
+APPCACHE_FALLBACK_PATHS = {
+    '/app/': '/offline/home',
+}
 
 # These are paths relative to MEDIA_ROOT that you want to explicitly
 # cache. The browser will load *all* of these URLs when your app first loads

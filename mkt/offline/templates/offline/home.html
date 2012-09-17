@@ -3,9 +3,14 @@
 {% block pagetype %}root{% endblock %}
 
 {% block content %}
-  <section class="infobox">
-    <p>
+  <section class="infobox" data-offline="true">
+    <p class="online">
+      {{ _('Loading the Firefox Marketplace...') }}
+    </p>
+    <p class="offline">
       {{ _('Sorry, you need to be online to access the Marketplace') }}
     </p>
   </section>
 {% endblock %}
+
+{% block offline_pixel %}{% endblock %}
