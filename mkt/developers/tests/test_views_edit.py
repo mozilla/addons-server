@@ -1081,33 +1081,33 @@ class TestEditDetails(TestEdit):
                  'You are missing %s.')
         missing = lambda f: error % ', '.join(map(repr, f))
 
-        data.update(default_locale='fr')
+        data.update(default_locale='pt-BR')
         r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a name.
-        self.webapp.name = {'fr': 'fr name'}
+        self.webapp.name = {'pt-BR': 'pt-BR name'}
         self.webapp.save()
         fields.remove('name')
         r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a summary.
-        self.webapp.summary = {'fr': 'fr summary'}
+        self.webapp.summary = {'pt-BR': 'pt-BR summary'}
         self.webapp.save()
         fields.remove('summary')
         r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we're sending an fr description with the form.
-        data['description_fr'] = 'fr description'
+        data['description_pt-BR'] = 'pt-BR description'
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
 
     def test_edit_default_locale_frontend_error(self):
         data = self.get_dict()
         data.update(description='xx', homepage='http://google.com',
-                    default_locale='fr', privacy_policy='pp')
+                    default_locale='pt-BR', privacy_policy='pp')
         rp = self.client.post(self.edit_url, data)
         self.assertContains(rp,
             'Before changing your default locale you must')
