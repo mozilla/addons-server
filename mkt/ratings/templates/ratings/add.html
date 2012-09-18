@@ -21,12 +21,6 @@
   <section id="submit-review" class="friendly">
     <form method="post">
       {{ csrf() }}
-      <p class="reminder">
-        {% trans %}
-          Please keep reviews clean, avoid the use of improper language, and do
-          not post any personal information.
-        {% endtrans %}
-      </p>
       {{ form_field(form.rating, label=_('How would you rate this?'),
                     tag='div', cls='rating') }}
       {{ form_field(form.body, label=_('Your review'), hint=True,
