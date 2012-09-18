@@ -49,7 +49,7 @@ from PIL import Image, ImageFile, PngImagePlugin
 
 import amo.search
 from amo import ADDON_ICON_SIZES
-from amo.urlresolvers import reverse
+from amo.urlresolvers import get_outgoing_url, reverse
 from translations.models import Translation
 from users.models import UserNotification
 from users.utils import UnsubscribeCode
