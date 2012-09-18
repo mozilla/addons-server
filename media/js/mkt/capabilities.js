@@ -30,6 +30,10 @@ z.capabilities = {
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
     'navPay': !!navigator.mozPay
 };
+
+// We should do better checking since this is a false positive for Android (bug 761873).
+z.capabilities.gaia = z.capabilities.chromeless && z.capabilities.mobile;
+
 z.capabilities.getDeviceType = function() {
     return this.desktop ? 'desktop' : (this.tablet ? 'tablet' : 'mobile');
 };

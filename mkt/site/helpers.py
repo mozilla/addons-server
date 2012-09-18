@@ -61,7 +61,8 @@ def market_button(context, product, receipt_type=None):
     if product.is_webapp():
         purchased = False
         classes = ['button', 'product']
-        data_attrs = {'manifestUrl': product.manifest_url}
+        data_attrs = {'manifestUrl': product.manifest_url,
+                      'is_packaged': json.dumps(product.is_packaged)}
 
         # Handle premium apps.
         if product.is_premium() and product.premium:

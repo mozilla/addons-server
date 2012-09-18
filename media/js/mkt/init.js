@@ -69,6 +69,8 @@ $(document).ready(function() {
 
 
 z.page.on('fragmentloaded', function() {
+    var badPlatform = '<div class="bad-platform">' + gettext('This app is unavailable for your platform.') + '</div>';
+
     if (z.capabilities.webApps) {
         // Get list of installed apps and mark as such.
         r = window.navigator.mozApps.getInstalled();
@@ -81,12 +83,19 @@ z.page.on('fragmentloaded', function() {
                                   {'manifestUrl': val.manifestURL});
             });
         };
+        if (!z.capabilities.gaia) {
+            // Only Firefox OS currently supports packaged apps.
+            // (The 'bad' class ensures we append the message only once.)
+            $('.listing .product[data-is_packaged="true"]').addClass('disabled')
+                .closest('.mkt-tile:not(.bad)').addClass('bad').append(badPlatform);
+        }
     } else {
         z.apps = {};
     }
 
     if (!z.canInstallApps) {
         $(window).trigger('app_install_disabled');
+        $('.listing .mkt-tile:not(.bad)').addClass('bad').append(badPlatform);
     }
 
     // Navigation toggle.
