@@ -145,13 +145,18 @@ function fragmentFilter(el) {
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
 
+        var prefetch_timeout;
         z.page.on('fragmentloaded', function() {
+            if (prefetch_timeout) {
+                clearTimeout(prefetch_timeout);
+            }
             console.log('get ready...');
-            setTimeout(prefetch, 1000);
+            prefetch_timeout = setTimeout(prefetch, 1000);
         });
         function prefetch() {
             var links = z.page.find('[data-prefetch]'),
                 href;
+            prefetch_timeout = null;
             for (var i=0; i<links.length; i++) {
                 href = links[i].getAttribute('href');
                 if (!fragmentCache[href]) {
