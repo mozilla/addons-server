@@ -43,6 +43,8 @@ class TestMarketButton(amo.tests.TestCase):
 
     def test_is_webapp(self):
         doc = pq(market_tile(self.context, self.webapp))
+        eq_(doc('.price').text(), 'Free')
+
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['manifestUrl'], self.webapp.manifest_url)
         eq_(data['recordUrl'], urlparams(self.webapp.get_detail_url('record'),
@@ -55,6 +57,8 @@ class TestMarketButton(amo.tests.TestCase):
     def test_is_premium_webapp(self):
         self.make_premium(self.webapp)
         doc = pq(market_tile(self.context, self.webapp))
+        eq_(doc('.price').text(), '$1.00')
+
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['manifestUrl'], self.webapp.manifest_url)
         eq_(data['price'], 1.0)

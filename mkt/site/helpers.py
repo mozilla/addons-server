@@ -59,28 +59,36 @@ def no_results():
 def market_button(context, product, receipt_type=None):
     request = context['request']
     if product.is_webapp():
-        faked_purchase = False
-        purchased = (request.amo_user and
-                     product.pk in request.amo_user.purchase_ids())
-        # App authors are able to install their apps free of charge.
-        if (not purchased and
-            request.check_ownership(product, require_author=True)):
-            purchased = faked_purchase = True
+        purchased = False
         classes = ['button', 'product']
-        label = product.get_price()
-        data_attrs = {
-            'manifestUrl': product.manifest_url
-        }
+        data_attrs = {'manifestUrl': product.manifest_url}
+
+        # Handle premium apps.
         if product.is_premium() and product.premium:
+            # User has purchased app.
+            purchased = (request.amo_user and
+                         product.pk in request.amo_user.purchase_ids())
+
+            # App authors are able to install their apps free of charge.
+            if (not purchased and
+                    request.check_ownership(product, require_author=True)):
+                purchased = True
+
             classes.append('premium')
             if waffle.switch_is_active('disabled-payments'):
                 classes.append('disabled')
+
+        if purchased:
+            label = _('Install')
+        else:
+            label = product.get_price()
+
+        # Free apps and purchased apps get active install buttons.
         if not product.is_premium() or purchased:
             classes.append('install')
-            label = _('Install')
+
         c = dict(product=product, label=label, purchased=purchased,
-                 faked_purchase=faked_purchase, data_attrs=data_attrs,
-                 classes=' '.join(classes))
+                 data_attrs=data_attrs, classes=' '.join(classes))
         t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))
 
