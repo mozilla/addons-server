@@ -42,7 +42,6 @@ import jinja2
 import pyes.exceptions as pyes
 import pytz
 from babel import Locale
-from bleach.callbacks import nofollow
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
@@ -50,7 +49,7 @@ from PIL import Image, ImageFile, PngImagePlugin
 
 import amo.search
 from amo import ADDON_ICON_SIZES
-from amo.urlresolvers import get_outgoing_url_for_bleach, reverse
+from amo.urlresolvers import reverse
 from translations.models import Translation
 from users.models import UserNotification
 from users.utils import UnsubscribeCode
@@ -805,10 +804,9 @@ def no_translation():
 
 def escape_all(v):
     """Escape html in JSON value, including nested items."""
-    callbacks = [nofollow, get_outgoing_url_for_bleach]
     if isinstance(v, basestring):
         v = jinja2.escape(smart_unicode(v))
-        v = bleach.linkify(v, callbacks=callbacks)
+        v = bleach.linkify(v, nofollow=True, filter_url=get_outgoing_url)
         return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):

@@ -186,12 +186,6 @@ def get_outgoing_url(url):
                      urllib.quote(url, safe='/&=')])
 
 
-def get_outgoing_url_for_bleach(attrs, new):
-    """Wrapper around `get_outgoing_url` for bleach callback processing."""
-    attrs['href'] = get_outgoing_url(attrs.get('href', ''))
-    return attrs
-
-
 def url_fix(s, charset='utf-8'):
     """Sometimes you get an URL by a user that just isn't a real
     URL because it contains unsafe characters like ' ' and so on.  This

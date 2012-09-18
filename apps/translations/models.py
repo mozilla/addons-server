@@ -2,7 +2,6 @@ from django.db import models, connection
 from django.utils import encoding
 
 import bleach
-from bleach.callbacks import nofollow
 
 import amo.models
 from amo import urlresolvers
@@ -122,8 +121,8 @@ class PurifiedTranslation(Translation):
         from amo.utils import clean_nl
         super(PurifiedTranslation, self).clean()
         cleaned = bleach.clean(self.localized_string)
-        callbacks = [nofollow, urlresolvers.get_outgoing_url_for_bleach]
-        linkified = bleach.linkify(cleaned, callbacks=callbacks)
+        linkified = bleach.linkify(cleaned, nofollow=True,
+                filter_url=urlresolvers.get_outgoing_url)
         self.localized_string_clean = clean_nl(linkified).strip()
 
     def __truncate__(self, length, killwords, end):
@@ -137,8 +136,8 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
     def clean(self):
-        callbacks = [nofollow, urlresolvers.get_outgoing_url_for_bleach]
-        linkified = bleach.linkify(self.localized_string, callbacks=callbacks)
+        linkified = bleach.linkify(self.localized_string,
+                filter_url=urlresolvers.get_outgoing_url)
         clean = bleach.clean(linkified, tags=['a'],
                              attributes={'a': ['href', 'rel']})
         self.localized_string_clean = clean
