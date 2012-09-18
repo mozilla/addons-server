@@ -8,7 +8,8 @@ import amo.tests
 
 class TestGetFeaturedIds(amo.tests.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured']
+                'base/addon_3615', 'base/collections', 'base/featured',
+                'base/users']
 
     no_locale = (1001, 1003, 2464, 7661, 15679)
     en_us_locale = (3481,)
@@ -43,7 +44,8 @@ class TestGetFeaturedIds(amo.tests.TestCase):
 
 class TestGetCreaturedIds(amo.tests.TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured']
+                'base/addon_3615', 'base/collections', 'base/featured',
+                'base/users']
     category = 22
 
     no_locale = (1001,)

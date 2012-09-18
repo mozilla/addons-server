@@ -299,7 +299,7 @@ class Webapp(Addon):
         path = smart_path(nfd_str(upload.path))
         file = version.files.latest()
         file.filename = file.generate_filename(extension='.webapp')
-        file.size = int(max(1, round(storage.size(path) / 1024, 0)))
+        file.size = storage.size(path)
         file.hash = (file.generate_hash(path) if
                      waffle.switch_is_active('file-hash-paranoia') else
                      upload.hash)
@@ -583,7 +583,7 @@ class Webapp(Addon):
             data = {
                 'name': self.name,
                 'version': version.version,
-                'size': file.size * 1024,  # TODO: Bug 791363.
+                'size': file.size,
                 'release_notes': version.releasenotes,
                 'package_path': file.get_url_path('manifest'),
             }

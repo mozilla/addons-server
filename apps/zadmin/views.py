@@ -1,6 +1,5 @@
 import csv
 import json
-import os
 from decimal import Decimal
 from urlparse import urlparse
 
@@ -8,6 +7,7 @@ from django import http
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import smart_str
@@ -780,7 +780,7 @@ def addon_manage(request, addon):
 def recalc_hash(request, file_id):
 
     file = get_object_or_404(File, pk=file_id)
-    file.size = int(max(1, round(os.path.getsize(file.file_path) / 1024, 0)))
+    file.size = storage.size(file.file_path)
     file.hash = file.generate_hash()
     file.save()
 

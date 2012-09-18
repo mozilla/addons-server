@@ -47,7 +47,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     version = models.ForeignKey('versions.Version', related_name='files')
     platform = models.ForeignKey('Platform', default=amo.PLATFORM_ALL.id)
     filename = models.CharField(max_length=255, default='')
-    size = models.PositiveIntegerField(default=0)  # kilobytes
+    size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
     # TODO: delete this column
     codereview = models.BooleanField(default=False)
@@ -156,8 +156,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         f.filename = f.generate_filename(os.path.splitext(upload.path)[1])
-        # Size in kilobytes.
-        f.size = int(max(1, round(storage.size(upload.path) / 1024)))
+        # Size in bytes.
+        f.size = storage.size(upload.path)
         data = cls.get_jetpack_metadata(upload.path)
         f.jetpack_version = data['sdkVersion']
         f.builder_version = data['builderVersion']

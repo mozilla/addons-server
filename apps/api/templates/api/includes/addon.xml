@@ -91,14 +91,14 @@
   {%- for file in version.all_files -%}
   <install hash="{{ file.hash }}"
     os="{{ amo.PLATFORMS[file.platform_id].api_name }}"
-    size="{{ file.size * 1024 }}">{{ file.get_url_path('api', addon) }}</install>
+    size="{{ file.size }}">{{ file.get_url_path('api', addon) }}</install>
   {% endfor -%}
   {%- endif -%}
   {%- if new_api %}
     {%- if addon.current_beta_version -%}
     {%- for file in addon.current_beta_version.all_files -%}
     <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
-             size="{{ file.size * 1024 }}"
+             size="{{ file.size }}"
              status="{{ amo.STATUS_CHOICES[amo.STATUS_BETA] }}">
       {{ file.get_url_path('api', addon) }}
     </install>

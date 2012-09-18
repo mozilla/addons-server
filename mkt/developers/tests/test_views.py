@@ -1401,7 +1401,7 @@ class TestUpload(BaseUploadTest):
 
 
 class TestUploadDetail(BaseUploadTest):
-    fixtures = ['base/apps', 'base/appversion', 'base/users']
+    fixtures = ['base/apps', 'base/appversion', 'base/platforms', 'base/users']
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()

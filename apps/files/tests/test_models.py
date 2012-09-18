@@ -76,8 +76,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Tests the methods of the File model.
     """
-
-    fixtures = ('base/addon_3615', 'base/addon_5579')
+    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/platforms']
 
     def test_get_absolute_url(self):
         f = File.objects.get(id=67442)
@@ -738,12 +737,12 @@ class TestFileFromUpload(UploadTest):
     def test_size(self):
         upload = self.upload('extension')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.size, 2)
+        eq_(f.size, 2264)
 
     def test_size_small(self):
         upload = self.upload('alt-rdf')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.size, 1)
+        eq_(f.size, 675)
 
     def test_beta_version_non_public(self):
         # Only public add-ons can get beta versions.

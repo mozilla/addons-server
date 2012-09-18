@@ -116,7 +116,7 @@
             "filename": "better_gcal-0.3-fx.xpi",
             "platform": 1,
             "version": 49515,
-            "size": 74,
+            "size": 75776,
             "datestatuschanged": "2008-07-07 12:08:01"
         }
     },
@@ -130,7 +130,7 @@
             "filename": "better_gcal-0.4-fx.xpi",
             "platform": 1,
             "version": 50000,
-            "size": 24,
+            "size": 24576,
             "datestatuschanged": "2009-09-18 12:32:59"
         },
         "model": "files.file",

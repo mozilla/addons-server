@@ -1419,7 +1419,7 @@ class TestHome(amo.tests.TestCase):
 
     def test_my_addons(self):
         addon = Addon.objects.get(id=3615)
-        
+
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
                     (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
                     (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
@@ -1431,7 +1431,7 @@ class TestHome(amo.tests.TestCase):
             file = addon.latest_version.files.all()[0]
             file.status = addon_status[1]
             file.save()
-        
+
         self.client.login(email='del@icio.us', password='password')
         doc = self.get_pq()
         addon_item = doc('#my-addons .addon-item')
@@ -1669,7 +1669,8 @@ class TestProfile(TestProfileBase):
 
 
 class TestSubmitBase(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/platforms',
+                'base/users']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')

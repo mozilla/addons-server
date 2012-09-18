@@ -17,7 +17,7 @@
   {% for addon in addons %}
   <p>
     <a href="{{ url('addons.detail', addon.slug) }}">{{ text }}</a>
-    ({{ _('{0} KB')|f(addon.file_size) }})
+    ({{ addon.file_size|filesizeformat }})
     {% if addon.locale_disambiguation %}
       <br>({{ addon.locale_disambiguation }})
     {% endif %}

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from cStringIO import StringIO
 from datetime import datetime
 from decimal import Decimal
 import json
@@ -339,7 +338,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
 
 class TestDeveloperPages(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592',
+    fixtures = ['base/addon_3615', 'base/addon_592', 'base/apps',
                 'base/users', 'addons/eula+contrib-addon',
                 'addons/addon_228106_info+dev+bio.json',
                 'addons/addon_228107_multiple-devs.json']
@@ -1256,7 +1255,7 @@ class TestEulaPolicyRedirects(amo.tests.TestCase):
 
 
 class TestEula(amo.tests.TestCase):
-    fixtures = ['addons/eula+contrib-addon']
+    fixtures = ['base/apps', 'addons/eula+contrib-addon']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=11730)
@@ -1330,7 +1329,7 @@ class TestEula(amo.tests.TestCase):
 
 
 class TestPrivacyPolicy(amo.tests.TestCase):
-    fixtures = ['addons/eula+contrib-addon']
+    fixtures = ['base/apps', 'addons/eula+contrib-addon']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=11730)

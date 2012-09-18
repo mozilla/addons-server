@@ -19,7 +19,7 @@
       "locale_disambiguation": null,
       "guid": "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}",
       "weekly_downloads": 0,
-      "support_url": 118320,
+      "support_url": null,
       "paypal_id": "accounting@mozilla.org",
       "average_rating": 4.702,
       "wants_contributions": false,
@@ -27,7 +27,7 @@
       "bayesian_rating": 0,
       "share_count": 0,
       "charity": null,
-      "homepage": 8086,
+      "homepage": null,
       "support_email": null,
       "public_stats": true,
       "status": 4,
@@ -42,19 +42,40 @@
       "external_software": false,
       "highest_status": 4,
       "get_satisfaction_company": null,
-      "name": 8085,
+      "name": 8087,
       "created": "2006-01-17 07:28:30",
       "type": 1,
       "icon_type": "image/png",
       "annoying": 1,
       "modified": "2010-08-17 14:20:20",
-      "summary": 8089,
+      "summary": 8087,
       "suggested_amount": "5.00",
       "site_specific": false,
       "_current_version": 115509,
       "total_reviews": 0,
       "the_reason": 509754
     }
+  },
+  {
+      "pk": 8087,
+      "model": "translations.translation",
+      "fields": {
+          "localized_string": "bunch of crap",
+          "created": "2009-05-11 22:06:47",
+          "modified": "2009-05-11 22:06:47",
+          "locale": "en-US",
+          "id": 8087,
+          "localized_string_clean": null
+      }
+  },
+  {
+      "pk": 5,
+      "model": "versions.license",
+      "fields": {
+          "text": 8087,
+          "modified": "2009-05-11 22:06:48",
+          "created": "2009-05-11 22:06:47"
+      }
   },
   {
     "pk": 115509,
@@ -173,7 +194,7 @@
       "platform": 1,
       "version": 115509,
       "datestatuschanged": "2010-08-17 13:31:08",
-      "size": 301
+      "size": 308224
     }
   },
   {
@@ -189,7 +210,7 @@
       "platform": 1,
       "version": 112396,
       "datestatuschanged": "2010-07-09 08:11:17",
-      "size": 301
+      "size": 308224
     }
   },
   {
@@ -205,7 +226,7 @@
       "platform": 1,
       "version": 105387,
       "datestatuschanged": "2010-04-30 01:00:40",
-      "size": 300
+      "size": 308224
     }
   },
   {
@@ -221,7 +242,7 @@
       "platform": 1,
       "version": 90149,
       "datestatuschanged": "2010-01-07 00:23:41",
-      "size": 300
+      "size": 308224
     }
   },
   {
@@ -237,7 +258,7 @@
       "platform": 1,
       "version": 87404,
       "datestatuschanged": "2009-12-12 00:22:42",
-      "size": 300
+      "size": 308224
     }
   },
   {
@@ -253,7 +274,7 @@
       "platform": 1,
       "version": 75952,
       "datestatuschanged": "2009-08-12 08:48:03",
-      "size": 290
+      "size": 296960
     }
   },
   {
@@ -269,7 +290,7 @@
       "platform": 1,
       "version": 73316,
       "datestatuschanged": "2009-07-13 07:54:51",
-      "size": 294
+      "size": 301056
     }
   },
   {
@@ -285,7 +306,7 @@
       "platform": 1,
       "version": 66463,
       "datestatuschanged": "2009-04-15 07:55:05",
-      "size": 309
+      "size": 316416
     }
   },
   {

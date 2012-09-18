@@ -11,7 +11,7 @@
         </time>
         {% if version.has_files %}
           <span class="filesize">
-            {{ (version.all_files[0].size * 1024)|filesizeformat }}
+            {{ version.all_files[0].size|filesizeformat }}
           </span>
         {% endif %}
       </span>

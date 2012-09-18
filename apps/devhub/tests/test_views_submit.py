@@ -23,7 +23,7 @@ from versions.models import License
 
 
 class TestSubmitPersona(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_5579', 'base/users']
+    fixtures = ['base/apps', 'base/addon_5579', 'base/platforms', 'base/users']
 
     def setUp(self):
         super(TestSubmitPersona, self).setUp()

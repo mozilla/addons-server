@@ -23,6 +23,7 @@ from versions.models import ApplicationsVersions, Version
 class TestDataValidate(amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',
+                'base/apps',
                 'base/appversion']
 
     def setUp(self):
@@ -110,6 +111,7 @@ class TestDataValidate(amo.tests.TestCase):
 
 class TestLookup(amo.tests.TestCase):
     fixtures = ['addons/update',
+                'base/appversion',
                 'base/platforms']
 
     def setUp(self):
@@ -378,7 +380,7 @@ class TestDefaultToCompat(amo.tests.TestCase):
     """
     Test default to compatible with all the various combinations of input.
     """
-    fixtures = ['addons/default-to-compat']
+    fixtures = ['base/platforms', 'addons/default-to-compat']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=337203)
