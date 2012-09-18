@@ -67,9 +67,6 @@
     > section {
         position: relative;
     }
-    .pressed() {
-        background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
-    }
 }
 
 .header-button {
@@ -129,18 +126,30 @@
         background-position: 0 -48px;
     }
     &.back {
-        width: 20px;
-        #site-header > .pressed;
+        width: 40px;
+        &:after {
+            right: 19px;
+            top: 0;
+        }
         &:before {
             background-position: 0 -72px;
             width: 12px;
             left: 4px;
         }
-        &:hover {
-            background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
+        /* Gives us a big click target without being totally insane. */
+        b {
+            display: block;
+            height: 50px;
+            overflow: hidden;
+            width: 20px;
         }
-        &:focus {
-            .depressed;
+        &:hover b {
+            background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+            background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+        }
+        &:active b {
+            background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
+            background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
         }
     }
     &.home {
