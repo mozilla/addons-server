@@ -93,7 +93,7 @@ def _uploader(resize_size, final_size):
             # Assert that the width is always identical.
             eq_(dest_image.size[0], fsize[0])
             # Assert that the height can be a wee bit fuzzy.
-            assert -1 <= dest_image.size[1] - final_size[1] <= 1, (
+            assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
                 "Got width %d, expected %d" %
                     (fsize[1], dest_image.size[1]))
 
