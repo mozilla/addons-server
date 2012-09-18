@@ -33,8 +33,9 @@ navigator
 exports.install = function(product, opt) {
     opt = $.extend({'domContext': document,
                     'navigator': navigator,
-                    'data': {'categories': product.categories}},
+                    'data': undefined},
                    opt || {});
+    opt.data.categories = product.categories;
     var self = apps,
         errSummary,
         manifestUrl = product.manifestUrl,
