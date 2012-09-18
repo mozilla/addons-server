@@ -20,6 +20,10 @@ var nav = (function() {
         // Are we home? clear any history.
         if (state.type == 'root') {
             stack = [state];
+
+            // Also clear any search queries living in the search box.
+            // Bug 790009
+            $('#search-q').val('');
         } else {
             // handle the back and forward buttons.
             if (popped && stack[0].path === state.path) {
