@@ -1,5 +1,11 @@
 $(document).ready(initPreviewTheme);
 
+// Quite a predicament when initPreviewTheme is automatically called for AMO
+// when loading this JS file, and when initPreviewTheme is separately called
+// for MKT, resulting in two event binding functions being called when only one
+// or the other should be called. This resulted in ResetTheme being called
+// right after PreviewTheme every time. Having a more global flag fixes this.
+
 // mktTheme: boolean switch for marketplace theme init since those previews
 //           will not be on hover.
 function initPreviewTheme(mktTheme) {
@@ -9,6 +15,7 @@ function initPreviewTheme(mktTheme) {
     }
 
     if (mktTheme === true) {
+        z.mktThemeFlag = true;
         bindPreviewListeners($themes);
     } else {
         $themes.previewPersona();
@@ -52,16 +59,19 @@ $.fn.previewPersona = function(o) {
     var $this = $(this);
     if (o.resetOnClick) {
         $this.click(function(e) {
+            if (z.mktThemeFlag) { return; }
             dispatchPersonaEvent('ResetPersona', e.target);
         });
     }
     $this.hoverIntent({
         interval: 100,
         over: function(e) {
+            if (z.mktThemeFlag) { return; }
             $(this).closest('.persona').addClass(o.activeClass);
             dispatchPersonaEvent('PreviewPersona', e.target);
         },
         out: function(e) {
+            if (z.mktThemeFlag) { return; }
             $(this).closest('.persona').removeClass(o.activeClass);
             dispatchPersonaEvent('ResetPersona', e.target);
         }
