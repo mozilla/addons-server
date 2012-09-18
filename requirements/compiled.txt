@@ -5,7 +5,8 @@ lxml==2.2.6
 PIL==1.1.7
 
 # For JWT to sign App receipts:
-M2Crypto==0.20.2
+# Temporary.
+#M2Crypto==0.20.2
 
 # For the addon validator, including C speedups.
 simplejson==2.3.2
