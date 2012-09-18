@@ -14,7 +14,7 @@ function dispatchPersonaEvent(aType, aNode, callback, forceHttps)
         var browsertheme = $(aNode).attr('data-browsertheme');
 
         if (forceHttps) {
-            browsertheme = browsertheme.replace(/http:\/\//g, 'https://')
+            browsertheme = browsertheme.replace(/http:\/\//g, 'https://');
         }
 
         $(aNode).attr('persona', browsertheme);
@@ -26,6 +26,7 @@ function dispatchPersonaEvent(aType, aNode, callback, forceHttps)
           var event = events[i];
           var eventObject = document.createEvent('Events');
           eventObject.initEvent(event, true, false);
+          aNode.dispatchevent(eventObject);
         }
         if (callback) {
             callback();
