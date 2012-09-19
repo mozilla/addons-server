@@ -14,7 +14,7 @@ class SigningError(Exception):
 
 
 @task
-def sign(version_id):
+def sign(version_id, reviewer=False):
     version = Version.objects.get(pk=version_id)
     app = version.addon
     log.info('Signing version: %s of app: %s' % (version_id, app))
@@ -33,12 +33,14 @@ def sign(version_id):
         log.error('Attempt to sign an app with no files in version.')
         raise SigningError('No file')
 
-    if storage.exists(file_obj.signed_file_path):
+    path = (file_obj.signed_reviewer_file_path if reviewer else
+            file_obj.signed_file_path)
+    if storage.exists(path):
         log.info('Already signed app exists.')
-        return False
+        return path
 
     # When we know how to sign, we will sign. For the moment, let's copy.
-    dest = storage.open(file_obj.signed_file_path, 'w')
+    dest = storage.open(path, 'w')
     src = storage.open(file_obj.file_path, 'r')
     # I'm not sure if this makes sense with an S3 backend.
     while 1:
@@ -51,4 +53,4 @@ def sign(version_id):
     dest.close()
     src.close()
     log.info('Signing complete.')
-    return True
+    return path

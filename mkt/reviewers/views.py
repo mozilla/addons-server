@@ -4,12 +4,14 @@ import json
 import sys
 import traceback
 
+from django import http
 from django.conf import settings
 from django.forms.formsets import formset_factory
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
+import commonware.log
 import jingo
 from tower import ugettext as _
 import requests
@@ -23,7 +25,8 @@ from addons.models import Persona, Version
 from amo import messages
 from amo.decorators import json_view, permission_required, post_required
 from amo.urlresolvers import reverse
-from amo.utils import escape_all, JSONEncoder, smart_decode, paginate
+from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder,
+                       smart_decode, paginate)
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
@@ -40,6 +43,7 @@ from .models import AppCannedResponse, ThemeLock, RereviewQueue
 
 
 QUEUE_PER_PAGE = 100
+log = commonware.log.getLogger('z.reviewers')
 
 
 @reviewer_required
@@ -648,3 +652,15 @@ def get_actions_json():
 def get_updated_expiry():
     return (datetime.datetime.now() +
             datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
+
+
+@permission_required('Apps', 'Review')
+@addon_view
+def get_signed_packaged(request, addon, version_id):
+    get_object_or_404(addon.versions, pk=version_id)
+    path = addon.sign_if_packaged(version_id, reviewer=True)
+    if not path:
+        raise http.Http404
+    log.info('Returning signed package addon: %s, version: %s' %
+             (addon.pk, version_id))
+    return HttpResponseSendFile(request, path, content_type='application/zip')

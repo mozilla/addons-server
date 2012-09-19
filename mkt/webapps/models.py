@@ -599,10 +599,10 @@ class Webapp(Addon):
 
         return data
 
-    def sign_if_packaged(self, version_pk):
+    def sign_if_packaged(self, version_pk, reviewer=False):
         if not self.is_packaged:
             return
-        packaged.sign(version_pk)
+        return packaged.sign(version_pk, reviewer=reviewer)
 
 
 # Pull all translated_fields from Addon over to Webapp.

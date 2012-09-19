@@ -42,5 +42,7 @@ urlpatterns = (
         views.themes_history, name='reviewers.themes.history'),
     url(r'^themes/logs$', views.themes_logs, name='reviewers.themes.logs'),
 
-    url(r'^receipt/', include(receipt_patterns))
+    url(r'^receipt/', include(receipt_patterns)),
+    url(r'^signed/%s/(?P<version_id>\d+)$' % amo.APP_SLUG,
+        views.get_signed_packaged, name='reviewers.signed')
 )

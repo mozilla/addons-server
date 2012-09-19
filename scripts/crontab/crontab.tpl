@@ -48,6 +48,7 @@ HOME=/tmp
 30 2 * * * {{ z_cron }} mail_pending_refunds --settings=settings_local_mkt
 45 2 * * * {{ django }} process_addons --task=update_manifests --settings=settings_local_mkt
 30 3 * * * {{ django }} cleanup
+45 3 * * * {{ z_cron }} cleanup_old_signed
 30 4 * * * {{ z_cron }} cleanup_synced_collections
 30 5 * * * {{ z_cron }} expired_resetcode
 30 6 * * * {{ z_cron }} category_totals

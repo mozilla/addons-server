@@ -1,4 +1,8 @@
 from datetime import datetime, timedelta
+import os
+
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 from nose.tools import eq_
 
@@ -6,7 +10,7 @@ import amo
 import amo.tests
 from addons.models import Addon
 from users.models import UserProfile
-from mkt.webapps.cron import update_weekly_downloads
+from mkt.webapps.cron import clean_old_signed, update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
 
 
@@ -50,3 +54,20 @@ class TestWeeklyDownloads(amo.tests.TestCase):
         self.add_install()
         update_weekly_downloads()
         eq_(Addon.objects.get(pk=self.addon.pk).weekly_downloads, 0)
+
+
+class TestCleanup(amo.tests.TestCase):
+
+    def setUp(self):
+        self.file = os.path.join(settings.SIGNED_APPS_REVIEWER_PATH,
+                                 '1', 'x.z')
+
+    def test_not_cleaned(self):
+        storage.open(self.file, 'w')
+        clean_old_signed()
+        assert storage.exists(self.file)
+
+    def test_cleaned(self):
+        storage.open(self.file, 'w')
+        clean_old_signed(-60)
+        assert not storage.exists(self.file)

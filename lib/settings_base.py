@@ -228,6 +228,8 @@ WATERMARKED_ADDONS_PATH = NETAPP_STORAGE + '/watermarked-addons'
 
 # Used for storing signed webapps.
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
+# Special reviewer signed ones for special people.
+SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
 
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.

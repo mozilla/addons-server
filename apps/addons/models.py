@@ -1383,7 +1383,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # to avoid having to catch NotImplemented errors.
         return False
 
-    def sign_if_packaged(self):
+    def sign_if_packaged(self, version_pk, reviewer=False):
         raise NotImplementedError('Not available for add-ons.')
 
 

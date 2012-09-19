@@ -1177,10 +1177,20 @@ class TestWatermarkCleanup(amo.tests.TestCase, amo.tests.AMOPaths):
 
 
 class TestSignedPath(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        self.file_ = File.objects.get(pk=81555)
 
     def test_path(self):
-        file_ = File.objects.get(pk=81555)
-        path = (file_.file_path.replace('.webapp', '.signed.webapp')
-                     .replace(settings.ADDONS_PATH, settings.SIGNED_APP_PATH))
-        eq_(file_.signed_file_path, path)
+        path = (self.file_.file_path
+                    .replace('.webapp', '.signed.webapp')
+                    .replace(settings.ADDONS_PATH, settings.SIGNED_APPS_PATH))
+        eq_(self.file_.signed_file_path, path)
+
+    def test_reviewer_path(self):
+        path = (self.file_.file_path
+                    .replace('.webapp', '.signed.webapp')
+                    .replace(settings.ADDONS_PATH,
+                             settings.SIGNED_APPS_REVIEWER_PATH))
+        eq_(self.file_.signed_reviewer_file_path, path)

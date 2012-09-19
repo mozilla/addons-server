@@ -61,27 +61,34 @@ class TestCrack(amo.tests.TestCase):
             [u'foo', u'bar'])
 
 
-class TestPackaged(amo.tests.AMOPaths, amo.tests.TestCase):
+class PackagedApp(amo.tests.AMOPaths):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         self.app = Addon.objects.get(pk=337141)
         self.app.update(is_packaged=True)
-
+        self.version = self.app.current_version
         self.file = self.app.current_version.all_files[0]
         self.file.update(filename='mozball.zip')
         self.pk = self.app.current_version.pk
 
     def setup_files(self):
         # Clean out any left over stuff.
-        if storage.exists(self.file.signed_file_path):
-            storage.delete(self.file.signed_file_path)
+        storage.delete(self.file.signed_file_path)
+        storage.delete(self.file.signed_reviewer_file_path)
 
         # Make sure the source file is there.
         if not storage.exists(self.file.file_path):
-            os.makedirs(os.path.dirname(self.file.file_path))
+            try:
+                # We don't care if these dirs exist.
+                os.makedirs(os.path.dirname(self.file.file_path))
+            except OSError:
+                pass
             shutil.copyfile(self.packaged_app_path('mozball.zip'),
                             self.file.file_path)
+
+
+class TestPackaged(PackagedApp, amo.tests.TestCase):
 
     @raises(packaged.SigningError)
     def test_not_app(self):
@@ -100,11 +107,17 @@ class TestPackaged(amo.tests.AMOPaths, amo.tests.TestCase):
 
     def test_already_exists(self):
         storage.open(self.file.signed_file_path, 'w')
-        assert not packaged.sign(self.pk)
+        assert packaged.sign(self.pk)
 
     def test_good(self):
         self.setup_files()
-        assert packaged.sign(self.pk)
+        path = packaged.sign(self.pk)
         # TODO: This will change when we actually sign things.
-        assert os.stat(self.file.signed_file_path).st_size == (
+        assert os.stat(path).st_size == (
+                os.stat(self.file.file_path).st_size)
+
+    def test_reviewer(self):
+        self.setup_files()
+        path = packaged.sign(self.pk, True)
+        assert os.stat(path).st_size == (
                 os.stat(self.file.file_path).st_size)
