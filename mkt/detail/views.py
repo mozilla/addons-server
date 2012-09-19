@@ -1,4 +1,4 @@
-import json
+import hashlib
 
 from django import http
 from django.shortcuts import redirect
@@ -7,10 +7,10 @@ import jingo
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
+import amo
 from abuse.models import send_abuse_report
 from access import acl
 from addons.decorators import addon_view_factory
-import amo
 from amo.decorators import login_required, permission_required
 from amo.forms import AbuseForm
 from amo.utils import paginate
@@ -57,13 +57,13 @@ def manifest(request, addon):
 
     if (not addon.is_packaged or addon.disabled_by_user or (
             not is_public and not (is_reviewer or is_dev))):
-        return http.HttpResponse(
-            json.dumps({}), content_type='application/x-web-app-manifest+json')
+        raise http.Http404
 
-    # TODO: Caching headers, bug 791843.
-    return http.HttpResponse(
-        addon.get_cached_manifest(),
+    manifest_content = addon.get_cached_manifest()
+    response = http.HttpResponse(manifest_content,
         content_type='application/x-web-app-manifest+json')
+    response['ETag'] = hashlib.md5(manifest_content).hexdigest()
+    return response
 
 
 @addon_all_view

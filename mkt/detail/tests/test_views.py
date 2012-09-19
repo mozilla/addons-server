@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import json
 
 from django.conf import settings
@@ -829,25 +830,25 @@ class TestPackagedManifest(DetailBase):
     def test_non_packaged(self):
         self.app.update(is_packaged=False)
         res = self.client.get(self.url)
-        eq_(json.loads(res.content), {})
+        eq_(res.status_code, 404)
 
     def test_disabled_by_user(self):
         self.app.update(disabled_by_user=True)
         res = self.client.get(self.url)
-        eq_(json.loads(res.content), {})
+        eq_(res.status_code, 404)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_public(self, _mock):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res._headers['content-type'],
-            ('Content-Type', 'application/x-web-app-manifest+json'))
+        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
 
     def test_app_pending(self):
         self.app.update(status=amo.STATUS_PENDING)
         res = self.client.get(self.url)
-        eq_(json.loads(res.content), {})
+        eq_(res.status_code, 404)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_pending_reviewer(self, _mock):
@@ -856,8 +857,8 @@ class TestPackagedManifest(DetailBase):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res._headers['content-type'],
-            ('Content-Type', 'application/x-web-app-manifest+json'))
+        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_pending_author(self, _mock):
@@ -866,5 +867,5 @@ class TestPackagedManifest(DetailBase):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res._headers['content-type'],
-            ('Content-Type', 'application/x-web-app-manifest+json'))
+        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
