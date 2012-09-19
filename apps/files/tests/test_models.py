@@ -260,7 +260,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def clean_files(self, f):
         if f.mirror_file_path and storage.exists(f.mirror_file_path):
-            storage.remove(f.mirror_file_path)
+            storage.delete(f.mirror_file_path)
         if not storage.exists(f.file_path):
             with storage.open(f.file_path, 'w') as fp:
                 fp.write('sample data\n')
