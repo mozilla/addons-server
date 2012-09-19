@@ -282,6 +282,7 @@ class GenerateErrorForm(happyforms.Form):
                     ['metlog_statsd', 'Metlog statsd message'],
                     ['metlog_json', 'Metlog JSON message'],
                     ['metlog_cef', 'Metlog CEF message'],
+                    ['metlog_sentry', 'Metlog Sentry message'],
                     ))
 
     def explode(self):
@@ -311,3 +312,8 @@ class GenerateErrorForm(happyforms.Form):
         elif error == 'metlog_json':
             settings.METLOG.metlog(type="metlog_json",
                     fields={'foo': 'bar', 'secret': 42})
+        elif error == 'metlog_sentry':
+            try:
+                1 / 0
+            except:
+                settings.METLOG.raven('metlog_sentry error triggered')

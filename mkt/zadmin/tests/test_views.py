@@ -87,6 +87,17 @@ class TestGenerateError(amo.tests.TestCase):
         eq_(msg['type'], 'cef')
         eq_(msg['logger'], 'zamboni')
 
+    def test_metlog_sentry(self):
+        self.url = reverse('zadmin.generate-error')
+        self.client.post(self.url,
+                         {'error': 'metlog_sentry'})
+
+        msgs = [json.loads(m) for m in self.metlog.sender.msgs]
+        eq_(len(msgs), 1)
+        msg = msgs[0]
+
+        eq_(msg['type'], 'sentry')
+
 
 class TestFeaturedApps(amo.tests.TestCase):
     fixtures = ['base/users']

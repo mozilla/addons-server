@@ -393,7 +393,6 @@ INSTALLED_APPS = (
     'djcelery',
     'django_extensions',
     'django_nose',
-    'raven.contrib.django',
     'gunicorn',
     'piston',
     'waffle',
@@ -1145,7 +1144,19 @@ LOGGING = {
 
 METLOG_CONF = {
     'logger': 'zamboni',
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
+    'plugins': {
+        'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+
+        # The sentry_project_id maps to the project ID that
+        # the sentry server has assigned to the 'sink' 
+        # that raven will send messages into.
+        # For dev instances, you can leave the dummy value of
+        # 2, but for actual live instances you will want to 
+        # make sure your project ID corresponds to what is in 
+        # your actual sentry instance.
+        'raven': ('metlog_raven.raven_plugin:config_plugin',
+                        {'sentry_project_id': 2}),
+        },
     'sender': {
         'class': 'metlog.senders.logging.StdLibLoggingSender',
         'logger_name': 'z.metlog',

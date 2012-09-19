@@ -15,6 +15,7 @@ from lib.misc.admin_log import ErrorTypeHandler
 from lib.log_settings_base import error_fmt
 from test_utils import RequestFactory
 
+
 cfg = {
     'version': 1,
     'formatters': {
@@ -187,3 +188,28 @@ class TestMetlogStdLibLogging(amo.tests.TestCase):
         self.assertEqual(msg['type'], 'timer')
         self.assertEqual(msg['payload'], str(elapsed))
         self.assertEqual(msg['fields']['name'], timer)
+
+    def test_send_raven(self):
+        try:
+            1 / 0
+        except:
+            self.metlog.raven('blah')
+
+        logrecord = self.handler.buffer[-1]
+
+        msg = json.loads(logrecord.msg)
+        eq_(msg['type'], 'sentry')
+
+    def test_tastypie_handler(self):
+        log = logging.getLogger('django.request.tastypie')
+        err_msg = "tastypie error triggered"
+        try:
+            1 / 0
+        except:
+            log.error(err_msg)
+
+        logrecord = self.handler.buffer[-1]
+
+        msg = json.loads(logrecord.msg)
+        eq_(msg['type'], 'sentry')
+        eq_(msg['fields']['msg'], err_msg)
