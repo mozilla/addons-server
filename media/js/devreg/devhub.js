@@ -309,6 +309,13 @@ function addonFormSubmit() {
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         };
+
+        // This exists because whoever wrote `imageStatus` didn't think there'd
+        // ever be anything besides icons and previews.
+        $('.image_preview_box .image img').each(function(el) {
+            el.src = imageStatus.newurl(el.src);
+        });
+
         $('.edit-media-button button').attr('disabled', false);
         $('form', parent_div).submit(function(e){
             e.preventDefault();
@@ -1034,6 +1041,7 @@ function imagePoller() {
 var imageStatus = {
     start: function(do_icon, do_preview) {
         this.icon = new imagePoller();
+        this.imageasset = new imagePoller();
         this.preview = new imagePoller();
         this.icon.check = function() {
             var self = imageStatus,
