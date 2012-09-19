@@ -14,7 +14,6 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 import requests
 import waffle
-from waffle.models import Switch
 
 import amo
 import amo.tests
@@ -1591,13 +1590,13 @@ class TestThemeReviewQueue(amo.tests.TestCase):
 
     def setUp(self):
         self.reviewer_count = 0
-        self.theme_count = rvw.THEME_INITIAL_LOCKS * 2
         # Make number of checked-out themes not evenly divide into total
         # number of themes.
-        self.theme_count += rvw.THEME_INITIAL_LOCKS / 2
+        self.theme_count = (rvw.THEME_INITIAL_LOCKS * 2 +
+                            rvw.THEME_INITIAL_LOCKS / 2)
         for x in range(self.theme_count):
             addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
-        Switch.objects.create(name='mkt-themes', active=True)
+        self.create_switch(name='mkt-themes')
 
     def create_and_become_reviewer(self):
         # Create new reviewer with unique username and return it.
@@ -1630,7 +1629,7 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         self.free_themes = self.theme_count
 
         expected_list = [rvw.THEME_INITIAL_LOCKS, rvw.THEME_INITIAL_LOCKS,
-                        int(rvw.THEME_INITIAL_LOCKS / 2), 0]
+                         rvw.THEME_INITIAL_LOCKS / 2 + 1, 0]
 
         for expected in expected_list:
             reviewer = self.create_and_become_reviewer()
@@ -1702,8 +1701,6 @@ class TestThemeReviewQueue(amo.tests.TestCase):
                             args=[slug])).status_code, 403)
         eq_(self.client.post(reverse('reviewers.themes.commit')).status_code,
             403)
-        eq_(self.client.post(reverse('reviewers.themes.commit')).status_code,
-            403)
         eq_(self.client.get(reverse('reviewers.themes.more')).status_code, 403)
 
         self.create_and_become_reviewer()
@@ -1717,11 +1714,9 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         eq_(self.client.get(reverse('reviewers.themes.more')).status_code, 200)
 
     def test_commit(self):
-        form_data = {
-            'form-MAX_NUM_FORMS': '',
-            'form-INITIAL_FORMS': str(Persona.objects.count()),
-            'form-TOTAL_FORMS': str(Persona.objects.count() + 1),
-        }
+        count = Persona.objects.count()
+        form_data = amo.tests.formset(initial_count=count,
+                                      total_count=count + 1)
         themes = Persona.objects.all()
 
         # Create locks.

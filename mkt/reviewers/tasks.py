@@ -1,4 +1,5 @@
 import datetime
+import logging
 
 from django.conf import settings
 
@@ -10,11 +11,15 @@ from amo.utils import send_mail_jinja
 import mkt.constants.reviewers as rvw
 
 
+log = logging.getLogger('z.task')
+
+
 @task
-def send_mail(cleaned_data, theme, theme_lock):
+def send_mail(cleaned_data, theme_lock):
     """
     Send emails out for respective review actions taken on themes.
     """
+    theme = cleaned_data['theme']
     action = cleaned_data['action']
     reject_reason = cleaned_data['reject_reason']
     reason = None
@@ -71,6 +76,7 @@ def send_mail(cleaned_data, theme, theme_lock):
             'action': action,
             'reject_reason': reject_reason,
             'comment': comment}, user=theme_lock.reviewer)
+    log.info('Theme %s (%s) - %s' % (theme.addon.name, theme.id, action))
 
     theme.approve = datetime.datetime.now()
     theme.save()

@@ -41,7 +41,8 @@ class ReviewAppLogForm(ReviewLogForm):
 
 
 class ThemeReviewForm(happyforms.Form):
-    theme = forms.IntegerField(widget=forms.HiddenInput())
+    theme = forms.ModelChoiceField(queryset=Persona.objects.all(),
+                                   widget=forms.HiddenInput())
     action = forms.TypedChoiceField(
         choices=rvw.REVIEW_ACTIONS.items(),
         widget=forms.HiddenInput(attrs={'class': 'action'}),
@@ -56,16 +57,13 @@ class ThemeReviewForm(happyforms.Form):
         widget=forms.HiddenInput(attrs={'class': 'comment'}))
 
     def clean_theme(self):
+        theme = self.cleaned_data['theme']
         try:
-            Persona.objects.get(id=self.cleaned_data['theme'])
-        except Persona.DoesNotExist:
-            raise forms.ValidationError(_('Theme does not exist.'))
-        return self.cleaned_data['theme']
-
-    def clean_action(self):
-        if self.cleaned_data.get('action') not in rvw.REVIEW_ACTIONS:
-            raise forms.ValidationError(_('Action not recognized.'))
-        return self.cleaned_data['action']
+            ThemeLock.objects.get(theme=theme)
+        except (ThemeLock.DoesNotExist):
+            raise forms.ValidationError(
+                _('Someone else is reviewing this theme.'))
+        return theme
 
     def clean_reject_reason(self):
         reject_reason = self.cleaned_data.get('reject_reason', None)
@@ -88,12 +86,6 @@ class ThemeReviewForm(happyforms.Form):
         return comment
 
     def save(self):
-        try:
-            theme = Persona.objects.get(id=self.cleaned_data['theme'])
-            theme_lock = ThemeLock.objects.get(theme=theme)
-        except (Persona.DoesNotExist, ThemeLock.DoesNotExist):
-            # This shouldn't happen so just discard the review.
-            return
-
-        send_mail(self.cleaned_data, theme, theme_lock)
+        theme_lock = ThemeLock.objects.get(theme=self.cleaned_data['theme'])
+        send_mail(self.cleaned_data, theme_lock)
         theme_lock.delete()
