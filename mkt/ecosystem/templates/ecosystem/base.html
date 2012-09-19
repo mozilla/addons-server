@@ -52,24 +52,24 @@
       {% endif %}
     </li>
   {% endif %}
-{% endblock %}
 
-{% if user.is_authenticated() %}
-  {% if tools_links|count > 1 %}
-    <li class="tools">
-      <a href="#">{{ tools_title }}</a>
-      <ul>
-        {% for link in tools_links %}
-          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% elif tools_links %}
-    <li class="context tools nomenu">
-      <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
-    </li>
+  {% if user.is_authenticated() %}
+    {% if tools_links|count > 1 %}
+      <li class="tools">
+        <a href="#">{{ tools_title }}</a>
+        <ul>
+          {% for link in tools_links %}
+            <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% elif tools_links %}
+      <li class="context tools nomenu">
+        <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
+      </li>
+    {% endif %}
   {% endif %}
-{% endif %}
+{% endblock %}
 
 {% block devhub_categories %}
   <div id="site-nav" class="devhub-categories">
