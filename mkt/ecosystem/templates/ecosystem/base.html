@@ -35,16 +35,9 @@
   {% else %}
     <li class="account anonymous nomenu login{{ ' legacy' if not waffle.switch('browserid-login') }}">
       {% if waffle.switch('browserid-login') %}
-        <a contextmenu="login" href="{{ login_link() }}"
-           class="browserid-login browserid"
+        <a href="{{ login_link() }}" class="browserid-login browserid"
            data-url="{{ url('users.browserid_login') }}">
            {{ _('Log in / Register') }}</a>
-
-        <menu type="context" id="login">
-          <menuitem data-url="{{ login_link() }}#open"
-                    label="{{ _('Admin / Editor Log in') }}"
-                    id="admin-login"></menuitem>
-        </menu>
       {% else %}
         {% trans reg=url('users.register'), login=login_link() %}
           <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>

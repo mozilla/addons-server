@@ -13,13 +13,7 @@
           {% endtrans -%}
         </p>
         <div class="button-wrapper">
-          {%- if request.user.is_authenticated() %}
-            <a href="{{ url('submit.app') }}" class="button prominent">
-          {% else %}
-            <a href="{{ get_login_link(url('submit.app')) }}"
-               class="button prominent browserid">
-          {%- endif -%}
-            {{ _('Submit an App') }}</a>
+          <a href="{{ url('submit.app') }}" class="button prominent">{{ _('Submit an App') }}</a>
         </div>
       </div>
       <div class="panel">

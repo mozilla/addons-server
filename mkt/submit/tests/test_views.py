@@ -72,6 +72,27 @@ class TestSubmit(amo.tests.TestCase):
             unicode(mkt.APP_STEPS_TITLE[current]))
 
 
+class TestProceed(TestSubmit):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestProceed, self).setUp()
+        self.user.update(read_dev_agreement=None)
+        self.url = reverse('submit.app')
+
+    def test_is_authenticated(self):
+        # Redirect user to Terms.
+        r = self.client.get(self.url)
+        self.assert3xx(r, reverse('submit.app.terms'))
+
+    def test_is_anonymous(self):
+        # Show user to Terms page but with the login prompt.
+        self.client.logout()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['proceed'], True)
+
+
 class TestTerms(TestSubmit):
     fixtures = ['base/users']
 

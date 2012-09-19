@@ -12,6 +12,12 @@ var z = {
     canInstallApps: true,
 };
 
+var data_user = $('body').data('user');
+_.extend(z, {
+    anonymous: data_user.anonymous,
+    pre_auth: data_user.pre_auth
+});
+
 (function() {
     _.extend(z, {'nav': BrowserUtils()});
     if (!z.nav.browser.firefox || z.nav.browser.mobile ||

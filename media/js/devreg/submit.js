@@ -41,6 +41,17 @@
 
 
 $(document).ready(function() {
+
+    // Anonymous users can view the Developer Agreement page,
+    // and then we prompt for log in.
+    if (z.anonymous && $('#submit-terms').length) {
+        var $login = $('#login');
+        $login.addClass('show');
+        $('form').on('click', 'button', _pd(function() {
+            $login.addClass('show');
+        }));
+    }
+
     // Icon previews.
     imageStatus.start(true, false);
     $('#submit-media').bind('click', function() {

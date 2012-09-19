@@ -20,6 +20,7 @@ submit_apps_patterns = patterns('',
 urlpatterns = decorate(write, patterns('',
     # App submission.
     url('^$', views.submit, name='submit.app'),
+    url('^proceed$', views.proceed, name='submit.app.proceed'),
     url('^terms$', views.terms, name='submit.app.terms'),
     url('^choose$', views.choose, name='submit.app.choose'),
     url('^manifest$', views.manifest, name='submit.app.manifest'),

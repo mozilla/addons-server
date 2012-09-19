@@ -61,6 +61,7 @@ CSS = {
 
         # Developer Log In / Registration.
         'css/devreg/login.less',
+        'css/mkt/login.less',
 
         # Footer.
         'css/devreg/footer.less',
@@ -195,7 +196,7 @@ JS = {
 
         # New stuff.
         'js/devreg/devhub.js',
-        'js/devreg/submit-details.js',
+        'js/devreg/submit.js',
         'js/devreg/edit.js',
 
         # Specific stuff for making payments nicer.

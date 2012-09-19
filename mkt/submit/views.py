@@ -28,9 +28,10 @@ from .decorators import read_dev_agreement_required, submit_step
 log = commonware.log.getLogger('z.submit')
 
 
-@login_required
 def submit(request):
     """Determine which step to redirect user to."""
+    if not request.user.is_authenticated():
+        return proceed(request)
     # If dev has already agreed, continue to next step.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
@@ -41,11 +42,28 @@ def submit(request):
         return redirect('submit.app.terms')
 
 
+def proceed(request):
+    """
+    This is a fake "Terms" view that we overlay the login.
+    We link here from the Developer Hub landing page.
+    """
+    if request.user.is_authenticated():
+        return submit(request)
+    agreement_form = forms.DevAgreementForm({'read_dev_agreement': True},
+                                            instance=None)
+    return jingo.render(request, 'submit/terms.html', {
+        'step': 'terms',
+        'agreement_form': agreement_form,
+        'proceed': True,
+    })
+
+
 @login_required
 @submit_step('terms')
 def terms(request):
     # If dev has already agreed, continue to next step.
-    if request.amo_user.read_dev_agreement:
+    if (getattr(request, 'amo_user', None) and
+            request.amo_user.read_dev_agreement):
         if waffle.switch_is_active('allow-packaged-app-uploads'):
             return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
