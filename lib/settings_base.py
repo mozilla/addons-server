@@ -226,6 +226,9 @@ GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
 # Used for storing watermarked addons for the app.
 WATERMARKED_ADDONS_PATH = NETAPP_STORAGE + '/watermarked-addons'
 
+# Used for storing signed webapps.
+SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
+
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
 # Example: /data/uploads

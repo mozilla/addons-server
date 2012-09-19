@@ -876,3 +876,18 @@ class TestQueue(amo.tests.WebappTestCase):
         assert not self.app.in_rereview_queue()
         RereviewQueue.objects.create(addon=self.app)
         assert self.app.in_rereview_queue()
+
+
+class TestPackagedSigning(amo.tests.WebappTestCase):
+
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_not_packaged(self, sign):
+        self.app.update(is_packaged=False)
+        self.app.sign_if_packaged()
+        assert not sign.called
+
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_packaged(self, sign):
+        self.app.update(is_packaged=True)
+        self.app.sign_if_packaged()
+        eq_(sign.call_args[0][0], self.app.current_version.pk)

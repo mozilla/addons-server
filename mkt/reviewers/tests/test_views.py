@@ -787,6 +787,16 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP)
 
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_public_signs(self, sign):
+        files = list(self.version.files.values_list('id', flat=True))
+        self.get_app().update(is_packaged=True)
+        self.post({'action': 'public', 'comments': 'something',
+                   'addon_files': files})
+
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(sign.call_args[0][0], self.get_app().current_version.pk)
+
     def test_pending_to_public_no_mozilla_contact(self):
         waffle.models.Switch.objects.create(name='reviewer-incentive-points',
                                             active=True)
@@ -833,6 +843,16 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP)
+
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_public_waiting_signs(self, sign):
+        files = list(self.version.files.values_list('id', flat=True))
+        self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
+        self.post({'action': 'public', 'comments': 'something',
+                   'addon_files': files})
+
+        eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
+        eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_reject(self):
         files = list(self.version.files.values_list('id', flat=True))

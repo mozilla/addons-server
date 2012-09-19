@@ -9,7 +9,7 @@ import commonware.log
 import jwt
 
 
-log = commonware.log.getLogger('z.services')
+log = commonware.log.getLogger('z.crypto')
 
 
 class SigningError(Exception):

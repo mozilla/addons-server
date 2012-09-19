@@ -1380,6 +1380,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # to avoid having to catch NotImplemented errors.
         return False
 
+    def sign_if_packaged(self):
+        raise NotImplementedError('Not available for add-ons.')
+
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)

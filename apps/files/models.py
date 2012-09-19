@@ -304,6 +304,13 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                             '%s-%s-%s' % (self.pk, user_pk, self.filename))
 
     @property
+    def signed_file_path(self):
+        split = self.filename.rsplit('.', 1)
+        split.insert(-1, 'signed')
+        return os.path.join(settings.SIGNED_APP_PATH,
+                            str(self.version.addon_id), '.'.join(split))
+
+    @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 

@@ -1174,3 +1174,13 @@ class TestWatermarkCleanup(amo.tests.TestCase, amo.tests.AMOPaths):
             os.utime(os.path.join(self.folder, path), (old, old))
         cleanup_watermarked_file()
         assert not os.path.exists(self.folder)
+
+
+class TestSignedPath(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def test_path(self):
+        file_ = File.objects.get(pk=81555)
+        path = (file_.file_path.replace('.webapp', '.signed.webapp')
+                     .replace(settings.ADDONS_PATH, settings.SIGNED_APP_PATH))
+        eq_(file_.signed_file_path, path)

@@ -34,6 +34,7 @@ from amo.utils import JSONEncoder, smart_path
 from constants.applications import DEVICE_TYPES
 from files.models import nfd_str
 from files.utils import parse_addon
+from lib.crypto import packaged
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES
@@ -597,6 +598,11 @@ class Webapp(Addon):
         cache.set(key, data, 0)
 
         return data
+
+    def sign_if_packaged(self, version_pk):
+        if not self.is_packaged:
+            return
+        packaged.sign(version_pk)
 
 
 # Pull all translated_fields from Addon over to Webapp.
