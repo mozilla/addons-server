@@ -11,3 +11,5 @@ ALTER TABLE `theme_locks` ADD CONSTRAINT `reviewer_id_refs_id_6928eea4` FOREIGN 
 ALTER TABLE `theme_locks` ADD CONSTRAINT `theme_id_refs_id_3202bbda` FOREIGN KEY (`theme_id`) REFERENCES `personas` (`id`);
 
 CREATE INDEX `theme_locks_d0f17e2b` ON `theme_locks` (`reviewer_id`);
+
+INSERT INTO `waffle_switch_mkt` (name, active, note) VALUES ('mkt-themes', 0, 'Enable Theme submission and gallery in Marketplace');
