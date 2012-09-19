@@ -1499,7 +1499,8 @@ RUN_ES_TESTS = False
 
 # The configuration for seclusion the client that speaks to solitude.
 # A tuple of the solitude hosts that seclusion will speak to.
-SECLUSION_HOSTS = ()
+SECLUSION_HOSTS = ('',)
+
 # The oAuth key and secret that solitude needs.
 SECLUSION_KEY = ''
 SECLUSION_SECRET = ''

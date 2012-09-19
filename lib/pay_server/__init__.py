@@ -175,4 +175,5 @@ def get_client():
         client.filter_encoder = filter_encoder
         return client
 
-client = get_client()
+if not client:
+    client = get_client()

@@ -94,7 +94,6 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 MOZMARKET_VENDOR_EXCLUDE = []
-SECLUSION_HOSTS = ('http://localhost/',)
 
 # These are the default languages. If you want a constrainted set for your
 # tests, you should add those in the tests.
