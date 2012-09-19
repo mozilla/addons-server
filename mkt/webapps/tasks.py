@@ -143,6 +143,7 @@ def update_cached_manifests(id, **kw):
         webapp = Webapp.objects.get(pk=id)
     except Webapp.DoesNotExist:
         _log(id, u'Webapp does not exist')
+        return
 
     if not webapp.is_packaged:
         return
