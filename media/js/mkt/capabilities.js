@@ -19,10 +19,10 @@ z.capabilities = {
     ),
     'fileAPI': !!window.FileReader,
     'userAgent': navigator.userAgent,
-    'desktop': safeMatchMedia('(min-width: 673px)').matches,
-    'tablet': safeMatchMedia('(max-width: 672px)').matches &&
-              safeMatchMedia('(min-width: 601px)').matches,
-    'mobile': safeMatchMedia('(max-width: 600px)').matches,
+    'desktop': safeMatchMedia('(min-width: 673px)'),
+    'tablet': safeMatchMedia('(max-width: 672px)') &&
+              safeMatchMedia('(min-width: 601px)'),
+    'mobile': safeMatchMedia('(max-width: 600px)'),
     'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
     'nativeScroll': (function() {
         return 'WebkitOverflowScrolling' in document.createElement('div').style;
