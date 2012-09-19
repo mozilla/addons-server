@@ -883,11 +883,11 @@ class TestPackagedSigning(amo.tests.WebappTestCase):
     @mock.patch('lib.crypto.packaged.sign')
     def test_not_packaged(self, sign):
         self.app.update(is_packaged=False)
-        self.app.sign_if_packaged()
+        self.app.sign_if_packaged(self.app.current_version.pk)
         assert not sign.called
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_packaged(self, sign):
         self.app.update(is_packaged=True)
-        self.app.sign_if_packaged()
+        self.app.sign_if_packaged(self.app.current_version.pk)
         eq_(sign.call_args[0][0], self.app.current_version.pk)
