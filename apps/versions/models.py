@@ -2,6 +2,7 @@
 import os
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
 import django.dispatch
@@ -422,7 +423,10 @@ def update_incompatible_versions(sender, instance, **kw):
     """When a new version is added or deleted, send to task to update if it
     matches any compat overrides.
     """
-    if not instance.addon.type == amo.ADDON_EXTENSION:
+    try:
+        if not instance.addon.type == amo.ADDON_EXTENSION:
+            return
+    except ObjectDoesNotExist:
         return
 
     from addons import tasks
@@ -448,7 +452,10 @@ def clear_compatversion_cache_on_save(sender, instance, created, **kw):
 
 def clear_compatversion_cache_on_delete(sender, instance, **kw):
     """Clears compatversion cache when Version deleted."""
-    if not instance.addon.type == amo.ADDON_EXTENSION:
+    try:
+        if not instance.addon.type == amo.ADDON_EXTENSION:
+            return
+    except ObjectDoesNotExist:
         return
 
     if not kw.get('raw'):
