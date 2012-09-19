@@ -1,20 +1,26 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}{{ mkt_page_title(_('Not Found')) }}{% endblock %}
+{% set title = _('Coming Soon') %}
+
+{% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block pagetype %}notice{% endblock %}
 
 {% block content %}
 <section id="walled" class="primary">
   <header>
-    <h1 id="top">Coming Soon</h1>
+    <h1 id="top">{{ title }}</h1>
   </header>
   <div class="island prose">
-    <p>Sorry, these pages for the Firefox Marketplace aren't ready yet.</p>
+    <p>
+      {{ _("Sorry, these pages for the Firefox Marketplace aren't ready yet.") }}
+    </p>
     <h2>Have an app to submit?</h2>
     <p id="access-devhub">
-      The Marketplace Developers site is still open.
-      <a href="{{ url('ecosystem.landing') }}">Upload your app &raquo;</a>
+      {{ _('The Marketplace Developers site is still open.') }}
+      <a href="{{ url('ecosystem.landing') }}">
+        {{ _('Upload your app') }} &raquo;
+      </a>
     </p>
   </div>
 </section>
