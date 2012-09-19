@@ -7,26 +7,30 @@
           <ol>
             <li>
               <a href="{{ url('ecosystem.documentation', page='html5') }}"
-                {% if page == 'html5' %}class="selected"{% endif %}>
+                {% if section == 'html5' %}class="selected"{% endif %}
+                title="{{ _('HTML5') }}">
                 {{ _('HTML5') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation', page='manifests') }}"
-                 {% if page == 'manifests' %}class="selected"{% endif %}>
+                 {% if section == 'manifests' %}class="selected"{% endif %}
+                 title="{{ _('Manifests') }}">
                 {{ _('Manifests') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation', page='manifest_faq') }}"
-                 {% if page == 'manifest_faq' %}class="selected"{% endif %}>
+                 {% if section == 'manifest_faq' %}class="selected"{% endif %}
+                 title="{{ _('Manifest FAQ') }}">
                 {{ _('Manifest FAQ') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='firefox_os') }}"
-                 {% if page == 'firefox_os' %}class="selected"{% endif %}>
+                 {% if section == 'firefox_os' %}class="selected"{% endif %}
+                 title="{{ _('Firefox OS') }}">
                 {{ _('Firefox OS') }}
               </a>
             </li>
@@ -34,24 +38,28 @@
           <h2>{{ _('Build') }}</h2>
           <ol>
             <li>
-              <a href="{{ get_login_link(url('submit.app')) }}">
+              <a href="{{ get_login_link(url('submit.app')) }}"
+                title="{{ _('Submit an App') }}">
                 {{ _('Submit an App') }}</a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation', page='devtools') }}"
-                 {% if page == 'devtools' %}class="selected"{% endif %}>
+                 {% if section == 'devtools' %}class="selected"{% endif %}
+                 title="{{ _('Dev Tools') }}">
                 {{ _('Dev Tools') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation', page='templates') }}"
-                 {% if page == 'templates' %}class="selected"{% endif %}>
+                 {% if section == 'templates' %}class="selected"{% endif %}
+                 title="{{ _('App Templates') }}">
                 {{ _('App Templates') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.support') }}"
-                 {% if page == 'support' %}class="selected"{% endif %}>
+                 {% if section == 'support' %}class="selected"{% endif %}
+                 title="{{ _('Support') }}">
                 {{ _('Support') }}
               </a>
             </li>
@@ -62,35 +70,41 @@
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='principles') }}"
-                 {% if page == 'principles' %}class="selected"{% endif %}>
+                 {% if section == 'principles' %}class="selected"{% endif %}
+                 title="{{ _('Design Principles') }}">
                 {{ _('Design Principles') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='purpose') }}"
-                 {% if page == 'purpose' %}class="selected"{% endif %}>
+                 {% if section == 'purpose' %}class="selected"{% endif %}
+                 title="{{ _('Purpose of your App') }}">
                 {{ _('Purpose of your App') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='patterns') }}"
-                 {% if page == 'patterns' %}class="selected"{% endif %}>
+                 {% if section == 'patterns' %}class="selected"{% endif %}
+                 title="{{ _('Design Patterns') }}">
                 {{ _('Design Patterns') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='custom_elements') }}"
-                 {% if page == 'custom_elements' %}class="selected"{% endif %}>
+                 {% if section == 'custom_elements' %}
+                   class="selected"{% endif %}
+                 title="{{ _('Custom Elements') }}">
                 {{ _('Custom Elements') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='references') }}"
-                 {% if page == 'references' %}class="selected"{% endif %}>
+                 {% if section == 'references' %}class="selected"{% endif %}
+                 title="{{ _('References') }}">
                 {{ _('References') }}</a>
             </li>
           </ol>
@@ -100,20 +114,24 @@
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='mkt_hosting') }}"
-                 {% if page == 'mkt_hosting' %}class="selected"{% endif %}>
+                 {% if section == 'mkt_hosting' %}class="selected"{% endif %}
+                 title="{{ _('Hosting') }}">
                 {{ _('Hosting') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
                  page='mkt_submission') }}"
-                 {% if page == 'mkt_submission' %}class="selected"{% endif %}>
+                 {% if section == 'mkt_submission' %}
+                   class="selected"{% endif %}
+                 title="{{ _('Marketplace Submission') }}">
                 {{ _('Marketplace Submission') }}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.partners') }}"
-                 {% if page == 'partners' %}class="selected"{% endif %}>
+                 {% if section == 'partners' %}class="selected"{% endif %}
+                 title="{{ _('Business Partners') }}">
                 {{ _('Business Partners') }}
               </a>
             </li>

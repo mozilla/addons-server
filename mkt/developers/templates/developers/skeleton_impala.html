@@ -58,23 +58,23 @@
     <section id="site-header">
       {% block site_header %}
         <div class="pad upper-header">
-          <div id="tabzilla-wrapper">
-            <a id="tabzilla" href="http://mozilla.org/">mozilla</a>
-          </div>
-          <nav id="aux-nav" role="navigation" class="menu-nav c">
-            <ul>
-              {% block user_actions %}
-                {% if not settings.READ_ONLY %}
-                  {% include 'impala/user_login.html' %}
-                {% endif %}
-              {% endblock %}
-              {% block aux_nav %}{% endblock %}
-            </ul>
-          </nav>
+          {% block aux_nav_content %}
+            <nav id="aux-nav" role="navigation" class="menu-nav c">
+              <ul>
+                {% block user_actions %}
+                  {% if not settings.READ_ONLY %}
+                    {% include 'impala/user_login.html' %}
+                  {% endif %}
+                {% endblock %}
+                {% block aux_nav %}{% endblock %}
+              </ul>
+            </nav>
+          {% endblock %}
           {% block masthead %}
           <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
             {{ _('Firefox Marketplace Developers') }}</a></h1>
           {% endblock %}
+          {% block devhub_categories %}{% endblock %}
         </div>
         {% block site_header_title %}
           {% include 'developers/nav.html' %}
@@ -110,6 +110,7 @@
     <div id="tooltip">
       <span></span>
     </div>
+    {% block site_nav_footer %}{% endblock %}
     <footer id="footer" class="c">
       <div class="pad">
         <h1 id="footzilla">mozilla</h1>
