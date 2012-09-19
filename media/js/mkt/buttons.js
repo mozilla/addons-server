@@ -25,7 +25,7 @@
     }
 
     $(window).bind('app_purchase_start', function(e, product) {
-        setButton(getButton(product), gettext('Purchasing&hellip;'), 'purchasing');
+        setButton(getButton(product), gettext('Purchasing'), 'purchasing');
     }).bind('app_purchase_success', function(e, product) {
         var $button = getButton(product),
             purchasedMark = '<span class="approval checkmark purchased">';
@@ -44,7 +44,8 @@
         setButton($button, gettext('Purchased'), 'purchased');
     }).bind('app_install_start', function(e, product) {
         var $button = getButton(product);
-        setButton($button, gettext('Installing&hellip;'), 'installing');
+        setButton($button, '<span class="spin"></span>',
+                  'installing');
 
         // Reset button if we've clicked outside of the doorhanger (albeit twice).
         $(document.body).on('click', function() {
