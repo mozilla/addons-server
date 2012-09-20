@@ -9,6 +9,8 @@ from addons.decorators import addon_view_factory
 from addons.models import Addon, Category, AddonCategory
 from addons.views import _category_personas as _category_themes
 from discovery.views import get_featured_personas
+from reviews.models import Review
+from reviews.views import get_flags
 from mkt.search.views import _app_search
 
 import jingo
@@ -31,8 +33,14 @@ def detail(request, addon):
     else:
         category_themes = None
 
+    reviews = Review.objects.latest().filter(addon=addon)
+
     data = {
         'product': addon,
+        'reviews': reviews[:2],
+        'flags': get_flags(request, reviews),
+        'has_review': request.user.is_authenticated() and
+                      reviews.filter(user=request.user.id).exists(),
         'categories': categories,
         'category_themes': category_themes,
         'author_themes': theme.authors_other_addons(request.APP)[:3],

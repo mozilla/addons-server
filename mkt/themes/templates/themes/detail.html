@@ -83,6 +83,11 @@
             {% endif %}
           </div>
         </div>
+      </section>
+
+      {% include "detail/includes/ratings.html" %}
+
+      <section class="product-details">
         <div id="more-themes" class="theme-details c">
           {% cache category_themes %}
             {% if category_themes %}

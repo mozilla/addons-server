@@ -31,7 +31,7 @@
     </div>
   </section>
   <section class="product-details">
-    <div class="vitals vitals-landing theme-details theme-list c">
+    <div class="vitals theme-details theme-list landing c">
       {% for theme in featured %}
         {{ theme_preview(theme.persona, size='small', landing=True) }}
       {% endfor %}
@@ -48,7 +48,7 @@
       </div>
     </section>
     <section class="product-details">
-      <div class="vitals vitals-landing theme-details c theme-list">
+      <div class="vitals theme-details theme-list landing c">
         {% for theme in popular %}
           {{ theme_preview(theme.persona, size='small', landing=True) }}
         {% endfor %}

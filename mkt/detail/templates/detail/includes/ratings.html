@@ -1,0 +1,53 @@
+{% if waffle.switch('ratings') %}
+  <section class="reviews c">
+    <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
+      <div class="review-stars-header">
+        <ul data-edit-url="{{ product.get_ratings_url('add') }}">
+          {% for review in reviews %}
+            {% include 'ratings/rating.html' %}
+          {% endfor %}
+          {% if reply %}
+            {% with review=reply.reply_to %}
+              {% include 'ratings/rating.html' %}
+            {% endwith %}
+            {% with review=reply %}
+              {% include 'ratings/rating.html' %}
+            {% endwith %}
+          {% endif %}
+        </ul>
+        {% if reviews %}
+          <a class="overall-reviews average-rating"
+             href="{{ product.get_ratings_url() }}">
+            {{ product.average_rating|float|stars }}
+            <span>
+              {% trans cnt=product.total_reviews,
+                       num=product.total_reviews|numberfmt %}
+                {{ num }} review
+              {% pluralize %}
+                {{ num }} reviews
+              {% endtrans %}
+            </span>
+          </a>
+        {% endif %}
+      </div>
+      <div class="review-stars wide">
+        {% include 'ratings/helpers/grouped_ratings.html' %}
+        {% if not reviews %}
+          <p class="not-rated">
+            {% if product.is_persona() %}
+              {{ _('This Theme is not yet rated.') }}
+            {% else %}
+              {{ _('This app is not yet rated.') }}
+            {% endif %}
+          </p>
+        {% endif %}
+        {% if can_review or product.is_persona() %}
+          <p><a class="overall-reviews add-edit-review" id="add-first-review"
+             href="{{ product.get_ratings_url('add') }}">
+            {{ _('Edit Your Review') if has_review else _('Write a Review')
+            }}</a></p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}

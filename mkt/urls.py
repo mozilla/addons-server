@@ -13,6 +13,7 @@ from mkt.account.urls import (purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.developers.views import login
 from mkt.purchase.urls import bluevia_services_patterns
+from mkt.ratings.urls import theme_review_patterns
 from mkt.themes.urls import theme_patterns
 
 
@@ -40,6 +41,7 @@ urlpatterns = patterns('',
     ('^ecosystem/', lambda r: redirect('ecosystem.landing', permanent=True)),
 
     # Theme detail pages.
+    ('^theme/%s/reviews/' % ADDON_ID, include(theme_review_patterns)),
     ('^theme/%s/' % ADDON_ID, include('mkt.themes.urls')),
 
     # Theme browse pages.

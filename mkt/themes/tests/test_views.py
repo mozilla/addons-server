@@ -6,6 +6,7 @@ import amo.tests
 from amo.tests import addon_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
+from reviews.models import Review
 from versions.models import License
 
 from nose.tools import eq_
@@ -32,6 +33,8 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
 
+        Review.objects.create(addon=self.addon, user_id=999)
+
         (waffle.models.Switch.objects
                .create(name='personas-migration-completed', active=True))
         waffle.models.Switch.objects.create(name='mkt-themes', active=True)
@@ -49,13 +52,13 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         other = addon_factory(type=amo.ADDON_PERSONA)
         self.create_addon_user(other)
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#more-artist .more-link').length, 1)
+        eq_(pq(r.content)('#more-artist').length, 1)
 
     def test_not_themes(self):
         other = addon_factory(type=amo.ADDON_EXTENSION)
         self.create_addon_user(other)
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#more-artist .more-link').length, 0)
+        eq_(pq(r.content)('#more-artist').length, 0)
 
     def test_new_more_themes(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
@@ -63,7 +66,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.persona.persona_id = 0
         self.persona.save()
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#more-artist .more-link').length, 0)
+        eq_(pq(r.content)('#more-artist').length, 1)
 
     def test_other_themes(self):
         """Ensure listed themes by the same author show up."""
@@ -86,6 +89,11 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         """Test whether author name works."""
         r = self.client.get(self.url)
         assert pq(r.content)('h2.authors').text().startswith('regularuser')
+
+    def test_reviews(self):
+        self.create_switch('ratings')
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('li.review').length, 1)
 
 
 class TestCategoryLandingTheme(amo.tests.TestCase):
