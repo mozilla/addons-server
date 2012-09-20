@@ -30,8 +30,8 @@ statsd==1.0.0
 
 ## Not on pypi.
 -e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
--e git://github.com/mozilla/amo-validator.git@b3ef9d1a2c6b2309bcea2c16b3d8d0dbd56a9ea4#egg=amo-validator
--e git://github.com/mozilla/app-validator.git@ecae218dfda8cb5a6f31f1011bdf796e6b1013fc#egg=app-validator
+-e git://github.com/mozilla/amo-validator.git@d7ee7bb0fc9298c03ad3a4675c84896721c89bb2#egg=amo-validator
+-e git://github.com/mozilla/app-validator.git@6e508c23cec77752c4560a035b13c43d0a8e3576#egg=app-validator
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
