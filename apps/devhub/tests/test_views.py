@@ -1463,13 +1463,13 @@ class TestHome(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
 
         addon.update(status=amo.STATUS_NULL)
-        yield no_link
+        no_link()
 
         addon.update(status=amo.STATUS_DISABLED)
-        yield no_link
+        no_link()
 
         addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        yield no_link
+        no_link()
 
 
 class TestActivityFeed(amo.tests.TestCase):
