@@ -1432,27 +1432,44 @@ class TestHome(amo.tests.TestCase):
             file.status = addon_status[1]
             file.save()
 
-        self.client.login(email='del@icio.us', password='password')
-        doc = self.get_pq()
-        addon_item = doc('#my-addons .addon-item')
-        eq_(addon_item.length, 1)
-        eq_(addon_item.find('.addon-name').attr('href'),
-            addon.get_dev_url('edit'))
-        eq_(addon_item.find('p').eq(2).find('a').attr('href'),
-            addon.current_version.get_url_path())
-        eq_('Queue Position: 1 of 1', addon_item.find('p').eq(3).text())
-        eq_(addon_item.find('p').eq(4).find('a').attr('href'),
-            addon.get_dev_url('versions') + '#version-upload')
+            doc = self.get_pq()
+            addon_item = doc('#my-addons .addon-item')
+            eq_(addon_item.length, 1)
+            eq_(addon_item.find('.addon-name').attr('href'),
+                addon.get_dev_url('edit'))
+            eq_(addon_item.find('p').eq(2).find('a').attr('href'),
+                addon.current_version.get_url_path())
+            eq_('Queue Position: 1 of 1', addon_item.find('p').eq(3).text())
+            eq_(addon_item.find('.upload-new-version a').attr('href'),
+                addon.get_dev_url('versions') + '#version-upload')
 
-        addon.status = statuses[1][0]
-        addon.save()
-        doc = self.get_pq()
-        addon_item = doc('#my-addons .addon-item')
-        eq_('Status: ' + unicode(amo.STATUS_CHOICES[addon.status]),
-            addon_item.find('p').eq(1).text())
+            addon.status = statuses[1][0]
+            addon.save()
+            doc = self.get_pq()
+            addon_item = doc('#my-addons .addon-item')
+            eq_('Status: ' + unicode(amo.STATUS_CHOICES[addon.status]),
+                addon_item.find('p').eq(1).text())
 
         Addon.objects.all().delete()
         eq_(self.get_pq()('#my-addons').length, 0)
+
+    def test_incomplete_no_new_version(self):
+        def no_link():
+            doc = self.get_pq()
+            addon_item = doc('#my-addons .addon-item')
+            eq_(addon_item.length, 1)
+            eq_(addon_item.find('.upload-new-version').length, 0)
+
+        addon = Addon.objects.get(id=3615)
+
+        addon.update(status=amo.STATUS_NULL)
+        yield no_link
+
+        addon.update(status=amo.STATUS_DISABLED)
+        yield no_link
+
+        addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        yield no_link
 
 
 class TestActivityFeed(amo.tests.TestCase):

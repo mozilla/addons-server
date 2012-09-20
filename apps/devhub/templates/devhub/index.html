@@ -62,10 +62,12 @@
           {% endtrans %}
         </p>
         {% endif %}
-        <p class="upload-new-version">
-          <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
-            {{ _('Upload New Version') }}</a>
-        </p>
+        {% if not item.addon.is_incomplete() and not item.addon.is_disabled %}
+          <p class="upload-new-version">
+            <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
+              {{ _('Upload New Version') }}</a>
+          </p>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
