@@ -140,7 +140,7 @@ def get_output(data):
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation='',
             version='11.6.7.637',
-            InstallerHash='sha256:8fd75b4a10fc9ebe787adfbef7e7c3b10c913a24d3b836f490975e2e078fccb4',
+            InstallerHash='sha256:45ab3d52bde56bd2c2372fc48a1e2c0ec9a402d4c216fee67ed74f80de4b2012',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             needsRestart='false',
             InstallerShowsUI='false')
