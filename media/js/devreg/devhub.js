@@ -312,7 +312,7 @@ function addonFormSubmit() {
 
         // This exists because whoever wrote `imageStatus` didn't think there'd
         // ever be anything besides icons and previews.
-        $('.image_preview_box .image img').each(function(el) {
+        $('.image_preview_box .image img').each(function(index, el) {
             el.src = imageStatus.newurl(el.src);
         });
 
