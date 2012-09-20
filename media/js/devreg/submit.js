@@ -47,7 +47,7 @@ $(document).ready(function() {
     if (z.anonymous && $('#submit-terms').length) {
         var $login = $('#login');
         $login.addClass('show');
-        $('form').on('click', 'button', _pd(function() {
+        $('#submit-terms form').on('click', 'button', _pd(function() {
             $login.addClass('show');
         }));
     }
