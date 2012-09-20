@@ -60,7 +60,7 @@
         $(e.target).closest('.confirm-action').removeClass('show');
     }));
 
-    var expandListings = false;
+    var expandListings = localStorage.getItem('expand-listings') === 'true';
     var $expandToggle = $('#site-header .expand');
 
     // Toggle app listing graphical/compact view.
@@ -71,10 +71,7 @@
 
     z.page.on('fragmentloaded', function() {
         if (z.body.data('page-type') === 'search') {
-            expandListings = localStorage.getItem('expand-listings') === 'true';
-            if (expandListings) {
-                setTrays(true);
-            }
+            setTrays(expandListings);
         }
     });
 
