@@ -152,6 +152,10 @@
 }
 
 @media (max-width: @7col) {
+    // On mobile do not show link to submit an app.
+    .still-open {
+        display: none;
+    }
     #login {
         &.old {
             section {

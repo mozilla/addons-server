@@ -3,19 +3,7 @@
 {% block content %}
 <section id="walled">
   <div>
-    <h1>Check back soon!</h1>
-    <p>
-      The Marketplace is currently only available to invited Mozillians.
-      If you're an active Mozilla contributor and would like access, please
-      send your vouched
-      <a href="https://mozillians.org/" target="_blank">mozillians.org</a>
-      profile link to <a href="mailto:marketplace-testing@mozilla.org">marketplace-testing@mozilla.org</a>.
-    </p>
-    <h1>Have an app to submit?</h1>
-    <p id="access-devhub" class="still-open">
-      The Marketplace Developers site is still open.
-      <a href="{{ url('ecosystem.landing') }}">Upload your app &raquo;</a>
-    </p>
+    {% include 'home/walled_prose.html' %}
   </div>
 </section>
 {% endblock %}
