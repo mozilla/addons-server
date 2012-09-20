@@ -2,6 +2,7 @@ import hashlib
 
 from django import http
 from django.shortcuts import redirect
+from django.views.decorators.http import etag
 
 import jingo
 from session_csrf import anonymous_csrf_exempt
@@ -60,10 +61,16 @@ def manifest(request, addon):
         raise http.Http404
 
     manifest_content = addon.get_cached_manifest()
-    response = http.HttpResponse(manifest_content,
-        content_type='application/x-web-app-manifest+json')
-    response['ETag'] = hashlib.md5(manifest_content).hexdigest()
-    return response
+    manifest_etag = hashlib.md5(manifest_content).hexdigest()
+
+    @etag(lambda r, a: manifest_etag)
+    def _inner_view(request, addon):
+        response = http.HttpResponse(manifest_content,
+            content_type='application/x-web-app-manifest+json')
+        response['ETag'] = manifest_etag
+        return response
+
+    return _inner_view(request, addon)
 
 
 @addon_all_view

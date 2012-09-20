@@ -845,6 +845,15 @@ class TestPackagedManifest(DetailBase):
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
         eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
 
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_conditional_get(self, _mock):
+        _mock.return_value = self._mocked_json()
+        etag = hashlib.md5(self._mocked_json()).hexdigest()
+        self.client.defaults['HTTP_IF_NONE_MATCH'] = '"%s"' % etag
+        res = self.client.get(self.url)
+        eq_(res.content, '')
+        eq_(res.status_code, 304)
+
     def test_app_pending(self):
         self.app.update(status=amo.STATUS_PENDING)
         res = self.client.get(self.url)
