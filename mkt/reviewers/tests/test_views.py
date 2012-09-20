@@ -1592,8 +1592,7 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         self.reviewer_count = 0
         # Make number of checked-out themes not evenly divide into total
         # number of themes.
-        self.theme_count = (rvw.THEME_INITIAL_LOCKS * 2 +
-                            rvw.THEME_INITIAL_LOCKS / 2)
+        self.theme_count = rvw.THEME_INITIAL_LOCKS * 2 + 2
         for x in range(self.theme_count):
             addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
         self.create_switch(name='mkt-themes')
@@ -1627,9 +1626,8 @@ class TestThemeReviewQueue(amo.tests.TestCase):
     def test_basic_queue(self):
         # Have reviewers take themes from the pool and into the queue.
         self.free_themes = self.theme_count
-
         expected_list = [rvw.THEME_INITIAL_LOCKS, rvw.THEME_INITIAL_LOCKS,
-                         rvw.THEME_INITIAL_LOCKS / 2 + 1, 0]
+                         2, 0]
 
         for expected in expected_list:
             reviewer = self.create_and_become_reviewer()
