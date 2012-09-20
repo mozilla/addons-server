@@ -140,7 +140,7 @@
 
     ol, ul {
         list-style-type: disc;
-        padding: 20px 30px 0;
+        padding: 0 30px;
     }
 
     h1 {
@@ -155,6 +155,10 @@
     h2, h3, dt {
         color: @medium-gray;
         margin: 30px 0 10px;
+    }
+
+    h3 {
+        margin: 0 0 10px;
     }
 
     dt {
@@ -176,15 +180,17 @@
 
 #site-map-footer {
     background-color: #f8f8f8;
-    border-bottom: 1px solid @faint-gray;
     border-top: 1px solid #fff;
     float: left;
-    margin-bottom: 25px;
-    padding: 20px 0;
+    padding: 10px 0;
     width: 100%;
 
-    .pad > ul {
-        padding: 0;
+    .pad {
+        width: 960px;
+
+        > ul {
+            padding: 0;
+        }
     }
 
     ul > li {
@@ -217,7 +223,7 @@
 
             a {
                 font-size: 14px;
-                font-weight: 100;
+                font-weight: @heavy;
                 line-height: 20px;
             }
         }
@@ -225,6 +231,9 @@
 }
 
 #footer {
+    float: left;
+    padding-top: 1em;
+
     p {
         width: 550px;
     }
