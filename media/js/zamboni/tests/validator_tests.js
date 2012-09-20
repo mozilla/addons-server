@@ -612,6 +612,7 @@ asyncTest('Test no tests section', function() {
         equals($('#suite-results-tier-2:visible', $suite).length, 0);
         equals($('#suite-results-tier-3:visible', $suite).length, 0);
         equals($('#suite-results-tier-4:visible', $suite).length, 0);
+        equals($('#suite-results-tier-5:visible', $suite).length, 0);
         equals($('#suite-results-tier-ec8030f7-c20a-464f-9b0e-13a3a9e97384-6 .msg', $suite).length, 1);
         $.mockjaxClear(mock);
         start();

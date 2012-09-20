@@ -17,6 +17,10 @@
         <h4><a href="#localization-tests">{{ _('Localization Tests') }}</a></h4>
         <div class="tier-summary"></div>
       </div>
+      <div class="test-tier" data-tier="5">
+        <h4><a href="#compatibility-tests">{{ _('Compatibility Tests') }}</a></h4>
+        <div class="tier-summary"></div>
+      </div>
     </div>
     <div class="suite-summary">
       <span></span>
@@ -70,11 +74,24 @@
         {# L10n: abbreviation of 'previous' #}
         <li><a href="#suite-results-tier-3">{{ _('Prev') }}</a></li>
         <li><a href="#addon-validator-suite">{{ _('Top') }}</a></li>
-        <li>{{ _('Next') }}</li>
+        <li><a href="#suite-results-tier-5">{{ _('Next') }}</a></li>
       </ul>
       <h4 id="localization-tests">{{ _('Localization Tests') }}</h4>
       <div class="result-summary">.</div>
     </div>
     <div class="tier-results" data-tier="4"></div>
+  </div>
+  <div class="result" id="suite-results-tier-5">
+    <div class="result-header">
+      <ul class="result-nav">
+        {# L10n: abbreviation of 'previous' #}
+        <li><a href="#suite-results-tier-4">{{ _('Prev') }}</a></li>
+        <li><a href="#addon-validator-suite">{{ _('Top') }}</a></li>
+        <li>{{ _('Next') }}</li>
+      </ul>
+      <h4 id="compatibility-tests">{{ _('Compatibility Tests') }}</h4>
+      <div class="result-summary">.</div>
+    </div>
+    <div class="tier-results" data-tier="5"></div>
   </div>
 </div>

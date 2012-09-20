@@ -1007,7 +1007,6 @@ form.select-review .errorlist {
 
 /* @group Add-on validator suite */
 #addon-validator-suite {
-    width: 56em;
     color: #929292;
 }
 #addon-validator-suite .template,
@@ -1041,7 +1040,7 @@ form.select-review .errorlist {
 #addon-validator-suite .test-tier {
     padding: 52px 1em 0 1em;
     margin: 1em 0 1em 0;
-    width: 21%;
+    width: 17.1%;
     float: left;
     text-align: center;
     border-left: 1px dashed #b9cedb;
