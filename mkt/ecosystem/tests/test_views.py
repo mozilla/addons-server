@@ -1,5 +1,6 @@
 from django.conf import settings
 
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -16,7 +17,17 @@ class TestLanding(amo.tests.TestCase):
     def test_legacy_redirect(self):
         self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get('/ecosystem/')
-        self.assertRedirects(r, '/developers/', 301)
+        self.assert3xx(r, '/developers/', 301)
+
+    @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
+        settings.MIDDLEWARE_CLASSES + type(settings.MIDDLEWARE_CLASSES)([
+            'amo.middleware.NoConsumerMiddleware',
+            'amo.middleware.LoginRequiredMiddleware'
+        ])
+    )
+    def test_legacy_redirect_with_walled_garden(self):
+        r = self.client.get('/ecosystem/')
+        self.assert3xx(r, '/developers/', 301)
 
     def test_tutorials_default(self):
         r = self.client.get(self.url)

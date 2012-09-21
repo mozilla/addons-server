@@ -25,6 +25,7 @@ class MiddlewareCase(amo.tests.TestCase):
 
 _langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
+
 @mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
 
@@ -489,10 +490,10 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
 
     # Patching MIDDLEWARE_CLASSES to enable and test walled garden.
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
-        settings.MIDDLEWARE_CLASSES + [
+        settings.MIDDLEWARE_CLASSES + type(settings.MIDDLEWARE_CLASSES)([
             'amo.middleware.NoConsumerMiddleware',
             'amo.middleware.LoginRequiredMiddleware'
-        ]
+        ])
     )
     def test_proper_redirects_with_region_stores(self):
         self.skip_if_disabled(settings.REGION_STORES)

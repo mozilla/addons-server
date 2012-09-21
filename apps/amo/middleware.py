@@ -8,7 +8,7 @@ import urllib
 
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.core.urlresolvers import is_valid_path
+from django.core.urlresolvers import is_valid_path, resolve
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
 from django.middleware import common
@@ -232,6 +232,13 @@ class LoginRequiredMiddleware(ViewMiddleware):
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         name = self.get_name(view_func)
+
+        # If we've encountered a lambda (redirect), then follow it to the view.
+        # And, no, we can't check for `types.LambdaType` because views are also
+        # functions.
+        if view_func.__name__ == '<lambda>':
+            name = resolve(view_func(request)['Location']).func.__module__
+
         if (request.user.is_authenticated() or
             getattr(view_func, '_no_login_required', False) or
             name.startswith(settings.NO_LOGIN_REQUIRED_MODULES)):
