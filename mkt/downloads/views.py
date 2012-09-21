@@ -23,5 +23,14 @@ def download_file(request, file_id, type=None):
                                          ignore_disabled=True):
             raise http.Http404()
 
-    log.info('Downloading: %s from %s' % (webapp.id, file.file_path))
-    return HttpResponseSendFile(request, file.file_path)
+    if webapp.is_packaged:  # Point to the zip file.
+        log.info('Downloading package: %s from %s' % (webapp.id,
+                                                      file.file_path))
+        path = webapp.sign_if_packaged(file.version_id)
+        return HttpResponseSendFile(request, path,
+                                    content_type='application/zip')
+
+    else:
+        log.info('Downloading manifest: %s from %s' % (webapp.id,
+                                                       file.file_path))
+        return HttpResponseSendFile(request, file.file_path)

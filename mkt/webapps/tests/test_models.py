@@ -394,13 +394,36 @@ class TestPackagedManifest(BasePackagedAppTest):
         mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(), mf)
 
-    def test_cached_manifest(self):
+    def test_cached_manifest_is_cached(self):
         webapp = self.post_addon()
         # First call does queries and caches results.
         webapp.get_cached_manifest()
         # Subsequent calls are cached.
         with self.assertNumQueries(0):
             webapp.get_cached_manifest()
+
+    def test_cached_manifest_contents(self):
+        webapp = self.post_addon()
+        version = webapp.current_version
+        file = version.all_files[0]
+        manifest = self._get_manifest_json()
+
+        data = json.loads(webapp.get_cached_manifest())
+        eq_(data['name'], webapp.name)
+        eq_(data['version'], webapp.current_version.version)
+        eq_(data['size'], file.size)
+        eq_(data['release_notes'], version.releasenotes)
+        eq_(data['package_path'], file.get_url_path('manifest'))
+        eq_(data['icons'], manifest['icons'])
+        eq_(data['locales'], manifest['locales'])
+
+    def test_package_path(self):
+        webapp = self.post_addon()
+        version = webapp.current_version
+        file = version.all_files[0]
+        res = self.client.get(file.get_url_path('manifest'))
+        eq_(res.status_code, 200)
+        eq_(res['content-type'], 'application/zip')
 
 
 class TestDomainFromURL(unittest.TestCase):
