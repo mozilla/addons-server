@@ -6,6 +6,14 @@
 
 // Description.
 
+.detail {
+    h3 {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+    }
+}
+
 .blurbs {
     clear: both;
     color: @text-gray;
@@ -48,15 +56,11 @@
     }
 }
 
-.content-ratings {
-    margin-top: 15px;
-}
-
 .content-rating {
     color: @text-gray;
     display: table;
     font-size: 12px;
-    margin: 15px 0;
+    margin-top: 10px;
     .icon {
         .border-radius(5px);
         background: @black;
@@ -145,13 +149,16 @@
 }
 
 .actions {
-    p + p {
-        margin-top: 5px;
+    p {
+        margin: 0;
+        + p {
+            margin-top: 15px;
+        }
     }
     .button {
-        min-width: 200px;
         position: relative;
         z-index: 1;
+        width: 100%;
     }
     .faked-purchase,
     .approval {
@@ -197,7 +204,7 @@
     .fat-button;
     .highlight;
     text-align: left;
-    margin: 20px 0;
+    margin-top: 15px;
     padding: 10px 33px 10px 52px;
     position: relative;
     h3 {
@@ -300,7 +307,6 @@
     width: 100%;
 }
 
-
 .visual {
     float: left;
     max-width: 128px;
@@ -316,15 +322,6 @@
     text-shadow: 0 1px 0 @white;
     .icon {
         .max-width(2);
-    }
-    .actions {
-        .min-width(3);
-        .max-width(4);
-        float: right;
-        margin-bottom: 16px;
-        .button {
-            display: block;
-        }
     }
     .vitals {
         float: left;
@@ -386,11 +383,6 @@
         float: left;
         margin-bottom: 10px;
         min-height: 100px;
-    }
-    h3 {
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 16px;
     }
     p {
         margin: 0;

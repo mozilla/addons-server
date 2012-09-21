@@ -26,7 +26,7 @@
       {# TODO: Re-link user profile pages if desktop implements them. #}
       {% trans user_url=review.user.get_url_path(),
                user_name=review.user.name %}
-        by {{ user_name }}
+        by <strong>{{ user_name }}</strong>
       {% endtrans %}
       {% if (perms.is_admin or perms.is_editor) and review.ip_address != '0.0.0.0' %}
         <span>[{{ review.ip_address }}]</span>

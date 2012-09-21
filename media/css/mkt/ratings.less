@@ -24,11 +24,11 @@ section.replies .review.reply {
         position: absolute;
         margin: 10px 0;
     }
-    .not-rated {
-        margin: 5px 0;
-        + p a {
-            padding: 5px 20px 5px 0;
-        }
+    p {
+        margin: 15px;
+    }
+    .not-rated + p a {
+        padding: 5px 20px 5px 0;
     }
 }
 
@@ -59,8 +59,12 @@ section.replies .review.reply {
     }
     .byline {
         color: @medium-gray;
+        font-weight: 600;
         b {
             color: @gray;
+        }
+        strong {
+            color: #444;
         }
     }
     .timestamp {
@@ -71,7 +75,7 @@ section.replies .review.reply {
         }
     }
     .body {
-        margin: 10px 0;
+        margin: 5px 0 15px;
     }
     .view-reply {
         font-size: 12px;
@@ -95,12 +99,20 @@ section.replies .review.reply {
     }
 }
 
-// This applies to and "app details" pages only.
+// This applies to "app details" pages only.
 .reviews {
     border-top: 1px solid rgba(255,255,255,.5);
     border-bottom: 1px solid rgba(3,16,26,.13);
-    > div {
-        padding: 20px 15px;
+}
+
+#reviews-detail {
+    padding: 15px;
+    ul {
+        margin: 0;
+        padding: 0;
+        .review {
+            padding: 0;
+        }
     }
 }
 
@@ -124,14 +136,6 @@ section.replies .review.reply {
             border-top: 1px solid #eceff0;
             border-bottom: 0;
         }
-    }
-}
-
-#reviews-detail ul {
-    padding: 0;
-    margin: 0 0 10px 0;
-    .review {
-        padding: 10px 0;
     }
 }
 
@@ -262,9 +266,10 @@ header.product {
     }
     span {
         color: @text;
-        vertical-align: middle;
+        vertical-align: bottom;
         &:first-child {
-            padding-right: 4px;
+            line-height: 18px;
+            padding-right: 6px;
         }
     }
     &:hover span {

@@ -151,37 +151,44 @@
             {% endif %}
           {% endif %}
         {% endif %}
-        {% if content_ratings %}
-          <div class="content-ratings c">
-            <h3>
-              {% trans DEJUS=mkt.ratingsbodies.DJCTQ.full_name,
-                       DEJUS_URL=mkt.ratingsbodies.DJCTQ.url %}
-                Rating by the <a href="{{ DEJUS_URL }}" target="_blank" title="{{ DEJUS }}">DEJUS</a>
-              {% endtrans %}
-            </h3>
-            {% for content_rating in content_ratings %}
-              {% set rating = content_rating.get_rating() %}
-              <div class="content-rating c">
-                <div class="icon icon-{{ rating.name }}">{{ rating.name }}</div>
-                <p class="description">{{ rating.description }}</p>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
       </div>
-
-      <div class="actions wide">
-        {% if is_dev %}
-          <p><a href="{{ product.get_dev_url() }}" class="button manage"
-                target="_blank">{{ _('Manage') }}</a></p>
-        {% endif %}
-        {% if is_reviewer %}
-          <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
-                class="button good reviewer" target="_blank">
-            {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
-        {% endif %}
-      </div>
-
     </section>
+
+    {% if content_ratings %}
+      <div class="content-ratings infobox c">
+        <div>
+          <h3>
+            {% trans DEJUS=mkt.ratingsbodies.DJCTQ.full_name,
+                     DEJUS_URL=mkt.ratingsbodies.DJCTQ.url %}
+              Rating by the <a href="{{ DEJUS_URL }}" target="_blank" title="{{ DEJUS }}">DEJUS</a>
+            {% endtrans %}
+          </h3>
+          {% for content_rating in content_ratings %}
+            {% set rating = content_rating.get_rating() %}
+            <div class="content-rating c">
+              <div class="icon icon-{{ rating.name }}">{{ rating.name }}</div>
+              <p class="description">{{ rating.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if is_dev or is_reviewer %}
+      <div class="actions infobox">
+        <div>
+          {% if is_dev %}
+            <p><a href="{{ product.get_dev_url() }}" class="button manage"
+                  target="_blank">{{ _('Manage') }}</a></p>
+          {% endif %}
+          {% if is_reviewer %}
+            <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
+                  class="button good reviewer" target="_blank">
+              {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
   {% endif %}
 {% endblock %}

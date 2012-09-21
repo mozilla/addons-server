@@ -14,8 +14,11 @@
     */
     border-top: 1px solid rgba(255,255,255,.5);
     border-bottom: 1px solid rgba(3,16,26,.13);
+    &:last-child {
+        border-bottom: 0;
+    }
     > div {
-        padding: 20px 15px;
+        padding: 15px;
     }
     .not-rated {
         color: @medium-gray;
@@ -27,13 +30,13 @@
         a {
             .fat-button;
         }
-        margin: 0;
         list-style-type: none;
+        margin: -15px 0 0;
         padding: 0;
     }
     li {
         float: left;
-        margin: 10px 0 0;
+        margin: 15px 0 0;
         min-height: inherit;
         padding-right: 5px;
         width: 50%;
