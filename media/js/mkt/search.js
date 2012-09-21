@@ -60,7 +60,12 @@
         $(e.target).closest('.confirm-action').removeClass('show');
     }));
 
-    var expandListings = localStorage.getItem('expand-listings') === 'true';
+    var expandListingsStored = localStorage.getItem('expand-listings');
+    if (expandListingsStored) {
+        expandListings = localStorage.getItem('expand-listings') === 'true'
+    } else {
+        expandListings = z.capabilities.desktop;
+    }
     var $expandToggle = $('#site-header .expand');
 
     // Toggle app listing graphical/compact view.
