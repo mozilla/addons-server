@@ -126,19 +126,19 @@ This API requires authentication.
 
 To validate an app::
 
-        POST /en-US/api/apps/validation/
+        POST /api/apps/validation/
 
 Body data should contain the manifest in JSON::
 
         {"manifest": "http://test.app.com/manifest"}
 
-        GET /en-US/api/apps/validation/123/
+        GET /api/apps/validation/123/
 
 This will return the status of the validation. Validation not processed yet::
 
         {"id": "123",
          "processed": false,
-         "resource_uri": "/en-US/api/apps/validation/123/",
+         "resource_uri": "/api/apps/validation/123/",
          "valid": false,
          "validation": ""}
 
@@ -146,7 +146,7 @@ Validation processed and good::
 
         {"id": "123",
          "processed": true,
-         "resource_uri": "/en-US/api/apps/validation/123/",
+         "resource_uri": "/api/apps/validation/123/",
          "valid": true,
          "validation": ""}
 
@@ -154,7 +154,7 @@ Validation processed and an error::
 
         {"id": "123",
          "processed": true,
-         "resource_uri": "/en-US/api/apps/validation/123/",
+         "resource_uri": "/api/apps/validation/123/",
          "valid": false,
          "validation": {
            "errors": 1, "messages": [{
@@ -166,7 +166,7 @@ Validation processed and an error::
 
 You can always check the validation later::
 
-        GET /en-US/api/apps/validation/123/
+        GET /api/apps/validation/123/
 
 Create
 ======
@@ -174,7 +174,7 @@ Create
 This API requires authentication and a successfully validated manifest. To
 create an app with your validated manifest::
 
-        POST /en-US/api/apps/app/
+        POST /api/apps/app/
 
 Body data should contain the manifest id from the validate call and other data
 in JSON::
@@ -194,7 +194,7 @@ the data using the manifest and return values so far::
          "name": "MozillaBall",
          "premium_type": "free",
          "privacy_policy": null,
-         "resource_uri": "/en-US/api/apps/app/1/",
+         "resource_uri": "/api/apps/app/1/",
          "slug": "mozillaball",
          "status": 0,
          "summary": "Exciting Open Web development action!",
@@ -211,7 +211,7 @@ Update
 
 This API requires authentication and a successfully created app::
 
-        PUT /en-US/api/apps/app/<app id>/
+        PUT /api/apps/app/<app id>/
 
 The body contains JSON for the data to be posted.
 
@@ -254,7 +254,7 @@ This API requires authentication and a successfully created app.
 
 To view details of an app, including its review status::
 
-        GET /en-US/api/apps/app/<app id>/
+        GET /api/apps/app/<app id>/
 
 Returns the status of the app::
 
@@ -274,7 +274,7 @@ Create
 
 Create a screenshot or video::
 
-        PUT /en-US/api/apps/preview/?app=<app id>
+        PUT /api/apps/preview/?app=<app id>
 
 The body should contain the screenshot or video to be uploaded in the following
 format::
@@ -296,7 +296,7 @@ Returns the screenshot id::
 
         {"position": 1, "thumbnail_url": "/img/uploads/...",
          "image_url": "/img/uploads/...", "filetype": "image/png",
-         "resource_uri": "/en-US/api/apps/preview/1/"}
+         "resource_uri": "/api/apps/preview/1/"}
 
 Get
 +++
@@ -304,13 +304,13 @@ Get
 Get information about the screenshot or video::
 
 
-        GET /en-US/api/apps/preview/<preview id>/
+        GET /api/apps/preview/<preview id>/
 
 Returns::
 
-        {"addon": "/en-US/api/apps/app/1/", "id": 1, "position": 1,
+        {"addon": "/api/apps/app/1/", "id": 1, "position": 1,
          "thumbnail_url": "/img/uploads/...", "image_url": "/img/uploads/...",
-         "filetype": "image/png", "resource_uri": "/en-US/api/apps/preview/1/"}
+         "filetype": "image/png", "resource_uri": "/api/apps/preview/1/"}
 
 
 Delete
@@ -318,7 +318,7 @@ Delete
 
 Delete a screenshot of video::
 
-        DELETE /en-US/api/apps/preview/<preview id>/
+        DELETE /api/apps/preview/<preview id>/
 
 This will return a 204 if the screenshot has been deleted.
 
@@ -328,7 +328,7 @@ Enabling an App
 Once all the data has been completed and at least one screenshot created, you
 can push the app to the review queue::
 
-        PATCH /en-US/api/apps/status/<app id>/
+        PATCH /api/apps/status/<app id>/
         {"status": "pending"}
 
 * `status` (optional): key statuses are
@@ -349,7 +349,7 @@ Valid transitions that users can initiate are:
   the required data is there. If not, you'll get an error containing the
   reason. For example::
 
-        PATCH /en-US/api/apps/status/<app id>/
+        PATCH /api/apps/status/<app id>/
         {"status": "pending"}
 
         Status code: 400
@@ -375,7 +375,7 @@ No authentication required.
 
 To find a list of categories available on the marketplace::
 
-        GET /en-US/api/apps/category/
+        GET /api/apps/category/
 
 Returns the list of categories::
 
@@ -384,7 +384,7 @@ Returns the list of categories::
              "previous": null, "total_count": 1},
          "objects":
             [{"id": 1, "name": "Webapp",
-              "resource_uri": "/en-US/api/apps/category/1/"}]
+              "resource_uri": "/api/apps/category/1/"}]
         }
 
 Use the `id` of the category in your app updating.
@@ -396,13 +396,13 @@ No authentication required.
 
 To find a list of apps in a category on the marketplace::
 
-        GET /en-US/api/apps/search/
+        GET /api/apps/search/
 
 Returns a list of the apps sorted by relevance::
 
         {"meta": {},
          "objects":
-            [{"absolute_url": "http://../en-US/app/marble-run-1/",
+            [{"absolute_url": "http://../app/marble-run-1/",
               "premium_type": 3, "slug": "marble-run-1", id="26",
               "icon_url": "http://../addon_icons/0/26-32.png",
               "resource_uri": null
@@ -416,7 +416,7 @@ Arguments:
 
 Example, to specify a category sorted by rating::
 
-        GET /en-US/api/apps/search/?cat=1&sort=rating
+        GET /api/apps/search/?cat=1&sort=rating
 
 .. _`MDN`: https://developer.mozilla.org
 .. _`Marketplace representative`: marketplace-team@mozilla.org
