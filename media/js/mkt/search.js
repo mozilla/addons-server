@@ -60,12 +60,10 @@
         $(e.target).closest('.confirm-action').removeClass('show');
     }));
 
+    // If we're on desktop, show graphical results - unless specified by user.
     var expandListingsStored = localStorage.getItem('expand-listings');
-    if (expandListingsStored) {
-        expandListings = localStorage.getItem('expand-listings') === 'true'
-    } else {
-        expandListings = z.capabilities.desktop;
-    }
+    var expandListings = expandListingsStored ? expandListingsStored === 'true' : z.capabilities.desktop;
+
     var $expandToggle = $('#site-header .expand');
 
     // Toggle app listing graphical/compact view.
