@@ -23,7 +23,7 @@ moz_inapp_pay==1.0.2
 oauth2==1.5.211
 PyBrowserID==0.6
 PyMySQL==0.5
-receipts==0.2.3
+receipts==0.2.4
 requests==0.14.0
 statsd==1.0.0
 
