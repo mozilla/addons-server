@@ -444,7 +444,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
         three_euro = numbers.format_currency(3,
                 'EUR',
                 locale=numbers.LC_NUMERIC)
-        eq_(sorted(data['amounts']), [six_bucks, three_euro])
+        eq_(set(data['amounts']), set([six_bucks, three_euro]))
 
     def assert_empty(self, data):
         eq_(data['total'], 0)
