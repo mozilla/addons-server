@@ -6,9 +6,15 @@ import re
 from time import gmtime, time
 from urlparse import parse_qsl
 
+from django.core.management import setup_environ
+
 from utils import (log_configure, log_exception, log_info, mypool,
-                   settings, ADDON_PREMIUM, CONTRIB_CHARGEBACK,
+                   ADDON_PREMIUM, CONTRIB_CHARGEBACK,
                    CONTRIB_PURCHASE, CONTRIB_REFUND)
+
+# This has to be _mkt to get SIGNING_SERVER_ACTIVE
+import settings_local_mkt as settings
+setup_environ(settings)
 
 # Go configure the log.
 log_configure()
