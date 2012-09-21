@@ -12,7 +12,7 @@
     <div id="submit-persona">
     <h3>{{ _('Listing Information') }}</h3>
     <form action="" method="post" class="devhub-form submit-media"
-          id="submit-media">
+          id="submit-media" enctype="multipart/form-data">
       {{ csrf() }}
       <header id="general-details" class="island swagger c">
         <table>
