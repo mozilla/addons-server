@@ -1,6 +1,7 @@
 import posixpath
 
 from django import http
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 
@@ -104,12 +105,12 @@ def download_watermarked(request, file_id):
             if not user:
                 log.debug('Watermarking denied, no user: %s, %s, %s'
                           % (file_id, email, hsh))
-                return http.HttpResponseForbidden()
+                raise PermissionDenied
 
         if not addon.has_purchased(user):
             log.debug('Watermarking denied, not purchased: %s, %s'
                       % (file_id, user.id))
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
 
     dest = file.watermark(user)
     if not dest:
@@ -130,7 +131,7 @@ def download_file(request, file_id, type=None):
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
 
     if addon.is_premium():
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     if addon.is_disabled or file.status == amo.STATUS_DISABLED:
         if (acl.check_addon_ownership(request, addon, viewer=True,

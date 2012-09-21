@@ -1,6 +1,7 @@
 import functools
 
 from django import http
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
 import waffle
@@ -54,7 +55,7 @@ def can_be_purchased(f):
             log.error('Marketplace waffle switch is off')
             raise http.Http404
         if not addon.can_be_purchased():
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return f(request, addon, *args, **kw)
     return wrapper
 
@@ -67,7 +68,7 @@ def has_purchased(f):
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):
         if addon.is_premium() and not addon.has_purchased(request.amo_user):
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return f(request, addon, *args, **kw)
     return wrapper
 
@@ -81,7 +82,7 @@ def has_purchased_or_refunded(f):
     def wrapper(request, addon, *args, **kw):
         if addon.is_premium() and not (addon.has_purchased(request.amo_user) or
                                        addon.is_refunded(request.amo_user)):
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return f(request, addon, *args, **kw)
     return wrapper
 
@@ -91,7 +92,7 @@ def has_not_purchased(f):
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):
         if addon.is_premium() and addon.has_purchased(request.amo_user):
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return f(request, addon, *args, **kw)
     return wrapper
 
@@ -101,6 +102,6 @@ def can_become_premium(f):
     @functools.wraps(f)
     def wrapper(request, addon_id, addon, *args, **kw):
         if not addon.can_become_premium():
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return f(request, addon_id, addon, *args, **kw)
     return wrapper

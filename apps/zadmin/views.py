@@ -7,6 +7,7 @@ from django import http
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
+from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect
@@ -699,7 +700,7 @@ def oauth_consumer_create(request):
 @json_view
 def general_search(request, app_id, model_id):
     if not admin.site.has_permission(request):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     model = app_cache.get_model(app_id, model_id)
     if not model:

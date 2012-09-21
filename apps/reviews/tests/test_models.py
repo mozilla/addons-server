@@ -9,7 +9,7 @@ from reviews.models import check_spam, Review, GroupedRating, Spam
 
 
 class TestReviewModel(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models']
+    fixtures = ['base/apps', 'base/platforms', 'reviews/test_models']
 
     def test_translations(self):
         translation.activate('en-US')
@@ -56,7 +56,7 @@ class TestGroupedRating(amo.tests.TestCase):
 
 
 class TestSpamTest(amo.tests.TestCase):
-    fixtures = ['reviews/test_models']
+    fixtures = ['base/apps', 'base/platforms', 'reviews/test_models']
 
     def test_create_not_there(self):
         Review.objects.all().delete()
@@ -64,4 +64,4 @@ class TestSpamTest(amo.tests.TestCase):
         check_spam(1)
 
     def test_add(self):
-        assert Spam().add(Review.objects.all()[0], 'ball so hard')
+        assert Spam().add(Review.objects.all()[0], 'numbers')

@@ -4,7 +4,7 @@ import functools
 import commonware.log
 
 from django import http
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
@@ -32,7 +32,7 @@ def allowed(request, file):
             allowed = acl.check_addon_ownership(request, addon, viewer=True,
                                                 dev=True)
     if not allowed:
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
     return True
 
 
@@ -95,9 +95,9 @@ def file_view_token(func, **kwargs):
         token = request.GET.get('token')
         if not token:
             log.error('Denying access to %s, no token.' % viewer.file.id)
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         if not Token.valid(token, [viewer.file.id, key]):
             log.error('Denying access to %s, token invalid.' % viewer.file.id)
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return func(request, viewer, key, *args, **kw)
     return wrapper

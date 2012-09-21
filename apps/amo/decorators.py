@@ -3,6 +3,7 @@ import json
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.utils.http import urlquote
 
 import commonware.log
@@ -60,7 +61,7 @@ def permission_required(app, action):
             if acl.action_allowed(request, app, action):
                 return f(request, *args, **kw)
             else:
-                return http.HttpResponseForbidden()
+                raise PermissionDenied
         return wrapper
     return decorator
 
@@ -77,7 +78,7 @@ def any_permission_required(pairs):
             for app, action in pairs:
                 if acl.action_allowed(request, app, action):
                     return f(request, *args, **kw)
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return wrapper
     return decorator
 
@@ -94,7 +95,7 @@ def restricted_content(f):
             or not acl.action_allowed(request, 'Restricted', 'UGC')):
             return f(request, *args, **kw)
         else:
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
     return wrapper
 
 

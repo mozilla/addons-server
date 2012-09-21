@@ -3,6 +3,7 @@ import re
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
@@ -77,9 +78,17 @@ def robots(request):
     return HttpResponse(template, mimetype="text/plain")
 
 
+def handler403(request):
+    if request.path_info.startswith('/api/'):
+        # Pass over to handler403 view in api if api was targeted.
+        return api.views.handler403(request)
+    else:
+        return jingo.render(request, 'amo/403.html', status=403)
+
+
 def handler404(request):
     if request.path_info.startswith('/api/'):
-        # Pass over to handler404 view in api if api was targeted
+        # Pass over to handler404 view in api if api was targeted.
         return api.views.handler404(request)
     else:
         return jingo.render(request, 'amo/404.html', status=404)
@@ -87,6 +96,7 @@ def handler404(request):
 
 def handler500(request):
     if request.path_info.startswith('/api/'):
+        # Pass over to handler500 view in api if api was targeted.
         return api.views.handler500(request)
     else:
         return jingo.render(request, 'amo/500.html', status=500)
@@ -156,7 +166,7 @@ def record(request):
     # we can just turn the percentage down to zero.
     if get_collect_timings():
         return django_statsd_record(request)
-    return http.HttpResponseForbidden()
+    raise PermissionDenied
 
 
 def plugin_check_redirect(request):

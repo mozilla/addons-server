@@ -1,4 +1,5 @@
 from django import http
+from django.core.exceptions import PermissionDenied
 
 import mock
 from nose.tools import eq_
@@ -105,8 +106,8 @@ class TestPremiumDecorators(amo.tests.TestCase):
     def test_cant_become_premium(self):
         self.addon.can_become_premium.return_value = False
         view = dec.can_become_premium(self.func)
-        res = view(self.request, self.addon.pk, self.addon)
-        eq_(res.status_code, 403)
+        with self.assertRaises(PermissionDenied):
+            view(self.request, self.addon.pk, self.addon)
 
     def test_can_become_premium(self):
         self.addon.can_become_premium.return_value = True
@@ -123,8 +124,8 @@ class TestPremiumDecorators(amo.tests.TestCase):
         view = dec.has_purchased(self.func)
         self.addon.is_premium.return_value = True
         self.addon.has_purchased.return_value = False
-        res = view(self.request, self.addon)
-        eq_(res.status_code, 403)
+        with self.assertRaises(PermissionDenied):
+            view(self.request, self.addon)
 
     def test_has_not_purchased(self):
         view = dec.has_not_purchased(self.func)
@@ -136,5 +137,5 @@ class TestPremiumDecorators(amo.tests.TestCase):
         view = dec.has_not_purchased(self.func)
         self.addon.is_premium.return_value = True
         self.addon.has_purchased.return_value = True
-        res = view(self.request, self.addon)
-        eq_(res.status_code, 403)
+        with self.assertRaises(PermissionDenied):
+            view(self.request, self.addon)

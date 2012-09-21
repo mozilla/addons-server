@@ -11,10 +11,36 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+from mkt.webapps.models import Webapp
+
+
+class Test403(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+
+    def _test_403(self, url):
+        res = self.client.get(url, follow=True)
+        eq_(res.status_code, 403)
+        self.assertTemplateUsed(res, 'site/403.html')
+
+    def test_403_admin(self):
+        self._test_403('/admin')
+
+    def test_403_devhub(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        app = Webapp.objects.get(pk=337141)
+        self._test_403(app.get_dev_url('edit'))
+
+    def test_403_reviewer(self):
+        self._test_403('/reviewers')
 
 
 class Test404(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['webapps/337141-steamcube']
 
     def _test_404(self, url):
         r = self.client.get(url, follow=True)
@@ -23,22 +49,22 @@ class Test404(amo.tests.TestCase):
         return r
 
     def test_404(self):
-        r = self._test_404('/xxx')
+        self._test_404('/xxx')
 
     def test_404_devhub(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
-        r = self._test_404('/developers/xxx')
+        self._test_404('/developers/xxx')
 
     def test_404_consumer_legacy(self):
-        r = self._test_404('/xxx')
+        self._test_404('/xxx')
 
     def test_404_consumer(self):
         # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
-        r = self._test_404('/xxx')
+        self._test_404('/xxx')
 
 
 class TestManifest(amo.tests.TestCase):

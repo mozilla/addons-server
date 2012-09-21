@@ -86,6 +86,11 @@ def render_xml(request, template, context={}, **kwargs):
     return HttpResponse(rendered, **kwargs)
 
 
+def handler403(request):
+    context = {'error_level': ERROR, 'msg': 'Not allowed'}
+    return render_xml(request, 'api/message.xml', context, status=403)
+
+
 def handler404(request):
     context = {'error_level': ERROR, 'msg': 'Not Found'}
     return render_xml(request, 'api/message.xml', context, status=404)

@@ -1334,7 +1334,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
 
 
 class TestBackupVersion(amo.tests.TestCase):
-    fixtures = ['addons/update']
+    fixtures = ['addons/update', 'base/platforms']
 
     def setUp(self):
         self.version_1_2_0 = 105387

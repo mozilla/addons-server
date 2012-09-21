@@ -1,7 +1,7 @@
 from itertools import groupby
 
-from django import http
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
 import commonware.log
@@ -105,7 +105,7 @@ def locale_dashboard(request, locale_code):
 @login_required
 def categories(request, locale_code):
     if not _permission_to_edit_locale(request, locale_code):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     with no_translation():
         cats = list(Category.objects.order_by('application'))

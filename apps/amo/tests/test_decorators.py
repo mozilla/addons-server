@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
+
 from django import http
+from django.core.exceptions import PermissionDenied
 
 import mock
 from nose import SkipTest
@@ -150,7 +152,8 @@ class TestPermissionRequired(amo.tests.TestCase):
     def test_permission_not_allowed(self, action_allowed):
         action_allowed.return_value = False
         func = decorators.permission_required('', '')(self.f)
-        eq_(func(self.request).status_code, 403)
+        with self.assertRaises(PermissionDenied):
+            func(self.request)
 
     @mock.patch('access.acl.action_allowed')
     def test_permission_allowed(self, action_allowed):

@@ -7,6 +7,7 @@ import time
 from django import http
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q, Count
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.datastructures import SortedDict
@@ -71,7 +72,7 @@ def reviewer_required(only=None):
             if acl.check_reviewer(request, only) or _view_on_get(request):
                 return f(request, *args, **kw)
             else:
-                return http.HttpResponseForbidden()
+                raise PermissionDenied
         return wrapper
     # If decorator has no args, and is "paren-less", it's callable.
     if callable(only):
@@ -265,7 +266,7 @@ def motd(request):
 @post_required
 def save_motd(request):
     if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
     form = forms.MOTDForm(request.POST)
     if form.is_valid():
         set_config('editors_review_motd', form.cleaned_data['motd'])

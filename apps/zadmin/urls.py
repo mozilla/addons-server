@@ -1,6 +1,6 @@
-from django import http
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
 from addons.urls import ADDON_ID
@@ -81,7 +81,7 @@ def login(request):
     # If someone is already auth'd then they're getting directed to login()
     # because they don't have sufficient permissions.
     if request.user.is_authenticated():
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
     else:
         return redirect('%s?to=%s' % (reverse('users.login'), request.path))
 

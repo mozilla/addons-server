@@ -8,6 +8,7 @@ import traceback
 from django import http
 from django import forms as django_forms
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.db import models, transaction
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404, redirect
@@ -1091,7 +1092,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
     elif (section == 'admin' and
           not acl.action_allowed(request, 'Apps', 'Configure') and
           not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug
@@ -1100,7 +1101,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
             if (section == 'admin' and
                 not acl.action_allowed(request, 'Apps', 'Configure')):
-                return http.HttpResponseForbidden()
+                raise PermissionDenied
 
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)

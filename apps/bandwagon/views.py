@@ -2,6 +2,7 @@ import functools
 import os
 
 from django import http
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 
@@ -50,7 +51,7 @@ def owner_required(f=None, require_owner=True):
                                               require_owner=require_owner):
                 return func(request, collection, username, slug, *args, **kw)
             else:
-                return http.HttpResponseForbidden()
+                raise PermissionDenied
         return wrapper
     return decorator(f) if f else decorator
 
@@ -179,7 +180,7 @@ class CollectionAddonFilter(BaseFilter):
 def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     if request.GET.get('format') == 'rss':
         return http.HttpResponsePermanentRedirect(c.feed_url())
@@ -222,7 +223,7 @@ def collection_detail(request, username, slug):
 def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     addons = c.addons.valid()
     addons_dict = [addon_to_dict(a) for a in addons]
@@ -375,7 +376,7 @@ def collection_alter(request, username, slug, action):
 
 def change_addon(request, collection, action):
     if not acl.check_collection_ownership(request, collection):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     try:
         addon = get_object_or_404(Addon.objects, pk=request.POST['addon_id'])
@@ -513,7 +514,7 @@ def delete(request, username, slug):
     if not acl.check_collection_ownership(request, collection, True):
         log.info(u'%s is trying to delete collection %s'
                  % (request.amo_user, collection.id))
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     data = dict(collection=collection, username=username, slug=slug)
 

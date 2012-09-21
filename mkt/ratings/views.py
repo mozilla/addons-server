@@ -1,4 +1,5 @@
 from django import http
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -89,7 +90,7 @@ def reply(request, addon, review_id):
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
     is_author = acl.check_addon_ownership(request, addon, dev=True)
     if not (is_admin or is_author):
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     form = ReviewReplyForm(request.POST or None)
@@ -121,7 +122,7 @@ def reply(request, addon, review_id):
 def add(request, addon):
     if addon.has_author(request.user):
         # Don't let app owners review their own apps.
-        return http.HttpResponseForbidden()
+        raise PermissionDenied
 
     # Get user agent of user submitting review. If there is an install with
     # logged user agent that matches the current user agent, hook up that

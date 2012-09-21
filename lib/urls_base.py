@@ -12,6 +12,7 @@ import versions.urls
 
 admin.autodiscover()
 
+handler403 = 'amo.views.handler403'
 handler404 = 'amo.views.handler404'
 handler500 = 'amo.views.handler500'
 

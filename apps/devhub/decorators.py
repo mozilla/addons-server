@@ -1,6 +1,7 @@
 import functools
 
-from django import http
+from django.core.exceptions import PermissionDenied
+
 import waffle
 
 from amo.decorators import login_required
@@ -40,7 +41,7 @@ def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
                 if not getattr(f, 'submitting', False) and step:
                     return _resume(addon, step)
                 return fun()
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return wrapper
     # The arg will be a function if they didn't pass owner_for_post.
     if callable(owner_for_post):

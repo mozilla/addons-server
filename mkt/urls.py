@@ -15,12 +15,15 @@ from mkt.developers.views import login
 from mkt.purchase.urls import bluevia_services_patterns
 from mkt.themes.urls import theme_patterns
 
+
 admin.autodiscover()
 
+handler403 = 'mkt.site.views.handler403'
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
+
 
 urlpatterns = patterns('',
     # Home.

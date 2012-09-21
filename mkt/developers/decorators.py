@@ -1,7 +1,6 @@
 import functools
 
-from django import http
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
 from amo.decorators import login_required
 from access import acl
@@ -65,7 +64,7 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
                             return _resume(addon, step)
                     return fun()
 
-            return http.HttpResponseForbidden()
+            raise PermissionDenied
         return wrapper
     # The arg will be a function if they didn't pass owner_for_post.
     if callable(owner_for_post):

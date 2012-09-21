@@ -208,7 +208,7 @@ class APITest(TestCase):
         """
         Check separate handler404 response for API.
         """
-        response = self.client.get('/en-us/firefox/api/nonsense')
+        response = self.client.get('/en-US/firefox/api/nonsense')
         doc = pq(response.content)
         eq_(response.status_code, 404)
         d = doc('error')

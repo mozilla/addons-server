@@ -24,6 +24,24 @@ from amo.urlresolvers import reverse
 from users.models import UserProfile
 
 
+class Test403(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
+    def test_403_no_app(self):
+        response = self.client.get('/en-US/admin/')
+        eq_(response.status_code, 403)
+        self.assertTemplateUsed(response, 'amo/403.html')
+
+    def test_403_app(self):
+        response = self.client.get('/en-US/thunderbird/admin/', follow=True)
+        eq_(response.status_code, 403)
+        self.assertTemplateUsed(response, 'amo/403.html')
+
+
 class Test404(amo.tests.TestCase):
 
     def test_404_no_app(self):
