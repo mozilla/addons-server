@@ -36,6 +36,7 @@ from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
 import bleach
+from cef import log_cef as _log_cef
 import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
@@ -791,7 +792,10 @@ def log_cef(name, severity, env, *args, **kwargs):
         r = env
     else:
         r = {}
-    return metlog.cef(name, severity, r, *args, config=c, **kwargs)
+    if settings.USE_METLOG_FOR_CEF:
+        return metlog.cef(name, severity, r, *args, config=c, **kwargs)
+    else:
+        return _log_cef(name, severity, r, *args, config=c, **kwargs)
 
 
 @contextlib.contextmanager

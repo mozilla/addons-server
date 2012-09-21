@@ -1165,6 +1165,8 @@ METLOG_CONF = {
 
 METLOG = client_from_dict_config(METLOG_CONF)
 
+USE_METLOG_FOR_CEF = False
+
 CEF_PRODUCT = "amo"
 
 # CSP Settings
