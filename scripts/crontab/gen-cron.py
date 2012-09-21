@@ -2,8 +2,6 @@
 import os
 from optparse import OptionParser
 
-from jinja2 import Template
-
 
 TEMPLATE = open(os.path.join(os.path.dirname(__file__), 'crontab.tpl')).read()
 
@@ -36,7 +34,7 @@ def main():
     # Needs to stay below the opts.user injection.
     ctx['python'] = opts.python
 
-    print Template(TEMPLATE).render(**ctx)
+    print TEMPLATE % ctx
 
 
 if __name__ == "__main__":
