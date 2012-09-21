@@ -17,7 +17,7 @@ mod_wsgi. Locally you can optionally use `gunicorn`_, for example::
 Then you can do::
 
     cd services
-    gunicorn -c wsgi/verify.wsgi -b 127.0.0.1:9000 --debug verify:application
+    gunicorn --log-level=DEBUG -c wsgi/receiptverify.py -b 127.0.0.1:9000 --debug verify:application
 
 To test::
 
