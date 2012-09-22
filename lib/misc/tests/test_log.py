@@ -11,8 +11,9 @@ from metlog.config import client_from_dict_config
 
 import amo.tests
 import commonware.log
-from lib.misc.admin_log import ErrorTypeHandler
 from lib.log_settings_base import error_fmt
+from lib.metlog_shim import MetlogTastypieHandler
+from lib.misc.admin_log import ErrorTypeHandler
 from test_utils import RequestFactory
 
 
@@ -200,16 +201,52 @@ class TestMetlogStdLibLogging(amo.tests.TestCase):
         msg = json.loads(logrecord.msg)
         eq_(msg['type'], 'sentry')
 
+
+class TestTastypieHandler(amo.tests.TestCase):
+    def setUp(self):
+        """
+        We need to set the settings.METLOG instance to use a
+        DebugCaptureSender so that we can inspect the sent messages.
+
+        We also need to force list of handlers for
+        'django.request.tastypie' to use only the MetlogTastypieHandler,
+        then revert the list of handlers back to whatever they were
+        prior to invoking the test case.
+        """
+
+        metlog = settings.METLOG
+        METLOG_CONF = {
+            'logger': 'zamboni',
+            'sender': {'class': 'metlog.senders.DebugCaptureSender'},
+        }
+        from metlog.config import client_from_dict_config
+        self.metlog = client_from_dict_config(METLOG_CONF, metlog)
+        self.metlog.sender.msgs.clear()
+
+        self.logger = logging.getLogger('django.request.tastypie')
+
+        """
+        When logging.config.dictConfig is used to configure logging
+        with a 'one-shot' config dictionary, any previously
+        instantiated singleton loggers (ie: all old loggers not in
+        the new config) will be explicitly disabled.
+        """
+        self.logger.disabled = False
+
+        self._orig_handlers = self.logger.handlers
+        self.logger.handlers = [MetlogTastypieHandler(settings.METLOG)]
+
+    def tearDown(self):
+        self.logger.handlers = self._orig_handlers
+
     def test_tastypie_handler(self):
-        log = logging.getLogger('django.request.tastypie')
         err_msg = "tastypie error triggered"
         try:
             1 / 0
         except:
-            log.error(err_msg)
+            self.logger.error(err_msg)
 
-        logrecord = self.handler.buffer[-1]
+        msg = json.loads(self.metlog.sender.msgs[0])
 
-        msg = json.loads(logrecord.msg)
         eq_(msg['type'], 'sentry')
         eq_(msg['fields']['msg'], err_msg)
