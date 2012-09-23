@@ -211,7 +211,8 @@ def check_spam(review_id, **kw):
               .filter(user=review.user, created__gte=thirty_days))
     if len(others) > 10:
         spam.add(review, 'numbers')
-    if bleach.url_re.search(review.body.localized_string):
+    if (review.body is not None and
+        bleach.url_re.search(review.body.localized_string)):
         spam.add(review, 'urls')
     for other in others:
         if ((review.title and review.title == other.title)
