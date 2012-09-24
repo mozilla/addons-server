@@ -394,6 +394,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_nose',
     'gunicorn',
+    'raven.contrib.django',
     'piston',
     'waffle',
 
@@ -1154,8 +1155,6 @@ METLOG_CONF = {
         # 2, but for actual live instances you will want to 
         # make sure your project ID corresponds to what is in 
         # your actual sentry instance.
-        'raven': ('metlog_raven.raven_plugin:config_plugin',
-                        {'sentry_project_id': 2}),
         },
     'sender': {
         'class': 'metlog.senders.logging.StdLibLoggingSender',
