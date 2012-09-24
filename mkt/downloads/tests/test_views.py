@@ -1,18 +1,17 @@
 from nose.tools import eq_
 
 import amo
-import amo.tests
-from addons.models import Addon
 from amo.urlresolvers import reverse
+from mkt.submit.tests.test_views import BasePackagedAppTest
 
 
-class TestDownload(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+class TestDownload(BasePackagedAppTest):
+    fixtures = ['base/apps', 'base/users', 'base/platforms',
+                'webapps/337141-steamcube']
 
     def setUp(self):
-        self.webapp = Addon.objects.get(pk=337141)
-        self.webapp.update(is_packaged=True)
-        self.file = self.webapp.get_latest_file()
+        super(TestDownload, self).setUp()
+        super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
 
     def test_download(self):
@@ -21,7 +20,7 @@ class TestDownload(amo.tests.TestCase):
         assert 'x-sendfile' in res._headers
 
     def test_disabled(self):
-        self.webapp.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
 
     def test_disabled_but_owner(self):
@@ -35,5 +34,5 @@ class TestDownload(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_not_webapp(self):
-        self.webapp.update(type=amo.ADDON_EXTENSION)
+        self.app.update(type=amo.ADDON_EXTENSION)
         eq_(self.client.get(self.url).status_code, 404)
