@@ -17,11 +17,16 @@ def main():
                            "Only define for cron.d style crontabs"))
     parser.add_option("-p", "--python", default="/usr/bin/python2.6",
                       help="Python interpreter to use")
+    parser.add_option("-d", "--deprecations", default=False,
+                      help="Show deprecation warnings")
 
     (opts, args) = parser.parse_args()
 
     if not opts.zamboni or not opts.remora:
         parser.error("-z and -r must be defined")
+
+    if not opts.deprecations:
+        opts.python += ' -W ignore::DeprecationWarning'
 
     ctx = {'django': 'cd %s; %s manage.py' % (opts.zamboni, opts.python),
            'remora': 'cd %s' % opts.remora}
