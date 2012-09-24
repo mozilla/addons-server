@@ -1,3 +1,5 @@
+# This file is used by Jenkins for testing,
+# it is not needed for local testing.
 -r prod.txt
 
 psutil==0.2.0
