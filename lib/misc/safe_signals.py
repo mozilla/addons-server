@@ -13,7 +13,7 @@ and logs errors.  It's like ``Signal.send_robust`` but with logging.
 import logging
 
 from django.dispatch.dispatcher import Signal, _make_id
-from services.utils import settings
+from django.conf import settings
 
 
 log = logging.getLogger('signals')
