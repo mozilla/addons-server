@@ -99,7 +99,9 @@
       </div>
     </section>
 
-    {% include "detail/includes/ratings.html" %}
+    {% with can_review=can_review, has_review=has_review %}
+      {% include "detail/includes/ratings.html" %}
+    {% endwith %}
 
     <section id="support" class="infobox support c">
       <div>

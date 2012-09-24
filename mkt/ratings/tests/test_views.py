@@ -219,7 +219,7 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.detail)
         submit_button = pq(r.content)('#add-first-review')
         eq_(submit_button.length, 1)
-        eq_(submit_button.text(), 'Submit a Review')
+        eq_(submit_button.text(), 'Write a Review')
 
     def test_add_link_logged(self):
         # Ensure logged user can see Add Review links.
