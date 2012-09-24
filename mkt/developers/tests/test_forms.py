@@ -12,13 +12,13 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon
+from editors.models import RereviewQueue
 from files.helpers import copyfileobj
 from market.models import Price
 from users.models import UserProfile
 
 import mkt
 from mkt.developers import forms
-from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import AddonExcludedRegion
 
 

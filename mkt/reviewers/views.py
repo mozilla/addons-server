@@ -29,7 +29,7 @@ from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        smart_decode)
 from editors.forms import MOTDForm
-from editors.models import EditorSubscription, EscalationQueue
+from editors.models import EditorSubscription, EscalationQueue, RereviewQueue
 from editors.views import reviewer_required
 from files.models import File
 import mkt.constants.reviewers as rvw
@@ -40,7 +40,7 @@ from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from zadmin.models import get_config, set_config
 from . import forms
-from .models import AppCannedResponse, ThemeLock, RereviewQueue
+from .models import AppCannedResponse, ThemeLock
 
 
 QUEUE_PER_PAGE = 100

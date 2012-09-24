@@ -6,26 +6,26 @@ import zipfile
 from django.conf import settings
 
 import mock
+import waffle
 from nose import SkipTest
 from nose.tools import eq_, raises
-import waffle
 
+import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, Preview)
-import amo
 from amo.tests import (app_factory, ESTestCase, TestCase, version_factory,
                        WebappTestCase)
 from constants.applications import DEVICE_TYPES
-from market.models import Price
+from editors.models import RereviewQueue
 from files.models import File
+from market.models import Price
 from users.models import UserProfile
 from versions.models import Version
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 import mkt
-from mkt.reviewers.models import RereviewQueue
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 class TestWebapp(TestCase):

@@ -22,6 +22,7 @@ from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            BlacklistedSlug, Category, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo.utils import raise_required, remove_icons
+from editors.models import RereviewQueue
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.fields import TransField
@@ -34,7 +35,6 @@ from mkt.constants import APP_IMAGE_SIZES
 from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
                                          RATINGS_BODIES)
 from mkt.inapp_pay.models import InappConfig
-from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)

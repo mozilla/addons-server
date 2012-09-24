@@ -24,10 +24,11 @@ from amo.tests import (AMOPaths, app_factory, addon_factory, check_links,
                        formset, initial, version_factory)
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, AppLog
-from editors.models import CannedResponse, EscalationQueue, ReviewerScore
+from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
+                            ReviewerScore)
 from files.models import File
 import mkt.constants.reviewers as rvw
-from mkt.reviewers.models import RereviewQueue, ThemeLock
+from mkt.reviewers.models import ThemeLock
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews

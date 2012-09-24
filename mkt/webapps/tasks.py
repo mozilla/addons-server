@@ -10,9 +10,9 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
-from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import Webapp
 from users.utils import get_task_user
 

@@ -11,13 +11,15 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from editors.models import RereviewQueue
 from files.models import File, FileUpload
-from mkt.developers.models import ActivityLog
-from mkt.reviewers.models import RereviewQueue
-from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import update_manifests
 from users.models import UserProfile
 from versions.models import Version
+
+from mkt.developers.models import ActivityLog
+from mkt.webapps.models import Webapp
+from mkt.webapps.tasks import update_manifests
+
 
 original = {
         "version": "0.1",
