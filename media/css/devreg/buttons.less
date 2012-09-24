@@ -1,19 +1,18 @@
 @import 'lib';
 
 .button, button, input[type=submit] {
-    position: relative;
-    font: bold 13px/1em @head-sans;
-    padding: 6px 10px 7px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    cursor: pointer;
-    background: #5784BF;
-    .gradient-two-color(#669BE1, #5784BF);
-    text-shadow: 0 1px 0 rgba(0,0,0,.5);
     .border-radius(6px);
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
+    .gradient-two-color(#3c88cc, #276195, #3c88cc);
     border: 0;
+    color: #fff;
+    cursor: pointer;
+    font: bold 13px/1em @open-stack;
+    padding: 6px 10px 7px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,.5);
 }
 
 button, .button {
@@ -30,10 +29,11 @@ button, .button {
         }
     }
     &.bad, &.manage {
-        .gradient-two-color(@button-red-light, @button-red-dark,
-                            @button-red-dark);
+        .gradient-two-color(@button-red-light, @button-red-dark, @button-red-dark);
+        border-color: #ad1212;
+        text-shadow: 0 -1px #e00;
         &:active {
-            .gradient-two-color(@button-red-dark, @button-red-light);
+            .gradient-two-color(@button-red-dark, @button-red-light, @button-red-light);
         }
     }
 }
@@ -41,7 +41,7 @@ button, .button {
 .button, button {
     &.paypal,
     &.bluevia {
-        font: bold italic 24px/26px Verdana, @sans-stack;
+        font: bold italic 24px/26px Verdana, @open-stack;
         padding: 22px 40px 21px;
         min-width: 175px;
     }

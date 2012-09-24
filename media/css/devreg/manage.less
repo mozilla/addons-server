@@ -16,21 +16,21 @@
         background: fadeOut(@orange, 98%);
     }
     .refinements {
-        font-family: @open-stack;
         a {
             display: block;
             padding: 8px 6px;
+            text-decoration: none;
             &:hover {
-                background: darken(@faded-taupe, 5%);
+                background: darken(@faded-taupe, 15%);
             }
         }
         li + li a {
             border-top: 1px dotted @border-taupe;
         }
         .selected a {
-            background: darken(@faded-taupe, 20%);
-            color: @orange;
-            font-weight: bold;
+            background: fadeOut(@taupe, 30%);
+            color: @dark-gray;
+            font-weight: 700;
         }
     }
 }
@@ -237,7 +237,7 @@ input + .hint {
 }
 
 .above-the-field {
-    font: bold 14px @sans-stack;
+    font: bold 14px @open-stack;
     color: @dark-gray;
     + .help {
         color: @medium-gray;

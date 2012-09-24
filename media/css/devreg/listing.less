@@ -11,11 +11,10 @@
 }
 
 #sorter {
-    font-family: @sans-stack;
     font-size: 11px;
     margin-bottom: 1em;
     h3 {
-        font: 11px/18px @sans-stack;
+        font: 11px/18px @open-stack;
     }
     h3, > ul, form {
         color: @note-gray;
@@ -25,7 +24,7 @@
     li {
         margin: 0;
         &.selected a {
-            color: @orange;
+            color: @dark-gray;
             font-weight: bold;
             pointer-events: none;
             text-decoration: none;
@@ -145,7 +144,7 @@
 }
 
 .no-results {
-    font: bold 18px @sans-stack;
+    font: bold 18px @open-stack;
     opacity: .5;
     padding: 20px;
     text-align: center;
@@ -238,7 +237,6 @@
 .item-actions {
     color: #aaa;
     float: right;
-    font-family: @sans-stack;
     font-size: 11px;
     margin-top: 1em;
     margin-bottom: 2px;
@@ -268,7 +266,7 @@
 .item-note {
     float: left;
     color: @medium-gray;
-    font: italic 0.9em @sans-stack;
+    font: italic 0.9em @open-stack;
     margin-bottom: 2px;
     margin-top: 1em;
 }
