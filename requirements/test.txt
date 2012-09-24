@@ -1,4 +1,4 @@
--r dev.txt
+-r prod.txt
 
 psutil==0.2.0
 jstestnetlib==0.3
