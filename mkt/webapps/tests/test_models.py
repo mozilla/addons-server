@@ -380,6 +380,15 @@ class TestPackagedManifest(BasePackagedAppTest):
         mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(), mf)
 
+    def test_get_manifest_json_w_file(self):
+        webapp = self.post_addon()
+        eq_(webapp.status, amo.STATUS_NULL)
+        assert webapp.current_version
+        assert webapp.current_version.has_files
+        file_ = webapp.current_version.all_files[0]
+        mf = self._get_manifest_json()
+        eq_(webapp.get_manifest_json(file_), mf)
+
     def test_get_manifest_json_multiple_versions(self):
         # Post the real app/version, but backfill an older version.
         webapp = self.post_addon()

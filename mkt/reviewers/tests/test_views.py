@@ -26,9 +26,9 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, AppLog
 from editors.models import CannedResponse, EscalationQueue, ReviewerScore
 from files.models import File
-from lib.crypto.tests import PackagedApp
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import RereviewQueue, ThemeLock
+from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews
 from reviews.models import Review, ReviewFlag
@@ -1196,6 +1196,17 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         assert data['content'], 'There should be a content with the traceback'
         eq_(data['headers'], {})
 
+    @mock.patch('mkt.reviewers.views._mini_manifest')
+    def test_manifest_json_packaged(self, mock_):
+        # Test that when the app is packaged, _mini_manifest is called.
+        mock_.return_value = '{}'
+
+        self.get_app().update(is_packaged=True)
+        res = self.client.get(reverse('reviewers.apps.review.manifest',
+                                      args=[self.app.app_slug]))
+        eq_(res.status_code, 200)
+        assert mock_.called
+
     def test_abuse(self):
         AbuseReport.objects.create(addon=self.app, message='!@#$')
         res = self.client.get(self.url)
@@ -1795,7 +1806,7 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         eq_(doc('.theme').length, 1)
 
 
-class TestGetSigned(PackagedApp, amo.tests.TestCase):
+class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
 
     def setUp(self):
         super(TestGetSigned, self).setUp()
@@ -1828,3 +1839,47 @@ class TestGetSigned(PackagedApp, amo.tests.TestCase):
         self.url = reverse('reviewers.signed', args=[self.app.app_slug, 0])
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
+
+
+class TestMiniManifestView(BasePackagedAppTest):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        super(TestMiniManifestView, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.app.update(is_packaged=True)
+        self.version = self.app.versions.latest()
+        self.file = self.version.all_files[0]
+        self.file.update(filename='mozball.zip')
+        self.url = reverse('reviewers.mini_manifest', args=[self.app.app_slug,
+                                                            self.version.pk])
+        self.client.login(username='editor@mozilla.com', password='password')
+
+    def test_not_logged_in(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_not_reviewer(self):
+        self.client.logout()
+        self.client.login(username='regular@mozilla.com', password='password')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_not_packaged(self):
+        self.app.update(is_packaged=False)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 404)
+
+    def test_wrong_version(self):
+        url = reverse('reviewers.mini_manifest', args=[self.app.app_slug, 0])
+        res = self.client.get(url)
+        eq_(res.status_code, 404)
+
+    def test_reviewer(self):
+        self.setup_files()
+        res = self.client.get(self.url)
+        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        data = json.loads(res.content)
+        eq_(data['name'], self.app.name)
+        eq_(data['package_path'], reverse('reviewers.signed',
+                                          args=[self.app.app_slug,
+                                                self.version.id]))

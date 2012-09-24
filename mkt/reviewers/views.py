@@ -24,9 +24,10 @@ from addons.decorators import addon_view
 from addons.models import Persona, Version
 from amo import messages
 from amo.decorators import json_view, permission_required, post_required
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder,
-                       smart_decode, paginate)
+from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
+                       smart_decode)
 from editors.forms import MOTDForm
 from editors.models import EditorSubscription, EscalationQueue
 from editors.views import reviewer_required
@@ -368,21 +369,61 @@ def motd(request):
 @addon_view
 @json_view
 def app_view_manifest(request, addon):
-    content, headers = u'', {}
-    if addon.manifest_url:
-        try:
-            req = requests.get(addon.manifest_url, verify=False)
-            content, headers = req.content, req.headers
-        except Exception:
-            content = u''.join(traceback.format_exception(*sys.exc_info()))
+    if addon.is_packaged:
+        version = addon.versions.latest()
+        content = json.dumps(json.loads(_mini_manifest(addon, version.id)),
+                             indent=4)
+        return escape_all({'content': content, 'headers': ''})
 
-        try:
-            # Reindent the JSON.
-            content = json.dumps(json.loads(content), indent=4)
-        except:
-            # If it's not valid JSON, just return the content as is.
-            pass
-    return escape_all({'content': smart_decode(content), 'headers': headers})
+    else:  # Show the hosted manifest_url.
+        content, headers = u'', {}
+        if addon.manifest_url:
+            try:
+                req = requests.get(addon.manifest_url, verify=False)
+                content, headers = req.content, req.headers
+            except Exception:
+                content = u''.join(traceback.format_exception(*sys.exc_info()))
+
+            try:
+                # Reindent the JSON.
+                content = json.dumps(json.loads(content), indent=4)
+            except:
+                # If it's not valid JSON, just return the content as is.
+                pass
+        return escape_all({'content': smart_decode(content),
+                           'headers': headers})
+
+
+@permission_required('Apps', 'Review')
+@addon_view
+def mini_manifest(request, addon, version_id):
+    return http.HttpResponse(
+        _mini_manifest(addon, version_id),
+        content_type='application/x-web-app-manifest+json')
+
+
+def _mini_manifest(addon, version_id):
+    if not addon.is_packaged:
+        raise http.Http404
+
+    version = get_object_or_404(addon.versions, pk=version_id)
+    file_ = version.all_files[0]
+    manifest = addon.get_manifest_json(file_)
+
+    data = {
+        'name': addon.name,
+        'version': version.version,
+        'size': file_.size,
+        'release_notes': version.releasenotes,
+        'package_path': absolutify(
+            reverse('reviewers.signed', args=[addon.app_slug, version.id]))
+    }
+    if 'icons' in manifest:
+        data['icons'] = manifest['icons']
+    if 'locales' in manifest:
+        data['locales'] = manifest['locales']
+
+    return json.dumps(data, cls=JSONEncoder)
 
 
 @permission_required('Apps', 'Review')

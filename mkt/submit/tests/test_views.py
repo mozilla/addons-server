@@ -2,8 +2,10 @@
 import datetime
 import json
 import os
+import shutil
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -360,11 +362,18 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
 
 
 class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
+    fixtures = ['base/apps', 'base/users', 'base/platforms',
+                'webapps/337141-steamcube']
 
     def setUp(self):
         super(BasePackagedAppTest, self).setUp()
         self.create_switch(name='allow-packaged-app-uploads')
+        self.app = Webapp.objects.get(pk=337141)
+        self.app.update(is_packaged=True)
+        self.version = self.app.current_version
+        self.file = self.version.all_files[0]
+        self.file.update(filename='mozball.zip')
+
         self.package = self.packaged_app_path('mozball.zip')
         self.upload = self.get_upload(abspath=self.package)
         self.upload.update(name='mozball.zip', is_webapp=True)
@@ -380,12 +389,23 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.post()
         return Addon.objects.get()
 
+    def setup_files(self):
+        # Make sure the source file is there.
+        if not storage.exists(self.file.file_path):
+            try:
+                # We don't care if these dirs exist.
+                os.makedirs(os.path.dirname(self.file.file_path))
+            except OSError:
+                pass
+            shutil.copyfile(self.packaged_app_path('mozball.zip'),
+                            self.file.file_path)
+
 
 class TestCreatePackagedApp(BasePackagedAppTest):
 
     def test_post_app_redirect(self):
         res = self.post()
-        webapp = Webapp.objects.get()
+        webapp = Webapp.objects.order_by('-created')[0]
         self.assert3xx(res,
             reverse('submit.app.details', args=[webapp.app_slug]))
 
@@ -404,7 +424,6 @@ class TestCreatePackagedApp(BasePackagedAppTest):
 
     @mock.patch('mkt.submit.forms.verify_app_domain')
     def test_packaged_app_not_unique_by_domain(self, _verify):
-        self.create_switch(name='webapps-unique-by-domain')
         self.post()
         assert not _verify.called, ('`verify_app_domain` should not be called'
                                     ' for packaged apps.')
