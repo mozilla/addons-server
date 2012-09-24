@@ -370,7 +370,7 @@ class TestDetailPagePermissions(DetailBase):
     def test_public(self):
         doc = self.get_pq(status=amo.STATUS_PUBLIC)
         eq_(doc('#product-status').length, 0)
-        eq_(doc('.actions').length, 1, 'The rest of the page should visible')
+        eq_(doc('.summary').length, 1, 'The rest of the page should visible')
 
     def test_deleted(self):
         self.app.update(status=amo.STATUS_DELETED)
