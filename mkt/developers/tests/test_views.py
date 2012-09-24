@@ -651,6 +651,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
                              self.addon.get_dev_url('payments'))
 
 
+@mock.patch.object(settings, 'TASK_USER_ID', 4043307)
 class TestIssueRefund(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
