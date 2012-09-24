@@ -385,9 +385,9 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                          {'read_dev_agreement': True})
 
     def post_addon(self):
-        eq_(Addon.objects.count(), 0)
+        eq_(Addon.objects.count(), 1)
         self.post()
-        return Addon.objects.get()
+        return Addon.objects.order_by('-id')[0]
 
     def setup_files(self):
         # Make sure the source file is there.
