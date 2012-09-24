@@ -307,8 +307,8 @@ APPCACHE_FALLBACK_PATHS = {
 def APPCACHE_MEDIA_TO_CACHE():
     from jingo_minify import helpers
     return [
-        'js/mkt/consumer-min.js?build_id=%s' % helpers.BUILD_ID_JS,
-        'css/mkt/consumer-min.css?build_id=%s' % helpers.BUILD_ID_CSS
+        'js/mkt/consumer-min.js?build=%s' % helpers.BUILD_ID_JS,
+        'css/mkt/consumer-min.css?build=%s' % helpers.BUILD_ID_CSS
     ]
 
 
