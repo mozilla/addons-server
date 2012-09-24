@@ -934,6 +934,7 @@ class TestIssueRefund(amo.tests.TestCase):
         self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
 
 
+@mock.patch.object(settings, 'TASK_USER_ID', 4043307)
 class TestRefunds(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
