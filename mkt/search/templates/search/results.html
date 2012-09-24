@@ -1,5 +1,13 @@
 {% extends 'mkt/base.html' %}
 
+{% if category %}
+  {% set src = 'mkt-category' %}
+{% elif browse %}
+  {% set src = 'mkt-browse' %}
+{% else %}
+  {% set src = 'mkt-search' %}
+{% endif %}
+
 {% set query_term = query.q %}
 {% set search_url = request.get_full_path() %}
 {% if active['categories'] %}
@@ -98,8 +106,22 @@
     </div>
   </section>
   <section id="search-results" class="full c">
-    {% with search_url=search_url %}
-      {% include 'search/results_inner.html' %}
-    {% endwith %}
+    {% if featured %}
+      <ol class="grid featured c">
+        {% for app in featured %}
+          <li>
+            {{ market_tile(app, src=src + '-featured') }}
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+    {% if pager.object_list %}
+      <ol class="listing c" start="{{ pager.start_index() }}">
+        {{ search_results(pager.object_list, field=query.sort, src=src) }}
+      </ol>
+      {{ pager|impala_paginator }}
+    {% else %}
+      {{ no_results() }}
+    {% endif %}
   </section>
 {% endblock %}

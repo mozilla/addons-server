@@ -34,12 +34,12 @@ def _landing(request, category=None):
 
 def _search(request, category=None):
     ctx = {'browse': True}
-    #region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+    region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
     if category is not None:
         qs = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
         ctx['category'] = get_object_or_404(qs, slug=category)
-        #ctx['featured'] = Webapp.featured(cat=category, region=region)
+        ctx['featured'] = Webapp.featured(cat=ctx['category'], region=region)
 
         # Do a search filtered by this category and sort by Weekly Downloads.
         # TODO: Listen to andy and do not modify `request.GET` but at least
@@ -48,6 +48,8 @@ def _search(request, category=None):
         request.GET.update({'cat': ctx['category'].id})
         if not request.GET.get('sort'):
             request.GET['sort'] = 'downloads'
+    else:
+        ctx['featured'] = Webapp.featured(region=region)
 
     ctx.update(_app_search(request, category=ctx.get('category'), browse=True))
 

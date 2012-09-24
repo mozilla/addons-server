@@ -91,7 +91,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         eq_(item.length, 1)
         a = item.find('a')
         eq_(a.find('h3').text(), unicode(self.webapp.name))
-        raise SkipTest('until source links are fixed, bug 785990')
+        # Testing the correct download source like a bawse!
         eq_(a.attr('href'),
             urlparams(self.webapp.get_url_path(), src='mkt-search'))
 

@@ -3,6 +3,7 @@ import datetime
 from django.conf import settings
 
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 from amo.tests import app_factory, mock_es
 from amo.urlresolvers import reverse
@@ -27,14 +28,14 @@ class TestHome(BrowseBase):
         self.create_switch('enabled-paypal', active=False)
         resp = self.client.get(self.url)
         assert not settings.PAYPAL_JS_URL in resp.content, (
-                    'When paypal is disabled, its JS lib should not load')
+                    'When PayPal is disabled, its JS lib should not load')
 
     @mock_es
     def test_load_paypal_js(self):
         self.create_switch('enabled-paypal')
         resp = self.client.get(self.url)
         assert settings.PAYPAL_JS_URL in resp.content, (
-                    'When paypal is enabled, its JS lib should load')
+                    'When PayPal is enabled, its JS lib should load')
 
     @mock_es
     def test_page(self):
@@ -45,6 +46,12 @@ class TestHome(BrowseBase):
     @mock_es
     def test_featured(self):
         self._test_featured()
+
+    def test_featured_src(self):
+        _, _, app = self.setup_featured()
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('.mkt-tile').attr('href'),
+            app.get_detail_url() + '?src=mkt-home')
 
     @mock_es
     def test_featured_region_exclusions(self):
@@ -93,6 +100,7 @@ class TestHome(BrowseBase):
             Webapp.now = staticmethod(lambda: d)
             eq_(self.get_pks('featured', self.url,  {'region': 'us'}),
                 [a.id])
+
     @mock_es
     def test_featured_time_included(self):
         self.make_time_limited_feature()

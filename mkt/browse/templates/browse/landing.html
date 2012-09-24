@@ -1,5 +1,7 @@
 {% extends 'mkt/base.html' %}
 
+{# NOTE: THIS TEMPLATE IS DEFUNCT. GO AWAY. #}
+
 {% if category %}
   {% set title = category.name %}
   {% set heading = title %}
@@ -26,7 +28,7 @@
     </div>
   </section>
   <section class="featured full slider">
-    {{ featured|promo_slider(feature=True, src='mkt-category') }}
+    {{ featured|promo_slider(feature=True, src='mkt-category-featured') }}
   </section>
   {% if popular %}
     <section class="popular subheading full">
