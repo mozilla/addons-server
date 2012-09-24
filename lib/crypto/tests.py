@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 import json
 import os
+import shutil
 
 from django.conf import settings  # For mocking.
 from django.core.files.storage import default_storage as storage
@@ -12,7 +13,7 @@ from nose.tools import eq_, raises
 import amo.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
-from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.webapps.models import Webapp
 
 
 @mock.patch('lib.metrics.urllib2.urlopen')
@@ -60,18 +61,30 @@ class TestCrack(amo.tests.TestCase):
             [u'foo', u'bar'])
 
 
-class PackagedApp(BasePackagedAppTest):
+class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        super(PackagedApp, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.app.update(is_packaged=True)
+        self.version = self.app.current_version
+        self.file = self.version.all_files[0]
+        self.file.update(filename='mozball.zip')
 
     def setup_files(self):
         # Clean out any left over stuff.
         storage.delete(self.file.signed_file_path)
         storage.delete(self.file.signed_reviewer_file_path)
 
-        super(PackagedApp, self).setup_files()
+        # Make sure the source file is there.
+        if not storage.exists(self.file.file_path):
+            try:
+                # We don't care if these dirs exist.
+                os.makedirs(os.path.dirname(self.file.file_path))
+            except OSError:
+                pass
+            shutil.copyfile(self.packaged_app_path('mozball.zip'),
+                            self.file.file_path)
 
 
 class TestPackaged(PackagedApp, amo.tests.TestCase):
