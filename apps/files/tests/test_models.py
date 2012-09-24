@@ -230,6 +230,22 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon.type = amo.ADDON_WEBAPP
         eq_(f.generate_filename(), 'testing-123-2.1.072.webapp')
 
+    def test_generate_webapp_fn_non_ascii(self):
+        f = File()
+        f.version = Version(version='0.1.7')
+        f.version.compatible_apps = (amo.FIREFOX,)
+        f.version.addon = Addon(app_slug=u' フォクすけ  といっしょ',
+                                type=amo.ADDON_WEBAPP)
+        eq_(f.generate_filename(), 'app-0.1.7.webapp')
+
+    def test_generate_webapp_fn_partial_non_ascii(self):
+        f = File()
+        f.version = Version(version='0.1.7')
+        f.version.compatible_apps = (amo.FIREFOX,)
+        f.version.addon = Addon(app_slug=u'myapp フォクすけ  といっしょ',
+                                type=amo.ADDON_WEBAPP)
+        eq_(f.generate_filename(), 'myapp-0.1.7.webapp')
+
     def test_pretty_filename(self):
         f = File.objects.get(id=67442)
         f.generate_filename()
