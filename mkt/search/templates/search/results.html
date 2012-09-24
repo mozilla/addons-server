@@ -29,70 +29,73 @@
       <h1>{{ _('Filter') }}</h1>
     </header>
 
-    <form action="{{ url('search.search') }}" method="get">
-      <div>
-        {% if prices and not waffle.switch('disabled-payments') %}
-          <h2>{{ _('Filter by price') }}</h2>
-          <ul class="toggles c" id="filter-prices">
-            {% for price in prices %}
-              <li>
-                <a{% if price.selected %} class="sel"{% endif %}
-                   href="{{ search_url|urlparams(page=None,
-                                                 **price.urlparams) }}">
-                  {{ price.text }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-          <input type="hidden" name="price" value="">
-        {% endif %}
-
-        {% if categories %}
-          <h2>{{ _('Filter by category') }}</h2>
-          <p class="picker">{{ active_cat or _('Any') }}</p>
-          <ul class="confirm-action c" id="filter-categories">
-            {% for category in categories %}
-              <li>
-                <a class="button{% if category.selected %} sel{% endif %}"
-                   href="{{ search_url|urlparams(page=None,
-                                                 **category.urlparams) }}">
-                  {{ category.text }}
-                </a>
-              </li>
-            {% endfor %}
-            <li><a href="#" class="button cancel">{{ _('Cancel') }}</a></li>
-          </ul>
-          <input type="hidden" name="cat" value="{{ query['cat'] }}">
-        {% endif %}
-
-        {# We're not iterating over all the sort options on purpose. #}
-        <h2>{{ _('Sort by') }}</h2>
-        <ul class="toggles two-col c" id="filter-sort">
-          {% if active_cat %}
-            <li class="popularity">
-              <a href="{{ search_url|urlparams(page=None,
-                                               sort='popularity') }}">
-                {{ _('Popularity') }}
-              </a>
-            </li>
-          {% else %}
-            <li class="relevancy">
-              <a href="{{ search_url|urlparams(page=None, sort='None') }}">
-              {{ _('Relevancy') }}</a>
-            </li>
+    {# This wrapper is completely unnecessary except for .force-mobile. #}
+    <div class="filters-body">
+      <form action="{{ url('search.search') }}" method="get">
+        <div>
+          {% if prices and not waffle.switch('disabled-payments') %}
+            <h2>{{ _('Filter by price') }}</h2>
+            <ul class="toggles c" id="filter-prices">
+              {% for price in prices %}
+                <li>
+                  <a{% if price.selected %} class="sel"{% endif %}
+                     href="{{ search_url|urlparams(page=None,
+                                                   **price.urlparams) }}">
+                    {{ price.text }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+            <input type="hidden" name="price" value="">
           {% endif %}
-          <li class="rating">
-            <a href="{{ search_url|urlparams(page=None, sort='rating') }}"
-               class="sel">{{ _('Rating') }}</a>
-          </li>
-        </ul>
-        <input type="hidden" name="sort" value="{{ query['sort'] }}">
 
-        <div class="footer-action">
-          <a href="#" class="apply">{{ _('Apply') }}</a>
+          {% if categories %}
+            <h2>{{ _('Filter by category') }}</h2>
+            <p class="picker">{{ active_cat or _('Any') }}</p>
+            <ul class="confirm-action c" id="filter-categories">
+              {% for category in categories %}
+                <li>
+                  <a class="button{% if category.selected %} sel{% endif %}"
+                     href="{{ search_url|urlparams(page=None,
+                                                   **category.urlparams) }}">
+                    {{ category.text }}
+                  </a>
+                </li>
+              {% endfor %}
+              <li><a href="#" class="button cancel">{{ _('Cancel') }}</a></li>
+            </ul>
+            <input type="hidden" name="cat" value="{{ query['cat'] }}">
+          {% endif %}
+
+          {# We're not iterating over all the sort options on purpose. #}
+          <h2>{{ _('Sort by') }}</h2>
+          <ul class="toggles two-col c" id="filter-sort">
+            {% if active_cat %}
+              <li class="popularity">
+                <a href="{{ search_url|urlparams(page=None,
+                                                 sort='popularity') }}">
+                  {{ _('Popularity') }}
+                </a>
+              </li>
+            {% else %}
+              <li class="relevancy">
+                <a href="{{ search_url|urlparams(page=None, sort='None') }}">
+                {{ _('Relevancy') }}</a>
+              </li>
+            {% endif %}
+            <li class="rating">
+              <a href="{{ search_url|urlparams(page=None, sort='rating') }}"
+                 class="sel">{{ _('Rating') }}</a>
+            </li>
+          </ul>
+          <input type="hidden" name="sort" value="{{ query['sort'] }}">
+
+          <div class="footer-action">
+            <a href="#" class="apply">{{ _('Apply') }}</a>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </section>
   <section id="search-results" class="full c">
     {% with search_url=search_url %}

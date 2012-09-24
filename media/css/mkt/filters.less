@@ -173,9 +173,29 @@
 }
 // Ugh!
 .force-mobile {
+    #filters {
+        background-color: transparent;
+        background-image: none;
+        .classic-header {
+            position: absolute;
+            .box-shadow(none);
+        }
+        .filters-body {
+            position: absolute;
+            height: 100%;
+            top: 55px;
+            width: 100%;
+            background-color: @bg;
+            .grain();
+            form {
+                margin-top: -55px;
+            }
+        }
+    }
     .confirm-action {
         max-width: 320px;
         left: 50%;
         margin-left: -160px;
+        bottom: 45px;
     }
 }
