@@ -24,8 +24,7 @@ def safe_send(self, sender, **named):
     if not self.receivers:
         return responses
 
-    do_raise = (hasattr(settings, 'RAISE_ON_SIGNAL_ERROR') and
-                settings.RAISE_ON_SIGNAL_ERROR)
+    do_raise = getattr(settings, 'RAISE_ON_SIGNAL_ERROR', False)
 
     # Call each receiver with whatever arguments it can accept.
     # Return a list of tuple pairs [(receiver, response), ... ].
