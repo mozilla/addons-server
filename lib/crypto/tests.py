@@ -11,6 +11,7 @@ import mock
 from nose.tools import eq_, raises
 
 import amo.tests
+from files.utils import SafeUnzip
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
 from mkt.webapps.models import Webapp
@@ -89,6 +90,10 @@ class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
 
 class TestPackaged(PackagedApp, amo.tests.TestCase):
 
+    def setUp(self):
+        super(TestPackaged, self).setUp()
+        self.setup_files()
+
     @raises(packaged.SigningError)
     def test_not_app(self):
         self.app.update(type=amo.ADDON_EXTENSION)
@@ -108,15 +113,35 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         storage.open(self.file.signed_file_path, 'w')
         assert packaged.sign(self.version.pk)
 
+    @raises(NotImplementedError)
+    def test_server_active(self):
+        with self.settings(SIGNED_APPS_SERVER_ACTIVE=True):
+            packaged.sign(self.version.pk)
+
+    @raises(ValueError)
+    def test_no_key(self):
+        key = self.sample_packaged_key() + '.nope'
+        with self.settings(SIGNED_APPS_KEY=key):
+            packaged.sign(self.version.pk)
+
+    def is_signed(self, path):
+        unz = SafeUnzip(path)
+        assert unz.is_valid()
+        assert unz.is_signed()
+
     def test_good(self):
-        self.setup_files()
-        path = packaged.sign(self.version.pk)
-        # TODO: This will change when we actually sign things.
-        assert os.stat(path).st_size == (
-                os.stat(self.file.file_path).st_size)
+        with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
+            self.is_signed(packaged.sign(self.version.pk))
 
     def test_reviewer(self):
-        self.setup_files()
-        path = packaged.sign(self.version.pk, True)
-        assert os.stat(path).st_size == (
-                os.stat(self.file.file_path).st_size)
+        # For the moment there is no real difference between reviewers
+        # and users.
+        with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
+            self.is_signed(packaged.sign(self.version.pk, True))
+
+    @mock.patch('lib.crypto.packaged.xpisign')
+    @raises(ValueError)
+    def test_raises(self, xpisign):
+        xpisign.side_effect = ValueError
+        with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
+            self.is_signed(packaged.sign(self.version.pk))

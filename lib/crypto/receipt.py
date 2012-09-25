@@ -38,7 +38,7 @@ def sign(receipt):
     request = urllib2.Request(destination, data, headers)
 
     try:
-        with statsd.timer('services.sign'):
+        with statsd.timer('services.sign.receipt'):
             response = urllib2.urlopen(request, timeout=timeout)
     except urllib2.HTTPError, error:
         # Will occur when a 3xx or greater code is returned

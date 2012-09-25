@@ -409,8 +409,12 @@ class AMOPaths(object):
 
     @staticmethod
     def sample_key():
-        path = 'mkt/webapps/tests/sample.key'
-        return os.path.join(settings.ROOT, path)
+        return os.path.join(settings.ROOT,
+                            'mkt/webapps/tests/sample.key')
+
+    def sample_packaged_key(self):
+        return os.path.join(settings.ROOT,
+                            'mkt/webapps/tests/sample.packaged.pem')
 
     def mozball_image(self):
         return os.path.join(settings.ROOT,
