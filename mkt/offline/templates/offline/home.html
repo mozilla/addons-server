@@ -1,6 +1,6 @@
 {% extends 'mkt/base.html' %}
 
-{% block pagetype %}root{% endblock %}
+{% set pagetype = 'root' %}
 
 {% block content %}
   <section class="infobox" data-offline="true">
@@ -8,7 +8,7 @@
       {{ _('Loading the Firefox Marketplace...') }}
     </p>
     <p class="offline">
-      {{ _('Sorry, you need to be online to access the Marketplace') }}
+      {{ _('Sorry, you need to be online to access the Marketplace.') }}
     </p>
   </section>
 {% endblock %}

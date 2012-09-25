@@ -1,14 +1,15 @@
 from django import http
 from django.shortcuts import get_object_or_404
 
+import jingo
+
 import amo
-from addons.models import Category
 import mkt
+from addons.models import Category
+
 from mkt.home.views import _add_mobile_filter
 from mkt.search.views import _app_search
 from mkt.webapps.models import Webapp
-
-import jingo
 
 
 # Currently unused.

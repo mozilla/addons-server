@@ -1,6 +1,6 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}{{ mkt_page_title('Mozillian Preview') }}{% endblock %}
+{% set pagetitle = mkt_page_title(_('Firefox Marketplace')) %}
 
 {% block bodyclass %}home login {{ super() }}{% endblock %}
 

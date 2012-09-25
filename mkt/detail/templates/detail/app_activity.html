@@ -1,6 +1,6 @@
 {% extends 'lookup/base.html' %}
 
-{% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+{% set pagetitle = mkt_page_title(product.name) %}
 
 {% block content %}
   <section class="island c">

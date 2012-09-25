@@ -2,14 +2,16 @@
            ('mkt/base.html' if '/developers/' not in request.path else
             'developers/base_impala.html') %}
 
-{% block title %}{{ hub_page_title(_('Oops')) }}{% endblock %}
+{% set title = _('Oops') %}
+{% set pagetitle = hub_pagetitle(title) %}
+{% block title %}{{ pagetitle }}{% endblock %}
 
 {# TODO(apps): Finalize copy. #}
 
 {% block content %}
   <section class="primary">
     <header>
-      <h1>Oops!</h1>
+      <h1>{{ title }}</h1>
     </header>
     <div class="island hero prose">
       <p class="paypal-error-message">

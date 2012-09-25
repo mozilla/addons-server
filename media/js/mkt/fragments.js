@@ -128,16 +128,22 @@ function fragmentFilter(el) {
             // scroll to the right spot.
             $('html, body').scrollTop(opts.scrollTop || 0);
 
-            // We so sneaky.
-            var title = page.data('title');
-            document.title = title;
+            // Reset our lovelies.
+            _.extend(z, {
+                body: $(document.body),
+                page: $('#container'),
+                context: $('#page').data('context')
+            });
 
-            var type = page.data('type');
+            // We so sneaky.
+            document.title = z.context.title;
+
+            var type = z.context.type;
 
             var newState = {
                 path: href,
                 type: type,
-                title: title,
+                title: z.context.title,
                 scrollTop: $(document).scrollTop()
             };
             if (!popped) history.pushState(newState, false, href);
@@ -192,14 +198,15 @@ function fragmentFilter(el) {
         });
 
         $(function() {
+            // Don't forget to update updateContent too, bro.
             var path = window.location.pathname + window.location.search + window.location.hash;
-            var type = container.find('#page').data('type');
+            var type = z.context.type;
             var state = {
                 path: path,
                 type: type
             };
             history.replaceState(state, false, path);
-            container.find('#page').attr('data-title', document.title);
+
             fragmentCache[path] = container.html();
             container.trigger('fragmentloaded', [path, false, state]);
         });

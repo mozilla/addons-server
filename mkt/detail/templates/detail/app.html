@@ -4,9 +4,9 @@
 {% set can_review = product.can_review(amouser) %}
 {% set purchased = amouser and product.pk in amouser.purchase_ids() %}
 
-{% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+{% set pagetitle = mkt_page_title(product.name) %}
 
-{% block bodyclass %}detail{% endblock %}
+{% set bodyclass = 'detail' %}
 
 {% block extrahead %}
   {{ super() }}

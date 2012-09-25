@@ -16,7 +16,12 @@
   {% set active_cat = None %}
 {% endif %}
 
-{% block title %}{{ mkt_page_title(_('Search Results')) }}{% endblock %}
+{% set title = _('Search Results') %}
+
+{% set pagetitle = mkt_page_title(title) %}
+{% set pagetype = 'search' %}
+
+{% set bodyclass = 'search' %}
 
 {% block extrahead %}
   <meta name="WT.oss" content="{{ query_term }}">
@@ -24,10 +29,6 @@
 {% endblock %}
 
 {# if applied_filters might be useful later #}
-
-{% block bodyclass %}search{% endblock %}
-
-{% block pagetype %}search{% endblock %}
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}

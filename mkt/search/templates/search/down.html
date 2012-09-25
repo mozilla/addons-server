@@ -1,14 +1,13 @@
 {% extends "mkt/base.html" %}
-{% set mytitle = _('Search Unavailable') %}
 
-{% block title %}{{ mkt_page_title(mytitle) }}{% endblock %}
-
-{% block pagetype %}notice{% endblock %}
+{% set title = _('Search Unavailable') %}
+{% set pagetitle = mkt_page_title(title) %}
+{% set pagetype = 'notice' %}
 
 {% block content %}
 <section id="search-down" class="primary">
   <header>
-    <h1 id="top">{{ mytitle }}</h1>
+    <h1 id="top">{{ title }}</h1>
   </header>
   <div class="island prose">
     <p>{{ _('Search is temporarily unavailable. Please try again in a few

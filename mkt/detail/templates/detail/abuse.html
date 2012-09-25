@@ -1,15 +1,12 @@
 {% extends 'mkt/base.html' %}
 
-{% set title = _('Report Abuse') %}
-{% block title %}
-  {# L10n: {0} is the name of the app. #}
-  {{ mkt_page_title(_('Report abuse for {0}')|f(product.name)) }}
-{% endblock %}
+{# L10n: {0} is the name of the app. #}
+{% set pagetitle = mkt_page_title(_('Report abuse for {0}')|f(product.name)) %}
 
 {% block content %}
   <section id="abuse" class="friendly">
     <div>
-      <h1 id="top">{{ title }}</h1>
+      <h1 id="top">{{ _('Report Abuse') }}</h1>
       <p class="intro">
         <label id="recap-label" for="{{ abuse_form.text.auto_id }}">
           {% trans policies_url='https://developer.mozilla.org/en/Apps/'

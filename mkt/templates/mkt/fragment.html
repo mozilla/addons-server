@@ -1,7 +1,10 @@
 <div id="page" role="main"
      data-type="{% block pagetype %}leaf{% endblock %}"
-     data-title="{% block title %}{% endblock %}"
-     data-bodyclass="{% block bodyclass %}{% endblock %}">
+     data-context="{{
+       {'type': pagetype,
+        'title': pagetitle,
+        'bodyclass': bodyclass,
+        'category': category.name ~ '' if category else ''}|json }}">
   {# `outer_content` is for stuff you want above `content` on every page. #}
   {% block outer_content %}
     {% include 'site/messages/display.html' %}

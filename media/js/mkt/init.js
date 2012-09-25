@@ -1,6 +1,7 @@
 var z = {
     body: $(document.body),
     page: $('#container'),
+    context: $('#page').data('context'),
     prefix: (function() {
         try {
             var s = window.getComputedStyle(document.body, '');

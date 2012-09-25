@@ -233,6 +233,14 @@ class TestIndexSearch(BrowseBase):
         eq_(li.find('a').attr('href'),
             urlparams(reverse('browse.apps'), sort='downloads'))
 
+    @mock_es
+    def test_search_placeholder(self):
+        # Ensure category got set in the search form.
+        r = self.client.get(self.url)
+        search = pq(r.content)('#search')
+        eq_(search('input[name=cat]').length, 0)
+        eq_(search('#search-q').attr('placeholder'), 'Search')
+
 
 class TestCategoryLanding(BrowseBase):
 
@@ -320,7 +328,9 @@ class TestCategoryLanding(BrowseBase):
     def test_search_category(self):
         # Ensure category got set in the search form.
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#search input[name=cat]').val(), str(self.cat.id))
+        search = pq(r.content)('#search')
+        eq_(search('input[name=cat]').val(), str(self.cat.id))
+        eq_(search('#search-q').attr('placeholder'), unicode(self.cat.name))
 
 
 class TestCategorySearch(BrowseBase):

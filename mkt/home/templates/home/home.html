@@ -1,11 +1,12 @@
 {% extends 'mkt/base.html' %}
 
-{% block bodyclass %}home{% endblock %}
+{% set pagetitle = _('Firefox Marketplace') %}
+{% set pagetype = 'root' %}
 
-{% block pagetype %}root{% endblock %}
+{% set bodyclass = 'home' %}
 
 {% block content %}
-  <h1 id="top">{{ _('Firefox Marketplace') }}</h1>
+  <h1 id="top">{{ pagetitle }}</h1>
   <section class="featured">
     <ul class="grid c">
       {% for app in featured %}

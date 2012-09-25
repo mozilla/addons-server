@@ -1,8 +1,8 @@
 {% extends 'mkt/base.html' %}
 
 {% set title = _('Privacy Policy') %}
-
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+{% set pagetitle = mkt_page_title(title) %}
+{% set pagetype = 'alpha' %}
 
 {% block content %}
   <section id="privacy-policy" class="primary prose">

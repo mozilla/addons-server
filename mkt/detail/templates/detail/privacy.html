@@ -1,12 +1,10 @@
 {% extends 'detail/protected_app.html' %}
 
-{% block title %}
-  {# L10n: {0} is the name of the app. #}
-  {{ mkt_page_title(_('Privacy Policy for {0}')|f(product.name)) }}
-{% endblock %}
+{# L10n: {0} is the name of the app. #}
+{% set pagetitle = mkt_page_title(_('Privacy Policy for {0}')|f(product.name)) %}
 
 {% block content %}
-
+  {# QUESTION: Is this a question or todo below? #}
   {# TODO: Is this still really used? We just show an empty page with a title #}
   {% if not product.is_visible(request) %}
     <section class="infobox">

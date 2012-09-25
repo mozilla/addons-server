@@ -76,6 +76,10 @@
         if (z.body.data('page-type') === 'search') {
             setTrays(expandListings);
         }
+
+        // Set "Category Name" or "Apps" as search placeholder.
+        var $q = $('#search-q');
+        $q.attr('placeholder', z.context.category || $q.data('placeholder-default'));
     });
 
 

@@ -2,13 +2,15 @@
            ('mkt/base.html' if '/developers/' not in request.path else
             'developers/base_impala.html') %}
 
-{% block title %}{{ mkt_page_title(_('Not allowed')) }}{% endblock %}
+{% set title = _('Not Allowed') %}
+{% set pagetitle = mkt_page_title(title) %}
+{% block title %}{{ pagetitle }}{% endblock %}
 
-{% block pagetype %}notice{% endblock %}
+{% set pagetype = 'notice' %}
 
 {% block content %}
   <section class="primary">
-      <h1 id="top">{{ _('Not allowed') }}</h1>
+      <h1 id="top">{{ _('Not Allowed') }}</h1>
       <h2>{{ _('Oops! Not allowed.') }}</h2>
       <p>{{ _("You tried to do something that you weren't allowed to.") }}</p>
     {% if because_csrf %}

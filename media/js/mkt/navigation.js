@@ -44,7 +44,7 @@ var nav = (function() {
     function setClass() {
         // We so classy.
         var page = $('#page');
-        var newClass = page.data('bodyclass');
+        var newClass = page.data('context').bodyclass;
         if (newClass) {
             $body.removeClass(oldClass).addClass(newClass);
             oldClass = newClass;
@@ -54,9 +54,9 @@ var nav = (function() {
     function setType() {
         // We so type-y.
         var page = $('#page');
-        var type = page.data('type');
+        var type = page.data('context').type;
         if (type) {
-            $body.attr('data-page-type', type)
+            $body.attr('data-page-type', type);
         }
     }
 

@@ -1,10 +1,8 @@
 {% extends 'mkt/base.html' %}
 
 {% set title = _('Terms of Use') %}
-
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
-
-{% block pagetype %}alpha{% endblock %}
+{% set pagetitle = mkt_page_title(title) %}
+{% set pagetype = 'alpha' %}
 
 {% block content %}
   <section id="terms-of-use" class="primary prose">

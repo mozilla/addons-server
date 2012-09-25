@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     {% block extrameta %}{% endblock %}
-    <title>{% block title %}{{ _('Firefox Marketplace') }}{% endblock %}</title>
+    <title>{{ title or _('Firefox Marketplace') }}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
           href="{{ MEDIA_URL }}img/mkt/logos/128.png" sizes="128x128">
@@ -35,7 +35,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }}"
+  <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }} {{ bodyclass }}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
@@ -43,9 +43,9 @@
         data-login-url="{{ url('users.browserid_login') }}"
         data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
         data-simulate-nav-pay="{{ settings.SIMULATE_NAV_PAY|json }}"
+        data-page-type="{{ pagetype or 'leaf' }}"
         {% if not logged %}data-recaptcha="{{ settings.RECAPTCHA_PUBLIC_KEY }}"{% endif %}
         {% block bodyattrs %}{% endblock %}>
-
 
     {% block siteheader %}
       {% include 'mkt/header.html' %}
@@ -53,8 +53,11 @@
 
     <div id="container">
       <div id="page" role="main"
-           data-type="{% block pagetype %}leaf{% endblock %}"
-           data-bodyclass="{% block bodyclass %}{% endblock %}">
+           data-context="{{
+             {'type': pagetype or 'leaf',
+              'title': pagetitle or _('Firefox Marketplace'),
+              'bodyclass': bodyclass or '',
+              'category': category.name ~ '' if category else ''}|json }}">
         {# `outer_content` is for stuff you want above `content` on every page. #}
         {% block outer_content %}
           {% include 'site/messages/display.html' %}
