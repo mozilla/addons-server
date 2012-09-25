@@ -138,18 +138,20 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['categories'],
             [str(cat.name) for cat in self.webapp.categories.all()])
 
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_is_packaged(self):
         self.webapp.update(is_packaged=True)
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], True)
-        assert data['package_url'].startswith('/downloads')
+        eq_(data['manifestUrl'],
+            'http://omg.org/yes' + self.webapp.get_detail_url('manifest'))
 
     def test_is_not_packaged(self):
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], False)
-        eq_(data['package_url'], '')
+        eq_(data['manifestUrl'], self.webapp.manifest_url)
 
     def test_packaged_no_valid_status(self):
         self.webapp.update(is_packaged=True)
@@ -160,7 +162,7 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], True)
-        eq_(data['package_url'], '')
+        eq_(data['manifestUrl'], '')
         # The install button should not be shown if no current_version.
         eq_(doc('.product button').length, 0)
 

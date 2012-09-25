@@ -28,6 +28,7 @@ from addons.models import (Addon, AddonDeviceType, Category,
                            update_name_table, update_search_index)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
+from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path
@@ -258,6 +259,22 @@ class Webapp(Addon):
     def origin(self):
         parsed = urlparse.urlparse(self.manifest_url)
         return '%s://%s' % (parsed.scheme, parsed.netloc)
+
+    def get_manifest_url(self):
+        """
+        Hosted apps: a URI to an external manifest.
+        Packaged apps: a URI to a mini manifest on m.m.o.
+        """
+        if self.is_packaged:
+            if self.current_version:
+                return absolutify(self.get_detail_url('manifest'))
+            else:
+                # Invalid statuses don't have `current_version`.
+                # TODO: Ask Rob about reviewers being able to install
+                # disabled apps?
+                return ''
+        else:
+            return self.manifest_url
 
     def has_icon_in_manifest(self):
         data = self.get_manifest_json()
@@ -683,7 +700,7 @@ class Installed(amo.models.ModelBase):
 def add_uuid(sender, **kw):
     if not kw.get('raw'):
         install = kw['instance']
-        if not install.uuid and install.premium_type == None:
+        if not install.uuid and install.premium_type is None:
             install.uuid = ('%s-%s' % (install.pk, str(uuid.uuid4())))
             install.premium_type = install.addon.premium_type
             install.save()

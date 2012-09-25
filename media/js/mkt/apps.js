@@ -39,7 +39,6 @@ exports.install = function(product, opt) {
     var self = apps,
         errSummary,
         manifestUrl = product.manifestUrl,
-        package_url = product.package_url,
         $def = $.Deferred();
 
     /* Try and install the app. */
@@ -47,11 +46,11 @@ exports.install = function(product, opt) {
         /* TODO: combine the following check with the above. But don't stop
          * clients without installPackage from using apps for now.
          */
-        if (product.is_packaged && !opt.navigator.mozApps.installPackage && !package_url) {
+        if (product.is_packaged && !opt.navigator.mozApps.installPackage && !manifestUrl) {
             $def.reject();
         }
         var installRequest = product.is_packaged ?
-                             opt.navigator.mozApps.installPackage(package_url, opt.data) :
+                             opt.navigator.mozApps.installPackage(manifestUrl, opt.data) :
                              opt.navigator.mozApps.install(manifestUrl, opt.data);
         installRequest.onsuccess = function() {
             $def.resolve(product);

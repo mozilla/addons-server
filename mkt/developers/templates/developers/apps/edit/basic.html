@@ -54,7 +54,7 @@
           <th class="label">{{ _('Manifest URL') }}</th>
           <td>
             {% if addon.is_packaged %}
-                <a href="{{ addon.get_detail_url('manifest')|absolutify }}" target="_blank">{{ addon.get_detail_url('manifest')|absolutify }}</a>
+                <a href="{{ addon.get_manifest_url() }}" target="_blank">{{ addon.get_manifest_url() }}</a>
             {% else %}
               {% if editable %}
                 <input type="text" name="manifest_url"{{ ' readonly' if not action_allowed('Admin', '%') }} value="{{ addon.manifest_url }}">
