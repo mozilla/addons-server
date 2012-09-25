@@ -1155,6 +1155,8 @@ METLOG_CONF = {
         # 2, but for actual live instances you will want to 
         # make sure your project ID corresponds to what is in 
         # your actual sentry instance.
+        'raven': ('metlog_raven.raven_plugin:config_plugin',
+                   {'sentry_project_id': 2}),
         },
     'sender': {
         'class': 'metlog.senders.logging.StdLibLoggingSender',
@@ -1165,6 +1167,7 @@ METLOG_CONF = {
 METLOG = client_from_dict_config(METLOG_CONF)
 
 USE_METLOG_FOR_CEF = False
+USE_METLOG_FOR_RAVEN = False
 
 CEF_PRODUCT = "amo"
 
