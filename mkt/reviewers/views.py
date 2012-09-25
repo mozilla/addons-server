@@ -702,6 +702,6 @@ def get_signed_packaged(request, addon, version_id):
     path = addon.sign_if_packaged(version_id, reviewer=True)
     if not path:
         raise http.Http404
-    log.info('Returning signed package addon: %s, version: %s' %
-             (addon.pk, version_id))
+    log.info('Returning signed package addon: %s, version: %s, path: %s' %
+             (addon.pk, version_id, path))
     return HttpResponseSendFile(request, path, content_type='application/zip')
