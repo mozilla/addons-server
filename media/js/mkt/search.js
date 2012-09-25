@@ -21,6 +21,10 @@
         return false;
     });
 
+    // Clear search field on 'cancel' search suggestions.
+    $('#site-header').on('click', '.header-button.cancel', _pd(function() {
+        $('#site-search-suggestions').trigger('dismiss');
+    }));
 
     function selectMe($elm) {
         var $myUL = $elm.closest('ul'),
