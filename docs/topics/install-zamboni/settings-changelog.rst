@@ -12,5 +12,5 @@ Settings Changelog
  * Using 'Added' and 'Removed' and 'Changed' as the start of your lines gives a
    nice way to quickly read these. 
 * Changed default ``way to find changes`` from ``ask in IRC`` to ``check the
-  change log``
+  changelog``
  * We can debate the format, but this gives us a starting point.
