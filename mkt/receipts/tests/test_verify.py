@@ -92,6 +92,7 @@ class TestVerify(amo.tests.TestCase):
         return Contribution.objects.create(addon=self.addon, user=self.user,
                                            type=type)
 
+    @mock.patch.object(utils.settings, 'SIGNING_SERVER_ACTIVE', True)
     def test_invalid_receipt(self):
         eq_(self.get_decode(1, 'blah')['status'], 'invalid')
 

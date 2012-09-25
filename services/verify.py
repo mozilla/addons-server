@@ -12,13 +12,7 @@ from utils import (log_configure, log_exception, log_info, mypool,
                    ADDON_PREMIUM, CONTRIB_CHARGEBACK,
                    CONTRIB_PURCHASE, CONTRIB_REFUND)
 
-# This has to be _mkt to get SIGNING_SERVER_ACTIVE
-try:
-    import settings_local_mkt as settings
-except:
-    # Fallback for jenkins.
-    import settings_local as settings
-
+from services.utils import settings
 setup_environ(settings)
 
 # Go configure the log.

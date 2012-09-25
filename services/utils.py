@@ -1,7 +1,14 @@
 from datetime import datetime, timedelta
 import dictconfig
 import logging
-import settings_local as settings
+import os
+
+# get the right settings module
+import imp
+settingmodule = os.environ['DJANGO_SETTINGS_MODULE']
+res = imp.find_module(settingmodule)
+settings = imp.load_module(settingmodule, *res)
+
 import posixpath
 import re
 import sys
@@ -14,7 +21,6 @@ from django.core.management import setup_environ
 import commonware.log
 
 # Pyflakes will complain about these, but they are required for setup.
-import settings_local as settings
 setup_environ(settings)
 from lib.log_settings_base import formatters, handlers, loggers
 
