@@ -10,10 +10,8 @@ body {
                 display: block;
             }
         }
-        #search {
+        #search, #search-q {
             display: block;
-        }
-        #search-q {
             width: 144px;
         }
     }
@@ -45,13 +43,33 @@ body {
         }
         #search {
             display: block;
+            width: 235px;
+            max-width: 235px;
+            margin: 0 12px 0 0;
+        }
+        #search-q {
+            width: 235px;
+            margin-right: 12px;
         }
         .header-button {
-            &.right {
+            &.right, &.settings {
                 display: none;
             }
             &.cancel {
                 display: block;
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    body[data-page-type='root'] {
+        #search {
+            display: block;
+        }
+        .header-button {
+            &.search {
+                display: none;
             }
         }
     }
