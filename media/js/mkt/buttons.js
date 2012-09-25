@@ -1,7 +1,7 @@
 (function() {
     function getButton(product) {
         // Look up button by its manifest URL.
-        return $(format('.button[data-manifestUrl="{0}"]', product.manifestUrl));
+        return $(format('.button[data-manifest_url="{0}"]', product.manifest_url));
     }
 
     function setButton($button, text, cls) {

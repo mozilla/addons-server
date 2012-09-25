@@ -6,7 +6,7 @@
 
 /*
 
-apps.install(manifestUrl, options)
+apps.install(manifest_url, options)
 
 It's just like navigator.apps.install with the following enhancements:
 - If navigator.apps.install doesn't exist, an error is displayed
@@ -38,20 +38,24 @@ exports.install = function(product, opt) {
     opt.data.categories = product.categories;
     var self = apps,
         errSummary,
-        manifestUrl = product.manifestUrl,
+        manifest_url = product.manifest_url,
         $def = $.Deferred();
 
     /* Try and install the app. */
-    if (manifestUrl && opt.navigator.mozApps && opt.navigator.mozApps.install) {
+    if (manifest_url && opt.navigator.mozApps && opt.navigator.mozApps.install) {
         /* TODO: combine the following check with the above. But don't stop
          * clients without installPackage from using apps for now.
          */
-        if (product.is_packaged && !opt.navigator.mozApps.installPackage && !manifestUrl) {
+        if (product.is_packaged && !opt.navigator.mozApps.installPackage && !manifest_url) {
             $def.reject();
         }
-        var installRequest = product.is_packaged ?
-                             opt.navigator.mozApps.installPackage(manifestUrl, opt.data) :
-                             opt.navigator.mozApps.install(manifestUrl, opt.data);
+        var installer;
+        if (product.is_packaged) {
+            installer = opt.navigator.mozApps.installPackage;
+        } else {
+            installer = opt.navigator.mozApps.install;
+        }
+        var installRequest = installer(manifest_url, opt.data);
         installRequest.onsuccess = function() {
             $def.resolve(product);
         };

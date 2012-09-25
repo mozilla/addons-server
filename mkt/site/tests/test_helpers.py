@@ -46,7 +46,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.price').text(), 'Free')
 
         data = json.loads(doc('.mkt-tile').attr('data-product'))
-        eq_(data['manifestUrl'], self.webapp.manifest_url)
+        eq_(data['manifest_url'], self.webapp.manifest_url)
         eq_(data['recordUrl'], urlparams(self.webapp.get_detail_url('record'),
                                          src='foo'))
         eq_(data['preapprovalUrl'], reverse('detail.purchase.preapproval',
@@ -60,7 +60,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.price').text(), '$1.00')
 
         data = json.loads(doc('.mkt-tile').attr('data-product'))
-        eq_(data['manifestUrl'], self.webapp.manifest_url)
+        eq_(data['manifest_url'], self.webapp.manifest_url)
         eq_(data['price'], 1.0)
         eq_(data['priceLocale'], '$1.00')
         eq_(data['purchase'], self.webapp.get_purchase_url())
@@ -140,18 +140,29 @@ class TestMarketButton(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_is_packaged(self):
+        manifest_url = ('http://omg.org/yes' +
+                        self.webapp.get_detail_url('manifest'))
+
         self.webapp.update(is_packaged=True)
+
         doc = pq(market_tile(self.context, self.webapp))
+        # NOTE: PyQuery won't parse attributes with underscores
+        # or uppercase letters.
+        assert 'data-manifest_url="%s"' % manifest_url in doc.html()
+
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], True)
-        eq_(data['manifestUrl'],
-            'http://omg.org/yes' + self.webapp.get_detail_url('manifest'))
+        eq_(data['manifest_url'], manifest_url)
 
     def test_is_not_packaged(self):
+        manifest_url = self.webapp.manifest_url
+
         doc = pq(market_tile(self.context, self.webapp))
+        assert 'data-manifest_url="%s"' % manifest_url in doc.html()
+
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], False)
-        eq_(data['manifestUrl'], self.webapp.manifest_url)
+        eq_(data['manifest_url'], manifest_url)
 
     def test_packaged_no_valid_status(self):
         self.webapp.update(is_packaged=True)
@@ -162,7 +173,7 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('a').attr('data-product'))
         eq_(data['is_packaged'], True)
-        eq_(data['manifestUrl'], '')
+        eq_(data['manifest_url'], '')
         # The install button should not be shown if no current_version.
         eq_(doc('.product button').length, 0)
 

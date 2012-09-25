@@ -208,7 +208,7 @@
     }
 
     function beginPreApproval(e) {
-        localStorage.setItem('toInstall', product.manifestUrl);
+        localStorage.setItem('toInstall', product.manifest_url);
         $('#preapproval').submit();
     }
 

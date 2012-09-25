@@ -61,7 +61,7 @@ def market_button(context, product, receipt_type=None):
     if product.is_webapp():
         purchased = False
         classes = ['button', 'product']
-        data_attrs = {'manifestUrl': product.manifest_url,
+        data_attrs = {'manifest_url': product.get_manifest_url(),
                       'is_packaged': json.dumps(product.is_packaged)}
 
         # Handle premium apps.
@@ -112,7 +112,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
         'name': product.name,
         'categories': [unicode(cat.name) for cat in
                        product.categories.all()],
-        'manifestUrl': product.get_manifest_url(),
+        'manifest_url': product.get_manifest_url(),
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
         'recordUrl': urlparams(url, src=src),
@@ -194,7 +194,7 @@ def market_tile(context, product, link=True, src=''):
 
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
-            'manifestUrl': product.manifest_url,
+            'manifest_url': product.get_manifest_url(),
             'src': src
         }
         if product.is_premium() and product.premium:

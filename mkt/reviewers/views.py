@@ -204,7 +204,7 @@ def _review(request, addon):
         'product': json.dumps(
             product_as_dict(request, addon, False, 'developer'),
             cls=JSONEncoder),
-        'manifestUrl': addon.manifest_url,
+        'manifest_url': addon.manifest_url,
     }
 
     pager = paginate(request, versions, 10)

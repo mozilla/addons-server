@@ -78,9 +78,9 @@ z.page.on('fragmentloaded', function() {
             z.apps = r.result;
             _.each(r.result, function(val) {
                 $(window).trigger('app_install_success',
-                                  [{'manifestUrl': val.manifestURL}, false])
+                                  [{'manifest_url': val.manifestURL}, false])
                          .trigger('app_install_mark',
-                                  {'manifestUrl': val.manifestURL});
+                                  {'manifest_url': val.manifestURL});
             });
         };
         if (!z.capabilities.gaia) {
@@ -112,8 +112,9 @@ z.page.on('fragmentloaded', function() {
     $(window).bind('overlay_dismissed', function() {
        $nav.removeClass('active');
     }).bind('app_install_mark', function(e, product) {
+        // TODO: Remove.
         var $li = $(format('.listing li[data-manifest="{0}"]',
-                           product.manifestUrl)),
+                           product.manifest_url)),
             $actions = $li.find('.actions'),
             $purchased = $actions.find('.checkmark.purchased'),
             installed = format('<span class="checkmark installed">{0}</span>',

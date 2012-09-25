@@ -6,7 +6,7 @@
 
 /*
 
-apps.install(manifestUrl, options)
+apps.install(manifest_url, options)
 
 It's just like navigator.apps.install with the following enhancements:
 - If navigator.apps.install doesn't exist, an error is displayed
@@ -32,7 +32,7 @@ navigator
     Something other than the global navigator, useful for testing
 
 */
-exports.install = function(manifestUrl, opt) {
+exports.install = function(manifest_url, opt) {
     opt = $.extend({'domContext': document,
                     'navigator': navigator,
                     'data': undefined,
@@ -44,7 +44,7 @@ exports.install = function(manifestUrl, opt) {
         showError = true;
     /* Try and install the app. */
     if (opt.navigator.mozApps && opt.navigator.mozApps.install) {
-        opt.navigator.mozApps.install(manifestUrl, opt.data, opt.success, function(errorOb) {
+        opt.navigator.mozApps.install(manifest_url, opt.data, opt.success, function(errorOb) {
             switch (errorOb.code) {
                 case 'denied':
                     // User canceled installation.
