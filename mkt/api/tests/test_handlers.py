@@ -162,7 +162,7 @@ def _mock_fetch_content(url):
 class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     fixtures = ['base/user_2519', 'base/users',
-                'base/platforms', 'base/appversion']
+                'base/platforms', 'base/apps', 'base/appversion']
 
     def count(self):
         return Addon.objects.count()
