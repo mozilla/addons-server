@@ -181,11 +181,28 @@ class TestAppDashboard(AppHubTest):
     def test_action_links(self):
         self.create_switch('app-stats')
         app = self.get_app()
-        app.update(public_stats=True)
+        app.update(public_stats=True, is_packaged=False)
         self.make_mine()
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
+            ('Manage Authors', app.get_dev_url('owner')),
+            ('Manage Payments', app.get_dev_url('payments')),
+            ('View Listing', app.get_url_path()),
+        ]
+        amo.tests.check_links(expected, doc('a.action-link'))
+        amo.tests.check_links([('View Statistics', app.get_stats_url())],
+            doc('a.stats-link'), verify=False)
+
+    def test_action_links_packaged(self):
+        self.create_switch('app-stats')
+        app = self.get_app()
+        app.update(public_stats=True, is_packaged=True)
+        self.make_mine()
+        doc = pq(self.client.get(self.url).content)
+        expected = [
+            ('Edit Listing', app.get_dev_url()),
+            ('Add New Version', app.get_dev_url('versions')),
             ('Manage Authors', app.get_dev_url('owner')),
             ('Manage Payments', app.get_dev_url('payments')),
             ('View Listing', app.get_url_path()),

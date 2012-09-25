@@ -21,8 +21,15 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="action-link tooltip"
-         title="{{ _("Edit details for this app's listing page.") }}">
+         title="{{ _('Edit details for this app\'s listing page.') }}">
         {{ _('Edit Listing') }}</a>
+    </li>
+  {% endif %}
+  {% if addon.is_packaged %}
+    <li>
+      <a href="{{ addon.get_dev_url('versions') }}" class="action-link tooltip"
+         title="{{ _('Add a new version of the packaged app.') }}">
+        {{ _('Add New Version') }}</a>
     </li>
   {% endif %}
   <li>
@@ -53,9 +60,7 @@
     <li>
       <a href="#" class="more-actions">{{ _('More') }}</a>
       <div class="more-actions-popup popup hidden">
-        {% set manage_urls = [
-          (addon.get_dev_url('versions'), _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status')),
-        ] %}
+        {% set manage_urls = [(addon.get_dev_url('versions'), _('Manage Status'))] %}
         {% if waffle.switch('allow-refund') and addon.needs_paypal() and
               check_addon_ownership(request, addon, support=True) %}
           {% do manage_urls.insert(1,
