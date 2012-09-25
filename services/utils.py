@@ -5,7 +5,7 @@ import os
 
 # get the right settings module
 import imp
-settingmodule = os.environ['DJANGO_SETTINGS_MODULE']
+settingmodule = os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local')
 res = imp.find_module(settingmodule)
 settings = imp.load_module(settingmodule, *res)
 
