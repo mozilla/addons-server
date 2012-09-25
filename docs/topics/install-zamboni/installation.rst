@@ -161,6 +161,11 @@ Settings
     Also see the Multiple Sites section below for using settings files to run
     the Add-ons and Marketplace sites side by side.
 
+.. note::
+
+    There is a :doc:`settings-changelog`, this can be useful for people who are already
+    setup but want to know what has recently changed.
+
 Most of zamboni is already configured in ``settings.py``, but there's some
 things you need to configure locally.  All your local settings go into
 ``settings_local.py``.  The settings template for
