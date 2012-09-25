@@ -348,3 +348,16 @@ GEOIP_DEFAULT_TIMEOUT = .2
 AMO_LANGUAGES = ('en-US', 'es', 'pt-BR')
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
+
+# Not shown on the site, but .po files exist and these are available on the
+# L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
+# This list also enables translation edits.
+HIDDEN_LANGUAGES = (
+    # List of languages from AMO's settings (excluding mkt's active locales).
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'eu', 'fa',
+    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'zh-CN', 'zh-TW',
+    # The hidden list from AMO's settings:
+    'cy', 'sr', 'sr-Latn', 'tr',
+)

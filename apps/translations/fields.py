@@ -167,7 +167,9 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         """
         rv = None
         for locale, string in dict_.items():
-            if locale.lower() not in settings.LANGUAGES:
+            loc = locale.lower()
+            if (loc not in settings.LANGUAGES and
+                loc not in settings.HIDDEN_LANGUAGES):
                 continue
             # The Translation is created and saved in here.
             trans = self.translation_from_string(instance, locale, string)
