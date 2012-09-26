@@ -1,0 +1,15 @@
+{
+    "name": "Blocked by Mozilla",
+    "version": "1.0",
+    "icons": {
+        "128": "icon.png"
+    },
+    "installs_allowed_from": ["*"],
+    "description": "This app has been blocked for your protection.",
+    "launch_path": "/index.html",
+    "developer": {
+        "url": "https://marketplace.mozilla.org",
+        "name": "Firefox Marketplace Staff"
+    },
+    "fullscreen": "true"
+}

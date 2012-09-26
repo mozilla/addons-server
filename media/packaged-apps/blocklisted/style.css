@@ -1,0 +1,81 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+html, body {
+  background-color: #575E66;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+}
+
+#modal-dialog-sad-face {
+  float: left;
+  font-size: 72px;
+  line-height: 72px;
+  margin: 0 2px -4px 10px;
+  text-align: right;
+  -moz-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#modal-dialog-error {
+  display: table;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+
+.modal-dialog-message-container {
+  display: table-cell;
+  color: #FFF;
+  font-size: 15px;
+  height: 100%;
+  min-height: 20px;
+  padding: 1em 1.5em;
+  text-align: left;
+  vertical-align: middle;
+  width: 100%;
+}
+
+#modal-dialog-error p {
+  color: #FAFAFA;
+  font-weight: lighter;
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+#modal-dialog-error p:last-child {
+  display: -moz-box;
+  -moz-box-flex: 1;
+  -moz-box-orient: vertical;
+}
+
+h3 {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+  padding-bottom: .5rem;
+}
+
+/* 480x800 phones */
+@media (orientation: portrait) and (width: 480px),
+       (orientation: landscape) and (width: 800px) {
+  .modal-dialog-message-container {
+    border-radius: 6px 6px 0 0;
+    color: #FFF;
+    font-size: 25px;
+    min-height: 30px;
+    padding: 1em;
+    text-align: left;
+    width: 100%;
+  }
+}
