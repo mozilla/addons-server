@@ -5,6 +5,8 @@ from django.conf import settings
 
 import amo
 from amo.urlresolvers import reverse
+from lib.crypto import packaged
+from lib.crypto.tests import mock_sign
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 
@@ -18,6 +20,7 @@ class TestDownload(BasePackagedAppTest):
         super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
 
+    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_download(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -27,11 +30,13 @@ class TestDownload(BasePackagedAppTest):
         self.app.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
 
+    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_owner(self):
         self.client.login(username='steamcube@mozilla.com',
                           password='password')
         eq_(self.client.get(self.url).status_code, 200)
 
+    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_admin(self):
         self.client.login(username='admin@mozilla.com',
                           password='password')

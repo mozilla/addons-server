@@ -27,6 +27,8 @@ from devhub.models import ActivityLog, AppLog
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from files.models import File
+from lib.crypto import packaged
+from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
 from mkt.submit.tests.test_views import BasePackagedAppTest
@@ -1824,6 +1826,7 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         eq_(self.client.get(self.url).status_code, 403)
 
+    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_reviewer(self):
         self.setup_files()
         res = self.client.get(self.url)

@@ -18,6 +18,8 @@ from amo.tests import (app_factory, ESTestCase, TestCase, version_factory,
 from constants.applications import DEVICE_TYPES
 from editors.models import RereviewQueue
 from files.models import File
+from lib.crypto import packaged
+from lib.crypto.tests import mock_sign
 from market.models import Price
 from users.models import UserProfile
 from versions.models import Version
@@ -426,6 +428,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(data['icons'], manifest['icons'])
         eq_(data['locales'], manifest['locales'])
 
+    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_package_path(self):
         webapp = self.post_addon()
         version = webapp.current_version

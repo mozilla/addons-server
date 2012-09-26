@@ -15,6 +15,25 @@ from files.utils import SafeUnzip
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
 from mkt.webapps.models import Webapp
+from versions.models import Version
+
+
+def mock_sign(version_id, reviewer=False):
+    """
+    This is a mock for using in tests, where we really don't want to be
+    actually signing the apps. This just copies the file over and returns
+    the path. It doesn't have much error checking.
+    """
+    version = Version.objects.get(pk=version_id)
+    file_obj = version.all_files[0]
+    path = (file_obj.signed_reviewer_file_path if reviewer else
+            file_obj.signed_file_path)
+    try:
+        os.makedirs(os.path.dirname(path))
+    except OSError:
+        pass
+    shutil.copyfile(file_obj.file_path, path)
+    return path
 
 
 @mock.patch('lib.metrics.urllib2.urlopen')
