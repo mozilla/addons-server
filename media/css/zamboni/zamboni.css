@@ -1987,6 +1987,10 @@ form .error .note.error {
     border: 1px solid #e0effd;
 }
 
+.other-categories a {
+    display: block;
+}
+
 .versions .primary > .warning h2 {
     font-style: italic;
     margin: 0;
