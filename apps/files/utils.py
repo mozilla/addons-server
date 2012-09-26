@@ -274,7 +274,7 @@ class SafeUnzip(object):
             zip = zipfile.ZipFile(self.source, self.mode)
         except (BadZipfile, IOError):
             if fatal:
-                log.error('Error extracting', exc_info=True)
+                log.info('Error extracting', exc_info=True)
                 raise
             return False
 
