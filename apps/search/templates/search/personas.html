@@ -35,5 +35,7 @@
     {% endif %}
   </div>
 </div>
-{{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
+<div class="secondary" role="complementary">
+  {{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
+</div>
 {% endblock %}

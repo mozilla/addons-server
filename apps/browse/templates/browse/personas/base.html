@@ -16,6 +16,19 @@
 {% endif %}
 {% endblock %}
 
-{% macro persona_categories() %}
-{{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
+{% macro persona_categories(is_firefox) %}
+<div class="secondary" role="complementary">
+  {{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
+  {% if is_firefox and waffle.flag('submit-personas') %}
+    <div class="submit-theme">
+      <h3>{{ _('Create Your Own Theme') }}</h3>
+      <p>
+        {% trans %}
+          Your browser, your style! Dress it up with easy-to-use themes for your Firefox.
+        {% endtrans %}
+      </p>
+      <p><a href="{{ url('devhub.personas.submit') }}" class="button">{{ _('Submit a New Theme') }}</a></p>
+    </div>
+  {% endif %}
+</div>
 {% endmacro %}

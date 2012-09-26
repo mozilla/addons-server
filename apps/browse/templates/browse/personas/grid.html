@@ -1,6 +1,5 @@
 {% extends "browse/personas/base.html" %}
 
-
 {% block content %}
 <div class="primary" role="main">
   <header>
@@ -17,6 +16,5 @@
     </div> {# featured-inner #}
   </div>
 </div>
-
-{{ persona_categories() }}
+{{ persona_categories(request.APP == amo.FIREFOX) }}
 {% endblock content %}

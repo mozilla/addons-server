@@ -102,6 +102,5 @@
     </p>
   </div>
 </div>
-
-{{ persona_categories() }}
+{{ persona_categories(request.APP == amo.FIREFOX) }}
 {% endblock content %}

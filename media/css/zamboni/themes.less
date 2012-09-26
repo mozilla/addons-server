@@ -1,0 +1,28 @@
+@import '../impala/lib';
+
+.secondary .submit-theme {
+    .border-radius(5px);
+    border: 1px solid #ddd;
+    padding: 15px;
+    p {
+        color: @medium-gray;
+        line-height: 1.2;
+        margin: 10px 0 0;
+    }
+    h3 {
+        color: #933;
+        font-size: 16px;
+        margin: 0;
+        + p {
+            margin-bottom: 15px;
+            &:before {
+                content: url(../../img/zamboni/personas/submit.jpg);
+                float: right;
+                margin: -5px -5px 5px 10px;
+            }
+        }
+    }
+    .button {
+        padding: 4px 12px;
+    }
+}

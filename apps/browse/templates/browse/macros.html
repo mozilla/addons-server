@@ -1,5 +1,4 @@
 {% macro secondary_categories(title, viewname, categories, filter) %}
-<div class="secondary" role="complementary">
   <div class="other-categories highlight">
     <h3><a href="{{ url(viewname) }}">{{ title }}</a></h3>
     {% if filter %}
@@ -22,5 +21,4 @@
     {% endcache %}
     </ul>
   </div>
-</div>
 {% endmacro %}
