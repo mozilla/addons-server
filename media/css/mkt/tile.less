@@ -132,11 +132,9 @@
     padding: 0 0 1px 1px;
     li {
         float: left;
-        /*max-width: 107px;*/
         width: 100%/3;
         padding: 1px 1px 0 0;
-        max-width: 152px;
-        max-height: 128px;
+        max-height: 141px;
     }
     .mkt-tile {
         position: relative;
@@ -347,4 +345,10 @@
     font-size: 11px;
     line-height: 12px;
     margin-top: 4px;
+}
+
+@media (min-width: 480px) {
+    .grid {
+        .mkt-tile { height: 140px; }
+    }
 }
