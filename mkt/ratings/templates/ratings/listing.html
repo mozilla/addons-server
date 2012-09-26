@@ -1,7 +1,8 @@
 {% extends 'mkt/base.html' %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
-{% block bodyclass %}reviews-listing{% endblock %}
+{% set pagetitle = mkt_page_title(_('Reviews for {0}')|f(product.name)) %}
+{% set bodyclass = 'reviews-listing' %}
 
 {% block extrahead %}
   {{ super() }}

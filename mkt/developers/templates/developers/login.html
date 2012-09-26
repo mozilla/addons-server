@@ -2,7 +2,7 @@
 
 {% set pagetitle = mkt_page_title(_('Firefox Marketplace')) %}
 
-{% block bodyclass %}home login {{ super() }}{% endblock %}
+{% set bodyclass = 'home login' %}
 
 {% block content %}
   <h1 id="top">{{ _('Firefox Marketplace') }}</h1>

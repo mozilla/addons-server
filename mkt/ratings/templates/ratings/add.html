@@ -14,7 +14,9 @@
   {% set title = _('Edit your review') %}
 {% endif %}
 
-{% block bodyclass %}review-add{% endblock %}
+{% set pagetitle = mkt_page_title(title) %}
+
+{% set bodyclass = 'review-add' %}
 
 {% block content %}
   <h1 id="top">{{ title }}</h1>

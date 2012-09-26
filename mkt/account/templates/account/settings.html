@@ -1,9 +1,8 @@
 {% extends 'mkt/base.html' %}
 
 {% set title = _('Account Settings') %}
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
-
-{% block bodyclass %}settings{% endblock %}
+{% set pagetitle = mkt_page_title(title) }}
+{% set bodyclass = 'settings' %}
 
 {% block content %}
   <h1 id="top">{{ _('Settings') }}</h1>
