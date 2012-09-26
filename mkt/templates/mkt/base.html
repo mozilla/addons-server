@@ -198,7 +198,7 @@
 
     {# js #}
     {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
       {# When bug 755694 is solved, expose the shim again. #}
       {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
       {% if not logged %}

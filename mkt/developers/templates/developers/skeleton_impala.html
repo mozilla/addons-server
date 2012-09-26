@@ -186,7 +186,7 @@
 
     {# js #}
     {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
       {% if not logged %}
         {# We need Persona for only non-authenticated users. #}
         <script async defer src="https://login.persona.org/include.js"></script>
