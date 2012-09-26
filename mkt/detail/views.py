@@ -1,6 +1,8 @@
 import hashlib
+import json
 
 from django import http
+from django.conf import settings
 from django.shortcuts import redirect
 from django.views.decorators.http import etag
 
@@ -13,8 +15,10 @@ from abuse.models import send_abuse_report
 from access import acl
 from addons.decorators import addon_view_factory
 from amo.decorators import login_required, permission_required
+from amo.helpers import absolutify
 from amo.forms import AbuseForm
-from amo.utils import paginate
+from amo.urlresolvers import reverse
+from amo.utils import JSONEncoder, paginate
 from devhub.models import ActivityLog
 from reviews.models import GroupedRating, Review
 from reviews.views import get_flags
@@ -56,12 +60,26 @@ def manifest(request, addon):
     is_dev = addon.has_author(request.amo_user)
     is_public = addon.status == amo.STATUS_PUBLIC
 
-    if (not addon.is_packaged or addon.disabled_by_user or (
-            not is_public and not (is_reviewer or is_dev))):
+    # If webapp is blocklisted, show the blocklisted manifest.
+    if addon.status == amo.STATUS_BLOCKED:
+        data = {
+            'name': addon.name,
+            'size': settings.BLOCKED_PACKAGE_SIZE,
+            'release_notes':
+                _(u'This app has been blocked for your protection.'),
+            'package_path': absolutify(
+                reverse('downloads.blocked_packaged_app')),
+        }
+        manifest_content = json.dumps(data, cls=JSONEncoder)
+        manifest_etag = hashlib.md5(manifest_content).hexdigest()
+
+    elif (not addon.is_packaged or addon.disabled_by_user or (
+              not is_public and not (is_reviewer or is_dev))):
         raise http.Http404
 
-    manifest_content = addon.get_cached_manifest()
-    manifest_etag = hashlib.md5(manifest_content).hexdigest()
+    else:
+        manifest_content = addon.get_cached_manifest()
+        manifest_etag = hashlib.md5(manifest_content).hexdigest()
 
     @etag(lambda r, a: manifest_etag)
     def _inner_view(request, addon):

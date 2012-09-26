@@ -370,7 +370,8 @@ class TestDetailPagePermissions(DetailBase):
     def test_public(self):
         doc = self.get_pq(status=amo.STATUS_PUBLIC)
         eq_(doc('#product-status').length, 0)
-        eq_(doc('.summary').length, 1, 'The rest of the page should visible')
+        eq_(doc('.summary').length, 1,
+            'The rest of the page should be visible')
 
     def test_deleted(self):
         self.app.update(status=amo.STATUS_DELETED)
@@ -407,6 +408,11 @@ class TestDetailPagePermissions(DetailBase):
     def test_disabled_by_mozilla(self):
         msg = self.get_msg(visible=False, status=amo.STATUS_DISABLED).text()
         assert 'disabled by Mozilla' in msg, (
+            'Expected a rejection message: %s' % msg)
+
+    def test_blocked_by_mozilla(self):
+        msg = self.get_msg(visible=False, status=amo.STATUS_BLOCKED).text()
+        assert 'blocked by Mozilla' in msg, (
             'Expected a rejection message: %s' % msg)
 
     def test_disabled_by_user(self):
@@ -459,6 +465,15 @@ class TestDetailPagePermissions(DetailBase):
         assert msg.find('.emaillink').length, (
             'Expected an email link so I can yell at Mozilla')
 
+    def _test_dev_blocked_by_mozilla(self):
+        # I'm a developer or an admin.
+        msg = self.get_msg(visible=True, status=amo.STATUS_BLOCKED)
+        txt = msg.text()
+        assert 'blocked by Mozilla' in txt, (
+            'Expected something about it being blocked: %s' % txt)
+        assert msg.find('.emaillink').length, (
+            'Expected an email link so I can yell at Mozilla')
+
     def _test_dev_disabled_by_user(self):
         # I'm a developer or an admin.
         msg = self.get_msg(visible=True, disabled_by_user=True)
@@ -488,6 +503,10 @@ class TestDetailPagePermissions(DetailBase):
         self.log_in_as('owner')
         self._test_dev_disabled_by_mozilla()
 
+    def test_owner_blocked_by_mozilla(self):
+        self.log_in_as('owner')
+        self._test_dev_blocked_by_mozilla()
+
     def test_owner_disabled_by_user(self):
         self.log_in_as('owner')
         self._test_dev_disabled_by_user()
@@ -511,6 +530,10 @@ class TestDetailPagePermissions(DetailBase):
     def test_admin_disabled_by_mozilla(self):
         self.log_in_as('admin')
         self._test_dev_disabled_by_mozilla()
+
+    def test_admin_blocked_by_mozilla(self):
+        self.log_in_as('admin')
+        self._test_dev_blocked_by_mozilla()
 
     def test_admin_disabled_by_user(self):
         self.log_in_as('admin')
@@ -878,3 +901,17 @@ class TestPackagedManifest(DetailBase):
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
         eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
+
+    @mock.patch.object(settings, 'BLOCKED_PACKAGE_SIZE', 123)
+    @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
+    def test_blocked_app(self):
+        self.app.update(status=amo.STATUS_BLOCKED)
+        res = self.client.get(self.url)
+        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        assert 'etag' in res._headers
+        data = json.loads(res.content)
+        eq_(data['name'], self.app.name)
+        eq_(data['size'], 123)
+        eq_(data['package_path'], '%s%s' % (
+            settings.SITE_URL, reverse('downloads.blocked_packaged_app')))
+        assert data['release_notes'].startswith(u'This app has been blocked')

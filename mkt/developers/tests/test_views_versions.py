@@ -70,6 +70,15 @@ class TestVersion(amo.tests.TestCase):
         eq_(doc('#version-status .status-public').length, 1)
         eq_(doc('#rejection').length, 0)
 
+    def test_blocked(self):
+        self.webapp.update(status=amo.STATUS_BLOCKED)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#version-status .status-blocked').length, 1)
+        eq_(doc('#rejection').length, 0)
+        assert 'blocked by a site administrator' in doc.text()
+
     def test_rejected(self):
         comments = "oh no you di'nt!!"
         amo.set_user(UserProfile.objects.get(username='editor'))

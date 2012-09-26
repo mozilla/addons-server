@@ -20,6 +20,7 @@ STATUS_DELETED = 11
 STATUS_REJECTED = 12  # This applies only to apps (for now)
 STATUS_PUBLIC_WAITING = 13  # bug 740967
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
+STATUS_BLOCKED = 15
 
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
@@ -38,7 +39,8 @@ STATUS_CHOICES = {
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
-    STATUS_PUBLIC_WAITING: _('Approved but waiting'),
+    STATUS_PUBLIC_WAITING: _(u'Approved but waiting'),
+    STATUS_BLOCKED: _(u'Blocked'),
 }
 
 # We need to expose nice values that aren't localisable.
@@ -57,6 +59,7 @@ STATUS_CHOICES_API = {
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_PUBLIC_WAITING: 'waiting',
+    STATUS_BLOCKED: 'blocked',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
@@ -74,6 +77,7 @@ STATUS_CHOICES_API_LOOKUP = {
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'waiting': STATUS_PUBLIC_WAITING,
+    'blocked': STATUS_BLOCKED,
 }
 
 PUBLIC_IMMEDIATELY = None
@@ -112,7 +116,8 @@ WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING,
 
 # The only statuses we use in the marketplace.
 MARKET_STATUSES = (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC, STATUS_DISABLED,
-                   STATUS_DELETED, STATUS_REJECTED, STATUS_PUBLIC_WAITING)
+                   STATUS_DELETED, STATUS_REJECTED, STATUS_PUBLIC_WAITING,
+                   STATUS_BLOCKED)
 
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1

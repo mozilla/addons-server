@@ -73,6 +73,13 @@
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
               If you have any questions about this, please email {{ email }}.
             {% endtrans %}
+          {% elif product.status == amo.STATUS_BLOCKED %}
+            {% trans %}
+              This app has been <b>blocked by Mozilla</b>.
+            {% endtrans %}
+            {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
+              If you have any questions about this, please email {{ email }}.
+            {% endtrans %}
           {% endif %}
           {% trans status_url=product.get_dev_url('versions') %}
             Visit its
@@ -105,6 +112,11 @@
           {% elif product.status == amo.STATUS_DISABLED %}
             {% trans %}
               This app has been <b>disabled by Mozilla</b> and is no longer
+              available.
+            {% endtrans %}
+          {% elif product.status == amo.STATUS_BLOCKED %}
+            {% trans %}
+              This app has been <b>blocked by Mozilla</b> and is no longer
               available.
             {% endtrans %}
           {% elif product.disabled_by_user %}
