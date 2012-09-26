@@ -20,13 +20,3 @@
     <link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}">
   </noscript>
 {% endblock %}
-
-{% block aux_nav %}
-  {% if request.can_view_consumer %}
-    <li class="nomenu">
-      <a class="return" href="{{ url('home') }}">{{ _('Back to Apps') }}</a>
-    </li>
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}

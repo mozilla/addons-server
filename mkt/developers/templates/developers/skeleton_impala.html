@@ -59,12 +59,18 @@
           {% block aux_nav_content %}
             <nav id="aux-nav" role="navigation" class="menu-nav c">
               <ul>
-                {% block user_actions %}
-                  {% if not settings.READ_ONLY %}
-                    {% include 'impala/user_login.html' %}
-                  {% endif %}
-                {% endblock %}
-                {% block aux_nav %}{% endblock %}
+                {% if not settings.READ_ONLY %}
+                  {% include 'impala/user_login.html' %}
+                {% endif %}
+                {% if request.can_view_consumer %}
+                  <li class="nomenu">
+                    <a class="return" href="{{ url('home') }}">
+                      {{ _('Back to Apps') }}
+                    </a>
+                  </li>
+                {% else %}
+                  {{ super() }}
+                {% endif %}
               </ul>
             </nav>
           {% endblock %}

@@ -6,63 +6,7 @@
   {{ css('mkt/ecosystem') }}
 {% endblock %}
 
-{% block aux_nav %}{% endblock %}
-
 {% block site_header_title %}{% endblock %}
-
-{% block user_actions %}
-  {% if user.is_authenticated() %}
-    <li class="account">
-      <a href="{{ amo_user.get_url_path() }}" class="user" title="{{ amo_user.email }}">
-        {{ amo_user.welcome_name }}</a>
-      {% if account_links %}
-        <ul>
-          <li>
-            <a href="{{ url('mkt.developers.apps') }}">
-              {{ _('My Submissions') }}</a>
-          </li>
-          {% for link in account_links %}
-            {% if not loop.last %}
-              <li><a href="{{ link.href }}">{{ link.text }}</a></li>
-            {% endif %}
-          {% endfor %}
-          <li class="nomenu logout">
-            <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
-          </li>
-        </ul>
-      {% endif %}
-    </li>
-  {% else %}
-    <li class="account anonymous nomenu login{{ ' legacy' if not waffle.switch('browserid-login') }}">
-      {% if waffle.switch('browserid-login') %}
-        <a href="{{ login_link() }}" class="browserid-login browserid"
-           data-url="{{ url('users.browserid_login') }}">
-           {{ _('Log in / Register') }}</a>
-      {% else %}
-        {% trans reg=url('users.register'), login=login_link() %}
-          <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
-        {% endtrans %}
-      {% endif %}
-    </li>
-  {% endif %}
-
-  {% if user.is_authenticated() %}
-    {% if tools_links|count > 1 %}
-      <li class="tools">
-        <a href="#">{{ tools_title }}</a>
-        <ul>
-          {% for link in tools_links %}
-            <li><a href="{{ link.href }}">{{ link.text }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
-    {% elif tools_links %}
-      <li class="context tools nomenu">
-        <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
-      </li>
-    {% endif %}
-  {% endif %}
-{% endblock %}
 
 {% block devhub_categories %}
   <div id="site-nav" class="devhub-categories">

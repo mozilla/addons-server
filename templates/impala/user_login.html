@@ -2,18 +2,18 @@
   <li class="account">
     <a href="{{ amo_user.get_url_path() }}" class="user" title="{{ amo_user.email }}">
       {{ amo_user.welcome_name }}</a>
-    {% if account_links %}
-      <ul>
+    <ul>
+      {% if account_links %}
         {% for link in account_links %}
           {% if not loop.last %}
             <li><a href="{{ link.href }}">{{ link.text }}</a></li>
           {% endif %}
         {% endfor %}
-      </ul>
-    {% endif %}
-  </li>
-  <li class="nomenu logout">
-    <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+      {% endif %}
+      <li class="nomenu logout">
+        <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+      </li>
+    </ul>
   </li>
 {% else %}
   <li class="account anonymous nomenu login{{ ' legacy' if not waffle.switch('browserid-login') }}">
