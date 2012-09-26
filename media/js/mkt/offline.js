@@ -1,7 +1,3 @@
-$(function() {
-    var offline = $('[data-offline]').data('offline');
-});
-
 if ('applicationCache' in window) {
     function Log(el) {
         function ts() {
@@ -27,7 +23,7 @@ if ('applicationCache' in window) {
     Log.prototype = Array.prototype;
 
     var manny = (function() {
-        var log = new Log($('#manny-log')[0]),
+        var log = new Log(document.getElementById('manny-log')),
             cache = window.applicationCache,
             watchInterval = false;
 

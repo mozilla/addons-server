@@ -4,10 +4,7 @@
 {% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') %}
 {% set logged = request.user.is_authenticated() %}
 <!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}"
-  {%- if settings.USE_APPCACHE and OFFLINE_MANIFEST %}
-    {{ appcache_manifest_link()|safe }}
-  {%- endif -%}>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
     {% if not settings.ENGAGE_ROBOTS %}
@@ -191,7 +188,7 @@
     </div>
 
     {% block offline_pixel %}
-      <iframe id="offline-pixel" src="{{ settings.SITE_URL + url('offline.home') }}"></iframe>
+      <iframe id="offline-pixel" src="{{ url('offline.stub') }}"></iframe>
     {% endblock %}
 
     {% block dbgoverlay %}{% endblock %}

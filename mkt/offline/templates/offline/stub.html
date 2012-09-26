@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html {% if settings.USE_APPCACHE %}{{ appcache_manifest_link()|safe }}{% endif %}>
+  <head>
+    <meta charset="utf-8">
+    <title>Marketplace Offline Bootstrap</title>
+  </head>
+  <body>
+    <h1>Marketplace Offline Bootstrap</h1>
+    <pre id="manny-log"></pre>
+    <script src="/media/js/mkt/offline.js"></script>
+  </body>
+</html>
