@@ -1,9 +1,9 @@
 <div id="page" role="main"
      data-type="{% block pagetype %}leaf{% endblock %}"
      data-context="{{
-       {'type': pagetype,
-        'title': pagetitle,
-        'bodyclass': bodyclass,
+       {'type': pagetype or 'leaf',
+        'title': pagetitle or _('Firefox Marketplace'),
+        'bodyclass': bodyclass or '',
         'category': category.name ~ '' if category else ''}|json }}">
   {# `outer_content` is for stuff you want above `content` on every page. #}
   {% block outer_content %}
