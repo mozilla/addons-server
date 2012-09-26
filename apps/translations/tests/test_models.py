@@ -75,15 +75,6 @@ class TranslationTestCase(ExtraAppTestCase):
 
     def tearDown(self):
         super(TranslationTestCase, self).tearDown()
-        # Experimental, see if this fixes jenkins.
-        keys = [k for k in Translation._meta._related_objects_cache.keys()
-                if k.model in (TranslatedModel, UntranslatedModel, FancyModel)]
-        for k in keys:
-            try:
-                del Translation._meta._related_objects_cache[k]
-            except KeyError:
-                pass
-
         settings.REDIRECT_URL = self.redirect_url
         settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
 
