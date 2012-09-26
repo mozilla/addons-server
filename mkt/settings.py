@@ -312,7 +312,7 @@ APPCACHE_FALLBACK_PATHS = {
 
 def APPCACHE_MEDIA_TO_CACHE():
     from jingo_minify import helpers
-    bundle = 'consumer'
+    bundle = 'mkt/consumer'
 
     # TODO(Kumar) refactor jingo-minify so we don't have to copy/paste this
     # logic.
@@ -327,8 +327,8 @@ def APPCACHE_MEDIA_TO_CACHE():
         css_build_id = helpers.BUNDLE_HASHES[bundle_full]
 
     return (
-        'js/mkt/%s-min.js?build=%s' % (bundle, js_build_id),
-        'css/mkt/%s-min.css?build=%s' % (bundle, css_build_id),
+        'js/%s-min.js?build=%s' % (bundle, js_build_id),
+        'css/%s-min.css?build=%s' % (bundle, css_build_id),
     )
 
 
