@@ -51,8 +51,18 @@
     a {
         font-weight: normal;
     }
-    p + p {
+    p {
         color: @medium-gray;
+        font-size: 12px;
+        &:first-child {
+            color: @dark-gray;
+            font-weight: 600;
+        }
+    }
+    address {
+        color: @note-gray;
+        font-size: 12px;
+        margin: 10px 0 10px 15px;
     }
 }
 

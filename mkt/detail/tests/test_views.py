@@ -610,8 +610,8 @@ class TestDetailPagePermissions(DetailBase):
                         % (region, user, status))
 
                     txt = disclaimer.text()
-                    assert ' unavailable to users in Brazil' in txt, (
-                        'Expected message about invisible in Brazil: %s' % txt)
+                    assert ' unavailable for users in Brazil' in txt, (
+                        u'Expected to say it is invisible in Brazil: %s' % txt)
 
                     eq_(doc('.button.product').length, 1)
                     eq_(doc('.content-ratings').length, 0)
