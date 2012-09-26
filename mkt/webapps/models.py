@@ -236,6 +236,20 @@ class Webapp(Addon):
         except ImageAsset.DoesNotExist:
             return settings.MEDIA_URL + 'img/hub/default-64.png'
 
+    def get_image_asset_hue(self, slug):
+        """
+        Returns the URL for an app's image asset that uses the slug specified
+        by `slug`.
+        """
+        if not any(slug == x['slug'] for x in APP_IMAGE_SIZES):
+            raise Exception(
+                "Requesting image asset for size that doesn't exist.")
+
+        try:
+            return ImageAsset.objects.get(addon=self, slug=slug).hue
+        except ImageAsset.DoesNotExist:
+            return 0
+
     @staticmethod
     def domain_from_url(url):
         if not url:
@@ -643,6 +657,7 @@ class ImageAsset(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='image_assets')
     filetype = models.CharField(max_length=25, default='image/png')
     slug = models.CharField(max_length=25)
+    hue = models.PositiveIntegerField(null=False, default=0)
 
     class Meta:
         db_table = 'image_assets'

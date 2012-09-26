@@ -230,7 +230,7 @@ def generate_image_assets(addon, **kw):
 
     for asset in APP_IMAGE_SIZES:
         try:
-            generate_image_asset(addon, asset, icon,
+            generate_image_asset(addon, asset, icon, hue=icon_hue,
                                  backdrop=backdrop.copy(), **kw)
         except IOError:
             log.error('[1@None] Could not write asset %s for %s' %
@@ -250,8 +250,16 @@ def generate_image_asset(addon, asset, icon, **kw):
     image_asset, created = ImageAsset.objects.get_or_create(addon=addon,
                                                             slug=asset['slug'])
 
+    hue = int(kw.pop('hue', 0) * 360)
+    if image_asset.hue != hue:
+        image_asset.hue = hue
+        image_asset.save()
+
     backdrop = kw.pop('backdrop')
-    im = backdrop.resize(asset['size'], Image.ANTIALIAS)
+    if asset['has_background']:
+        im = backdrop.resize(asset['size'], Image.ANTIALIAS)
+    else:
+        im = Image.new('RGBA', asset['size'])
 
     # Get a copy of the icon.
     asset_icon = icon.copy()
