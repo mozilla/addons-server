@@ -49,13 +49,12 @@ exports.install = function(product, opt) {
         if (product.is_packaged && !opt.navigator.mozApps.installPackage && !manifest_url) {
             $def.reject();
         }
-        var installer;
+        var installRequest;
         if (product.is_packaged) {
-            installer = opt.navigator.mozApps.installPackage;
+            installRequest = opt.navigator.mozApps.installPackage(manifest_url, opt.data);
         } else {
-            installer = opt.navigator.mozApps.install;
+            installRequest = opt.navigator.mozApps.install(manifest_url, opt.data);
         }
-        var installRequest = installer(manifest_url, opt.data);
         installRequest.onsuccess = function() {
             $def.resolve(product);
         };
