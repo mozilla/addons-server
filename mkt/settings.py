@@ -177,7 +177,11 @@ NO_CONSUMER_MODULES = (
     'versions.views',
     'mkt.account.views',
     'mkt.browse.views',
-    'mkt.detail.views',
+    'mkt.detail.views.detail',
+    'mkt.detail.views.detail.abuse',
+    'mkt.detail.views.detail.abuse.recaptcha',
+    'mkt.detail.views.detail.privacy',
+    'mkt.detail.views.app_activity',
     'mkt.ratings.views',
     'mkt.payments.views',
     'mkt.stats.views',
@@ -190,6 +194,7 @@ NO_CONSUMER_MODULES = (
 NO_LOGIN_REQUIRED_MODULES = (
     'csp.views.policy',
     'csp.views.report',
+    'mkt.detail.views.manifest',
     'mkt.developers',
     'mkt.lookup',
     'mkt.reviewers',
@@ -303,6 +308,7 @@ APPCACHE_FALLBACK_PATHS = {
 # to cache will be determined using MEDIA_URL.
 # If you use wildcards here the real paths to the file(s) will be
 # expanded using glob.glob()
+
 
 def APPCACHE_MEDIA_TO_CACHE():
     from jingo_minify import helpers

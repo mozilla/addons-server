@@ -915,3 +915,17 @@ class TestPackagedManifest(DetailBase):
         eq_(data['package_path'], '%s%s' % (
             settings.SITE_URL, reverse('downloads.blocked_packaged_app')))
         assert data['release_notes'].startswith(u'This app has been blocked')
+
+    @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
+        settings.MIDDLEWARE_CLASSES + type(settings.MIDDLEWARE_CLASSES)([
+            'amo.middleware.NoConsumerMiddleware',
+            'amo.middleware.LoginRequiredMiddleware'
+        ])
+    )
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_logged_out(self, _mock):
+        _mock.return_value = self._mocked_json()
+        self.client.logout()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
