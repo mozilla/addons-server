@@ -53,6 +53,7 @@ class TestMarketButton(amo.tests.TestCase):
                                             args=[self.webapp.app_slug]))
         eq_(data['id'], str(self.webapp.pk))
         eq_(data['name'], self.webapp.name)
+        eq_(data['src'], 'foo')
 
     def test_is_premium_webapp(self):
         self.make_premium(self.webapp)
@@ -137,6 +138,12 @@ class TestMarketButton(amo.tests.TestCase):
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['categories'],
             [str(cat.name) for cat in self.webapp.categories.all()])
+
+    def test_install_src(self):
+        # request.GET['src'] is 'foo', and we're overriding it.
+        doc = pq(market_tile(self.context, self.webapp, src='xxx'))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
+        eq_(data['src'], 'xxx')
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_is_packaged(self):

@@ -50,6 +50,7 @@
     function install(product, receipt) {
         var data = {};
         var post_data = {
+            src: product.src,
             device_type: z.capabilities.getDeviceType()
         };
         if (z.capabilities.chromeless) {

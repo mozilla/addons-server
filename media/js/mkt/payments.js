@@ -14,7 +14,6 @@
         messageTemplate = template($('#purchased-template').html()),
         data = {
             'currency': $('body').data('user').currency,
-            'src': z.getVars().src,
             'device_type': z.capabilities.getDeviceType()
         },
         oneTimePayClicked = false,
@@ -253,7 +252,7 @@
             cancelPurchase();
         });
 
-        $.post(product.purchase, data, function(response) {
+        $.post(product.purchase, $.extend({src: product.src}, data), function(response) {
             if (response.error) {
                 $(window).trigger('purchaseerror', [product, response.error]);
             }

@@ -94,7 +94,8 @@ def market_button(context, product, receipt_type=None):
     return jinja2.Markup(t.render(c))
 
 
-def product_as_dict(request, product, purchased=None, receipt_type=None):
+def product_as_dict(request, product, purchased=None, receipt_type=None,
+                    src=''):
 
     # Dev environments might not have authors set.
     author = ''
@@ -105,7 +106,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
 
     url = (reverse('receipt.issue', args=[product.app_slug])
            if receipt_type else product.get_detail_url('record'))
-    src = request.GET.get('src', '')
+    src = src or request.GET.get('src', '')
 
     ret = {
         'id': product.id,
@@ -120,6 +121,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None):
         'author_url': author_url,
         'iconUrl': product.get_icon_url(64),
         'is_packaged': product.is_packaged,
+        'src': src
     }
 
     # Add in previews to the dict.
@@ -188,7 +190,7 @@ def market_tile(context, product, link=True, src=''):
         is_reviewer = acl.check_reviewer(request)
         receipt_type = 'developer' if is_dev or is_reviewer else None
         product_dict = product_as_dict(request, product, purchased=purchased,
-                                       receipt_type=receipt_type)
+                                       receipt_type=receipt_type, src=src)
         product_dict['prepareNavPay'] = reverse('bluevia.prepare_pay',
                                                 args=[product.app_slug])
 
