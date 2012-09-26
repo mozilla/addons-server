@@ -961,12 +961,12 @@ class NewManifestForm(happyforms.Form):
 
 
 UPSELL_CHOICES = (
-    (0, _("I don't have a free add-on to associate.")),
-    (1, _('This is a premium upgrade to:')),
+    (0, _lazy("I don't have a free add-on to associate.")),
+    (1, _lazy('This is a premium upgrade to:')),
 )
 APP_UPSELL_CHOICES = (
-    (0, _("I don't have a free app to associate.")),
-    (1, _('This is a premium upgrade to:')),
+    (0, _lazy("I don't have a free app to associate.")),
+    (1, _lazy('This is a premium upgrade to:')),
 )
 
 
