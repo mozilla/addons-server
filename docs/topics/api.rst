@@ -274,7 +274,7 @@ Create
 
 Create a screenshot or video::
 
-        PUT /api/apps/preview/?app=<app id>
+        POST /api/apps/preview/?app=<app id>
 
 The body should contain the screenshot or video to be uploaded in the following
 format::
