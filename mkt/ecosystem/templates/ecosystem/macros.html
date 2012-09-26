@@ -35,6 +35,33 @@
               </a>
             </li>
           </ol>
+          <h2>{{ _('Tutorials') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='tutorial_general') }}"
+                 {% if section == 'tutorial_general' %}class="selected"{% endif %}
+                 title="{{ _('General') }}">
+                {{ _('General') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='tutorial_weather') }}"
+                 {% if section == 'tutorial_weather' %}class="selected"{% endif %}
+                 title="{{ _('Weather App') }}">
+                {{ _('Weather App') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='tutorial_serpent') }}"
+                 {% if section == 'tutorial_serpent' %}class="selected"{% endif %}
+                 title="{{ _('Serpent Game') }}">
+                {{ _('Serpent Game') }}
+              </a>
+            </li>
+          </ol>
           <h2>{{ _('Build') }}</h2>
           <ol>
             <li>
