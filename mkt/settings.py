@@ -312,10 +312,24 @@ APPCACHE_FALLBACK_PATHS = {
 
 def APPCACHE_MEDIA_TO_CACHE():
     from jingo_minify import helpers
-    return [
-        'js/mkt/consumer-min.js?build=%s' % helpers.BUILD_ID_JS,
-        'css/mkt/consumer-min.css?build=%s' % helpers.BUILD_ID_CSS
-    ]
+    bundle = 'consumer'
+
+    # TODO(Kumar) refactor jingo-minify so we don't have to copy/paste this
+    # logic.
+    js_build_id = helpers.BUILD_ID_JS
+    bundle_full = "js:%s" % bundle
+    if bundle_full in helpers.BUNDLE_HASHES:
+        js_build_id = helpers.BUNDLE_HASHES[bundle_full]
+
+    css_build_id = helpers.BUILD_ID_CSS
+    bundle_full = "css:%s" % bundle
+    if bundle_full in helpers.BUNDLE_HASHES:
+        css_build_id = helpers.BUNDLE_HASHES[bundle_full]
+
+    return (
+        'js/mkt/%s-min.js?build=%s' % (bundle, js_build_id),
+        'css/mkt/%s-min.css?build=%s' % (bundle, css_build_id),
+    )
 
 
 # Are you working locally? place the following line in your settings_local:
