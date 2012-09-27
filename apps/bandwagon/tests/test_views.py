@@ -2,7 +2,7 @@
 import json
 import urlparse
 
-from django.conf import settings
+from django.core.cache import cache
 import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
@@ -967,7 +967,7 @@ class TestCollectionListing(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
-        self.reset_featured_addons()
+        cache.clear()
         self.url = reverse('collections.list')
 
     def test_default_sort(self):

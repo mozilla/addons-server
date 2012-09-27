@@ -24,7 +24,7 @@ from amo.models import manual_order
 from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory
 from addons.models import Addon, AddonRecommendation
-from addons.utils import FeaturedManager
+from addons.utils import get_featured_ids
 from browse.views import personas_listing
 from bandwagon.models import Collection, SyncedCollection
 from discovery.modules import PromoVideoCollection
@@ -129,8 +129,7 @@ def get_modules(request, platform, version):
 
 def get_featured_personas(request, category=None, num_personas=6):
     categories, filter, base, category = personas_listing(request, category)
-    ids = FeaturedManager.featured_ids(request.APP, request.LANG,
-                                       type=amo.ADDON_PERSONA)
+    ids = get_featured_ids(request.APP, request.LANG, type=amo.ADDON_PERSONA)
 
     return manual_order(base, ids, 'addons.id')[:num_personas]
 

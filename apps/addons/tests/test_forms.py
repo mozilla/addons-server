@@ -12,12 +12,11 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from amo.utils import rm_local_tmp_dir
-from addons import forms, cron
+from addons import forms
 from addons.models import Addon, AddonDeviceType, Category, Webapp
 from constants.applications import DEVICE_TYPES
 from files.helpers import copyfileobj
 from tags.models import Tag, AddonTag
-from addons.forms import DeviceTypeForm
 
 
 class FormsTest(amo.tests.TestCase):
@@ -26,7 +25,6 @@ class FormsTest(amo.tests.TestCase):
 
     def setUp(self):
         super(FormsTest, self).setUp()
-        cron.build_reverse_name_lookup()
         self.existing_name = 'Delicious Bookmarks'
         self.non_existing_name = 'Does Not Exist'
         self.error_msg = 'This name is already in use. Please choose another.'
@@ -290,8 +288,8 @@ class TestDeviceTypeForm(amo.tests.TestCase):
         first_device_type = DEVICE_TYPES.keys()[0]
 
         webapp = Webapp.objects.get(id=337141)
-        addondt = AddonDeviceType.objects.create(
-            addon=webapp, device_type=first_device_type)
+        AddonDeviceType.objects.create(addon=webapp,
+                                       device_type=first_device_type)
         types = [DEVICE_TYPES[first_device_type]]
         eq_(webapp.device_types, types)
         form = forms.DeviceTypeForm(addon=webapp)

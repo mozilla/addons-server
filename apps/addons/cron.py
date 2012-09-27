@@ -23,51 +23,12 @@ import amo
 from amo.utils import chunked
 from addons import search
 from addons.models import Addon, FrozenAddon, AppSupport
-from addons.utils import ReverseNameLookup, FeaturedManager, CreaturedManager
 from files.models import File
 from stats.models import UpdateCount
-from translations.models import Translation
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
 recs_log = logging.getLogger('z.recs')
-
-
-@cronjobs.register
-def build_reverse_name_lookup():
-    """Builds a Reverse Name lookup table in REDIS."""
-    ReverseNameLookup().clear()
-    ReverseNameLookup(webapp=True).clear()
-
-    # Get all add-on name ids
-    names = list(Addon.objects.filter(
-        name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME,
-                                      amo.ADDON_WEBAPP])
-        .values('name_id', 'id', 'type'))
-
-    for chunk in chunked(names, 100):
-        _build_reverse_name_lookup.delay(chunk)
-
-
-@task
-def _build_reverse_name_lookup(data, **kw):
-    task_log.debug('Updating reverse name lookup table for %s addons.' %
-                   len(data))
-    clear = kw.get('clear', False)
-    name_ids = [a['name_id'] for a in data]
-    translations = dict(Translation.objects.filter(id__in=name_ids)
-        .values_list('id', 'localized_string'))
-
-    for addon in data:
-        webapp = addon['type'] == amo.ADDON_WEBAPP
-        if clear:
-            ReverseNameLookup(webapp).delete(addon['id'])
-            task_log.debug('Clearing name for addon %s.' % addon['id'])
-        if translations.get(addon['name_id'], ''):
-            ReverseNameLookup(webapp).add(translations.get(addon['name_id']),
-                                          addon['id'])
-            task_log.debug('Adding name_id %s for addon %s.' %
-                           (addon['name_id'], addon['id']))
 
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
@@ -505,9 +466,3 @@ def reindex_apps():
     ts = [tasks.index_addons.subtask(args=[chunk])
           for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(ts).apply_async()
-
-
-@cronjobs.register
-def reset_featured_addons():
-    FeaturedManager.build()
-    CreaturedManager.build()

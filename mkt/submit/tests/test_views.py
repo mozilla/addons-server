@@ -18,7 +18,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
-from addons.utils import ReverseNameLookup
+from addons.utils import reverse_name_lookup
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
@@ -623,7 +623,7 @@ class TestDetails(TestSubmit):
         self._step()
         # Generate another webapp to test name uniqueness.
         app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Cool App')
-        eq_(ReverseNameLookup(webapp=True).get(app.name), app.id)
+        eq_(reverse_name_lookup(app.name, webapp=True), app.id)
 
     def test_name_unique(self):
         self._setup_other_webapp()

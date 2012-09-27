@@ -16,12 +16,11 @@ from access import acl
 import amo
 import captcha.fields
 from amo.fields import ColorField
-from amo.helpers import loc
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonDeviceType, AddonCategory, AddonUser,
-                           BlacklistedSlug, Category, Persona,
-                           ReverseNameLookup)
+                           BlacklistedSlug, Category, Persona)
+from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
@@ -39,9 +38,9 @@ def clean_name(name, instance=None):
     if not instance:
         log.debug('clean_name called without an instance: %s' % name)
     if instance:
-        id = ReverseNameLookup(instance.is_webapp()).get(name)
+        id = reverse_name_lookup(name, instance.is_webapp())
     else:
-        id = ReverseNameLookup().get(name)
+        id = reverse_name_lookup(name)
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):

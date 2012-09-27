@@ -23,7 +23,6 @@ from amo.helpers import absolutify, numberfmt, urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            FrozenAddon, Persona)
-from addons.utils import FeaturedManager
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import feeds
@@ -162,7 +161,7 @@ class TestListing(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
-        self.reset_featured_addons()
+        cache.clear()
         self.url = reverse('browse.extensions')
 
     def test_default_sort(self):
@@ -390,7 +389,7 @@ class TestFeeds(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
-        self.reset_featured_addons()
+        cache.clear()
         self.url = reverse('browse.extensions')
         self.rss_url = reverse('browse.extensions.rss')
         self.filter = AddonFilter
@@ -483,21 +482,15 @@ class TestFeaturedLocale(amo.tests.TestCase):
                 'base/addon_3615_featuredcollection']
 
     def setUp(self):
-        waffle.models.Switch.objects.create(name='no-redis', active=True)
         self.addon = Addon.objects.get(pk=3615)
         self.persona = Addon.objects.get(pk=15679)
         self.extension = Addon.objects.get(pk=2464)
         self.category = Category.objects.get(slug='bookmarks')
-
-        self.reset_featured_addons()
-
         self.url = reverse('browse.creatured', args=['bookmarks'])
         cache.clear()
 
     def reset(self):
         cache.clear()
-        FeaturedManager.redis().flushall()
-        self.reset_featured_addons()
 
     def list_featured(self, content):
         # Not sure we want to get into testing randomness
@@ -656,7 +649,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
         # The order should be random within those boundaries.
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
-        self.reset_featured_addons()
+        cache.clear()
 
         url = reverse('home')
         res = self.client.get(url)
@@ -822,7 +815,7 @@ class BaseSearchToolsTest(amo.tests.TestCase):
         s.addoncategory_set.add(AddonCategory(addon=limon, feature=True))
         s.addoncategory_set.add(AddonCategory(addon=readit, feature=True))
         s.save()
-        self.reset_featured_addons()
+        cache.clear()
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):

@@ -319,8 +319,6 @@ class TestEditBasic(TestEdit):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self._feature_addon()
-        from addons.cron import reset_featured_addons
-        reset_featured_addons()
         r = self.client.get(self.basic_edit_url)
         doc = pq(r.content)
         eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)

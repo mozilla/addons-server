@@ -12,7 +12,6 @@ import amo.tests
 from amo.tests import assert_required, formset, initial
 from amo.urlresolvers import reverse
 from addons.models import BlacklistedSlug
-from addons.utils import ReverseNameLookup
 from applications.models import AppVersion
 from devhub.views import packager_path
 
@@ -97,7 +96,6 @@ class TestPackager(amo.tests.TestCase):
 
     def test_name_taken(self):
         """Test that the add-on name is not already taken."""
-        ReverseNameLookup().add('Delicious Bookmarks', 34)
         data = self._form_data({'name': 'Delicious Bookmarks'})
         r = self.client.post(self.url, data)
         self.assertFormError(r, 'basic_form', 'name',

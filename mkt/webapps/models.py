@@ -25,7 +25,7 @@ import amo.models
 from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, Category,
-                           update_name_table, update_search_index)
+                           update_search_index)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
@@ -642,8 +642,6 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='mkt.webapps.index')
-models.signals.post_save.connect(update_name_table, sender=Webapp,
-                                 dispatch_uid='mkt.webapps.update.name.table')
 
 
 @receiver(version_changed, dispatch_uid='update_cached_manifests')

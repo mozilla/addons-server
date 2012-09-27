@@ -27,7 +27,6 @@ import amo
 import amo.tests
 import files
 import paypal
-from addons import cron
 from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            Category, Charity)
 from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
@@ -1747,7 +1746,6 @@ class TestSubmitStep3(TestSubmitBase):
         super(TestSubmitStep3, self).setUp()
         self.url = reverse('devhub.submit.3', args=['a3615'])
         SubmitStep.objects.create(addon_id=3615, step=3)
-        cron.build_reverse_name_lookup()
 
         AddonCategory.objects.filter(addon=self.get_addon(),
                 category=Category.objects.get(id=23)).delete()

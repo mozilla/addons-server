@@ -13,10 +13,8 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-from addons.cron import reset_featured_addons
 from addons.models import (Addon, AppSupport, CompatOverride,
                            CompatOverrideRange, Preview)
-from addons.utils import FeaturedManager
 from amo import helpers
 from amo.tests import addon_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
@@ -481,8 +479,6 @@ class APITest(TestCase):
         FeaturedCollection.objects.create(locale='ja',
             application=Application.objects.get(id=amo.FIREFOX.id),
             collection=c.collection)
-        FeaturedManager.redis().kv.clear()
-        reset_featured_addons()
         for lang, app, result in [('ja', 'firefox', 1),
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:

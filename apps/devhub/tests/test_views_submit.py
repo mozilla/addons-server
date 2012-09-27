@@ -16,7 +16,6 @@ import amo.tests
 
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from addons import cron
 from addons.models import Addon, Category
 from users.models import UserProfile
 from versions.models import License
@@ -30,7 +29,6 @@ class TestSubmitPersona(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         self.category = self.create_category()
         self.url = reverse('devhub.personas.submit')
-        cron.build_reverse_name_lookup()
         self.patcher = patch.object(waffle, 'flag_is_active')
         self.patcher.start()
         self.addCleanup(self.patcher.stop)

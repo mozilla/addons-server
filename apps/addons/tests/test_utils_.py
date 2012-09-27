@@ -2,7 +2,6 @@ from nose.tools import eq_
 
 from addons.utils import get_featured_ids, get_creatured_ids
 
-from waffle import Switch
 import amo.tests
 
 
@@ -18,7 +17,6 @@ class TestGetFeaturedIds(amo.tests.TestCase):
 
     def setUp(self):
         super(TestGetFeaturedIds, self).setUp()
-        Switch.objects.create(name='no-redis', active=True)
 
     def test_by_app(self):
         eq_(set(get_featured_ids(amo.FIREFOX)),
@@ -53,7 +51,6 @@ class TestGetCreaturedIds(amo.tests.TestCase):
 
     def setUp(self):
         super(TestGetCreaturedIds, self).setUp()
-        Switch.objects.create(name='no-redis', active=True)
 
     def test_by_category(self):
         eq_(set(get_creatured_ids(self.category, None)),
