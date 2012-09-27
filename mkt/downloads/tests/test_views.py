@@ -27,6 +27,25 @@ class TestDownload(BasePackagedAppTest):
         self.app.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
 
+    def test_not_public(self):
+        self.file.update(status=amo.STATUS_PENDING)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_not_public_but_owner(self, sign):
+        self.client.login(username='steamcube@mozilla.com',
+                          password='password')
+        self.file.update(status=amo.STATUS_PENDING)
+        eq_(self.client.get(self.url).status_code, 200)
+        assert not sign.called
+
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_not_public_not_owner(self, sign):
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        self.file.update(status=amo.STATUS_PENDING)
+        eq_(self.client.get(self.url).status_code, 404)
+
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_owner(self):
         self.client.login(username='steamcube@mozilla.com',
