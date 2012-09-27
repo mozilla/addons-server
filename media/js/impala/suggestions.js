@@ -84,7 +84,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         $results.find('.sel').removeClass('sel');
         if (searchType == 'MKT') {
             $('#site-header').removeClass('suggestions');
-            $('#search-q').val('');
         }
     }
 
