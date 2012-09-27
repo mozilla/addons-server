@@ -183,6 +183,7 @@ $.fn.searchSuggestions = function($results, processCallback, siteSearch) {
     });
 
     $form.submit(function(e) {
+        clearInterval(pollVal);
         var $sel = $results.find('.sel');
         if ($sel.length && $sel.eq(0).attr('href') != '#') {
             e.stopPropagation();
