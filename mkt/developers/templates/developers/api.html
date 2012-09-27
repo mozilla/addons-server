@@ -6,31 +6,34 @@
 {% block content %}
   <h1>{{ title }}</h1>
   <section id="submit-api" class="primary">
-    <div>
+    <div class="island">
       {% trans terms=url('mkt.developers.apps.terms') %}
         <p>This API key provides you access to the Marketplace API. Use of the
         API requires you to accept the <a href="{{ terms }}">terms of service</a>.
         </p>
       {% endtrans %}
-    </div>
-    <div class="island">
       {% if not consumer %}
         <p>{{ _('You currently do not have an API key.') }}</p>
-        <form method="POST">
-          {{ csrf() }}
-          <button>{{ _('Create') }}</button>
-        </form>
+        {% if not roles %}
+          <form method="POST">
+            {{ csrf() }}
+            <button>{{ _('Create') }}</button>
+          </form>
+        {% endif %}
       {% else %}
-        <dl>
-          <dt>{{ _('Key') }}</dt><dd>{{ consumer.key }}</dd>
-          <dt>{{ _('Secret') }}</dt><dd>{{ consumer.secret }}</dd>
-        </dl>
+        <p>
+          <dl>
+            <dt>{{ _('Key') }}</dt><dd>{{ consumer.key }}</dd>
+            <dt>{{ _('Secret') }}</dt><dd>{{ consumer.secret }}</dd>
+          </dl>
+        </p>
         <form method="POST">
           {{ csrf() }}
           <button name="regenerate" value="regenerate">{{ _('Re-generate') }}</button>
           {{ _('or') }}
           <button name="delete" class="cancel" value="delete">{{ _('Delete') }}</button>
         </form>
-      {% endif %}
+       {% endif %}
+     </div>
   </section>
 {% endblock %}

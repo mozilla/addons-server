@@ -36,3 +36,10 @@ class TestAPI(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 302)
         assert Access.objects.get(user=self.user).secret != 'bar'
+
+    def test_admin(self):
+        admin = User.objects.get(username='editor@mozilla.com')
+        self.client.login(username='editor@mozilla.com', password='password')
+        res = self.client.post(self.url, {'delete': 'yep'})
+        eq_(res.status_code, 200)
+        eq_(Access.objects.filter(user=admin).count(), 0)

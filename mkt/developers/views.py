@@ -34,7 +34,7 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import absolutify, loc, urlparams
+from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
 from devhub.forms import VersionForm
@@ -1349,14 +1349,18 @@ def api(request):
     except Access.DoesNotExist:
         access = None
 
-    if not request.amo_user.read_dev_agreement:
-        messages.error(request, loc('You must accept the terms of service.'))
+    roles = request.amo_user.groups.all()
+    if roles:
+        messages.error(request, _('Users with roles cannot use the API.'))
+
+    elif not request.amo_user.read_dev_agreement:
+        messages.error(request, _('You must accept the terms of service.'))
 
     elif request.method == 'POST':
         if 'delete' in request.POST:
             if access:
                 access.delete()
-                messages.success(request, loc('API key deleted.'))
+                messages.success(request, _('API key deleted.'))
 
         else:
             if not access:
@@ -1366,9 +1370,10 @@ def api(request):
                                                secret=generate())
             else:
                 access.update(secret=generate())
-            messages.success(request, loc('New API key generated.'))
+            messages.success(request, _('New API key generated.'))
 
         return redirect(reverse('mkt.developers.apps.api'))
 
     return jingo.render(request, 'developers/api.html',
-                        {'consumer': access, 'profile': profile})
+                        {'consumer': access, 'profile': profile,
+                         'roles': roles})
