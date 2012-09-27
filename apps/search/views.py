@@ -400,10 +400,10 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
             if excluded:
                 if isinstance(res, S):
                     # ES? Do fanciness.
-                    return res.filter(~F(id__in=excluded))
+                    res = res.filter(~F(id__in=excluded))
                 else:
                     # Django ORM? Do an `exclude`.
-                    return res.exclude(id__in=excluded)
+                    res = res.exclude(id__in=excluded)
 
         if getattr(self.request, 'MOBILE', False):
             res = res.filter(device=amo.DEVICE_MOBILE.id)
