@@ -53,6 +53,10 @@ class TestHome(BrowseBase):
         eq_(pq(r.content)('.mkt-tile').attr('href'),
             app.get_detail_url() + '?src=mkt-home')
 
+    def test_tile_no_rating_link(self):
+        r = self.client.get(self.url)
+        assert not pq(r.content)('.mkt-tile .rating_link')
+
     @mock_es
     def test_featured_region_exclusions(self):
         self._test_featured_region_exclusions()
