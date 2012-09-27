@@ -33,6 +33,7 @@ def sign_app(src, dest):
         if not os.path.exists(dest_dir):
             os.makedirs(dest_dir)
         shutil.copy(src, dest)
+        return
 
     # TODO: stop doing this and use the signing server.
     try:
