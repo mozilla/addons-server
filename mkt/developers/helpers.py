@@ -218,6 +218,9 @@ def dev_agreement_ok(user):
         # Value not set for last updated.
         return True
 
+    if user.is_anonymous():
+        return True
+
     if not user.read_dev_agreement:
         # If you don't have any apps, we we won't worry about this because
         # you'll be prompted on the first submission.
