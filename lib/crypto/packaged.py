@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -24,7 +25,11 @@ def sign_app(src, dest):
         raise NotImplementedError
 
     if not os.path.exists(settings.SIGNED_APPS_KEY):
-        raise ValueError('The signed apps key cannot be found.')
+        # TODO: blocked on bug 793876
+        # This is a temporary copy that will be unsigned and ignores storage
+        # etc.
+        # raise ValueError('The signed apps key cannot be found.')
+        shutil.copy(src, dest)
 
     # TODO: stop doing this and use the signing server.
     try:
