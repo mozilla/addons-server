@@ -101,6 +101,30 @@ a.arrow, .img.arrow {
     }
 }
 
+// Remove me when Webkit supports animated PNG!
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0turn);
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+    }
+}
+
+.button {
+    .spin {
+        display: inline-block;
+        background: url(../../img/mkt/loading-16.png) no-repeat center center;
+        height: 16px;
+        width: 16px;
+        -webkit-animation-duration: 1.5s;
+        -webkit-animation-name: spin;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        margin: 3px 0;
+    }
+}
+
 @media (max-width: @4col) {
     .button, button {
         padding: 0 15px;
