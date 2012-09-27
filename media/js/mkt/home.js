@@ -36,6 +36,7 @@
             var tile = el.querySelector('[data-hue]');
             if (!tile) return;
             var hue = tile.getAttribute('data-hue');
+            if (!hue) return;
             var canvas = el.querySelector('canvas') || document.createElement('canvas');
             var cs = window.getComputedStyle(el, null);
             var width = parseInt(cs.getPropertyValue('width'), 10);
