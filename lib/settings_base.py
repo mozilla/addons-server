@@ -245,12 +245,6 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 # /mnt/netapp_amo/addons.mozilla.org-remora/public-staging
 MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
 
-# Path to the pre-built packaged app we use for blocklisting apps.
-BLOCKED_PACKAGE_PATH = NETAPP_STORAGE + '/blocked_package/blocked.zip'
-# The file size in bytes of the blocked packaged app (to avoid computing each
-# time it's requested).
-BLOCKED_PACKAGE_SIZE = 0
-
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',

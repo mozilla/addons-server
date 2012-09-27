@@ -1,5 +1,4 @@
 from django import http
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 
 import commonware.log
@@ -28,8 +27,3 @@ def download_file(request, file_id, type=None):
                                                   file.file_path))
     path = webapp.sign_if_packaged(file.version_id)
     return HttpResponseSendFile(request, path, content_type='application/zip')
-
-
-def blocked_packaged_app(request):
-    return HttpResponseSendFile(request, settings.BLOCKED_PACKAGE_PATH,
-                                content_type='application/zip')

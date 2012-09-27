@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import json
+import os
 
 from django.conf import settings
 from django.core import mail
@@ -13,12 +14,12 @@ from pyquery import PyQuery as pq
 from tower import strip_whitespace
 import waffle
 
-from abuse.models import AbuseReport
 import amo
-from amo.helpers import external_url, urlparams
 import amo.tests
-from amo.urlresolvers import reverse
+from abuse.models import AbuseReport
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from amo.helpers import external_url, urlparams
+from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import PreApprovalUser
 from users.models import UserProfile
@@ -906,18 +907,19 @@ class TestPackagedManifest(DetailBase):
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
         eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
 
-    @mock.patch.object(settings, 'BLOCKED_PACKAGE_SIZE', 123)
     @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
     def test_blocked_app(self):
         self.app.update(status=amo.STATUS_BLOCKED)
+        blocked_path = 'packaged-apps/blocklisted.zip'
         res = self.client.get(self.url)
         eq_(res['Content-type'], 'application/x-web-app-manifest+json')
         assert 'etag' in res._headers
         data = json.loads(res.content)
         eq_(data['name'], self.app.name)
-        eq_(data['size'], 123)
-        eq_(data['package_path'], '%s%s' % (
-            settings.SITE_URL, reverse('downloads.blocked_packaged_app')))
+        eq_(data['size'],
+            os.stat(os.path.join(settings.MEDIA_ROOT, blocked_path)).st_size)
+        eq_(data['package_path'],
+            os.path.join(settings.SITE_URL, 'media', blocked_path))
         assert data['release_notes'].startswith(u'This app has been blocked')
 
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
