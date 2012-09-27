@@ -84,7 +84,8 @@
           <p>
             {% if logged %}
               {% for link in tools_links %}
-                <a href="{{ link.href }}" class="sync" rel="external">{{ link.text }}</a>
+                <a href="{{ link.href }}" class="sync" rel="external"
+                   {{ ' target="%s"' % link.target if link.target }}>{{ link.text }}</a>
               {% endfor %}
               {% if request.can_view_consumer %}
                 {# TODO: Coming soon with payments. #}
