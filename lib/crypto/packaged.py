@@ -29,6 +29,9 @@ def sign_app(src, dest):
         # This is a temporary copy that will be unsigned and ignores storage
         # etc.
         # raise ValueError('The signed apps key cannot be found.')
+        dest_dir = os.path.dirname(dest)
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir)
         shutil.copy(src, dest)
 
     # TODO: stop doing this and use the signing server.
