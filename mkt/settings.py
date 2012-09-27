@@ -197,6 +197,7 @@ NO_LOGIN_REQUIRED_MODULES = (
     'csp.views.report',
     'mkt.detail.views.manifest',
     'mkt.developers',
+    'mkt.downloads',
     'mkt.lookup',
     'mkt.reviewers',
     'mkt.submit',
