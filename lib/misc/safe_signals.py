@@ -13,6 +13,8 @@ and logs errors.  It's like ``Signal.send_robust`` but with logging.
 import logging
 
 from django.dispatch.dispatcher import Signal, _make_id
+from django.conf import settings
+
 
 log = logging.getLogger('signals')
 
@@ -22,12 +24,16 @@ def safe_send(self, sender, **named):
     if not self.receivers:
         return responses
 
+    do_raise = getattr(settings, 'RAISE_ON_SIGNAL_ERROR', False)
+
     # Call each receiver with whatever arguments it can accept.
     # Return a list of tuple pairs [(receiver, response), ... ].
     for receiver in self._live_receivers(_make_id(sender)):
         try:
             response = receiver(signal=self, sender=sender, **named)
         except Exception, err:
+            if do_raise:
+                raise
             log.error('Error calling signal', exc_info=True)
             responses.append((receiver, err))
         else:
