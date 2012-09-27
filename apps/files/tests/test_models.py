@@ -230,6 +230,13 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.version.addon.type = amo.ADDON_WEBAPP
         eq_(f.generate_filename(), 'testing-123-2.1.072.webapp')
 
+    def test_generate_filename_packaged_app(self):
+        f = File.objects.get(id=67442)
+        f.version.addon.app_slug = 'testing-123'
+        f.version.addon.type = amo.ADDON_WEBAPP
+        f.version.addon.is_packaged = True
+        eq_(f.generate_filename(), 'testing-123-2.1.072.zip')
+
     def test_generate_webapp_fn_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')

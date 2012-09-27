@@ -38,7 +38,7 @@ from versions.compare import version_int as vint
 log = commonware.log.getLogger('z.files')
 
 # Acceptable extensions.
-EXTENSIONS = ('.xpi', '.jar', '.xml', '.webapp', '.json')
+EXTENSIONS = ('.xpi', '.jar', '.xml', '.webapp', '.json', '.zip')
 
 
 class File(amo.models.OnChangeMixin, amo.models.ModelBase):
@@ -231,7 +231,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         # slugify drops unicode so we may end up with an empty string.
         # Apache did not like serving unicode filenames (bug 626587).
         if addon.is_webapp():
-            extension = extension or '.webapp'
+            extension = extension or '.zip' if addon.is_packaged else '.webapp'
             # Apparently we have non-ascii slugs leaking into prod :(
             # FIXME.
             parts.append(slugify(addon.app_slug) or 'app')
