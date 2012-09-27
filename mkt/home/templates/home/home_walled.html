@@ -1,6 +1,9 @@
 {% extends 'mkt/base.html' %}
 
+{% set bodyclass = 'home login' %}
+
 {% block content %}
+<h1 id="top">{{ _('Firefox Marketplace') }}</h1>
 <section id="walled">
   <div>
     {% include 'home/walled_prose.html' %}
