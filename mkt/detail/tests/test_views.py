@@ -41,8 +41,8 @@ class DetailBase(amo.tests.WebappTestCase):
     def get_user(self):
         return UserProfile.objects.get(email='regular@mozilla.com')
 
-    def get_pq(self):
-        r = self.client.get(self.url)
+    def get_pq(self, **kw):
+        r = self.client.get(self.url, kw)
         eq_(r.status_code, 200)
         return pq(r.content.decode('utf-8'))
 
@@ -104,7 +104,11 @@ class TestDetail(DetailBase):
 
     def dev_receipt_url(self):
         return urlparams(reverse('receipt.issue',
-                                 args=[self.app.app_slug]), src='')
+                                 args=[self.app.app_slug]), src='mkt-detail')
+
+    def test_install_button_src(self):
+        eq_(self.get_pq()('.mkt-tile').attr('data-src'), 'mkt-detail')
+        eq_(self.get_pq(src='xxx')('.mkt-tile').attr('data-src'), 'xxx')
 
     def test_paid_install_button_for_owner(self):
         self.make_premium(self.app)

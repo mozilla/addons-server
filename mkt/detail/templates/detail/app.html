@@ -41,7 +41,7 @@
   {% else %}
 
     <section class="product-details listing expanded c">
-      {{ market_tile(product, link=False) }}
+      {{ market_tile(product, link=False, src=request.GET.get('src', 'mkt-detail')) }}
     </section>
 
     {{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
