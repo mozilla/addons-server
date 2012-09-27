@@ -20,9 +20,10 @@ $.fn.highlightTerm = function(val) {
  * processCallback - callback function that deals with the XHR call & populates
                    - the $results element.
  * Optional:
- * searchType - possible values are 'AMO', 'MKT'
+ * siteSearch - boolean of whether this is a site-search suggestions box which
+              - deals with multiple types of search results (apps/personas/etc)
 */
-$.fn.searchSuggestions = function($results, processCallback, searchType) {
+$.fn.searchSuggestions = function($results, processCallback, siteSearch) {
     var $self = this,
         $form = $self.closest('form');
 
@@ -30,11 +31,10 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         return;
     }
 
-    var cat = $results.attr('data-cat');
-
-    if (searchType == 'AMO') {
+    if (siteSearch) {
         // Some base elements that we don't want to keep creating on the fly.
-        var msg;
+        var cat = $results.attr('data-cat'),
+            msg;
         if (cat == 'personas') {
             msg = gettext('Search personas for <b>{0}</b>');
         } else if (cat == 'apps') {
@@ -46,8 +46,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
                             '<p><a class="sel" href="#"><span>{msg}</span></a></p><ul></ul>' +
                             '</div>');
         $results.html(base({'msg': msg}));
-    } else if (searchType == 'MKT') {
-        $results.html('<div class="wrap"><ul></ul></div>');
     }
 
     // Control keys that shouldn't trigger new requests.
@@ -58,7 +56,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         z.keys.LEFT, z.keys.UP, z.keys.RIGHT, z.keys.DOWN,
         z.keys.HOME, z.keys.END,
         z.keys.COMMAND, z.keys.WINDOWS_RIGHT, z.keys.COMMAND_RIGHT,
-        z.keys.WINDOWS_LEFT_OPERA, z.keys.WINDOWS_RIGHT_OPERA, z.keys.APPLE
+        z.keys.WINDOWS_LEFT_OPERA, z.keys.WINDOWS_RIGHT_OPERA, z.keys.APPLE,
     ];
 
     var gestureKeys = [z.keys.ESCAPE, z.keys.UP, z.keys.DOWN];
@@ -82,9 +80,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         }
         $results.removeClass('visible sel');
         $results.find('.sel').removeClass('sel');
-        if (searchType == 'MKT') {
-            $('#site-header').removeClass('suggestions');
-        }
     }
 
     function gestureHandler(e) {
@@ -133,11 +128,11 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         var settings = {
             '$results': $results,
             '$form': $form,
-            'searchTerm': val
+            'searchTerm': val,
         };
 
         // Optional data for callback.
-        if (searchType == 'AMO' || searchType == 'MKT') {
+        if (siteSearch) {
             settings['category'] = cat;
         }
 
@@ -186,8 +181,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
             pageUp();
         }
     });
-
-    $results.bind('dismiss', dismissHandler);
 
     $form.submit(function(e) {
         var $sel = $results.find('.sel');

@@ -21,12 +21,12 @@
           {% if search_form.cat.value() %}
             {{ search_form.cat }}
           {% endif %}
+          <div id="site-search-suggestions"
+               data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
         </form>
       {% endblock %}
     </nav>
     {% endif %}
   </section>
 </header>
-<div id="site-search-suggestions"
-               data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
 <div class="overlay nav-overlay"></div>

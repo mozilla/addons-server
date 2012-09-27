@@ -1,8 +1,7 @@
 // Init site search suggestions and populate the suggestions container.
 (function() {
-    // AMO search init.
     $('#search #search-q').searchSuggestions($('#site-search-suggestions'),
-                                             processResults, 'AMO');
+                                             processResults, true);
 
     function processResults(settings) {
         if (!settings || !settings.category) {
@@ -29,7 +28,7 @@
                             url: escape_(item.url) || '#',
                             icon: '',
                             cls: '',
-                            subtitle: ''
+                            subtitle: '',
                         };
                         if (item.icon) {
                             d.icon = format(
