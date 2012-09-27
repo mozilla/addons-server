@@ -67,19 +67,24 @@
     }));
 
     // If we're on desktop, show graphical results - unless specified by user.
-    var expandListingsStored = localStorage.getItem('expand-listings');
-    var expandListings = expandListingsStored ? expandListingsStored === 'true' : z.capabilities.desktop;
+    var expandListingsStored, expandListings;
 
     var $expandToggle = $('#site-header .expand');
 
     // Toggle app listing graphical/compact view.
     $expandToggle.click(_pd(function(e) {
+        expandListingsStored = localStorage.getItem('expand-listings');
+        expandListings = expandListingsStored ? expandListingsStored === 'true' : z.capabilities.desktop;
+
         expandListings = !expandListings;
         setTrays(expandListings);
     }));
 
     z.page.on('fragmentloaded', function() {
         if (z.body.data('page-type') === 'search') {
+            expandListingsStored = localStorage.getItem('expand-listings');
+            expandListings = expandListingsStored ? expandListingsStored === 'true' : z.capabilities.desktop;
+
             setTrays(expandListings);
         }
 
