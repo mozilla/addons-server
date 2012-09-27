@@ -23,9 +23,8 @@
 
     // Clear search field on 'cancel' search suggestions.
     $('#site-header').on('click', '.header-button.cancel', _pd(function() {
-        var searchVal = z.getVars(location.search).q || '';
         $('#site-search-suggestions').trigger('dismiss');
-        $('#search-q').val(searchVal);
+        $('#search-q').val('');
     }));
 
     function selectMe($elm) {
