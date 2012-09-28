@@ -67,7 +67,8 @@ CACHES = {
         'BACKEND': 'caching.backends.memcached.CacheClass',
 #        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 #        'BACKEND': 'memcachepool.cache.UMemcacheCache',
-        'LOCATION': private.CACHES_DEFAULT_LOCATION,
+        'LOCATION': [x.strip()
+                      for x in private.CACHES_DEFAULT_LOCATION.split(';')],
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
     },
@@ -152,7 +153,7 @@ BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
 BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
 
 
-ES_HOSTS = private.ES_HOSTS
+ES_HOSTS = [x.strip() for x in private.ES_HOSTS.split(';')]
 ES_INDEXES = {'default': 'addons_dev',
               'update_counts': 'addons_dev_stats',
               'download_counts': 'addons_dev_stats'}
@@ -213,7 +214,7 @@ METLOG_CONF = {
     'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
     'sender': {
         'class': 'metlog.senders.UdpSender',
-        'host': private.METLOG_CONF_SENDER_HOST,
+        'host': [x.strip() for x in private.METLOG_CONF_SENDER_HOST.split(';')],
         'port': private.METLOG_CONF_SENDER_PORT,
     },
 }
