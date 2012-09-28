@@ -1,4 +1,3 @@
-import datetime
 import json
 import os
 
@@ -12,9 +11,8 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from editors.models import RereviewQueue
-from files.models import File, FileUpload
+from files.models import FileUpload
 from users.models import UserProfile
-from versions.models import Version
 
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
@@ -62,14 +60,14 @@ class TestUpdateManifest(amo.tests.TestCase):
 
     def setUp(self):
         UserProfile.objects.create(id=settings.TASK_USER_ID)
-        self.addon = Webapp.objects.create(type=amo.ADDON_WEBAPP)
-        self.version = Version.objects.create(addon=self.addon)
-        self.version.update(
-            created=datetime.datetime.now() - datetime.timedelta(days=1),
-            modified=datetime.datetime.now() - datetime.timedelta(days=1))
-        self.file = File.objects.create(version=self.version, platform_id=1,
-                                        filename='manifest.webapp', hash=ohash,
-                                        status=amo.STATUS_PUBLIC)
+
+        self.addon = amo.tests.app_factory()
+        self.version = self.addon.versions.latest()
+        self.file = self.version.files.latest()
+        self.file.update(hash=ohash)
+
+        ActivityLog.objects.all().delete()
+
         with storage.open(self.file.file_path, 'w') as fh:
             fh.write(json.dumps(original))
 
@@ -138,28 +136,35 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
 
-    @mock.patch('mkt.webapps.tasks.update_manifests')
-    def test_ignore_not_webapp(self, update_manifests):
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    def test_ignore_not_webapp(self, mock_):
         self.addon.update(type=amo.ADDON_EXTENSION)
         call_command('process_addons', task='update_manifests')
-        assert not update_manifests.call_args
+        assert not mock_.called
 
-    @mock.patch('mkt.webapps.tasks.update_manifests')
-    def test_ignore_pending(self, update_manifests):
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    def test_ignore_pending(self, mock_):
         self.addon.update(status=amo.STATUS_PENDING)
         call_command('process_addons', task='update_manifests')
-        assert not update_manifests.call_args
+        assert not mock_.called
 
-    @mock.patch('mkt.webapps.tasks.update_manifests')
-    def test_ignore_disabled(self, update_manifests):
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    def test_ignore_disabled(self, mock_):
         self.addon.update(status=amo.STATUS_DISABLED)
         call_command('process_addons', task='update_manifests')
-        assert not update_manifests.call_args
+        assert not mock_.called
 
-    @mock.patch('mkt.webapps.tasks.update_manifests')
-    def test_get_webapp(self, update_manifests):
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    def test_ignore_packaged(self, mock_):
+        self.addon.update(is_packaged=True)
         call_command('process_addons', task='update_manifests')
-        assert not update_manifests.call_args
+        assert not mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_manifest')
+    def test_get_webapp(self, mock_):
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        call_command('process_addons', task='update_manifests')
+        assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._open_manifest')
     def test_manifest_name_change_rereview(self, open_manifest):

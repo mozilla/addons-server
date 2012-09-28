@@ -29,7 +29,7 @@ tasks = {
                               disabled_by_user=False),
                             ~Q(status=amo.STATUS_DISABLED)]},
     'update_manifests': {'method': update_manifests,
-                         'qs': [Q(type=amo.ADDON_WEBAPP,
+                         'qs': [Q(type=amo.ADDON_WEBAPP, is_packaged=False,
                                   status=amo.STATUS_PUBLIC,
                                   disabled_by_user=False)]},
 }
