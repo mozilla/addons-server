@@ -1,13 +1,4 @@
 (function() {
-    // Because bug 673873 kills me.
-    $('input[placeholder]').on('focus', function() {
-        var $this = $(this);
-        $this.data('placeholder', $this.attr('placeholder'))
-             .removeAttr('placeholder');
-    }).on('blur', function() {
-        var $this = $(this);
-        $this.attr('placeholder', $this.data('placeholder'));
-    });
 
     // Add 'sel' class to active filter and set hidden input value.
     z.page.on('click', '#filters .toggles a', function() {

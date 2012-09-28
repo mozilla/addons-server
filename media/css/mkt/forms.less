@@ -63,6 +63,17 @@ input:-moz-placeholder {
     color: @gray;
 }
 
+input[placeholder] {
+    // Because bug 673873 is stupidface.
+    &:-moz-placeholder:focus {
+        color: transparent !important;
+    }
+    // Yes, the order matters. WebKit is clownshoes.
+    &:focus::-webkit-input-placeholder {
+        color: transparent !important;
+    }
+}
+
 input[type=text], input[type=password], input[type=email], select, textarea {
     .box-shadow(0 1px 0 fadeOut(@white, 40%),
                 0 1px 1px rgba(0,0,0,.1) inset,
