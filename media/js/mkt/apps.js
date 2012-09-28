@@ -56,11 +56,16 @@ exports.install = function(product, opt) {
             installRequest = opt.navigator.mozApps.install(manifest_url, opt.data);
         }
         installRequest.onsuccess = function() {
-            $def.resolve(product);
+            var isInstalled = setInterval(function() {
+                if (installRequest.result.status == 'installed') {
+                    clearInterval(isInstalled);
+                    $def.resolve(installRequest.result, product);
+                }
+            }, 100);
         };
         installRequest.onerror = function() {
             // The JS shim still uses this.error instead of this.error.name.
-            $def.reject(product, this.error.name || this.error);
+            $def.reject(installRequest.result, product, this.error.name || this.error);
         };
     } else {
         $def.reject();

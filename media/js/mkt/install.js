@@ -1,9 +1,17 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 (function() {
-    z.page.on('click', '.button.product', clickHandler);
+    z.page.on('click', '.product.launch', launchHandler);
+    z.page.on('click', '.button.product:not(.launch)', installHandler);
 
-    function clickHandler(e) {
+    function launchHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var product = $(this).closest('[data-product]').data('product');
+        z.apps[product.manifest_url].launch();
+    }
+
+    function installHandler(e) {
         e.preventDefault();
         e.stopPropagation();
         var product = $(this).closest('[data-product]').data('product');
@@ -76,12 +84,12 @@
         });
     }
 
-    function installSuccess(product) {
-        $(window).trigger('app_install_success', [product, true]);
+    function installSuccess(installer, product) {
+        $(window).trigger('app_install_success', [installer, product, true]);
     }
 
-    function installError(product, msg) {
-        $(window).trigger('app_install_error', [product, msg]);
+    function installError(installer, product, msg) {
+        $(window).trigger('app_install_error', [installer, product, msg]);
     }
 
     $(function() {

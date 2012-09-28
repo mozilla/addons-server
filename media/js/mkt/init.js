@@ -72,16 +72,15 @@ $(document).ready(function() {
 z.page.on('fragmentloaded', function() {
     var badPlatform = '<div class="bad-platform">' + gettext('This app is unavailable for your platform.') + '</div>';
 
+    z.apps = {};
     if (z.capabilities.webApps) {
         // Get list of installed apps and mark as such.
         r = window.navigator.mozApps.getInstalled();
         r.onsuccess = function() {
-            z.apps = r.result;
             _.each(r.result, function(val) {
+                z.apps[val.manifestURL] = val;
                 $(window).trigger('app_install_success',
-                                  [{'manifest_url': val.manifestURL}, false])
-                         .trigger('app_install_mark',
-                                  {'manifest_url': val.manifestURL});
+                                  [val, {'manifest_url': val.manifestURL}, false]);
             });
         };
         if (!z.capabilities.gaia) {
@@ -90,8 +89,6 @@ z.page.on('fragmentloaded', function() {
             $('.listing .product[data-is_packaged="true"]').addClass('disabled')
                 .closest('.mkt-tile:not(.bad)').addClass('bad').append(badPlatform);
         }
-    } else {
-        z.apps = {};
     }
 
     if (!z.canInstallApps) {
@@ -112,21 +109,6 @@ z.page.on('fragmentloaded', function() {
 
     $(window).bind('overlay_dismissed', function() {
        $nav.removeClass('active');
-    }).bind('app_install_mark', function(e, product) {
-        // TODO: Remove.
-        var $li = $(format('.listing li[data-manifest="{0}"]',
-                           product.manifest_url)),
-            $actions = $li.find('.actions'),
-            $purchased = $actions.find('.checkmark.purchased'),
-            installed = format('<span class="checkmark installed">{0}</span>',
-                               gettext('Installed'));
-        if ($purchased.length) {
-            $purchased.replaceWith(installed);
-        } else {
-            if (!$actions.find('.checkmark.installed').length) {
-                $actions.prepend(installed);
-            }
-        }
     });
 
     // Hijack external links if we're on mobile.

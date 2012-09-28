@@ -56,6 +56,19 @@ $(document).ready(function() {
     if (!z.canInstallApps) {
         $(window).trigger('app_install_disabled');
     }
+
+    z.apps = {};
+    if (z.capabilities.webApps) {
+        // Get list of installed apps and mark as such.
+        r = window.navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            _.each(r.result, function(val) {
+                z.apps[val.manifestURL] = val;
+                $(window).trigger('app_install_success',
+                                  [val, {'manifest_url': val.manifestURL}, false]);
+            });
+        };
+    }
 });
 
 
