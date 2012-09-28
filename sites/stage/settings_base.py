@@ -1,3 +1,5 @@
+"""private_base will be populated from puppet and placed in this directory"""
+
 import logging
 import os
 

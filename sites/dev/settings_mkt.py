@@ -1,3 +1,5 @@
+"""private_mkt will be populated from puppet and placed in this directory"""
+
 from lib.settings_base import *
 from mkt.settings import *
 from settings_base import *
