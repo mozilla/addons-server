@@ -35,6 +35,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.helpers import copyfileobj
 from files.models import File, Platform
+from lib.es.signals import reset, process
 from market.models import AddonPremium, Price, PriceCurrency
 from versions.models import ApplicationsVersions, Version
 
@@ -212,6 +213,7 @@ class TestCase(RedisTest, test_utils.TestCase):
     def setUpClass(cls):
         if cls.mock_es:
             [p.start() for p in ES_patchers]
+        reset.send(None)  # Reset all the ES tasks on hold.
         super(TestCase, cls).setUpClass()
 
     @classmethod
@@ -604,7 +606,13 @@ class ESTestCase(TestCase):
         cls.refresh()
 
     @classmethod
+    def send(cls):
+        # Send all the ES tasks on hold.
+        process.send(None)
+
+    @classmethod
     def refresh(cls, index='default', timesleep=0):
+        process.send(None)
         cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
 
     @classmethod
