@@ -432,8 +432,7 @@ def app_review(request, addon):
 def _review(request, addon):
     version = addon.latest_version
 
-    if (not settings.DEBUG and
-        addon.authors.filter(user=request.user).exists()):
+    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
@@ -517,11 +516,11 @@ def _review(request, addon):
 
     # Grab review history for deleted versions of this add-on
     comments = (CommentLog.objects
-                          .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
-                                  activity_log__versionlog=None,
-                                  activity_log__addonlog__addon=addon)
-                          .order_by('created')
-                          .select_related('activity_log'))
+                .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
+                        activity_log__versionlog=None,
+                        activity_log__addonlog__addon=addon)
+                .order_by('created')
+                .select_related('activity_log'))
 
     comment_versions = defaultdict(PseudoVersion)
     for c in comments:

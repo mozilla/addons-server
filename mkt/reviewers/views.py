@@ -152,8 +152,7 @@ def context(**kw):
 def _review(request, addon):
     version = addon.latest_version
 
-    if (not settings.DEBUG and
-        addon.authors.filter(user=request.user).exists()):
+    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 

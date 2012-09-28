@@ -80,6 +80,8 @@ VIDEO_LIBRARIES = ['lib.video.dummy']
 INAPP_VERBOSE_ERRORS = False
 INAPP_REQUIRE_HTTPS = True
 
+ALLOW_SELF_REVIEWS = True
+
 # Make sure debug toolbar output is disabled so it doesn't interfere with any
 # html tests.
 

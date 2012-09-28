@@ -30,13 +30,13 @@ DATABASES = {
         'sa_pool_key': 'master',
     },
     'slave': {
-        'NAME': private.DATABASES_SLAVE_NAME, 
+        'NAME': private.DATABASES_SLAVE_NAME,
         #'ENGINE': 'mysql_pool.base.db_pool',
         'ENGINE': 'mysql_pool',
-        'HOST': private.DATABASES_SLAVE_HOST, 
+        'HOST': private.DATABASES_SLAVE_HOST,
         'PORT': private.DATABASES_SLAVE_PORT,
         'USER': private.DATABASES_SLAVE_USER,
-        'PASSWORD': private.DATABASES_SLAVE_PASSWORD, 
+        'PASSWORD': private.DATABASES_SLAVE_PASSWORD,
         'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
         'sa_pool_key': 'slave',
     },
@@ -115,12 +115,12 @@ REDIS_BACKENDS = {
     'cache': private.REDIS_BACKENDS_CACHE,
     'cache_slave': private.REDIS_BACKENDS_CACHE_SLAVE,
     'master': private.REDIS_BACKENDS_MASTER,
-    'slave': private.REDIS_BACKENDS_SLAVE, 
+    'slave': private.REDIS_BACKENDS_SLAVE,
 }
 CACHE_MACHINE_USE_REDIS = True
 
-RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY 
-RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY 
+RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
+RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
 RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
 
 CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
@@ -211,9 +211,11 @@ METLOG_CONF = {
     'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
     'sender': {
         'class': 'metlog.senders.UdpSender',
-        'host': private.METLOG_CONF_SENDER_HOST, 
+        'host': private.METLOG_CONF_SENDER_HOST,
         'port': private.METLOG_CONF_SENDER_PORT,
     },
 }
 
 USE_METLOG_FOR_CEF = True
+
+ALLOW_SELF_REVIEWS = True

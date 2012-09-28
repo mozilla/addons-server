@@ -60,3 +60,8 @@ DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 #
 # from metlog.config import client_from_dict_config
 # METLOG = client_from_dict_config(METLOG_CONF)
+
+
+# If you want to allow self-reviews for add-ons/apps, then enable this.
+# In production we do not want to allow this.
+ALLOW_SELF_REVIEWS = False

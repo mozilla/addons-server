@@ -1362,7 +1362,7 @@ class TestReview(ReviewBase):
         self.assertRedirects(r,
             '%s?to=%s' % (reverse('users.login'), self.url))
 
-    @patch.object(settings, 'DEBUG', False)
+    @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         eq_(self.client.head(self.url).status_code, 302)
@@ -1536,7 +1536,8 @@ class TestReview(ReviewBase):
 
             if 'action' in version:
                 d = dict(action=version['action'], operating_systems='win',
-                         applications='something', comments=version['comments'],
+                         applications='something',
+                         comments=version['comments'],
                          addon_files=[v.files.all()[0].pk])
                 self.client.post(self.url, d)
                 v.delete()

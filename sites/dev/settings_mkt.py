@@ -56,7 +56,7 @@ BROKER_HOST = private_mkt.BROKER_HOST
 BROKER_PORT = private_mkt.BROKER_PORT
 BROKER_USER = private_mkt.BROKER_USER
 BROKER_PASSWORD = private_mkt.BROKER_PASSWORD
-BROKER_VHOST = private_mkt.BROKER_VHOST 
+BROKER_VHOST = private_mkt.BROKER_VHOST
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
@@ -117,15 +117,15 @@ MIDDLEWARE_CLASSES += (
     'amo.middleware.LoginRequiredMiddleware',
 )
 
-VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org', 
-                      'https://marketplace.allizom.org', 
+VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org',
+                      'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org']
 
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET 
+BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER

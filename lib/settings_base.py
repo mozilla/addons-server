@@ -1546,3 +1546,7 @@ REGION_STORES = False
 # The tuple is passed through to datetime.date, so please use a valid date
 # tuple. If the value is None, then it will just not be used at all.
 DEV_AGREEMENT_LAST_UPDATED = None
+
+# If you want to allow self-reviews for add-ons/apps, then enable this.
+# In production we do not want to allow this.
+ALLOW_SELF_REVIEWS = False

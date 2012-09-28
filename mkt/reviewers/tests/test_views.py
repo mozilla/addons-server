@@ -723,7 +723,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         content = pq(self.client.get(self.url).content)
         assert content('#queue-escalation').length
 
-    @mock.patch.object(settings, 'DEBUG', False)
+    @mock.patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_cannot_review_my_app(self):
         AddonUser.objects.create(addon=self.app,
             user=UserProfile.objects.get(username='editor'))
