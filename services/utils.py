@@ -113,14 +113,16 @@ def log_configure():
 
 
 def log_exception(data):
-    (typ, value, discard) = sys.exc_info()
-    error_log = logging.getLogger('z.services')
-    error_log.error(u'Type: %s, %s. Data: %s' % (typ, value, data))
+    # Note: although this logs exceptions, it logs at the info level so that
+    # on prod, we log at the error level and result in no logs on prod.
+    typ, value, discard = sys.exc_info()
+    error_log = logging.getLogger('z.receipt')
+    error_log.info(u'Type: %s, %s. Data: %s' % (typ, value, data))
 
 
-def log_info(data, msg):
-    error_log = logging.getLogger('z.services')
-    error_log.error(u'Msg: %s, Data: %s' % (msg, data))
+def log_info(msg):
+    error_log = logging.getLogger('z.receipt')
+    error_log.info(msg)
 
 
 def log_cef(request, app, msg, longer):

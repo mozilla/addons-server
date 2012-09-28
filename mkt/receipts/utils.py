@@ -39,7 +39,7 @@ def create_receipt(installed_pk, flavour=None):
         product['type'] = flavour
         verify = absolutify(reverse('receipt.verify', args=[webapp.app_slug]))
     else:
-        verify = '%s%s' % (settings.WEBAPPS_RECEIPT_URL, webapp.pk)
+        verify = settings.WEBAPPS_RECEIPT_URL
 
     detail = reverse('account.purchases.receipt', args=[webapp.pk])
     reissue = webapp.get_purchase_url('reissue')
@@ -48,7 +48,7 @@ def create_receipt(installed_pk, flavour=None):
                    reissue=absolutify(reissue), typ='purchase-receipt',
                    user={'type': 'directed-identifier',
                          'value': installed.uuid},
-                   verify=absolutify(verify))
+                   verify=verify)
 
     if settings.SIGNING_SERVER_ACTIVE:
         # The shiny new code.

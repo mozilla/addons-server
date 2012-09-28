@@ -35,12 +35,11 @@ class VerificationError(Exception):
 
 class Verify:
 
-    def __init__(self, addon_id, receipt, environ):
-        # The regex should ensure that only sane ints get to this point.
-        self.addon_id = int(addon_id)
+    def __init__(self, receipt, environ):
         self.receipt = receipt
         self.environ = environ
         # These will be extracted from the receipt.
+        self.addon_id = None
         self.user_id = None
         self.premium = None
         # This is so the unit tests can override the connection.
@@ -59,13 +58,13 @@ class Verify:
         except:
             log_exception({'receipt': '%s...' % self.receipt[:10],
                            'addon': self.addon_id})
-            self.log('Error decoding receipt')
+            log_info('Error decoding receipt')
             return self.invalid()
 
         try:
             assert receipt['user']['type'] == 'directed-identifier'
         except (AssertionError, KeyError):
-            self.log('No directed-identifier supplied')
+            log_info('No directed-identifier supplied')
             return self.invalid()
 
         # Get the addon and user information from the installed table.
@@ -74,23 +73,15 @@ class Verify:
         except KeyError:
             # If somehow we got a valid receipt without a uuid
             # that's a problem. Log here.
-            self.log('No user in receipt')
+            log_info('No user in receipt')
             return self.invalid()
 
-        # Newer receipts have the addon_id in the storedata,
-        # if it doesn't match the URL, then it's wrong.
-        receipt_addon_id = None
         try:
             storedata = receipt['product']['storedata']
-            receipt_addon_id = int(dict(parse_qsl(storedata)).get('id', ''))
+            self.addon_id = int(dict(parse_qsl(storedata)).get('id', ''))
         except:
             # There was some value for storedata but it was invalid.
-            self.log('Invalid store data')
-            return self.invalid()
-
-        # The addon_id in the URL and the receipt did not match, fail.
-        if receipt_addon_id and receipt_addon_id != self.addon_id:
-            self.log('The addon_id in the receipt and the URL did not match.')
+            log_info('Invalid store data')
             return self.invalid()
 
         sql = """SELECT id, user_id, premium_type FROM users_install
@@ -101,7 +92,7 @@ class Verify:
         result = self.cursor.fetchone()
         if not result:
             # We've got no record of this receipt being created.
-            self.log('No entry in users_install for uuid: %s' % uuid)
+            log_info('No entry in users_install for uuid: %s' % uuid)
             return self.invalid()
 
         rid, self.user_id, self.premium = result
@@ -109,7 +100,7 @@ class Verify:
         # If it's a premium addon, then we need to get that the purchase
         # information.
         if self.premium != ADDON_PREMIUM:
-            self.log('Valid receipt, not premium')
+            log_info('Valid receipt, not premium')
             return self.ok_or_expired(receipt)
 
         elif self.premium and not check_purchase:
@@ -123,19 +114,19 @@ class Verify:
                                       'user_id': self.user_id})
             result = self.cursor.fetchone()
             if not result:
-                self.log('Invalid receipt, no purchase')
+                log_info('Invalid receipt, no purchase')
                 return self.invalid()
 
             if result[-1] in [CONTRIB_REFUND, CONTRIB_CHARGEBACK]:
-                self.log('Valid receipt, but refunded')
+                log_info('Valid receipt, but refunded')
                 return self.refund()
 
             elif result[-1] == CONTRIB_PURCHASE:
-                self.log('Valid receipt')
+                log_info('Valid receipt')
                 return self.ok_or_expired(receipt)
 
             else:
-                self.log('Valid receipt, but invalid contribution')
+                log_info('Valid receipt, but invalid contribution')
                 return self.invalid()
 
     def format_date(self, secs):
@@ -152,22 +143,18 @@ class Verify:
     def invalid(self):
         return json.dumps({'status': 'invalid'})
 
-    def log(self, msg):
-        log_info({'receipt': '%s...' % self.receipt[:10],
-                  'addon': self.addon_id}, msg)
-
     def ok_or_expired(self, receipt):
         # This receipt is ok now let's check it's expiry.
         # If it's expired, we'll have to return a new receipt
         try:
             expire = int(receipt.get('exp', 0))
         except ValueError:
-            self.log('Error with expiry in the receipt')
+            log_info('Error with expiry in the receipt')
             return self.expired(receipt)
 
         now = calendar.timegm(gmtime()) + 10  # For any clock skew.
         if now > expire:
-            self.log('This receipt has expired: %s UTC < %s UTC'
+            log_info('This receipt has expired: %s UTC < %s UTC'
                                  % (datetime.utcfromtimestamp(expire),
                                     datetime.utcfromtimestamp(now)))
             return self.expired(receipt)
@@ -220,28 +207,14 @@ id_re = re.compile('/verify/(?P<addon_id>\d+)$')
 def application(environ, start_response):
     status = '200 OK'
     with statsd.timer('services.verify'):
-
         data = environ['wsgi.input'].read()
         try:
-            addon_id = id_re.search(environ['PATH_INFO']).group('addon_id')
-        except AttributeError:
-            output = ''
-            log_info({'receipt': '%s...' % data[:10], 'addon': 'empty'},
-                     'Wrong url %s' % environ['PATH_INFO'][:20])
-            start_response('500 Internal Server Error', [])
-            return [output]
-
-        try:
-            verify = Verify(addon_id, data, environ)
+            verify = Verify(data, environ)
             output = verify()
             start_response(status, verify.get_headers(len(output)))
-            receipt_cef.log(environ, addon_id, 'verify',
-                            'Receipt verification')
         except:
             output = ''
-            log_exception({'receipt': '%s...' % data[:10], 'addon': addon_id})
-            receipt_cef.log(environ, addon_id, 'verify',
-                            'Receipt verification error')
+            log_exception()
             start_response('500 Internal Server Error', [])
 
     return [output]
