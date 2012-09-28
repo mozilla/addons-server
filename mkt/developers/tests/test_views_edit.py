@@ -812,7 +812,8 @@ class TestEditMedia(TestEdit):
                                   'Images cannot be animated.')
 
     @mock.patch('lib.video.ffmpeg.Video')
-    def add(self, handle, Video, num=1):
+    @mock.patch('mkt.developers.utils.video_library')
+    def add(self, handle, Video, video_library, num=1):
         data_formset = self.formset_media(upload_image=handle)
         r = self.client.post(self.preview_upload, data_formset)
         self.assertNoFormErrors(r)
@@ -836,7 +837,8 @@ class TestEditMedia(TestEdit):
         self.add(open(video_files['good'], 'rb'), num=num)
 
     @mock.patch('lib.video.ffmpeg.Video')
-    def add_json(self, handle, Video):
+    @mock.patch('mkt.developers.utils.video_library')
+    def add_json(self, handle, Video, video_library):
         data_formset = self.formset_media(upload_image=handle)
         result = self.client.post(self.preview_upload, data_formset)
         return json.loads(result.content)
