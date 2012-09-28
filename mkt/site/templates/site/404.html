@@ -12,13 +12,11 @@
 
 {% block content %}
   <section class="primary">
-    <header>
-      <h1 id="top">{{ _('Page Not Found') }}</h1>
+    {% include 'mkt/header.html' %}
+    <div class="island prose">
       <h2>
         {{ _("We're sorry, but we can't find what you're looking for.") }}
       </h2>
-    </header>
-    <div class="island prose">
       <p>
         {{ _("The page or file you requested wasn't found on our site. It's
              possible that you clicked a link that's out of date, or typed in
