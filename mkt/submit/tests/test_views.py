@@ -292,11 +292,14 @@ class TestCreateWebApp(BaseWebAppTest):
     def test_app_from_uploaded_manifest(self):
         addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
+        eq_(addon.is_packaged, False)
         eq_(addon.guid, None)
         eq_(unicode(addon.name), u'MozillaBall ょ')
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'mozillaball-ょ')
         eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(addon.manifest_url, u'http://allizom.org/mozball.webapp')
+        eq_(addon.app_domain, u'http://allizom.org')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
 
@@ -419,6 +422,8 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'packaged-mozillaball-ょ')
         eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(addon.manifest_url, None)
+        eq_(addon.app_domain, None)
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
 
