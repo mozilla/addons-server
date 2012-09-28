@@ -26,7 +26,8 @@ z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
     _.extend(z, {'nav': BrowserUtils()});
     if (!z.nav.browser.firefox ||
         z.nav.browser.mobile || z.nav.os.maemo ||
-        VersionCompare.compareVersions(z.nav.browserVersion, '16.0a1') < 0) {
+        VersionCompare.compareVersions(z.nav.browserVersion, '16.0') < 0 ||
+        (z.nav.os.android && VersionCompare.compareVersions(z.nav.browserVersion, '17.0') < 0)) {
         z.canInstallApps = false;
     }
 })();
