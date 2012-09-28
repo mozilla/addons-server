@@ -84,7 +84,7 @@
             <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
           {% endif %}
         </p>
-        {% if descr_len or comments_len %}
+        {% if descr_len or comments_len or product.is_packaged %}
           <div{% if super_long %} class="collapsed"{% endif %}>
             {% if descr_len %}
               <h3>{{ _('Description') }}</h3>
@@ -93,6 +93,15 @@
             {% if comments_len %}
               <h3>{{ _('Developer Comments') }}</h3>
               <div class="developer-comments">{{ product.developer_comments|nl2br }}</div>
+            {% endif %}
+            {% if product.is_packaged %}
+              <h3>{{ _('Version') }}</h3>
+              <div class="package-version">
+                {{- _('Latest version: {0}').format(product.current_version) -}}
+              </div>
+              <div class="release-notes">
+                {{- product.current_version.releasenotes|nl2br -}}
+              </div>
             {% endif %}
           </div>
         {% endif %}

@@ -23,6 +23,7 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import PreApprovalUser
 from users.models import UserProfile
+from versions.models import Version
 
 import mkt
 from mkt.webapps.models import Webapp
@@ -232,6 +233,17 @@ class TestDetail(DetailBase):
         self.app.save()
         eq_(self.get_pq()('.developer-comments').text(),
             self.app.developer_comments)
+
+    def test_has_version(self):
+        self.app.summary = ''
+        self.app.description = ''
+        vers = Version.objects.create(addon=self.app, version='1.0')
+        self.app._current_version = vers
+        self.app.is_packaged = True
+        self.app.save()
+        version = self.get_pq()('.package-version')
+        eq_(version.text(),
+            'Latest version: %s' % str(self.app.current_version))
 
     def test_no_support(self):
         eq_(self.get_pq()('.developer-comments').length, 0)
