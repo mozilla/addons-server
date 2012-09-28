@@ -170,13 +170,17 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
         r = self.client.get(self.url, {'price': price})
         eq_(r.status_code, 200)
-        links = pq(r.content)('#filter-prices a')
+        doc = pq(r.content)
+        links = doc('#filter-prices a')
         expected = [
             ('Any Price', self.url),
             ('Free Only', urlparams(self.url, price='free')),
             ('Premium Only', urlparams(self.url, price='paid')),
         ]
         amo.tests.check_links(expected, links, selected)
+
+        eq_(doc('#filters-body input[name=price]').attr('value'), price)
+
         return list(r.context['pager'].object_list)
 
     def test_free_and_premium(self):
