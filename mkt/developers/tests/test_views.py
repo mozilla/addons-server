@@ -40,6 +40,7 @@ from paypal.check import Check
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
+from versions.models import Version
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -177,6 +178,29 @@ class TestAppDashboard(AppHubTest):
         assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
         eq_(doc('.more-actions-popup').length, 0)
+
+    def test_packaged_version(self):
+        app = self.get_app()
+        version = Version.objects.create(addon=app, version='1.23')
+        app.update(_current_version=version, is_packaged=True)
+        self.make_mine()
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.item[data-addonid=%s] .item-current-version' % app.id
+                ).text(),
+            'Packaged App Version: 1.23')
+
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    def test_pending_version(self, ucm):
+        ucm.return_value = True
+
+        app = self.get_app()
+        self.make_mine()
+        app.update(is_packaged=True)
+        next_version = Version.objects.create(addon=app, version='1.24')
+        doc = pq(self.client.get(self.url).content)
+        eq_(doc('.item[data-addonid=%s] .item-latest-version' % app.id
+                ).text(),
+            'Pending Version: 1.24')
 
     def test_action_links(self):
         self.create_switch('app-stats')

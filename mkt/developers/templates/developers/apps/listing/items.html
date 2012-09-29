@@ -16,7 +16,7 @@
             <strong>{{ _('Created:') }}</strong>
             {{ addon.created|datetime }}
           </li>
-          <li id="version-status-item">
+          <li class="version-status-item">
             <strong>{{ _('Status:') }}</strong>
             <a href="{{ addon.get_dev_url('versions') }}">
               {% if addon.disabled_by_user %}
@@ -32,6 +32,18 @@
               <strong>{{ _('Price:') }}</strong>
               {{ price(addon) }}
             </li>
+          {% endif %}
+          {% if addon.is_packaged %}
+            <li class="item-current-version">
+              <strong>{{ _('Packaged App Version:') }}</strong>
+              {{ addon.current_version }}
+            </li>
+            {% if addon.current_version != addon.versions.latest() %}
+              <li class="item-latest-version">
+                <strong>{{ _('Pending Version:') }}</strong>
+                {{ addon.versions.latest() }}
+              </li>
+            {% endif %}
           {% endif %}
         </ul>
       {% endif %}
