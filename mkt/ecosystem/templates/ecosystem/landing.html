@@ -1,45 +1,157 @@
 {% extends 'ecosystem/base.html' %}
 
+{% from "ecosystem/macros.html" import video_display with context %}
+
 {% block bodyclass %}landing developer-hub{% endblock %}
+
+{% block devhub_categories %}{% endblock %}
 
 {% block content %}
   <div id="landing-page">
-    <section class="half first">
+    <h1>{{ _('Developer Hub') }}</h1>
+    <p class="intro">
+      {%- trans %}
+        Develop HTML5 Web Apps for an open marketplace.
+      {% endtrans -%}
+    </p>
+    <section class="half initial-steps">
       <div class="panel">
-        <h1>{{ _('Developer Hub') }}</h1>
-        <p>
-          {%- trans %}
-            Develop HTML5 Web apps for an open marketplace.
-          {% endtrans -%}
-        </p>
+        <a href="{{ url('ecosystem.documentation', page='principles') }}">
+          <h2>{{ _('Design') }}</h2>
+          <p>
+            {% trans %}
+              Learn how to design Web Apps that provide a user experience
+              optimized for Firefox OS &amp; Mobile
+            {% endtrans %}
+          </p>
+        </a>
         <div class="button-wrapper">
-          <a href="{{ url('submit.app') }}" class="button prominent">{{ _('Submit an App') }}</a>
+          <a href="{{ url('ecosystem.documentation', page='principles') }}"
+             class="button prominent">
+            {{ _('View the Design Guide') }}
+          </a>
         </div>
       </div>
       <div class="panel">
-        <h2>
-          <a href="{{ url('ecosystem.partners') }}">
-            {{ _('Business Partners') }}
+        <a href="{{ url('ecosystem.documentation', page='html5') }}">
+          <h2>{{ _('Build') }}</h2>
+          <p>
+            {% trans %}
+              All the tools, docs and references you'll need for
+              development and testing of your App
+            {% endtrans %}
+          </p>
+        </a>
+        <div class="button-wrapper">
+          <a href="{{ url('ecosystem.documentation', page='tutorial_general') }}"
+             class="button prominent">
+            {{ _('Start the Tutorial') }}
           </a>
-        </h2>
+        </div>
+      </div>
+      <div class="panel">
+        <a href="{{ url('ecosystem.documentation', page='mkt_hosting') }}">
+          <h2>{{ _('Publish') }}</h2>
+          <p>
+            {% trans %}
+              Find out how to distribute your Apps on an open marketplace
+              that puts users and developers first
+            {% endtrans %}
+          </p>
+        </a>
+        <div class="button-wrapper">
+          <a href="{{ url('submit.app') }}" class="button prominent">
+            {{ _('Submit an App') }}</a>
+        </div>
+      </div>
+    </section>
+    <section id="platform" class="half">
+      <div class="platform-copy">
+        <h2>{{ _('The Mozilla Apps platform') }}</h2>
         <p>
           {% trans %}
-            Great app experiences delivered across multiple platforms
-            and devices.
+            Building Apps for the Web provides developers with full control
+            over content, functionality and how Apps are distributed,
+            including access to hundreds of millions of Firefox users
+            through the Firefox Marketplace.
           {% endtrans %}
         </p>
-        <h2>
-          <a href="{{ url('ecosystem.support') }}">
-            {{ _('Support') }}
-          </a>
-        </h2>
         <p>
           {% trans %}
-            Frequently asked questions about Web apps and the Firefox
-              Marketplace.
+            Using open Web standards and Mozilla-designed APIs, great app
+            experiences can be delivered across multiple platforms,
+            devices and operating systems &mdash; closing the gap between Web
+            and native apps for the first time.
           {% endtrans %}
+        </p>
+      </div>
+
+      <div class="videos">
+        {% for video in videos %}
+          {{ video_display(video.name, video.path, video.translation) }}
+        {% endfor %}
+
+        <ol class="video-thumbs">
+          {% for video in videos %}
+            <li data-name="{{ video.name }}">
+              <img src="{{ media('img/ecosystem/poster-%s.jpg' % video.name) }}">
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+    <section id="marketplace" class="half">
+      <div class="screenshot">
+        <img src="{{ media('img/ecosystem/marketplace-landing.jpg') }}">
+      </div>
+
+      <div class="platform-copy right">
+        <h2>{{ _('Firefox Marketplace') }}</h2>
+        <p>
+          {% trans %}
+            The Firefox Marketplace gives users the opportunity to find,
+            try and buy Apps and content that matters most to them. This
+            means exciting, useful and high-quality Apps relevant to
+            local markets across all categories that users can use to
+            get the most out of their daily lives.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+            Mozilla's global reach extends to hundreds of millions of
+            Firefox users worldwide. Through intelligent Marketplace
+            curation and effective use of Mozilla’s marketing channels,
+            Mozilla can help developers can get their App into the hands
+            of their target users around the world.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+            Before the public launch later this year, Mozilla will be
+            opening the Marketplace for user testing. Take advantage of
+            this by being one of the first App developers to build a user
+            base. Submit your App to:
+          {% endtrans %}
+
+          <ul class="icons">
+            <li class="testing">
+              {% trans %}
+                Test your App with a committed group of early adopters.
+              {% endtrans %}
+            </li>
+            <li class="early">
+              {{ _('Build an early fan base and gain popularity.') }}
+            </li>
+            <li class="target">
+              {{ _('Target tech savvy consumers with your App.') }}
+            </li>
+          </ul>
         </p>
       </div>
     </section>
   </div>
+{% endblock %}
+
+{% block js %}
+  {{ js('mkt/ecosystem') }}
 {% endblock %}

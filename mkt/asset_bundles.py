@@ -320,4 +320,7 @@ JS = {
         'js/impala/suggestions.js',
         'js/mkt/lookup-tool.js',
     ),
+    'mkt/ecosystem': (
+        'js/mkt/ecosystem.js',
+    ),
 }

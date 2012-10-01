@@ -163,16 +163,44 @@
                 {{ _('Test Installation on Desktop') }}
               </a>
             </li>
-            <li>
-              <a href="{{ url('ecosystem.partners') }}"
-                 {% if section == 'partners' %}class="selected"{% endif %}
-                 title="{{ _('Business Partners') }}">
-                {{ _('Business Partners') }}
-              </a>
-            </li>
           </ol>
         {% endif %}
       </li>
     </ul>
   </section>
+{% endmacro -%}
+
+{% macro video_display(video_name, video_path, translation_id) -%}
+  <div class="{{ video_name }}-content video-item" id="{{ video_name }}">
+    <div class="video-control">
+      <video width="509" height="278"
+        poster="{{ media('img/ecosystem/poster-%s.jpg' % video_name) }}"
+        controls="controls">
+        <source src="//videos-cdn.mozilla.net/serv/drafts/{{ video_path }}.webm" type="video/webm">
+        <source src="//videos-cdn.mozilla.net/serv/drafts/{{ video_path }}.theora.ogv"
+                type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+        <source src="//videos-cdn.mozilla.net/serv/drafts/{{ video_path }}.mp4" type="video/mp4">
+        {# TODO: Get a version of playerWithControls.swf on the video CDN for addons #}
+        <!--
+        <object type="application/x-shockwave-flash"
+                style="width: 528px; height: 317px;"
+                data="//videos-cdn.mozilla.net/addons/playerWithControls.swf?flv=serv/drafts/{{ video_name }}.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+          <param name="movie" value="//videos-cdn.mozilla.net/addons/playerWithControls.swf?flv=serv/drafts/{{ video_name }}.mp4&amp;autoplay=false&amp;msg=Play%20Video">
+          <param name="wmode" value="transparent">
+          <div class="video-player-no-flash">
+            This video requires a browser with support for open video or the
+            <a href="http://www.adobe.com/go/getflashplayer">
+              Adobe Flash Player
+            </a>.
+          </div>
+        </object>
+        -->
+      </video>
+    </div>
+    <div class="subtitles">
+      <a href="http://www.universalsubtitles.org/videos/{{ translation_id }}/info/">
+        {{ _('View with subtitles') }}
+      </a>
+    </div>
+  </div>
 {% endmacro -%}

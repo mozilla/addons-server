@@ -1162,7 +1162,7 @@ METLOG_CONF = {
             'syslog_priority': 'ALERT',
             }),
 
-        # Sentry accepts messages over UDP, you'll need to 
+        # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
         'raven': ('metlog_raven.raven_plugin:config_plugin',
@@ -1211,7 +1211,7 @@ CSP_MEDIA_SRC = ("'none'",)
 CSP_FRAME_SRC = ("https://s3.amazonaws.com",  # getsatisfaction
                  "https://getsatisfaction.com",  # getsatisfaction
                 )
-CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org", )
+CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
 # self is needed for paypal which sends x-frame-options:allow when needed.
 # x-frame-options:DENY is sent the rest of the time.
 CSP_FRAME_ANCESTORS = ("'self'",)

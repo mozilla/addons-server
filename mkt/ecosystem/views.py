@@ -12,13 +12,35 @@ log = commonware.log.getLogger('z.ecosystem')
 
 def landing(request):
     """Developer Hub landing page."""
-    return jingo.render(request, 'ecosystem/landing.html')
-
-
-def partners(request):
-    """Landing page for partners."""
-    return jingo.render(request, 'ecosystem/partners.html',
-           {'page': 'partners', 'category': 'publish'})
+    videos = [
+        {
+            'name': 'evernote',
+            'path': 'MozMarketplace-Evernote_2ndDraft-RC-SD1%20640',
+            'translation': 'LaXSpZ3FQJps'
+        },
+        {
+            'name': 'mobbase',
+            'path': 'Moz_Market_Mixmatchmusic',
+            'translation': 'oSJQGUbVgGKj'
+        },
+        {
+            'name': 'teambox',
+            'path': 'Moz_Market_Teambox',
+            'translation': 'dvmnkd83CJgI'
+        },
+        {
+            'name': 'kicksend',
+            'path': 'Moz_Market_kicksend%202',
+            'translation': 'lQ8UVq6KwwEW'
+        },
+        {
+            'name': 'box',
+            'path': 'Moz_Market_box_1stDraft-HD%20720p%20Video%20Sharing-640x360%20Video%20Sharing',
+            'translation': 'fxvXQC0H68AU'
+        }
+    ]
+    return jingo.render(request, 'ecosystem/landing.html',
+           {'videos': videos})
 
 
 def support(request):

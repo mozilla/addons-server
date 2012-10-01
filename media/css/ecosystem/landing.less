@@ -1,5 +1,7 @@
 @import './documentation';
 
+@right-width: 528px;
+
 #landing-page {
     color: @medium-gray;
     font-size: 14px;
@@ -11,57 +13,170 @@
 
     h1 {
         color: @dark-gray;
-        font-size: 45px;
+        font-size: 55px;
         font-weight: 100;
-        margin-bottom: 20px;
+        margin: 20px 0 40px;
+        text-align: center;
         text-shadow: #fff 0 1px 1px;
+    }
+
+    p.intro {
+        font-size: 25px;
+        font-weight: 100;
+        text-align: center;
     }
 
     .button-wrapper {
         padding: 30px 0 20px;
     }
-
-    .sections {
-        a {
-            font-size: 20px;
-            line-height: 30px;
-        }
-
-        p {
-            margin: 5px 0 10px;
-        }
-    }
 }
 
 #landing-page .half {
-    background-color: #fff;
-    .box-shadow(@light-gray 0 3px 3px);
     float: left;
-    margin: 20px 0;
-    padding: 30px 20px 20px;
+    margin: 8px 0;
+    padding: 10px 20px 0;
     position: relative;
     width: 920px;
 
+    &.initial-steps {
+        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat 15px 50%;
+        .border-radius(5px);
+        .box-shadow(@light-gray 0 3px 3px);
+    }
+
     .panel {
         float: left;
-
-        &:first-child {
-            border-right: 1px solid @faint-gray;
-            text-align: center;
-            width: 50%;
-        }
-
-        &:last-child {
-            width: 370px;
-            padding: 0 30px;
-        }
+        width: 33.3%;
 
         h2 {
-            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        a p {
+            color: @medium-gray;
+        }
+
+        a:hover {
+            text-decoration: none;
         }
 
         p {
-            margin-top: 0;
+            margin: 0 auto;
+            text-align: center;
+            width: 200px;
+        }
+    }
+
+    h2 {
+        color: @dark-gray;
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        margin-top: 0;
+    }
+
+    .platform-copy, .videos, .screenshot {
+        float: left;
+    }
+
+    .screenshot {
+        margin-top: 10px;
+    }
+
+    .platform-copy, .screenshot {
+        padding-right: 30px;
+        width: 360px;
+
+        &.right {
+            padding: 0;
+            width: @right-width;
+        }
+    }
+
+    video {
+        display: block;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .videos {
+        margin: 0 auto;
+        width: @right-width;
+
+        .video-item {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .video-item:first-child {
+            display: block;
+        }
+
+        .subtitles {
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .video-control {
+            background-color: @white;
+            .border-radius(3px);
+            .box-shadow(@medium-gray 0 0 2px);
+            margin: 0 auto;
+        }
+
+        ol {
+            display: block;
+            float: left;
+            margin: 20px 0;
+            padding: 0;
+
+            li {
+                .border-radius(3px);
+                .box-shadow(@medium-gray 0 0 2px);
+                cursor: pointer;
+                float: left;
+                margin-right: 10px;
+                padding: 3px 3px 0 3px;
+
+                &:first-child {
+                    margin-left: 2px;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            img {
+                width: 91px;
+            }
+        }
+    }
+
+    .icons {
+        list-style-type: none;
+        padding: 10px 0 0;
+        li {
+            background-repeat: no-repeat;
+            border-bottom: 1px dotted @light-gray;
+            font-size: 15px;
+            line-height: 22px;
+            min-height: 52px;
+            margin-bottom: 5px;
+            padding: 10px 0 0 68px;
+
+            &.testing {
+                background-image: url(../../img/ecosystem/landing-icon-testing.png);
+            }
+
+            &.early {
+                background-image: url(../../img/ecosystem/landing-icon-early.png);
+            }
+
+            &.target {
+                background-image: url(../../img/ecosystem/landing-icon-target.png);
+            }
         }
     }
 }
