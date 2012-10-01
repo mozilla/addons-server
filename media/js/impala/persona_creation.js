@@ -98,11 +98,15 @@ function initLicense() {
 
 
 function initPreview() {
-    $('#submit-persona input[type="color"]').miniColors({change: updatePersona});
 
-    $('#submit-persona').delegate('#id_name', 'change keyup paste blur', function() {
-        $('#persona-preview-name').text($(this).val() || gettext("Your Persona's Name"));
-    });
+    function hex2rgb(hex) {
+        var hex = parseInt(((hex.indexOf('#') > -1) ? hex.substring(1) : hex), 16);
+        return {
+            r: hex >> 16,
+            g: (hex & 0x00FF00) >> 8,
+            b: (hex & 0x0000FF)
+        };
+    }
 
     var $d = $('#persona-design'),
         upload_finished = function(e) {
@@ -138,12 +142,13 @@ function initPreview() {
         };
 
     $d.delegate('.reset', 'click', _pd(function() {
-        var $p = $(this).closest('.row');
+        var $this = $(this),
+            $p = $this.closest('.row');
         $p.find('input[type="hidden"]').val('');
         $p.find('input[type=file], .note').show();
         $p.find('.preview').removeAttr('src').removeClass('loaded');
         updatePersona();
-        $(this).hide();
+        $this.hide();
     }));
 
     $d.delegate('input[type="file"]', 'upload_finished', upload_finished)
@@ -171,12 +176,29 @@ function initPreview() {
         data['header'] = data['headerURL'] = $d.find('#persona-header .preview').attr('src');
         data['footer'] = data['footerURL'] = $d.find('#persona-footer .preview').attr('src');
         $preview.attr('data-browsertheme', JSON.stringify(data));
-        var accentcolor = $d.find('#id_accentcolor').siblings('a[data-color]').attr('data-color'),
+        var accentcolor = $d.find('#id_accentcolor').attr('data-rgb'),
             textcolor = $d.find('#id_textcolor').val();
         $preview.find('.title, .author').css({
             'background-color': format('rgba({0}, 0.7)', accentcolor),
             'color': textcolor
         });
     }
-    updatePersona();
+
+    $('input[type=color]').on('change', function() {
+        var $this = $(this),
+            val = $this.val();
+        if (val.indexOf('#') === 0) {
+            var rgb = hex2rgb(val);
+            $this.attr('data-rgb', format('{0},{1},{2}', rgb.r, rgb.g, rgb.b));
+        }
+        updatePersona();
+    }).trigger('change');
+    $('#submit-persona input[type="color"]').miniColors({change: function() {
+        $('input[type=color]').trigger('change');
+        updatePersona();
+    }});
+
+    $('#submit-persona').delegate('#id_name', 'change keyup paste blur', function() {
+        $('#persona-preview-name').text($(this).val() || gettext("Your Persona's Name"));
+    });
 }
