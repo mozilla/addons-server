@@ -22,7 +22,7 @@ settings_patterns = patterns('',
 # Require authentication.
 settings_patterns = decorate(login_required, patterns('',
     url('^$', views.account_settings, name='account.settings'),
-    url('^/about$', views.account_about, name='account.about'),
+    url('^/feedback$', views.account_feedback, name='account.feedback'),
     ('^/', include(settings_patterns)),
 ))
 

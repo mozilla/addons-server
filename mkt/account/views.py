@@ -1,33 +1,36 @@
+import json
 from datetime import datetime, timedelta
 
 from django import http
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
-from commonware.response.decorators import xframe_allow
 import jingo
+import waffle
+from commonware.response.decorators import xframe_allow
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
-import waffle
 
+import amo
+import paypal
 from abuse.models import send_abuse_report
 from access import acl
-import amo
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
 from amo.forms import AbuseForm
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import paginate
+from amo.utils import paginate, send_mail_jinja
 from devhub.views import _get_items
 from lib.pay_server import client
 from market.models import PreApprovalUser
-import paypal
+from mkt.account.forms import CurrencyForm
+from mkt.site import messages
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
 from users.views import logout
-from mkt.account.forms import CurrencyForm
-from mkt.site import messages
+
 from . import forms
 from .decorators import profile_view
 from .utils import purchase_list
@@ -217,8 +220,27 @@ def account_settings(request):
                         {'form': form, 'amouser': amo_user})
 
 
-def account_about(request):
-    return jingo.render(request, 'account/about.html')
+@login_required
+def account_feedback(request):
+    form = forms.FeedbackForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        feedback = form.cleaned_data['feedback']
+        context = {'user': request.amo_user,
+                   'user_agent': request.META['HTTP_USER_AGENT'],
+                   'ip_address': request.META['REMOTE_ADDR'],
+                   'feedback': feedback}
+        send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
+                        context, request.amo_user.email,
+                        [settings.MKT_FEEDBACK_EMAIL])
+
+        if request.is_ajax():
+            return http.HttpResponse(
+                json.dumps({'status': 'win'}), content_type='application/json')
+
+        amo.messages.success(request, _('Feedback sent.'))
+        return redirect(reverse('account.feedback'))
+
+    return jingo.render(request, 'account/feedback.html', {'form': form})
 
 
 @write

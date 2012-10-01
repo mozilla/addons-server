@@ -87,3 +87,8 @@ class CurrencyForm(happyforms.Form):
                                         .distinct()))
         self.fields['currency'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
                                               for k in choices if k]
+
+
+class FeedbackForm(happyforms.Form):
+    """Site feedback form."""
+    feedback = forms.CharField(required=True, widget=forms.Textarea, label='')

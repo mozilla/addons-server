@@ -840,13 +840,13 @@ class TestAbuse(amo.tests.TestCase):
 
     def test_add(self):
         self.client.login(username='editor@mozilla.com', password='password')
-        res = self.client.post(self.url, data={'text':'test'})
+        res = self.client.post(self.url, data={'text': 'test'})
         eq_(res.status_code, 302)
         eq_(AbuseReport.objects.filter(user=self.user).count(), 1)
 
     @mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
     def test_no_recaptcha(self):
-        res = self.client.post(self.url, data={'text':'test'})
+        res = self.client.post(self.url, data={'text': 'test'})
         eq_(res.status_code, 200)
         self.assertFormError(res, 'abuse_form', 'recaptcha',
                              'This field is required.')
@@ -855,8 +855,34 @@ class TestAbuse(amo.tests.TestCase):
     @mock.patch('captcha.fields.ReCaptchaField.clean')
     def test_recaptcha(self, clean):
         clean.return_value = ''
-        res = self.client.post(self.url, data={'text':'test', 'recaptcha': '',
+        res = self.client.post(self.url, data={'text': 'test', 'recaptcha': '',
                                                'recaptcha_shown': ''})
         self.assert3xx(res, reverse('users.profile',
                        args=[self.user.username]))
         eq_(AbuseReport.objects.filter(user=self.user).count(), 1)
+
+
+class TestFeedback(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('account.feedback')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.login(username='regular@mozilla.com', password='password')
+
+    def test_feedback(self):
+        res = self.client.post(self.url, data={'feedback': 'hawt'})
+        eq_(res.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        eq_(msg.to, [settings.MKT_FEEDBACK_EMAIL])
+        eq_(msg.subject, u'Marketplace Feedback')
+        eq_(msg.from_email, self.user.email)
+        assert 'hawt' in msg.body
+
+    def test_feedback_empty(self):
+        res = self.client.post(self.url, data={'feedback': ''})
+        eq_(res.status_code, 200)
+        eq_(len(mail.outbox), 0)
+        self.assertFormError(res, 'form', 'feedback',
+                             [u'This field is required.'])

@@ -1,0 +1,13 @@
+The following feedback was submitted to the Marketplace:
+
+User:
+
+  user: {{ user.get_url_path()|absolutify }}
+  username: {{ user.username }} (id={{ user.id }})
+  email: {{ user.email }}
+  user-agent: {{ user_agent }}
+  ip address: {{ ip_address }}
+
+Feedback:
+
+{{ feedback }}

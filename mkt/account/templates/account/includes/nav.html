@@ -3,8 +3,8 @@
    request.path == url('account.settings')),
   (url('account.purchases'), _('Apps'),
    request.path == url('account.purchases')),
-  (url('account.about'), _('About'),
-   request.path == url('account.about')),
+  (url('account.feedback'), _('Feedback'),
+   request.path == url('account.feedback')),
 ] %}
 <ul class="toggles c">
   {% for link, title, selected in urls %}
