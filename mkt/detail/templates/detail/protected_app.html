@@ -23,30 +23,37 @@
     <section id="product-rating-status" class="full notification-box">
       <div>
         {% if needs_a_rating %}
-          <p>
+          <p class="toggle">
             {% trans %}
-              Your app is currently unavailable for users in Brazil.
+              This app may be unavailable in some countries. <a href="#">Learn more.</a>
             {% endtrans %}
           </p>
-          <p>
-            {% trans dejus_url=mkt.ratingsbodies.DJCTQ.url,
-                     apply_url='http://portal.mj.gov.br/classificacao/services/DocumentManagement/FileDownload.EZTSvc.asp?DocumentID={A7810EFB-09FC-40CF-A9D0-9829CB5C5BFC}&ServiceInstUID={59D015FA-30D3-48EE-B124-02A314CB7999}' %}
-              The <a href="{{ dejus_url }}" target="_blank">Department of Justice, Rating, Titles and Qualification (DEJUS)</a> reviews all games, movies, and television programs distributed in Brazil. And they can review yours, too! <a href="{{ apply_url }}" target="_blank">Fill out this form</a> and mail it to:
-            {% endtrans %}
-          </p>
-          <p>
-            <address>
-              Coordenação de Classificação Indicativa<br>
-              Esplanada dos Ministérios, Bloco T,<br>
-              Ministério da Justiça, Anexo II, Sala 321<br>
-              CEP 70064-901 Brasília/DF
-            </address>
-          </p>
-          <p>
-            {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
-              Once you get your rating (usually within 20 days), email it to {{ email }} so we can apply it to your app.
-            {% endtrans %}
-          </p>
+          <div class="hidden">
+            <p>
+              {% trans %}
+                Your app is currently unavailable for users in Brazil.
+              {% endtrans %}
+            </p>
+            <p>
+              {% trans dejus_url=mkt.ratingsbodies.DJCTQ.url,
+                       apply_url='http://portal.mj.gov.br/classificacao/services/DocumentManagement/FileDownload.EZTSvc.asp?DocumentID={A7810EFB-09FC-40CF-A9D0-9829CB5C5BFC}&ServiceInstUID={59D015FA-30D3-48EE-B124-02A314CB7999}' %}
+                The <a href="{{ dejus_url }}" target="_blank">Department of Justice, Rating, Titles and Qualification (DEJUS)</a> reviews all games, movies, and television programs distributed in Brazil. And they can review yours, too! <a href="{{ apply_url }}" target="_blank">Fill out this form</a> and mail it to:
+              {% endtrans %}
+            </p>
+            <p>
+              <address>
+                Coordenação de Classificação Indicativa<br>
+                Esplanada dos Ministérios, Bloco T,<br>
+                Ministério da Justiça, Anexo II, Sala 321<br>
+                CEP 70064-901 Brasília/DF
+              </address>
+            </p>
+            <p>
+              {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
+                Once you get your rating (usually within 20 days), email it to {{ email }} so we can apply it to your app.
+              {% endtrans %}
+            </p>
+          </div>
         {% elif unrated_brazil_game %}
           <p>
             {% trans %}

@@ -54,9 +54,18 @@
     p {
         color: @medium-gray;
         font-size: 12px;
-        &:first-child {
+        &.toggle {
             color: @dark-gray;
+            cursor: pointer;
             font-weight: 600;
+        }
+    }
+    .toggle {
+        &:hover a {
+            text-decoration: underline;
+        }
+        + div {
+            margin-top: 10px;
         }
     }
     address {

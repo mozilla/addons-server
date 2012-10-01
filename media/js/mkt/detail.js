@@ -1,4 +1,9 @@
 (function() {
+    z.page.on('click', '#product-rating-status .toggle', _pd(function() {
+        // Show/hide scary content-rating disclaimers to developers.
+        $(this).closest('.toggle').siblings('div').toggleClass('hidden');
+    }));
+
     z.page.on('click', '.show-toggle', _pd(function() {
         var $this = $(this),
             newTxt = $this.attr('data-toggle-text');
