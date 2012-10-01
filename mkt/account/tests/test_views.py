@@ -871,7 +871,8 @@ class TestFeedback(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
 
     def test_feedback(self):
-        res = self.client.post(self.url, data={'feedback': 'hawt'})
+        res = self.client.post(self.url, data={'feedback': 'hawt'},
+                               HTTP_USER_AGENT='test-agent')
         eq_(res.status_code, 302)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
@@ -879,6 +880,9 @@ class TestFeedback(amo.tests.TestCase):
         eq_(msg.subject, u'Marketplace Feedback')
         eq_(msg.from_email, self.user.email)
         assert 'hawt' in msg.body
+        assert self.user.get_url_path() in msg.body
+        assert 'test-agent' in msg.body
+        assert '127.0.0.1' in msg.body
 
     def test_feedback_empty(self):
         res = self.client.post(self.url, data={'feedback': ''})
