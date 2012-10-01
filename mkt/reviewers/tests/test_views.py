@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
+from django.test import TransactionTestCase
 
 import mock
 from nose.tools import eq_, ok_
@@ -685,6 +687,35 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         app = self.apps[0]
         app.delete()
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
+
+
+class TestReviewTransaction(TransactionTestCase):
+    fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
+
+    def get_app(self):
+        return Webapp.uncached.get(id=337141)
+
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_public_sign_failure(self, sign):
+        sign.side_effect = ValueError
+
+        self.app = self.get_app()
+        self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
+        self.version = self.app.current_version
+        self.version.files.all().update(status=amo.STATUS_PENDING)
+
+        files = list(self.version.files.values_list('id', flat=True))
+        eq_(self.get_app().status, amo.STATUS_PENDING)
+        transaction.commit()
+
+        with self.assertRaises(ValueError):
+            self.client.login(username='editor@mozilla.com',
+                              password='password')
+            self.client.post(
+                    reverse('reviewers.apps.review', args=[self.app.app_slug]),
+                    {'action': 'public', 'comments': 'something',
+                     'addon_files': files})
+        eq_(self.get_app().status, amo.STATUS_PENDING)
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
