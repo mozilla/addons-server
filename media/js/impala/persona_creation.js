@@ -187,7 +187,7 @@ function initPreview() {
         });
     }
 
-    $('input[type=color]').on('change', function() {
+    $('input[type=color]').change(function() {
         var $this = $(this),
             val = $this.val();
         if (val.indexOf('#') === 0) {
@@ -201,9 +201,10 @@ function initPreview() {
         updatePersona();
     }});
 
-    $('#submit-persona').on('change keyup paste blur', '#id_name', _.debounce(function() {
+    $('#id_name').bind('change keyup paste blur', _.throttle(function() {
         $('#persona-preview-name').text($(this).val() || gettext("Your Persona's Name"));
-    }), 250).on('submit', 'form', function() {
+    }, 250)).trigger('change');
+    $('#submit-persona').submit(function() {
         postUnsaved(POST);
     });
 
