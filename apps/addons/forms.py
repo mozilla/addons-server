@@ -527,6 +527,9 @@ class NewPersonaForm(AddonFormBase):
     footer_hash = forms.CharField(widget=forms.HiddenInput)
     accentcolor = ColorField(required=False)
     textcolor = ColorField(required=False)
+    # This lets us POST the data URIs of the unsaved previews so we can still
+    # show them if there were form errors. It's really clever.
+    unsaved_data = forms.CharField(required=False, widget=forms.HiddenInput)
 
     class Meta:
         model = Addon

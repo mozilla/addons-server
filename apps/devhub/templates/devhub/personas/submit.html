@@ -16,6 +16,7 @@
   <div class="island hero prettyform" id="submit-persona">
     <form action="" method="post">
       {{ csrf() }}
+      {{ form.unsaved_data }}
       <fieldset>
         <legend>{{ _('Persona Details') }}</legend>
         <ul>

@@ -14,6 +14,7 @@
     <form action="" method="post" class="devhub-form submit-media"
           id="submit-media" enctype="multipart/form-data">
       {{ csrf() }}
+      {{ form.unsaved_data }}
       <header id="general-details" class="island swagger c">
         <table>
           <tr{% if form.name.errors %} class="error"{% endif %}>

@@ -108,6 +108,8 @@ function initPreview() {
         };
     }
 
+    var POST = {};
+
     var $d = $('#persona-design'),
         upload_finished = function(e) {
             $(this).closest('.row').find('.preview').removeClass('loading');
@@ -129,6 +131,7 @@ function initPreview() {
             $p.find('input[type="hidden"]').val(upload_hash);
             $p.find('input[type=file], .note').hide();
             $p.find('.preview').attr('src', file.dataURL).addClass('loaded');
+            POST[upload_hash] = file.dataURL;  // Remember this as "posted" data.
             updatePersona();
             $p.find('.preview, .reset').show();
         },
@@ -198,7 +201,14 @@ function initPreview() {
         updatePersona();
     }});
 
-    $('#submit-persona').delegate('#id_name', 'change keyup paste blur', function() {
+    $('#submit-persona').on('change keyup paste blur', '#id_name', _.debounce(function() {
         $('#persona-preview-name').text($(this).val() || gettext("Your Persona's Name"));
+    }), 250).on('submit', 'form', function() {
+        postUnsaved(POST);
+    });
+
+    POST = loadUnsaved();
+    _.each(POST, function(v, k) {
+        $('input[value="' + k + '"]').siblings('input[type=file]').trigger('upload_success', [{dataURL: v}, k]);
     });
 }
