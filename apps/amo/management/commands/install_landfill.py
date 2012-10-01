@@ -46,7 +46,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kw):
         filename = date.today().strftime('landfill-%Y-%m-%d.sql.gz')
         file_location = '/tmp/%s' % filename
-        file_url = 'https://landfill.addons.allizom.org/db/%s' % filename
+        file_url = 'https://landfill.addons.allizom.org/db_data/%s' % filename
 
         write_dump = 'mysql -u%(db_user)s %(db_name)s' % {
             'db_user': settings.DATABASES['default']['USER'],
@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 print('expected: %s' % file_location)
                 return
         else:
-            print('Downloading landfill file.')
+            print('Downloading landfill file: %s' % file_url)
             gzipped_file = requests.get(file_url, verify=False).content
             landfill_file = GzipFile(
                 fileobj=StringIO(gzipped_file),
