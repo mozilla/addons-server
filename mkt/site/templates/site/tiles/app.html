@@ -7,6 +7,7 @@
 <{{ tag }} class="{{ classes }}"
   {% if link %}href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
   {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
+  <div class="icon featured_tile" style="background-image:url({{ product.get_image_asset_url('featured_tile', 16) }})"></div>
   <img class="icon mobile_tile" alt="{{ _('icon') }}"
        src="{{ product.get_image_asset_url('mobile_tile') }}"
        data-hue="{{ product.get_image_asset_hue('mobile_tile') }}">

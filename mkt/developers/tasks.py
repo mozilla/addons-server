@@ -228,7 +228,12 @@ def generate_image_assets(addon, **kw):
 
     backdrop = _generate_image_asset_backdrop(icon_hue, biggest_size)
 
+    # Sometimes you want to regenerate only assets of a particular type.
+    slug = kw.get('slug')
+
     for asset in APP_IMAGE_SIZES:
+        if slug and slug != asset['slug']:
+            continue
         try:
             generate_image_asset(addon, asset, icon, hue=icon_hue,
                                  backdrop=backdrop.copy(), **kw)
@@ -263,8 +268,13 @@ def generate_image_asset(addon, asset, icon, **kw):
 
     # Get a copy of the icon.
     asset_icon = icon.copy()
-    # The icon will be 95% of the size of the shortest edge of the asset.
-    min_edge = int(min(asset['size']) * 0.75)
+
+    # The icon will be 75% of the size of the shortest edge of the asset if
+    # larger than 32px.
+    min_edge = min(asset['size'])
+    if min_edge > 32:
+        min_edge = int(min_edge * 0.75)
+
     if min_edge < asset_icon.size[0]:
         asset_icon = asset_icon.resize((min_edge, min_edge), Image.ANTIALIAS)
 

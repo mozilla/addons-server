@@ -89,7 +89,7 @@ def _uploader(resize_size, final_size):
             with storage.open("%s-%s.png" % (dest_name, rsize)) as fp:
                 dest_image = Image.open(fp)
                 dest_image.load()
-        
+
             # Assert that the width is always identical.
             eq_(dest_image.size[0], fsize[0])
             # Assert that the height can be a wee bit fuzzy.
@@ -106,7 +106,7 @@ def _uploader(resize_size, final_size):
         with storage.open(dest.name) as fp:
             dest_image = Image.open(fp)
             dest_image.load()
-        
+
         # Assert that the width is always identical.
         eq_(dest_image.size[0], final_size[0])
         # Assert that the height can be a wee bit fuzzy.
@@ -124,7 +124,7 @@ def test_resize_image_asset():
         src_image = Image.open(fp)
         eq_(src_image.size, original_size)
 
-    dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
+    dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png')
     # Make it resize to some arbitrary size that's larger on both sides than
     # the source image. This is where the behavior differs from resize_image.
     tasks.resize_imageasset(img, dest.name, (500, 500), locally=True)
@@ -195,7 +195,6 @@ def _mock_hide_64px_icon(path, *args, **kwargs):
 
 class TestGenerateImageAssets(amo.tests.TestCase):
     """Test that image assets get generated properly."""
-
     fixtures = ['webapps/337141-steamcube']
 
     def setUp(self):
@@ -212,6 +211,20 @@ class TestGenerateImageAssets(amo.tests.TestCase):
                 im = Image.open(fp)
                 im.load()
             eq_(im.size, asset['size'])
+
+    def test_generated_image_assets_slug(self):
+        # We're going to generate assets for only one type.
+        asset = APP_IMAGE_SIZES[0]
+        slug = asset['slug']
+
+        tasks.generate_image_assets(self.app, slug=slug)
+        ia = ImageAsset.objects.filter(addon=self.app)
+        eq_(list(a.slug for a in ia), [slug])
+
+        with storage.open(ia[0].image_path) as fp:
+            im = Image.open(fp)
+            im.load()
+        eq_(im.size, asset['size'])
 
     @mock.patch('django.core.files.storage.default_storage.open',
                 _mock_hide_64px_icon)

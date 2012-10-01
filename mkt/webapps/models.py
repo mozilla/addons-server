@@ -219,7 +219,7 @@ class Webapp(Addon):
                            args=[self.app_slug, urlquote(inapp)])
         return url
 
-    def get_image_asset_url(self, slug):
+    def get_image_asset_url(self, slug, default=64):
         """
         Returns the URL for an app's image asset that uses the slug specified
         by `slug`.
@@ -231,7 +231,7 @@ class Webapp(Addon):
         try:
             return ImageAsset.objects.get(addon=self, slug=slug).image_url
         except ImageAsset.DoesNotExist:
-            return settings.MEDIA_URL + 'img/hub/default-64.png'
+            return settings.MEDIA_URL + 'img/hub/default-%s.png' % str(default)
 
     def get_image_asset_hue(self, slug):
         """

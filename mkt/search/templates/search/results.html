@@ -110,9 +110,9 @@
       </form>
     </div>
   </section>
-  <section id="search-results" class="full c">
+  <section id="featured" class="creatured full c">
     {% if featured %}
-      <ol class="grid featured c">
+      <ol class="grid c">
         {% for app in featured %}
           <li>
             {{ market_tile(app, src=src + '-featured') }}
@@ -120,6 +120,8 @@
         {% endfor %}
       </ol>
     {% endif %}
+  </section>
+  <section id="search-results" class="full c">
     {% if pager.object_list %}
       <ol class="listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
