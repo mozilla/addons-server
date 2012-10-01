@@ -4,44 +4,27 @@
     .transition-property(~'bottom, opacity, visibility');
     .transition-duration(.3s);
     font: 13px/26px @open-stack;
-    height: 0;
+    height: 100%;
     opacity: 0;
-    position: absolute;
+    position: fixed;
     right: -10px;
     bottom: 0px;
     left: 0;
     visibility: hidden;
     z-index: 4;
-    .width(3);
+    width: 100%;
     &.visible {
         opacity: 1;
-        bottom: -6px;
+        bottom: 5px;
         visibility: visible;
     }
     .wrap {
-        .border-radius(4px);
-        .box-shadow(0 0 4px rgba(0,0,0,.2),
-                    0 -2px 0 @faint-gray inset);
-        background: @white;
+        background: @bg @grain-src;
         position: absolute;
-        top: 0;
+        top: 55px;
         right: 0;
         left: 0;
-        &:before {
-            .box-shadow(1px 1px 0 rgba(255,255,255,.1) inset,
-                        -1px -1px 0 @faint-gray);
-            .transform(~'rotate(45deg)');
-            content: "";
-            height: 12px;
-            position: absolute;
-            top: -5px;
-            left: 9px;
-            z-index: 5;
-            width: 12px;
-        }
-    }
-    .wrap:before, p a {
-        background: @faint-gray;
+        height: 100%;
     }
     ul {
         list-style: none;
@@ -49,12 +32,16 @@
         padding: 0;
     }
     a {
-        border-top: 1px solid @faint-gray;
-        border-bottom: 1px solid transparent;
+        border-top: 1px solid @white;
+        border-bottom: 1px solid #cbd0d3;
         display: block;
         position: relative;
         text-decoration: none;
         z-index: 6;
+        color: @text;
+        font-size: 19px;
+        background: @bg @grain-src;
+        line-height: 44px;
         &:after {
             clear: both;
             content: ".";
@@ -63,24 +50,12 @@
             visibility: hidden;
         }
         span {
-            .max-width(3);
-            background: no-repeat 5px 50%;
-            .background-size(20px auto);
             display: block;
             float: left;
             overflow: hidden;
-            padding: 0 5px 0 32px;
+            padding: 0 15px;
             text-overflow: ellipsis;
             white-space: nowrap;
-            &.cat {
-                background-image: url(../../img/icons/search-cat.png);
-            }
-        }
-        .subtitle {
-            color: @note-gray;
-            float: left;
-            font-size: 12px;
-            font-style: normal;
         }
     }
     li a:hover,
@@ -95,27 +70,19 @@
         border-color: @faint-gray transparent transparent transparent;
         color: @link;
     }
-    p {
-        font-size: 11px;
-        margin: 0;
-        a {
-            .border-radius(3px 3px 0 0);
-            border-top-width: 0;
-            background: @faint-gray;
-            border-bottom: 0;
+}
+
+// Market header suggestions mode. (Searchatron Terrorize!)
+#site-header.suggestions {
+    nav {
+        .home, .expand, .filter {
+            display: none;
+        }
+        .cancel {
+            display: block;
         }
     }
-    &.sel p a {
-        color: @note-gray;
-    }
-    p a,
-    p a.sel,
-    &.sel p a:hover {
-        color: @dark-gray;
-    }
-    li {
-        &:last-child a {
-            .border-radius(0 0 3px 3px);
-        }
+    #search, #search-q {
+        width: 235px;
     }
 }

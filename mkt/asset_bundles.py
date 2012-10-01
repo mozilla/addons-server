@@ -244,7 +244,7 @@ JS = {
         # Search suggestions.
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
-        'js/impala/site_suggestions.js',
+        'js/mkt/mkt_suggestions.js',
 
         # Account settings.
         'js/mkt/account.js',
