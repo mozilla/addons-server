@@ -47,7 +47,6 @@ HOME=/tmp
 30 2 * * * %(z_cron)s mail_pending_refunds --settings=settings_local_mkt
 45 2 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
 30 3 * * * %(django)s cleanup
-45 3 * * * %(z_cron)s cleanup_old_signed
 30 4 * * * %(z_cron)s cleanup_synced_collections
 30 5 * * * %(z_cron)s expired_resetcode
 30 6 * * * %(z_cron)s category_totals
@@ -55,7 +54,6 @@ HOME=/tmp
 30 8 * * * %(z_cron)s personas_adu
 30 9 * * * %(z_cron)s share_count_totals
 30 10 * * * %(z_cron)s recs
-30 20 * * * %(z_cron)s update_perf
 30 22 * * * %(z_cron)s deliver_hotness
 40 23 * * * %(z_cron)s update_compat_info_for_fx4
 45 23 * * * %(django)s dump_apps
