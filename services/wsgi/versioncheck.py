@@ -4,6 +4,7 @@ import site
 wsgidir = os.path.dirname(__file__)
 for path in ['../',
              '../..',
+             '../../..',
              '../../lib',
              '../../vendor/lib/python',
              '../../apps']:
