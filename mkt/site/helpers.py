@@ -76,8 +76,11 @@ def market_button(context, product, receipt_type=None):
                 purchased = True
 
             classes.append('premium')
-            if waffle.switch_is_active('disabled-payments'):
+            if waffle.switch_is_active('disabled-payments') or not request.GAIA:
                 classes.append('disabled')
+
+        if not request.MOBILE and not 'disabled' in classes:
+            classes.append('disabled')
 
         if purchased:
             label = _('Install')

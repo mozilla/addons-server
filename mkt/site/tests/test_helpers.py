@@ -33,6 +33,7 @@ class TestMarketButton(amo.tests.TestCase):
         request.check_ownership.return_value = False
         request.GET = {'src': 'foo'}
         request.groups = ()
+        request.GAIA = True
         self.context = {'request': request}
 
     def test_not_webapp(self):
@@ -87,7 +88,25 @@ class TestMarketButton(amo.tests.TestCase):
         self.create_switch(name='disabled-payments')
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disable' in cls, 'Unexpected: %r' % cls
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+
+    def test_is_desktop_disabled(self):
+        self.context['request'].MOBILE = False
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+
+    def test_is_premium_android_disabled(self):
+        self.context['request'].GAIA = False
+        self.make_premium(self.webapp)
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+
+    def test_is_free_android_enabled(self):
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
 
     def test_xss(self):
         nasty = '<script>'
