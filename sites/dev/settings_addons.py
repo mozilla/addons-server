@@ -81,4 +81,5 @@ LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 METLOG_CONF['logger'] = 'addons-dev'
+METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN})
 METLOG = client_from_dict_config(METLOG_CONF)

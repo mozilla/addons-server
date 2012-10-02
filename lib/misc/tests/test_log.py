@@ -43,26 +43,6 @@ cfg = {
 }
 
 
-class TestUnicodeLog(amo.tests.TestCase):
-
-    def setUp(self):
-        dictconfig.dictConfig(cfg)
-        self.log = logging.getLogger('test.lib.misc.logging')
-
-    @patch('logging.Handler.format')
-    @patch('socket._socketobject.sendto')
-    def test_unicode_error(self, sendto, _format):
-        def blowup(*args, **kwargs):
-            if args[0].__dict__['msg'] == 'blowup':
-                raise UnicodeDecodeError('ascii', 'bytes', 0, 1, 'ouch')
-            return args[0].__dict__['msg']
-        _format.side_effect = blowup
-        self.log.error('blowup')
-        self.log.error('dont blowup')
-        assert 'A unicode error occured' in sendto.call_args_list[0][0][0]
-        assert 'dont' in sendto.call_args_list[1][0][0]
-
-
 class TestErrorLog(amo.tests.TestCase):
 
     def setUp(self):
@@ -131,10 +111,12 @@ class TestErrorLog(amo.tests.TestCase):
 class TestMetlogStdLibLogging(amo.tests.TestCase):
 
     def setUp(self):
-        from lib.settings_base import METLOG_CONF
-        # workaround metlog config mutating dict config :P
-        METLOG_CONF['sender']['class'] = ('metlog.senders.logging'
-                                          '.StdLibLoggingSender')
+        METLOG_CONF = {
+            'sender': {
+                'class': 'metlog.senders.logging.StdLibLoggingSender',
+                'logger_name': 'z.metlog',
+                }
+            }
         self.metlog = client_from_dict_config(METLOG_CONF)
         self.logger = logging.getLogger('z.metlog')
 
@@ -190,15 +172,35 @@ class TestMetlogStdLibLogging(amo.tests.TestCase):
         self.assertEqual(msg['payload'], str(elapsed))
         self.assertEqual(msg['fields']['name'], timer)
 
+
+class TestRaven(amo.tests.TestCase):
+    def setUp(self):
+        """
+        We need to set the settings.METLOG instance to use a
+        DebugCaptureSender so that we can inspect the sent messages.
+
+        We also need to force list of handlers for
+        'django.request.tastypie' to use only the MetlogTastypieHandler,
+        then revert the list of handlers back to whatever they were
+        prior to invoking the test case.
+        """
+
+        metlog = settings.METLOG
+        METLOG_CONF = {
+            'logger': 'zamboni',
+            'sender': {'class': 'metlog.senders.DebugCaptureSender'},
+        }
+        from metlog.config import client_from_dict_config
+        self.metlog = client_from_dict_config(METLOG_CONF, metlog)
+
     def test_send_raven(self):
         try:
             1 / 0
         except:
             self.metlog.raven('blah')
 
-        logrecord = self.handler.buffer[-1]
-
-        msg = json.loads(logrecord.msg)
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
         eq_(msg['type'], 'sentry')
 
 
