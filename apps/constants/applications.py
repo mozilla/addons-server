@@ -110,7 +110,8 @@ class ANDROID(App):
     # Mobile and Android have the same user agent. The only way to distinguish
     # is by the version number.
     user_agent_re = [re.compile('Fennec/([\d.]+)'),
-                     re.compile('Android; Mobile; rv:([\d.]+)')]
+                     re.compile('Android; Mobile; rv:([\d.]+)'),
+                     re.compile('Mobile; rv:([\d.]+)')]
     platforms = 'mobile'
     latest_version = None
 

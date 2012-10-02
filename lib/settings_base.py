@@ -1550,3 +1550,8 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
+
+# Modify the user-agents we check for in django-mobility
+# (Android has since changed its user agent).
+MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
+                      'iphone|opera (?:mini|mobi)')

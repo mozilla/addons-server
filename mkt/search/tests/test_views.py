@@ -443,7 +443,8 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
         self.client.login(username='admin@mozilla.com', password='password')
 
     @nottest
-    def test_url(self, url, app_is_mobile=True, browser_is_mobile=False):
+    def test_url(self, url, app_is_mobile=True, browser_is_mobile=False,
+                 user_agent=None):
         """
         Test a view to make sure that it excludes mobile-incompatible apps
         from its listings.
@@ -459,7 +460,10 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
             self.reindex(Webapp)
 
         self.refresh()
-        r = self.client.get(url, follow=True)
+        headers = dict()
+        if user_agent:
+            headers['HTTP_USER_AGENT'] = user_agent
+        r = self.client.get(url, follow=True, **headers)
         eq_(r.status_code, 200)
 
         # If the browser is mobile and the app is not mobile compatible, assert
@@ -490,6 +494,11 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
             for app_is_mobile in (True, False):
                 for browser_is_mobile in (False, True):
                     yield self.test_url, view, app_is_mobile, browser_is_mobile
+
+        gaia_ua = 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0'
+        for view in views:
+            # A desktop-only app should should not appear on mobile.
+            yield self.test_url, view, False, True, gaia_ua
 
     def test_generator(self):
         # This is necessary until we can get test generator methods worked out

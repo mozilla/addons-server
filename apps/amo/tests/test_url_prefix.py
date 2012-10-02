@@ -95,6 +95,10 @@ class MiddlewareTest(test.TestCase):
         check('/en-US/', '/en-US/android/',
               'Mozilla/5.0 (Android; Mobile; rv:17.0) Gecko/17.0 Firefox/17.0')
 
+        # And the user agent yet changed again.
+        check('/en-US/', '/en-US/android/',
+              'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0')
+
     def test_get_lang(self):
         def check(url, expected):
             response = self.process(url)
