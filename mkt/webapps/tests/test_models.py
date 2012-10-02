@@ -13,8 +13,7 @@ from nose.tools import eq_, raises
 import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, Preview)
-from amo.tests import (app_factory, ESTestCase, TestCase, version_factory,
-                       WebappTestCase)
+from amo.tests import app_factory, version_factory
 from constants.applications import DEVICE_TYPES
 from editors.models import RereviewQueue
 from files.models import File
@@ -30,7 +29,7 @@ from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
-class TestWebapp(TestCase):
+class TestWebapp(amo.tests.TestCase):
 
     def test_hard_deleted(self):
         # Uncomment when redis gets fixed on ci.mozilla.org.
@@ -270,6 +269,16 @@ class TestWebapp(TestCase):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
         eq_(webapp.is_packaged, False)
 
+    def test_blocked_signal(self):
+        app = app_factory()
+        version_factory(addon=app)
+        eq_(set(File.objects.values_list('status', flat=True)),
+            set([amo.STATUS_PUBLIC]))
+        app.status = amo.STATUS_BLOCKED
+        app.save()
+        eq_(set(File.uncached.values_list('status', flat=True)),
+            set([amo.STATUS_DISABLED]))
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
@@ -292,7 +301,7 @@ class TestWebappVersion(amo.tests.TestCase):
         eq_(webapp.get_latest_file().pk, new_file.pk)
 
 
-class TestWebappManager(TestCase):
+class TestWebappManager(amo.tests.TestCase):
 
     def setUp(self):
         self.reviewed_eq = (lambda f=[]:
@@ -330,7 +339,7 @@ class TestWebappManager(TestCase):
         self.listed_eq()
 
 
-class TestDisabledPayments(ESTestCase):
+class TestDisabledPayments(amo.tests.ESTestCase):
 
     def setUp(self):
         self.create_switch(name='disabled-payments')
@@ -559,7 +568,7 @@ class TestIsComplete(amo.tests.TestCase):
         self.fail('email')
 
 
-class TestAddonExcludedRegion(WebappTestCase):
+class TestAddonExcludedRegion(amo.tests.WebappTestCase):
 
     def setUp(self):
         super(TestAddonExcludedRegion, self).setUp()

@@ -33,9 +33,10 @@ from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path
 from constants.applications import DEVICE_TYPES
-from files.models import nfd_str
+from files.models import File, nfd_str
 from files.utils import parse_addon
 from lib.crypto import packaged
+from versions.models import Version
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES
@@ -134,10 +135,6 @@ class Webapp(Addon):
         """Attach all the versions and files to the apps."""
         if not apps:
             return
-
-        # Avoids circular imports and uses Django's app cache.
-        Version = models.get_model('versions', 'Version')
-        File = models.get_model('files', 'File')
 
         ids = set(app.id for app in apps)
         versions = (Version.uncached.filter(addon__in=ids)
@@ -642,6 +639,15 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='mkt.webapps.index')
+
+
+@receiver(models.signals.post_save, sender=Webapp,
+          dispatch_uid='mkt.webapps.handle_blocklist')
+def handle_blocklist(sender, instance, **kw):
+    """If status is set to STATUS_BLOCKED, set all files to STATUS_DISABLED."""
+    if instance.status == amo.STATUS_BLOCKED:
+        (File.objects.filter(version__addon_id=instance.id)
+                     .update(status=amo.STATUS_DISABLED))
 
 
 @receiver(version_changed, dispatch_uid='update_cached_manifests')
