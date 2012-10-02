@@ -3,7 +3,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from commander.deploy import hostgroups, task
+from commander.deploy import BadReturnCode, hostgroups, task
 
 import commander_settings as settings
 
