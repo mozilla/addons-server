@@ -491,7 +491,7 @@ class Webapp(Addon):
         return datetime.date.today()
 
     @classmethod
-    def featured(cls, cat=None, region=None, limit=6):
+    def featured(cls, cat=None, region=None, limit=6, gaia=False):
         FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
         qs = (FeaturedApp.objects
               .filter(app__status=amo.STATUS_PUBLIC,
@@ -502,7 +502,7 @@ class Webapp(Addon):
         qs = (qs.filter(end_date__gte=cls.now())
             | qs.filter(end_date__isnull=True))
 
-        if waffle.switch_is_active('disabled-payments'):
+        if waffle.switch_is_active('disabled-payments') or not gaia:
             qs = qs.filter(app__premium_type__in=amo.ADDON_FREES)
 
         if isinstance(cat, list):
@@ -544,7 +544,7 @@ class Webapp(Addon):
                     .values_list('addon', flat=True))
 
     @classmethod
-    def from_search(cls, cat=None, region=None):
+    def from_search(cls, cat=None, region=None, gaia=False):
         filters = dict(type=amo.ADDON_WEBAPP,
                        status=amo.STATUS_PUBLIC,
                        is_disabled=False)
@@ -558,20 +558,20 @@ class Webapp(Addon):
             if excluded:
                 srch = srch.filter(~F(id__in=excluded))
 
-        if waffle.switch_is_active('disabled-payments'):
+        if waffle.switch_is_active('disabled-payments') or not gaia:
             srch = srch.filter(premium_type__in=amo.ADDON_FREES, price=0)
 
         return srch
 
     @classmethod
-    def popular(cls, cat=None, region=None):
+    def popular(cls, cat=None, region=None, gaia=False):
         """Elastically grab the most popular apps."""
-        return cls.from_search(cat, region).order_by('-popularity')
+        return cls.from_search(cat, region, gaia=gaia).order_by('-popularity')
 
     @classmethod
-    def latest(cls, cat=None, region=None):
+    def latest(cls, cat=None, region=None, gaia=False):
         """Elastically grab the most recent apps."""
-        return cls.from_search(cat, region).order_by('-created')
+        return cls.from_search(cat, region, gaia=gaia).order_by('-created')
 
     @classmethod
     def category(cls, slug):

@@ -385,13 +385,14 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
 
     def __init__(self, request, excluded_ids=(), category=None):
         self.category = category
+        self.gaia = request.GAIA
         SearchSuggestionsAjax.__init__(self, request, excluded_ids)
 
     def queryset(self):
         res = SearchSuggestionsAjax.queryset(self)
         if self.category:
             res = res.filter(category__in=[self.category])
-        if waffle.switch_is_active('disabled-payments'):
+        if waffle.switch_is_active('disabled-payments') or not self.gaia:
             res = res.filter(premium_type__in=amo.ADDON_FREES, price=0)
 
         region = getattr(self.request, 'REGION', mkt.regions.WORLDWIDE)

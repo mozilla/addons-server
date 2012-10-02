@@ -540,3 +540,58 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
         r = self.client.get(urlparams(reverse('search.search'), q='Basta'))
         eq_(r.status_code, 200)
         eq_(list(r.context['pager'].object_list), [self.webapp])
+
+
+class TestFilterGaiaCompat(amo.tests.ESTestCase):
+    """
+    Test that premium apps outside of B2G(gaia) are hidden from any listings.
+    """
+
+    def setUp(self):
+        self.app_name = 'Basta Pasta'
+        self.webapp = Webapp.objects.create(name=self.app_name,
+                                            type=amo.ADDON_WEBAPP,
+                                            status=amo.STATUS_PUBLIC)
+        self.make_premium(self.webapp)
+        self.reindex(Webapp)
+
+    @nottest
+    def test_url(self, url, app_is_premium=True, device_is_gaia=False):
+        """
+        Test a view to make sure that it excludes premium apps from non gaia
+        devices.
+        """
+        url = urlparams(url, gaia='true' if device_is_gaia else 'false')
+
+        self.refresh()
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 200)
+
+        # If the app is premium and the device isn't gaia, assert
+        # that the app doesn't show up in the listing.
+        if app_is_premium and not device_is_gaia:
+            assert self.app_name not in r.content, (
+                'Found premium app in non-gaia for %s' % url)
+        elif app_is_premium and device_is_gaia:
+            # Otherwise assert that it does.
+            assert self.app_name in r.content, (
+                "Couldn't find premium app in gaia for %s" % url)
+
+    def _generate(self):
+        views = [reverse('browse.apps'),
+                 reverse('search.search') + '?q=',
+                 reverse('search.search') + '?q=Basta',
+                 reverse('search.suggestions') + '?q=Basta&cat=apps']
+
+        for view in views:
+
+            for app_is_premium in (True, False):
+                for device_is_gaia in (False, True):
+                    yield self.test_url, view, app_is_premium, device_is_gaia
+
+    def test_generator(self):
+        # This is necessary until we can get test generator methods worked out
+        # to run properly.
+        for test_params in self._generate():
+            func, params = test_params[0], test_params[1:]
+            func(*params)

@@ -7,7 +7,6 @@ import waffle
 import amo
 import amo.utils
 from amo.decorators import json_view
-from amo.urlresolvers import reverse
 from apps.addons.models import Category
 from apps.search.views import name_query, WebappSuggestionsAjax
 
@@ -127,8 +126,8 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(region):
-    return Webapp.from_search(region=region).facet('category')
+def _get_query(region, gaia):
+    return Webapp.from_search(region=region, gaia=gaia).facet('category')
 
 
 def _app_search(request, category=None, browse=None):
@@ -144,11 +143,16 @@ def _app_search(request, category=None, browse=None):
 
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
-    qs = _get_query(region)
+    qs = _get_query(region, request.GAIA)
     # On mobile, always only show mobile apps. Bug 767620
     if request.MOBILE:
         qs = qs.filter(uses_flash=False)
         query['device'] = 'mobile'
+
+    # Only show premium apps on gaia for now.
+    # TODO: remove this once we allow app purchases on desktop/android.
+    if not request.GAIA:
+        qs = qs.filter(premium_type__in=amo.ADDON_FREES)
 
     qs = _filter_search(qs, query, region=region)
 

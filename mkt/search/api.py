@@ -32,7 +32,7 @@ class SearchResource(MarketplaceResource):
 
         # Search specific processing of the results.
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-        qs = _get_query(region)
+        qs = _get_query(region, request.GAIA)
         qs = _filter_search(qs, form.cleaned_data, region=region)
         res = amo.utils.paginate(request, qs)
 

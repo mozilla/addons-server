@@ -19,8 +19,10 @@ def home(request):
         return jingo.render(request, 'home/home_walled.html')
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
     featured = Webapp.featured(region=region, cat=None)[:9]
-    popular = _add_mobile_filter(request, Webapp.popular(region=region))[:10]
-    latest = _add_mobile_filter(request, Webapp.latest(region=region))[:10]
+    popular = _add_mobile_filter(request,
+                                 Webapp.popular(region=region, gaia=request.GAIA))[:10]
+    latest = _add_mobile_filter(request,
+                                Webapp.latest(region=region, gaia=request.GAIA))[:10]
     return jingo.render(request, 'home/home.html', {
         'featured': featured,
     })

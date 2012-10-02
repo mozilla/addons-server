@@ -262,3 +262,21 @@ class MobileDetectionMiddleware(object):
 
         request.MOBILE = (getattr(request, 'MOBILE', False) or
                           bool(request.COOKIES.get('mobile', False)))
+
+
+class GaiaDetectionMiddleware(object):
+    """
+    Same as above for B2G (gaia) devices. /js/mkt/init.js will set the gaia
+    cookie to 'true' unless a 'gaia' query parameter overrides it for testing.
+    """
+
+    def process_request(self, request):
+        gaia_qs = request.GET.get('gaia', False)
+        if gaia_qs:
+            if gaia_qs == 'false':
+                request.delete_cookie('gaia')
+            elif gaia_qs == 'true':
+                request.set_cookie('gaia', 'true')
+
+        request.GAIA = (getattr(request, 'GAIA', False) or
+                        bool(request.COOKIES.get('gaia', False)))

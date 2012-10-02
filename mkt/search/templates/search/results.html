@@ -46,7 +46,7 @@
     <div class="filters-body">
       <form action="{{ url('search.search') }}" method="get">
         <div>
-          {% if prices and not waffle.switch('disabled-payments') %}
+          {% if prices and not waffle.switch('disabled-payments') and request.GAIA %}
             <h2>{{ _('Filter by price') }}</h2>
             <ul class="toggles c" id="filter-prices">
               {% for price in prices %}

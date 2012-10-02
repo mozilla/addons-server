@@ -66,6 +66,12 @@ $(document).ready(function() {
         pre_auth: data_user.pre_auth
     });
 
+    // Set cookie if user is on B2G.
+    // TODO: remove this once we allow purchases on desktop/android.
+    if (document.cookie && z.capabilities.gaia) {
+        document.cookie = 'gaia=true;path=/';
+    }
+
     stick.basic();
 });
 
@@ -129,7 +135,6 @@ z.page.on('fragmentloaded', function() {
             // Yea...
             var sortoption = z.getVars(location.href);
 
-            // This will not scale if we have more than two.
             $('#filter-sort li a').removeClass('sel');
             switch(sortoption.sort) {
                 case 'None':
