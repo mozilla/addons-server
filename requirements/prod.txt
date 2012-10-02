@@ -17,8 +17,8 @@ django-tastypie==0.9.11
 easy-thumbnails==1.1
 gunicorn==0.14.6
 metlog-py==0.9.7
-metlog-cef==0.1
-metlog-raven==0.2
+metlog-cef==0.2
+metlog-raven==0.3
 cef==0.3
 moz_inapp_pay==1.0.2
 oauth2==1.5.211
