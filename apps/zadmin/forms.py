@@ -33,6 +33,7 @@ class DevMailerForm(happyforms.Form):
     _choices = [('eula',
                  'Developers who have set up EULAs for active add-ons'),
                 ('sdk', 'Developers of active SDK add-ons'),
+                ('apps', 'Developers of active apps (not add-ons)'),
                 ('payments',
                  'Developers of active apps (not add-ons) with payments')]
     recipients = forms.ChoiceField(choices=_choices, required=True)

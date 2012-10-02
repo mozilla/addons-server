@@ -631,6 +631,8 @@ def email_devs(request):
             qs = qs.exclude(addon__paypal_id=None)
             qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
                                                      amo.ADDON_OTHER_INAPP))
+        elif data['recipients'] == 'apps':
+            qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
         elif data['recipients'] == 'sdk':
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         else:

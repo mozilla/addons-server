@@ -1931,6 +1931,12 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
+    def test_only_apps(self):
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        res = self.post(recipients='apps')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
     def test_ignore_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
         res = self.post()
