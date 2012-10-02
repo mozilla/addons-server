@@ -57,10 +57,8 @@
              target="_blank">{{ _('Learn more') }}</a>
         {% endif %}
         {% if addon.status == amo.STATUS_REJECTED %}
-          <form method="post">
-            {{ csrf() }}
             {% if rejection %}
-              <section class="island swagger" id="rejection">
+              <div class="island swagger" id="rejection">
                 <h3>
                   {% trans reviewer=rejection.user.name %}
                     Reviewed by <b>{{ reviewer }}</b>
@@ -72,7 +70,7 @@
                 <blockquote>
                   {{ rejection.details.comments }}
                 </blockquote>
-              </section>
+              </div>
               <p>
                 {% trans %}
                   Once you have addressed these concerns, you may resubmit your
@@ -80,9 +78,13 @@
                 {% endtrans %}
               </p>
             {% endif %}
-            {{ form_field(form.notes, opt=True) }}
-            <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
-          </form>
+            {% if not addon.is_packaged %}
+              <form method="post">
+                {{ csrf() }}
+                {{ form_field(form.notes, opt=True) }}
+                <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
+              </form>
+            {% endif %}
         {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
           <form method="post" action="{{ addon.get_dev_url('publicise') }}">
             {{ csrf() }}

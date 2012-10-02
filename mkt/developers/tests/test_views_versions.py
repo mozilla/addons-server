@@ -108,6 +108,24 @@ class TestVersion(amo.tests.TestCase):
             'Files for reapplied apps should get marked as pending')
         eq_(unicode(webapp.versions.all()[0].approvalnotes), my_reply)
 
+    def test_rejected_packaged(self):
+        self.webapp.update(is_packaged=True)
+        comments = "oh no you di'nt!!"
+        amo.set_user(UserProfile.objects.get(username='editor'))
+        amo.log(amo.LOG.REJECT_VERSION, self.webapp,
+                self.webapp.current_version, user_id=999,
+                details={'comments': comments, 'reviewtype': 'pending'})
+        self.webapp.update(status=amo.STATUS_REJECTED)
+        (self.webapp.versions.latest()
+                             .all_files[0].update(status=amo.STATUS_DISABLED))
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)('#version-status')
+        eq_(doc('.status-rejected').length, 1)
+        eq_(doc('#rejection').length, 1)
+        eq_(doc('#rejection blockquote').text(), comments)
+
 
 class TestAddVersion(BasePackagedAppTest):
 
