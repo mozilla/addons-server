@@ -31,9 +31,23 @@
       .ajax b {
         color: #00c;
       }
+      #repl {
+        font: 14px monospace;
+        display: block;
+        width: 100%;
+      }
+      .repl {
+        font-family: monospace;
+      }
+      .repl:before {
+        content: '> ';
+      }
+      .repl.back:before {
+        content: '';
+      }
     </style>
     <script type="text/javascript"
-            src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <script src="/nowjs/now.js"></script>
     <script>
       var format = (function() {
@@ -45,24 +59,56 @@
               return s.replace(re, function(_, match){ return args[match]; });
           };
       })();
-      $(document).ready(function(){
+      function pretty(val) {
+          if (val === undefined) {
+            return 'undefined';
+          }
+          if (val === null) {
+            return 'null';
+          }
+          return val;
+      }
+      now.ready(function(){
         now.showLog = function(msg) {
-          var obj = JSON.parse(decodeURIComponent(msg)),
-              el = $('<li class="log">');
-          el.append(format('<b>{msg}</b>',obj));
+          var el = $('<li class="log">');
+          el.append(format('<b>{0}</b>', msg));
           $('ul').prepend(el);
         }
-        now.showError = function(err){
-          var obj = JSON.parse(decodeURIComponent(err)),
-              el = $('<li class="error">');
-          el.append(format('<b>{msg}</b><i><a href="{file}">{file}</a>:{line}</i>', obj));
+        now.showError = function(m,f,l) {
+          var el = $('<li class="error">');
+          el.append(format('<b>{0}</b><i><a href="{1}">{1}</a>:{2}</i>', [m,f,l]));
           $('ul').prepend(el);
         };
+        now.replBack = function(msg) {
+          var msg = pretty(msg);
+          var el = $('<li class="repl back">');
+          el.append(format('<b>{0}</b>', msg));
+          $('ul').prepend(el);
+        };
+
+        var repl = $('#repl');
+        var lastCommand = '';
+        repl.on('keydown', function(e) {
+          if (e.which == 38) {
+              repl.val(lastCommand);
+          }
+          if (e.which == 13) {
+            var code = repl.val();
+            var el = $('<li class="repl">');
+            el.append(format('<b>{0}</b>', code));
+            $('ul').prepend(el);
+            lastCommand = code;
+            now.repl(code);
+            repl.val('');
+          }
+        });
+        now.registerRemoteDebugger('potch');
       });
     </script>
   </head>
   <body>
     <h1>Remote Error Log</h1>
+    <input id="repl">
     <ul>
     </ul>
   </body>

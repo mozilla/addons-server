@@ -209,6 +209,11 @@
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
       {{ js('mkt/consumer') }}
+      {% if settings.REMOTE_JS_DEBUG %}
+        <script src="{{ settings.REMOTE_JS_DEBUG }}/nowjs/now.js"></script>
+        <script src="{{ media('js/debug/remote_debug.js') }}"></script>
+      {% endif %}
+
     {% endblock %}
 
     {% block paypal_js %}

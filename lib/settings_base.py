@@ -42,7 +42,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # > npm install now
 # > node media/js/debug/remote_debug_server.node.js
 # REMOTE_JS_DEBUG = 'localhost:37767'
-# then connect to http://localhost:8080/ to view
+# then connect to http://localhost:37767/ to view
 REMOTE_JS_DEBUG = False
 
 # LESS CSS OPTIONS (Debug only)
