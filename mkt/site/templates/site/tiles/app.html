@@ -23,7 +23,7 @@
     {% endif %}
     <div class="price vital">{{ product.get_price() }}</div>
     {% if waffle.switch('ratings') %}
-      <div class="rating vital">
+      <div class="rating vital{{ ' unrated' if not product.total_reviews }}">
         {% if tag != "a" %}<a href="{{ product.get_ratings_url() }}"
                               class="rating_link">{% endif %}
           {{ product.average_rating|float|stars }}

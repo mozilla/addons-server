@@ -55,6 +55,8 @@
     .creatured .grid {
         .mkt-tile {
             background: @grain-src darken(@grain, 15%);
+            height: 55px;
+            padding: 12px 10px;
             .info, &:hover .info, &:active .info {
                 background: transparent;
             }
@@ -67,15 +69,23 @@
             .info {
                 .box-shadow(none);
                 height: auto;
+                padding: 0;
                 position: static;
             }
             h3 {
                 color: @white;
-                padding-left: 18px;
+                font-size: 11px;
+                padding-left: 19px;
             }
             .rating {
-                color: @medium-gray;
                 font-size: 11px;
+                margin: 4px 0 0 2px;
+                vertical-align: top;
+            }
+            .rating .cnt,
+            .unrated {
+                display: block;
+                text-indent: -999px;
             }
             canvas {
                 display: none;
@@ -84,8 +94,8 @@
                 &.featured_tile {
                     display: block;
                     position: absolute;
-                    top: 6px;
-                    left: 2px;
+                    top: 12px;
+                    left: 11px;
                     height: 16px;
                     width: 16px;
                 }

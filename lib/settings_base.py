@@ -1158,7 +1158,7 @@ METLOG_CONF = {
             'syslog_priority': 'ALERT',
             }),
 
-        # Sentry accepts messages over UDP, you'll need to 
+        # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
         'raven': ('metlog_raven.raven_plugin:config_plugin',
