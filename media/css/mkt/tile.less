@@ -19,6 +19,7 @@
 }
 
 .grid, .listing {
+    background: @black-border;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -26,8 +27,8 @@
     width: 100%;
 }
 
-.grid, .listing {
-    background: @black-border;
+.grid {
+    float: left;
 }
 
 .product-details .mkt-tile .icon.mobile_tile,
@@ -181,14 +182,16 @@
 // store graphic, name, price in a floated grid (3 tiles wide at 320).
 
 .grid {
-    max-width: 608px;
     margin: 0 auto;
-    padding: 0 0 1px 1px;
+    max-width: 600px;
     li {
         float: left;
         width: 100%/3;
-        padding: 1px 1px 0 0;
+        padding: 0 1px 1px 0;
         max-height: 141px;
+        &:nth-child(3n) {
+            padding-right: 0;
+        }
     }
     .mkt-tile {
         position: relative;
