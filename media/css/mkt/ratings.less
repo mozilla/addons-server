@@ -103,6 +103,12 @@ section.replies .review.reply {
 .reviews {
     border-top: 1px solid rgba(255,255,255,.5);
     border-bottom: 1px solid rgba(3,16,26,.13);
+    .not-rated {
+        color: lighten(@text, 5%);
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+    }
 }
 
 #reviews-detail {
@@ -146,6 +152,8 @@ section.replies .review.reply {
     }
 }
 
+/*
+// TODO: Expose later sometime (`rating_header` function)
 header.product {
     margin-bottom: 15px;
     position: relative;
@@ -185,6 +193,7 @@ header.product {
         margin: 5px 0;
     }
 }
+*/
 
 #submit-review {
     padding: 0 15px;
@@ -259,11 +268,6 @@ header.product {
 }
 
 .average-rating {
-    // Clicking on this will expose the rating breakdown.
-    cursor: pointer;
-    strong {
-        display: none;
-    }
     span {
         color: @text;
         vertical-align: bottom;
@@ -272,8 +276,18 @@ header.product {
             padding-right: 6px;
         }
     }
-    &:hover span {
-        text-decoration: none;
+}
+
+.full #add-first-review {
+    margin-top: 15px;
+}
+
+.split {
+    float: left;
+    padding: 0 5px 15px 0;
+    width: 50%;
+    + .split {
+        padding: 0 0 15px 5px;
     }
 }
 
@@ -311,6 +325,8 @@ header.product {
     }
 }
 
+/*
+// TODO: Expose maybe later.
 .grouped-ratings {
     .border-radius(4px);
     background: rgb(226,230,233);
@@ -350,7 +366,7 @@ header.product {
             height: 22px;
             position: absolute;
             top: 0;
-            left: 71px;  /* old stars: 96px */
+            left: 71px;  // old stars: 96px
             width: 2px;
             z-index: 0;
         }
@@ -360,7 +376,7 @@ header.product {
             height: 36px;
             position: absolute;
             top: -5px;
-            left: 64px;  /* old stars: 89px */
+            left: 64px;  // old stars: 89px
             width: 9px;
             z-index: 1;
         }
@@ -411,9 +427,10 @@ header.product {
     }
     .stars {
         float: left;
-        margin: 7px 8px 0 0;  /* old stars: 4px 8px 0 0 */
+        margin: 7px 8px 0 0;  // old stars: 4px 8px 0 0
     }
 }
+*/
 
 .items-profile {
     padding: 0;

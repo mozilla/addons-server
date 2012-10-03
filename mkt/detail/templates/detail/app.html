@@ -153,7 +153,7 @@
           {% if upsell %}
             {% set prm = upsell.premium_addon %}
             {% if prm %}
-              <a id="upsell" class="narrow"
+              <a id="upsell" class="fatbutton"
                  href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
                  <span class="avail">{{ _('Premium version available') }}</span>
                  <img class="icon" src="{{ prm.get_icon_url(16) }}">

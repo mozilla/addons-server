@@ -8,10 +8,10 @@
 
 {% extends 'mkt/base.html' %}
 
-{% if not has_review %}
-  {% set title = _('Write a review') %}
+{% if has_review %}
+  {% set title = _('Edit Your Review') %}
 {% else %}
-  {% set title = _('Edit your review') %}
+  {% set title = _('Write a Review') %}
 {% endif %}
 
 {% set pagetitle = mkt_page_title(title) %}

@@ -74,7 +74,7 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.add)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ratings/add.html')
-        eq_(pq(r.content)('#top').html(), 'Edit your review')
+        eq_(pq(r.content)('#top').html(), 'Edit Your Review')
 
     def test_add_admin(self):
         self.log_in_admin()

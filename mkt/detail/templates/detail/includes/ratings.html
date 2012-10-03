@@ -1,7 +1,10 @@
 {% if waffle.switch('ratings') %}
+  {% if not can_review %}
+    {% set can_review = product.is_persona() and product.is_public() %}
+  {% endif %}
   <section class="reviews c">
     <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
-      <div class="review-stars-header">
+      {% if reviews %}
         <ul data-edit-url="{{ product.get_ratings_url('add') }}">
           {% for review in reviews %}
             {% include 'ratings/rating.html' %}
@@ -15,39 +18,36 @@
             {% endwith %}
           {% endif %}
         </ul>
-        {% if reviews %}
-          <a class="overall-reviews average-rating"
-             href="{{ product.get_ratings_url() }}">
+        <div class="{{ 'split' if can_review else 'full' }}">
+          <a class="fatbutton average-rating" href="{{ product.get_ratings_url() }}">
             {{ product.average_rating|float|stars }}
             <span>
-              {% trans cnt=product.total_reviews,
-                       num=product.total_reviews|numberfmt %}
+              {% trans cnt=product.total_reviews, num=product.total_reviews|numberfmt %}
                 {{ num }} review
               {% pluralize %}
                 {{ num }} reviews
               {% endtrans %}
             </span>
           </a>
-        {% endif %}
-      </div>
-      <div class="review-stars wide">
-        {% include 'ratings/helpers/grouped_ratings.html' %}
-        {% if not reviews %}
-          <p class="not-rated">
-            {% if product.is_persona() %}
-              {{ _('This Theme is not yet rated.') }}
-            {% else %}
-              {{ _('This app is not yet rated.') }}
-            {% endif %}
-          </p>
-        {% endif %}
-        {% if can_review or product.is_persona() %}
-          <p><a class="overall-reviews add-edit-review" id="add-first-review"
+        </div>
+        {# TODO: Expose maybe sweet ratings breakdown later. #}
+        {# include 'ratings/helpers/grouped_ratings.html' #}
+      {% else %}
+        <p class="not-rated">
+          {% if product.is_persona() %}
+            {{ _('This theme is not yet rated.') }}
+          {% else %}
+            {{ _('This app is not yet rated.') }}
+          {% endif %}
+        </p>
+      {% endif %}
+      {% if can_review %}
+        <div class="{{ 'split' if reviews else 'full' }}">
+          <a class="fatbutton" id="add-first-review"
              href="{{ product.get_ratings_url('add') }}">
-            {{ _('Edit Your Review') if has_review else _('Write a Review')
-            }}</a></p>
-        {% endif %}
-      </div>
+            {{ _('Edit Your Review') if has_review else _('Write a Review') }}</a>
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endif %}

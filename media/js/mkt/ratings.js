@@ -98,8 +98,8 @@
         setTimeout(function() {
             reviewEl.addClass('deleted');
             // Change edit review button to submit review button.
-            $('.add-edit-review').text(gettext('Submit a Review'));
-            $('#add-review').children().text(gettext('Add a Review'));
+            $('#add-edit-review').text(gettext('Write a Review'));
+            $('#add-review').children().text(gettext('Write a Review'));
             if (reviewEl.hasClass('reply')) {
                 var $parent = reviewEl.prev('.review');
                 // If this was a reply, remove the "1 reply" link.

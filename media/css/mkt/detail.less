@@ -220,7 +220,6 @@
 }
 
 #upsell {
-    .fat-button;
     .highlight;
     text-align: left;
     margin-top: 15px;
@@ -243,11 +242,6 @@
         min-height: 35px;
         line-height: 32px;
         position: relative;
-    }
-    .special {
-        display: block;
-        float: right;
-        max-width: 20%;
     }
     .icon {
         display: block;
@@ -320,12 +314,6 @@
     }
 }
 
-.overall-reviews {
-    .fat-button;
-    text-align: center;
-    width: 100%;
-}
-
 .visual {
     float: left;
     max-width: 128px;
@@ -356,7 +344,7 @@
             font-size: 14px;
             margin-top: 7px;
         }
-        .pricetag, .cats {
+        .cats {
             &:after {
                 color: @note-gray;
                 content: "\00B7";
@@ -379,15 +367,6 @@
 
 .support {
     font-size: 14px;
-    .overall-reviews {
-        text-align: left;
-        &:hover {
-            span {
-                color: darken(@green, 5%);
-                text-decoration: none;
-            }
-        }
-    }
     ul {
         margin: 0;
         list-style-type: none;
