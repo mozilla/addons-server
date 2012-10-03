@@ -574,7 +574,8 @@ def elastic(request):
             # We must set up the mappings before we create the index again.
             setup_mapping()
             setup_indexes()
-            setup_mkt_indexes()
+            if setup_mkt_indexes:
+                setup_mkt_indexes()
             create_es_index_if_missing(INDEX)
             messages.info(request, 'Deleting %s index.' % INDEX)
         if request.POST.get('reindex') in mappings:

@@ -1866,6 +1866,13 @@ class TestElastic(amo.tests.ESTestCase):
         self.refresh()
         eq_(list(Addon.search()), list(Addon.objects.all()))
 
+    def test_recreate_index(self):
+        eq_(list(Addon.search()), [])
+        self.client.post(self.url, {'recreate': 'addons'})
+        self.client.post(self.url, {'reindex': 'addons'})
+        self.refresh()
+        eq_(list(Addon.search()), list(Addon.objects.all()))
+
 
 class TestEmailDevs(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
