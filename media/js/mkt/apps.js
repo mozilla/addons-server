@@ -56,8 +56,11 @@ exports.install = function(product, opt) {
             installRequest = opt.navigator.mozApps.install(manifest_url, opt.data);
         }
         installRequest.onsuccess = function() {
+            var status;
             var isInstalled = setInterval(function() {
-                if (installRequest.result.status == 'installed') {
+                // "status" is now deprecated in favor of "installState" (bug 796016).
+                status = installRequest.result.status || installRequest.result.installState;
+                if (status == 'installed') {
                     clearInterval(isInstalled);
                     $def.resolve(installRequest.result, product);
                 }
