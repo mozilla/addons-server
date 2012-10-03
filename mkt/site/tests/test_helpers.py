@@ -74,7 +74,7 @@ class TestMarketButton(amo.tests.TestCase):
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').text(),
-            'This app is available for purchase only on Firefox OS.')
+            'This app is available for purchase on only Firefox OS.')
 
     def test_is_premium_webapp_gaia(self):
         self.context['request'].GAIA = True
@@ -119,7 +119,7 @@ class TestMarketButton(amo.tests.TestCase):
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').text(),
-            'This app is available only on Firefox for Android and Firefox '
+            'This app is available on only Firefox for Android and Firefox '
             'OS.')
 
     def test_needs_firefox_for_android(self):
@@ -146,7 +146,7 @@ class TestMarketButton(amo.tests.TestCase):
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').text(),
-            'This app is available for purchase only on Firefox OS.')
+            'This app is available for purchase on only Firefox OS.')
 
     def test_is_free_enabled_android(self):
         doc = pq(market_tile(self.context, self.webapp))

@@ -211,14 +211,14 @@ def market_tile(context, product, link=True, src=''):
                 notices.append(_('This app is temporarily unavailable for '
                                  'purchase.'))
             elif not request.GAIA:
-                notices.append(_('This app is available for purchase only '
-                                 'on Firefox OS.'))
+                notices.append(_('This app is available for purchase on '
+                                 'only Firefox OS.'))
 
         if product.is_packaged and not request.GAIA:
-            notices.append(_('This app is available only on Firefox OS.'))
+            notices.append(_('This app is available on only Firefox OS.'))
 
         if not request.MOBILE:
-            notices.append(_('This app is available only on Firefox for '
+            notices.append(_('This app is available on only Firefox for '
                              'Android and Firefox OS.'))
         if need_firefox:
             if request.MOBILE:
