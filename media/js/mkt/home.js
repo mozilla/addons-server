@@ -56,7 +56,7 @@
     fillBg(els);
 
     z.page.on('fragmentloaded', function() {
-        var els = document.querySelectorAll('.featured .mkt-tile');
+        var els = document.querySelectorAll('.grid .mkt-tile');
         if (els.length) {
             fillBg(els);
         }
