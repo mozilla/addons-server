@@ -51,22 +51,22 @@ exports.install = function(manifest_url, opt) {
                     showError = false;
                     break;
                 case 'permissionDenied':
-                    errSummary = gettext('App installation not allowed');
+                    errSummary = gettext('App installation not allowed.');
                     break;
                 case 'manifestURLError':
-                    errSummary = gettext('App manifest is malformed');
+                    errSummary = gettext('App manifest is malformed.');
                     break;
                 case 'networkError':
-                    errSummary = gettext('App host could not be reached');
+                    errSummary = gettext('App host could not be reached.');
                     break;
                 case 'manifestParseError':
-                    errSummary = gettext('App manifest is unparsable');
+                    errSummary = gettext('App manifest is unparsable.');
                     break;
                 case 'invalidManifest':
-                    errSummary = gettext('App manifest is invalid');
+                    errSummary = gettext('App manifest is invalid.');
                     break;
                 default:
-                    errSummary = gettext('Unknown error');
+                    errSummary = gettext('Install failed. Try again later or notify the developer.');
                     break;
             }
             if (showError) {
@@ -77,8 +77,8 @@ exports.install = function(manifest_url, opt) {
             }
         });
     } else {
-        self._showError(gettext('App installation failed'),
-                        gettext('This system does not support installing apps'),
+        self._showError(gettext('App installation failed.'),
+                        gettext('This system does not support installing apps.'),
                         opt);
     }
 };

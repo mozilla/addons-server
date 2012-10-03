@@ -36,7 +36,7 @@ asyncTest('test permission error', function() {
     var sb = this.sandbox;
     $(sb).one('error_shown.apps', function() {
         equals($('.apps-error-msg h2', sb).text(),
-               'App installation not allowed');
+               'App installation not allowed.');
         equals($('.apps-error-msg p', sb).text(), 'detailed message');
         start();
     });
@@ -63,7 +63,8 @@ test('test user canceled', function() {
 asyncTest('test unexpected error', function() {
     var sb = this.sandbox;
     $(sb).one('error_shown.apps', function() {
-        equals($('.apps-error-msg h2', sb).text(), 'Unknown error');
+        equals($('.apps-error-msg h2', sb).text(),
+               'Install failed. Try again later or notify the developer.');
         equals($('.apps-error-msg p', sb).text(), 'surprise');
         start();
     });
@@ -95,7 +96,7 @@ asyncTest('test append to visible modal', function() {
     $sb.append('<div class="existing modal"><div class="modal-inside"></div></div>');
     $sb.one('error_shown.apps', function() {
         equals($('.existing h2', $sb).text(),
-               'App installation not allowed');
+               'App installation not allowed.');
         equals($('.existing p', $sb).text(),
                'detailed message');
         start();
@@ -140,8 +141,8 @@ asyncTest('install error: system unsupported', function() {
     var sb = this.sandbox,
         nav = {};
     $(sb).one('mobile_error_shown.apps', function() {
-        equal($('.apps-error-msg h2', sb).text(), 'App installation failed');
-        equal($('.apps-error-msg p', sb).text(), 'This system does not support installing apps');
+        equal($('.apps-error-msg h2', sb).text(), 'App installation failed.');
+        equal($('.apps-error-msg p', sb).text(), 'This system does not support installing apps.');
         start();
     });
     apps.install('http://nice.com/nice.webapp', {domContext: sb, navigator: nav, mobile: true});
