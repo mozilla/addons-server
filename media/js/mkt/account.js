@@ -64,9 +64,6 @@
 
 (function() {
     z.page.on('fragmentloaded', function() {
-        if (!$('#feedback-form').length) {
-            return;
-        }
 
         var $form = $('#feedback-form');
 
@@ -74,15 +71,24 @@
             if ($form.find('textarea').val()) {
                 $form.find('button[type=submit]').attr('disabled', true);
                 $.post($form.attr('action'), $form.serialize(), function(data) {
-                    $form.replaceWith($('<div>', {
-                        'text': gettext('Message sent. Thanks for your feedback.'),
-                        'class': 'notification-box success c'}));
+                    if (data.status == 'win') {
+                        $form.replaceWith($('<div>', {
+                            'text': gettext('Message sent. Thanks for your feedback.'),
+                            'class': 'notification-box success c'}));
+                    } else {
+                        $form.find('button[type=submit]').attr('disabled', false);
+                        if ($form.find('div.error').length === 0) {
+                            $form.prepend($('<div>', {
+                                'text': gettext('An error occurred. Please try again later.'),
+                                'class': 'notification-box error c'}));
+                        }
+                    }
                 });
             } else {
                 if ($form.find('div.error').length === 0) {
                     $form.prepend($('<div>', {
                         'text': gettext('Message must not be empty.'),
-                        'class': 'error'}));
+                        'class': 'notification-box error c'}));
                 }
             }
         }));
