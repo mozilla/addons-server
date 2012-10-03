@@ -22,20 +22,15 @@ var z = {
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
-(function() {
-    _.extend(z, {'nav': BrowserUtils()});
-    if (!z.nav.browser.firefox ||
-        z.nav.browser.mobile || z.nav.os.maemo ||
-        VersionCompare.compareVersions(z.nav.browserVersion, '16.0') < 0 ||
-        (z.nav.os.android && VersionCompare.compareVersions(z.nav.browserVersion, '17.0') < 0)) {
-        z.canInstallApps = false;
-    }
-})();
-
 // Initialize webtrends tracking.
 z.page.on('fragmentloaded', webtrendsAsyncInit);
 
 (function() {
+    _.extend(z, {
+        nav: BrowserUtils(),
+        canInstallApps: z.body.data('installs')
+    });
+
     function trigger() {
         $(window).trigger('saferesize');
     }
@@ -77,8 +72,6 @@ $(document).ready(function() {
 
 
 z.page.on('fragmentloaded', function() {
-    var badPlatform = '<div class="bad-platform">' + gettext('This app is unavailable for your platform.') + '</div>';
-
     z.apps = {};
     if (z.capabilities.webApps) {
         // Get list of installed apps and mark as such.
@@ -90,17 +83,10 @@ z.page.on('fragmentloaded', function() {
                                   [val, {'manifest_url': val.manifestURL}, false]);
             });
         };
-        if (!z.capabilities.gaia) {
-            // Only Firefox OS currently supports packaged apps.
-            // (The 'bad' class ensures we append the message only once.)
-            $('.listing .product[data-is_packaged="true"]').addClass('disabled')
-                .closest('.mkt-tile:not(.bad)').addClass('bad').append(badPlatform);
-        }
     }
 
     if (!z.canInstallApps) {
         $(window).trigger('app_install_disabled');
-        $('.listing .mkt-tile:not(.bad)').addClass('bad').append(badPlatform);
     }
 
     // Navigation toggle.

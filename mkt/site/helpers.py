@@ -2,17 +2,21 @@ import json
 
 from django.conf import settings
 
+import caching.base as caching
+import jinja2
+import waffle
 from jingo import register, env
 from jingo_minify import helpers as jingo_minify_helpers
-import jinja2
 from tower import ugettext as _
-import waffle
 
 from access import acl
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse, get_outgoing_url
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
+from versions.compare import version_int as vint
+
+import mkt
 
 
 @jinja2.contextfunction
@@ -56,11 +60,11 @@ def no_results():
 
 @jinja2.contextfunction
 @register.function
-def market_button(context, product, receipt_type=None):
+def market_button(context, product, receipt_type=None, classes=None):
     request = context['request']
     if product.is_webapp():
         purchased = False
-        classes = ['button', 'product']
+        classes = (classes or []) + ['button', 'product']
         data_attrs = {'manifest_url': product.get_manifest_url(),
                       'is_packaged': json.dumps(product.is_packaged)}
 
@@ -74,13 +78,6 @@ def market_button(context, product, receipt_type=None):
             if (not purchased and
                     request.check_ownership(product, require_author=True)):
                 purchased = True
-
-            classes.append('premium')
-            if waffle.switch_is_active('disabled-payments') or not request.GAIA:
-                classes.append('disabled')
-
-        if not request.MOBILE and not 'disabled' in classes:
-            classes.append('disabled')
 
         if purchased:
             label = _('Install')
@@ -185,7 +182,8 @@ def product_as_dict_theme(request, product):
 def market_tile(context, product, link=True, src=''):
     request = context['request']
     if product.is_webapp():
-        classes = ['product', 'mkt-tile']
+        classes = []
+        notices = []
         purchased = (request.amo_user and
                      product.pk in request.amo_user.purchase_ids())
 
@@ -202,10 +200,47 @@ def market_tile(context, product, link=True, src=''):
             'manifest_url': product.get_manifest_url(),
             'src': src
         }
+
+        ua = request.META.get('HTTP_USER_AGENT', '')
+        need_firefox, need_upgrade = check_firefox(ua)
+
         if product.is_premium() and product.premium:
             classes.append('premium')
+
+            if waffle.switch_is_active('disabled-payments'):
+                notices.append(_('This app is temporarily unavailable for '
+                                 'purchase.'))
+            elif not request.GAIA:
+                notices.append(_('This app is available for purchase only '
+                                 'on Firefox OS.'))
+
+        if product.is_packaged and not request.GAIA:
+            notices.append(_('This app is available only on Firefox OS.'))
+
+        if not request.MOBILE:
+            notices.append(_('This app is available only on Firefox for '
+                             'Android and Firefox OS.'))
+        if need_firefox:
+            if request.MOBILE:
+                url = ('https://www.mozilla.org/en-US/mobile/android-download'
+                       '.html')
+                notices.append(_('To use this app, <a href="{url}" '
+                                 'target="_blank">download and install '
+                                 'Firefox for Android</a>.').format(url=url))
+            # TODO: Enable when we allow installs on desktop again.
+            #else:
+            #    url = 'https://www.mozilla.org/en-US/firefox/'
+            #    notices.append(_('To use this app, <a href="{url}" '
+            #                     'target="_blank">download and install '
+            #                     'Firefox</a>.').format(url=url))
+        elif need_upgrade:
+            notices.append(_('To use this app, upgrade Firefox.'))
+
+        if notices:
+            classes += ['bad', 'disabled']
+
         c = dict(request=request, product=product, data_attrs=data_attrs,
-                 classes=' '.join(classes), link=link)
+                 classes=classes, link=link, notices=notices[:1])
         t = env.get_template('site/tiles/app.html')
         return jinja2.Markup(t.render(c))
 
@@ -354,3 +389,37 @@ def get_login_link(context, to=None):
     if to == url:
         to = None
     return urlparams(url, to=to)
+
+
+@register.function
+def check_firefox(ua):
+    return caching.cached(lambda: _check_firefox(ua), 'check_firefox:%s' % ua)
+
+
+def _check_firefox(ua):
+    need_firefox, need_upgrade = True, True
+
+    for ua_res, min_version in mkt.platforms.APP_PLATFORMS:
+        for ua_re in ua_res:
+            match = ua_re.search(ua)
+            if match:
+                v = match.groups()[0]
+
+                # If we found a version at all, then this is Firefox.
+                need_firefox = False
+
+                # If we found a matching version, then we can install apps!
+                need_upgrade = vint(v) < min_version
+
+    return need_firefox, need_upgrade
+
+
+@register.function
+@jinja2.contextfunction
+def allow_installs(context):
+    """
+    This will return of a boolean of whether we're on a version of
+    Firefox that supports `navigator.mozApps`.
+    """
+    ua = context['request'].META.get('HTTP_USER_AGENT', '')
+    return check_firefox(ua) == (False, False)

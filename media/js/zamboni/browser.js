@@ -8,7 +8,7 @@ function BrowserUtils() {
     var userAgentStrings = {
             'firefox' : /Mozilla.*(Firefox|Minefield|Namoroka|Shiretoko|GranParadiso|BonEcho|Iceweasel|Fennec|MozillaDeveloperPreview)\/([^\s]*).*$/,
             'seamonkey': /Mozilla.*(SeaMonkey|Iceape)\/([^\s]*).*$/,
-            'mobile': /Mozilla.*(Fennec)\/([^\s]*)$/,
+            'mobile': /Mozilla.*(Fennec|Mobile)\/([^\s]*)$/,
             'thunderbird': /Mozilla.*(Thunderbird|Shredder|Lanikai)\/([^\s*]*).*$/
         },
         osStrings = {

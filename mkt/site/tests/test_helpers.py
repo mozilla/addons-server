@@ -33,7 +33,10 @@ class TestMarketButton(amo.tests.TestCase):
         request.check_ownership.return_value = False
         request.GET = {'src': 'foo'}
         request.groups = ()
-        request.GAIA = True
+        request.GAIA = False
+        request.MOBILE = True
+        request.META = {'HTTP_USER_AGENT': 'Mozilla/5.0 (Mobile; rv:17.0) '
+                                           'Gecko/17.0 Firefox/17.0'}
         self.context = {'request': request}
 
     def test_not_webapp(self):
@@ -68,6 +71,21 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['purchase'], self.webapp.get_purchase_url())
         eq_(data['isPurchased'], False)
 
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').text(),
+            'This app is available for purchase only on Firefox OS.')
+
+    def test_is_premium_webapp_gaia(self):
+        self.context['request'].GAIA = True
+        self.make_premium(self.webapp)
+        doc = pq(market_tile(self.context, self.webapp))
+        eq_(doc('.price').text(), '$1.00')
+
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
+
     def test_is_premium_webapp_foreign(self):
         self.make_premium(self.webapp)
         with self.activate('fr'):
@@ -89,24 +107,59 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').text(),
+            'This app is temporarily unavailable for purchase.')
 
     def test_is_desktop_disabled(self):
         self.context['request'].MOBILE = False
+        self.context['request'].META['HTTP_USER_AGENT'] = (
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:18.0) Gecko/18.0 '
+            'Firefox/18.0')
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').text(),
+            'This app is available only on Firefox for Android and Firefox '
+            'OS.')
+
+    def test_needs_firefox_for_android(self):
+        self.context['request'].META['HTTP_USER_AGENT'] = (
+            'Mozilla/5.0 (Linux; U; Android 2.3.3; en-au; GT-I9100 Build)')
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').text(),
+            'To use this app, download and install Firefox for Android .')
+
+    def test_needs_firefox_for_android_upgrade(self):
+        # Only Firefox for Android 17.0+ has support for `navigator.mozApps`.
+        self.context['request'].META['HTTP_USER_AGENT'] = (
+            'Mozilla/5.0 (Mobile; rv:16.0) Gecko/16.0 Firefox/16.0')
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').text(), 'To use this app, upgrade Firefox.')
 
     def test_is_premium_android_disabled(self):
-        self.context['request'].GAIA = False
         self.make_premium(self.webapp)
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').text(),
+            'This app is available for purchase only on Firefox OS.')
 
-    def test_is_free_android_enabled(self):
+    def test_is_free_enabled_android(self):
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
+
+    def test_is_free_enabled_gaia(self):
+        self.context['request'].GAIA = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
 
     def test_xss(self):
         nasty = '<script>'

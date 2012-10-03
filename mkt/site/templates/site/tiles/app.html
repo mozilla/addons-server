@@ -4,7 +4,7 @@
                    previews[0].thumbnail_url %}
 {% endif %}
 {% set tag = 'a' if link else 'div' %}
-<{{ tag }} class="{{ classes }}"
+<{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
   {% if link %}href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
   {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
   <div class="icon featured_tile" style="background-image:url({{ product.get_image_asset_url('featured_tile', 16) }})"></div>
@@ -16,7 +16,7 @@
     <h3>{{ product.name }}</h3>
     {# `current_version` won't show versions with invalid statuses #}
     {% if product.current_version %}
-      {{ market_button(product) }}
+      {{ market_button(product, classes=classes) }}
     {% endif %}
     {% if product.listed_authors %}
       <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
@@ -40,6 +40,9 @@
       </div>
     {% endif %}
   </div>
+  {% for notice in notices %}
+    <div class="bad-app">{{ notice|safe }}</div>
+  {% endfor %}
 </{{ tag }}>
 <div class="tray previews full">
 </div>

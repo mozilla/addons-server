@@ -1,6 +1,4 @@
-<button
-    {% for k, v in data_attrs.items() -%}
-        data-{{ k }}="{{ v }}" {% endfor %}
-    class="{{ classes }}">
-        {{ label }}
+<button class="{{ classes }}"
+{%- for k, v in data_attrs.items() -%} data-{{ k }}="{{ v }}" {% endfor %}>
+  {{ label }}
 </button>

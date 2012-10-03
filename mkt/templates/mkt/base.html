@@ -37,6 +37,7 @@
   </head>
   <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }} {{ bodyclass }}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
+        data-allow-installs="{{ allow_installs()|json }}"
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
