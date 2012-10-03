@@ -66,7 +66,7 @@ exports.install = function(manifest_url, opt) {
                     errSummary = gettext('App manifest is invalid.');
                     break;
                 default:
-                    errSummary = gettext('Install failed. Try again later or notify the developer.');
+                    errSummary = gettext('Install failed. Please try again later.');
                     break;
             }
             if (showError) {

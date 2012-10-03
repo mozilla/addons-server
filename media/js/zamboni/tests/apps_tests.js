@@ -64,7 +64,7 @@ asyncTest('test unexpected error', function() {
     var sb = this.sandbox;
     $(sb).one('error_shown.apps', function() {
         equals($('.apps-error-msg h2', sb).text(),
-               'Install failed. Try again later or notify the developer.');
+               'Install failed. Please try again later.');
         equals($('.apps-error-msg p', sb).text(), 'surprise');
         start();
     });
