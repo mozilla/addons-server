@@ -28,7 +28,7 @@ z.page.on('fragmentloaded', webtrendsAsyncInit);
 (function() {
     _.extend(z, {
         nav: BrowserUtils(),
-        canInstallApps: z.body.data('installs')
+        canInstallApps: z.body.data('allow-installs')
     });
 
     function trigger() {
