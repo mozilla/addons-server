@@ -96,6 +96,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             urlparams(self.webapp.get_url_path(), src='mkt-search'))
 
     def check_cat_filter(self, params):
+        raise SkipTest('until category filtering comes back')
         cat_selected = params.get('cat') == self.cat.id
         r = self.client.get(self.url)
         pager = r.context['pager']

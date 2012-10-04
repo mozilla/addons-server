@@ -4,12 +4,6 @@
     z.page.on('click', '#filters .toggles a', function() {
         selectMe($(this));
         return false;
-    }).on('click', '#filters .confirm-action a', function() {
-        var $this = $(this);
-        selectMe($this);
-        $this.closest('.confirm-action').removeClass('show');
-        $('.picker').toggleClass('sel');
-        return false;
     });
 
     // Clear search field on 'cancel' search suggestions.
@@ -31,9 +25,6 @@
 
         if ($myUL[0].id == 'filter-prices') {
             val = vars.price || '';
-        } else if ($myUL[0].id == 'filter-categories') {
-            val = vars.cat || '';
-            $('.picker').text($elm.text());
         } else if ($myUL[0].id == 'filter-sort') {
             val = vars.sort || '';
         }
@@ -41,19 +32,15 @@
         $elm.addClass('sel');
     }
 
+    $(document).on('click', '#filters', function(e) {
+        if ($(e.target).parent('#page').length) {
+            $('#filters').removeClass('show');
+        }
+    });
+
     // Apply filters button.
     z.page.on('click', '#filters .apply', _pd(function() {
         $('#filters form').submit();
-    })).on('click', '#filters .picker', _pd(function() {
-        $('#filter-categories').addClass('show');
-        if ($('#filter-categories li').length > z.confirmBreakNum) {
-            $('#filter-categories').addClass('two-col');
-        } else {
-            $('#filter-categories').removeClass('two-col');
-        }
-        $(this).toggleClass('sel');
-    })).on('click', '.confirm-action .cancel', _pd(function(e) {
-        $(e.target).closest('.confirm-action').removeClass('show');
     }));
 
     // If we're on desktop, show graphical results - unless specified by user.

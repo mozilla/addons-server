@@ -116,7 +116,7 @@ z.page.on('fragmentloaded', function() {
 
         if ($this.hasClass('dismiss')) {
             // Dismiss looks like back but actually just dismisses an overlay.
-            $('#filters').hide();
+            $('#filters').removeClass('show');
         } else if ($this.hasClass('filter')) {
             // Yea...
             var sortoption = z.getVars(location.href);
@@ -133,7 +133,7 @@ z.page.on('fragmentloaded', function() {
                     $('#filter-sort li.rating a').addClass('sel');
 
             }
-            $('#filters').show();
+            $('#filters').addClass('show');
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');
             $btns.blur();

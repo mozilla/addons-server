@@ -22,6 +22,9 @@
   {% set title = _('Search Results') %}
 {% endif %}
 
+{% set show_paid = True if (prices and not waffle.switch('disabled-payments')
+                            and request.GAIA) else False %}
+
 {% set pagetitle = mkt_page_title(title) %}
 {% set pagetype = 'search' %}
 
@@ -36,17 +39,16 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}
-  <section id="filters">
+  <section id="filters" class="overlay{% if show_paid %} alt{% endif %}">
     <header class="classic-header">
       <a href="#" class="header-button icon back left dismiss"><b></b></a>
       <h1>{{ _('Filter') }}</h1>
     </header>
 
-    {# This wrapper is completely unnecessary except for .force-mobile. #}
     <div class="filters-body">
       <form action="{{ url('search.search') }}" method="get">
         <div>
-          {% if prices and not waffle.switch('disabled-payments') and request.GAIA %}
+          {% if show_paid %}
             <h2>{{ _('Filter by price') }}</h2>
             <ul class="toggles c" id="filter-prices">
               {% for price in prices %}
@@ -60,24 +62,6 @@
               {% endfor %}
             </ul>
             <input type="hidden" name="price" value="{{ query['price'] }}">
-          {% endif %}
-
-          {% if categories %}
-            <h2>{{ _('Filter by category') }}</h2>
-            <p class="picker">{{ active_cat or _('Any') }}</p>
-            <ul class="confirm-action c" id="filter-categories">
-              {% for category in categories %}
-                <li>
-                  <a class="button{% if category.selected %} sel{% endif %}"
-                     href="{{ search_url|urlparams(page=None,
-                                                   **category.urlparams) }}">
-                    {{ category.text }}
-                  </a>
-                </li>
-              {% endfor %}
-              <li><a href="#" class="button cancel">{{ _('Cancel') }}</a></li>
-            </ul>
-            <input type="hidden" name="cat" value="{{ query['cat'] }}">
           {% endif %}
 
           {# We're not iterating over all the sort options on purpose. #}

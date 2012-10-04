@@ -8,7 +8,6 @@
     background-color: @bg;
     .grain();
     top: 0;
-    display: none;
     form > div {
         padding: 0 15px;
         margin-top: 84px;
@@ -63,7 +62,7 @@
         width: 50%;
     }
 }
-.toggles li a, .picker, .footer-action .apply {
+.toggles li a, .footer-action .apply {
     line-height: 40px;
     border: 1px solid #cdcbcb;
     display: inline-block;
@@ -81,106 +80,32 @@
         text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
     }
 }
-.footer-action .apply {
-    font-size: 14px;
-    width: auto;
-    padding: 0 15px;
-    .border-radius(3px);
-    &:hover {
-        text-decoration: none;
-    }
-}
-.picker {
-    margin: 0;
-    .border-radius(3px);
-    cursor: pointer;
-    font-size: 14px;
-    width: auto;
-    padding: 0 30px 0 15px;
-    position: relative;
-    &:after {
-        border-color: @note-gray transparent transparent;
-        border-style: solid;
-        border-width: 5px 5px 0;
-        content: "";
-        margin: 5px 0 0 5px;
-        position: absolute;
-        height: 0;
-        top: 13px;
-        width: 0;
-    }
-    &:hover:after {
-        border-top-color: #333;
-    }
-}
-.confirm-action {
-    display: none;
-    position: absolute; // This should be 'fixed' but FF18 doesn't repaint.
-    z-index: 99;
-    bottom: 0;
-    left: 0;
-    padding: 21px 19px;
-    background: @grain-src @bg;
-    list-style-type: none;
-    width: 100%;
-    margin: 0;
-    .border-radius(5px 5px 0 0);
-    .box-shadow(0 0 5px 2px rgba(0,0,0,0.5));
-    li {
-        a {
-            .border-radius(3px);
-            width: 100%;
-            margin-bottom: 6px;
-            font-size: 14px;
-            .ellipsis();
-            &.cancel {
-                margin-top: 13px;
-            }
-        }
-    }
-    &.two-col {
-        li {
-            float: left;
-            width: 50%;
-            text-align: left;
-            a {
-                width: 138px;
-            }
-            &:nth-child(2n) {
-                text-align: right;
-            }
-            &:last-child {
-                float: none;
-                width: 100%;
-                a {
-                    width: 100%;
-                }
-            }
-        }
-    }
-    &.show {
-        display: block;
-    }
-}
 .footer-action {
     text-align: right;
     margin: 30px 0 10px;
     padding-top: 20px;
     border-top: 1px solid #cdcbcb;
+    .apply {
+        font-size: 14px;
+        width: auto;
+        padding: 0 15px;
+        .border-radius(3px);
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
-// Forced compliance is still compliance!
-// TODO: The long-term solution is to restyle based on media queries.
-.force-mobile {
+// これはとてもうるさいでした
+@media(min-width: 450px) {
     #filters {
         background-color: rgba(0,0,0,0.4);
         top: 0;
         left: 0;
-        //pointer-events: none;
         .classic-header {
             border-radius: 5px 5px 0 0;
             left: 50%;
-            margin: -209px 0 0 -200px;
+            margin: -125px 0 0 -200px;
             position: absolute;
             top: 50%;
             width: 400px;
@@ -189,8 +114,8 @@
             left: 50%;
             top: 50%;
             position: absolute;
-            height: 465px;
-            margin: -208px 0 0 -200px;
+            height: 255px;
+            margin: -125px 0 0 -200px;
             width: 400px;
             background-color: @bg;
             .box-shadow(0 0 5px 5px rgba(0,0,0,0.5));
@@ -201,15 +126,13 @@
                 margin-top: -55px;
             }
         }
-    }
-    .confirm-action {
-        left: 50%;
-        .border-radius(5px);
-        border-color: @black;
-        border-radius: 5px 5px 5px 5px;
-        border-style: solid;
-        border-width: 120px 40px 122px;
-        margin-left: -200px;
-        max-width: 400px;
+        &.alt {
+            .filters-body {
+                height: 365px;
+            }
+            .classic-header, .filters-body {
+                margin-top: -183px;
+            }
+        }
     }
 }
