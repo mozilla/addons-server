@@ -1,6 +1,16 @@
 @import 'lib';
 
-#submit-choose {
+.soon {
+    color: @note-gray;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+h2 .soon {
+    margin-left: 4px;
+}
+
+#upload-file {
     .island {
         .border-box;
         float: left;
@@ -8,6 +18,33 @@
         + .island {
             float: right;
         }
+    }
+    .learn-mdn {
+        margin-top: 30px;
+    }
+    .soon {
+        display: block;
+        text-align: center;
+    }
+}
+
+#submit-choose {
+    .button {
+        border-bottom: @light-gray 2px solid;
+        margin-top: 15px;
+        font-weight: 300;
+        font-size: 28px;
+        padding: 15px 30px;
+        &:hover {
+            border-bottom-color: darken(@light-gray, 5%);
+        }
+        &:active {
+            border-bottom: 0;
+            margin-bottom: 2px;
+        }
+    }
+    strong {
+        color: #222;
     }
     ul {
         color: @medium-gray;
@@ -17,9 +54,16 @@
     p {
         text-align: center;
         padding-bottom: 0;
+        + p {
+            margin-top: 10px;
+        }
     }
-    a {
-        margin-bottom: -5px;
+    ul {
+        list-style: inside;
+        margin: 15px 0 0 15px;
+        li + li {
+            margin-top: 5px;
+        }
     }
 }
 
@@ -29,5 +73,28 @@
         font: italic 15px/18px Georgia, serif;
         padding: 0 6px 0 4px;
         vertical-align: middle;
+    }
+}
+
+.learn-mdn {
+    a {
+        .border-radius(4px);
+        background: url(../../img/mkt/logos/dino.png) 10px 50% no-repeat #def;
+        display: inline-block;
+        line-height: 25px;
+        min-height: 25px;
+        padding: 10px 10px 10px 52px;
+        &:hover {
+            background-color: darken(#def, 5%);
+            color: darken(@link, 5%);
+            text-decoration: none;
+        }
+    }
+    &.small a {
+        background-position: 15px 50%;
+        background-size: auto 20px;
+        border: 1px solid fadeOut(@border-blue, 40%);
+        font-size: 11px;
+        padding: 5px 15px 5px 52px;
     }
 }

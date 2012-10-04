@@ -189,7 +189,7 @@ def verify_request(signed_request):
             raise InvalidRequest(
                     u'priceTier:%s is not a supported price tier. Consult the '
                     u'docs for all supported tiers: '
-                    u'https://developer.mozilla.org/en/Apps/In-app_payments'
+                    u'https://developer.mozilla.org/en-US/docs/Apps/In-app_payments'
                     % request['priceTier'])
     except ValueError:
         _re_raise_as(InvalidRequest,

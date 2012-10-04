@@ -5,7 +5,7 @@ with the Firefox Marketplace.
 This currently supports
 * in-app payments.
   Check out the documentation to learn more:
-  https://developer.mozilla.org/en/Apps/In-app_payments
+  https://developer.mozilla.org/en-US/docs/Apps/In-app_payments
 * receipt verification.
   Docs: https://github.com/mozilla/receiptverifier
 

@@ -1,5 +1,9 @@
 {% extends 'developers/base_impala.html' %}
 
+{% set hosted_url = 'https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
+{# TODO(bug ): Change this link when that bug gets closed. #}
+{% set packaged_url = 'https://bugzilla.mozilla.org/show_bug.cgi?id=784448' %}
+
 {% set title = _('Submit an App') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
@@ -12,33 +16,59 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=None, step=step) }}
   <section id="submit-choose" class="primary">
-    <h2>{{ _('Choose Your Adventure') }}</h2>
-    <section id="upload-file">
+    <h2>{{ _('Choose an App Type') }}</h2>
+    <section id="upload-file" class="c">
       <div class="island">
-        <h3>Host-It-Yourself Apps</h3>
-        <ul>
-          <li><i>You</i> host your app</li>
-          <li>CSS, JS, Python, PHP, whatever your server can handle you can use</li>
-          <li>Changed content gets updated immediately</li>
-          <li>Deploys must happen manually on your server</li>
-          <li>Stability dependent on your server</li>
-          <li>Works everywhere</li>
-          <li>Apps are awesome</li>
-        </ul>
-        <p class="listing-footer"><a href="{{ url('submit.app.manifest') }}" class="button prominent">Proceed</a></p>
+        <p>
+          {% trans url=url('submit.app.manifest') %}
+            If the app is <b>hosted on your own server</b>,
+            then your app type is
+            <a href="{{ url }}" class="button">Hosted</a>
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+            <b>What's next</b>: submit your app manifest URL
+          {% endtrans %}
+        </p>
+        <p class="learn-mdn"><a href="{{ hosted_url }}" target="_blank">
+          {% trans %}
+            Learn more about <b>app manifests</b> on MDN.
+          {% endtrans %}
+        </a></p>
+        {# TODO(bug 784448): Remove when other a.soon is gone. #}
+        <span class="soon">&nbsp;</a>
       </div>
       <div class="island">
-        <h3>Packaged Apps</h3>
-        <ul>
-          <li><i>Mozilla</i> hosts your packaged app</li>
-          <li>Limited to client-side CSS and JS</li>
-          <li>CSP capabilities</li>
-          <li>External content must be loaded via AJAX</li>
-          <li>Access to privileged APIs</li>
-          <li>Versioned content</li>
-        </ul>
-        <p class="listing-footer"><a href="{{ url('submit.app.package') }}" class="button prominent">Proceed</a></p>
+        <p>
+          {% trans url=url('submit.app.package') %}
+            If the app is going to be <b>hosted by Mozilla</b>,
+            then your app type is
+            <a href="{{ url }}" class="button">Packaged</a>
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+            <b>What's next</b>: upload your packaged app
+          {% endtrans %}
+        </p>
+        <p class="learn-mdn"><a href="{{ packaged_url }}" target="_blank">
+          {% trans %}
+            Learn more about <b>packaged apps</b> on MDN.
+          {% endtrans %}
+        </a></p>
+        <a href="{{ packaged_url }}" class="soon">Coming soon</a>
       </div>
     </section>
+    <section>
+      <div class="island full">
+        <h2>{{ _('Frequently Asked Questions') }} <a href="{{ packaged_url }}" class="soon">Coming soon</a></h2>
+        <ul>
+          <li><a href="{{ packaged_url }}">What are the differences between a Hosted App and a Packaged App?</a></li>
+          <li><a href="{{ packaged_url }}">Hosted App submission checklist</a></li>
+          <li><a href="{{ packaged_url }}">Packaged App submission checklist</a></li>
+        </ul>
+      </div>
+    </secion>
   </section>
 {% endblock %}

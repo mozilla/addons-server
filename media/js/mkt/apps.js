@@ -14,7 +14,7 @@ It's just like navigator.apps.install with the following enhancements:
 
 This requires at least one apps-error-msg div to be present.
 
-See also: https://developer.mozilla.org/en/Apps/Apps_JavaScript_API/navigator.mozApps.install
+See also: https://developer.mozilla.org/en-US/docs/Apps/Apps_JavaScript_API/navigator.mozApps.install
 
 The recognized option attributes are as follows:
 
