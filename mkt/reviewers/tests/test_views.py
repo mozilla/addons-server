@@ -4,7 +4,6 @@ import json
 import time
 from itertools import cycle
 
-from django import test
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
@@ -763,7 +762,25 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
     def test_cannot_review_my_app(self):
         AddonUser.objects.create(addon=self.app,
             user=UserProfile.objects.get(username='editor'))
-        eq_(self.client.head(self.url).status_code, 302)
+        res = self.client.head(self.url)
+        self.assert3xx(res, reverse('reviewers.home'))
+        res = self.client.post(self.url)
+        self.assert3xx(res, reverse('reviewers.home'))
+
+    def test_cannot_review_blocklisted_app(self):
+        self.app.update(status=amo.STATUS_BLOCKED)
+        res = self.client.get(self.url)
+        self.assert3xx(res, reverse('reviewers.home'))
+        res = self.client.post(self.url)
+        self.assert3xx(res, reverse('reviewers.home'))
+
+    def test_sr_can_review_blocklisted_app(self):
+        self.app.update(status=amo.STATUS_BLOCKED)
+        self.login_as_senior_reviewer()
+        eq_(self.client.get(self.url).status_code, 200)
+        res = self.client.post(self.url, {'action': 'public',
+                                          'comments': 'yo'})
+        self.assert3xx(res, reverse('reviewers.apps.queue_pending'))
 
     def _check_email(self, msg, subject, with_mozilla_contact=True):
         eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))

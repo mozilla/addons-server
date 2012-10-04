@@ -157,6 +157,12 @@ def _review(request, addon):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
+    if (addon.status == amo.STATUS_BLOCKED and
+        not acl.action_allowed(request, 'Apps', 'ReviewEscalated')):
+        messages.warning(
+            request, _('Only senior reviewers can review blocklisted apps.'))
+        return redirect(reverse('reviewers.home'))
+
     form = forms.get_review_form(request.POST or None, request=request,
                                  addon=addon, version=version)
     queue_type = form.helper.review_type
