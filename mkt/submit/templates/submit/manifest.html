@@ -1,5 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 
+{% set doc_url = 'https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
+
 {% set title = _('Submit an App') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
@@ -9,9 +11,9 @@
   <h1>{{ _('Submit an App') }}</h1>
   {{ progress(request, addon=None, step=step) }}
   <section id="submit-manifest" class="primary">
-    <h2>{{ _("Where's Your Manifest?") }}</h2>
+    <h2><a href="{{ doc_url }}">{{ _("Where's Your Manifest?") }}</a></h2>
     <p>
-      {% trans doc_url='https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
+      {% trans %}
         Kick off things by creating your app's manifest and entering its URL
         below. <a href="{{ doc_url }}" target="_blank">Learn about manifests.</a>
       {% endtrans %}
@@ -56,12 +58,21 @@
         <div class="hidden">
           {{ form.upload }}
         </div>
-        <footer class="listing-footer">
+        <footer class="listing-footer hidden">
+          {% trans %}
+            <b>What's next:</b> fill out the rest of your app's details
+          {% endtrans %}
           <button class="upload-file-submit prominent" type="submit">
             {{ _('Continue') }}
           </button>
         </footer>
       </form>
     </section>
+    {# TODO: Feel free to add more content, links to tips, sample manifests, builders. Please do. Really. #}
+    <p class="learn-mdn"><a href="{{ doc_url }}" target="_blank">
+      {% trans %}
+        Learn more about <b>app manifests</b> on MDN.
+      {% endtrans %}
+    </a></p>
   </section>
 {% endblock %}

@@ -1,7 +1,52 @@
 @import 'lib';
 
+#upload-webapp {
+    footer {
+        margin-top: 20px;
+    }
+    button {
+        margin-left: 15px;
+    }
+}
+
 #upload-file {
     margin-top: 15px;
+    .vf-button button {
+        .border-radius(0 3px 3px 0);
+        .transition(box-shadow 0.3s ease);
+        border: 0;
+        border-left: 1px solid @light-gray;
+        font: 1.3em/1.3em @open-stack;
+        margin: 0;
+        padding: 6px 25px 6px 0;
+        min-width: 120px;
+        &.disabled {
+            opacity: .5;
+        }
+        &:active {
+            top: 0;
+            .box-shadow(0 2px rgba(0, 0, 0, 0.1),
+                        0 -1px rgba(0, 0, 0, 0.1) inset,
+                        0 0 100px rgba(255, 255, 255, 0.4) inset);
+        }
+        &:after {
+            .border-radius(0 4px 4px 0);
+            border: 18px solid rgba(0,0,0,.4);
+            border-left-color: transparent;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 1px;
+            height: 0;
+            width: 0;
+        }
+        &:hover, &.hovered {
+            &:after {
+                border-right-width: 5px;
+            }
+        }
+    }
     #validate-field {
         .border-radius(5px);
         border: 1px solid @light-gray;
@@ -40,30 +85,13 @@
                     .box-shadow(none);
                 }
             }
-            &.vf-button button {
-                .border-radius(0);
-                border: 0;
-                border-left: 1px solid @light-gray;
-                font: 1.3em/1.3em @open-stack;
-                margin: 0;
-                padding: 5px;
-                &.disabled {
-                    opacity: .5;
-                }
-                &:active {
-                    top: 0;
-                    .box-shadow(0 2px rgba(0, 0, 0, 0.1),
-                                0 -1px rgba(0, 0, 0, 0.1) inset,
-                                0 0 100px rgba(255, 255, 255, 0.4) inset);
-                }
-            }
         }
     }
     .upload-details {
         .transition(padding-top .3s ease);
         color: @note-gray;
         font-size: 11px;
-        margin: 1em 0 10px;
+        margin: 10px 0 0;
         position: relative;
         &.show-tip {
             padding-top: 36px;
@@ -99,9 +127,6 @@
 #upload-status-bar {
     background-color: #F2F2F2;
     .border-radius(5px);
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
     height: 20px;
 }
 
@@ -115,16 +140,14 @@
 
 #upload-status-bar div {
     background-color: #8BC5FA;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    width: 0%;
+    .border-radius(5px);
+    width: 0;
     height: 20px;
 }
 
 #upload-status-bar.progress-idle,
 #upload-status-bar.progress-idle div {
-    background-image: url('../../img/developers/progress.gif');
+    background-image: url(../../img/developers/progress.gif);
 }
 
 #upload-status-bar.progress-idle {
@@ -145,47 +168,43 @@
 }
 
 #upload-status-results {
-    margin: 20px 0;
+    display: block;
+    margin: 20px 0 10px;
 }
 
 #upload-status-results {
     background-repeat: no-repeat;
     display: none;
-}
-
-#upload-status-results a.view-more {
-    color: #359AFF;
-    display: block;
-    font-size: 12px;
-    padding-left: 24px;
-    padding-top: 5px;
-}
-
-#upload-status-results.status-fail,
-#upload-status-results.status-pass {
-    display: block;
+    &.status-pass, &.status-fail {
+        display: block;
+    }
+    a.view-more {
+        color: #359AFF;
+        display: block;
+        font-size: 12px;
+        padding: 5px 0 0 24px;
+    }
 }
 
 #upload-status-results strong {
-    background-image: url("../../img/zamboni/icons/checks.png");
-    background-repeat: no-repeat;
+    background: url(../../img/zamboni/icons/checks.png) no-repeat;
     padding: 2px 0 2px 24px;
 }
 
 #upload-status-results.status-fail strong,
 section.payments li.status-fail {
     color: #D81916;
-    background-position: 0 -120px;
+    background-position: 0 -116px;
 }
 
 #upload-status-results.status-pass strong,
 section.payments li.status-pass {
     color: #325487;
-    background-position: 0 -80px;
+    background-position: 0 -76px;
 }
 
 #upload-file .upload-status #uploadstatus {
-    color: #777777;
+    color: #777;
     font-size: 11px;
     margin-top: 4px;
 }

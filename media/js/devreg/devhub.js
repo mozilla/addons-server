@@ -46,17 +46,25 @@ $(document).ready(function() {
         $('#upload-app').packagedAppUploader(opt);
     }
 
-    var $webapp_url = $('#upload-webapp-url');
-    if($webapp_url.exists()) {
-        $webapp_url.bind("keyup change paste blur", function(e) {
+    var $webapp_url = $('#upload-webapp-url'),
+        $validate_form = $('#validate-field'),
+        $validate_button = $('#validate_app'),
+        $submit_footer = $('#upload-webapp').find('footer');
+
+    if ($webapp_url.exists()) {
+        if (!$webapp_url.val()) {
+            if (z.capabilities.sessionStorage) {
+                $webapp_url.val(window.sessionStorage['manifest_url']);
+            }
+        }
+        var attempts = $webapp_url.val().length;
+        $webapp_url.bind('keyup change paste blur', function(e) {
             var $this = $(this),
-                $button = $('#validate_app'),
                 // Ensure it's at least "protocol://host/something".
                 match = $this.val().match(/^(.+):\/\/(.+)/);
-
-            if($this.attr('data-input') != $this.val()) {
+            if ($this.attr('data-input') != $this.val()) {
                 // Show warning if 8+ characters have been typed but there's no protocol.
-                if($this.val().length >= 8 && !$this.val().match(/^(.+):\/\//)) {
+                if ($this.val().length >= 8 && !$this.val().match(/^(.+):\/\//)) {
                     $('#validate-error-protocol').addClass('protocol visible')
                         .parent().addClass('show-tip');
                 } else {
@@ -64,18 +72,30 @@ $(document).ready(function() {
                         .parent().removeClass('show-tip');
                 }
 
+                $submit_footer.filter(':visible').addClass('hidden');
+
                 // Show the button if valid.
-                $button.toggleClass('disabled', !match);
+                $validate_button.toggleClass('disabled', !match).removeClass('hovered');
 
                 $this.attr('data-input', $this.val());
                 $('#upload-status-results').remove();
                 $('#upload-file button.upload-file-submit').attr('disabled', true);
+
+                // Count the keyups to watch for a paste (which we'll assume is attempts=1).
+                attempts++;
+                if (!$this.val()) {
+                    attempts = 0;
+                }
+                // Was a paste so validate immediately.
+                if (e.type == 'paste' || attempts == 1) {
+                    $validate_button.removeClass('disabled');
+                    $validate_form.submit();
+                }
             }
-        })
-        .trigger('keyup')
+        }).trigger('keyup')
         .bind('upload_finished', function(e, success, r, message) {
             $('#upload-status-results').remove();
-            $('#upload-webapp-url').removeClass('loading');
+            $webapp_url.removeClass('loading');
 
             var $error_box = $('<div>', {'id': 'upload-status-results', 'class':
                                          'status-' + (success ? 'pass' : 'fail')}).show(),
@@ -100,6 +120,17 @@ $(document).ready(function() {
             }
 
             $('.upload-status').append($error_box);
+
+            if (z.capabilities.sessionStorage) {
+                if (success) {
+                    delete window.sessionStorage['manifest_url'];
+                } else {
+                    window.sessionStorage['manifest_url'] = $webapp_url.val();
+                }
+            }
+
+            // Show footer to "Continue" only if there was a success.
+            $submit_footer.toggleClass('hidden', !success);
         })
         .bind('upload_errors', function(e, r) {
             var v = r.validation,
@@ -127,6 +158,7 @@ $(document).ready(function() {
 
             $(this).trigger('upload_finished', [true, r, message]);
             $('#upload-file button.upload-file-submit').removeAttr('disabled').focus();
+            $validate_button.addClass('hovered disabled');
         });
 
         // Add protocol if needed
@@ -136,8 +168,8 @@ $(document).ready(function() {
             $webapp_url.focus().trigger('keyup');
         }));
 
-        $('#validate-field').submit(function() {
-            if($('#validate_app').hasClass('disabled')) return false;
+        $validate_form.submit(function() {
+            if ($('#validate_app').hasClass('disabled')) return false;
 
             $('#validate_app').addClass('disabled');
             $.post($('#upload-webapp-url').attr('data-upload-url'), {'manifest': $('#upload-webapp-url').val()}, check_webapp_validation);
@@ -171,12 +203,6 @@ $(document).ready(function() {
                     $upload_field.trigger("upload_success", [results]);
                 }
             }
-        }
-
-        if(z.capabilities.sessionStorage && window.sessionStorage['manifest_url'] && !$webapp_url.val()) {
-            $webapp_url.val(window.sessionStorage['manifest_url']);
-            $webapp_url.trigger('change');
-            $('#validate_app').trigger('click');
         }
     }
 

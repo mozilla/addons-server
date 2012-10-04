@@ -80,21 +80,16 @@ h2 .soon {
     a {
         .border-radius(4px);
         background: url(../../img/mkt/logos/dino.png) 10px 50% no-repeat #def;
+        border: 1px solid fadeOut(@border-blue, 40%);
         display: inline-block;
         line-height: 25px;
         min-height: 25px;
         padding: 10px 10px 10px 52px;
         &:hover {
             background-color: darken(#def, 5%);
-            color: darken(@link, 5%);
+            border-color: darken(@border-blue, 5%);
+            color: darken(@link, 10%);
             text-decoration: none;
         }
-    }
-    &.small a {
-        background-position: 15px 50%;
-        background-size: auto 20px;
-        border: 1px solid fadeOut(@border-blue, 40%);
-        font-size: 11px;
-        padding: 5px 15px 5px 52px;
     }
 }
