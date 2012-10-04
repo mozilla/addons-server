@@ -87,7 +87,7 @@ $(document).ready(function() {
                     attempts = 0;
                 }
                 // Was a paste so validate immediately.
-                if (e.type == 'paste' || attempts == 1) {
+                if (e.type == 'paste' || (attempts == 1 && $this.val().length >= 8)) {
                     $validate_button.removeClass('disabled');
                     $validate_form.submit();
                 }
