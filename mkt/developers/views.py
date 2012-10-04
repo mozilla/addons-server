@@ -212,6 +212,7 @@ def status(request, addon_id, addon, webapp=False):
         elif 'upload-version' in request.POST and upload_form.is_valid():
             ver = Version.from_upload(upload_form.cleaned_data['upload'],
                                       addon, [amo.PLATFORM_ALL])
+            messages.success(request, _('New version successfully added.'))
             log.info('[Webapp:%s] New version created id=%s from upload: %s'
                      % (addon, ver.pk, upload_form.cleaned_data['upload']))
             return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
@@ -247,8 +248,8 @@ def version_edit(request, addon_id, addon, version_id):
 
     if request.method == 'POST' and form.is_valid():
         form.save()
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect(addon.get_dev_url('versions.edit', args=[version.pk]))
+        messages.success(request, _('Version successfully edited.'))
+        return redirect(addon.get_dev_url('versions'))
 
     return jingo.render(request, 'developers/apps/version_edit.html', {
         'addon': addon, 'version': version, 'form': form})

@@ -176,7 +176,7 @@ class TestEditVersion(amo.tests.TestCase):
         an = u'Approval Notes'
         res = self.client.post(self.url, {'releasenotes': rn,
                                           'approvalnotes': an})
-        eq_(res.status_code, 302)
+        self.assert3xx(res, self.app.get_dev_url('versions'))
         ver = self.app.versions.latest()
         eq_(ver.releasenotes, rn)
         eq_(ver.approvalnotes, an)
