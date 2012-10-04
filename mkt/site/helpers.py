@@ -220,13 +220,13 @@ def market_tile(context, product, link=True, src=''):
         if not request.MOBILE:
             notices.append(_('This app is available on only Firefox for '
                              'Android and Firefox OS.'))
+
         if need_firefox:
             if request.MOBILE:
-                url = ('https://www.mozilla.org/en-US/mobile/android-download'
-                       '.html')
-                notices.append(_('To use this app, <a href="{url}" '
-                                 'target="_blank">download and install '
-                                 'Firefox for Android</a>.').format(url=url))
+                #url = ('https://www.mozilla.org/en-US/mobile/android-download'
+                #       '.html')
+                notices.append(_('To use this app, download and install '
+                                 'Firefox for Android.'))
             # TODO: Enable when we allow installs on desktop again.
             #else:
             #    url = 'https://www.mozilla.org/en-US/firefox/'

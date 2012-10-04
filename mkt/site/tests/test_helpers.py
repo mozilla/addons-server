@@ -129,7 +129,7 @@ class TestMarketButton(amo.tests.TestCase):
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').text(),
-            'To use this app, download and install Firefox for Android .')
+            'To use this app, download and install Firefox for Android.')
 
     def test_needs_firefox_for_android_upgrade(self):
         # Only Firefox for Android 17.0+ has support for `navigator.mozApps`.
