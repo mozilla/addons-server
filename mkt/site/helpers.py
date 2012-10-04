@@ -223,10 +223,12 @@ def market_tile(context, product, link=True, src=''):
 
         if need_firefox:
             if request.MOBILE:
-                #url = ('https://www.mozilla.org/en-US/mobile/android-download'
-                #       '.html')
-                notices.append(_('To use this app, download and install '
-                                 'Firefox for Android.'))
+                url = ('https://www.mozilla.org/en-US/mobile/android-download'
+                       '.html')
+                # We can't have nested anchors, so deal with this hack.
+                notices.append(_('To use this app, '
+                                 '<b data-href="{url}">download and install '
+                                 'Firefox for Android</b>.').format(url=url))
             # TODO: Enable when we allow installs on desktop again.
             #else:
             #    url = 'https://www.mozilla.org/en-US/firefox/'
