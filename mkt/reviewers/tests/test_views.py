@@ -154,34 +154,34 @@ class FlagsMixin(object):
     def test_flag_packaged_app(self):
         self.apps[0].update(is_packaged=True)
         eq_(self.apps[0].is_packaged, True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        td = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)').eq(0)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        td = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)').eq(0)
         flag = td('div.sprite-reviewer-packaged-app')
         eq_(flag.length, 1)
 
     def test_flag_premium_app(self):
         self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
         eq_(self.apps[0].is_premium(), True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
         flags = tds('div.sprite-reviewer-premium')
         eq_(flags.length, 1)
 
     def test_flag_info(self):
         self.apps[0].current_version.update(has_info_request=True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
         flags = tds('div.sprite-reviewer-info')
         eq_(flags.length, 1)
 
     def test_flag_comment(self):
         self.apps[0].current_version.update(has_editor_comment=True)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(3)')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
         flags = tds('div.sprite-reviewer-editor')
         eq_(flags.length, 1)
 
@@ -616,6 +616,16 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
 
     def review_url(self, app):
         return reverse('reviewers.apps.review', args=[app.app_slug])
+
+    def test_flag_blocked(self):
+        # Blocklisted apps should only be in the update queue, so this flag
+        # check is here rather than in FlagsMixin.
+        self.apps[0].update(status=amo.STATUS_BLOCKED)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        tds = pq(res.content)('#addon-queue tbody tr td:nth-of-type(3)')
+        flags = tds('div.sprite-reviewer-blocked')
+        eq_(flags.length, 1)
 
     def test_no_access_regular_reviewer(self):
         # Since setUp added a new group, remove all groups and start over.

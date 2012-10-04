@@ -98,6 +98,9 @@
                 {% if qa.app.is_packaged %}
                   <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
                 {% endif %}
+                {% if qa.app.status == amo.STATUS_BLOCKED %}
+                  <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
+                {% endif %}
                 {% if qa.app.is_premium() %}
                   <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
                 {% endif %}
