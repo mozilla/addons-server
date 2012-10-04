@@ -10,6 +10,8 @@ from api.views import addon_filter
 from bandwagon.models import Collection, MonthlyPick as MP
 from versions.compare import version_int
 
+from .models import BlogCacheRyf
+
 
 # The global registry for promo modules.  Managed through PromoModuleMeta.
 registry = {}
@@ -61,6 +63,14 @@ class TemplatePromo(PromoModule):
         c.update(kw)
         r = jingo.render_to_string(self.request, self.template, c)
         return jinja2.Markup(r)
+
+
+class RockYourFirefox(TemplatePromo):
+    slug = 'Rock Your Firefox'
+    template = 'discovery/modules/ryf.html'
+
+    def context(self):
+        return {'ryf': BlogCacheRyf.objects.get()}
 
 
 class MonthlyPick(TemplatePromo):
