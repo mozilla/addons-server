@@ -80,7 +80,7 @@
              .fail(installError);
         }).error(function(response) {
             // Could not record/generate receipt!
-            installError(product);
+            installError(null, product);
         });
     }
 

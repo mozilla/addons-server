@@ -105,7 +105,7 @@
                 errSummary = gettext('Internal server error on app installation.');
                 break;
             default:
-                errSummary = gettext('Unknown error.');
+                errSummary = gettext('Install failed. Please try again later.');
                 break;
         }
 
