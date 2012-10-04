@@ -285,11 +285,20 @@ header.product {
 }
 
 .split {
-    float: left;
-    padding: 0 5px 15px 0;
-    width: 50%;
     + .split {
-        padding: 0 0 15px 5px;
+        margin-top: 15px;
+    }
+}
+
+@media (min-width: @7col) {
+    .split {
+        float: left;
+        padding: 0 5px 15px 0;
+        width: 50%;
+        + .split {
+            margin-top: 0;
+            padding: 0 0 15px 5px;
+        }
     }
 }
 
