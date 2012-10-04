@@ -133,16 +133,5 @@
             "addon_count": 3,
             "all_personas": false
         }
-    },
-    {
-        "pk": 1,
-        "model": "discovery.blogcacheryf",
-        "fields": {
-            "permalink": "http://rockyourfirefox.com/2010/10/hyperwords/",
-            "excerpt": "Start by selecting any word on any webpage and search, share, translate, and much more in just a few clicks.",
-            "date_posted": "2010-10-04 18:22:05",
-            "image": "/uploads/2010/09/HighlightAWord-444x305.png",
-            "title": "Hyperwords"
-        }
     }
 ]
