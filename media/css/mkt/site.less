@@ -221,6 +221,11 @@ body[data-page-type=notice], body[data-page-type=alpha] {
 #site-footer {
     display: none;
     padding: 15px 0 30px;
+
+    margin-top: 15px;
+    border-top: 1px solid rgba(3, 16, 26, 0.13);
+    .box-shadow(inset 0 1px fade(#fff, 50%));
+
     .account {
         color: @dark-gray;
         font-weight: 400;
@@ -239,13 +244,6 @@ body[data-page-type=notice], body[data-page-type=alpha] {
 }
 
 @media (min-width: @7col) {
-    #page {
-        border-bottom: 1px solid rgba(3,16,26,.13);
-    }
-    #site-footer {
-        border-top: 1px solid rgba(255,255,255,.5);
-        display: block;
-    }
     body:not(.force-mobile) {
         .account.anonymous,
         .account.anonymous + .footer-links {
