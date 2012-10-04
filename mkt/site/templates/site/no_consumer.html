@@ -1,11 +1,10 @@
 {% extends 'mkt/base.html' %}
 
 {% set pagetitle = mkt_page_title(_('Firefox Marketplace')) %}
-
+{% set headertitle = pagetitle %}
 {% set bodyclass = 'home login' %}
 
 {% block content %}
-<h1 id="top">{{ _('Firefox Marketplace') }}</h1>
 <section id="walled" class="primary">
   <div class="island prose">
     <h1>{{ title }}</h1>

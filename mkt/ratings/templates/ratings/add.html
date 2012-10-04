@@ -9,17 +9,16 @@
 {% extends 'mkt/base.html' %}
 
 {% if has_review %}
-  {% set title = _('Edit Your Review') %}
+  {% set headertitle = _('Edit Your Review') %}
 {% else %}
-  {% set title = _('Write a Review') %}
+  {% set headertitle = _('Write a Review') %}
 {% endif %}
 
-{% set pagetitle = mkt_page_title(title) %}
+{% set pagetitle = mkt_page_title(headertitle) %}
 
 {% set bodyclass = 'review-add' %}
 
 {% block content %}
-  <h1 id="top">{{ title }}</h1>
   <section id="submit-review" class="friendly">
     <form method="post">
       {{ csrf() }}

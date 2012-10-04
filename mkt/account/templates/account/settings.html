@@ -1,11 +1,11 @@
 {% extends 'mkt/base.html' %}
 
 {% set title = _('Account Settings') %}
+{% set headertitle = _('Settings') %}
 {% set pagetitle = mkt_page_title(title) %}
 {% set bodyclass = 'settings' %}
 
 {% block content %}
-  <h1 id="top">{{ _('Settings') }}</h1>
   <section id="account-settings" class="account">
 
     {% include 'account/includes/nav.html' %}

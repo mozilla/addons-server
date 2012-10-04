@@ -49,7 +49,9 @@
         {% block bodyattrs %}{% endblock %}>
 
     {% block siteheader %}
-      {% include 'mkt/header.html' %}
+      {% with headertitle = headertitle %}
+        {% include 'mkt/header.html' %}
+      {% endwith %}
     {% endblock %}
 
     <div id="container">
@@ -57,6 +59,7 @@
            data-context="{{
              {'type': pagetype or 'leaf',
               'title': pagetitle or _('Firefox Marketplace'),
+              'headertitle': headertitle or '',
               'bodyclass': bodyclass or '',
               'category': category.name ~ '' if category else ''}|json }}">
         {# `outer_content` is for stuff you want above `content` on every page. #}

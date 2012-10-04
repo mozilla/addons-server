@@ -5,6 +5,7 @@
 {% set purchased = amouser and product.pk in amouser.purchase_ids() %}
 
 {% set pagetitle = mkt_page_title(product.name) %}
+{% set headertitle = _('App Details') %}
 
 {% set bodyclass = 'detail' %}
 
@@ -32,7 +33,6 @@
   {% if product.is_premium() %}
     {{ disabled_payments_notice(addon=product) }}
   {% endif %}
-  <h1 id="top">{{ _('App Details') }}</h1>
   {% include 'purchase/error.html' %}
   {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
                             (None, product.name)]) }}

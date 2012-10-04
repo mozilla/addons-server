@@ -8,35 +8,7 @@
 
 // if there is a page title we want in the header, give it the id of #top
 #top {
-    .dark-text-shadow;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 50px;
-    margin: 0 35px;
-    max-width: 200px;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-}
-
-#top {
-    text-align: left;
-}
-
-.home #top {
-    text-align: center;
-    max-width: 300px;
-    margin-left: 62px;
-    &:before {
-        background: url(../../img/mkt/logos/small.png) no-repeat;
-        content: "";
-        height: 27px;
-        width: 35px;
-        display: inline-block;
-        position: relative;
-        top: 5px;
-    }
+    display: none;
 }
 
 // TODO: Remove these when we take down walled garden and have desktop designs.
@@ -72,11 +44,36 @@
     left: 0;
     z-index: 10;
     h1 {
-        display: none;
+        .dark-text-shadow;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 50px;
+        max-width: 200px;
+        position: absolute;
+        left: 30px;
+        z-index: 10;
     }
     nav,
     > section {
         position: relative;
+    }
+}
+.home {
+    #site-header {
+        h1 {
+            left: 60px;
+            text-align: center;
+            &:before {
+                background: url(../../img/mkt/logos/small.png) no-repeat;
+                content: "";
+                height: 27px;
+                width: 35px;
+                display: inline-block;
+                position: relative;
+                top: 5px;
+            }
+        }
     }
 }
 

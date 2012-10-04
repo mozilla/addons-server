@@ -1,10 +1,10 @@
 {% extends 'mkt/base.html' %}
 
 {% set title = _('Apps') %}
+{% set headertitle = title %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <h1 id="top">{{ title }}</h1>
   <section class="account full">
     {% include 'account/includes/nav.html' %}
 

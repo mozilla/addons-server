@@ -34,7 +34,7 @@ var nav = (function() {
         }
 
         setClass();
-
+        setTitle();
         setType();
     });
 
@@ -58,6 +58,13 @@ var nav = (function() {
         if (type) {
             $body.attr('data-page-type', type);
         }
+    }
+
+    function setTitle() {
+        // Something something title joke.
+        var $h1 = $('#site-header h1');
+        var title = $('#page').data('context').headertitle || '';
+        $h1.text(title);
     }
 
     function back() {

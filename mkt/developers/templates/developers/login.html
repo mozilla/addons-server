@@ -1,11 +1,10 @@
 {% extends 'mkt/base.html' %}
 
 {% set pagetitle = mkt_page_title(_('Firefox Marketplace')) %}
-
+{% set headertitle = pagetitle %}
 {% set bodyclass = 'home login' %}
 
 {% block content %}
-  <h1 id="top">{{ _('Firefox Marketplace') }}</h1>
   {% set dst = request.GET.get('to') %}
   {% if dst and dst not in (url('ecosystem.landing'), url('mkt.developers.apps')) %}
     <section class="notification-box error full">

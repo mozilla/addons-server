@@ -2,6 +2,7 @@
      data-context="{{
        {'type': pagetype or 'leaf',
         'title': pagetitle or _('Firefox Marketplace'),
+        'headertitle': headertitle or '',
         'bodyclass': bodyclass or '',
         'category': category.name ~ '' if category else ''}|json }}">
   {# `outer_content` is for stuff you want above `content` on every page. #}

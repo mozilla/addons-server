@@ -1,6 +1,6 @@
 {% extends 'mkt/base.html' %}
 
-{% set title = _('Report Abuse') %}
+{% set headertitle = _('Report Abuse') %}
 {% block title %}
   {# L10n: {0} is the name of the user. #}
   {{ mkt_page_title(_('Report abuse for {0}')|f(profile.name)) }}
@@ -10,7 +10,6 @@
   {{ mkt_breadcrumbs(product, [(None, title)]) }}
   <section id="abuse" class="friendly">
     <div>
-      <h1>{{ title }}</h1>
       <p>
         <label id="recap-label" for="{{ abuse_form.text.auto_id }}">
           {% trans %}

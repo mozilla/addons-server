@@ -2,13 +2,13 @@
 
 {# L10n: {0} is the name of the app. #}
 {% set pagetitle = mkt_page_title(_('Privacy Policy for {0}')|f(product.name)) %}
+{% set headertitle = _('Privacy Policy') %}
 
 {% block content %}
   {# QUESTION: Is this a question or todo below? #}
   {# TODO: Is this still really used? We just show an empty page with a title #}
   {% if not product.is_visible(request) %}
     <section class="infobox">
-      <h1 id="top">{{ _('Privacy Policy') }}</h1>
       <div>
         <h2>{{ product.name }}</h2>
       </div>
@@ -17,7 +17,6 @@
   {% else %}
     {{ notification(product, amo, mkt, is_dev) }}
     <section class="infobox">
-        <h1 id="top">{{ _('Privacy Policy') }}</h1>
         <div class="policy-statement">{{ product.privacy_policy|nl2br }}</div>
     </section>
   {% endif %}

@@ -2,9 +2,8 @@
            ('mkt/base.html' if '/developers/' not in request.path else
             'developers/base_impala.html') %}
 
-{% set title = _('Server Error') %}
-{% set pagetitle = mkt_page_title(title) %}
-{% block title %}{{ pagetitle }}{% endblock %}
+{% set headertitle = _('Server Error') %}
+{% set pagetitle = mkt_page_title(headertitle) %}
 
 {% set pagetype = 'notice' %}
 
@@ -13,7 +12,6 @@
 {% block content %}
   <section class="primary">
     <header>
-      <h1 id="top">{{ _('Server Error') }}</h1>
       <h2>{{ _('Oops! We had an error.') }}</h2>
     </header>
     <div class="island hero prose">

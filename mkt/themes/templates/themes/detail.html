@@ -1,6 +1,7 @@
 {% extends 'detail/protected_app.html' %}
 
 {% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+{% set headertitle = _('Theme Details') %}
 
 {% block extrahead %}
   {{ css('mkt/themes') }}
@@ -9,7 +10,6 @@
 {% block content %}
   {{ mkt_breadcrumbs(items=[(url('themes.browse'), _('Themes')),
                             (None, product.name)]) }}
-  <h1 id="top">{{ _('Theme Details') }}</h1>
   {% if not (is_dev or is_admin) and not product.is_public() %}
     <section class="product-details">
       <h1>
