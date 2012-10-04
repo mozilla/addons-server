@@ -225,10 +225,14 @@ def account_feedback(request):
     form = forms.FeedbackForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         feedback = form.cleaned_data['feedback']
+        platform = form.cleaned_data['platform']
+        chromeless = form.cleaned_data['chromeless']
         context = {'user': request.amo_user,
                    'user_agent': request.META['HTTP_USER_AGENT'],
                    'ip_address': request.META['REMOTE_ADDR'],
-                   'feedback': feedback}
+                   'feedback': feedback,
+                   'platform': platform,
+                   'chromeless': chromeless}
         send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
                         context, request.amo_user.email,
                         [settings.MKT_FEEDBACK_EMAIL])

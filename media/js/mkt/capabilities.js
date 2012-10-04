@@ -33,7 +33,6 @@ z.capabilities = {
 
 // Packaged-app installation are supported only on Firefox OS, so this is how we sniff.
 z.capabilities.gaia = !!(z.capabilities.mobile && navigator.mozApps && navigator.mozApps.installPackage);
-z.capabilities.android = z.capabilities.mobile && !z.capabilities.gaia;
 
 z.capabilities.getDeviceType = function() {
     return this.desktop ? 'desktop' : (this.tablet ? 'tablet' : 'mobile');

@@ -69,6 +69,13 @@
 
         z.page.on('submit', $form, _pd(function(e) {
             if ($form.find('textarea').val()) {
+                if (z.capabilities.gaia) {
+                    $form.find('input[name=platform]').val('Gaia');
+                } else if (z.nav.os.android) {
+                    $form.find('input[name=platform]').val('Android');
+                }
+                $form.find('input[name=chromeless]').val(z.capabilities.chromeless ? 'Yes' : 'No');
+
                 $form.find('button[type=submit]').attr('disabled', true);
                 $.post($form.attr('action'), $form.serialize(), function(data) {
                     if (data.status == 'win') {

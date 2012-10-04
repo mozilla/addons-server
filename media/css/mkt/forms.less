@@ -317,9 +317,12 @@ form {
 
 .form-footer {
     button {
-        margin-right: 8px;
-        width: 100%;
         font-size: 14px;
+        width: 100%;
+        &:only-child {
+            float: right;
+            width: auto;
+        }
     }
     .extras {
         margin: 20px 0;
@@ -387,6 +390,9 @@ form {
         margin-top: 10px;
         .button {
             margin-top: 10px;
+        }
+        button:only-child {
+            width: 100%;
         }
         .or {
             display: none;

@@ -16,9 +16,16 @@
           {{ form.feedback }}
         </div>
 
-        <footer class="form-footer">
+        {{ form.platform }}
+        {{ form.chromeless }}
+
+        <footer class="form-footer c">
           <button type="submit">{{ _('Send') }}</button>
         </footer>
       </form>
+      <div class="feedback-links">
+        <a href="https://support.mozilla.org/en-US/products/marketplace" class="fatbutton" target="_blank">{{ _('Get Help') }}</a>
+        <a href="{{ url('site.privacy') }}" class="fatbutton">{{ _('Privacy Policy') }}</a>
+      </div>
     </section>
 {% endblock %}

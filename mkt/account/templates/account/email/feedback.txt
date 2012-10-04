@@ -7,6 +7,8 @@ User:
   email: {{ user.email }}
   user-agent: {{ user_agent }}
   ip address: {{ ip_address }}
+  platform: {{ platform }}
+  using Marketplace app: {{ chromeless }}
 
 Feedback:
 

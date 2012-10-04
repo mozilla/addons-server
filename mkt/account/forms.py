@@ -92,3 +92,5 @@ class CurrencyForm(happyforms.Form):
 class FeedbackForm(happyforms.Form):
     """Site feedback form."""
     feedback = forms.CharField(required=True, widget=forms.Textarea, label='')
+    platform = forms.CharField(required=True, widget=forms.HiddenInput, label='')
+    chromeless = forms.CharField(required=True, widget=forms.HiddenInput, label='')
