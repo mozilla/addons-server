@@ -8,7 +8,7 @@
     opacity: 0;
     position: fixed;
     right: -10px;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     visibility: hidden;
     z-index: 4;
@@ -42,6 +42,7 @@
         font-size: 19px;
         background: @bg @grain-src;
         line-height: 44px;
+        text-transform: lowercase;
         &:after {
             clear: both;
             content: ".";
@@ -84,5 +85,46 @@
     }
     #search, #search-q {
         width: 235px;
+    }
+}
+
+// This works between and desktop over 600px.
+// TODO: more responsive for < 600px widths.
+@media(min-width: 600px) {
+    #site-search-suggestions {
+        height: auto;
+        position: absolute;
+        top: 45px;
+        left: 50%;
+        bottom: inherit;
+        right: inherit;
+        width: 275px;
+        margin-left: -7px;
+        .border-radius(5px);
+        .box-shadow(0 0 3px 3px);
+        z-index: 11;
+        .wrap {
+            position: relative;
+            height: auto;
+            .border-radius(5px);
+            top: 0;
+            ul {
+                .border-radius(5px);
+            }
+            a {
+                font-size: 16px;
+                line-height: 35px;
+            }
+            li:first-child a {
+                .border-radius(5px 5px 0 0);
+            }
+            li:last-child a {
+                .border-radius(0 0 5px 5px);
+                border-bottom: 0;
+            }
+        }
+        &.visible {
+            bottom: inherit;
+        }
     }
 }
