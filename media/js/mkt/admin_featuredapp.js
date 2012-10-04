@@ -109,6 +109,37 @@ function appslistXHR(verb, data) {
     });
     return q;
 }
+var region_carrier_update = _pd(
+    function (e) {
+        var $choices = $(e.target);
+        var $tabl = $choices.closest('table');
+        function carrierName(v) {
+            var x = v.split(".");
+            if (x[0] == "carrier") {
+                return x[1];
+            } else {
+                return null;
+            }
+        };
+        var regions = $choices.children('option')
+            .filter(function(i, opt) {return opt.selected && !carrierName(opt.value);})
+            .map(function(i, sopt) {return sopt.value;});
+        var carriers = $choices.children('option')
+            .map(function(i, opt) {
+                     if (opt.selected) {
+                         return carrierName(opt.value);
+                     };
+                 });
+        $.ajax({
+                   type: 'POST',
+                   url: $tabl.data('url'),
+                   data: {
+                       'region': $.makeArray(regions),
+                       'carrier': $.makeArray(carriers),
+                       'app': $tabl.data('app-id')
+                   }
+               });
+    });
 
 $(document).ready(function(){
     $("#featured-webapps").delegate(
@@ -121,22 +152,11 @@ $(document).ready(function(){
     $('#featured-webapps').delegate(
         'select.localepicker',
         'change',
-        _pd(function (e) {
-            var $region = $(e.target);
-            var $tabl = $region.closest('table');
-            $.ajax({
-                type: 'POST',
-                url: $tabl.data('url'),
-                data: {
-                    'region':
-                        _($region.children('option'))
-                            .filter(function(opt) {return opt.selected})
-                            .map(function(sopt) {return sopt.value}),
-                    'app': $tabl.data('app-id')
-                }
-            });
-        })
-    );
+        region_carrier_update);
+    $('#featured-webapps').delegate(
+        'select.carrierpicker',
+        'change',
+        region_carrier_update);
     var categories = $("#categories");
     var p = $.ajax({type: 'GET',
                     url: categories.data("src")});

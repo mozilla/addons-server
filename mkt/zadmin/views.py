@@ -2,6 +2,7 @@ import datetime
 
 import jingo
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.db import transaction
@@ -14,7 +15,7 @@ from zadmin.decorators import admin_required
 import mkt
 from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
 from mkt.ecosystem.models import MdnCache
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion, FeaturedAppCarrier
 
 
 @transaction.commit_on_success
@@ -62,18 +63,21 @@ def featured_apps_ajax(request):
                     region=mkt.regions.WORLDWIDE.id)
     else:
         cat = None
-    apps_regions = []
+    apps_regions_carriers = []
     for app in FeaturedApp.objects.filter(category__id=cat):
         regions = app.regions.values_list('region', flat=True)
-        apps_regions.append((app, regions))
+        carriers = app.carriers.values_list('carrier', flat=True)
+        apps_regions_carriers.append((app, regions, carriers))
     return jingo.render(request, 'zadmin/featured_apps_ajax.html',
-                        {'apps_regions': apps_regions,
-                         'regions': mkt.regions.REGIONS_CHOICES})
+                        {'apps_regions_carriers': apps_regions_carriers,
+                         'regions': mkt.regions.REGIONS_CHOICES,
+                         'carriers': settings.CARRIER_URLS})
 
 
 @admin_required
 def set_attrs_ajax(request):
     regions = request.POST.getlist('region[]')
+    carriers = set(request.POST.getlist('carrier[]'))
     startdate = request.POST.get('startdate', None)
     enddate = request.POST.get('enddate', None)
 
@@ -81,13 +85,20 @@ def set_attrs_ajax(request):
     if not app:
         return HttpResponse()
     fa = FeaturedApp.objects.get(pk=app)
-    if regions:
+    if regions or carriers:
         regions = set(int(r) for r in regions)
         fa.regions.exclude(region__in=regions).delete()
         to_create = regions - set(fa.regions.filter(region__in=regions)
                                   .values_list('region', flat=True))
         for i in to_create:
             FeaturedAppRegion.objects.create(featured_app=fa, region=i)
+
+
+        fa.carriers.exclude(carrier__in=carriers).delete()
+        to_create = carriers - set(fa.carriers.filter(carrier__in=carriers)
+                                  .values_list('carrier', flat=True))
+        for c in to_create:
+            FeaturedAppCarrier.objects.create(featured_app=fa, carrier=c)
 
     if startdate:
         fa.start_date = datetime.datetime.strptime(startdate, '%Y-%m-%d')

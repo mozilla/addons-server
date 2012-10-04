@@ -15,7 +15,7 @@ from addons.models import Addon, AddonCategory, Category
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion, FeaturedAppCarrier
 
 
 class TestEcosystem(amo.tests.TestCase):
@@ -206,6 +206,18 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
                     'region', flat=True)),
             [2, 3])
+
+    def test_set_carrier(self):
+        f = FeaturedApp.objects.create(app=self.a1, category=None)
+        FeaturedAppCarrier.objects.create(featured_app=f,
+                                          carrier='telerizon-mobile')
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
+                             data={'app': f.pk,
+                                   'carrier[]': 'telerizon-mobile'})
+        eq_(r.status_code, 200)
+        eq_(list(FeaturedApp.objects.get(pk=f.pk).carriers.values_list(
+                    'carrier', flat=True)),
+            ['telerizon-mobile'])
 
     def test_set_startdate(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)

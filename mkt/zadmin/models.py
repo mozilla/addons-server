@@ -22,3 +22,9 @@ class FeaturedAppRegion(models.Model):
                                      related_name='regions')
     region = models.PositiveIntegerField(default=mkt.regions.WORLDWIDE.id,
                                          db_index=True)
+
+
+class FeaturedAppCarrier(models.Model):
+    featured_app = models.ForeignKey(FeaturedApp, null=False,
+                                     related_name='carriers')
+    carrier = models.CharField(max_length=255, db_index=True, null=False)

@@ -40,6 +40,7 @@ from versions.models import Version
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES
+from mkt.carriers import get_carrier
 
 
 log = commonware.log.getLogger('z.addons')
@@ -509,6 +510,10 @@ class Webapp(Addon):
 
         locale_qs = FeaturedApp.objects.none()
         worldwide_qs = FeaturedApp.objects.none()
+
+        carrier = get_carrier()
+        if carrier:
+            qs = qs.filter(carriers__carrier=carrier)
 
         if region:
             excluded = cls.get_excluded_in(region)
