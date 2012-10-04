@@ -12,7 +12,6 @@ REGEX = dict(
     localhost='/^https?:\/\/([^\/]+\.)?localhost(\/.*)?$/',
     personas='/^https?:\/\/([^\/]+\.)?getpersonas\.com(\/.*)?$/',
     labs='/^https?:\/\/([^\/]+\.)?mozillalabs\.com(\/.*)?$/',
-    ryf='/^https?:\/\/([^\/]+\.)?rockyourfirefox\.com(\/.*)?$/',
     stumbleupon='/^https?:\/\/([^\/]+\.)?stumbleupon\.com(\/.*)?$/',
     getfirebug='/^https?:\/\/([^\/]+\.)?getfirebug\.com(\/.*)?$/',
     ebay='/^https?:\/\/([^\/]+\.)?ebay\.(com|co\.uk|de|fr)(\/.*)?$/',
@@ -24,7 +23,7 @@ def referrer(name):
     return 'document.referrer.match(%s)' % (REGEX[n],)
 
 default_referrers = [referrer(n)
-                     for n in ['mozilla', 'momo', 'ryf', 'localhost']]
+                     for n in ['mozilla', 'momo', 'localhost']]
 
 addons = {
     # Firefox Updated Page add-ons
