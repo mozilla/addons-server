@@ -72,7 +72,11 @@
                 if (z.capabilities.gaia) {
                     $form.find('input[name=platform]').val('Gaia');
                 } else if (z.nav.os.android) {
-                    $form.find('input[name=platform]').val('Android');
+                    $form.find('input[name=platform]').val('Firefox for Android');
+                } else if (z.capabilities.mobile) {
+                    $form.find('input[name=platform]').val('Mobile');
+                } else if (z.capabilities.desktop) {
+                    $form.find('input[name=platform]').val('Desktop');
                 }
                 $form.find('input[name=chromeless]').val(z.capabilities.chromeless ? 'Yes' : 'No');
 
