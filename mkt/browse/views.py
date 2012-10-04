@@ -41,8 +41,6 @@ def _search(request, category=None):
         qs = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
         ctx['category'] = get_object_or_404(qs, slug=category)
         ctx['featured'] = Webapp.featured(cat=ctx['category'], region=region)
-        if len(ctx['featured']) < 3:
-            ctx['featured'] += Webapp.featured(region=region)
 
         # Do a search filtered by this category and sort by Weekly Downloads.
         # TODO: Listen to andy and do not modify `request.GET` but at least
