@@ -229,12 +229,12 @@ def market_tile(context, product, link=True, src=''):
                 notices.append(_('To use this app, '
                                  '<b data-href="{url}">download and install '
                                  'Firefox for Android</b>.').format(url=url))
-            # TODO: Enable when we allow installs on desktop again.
-            #else:
-            #    url = 'https://www.mozilla.org/en-US/firefox/'
-            #    notices.append(_('To use this app, <a href="{url}" '
-            #                     'target="_blank">download and install '
-            #                     'Firefox</a>.').format(url=url))
+            # TODO: Comment out when we disable installs on desktop again!
+            else:
+               url = 'https://www.mozilla.org/en-US/firefox/'
+               notices.append(_('To use this app, <b data-href="{url}">'
+                                'download and install '
+                                'Firefox</b>.').format(url=url))
         elif need_upgrade:
             notices.append(_('To use this app, upgrade Firefox.'))
 
