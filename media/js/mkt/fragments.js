@@ -134,6 +134,9 @@ function fragmentFilter(el) {
                 page: $('#container'),
                 context: $('#page').data('context')
             });
+            
+            // Clear jQuery's data attribute cache for body.
+            jQuery.cache[document.body[jQuery.expando]].data = null;
 
             // We so sneaky.
             document.title = z.context.title;
