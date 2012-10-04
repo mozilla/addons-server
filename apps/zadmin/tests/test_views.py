@@ -19,7 +19,6 @@ import amo.tests
 from amo.tests import (formset, initial, close_to_now, assert_required,
                        assert_no_validation_errors)
 from access.models import Group, GroupUser
-from addons.cron import reindex_addons
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -1866,13 +1865,6 @@ class TestElastic(amo.tests.ESTestCase):
         self.refresh()
         eq_(list(Addon.search()), list(Addon.objects.all()))
 
-    def test_recreate_index(self):
-        eq_(list(Addon.search()), [])
-        self.client.post(self.url, {'recreate': 'addons'})
-        self.client.post(self.url, {'reindex': 'addons'})
-        self.refresh()
-        eq_(list(Addon.search()), list(Addon.objects.all()))
-
 
 class TestEmailDevs(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -1935,6 +1927,21 @@ class TestEmailDevs(amo.tests.TestCase):
                           paypal_id='fliggy@fligtar.net',
                           premium_type=amo.ADDON_PREMIUM)
         res = self.post(recipients='payments')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
+    def test_only_desktop_apps(self):
+        from addons.models import AddonDeviceType
+        self.addon.update(type=amo.ADDON_WEBAPP)
+        AddonDeviceType.objects.create(addon=self.addon,
+            device_type=amo.DEVICE_MOBILE.id)
+        res = self.post(recipients='desktop_apps')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+
+        AddonDeviceType.objects.create(addon=self.addon,
+            device_type=amo.DEVICE_DESKTOP.id)
+        res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 

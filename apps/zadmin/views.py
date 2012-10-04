@@ -634,6 +634,9 @@ def email_devs(request):
                                                      amo.ADDON_OTHER_INAPP))
         elif data['recipients'] == 'apps':
             qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
+        elif data['recipients'] == 'desktop_apps':
+            qs = (qs.filter(addon__type=amo.ADDON_WEBAPP,
+                addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))
         elif data['recipients'] == 'sdk':
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         else:
