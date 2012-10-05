@@ -472,13 +472,13 @@ class TestListing(ReviewTest):
         return sorted(c.get('class').replace(' post', '')
                       for c in actions.find('li:not(.hidden) a'))
 
-    def test_actions_as_author(self):
+    def test_actions_as_review_author(self):
         r = self.client.get(self.listing)
         doc = pq(r.content)
         reviews = doc('#reviews')
 
-        eq_(doc('#add-review').length, 0,
-            'Authors should not be able add reviews.')
+        eq_(doc('#add-review').length, 1,
+            'App authors should be able to add reviews.')
 
         # My own review.
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
@@ -488,11 +488,32 @@ class TestListing(ReviewTest):
         eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
             ['flag'])
 
+    def test_actions_as_app_author(self):
+        self.log_in_dev()
+        r = self.client.get(self.listing)
+        doc = pq(r.content)
+        reviews = doc('#reviews')
+
+        eq_(doc('#add-review').length, 0,
+            'Authors should not be able add reviews.')
+
+        # Someone's review.
+        eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
+            ['flag'])
+
+        # My developer reply.
+        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
+            ['delete', 'edit'])
+
     def test_actions_as_admin(self):
         self.log_in_admin()
 
         r = self.client.get(self.listing)
-        reviews = pq(r.content)('#reviews')
+        doc = pq(r.content)
+        reviews = doc('#reviews')
+
+        eq_(doc('#add-review').length, 1,
+            'Admins should be able to add reviews.')
 
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'flag'])
