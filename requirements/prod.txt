@@ -21,6 +21,7 @@ metlog-cef==0.1
 metlog-raven==0.2
 cef==0.3
 moz_inapp_pay==1.0.2
+newrelic=1.5.0.103
 oauth2==1.5.211
 PyBrowserID==0.6
 PyMySQL==0.5
