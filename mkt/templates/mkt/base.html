@@ -1,10 +1,13 @@
-{% if request.is_ajax() and not SKIP_FRAGMENT %}
-  {% extends 'mkt/fragment.html' %}
-{% endif %}
 {% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') %}
 {% set logged = request.user.is_authenticated() %}
 {% set titletag = mkt_page_title(pagetitle) if pagetitle else _('Firefox Marketplace') %}
-{% set pagetitle = '' if not pagetitle %}
+{% set pagetitle = pagetitle or '' %}
+{% set headertitle = headertitle or pagetitle %}
+
+{% if request.is_ajax() and not SKIP_FRAGMENT %}
+  {% extends 'mkt/fragment.html' %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -63,7 +66,7 @@
            data-context="{{
              {'type': pagetype or 'leaf',
               'title': titletag,
-              'headertitle': headertitle or pagetitle,
+              'headertitle': headertitle,
               'bodyclass': bodyclass or '',
               'category': category.name ~ '' if category else ''}|json }}">
         {# `outer_content` is for stuff you want above `content` on every page. #}

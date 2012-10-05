@@ -2,7 +2,7 @@
      data-context="{{
        {'type': pagetype or 'leaf',
         'title': titletag,
-        'headertitle': headertitle or pagetitle,
+        'headertitle': headertitle,
         'bodyclass': bodyclass or '',
         'category': category.name ~ '' if category else ''}|json }}">
   {# `outer_content` is for stuff you want above `content` on every page. #}

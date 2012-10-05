@@ -17,7 +17,7 @@
 {% endif %}
 
 {% if browse %}
-  {% set title = category.name if category else _('Apps') %}
+  {% set title = category.name ~ '' if category else _('Apps') %}
 {% else %}
   {% set title = _('Search Results') %}
 {% endif %}
