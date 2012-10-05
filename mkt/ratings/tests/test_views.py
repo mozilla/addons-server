@@ -437,6 +437,8 @@ class TestListing(ReviewTest):
         r = self.client.get(self.listing)
         eq_(r.status_code, 200)
         doc = pq(r.content)
+        eq_(doc('#add-review').length, 1)
+
         reviews = doc('#reviews .review')
         eq_(Review.objects.count(), 2)
         eq_(reviews.length, Review.objects.count())
@@ -462,6 +464,7 @@ class TestListing(ReviewTest):
         r = self.client.get(self.listing)
         eq_(r.status_code, 200)
         doc = pq(r.content)
+        eq_(doc('#add-review').length, 1)
         eq_(doc('#reviews .item').length, 0)
         eq_(doc('#add-first-review').length, 1)
 
@@ -471,7 +474,11 @@ class TestListing(ReviewTest):
 
     def test_actions_as_author(self):
         r = self.client.get(self.listing)
-        reviews = pq(r.content)('#reviews')
+        doc = pq(r.content)
+        reviews = doc('#reviews')
+
+        eq_(doc('#add-review').length, 0,
+            'Authors should not be able add reviews.')
 
         # My own review.
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),

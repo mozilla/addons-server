@@ -13,6 +13,7 @@
 
 {% block content %}
   {% block review_header %}
+    {% if product.can_review(amo_user) %}
     <section id="review-listing">
       <p id="add-review">
         <a href="{{ product.get_ratings_url('add') }}" class="button fat">
@@ -20,6 +21,7 @@
         </a>
       </p>
     </section>
+    {% endif %}
   {% endblock %}
 
   <section class="{{ 'replies' if reply }} c" id="reviews">
