@@ -25,7 +25,7 @@
 {% set show_paid = True if (prices and not waffle.switch('disabled-payments')
                             and request.GAIA) else False %}
 
-{% set pagetitle = mkt_page_title(title) %}
+{% set pagetitle = title %}
 {% set pagetype = 'search' %}
 
 {% set bodyclass = 'search' %}

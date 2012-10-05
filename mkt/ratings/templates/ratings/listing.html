@@ -1,7 +1,7 @@
 {% extends 'mkt/base.html' %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
-{% set pagetitle = mkt_page_title(_('Reviews for {0}')|f(product.name)) %}
+{% set pagetitle = _('Reviews for {0}')|f(product.name) %}
 {% set headertitle = _('Reviews') %}
 {% set bodyclass = 'reviews-listing' %}
 

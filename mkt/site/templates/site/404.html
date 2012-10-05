@@ -2,9 +2,7 @@
            ('mkt/base.html' if '/developers/' not in request.path else
             'developers/base_impala.html') %}
 
-{% set title = _('Page Not Found') %}
-{% set pagetitle = mkt_page_title(title) %}
-{% block title %}{{ pagetitle }}{% endblock %}
+{% set pagetitle = _('Page Not Found') %}
 
 {% set pagetype = 'notice' %}
 

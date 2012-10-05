@@ -1,8 +1,7 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}
-  {{ mkt_page_title(_('User Info for {0}')|f(profile.name)) }}
-{% endblock %}
+{% set pagetitle = _('User Info for {0}')|f(profile.name) %}
+{% set headertitle = _('User Info') %}
 
 {% block content %}
   {{ mkt_breadcrumbs(product, [(None, _('Users')), (None, profile.name)]) }}

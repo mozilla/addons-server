@@ -2,8 +2,7 @@
            ('mkt/base.html' if '/developers/' not in request.path else
             'developers/base_impala.html') %}
 
-{% set headertitle = _('Not Allowed') %}
-{% set pagetitle = mkt_page_title(headertitle) %}
+{% set pagetitle = _('Not Allowed') %}
 
 {% set pagetype = 'notice' %}
 

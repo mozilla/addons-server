@@ -3,6 +3,8 @@
 {% endif %}
 {% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') %}
 {% set logged = request.user.is_authenticated() %}
+{% set titletag = mkt_page_title(pagetitle) if pagetitle else _('Firefox Marketplace') %}
+{% set pagetitle = '' if not pagetitle %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -13,7 +15,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     {% block extrameta %}{% endblock %}
-    <title>{{ pagetitle or _('Firefox Marketplace') }}</title>
+    <title>{{ titletag }}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
           href="{{ MEDIA_URL }}img/mkt/logos/128.png" sizes="128x128">
@@ -49,7 +51,9 @@
         {% block bodyattrs %}{% endblock %}>
 
     {% block siteheader %}
-      {% with headertitle = headertitle %}
+      {% with headertitle = headertitle,
+              titletag = titletag,
+              pagetitle = pagetitle %}
         {% include 'mkt/header.html' %}
       {% endwith %}
     {% endblock %}
@@ -58,8 +62,8 @@
       <div id="page" role="main"
            data-context="{{
              {'type': pagetype or 'leaf',
-              'title': pagetitle or _('Firefox Marketplace'),
-              'headertitle': headertitle or '',
+              'title': titletag,
+              'headertitle': headertitle or pagetitle,
               'bodyclass': bodyclass or '',
               'category': category.name ~ '' if category else ''}|json }}">
         {# `outer_content` is for stuff you want above `content` on every page. #}

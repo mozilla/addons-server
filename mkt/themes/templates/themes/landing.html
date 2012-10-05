@@ -16,7 +16,7 @@
   {% set crumbs = [(None, title)] %}
 {% endif %}
 
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+{% set pagetitle = title %}
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs, cls='dark') }}

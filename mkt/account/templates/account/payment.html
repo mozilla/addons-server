@@ -1,7 +1,6 @@
 {% extends 'mkt/base.html' %}
 
-{% set title = _('Payment Settings') %}
-{% block title %}{{ mkt_page_title(title) }}{% endblock %}
+{% set pagetitle = _('Payment Settings') %}
 
 
 {% macro currency_form() %}
@@ -20,7 +19,6 @@
   <section id="purchases" class="account form-grid"
     {%- if status %} data-preauth-results="{{ status }}"{% endif %}>
     <header class="c">
-      <h1>{{ title }}</h1>
       {% include 'account/includes/nav.html' %}
     </header>
     {% if preapproval.paypal_key %}

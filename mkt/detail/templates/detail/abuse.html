@@ -1,8 +1,8 @@
 {% extends 'mkt/base.html' %}
 
 {# L10n: {0} is the name of the app. #}
-{% set pagetitle = mkt_page_title(_('Report abuse for {0}')|f(product.name)) %}
-{% set headertite = _('Report Abuse') %}
+{% set pagetitle = _('Report abuse for {0}')|f(product.name) %}
+{% set headertitle = _('Report Abuse') %}
 
 {% block content %}
   <section id="abuse" class="friendly">

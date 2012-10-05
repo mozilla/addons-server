@@ -1,7 +1,7 @@
 {% extends 'detail/protected_app.html' %}
 
 {# L10n: {0} is the name of the app. #}
-{% set pagetitle = mkt_page_title(_('Privacy Policy for {0}')|f(product.name)) %}
+{% set pagetitle = _('Privacy Policy for {0}')|f(product.name) %}
 {% set headertitle = _('Privacy Policy') %}
 
 {% block content %}

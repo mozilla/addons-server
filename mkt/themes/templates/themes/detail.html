@@ -1,6 +1,6 @@
 {% extends 'detail/protected_app.html' %}
 
-{% block title %}{{ mkt_page_title(product.name) }}{% endblock %}
+{% set pagetitle = product.name %}
 {% set headertitle = _('Theme Details') %}
 
 {% block extrahead %}

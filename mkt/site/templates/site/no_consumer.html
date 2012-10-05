@@ -1,13 +1,12 @@
 {% extends 'mkt/base.html' %}
 
-{% set pagetitle = mkt_page_title(_('Firefox Marketplace')) %}
-{% set headertitle = pagetitle %}
+{% set pagetitle = 'Firefox Marketplace' %}
 {% set bodyclass = 'home login' %}
 
 {% block content %}
 <section id="walled" class="primary">
   <div class="island prose">
-    <h1>{{ title }}</h1>
+    <h1>{{ pagetitle }}</h1>
     <p>
       {{ _("Sorry, these pages for the Firefox Marketplace aren't ready yet.") }}
     </p>

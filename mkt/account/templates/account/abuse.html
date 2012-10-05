@@ -1,13 +1,9 @@
 {% extends 'mkt/base.html' %}
 
 {% set headertitle = _('Report Abuse') %}
-{% block title %}
-  {# L10n: {0} is the name of the user. #}
-  {{ mkt_page_title(_('Report abuse for {0}')|f(profile.name)) }}
-{% endblock %}
 
 {% block content %}
-  {{ mkt_breadcrumbs(product, [(None, title)]) }}
+  {{ mkt_breadcrumbs(product, [(None, headertitle)]) }}
   <section id="abuse" class="friendly">
     <div>
       <p>
