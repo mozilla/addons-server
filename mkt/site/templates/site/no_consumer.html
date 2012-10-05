@@ -3,6 +3,8 @@
 {% set pagetitle = 'Firefox Marketplace' %}
 {% set bodyclass = 'home login' %}
 
+{% set pagetype = 'notice' %}
+
 {% block content %}
 <section id="walled" class="primary">
   <div class="island prose">
@@ -11,6 +13,14 @@
       {{ _("Sorry, these pages for the Firefox Marketplace aren't ready yet.") }}
     </p>
     {% include 'home/walled_prose.html' %}
+  </div>
+  {# This shouldn't need a condition since this page shows only if authed. #}
+  <div class="form-footer">
+    <div class="extras">
+      <a href="{{ url('users.logout') }}" class="post logout">
+        {{ _('Log out') }}
+      </a>
+    </div>
   </div>
 </section>
 {% endblock %}
