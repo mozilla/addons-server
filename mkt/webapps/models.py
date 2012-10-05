@@ -641,15 +641,6 @@ models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='mkt.webapps.index')
 
 
-@receiver(models.signals.post_save, sender=Webapp,
-          dispatch_uid='mkt.webapps.handle_blocklist')
-def handle_blocklist(sender, instance, **kw):
-    """If status is set to STATUS_BLOCKED, set all files to STATUS_DISABLED."""
-    if instance.status == amo.STATUS_BLOCKED:
-        (File.objects.filter(version__addon_id=instance.id)
-                     .update(status=amo.STATUS_DISABLED))
-
-
 @receiver(version_changed, dispatch_uid='update_cached_manifests')
 def update_cached_manifests(sender, **kw):
     if not kw.get('raw'):

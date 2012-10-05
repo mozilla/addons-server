@@ -269,16 +269,6 @@ class TestWebapp(amo.tests.TestCase):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
         eq_(webapp.is_packaged, False)
 
-    def test_blocked_signal(self):
-        app = app_factory()
-        version_factory(addon=app)
-        eq_(set(File.objects.values_list('status', flat=True)),
-            set([amo.STATUS_PUBLIC]))
-        app.status = amo.STATUS_BLOCKED
-        app.save()
-        eq_(set(File.uncached.values_list('status', flat=True)),
-            set([amo.STATUS_DISABLED]))
-
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
