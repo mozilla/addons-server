@@ -66,7 +66,7 @@
     z.page.on('fragmentloaded', function() {
 
         var feedback_form = '#feedback-form',
-            $form = $(feedback-form);
+            $form = $(feedback_form);
 
         z.page.on('submit', feedback_form, _pd(function(e) {
             if ($form.find('textarea').val()) {
