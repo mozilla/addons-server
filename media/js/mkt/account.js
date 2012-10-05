@@ -65,9 +65,10 @@
 (function() {
     z.page.on('fragmentloaded', function() {
 
-        var $form = $('#feedback-form');
+        var feedback_form = '#feedback-form',
+            $form = $(feedback-form);
 
-        z.page.on('submit', $form, _pd(function(e) {
+        z.page.on('submit', feedback_form, _pd(function(e) {
             if ($form.find('textarea').val()) {
                 if (z.capabilities.gaia) {
                     $form.find('input[name=platform]').val('Gaia');
