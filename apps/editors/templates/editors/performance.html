@@ -59,5 +59,38 @@
     </div>
   </div>
 
-{% endblock %}
+  {% if not point_total %}
+    <p>{{ _('No review points awarded yet.') }}</p>
+  {% else %}
+    <h2>{{ _('All-time Point Breakdown by Type') }}</h2>
+    <table class="data-grid">
+      <thead>
+        <tr class="listing-header">
+          <th>{{ _('Type') }}</th>
+          <th>{{ _('Points') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in point_breakdown %}
+          <tr>
+            <td><nobr>
+              {% if row.atype %}
+                {{ amo.ADDON_TYPES[row.atype] }}
+              {% else %}
+                {{ _('Admin Awarded') }}
+              {% endif %}
+            </nobr></td>
+            <td class="number">{{ row.total }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>{{ _('Total') }}</th>
+          <th>{{ point_total }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  {% endif %}
 
+{% endblock %}

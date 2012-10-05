@@ -1,0 +1,53 @@
+{% extends 'reviewers/base.html' %}
+
+{% set pagetitle = _('Reviewer Scores for {0}')|f(profile.name) %}
+
+{% block title %}
+  {{ reviewers_page_title(title=pagetitle) }}
+{% endblock %}
+
+{% block content %}
+
+<header class="c">
+  <h1>{{ pagetitle }}</h1>
+</header>
+
+<section class="island">
+
+  {% if not total %}
+    <p>{{ _('No review points awarded yet.') }}</p>
+  {% else %}
+    <h2>{{ _('All-time Point Breakdown by Type') }}</h2>
+    <table class="data-grid">
+      <thead>
+        <tr>
+          <th>{{ _('Type') }}</th>
+          <th>{{ _('Points') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in breakdown %}
+          <tr>
+            <td><nobr>
+              {% if row.atype %}
+                {{ amo.ADDON_TYPES[row.atype] }}
+              {% else %}
+                {{ _('Admin Awarded') }}
+              {% endif %}
+            </nobr></td>
+            <td class="number">{{ row.total }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>{{ _('Total') }}</th>
+          <th>{{ total }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  {% endif %}
+
+</section>
+
+{% endblock %}

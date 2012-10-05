@@ -452,6 +452,14 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(leaders['leader_top'][1].total,
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
+    def test_get_breakdown(self):
+        self._give_points()
+        self._give_points(addon=amo.tests.app_factory())
+        breakdown = ReviewerScore.get_breakdown(self.user)
+        eq_(len(breakdown), 2)
+        eq_(set([b.atype for b in breakdown]),
+            set([amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]))
+
     def test_get_leaderboards_last(self):
         users = list(UserProfile.objects.all())
         last_user = users.pop(len(users) - 1)
@@ -484,6 +492,11 @@ class TestReviewerScore(amo.tests.TestCase):
         with self.assertNumQueries(0):
             ReviewerScore.get_leaderboards(self.user)
 
+        with self.assertNumQueries(1):
+            ReviewerScore.get_breakdown(self.user)
+        with self.assertNumQueries(0):
+            ReviewerScore.get_breakdown(self.user)
+
         # New points invalidates all caches.
         self._give_points()
 
@@ -493,3 +506,5 @@ class TestReviewerScore(amo.tests.TestCase):
             ReviewerScore.get_recent(self.user)
         with self.assertNumQueries(2):
             ReviewerScore.get_leaderboards(self.user)
+        with self.assertNumQueries(1):
+            ReviewerScore.get_breakdown(self.user)

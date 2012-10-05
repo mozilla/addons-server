@@ -14,8 +14,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 import commonware.log
 import jingo
-from tower import ugettext as _
 import requests
+from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
@@ -30,16 +30,20 @@ from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        smart_decode)
 from editors.forms import MOTDForm
-from editors.models import EditorSubscription, EscalationQueue, RereviewQueue
+from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
+                            ReviewerScore)
 from editors.views import reviewer_required
 from files.models import File
+from reviews.forms import ReviewFlagFormSet
+from reviews.models import Review, ReviewFlag
+from users.models import UserProfile
+from zadmin.models import get_config, set_config
+
 import mkt.constants.reviewers as rvw
 from mkt.developers.models import ActivityLog
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
-from reviews.forms import ReviewFlagFormSet
-from reviews.models import Review, ReviewFlag
-from zadmin.models import get_config, set_config
+
 from . import forms
 from .models import AppCannedResponse, ThemeLock
 
@@ -188,8 +192,8 @@ def _review(request, addon):
     try:
         show_diff = (addon.versions.exclude(id=version.id)
                                    .filter(files__isnull=False,
-                                       created__lt=version.created,
-                                       files__status__in=statuses)
+                                           created__lt=version.created,
+                                           files__status__in=statuses)
                                    .latest())
     except Version.DoesNotExist:
         show_diff = None
@@ -306,9 +310,8 @@ def queue_escalated(request):
 
 @permission_required('Apps', 'Review')
 def queue_moderated(request):
-    rf = (Review.uncached.exclude(
-                             Q(addon__isnull=True) |
-                             Q(reviewflag__isnull=True))
+    rf = (Review.uncached.exclude(Q(addon__isnull=True) |
+                                  Q(reviewflag__isnull=True))
                          .filter(addon__type=amo.ADDON_WEBAPP,
                                  editorreview=True)
                          .order_by('reviewflag__created'))
@@ -348,11 +351,11 @@ def logs(request):
         if data.get('search'):
             term = data['search']
             approvals = approvals.filter(
-                    Q(commentlog__comments__icontains=term) |
-                    Q(applog__addon__name__localized_string__icontains=term) |
-                    Q(applog__addon__app_slug__icontains=term) |
-                    Q(user__display_name__icontains=term) |
-                    Q(user__username__icontains=term)).distinct()
+                Q(commentlog__comments__icontains=term) |
+                Q(applog__addon__name__localized_string__icontains=term) |
+                Q(applog__addon__app_slug__icontains=term) |
+                Q(user__display_name__icontains=term) |
+                Q(user__username__icontains=term)).distinct()
 
     pager = paginate(request, approvals, 50)
     data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID)
@@ -451,8 +454,8 @@ def themes_queue(request):
     theme_locks_count = theme_locks.count()
 
     if theme_locks_count < rvw.THEME_INITIAL_LOCKS:
-        themes = get_themes(reviewer,
-            rvw.THEME_INITIAL_LOCKS - theme_locks_count)
+        themes = get_themes(
+            reviewer, rvw.THEME_INITIAL_LOCKS - theme_locks_count)
     else:
         # Update the expiry on currently checked-out themes.
         theme_locks.update(expiry=get_updated_expiry())
@@ -468,8 +471,7 @@ def themes_queue(request):
     request.session['theme_redirect_url'] = reverse('reviewers.themes.'
                                                     'queue_themes')
 
-    return jingo.render(request, 'reviewers/themes/queue.html', context(
-    **{
+    return jingo.render(request, 'reviewers/themes/queue.html', context(**{
         'formset': formset,
         'theme_formsets': zip(themes, formset),
         'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
@@ -496,9 +498,8 @@ def get_themes(reviewer, num):
 
     # Empty pool? Go look for some expired locks.
     if not themes:
-        expired_locks = (ThemeLock.objects
-            .filter(expiry__lte=datetime.datetime.now())
-            [:rvw.THEME_INITIAL_LOCKS])
+        expired_locks = (ThemeLock.objects.filter(
+            expiry__lte=datetime.datetime.now())[:rvw.THEME_INITIAL_LOCKS])
         # Steal expired locks.
         for theme_lock in expired_locks:
             theme_lock.reviewer = reviewer
@@ -597,7 +598,7 @@ def themes_single(request, slug):
             theme_lock.expiry > datetime.datetime.now()):
             reviewable = False
         elif (theme_lock.reviewer.id != reviewer.id and
-             theme_lock.expiry < datetime.datetime.now()):
+              theme_lock.expiry < datetime.datetime.now()):
             # Steal expired lock.
             theme_lock.reviewer = reviewer,
             theme_lock.expiry = get_updated_expiry()
@@ -617,10 +618,9 @@ def themes_single(request, slug):
     # Since we started the review on the single page, we want to return to the
     # single page rather than get shot back to the queue.
     request.session['theme_redirect_url'] = reverse('reviewers.themes.single',
-        args=[theme.addon.slug])
+                                                    args=[theme.addon.slug])
 
-    return jingo.render(request, 'reviewers/themes/single.html', context(
-    **{
+    return jingo.render(request, 'reviewers/themes/single.html', context(**{
         'formset': formset,
         'theme': theme,
         'theme_formsets': zip([theme], formset),
@@ -660,9 +660,9 @@ def themes_logs(request):
         if data.get('search'):
             term = data['search']
             theme_logs = theme_logs.filter(
-                    Q(_details__icontains=term) |
-                    Q(user__display_name__icontains=term) |
-                    Q(user__username__icontains=term)).distinct()
+                Q(_details__icontains=term) |
+                Q(user__display_name__icontains=term) |
+                Q(user__username__icontains=term)).distinct()
 
     pager = paginate(request, theme_logs, 30)
     data = context(form=form, pager=pager, ACTION_DICT=rvw.REVIEW_ACTIONS)
@@ -675,11 +675,9 @@ def themes_history(request, username):
     if not username:
         username = request.amo_user.username
 
-    return jingo.render(request, 'reviewers/themes/history.html', context(
-    **{
+    return jingo.render(request, 'reviewers/themes/history.html', context(**{
         'theme_reviews': paginate(request, ActivityLog.objects.filter(
-                                    action=amo.LOG.THEME_REVIEW.id,
-                                    user__username=username), 20),
+            action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),
         'user_history': True,
         'username': username,
         'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
@@ -712,3 +710,30 @@ def get_signed_packaged(request, addon, version_id):
     log.info('Returning signed package addon: %s, version: %s, path: %s' %
              (addon.pk, version_id, path))
     return HttpResponseSendFile(request, path, content_type='application/zip')
+
+
+@permission_required('Apps', 'Review')
+def performance(request, username=None):
+
+    is_admin = acl.action_allowed(request, 'Admin', '%')
+
+    if username:
+        if username == request.amo_user.username:
+            user = request.amo_user
+        elif is_admin:
+            user = get_object_or_404(UserProfile, username=username)
+        else:
+            raise http.Http404
+    else:
+        user = request.amo_user
+
+    total = ReviewerScore.get_total(user)
+    breakdown = ReviewerScore.get_breakdown(user)
+
+    ctx = context(**{
+        'profile': user,
+        'total': total,
+        'breakdown': breakdown,
+    })
+
+    return jingo.render(request, 'reviewers/performance.html', ctx)

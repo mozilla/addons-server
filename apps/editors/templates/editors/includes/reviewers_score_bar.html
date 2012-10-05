@@ -49,6 +49,7 @@
     <h3>{{ _('All Time') }}</h3>
     {# L10n: {0} is a number, like "480". #}
     <p>{{ _('You have <span>{0}</span> points.')|f(total|numberfmt)|xssafe }}</p>
+    <p><a href="{{ url('reviewers.user.scores', request.amo_user.username) }}">{{ _('Reviewer Scores') }}</a></p>
 
   </li>
 </ul>

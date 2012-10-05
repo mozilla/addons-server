@@ -481,6 +481,28 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
+    def get_breakdown(cls, user):
+        """Returns points broken down by addon type."""
+        key = cls.get_key('get_breakdown:%s' % user.id)
+        val = cache.get(key)
+        if val is not None:
+            return val
+
+        sql = """
+             SELECT `reviewer_scores`.*,
+                    SUM(`reviewer_scores`.`score`) AS `total`,
+                    `addons`.`addontype_id` AS `atype`
+             FROM `reviewer_scores`
+             LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
+             WHERE `reviewer_scores`.`user_id` = %s
+             GROUP BY `addons`.`addontype_id`
+             ORDER BY `total` DESC
+        """
+        val = list(ReviewerScore.uncached.raw(sql, [user.id]))
+        cache.set(key, val, 0)
+        return val
+
+    @classmethod
     def get_leaderboards(cls, user, days=7):
         """Returns leaderboards with ranking for the past given days.
 

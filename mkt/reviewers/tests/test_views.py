@@ -1954,3 +1954,32 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(data['package_path'], reverse('reviewers.signed',
                                           args=[self.app.app_slug,
                                                 self.version.id]))
+
+
+class TestReviewersScores(AppReviewerTest, AccessMixin):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestReviewersScores, self).setUp()
+        self.login_as_editor()
+        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.url = reverse('reviewers.performance', args=[self.user.username])
+
+    def test_404(self):
+        res = self.client.get(reverse('reviewers.performance', args=['poop']))
+        eq_(res.status_code, 404)
+
+    def test_with_username(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['profile'].id, self.user.id)
+
+    def test_without_username(self):
+        res = self.client.get(reverse('reviewers.performance'))
+        eq_(res.status_code, 200)
+        eq_(res.context['profile'].id, self.user.id)
+
+    def test_no_reviews(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        assert u'No reviews yet' in res.content

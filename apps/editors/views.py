@@ -26,10 +26,10 @@ from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, CommentLog
 from editors import forms
-from editors.models import (EditorSubscription, ViewPendingQueue,
-                            ViewFullReviewQueue, ViewPreliminaryQueue,
-                            EventLog, AddonCannedResponse, PerformanceGraph,
-                            ViewFastTrackQueue)
+from editors.models import (AddonCannedResponse, EditorSubscription, EventLog,
+                            PerformanceGraph, ReviewerScore,
+                            ViewFastTrackQueue, ViewFullReviewQueue,
+                            ViewPendingQueue, ViewPreliminaryQueue)
 from editors.helpers import (ViewFastTrackQueueTable, ViewFullReviewQueueTable,
                              ViewPendingQueueTable, ViewPreliminaryQueueTable)
 from reviews.forms import ReviewFlagFormSet
@@ -161,16 +161,20 @@ def performance(request, user_id=False):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
     if is_admin and user_id:
-        user_new = UserProfile.objects.filter(pk=user_id)
-        if user_new.exists():
-            user = user_new.all()[0]
+        try:
+            user = UserProfile.objects.get(pk=user_id)
+        except UserProfile.DoesNotExist:
+            pass  # Use request.amo_user from above.
 
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
+    point_total = ReviewerScore.get_total(user)
+    point_breakdown = ReviewerScore.get_breakdown(user)
 
     data = context(monthly_data=json.dumps(monthly_data),
                    performance_month=performance_total['month'],
                    performance_year=performance_total['year'],
+                   point_breakdown=point_breakdown, point_total=point_total,
                    editors=editors, current_user=user, is_admin=is_admin,
                    is_user=(request.amo_user.id == user.id))
 
@@ -221,11 +225,10 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
                               1, 0, 0, 0, 0, 0, -1))
 
     sql = (PerformanceGraph.objects
-          .filter_raw('log_activity.created >=',
-                      date.fromtimestamp(start_time).isoformat())
-          .filter_raw('log_activity.created <',
-                      date.fromtimestamp(end_time).isoformat())
-          )
+           .filter_raw('log_activity.created >=',
+                       date.fromtimestamp(start_time).isoformat())
+           .filter_raw('log_activity.created <',
+                       date.fromtimestamp(end_time).isoformat()))
 
     for row in sql.all():
         label = row.approval_created.isoformat()[:7]
@@ -375,10 +378,9 @@ def queue_fast_track(request):
 
 @reviewer_required
 def queue_moderated(request):
-    rf = (Review.objects.exclude(
-                            Q(addon__type=amo.ADDON_WEBAPP) |
-                            Q(addon__isnull=True) |
-                            Q(reviewflag__isnull=True))
+    rf = (Review.objects.exclude(Q(addon__type=amo.ADDON_WEBAPP) |
+                                 Q(addon__isnull=True) |
+                                 Q(reviewflag__isnull=True))
                         .filter(editorreview=1)
                         .order_by('reviewflag__created'))
 
@@ -468,8 +470,8 @@ def _review(request, addon):
     try:
         show_diff = (addon.versions.exclude(id=version.id)
                                    .filter(files__isnull=False,
-                                       created__lt=version.created,
-                                       files__status__in=statuses)
+                                           created__lt=version.created,
+                                           files__status__in=statuses)
                                    .latest())
     except Version.DoesNotExist:
         show_diff = None
@@ -623,21 +625,21 @@ def reviewlog(request):
         if data['search']:
             term = data['search']
             approvals = approvals.filter(
-                    Q(commentlog__comments__icontains=term) |
-                    Q(addonlog__addon__name__localized_string__icontains=term) |
-                    Q(user__display_name__icontains=term) |
-                    Q(user__username__icontains=term)).distinct()
+                Q(commentlog__comments__icontains=term) |
+                Q(addonlog__addon__name__localized_string__icontains=term) |
+                Q(user__display_name__icontains=term) |
+                Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
     ad = {
-            amo.LOG.APPROVE_VERSION.id: _('was approved'),
-            amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
-            amo.LOG.REJECT_VERSION.id: _('rejected'),
-            amo.LOG.ESCALATE_VERSION.id: _('escalated',
-                    'editors_review_history_nominated_adminreview'),
-            amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
-            amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
-         }
+        amo.LOG.APPROVE_VERSION.id: _('was approved'),
+        amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
+        amo.LOG.REJECT_VERSION.id: _('rejected'),
+        amo.LOG.ESCALATE_VERSION.id: _(
+            'escalated', 'editors_review_history_nominated_adminreview'),
+        amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
+        amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
+    }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
     return jingo.render(request, 'editors/reviewlog.html', data)
 
