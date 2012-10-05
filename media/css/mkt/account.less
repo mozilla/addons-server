@@ -71,18 +71,8 @@
 }
 
 #account-settings {
-    form {
-        .two-col {
-            margin-top: 6px;
-        }
-        .col-a {
-            width: 50%;
-            float: left;
-        }
-        .col-b {
-            float: right;
-            width: 50%;
-        }
+    select {
+        width: 100%;
     }
     img {
         .transition(~'.2s all ease-in-out');
@@ -113,9 +103,6 @@
         a {
             display: block;
         }
-    }
-    #region, #language {
-        min-width: 145px;
     }
     .form-footer {
         text-align: center;
@@ -208,6 +195,11 @@
             + .fatbutton {
                 float: right;
             }
+        }
+    }
+    #account-settings {
+        select {
+            width: 50%;
         }
     }
 }
