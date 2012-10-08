@@ -167,6 +167,7 @@ JS = {
         'js/lib/jquery-ui/jquery.ui.datepicker.js',
         'js/lib/jquery-ui/jquery.ui.sortable.js',
 
+        'js/lib/truncate.js',
         'js/zamboni/truncation.js',
         'js/zamboni/helpers.js',
         'js/zamboni/global.js',
@@ -190,7 +191,6 @@ JS = {
         'js/lib/stick.js',
 
         # Developer Hub-specific scripts.
-        'js/zamboni/truncation.js',
         'js/common/upload-base.js',
         'js/common/upload-packaged-app.js',
         'js/common/upload-image.js',
@@ -222,6 +222,7 @@ JS = {
         'js/zamboni/browser.js',
         'js/mkt/init.js',
         'js/mkt/browserid.js',
+        'js/lib/truncate.js',
         'js/zamboni/truncation.js',
         'js/common/keys.js',
         'js/mkt/capabilities.js',

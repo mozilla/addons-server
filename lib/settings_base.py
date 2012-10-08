@@ -705,6 +705,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/jquery.ui.datepicker.js',
             'js/lib/jquery-ui/jquery.ui.sortable.js',
 
+            'js/lib/truncate.js',
             'js/zamboni/truncation.js',
             'js/impala/ajaxcache.js',
             'js/zamboni/helpers.js',
@@ -785,6 +786,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             'js/zamboni/debouncer.js',
+            'js/lib/truncate.js',
             'js/zamboni/truncation.js',
 
             'js/impala/promos.js',
@@ -798,6 +800,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/discovery_tracking.js',
         ),
         'zamboni/devhub': (
+            'js/lib/truncate.js',
             'js/zamboni/truncation.js',
             'js/common/upload-base.js',
             'js/common/upload-addon.js',
@@ -854,6 +857,7 @@ MINIFY_BUNDLES = {
             'js/impala/capabilities.js',
             'js/lib/format.js',
             'js/zamboni/mobile/buttons.js',
+            'js/lib/truncate.js',
             'js/zamboni/truncation.js',
             'js/impala/footer.js',
             'js/zamboni/personas_core.js',
