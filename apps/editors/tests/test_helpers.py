@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 from datetime import datetime, timedelta
 
 from django.core import mail
@@ -275,15 +274,6 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.setup_type(amo.STATUS_LISTED), 'pending')
         eq_(self.setup_type(amo.STATUS_BETA), 'pending')
         eq_(self.setup_type(amo.STATUS_PURGATORY), 'pending')
-
-    def test_webapp_type(self):
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
-        eq_(self.get_helper().review_type, 'apps')
-
-    def test_webapp_actions(self):
-        self.addon.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
-        eq_(self.get_helper().get_actions().keys(),
-            ['public', 'reject', 'comment'])
 
     def test_review_files(self):
         for status in REVIEW_FILES_STATUSES:

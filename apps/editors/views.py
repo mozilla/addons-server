@@ -8,7 +8,7 @@ from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q, Count
+from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
@@ -30,13 +30,11 @@ from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
                             EventLog, AddonCannedResponse, PerformanceGraph,
                             ViewFastTrackQueue)
-from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
-                             ViewPreliminaryQueueTable, WebappQueueTable,
-                             ViewFastTrackQueueTable)
+from editors.helpers import (ViewFastTrackQueueTable, ViewFullReviewQueueTable,
+                             ViewPendingQueueTable, ViewPreliminaryQueueTable)
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
-from mkt.webapps.models import Webapp
 from zadmin.models import get_config, set_config
 
 
@@ -340,8 +338,7 @@ def queue_counts(type=None, **kw):
               'moderated': (
                   Review.objects.exclude(addon__type=amo.ADDON_WEBAPP)
                                 .filter(reviewflag__isnull=False,
-                                        editorreview=1).count),
-              'apps': Webapp.objects.pending().count}
+                                        editorreview=1).count)}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -400,12 +397,6 @@ def queue_moderated(request):
                         context(reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags,
                                 search_form=None))
-
-
-@reviewer_required('app')
-def queue_apps(request):
-    qs = Webapp.objects.pending().annotate(Count('abuse_reports'))
-    return _queue(request, WebappQueueTable, 'apps', qs=qs)
 
 
 @reviewer_required

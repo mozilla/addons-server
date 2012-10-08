@@ -1,6 +1,3 @@
-from django.core.exceptions import FieldError
-from django.utils.datastructures import SortedDict
-
 from django_tables.base import BaseTable, Rows, TableOptions
 
 

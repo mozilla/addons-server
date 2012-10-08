@@ -20,8 +20,7 @@
 
 <div class="queue-outer">
   <div class="queue-inner">
-    {# TODO(Kumar) enable for apps when search form supports them #}
-    {% if search_form and tab != 'apps' %}
+    {% if search_form %}
     <div id="queue-search">
       <form action="" method="get">
         {{ search_form['searching'] }}
@@ -155,11 +154,9 @@
               <td>{{ value|xssafe }}</td>
             {% endfor %}
             <td>
-              {% if tab != 'apps' %}
               <div class="addon-version-notes">
                 <a href="#" class="ed-sprite-notes app-icon" title="{{ _('Version Notes / Notes for Reviewer') }}">&nbsp;</a>
               </div>
-              {% endif %}
             </td>
             </tr>
           {% endfor %}

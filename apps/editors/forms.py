@@ -291,14 +291,6 @@ class ReviewAddonForm(happyforms.Form):
                                           in self.helper.actions.items()]
 
 
-class ReviewAppForm(ReviewAddonForm):
-
-    def __init__(self, *args, **kw):
-        super(ReviewAppForm, self).__init__(*args, **kw)
-        # We don't want to disable any app files:
-        self.addon_files_disabled = tuple([])
-
-
 class ReviewFileForm(ReviewAddonForm):
 
     def clean_addon_files(self):
@@ -319,8 +311,6 @@ class ReviewFileForm(ReviewAddonForm):
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
     FormClass = ReviewAddonForm
-    if addon and addon.type == amo.ADDON_WEBAPP:
-        FormClass = ReviewAppForm
     form = {ReviewAddon: FormClass,
             ReviewFiles: ReviewFileForm}[helper.handler.__class__]
     return form(data, helper=helper)

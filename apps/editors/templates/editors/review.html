@@ -59,8 +59,7 @@
       </tr>
       <tr class="listing-body">
         <td class="files">
-          {# Hide files until files and versions make sense for apps. #}
-          {% set version_files = [] if addon.is_webapp() else version.all_files %}
+          {% set version_files = version.all_files %}
           {% if version_files %}
             <div><strong>{{ _('Files in this version:') }}</strong></div>
             <ul>

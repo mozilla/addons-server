@@ -2,7 +2,7 @@ import copy
 import re
 
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-from django.db import connection, models
+from django.db import connection
 from django.db.models import Q
 from django.db.models.sql.query import AND, OR
 from django.utils.tree import Node
@@ -123,7 +123,7 @@ class RawSQLManager(object):
                     '(%s)' % (clone._flatten_q(arg, clone._kw_clause_from_q)))
             else:
                 raise TypeError(
-                        'non keyword args should be Q objects, got %r' % arg)
+                    'non keyword args should be Q objects, got %r' % arg)
         for field, val in kw.items():
             clone.base_query['where'].append(clone._kw_filter_to_clause(field,
                                                                         val))
@@ -182,8 +182,8 @@ class RawSQLManager(object):
             dir = 'ASC'
             field = spec
         clone = self._clone()
-        clone.base_query['order_by'].append(
-                            '%s %s' % (clone._resolve_alias(field), dir))
+        clone.base_query['order_by'].append('%s %s' %
+                                            (clone._resolve_alias(field), dir))
         return clone
 
     def as_sql(self):
@@ -198,7 +198,8 @@ class RawSQLManager(object):
         """Makes a WHERE clause out of a Q object (supports nested Q objects).
 
         Pass in join_specs(*specs) based on what kind of arguments you think
-        the Q object will have.  filter() Qs are different from filter_raw() Qs.
+        the Q object will have.  filter() Qs are different from
+        filter_raw() Qs.
         """
         specs = []
         if stack is None:
@@ -250,7 +251,7 @@ class RawSQLManager(object):
         specs = list(specs)
         if (len(specs) % 2) != 0:
             raise TypeError(
-                    "Expected pairs of 'spec =', 'val'. Got: %r" % specs)
+                "Expected pairs of 'spec =', 'val'. Got: %r" % specs)
         full_clause = []
         while len(specs):
             spec, val = specs.pop(0), specs.pop(0)
@@ -258,7 +259,7 @@ class RawSQLManager(object):
             if not clause:
                 raise ValueError(
                     'This is not a valid clause: %r; must match: %s' % (
-                                            spec, RAW_FILTER_PATTERN.pattern))
+                        spec, RAW_FILTER_PATTERN.pattern))
             field = clause.group('field')
             field = self._resolve_alias(field)
             if clause.group('op').lower() == 'in':

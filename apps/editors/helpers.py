@@ -1,26 +1,23 @@
 import datetime
 
+import commonware.log
+import django_tables as tables
+import jinja2
 from django.conf import settings
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
-import django_tables as tables
-import jinja2
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
-import waffle
 
 import amo
 from addons.helpers import new_context
-from amo.helpers import absolutify, breadcrumbs, page_title, timesince
+from amo.helpers import absolutify, breadcrumbs, page_title
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
-
-import commonware.log
 from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
-from mkt.webapps.models import Webapp
 
 
 @register.function
@@ -78,18 +75,15 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
     crumbs = [(reverse('editors.home'), _('Editor Tools'))]
 
     if addon_queue:
-        if addon_queue.type == amo.ADDON_WEBAPP:
-            queue = 'apps'
-        else:
-            queue_id = addon_queue.status
-            queue_ids = {amo.STATUS_UNREVIEWED: 'prelim',
-                         amo.STATUS_NOMINATED: 'nominated',
-                         amo.STATUS_PUBLIC: 'pending',
-                         amo.STATUS_LITE: 'prelim',
-                         amo.STATUS_LITE_AND_NOMINATED: 'nominated',
-                         amo.STATUS_PENDING: 'pending'}
+        queue_id = addon_queue.status
+        queue_ids = {amo.STATUS_UNREVIEWED: 'prelim',
+                     amo.STATUS_NOMINATED: 'nominated',
+                     amo.STATUS_PUBLIC: 'pending',
+                     amo.STATUS_LITE: 'prelim',
+                     amo.STATUS_LITE_AND_NOMINATED: 'nominated',
+                     amo.STATUS_PENDING: 'pending'}
 
-            queue = queue_ids.get(queue_id, 'queue')
+        queue = queue_ids.get(queue_id, 'queue')
 
     if queue:
         queues = {'queue': _("Queue"),
@@ -97,8 +91,7 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None):
                   'nominated': _("Full Reviews"),
                   'prelim': _("Preliminary Reviews"),
                   'moderated': _("Moderated Reviews"),
-                  'fast_track': _("Fast Track"),
-                  'apps': _("Apps")}
+                  'fast_track': _("Fast Track")}
 
         if items and not queue == 'queue':
             url = reverse('editors.queue_%s' % queue)
@@ -142,11 +135,6 @@ def queue_tabnav(context):
                (ngettext('Moderated Review ({0})', 'Moderated Reviews ({0})',
                          counts['moderated'])
                 .format(counts['moderated'])))]
-
-    if waffle.flag_is_active(context['request'], 'accept-webapps'):
-        tabnav.append(('apps', 'queue_apps',
-                       (ngettext('Apps ({0})', 'Apps ({0})', counts['apps'])
-                        .format(counts['apps']))))
     return tabnav
 
 
@@ -314,43 +302,6 @@ class ViewFastTrackQueueTable(EditorQueueTable):
         model = ViewFastTrackQueue
 
 
-class WebappQueueTable(tables.ModelTable, ItemStateTable):
-    name = tables.Column(verbose_name=_lazy(u'App'))
-    created = tables.Column(verbose_name=_lazy(u'Waiting Time'))
-    abuse_reports__count = tables.Column(verbose_name=_lazy(u'Abuse Reports'))
-
-    def render_name(self, row):
-        url = '%s?num=%s' % (reverse('editors.app_review', args=[row.slug]),
-                             self.item_number)
-        self.increment_item()
-        return u'<a href="%s">%s</a>' % (url, jinja2.escape(row.name))
-
-    def render_abuse_reports__count(self, row):
-        url = reverse('editors.abuse_reports', args=[row.slug])
-        return u'<a href="%s">%s</a>' % (jinja2.escape(url),
-                                         row.abuse_reports__count)
-
-    def render_created(self, row):
-        return timesince(row.created)
-
-    @classmethod
-    def translate_sort_cols(cls, colname):
-        return colname
-
-    @classmethod
-    def default_order_by(cls):
-        return 'created'
-
-    @classmethod
-    def review_url(cls, row):
-        return reverse('editors.app_review', args=[row.slug])
-
-    class Meta:
-        sortable = True
-        model = Webapp
-        columns = ['name', 'created', 'abuse_reports__count']
-
-
 log = commonware.log.getLogger('z.mailer')
 
 
@@ -404,10 +355,7 @@ class ReviewHelper:
         self.handler.set_data(data)
 
     def get_review_type(self, request, addon, version):
-        if self.addon.type == amo.ADDON_WEBAPP:
-            self.review_type = 'apps'
-            self.handler = ReviewAddon(request, addon, version, 'pending')
-        elif self.addon.status in NOMINATED_STATUSES:
+        if self.addon.status in NOMINATED_STATUSES:
             self.review_type = 'nominated'
             self.handler = ReviewAddon(request, addon, version, 'nominated')
 
@@ -423,8 +371,6 @@ class ReviewHelper:
             self.handler = ReviewFiles(request, addon, version, 'pending')
 
     def get_actions(self):
-        if self.addon.type == amo.ADDON_WEBAPP:
-            return self.get_app_actions()
         labels, details = self._review_actions()
 
         actions = SortedDict()
@@ -453,28 +399,6 @@ class ReviewHelper:
         for k, v in actions.items():
             v['details'] = details.get(k)
 
-        return actions
-
-    def get_app_actions(self):
-        actions = SortedDict()
-        actions['public'] = {'method': self.handler.process_public,
-                             'minimal': False,
-                             'label': _lazy('Push to public'),
-                             'details': _lazy(
-                                'This will approve the sandboxed app so it '
-                                'appears on the public side.')}
-        actions['reject'] = {'method': self.handler.process_sandbox,
-                             'label': _lazy('Reject'),
-                             'minimal': False,
-                             'details': _lazy(
-                                'This will reject the app and remove it '
-                                'from the review queue.')}
-        actions['comment'] = {'method': self.handler.process_comment,
-                              'label': _lazy('Comment'),
-                              'minimal': True,
-                              'details': _lazy(
-                                    'Make a comment on this app.  The '
-                                    'author won\'t be able to see this.')}
         return actions
 
     def _review_actions(self):
@@ -591,9 +515,7 @@ class ReviewBase(object):
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
-        data['addon_type'] = (_lazy('app')
-                              if self.addon.type == amo.ADDON_WEBAPP
-                              else _lazy('add-on'))
+        data['addon_type'] = (_lazy('add-on'))
         send_mail('editors/emails/%s.ltxt' % template,
                    subject % (self.addon.name, self.version.version),
                    emails, Context(data), perm_setting='editor_reviewed')
