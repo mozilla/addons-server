@@ -279,7 +279,7 @@ Flipsnap.prototype._touchMove = function(event) {
 		deltaY;
 
 	if (self.moveReady) {
-		event.preventDefault();
+		// event.preventDefault();
 		event.stopPropagation();
 
 		distX = pageX - self.basePageX;
@@ -300,7 +300,7 @@ Flipsnap.prototype._touchMove = function(event) {
 		deltaX = Math.abs(pageX - self.startPageX);
 		deltaY = Math.abs(pageY - self.startPageY);
 		if (deltaX > 5) {
-			event.preventDefault();
+			// event.preventDefault();
 			event.stopPropagation();
 			self.moveReady = true;
 			self.element.addEventListener('click', self, true);
