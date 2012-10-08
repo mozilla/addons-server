@@ -185,9 +185,14 @@ body .loading-fragment {
 }
 
 .force-mobile {
-    #site-header > section, #page, #site-footer {
+    #site-header > section,
+    #page > section,
+    #site-footer {
         max-width: 600px;
         margin: 0 auto;
+    }
+    #page > .overlay {
+        max-width: 100%;
     }
 }
 

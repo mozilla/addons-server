@@ -186,7 +186,7 @@
     {% endif %}
 
     {% if is_dev or is_reviewer %}
-      <div class="actions infobox">
+      <section class="actions infobox">
         <div>
           {% if is_dev %}
             <p><a href="{{ product.get_dev_url() }}" class="button manage"
@@ -198,7 +198,7 @@
               {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
           {% endif %}
         </div>
-      </div>
+      </section>
     {% endif %}
 
   {% endif %}
