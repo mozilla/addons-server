@@ -16,6 +16,7 @@ var z = {
     },
     canInstallApps: true,
     allowAnonInstalls: !!$('body').data('allow-anon-installs'),
+    enableSearchSuggestions: !!$('body').data('enable-search-suggestions'),
     // if ($('#myDialog li').length > z.confirmBreakNum) add class 'two-col'.
     confirmBreakNum: 6
 };
