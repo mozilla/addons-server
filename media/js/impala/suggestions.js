@@ -156,7 +156,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         $self.focus(function() {
             pollVal = setInterval(function() {
                 gestureHandler($self);
-                inputHandler($self);
                 return;
             }, 250);
         });
