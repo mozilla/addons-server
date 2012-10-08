@@ -3,6 +3,7 @@
   {% set preview = previews[0].image_url if feature else
                    previews[0].thumbnail_url %}
 {% endif %}
+{% set hue = product.get_image_asset_hue('mobile_tile') %}
 {% set tag = 'a' if link else 'div' %}
 <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
   {% if link %}href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
@@ -10,7 +11,7 @@
   <div class="icon featured_tile" style="background-image:url({{ product.get_image_asset_url('featured_tile', 16) }})"></div>
   <img class="icon mobile_tile" alt="{{ _('icon') }}"
        src="{{ product.get_image_asset_url('mobile_tile') }}"
-       data-hue="{{ product.get_image_asset_hue('mobile_tile') }}">
+       data-hue="{{ hue }}">
   <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
