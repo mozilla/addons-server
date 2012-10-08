@@ -6,13 +6,17 @@ Allow: /
 Disallow: /*{{ url('addons.share', 0, add_prefix=False)|replace('0', '*') }}
 Disallow: /*{{ url('addons.contribute', 0, add_prefix=False)|replace('0', '*') }}
 
+{# The downloads live at locale-agnostic URLs now. #}
+{% for a in apps -%}
+Disallow: /{{ a.short }}{{ remora_url('downloads', lang='', app='') }}/
+{% endfor %}
+
 {# Spacing is a little weird because it makes the output prettier #}
 {% for l in settings.AMO_LANGUAGES %}
 {% for a in apps -%}
 
 Disallow: /{{ l }}/{{ a.short }}{{ url('search.search', add_prefix=False) }}
 Disallow: /{{ l }}/{{ a.short }}{{ url('users.pwreset', add_prefix=False) }}
-Disallow: /{{ l }}/{{ a.short }}{{ remora_url('downloads', lang='', app='') }}/
 {% endfor %}
 
 {% endfor %}
