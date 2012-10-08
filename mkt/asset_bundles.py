@@ -108,7 +108,6 @@ CSS = {
         'css/mkt/login.less',
         'css/mkt/purchase.less',
         'css/devreg/l10n.less',
-        'css/impala/lightbox.less',
         'css/mkt/lightbox.less',
         'css/mkt/browse.less',
         'css/mkt/filters.less',

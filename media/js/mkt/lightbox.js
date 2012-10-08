@@ -1,19 +1,33 @@
-(function() {
-    var $document = $(document),
-        $lightbox = $('#lightbox'),
-        $content = $lightbox.find('.content'),
-        $caption = $lightbox.find('.caption span'),
-        $previews,
-        current, $strip,
-        lbImage = template('<img id="preview{0}" src="{1}">'),
-        lbVideo = template('<video id="preview{0}" src="{1}" ' +
-                           'preload="auto" controls type="video/webm"> ' +
-                           '</video>');
-    if (!$lightbox.length) return;
+(function () {
+    var $lightbox = $('#lightbox');
+    var $section = $lightbox.find('section');
+    var $content = $lightbox.find('.content');
+    var currentApp;
+    var previews;
+    var slider;
+
+    // prevent mouse cursors from dragging these images.
+    $lightbox.on('dragstart', function(e) {
+        e.preventDefault();
+    });
+
     function showLightbox() {
-        $previews = $(this).closest('.slider');
-        $lightbox.show();
-        showImage(this);
+        var $tray = $(this).closest('.tray');
+        var $tile = $tray.prev();
+
+        // we get the screenshots from the associated tile. No tile? bail.
+        if (!$tile.hasClass('mkt-tile')) return;
+
+        var product = $tile.data('product');
+        var id = product.id;
+
+        if (id != currentApp) {
+            currentApp = id;
+            previews = product.previews;
+            renderPreviews();
+        }
+
+        // set up key bindings
         $(window).bind('keydown.lightboxDismiss', function(e) {
             switch (e.which) {
                 case z.keys.ESCAPE:
@@ -22,21 +36,80 @@
                     break;
                 case z.keys.LEFT:
                     e.preventDefault();
-                    showPrev();
+                    if (slider) slider.toPrev();
                     break;
                 case z.keys.RIGHT:
                     e.preventDefault();
-                    showNext();
+                    if (slider) slider.toNext();
                     break;
             }
         });
-        //I want to ensure the lightbox is painted before fading it in.
+
+        // fade that bad boy in
+        $lightbox.show();
         setTimeout(function() {
             $lightbox.addClass('show');
         }, 0);
     }
+
+    function renderPreviews() {
+        // clear out the existing content
+        $content.empty();
+
+        // place in a pane for each image with a 'loading' placeholder and caption.
+        _.each(previews, function(p) {
+            var $el = $('<li class="loading">');
+            var $cap = $('<div class="caption">');
+            $cap.text(p.caption);
+            $el.append($cap);
+            $content.append($el);
+
+            // let's fail elegantly when our images don't load.
+            var i = new Image();
+            i.onload = function() {
+                $el.removeClass('loading');
+                $el.append(i);
+            };
+            i.onerror = function() {
+                $el.removeClass('loading');
+                $el.append('<b class="err">&#x26A0;</b>');
+            };
+            // attempt to load the image.
+            i.src = p.fullUrl;
+        });
+
+        // $section doesn't have its proper width until after a paint.
+        setTimeout(function() {
+            slider = Flipsnap($content[0]);
+            resize();
+        });
+    }
+
+    // we need to adjust the scroll distances on resize.
+    $(window).on('resize', _.debounce(resize, 200));
+
+    function resize() {
+        if (!slider) return;
+        $content.find('.caption').lineclamp(2);
+        slider.distance = $section.width();
+        slider.refresh();
+    }
+
+    // if a tray thumbnail is clicked, load up our lightbox.
+    z.page.on('click', '.tray ul a', _pd(showLightbox));
+
+
+    // dismiss the lighbox when we click outside it or on the close button.
+    $lightbox.click(_pd(function(e) {
+        if ($(e.target).is('#lightbox')) {
+            hideLightbox();
+        }
+    }));
+    $lightbox.find('.close').click(_pd(function(e) {
+        hideLightbox();
+    }));
+
     function hideLightbox() {
-        pauseVideo();
         $lightbox.removeClass('show');
         // We can't trust transitionend to fire in all cases.
         setTimeout(function() {
@@ -44,79 +117,6 @@
         }, 500);
         $(window).unbind('keydown.lightboxDismiss');
     }
-    function cookieCutter(values) {
-        if (values[1].indexOf('.webm') > 0) {
-            return lbVideo(values);
-        } else {
-            return lbImage(values);
-        }
-    }
-    function pauseVideo() {
-        var $video = $content.find('video:visible');
-        if ($video.length) {
-            $video.blur();
-            $video[0].pause();
-        }
-    }
-    function showImage(a) {
-        var $a = $(a),
-            $oldimg = $lightbox.find('img, video');
-        current = $a.parent().index();
-        $strip = $a.closest('ul').find('li');
-        $previews.find('.panel').removeClass('active')
-                 .eq(current).addClass('active');
-        var $img = $('#preview'+current);
-        if ($img.length) {
-            $oldimg.removeClass('show');
-            $img.addClass('show');
-            $img.filter('video').focus();
-        } else {
-            console.log('no match found!', '#preview'+current, $img);
-            $img = $(cookieCutter([current, $a.attr('href')]));
-            $content.append($img);
-            $img.bind('load loadstart', function(e) {
-                $oldimg.removeClass('show');
-                $img.addClass('show');
-            });
-        }
-        $caption.text($a.attr('title'))
-                .removeAttr('style oldtext')
-                .truncate({dir: 'v'});
-        $lightbox.find('.control').removeClass('disabled');
-        if (current < 1) {
-            $lightbox.find('.control.prev').addClass('disabled');
-        }
-        if (current == $strip.length-1) {
-            $lightbox.find('.control.next').addClass('disabled');
-        }
-    }
-    function showNext() {
-        if (current < $strip.length-1) {
-            showImage($strip.eq(current + 1).find('a'));
-            pauseVideo();
-            if (!this.window) {
-                $(this).blur();
-            }
-        }
-    }
-    function showPrev() {
-        if (current > 0) {
-            showImage($strip.eq(current - 1).find('a'));
-            pauseVideo();
-            if (!this.window) {
-                $(this).blur();
-            }
-        }
-    }
-    $lightbox.find('.next').click(_pd(showNext));
-    $lightbox.find('.prev').click(_pd(showPrev));
-    $lightbox.find('.close').click(_pd(function(e) {
-        hideLightbox();
-    }));
-    z.page.on('click', '.tray ul a', _pd(showLightbox));
-    $lightbox.click(function(e) {
-        if ($(e.target).parent('#page').length) {
-            hideLightbox();
-        }
-    });
+
 })();
+
