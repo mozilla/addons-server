@@ -29,9 +29,9 @@ everyone.now.registerRemoteDebugger = function(username) {
   console.log('registered remote debugger');
   this.now.username = username;
   var that = this;
-  now.getGroup('target').count(function (n) {that.now.showLog(n + ' clients connected')});
+  now.getGroup('target').count(function (n) {that.now.showMsg(n + ' clients connected')});
   now.getGroup('dbg').addUser(this.user.clientId);
-  now.getGroup('dbg').now.showLog('new debugger online: ' + this.now.username);
+  now.getGroup('dbg').now.showMsg('new debugger online: ' + this.now.username);
 };
 
 everyone.now.registerRemoteServer = function(p, w, h) {
@@ -40,14 +40,16 @@ everyone.now.registerRemoteServer = function(p, w, h) {
   this.now.target = true;
   this.now.id = serverId++;
   now.getGroup('target').addUser(this.user.clientId);
-  now.getGroup('dbg').now.showLog(out);
+  now.getGroup('dbg').now.showMsg(out);
   servers[this.now.id] = sname;
   // everyone.now.servers[this.now.id] = sname;
 };
 everyone.now.msg = function(msg) {
-  now.getGroup('dbg').now.showLog(msg);
+  now.getGroup('dbg').now.showMsg(msg);
 };
-
+everyone.now.async = function(url) {
+  now.getGroup('dbg').now.showAsync(url);
+};
 everyone.now.repl = function(code) {
   now.getGroup('target').now.doEval(code);
 };

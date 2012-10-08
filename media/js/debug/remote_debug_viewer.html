@@ -3,14 +3,22 @@
   <head>
     <title>remote error log</title>
     <style>
-      body {
+      * {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
         font-family: Helvetica;
         font-size: 14px;
       }
       li {
+        font-family: monospace;
         clear: both;
         list-style-type: none;
-        padding: 1em;
+        padding: 4px 1em;
         margin: 0;
       }
       ul {
@@ -19,17 +27,23 @@
       li:nth-child(even) {
         background: #eee;
       }
-      li i {
+      li .meta {
         float: right;
       }
-      .error b {
+      .error {
         color: #c00;
       }
-      .log b {
+      .log {
         color: #666;
       }
-      .ajax b {
+      .async {
         color: #00c;
+      }
+      .msg {
+        text-align: left;
+      }
+      .msg:before {
+        content: '<msg> ';
       }
       #repl {
         font: 14px monospace;
@@ -37,13 +51,26 @@
         width: 100%;
       }
       .repl {
-        font-family: monospace;
+        color: #080;
       }
       .repl:before {
         content: '> ';
       }
       .repl.back:before {
         content: '';
+      }
+      #console {
+        width: 50%;
+        height: 100%;
+        padding: 4px;
+        border-right: 1px solid black;
+        overflow: auto;
+        float: left;
+      }
+      #inspect {
+        width: 50%;
+        float: right;
+        height: 100%;
       }
     </style>
     <script type="text/javascript"
@@ -71,33 +98,52 @@
       now.ready(function(){
         now.showLog = function(msg) {
           var el = $('<li class="log">');
-          el.append(format('<b>{0}</b>', msg));
+          el.append(msg);
+          $('ul').prepend(el);
+        }
+        now.showAsync = function(msg) {
+          var el = $('<li class="async">');
+          el.append(msg);
           $('ul').prepend(el);
         }
         now.showError = function(m,f,l) {
           var el = $('<li class="error">');
-          el.append(format('<b>{0}</b><i><a href="{1}">{1}</a>:{2}</i>', [m,f,l]));
+          el.append(format('{0}<span class="meta"><a href="{1}">{1}</a>:{2}</span>', [m,f,l]));
           $('ul').prepend(el);
         };
         now.replBack = function(msg) {
           var msg = pretty(msg);
           var el = $('<li class="repl back">');
-          el.append(format('<b>{0}</b>', msg));
+          el.append(msg);
           $('ul').prepend(el);
         };
+        now.showMsg = function(msg) {
+          var el = $('<li class="msg">');
+          el.append(msg);
+          $('ul').prepend(el);
+        }
 
         var repl = $('#repl');
-        var lastCommand = '';
+        var commandHistory = [];
+        var commandIndex = 0;
         repl.on('keydown', function(e) {
+          if (e.which == 40) {
+              commandIndex--;
+              if (commandIndex < -1) commandIndex = -1;
+              repl.val(commandHistory[commandIndex] || '');
+          }
           if (e.which == 38) {
-              repl.val(lastCommand);
+              commandIndex++;
+              if (commandIndex >= commandHistory.length) commandIndex = commandHistory.length - 1;
+              repl.val(commandHistory[commandIndex]);
           }
           if (e.which == 13) {
             var code = repl.val();
             var el = $('<li class="repl">');
-            el.append(format('<b>{0}</b>', code));
+            el.append(format('{0}', code));
             $('ul').prepend(el);
-            lastCommand = code;
+            commandHistory.unshift(code);
+            commandIndex = -1;
             now.repl(code);
             repl.val('');
           }
@@ -107,9 +153,13 @@
     </script>
   </head>
   <body>
-    <h1>Remote Error Log</h1>
-    <input id="repl">
-    <ul>
-    </ul>
+    <section id="console">
+      <h1>Remote Error Log</h1>
+      <input id="repl">
+      <ul>
+      </ul>
+    </section>
+    <section id="inspect">
+    </section>
   </body>
 </html>

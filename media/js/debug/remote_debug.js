@@ -2,6 +2,7 @@ now.ready(function () {
     var oldConsole = window.console.log;
     window.console.log = function() {
         now.log.apply(now, arguments);
+        oldConsole.apply(this, arguments);
     };
     window.onerror = function(m,f,l) {
         now.logError(m, f, l);
@@ -17,9 +18,9 @@ now.ready(function () {
         }
         now.evalResp(out);
     };
-    now.registerRemoteServer(window.navigator.platform, window.screen.width, window.screen.height);
+    now.registerRemoteServer(window.navigator.platform, window.outerWidth, window.outerHeight);
     $.ajaxPrefilter(function(opts) {
-        now.msg('starting ajax request', opts);
+        now.async(opts.url);
     });
 });
 
