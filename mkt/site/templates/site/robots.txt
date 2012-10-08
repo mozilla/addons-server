@@ -4,4 +4,6 @@ User-agent: *
 Disallow: /
 {% else %}
 Allow: /
+
+Disallow: /downloads/
 {% endif %}
