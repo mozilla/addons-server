@@ -105,7 +105,8 @@ class QueueSearchForm(happyforms.Form):
     addon_type_ids = forms.MultipleChoiceField(
                 required=False,
                 label=_lazy(u'Add-on Types'),
-                choices=((id, tp) for id, tp in amo.ADDON_TYPES.items()))
+                choices=((id, tp) for id, tp in amo.ADDON_TYPES.items()
+                         if id != amo.ADDON_WEBAPP))
     platform_ids = forms.MultipleChoiceField(
                 required=False,
                 label=_lazy(u'Platforms'),
