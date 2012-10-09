@@ -41,6 +41,9 @@ def _review_details(request, addon, form):
 def review_list(request, addon, review_id=None, user_id=None, rating=None):
     qs = Review.objects.valid().filter(addon=addon).order_by('-created')
 
+    # Mature regions show only reviews from within that region.
+    if not request.REGION.adolescent:
+        qs = qs.filter(client_data__region=request.REGION.id)
     ctx = {'product': addon, 'score': rating, 'review_perms': {}}
 
     if review_id is not None:

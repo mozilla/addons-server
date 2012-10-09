@@ -1,3 +1,4 @@
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -10,6 +11,7 @@ from stats.models import ClientData, Contribution
 from users.models import UserProfile
 from zadmin.models import DownloadSource
 
+import mkt
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Installed, Webapp
 
@@ -430,6 +432,7 @@ class TestListing(ReviewTest):
         super(TestListing, self).setUp()
         self.log_in_regular()
         self.listing = self.webapp.get_ratings_url('list')
+        self.detail = self.webapp.get_detail_url()
         self.review_id = '#review-%s' % self.review.id
         self.reply_id = '#review-%s' % self.reply.id
 
@@ -536,6 +539,52 @@ class TestListing(ReviewTest):
 
         eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
             ['delete', 'edit'])
+
+    @mock.patch.object(mkt.regions.US, 'adolescent', False)
+    def test_detail_local_reviews_only(self):
+        self.enable_waffle()
+        client_data1 = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent', is_chromeless=False,
+            language='pt-BR', region=3
+        )
+        client_data2 = ClientData.objects.create(
+            download_source=DownloadSource.objects.create(name='mkt-test'),
+            device_type='tablet', user_agent='test-agent', is_chromeless=False,
+            language='en-US', region=2
+        )
+
+        Review.objects.create(
+            rating=3,
+            body={'ru': 'I \u042f a bit.'},
+            addon=self.webapp,
+            user=self.admin,
+            client_data=client_data1,
+            ip_address='127.0.0.2'
+        )
+        Review.objects.create(
+            rating=4,
+            body={'ru': 'I \u042f so hard.'},
+            addon=self.webapp,
+            user=self.regular,
+            client_data=client_data2,
+            ip_address='127.0.0.1'
+        )
+        for region in mkt.regions.REGIONS_DICT:
+            r = self.client.get(self.detail, data={'region': region})
+            eq_(r.status_code, 200)
+            doc = pq(r.content)
+            detail_reviews = doc('#reviews-detail .review-inner')
+
+            r2 = self.client.get(self.listing, data={'region': region})
+            eq_(r2.status_code, 200)
+            listing_reviews = pq(r2.content)('#review-list > li')
+            if region == 'us':
+                eq_(listing_reviews.length, 1)
+                eq_(detail_reviews.length, 1)
+            else:
+                eq_(listing_reviews.length, 2)
+                eq_(detail_reviews.length, 2)
 
 
 class TestFlag(ReviewTest):

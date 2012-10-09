@@ -37,6 +37,9 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 def detail(request, addon):
     """Product details page."""
     reviews = Review.objects.latest().filter(addon=addon)
+    # Mature regions show only reviews from within that region.
+    if not request.REGION.adolescent:
+        reviews = reviews.filter(client_data__region=request.REGION.id)
     ctx = {
         'product': addon,
         'reviews': reviews[:2],
