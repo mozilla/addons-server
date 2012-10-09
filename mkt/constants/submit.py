@@ -2,10 +2,10 @@ from tower import ugettext_lazy as _
 
 
 APP_STEPS = [
-    ('terms', _('Developer Agreement')),
+    ('terms', _('Agreement')),
     ('manifest', _('Submit')),
     ('details', _('Details')),
-    ('done', _('Finished!')),
+    ('done', _('Done!')),
 ]
 APP_STEPS_TITLE = dict(APP_STEPS)
 

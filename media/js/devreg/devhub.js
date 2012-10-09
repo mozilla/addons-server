@@ -52,6 +52,7 @@ $(document).ready(function() {
         $submit_footer = $('#upload-webapp').find('footer');
 
     if ($webapp_url.exists()) {
+        $webapp_url.focus();
         if (!$webapp_url.val()) {
             if (z.capabilities.sessionStorage) {
                 $webapp_url.val(window.sessionStorage['manifest_url']);

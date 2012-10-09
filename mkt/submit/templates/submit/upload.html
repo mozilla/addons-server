@@ -5,8 +5,10 @@
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, title)]) }}
-  <h1>{{ title }}</h1>
-  {{ progress(request, addon=None, step=step) }}
+  <header class="submit-header c">
+    <h1>{{ title }}</h1>
+    {{ progress(request, addon=None, step=step) }}
+  </header>
   <section id="submit-upload" class="primary">
     <h2>{{ _("Where's Your Packaged App?") }}</h2>
     <form method="post" id="create-addon" class="item">

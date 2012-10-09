@@ -1,7 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 
 {% set hosted_url = 'https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
-{# TODO(bug ): Change this link when that bug gets closed. #}
+{# TODO(bug 7884448): Change this link when that bug gets closed. #}
 {% set packaged_url = 'https://bugzilla.mozilla.org/show_bug.cgi?id=784448' %}
 
 {% set title = _('Submit an App') %}
@@ -9,12 +9,11 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-
-  {# Needs real text. See bug 783418 #}
-
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
-  <h1>{{ _('Submit an App') }}</h1>
-  {{ progress(request, addon=None, step=step) }}
+  <header class="submit-header c">
+    <h1 class="submit">{{ _('Submit an App') }}</h1>
+    {{ progress(request, addon=None, step=step) }}
+  </header>
   <section id="submit-choose" class="primary">
     <h2>{{ _('Choose an App Type') }}</h2>
     <section id="upload-file" class="c">

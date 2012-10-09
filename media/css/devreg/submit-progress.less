@@ -1,43 +1,49 @@
 @import 'lib';
 
+.submit-header {
+    h1 {
+        float: left;
+    }
+}
+
 #submission-progress {
+    float: right;
     display: table;
-    margin: 1em 0 1.5em;
-    padding-bottom: 1em;
+    padding-bottom: 10px;
     table-layout: fixed;
-    width: 100%;
+    width: 400px;
     ol {
         display: table-row;
         counter-reset: item;
         margin: 0;
     }
     li {
-        color: @light-gray;
+        color: darken(@light-gray, 5%);
         display: table-cell;
         counter-increment: item;
-        font: 16px @open-stack;
+        font: 14px/20px @open-stack;
         text-align: center;
         width: 100%;
         &:before {
             .border-radius(30px);
-            background: @faint-gray;
+            background: darken(@faint-gray, 5%);
             display: block;
             content: counter(item);
-            font-size: 18px;
-            height: 30px;
-            line-height: 30px;
+            font-size: 14px;
+            height: 25px;
+            line-height: 25px;
             margin: 0 auto;
             position: relative;
             text-align: center;
-            width: 30px;
-            text-indent: 2px;
+            text-indent: 1px;
+            width: 25px;
             z-index: 20;
         }
         &:after {
-            border-top: 2px solid @faint-gray;
+            border-top: 2px solid darken(@faint-gray, 5%);
             content: "";
             display: block;
-            margin-top: -38px;
+            margin-top: -34px;
             position: relative;
             width: 100%;
             left: -50%;
@@ -57,7 +63,7 @@
             }
             &:after {
                 border-color: @medium-gray;
-                margin-top: -40px;
+                margin-top: -36px;
             }
         }
         &.completed, &.completed:before, &.completed a {

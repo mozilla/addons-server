@@ -13,8 +13,10 @@
 {% block content %}
   {{ hub_breadcrumbs(addon, items=[(None, _('Submit App'))]) }}
   <div id="temp-locale-container">{{ l10n_menu(addon.default_locale) }}</div>
-  <h1>{{ _('Submit an App') }}</h1>
-  {{ progress(request, addon=addon, step=step) }}
+  <header class="submit-header c">
+    <h1>{{ _('Submit an App') }}</h1>
+    {{ progress(request, addon=addon, step=step) }}
+  </header>
   <section id="submit-details" class="primary">
     <h2>{{ title }}</h2>
     <p>
