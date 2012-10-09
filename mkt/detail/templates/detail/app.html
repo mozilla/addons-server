@@ -4,7 +4,7 @@
 {% set can_review = product.can_review(amouser) %}
 {% set purchased = amouser and product.pk in amouser.purchase_ids() %}
 
-{% set pagetitle = mkt_page_title(product.name) %}
+{% set pagetitle = product.name %}
 {% set headertitle = _('App Details') %}
 
 {% set bodyclass = 'detail' %}

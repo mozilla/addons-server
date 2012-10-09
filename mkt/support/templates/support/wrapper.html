@@ -1,6 +1,7 @@
 {% extends 'mkt/base.html' %}
 
-{% block title %}{{ mkt_page_title(wizard.title) }}{% endblock %}
+{% set pagetitle = wizard.title %}
+{% set headertitle = wizard.title %}
 
 {% block content %}
   {% if title %}
