@@ -217,9 +217,9 @@ def market_tile(context, product, link=True, src=''):
         if product.is_packaged and not request.GAIA:
             notices.append(_('This app is available on only Firefox OS.'))
 
-        # if not request.MOBILE:
-        #     notices.append(_('This app is available on only Firefox for '
-        #                      'Android and Firefox OS.'))
+        if not request.MOBILE:
+            notices.append(_('This app is available on only Firefox for '
+                             'Android and Firefox OS.'))
 
         if need_firefox:
             if request.MOBILE:
@@ -230,11 +230,11 @@ def market_tile(context, product, link=True, src=''):
                                  '<b data-href="{url}">download and install '
                                  'Firefox for Android</b>.').format(url=url))
             # TODO: Comment out when we disable installs on desktop again!
-            else:
-               url = 'https://www.mozilla.org/en-US/firefox/'
-               notices.append(_('To use this app, <b data-href="{url}">'
-                                'download and install '
-                                'Firefox</b>.').format(url=url))
+            # else:
+            #    url = 'https://www.mozilla.org/en-US/firefox/'
+            #    notices.append(_('To use this app, <b data-href="{url}">'
+            #                     'download and install '
+            #                     'Firefox</b>.').format(url=url))
         elif need_upgrade:
             notices.append(_('To use this app, upgrade Firefox.'))
 
