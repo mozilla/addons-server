@@ -63,7 +63,8 @@ var csv_keys = {
         'category'              : gettext('Category Pages'),
         'collection'            : gettext('Collections'),
         'cb-hc-featured'        : gettext('Category Landing Featured Carousel'),
-        'cb-dl-featured'        : gettext('Category Landing Featured Carousel'),
+        // Duplicate of line 75.
+        //'cb-dl-featured'        : gettext('Category Landing Featured Carousel'),
         'cb-hc-toprated'        : gettext('Category Landing Top Rated'),
         'cb-dl-toprated'        : gettext('Category Landing Top Rated'),
         'cb-hc-mostpopular'     : gettext('Category Landing Most Popular'),
@@ -155,6 +156,18 @@ var csv_keys = {
         'source_refunds' : [
             gettext('Total Units Refunded by Source'),
             gettext('Total Units Refunded by Source')
+        ],
+        'apps_count_new': [
+            gettext('Apps added'),
+            gettext('Apps added')
+        ],
+        'apps_count_installed': [
+            gettext('Apps installed'),
+            gettext('Apps installed')
+        ],
+        'apps_review_count_new': [
+            gettext('Reviews'),
+            gettext('Reviews')
         ]
     },
     aggregateLabel: {

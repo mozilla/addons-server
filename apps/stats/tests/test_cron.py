@@ -7,9 +7,12 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
+from mkt.webapps.models import Installed
+from reviews.models import Review
 from stats.models import (Contribution, DownloadCount, GlobalStat,
                           UpdateCount)
 from stats import cron, tasks
+from users.models import UserProfile
 
 
 class TestGlobalStats(amo.tests.TestCase):
@@ -25,6 +28,28 @@ class TestGlobalStats(amo.tests.TestCase):
         tasks.update_global_totals(job, date)
         eq_(len(GlobalStat.objects.no_cache().filter(date=date,
                                                  name=job)), 1)
+
+    def test_marketplace_stats(self):
+        res = tasks._get_daily_jobs()
+        for k in ['apps_count_new', 'apps_count_installed',
+                  'apps_review_count_new']:
+            assert k in res, 'Job %s missing from _get_daily_jobs' % k
+
+    def test_app_new(self):
+        Addon.objects.create(type=amo.ADDON_WEBAPP)
+        eq_(tasks._get_daily_jobs()['apps_count_new'](), 1)
+
+    def test_apps_installed(self):
+        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        user = UserProfile.objects.create(username='foo')
+        Installed.objects.create(addon=addon, user=user)
+        eq_(tasks._get_daily_jobs()['apps_count_installed'](), 1)
+
+    def test_app_reviews(self):
+        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        user = UserProfile.objects.create(username='foo')
+        Review.objects.create(addon=addon, user=user)
+        eq_(tasks._get_daily_jobs()['apps_review_count_new'](), 1)
 
 
 class TestTotalContributions(amo.tests.TestCase):

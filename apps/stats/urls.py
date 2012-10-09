@@ -14,6 +14,7 @@ global_series = dict((type, '%s-%s' % (type, series_re))
 collection_series = dict((type, '%s-%s' % (type, series_re))
                          for type in views.COLLECTION_SERIES)
 
+
 urlpatterns = patterns('',
     url('^$', lambda r: redirect('stats.addons_in_use', permanent=False),
         name='stats.dashboard'),
@@ -23,39 +24,28 @@ urlpatterns = patterns('',
     url('^fake-%s' % series_re, views.fake_collection_stats),
     url('^collection/(?P<uuid>[\w-]+).%s$' % (format_re),
         views.collection, name='stats.collection'),
-
-    # global series urls.
-    url(global_series['addons_in_use'], views.site_series,
-        kwargs={'field': 'addons_in_use'}),
-    url(global_series['addons_updated'], views.site_series,
-        kwargs={'field': 'addons_updated'}),
-    url(global_series['addons_downloaded'], views.site_series,
-        kwargs={'field': 'addons_downloaded'}),
-    url(global_series['addons_created'], views.site_series,
-        kwargs={'field': 'addons_created'}),
-    url(global_series['reviews_created'], views.site_series,
-        kwargs={'field': 'reviews_created'}),
-    url(global_series['collections_created'], views.site_series,
-        kwargs={'field': 'collections_created'}),
-    url(global_series['users_created'], views.site_series,
-        kwargs={'field': 'users_created'}),
-
-    # global series urls.
-    url('^addons_in_use/$', views.site_stats_report,
-        kwargs={'report': 'addons_in_use'}, name='stats.addons_in_use'),
-    url('^addons_updated/$', views.site_stats_report,
-        kwargs={'report': 'addons_updated'}, name='stats.addons_updated'),
-    url('^addons_downloaded/$', views.site_stats_report,
-        kwargs={'report': 'addons_downloaded'}, name='stats.addons_downloaded'),
-    url('^addons_created/$', views.site_stats_report,
-        kwargs={'report': 'addons_created'}, name='stats.addons_created'),
-    url('^reviews_created/$', views.site_stats_report,
-        kwargs={'report': 'reviews_created'}, name='stats.reviews_created'),
-    url('^collections_created/$', views.site_stats_report,
-        kwargs={'report': 'collections_created'}, name='stats.collections_created'),
-    url('^users_created/$', views.site_stats_report,
-        kwargs={'report': 'users_created'}, name='stats.users_created'),
 )
+
+# These are the front end pages, so that when you click the links on the
+# navigation page, you end up on the correct stats page for AMO. There are
+# different keys for marketplace, looking in mkt for that.
+keys = ['addons_in_use', 'addons_updated', 'addons_downloaded',
+        'addons_created', 'collections_created',
+        'reviews_created', 'users_created']
+urls = []
+for key in keys:
+    urls.append(url('^%s/$' % key, views.site_stats_report,
+                name='stats.%s' % key, kwargs={'report': key}))
+
+# These are the URLs that return JSON back to the front end and actually
+# do the SQL query. These means that Marketplace is using the same backend as
+# AMO to actually produce the statistics.
+keys += ['apps_count_new', 'apps_count_installed', 'apps_review_count_new']
+for key in keys:
+    urls.append(url(global_series[key], views.site_series,
+                    kwargs={'field': key}))
+
+urlpatterns += patterns('', *urls)
 
 collection_stats_urls = patterns('',
     url(collection_series['subscribers'], views.collection_series,

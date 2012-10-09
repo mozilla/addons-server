@@ -411,3 +411,9 @@ def fake_app_stats(request, addon, group, start, end, format):
         }})
         val += .01
     return faked
+
+
+def overall(request, report):
+    view = get_report_view(request)
+    return jingo.render(request, 'sitestats/stats.html', {'report': report,
+                                                          'view': view})

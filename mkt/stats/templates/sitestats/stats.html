@@ -14,65 +14,28 @@
 
 {% block title %}
   {# L10n: {0} is the app name #}
-  {{ _('{0} · Statistics Dashboard')|f(addon.name) }}
+  {{ _('Marketplace Statistics Dashboard') }}
 {% endblock %}
 
 {% block content %}
 <section id="stats">
   <header class="c">
     <hgroup class="c">
-      <h1 class="addon"{{ addon.name|locale_html }}>
-        {# L10n: {0} is an add-on name #}
-        {% if not inapp %}
-          {{ _('Statistics for {0}')|f(addon.name) }}
-        {% else %}
-          {{ _('Statistics for {0}')|f(inapp) }}
-        {% endif %}
+      <h1>
+        {{ _('Marketplace Statistics Dashboard') }}
       </h1>
-
-      {# In-app dropdown selector #}
-      {% if inapps and check_contrib_stats_perms(addon) %}
-        <form class="product-select" method="get">
-          <select class="product">
-            <option value="{{ addon.get_stats_url(action=report) }}">{{ addon.name }}</option>
-            {% for inapp_name in inapps %}
-              <option
-                  {% if inapp_name == inapp %}
-                    selected="selected"
-                  {% endif %}
-                  value="{{ addon.get_stats_inapp_url(
-                         action=report, inapp=inapp_name) }}">
-                {{ inapp_name }}
-              </option>
-            {% endfor %}
-          </select>
-          <noscript><button type="submit">{{ _('Go') }}</button></noscript>
-        </form>
-      {% endif %}
     </hgroup>
 
     {% include 'includes/criteria.html' %}
 
   </header>
 
-  {% include 'appstats/includes/stats_nav.html' %}
+  {% include 'sitestats/includes/stats_nav.html' %}
 
   <div id="lm" class="loadmessage">
     <span>{{ _('Loading the latest data&hellip;') }}</span>
   </div>
-  {# Initial stats will be `installs` only. Uncomment when others are done.
-  <div class="secondary">
-    {{ report_menu(request, report, obj=addon) }}
-    {% block stats_note_link %}{% endblock %}
-    <pre id="dbgout"></pre>
-  </div>
-  #}
   <div class="primary statistics"
-    {% if addon %}
-      data-min-date="{{ addon.created|isotime }}"
-      data-addon_id="{{ addon.id }}"
-    {% endif %}
-    data-inapp="{{ inapp }}"
     data-report="{{ report }}"
     {% if view.last %}
     data-range="{{ view.last }}"
@@ -119,26 +82,6 @@
         </div>
       </div>
     {% endblock %}
-    {% if waffle.switch('app-stats') %}
-    <div id="stats-permissions" class="c">
-      {% if addon.public_stats %}
-        <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
-        {% if request.check_ownership(addon) %}
-          <p>{{ _('App sales stats are <b>private</b>.') }}</p>
-        {% endif %}
-      {% else %}
-        <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
-      {% endif %}
-      {% if request.check_ownership(addon) %}
-        <div class="c"></div>
-        <p>
-          <a id="perm-settings-link" href="{{ addon.get_dev_url() }}#edit-addon-technical">
-            {{ _('Change settings.') }}
-          </a>
-        </p>
-      {% endif %}
-    </div>
-    {% endif %}
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">
         <form id="fieldMenu">

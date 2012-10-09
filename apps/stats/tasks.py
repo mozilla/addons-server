@@ -94,7 +94,8 @@ def _get_daily_jobs(date=None):
         date = datetime.date.today()
 
     extra = dict(where=['DATE(created)=%s'], params=[date])
-
+    # Where we need to specify the extra on some of the joins.
+    addon_extra = dict(where=['DATE(addons.created)=%s'], params=[date])
     # If you're editing these, note that you are returning a function!  This
     # cheesy hackery was done so that we could pass the queries to celery
     # lazily and not hammer the db with a ton of these all at once.
@@ -132,6 +133,17 @@ def _get_daily_jobs(date=None):
         'collection_addon_downloads': (lambda:
             AddonCollectionCount.objects.filter(date__lte=date).aggregate(
                 sum=Sum('count'))['sum']),
+
+        # Marketplace stats
+        'apps_count_new': (Addon.objects.extra(**addon_extra)
+                .filter(type=amo.ADDON_WEBAPP).count),
+        'apps_count_installed': (Installed.objects.extra(**addon_extra)
+                .filter(addon__type=amo.ADDON_WEBAPP).count),
+
+        # Marketplace reviews
+        'apps_review_count_new': Review.objects.extra(**addon_extra)
+                .filter(editorreview=0, addon__type=amo.ADDON_WEBAPP).count,
+
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do

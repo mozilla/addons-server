@@ -14,6 +14,7 @@ from mkt.account.urls import (purchases_patterns, settings_patterns,
 from mkt.developers.views import login
 from mkt.purchase.urls import bluevia_services_patterns
 from mkt.ratings.urls import theme_review_patterns
+from mkt.stats.urls import app_site_patterns
 from mkt.themes.urls import theme_patterns
 
 
@@ -60,13 +61,15 @@ urlpatterns = patterns('',
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
         'stats.views.site_events', name='amo.site_events'),
 
-    # Disable currently not working statistics.
-    # Site statistics that we are going to catch, the rest will fall through.
-    #url('^statistics/', include('stats.urls')),
+    # Catch marketplace specific statistics urls.
+    url('^statistics/', include(app_site_patterns)),
+
+    # Let the rest of the URLs fall through.
+    url('^statistics/', include('stats.urls')),
 
     # Disable currently not working statistics.
     # Fall through for any URLs not matched above stats dashboard.
-    #url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
+    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Support (e.g., refunds, FAQs).
     ('^support/', include('mkt.support.urls')),

@@ -10,6 +10,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
+from apps.stats.models import GlobalStat
 from market.models import Price
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from mkt.webapps.models import Installed
@@ -379,3 +380,28 @@ class TestPadMissingStats(amo.tests.ESTestCase):
         days = [dummy['date'].date() for dummy in dummies]
         for day in expected_days:
             eq_(day in days, True)
+
+
+class TestOverall(amo.tests.TestCase):
+
+    def setUp(self):
+        self.keys = ['apps_count_new', 'apps_count_installed',
+                     'apps_review_count_new']
+
+    def test_url(self):
+        eq_(self.client.get(reverse('mkt.stats.overall')).status_code, 200)
+
+    def get_url(self, name):
+        return (reverse('mkt.stats.%s' % name) +
+                '/%s-day-20090601-20090630.json' % name)
+
+    def test_stats(self):
+        for stat in self.keys:
+            GlobalStat.objects.create(name=stat, count=1,
+                                      date=datetime.date(2009, 06, 12))
+
+        for stat in self.keys:
+            res = self.client.get(self.get_url(stat))
+            content = json.loads(res.content)
+            eq_(content[0]['date'], '2009-06-12')
+            eq_(content[0]['count'], 1)

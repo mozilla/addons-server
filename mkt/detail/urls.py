@@ -3,6 +3,7 @@ from django.conf.urls import include, patterns, url
 from mkt.purchase.urls import app_purchase_patterns
 from mkt.ratings.urls import review_patterns
 from mkt.receipts.urls import app_receipt_patterns
+from mkt.stats.urls import app_stats_patterns
 from . import views
 
 
@@ -19,7 +20,7 @@ urlpatterns = patterns('',
     ('^purchase/', include(app_receipt_patterns)),
 
     # Statistics.
-    ('^statistics/', include('mkt.stats.urls')),
+    ('^statistics/', include(app_stats_patterns)),
 
     # Ratings.
     ('^reviews/', include(review_patterns)),

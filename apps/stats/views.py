@@ -40,7 +40,9 @@ SERIES = ('downloads', 'usage', 'contributions', 'overview',
           'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
 COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
-                 'collections_created', 'reviews_created', 'addons_created',
+                 'apps_count_installed', 'apps_count_new',
+                 'apps_review_count_new', 'collections_created',
+                 'reviews_created', 'addons_created',
                  'users_created')
 
 
@@ -466,6 +468,9 @@ def _site_query(period, start, end):
         'addon_downloads_new': 'addons_downloaded',
         'addon_total_updatepings': 'addons_in_use',
         'addon_count_new': 'addons_created',
+        'apps_count_new': 'apps_count_new',
+        'apps_count_installed': 'apps_count_installed',
+        'apps_review_count_new': 'apps_review_count_new',
         'version_count_new': 'addons_updated',
         'user_count_new': 'users_created',
         'review_count_new': 'reviews_created',
@@ -549,7 +554,7 @@ def site_series(request, format, group, start, end, field):
         series, fields = csv_fields(series)
         return render_csv(request, None, series,
                           ['date', 'count'] + list(fields),
-                          title='addons.mozilla.org week Site Statistics',
+                          title='%s week Site Statistics' % settings.DOMAIN,
                           show_disclaimer=True)
     return render_json(request, None, series)
 

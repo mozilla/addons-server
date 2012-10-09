@@ -90,7 +90,7 @@ def sales_series_urls(category='', inapp_flag=False):
     return url_patterns
 
 
-urlpatterns = patterns('',
+app_stats_patterns = patterns('',
     # Overview (not implemented).
     url('^$', views.stats_report, name='mkt.stats.overview',
         kwargs={'report': 'installs'}),
@@ -109,17 +109,33 @@ urlpatterns = patterns('',
         name='mkt.stats.usage_series'),
 )
 
-urlpatterns += sales_stats_report_urls(category='currency', inapp_flag=True)
-urlpatterns += sales_series_urls(category='currency', inapp_flag=True)
-urlpatterns += sales_stats_report_urls(category='source', inapp_flag=True)
-urlpatterns += sales_series_urls(category='source', inapp_flag=True)
-urlpatterns += sales_stats_report_urls(inapp_flag=True)
-urlpatterns += sales_series_urls(inapp_flag=True)
+app_stats_patterns += sales_stats_report_urls(category='currency',
+                                           inapp_flag=True)
+app_stats_patterns += sales_series_urls(category='currency', inapp_flag=True)
+app_stats_patterns += sales_stats_report_urls(category='source',
+                                              inapp_flag=True)
+app_stats_patterns += sales_series_urls(category='source', inapp_flag=True)
+app_stats_patterns += sales_stats_report_urls(inapp_flag=True)
+app_stats_patterns += sales_series_urls(inapp_flag=True)
 
-urlpatterns += sales_stats_report_urls(category='currency')
-urlpatterns += sales_series_urls(category='currency')
-urlpatterns += sales_stats_report_urls(category='source')
-urlpatterns += sales_series_urls(category='source')
+app_stats_patterns += sales_stats_report_urls(category='currency')
+app_stats_patterns += sales_series_urls(category='currency')
+app_stats_patterns += sales_stats_report_urls(category='source')
+app_stats_patterns += sales_series_urls(category='source')
 
-urlpatterns += sales_stats_report_urls()
-urlpatterns += sales_series_urls()
+app_stats_patterns += sales_stats_report_urls()
+app_stats_patterns += sales_series_urls()
+
+# Overall site statistics.
+app_site_patterns = patterns('',
+    url('^$', views.overall, name='mkt.stats.overall',
+        kwargs={'report': 'overview'}),
+)
+
+keys = ['apps_count_new', 'apps_count_installed', 'apps_review_count_new']
+urls = []
+for key in keys:
+    urls.append(url('^%s/$' % key, views.overall,
+                name='mkt.stats.%s' % key, kwargs={'report': key}))
+
+app_site_patterns += patterns('', *urls)
