@@ -5,7 +5,6 @@ import time
 from django.core import mail
 
 from nose.tools import eq_
-import waffle
 
 import amo
 import amo.tests
@@ -13,7 +12,7 @@ from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import Platform, File
 from applications.models import Application, AppVersion
-from editors.models import (EditorSubscription, ReviewerScore,
+from editors.models import (EditorSubscription, RereviewQueue, ReviewerScore,
                             send_notifications, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue)
@@ -36,7 +35,7 @@ def create_addon_file(name, version_str, addon_status, file_status,
         ad.update(admin_review=True)
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
     va, created = ApplicationsVersions.objects.get_or_create(
-                        version=vr, application=app, min=app_vr, max=app_vr)
+        version=vr, application=app, min=app_vr, max=app_vr)
     file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
                                 platform=pl, status=file_status)
     # Update status *after* there are files:
@@ -334,65 +333,90 @@ class TestReviewerScore(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.addon = amo.tests.addon_factory()
+        self.create_switch(name='reviewer-incentive-points')
+        self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
-    def _give_points(self, user=None, addon=None, event=None):
+    def _give_points(self, user=None, addon=None, status=None):
         user = user or self.user
         addon = addon or self.addon
-        event = event or amo.REVIEWED_ADDON_FULL
-        ReviewerScore.award_points(user, addon, event)
+        ReviewerScore.award_points(user, addon, status or addon.status)
 
-    def test_get_event_by_type(self):
-        self.addon.type = amo.ADDON_EXTENSION
-        eq_(ReviewerScore.get_event_by_type(self.addon),
-            amo.REVIEWED_ADDON_UPDATED)
-        eq_(ReviewerScore.get_event_by_type(self.addon, 'nominated'),
-            amo.REVIEWED_ADDON_FULL)
-        eq_(ReviewerScore.get_event_by_type(self.addon, 'preliminary'),
-            amo.REVIEWED_ADDON_PRELIM)
+    def check_event(self, type, status, event, **kwargs):
+        self.addon.type = type
+        eq_(ReviewerScore.get_event(self.addon, status, **kwargs), event, (
+            'Score event for type:%s and status:%s was not %s' % (
+                type, status, event)))
 
-        self.addon.type = amo.ADDON_THEME
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_THEME)
+    def test_events_addons(self):
+        types = {
+            amo.ADDON_ANY: None,
+            amo.ADDON_EXTENSION: 'ADDON',
+            amo.ADDON_THEME: 'THEME',
+            amo.ADDON_DICT: 'DICT',
+            amo.ADDON_SEARCH: 'SEARCH',
+            amo.ADDON_LPAPP: 'LP',
+            amo.ADDON_LPADDON: 'LP',
+            amo.ADDON_PLUGIN: 'ADDON',
+            amo.ADDON_API: 'ADDON',
+            amo.ADDON_PERSONA: 'PERSONA',
+            # WEBAPP is special cased below.
+        }
+        statuses = {
+            amo.STATUS_NULL: None,
+            amo.STATUS_UNREVIEWED: 'PRELIM',
+            amo.STATUS_PENDING: None,
+            amo.STATUS_NOMINATED: 'FULL',
+            amo.STATUS_PUBLIC: 'UPDATE',
+            amo.STATUS_DISABLED: None,
+            amo.STATUS_LISTED: None,
+            amo.STATUS_BETA: None,
+            amo.STATUS_LITE: 'PRELIM',
+            amo.STATUS_LITE_AND_NOMINATED: 'FULL',
+            amo.STATUS_PURGATORY: None,
+            amo.STATUS_DELETED: None,
+            amo.STATUS_REJECTED: None,
+            amo.STATUS_PUBLIC_WAITING: None,
+            amo.STATUS_REVIEW_PENDING: None,
+            amo.STATUS_BLOCKED: None,
+        }
+        for tk, tv in types.items():
+            for sk, sv in statuses.items():
+                try:
+                    event = getattr(amo, 'REVIEWED_%s_%s' % (tv, sv))
+                except AttributeError:
+                    try:
+                        event = getattr(amo, 'REVIEWED_%s' % tv)
+                    except AttributeError:
+                        event = None
+                self.check_event(tk, sk, event)
 
-        self.addon.type = amo.ADDON_DICT
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_DICT)
+    def test_events_webapps(self):
+        self.addon = amo.tests.app_factory()
+        self.check_event(self.addon.type, amo.STATUS_PENDING,
+                         amo.REVIEWED_WEBAPP_HOSTED)
 
-        self.addon.type = amo.ADDON_SEARCH
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_SEARCH)
+        RereviewQueue.objects.create(addon=self.addon)
+        self.check_event(self.addon.type, amo.STATUS_PUBLIC,
+                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
+        RereviewQueue.objects.all().delete()
 
-        self.addon.type = amo.ADDON_LPAPP
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_LP)
-
-        self.addon.type = amo.ADDON_LPADDON
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_LP)
-
-        self.addon.type = amo.ADDON_PLUGIN
-        eq_(ReviewerScore.get_event_by_type(self.addon), None)
-
-        self.addon.type = amo.ADDON_API
-        eq_(ReviewerScore.get_event_by_type(self.addon), None)
-
-        self.addon.type = amo.ADDON_PERSONA
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_PERSONA)
-
-        self.addon.type = amo.ADDON_WEBAPP
-        eq_(ReviewerScore.get_event_by_type(self.addon), amo.REVIEWED_WEBAPP)
+        self.addon.is_packaged = True
+        self.check_event(self.addon.type, amo.STATUS_PENDING,
+                         amo.REVIEWED_WEBAPP_PACKAGED)
+        self.check_event(self.addon.type, amo.STATUS_PUBLIC,
+                         amo.REVIEWED_WEBAPP_UPDATE)
 
     def test_award_points(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
         self._give_points()
         eq_(ReviewerScore.objects.all()[0].score,
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_total(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
-        self._give_points(event=amo.REVIEWED_ADDON_PRELIM)
-        self._give_points(user=user2)
+        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         eq_(ReviewerScore.get_total(self.user),
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
@@ -400,12 +424,10 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_recent(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         time.sleep(1)  # Wait 1 sec so ordering by created is checked.
-        self._give_points(event=amo.REVIEWED_ADDON_PRELIM)
+        self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2)
         scores = ReviewerScore.get_recent(self.user)
         eq_(len(scores), 2)
@@ -413,12 +435,10 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(scores[1].score, amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
-        self._give_points(event=amo.REVIEWED_ADDON_PRELIM)
-        self._give_points(user=user2)
+        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         eq_(leaders['user_rank'], 1)
         eq_(leaders['leader_near'], [])
@@ -433,22 +453,20 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards_last(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
         users = list(UserProfile.objects.all())
         last_user = users.pop(len(users) - 1)
         for u in users:
             self._give_points(user=u)
         # Last user gets lower points by reviewing a persona.
-        self._give_points(user=last_user, event=amo.REVIEWED_PERSONA)
+        addon = self.addon
+        addon.type = amo.ADDON_PERSONA
+        self._give_points(user=last_user, addon=addon)
         leaders = ReviewerScore.get_leaderboards(last_user)
         eq_(leaders['user_rank'], 6)
         eq_(len(leaders['leader_top']), 3)
         eq_(len(leaders['leader_near']), 2)
 
     def test_caching(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
         self._give_points()
 
         with self.assertNumQueries(1):

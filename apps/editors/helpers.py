@@ -169,7 +169,7 @@ class EditorQueueTable(SQLTable, ItemStateTable):
     platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
                               sortable=False)
     additional_info = tables.Column(
-            verbose_name=_lazy(u'Additional'), sortable=False)
+        verbose_name=_lazy(u'Additional'), sortable=False)
 
     def render_addon_name(self, row):
         url = '%s?num=%s' % (reverse('editors.review',
@@ -177,8 +177,8 @@ class EditorQueueTable(SQLTable, ItemStateTable):
                              self.item_number)
         self.increment_item()
         return u'<a href="%s">%s <em>%s</em></a>' % (
-                    url, jinja2.escape(row.addon_name),
-                    jinja2.escape(row.latest_version))
+            url, jinja2.escape(row.addon_name),
+            jinja2.escape(row.latest_version))
 
     def render_addon_type_id(self, row):
         return amo.ADDON_TYPE[row.addon_type_id]
@@ -517,8 +517,8 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % app
         data['addon_type'] = (_lazy('add-on'))
         send_mail('editors/emails/%s.ltxt' % template,
-                   subject % (self.addon.name, self.version.version),
-                   emails, Context(data), perm_setting='editor_reviewed')
+                  subject % (self.addon.name, self.version.version),
+                  emails, Context(data), perm_setting='editor_reviewed')
 
     def get_context_data(self):
         return {'name': self.addon.name,
@@ -540,18 +540,18 @@ class ReviewBase(object):
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         send_mail('editors/emails/info.ltxt',
-                   u'Mozilla Add-ons: %s %s' %
-                   (self.addon.name, self.version.version),
-                   emails, Context(self.get_context_data()),
-                   perm_setting='individual_contact')
+                  u'Mozilla Add-ons: %s %s' %
+                  (self.addon.name, self.version.version),
+                  emails, Context(self.get_context_data()),
+                  perm_setting='individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % (self.addon))
         send_mail('editors/emails/super_review.ltxt',
-                   u'Super review requested: %s' % (self.addon.name),
-                   [settings.SENIOR_EDITORS_EMAIL],
-                   Context(self.get_context_data()))
+                  u'Super review requested: %s' % (self.addon.name),
+                  [settings.SENIOR_EDITORS_EMAIL],
+                  Context(self.get_context_data()))
 
     def process_comment(self):
         self.version.update(has_editor_comment=True)
@@ -575,6 +575,9 @@ class ReviewAddon(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
+        # Hold onto the status before we change it.
+        status = self.addon.status
+
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
@@ -590,11 +593,13 @@ class ReviewAddon(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon, self.review_type)
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
+
+        # Hold onto the status before we change it.
+        status = self.addon.status
 
         if (not self.is_upgrade or
             not self.addon.versions.exclude(id=self.version.id)
@@ -613,10 +618,16 @@ class ReviewAddon(ReviewBase):
         log.info(u'Making %s disabled' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
 
+        # Assign reviewer incentive scores.
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+
     def process_preliminary(self):
         """Set an addon to preliminary."""
         if self.addon.is_premium():
             raise AssertionError('Premium add-ons cannot become preliminary.')
+
+        # Hold onto the status before we change it.
+        status = self.addon.status
 
         changes = {'status': amo.STATUS_LITE}
         if (self.addon.status in (amo.STATUS_PUBLIC,
@@ -625,7 +636,7 @@ class ReviewAddon(ReviewBase):
 
         template = '%s_to_preliminary' % self.review_type
         if (self.review_type == 'preliminary' and
-            self.addon.status == amo.STATUS_LITE_AND_NOMINATED):
+                self.addon.status == amo.STATUS_LITE_AND_NOMINATED):
             template = 'nominated_to_nominated'
 
         self.set_addon(**changes)
@@ -640,8 +651,7 @@ class ReviewAddon(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon, 'preliminary')
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
     def process_super_review(self):
         """Give an addon super review."""
@@ -662,6 +672,9 @@ class ReviewFiles(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
+        # Hold onto the status before we change it.
+        status = self.addon.status
+
         self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
                        copy_to_mirror=True)
 
@@ -675,11 +688,13 @@ class ReviewFiles(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon, self.review_type)
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addons files to sandbox."""
+        # Hold onto the status before we change it.
+        status = self.addon.status
+
         self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
                        hide_disabled_file=True)
 
@@ -692,10 +707,16 @@ class ReviewFiles(ReviewBase):
                   ', '.join([f.filename for f in self.data['addon_files']])))
         log.info(u'Sending email for %s' % (self.addon))
 
+        # Assign reviewer incentive scores.
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+
     def process_preliminary(self):
         """Set an addons files to preliminary."""
         if self.addon.is_premium():
             raise AssertionError('Premium add-ons cannot become preliminary.')
+
+        # Hold onto the status before we change it.
+        status = self.addon.status
 
         self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
@@ -710,8 +731,7 @@ class ReviewFiles(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon, self.review_type)
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""

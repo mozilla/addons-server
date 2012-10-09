@@ -15,7 +15,6 @@ from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 import requests
-import waffle
 
 import amo
 import amo.tests
@@ -716,9 +715,9 @@ class TestReviewTransaction(amo.tests.TestCase):
             self.client.login(username='editor@mozilla.com',
                               password='password')
             self.client.post(
-                    reverse('reviewers.apps.review', args=[self.app.app_slug]),
-                    {'action': 'public', 'comments': 'something',
-                     'addon_files': files})
+                reverse('reviewers.apps.review', args=[self.app.app_slug]),
+                {'action': 'public', 'comments': 'something',
+                 'addon_files': files})
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
 
@@ -760,8 +759,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
 
     @mock.patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_cannot_review_my_app(self):
-        AddonUser.objects.create(addon=self.app,
-            user=UserProfile.objects.get(username='editor'))
+        AddonUser.objects.create(
+            addon=self.app, user=UserProfile.objects.get(username='editor'))
         res = self.client.head(self.url)
         self.assert3xx(res, reverse('reviewers.home'))
         res = self.client.post(self.url)
@@ -804,9 +803,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         assert url in body, 'Could not find apps detail URL in %s' % msg
 
     def _check_log(self, action):
-        assert AppLog.objects.filter(addon=self.app,
-                        activity_log__action=action.id).exists(), (
-            "Didn't find `%s` action in logs." % action.short)
+        assert AppLog.objects.filter(
+            addon=self.app, activity_log__action=action.id).exists(), (
+                "Didn't find `%s` action in logs." % action.short)
 
     def _check_score(self, reviewed_type):
         scores = ReviewerScore.objects.all()
@@ -822,8 +821,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         assert '&lt;script&gt;alert' in res.content
 
     def test_pending_to_public(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         files = list(self.version.files.values_list('id', flat=True))
         self.post({
             'action': 'public',
@@ -841,7 +839,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP)
+        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_signs(self, sign):
@@ -854,8 +852,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_public_no_mozilla_contact(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         files = list(self.version.files.values_list('id', flat=True))
         self.app.update(mozilla_contact='')
         self.post({
@@ -874,11 +871,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved', with_mozilla_contact=False)
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP)
+        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     def test_pending_to_public_waiting(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         files = list(self.version.files.values_list('id', flat=True))
         self.get_app().update(make_public=amo.PUBLIC_WAIT)
         self.post({
@@ -898,7 +894,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP)
+        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign):
@@ -911,6 +907,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_reject(self):
+        self.create_switch(name='reviewer-incentive-points')
         files = list(self.version.files.values_list('id', flat=True))
         self.post({'action': 'reject', 'comments': 'suxor'})
         app = self.get_app()
@@ -922,6 +919,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     def test_multiple_versions_reject_hosted(self):
         self.app.update(status=amo.STATUS_PUBLIC)
@@ -947,6 +945,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email_body(msg)
 
     def test_multiple_versions_reject_packaged(self):
+        self.create_switch(name='reviewer-incentive-points')
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
@@ -968,6 +967,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
     def test_pending_to_escalation(self):
         self.post({'action': 'escalate', 'comments': 'soup her man'})
@@ -1024,6 +1024,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email_body(msg)
 
     def test_escalation_to_reject(self):
+        self.create_switch(name='reviewer-incentive-points')
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, amo.STATUS_PENDING)
         files = list(self.version.files.values_list('id', flat=True))
@@ -1044,6 +1045,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     def test_escalation_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -1083,6 +1085,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         eq_(len(mail.outbox), 0)
 
     def test_rereview_to_reject(self):
+        self.create_switch(name='reviewer-incentive-points')
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         files = list(self.version.files.values_list('id', flat=True))
@@ -1101,6 +1104,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -1791,7 +1795,7 @@ class TestThemeReviewQueue(amo.tests.TestCase):
             ThemeLock.objects.create(
                 theme=theme, reviewer=reviewer,
                 expiry=datetime.datetime.now() +
-                       datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
+                datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
             form_data['form-%s-theme' % index] = str(theme.id)
 
         # moreinfo

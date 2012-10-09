@@ -8,7 +8,6 @@ from django.conf import settings
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -427,8 +426,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     def test_nomination_to_public_new_addon(self):
         """ Make sure new add-ons can be made public (bug 637959) """
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
 
@@ -457,8 +455,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
     def test_nomination_to_public(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_public()
@@ -489,8 +486,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self.to_preliminary_premium(helpers.NOMINATED_STATUSES)
 
     def test_nomination_to_preliminary(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -569,8 +565,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self.to_preliminary_premium(helpers.PRELIMINARY_STATUSES)
 
     def test_preliminary_to_preliminary(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -655,8 +650,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_pending_to_public(self):
-        waffle.models.Switch.objects.create(name='reviewer-incentive-points',
-                                            active=True)
+        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
             self.create_paths()
@@ -671,7 +665,8 @@ class TestReviewHelper(amo.tests.TestCase):
             assert storage.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
-            self._check_score(amo.REVIEWED_ADDON_UPDATED)
+            if status == amo.STATUS_PUBLIC:
+                self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
     def test_pending_to_sandbox(self):
         for status in helpers.PENDING_STATUSES:
@@ -739,8 +734,8 @@ class TestReviewHelper(amo.tests.TestCase):
         for status in REVIEW_ADDON_STATUSES:
             for process in ['process_sandbox', 'process_preliminary',
                             'process_public']:
-                if (status == amo.STATUS_UNREVIEWED
-                    and process == 'process_public'):
+                if (status == amo.STATUS_UNREVIEWED and
+                        process == 'process_public'):
                     continue
                 self.version.update(reviewed=None)
                 self.setup_data(status)
@@ -755,7 +750,7 @@ class TestReviewHelper(amo.tests.TestCase):
                 self.setup_data(status)
                 getattr(self.helper.handler, process)()
                 assert File.objects.get(pk=self.file.pk).reviewed, (
-                       'Reviewed for status %r, %s()' % (status, process))
+                    'Reviewed for status %r, %s()' % (status, process))
 
 
 def test_page_title_unicode():

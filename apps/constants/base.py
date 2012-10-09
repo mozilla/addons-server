@@ -32,8 +32,8 @@ STATUS_CHOICES = {
     STATUS_LISTED: _(u'Listed'),
     STATUS_BETA: _(u'Beta'),
     STATUS_LITE: _(u'Preliminarily Reviewed'),
-    STATUS_LITE_AND_NOMINATED:
-        _(u'Preliminarily Reviewed and Awaiting Full Review'),
+    STATUS_LITE_AND_NOMINATED: _(
+        u'Preliminarily Reviewed and Awaiting Full Review'),
     STATUS_PURGATORY: _(u'Pending a review choice'),
     STATUS_DELETED: _(u'Deleted'),
     STATUS_REJECTED: _(u'Rejected'),
@@ -391,40 +391,74 @@ APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 # Reviewer Incentive Scores.
 # Note: Don't change these since they're used as keys in the database.
 REVIEWED_MANUAL = 0
-REVIEWED_ADDON_FULL = 1
-REVIEWED_ADDON_PRELIM = 2
-REVIEWED_ADDON_UPDATED = 3
-REVIEWED_DICT = 4
-REVIEWED_LP = 5
-REVIEWED_PERSONA = 6
-REVIEWED_SEARCH = 7
-REVIEWED_THEME = 8
-REVIEWED_WEBAPP = 9
+REVIEWED_ADDON_FULL = 10
+REVIEWED_ADDON_PRELIM = 11
+REVIEWED_ADDON_UPDATE = 12
+REVIEWED_DICT_FULL = 20
+REVIEWED_DICT_PRELIM = 21
+REVIEWED_DICT_UPDATE = 22
+REVIEWED_LP_FULL = 30
+REVIEWED_LP_PRELIM = 31
+REVIEWED_LP_UPDATE = 32
+REVIEWED_PERSONA = 40
+# TODO: Leaving room for persona points based on queue.
+REVIEWED_SEARCH_FULL = 50
+REVIEWED_SEARCH_PRELIM = 51
+REVIEWED_SEARCH_UPDATE = 52
+REVIEWED_THEME_FULL = 60
+REVIEWED_THEME_PRELIM = 61
+REVIEWED_THEME_UPDATE = 62
+REVIEWED_WEBAPP_HOSTED = 70
+REVIEWED_WEBAPP_PACKAGED = 71
+REVIEWED_WEBAPP_REREVIEW = 72
+REVIEWED_WEBAPP_UPDATE = 73
 
 REVIEWED_CHOICES = {
     REVIEWED_MANUAL: _('Manual Reviewer Points'),
     REVIEWED_ADDON_FULL: _('Full Add-on Review'),
     REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
-    REVIEWED_ADDON_UPDATED: _('Updated Add-on Review'),
-    REVIEWED_DICT: _('Dictionary Review'),
-    REVIEWED_LP: _('Language Pack Review'),
+    REVIEWED_ADDON_UPDATE: _('Updated Add-on Review'),
+    REVIEWED_DICT_FULL: _('Full Dictionary Review'),
+    REVIEWED_DICT_PRELIM: _('Preliminary Dictionary Review'),
+    REVIEWED_DICT_UPDATE: _('Updated Dictionary Review'),
+    REVIEWED_LP_FULL: _('Full Language Pack Review'),
+    REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
+    REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
     REVIEWED_PERSONA: _('Persona Review'),
-    REVIEWED_SEARCH: _('Search Provider Review'),
-    REVIEWED_THEME: _('Theme Review'),
-    REVIEWED_WEBAPP: _('App Review'),
+    REVIEWED_SEARCH_FULL: _('Full Search Provider Review'),
+    REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
+    REVIEWED_SEARCH_UPDATE: _('Updated Search Provider Review'),
+    REVIEWED_THEME_FULL: _('Full Theme Review'),
+    REVIEWED_THEME_PRELIM: _('Preliminary Theme Review'),
+    REVIEWED_THEME_UPDATE: _('Updated Theme Review'),
+    REVIEWED_WEBAPP_HOSTED: _('Web App Review'),
+    REVIEWED_WEBAPP_PACKAGED: _('Packaged App Review'),
+    REVIEWED_WEBAPP_REREVIEW: _('Web App Re-review'),
+    REVIEWED_WEBAPP_UPDATE: _('Updated Packaged App Review'),
 }
 
 REVIEWED_SCORES = {
     REVIEWED_MANUAL: 0,
     REVIEWED_ADDON_FULL: 120,
     REVIEWED_ADDON_PRELIM: 60,
-    REVIEWED_ADDON_UPDATED: 80,
-    REVIEWED_DICT: 30,
-    REVIEWED_LP: 30,
+    REVIEWED_ADDON_UPDATE: 80,
+    REVIEWED_DICT_FULL: 60,
+    REVIEWED_DICT_PRELIM: 20,
+    REVIEWED_DICT_UPDATE: 60,
+    REVIEWED_LP_FULL: 60,
+    REVIEWED_LP_PRELIM: 20,
+    REVIEWED_LP_UPDATE: 60,
     REVIEWED_PERSONA: 5,
-    REVIEWED_SEARCH: 60,
-    REVIEWED_THEME: 80,
-    REVIEWED_WEBAPP: 60,
+    REVIEWED_SEARCH_FULL: 30,
+    REVIEWED_SEARCH_PRELIM: 10,
+    REVIEWED_SEARCH_UPDATE: 30,
+    REVIEWED_THEME_FULL: 80,
+    REVIEWED_THEME_PRELIM: 40,
+    REVIEWED_THEME_UPDATE: 80,
+    REVIEWED_WEBAPP_HOSTED: 60,
+    REVIEWED_WEBAPP_PACKAGED: 120,
+    REVIEWED_WEBAPP_REREVIEW: 30,
+    REVIEWED_WEBAPP_UPDATE: 80,
 }
 
 # Percentage of what developers earn after Marketplace's cut.

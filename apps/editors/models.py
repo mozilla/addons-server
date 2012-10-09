@@ -233,8 +233,8 @@ class ViewFullReviewQueue(ViewQueue):
         })
         q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
                            'addons.status IN (%s, %s)' % (
-                                            amo.STATUS_NOMINATED,
-                                            amo.STATUS_LITE_AND_NOMINATED)])
+                               amo.STATUS_NOMINATED,
+                               amo.STATUS_LITE_AND_NOMINATED)])
         return q
 
 
@@ -269,8 +269,8 @@ class ViewPreliminaryQueue(VersionSpecificQueue):
         q = super(ViewPreliminaryQueue, self).base_query()
         q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
                            'addons.status IN (%s, %s)' % (
-                                            amo.STATUS_LITE,
-                                            amo.STATUS_UNREVIEWED)])
+                               amo.STATUS_LITE,
+                               amo.STATUS_UNREVIEWED)])
         return q
 
 
@@ -284,10 +284,9 @@ class ViewFastTrackQueue(VersionSpecificQueue):
                            'files.requires_chrome = 0',
                            'files.status = %s' % amo.STATUS_UNREVIEWED,
                            'addons.status IN (%s, %s, %s, %s)' % (
-                                            amo.STATUS_LITE,
-                                            amo.STATUS_UNREVIEWED,
-                                            amo.STATUS_NOMINATED,
-                                            amo.STATUS_LITE_AND_NOMINATED)])
+                               amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+                               amo.STATUS_NOMINATED,
+                               amo.STATUS_LITE_AND_NOMINATED)])
         return q
 
 
@@ -314,7 +313,7 @@ class PerformanceGraph(ViewQueue):
                 'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)'],
             'where': ['log_activity.action in (%s)' % ','.join(review_ids)],
             'group_by': 'yearmonth, user_id'
-            }
+        }
 
 
 class EditorSubscription(amo.models.ModelBase):
@@ -386,47 +385,71 @@ class ReviewerScore(amo.models.ModelBase):
             return '%s:%s' % (ns_key, key)
 
     @classmethod
-    def get_event_by_type(cls, addon, review_type=None):
-        if addon.type == amo.ADDON_EXTENSION:
-            # Special case for addons depending on review_type.
-            if review_type == 'nominated':
-                return amo.REVIEWED_ADDON_FULL
-            elif review_type == 'preliminary':
-                return amo.REVIEWED_ADDON_PRELIM
-            else:
-                return amo.REVIEWED_ADDON_UPDATED
-        elif addon.type == amo.ADDON_DICT:
-            return amo.REVIEWED_DICT
-        elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON]:
-            return amo.REVIEWED_LP
+    def get_event(cls, addon, status, **kwargs):
+        """Return the review event type constant.
+
+        This is determined by the addon.type and the queue the addon is
+        currently in (which is determined from the status).
+
+        Note: We're not using addon.status because this is called after the
+        status has been updated by the reviewer action.
+
+        """
+        queue = ''
+        if status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
+            queue = 'PRELIM'
+        elif status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+            queue = 'FULL'
+        elif status == amo.STATUS_PUBLIC:
+            queue = 'UPDATE'
+
+        if (addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN,
+                           amo.ADDON_API] and queue):
+            return getattr(amo, 'REVIEWED_ADDON_%s' % queue)
+        elif addon.type == amo.ADDON_DICT and queue:
+            return getattr(amo, 'REVIEWED_DICT_%s' % queue)
+        elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON] and queue:
+            return getattr(amo, 'REVIEWED_LP_%s' % queue)
         elif addon.type == amo.ADDON_PERSONA:
             return amo.REVIEWED_PERSONA
-        elif addon.type == amo.ADDON_SEARCH:
-            return amo.REVIEWED_SEARCH
-        elif addon.type == amo.ADDON_THEME:
-            return amo.REVIEWED_THEME
+        elif addon.type == amo.ADDON_SEARCH and queue:
+            return getattr(amo, 'REVIEWED_SEARCH_%s' % queue)
+        elif addon.type == amo.ADDON_THEME and queue:
+            return getattr(amo, 'REVIEWED_THEME_%s' % queue)
         elif addon.type == amo.ADDON_WEBAPP:
-            return amo.REVIEWED_WEBAPP
+            if addon.is_packaged:
+                if status == amo.STATUS_PUBLIC:
+                    return amo.REVIEWED_WEBAPP_UPDATE
+                else:  # If it's not PUBLIC, assume it's a new submission.
+                    return amo.REVIEWED_WEBAPP_PACKAGED
+            else:  # It's a hosted app.
+                in_rereview = kwargs.pop('in_rereview', False)
+                if status == amo.STATUS_PUBLIC and in_rereview:
+                    return amo.REVIEWED_WEBAPP_REREVIEW
+                else:
+                    return amo.REVIEWED_WEBAPP_HOSTED
         else:
             return None
 
     @classmethod
-    def award_points(cls, user, addon, event):
-        """Awards points to user based on an event.
+    def award_points(cls, user, addon, status, **kwargs):
+        """Awards points to user based on an event and the queue.
 
         `event` is one of the `REVIEWED_` keys in constants.
+        `status` is one of the `STATUS_` keys in constants.
 
         """
         if not waffle.switch_is_active('reviewer-incentive-points'):
             return
+        event = cls.get_event(addon, status, **kwargs)
         score = amo.REVIEWED_SCORES.get(event)
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event)
             cls.get_key(invalidate=True)
-            user_log.info(u'Awarding %s points to user %s for "%s" for addon'
-                           '%s' % (score, user, amo.REVIEWED_CHOICES[event],
-                                   addon.id))
+            user_log.info(
+                u'Awarding %s points to user %s for "%s" for addon %s' % (
+                    score, user, amo.REVIEWED_CHOICES[event], addon.id))
 
     @classmethod
     def get_total(cls, user):

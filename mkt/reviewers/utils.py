@@ -129,6 +129,9 @@ class ReviewApp(ReviewBase):
         self.files = self.version.files.all()
 
     def process_public(self):
+        # Hold onto the status before we change it.
+        status = self.addon.status
+
         if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
             self.process_public_immediately()
         else:
@@ -138,8 +141,7 @@ class ReviewApp(ReviewBase):
             EscalationQueue.objects.filter(addon=self.addon).delete()
 
         # Assign reviewer incentive scores.
-        event = ReviewerScore.get_event_by_type(self.addon)
-        ReviewerScore.award_points(self.request.amo_user, self.addon, event)
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
     def process_public_waiting(self):
         """Make an app pending."""
@@ -176,6 +178,9 @@ class ReviewApp(ReviewBase):
 
     def process_sandbox(self):
         """Reject an app."""
+        # Hold onto the status before we change it.
+        status = self.addon.status
+
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
         # If this app is not packaged (packaged apps can have multiple
@@ -196,6 +201,10 @@ class ReviewApp(ReviewBase):
 
         log.info(u'Making %s disabled' % self.addon)
         log.info(u'Sending email for %s' % self.addon)
+
+        # Assign reviewer incentive scores.
+        ReviewerScore.award_points(self.request.amo_user, self.addon, status,
+                                   in_rereview=self.in_rereview)
 
     def process_escalate(self):
         """Ask for escalation for an app."""
