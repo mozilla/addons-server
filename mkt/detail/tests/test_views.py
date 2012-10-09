@@ -17,6 +17,7 @@ import waffle
 import amo
 import amo.tests
 from abuse.models import AbuseReport
+from access.models import GroupUser
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from amo.helpers import external_url, urlparams
 from amo.urlresolvers import reverse
@@ -85,11 +86,26 @@ class TestDetail(DetailBase):
         eq_(doc('.button.product').length, 1)
         eq_(doc('.manage').length, 1)
 
-    def test_free_install_button_for_reviewer(self):
+    def test_free_install_button_for_app_reviewer(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         doc = self.get_pq()
+        eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
+            self.dev_receipt_url())
         eq_(doc('.button.product').length, 1)
+        eq_(doc('.product.install').length, 1)
+        eq_(doc('.manage').length, 0)
+
+    def test_free_install_button_for_addon_reviewer(self):
+        self.make_premium(self.app)
+        GroupUser.objects.filter(group__name='App Reviewers').delete()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
+            urlparams(self.app.get_detail_url('record'), src='mkt-detail'))
+        eq_(doc('.button.product').length, 1)
+        eq_(doc('.product.install').length, 0)
         eq_(doc('.manage').length, 0)
 
     def test_paid_install_button_for_anon(self):
@@ -132,6 +148,29 @@ class TestDetail(DetailBase):
             self.dev_receipt_url())
         eq_(doc('.product.install.premium').length, 1)
         eq_(doc('.manage').length, 1)
+
+    def test_paid_install_button_for_app_reviewer(self):
+        self.make_premium(self.app)
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
+            self.dev_receipt_url())
+        eq_(doc('button.product.premium').length, 1)
+        eq_(doc('button.product.install.premium').length, 0)
+        eq_(doc('.manage').length, 1)
+
+    def test_paid_install_button_for_addon_reviewer(self):
+        self.make_premium(self.app)
+        GroupUser.objects.filter(group__name='App Reviewers').delete()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        doc = self.get_pq()
+        eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
+            urlparams(self.app.get_detail_url('record'), src='mkt-detail'))
+        eq_(doc('button.product.premium').length, 1)
+        eq_(doc('button.product.install.premium').length, 0)
+        eq_(doc('.manage').length, 0)
 
     def test_tile_ratings_link(self):
         # Assert that we have the link to the ratings page in the header tile.

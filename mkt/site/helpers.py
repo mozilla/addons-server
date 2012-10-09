@@ -188,7 +188,7 @@ def market_tile(context, product, link=True, src=''):
                      product.pk in request.amo_user.purchase_ids())
 
         is_dev = product.has_author(request.amo_user)
-        is_reviewer = acl.check_reviewer(request)
+        is_reviewer = acl.action_allowed(request, 'Apps', 'Review')
         receipt_type = 'developer' if is_dev or is_reviewer else None
         product_dict = product_as_dict(request, product, purchased=purchased,
                                        receipt_type=receipt_type, src=src)
