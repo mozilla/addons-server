@@ -392,13 +392,6 @@ def pad_missing_stats(days, group, date_range=None, fields=None):
     return dummy_dicts
 
 
-def dbg(s):
-    """
-    Debug information to a file, useful to debug ajax functions (get_series)
-    """
-    open('debug', 'a').write('\n' + str(s) + '\n')
-
-
 @json_view
 def fake_app_stats(request, addon, group, start, end, format):
     from time import strftime
