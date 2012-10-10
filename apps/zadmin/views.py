@@ -620,11 +620,15 @@ def email_devs(request):
         preview_csv = None
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        listed = amo.LISTED_STATUSES
         qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
-                                                 amo.AUTHOR_ROLE_OWNER),
-                                       addon__status__in=listed)
+                                                 amo.AUTHOR_ROLE_OWNER))
                                .exclude(user__email=None))
+
+        if data['recipients'] in ('payments', 'desktop_apps'):
+            qs = qs.exclude(addon__status=amo.STATUS_DELETED)
+        else:
+            qs = qs.filter(addon__status__in=amo.LISTED_STATUSES)
+
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)
         elif data['recipients'] == 'payments':

@@ -33,6 +33,7 @@ from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import ApplicationsVersions, Version
 from zadmin import forms, tasks
+from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
 from zadmin.views import completed_versions_dirty, find_files
 
@@ -1930,6 +1931,18 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
+        mail.outbox = []
+        self.addon.update(status=amo.STATUS_PENDING)
+        res = self.post(recipients='payments')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
+        mail.outbox = []
+        self.addon.update(status=amo.STATUS_DELETED)
+        res = self.post(recipients='payments')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+
     def test_only_desktop_apps(self):
         from addons.models import AddonDeviceType
         self.addon.update(type=amo.ADDON_WEBAPP)
@@ -1939,11 +1952,24 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
+        mail.outbox = []
         AddonDeviceType.objects.create(addon=self.addon,
             device_type=amo.DEVICE_DESKTOP.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
+
+        mail.outbox = []
+        self.addon.update(status=amo.STATUS_PENDING)
+        res = self.post(recipients='desktop_apps')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
+        mail.outbox = []
+        self.addon.update(status=amo.STATUS_DELETED)
+        res = self.post(recipients='desktop_apps')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
 
     def test_only_apps(self):
         self.addon.update(type=amo.ADDON_WEBAPP)
@@ -1951,11 +1977,21 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
-    def test_ignore_deleted(self):
+    def test_ignore_deleted_always(self):
         self.addon.update(status=amo.STATUS_DELETED)
-        res = self.post()
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
+        for name, label in DevMailerForm._choices:
+            res = self.post(recipients=name)
+            self.assertNoFormErrors(res)
+            eq_(len(mail.outbox), 0)
+
+    def test_exclude_pending_for_addons(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        for name, label in DevMailerForm._choices:
+            if name in ('payments', 'desktop_apps'):
+                continue
+            res = self.post(recipients=name)
+            self.assertNoFormErrors(res)
+            eq_(len(mail.outbox), 0)
 
 
 class TestPerms(amo.tests.TestCase):
