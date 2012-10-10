@@ -447,16 +447,18 @@ class TestDetails(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def upload_preview(self, image_file=None):
+        if not image_file:
+            image_file = get_image_path('preview.jpg')
         return self._upload_image(self.webapp.get_dev_url('upload_preview'),
                                   image_file=image_file)
 
     def upload_icon(self, image_file=None):
+        if not image_file:
+            image_file = get_image_path('mozilla-sq.png')
         return self._upload_image(self.webapp.get_dev_url('upload_icon'),
                                   image_file=image_file)
 
-    def _upload_image(self, url, image_file=None):
-        if not image_file:
-            image_file = get_image_path('non-animated.png')
+    def _upload_image(self, url, image_file):
         with open(image_file, 'rb') as data:
             rp = self.client.post(url, {'upload_image': data})
         eq_(rp.status_code, 200)
