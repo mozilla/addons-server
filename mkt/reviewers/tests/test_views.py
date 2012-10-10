@@ -1132,6 +1132,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         eq_(len(mail.outbox), 0)
 
     def test_clear_rereview(self):
+        self.create_switch(name='reviewer-incentive-points')
         self.app.update(status=amo.STATUS_PUBLIC)
         RereviewQueue.objects.create(addon=self.app)
         self.post({'action': 'clear_rereview', 'comments': 'all clear'},
@@ -1140,6 +1141,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_log(amo.LOG.REREVIEW_CLEARED)
         # Ensure we don't send email on clearing re-reviews..
         eq_(len(mail.outbox), 0)
+        self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_escalation(self):
         RereviewQueue.objects.create(addon=self.app)

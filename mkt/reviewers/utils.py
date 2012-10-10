@@ -228,6 +228,9 @@ class ReviewApp(ReviewBase):
         RereviewQueue.objects.filter(addon=self.addon).delete()
         self.log_action(amo.LOG.REREVIEW_CLEARED)
         log.info(u'Re-review cleared for app: %s' % self.addon)
+        # Assign reviewer incentive scores.
+        ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                   self.addon.status, in_rereview=True)
 
     def process_disable(self):
         """Disables app."""
