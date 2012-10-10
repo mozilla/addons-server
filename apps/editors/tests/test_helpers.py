@@ -505,7 +505,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
 
-            self._check_score(amo.REVIEWED_ADDON_PRELIM)
+            self._check_score(amo.REVIEWED_ADDON_FULL)
 
     def test_nomination_to_sandbox(self):
         for status in helpers.NOMINATED_STATUSES:
