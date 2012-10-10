@@ -67,7 +67,7 @@ def schematic(ctx):
 def update_code(ctx, ref='origin/master'):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git fetch && git fetch -t")
-        ctx.local("git checkout -f %s" % ref)
+        ctx.local("git reset --hard %s" % ref)
         ctx.local("git submodule sync")
         ctx.local("git submodule update --init --recursive")
         # Recursively run submodule sync and update to get all the right repo URLs.
