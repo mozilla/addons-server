@@ -31,19 +31,25 @@
         }
         &:after {
             .border-radius(0 4px 4px 0);
-            border: 18px solid rgba(0,0,0,.4);
+            .transition(right 0.3s ease);
+            border: 30px solid rgba(0, 0, 0, .4);
+            border-bottom-color: transparent;
             border-left-color: transparent;
             content: "";
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform-origin: right top;
+            -webkit-transform-origin: right top;
             display: block;
             position: absolute;
-            top: 0;
-            right: 1px;
-            height: 0;
-            width: 0;
+            top: 50%;
+            right: -22px;
+            height: 300px;
+            width: 300px;
         }
         &:hover, &.hovered {
             &:after {
-                border-right-width: 5px;
+                right: -30px;
             }
         }
     }
