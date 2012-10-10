@@ -5,7 +5,6 @@ from urlparse import urlparse
 from django import http
 from django.conf import settings
 from django.core.exceptions import SuspiciousOperation
-from django.core.urlresolvers import NoReverseMatch
 from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
@@ -331,14 +330,13 @@ def browserid_authenticate(request, assertion):
               '<a href="https://developer.mozilla.org/en-US/apps">'
               'Learn more</a>')
         return (None, _m)
+    source = (amo.LOGIN_SOURCE_MMO_BROWSERID if settings.MARKETPLACE else
+              amo.LOGIN_SOURCE_AMO_BROWSERID)
     profile = UserProfile.objects.create(username=username, email=email,
-                                         source=amo.LOGIN_SOURCE_BROWSERID,
-                                         display_name=username)
+                                         source=source, display_name=username)
 
     profile.create_django_user()
     profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
-    if settings.APP_PREVIEW:
-        profile.notes = '__market__'
     profile.user.save()
     profile.save()
     log_cef('New Account', 5, request, username=username,
@@ -651,7 +649,7 @@ def register(request):
         elif mkt_user.exists():
             # Handle BrowserID
             if (mkt_user.count() == 1 and
-                mkt_user[0].source == amo.LOGIN_SOURCE_BROWSERID):
+                mkt_user[0].source in amo.LOGIN_SOURCE_BROWSERIDS):
                 messages.info(request, _('You already have an account.'))
                 form = None
             else:

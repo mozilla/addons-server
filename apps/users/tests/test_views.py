@@ -670,15 +670,6 @@ class TestLogin(UserViewBase):
         eq_(profiles[0].display_name, 'newuser')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch.object(settings, 'APP_PREVIEW', True)
-    @patch('requests.post')
-    def test_browserid_mark_as_market(self, http_request):
-        email = 'newuser@example.com'
-        self._browserid_login(email, http_request)
-        profile = UserProfile.objects.get(email=email)
-        assert '__market__' in profile.notes
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     def test_browserid_no_mark_as_market(self, http_request):
         email = 'newuser@example.com'
@@ -810,6 +801,28 @@ class TestLogin(UserViewBase):
         eq_(profiles[0].display_name, 'jbalogh2')
         # Note: lower level unit tests for this functionality are in
         # TestAutoCreateUsername()
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('requests.post')
+    def create_profile(self, http_request):
+        email = 'override-user@example.com'
+        http_request.return_value = FakeResponse(200,
+                                                 json.dumps({'status': 'okay',
+                                                             'email': email}))
+        self.client.cookies['reg_override_token'] = 'mozilla'
+        self.client.post(reverse('users.browserid_login'),
+                         data=dict(assertion='fake-assertion',
+                                   audience='fakeamo.org'))
+        return UserProfile.objects.get(email=email)
+
+    def test_amo_source(self):
+        profile = self.create_profile()
+        eq_(profile.source, amo.LOGIN_SOURCE_AMO_BROWSERID)
+
+    @patch.object(settings, 'MARKETPLACE', True)
+    def test_mmo_source(self):
+        profile = self.create_profile()
+        eq_(profile.source, amo.LOGIN_SOURCE_MMO_BROWSERID)
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')

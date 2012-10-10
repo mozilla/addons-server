@@ -464,6 +464,16 @@ REVIEWED_SCORES = {
 # Percentage of what developers earn after Marketplace's cut.
 MKT_CUT = .70
 
-# Login credential source
+# Login credential source. We'll also include the site source in that.
+# All the old existing AMO users and anyone before we started tracking this.
 LOGIN_SOURCE_UNKNOWN = 0
+# Most likely everyone who signed up for the marketplace.
 LOGIN_SOURCE_BROWSERID = 1
+# Everyone who signed up for the marketplace using BrowserID.
+LOGIN_SOURCE_MMO_BROWSERID = 2
+# Everyone who signed up for AMO once it uses BrowserID.
+LOGIN_SOURCE_AMO_BROWSERID = 3
+
+# These are logins that use BrowserID.
+LOGIN_SOURCE_BROWSERIDS = [LOGIN_SOURCE_BROWSERID, LOGIN_SOURCE_AMO_BROWSERID,
+                           LOGIN_SOURCE_MMO_BROWSERID]

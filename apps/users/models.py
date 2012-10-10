@@ -222,7 +222,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @amo.cached_property
     def needs_tougher_password(user):
-        if user.source == amo.LOGIN_SOURCE_BROWSERID:
+        if user.source in amo.LOGIN_SOURCE_BROWSERIDS:
             return False
         from access import acl
         return (acl.action_allowed_user(user, 'Admin', '%') or
@@ -307,7 +307,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def check_password(self, raw_password):
         # BrowserID does not store a password.
-        if self.source == amo.LOGIN_SOURCE_BROWSERID:
+        if self.source in amo.LOGIN_SOURCE_BROWSERIDS:
             return True
         if '$' not in self.password:
             valid = (get_hexdigest('md5', '', raw_password) == self.password)

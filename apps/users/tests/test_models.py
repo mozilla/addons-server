@@ -285,6 +285,23 @@ class TestPasswords(amo.tests.TestCase):
                         (encodestring(self.bytes_), hsh))
         assert u.check_password('password') is True
 
+    def test_browserid_password(self):
+        for source in amo.LOGIN_SOURCE_BROWSERIDS:
+            u = UserProfile(password=self.utf, source=source)
+            assert u.check_password('foo')
+
+        u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
+        assert not u.check_password('foo')
+
+    @patch('access.acl.action_allowed_user')
+    def test_needs_tougher_password(self, action_allowed_user):
+        for source in amo.LOGIN_SOURCE_BROWSERIDS:
+            u = UserProfile(password=self.utf, source=source)
+            assert not u.needs_tougher_password
+
+        u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
+        assert u.needs_tougher_password
+
 
 class TestBlacklistedUsername(amo.tests.TestCase):
     fixtures = ['users/test_backends']
