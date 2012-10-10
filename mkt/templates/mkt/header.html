@@ -14,7 +14,7 @@
         {% set data = {'cat': category.id} if category else request.GET %}
         {% set search_form = SimpleSearchForm(data) %}
         <form method="GET" id="search" action="{{ url('search.search') }}">
-          <input id="search-q" type="text" name="q" autocomplete="off" title=""
+          <input id="search-q" type="search" name="q" autocomplete="off" title=""
                  placeholder="{{ category.name if category else _('Search') }}"
                  data-placeholder-default="{{ _('Search') }}"
                  value="{{ search_form.q.value() }}">
