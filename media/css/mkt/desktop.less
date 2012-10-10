@@ -1,11 +1,5 @@
 @import 'lib';
 
-@media (max-width: @not-desktop) {
-    .categories h2 {
-        display: none;
-    }
-}
-
 @media (min-width: @desktop) {
     #featured-home {
         border-bottom: 1px solid @white;
@@ -16,6 +10,7 @@
         h2 {
             .light-text-shadow;
             color: @dark-gray;
+            display: block;
             font-size: 22px;
             margin-bottom: 15px;
         }
