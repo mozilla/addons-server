@@ -37,7 +37,7 @@
           href="{{ MEDIA_URL }}img/mkt/icons/mkt_icon_144.png">
 
     {% block site_css %}
-      {{ css('mkt/consumer') }}
+      {{ css('mkt/consumer' if request.MOBILE else 'mkt/consumer-desktop') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}

@@ -1,0 +1,54 @@
+@import 'lib';
+
+@media (max-width: @not-desktop) {
+    .categories h2 {
+        display: none;
+    }
+}
+
+@media (min-width: @desktop) {
+    #featured-home {
+        border-bottom: 1px solid @white;
+    }
+
+    .categories {
+        padding: 50px 0 25px;
+        h2 {
+            .light-text-shadow;
+            color: @dark-gray;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .grid li {
+            border-color: transparent;
+            &:nth-child(3n + 1) {
+                // Leftmost tile.
+                border-left: 0;
+            }
+            &:nth-child(3n) {
+                // Rightmost tile.
+                border-right: 0;
+            }
+        }
+    }
+
+    .grid .mkt-tile {
+        &.category {
+            background-color: #d6d9de;
+            h3 {
+                .light-text-shadow;
+                color: @medium-gray;
+                font-weight: 400;
+            }
+            &:hover, &:active {
+                background-color: rgba(255,255,255,.6);
+                h3 {
+                    color: @dark-gray;
+                }
+            }
+            &:active {
+                .depressed;
+            }
+        }
+    }
+}

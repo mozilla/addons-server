@@ -138,6 +138,14 @@ CSS = {
     ),
 }
 
+# Bundle extensions (e.g., desktop).
+CSS.update({
+    'mkt/consumer-desktop': CSS['mkt/consumer'] + (
+        # TODO: Split components into individual, appropriate stylesheets.
+        'css/mkt/desktop.less',
+    ),
+})
+
 JS = {
     'mkt/devreg': (
         'js/lib/jquery-1.7.1.js',
