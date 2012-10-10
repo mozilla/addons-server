@@ -36,3 +36,8 @@ VIRTUAL_ENV = '/data/www/addons-dev.allizom.org/venv'
 PYPI_MIRROR = 'https://mrepo.mozilla.org/pypi/simple/'
 
 PYTHON = '/usr/bin/python2.6'
+
+MARTEAU = '/usr/bin/marteau'
+MARTEAU_USER = None
+MARTEAU_SECRET = None
+MARTEAU_SERVER = None

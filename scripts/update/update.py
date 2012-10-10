@@ -38,6 +38,12 @@ def update_locales(ctx):
         ctx.local("svn up")
         ctx.local("./compile-mo.sh .")
 
+@task
+def loadtest(ctx, repo=''):
+    if hasattr(settings, 'MARTEAU'):
+        os.environ['MACAUTH_USER'] = settings.MARTEAU_USER
+        os.environ['MACAUTH_SECRET'] = settings.MARTEAU_SECRET
+        ctx.local('%s %s --server %s' % (settings.MARTEAU, repo, settings.MARTEAU_SERVER))
 
 @task
 def update_products(ctx):
