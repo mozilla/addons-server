@@ -51,6 +51,18 @@ class TestGlobalStats(amo.tests.TestCase):
         Review.objects.create(addon=addon, user=user)
         eq_(tasks._get_daily_jobs()['apps_review_count_new'](), 1)
 
+    def test_user_total(self):
+        p = UserProfile.objects.create(username='foo',
+                                       source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        p.update(created=datetime.date(2009, 1, 1))
+        eq_(tasks._get_daily_jobs()['mmo_user_count_total'](), 1)
+        eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 0)
+
+    def test_user_new(self):
+        UserProfile.objects.create(username='foo',
+                                   source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 1)
+
 
 class TestTotalContributions(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',

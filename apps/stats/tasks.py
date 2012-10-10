@@ -144,6 +144,12 @@ def _get_daily_jobs(date=None):
         'apps_review_count_new': Review.objects.extra(**addon_extra)
                 .filter(editorreview=0, addon__type=amo.ADDON_WEBAPP).count,
 
+        # New users
+        'mmo_user_count_total': UserProfile.objects.filter(
+                created__lte=date,
+                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
+        'mmo_user_count_new': UserProfile.objects.filter(
+                source=amo.LOGIN_SOURCE_MMO_BROWSERID).extra(**extra).count,
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do

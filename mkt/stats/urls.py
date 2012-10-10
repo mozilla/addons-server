@@ -133,7 +133,8 @@ app_site_patterns = patterns('',
         name='mkt.stats.overall')
 )
 
-keys = ['apps_count_new', 'apps_count_installed', 'apps_review_count_new']
+keys = ['apps_count_new', 'apps_count_installed', 'apps_review_count_new',
+        'mmo_user_count_total', 'mmo_user_count_new']
 urls = []
 for key in keys:
     urls.append(url('^%s/$' % key, views.overall,

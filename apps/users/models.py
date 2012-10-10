@@ -131,7 +131,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
     source = models.PositiveIntegerField(default=amo.LOGIN_SOURCE_UNKNOWN,
-                                         editable=False)
+                                         editable=False, db_index=True)
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
 
     class Meta:

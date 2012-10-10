@@ -42,6 +42,7 @@ COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'apps_count_installed', 'apps_count_new',
                  'apps_review_count_new', 'collections_created',
+                 'mmo_user_count_total', 'mmo_user_count_new',
                  'reviews_created', 'addons_created',
                  'users_created')
 
@@ -471,6 +472,8 @@ def _site_query(period, start, end):
         'apps_count_new': 'apps_count_new',
         'apps_count_installed': 'apps_count_installed',
         'apps_review_count_new': 'apps_review_count_new',
+        'mmo_user_count_new': 'mmo_user_count_new',
+        'mmo_user_count_total': 'mmo_user_count_total',
         'version_count_new': 'addons_updated',
         'user_count_new': 'users_created',
         'review_count_new': 'reviews_created',
