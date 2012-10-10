@@ -111,6 +111,8 @@ class TestMarketButton(amo.tests.TestCase):
             'This app is temporarily unavailable for purchase.')
 
     def test_is_desktop_disabled(self):
+        self.webapp.addondevicetype_set.create(
+            device_type=amo.DEVICE_DESKTOP.id)
         self.context['request'].MOBILE = False
         self.context['request'].META['HTTP_USER_AGENT'] = (
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:18.0) Gecko/18.0 '
@@ -119,8 +121,7 @@ class TestMarketButton(amo.tests.TestCase):
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').text(),
-            'This app is available on only Firefox for Android and Firefox '
-            'OS.')
+            'Desktop support is temporarily disabled. Learn more .')
 
     def test_needs_firefox_for_android(self):
         self.context['request'].META['HTTP_USER_AGENT'] = (

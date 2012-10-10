@@ -9,6 +9,7 @@ from jingo import register, env
 from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
+import amo
 from access import acl
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse, get_outgoing_url
@@ -217,9 +218,20 @@ def market_tile(context, product, link=True, src=''):
         if product.is_packaged and not request.GAIA:
             notices.append(_('This app is available on only Firefox OS.'))
 
-        if not request.MOBILE:
-            notices.append(_('This app is available on only Firefox for '
-                             'Android and Firefox OS.'))
+        if not request.MOBILE and product.device_types:
+            url = reverse('ecosystem.installation')
+            if product.device_types == [amo.DEVICE_DESKTOP]:
+                notices.append(
+                    _('Desktop support is temporarily disabled. '
+                      '<b data-href="{url}">Learn more</b>.').format(url=url))
+            elif amo.DEVICE_DESKTOP in product.device_types:
+                notices.append(
+                    _('Desktop support is temporarily disabled. Please try it '
+                      'out on Firefox Mobile on Android. '
+                      '<b data-href="{url}">Learn more</b>.').format(url=url))
+            else:
+                notices.append(_('This is a mobile-only app. Please try it '
+                                 'out on Firefox Mobile on Android.'))
 
         if need_firefox:
             if request.MOBILE:
