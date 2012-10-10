@@ -158,7 +158,7 @@ class TestDetail(DetailBase):
             self.dev_receipt_url())
         eq_(doc('button.product.premium').length, 1)
         eq_(doc('button.product.install.premium').length, 0)
-        eq_(doc('.manage').length, 1)
+        eq_(doc('.manage').length, 0)
 
     def test_paid_install_button_for_addon_reviewer(self):
         self.make_premium(self.app)

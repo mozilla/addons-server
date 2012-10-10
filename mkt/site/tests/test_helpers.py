@@ -194,9 +194,9 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(json.loads(data['currencies'])['USD'], '$1.00')
         eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
 
-    @mock.patch('mkt.site.helpers.acl.check_reviewer')
-    def test_reviewers(self, check_reviewer):
-        check_reviewer.return_value = True
+    @mock.patch('mkt.site.helpers.acl.action_allowed')
+    def test_reviewers(self, action_allowed):
+        action_allowed.return_value = True
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         issue = urlparams(reverse('receipt.issue',
