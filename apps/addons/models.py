@@ -1404,6 +1404,7 @@ class AddonDeviceType(amo.models.ModelBase):
     def __unicode__(self):
         return u'%s: %s' % (self.addon.name, self.device.name)
 
+    @property
     def device(self):
         return amo.DEVICE_TYPES[self.device_type]
 

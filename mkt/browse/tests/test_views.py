@@ -40,7 +40,7 @@ class BrowseBase(amo.tests.ESTestCase):
                                          region=mkt.regions.US.id)
         return f
 
-    def setup_featured(self):
+    def setup_featured(self, num=3):
         self.skip_if_disabled(settings.REGION_STORES)
 
         # Category featured.
@@ -53,8 +53,18 @@ class BrowseBase(amo.tests.ESTestCase):
         # Home featured.
         c = amo.tests.app_factory()
         self.make_featured(app=c, category=None)
+        # Make this app compatible on both desktop and mobile.
+        c.addondevicetype_set.create(device_type=amo.DEVICE_DESKTOP.id)
+        c.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
 
-        return a, b, c
+        if num == 4:
+            d = amo.tests.app_factory()
+            self.make_featured(app=d, category=None)
+            # Make this app compatible on only mobile.
+            d.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+            return a, b, c, d
+        else:
+            return a, b, c
 
     def setup_popular(self):
         # When run individually these tests always pass fine.

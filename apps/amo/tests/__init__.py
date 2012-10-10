@@ -345,6 +345,17 @@ class TestCase(RedisTest, test_utils.TestCase):
                 'Redirected to: %s, expected: %s'
                 % (path, reverse('users.login')))
 
+    def assertSetEqual(self, a, b):
+        """
+        This is a thing in unittest in 2.7,
+        but until then this is the thing.
+
+        Oh, and Dyango's `assertSetEqual` is lame and requires actual sets:
+        http://bit.ly/RO9sTr
+        """
+        eq_(set(a), set(b))
+        eq_(len(a), len(b))
+
     def make_premium(self, addon, currencies=None):
         price = Price.objects.create(price='1.00')
         if currencies:

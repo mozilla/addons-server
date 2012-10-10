@@ -44,8 +44,22 @@ class TestHome(BrowseBase):
         self.assertTemplateUsed(r, 'home/home.html')
 
     @mock_es
-    def test_featured(self):
-        self._test_featured()
+    def test_featured_desktop(self):
+        a, b, c, d = self.setup_featured(4)
+        # Check that the Home featured app is shown only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            pks = self.get_pks('featured', self.url,
+                               {'region': region})
+            self.assertSetEqual(pks, [c.id, d.id] if region == 'us' else [])
+
+    @mock_es
+    def test_featured_mobile(self):
+        a, b, c, d = self.setup_featured(4)
+        # Check that the Home featured app is shown only in US region.
+        for region in mkt.regions.REGIONS_DICT:
+            pks = self.get_pks('featured', self.url,
+                               {'region': region, 'mobile': 'true'})
+            self.assertSetEqual(pks, [c.id, d.id] if region == 'us' else [])
 
     def test_featured_src(self):
         _, _, app = self.setup_featured()

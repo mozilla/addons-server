@@ -489,7 +489,8 @@ class Webapp(Addon):
         return datetime.date.today()
 
     @classmethod
-    def featured(cls, cat=None, region=None, limit=6, gaia=False):
+    def featured(cls, cat=None, region=None, limit=6, mobile=False,
+                 gaia=False):
         FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
         qs = (FeaturedApp.objects
               .filter(app__status=amo.STATUS_PUBLIC,
@@ -528,6 +529,10 @@ class Webapp(Addon):
                     worldwide_qs = (qs.filter(regions__region=ww)
                                     .exclude(id__in=[x.id for x in locale_qs])
                                     .exclude(app__id__in=excluded))[:limit]
+
+        if mobile:
+            qs = qs.filter(
+                app__addondevicetype__device_type=amo.DEVICE_MOBILE.id)
 
         if limit:
             locale_qs = locale_qs[:limit]

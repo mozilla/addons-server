@@ -40,7 +40,8 @@ def _search(request, category=None):
     if category is not None:
         qs = Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
         ctx['category'] = get_object_or_404(qs, slug=category)
-        ctx['featured'] = Webapp.featured(cat=ctx['category'], region=region)
+        ctx['featured'] = Webapp.featured(cat=ctx['category'], region=region,
+            mobile=request.MOBILE)
 
         # Do a search filtered by this category and sort by Weekly Downloads.
         # TODO: Listen to andy and do not modify `request.GET` but at least
@@ -50,7 +51,7 @@ def _search(request, category=None):
         if not request.GET.get('sort'):
             request.GET['sort'] = 'downloads'
     else:
-        ctx['featured'] = Webapp.featured(region=region)
+        ctx['featured'] = Webapp.featured(region=region, mobile=request.MOBILE)
 
     # Always show three (or zero) featured apps - nothing in between.
     ctx['featured'] = ctx['featured'][:0 if len(ctx['featured']) < 3 else 3]
