@@ -60,7 +60,7 @@
       <b class="weekly-downloads">{{ product.weekly_downloads|numberfmt }}</b>
     </dd>
     <dt>{{ _('Abuse Reports') }}</dt>
-    <dd>
+    <dd class="abuse-reports">
       <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
         <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
     </dd>

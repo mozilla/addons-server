@@ -1271,9 +1271,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         AbuseReport.objects.create(addon=self.app, message='!@#$')
         res = self.client.get(self.url)
         doc = pq(res.content)
-        dt = doc('#summary dt:nth-of-type(8)')
-        eq_(dt.html(), u'Abuse Reports')
-        dd = dt.next()
+        dd = doc('#summary dd.abuse-reports')
         eq_(dd.text(), u'1')
         eq_(dd.find('a').attr('href'), reverse('reviewers.apps.review.abuse',
                                                args=[self.app.app_slug]))
