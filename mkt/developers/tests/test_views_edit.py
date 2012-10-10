@@ -839,18 +839,19 @@ class TestEditMedia(TestEdit):
 
     @mock.patch('lib.video.ffmpeg.Video')
     @mock.patch('mkt.developers.utils.video_library')
-    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def add_json(self, handle, Video, video_library):
         data_formset = self.formset_media(upload_image=handle)
         result = self.client.post(self.preview_upload, data_formset)
         return json.loads(result.content)
 
+    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_add_hash(self):
         Switch.objects.create(name='video-upload', active=True)
         res = self.add_json(open(video_files['good'], 'rb'))
         assert not res['errors'], res['errors']
         assert res['upload_hash'].endswith('.video-webm'), res['upload_hash']
 
+    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_add_hash_switch_off(self):
         res = self.add_json(open(video_files['good'], 'rb'))
         eq_(res['errors'], [u'Images must be either PNG or JPG.'])
@@ -860,6 +861,7 @@ class TestEditMedia(TestEdit):
         assert res['upload_hash'].endswith('.image-png')
 
     @mock.patch.object(settings, 'MAX_VIDEO_UPLOAD_SIZE', 1)
+    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_size(self):
         Switch.objects.create(name='video-upload', active=True)
         res = self.add_json(open(video_files['good'], 'rb'))
@@ -867,6 +869,7 @@ class TestEditMedia(TestEdit):
                 res['errors'])
 
     @mock.patch('lib.video.tasks.resize_video')
+    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_add(self, resize_video):
         Switch.objects.create(name='video-upload', active=True)
         self.preview_video_add()
