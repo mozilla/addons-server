@@ -833,11 +833,13 @@ class TestEditMedia(TestEdit):
     def preview_add(self, num=1):
         self.add(open(get_image_path('mozilla.png'), 'rb'), num=num)
 
+    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def preview_video_add(self, num=1):
         self.add(open(video_files['good'], 'rb'), num=num)
 
     @mock.patch('lib.video.ffmpeg.Video')
     @mock.patch('mkt.developers.utils.video_library')
+    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def add_json(self, handle, Video, video_library):
         data_formset = self.formset_media(upload_image=handle)
         result = self.client.post(self.preview_upload, data_formset)
