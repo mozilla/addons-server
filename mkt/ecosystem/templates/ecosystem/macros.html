@@ -156,6 +156,14 @@
               </a>
             </li>
             <li>
+              <a href="{{ url('ecosystem.installation') }}"
+                 {% if section == 'installation' %}
+                   class="selected"{% endif %}
+                 title="{{ _('Test Installation on Desktop') }}">
+                {{ _('Test Installation on Desktop') }}
+              </a>
+            </li>
+            <li>
               <a href="{{ url('ecosystem.partners') }}"
                  {% if section == 'partners' %}class="selected"{% endif %}
                  title="{{ _('Business Partners') }}">

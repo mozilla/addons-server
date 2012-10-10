@@ -27,6 +27,12 @@ def support(request):
            {'page': 'support', 'category': 'build'})
 
 
+def installation(request):
+    """Landing page for installation."""
+    return jingo.render(request, 'ecosystem/installation.html',
+           {'page': 'installation', 'category': 'publish'})
+
+
 def documentation(request, page=None):
     """Page template for all content that is extracted from MDN's API."""
     if not page:

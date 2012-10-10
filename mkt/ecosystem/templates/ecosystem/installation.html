@@ -1,0 +1,65 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Test Installation on Desktop')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('installation') }}
+
+    <article>
+      <h1>
+        {% trans %}
+          Installing Open Web Apps on Windows, Macintosh and Linux
+        {% endtrans %}
+      </h1>
+      <p>
+        {% trans %}
+          We're excited to say that we're close to a public beta test of our
+          Apps ecosystem, including the Firefox Marketplace! In keeping with
+          our Mozilla-wide Mobile First focus, we're going to focus the beta
+          test on Android users. We'll be asking users to visit the
+          Marketplace on their Android phones, install the Apps they discover
+          there, and let us know what they think. We'll have more to say
+          about that later this month.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          To ensure that we don't distract our hardworking marketing, support,
+          and testing folks from their Android and Firefox OS work during the
+          beta test, we have decided to temporarily disable the App install
+          buttons on the Marketplace.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          We've heard from many of you that being able to install your Apps
+          on your desktop machines is a useful development tool, and we don't
+          want to stand in the way of you making more awesome Apps. Our plan
+          is to provide you with a simple bookmarklet that will allow
+          developers to continue installing Apps on their desktops.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          You can drag the link below to your bookmarks bar, and use it later
+          to install an app from the Mozilla Marketplace at any App detail
+          page.
+        {% endtrans %}
+      </p>
+      <p>
+        <a href="javascript:(function(){s='querySelector';a=document[s]('body.detail');b=document[s]('button.install');if(a&&b){b.click();}else{alert('No%20app%20found,%20are%20you%20sure%20this%20is%20a%20Marketplace%20App%20Detail%20page?')}}());"
+           class="button">
+          {{ _('Install App!') }}
+        </a>
+      </p>
+    </article>
+  </div>
+{% endblock %}
