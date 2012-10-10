@@ -389,7 +389,8 @@ class TestOverall(amo.tests.TestCase):
                      'apps_review_count_new']
 
     def test_url(self):
-        eq_(self.client.get(reverse('mkt.stats.overall')).status_code, 200)
+        self.assert3xx(self.client.get(reverse('mkt.stats.overall')),
+                       reverse('mkt.stats.apps_count_new'))
 
     def get_url(self, name):
         return (reverse('mkt.stats.%s' % name) +

@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+from django.shortcuts import redirect
 
 import addons.views
 from . import views
@@ -128,8 +129,8 @@ app_stats_patterns += sales_series_urls()
 
 # Overall site statistics.
 app_site_patterns = patterns('',
-    url('^$', views.overall, name='mkt.stats.overall',
-        kwargs={'report': 'overview'}),
+    url('^$', lambda r: redirect('mkt.stats.apps_count_new', permanent=False),
+        name='mkt.stats.overall')
 )
 
 keys = ['apps_count_new', 'apps_count_installed', 'apps_review_count_new']
