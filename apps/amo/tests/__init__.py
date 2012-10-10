@@ -209,6 +209,10 @@ class TestCase(RedisTest, test_utils.TestCase):
     client_class = TestClient
     mock_es = True
 
+    def shortDescription(self):
+        # Stop nose using the test docstring and instead the test method name.
+        pass
+
     @classmethod
     def setUpClass(cls):
         if cls.mock_es:
