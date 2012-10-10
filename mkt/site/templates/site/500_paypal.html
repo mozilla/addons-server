@@ -3,8 +3,10 @@
             'developers/base_impala.html') %}
 
 {% set title = _('Oops') %}
-{% set pagetitle = hub_pagetitle(title) %}
+{% set pagetitle = title %}
 {% block title %}{{ pagetitle }}{% endblock %}
+
+{% set pagetype = 'notice' %}
 
 {# TODO(apps): Finalize copy. #}
 
