@@ -19,9 +19,8 @@ z.capabilities = {
     ),
     'fileAPI': !!window.FileReader,
     'userAgent': navigator.userAgent,
-    'desktop': safeMatchMedia('(min-width: 673px)'),
-    'tablet': safeMatchMedia('(max-width: 672px)') &&
-              safeMatchMedia('(min-width: 601px)'),
+    'desktop': false,
+    'tablet': false,
     'mobile': safeMatchMedia('(max-width: 600px)'),
     'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
     'nativeScroll': (function() {
@@ -30,6 +29,12 @@ z.capabilities = {
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
     'navPay': !!navigator.mozPay
 };
+
+// We're probably tablet if we have touch and we're larger than mobile.
+z.capabilities.tablet = z.capabilities.touch && safeMatchMedia('(min-width: 601px)');
+
+// We're probably desktop if we don't have touch and we're larger than some arbitrary dimension.
+z.capabilities.desktop = !z.capabilities.touch && safeMatchMedia('(min-width: 673px)');
 
 // Packaged-app installation are supported only on Firefox OS, so this is how we sniff.
 z.capabilities.gaia = !!(z.capabilities.mobile && navigator.mozApps && navigator.mozApps.installPackage);
