@@ -10,6 +10,7 @@ from tower import ugettext as _
 import waffle
 
 import amo
+from mkt.constants import APP_PREVIEW_SIZES
 from lib.video import library as video_library
 
 
@@ -18,6 +19,7 @@ def check_upload(file_obj, upload_type, content_type):
     upload_hash = ''
     is_icon = upload_type == 'icon'
     is_image_asset = upload_type == 'image'
+    is_preview = upload_type == 'preview'
     is_video = (content_type in amo.VIDEO_TYPES and
                 waffle.switch_is_active('video-upload'))
 
@@ -70,21 +72,34 @@ def check_upload(file_obj, upload_type, content_type):
             errors.append(_('Please use files smaller than %s.') %
                 filesizeformat(max_size))
 
-    if is_icon and not do_not_open:
+    if (is_icon or is_preview) and not is_video and not do_not_open:
         file_obj.seek(0)
         try:
             im = Image.open(file_obj)
             im.verify()
         except IOError:
-            errors.append(_('Icon could not be opened'))
+            if is_icon:
+                errors.append(_('Icon could not be opened.'))
+            elif is_preview:
+                errors.append(_('Preview could not be opened.'))
         else:
             size_x, size_y = im.size
-            # TODO: This should go away when we allow uploads for individual
-            # icon sizes.
-            if size_x < 128 or size_y < 128:
-                errors.append(_('Icons must be at least 128px by 128px.'))
+            if is_icon:
+                # TODO: This should go away when we allow uploads for
+                # individual icon sizes.
+                if size_x < 128 or size_y < 128:
+                    errors.append(_('Icons must be at least 128px by 128px.'))
 
-            if size_x != size_y:
-                errors.append(_('Icons must be square.'))
+                if size_x != size_y:
+                    errors.append(_('Icons must be square.'))
+
+            elif is_preview:
+                if (size_x < APP_PREVIEW_SIZES[0][0] or
+                    size_y < APP_PREVIEW_SIZES[0][1]):
+                    errors.append(
+                        # L10n: {0} and {1} are the height/width of the preview
+                        # in px.
+                        _('App previews must be at least {0}px by {1}px.')
+                            .format(*APP_PREVIEW_SIZES[0][:2]))
 
     return errors, upload_hash

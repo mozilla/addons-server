@@ -33,7 +33,7 @@ from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
 from files.models import FileUpload, File, FileValidation
 from files.utils import SafeUnzip
 
-from mkt.constants import APP_IMAGE_SIZES
+from mkt.constants import APP_IMAGE_SIZES, APP_PREVIEW_SIZES
 from mkt.webapps.models import AddonExcludedRegion, ImageAsset, Webapp
 
 
@@ -130,10 +130,10 @@ def resize_preview(src, instance, **kw):
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
         sizes['thumbnail'] = resize_image(src, thumb_dst,
-                                          amo.ADDON_PREVIEW_SIZES[0],
+                                          APP_PREVIEW_SIZES[0][:2],
                                           remove_src=False)
         sizes['image'] = resize_image(src, full_dst,
-                                      amo.ADDON_PREVIEW_SIZES[1],
+                                      APP_PREVIEW_SIZES[1][:2],
                                       remove_src=False)
         instance.sizes = sizes
         instance.save()

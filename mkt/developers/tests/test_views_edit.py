@@ -564,7 +564,7 @@ class TestEditMedia(TestEdit):
 
     def new_preview_hash(self):
         # At least one screenshot is required.
-        src_image = open(get_image_path('mozilla.png'), 'rb')
+        src_image = open(get_image_path('preview.jpg'), 'rb')
         r = self.client.post(self.preview_upload,
                              dict(upload_image=src_image))
         return {'upload_hash': json.loads(r.content)['upload_hash']}
@@ -831,7 +831,7 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
 
     def preview_add(self, num=1):
-        self.add(open(get_image_path('mozilla.png'), 'rb'), num=num)
+        self.add(open(get_image_path('preview.jpg'), 'rb'), num=num)
 
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def preview_video_add(self, num=1):
@@ -857,8 +857,13 @@ class TestEditMedia(TestEdit):
         eq_(res['errors'], [u'Images must be either PNG or JPG.'])
 
     def test_edit_preview_add_hash(self):
+        res = self.add_json(open(get_image_path('preview.jpg'), 'rb'))
+        assert res['upload_hash'].endswith('.image-jpeg'), res['upload_hash']
+
+    def test_edit_preview_add_hash_size(self):
         res = self.add_json(open(get_image_path('mozilla.png'), 'rb'))
-        assert res['upload_hash'].endswith('.image-png')
+        assert any(e.startswith('App previews ') for e in res['errors']), (
+               "Small screenshot not flagged for size.")
 
     @mock.patch.object(settings, 'MAX_VIDEO_UPLOAD_SIZE', 1)
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))

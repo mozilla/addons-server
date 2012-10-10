@@ -33,3 +33,9 @@ APP_IMAGE_SIZES = [
      'description': _("The image used for the app's tile in the desktop "
                       "Marketplace.")},
 ]
+
+# Preview sizes in the format (width, height, type)
+APP_PREVIEW_SIZES = [
+    (180, 270, 'mobile'),
+    (700, 270, 'full'),
+]
