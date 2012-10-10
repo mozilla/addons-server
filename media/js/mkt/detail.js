@@ -17,7 +17,8 @@
     }));
 
     // When I click on the icon, append `#id=<id>` to the URL.
-    z.page.on('click', '.product-details .icon', _pd(function() {
+    z.page.on('click', '.product-details .icon', _pd(function(e) {
         window.location.hash = 'id=' + $('.product').data('product')['id'];
+        e.stopPropagation();
     }));
 })();
