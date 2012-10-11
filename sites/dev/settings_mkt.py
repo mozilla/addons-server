@@ -114,11 +114,6 @@ SECLUSION_HOSTS = ('https://payments-dev.allizom.org',)
 
 PAYPAL_LIMIT_PREAPPROVAL = False
 
-MIDDLEWARE_CLASSES += (
-    'amo.middleware.NoConsumerMiddleware',
-    'amo.middleware.LoginRequiredMiddleware',
-)
-
 VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org']
