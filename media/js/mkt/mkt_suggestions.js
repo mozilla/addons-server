@@ -5,6 +5,7 @@
     if (!z.capabilities.gaia || z.enableSearchSuggestions) {
         $('#search #search-q').searchSuggestions($('#site-search-suggestions'),
                                                  processResults, 'MKT');
+        alert('yo');
     }
 
     var previous_request;
