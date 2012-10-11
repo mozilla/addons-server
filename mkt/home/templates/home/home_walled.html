@@ -1,13 +1,21 @@
 {% extends 'mkt/base.html' %}
 
+{% set headertitle = _('Firefox Marketplace') %}
 {% set bodyclass = 'home login' %}
 
 {% set pagetype = 'notice' %}
 
 {% block content %}
-<section id="walled">
+<section id="walled" class="primary">
   <div>
     {% include 'home/walled_prose.html' %}
+  </div>
+  <div class="form-footer">
+    <div class="extras">
+      <a href="{{ url('users.logout') }}" class="post logout">
+        {{ _('Log out') }}
+      </a>
+    </div>
   </div>
 </section>
 {% endblock %}

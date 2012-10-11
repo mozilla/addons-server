@@ -3,6 +3,8 @@
 {% set headertitle = _('Firefox Marketplace') %}
 {% set bodyclass = 'home login' %}
 
+{% set pagetype = 'notice' %}
+
 {% block content %}
   {% set dst = request.GET.get('to') %}
   {% if dst and dst not in (url('ecosystem.landing'), url('mkt.developers.apps')) %}
@@ -12,7 +14,7 @@
       </div>
     </section>
   {% endif %}
-  <section id="welcome">
+  <section id="welcome" class="primary">
     <div>
       <div class="prose">
         {% include 'home/walled_prose.html' %}
