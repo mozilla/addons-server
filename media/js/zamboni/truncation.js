@@ -23,7 +23,7 @@ $.fn.lineclamp = function(lines) {
     return this.each(function() {
         var $this = $(this),
             lh = $this.css('line-height');
-        if (lh.substr(-2) == 'px') {
+        if (typeof lh == 'string' && lh.substr(-2) == 'px') {
             lh = parseFloat(lh.replace('px', ''));
             var maxHeight = Math.ceil(lh) * lines,
                 truncated;
