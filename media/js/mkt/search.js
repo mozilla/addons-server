@@ -1,8 +1,9 @@
 (function() {
 
-    z.page.on('click', 'b[data-href]', function() {
+    z.page.on('click', 'b[data-href]', _pd(function(e) {
+        e.stopPropagation();
         window.location = $(this).attr('data-href');
-    });
+    }));
 
     // Add 'sel' class to active filter and set hidden input value.
     z.page.on('click', '#filters .toggles a', function() {
