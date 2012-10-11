@@ -35,7 +35,7 @@ statsd==1.0.0
 
 ## Not on pypi.
 -e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
--e git://github.com/mozilla/amo-validator.git@6635895bc2d1011b4e34d6a10593334f5cb988c5#egg=amo-validator
+-e git://github.com/mozilla/amo-validator.git@db11baaba76765de59e9072b8ad3bcb3560ed36b#egg=amo-validator
 -e git://github.com/mozilla/app-validator.git@7359a74d43f5cdfab3e00928eb3c05178f96bf1b#egg=app-validator
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
