@@ -232,9 +232,9 @@ Each incremental change we add to the database is done with a versioned SQL
 (and sometimes Python) file. To keep your local DB fresh and up to date, run
 migrations like this::
 
-    ./vendor/src/schematic/schematic migrations
+    schematic migrations
 
-More info on schematic: https://github.com/jbalogh/schematic
+More info on schematic: https://github.com/mozilla/schematic
 
 
 Multiple sites
@@ -344,9 +344,13 @@ This updates zamboni-lib in the ``vendor/`` directory::
 
     pushd vendor && git pull && git submodule update --init && popd
 
-We use `schematic <http://github.com/jbalogh/schematic/>`_ to run migrations::
+This updates the python packages::
 
-    ./vendor/src/schematic/schematic migrations
+    pip install --no-deps --exists-action=w -r requirements/dev.txt
+
+We use `schematic <http://github.com/mozilla/schematic/>`_ to run migrations::
+
+    schematic migrations
 
 The :ref:`contributing` page has more on managing branches.
 
