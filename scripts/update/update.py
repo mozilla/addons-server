@@ -60,7 +60,7 @@ def compress_assets(ctx, arg=''):
 @task
 def schematic(ctx):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local("%s ./vendor/src/schematic/schematic migrations" % settings.PYTHON)
+        ctx.local("%s/bin/schematic migrations" % settings.VIRTUAL_ENV)
 
 
 @task

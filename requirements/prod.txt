@@ -29,6 +29,7 @@ PyMySQL==0.5
 raven==2.0.6
 receipts==0.2.4.1
 requests==0.14.0
+schematic==0.2
 statsd==1.0.0
 
 
@@ -47,7 +48,6 @@ statsd==1.0.0
 -e git://github.com/jsocol/jingo-minify.git@d1b668ad7c0423fe8cc639df36d433da5c168cac#egg=jingo-minify
 -e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
--e git://github.com/jbalogh/schematic.git@f996182b857769541cfa7659d4f9e864360cddf4#egg=schematic
 -e git://github.com/jbalogh/test-utils.git@3c2214d193d1b0c0d74c77b3731c8afb0173e669#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
 -e git://github.com/nmaier/xpisign.py.git@f825b34ea83cf68ea66dcd9e47e0c7e5f38b6bd5#egg=xpisign
