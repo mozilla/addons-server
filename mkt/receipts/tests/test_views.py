@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import json
 
 from django.conf import settings
@@ -312,6 +313,21 @@ class TestReceiptIssue(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'developer')
+
+    @mock.patch('mkt.receipts.views.create_receipt')
+    def test_unicode_name(self, create_receipt):
+        """
+        Regression test to ensure that the CEF log works. Pass through the
+        app.pk instead of the full unicode name, until the CEF library is
+        fixed, or metlog is used.
+        """
+        create_receipt.return_value = 'foo'
+        self.app.name = u'\u0627\u0644\u062a\u0637\u0628-news'
+        self.app.save()
+
+        self.client.login(username=self.reviewer.email, password='password')
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
 
 
 class TestReceiptCheck(amo.tests.TestCase):

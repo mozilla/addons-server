@@ -55,7 +55,9 @@ class CEFLogger:
                   'suid': str(getattr(user, 'pk', '')),
                   'signature': '%s%s' % (self.sig_prefix, msg.upper()),
                   'msg': longer, 'config': c,
-                  'cs2': app, 'cs2Label': self.cs2label}
+                  # Until the CEF log can cope with unicode app names, just
+                  # use primary keys.
+                  'cs2': app.pk, 'cs2Label': self.cs2label}
         if extra_kwargs:
             kwargs.update(extra_kwargs)
 
