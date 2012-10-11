@@ -51,10 +51,31 @@ def validator(upload_id, **kw):
     except FileUpload.DoesNotExist:
         log.info(u'[FileUpload:%s] Does not exist.' % upload_id)
         return
+
     try:
-        upload.validation = run_validator(upload.path)
+        validation_result = run_validator(upload.path)
+        if upload.validation:
+            # If there's any preliminary validation result, merge it with the
+            # actual validation result.
+            dec_prelim_result = json.loads(upload.validation)
+            if 'prelim' in dec_prelim_result:
+                dec_validation_result = json.loads(validation_result)
+                # Merge the messages.
+                dec_validation_result['messages'] += (
+                    dec_prelim_result['messages'])
+                # Merge the success value.
+                if dec_validation_result['success']:
+                    dec_validation_result['success'] = (
+                        dec_prelim_result['success'])
+                # Merge the error count (we only raise errors, not warnings).
+                dec_validation_result['errors'] += dec_prelim_result['errors']
+
+                # Put the validation result back into JSON.
+                validation_result = json.dumps(dec_validation_result)
+
+        upload.validation = validation_result
         upload.save()  # We want to hit the custom save().
-    except:
+    except Exception:
         # Store the error with the FileUpload job, then raise
         # it for normal logging.
         tb = traceback.format_exception(*sys.exc_info())
@@ -311,15 +332,6 @@ def get_preview_sizes(ids, **kw):
                           % (addon.pk, err))
 
 
-def failed_validation(*messages):
-    """Return a validation object that looks like the add-on validator."""
-    m = []
-    for msg in messages:
-        m.append({'type': 'error', 'message': msg, 'tier': 1})
-
-    return json.dumps({'errors': 1, 'success': False, 'messages': m})
-
-
 def _fetch_content(url):
     try:
         return urllib2.urlopen(url, timeout=5)
@@ -335,24 +347,17 @@ def _fetch_content(url):
             raise Exception(str(e.reason))
 
 
-def get_content_and_check_size(response, max_size, error_message):
+class ResponseTooLargeException(Exception):
+    pass
+
+
+def get_content_and_check_size(response, max_size):
     # Read one extra byte. Reject if it's too big so we don't have issues
     # downloading huge files.
     content = response.read(max_size + 1)
     if len(content) > max_size:
-        raise Exception(error_message % max_size)
+        raise ResponseTooLargeException('Too much data.')
     return content
-
-
-def check_manifest_encoding(url, content):
-    # TODO(Kumar) check for encoding hints in response headers
-    # and store an encoding hint on the file upload object
-    try:
-        content.decode('utf8')
-    except UnicodeDecodeError, exc:
-        log.info('Manifest decode error: %s: %s' % (url, exc))
-        exc.message = _('Your manifest file was not encoded as valid UTF-8')
-        raise
 
 
 def save_icon(webapp, content):
@@ -388,9 +393,9 @@ def fetch_icon(webapp, **kw):
         return
 
     try:
-        biggest = max([int(size) for size in manifest['icons']])
+        biggest = max(int(size) for size in manifest['icons'])
     except ValueError:
-        return
+        return False
 
     icon_url = manifest['icons'][str(biggest)]
     if icon_url.startswith('data:image'):
@@ -408,7 +413,7 @@ def fetch_icon(webapp, **kw):
             except (KeyError, forms.ValidationError):  # Not found in archive.
                 log.error(u'[Webapp:%s] Icon %s not found in archive'
                           % (webapp, icon_url))
-                return
+                return False
         else:
             if not urlparse.urlparse(icon_url).scheme:
                 icon_url = webapp.origin + icon_url
@@ -420,35 +425,86 @@ def fetch_icon(webapp, **kw):
                           % (webapp, e.message))
                 # Set the icon type to empty.
                 webapp.update(icon_type='')
-                return
+                return False
 
             size_error_message = _('Your icon must be less than %s bytes.')
-            content = get_content_and_check_size(response,
-                                                 settings.MAX_ICON_UPLOAD_SIZE,
-                                                 size_error_message)
+            try:
+                content = get_content_and_check_size(
+                    response, settings.MAX_ICON_UPLOAD_SIZE)
+            except ResponseTooLargeException:
+                log.warning(u'[Webapp:%s] Icon exceeds maximum size.' % webapp)
+                return False
 
     save_icon(webapp, content)
 
 
-def _fetch_manifest(url):
+def failed_validation(*messages, **kwargs):
+    """Return a validation object that looks like the add-on validator."""
+    upload = kwargs.pop('upload', None)
+    if upload is None or not upload.validation:
+        msgs = []
+    else:
+        msgs = json.loads(upload.validation)['messages']
+
+    for msg in messages:
+        msgs.append({'type': 'error', 'message': msg, 'tier': 1})
+
+    return json.dumps({'errors': sum(1 for m in msgs if m['type'] == 'error'),
+                       'success': False,
+                       'messages': msgs,
+                       'prelim': True})
+
+
+def _fetch_manifest(url, upload=None):
+    def fail(message, upload=None):
+        if upload is None:
+            # If `upload` is None, that means we're using one of @washort's old
+            # implementations that expects an exception back.
+            raise Exception(message)
+        upload.update(validation=failed_validation(message, upload=upload))
+
     try:
         response = _fetch_content(url)
-        ct = response.headers.get('Content-Type', '')
-        if not ct.startswith('application/x-web-app-manifest+json'):
-            raise Exception('Content type is ' + ct)
     except Exception, e:
         log.error('Failed to fetch manifest from %r: %s' % (url, e))
-        raise Exception('No manifest was found at that URL. Check the '
-                        'address and make sure the manifest is served '
-                        'with the HTTP header "Content-Type: '
-                        'application/x-web-app-manifest+json".')
+        fail(_('No manifest was found at that URL. Check the address and try '
+               'again.'), upload=upload)
+        return
 
-    size_error_message = _('Your manifest must be less than %s bytes.')
-    content = get_content_and_check_size(response,
-                                         settings.MAX_WEBAPP_UPLOAD_SIZE,
-                                         size_error_message)
+    ct = response.headers.get('Content-Type', '')
+    if not ct.startswith('application/x-web-app-manifest+json'):
+        fail(_('Manifests must be served with the HTTP header '
+               '"Content-Type: application/x-web-app-manifest+json".'),
+             upload=upload)
+
+    try:
+        max_webapp_size = settings.MAX_WEBAPP_UPLOAD_SIZE
+        content = get_content_and_check_size(response, max_webapp_size)
+    except ResponseTooLargeException:
+        fail(_('Your manifest must be less than %s bytes.') % max_webapp_size,
+             upload=upload)
+        return
+
+    try:
+        content.decode('utf_8')
+    except (UnicodeDecodeError, UnicodeEncodeError), exc:
+        log.info('Manifest decode error: %s: %s' % (url, exc))
+        fail(_('Your manifest file was not encoded as valid UTF-8.'),
+             upload=upload)
+        return
+
+    # Get the individual parts of the content type.
+    ct_split = map(str.strip, ct.split(';'))
+    if len(ct_split) > 1:
+        # Figure out if we've got a charset specified.
+        kv_pairs = dict(tuple(p.split('=', 1)) for p in ct_split[1:] if
+                              '=' in p)
+        if 'charset' in kv_pairs and kv_pairs['charset'].lower() != 'utf-8':
+            fail(_("The manifest's encoding does not match the charset "
+                   'provided in the HTTP Content-Type.'),
+                 upload=upload)
+
     content = strip_bom(content)
-    check_manifest_encoding(url, content)
     return content
 
 
@@ -458,11 +514,8 @@ def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)
     upload = FileUpload.objects.get(pk=upload_pk)
 
-    try:
-        content = _fetch_manifest(url)
-    except Exception, e:
-        # Drop a message in the validation slot and bail.
-        upload.update(validation=failed_validation(e.message))
+    content = _fetch_manifest(url, upload)
+    if content is None:
         return
 
     upload.add_file([content], url, len(content), is_webapp=True)

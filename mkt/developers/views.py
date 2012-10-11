@@ -926,38 +926,16 @@ def upload_detail_for_addon(request, addon_id, addon, uuid):
     return json_upload_detail(request, upload, addon_slug=addon.slug)
 
 
-def make_validation_result(data, is_compatibility=False):
-    """Safe wrapper around JSON dict containing a validation result.
-
-    Keyword Arguments
-
-    **is_compatibility=False**
-        When True, errors will be summarized as if they were in a regular
-        validation result.
-    """
+def make_validation_result(data):
+    """Safe wrapper around JSON dict containing a validation result."""
     if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
         if data['error']:
-            # Just expose the message, not the traceback
+            # Just expose the message, not the traceback.
             data['error'] = data['error'].strip().split('\n')[-1].strip()
     if data['validation']:
-        ending_tier = 0
         for msg in data['validation']['messages']:
-            if msg['tier'] > ending_tier:
-                ending_tier = msg['tier']
-            if msg['tier'] == 0:
-                # We can't display a message if it's on tier 0.
-                # Should get fixed soon in bug 617481
-                msg['tier'] = 1
             for k, v in msg.items():
                 msg[k] = escape_all(v)
-        if is_compatibility:
-            compat = data['validation']['compatibility_summary']
-            for k in ('errors', 'warnings', 'notices'):
-                data['validation'][k] = compat[k]
-            for msg in data['validation']['messages']:
-                if msg['compatibility_type']:
-                    msg['type'] = msg['compatibility_type']
-        data['validation']['ending_tier'] = ending_tier
     return data
 
 
@@ -1043,8 +1021,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
     return make_validation_result(dict(upload=upload.uuid,
                                        validation=validation,
                                        error=upload.task_error, url=url,
-                                       full_report_url=full_report_url),
-                                  is_compatibility=upload.compat_with_app)
+                                       full_report_url=full_report_url))
 
 
 @login_required
