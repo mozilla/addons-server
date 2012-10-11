@@ -149,7 +149,8 @@
           <div id="submit-upload upload-file">
             <div class="hidden">{{ upload_form.upload }}</div>
             <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload') }}">
-            {{ upload_form.errors }}
+            {{ upload_form.non_field_errors() }}
+            {{ upload_form.upload.errors }}
             <div class="submission-buttons addon-submission-field">
               <button class="prominent addon-upload-dependant" disabled id="submit-upload-file-finish" type="submit" name="upload-version">
                 {{ _('Continue') }}
