@@ -516,6 +516,10 @@ class Webapp(Addon):
         if carrier:
             qs = qs.filter(carriers__carrier=carrier)
 
+        if mobile:
+            qs = qs.filter(
+                app__addondevicetype__device_type=amo.DEVICE_MOBILE.id)
+
         if region:
             excluded = cls.get_excluded_in(region)
             locale_qs = (qs.filter(regions__region=region.id)
@@ -529,10 +533,6 @@ class Webapp(Addon):
                     worldwide_qs = (qs.filter(regions__region=ww)
                                     .exclude(id__in=[x.id for x in locale_qs])
                                     .exclude(app__id__in=excluded))[:limit]
-
-        if mobile:
-            qs = qs.filter(
-                app__addondevicetype__device_type=amo.DEVICE_MOBILE.id)
 
         if limit:
             locale_qs = locale_qs[:limit]

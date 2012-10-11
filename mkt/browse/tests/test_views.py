@@ -53,9 +53,8 @@ class BrowseBase(amo.tests.ESTestCase):
         # Home featured.
         c = amo.tests.app_factory()
         self.make_featured(app=c, category=None)
-        # Make this app compatible on both desktop and mobile.
+        # Make this app compatible on only desktop.
         c.addondevicetype_set.create(device_type=amo.DEVICE_DESKTOP.id)
-        c.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
 
         if num == 4:
             d = amo.tests.app_factory()

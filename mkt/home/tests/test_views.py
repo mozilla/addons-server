@@ -59,7 +59,7 @@ class TestHome(BrowseBase):
         for region in mkt.regions.REGIONS_DICT:
             pks = self.get_pks('featured', self.url,
                                {'region': region, 'mobile': 'true'})
-            self.assertSetEqual(pks, [c.id, d.id] if region == 'us' else [])
+            self.assertSetEqual(pks, [d.id] if region == 'us' else [])
 
     def test_featured_src(self):
         _, _, app = self.setup_featured()
