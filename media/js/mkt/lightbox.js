@@ -12,6 +12,7 @@
     });
 
     function showLightbox() {
+        var which = $(this).closest('li').index();
         var $tray = $(this).closest('.tray');
         var $tile = $tray.prev();
 
@@ -21,7 +22,7 @@
         var product = $tile.data('product');
         var id = product.id;
 
-        if (id != currentApp) {
+        if (id != currentApp || !slider) {
             currentApp = id;
             previews = product.previews;
             renderPreviews();
@@ -48,6 +49,8 @@
         // fade that bad boy in
         $lightbox.show();
         setTimeout(function() {
+            slider.moveToPoint(which);
+            resize();
             $lightbox.addClass('show');
         }, 0);
     }
@@ -79,10 +82,7 @@
         });
 
         // $section doesn't have its proper width until after a paint.
-        setTimeout(function() {
-            slider = Flipsnap($content[0]);
-            resize();
-        });
+        slider = Flipsnap($content[0]);
     }
 
     // we need to adjust the scroll distances on resize.
