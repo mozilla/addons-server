@@ -1,7 +1,9 @@
+import copy
 from types import MethodType
 
 from django import http
 from django.conf import settings
+from django.core.urlresolvers import resolve
 from django.http import SimpleCookie, HttpRequest
 from django.utils.cache import patch_vary_headers
 
@@ -280,3 +282,23 @@ class GaiaDetectionMiddleware(object):
 
         request.GAIA = (getattr(request, 'GAIA', False) or
                         bool(request.COOKIES.get('gaia', False)))
+
+
+class HijackRedirectMiddleware(object):
+    """
+    This lets us hijack redirects so we directly return fragment responses
+    instead of redirecting and doing lame synchronous page requests.
+    """
+
+    def process_response(self, request, response):
+        if (request.is_ajax() and request.method == 'POST' and
+                response.status_code in (301, 302)):
+            location = response['Location']
+            r = copy.copy(request)
+            r.method = 'GET'
+            # We want only the fragment response.
+            r.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+            # Pass back the URI so we can pushState it.
+            r.FRAGMENT_URI = location
+            response = resolve(location).func(r)
+        return response

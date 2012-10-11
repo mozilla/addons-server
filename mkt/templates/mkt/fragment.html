@@ -1,6 +1,7 @@
 <div id="page" role="main"
      data-context="{{
        {'type': pagetype or 'leaf',
+        'uri': request.FRAGMENT_URI or '',
         'title': titletag,
         'headertitle': headertitle,
         'bodyclass': bodyclass or '',
