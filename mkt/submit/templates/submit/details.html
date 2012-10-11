@@ -179,12 +179,11 @@
           <input type="file" class="screenshot_upload" name="uploads" multiple
                  data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
                  data-upload-url="{{ screenshot_upload_url }}">
-          <p>{{ _('Screenshots must be at least 180px by 270px. '
-                  'Screenshots proportional to 180px by 270px are optimal.') }}</p>
         </div>
         <div>
           <span class="hint">
-            {{ _('PNG and JPG supported. Large images will be resized to fit 700 x 520 px.') }}
+            {{ _('PNG and JPG supported. Screenshots must be at least 320px by 480px. '
+                 'Screenshots proportional to 320px by 480px are optimal.') }}
             {% if waffle.switch('video-upload') %}
               {{ _('WebM supported for video.') }}
             {% endif %}

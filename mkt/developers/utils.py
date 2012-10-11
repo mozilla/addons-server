@@ -10,7 +10,7 @@ from tower import ugettext as _
 import waffle
 
 import amo
-from mkt.constants import APP_PREVIEW_SIZES
+from mkt.constants import APP_PREVIEW_MINIMUMS
 from lib.video import library as video_library
 
 
@@ -94,12 +94,12 @@ def check_upload(file_obj, upload_type, content_type):
                     errors.append(_('Icons must be square.'))
 
             elif is_preview:
-                if (size_x < APP_PREVIEW_SIZES[0][0] or
-                    size_y < APP_PREVIEW_SIZES[0][1]):
+                if (size_x < APP_PREVIEW_MINIMUMS[0] or
+                    size_y < APP_PREVIEW_MINIMUMS[1]):
                     errors.append(
                         # L10n: {0} and {1} are the height/width of the preview
                         # in px.
                         _('App previews must be at least {0}px by {1}px.')
-                            .format(*APP_PREVIEW_SIZES[0][:2]))
+                            .format(*APP_PREVIEW_MINIMUMS))
 
     return errors, upload_hash

@@ -50,7 +50,7 @@ class TestPreviewForm(amo.tests.TestCase):
         assert form.is_valid()
         form.save(self.addon)
         eq_(self.addon.previews.all()[0].sizes,
-            {u'image': [227, 270], u'thumbnail': [180, 214]})
+            {u'image': [250, 297], u'thumbnail': [180, 214]})
 
     def check_file_type(self, type_):
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': type_,

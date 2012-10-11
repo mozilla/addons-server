@@ -35,7 +35,8 @@ APP_IMAGE_SIZES = [
 ]
 
 # Preview sizes in the format (width, height, type)
+APP_PREVIEW_MINIMUMS = (320, 480)
 APP_PREVIEW_SIZES = [
     (180, 270, 'mobile'),
-    (700, 270, 'full'),
+    (700, 1050, 'full'),  # Because it's proportional, that's why.
 ]
