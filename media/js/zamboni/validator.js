@@ -126,7 +126,7 @@ function initValidator($doc) {
                            // L10n: Example: Changes in Firefox 5
                            gettext(format('Changes in {0} {1}',
                                           this.app.trans[this.app.guid],
-                                          this.app.version.substring(0,1)))));
+                                          /\d+/.exec(this.app.version)))));
             }
         } else if (!$title.text()) {
             $title.text(gettext('Tests'));
