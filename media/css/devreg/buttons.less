@@ -307,3 +307,26 @@ button[disabled],
 .button.disabled {
     pointer-events: none;
 }
+
+.install-bookmarklet {
+    position: relative;
+}
+
+.bookmarklet,
+.fake-bookmarklet {
+    padding: 10px 10px;
+    width: 100px;
+}
+
+.bookmarklet span {
+    // text-indent won't work ;)
+    opacity: 0;
+}
+
+// This is so we can trick Firefox into having the bookmarklet say "Install App!"
+.fake-bookmarklet {
+    background: transparent;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+}
