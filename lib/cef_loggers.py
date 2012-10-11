@@ -51,13 +51,19 @@ class CEFLogger:
                                            '0'),
              'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
         user = getattr(environ, 'amo_user', None)
+        # Sometimes app is a string, eg: "unknown". Boo!
+        try:
+            app_str = app.pk
+        except AttributeError:
+            app_str = app
+
         kwargs = {'username': getattr(user, 'name', ''),
                   'suid': str(getattr(user, 'pk', '')),
                   'signature': '%s%s' % (self.sig_prefix, msg.upper()),
                   'msg': longer, 'config': c,
                   # Until the CEF log can cope with unicode app names, just
                   # use primary keys.
-                  'cs2': app.pk, 'cs2Label': self.cs2label}
+                  'cs2': app_str, 'cs2Label': self.cs2label}
         if extra_kwargs:
             kwargs.update(extra_kwargs)
 
