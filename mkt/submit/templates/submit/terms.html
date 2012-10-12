@@ -6,8 +6,10 @@
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
-  <h1>{{ title }}</h1>
-  {{ progress(request, addon=None, step=step) }}
+  <header class="submit-header c">
+    <h1>{{ title }}</h1>
+    {{ progress(request, addon=None, step=step) }}
+  </header>
   <section id="submit-terms" class="primary">
     <h2>Marketplace Developer Program</h2>
     <p>

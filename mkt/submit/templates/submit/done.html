@@ -9,7 +9,7 @@
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
   <header class="submit-header c">
-    <h1 class="submit">{{ title }}</h1>
+    <h1>{{ title }}</h1>
     {{ progress(request, addon=addon, step=step) }}
   </header>
   <section id="submit-done" class="primary{{ ' payments' if payments }}">
