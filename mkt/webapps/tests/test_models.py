@@ -990,3 +990,9 @@ class TestUpdateStatus(amo.tests.TestCase):
                                   file_kw=dict(status=amo.STATUS_DISABLED))
         app.update_status()
         eq_(app.status, amo.STATUS_PUBLIC)
+
+    def test_blocklisted(self):
+        app = amo.tests.app_factory(status=amo.STATUS_BLOCKED)
+        app.current_version.delete()
+        app.update_status()
+        eq_(app.status, amo.STATUS_BLOCKED)

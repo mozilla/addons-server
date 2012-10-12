@@ -373,7 +373,8 @@ class Webapp(Addon):
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def update_status(self, using=None):
-        if self.is_deleted or self.is_disabled:
+        if (self.is_deleted or self.is_disabled or
+            self.status == amo.STATUS_BLOCKED):
             return
 
         def _log(reason, old=self.status):
