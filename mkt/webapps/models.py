@@ -372,6 +372,38 @@ class Webapp(Addon):
         """When the submission process is done, update status accordingly."""
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
+    def update_status(self, using=None):
+        if self.is_deleted or self.is_disabled:
+            return
+
+        def _log(reason, old=self.status):
+            log.info(u'Update app status [%s]: %s => %s (%s).' % (
+                self.id, old, self.status, reason))
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+
+        # Handle the case of no versions.
+        if not self.versions.exists():
+            self.update(status=amo.STATUS_NULL)
+            _log('no versions')
+            return
+
+        # Handle the case of versions with no files.
+        if not self.versions.filter(files__isnull=False).exists():
+            self.update(status=amo.STATUS_NULL)
+            _log('no versions with files')
+            return
+
+        # If there are no public versions and at least one pending, set status
+        # to pending.
+        has_public = (
+            self.versions.filter(files__status=amo.STATUS_PUBLIC).exists())
+        has_pending = (
+            self.versions.filter(files__status=amo.STATUS_PENDING).exists())
+        if not has_public and has_pending:
+            self.update(status=amo.STATUS_PENDING)
+            _log('has pending but no public files')
+            return
+
     def authors_other_addons(self, app=None):
         """Return other apps by the same author."""
         return (self.__class__.objects.visible()

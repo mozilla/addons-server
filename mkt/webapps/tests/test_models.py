@@ -4,6 +4,7 @@ import unittest
 import zipfile
 
 from django.conf import settings
+from django.db.models.signals import post_delete, post_save
 
 import mock
 import waffle
@@ -12,7 +13,8 @@ from nose.tools import eq_, raises
 
 import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
-                           BlacklistedSlug, Category, Preview)
+                           BlacklistedSlug, Category, Preview, version_changed)
+from addons.signals import version_changed as version_changed_signal
 from amo.tests import app_factory, version_factory
 from constants.applications import DEVICE_TYPES
 from editors.models import RereviewQueue
@@ -21,7 +23,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from market.models import Price
 from users.models import UserProfile
-from versions.models import Version
+from versions.models import update_status, Version
 
 import mkt
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
@@ -928,3 +930,63 @@ class TestPackagedSigning(amo.tests.WebappTestCase):
                                          reviewer=True)
         eq_(sign.call_args[0][0], self.app.current_version.pk)
         eq_(sign.call_args[1]['reviewer'], True)
+
+
+class TestUpdateStatus(amo.tests.TestCase):
+
+    def setUp(self):
+        # Disabling signals to simplify these tests and because create doesn't
+        # call the signals anyway.
+        version_changed_signal.disconnect(version_changed,
+                                          dispatch_uid='version_changed')
+        post_save.disconnect(update_status, sender=Version,
+                             dispatch_uid='version_update_status')
+        post_delete.disconnect(update_status, sender=Version,
+                               dispatch_uid='version_update_status')
+
+    def tearDown(self):
+        version_changed_signal.connect(version_changed,
+                                       dispatch_uid='version_changed')
+        post_save.connect(update_status, sender=Version,
+                          dispatch_uid='version_update_status')
+        post_delete.connect(update_status, sender=Version,
+                            dispatch_uid='version_update_status')
+
+    def test_no_versions(self):
+        app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        app.update_status()
+        eq_(app.status, amo.STATUS_NULL)
+
+    def test_version_no_files(self):
+        app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        Version(addon=app).save()
+        app.update_status()
+        eq_(app.status, amo.STATUS_NULL)
+
+    def test_only_version_deleted(self):
+        app = amo.tests.app_factory(status=amo.STATUS_REJECTED)
+        app.current_version.delete()
+        app.update_status()
+        eq_(app.status, amo.STATUS_NULL)
+
+    def test_other_version_deleted(self):
+        app = amo.tests.app_factory(status=amo.STATUS_REJECTED)
+        amo.tests.version_factory(addon=app)
+        app.current_version.delete()
+        app.update_status()
+        eq_(app.status, amo.STATUS_REJECTED)
+
+    def test_one_version_pending(self):
+        app = amo.tests.app_factory(status=amo.STATUS_REJECTED,
+                                    file_kw=dict(status=amo.STATUS_DISABLED))
+        amo.tests.version_factory(addon=app,
+                                  file_kw=dict(status=amo.STATUS_PENDING))
+        app.update_status()
+        eq_(app.status, amo.STATUS_PENDING)
+
+    def test_one_version_public(self):
+        app = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
+        amo.tests.version_factory(addon=app,
+                                  file_kw=dict(status=amo.STATUS_DISABLED))
+        app.update_status()
+        eq_(app.status, amo.STATUS_PUBLIC)

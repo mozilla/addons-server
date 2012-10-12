@@ -6,6 +6,7 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from devhub.models import ActivityLog
+from files.models import File
 from users.models import UserProfile
 from versions.models import Version
 
@@ -155,6 +156,20 @@ class TestAddVersion(BasePackagedAppTest):
         res = self._post(200)
         self.assertFormError(res, 'upload_form', 'upload',
                              'Version 1.0 already exists')
+
+    def test_pending_on_new_version(self):
+        # Test app rejection, then new version, updates app status to pending.
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        self.app.update(status=amo.STATUS_REJECTED)
+        files = File.objects.filter(version__addon=self.app)
+        files.update(status=amo.STATUS_DISABLED)
+        self._post(302)
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        self.app.update_status()
+        eq_(self.app.status, amo.STATUS_PENDING)
 
 
 class TestEditVersion(amo.tests.TestCase):
