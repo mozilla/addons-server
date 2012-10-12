@@ -2,7 +2,7 @@
 
     z.page.on('click', 'b[data-href]', _pd(function(e) {
         e.stopPropagation();
-        window.location = $(this).attr('data-href');
+        window.open($(this).data('href'), '_newtab');
     }));
 
     // Add 'sel' class to active filter and set hidden input value.
