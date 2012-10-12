@@ -13,7 +13,7 @@ django-multidb-router==0.5
 django-mysql-pool==0.2
 django-nose==1.1
 django-quieter-formset==0.3
-django-statsd-mozilla==0.3.7
+django-statsd-mozilla==0.3.8
 django-tastypie==0.9.11
 easy-thumbnails==1.1
 gunicorn==0.14.6
