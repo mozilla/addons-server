@@ -69,6 +69,7 @@
             $form = $(feedback_form);
 
         z.page.on('submit', feedback_form, _pd(function(e) {
+            e.stopPropagation();
             if ($form.find('textarea').val()) {
                 if (z.capabilities.gaia) {
                     $form.find('input[name=platform]').val('Gaia');

@@ -26,16 +26,46 @@ function fragmentFilter(el) {
         // Hijack <form> submission
         z.body.on('submit', 'form', function(e) {
             var form = $(this);
-            // only trap GETs for now.
-            if (form.attr('method').toLowerCase() !== "get") return;
-            e.preventDefault();
+            var method = form.attr('method').toLowerCase();
+            if (method === 'get') {
+                e.preventDefault();
+                hijackGET(form);
+            } else if (method === 'post') {
+                e.preventDefault();
+                hijackPOST(form);
+            }
+            // Not GET or POST? Not interested.
+        });
+
+        function hijackGET(form) {
             var action = form.attr('action');
             //strip existing queryparams off the action.
             var link = document.createElement('a');
             link.href = action;
             var path = link.pathname + '?' + form.serialize();
             form.trigger('loadfragment', path);
-        });
+        }
+
+        function hijackPOST(form) {
+            console.log('hijacking POST');
+            startLoading();
+            var action = form.attr('action') || window.location.href;
+            console.log(action);
+            $.ajax({
+                type: 'POST',
+                url: action || window.location,
+                data: form.serialize()
+            }).done(function(response) {
+                // load up the response fragment!
+                updateContent(response);
+            }).fail(function(response) {
+                form.trigger('notify', {
+                    title: gettext('Error'),
+                    msg: gettext('A server error has occurred.')
+                });
+                endLoading();
+            });
+        }
 
         // capture clicks in our target environment
         z.body.on('click', 'a', function(e) {
@@ -117,6 +147,7 @@ function fragmentFilter(el) {
 
         // pump content into our page, clean up after ourselves.
         function updateContent(content, href, popped, opts) {
+            opts = opts || {};
             endLoading();
 
             container.html(content);
@@ -134,7 +165,12 @@ function fragmentFilter(el) {
                 page: $('#container'),
                 context: $('#page').data('context')
             });
-            
+
+            if (!href) {
+                href = z.context.uri;
+                console.log('whats the 411' + href);
+            }
+
             // Clear jQuery's data attribute cache for body.
             jQuery.cache[document.body[jQuery.expando]].data = null;
 
@@ -152,26 +188,6 @@ function fragmentFilter(el) {
             if (!popped) history.pushState(newState, false, href);
 
             container.trigger('fragmentloaded', [href, popped, newState]);
-        }
-
-        var prefetch_timeout;
-        z.page.on('fragmentloaded', function() {
-            if (prefetch_timeout) {
-                clearTimeout(prefetch_timeout);
-            }
-            console.log('get ready...');
-            prefetch_timeout = setTimeout(prefetch, 1000);
-        });
-        function prefetch() {
-            var links = z.page.find('[data-prefetch]'),
-                href;
-            prefetch_timeout = null;
-            for (var i=0; i<links.length; i++) {
-                href = links[i].getAttribute('href');
-                if (!fragmentCache[href]) {
-                    fetch(href);
-                }
-            }
         }
 
         function fetch(href) {

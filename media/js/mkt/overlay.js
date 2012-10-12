@@ -3,6 +3,7 @@
         e.preventDefault();
         e.stopPropagation();
     });
+    z.body.on('click', '.overlay button.dismiss', _pd(dismiss));
 
     function dismiss() {
         var $overlay = $('.overlay.show');
@@ -32,3 +33,22 @@
         }
     });
 })();
+
+function notify(msg, title) {
+    var $overlay= $('<div id="msg-overlay" class="overlay">');
+    var $section = $('<section>');
+    if (title) {
+        $section.append($('<h3>').text(title));
+    }
+    $section.append($('<p>').text(msg));
+    $section.append($('<button class="dismiss">').text(gettext('OK')));
+    $('#msg-overlay').remove();
+    $overlay.append($section);
+    $('body').append($overlay);
+    $overlay.addClass('show');
+}
+
+z.win.on('notify', function(e, o) {
+    if (!o.msg) return;
+    notify(o.msg, o.title);
+});

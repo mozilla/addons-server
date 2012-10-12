@@ -300,5 +300,6 @@ class HijackRedirectMiddleware(object):
             r.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
             # Pass back the URI so we can pushState it.
             r.FRAGMENT_URI = location
-            response = resolve(location).func(r)
+            view = resolve(location)
+            response = view.func(r, **view.kwargs)
         return response
