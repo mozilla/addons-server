@@ -56,7 +56,7 @@
                     });
                     $('<ol></ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
 
-                    if (headers) {
+                    if (manifestContents.headers) {
                         _.each(manifestContents.headers, function(v, k) {
                             headers += format('<li><b>{0}:</b> {1}</li>', k, v);
                         });
