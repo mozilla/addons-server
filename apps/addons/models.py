@@ -191,18 +191,20 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
     weekly_downloads = models.PositiveIntegerField(
-            default=0, db_column='weeklydownloads', db_index=True)
+        default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
-            default=0, db_column='totaldownloads')
+        default=0, db_column='totaldownloads')
     hotness = models.FloatField(default=0, db_index=True)
 
     average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
     share_count = models.PositiveIntegerField(default=0, db_index=True,
                                               db_column='sharecount')
-    last_updated = models.DateTimeField(db_index=True, null=True,
+    last_updated = models.DateTimeField(
+        db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
-    ts_slowness = models.FloatField(db_index=True, null=True,
+    ts_slowness = models.FloatField(
+        db_index=True, null=True,
         help_text='How much slower this add-on makes browser ts tests. '
                   'Read as {addon.ts_slowness}% slower.')
 
@@ -214,16 +216,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
     admin_review_type = models.PositiveIntegerField(
-                                    choices=amo.ADMIN_REVIEW_TYPES.items(),
-                                    default=amo.ADMIN_REVIEW_FULL)
+        choices=amo.ADMIN_REVIEW_TYPES.items(), default=amo.ADMIN_REVIEW_FULL)
     site_specific = models.BooleanField(default=False,
                                         db_column='sitespecific')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
-    dev_agreement = models.BooleanField(default=False,
-                            help_text="Has the dev agreement been signed?")
-    auto_repackage = models.BooleanField(default=True,
-        help_text='Automatically upgrade jetpack add-on to a new sdk version?')
+    dev_agreement = models.BooleanField(
+        default=False, help_text="Has the dev agreement been signed?")
+    auto_repackage = models.BooleanField(
+        default=True, help_text='Automatically upgrade jetpack add-on to a '
+                                'new sdk version?')
     outstanding = models.BooleanField(default=False)
 
     nomination_message = models.TextField(null=True,
@@ -250,10 +252,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
-        help_text=_(u"Users will always be asked in the Add-ons"
-                     " Manager (Firefox 4 and above)"))
-    enable_thankyou = models.BooleanField(default=False,
-        help_text="Should the thankyou note be sent to contributors?")
+        help_text=_(u'Users will always be asked in the Add-ons'
+                     ' Manager (Firefox 4 and above)'))
+    enable_thankyou = models.BooleanField(
+        default=False, help_text='Should the thank you note be sent to '
+                                 'contributors?')
     thankyou_note = TranslatedField()
 
     get_satisfaction_company = models.CharField(max_length=255, blank=True,
@@ -268,18 +271,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                           through='AddonDependency',
                                           related_name='addons')
     premium_type = models.PositiveIntegerField(
-                                    choices=amo.ADDON_PREMIUM_TYPES.items(),
-                                    default=amo.ADDON_FREE)
+        choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True,
                                    verify_exists=False)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
 
-    _current_version = models.ForeignKey(Version, related_name='___ignore',
-            db_column='current_version', null=True, on_delete=models.SET_NULL)
+    _current_version = models.ForeignKey(
+        Version, related_name='___ignore', db_column='current_version',
+        null=True, on_delete=models.SET_NULL)
     # This is for Firefox only.
-    _backup_version = models.ForeignKey(Version, related_name='___backup',
-            db_column='backup_version', null=True, on_delete=models.SET_NULL)
+    _backup_version = models.ForeignKey(
+        Version, related_name='___backup', db_column='backup_version',
+        null=True, on_delete=models.SET_NULL)
     _latest_version = None
     make_public = models.DateTimeField(null=True)
     mozilla_contact = models.EmailField()
@@ -306,9 +310,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             type_idx = (idx for idx, f in enumerate(Addon._meta.fields)
                         if f.attname == 'type').next()
             Addon._meta._type_idx = type_idx
-        if ((len(args) == len(Addon._meta.fields)
-             and args[type_idx] == amo.ADDON_WEBAPP)
-            or kw and kw.get('type') == amo.ADDON_WEBAPP):
+        if ((len(args) == len(Addon._meta.fields) and
+                args[type_idx] == amo.ADDON_WEBAPP) or kw and
+                kw.get('type') == amo.ADDON_WEBAPP):
             cls = Webapp
         return super(Addon, cls).__new__(cls, *args, **kw)
 
@@ -504,8 +508,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
-        return UserProfile.objects.filter(addons=self,
-                addonuser__listed=True).order_by('addonuser__position')
+        return UserProfile.objects.filter(
+            addons=self,
+            addonuser__listed=True).order_by('addonuser__position')
 
     @classmethod
     def get_fallback(cls):
@@ -809,8 +814,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
             return settings.ADDON_ICON_URL % (
-                    split_id.group(2) or 0, self.id, size,
-                    int(time.mktime(self.modified.timetuple())))
+                split_id.group(2) or 0, self.id, size,
+                int(time.mktime(self.modified.timetuple())))
 
     def update_status(self, using=None):
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
@@ -830,7 +835,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             self.update(status=amo.STATUS_NULL)
             logit('no versions with files')
         elif (self.status == amo.STATUS_PUBLIC and
-             not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
+              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(files__status=amo.STATUS_LITE).exists():
                 self.update(status=amo.STATUS_LITE)
                 logit('only lite files')
@@ -1163,8 +1168,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Get the queries used to calculate addon.last_updated.
         """
         status_change = Max('versions__files__datestatuschanged')
-        public = (Addon.uncached.filter(status=amo.STATUS_PUBLIC,
-            versions__files__status=amo.STATUS_PUBLIC)
+        public = (
+            Addon.uncached.filter(status=amo.STATUS_PUBLIC,
+                                  versions__files__status=amo.STATUS_PUBLIC)
             .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
             .values('id').annotate(last_updated=status_change))
 
@@ -1395,8 +1401,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
-    device_type = models.PositiveIntegerField(default=amo.DEVICE_DESKTOP,
-        choices=do_dictsort(amo.DEVICE_TYPES), db_index=True)
+    device_type = models.PositiveIntegerField(
+        default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
+        db_index=True)
 
     class Meta:
         db_table = 'addons_devicetypes'
@@ -1721,8 +1728,8 @@ class Category(amo.models.ModelBase):
     application = models.ForeignKey('applications.Application', null=True,
                                     blank=True)
     count = models.IntegerField('Addon count', default=0)
-    weight = models.IntegerField(default=0,
-        help_text='Category weight used in sort ordering')
+    weight = models.IntegerField(
+        default=0, help_text='Category weight used in sort ordering')
     misc = models.BooleanField(default=False)
 
     addons = models.ManyToManyField(Addon, through='AddonCategory')
@@ -2002,10 +2009,12 @@ class CompatOverrideRange(amo.models.ModelBase):
     """App compatibility for a certain version range of a RemoteAddon."""
     compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
     type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
-    min_version = models.CharField(max_length=255, default='0',
+    min_version = models.CharField(
+        max_length=255, default='0',
         help_text=u'If not "0", version is required to exist for the override'
                    ' to take effect.')
-    max_version = models.CharField(max_length=255, default='*',
+    max_version = models.CharField(
+        max_length=255, default='*',
         help_text=u'If not "*", version is required to exist for the override'
                    ' to take effect.')
     app = models.ForeignKey('applications.Application')

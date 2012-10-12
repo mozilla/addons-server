@@ -5,8 +5,9 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from mkt.developers.models import ActivityLog
 from users.models import UserProfile
+
+from mkt.developers.models import ActivityLog
 
 
 class TestActivityLogCount(amo.tests.TestCase):

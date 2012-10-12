@@ -214,10 +214,10 @@ class Webapp(Addon):
             action += '_inapp'
         try:
             url = reverse(('mkt.stats.%s' % action),
-                           args=[self.app_slug, urlquote(inapp)])
+                          args=[self.app_slug, urlquote(inapp)])
         except NoReverseMatch:
             url = reverse(('mkt.stats.%s' % 'revenue_inapp'),
-                           args=[self.app_slug, urlquote(inapp)])
+                          args=[self.app_slug, urlquote(inapp)])
         return url
 
     def get_image_asset_url(self, slug, default=64):
@@ -497,9 +497,9 @@ class Webapp(Addon):
                       app__disabled_by_user=False)
               .order_by('-app__weekly_downloads'))
         qs = (qs.filter(start_date__lte=cls.now())
-            | qs.filter(start_date__isnull=True))
+              | qs.filter(start_date__isnull=True))
         qs = (qs.filter(end_date__gte=cls.now())
-            | qs.filter(end_date__isnull=True))
+              | qs.filter(end_date__isnull=True))
 
         if waffle.switch_is_active('disabled-payments') or not gaia:
             qs = qs.filter(app__premium_type__in=amo.ADDON_FREES)
@@ -708,8 +708,8 @@ class Installed(amo.models.ModelBase):
     client_data = models.ForeignKey('stats.ClientData', null=True)
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
-    premium_type = models.PositiveIntegerField(null=True, default=None,
-        choices=amo.ADDON_PREMIUM_TYPES.items())
+    premium_type = models.PositiveIntegerField(
+        null=True, default=None, choices=amo.ADDON_PREMIUM_TYPES.items())
 
     class Meta:
         db_table = 'users_install'
@@ -732,7 +732,7 @@ class AddonExcludedRegion(amo.models.ModelBase):
     When regions are unchecked, we remember those excluded regions.
     """
     addon = models.ForeignKey('addons.Addon',
-        related_name='addonexcludedregion')
+                              related_name='addonexcludedregion')
     region = models.PositiveIntegerField(
         choices=mkt.regions.REGIONS_CHOICES_ID)
 

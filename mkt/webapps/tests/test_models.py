@@ -112,7 +112,8 @@ class TestWebapp(amo.tests.TestCase):
         eq_(webapp.get_stats_url(), '/app/woo/statistics/')
 
         url = webapp.get_stats_url(action='installs_series',
-            args=['day', '20120101', '20120201', 'json'])
+                                   args=['day', '20120101', '20120201',
+                                         'json'])
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
     def test_get_inapp_stats_url(self):
@@ -210,12 +211,9 @@ class TestWebapp(amo.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        AddonExcludedRegion.objects.create(addon=w1,
-            region=mkt.regions.CA.id)
-        AddonExcludedRegion.objects.create(addon=w1,
-            region=mkt.regions.BR.id)
-        AddonExcludedRegion.objects.create(addon=w2,
-            region=mkt.regions.UK.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.CA.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BR.id)
+        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.UK.id)
 
         w1_regions = list(mkt.regions.REGION_IDS)
         w1_regions.remove(mkt.regions.CA.id)
@@ -238,12 +236,9 @@ class TestWebapp(amo.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        AddonExcludedRegion.objects.create(addon=w1,
-            region=mkt.regions.CA.id)
-        AddonExcludedRegion.objects.create(addon=w1,
-            region=mkt.regions.BR.id)
-        AddonExcludedRegion.objects.create(addon=w2,
-            region=mkt.regions.UK.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.CA.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BR.id)
+        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.UK.id)
 
         all_regions = mkt.regions.REGIONS_CHOICES_ID_DICT.values()
 
@@ -566,12 +561,12 @@ class TestAddonExcludedRegion(amo.tests.WebappTestCase):
 
         eq_(list(self.excluded.values_list('id', flat=True)), [])
         self.er = AddonExcludedRegion.objects.create(addon=self.app,
-            region=mkt.regions.CA.id)
+                                                     region=mkt.regions.CA.id)
         eq_(list(self.excluded.values_list('id', flat=True)), [self.er.id])
 
     def test_exclude_multiple(self):
         other = AddonExcludedRegion.objects.create(addon=self.app,
-            region=mkt.regions.UK.id)
+                                                   region=mkt.regions.UK.id)
         eq_(sorted(self.excluded.values_list('id', flat=True)),
             sorted([self.er.id, other.id]))
 
@@ -827,7 +822,7 @@ class TestListedIn(amo.tests.WebappTestCase):
     def test_not_in_region(self):
         for region in mkt.regions.ALL_REGIONS:
             AddonExcludedRegion.objects.create(addon=self.app,
-                region=region.id)
+                                               region=region.id)
             eq_(self.get_app().listed_in(region=region), False)
 
     def test_not_in_category(self):
@@ -878,7 +873,7 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
 
         for region in mkt.regions.ALL_REGIONS:
             AddonExcludedRegion.objects.create(addon=self.app,
-                region=region.id)
+                                               region=region.id)
             eq_(self.get_app().content_ratings_in(region=region), [])
 
     def test_in_for_region_and_category(self):
