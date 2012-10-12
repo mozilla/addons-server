@@ -128,6 +128,10 @@ BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 
+#Bug 793876
+SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
+SIGNED_APPS_SERVER_ACTIVE = False
+
 METLOG_CONF['logger'] = 'addons-marketplace-dev'
 METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
 METLOG = client_from_dict_config(METLOG_CONF)
