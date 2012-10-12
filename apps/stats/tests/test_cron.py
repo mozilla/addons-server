@@ -20,7 +20,7 @@ class TestGlobalStats(amo.tests.TestCase):
 
     def test_stats_for_date(self):
 
-        date = '2009-06-01'
+        date = datetime.date(2009, 6, 1)
         job = 'addon_total_downloads'
 
         eq_(GlobalStat.objects.no_cache().filter(date=date,
@@ -51,10 +51,20 @@ class TestGlobalStats(amo.tests.TestCase):
         Review.objects.create(addon=addon, user=user)
         eq_(tasks._get_daily_jobs()['apps_review_count_new'](), 1)
 
+
+    def test_input(self):
+        for x in ['2009-1-1',
+                  datetime.datetime(2009, 1, 1),
+                  datetime.datetime(2009, 1, 1, 11, 0)]:
+            with self.assertRaises((TypeError, ValueError)):
+                tasks._get_daily_jobs(x)
+
     def test_user_total(self):
+        day = datetime.date(2009, 1, 1)
         p = UserProfile.objects.create(username='foo',
                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        p.update(created=datetime.date(2009, 1, 1))
+        p.update(created=day)
+        eq_(tasks._get_daily_jobs(day)['mmo_user_count_total'](), 1)
         eq_(tasks._get_daily_jobs()['mmo_user_count_total'](), 1)
         eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 0)
 

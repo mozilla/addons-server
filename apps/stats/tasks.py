@@ -89,20 +89,30 @@ def _get_daily_jobs(date=None):
     If a date is specified and applies to the job it will be used.  Otherwise
     the date will default to today().
     """
-
     if not date:
         date = datetime.date.today()
 
-    extra = dict(where=['DATE(created)=%s'], params=[date])
+    # Passing through a datetime would not generate an error,
+    # but would pass and give incorrect values.
+    if isinstance(date, datetime.datetime):
+        raise ValueError('This requires a valid date, not a datetime')
+
+    # Testing on lte created date doesn't get you todays date, you need to do
+    # less than next date. That's because 2012-1-1 becomes 2012-1-1 00:00
+    next_date = date + datetime.timedelta(days=1)
+
+    date_str = date.strftime('%Y-%m-%d')
+    extra = dict(where=['DATE(created)=%s'], params=[date_str])
     # Where we need to specify the extra on some of the joins.
-    addon_extra = dict(where=['DATE(addons.created)=%s'], params=[date])
+    addon_extra = dict(where=['DATE(addons.created)=%s'], params=[date_str])
+
     # If you're editing these, note that you are returning a function!  This
     # cheesy hackery was done so that we could pass the queries to celery
     # lazily and not hammer the db with a ton of these all at once.
     stats = {
         # Add-on Downloads
         'addon_total_downloads': lambda: DownloadCount.objects.filter(
-                date__lte=date).aggregate(sum=Sum('count'))['sum'],
+                date__lt=next_date).aggregate(sum=Sum('count'))['sum'],
         'addon_downloads_new': lambda: DownloadCount.objects.filter(
                 date=date).aggregate(sum=Sum('count'))['sum'],
 
@@ -114,7 +124,7 @@ def _get_daily_jobs(date=None):
 
         # User counts
         'user_count_total': UserProfile.objects.filter(
-                created__lte=date).count,
+                created__lt=next_date).count,
         'user_count_new': UserProfile.objects.extra(**extra).count,
 
         # Review counts
@@ -125,10 +135,10 @@ def _get_daily_jobs(date=None):
 
         # Collection counts
         'collection_count_total': Collection.objects.filter(
-                created__lte=date).count,
+                created__lt=next_date).count,
         'collection_count_new': Collection.objects.extra(**extra).count,
         'collection_count_autopublishers': Collection.objects.filter(
-                created__lte=date, type=amo.COLLECTION_SYNCHRONIZED).count,
+                created__lt=next_date, type=amo.COLLECTION_SYNCHRONIZED).count,
 
         'collection_addon_downloads': (lambda:
             AddonCollectionCount.objects.filter(date__lte=date).aggregate(
@@ -146,7 +156,7 @@ def _get_daily_jobs(date=None):
 
         # New users
         'mmo_user_count_total': UserProfile.objects.filter(
-                created__lte=date,
+                created__lt=next_date,
                 source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
         'mmo_user_count_new': UserProfile.objects.filter(
                 source=amo.LOGIN_SOURCE_MMO_BROWSERID).extra(**extra).count,

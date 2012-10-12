@@ -482,7 +482,9 @@ def _site_query(period, start, end):
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the
     # assert.
-    assert period in SERIES_GROUPS_DATE, '%s period is not valid.'
+    if period not in SERIES_GROUPS_DATE:
+        raise AssertionError('%s period is not valid.' % period)
+
     sql = ("SELECT name, MIN(date), SUM(count) "
            "FROM global_stats "
            "WHERE date > %%s AND date <= %%s "

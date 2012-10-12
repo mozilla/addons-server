@@ -45,6 +45,8 @@ def update_collections_total():
 def update_global_totals(date=None):
     """Update global statistics totals."""
 
+    if date:
+        date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
     today = date or datetime.date.today()
     today_jobs = [dict(job=job, date=today) for job in
                   tasks._get_daily_jobs(date)]
