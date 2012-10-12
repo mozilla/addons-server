@@ -97,6 +97,14 @@ class Version(amo.models.ModelBase):
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
+
+        # If packaged app and app is blocked, put in escalation queue.
+        if (addon.is_webapp() and addon.is_packaged and
+            addon.status == amo.STATUS_BLOCKED):
+            # To avoid circular import.
+            from editors.models import EscalationQueue
+            EscalationQueue.objects.create(addon=addon)
+
         return v
 
     @classmethod
