@@ -7,6 +7,8 @@
                                                  processResults, 'MKT');
     }
 
+    var previous_request;
+
     function processResults(settings) {
         if (!settings) {
             return;
@@ -16,7 +18,7 @@
             '<li><a href="{url}"><span>{name}</span></a></li>'
         );
 
-        $.ajaxCache({
+        var new_request = $.ajaxCache({
             url: settings['$results'].attr('data-src'),
             data: settings['$form'].serialize() + '&cat=' + settings.category,
             newItems: function(formdata, items) {
@@ -45,5 +47,10 @@
                 }
             }
         });
+
+        if (previous_request) {
+            previous_request.abort();
+        }
+        previous_request = new_request;
     }
 })();
