@@ -829,12 +829,18 @@ def make_validation_result(data, is_compatibility=False):
                             + compatibility_count
                             - lim)
             if leftover_count > 0:
-                if data['validation']['errors'] or cs.get('errors'):
-                    msgtype = 'error'
-                elif data['validation']['warnings'] or cs.get('warnings'):
-                    msgtype = 'warning'
+                msgtype = 'notice'
+                if is_compatibility:
+                    if cs.get('errors'):
+                        msgtype = 'error'
+                    elif cs.get('warnings'):
+                        msgtype = 'warning'
                 else:
-                    msgtype = 'notice'
+                    if data['validation']['errors']:
+                        msgtype = 'error'
+                    elif data['validation']['warnings']:
+                        msgtype = 'warning'
+
                 data['validation']['messages'].append(
                     {'tier': 1,
                      'type': msgtype,

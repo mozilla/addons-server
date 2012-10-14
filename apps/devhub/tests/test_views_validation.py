@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 import json
 import os
 import shutil
@@ -389,6 +390,60 @@ class TestValidateFile(BaseUploadTest):
         eq_(len(data['validation']['messages']), 11)
         assert 'truncated' in data['validation']['messages'][-1]['message']
         eq_(data['validation']['messages'][-1]['type'], 'warning')
+
+    @mock.patch.object(settings, 'VALIDATOR_MESSAGE_LIMIT', 10)
+    def test_limit_validator_compat_errors(self):
+        orig_data = {
+            "error": None,
+            "validation": {
+                "errors": 0,
+                "success": True,
+                "warnings": 100,
+                "notices": 0,
+                "message_tree": {},
+                "compatibility_summary": {"errors": 100, "warnings": 0, "notices": 0},
+                "messages": [{
+                        "context": ["<code>", None],
+                        "description": [
+                            "Something something, see https://bugzilla.mozilla.org/"],
+                        "column": 0,
+                        "line": 1,
+                        "file": "chrome/content/down.html",
+                        "tier": 2,
+                        "message": "Some warning",
+                        "type": "warning",
+                        "compatibility_type": "warning",
+                        "id": [],
+                        "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                        },
+                        {
+                        "context": ["<code>", None],
+                        "description": [
+                            "Something something, see https://bugzilla.mozilla.org/"],
+                        "column": 0,
+                        "line": 1,
+                        "file": "chrome/content/down.html",
+                        "tier": 2,
+                        "message": "Some error",
+                        "type": "warning",
+                        "compatibility_type": "warning",
+                        "id": [],
+                        "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                        }] * 50,
+                "metadata": {}
+                }
+            }
+        data = copy.deepcopy(orig_data)
+        make_validation_result(data)
+        eq_(len(data['validation']['messages']), 11)
+        assert 'truncated' in data['validation']['messages'][-1]['message']
+        eq_(data['validation']['messages'][-1]['type'], 'warning')
+
+        data = copy.deepcopy(orig_data)
+        make_validation_result(data, is_compatibility=True)
+        eq_(len(data['validation']['messages']), 11)
+        assert 'truncated' in data['validation']['messages'][-1]['message']
+        eq_(data['validation']['messages'][-1]['type'], 'error')
 
     @mock.patch.object(settings, 'VALIDATOR_MESSAGE_LIMIT', 10)
     def test_limit_validator_errors(self):
