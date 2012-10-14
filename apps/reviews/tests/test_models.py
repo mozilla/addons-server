@@ -4,8 +4,10 @@ from nose.tools import eq_
 import test_utils
 
 import amo.tests
+from addons.models import Addon
 from reviews import tasks
 from reviews.models import check_spam, Review, GroupedRating, Spam
+from users.models import UserProfile
 
 
 class TestReviewModel(amo.tests.TestCase):
@@ -65,3 +67,43 @@ class TestSpamTest(amo.tests.TestCase):
 
     def test_add(self):
         assert Spam().add(Review.objects.all()[0], 'numbers')
+
+
+class TestRefreshTest(amo.tests.ESTestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.user = UserProfile.objects.all()[0]
+        self.refresh()
+
+        eq_(self.get_bayesian_rating(), 0.0)
+
+    def get_bayesian_rating(self):
+        q = Addon.search().filter(id=self.addon.id)
+        return list(q.values_dict('bayesian_rating'))[0]['bayesian_rating']
+
+    def test_created(self):
+        eq_(self.get_bayesian_rating(), 0.0)
+        Review.objects.create(addon=self.addon, user=self.user, rating=4)
+        self.refresh()
+        eq_(self.get_bayesian_rating(), 4.0)
+
+    def test_edited(self):
+        self.test_created()
+
+        r = self.addon.reviews.all()[0]
+        r.rating = 1
+        r.save()
+        self.refresh()
+
+        eq_(self.get_bayesian_rating(), 2.5)
+
+    def test_deleted(self):
+        self.test_created()
+
+        r = self.addon.reviews.all()[0]
+        r.delete()
+        self.refresh()
+
+        eq_(self.get_bayesian_rating(), 0.0)

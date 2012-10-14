@@ -330,6 +330,13 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
 
+    def reload(self):
+        """Reloads the instance from the database."""
+        from_db = self.__class__.objects.get(id=self.id)
+        for field in self.__class__._meta.fields:
+            setattr(self, field.name, getattr(from_db, field.name))
+        return self
+
     def update(self, **kw):
         """
         Shortcut for doing an UPDATE on this object.

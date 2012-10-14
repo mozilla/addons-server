@@ -114,3 +114,18 @@ class TestModelBase(TestCase):
         b, c = Addon.objects.safer_get_or_create(**data)
         assert not c
         eq_(a, b)
+
+    def test_reload(self):
+        # Make it an extension.
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        addon.save()
+
+        # Make it a persona.
+        Addon.objects.get(id=addon.id).update(type=amo.ADDON_PERSONA)
+
+        # Still an extension.
+        eq_(addon.type, amo.ADDON_EXTENSION)
+
+        # Reload. And it's magically now a persona.
+        eq_(addon.reload().type, amo.ADDON_PERSONA)
+        eq_(addon.type, amo.ADDON_PERSONA)

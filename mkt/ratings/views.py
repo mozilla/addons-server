@@ -17,7 +17,6 @@ from amo.decorators import (json_view, login_required, post_required,
 
 from reviews.forms import ReviewReplyForm
 from reviews.models import Review, ReviewFlag
-from reviews.tasks import addon_review_aggregates
 from reviews.views import get_flags
 from stats.models import ClientData, Contribution
 
@@ -180,9 +179,6 @@ def add(request, addon):
                                 note='URLs')
                         rf.save()
                     existing_review.save()
-                    # Update ratings and review counts.
-                    addon_review_aggregates.delay(addon.id,
-                                                  using='default')
 
                 amo.log(amo.LOG.EDIT_REVIEW, addon, existing_review)
                 log.debug('[Review:%s] Edited by %s' % (existing_review.id,
@@ -217,7 +213,6 @@ def add(request, addon):
                 messages.success(request,
                                  _('Your review was successfully added!'))
 
-            Addon.objects.invalidate(*[addon])
             return redirect(addon.get_ratings_url('list'))
 
         # If the form isn't valid, we've set `form` so that it can be used when

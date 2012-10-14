@@ -85,8 +85,8 @@ class Review(amo.models.ModelBase):
     def post_save(sender, instance, created, **kwargs):
         if kwargs.get('raw'):
             return
+        instance.refresh(update_denorm=created)
         if created:
-            Review.post_delete(sender, instance)
             # Avoid slave lag with the delay.
             check_spam.apply_async(args=[instance.id], countdown=600)
 
@@ -94,12 +94,21 @@ class Review(amo.models.ModelBase):
     def post_delete(sender, instance, **kwargs):
         if kwargs.get('raw'):
             return
+        instance.refresh(update_denorm=True)
+
+    def refresh(self, update_denorm=False):
         from . import tasks
-        pair = instance.addon_id, instance.user_id
-        # Do this immediately so is_latest is correct. Use default to avoid
-        # slave lag.
-        tasks.update_denorm(pair, using='default')
-        tasks.addon_review_aggregates.delay(instance.addon_id, using='default')
+
+        if update_denorm:
+            pair = self.addon_id, self.user_id
+            # Do this immediately so is_latest is correct. Use default
+            # to avoid slave lag.
+            tasks.update_denorm(pair, using='default')
+
+        # Review counts have changed, so (1) run task,
+        # (2) reload Addon instance, and (3) trigger a reindex.
+        tasks.addon_review_aggregates.delay(self.addon_id, using='default')
+        self.addon.reload().save()
 
     @staticmethod
     def transformer(reviews):
