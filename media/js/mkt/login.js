@@ -26,6 +26,7 @@ $(window).bind('login', function() {
 });
 // Hijack the login form to send us to the right place
 $("#login form").submit(function(e) {
+    e.stopPropagation();
     var $this = $(this),
         action = $this.attr('action') + format("?to={0}", window.location.pathname);
     $this.attr('action', action);
