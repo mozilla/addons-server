@@ -106,13 +106,13 @@ class TestPayPalJS(amo.tests.TestCase):
         self.create_switch('enabled-paypal', active=False)
         resp = self.client.get(self.url)
         assert not settings.PAYPAL_JS_URL in resp.content, (
-                    'When paypal is disabled, its JS lib should not load')
+            'When paypal is disabled, its JS lib should not load')
 
     def test_load_paypal_js(self):
         self.create_switch('enabled-paypal')
         resp = self.client.get(self.url)
         assert settings.PAYPAL_JS_URL in resp.content, (
-                    'When paypal is enabled, its JS lib should load')
+            'When paypal is enabled, its JS lib should load')
 
 
 class TestAppBreadcrumbs(AppHubTest):
@@ -196,7 +196,7 @@ class TestAppDashboard(AppHubTest):
         app = self.get_app()
         self.make_mine()
         app.update(is_packaged=True)
-        next_version = Version.objects.create(addon=app, version='1.24')
+        Version.objects.create(addon=app, version='1.24')
         doc = pq(self.client.get(self.url).content)
         eq_(doc('.item[data-addonid=%s] .item-latest-version' % app.id
                 ).text(),
@@ -216,7 +216,7 @@ class TestAppDashboard(AppHubTest):
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
         amo.tests.check_links([('View Statistics', app.get_stats_url())],
-            doc('a.stats-link'), verify=False)
+                              doc('a.stats-link'), verify=False)
 
     def test_action_links_packaged(self):
         self.create_switch('app-stats')
@@ -233,7 +233,7 @@ class TestAppDashboard(AppHubTest):
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
         amo.tests.check_links([('View Statistics', app.get_stats_url())],
-            doc('a.stats-link'), verify=False)
+                              doc('a.stats-link'), verify=False)
 
     def test_disabled_payments_action_links(self):
         self.create_switch('app-stats')
@@ -482,7 +482,7 @@ class MarketplaceMixin(object):
 
         self.addon = Addon.objects.get(id=337141)
         self.addon.update(status=amo.STATUS_NOMINATED,
-            highest_status=amo.STATUS_NOMINATED)
+                          highest_status=amo.STATUS_NOMINATED)
 
         self.url = self.addon.get_dev_url('payments')
         assert self.client.login(username='steamcube@mozilla.com',
@@ -518,7 +518,7 @@ class MarketplaceMixin(object):
 # that the account exists on paypal.
 #
 @mock.patch('mkt.developers.forms.PremiumForm.clean',
-             new=lambda x: x.cleaned_data)
+            new=lambda x: x.cleaned_data)
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube', 'market/prices']
 
@@ -568,8 +568,8 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
                                data=self.get_data(currencies=['EUR', 'LOL']))
         eq_(res.status_code, 200)
         self.assertFormError(res, 'form', 'currencies',
-                              [u'Select a valid choice. '
-                                'LOL is not one of the available choices.'])
+                             [u'Select a valid choice. '
+                               'LOL is not one of the available choices.'])
 
     def test_set_upsell(self):
         self.setup_premium()
@@ -636,7 +636,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         eq_(self.addon.premium.paypal_permissions_token, '')
         url = self.addon.get_dev_url('acquire_refund_permission')
         self.client.get(urlparams(url, request_token='foo',
-                                       verification_code='bar'))
+                                  verification_code='bar'))
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.premium.paypal_permissions_token.lower(), 'foo')
 
@@ -648,7 +648,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.setup_premium()
         url = self.addon.get_dev_url('acquire_refund_permission')
         self.client.get(urlparams(url, request_token='foo',
-                                       verification_code='bar'))
+                                  verification_code='bar'))
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.premium.paypal_permissions_token.lower(), 'foo')
 
@@ -922,8 +922,8 @@ class TestIssueRefund(amo.tests.TestCase):
                                           everyone=True)
 
         client.post_refund.return_value = {'response': [{
-                'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
-                'receiver.email': self.user.email}]}
+            'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
+            'receiver.email': self.user.email}]}
         c = self.make_purchase()
         r = self.client.post(self.url, {'transaction_id': c.transaction_id,
                                         'issue': '1'})
@@ -983,7 +983,8 @@ class TestRefunds(amo.tests.TestCase):
         for status in amo.REFUND_STATUSES.keys():
             for x in xrange(status + 2):
                 c = Contribution.objects.create(addon=self.webapp,
-                    user=self.user, type=amo.CONTRIB_PURCHASE)
+                                                user=self.user,
+                                                type=amo.CONTRIB_PURCHASE)
                 r = Refund.objects.create(contribution=c, status=status,
                                           requested=days_ago(x))
                 self.expected.setdefault(status, []).append(r)
@@ -1129,6 +1130,8 @@ class TestPublicise(amo.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_PUBLIC_WAITING)
+        self.file = self.webapp.versions.latest().all_files[0]
+        self.file.update(status=amo.STATUS_PUBLIC_WAITING)
         self.publicise_url = self.webapp.get_dev_url('publicise')
         self.status_url = self.webapp.get_dev_url('versions')
         assert self.client.login(username='steamcube@mozilla.com',
@@ -1147,6 +1150,8 @@ class TestPublicise(amo.tests.TestCase):
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
+        eq_(self.get_webapp().versions.latest().all_files[0].status,
+            amo.STATUS_PUBLIC)
 
     def test_status(self):
         res = self.client.get(self.status_url)

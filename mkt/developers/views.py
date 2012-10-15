@@ -133,14 +133,15 @@ def dashboard(request, webapp=False):
 @dev_required(webapp=True)
 def edit(request, addon_id, addon, webapp=False):
     data = {
-       'page': 'edit',
-       'addon': addon,
-       'webapp': webapp,
-       'valid_slug': addon.app_slug,
-       'image_sizes': APP_IMAGE_SIZES,
-       'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
-       'previews': addon.get_previews(),
-       'device_type_form': DeviceTypeForm(request.POST or None, addon=addon),
+        'page': 'edit',
+        'addon': addon,
+        'webapp': webapp,
+        'valid_slug': addon.app_slug,
+        'image_sizes': APP_IMAGE_SIZES,
+        'tags': addon.tags.not_blacklisted().values_list('tag_text',
+                                                         flat=True),
+        'previews': addon.get_previews(),
+        'device_type_form': DeviceTypeForm(request.POST or None, addon=addon),
     }
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
@@ -191,6 +192,9 @@ def disable(request, addon_id, addon):
 def publicise(request, addon_id, addon):
     if addon.status == amo.STATUS_PUBLIC_WAITING:
         addon.update(status=amo.STATUS_PUBLIC)
+        File.objects.filter(
+            version__addon=addon, status=amo.STATUS_PUBLIC_WAITING).update(
+                status=amo.STATUS_PUBLIC)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
         # Call update_version, so various other bits of data update.
         addon.update_version()
@@ -471,7 +475,7 @@ def paypal_setup_confirm(request, addon_id, addon, webapp, source='paypal'):
         if waffle.flag_is_active(request, 'solitude-payments'):
             obj = client.create_seller_paypal(addon)
             client.patch_seller_paypal(pk=obj['resource_pk'],
-                    data={'paypal_id': addon.paypal_id})
+                                       data={'paypal_id': addon.paypal_id})
 
         if waffle.flag_is_active(request, 'solitude-payments'):
             # TODO(solitude): when the migration of data is completed, we
@@ -564,7 +568,7 @@ def bluevia_callback(request, addon_id, addon, webapp):
     status = request.POST.get('status')
     if status in ['registered', 'loggedin']:
         bluevia = BlueViaConfig.objects.create(user=request.amo_user,
-            developer_id=developer_id)
+                                               developer_id=developer_id)
         try:
             (AddonBlueViaConfig.objects.get(addon=addon)
              .update(bluevia_config=bluevia))
@@ -718,8 +722,8 @@ def issue_refund(request, addon_id, addon, webapp=False):
         if 'issue' in request.POST:
             if waffle.flag_is_active(request, 'solitude-payments'):
                 try:
-                    response = client.post_refund(data={'uuid':
-                                                 contribution.transaction_id})
+                    response = client.post_refund(
+                        data={'uuid': contribution.transaction_id})
                 except client.Error, e:
                     contribution.record_failed_refund(e)
                     paypal_log.error('Refund failed for: %s' % txn_id,
@@ -756,8 +760,9 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                      contribution.paykey,
                                      res['receiver.email']))
                     messages.error(request,
-                        _("A refund can't be issued at this time. We've "
-                          "notified an admin; please try again later."))
+                                   _("A refund can't be issued at this time. "
+                                     "We've notified an admin; please try "
+                                     "again later."))
                     return redirect(addon.get_dev_url('refunds'))
 
             contribution.mail_approved()
@@ -972,7 +977,7 @@ def file_validation(request, addon_id, addon, file_id):
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated == True:
+    if not file.has_been_validated:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
@@ -1013,7 +1018,7 @@ def json_upload_detail(request, upload, addon_slug=None):
 
 
 def upload_validation_context(request, upload, addon_slug=None, addon=None,
-                                       url=None):
+                              url=None):
     if addon_slug and not addon:
         addon = get_object_or_404(Addon, slug=addon_slug)
     if not settings.VALIDATE_ADDONS:
