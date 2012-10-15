@@ -623,10 +623,10 @@ def reviewlog(request):
         if data['search']:
             term = data['search']
             approvals = approvals.filter(
-                    Q(commentlog__comments__contains=term) |
-                    Q(addonlog__addon__name__localized_string__contains=term) |
-                    Q(user__display_name__contains=term) |
-                    Q(user__username__contains=term)).distinct()
+                    Q(commentlog__comments__icontains=term) |
+                    Q(addonlog__addon__name__localized_string__icontains=term) |
+                    Q(user__display_name__icontains=term) |
+                    Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
     ad = {

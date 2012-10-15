@@ -197,6 +197,13 @@ class TestReviewLog(EditorTest):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#log-listing tbody tr.hide').eq(0).text(), 'hello')
 
+    def test_search_comment_case_exists(self):
+        """Search by comment, with case."""
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
+        r = self.client.get(self.url, dict(search='HeLlO'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('#log-listing tbody tr.hide').eq(0).text(), 'hello')
+
     def test_search_comment_doesnt_exist(self):
         """Search by comment, with no results."""
         self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
@@ -217,6 +224,19 @@ class TestReviewLog(EditorTest):
         eq_(rows.filter(':not(.hide)').length, 1)
         eq_(rows.filter('.hide').eq(0).text(), 'hi')
 
+    def test_search_author_case_exists(self):
+        """Search by author, with case."""
+        self.make_approvals()
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, username='editor',
+                              comment='hi')
+
+        r = self.client.get(self.url, dict(search='EdItOr'))
+        eq_(r.status_code, 200)
+        rows = pq(r.content)('#log-listing tbody tr')
+
+        eq_(rows.filter(':not(.hide)').length, 1)
+        eq_(rows.filter('.hide').eq(0).text(), 'hi')
+
     def test_search_author_doesnt_exist(self):
         """Search by author, with no results."""
         self.make_approvals()
@@ -231,6 +251,16 @@ class TestReviewLog(EditorTest):
         self.make_approvals()
         addon = Addon.objects.all()[0]
         r = self.client.get(self.url, dict(search=addon.name))
+        eq_(r.status_code, 200)
+        tr = pq(r.content)('#log-listing tr[data-addonid="%s"]' % addon.id)
+        eq_(tr.length, 1)
+        eq_(tr.siblings('.comments').text(), 'youwin')
+
+    def test_search_addon_case_exists(self):
+        """Search by add-on name, with case."""
+        self.make_approvals()
+        addon = Addon.objects.all()[0]
+        r = self.client.get(self.url, dict(search=str(addon.name).swapcase()))
         eq_(r.status_code, 200)
         tr = pq(r.content)('#log-listing tr[data-addonid="%s"]' % addon.id)
         eq_(tr.length, 1)
