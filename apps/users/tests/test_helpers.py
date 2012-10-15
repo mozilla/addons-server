@@ -117,19 +117,23 @@ class TestUserData(amo.tests.TestCase):
         up = UserProfile.objects.create(email='aq@a.com', username='foo')
         PreApprovalUser.objects.create(user=up, paypal_key='asd')
         eq_(user_data(RequestUser.objects.get(pk=up.pk)),
-            {'anonymous': False, 'pre_auth': True, 'currency': 'USD'})
+            {'anonymous': False, 'pre_auth': True, 'currency': 'USD',
+             'email': 'aq@a.com'})
 
     def test_no_user_data(self):
         eq_(user_data(None),
-            {'anonymous': True, 'pre_auth': False, 'currency': 'USD'})
+            {'anonymous': True, 'pre_auth': False, 'currency': 'USD',
+             'email': ''})
 
     def test_anonymous_user_data(self):
         eq_(user_data(AnonymousUser()),
-            {'anonymous': True, 'pre_auth': False, 'currency': 'USD'})
+            {'anonymous': True, 'pre_auth': False, 'currency': 'USD',
+             'email': ''})
 
     def test_preapproval_user_data(self):
         up = UserProfile.objects.create(email='aq@a.com', username='foo')
         PreApprovalUser.objects.create(user=up, paypal_key='asd',
                                        currency='EUR')
         eq_(user_data(RequestUser.objects.get(pk=up.pk)),
-            {'anonymous': False, 'pre_auth': True, 'currency': 'EUR'})
+            {'anonymous': False, 'pre_auth': True, 'currency': 'EUR',
+             'email': 'aq@a'})
