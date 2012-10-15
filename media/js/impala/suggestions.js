@@ -158,7 +158,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
                 gestureHandler($self);
                 inputHandler($self);
                 return;
-            }, 500);
+            }, 150);
         });
     }
 
