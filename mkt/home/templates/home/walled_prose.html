@@ -1,3 +1,4 @@
+{% if is_walled %}
 <h1>Check back soon!</h1>
 <p>
   The Marketplace is currently only available to invited Mozillians.
@@ -10,6 +11,20 @@
   <h1>Have an app to submit?</h1>
   <p>
     The Marketplace Developers site is still open.
-    <a href="{{ url('ecosystem.landing') }}" target="_blank">Upload your app &raquo;</a>
+    <a href="{{ url('ecosystem.landing') }}" target="_blank">{{ _('Upload your app') }} &raquo;</a>
   </p>
 </div>
+{% else %}
+<h1>{{ _('Please Log In') }}</h1>
+<p>
+  {% trans %}
+    The Firefox Marketplace gives users the opportunity to find, try and buy Apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets across all categories that users can use to get the most out of their daily lives.
+  {% endtrans %}
+</p>
+<div class="still-open">
+  <h1>{{ _('Have an app to submit?') }}</h1>
+  <p>
+    <a href="{{ url('ecosystem.landing') }}" target="_blank">{{ _('Upload your app') }} &raquo;</a>
+  </p>
+</div>
+{% endif %}

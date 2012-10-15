@@ -61,6 +61,9 @@ def global_settings(request):
     else:
         context['amo_user'] = AnonymousUser()
 
+    is_walled = ('amo.middleware.LoginRequiredMiddleware' in
+                 settings.MIDDLEWARE_CLASSES)
+
     context.update(account_links=account_links,
                    settings=settings,
                    amo=amo, mkt=mkt,
@@ -69,5 +72,6 @@ def global_settings(request):
                    tools_title=tools_title,
                    ADMIN_MESSAGE=get_config('site_notice'),
                    collect_timings_percent=get_collect_timings(),
-                   is_admin=acl.action_allowed(request, 'Addons', 'Edit'))
+                   is_admin=acl.action_allowed(request, 'Addons', 'Edit'),
+                   is_walled=is_walled)
     return context
