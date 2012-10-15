@@ -22,7 +22,7 @@ from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonDeviceType, AddonUser, Persona
 from amo.tests import (AMOPaths, app_factory, addon_factory, check_links,
-                       formset, initial, version_factory)
+                       days_ago, formset, initial, version_factory)
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, AppLog
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
@@ -1326,9 +1326,9 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         super(TestReviewLog, self).setUp()
         # Note: if `created` is not specified, `addon_factory`/`app_factory`
         # uses a randomly generated timestamp.
-        self.apps = [app_factory(name='XXX', created='now',
+        self.apps = [app_factory(name='XXX', created=days_ago(3),
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS),
-                     app_factory(name='YYY', created='now',
+                     app_factory(name='YYY', created=days_ago(2),
                                  status=amo.WEBAPPS_UNREVIEWED_STATUS)]
         self.url = reverse('reviewers.apps.logs')
 
