@@ -48,9 +48,19 @@
             }
         });
 
+        abortRequest();
+        previous_request = new_request;
+    }
+
+    function abortRequest() {
         if (previous_request) {
             previous_request.abort();
         }
-        previous_request = new_request;
     }
+
+    z.page.on('startfragmentload', function() {
+        abortRequest();
+        $('#site-search-suggestions').trigger('dismiss');
+    });
+
 })();
