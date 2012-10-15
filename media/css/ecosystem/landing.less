@@ -38,10 +38,57 @@
     position: relative;
     width: 920px;
 
-    &.initial-steps {
-        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat 15px 50%;
+    &.contact, &.initial-steps {
+        background-color: #fff;
         .border-radius(5px);
         .box-shadow(@light-gray 0 3px 3px);
+    }
+
+    &.initial-steps {
+        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat 15px 50%;
+    }
+
+    &.contact {
+        text-align: center;
+
+        .contact-info, .logo {
+            float: left;
+        }
+
+        .logo {
+            padding: 15px 20px 15px 0;
+            width: 142px;
+
+            img {
+                display: block;
+                margin: 0 auto;
+                width: 112px;
+            }
+
+            h3 {
+                color: #c45a00;
+                font-size: 17px;
+                font-weight: 600;
+                line-height: 20px;
+                padding: 5px 0;
+                text-align: center;
+            }
+        }
+
+        .contact-info {
+            width: 750px;
+
+            h3 {
+                font-size: 19px;
+                line-height: 23px;
+                padding: 16px 10px 0;
+            }
+
+            p {
+                font-weight: bold;
+                padding: 0 10px;
+            }
+        }
     }
 
     .panel {

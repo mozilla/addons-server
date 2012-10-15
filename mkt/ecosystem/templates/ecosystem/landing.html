@@ -149,6 +149,25 @@
         </p>
       </div>
     </section>
+    <section class="half contact">
+      <div class="logo">
+        <img src="{{ media('img/ecosystem/mozilla-wordmark.png') }}"
+             alt="{{ _('Mozilla') }}">
+        <h3>{{ _('Partnerships') }}</h3>
+      </div>
+      <div class="contact-info">
+        <h3>
+          {% trans %}
+            Are you a Web Company, Third-Party Service, or OEM looking to
+            partner with Mozilla?
+          {% endtrans %}
+        </h3>
+        <p>
+          {{ _('Drop us a line and tell us about it:') }}
+          {{ emaillink('marketplace-partners@mozilla.com') }}
+        </p>
+      </div>
+    </section>
   </div>
 {% endblock %}
 
