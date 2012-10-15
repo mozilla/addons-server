@@ -140,6 +140,18 @@ class TestInstall(amo.tests.TestCase):
         eq_(send_request.call_args[0][2], {'app-domain': u'http://cbc.ca',
                                            'app-id': self.addon.pk})
 
+    @mock.patch('mkt.receipts.views.send_request')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
+    @mock.patch.object(settings, 'SITE_URL', 'http://test.com')
+    def test_record_metrics_packaged_app(self, cef, send_request):
+        # Mimic packaged app.
+        self.addon.update(is_packaged=True, manifest_url=None)
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(send_request.call_args[0][0], 'install')
+        eq_(send_request.call_args[0][2], {
+            'app-domain': u'http://test.com', 'app-id': self.addon.pk})
+
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_cef_logs(self, cef):
         res = self.client.post(self.url)

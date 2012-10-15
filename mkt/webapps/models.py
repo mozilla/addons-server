@@ -269,7 +269,7 @@ class Webapp(Addon):
 
     @property
     def origin(self):
-        parsed = urlparse.urlparse(self.manifest_url)
+        parsed = urlparse.urlparse(self.get_manifest_url())
         return '%s://%s' % (parsed.scheme, parsed.netloc)
 
     def get_manifest_url(self):
