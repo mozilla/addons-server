@@ -241,6 +241,17 @@ body[data-page-type=notice], body[data-page-type=alpha] {
     }
 }
 
+// Mobile footer needs only the "log in" button.
+@media (max-width: @not-desktop) {
+    #site-footer.anonymous {
+        display: block;
+        text-align: center;
+        nav {
+            display: none;
+        }
+    }
+}
+
 @media (min-width: @7col) {
     #site-footer {
         display: block;
