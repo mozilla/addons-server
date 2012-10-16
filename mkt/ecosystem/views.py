@@ -9,34 +9,28 @@ from .tasks import locales
 
 log = commonware.log.getLogger('z.ecosystem')
 
-
 def landing(request):
     """Developer Hub landing page."""
     videos = [
         {
             'name': 'evernote',
-            'path': 'MozMarketplace-Evernote_2ndDraft-RC-SD1%20640',
-            'translation': 'LaXSpZ3FQJps'
+            'path': 'FirefoxMarketplace-Evernote_BR-RC-SD1%20640'
         },
         {
             'name': 'mobbase',
-            'path': 'Moz_Market_Mixmatchmusic',
-            'translation': 'oSJQGUbVgGKj'
+            'path': 'FirefoxMarketplace-MobBase-BR-RC-SD1%20640'
         },
         {
             'name': 'teambox',
-            'path': 'Moz_Market_Teambox',
-            'translation': 'dvmnkd83CJgI'
+            'path': 'FirefoxMarketplace_Teambox-BR-RC-SD1%20640'
         },
         {
-            'name': 'kicksend',
-            'path': 'Moz_Market_kicksend%202',
-            'translation': 'lQ8UVq6KwwEW'
+            'name': 'soundcloud',
+            'path': 'FirefoxMarketplace-Soundcloud-BR-RC-SD1%20640'
         },
         {
             'name': 'box',
-            'path': 'Moz_Market_box_1stDraft-HD%20720p%20Video%20Sharing-640x360%20Video%20Sharing',
-            'translation': 'fxvXQC0H68AU'
+            'path': 'FirefoxMarketplace_box-BR-RC-SD1%20640'
         }
     ]
     return jingo.render(request, 'ecosystem/landing.html',

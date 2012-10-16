@@ -170,16 +170,14 @@
   </section>
 {% endmacro -%}
 
-{% macro video_display(video_name, video_path, translation_id) -%}
+{% macro video_display(video_name, video_path) -%}
   <div class="{{ video_name }}-content video-item" id="{{ video_name }}">
     <div class="video-control">
       <video width="509" height="278"
         poster="{{ media('img/ecosystem/poster-%s.jpg' % video_name) }}"
         controls="controls">
-        <source src="//videos-cdn.mozilla.net/serv/drafts/{{ video_path }}.webm" type="video/webm">
-        <source src="//videos-cdn.mozilla.net/serv/drafts/{{ video_path }}.theora.ogv"
-                type="video/ogg; codecs=&quot;theora, vorbis&quot;">
-        <source src="//videos-cdn.mozilla.net/serv/drafts/{{ video_path }}.mp4" type="video/mp4">
+        <source src="//videos-cdn.mozilla.net/serv/Marketplace-videos/{{ video_path }}.webm" type="video/webm">
+        <source src="//videos-cdn.mozilla.net/serv/Marketplace-videos/{{ video_path }}.mp4" type="video/mp4">
         {# TODO: Get a version of playerWithControls.swf on the video CDN for addons #}
         <!--
         <object type="application/x-shockwave-flash"
@@ -197,10 +195,13 @@
         -->
       </video>
     </div>
+    {# TODO: Get updated subtitle IDs for the new videos when available #}
+    <!--
     <div class="subtitles">
       <a href="http://www.universalsubtitles.org/videos/{{ translation_id }}/info/">
         {{ _('View with subtitles') }}
       </a>
     </div>
+    -->
   </div>
 {% endmacro -%}
