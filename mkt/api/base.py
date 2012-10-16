@@ -7,7 +7,11 @@ from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ModelResource
 
+import commonware.log
+import oauth2
 from translations.fields import PurifiedField, TranslatedField
+
+log = commonware.log.getLogger('z.api')
 
 
 class MarketplaceResource(ModelResource):
@@ -73,3 +77,16 @@ class MarketplaceResource(ModelResource):
         except ObjectDoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
         return obj
+
+    def dispatch(self, request_type, request, **kwargs):
+        try:
+            auth = (oauth2.Request._split_header(
+                    request.META.get('HTTP_AUTHORIZATION', '')))
+            name = auth.get('oauth_consumer_key', 'none')
+        except (AttributeError, IndexError):
+            # Problems parsing the header.
+            name = 'error'
+        log.debug('%s:%s:%s' % (
+                  request.META['REQUEST_METHOD'], request.path, name))
+        return (super(MarketplaceResource, self)
+                .dispatch(request_type, request, **kwargs))
