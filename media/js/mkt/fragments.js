@@ -17,7 +17,9 @@ function fragmentFilter(el) {
 (function(container, nodeFilter) {
     var threshold = 250,
         timeout = false,
-        fragmentCache = {};
+        fragmentCache = {},
+        cacheHash = '',
+        reloadOnNext = false;
     if (z.capabilities.replaceState) {
         var $loading = $('<div>', {'class': 'loading-fragment overlay',
                                    'html': '<em></em>'})
@@ -25,6 +27,7 @@ function fragmentFilter(el) {
 
         // Hijack <form> submission
         z.body.on('submit', 'form', function(e) {
+            if (reloadOnNext) return;
             var form = $(this);
             var method = form.attr('method').toLowerCase();
             if (method === 'get') {
@@ -74,6 +77,7 @@ function fragmentFilter(el) {
 
         // capture clicks in our target environment
         z.body.on('click', 'a', function(e) {
+            if (reloadOnNext) return;
             var href = this.getAttribute('href');
             if (e.metaKey || e.ctrlKey || e.button !== 0) return;
             if (nodeFilter(this)) {
@@ -172,6 +176,13 @@ function fragmentFilter(el) {
                 context: $('#page').data('context')
             });
 
+            // If we have new media, load the next fragment synchronously.
+            if (z.context.hash != cacheHash) {
+                reloadOnNext = true;
+                container.trigger('fragmentpendingsync');
+                console.log('performing synchronous load next navigation');
+            }
+
             if (!href) {
                 href = z.context.uri;
                 console.log('whats the 411' + href);
@@ -226,6 +237,7 @@ function fragmentFilter(el) {
             // Don't forget to update updateContent too, bro.
             var path = window.location.pathname + window.location.search + window.location.hash;
             var type = z.context.type;
+            cacheHash = z.context.hash;
             var state = {
                 path: path,
                 type: type

@@ -76,6 +76,7 @@
            data-context="{{
              {'type': pagetype or 'leaf',
               'title': titletag,
+              'hash': get_media_hash(),
               'headertitle': headertitle,
               'bodyclass': bodyclass or '',
               'category': category.name ~ '' if category else ''}|json }}">

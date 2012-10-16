@@ -46,6 +46,12 @@ def js(context, bundle, debug=None, defer=False, async=False):
     return jingo_minify_helpers.js(bundle, debug, defer, async)
 
 
+@jinja2.contextfunction
+@register.function
+def get_media_hash(context):
+    return jingo_minify_helpers.BUILD_ID_JS + jingo_minify_helpers.BUILD_ID_CSS
+
+
 def new_context(context, **kw):
     c = dict(context.items())
     c.update(kw)
