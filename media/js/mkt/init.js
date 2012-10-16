@@ -153,12 +153,4 @@ z.page.on('fragmentloaded', function() {
         e.preventDefault();
     });
 
-    // iPhone-style scroll up.
-    z.body.on('click', '#top, header', function(e) {
-        var $target = $(e.target);
-        if (!$target.filter('a, form, input').length) {
-            e.preventDefault();
-            $outer.animate({scrollTop: 0}, 500);
-        }
-    });
 });

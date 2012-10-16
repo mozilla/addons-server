@@ -50,7 +50,12 @@ function fragmentFilter(el) {
             console.log('hijacking POST');
             startLoading();
             var action = form.attr('action') || window.location.href;
-            console.log(action);
+            var data = form.serialize();
+            if (data) {
+                data += '&_hijacked=true';
+            } else {
+                data = '_hijacked=true';
+            }
             $.ajax({
                 type: 'POST',
                 url: action || window.location,
