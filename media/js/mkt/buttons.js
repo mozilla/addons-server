@@ -119,12 +119,10 @@
                 $btnContainer.find('.errorlist').remove();
                 $btnContainer.append($errList);
             } else {
-                var $overlay = $('<div id="install-error" class="overlay"></div>');
-                $overlay.append('<section><h3>' + gettext('Error') + '</h3><p>' +
-                                errSummary + '</p></section>');
-                $('#install-error').remove();
-                $('body').append($overlay);
-                $overlay.addClass('show');
+                $btnContainer.trigger('notify', {
+                    title: gettext('Error'),
+                    msg: errSummary
+                });
             }
         } else {
             // Cancelled install. Roll back.
