@@ -62,17 +62,13 @@
 .home {
     #site-header {
         h1 {
+            background: url(../../img/mkt/logos/mp_icon_wordmark_200x30.png) no-repeat;
+            text-indent: -99999px;
+            width: 200px;
+            height: 30px;
             left: 60px;
-            text-align: center;
-            &:before {
-                background: url(../../img/mkt/logos/small.png) no-repeat;
-                content: "";
-                height: 27px;
-                width: 35px;
-                display: inline-block;
-                position: relative;
-                top: 5px;
-            }
+            top: 10px;
+            overflow: hidden;
         }
     }
 }
@@ -275,5 +271,17 @@ body.login[data-page-type=notice] #site-header.no-consumer h1 {
             max-width: 800px;
         }
     }
+    // TODO: Uncomment one the large desktop header is finished.
+    /*
+    .home {
+        #site-header {
+            h1 {
+                background: url(../../img/mkt/logos/mp_icon_wordmark_400x60.png) no-repeat;
+                width: 400px;
+                height: 60px;
+            }
+        }
+    }
+    */
 }
 
