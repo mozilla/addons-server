@@ -16,6 +16,7 @@ django-quieter-formset==0.3
 django-statsd-mozilla==0.3.8
 django-tastypie==0.9.11
 easy-thumbnails==1.1
+elasticutils==0.5
 gunicorn==0.14.6
 hera==0.1.2
 metlog-py==0.9.8
@@ -61,9 +62,7 @@ statsd==1.0.0
 
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
--e git://github.com/jbalogh/django-pylibmc.git@e3343cefd95162f0237b2839069fb2495753d9df#egg=django-pylibmc
 -e git://github.com/jbalogh/jingo.git@b4ecca1066bcd1eac87358b4c82902442d4eedc4#egg=jingo
 -e git://github.com/jsocol/django-ratelimit@a148254a1fb4248a34cf753d594af1e73bec455c#egg=django-ratelimit
--e git://github.com/mozilla/elasticutils.git@98f210e2b3fe2451b63ad6abbf50e8ab690ef5a3#egg=elasticutils
 -e git://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
 -e git://github.com/clouserw/tower.git@1dfa7345019e79eb7dfce6315c0493e68e6b134a#egg=tower
