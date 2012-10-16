@@ -40,7 +40,7 @@ def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews.' %
              (len(addons), addon_review_aggregates.rate_limit))
     using = kw.get('using')
-    stats = dict(Review.objects.latest().filter(addon__in=addons)
+    stats = dict(Review.objects.latest().no_cache().filter(addon__in=addons)
                  .using(using).values_list('addon').annotate(Count('addon')))
     for addon in addons:
         count = stats.get(addon, 0)
@@ -48,7 +48,7 @@ def addon_review_aggregates(*addons, **kw):
 
     log.info('[%s@%s] Updating average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
-    stats = dict(Review.objects.valid().filter(addon__in=addons)
+    stats = dict(Review.objects.valid().no_cache().filter(addon__in=addons)
                  .using(using).values_list('addon').annotate(Avg('rating')))
     for addon in addons:
         avg = stats.get(addon, 0)

@@ -32,6 +32,8 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 def _review_details(request, addon, form):
     d = dict(addon_id=addon.id, user_id=request.user.id,
              ip_address=request.META.get('REMOTE_ADDR', ''))
+    if addon.is_packaged:
+        d['version_id'] = addon.current_version.id
     d.update(**form.cleaned_data)
     return d
 
@@ -150,11 +152,13 @@ def add(request, addon):
     data = request.POST or None
 
     # Try to get an existing review of the app by this user if we can.
+    filters = dict(addon=addon, user=request.user)
+    if addon.is_packaged:
+        filters['version'] = addon.current_version
+
     try:
-        existing_review = Review.objects.valid().filter(addon=addon,
-                                                        user=request.user)[0]
+        existing_review = Review.objects.valid().filter(**filters)[0]
     except IndexError:
-        # If one doesn't exist, set it to None.
         existing_review = None
 
     # If the user is posting back, try to process the submission.
@@ -174,9 +178,8 @@ def add(request, addon):
                         existing_review.flag = True
                         existing_review.editorreview = True
                         rf = ReviewFlag(review=existing_review,
-                                user_id=request.user.id,
-                                flag=ReviewFlag.OTHER,
-                                note='URLs')
+                                        user_id=request.user.id,
+                                        flag=ReviewFlag.OTHER, note='URLs')
                         rf.save()
                     existing_review.save()
 
@@ -193,19 +196,18 @@ def add(request, addon):
                 except IndexError:
                     pass
                 else:
-                    log.debug('[Review:%s] Deleted reply to %s' %
-                                  (reply.id, existing_review.id))
+                    log.debug('[Review:%s] Deleted reply to %s' % (
+                        reply.id, existing_review.id))
                     reply.delete()
 
             else:
                 # If there isn't a review to overwrite, create a new review.
                 review = Review.objects.create(client_data=client_data,
-                        **_review_details(request, addon, form))
+                                               **_review_details(
+                                                   request, addon, form))
                 if 'flag' in cleaned and cleaned['flag']:
-                    rf = ReviewFlag(review=review,
-                                user_id=request.user.id,
-                                flag=ReviewFlag.OTHER,
-                                note='URLs')
+                    rf = ReviewFlag(review=review, user_id=request.user.id,
+                                    flag=ReviewFlag.OTHER, note='URLs')
                     rf.save()
                 amo.log(amo.LOG.ADD_REVIEW, addon, review)
                 log.debug('[Review:%s] Created by user %s ' %

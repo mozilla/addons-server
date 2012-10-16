@@ -40,12 +40,15 @@ def detail(request, addon):
     # Mature regions show only reviews from within that region.
     if not request.REGION.adolescent:
         reviews = reviews.filter(client_data__region=request.REGION.id)
+    reviewed_filter = dict(user=request.user.id)
+    if addon.is_packaged:
+        reviewed_filter['version'] = addon.current_version
     ctx = {
         'product': addon,
         'reviews': reviews[:2],
         'flags': get_flags(request, reviews),
         'has_review': request.user.is_authenticated() and
-                      reviews.filter(user=request.user.id).exists(),
+                      reviews.filter(**reviewed_filter).exists(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'details_page': True
     }

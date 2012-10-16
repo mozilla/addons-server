@@ -2,10 +2,10 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from access.models import Group, GroupUser
 import amo
-from amo.urlresolvers import reverse
 import amo.tests
+from access.models import Group, GroupUser
+from amo.urlresolvers import reverse
 from reviews.models import Review, ReviewFlag
 from stats.models import ClientData, Contribution
 from users.models import UserProfile
@@ -102,8 +102,8 @@ class TestCreate(ReviewTest):
             note reviews that contain URL like patterns for editorial review
         """
         for body in ['url http://example.com', 'address 127.0.0.1',
-                'url https://example.com/foo/bar', 'host example.org',
-                'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
+                     'url https://example.com/foo/bar', 'host example.org',
+                     'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
             self.client.post(self.add, {'body': body, 'rating': 2})
             ff = Review.objects.filter(addon=self.webapp)
             rf = ReviewFlag.objects.filter(review=ff[0])
@@ -130,6 +130,25 @@ class TestCreate(ReviewTest):
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected ADD_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
+        eq_(Review.objects.all()[0].version, None)
+
+    def test_packaged_app_review_success(self):
+        self.webapp.update(is_packaged=True)
+
+        Review.objects.all().delete()
+
+        qs = self.webapp.reviews
+        old_cnt = qs.count()
+        log_count = ActivityLog.objects.count()
+
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 1})
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
+                             status_code=302)
+        eq_(qs.count(), old_cnt + 1)
+        eq_(ActivityLog.objects.count(), log_count + 1,
+            'Expected ADD_REVIEW entry')
+        eq_(self.get_webapp().total_reviews, 1)
+        eq_(Review.objects.all()[0].version, self.webapp.current_version)
 
     def test_review_success_edit(self):
         qs = self.webapp.reviews
@@ -143,6 +162,24 @@ class TestCreate(ReviewTest):
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
+        eq_(Review.objects.all()[0].version, None)
+
+    def test_packaged_app_review_success_edit(self):
+        self.webapp.update(is_packaged=True)
+        Review.objects.all().update(version=self.webapp.current_version)
+
+        qs = self.webapp.reviews
+        old_cnt = qs.count()
+        log_count = ActivityLog.objects.count()
+
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 1})
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
+                             status_code=302)
+        eq_(qs.count(), old_cnt)
+        eq_(ActivityLog.objects.count(), log_count + 1,
+            'Expected EDIT_REVIEW entry')
+        eq_(self.get_webapp().total_reviews, 1)
+        eq_(Review.objects.all()[0].version, self.webapp.current_version)
 
     def test_review_edit_review_initial(self):
         # Existing review? Then edit that review.
@@ -159,6 +196,31 @@ class TestCreate(ReviewTest):
         self.review.delete()
         r = self.client.get(self.add)
         eq_(pq(r.content)('textarea[name=body]').html(), None)
+
+    def test_packaged_app_review_next_version(self):
+        self.webapp.update(is_packaged=True)
+        old_version = self.webapp.current_version
+        Review.objects.all().update(version=old_version)
+
+        # Add a new version.
+        amo.tests.version_factory(addon=self.webapp)
+        self.webapp.update(_current_version=self.webapp.versions.latest())
+        assert not self.get_webapp().current_version == old_version, (
+            u'Expected versions to be different.')
+
+        # Test adding a review on this new version.
+        qs = self.webapp.reviews
+        old_cnt = qs.count()
+        log_count = ActivityLog.objects.count()
+
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 1})
+        self.assertRedirects(r, self.webapp.get_ratings_url('list'),
+                             status_code=302)
+        eq_(qs.count(), old_cnt + 1)
+        eq_(ActivityLog.objects.count(), log_count + 1,
+            'Expected EDIT_REVIEW entry')
+        eq_(self.get_webapp().total_reviews, 1)
+        eq_(Review.objects.latest()[0].version, self.webapp.current_version)
 
     def test_review_success_dup(self):
         Review.objects.create(
@@ -220,6 +282,25 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get(self.detail)
         submit_button = pq(r.content)('#add-first-review')
+        eq_(submit_button.length, 1)
+        eq_(submit_button.text(), 'Write a Review')
+
+    def test_edit_link_packaged(self):
+        self.enable_waffle()
+        self.webapp.update(is_packaged=True)
+        Review.objects.all().update(version=self.webapp.current_version)
+        res = self.client.get(self.detail)
+        submit_button = pq(res.content)('#add-first-review')
+        eq_(submit_button.length, 1)
+        eq_(submit_button.text(), 'Edit Your Review')
+
+    def test_edit_link_packaged_new_version(self):
+        self.webapp.update(is_packaged=True)
+        amo.tests.version_factory(addon=self.webapp)
+        self.webapp.update(_current_version=self.webapp.versions.latest())
+        self.enable_waffle()
+        res = self.client.get(self.detail)
+        submit_button = pq(res.content)('#add-first-review')
         eq_(submit_button.length, 1)
         eq_(submit_button.text(), 'Write a Review')
 
@@ -603,6 +684,6 @@ class TestFlag(ReviewTest):
         response = self.client.post(self.flag, {'flag': ReviewFlag.SPAM})
         eq_(response.status_code, 200)
         eq_(response.content, '{"msg": "Thanks; this review has been '
-                                       'flagged for editor approval."}')
+                              'flagged for editor approval."}')
         eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
         eq_(Review.objects.filter(editorreview=True).count(), 1)
