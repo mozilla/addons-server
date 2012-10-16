@@ -192,7 +192,7 @@ class AppResource(MarketplaceResource):
         bundle.data['categories'] = [c.pk for c in obj.categories.all()]
         with no_translation():
             bundle.data['device_types'] = [str(n.name).lower()
-                                            for n in obj.device_types]
+                                           for n in obj.device_types]
         return bundle
 
 

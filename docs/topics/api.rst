@@ -422,4 +422,4 @@ Example, to specify a category sorted by rating::
 .. _`Marketplace representative`: marketplace-team@mozilla.org
 .. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
 .. _`APIs for Add-ons`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
-.. _`example marketplace client`: https://github.com/mozilla/MarketplaceClientExample
+.. _`example marketplace client`: https://github.com/mozilla/Marketplace.Python
