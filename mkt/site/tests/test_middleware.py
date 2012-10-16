@@ -471,19 +471,27 @@ class TestHijackRedirectMiddleware(amo.tests.TestCase):
         self.url = reverse('account.settings')
 
     def test_post_synchronous(self):
-        r = self.client.post(self.url, {'display_name': 'omg'})
-        self.assert3xx(r, self.url)
+        res = self.client.post(self.url, {'display_name': 'omg'})
+        self.assert3xx(res, self.url)
+
+    def test_unhijacked_ajax(self):
+        res = self.client.post_ajax(self.url, {'display_name': 'omg'})
+        self.assert3xx(res, self.url)
 
     def test_post_ajax(self):
-        r = self.client.post_ajax(self.url, {'display_name': 'omg'})
-        eq_(r.status_code, 200)
-        eq_(json.loads(pq(r.content)('data-context'))('uri'), self.url)
+        res = self.client.post_ajax(self.url, {'display_name': 'omg',
+                                               '_hijacked': 'true'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(pq(res.content)('#page').attr('data-context'))['uri'],
+            self.url)
 
     def test_post_ajax_carrier(self):
         url = '/telefonica' + self.url
-        r = self.client.post_ajax(url, {'display_name': 'omg'})
-        eq_(r.status_code, 200)
-        eq_(json.loads(pq(r.content)('data-context'))('uri'), self.url)
+        res = self.client.post_ajax(url, {'display_name': 'omg',
+                                          '_hijacked': 'true'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(pq(res.content)('#page').attr('data-context'))['uri'],
+            url)
 
 
 def normal_view(request):

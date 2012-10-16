@@ -292,13 +292,13 @@ class HijackRedirectMiddleware(object):
     """
 
     def process_response(self, request, response):
-        if (getattr(request, 'FRAGMENTS', False) and
-                request.method == 'POST' and
+        if (request.method == 'POST' and
+                request.POST.get('_hijacked', False) and
                 response.status_code in (301, 302)):
             view_url = location = response['Location']
             if get_carrier():
                 # Strip carrier from URL.
-                view_url = '/'.join(location.split('/')[2:])
+                view_url = '/' + '/'.join(location.split('/')[2:])
             r = copy.copy(request)
             r.method = 'GET'
             # We want only the fragment response.
