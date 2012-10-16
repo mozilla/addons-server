@@ -2,6 +2,12 @@
 
 @right-width: 528px;
 
+.border-wrapper {
+    background-color: @white;
+    .border-radius(3px);
+    .box-shadow(@medium-gray 0 0 2px);
+}
+
 #landing-page {
     color: @medium-gray;
     font-size: 14px;
@@ -15,7 +21,7 @@
         color: @dark-gray;
         font-size: 55px;
         font-weight: 100;
-        margin: 20px 0 40px;
+        margin: 20px 0;
         text-align: center;
         text-shadow: #fff 0 1px 1px;
     }
@@ -23,6 +29,7 @@
     p.intro {
         font-size: 25px;
         font-weight: 100;
+        padding-bottom: 30px;
         text-align: center;
     }
 
@@ -46,6 +53,7 @@
 
     &.initial-steps {
         background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat 15px 50%;
+        margin-bottom: 40px;
     }
 
     &.contact {
@@ -130,6 +138,12 @@
 
     .screenshot {
         margin-top: 10px;
+
+        img {
+            .border-wrapper;
+            display: block;
+            padding: 5px;
+        }
     }
 
     .platform-copy, .screenshot {
@@ -167,9 +181,7 @@
         }
 
         .video-control {
-            background-color: @white;
-            .border-radius(3px);
-            .box-shadow(@medium-gray 0 0 2px);
+            .border-wrapper;
             margin: 0 auto;
         }
 
@@ -180,8 +192,7 @@
             padding: 0;
 
             li {
-                .border-radius(3px);
-                .box-shadow(@medium-gray 0 0 2px);
+                .border-wrapper;
                 cursor: pointer;
                 float: left;
                 margin-right: 10px;
