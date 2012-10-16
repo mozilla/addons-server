@@ -344,8 +344,9 @@ class TestFetchManifest(amo.tests.TestCase):
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
-            'Manifests must be served with the HTTP header '
-            '"Content-Type: application/x-web-app-manifest+json".')
+            'Manifests must be served with the HTTP header "Content-Type: '
+            'application/x-web-app-manifest+json". See %s for more '
+            'information.' % tasks.CT_URL)
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_bad_content_type(self):
@@ -354,8 +355,9 @@ class TestFetchManifest(amo.tests.TestCase):
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
-            'Manifests must be served with the HTTP header '
-            '"Content-Type: application/x-web-app-manifest+json".')
+            'Manifests must be served with the HTTP header "Content-Type: '
+            'application/x-web-app-manifest+json". See %s for more '
+            'information.' % tasks.CT_URL)
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_good_charset(self):

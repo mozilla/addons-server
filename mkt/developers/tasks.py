@@ -455,6 +455,7 @@ def failed_validation(*messages, **kwargs):
                        'prelim': True})
 
 
+CT_URL = 'https://developer.mozilla.org/en/Apps/Manifest#Serving_manifests'
 def _fetch_manifest(url, upload=None):
     def fail(message, upload=None):
         if upload is None:
@@ -474,7 +475,8 @@ def _fetch_manifest(url, upload=None):
     ct = response.headers.get('Content-Type', '')
     if not ct.startswith('application/x-web-app-manifest+json'):
         fail(_('Manifests must be served with the HTTP header '
-               '"Content-Type: application/x-web-app-manifest+json".'),
+               '"Content-Type: application/x-web-app-manifest+json". See %s '
+               'for more information.') % CT_URL,
              upload=upload)
 
     try:
