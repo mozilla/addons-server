@@ -93,15 +93,13 @@ def contribution_type(type):
 
 @register.function
 def user_data(amo_user):
-    anonymous, currency, pre_auth, email = True, 'USD', False, ''
+    anonymous, currency, pre_auth = True, 'USD', False
     if hasattr(amo_user, 'is_anonymous'):
         anonymous = amo_user.is_anonymous()
     if not anonymous:
-        email = amo_user.email
         preapproval = amo_user.get_preapproval()
         if preapproval:
             pre_auth = bool(preapproval.paypal_key)
             currency = preapproval.currency if preapproval.currency else 'USD'
 
-    return {'anonymous': anonymous, 'currency': currency, 'pre_auth': pre_auth,
-            'email': email}
+    return {'anonymous': anonymous, 'currency': currency, 'pre_auth': pre_auth}

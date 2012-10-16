@@ -222,9 +222,9 @@
       <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
       {# When bug 755694 is solved, expose the shim again. #}
       {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
-      <script async defer src="https://login.persona.org/include.js"></script>
       {% if not logged %}
-        {# We need RECAPTCHA for only non-authenticated users. #}
+        {# We need Persona for only non-authenticated users. #}
+        <script async defer src="https://login.persona.org/include.js"></script>
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
       {{ js('mkt/consumer') }}
