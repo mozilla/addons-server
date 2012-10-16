@@ -436,6 +436,10 @@ class AMOPaths(object):
         return os.path.join(settings.ROOT,
                             'mkt/developers/tests/addons/mozball-128.png')
 
+    def preview_image(self):
+        return os.path.join(settings.ROOT,
+                            'apps/amo/tests/images/preview.jpg')
+
     def packaged_app_path(self, name):
         return os.path.join(
             settings.ROOT, 'mkt/submit/tests/packaged/%s' % name)

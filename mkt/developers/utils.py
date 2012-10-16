@@ -23,6 +23,9 @@ def check_upload(file_obj, upload_type, content_type):
     is_video = (content_type in amo.VIDEO_TYPES and
                 waffle.switch_is_active('video-upload'))
 
+    if not any([is_icon, is_image_asset, is_preview, is_video]):
+        raise ValueError('Unknown upload type.')
+
     # By pushing the type onto the instance hash, we can easily see what
     # to do with the file later.
     ext = content_type.replace('/', '-')

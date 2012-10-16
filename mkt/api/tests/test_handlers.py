@@ -479,7 +479,7 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(user=self.user, addon=self.app)
-        self.file = base64.b64encode(open(self.mozball_image(), 'r').read())
+        self.file = base64.b64encode(open(self.preview_image(), 'r').read())
         self.list_url = ('api_dispatch_list', {'resource_name': 'preview'},
                          {'app': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
