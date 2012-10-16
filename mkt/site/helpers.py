@@ -439,3 +439,16 @@ def allow_installs(context):
     """
     ua = context['request'].META.get('HTTP_USER_AGENT', '')
     return check_firefox(ua) == (False, False)
+
+
+@register.function
+@jinja2.contextfunction
+def enable_fragments(context):
+    """
+    Include this function in mkt/base.html so fragments get initialized
+    for only consumer pages.
+    """
+    skip_fragments = getattr(context, 'SKIP_FRAGMENT', False)
+    #request = context['request']
+    context['request'].FRAGMENTS = (context['request'].is_ajax() and
+                                    not skip_fragments)

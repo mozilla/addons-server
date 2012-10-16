@@ -228,8 +228,8 @@ def account_feedback(request):
         platform = form.cleaned_data['platform']
         chromeless = form.cleaned_data['chromeless']
         context = {'user': request.amo_user,
-                   'user_agent': request.META['HTTP_USER_AGENT'],
-                   'ip_address': request.META['REMOTE_ADDR'],
+                   'user_agent': request.META.get('HTTP_USER_AGENT', ''),
+                   'ip_address': request.META.get('REMOTE_ADDR', ''),
                    'feedback': feedback,
                    'platform': platform,
                    'chromeless': chromeless}

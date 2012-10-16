@@ -1,3 +1,4 @@
+import json
 import socket
 
 from django.conf import settings
@@ -5,6 +6,7 @@ from django.conf import settings
 import mock
 from nose.exc import SkipTest
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
@@ -458,6 +460,30 @@ class TestGaiaMiddleware(amo.tests.TestCase):
         r = self.client.get('/', follow=True)
         eq_(r.cookies.get('gaia'), None)
         assert not r.context['request'].GAIA
+
+
+class TestHijackRedirectMiddleware(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.url = reverse('account.settings')
+
+    def test_post_synchronous(self):
+        r = self.client.post(self.url, {'display_name': 'omg'})
+        self.assert3xx(r, self.url)
+
+    def test_post_ajax(self):
+        r = self.client.post_ajax(self.url, {'display_name': 'omg'})
+        eq_(r.status_code, 200)
+        eq_(json.loads(pq(r.content)('data-context'))('uri'), self.url)
+
+    def test_post_ajax_carrier(self):
+        url = '/telefonica' + self.url
+        r = self.client.post_ajax(url, {'display_name': 'omg'})
+        eq_(r.status_code, 200)
+        eq_(json.loads(pq(r.content)('data-context'))('uri'), self.url)
 
 
 def normal_view(request):

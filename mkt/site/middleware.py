@@ -15,6 +15,7 @@ from amo.utils import urlparams
 
 import mkt
 from lib.geoip import GeoIP
+from mkt.carriers import get_carrier
 
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
@@ -291,15 +292,19 @@ class HijackRedirectMiddleware(object):
     """
 
     def process_response(self, request, response):
-        if (request.is_ajax() and request.method == 'POST' and
+        if (getattr(request, 'FRAGMENTS', False) and
+                request.method == 'POST' and
                 response.status_code in (301, 302)):
-            location = response['Location']
+            view_url = location = response['Location']
+            if get_carrier():
+                # Strip carrier from URL.
+                view_url = '/'.join(location.split('/')[2:])
             r = copy.copy(request)
             r.method = 'GET'
             # We want only the fragment response.
             r.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
             # Pass back the URI so we can pushState it.
             r.FRAGMENT_URI = location
-            view = resolve(location)
-            response = view.func(r, **view.kwargs)
+            view = resolve(view_url)
+            response = view.func(r, *view.args, **view.kwargs)
         return response

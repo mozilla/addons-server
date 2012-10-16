@@ -4,7 +4,9 @@
 {% set pagetitle = pagetitle or '' %}
 {% set headertitle = headertitle or pagetitle %}
 
-{% if request.is_ajax() and not SKIP_FRAGMENT %}
+{{ enable_fragments() }}
+
+{% if request.FRAGMENTS %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
 
