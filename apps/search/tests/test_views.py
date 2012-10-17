@@ -1104,13 +1104,6 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_addons('q=PERSONA&cat=personas', personas, types)
         self.search_addons('q=persona&cat=all', [])
 
-    def test_webapps(self):
-        apps = list(Addon.objects.reviewed()
-                    .filter(type=amo.ADDON_WEBAPP, disabled_by_user=False))
-        types = [amo.ADDON_WEBAPP]
-        self.search_addons('q=add&cat=apps', apps, types)
-        self.search_addons('q=WEBAPP&cat=apps', apps, types)
-
     def test_applications(self):
         self.search_applications('', [])
         self.search_applications('q=FIREFOX', [amo.FIREFOX])
@@ -1118,6 +1111,3 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_applications('q=bird', [amo.THUNDERBIRD])
         self.search_applications('q=mobile', [amo.MOBILE])
         self.search_applications('q=mozilla', [])
-
-    def test_webapp_applications(self):
-        self.search_applications('q=firefox&cat=apps', [])

@@ -383,20 +383,20 @@ class TestSuggestions(TestAjaxSearch):
         data = json.loads(r.content)
         eq_(len(data), len(addons))
 
-        data = sorted(data, key=lambda x: int(x['id']))
-        addons = sorted(addons, key=lambda x: x.id)
+        data = sorted(data, key=lambda x: x['name'])
+        addons = sorted(addons, key=lambda x: x.name)
 
+        eq_(len(data), len(addons))
         for got, expected in zip(data, addons):
-            eq_(int(got['id']), expected.id)
             eq_(got['name'], unicode(expected.name))
 
     def test_webapp_search(self):
-        self.check_suggestions(self.url,
-            'q=app&category=', addons=[self.w1, self.w2])
-        self.check_suggestions(self.url,
-            'q=app&category=%d' % self.c1.id, addons=[self.w1])
-        self.check_suggestions(self.url,
-            'q=app&category=%d' % self.c2.id, addons=[self.w2])
+        self.check_suggestions(
+            self.url, 'q=app&category=', addons=[self.w1, self.w2])
+        self.check_suggestions(
+            self.url, 'q=app&category=%d' % self.c1.id, addons=[self.w1])
+        self.check_suggestions(
+            self.url, 'q=app&category=%d' % self.c2.id, addons=[self.w2])
 
     def test_hide_paid_apps_when_disabled(self):
         self.create_switch(name='disabled-payments')
