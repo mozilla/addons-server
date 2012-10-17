@@ -22,7 +22,7 @@ hera==0.1.2
 metlog-py==0.9.8
 metlog-cef==0.2
 metlog-raven==0.3
-cef==0.3
+cef==0.5
 moz_inapp_pay==1.0.2
 newrelic==1.5.0.103
 oauth2==1.5.211
