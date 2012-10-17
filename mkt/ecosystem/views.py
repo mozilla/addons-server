@@ -13,16 +13,16 @@ def landing(request):
     """Developer Hub landing page."""
     videos = [
         {
+            'name': 'airbnb',
+            'path': 'FirefoxMarketplace-airbnb-BR-RC-SD1%20640'
+        },
+        {
             'name': 'evernote',
             'path': 'FirefoxMarketplace-Evernote_BR-RC-SD1%20640'
         },
         {
-            'name': 'mobbase',
-            'path': 'FirefoxMarketplace-MobBase-BR-RC-SD1%20640'
-        },
-        {
-            'name': 'teambox',
-            'path': 'FirefoxMarketplace_Teambox-BR-RC-SD1%20640'
+            'name': 'uken',
+            'path': 'FirefoxMarketplace-uken-BR-RC-SD1%20640'
         },
         {
             'name': 'soundcloud',
