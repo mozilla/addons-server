@@ -169,7 +169,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
                                            _.throttle(inputHandler, 250))
     }
 
-    $self.keydown(gestureHandler).blur(function() {
+    $self.blur(function() {
         clearInterval(pollVal);
         _.delay(dismissHandler, 250);
     });
