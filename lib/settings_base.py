@@ -891,6 +891,7 @@ MINIFY_BUNDLES = {
             'js/debug/less_setup.js',
             'js/lib/less.js',
             'js/debug/less_live.js',
+            'js/debug/tinytools.js',
         ),
     }
 }
