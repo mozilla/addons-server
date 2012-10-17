@@ -136,4 +136,4 @@ class TestUserData(amo.tests.TestCase):
                                        currency='EUR')
         eq_(user_data(RequestUser.objects.get(pk=up.pk)),
             {'anonymous': False, 'pre_auth': True, 'currency': 'EUR',
-             'email': 'aq@a'})
+             'email': 'aq@a.com'})
