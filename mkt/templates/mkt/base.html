@@ -233,6 +233,9 @@
         <script src="{{ settings.REMOTE_JS_DEBUG }}/nowjs/now.js"></script>
         <script src="{{ media('js/debug/remote_debug.js') }}"></script>
       {% endif %}
+      {% if request.GET.debug %}
+        {{ js('mkt/debug') }}
+      {% endif %}
 
     {% endblock %}
 

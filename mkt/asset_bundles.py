@@ -323,4 +323,7 @@ JS = {
     'mkt/ecosystem': (
         'js/mkt/ecosystem.js',
     ),
+    'mkt/debug': (
+        'js/debug/tinytools.js',
+    ),
 }
