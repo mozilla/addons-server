@@ -898,7 +898,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
     tpl = 'https://developer.mozilla.org/en/Firefox_%s_for_developers'
     change_links = dict()
     for app, ver in ff_versions:
-        major = ver[0]  # 4.0b3 -> 4
+        major = ver.split('.')[0]  # 4.0b3 -> 4
         change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
     return jingo.render(request, 'devhub/validation.html',
                         dict(validate_url=revalidate_url,
