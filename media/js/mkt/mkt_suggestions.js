@@ -7,7 +7,7 @@
                                                  processResults, 'MKT');
     }
 
-    var previous_request;
+    var previous_request = null;
 
     function processResults(settings) {
         if (!settings) {
@@ -53,8 +53,9 @@
     }
 
     function abortRequest() {
-        if (previous_request) {
+        if (previous_request !== null) {
             previous_request.abort();
+            previous_request = null;
         }
     }
 
