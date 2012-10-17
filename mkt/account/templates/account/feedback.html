@@ -4,7 +4,10 @@
 
 {% block content %}
     <section class="account">
-      {% include 'account/includes/nav.html' %}
+
+      {% if request.user.is_authenticated() %}
+        {% include 'account/includes/nav.html' %}
+      {% endif %}
 
       <form class="form-grid" method="post" id="feedback-form" action="{{ url('account.feedback') }}">
         {{ csrf() }}

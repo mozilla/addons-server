@@ -4,7 +4,10 @@
     {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="{{ url('home') }}" class="header-button icon home left">{{ _('Home') }}</a>
-      <a href="{{ url('account.settings') }}" class="header-button icon settings left">{{ _('Settings') }}</a>
+      <a href="{{ url('account.settings') if
+                  request.user.is_authenticated() else
+                  url('account.feedback') }}"
+         class="header-button icon settings left">{{ _('Settings') }}</a>
       <a href="#" id="nav-back" class="header-button icon back left"><b>{{ _('Back') }}</b></a>
       <a href="#" class="header-button icon search right">{{ _('Search') }}</a>
       <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>

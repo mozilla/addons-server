@@ -220,7 +220,6 @@ def account_settings(request):
                         {'form': form, 'amouser': amo_user})
 
 
-@login_required
 def account_feedback(request):
     form = forms.FeedbackForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
@@ -233,9 +232,11 @@ def account_feedback(request):
                    'feedback': feedback,
                    'platform': platform,
                    'chromeless': chromeless}
-        send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
-                        context, request.amo_user.email,
-                        [settings.MKT_FEEDBACK_EMAIL])
+        send_mail_jinja(
+            u'Marketplace Feedback', 'account/email/feedback.txt', context,
+            request.amo_user.email if request.amo_user else
+                'noreply@mozilla.com',
+            [settings.MKT_FEEDBACK_EMAIL])
 
         if request.is_ajax():
             return http.HttpResponse(

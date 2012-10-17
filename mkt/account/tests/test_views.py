@@ -89,8 +89,8 @@ class TestAccountSettings(amo.tests.TestCase):
         r = self.client.post(self.url, self.data, follow=True)
         self.assertRedirects(r, self.url)
         doc = pq(r.content)
-        eq_((ActivityLog.objects.filter(action=amo.LOG.USER_EDITED.id)
-                                .count()), 1)
+        eq_(ActivityLog.objects.filter(action=amo.LOG.USER_EDITED.id)
+                               .count(), 1)
         # Check that the values got updated appropriately.
         # TODO: Add back when settings is more complete.
         # user = self.get_user()
@@ -868,9 +868,12 @@ class TestFeedback(amo.tests.TestCase):
     def setUp(self):
         self.url = reverse('account.feedback')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+
+    def do_login(self):
         self.client.login(username='regular@mozilla.com', password='password')
 
     def test_feedback(self):
+        self.do_login()
         res = self.client.post(self.url, data={'feedback': 'hawt'},
                                HTTP_USER_AGENT='test-agent')
         eq_(res.status_code, 302)
@@ -884,9 +887,38 @@ class TestFeedback(amo.tests.TestCase):
         assert 'test-agent' in msg.body
         assert '127.0.0.1' in msg.body
 
+    def test_feedback_anon(self):
+        """Check that anonymous feedback send OK emails."""
+        res = self.client.post(self.url, data={'feedback': 'hawt'},
+                               HTTP_USER_AGENT='test-agent')
+        eq_(res.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        eq_(msg.from_email, u'noreply@mozilla.com')
+        assert 'hawt' in msg.body
+        assert 'Anonymous' in msg.body
+        assert '127.0.0.1' in msg.body
+
     def test_feedback_empty(self):
         res = self.client.post(self.url, data={'feedback': ''})
         eq_(res.status_code, 200)
         eq_(len(mail.outbox), 0)
         self.assertFormError(res, 'form', 'feedback',
                              [u'This field is required.'])
+
+    def test_feedback_page_user(self):
+        self.do_login()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        assert doc('.toggles')
+        eq_(doc('.header-button.settings').attr('href'),
+            reverse('account.settings'))
+
+    def test_feedback_page_anon(self):
+        """Check that anonymous users get the correct feedback page."""
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        assert not doc('.toggles')
+        eq_(doc('.header-button.settings').attr('href'), self.url)

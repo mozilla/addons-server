@@ -2,9 +2,13 @@ The following feedback was submitted to the Marketplace:
 
 User:
 
+  {% if user -%}
   user: {{ user.get_url_path()|absolutify }}
   username: {{ user.username }} (id={{ user.id }})
   email: {{ user.email }}
+  {%- else %}
+  user: Anonymous
+  {%- endif %}
   user-agent: {{ user_agent }}
   ip address: {{ ip_address }}
   platform: {{ platform }}
