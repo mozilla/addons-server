@@ -8,14 +8,14 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from addons.models import Addon, AddonCategory, Category
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
-
-from addons.models import Addon, AddonCategory, Category
 from users.models import UserProfile
 
 from mkt.webapps.models import Webapp
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion, FeaturedAppCarrier
+from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
+                               FeaturedAppRegion)
 
 
 class TestEcosystem(amo.tests.TestCase):
@@ -40,7 +40,7 @@ class TestGenerateError(amo.tests.TestCase):
         metlog = settings.METLOG
         METLOG_CONF = {
             'logger': 'zamboni',
-            'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', 
+            'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin',
                                 {'override': True})},
             'sender': {'class': 'metlog.senders.DebugCaptureSender'},
         }
@@ -104,9 +104,8 @@ class TestFeaturedApps(amo.tests.TestCase):
 
     def setUp(self):
         self.c1 = Category.objects.create(name='awesome',
-                                     type=amo.ADDON_WEBAPP)
-        self.c2 = Category.objects.create(name='groovy',
-                                     type=amo.ADDON_WEBAPP)
+                                          type=amo.ADDON_WEBAPP)
+        self.c2 = Category.objects.create(name='groovy', type=amo.ADDON_WEBAPP)
 
         self.a1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
                                         name='awesome app 1',
@@ -131,12 +130,36 @@ class TestFeaturedApps(amo.tests.TestCase):
         self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('zadmin.featured_apps_ajax')
 
-    def test_staff_access(self):
+    def _featured_urls(self):
+        # What FeaturedApps:View should have access to.
+        return {
+            'zadmin.featured_apps': ['GET', 'POST'],
+            'zadmin.featured_apps_ajax': ['GET'],
+            'zadmin.featured_categories_ajax': ['GET', 'POST'],
+            'zadmin.set_attrs_ajax': []
+        }
+
+    def test_write_access(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.grant_permission(user, 'AdminTools:View')
+        self.grant_permission(user, 'FeaturedApps:Edit')
         self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
+        for url, access in self._featured_urls().iteritems():
+            eq_(self.client.get(reverse(url)).status_code, 200,
+                'Unexpected status code for %s URL' % url)
+            eq_(self.client.post(reverse(url), {}).status_code, 200,
+                'Unexpected status code for %s URL' % url)
+
+    def test_read_only_access(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'FeaturedApps:View')
+        self.client.login(username='regular@mozilla.com', password='password')
+        for url, access in self._featured_urls().iteritems():
+            eq_(self.client.get(reverse(url)).status_code,
+                200 if 'GET' in access else 403,
+                'Unexpected status code for %s URL' % url)
+            eq_(self.client.post(reverse(url), {}).status_code,
+                200 if 'POST' in access else 403,
+                'Unexpected status code for %s URL' % url)
 
     def test_get_featured_apps(self):
         r = self.client.get(urlparams(self.url, category=self.c1.id))
@@ -204,8 +227,7 @@ class TestFeaturedApps(amo.tests.TestCase):
                              data={'app': f.pk, 'region[]': (3, 2)})
         eq_(r.status_code, 200)
         eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
-                    'region', flat=True)),
-            [2, 3])
+            'region', flat=True)), [2, 3])
 
     def test_set_carrier(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
@@ -216,8 +238,7 @@ class TestFeaturedApps(amo.tests.TestCase):
                                    'carrier[]': 'telerizon-mobile'})
         eq_(r.status_code, 200)
         eq_(list(FeaturedApp.objects.get(pk=f.pk).carriers.values_list(
-                    'carrier', flat=True)),
-            ['telerizon-mobile'])
+            'carrier', flat=True)), ['telerizon-mobile'])
 
     def test_set_startdate(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)

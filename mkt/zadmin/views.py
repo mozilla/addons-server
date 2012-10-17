@@ -3,24 +3,28 @@ import datetime
 import jingo
 
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.db import transaction
 
 import amo
-from amo.decorators import write
+from access import acl
 from addons.models import Category
+from amo.decorators import any_permission_required, write
 from zadmin.decorators import admin_required
 
 import mkt
 from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
 from mkt.ecosystem.models import MdnCache
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion, FeaturedAppCarrier
+from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
+                               FeaturedAppRegion)
 
 
 @transaction.commit_on_success
 @write
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('FeaturedApps', '%')])
 def featured_apps_admin(request):
     return jingo.render(request, 'zadmin/featuredapp.html')
 
@@ -40,13 +44,16 @@ def ecosystem(request):
     return jingo.render(request, 'zadmin/ecosystem.html', ctx)
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('FeaturedApps', '%')])
 def featured_apps_ajax(request):
-    if request.GET:
+    if request.method == 'GET':
         cat = request.GET.get('category', None) or None
         if cat:
             cat = int(cat)
-    elif request.POST:
+    elif request.method == 'POST':
+        if not acl.action_allowed(request, 'FeaturedApps', 'Edit'):
+            raise PermissionDenied
         cat = request.POST.get('category', None) or None
         if cat:
             cat = int(cat)
@@ -59,8 +66,8 @@ def featured_apps_ajax(request):
             app, created = FeaturedApp.objects.get_or_create(category_id=cat,
                                                              app_id=int(appid))
             if created:
-                FeaturedAppRegion.objects.create(featured_app=app,
-                    region=mkt.regions.WORLDWIDE.id)
+                FeaturedAppRegion.objects.create(
+                    featured_app=app, region=mkt.regions.WORLDWIDE.id)
     else:
         cat = None
     apps_regions_carriers = []
@@ -74,7 +81,8 @@ def featured_apps_ajax(request):
                          'carriers': settings.CARRIER_URLS})
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('FeaturedApps', 'Edit')])
 def set_attrs_ajax(request):
     regions = request.POST.getlist('region[]')
     carriers = set(request.POST.getlist('carrier[]'))
@@ -93,10 +101,9 @@ def set_attrs_ajax(request):
         for i in to_create:
             FeaturedAppRegion.objects.create(featured_app=fa, region=i)
 
-
         fa.carriers.exclude(carrier__in=carriers).delete()
         to_create = carriers - set(fa.carriers.filter(carrier__in=carriers)
-                                  .values_list('carrier', flat=True))
+                                   .values_list('carrier', flat=True))
         for c in to_create:
             FeaturedAppCarrier.objects.create(featured_app=fa, carrier=c)
 
@@ -112,14 +119,14 @@ def set_attrs_ajax(request):
     return HttpResponse()
 
 
-@admin_required
+@any_permission_required([('Admin', '%'),
+                          ('FeaturedApps', '%')])
 def featured_categories_ajax(request):
     cats = Category.objects.filter(type=amo.ADDON_WEBAPP)
     return jingo.render(request, 'zadmin/featured_categories_ajax.html', {
-            'homecount': FeaturedApp.objects.filter(
-                category=None).count(),
-            'categories': [{
-                    'name': cat.name,
-                    'id': cat.pk,
-                    'count': FeaturedApp.objects.filter(category=cat).count()
-                    } for cat in cats]})
+        'homecount': FeaturedApp.objects.filter(category=None).count(),
+        'categories': [{
+            'name': cat.name,
+            'id': cat.pk,
+            'count': FeaturedApp.objects.filter(category=cat).count()
+        } for cat in cats]})
