@@ -150,10 +150,14 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         }
     }
 
-    var pollVal;
+    var pollVal = 0;
 
     if (z.capabilities.touch) {
         $self.focus(function() {
+            // If we've already got a timer, clear it.
+            if (pollVal != 0) {
+                clearInterval(pollVal);
+            }
             pollVal = setInterval(function() {
                 gestureHandler($self);
                 inputHandler($self);
