@@ -68,6 +68,10 @@ $(document).ready(function() {
     if (document.cookie && z.capabilities.gaia) {
         document.cookie = 'gaia=true;path=/';
     }
+    // Sets a tablet cookie.
+    if (document.cookie && z.capabilities.tablet) {
+        document.cookie = 'tablet=true;path=/';
+    }
 
     stick.basic();
 });

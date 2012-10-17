@@ -122,8 +122,7 @@ if REGION_STORES:
     ]
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.VaryOnAJAXMiddleware',
-    'mkt.site.middleware.MobileDetectionMiddleware',
-    'mkt.site.middleware.GaiaDetectionMiddleware',
+    'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.site.middleware.HijackRedirectMiddleware',
 
     # TODO: Remove this when we remove `request.can_view_consumer`.
