@@ -164,14 +164,15 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
                 return;
             }, 350);
         });
+    } else {
+        $self.keydown(gestureHandler).bind('keyup paste',
+                                           _.throttle(inputHandler, 250))
     }
 
-    $self.keydown(gestureHandler)
-         .bind('keyup paste', _.throttle(inputHandler, 250))
-         .blur(function() {
-           clearInterval(pollVal);
-           _.delay(dismissHandler, 250);
-       });
+    $self.blur(function() {
+        clearInterval(pollVal);
+        _.delay(dismissHandler, 250);
+    });
 
     $results.delegate('li, p', 'hover', function() {
         $results.find('.sel').removeClass('sel');
