@@ -9,7 +9,7 @@ import commonware.log
 import jingo
 import waffle
 from commonware.response.decorators import xframe_allow
-from session_csrf import anonymous_csrf_exempt
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _
 
 import amo
@@ -220,6 +220,7 @@ def account_settings(request):
                         {'form': form, 'amouser': amo_user})
 
 
+@anonymous_csrf
 def account_feedback(request):
     form = forms.FeedbackForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
