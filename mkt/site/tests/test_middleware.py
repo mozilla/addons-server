@@ -15,6 +15,7 @@ from amo.middleware import LoginRequiredMiddleware
 from amo.urlresolvers import reverse
 
 import mkt
+from mkt.site.middleware import DeviceDetectionMiddleware
 
 
 class MiddlewareCase(amo.tests.TestCase):
@@ -440,6 +441,21 @@ class TestDeviceMiddleware(amo.tests.TestCase):
             r = self.client.get('/?%s=false' % device, follow=True)
             eq_(r.cookies[device].value, '')
             assert not getattr(r.context['request'], device.upper())
+
+    def test_persists(self):
+        for device in self.devices:
+            r = self.client.get('/?%s=true' % device, follow=True)
+            assert r.cookies.get(device)
+
+            r = self.client.get('/', follow=True)
+            assert getattr(r.context['request'], device.upper())
+
+    def test_xmobile(self):
+        rf = RequestFactory().get('/')
+        for state in [True, False]:
+            rf.MOBILE = state
+            DeviceDetectionMiddleware().process_request(rf)
+            eq_(rf.MOBILE, state)
 
 
 class TestHijackRedirectMiddleware(amo.tests.TestCase):

@@ -253,6 +253,10 @@ class DeviceDetectionMiddleware(object):
 
     def process_request(self, request):
         for device in self.devices:
+            # The XMobility middleware might have already set this.
+            if getattr(request, device.upper(), False):
+                continue
+
             qs = request.GET.get(device, False)
             cookie = request.COOKIES.get(device, False)
             # If the qs is True or there's a cookie set the device. But not if
