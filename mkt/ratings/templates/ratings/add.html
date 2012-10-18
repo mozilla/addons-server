@@ -8,6 +8,8 @@
 
 {% extends 'mkt/base.html' %}
 
+{% set cache_fragment = 'no' %}
+
 {% if has_review %}
   {% set pagetitle = _('Edit Your Review') %}
 {% else %}

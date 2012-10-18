@@ -145,7 +145,6 @@ function fragmentFilter(el) {
                         return;
                     }
                     console.log('caching fragment');
-                    fragmentCache[href] = d;
                     updateContent(d, href, popped, {scrollTop: state.scrollTop});
                 }).error(function(e) {
                     console.log('fetch error!');
@@ -175,6 +174,11 @@ function fragmentFilter(el) {
                 page: $('#container'),
                 context: $('#page').data('context')
             });
+
+            if (z.context.cache === 'cache') {
+                console.log('caching fragment');
+                fragmentCache[href] = content;
+            }
 
             // If we have new media, load the next fragment synchronously.
             if (z.context.hash != cacheHash) {
@@ -207,17 +211,6 @@ function fragmentFilter(el) {
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
 
-        function fetch(href) {
-            $.get(href, function(d, textStatus, xhr) {
-                // Bail if this is not HTML.
-                if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
-                    return;
-                }
-                fragmentCache[href] = d;
-            });
-        }
-
-
         $(window).on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
@@ -244,7 +237,10 @@ function fragmentFilter(el) {
             };
             history.replaceState(state, false, path);
 
-            fragmentCache[path] = container.html();
+            if (z.context.cache === 'cache') {
+                console.log('caching fragment');
+                fragmentCache[path] = container.html();
+            }
             container.trigger('fragmentloaded', [path, false, state]);
         });
         console.log("fragments enabled");

@@ -2,6 +2,7 @@
      data-context="{{
        {'type': pagetype or 'leaf',
         'uri': request.FRAGMENT_URI or '',
+        'cache': cache_fragment,
         'hash': get_media_hash(),
         'title': titletag,
         'headertitle': headertitle,
