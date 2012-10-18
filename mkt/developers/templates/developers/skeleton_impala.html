@@ -74,8 +74,10 @@
                             {% endif %}
                           {% endfor %}
                         {% endif %}
-                        <li class="nomenu logout">
-                          <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+                        <li class="nomenu">
+                          <a href="{{ url('users.logout') }}" class="logout">
+                            {{ _('Log out') }}
+                          </a>
                         </li>
                       </ul>
                     </li>
@@ -242,9 +244,8 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
+      <script async defer src="https://login.persona.org/include.js"></script>
       {% if not logged %}
-        {# We need Persona for only non-authenticated users. #}
-        <script async defer src="https://login.persona.org/include.js"></script>
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
       {{ js('mkt/devreg') }}
