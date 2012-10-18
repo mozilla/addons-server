@@ -400,7 +400,8 @@ class TestVaryMiddleware(MiddlewareCase):
         'mkt.site.middleware.RequestCookiesMiddleware',
         'mkt.site.middleware.LocaleMiddleware',
         'mkt.site.middleware.RegionMiddleware',
-        'mkt.site.middleware.DeviceDetectionMiddleware',
+        'mkt.site.middleware.MobileDetectionMiddleware',
+        'mkt.site.middleware.GaiaDetectionMiddleware',
     ])
     def test_no_user_agent(self):
         # We've toggled the middleware to not rewrite the application and also
@@ -416,30 +417,49 @@ class TestVaryMiddleware(MiddlewareCase):
             'User-Agent should not be in the "Vary" header.')
 
 
-class TestDeviceMiddleware(amo.tests.TestCase):
-
-    devices = ['mobile', 'gaia']
+class TestMobileMiddleware(amo.tests.TestCase):
 
     def test_no_effect(self):
         r = self.client.get('/', follow=True)
-        for device in self.devices:
-            assert not r.cookies.get(device)
-            assert not getattr(r.context['request'], device.upper())
+        assert not r.cookies.get('mobile')
+        assert not r.context['request'].MOBILE
 
-    def test_force(self):
-        for device in self.devices:
-            r = self.client.get('/?%s=true' % device, follow=True)
-            eq_(r.cookies[device].value, 'true')
-            assert getattr(r.context['request'], device.upper())
+    def test_force_mobile(self):
+        r = self.client.get('/?mobile=true', follow=True)
+        eq_(r.cookies['mobile'].value, 'true')
+        assert r.context['request'].MOBILE
 
-    def test_force_unset(self):
-        for device in self.devices:
-            r = self.client.get('/?%s=true' % device, follow=True)
-            assert r.cookies.get(device)
+    def test_force_unset_mobile(self):
+        r = self.client.get('/?mobile=true', follow=True)
+        assert r.cookies.get('mobile')
 
-            r = self.client.get('/?%s=false' % device, follow=True)
-            eq_(r.cookies[device].value, '')
-            assert not getattr(r.context['request'], device.upper())
+        r = self.client.get('/?mobile=false', follow=True)
+        eq_(r.cookies['mobile'].value, '')
+        assert not r.context['request'].MOBILE
+
+        r = self.client.get('/', follow=True)
+        eq_(r.cookies.get('mobile'), None)
+        assert not r.context['request'].MOBILE
+
+
+class TestGaiaMiddleware(amo.tests.TestCase):
+
+    def test_force_gaia(self):
+        r = self.client.get('/?gaia=true', follow=True)
+        eq_(r.cookies['gaia'].value, 'true')
+        assert r.context['request'].GAIA
+
+    def test_force_unset_gaia(self):
+        r = self.client.get('/?gaia=true', follow=True)
+        assert r.cookies.get('gaia')
+
+        r = self.client.get('/?gaia=false', follow=True)
+        eq_(r.cookies['gaia'].value, '')
+        assert not r.context['request'].GAIA
+
+        r = self.client.get('/', follow=True)
+        eq_(r.cookies.get('gaia'), None)
+        assert not r.context['request'].GAIA
 
 
 class TestHijackRedirectMiddleware(amo.tests.TestCase):

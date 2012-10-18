@@ -149,9 +149,6 @@ def _app_search(request, category=None, browse=None):
         qs = qs.filter(uses_flash=False)
         query['device'] = 'mobile'
 
-    if request.TABLET:
-        query['device'] = 'tablet'
-
     # Only show premium apps on gaia for now.
     # TODO: remove this once we allow app purchases on desktop/android.
     if not request.GAIA:

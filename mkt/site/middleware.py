@@ -247,36 +247,42 @@ class VaryOnAJAXMiddleware(object):
         return response
 
 
-class DeviceDetectionMiddleware(object):
-    """If the user has flagged that they are on a device. Store the device."""
-    devices = ['mobile', 'gaia', 'tablet']
+class MobileDetectionMiddleware(object):
+    """
+    If the user has flagged that they are mobile or we were able to detect that
+    the user is a mobile user, store that the user is a mobile user. If we find
+    that we've previously stored that the user is on mobile, tell the request
+    that the user is a mobile user.
+    """
 
     def process_request(self, request):
-        for device in self.devices:
-            qs = request.GET.get(device, False)
-            cookie = request.COOKIES.get(device, False)
-            # If the qs is True or there's a cookie set the device. But not if
-            # the qs is False.
-            if qs == 'true' or (cookie and not qs == 'false'):
-                setattr(request, device.upper(), True)
-                continue
+        mobile_qs = request.GET.get('mobile', False)
+        if mobile_qs:
+            if mobile_qs == 'false':
+                request.delete_cookie('mobile')
+            else:
+                request.set_cookie('mobile', 'true')
 
-            # Otherwise set to False.
-            setattr(request, device.upper(), False)
+        request.MOBILE = (getattr(request, 'MOBILE', False) or
+                          bool(request.COOKIES.get('mobile', False)))
 
-    def process_response(self, request, response):
-        for device in self.devices:
-            active = getattr(request, device.upper(), False)
-            cookie = request.COOKIES.get(device, False)
 
-            if not active and cookie:
-                # If the device isn't active, but there is a cookie, remove it.
-                response.delete_cookie(device)
-            elif active and not cookie:
-                # Set the device if it's active and there's no cookie.
-                response.set_cookie(device, 'true')
+class GaiaDetectionMiddleware(object):
+    """
+    Same as above for B2G (gaia) devices. /js/mkt/init.js will set the gaia
+    cookie to 'true' unless a 'gaia' query parameter overrides it for testing.
+    """
 
-        return response
+    def process_request(self, request):
+        gaia_qs = request.GET.get('gaia', False)
+        if gaia_qs:
+            if gaia_qs == 'false':
+                request.delete_cookie('gaia')
+            elif gaia_qs == 'true':
+                request.set_cookie('gaia', 'true')
+
+        request.GAIA = (getattr(request, 'GAIA', False) or
+                        bool(request.COOKIES.get('gaia', False)))
 
 
 class HijackRedirectMiddleware(object):
