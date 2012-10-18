@@ -543,8 +543,8 @@ def version_factory(file_kw={}, **kw):
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=a,
                                                      version=max_app_version)
-        ApplicationsVersions.objects.create(application=a, version=v,
-                                            min=av_min, max=av_max)
+        ApplicationsVersions.objects.get_or_create(application=a, version=v,
+                                                   min=av_min, max=av_max)
     file_factory(version=v, **file_kw)
     return v
 
