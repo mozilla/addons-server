@@ -64,6 +64,10 @@
             <input type="hidden" name="price" value="{{ query['price'] }}">
           {% endif %}
 
+          {% if browse %}
+          <input type="hidden" name="cat" value="{{ query['cat'] }}">
+          {% endif %}
+
           {# We're not iterating over all the sort options on purpose. #}
           <h2>{{ _('Sort by') }}</h2>
           <ul class="toggles two-col c" id="filter-sort">
