@@ -28,7 +28,7 @@ class TestAcctSummary(TestCase):
 
     def setUp(self):
         super(TestAcctSummary, self).setUp()
-        self.user = UserProfile.objects.get(pk=31337)  # steamcube
+        self.user = UserProfile.objects.get(username='31337')  # steamcube
         self.steamcube = Addon.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -307,6 +307,7 @@ class AppSummaryTest(TestCase):
         self.app = Addon.objects.get(pk=337141)
         self.url = reverse('lookup.app_summary',
                            args=[self.app.pk])
+        self.user = UserProfile.objects.get(username='31337')
         assert self.client.login(username='support-staff@mozilla.com',
                                  password='password')
 
@@ -382,7 +383,7 @@ class DownloadSummaryTest(AppSummaryTest):
     def setUp(self):
         super(DownloadSummaryTest, self).setUp()
         self._setUp()
-        self.users = [UserProfile.objects.get(pk=999),
+        self.users = [UserProfile.objects.get(username='regularuser'),
                       UserProfile.objects.get(username='admin')]
 
 
@@ -454,6 +455,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
         for curr, amount in (('USD', '2.00'), ('EUR', '1.00')):
             for i in range(3):
                 c = Contribution.objects.create(addon=self.app,
+                                                user=self.user,
                                                 amount=Decimal(amount),
                                                 currency=curr,
                                                 type=typ)
@@ -502,6 +504,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
                        'AP-1235',
                        None):  # indicates other
             Contribution.objects.create(addon=self.app,
+                                        user=self.user,
                                         amount=Decimal('0.99'),
                                         currency='USD',
                                         paykey=paykey,
@@ -513,6 +516,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
 
     def test_inapp_pay_methods(self):
         Contribution.objects.create(addon=self.app,
+                                    user=self.user,
                                     amount=Decimal('0.99'),
                                     currency='USD',
                                     paykey='AP-1235',
@@ -527,6 +531,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
     def setUp(self):
         super(TestAppSummaryRefunds, self).setUp()
         self._setUp()
+        self.user = UserProfile.objects.get(username='regularuser')
         self.contrib1 = self.purchase()
         self.contrib2 = self.purchase()
         self.contrib3 = self.purchase()
@@ -534,6 +539,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
 
     def purchase(self):
         return Contribution.objects.create(addon=self.app,
+                                           user=self.user,
                                            amount=Decimal('0.99'),
                                            currency='USD',
                                            paykey='AP-1235',
@@ -651,7 +657,7 @@ class TestPurchases(amo.tests.TestCase):
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
-        self.user = UserProfile.objects.get(pk=999)
+        self.user = UserProfile.objects.get(username='regularuser')
         self.url = reverse('lookup.user_purchases', args=[self.user.pk])
 
     def test_not_allowed(self):
@@ -695,7 +701,7 @@ class TestActivity(amo.tests.TestCase):
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.reviewer = UserProfile.objects.get(username='admin')
-        self.user = UserProfile.objects.get(pk=999)
+        self.user = UserProfile.objects.get(username='regularuser')
         self.url = reverse('lookup.user_activity', args=[self.user.pk])
 
     def test_not_allowed(self):

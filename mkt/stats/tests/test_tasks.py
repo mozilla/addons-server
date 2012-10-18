@@ -13,9 +13,11 @@ from mkt.stats import tasks
 from mkt.stats.search import cut
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from stats.models import Contribution
+from users.models import UserProfile
 
 
 class BaseTaskTest(amo.tests.ESTestCase):
+    fixtures = ['base/users']
 
     def baseSetUp(self):
         self.app = amo.tests.app_factory()
@@ -25,6 +27,7 @@ class BaseTaskTest(amo.tests.ESTestCase):
         self.inapp = InappConfig.objects.create(
             addon=self.app, public_key='asd')
         self.inapp_name = 'test'
+        self.user = UserProfile.objects.get(username='regularuser')
 
 
 class TestIndexFinanceTotal(BaseTaskTest):
@@ -35,6 +38,7 @@ class TestIndexFinanceTotal(BaseTaskTest):
         self.expected = {'revenue': 0, 'count': 5, 'refunds': 2}
         for x in range(self.expected['count']):
             c = Contribution.objects.create(
+                user=self.user,
                 addon_id=self.app.pk,
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
@@ -79,6 +83,7 @@ class TestIndexFinanceTotalBySrc(BaseTaskTest):
             # Create sales.
             for x in range(self.expected[source]['count']):
                 c = Contribution.objects.create(
+                    user=self.user,
                     addon_id=self.app.pk, source=source,
                     type=amo.CONTRIB_PURCHASE,
                     amount=str(random.randint(0, 10) + .99),
@@ -130,6 +135,7 @@ class TestIndexFinanceTotalByCurrency(BaseTaskTest):
             for x in range(self.expected[currency]['count']):
                 amount = str(random.randint(0, 10))
                 c = Contribution.objects.create(addon_id=self.app.pk,
+                    user=self.user,
                     type=amo.CONTRIB_PURCHASE,
                     currency=currency,
                     amount=amount,
@@ -182,6 +188,7 @@ class TestIndexFinanceDaily(BaseTaskTest):
                          'revenue': 0, 'count': 5, 'refunds': 2}
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                self.user=user,
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
                 price_tier=self.price_tier)
@@ -230,6 +237,7 @@ class TestIndexFinanceTotalInapp(BaseTaskTest):
 
         for x in range(self.expected[self.inapp_name]['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                user=self.user,
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
                 price_tier=self.price_tier)
@@ -287,6 +295,7 @@ class TestIndexFinanceTotalInappByCurrency(BaseTaskTest):
             for x in range(self.expected[self.inapp_name][currency]['count']):
                 amount = str(random.randint(0, 10))
                 c = Contribution.objects.create(addon_id=self.app.pk,
+                    user=self.user,
                     type=amo.CONTRIB_PURCHASE,
                     currency=currency,
                     amount=amount,
@@ -356,6 +365,7 @@ class TestIndexFinanceTotalInappBySource(BaseTaskTest):
             # Create sales.
             for x in range(self.expected_inapp[source]['count']):
                 c = Contribution.objects.create(addon_id=self.app.pk,
+                    user=self.user,
                     type=amo.CONTRIB_PURCHASE,
                     source=source,
                     amount=str(random.randint(0, 10) + .99),
@@ -407,6 +417,7 @@ class TestIndexFinanceDailyInapp(BaseTaskTest):
         }
         for x in range(self.expected[self.inapp_name]['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                    user=self.user,
                     type=amo.CONTRIB_PURCHASE,
                     amount=str(random.randint(0, 10) + .99),
                     price_tier=self.price_tier)
@@ -468,6 +479,7 @@ class TestAlreadyIndexed(BaseTaskTest):
 
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
+                user=self.user,
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10)),
                 price_tier=self.price_tier)

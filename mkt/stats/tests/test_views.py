@@ -26,6 +26,9 @@ class StatsTest(amo.tests.ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(StatsTest, self).setUp()
+        self.user = UserProfile.objects.get(username='regularuser')
+
         # set up apps
         waffle.models.Switch.objects.create(name='app-stats', active=True)
         self.public_app = amo.tests.app_factory(name='public',
@@ -42,16 +45,13 @@ class StatsTest(amo.tests.ESTestCase):
         self.private_config = InappConfig.objects.create(
             addon=self.private_app, public_key='fgh')
         c = Contribution.objects.create(addon_id=self.public_app.pk,
-                                        amount=5)
+                                        user=self.user, amount=5)
         InappPayment.objects.create(config=self.public_config, contribution=c,
                                     name=self.inapp_name)
         c = Contribution.objects.create(addon_id=self.private_app.pk,
-                                        amount=5)
+                                        user=self.user, amount=5)
         InappPayment.objects.create(config=self.private_config, contribution=c,
                                     name=self.inapp_name)
-
-        # normal user
-        self.user_profile = UserProfile.objects.get(username='regularuser')
 
     def login_as_visitor(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -110,7 +110,7 @@ class TestStatsPermissions(StatsTest):
     def test_private_app_stats_group(self):
         # Logged in with stats group.
         group = Group.objects.create(name='Stats', rules='Stats:View')
-        GroupUser.objects.create(user=self.user_profile, group=group)
+        GroupUser.objects.create(user=self.user, group=group)
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(format='json'), 200)
@@ -119,10 +119,10 @@ class TestStatsPermissions(StatsTest):
     def test_private_app_contrib_stats_group(self):
         # Logged in with stats and contrib stats group.
         group1 = Group.objects.create(name='Stats', rules='Stats:View')
-        GroupUser.objects.create(user=self.user_profile, group=group1)
+        GroupUser.objects.create(user=self.user, group=group1)
         group2 = Group.objects.create(name='Revenue Stats',
                                       rules='RevenueStats:View')
-        GroupUser.objects.create(user=self.user_profile, group=group2)
+        GroupUser.objects.create(user=self.user, group=group2)
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(format='json'), 200)
@@ -144,7 +144,7 @@ class TestStatsPermissions(StatsTest):
     def test_public_app_stats_group(self):
         # Logged in with stats group.
         group = Group.objects.create(name='Stats', rules='Stats:View')
-        GroupUser.objects.create(user=self.user_profile, group=group)
+        GroupUser.objects.create(user=self.user, group=group)
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(
@@ -155,10 +155,10 @@ class TestStatsPermissions(StatsTest):
     def test_public_app_contrib_stats_group(self):
         # Logged in with stats and contrib stats group.
         group1 = Group.objects.create(name='Stats', rules='Stats:View')
-        GroupUser.objects.create(user=self.user_profile, group=group1)
+        GroupUser.objects.create(user=self.user, group=group1)
         group2 = Group.objects.create(name='Revenue Stats',
                                       rules='RevenueStats:View')
-        GroupUser.objects.create(user=self.user_profile, group=group2)
+        GroupUser.objects.create(user=self.user, group=group2)
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(
@@ -185,7 +185,7 @@ class TestStatsPermissions(StatsTest):
         # page.
         self.login_as_visitor()
         app = amo.tests.app_factory(status=2, public_stats=True)
-        AddonUser.objects.create(addon_id=app.id, user=self.user_profile)
+        AddonUser.objects.create(addon_id=app.id, user=self.user)
         response = self.client.get(app.get_stats_url())
         eq_(response.status_code, 200)
 
@@ -230,9 +230,12 @@ class TestInstalled(amo.tests.ESTestCase):
 
 class TestGetSeriesLine(amo.tests.ESTestCase):
 
+    fixtures = ['base/users']
+
     def setUp(self):
         # Create apps and contributions to index.
         self.app = amo.tests.app_factory()
+        user = UserProfile.objects.get(username='regularuser')
         price_tier = Price.objects.create(price='0.99')
 
         # Create a sale for each day in the expected range.
@@ -241,6 +244,7 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
             # Create different amounts of contribs for each day.
             for x in range(0, day):
                 c = Contribution.objects.create(addon_id=self.app.pk,
+                                                user=user,
                                                 amount='0.99',
                                                 price_tier=price_tier,
                                                 type=amo.CONTRIB_PURCHASE)
@@ -286,9 +290,13 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
 
 class TestGetSeriesColumn(amo.tests.ESTestCase):
 
+    fixtures = ['base/users']
+
     def setUp(self):
+        super(TestGetSeriesColumn, self).setUp()
         # Create apps and contributions to index.
         self.app = amo.tests.app_factory()
+        self.user = UserProfile.objects.get(username='regularuser')
         price_tier = Price.objects.create(price='0.99')
 
         # Create some revenue for several different currencies.
@@ -302,6 +310,7 @@ class TestGetSeriesColumn(amo.tests.ESTestCase):
                 # Amount doesn't matter for this stat since based off of price
                 # tier (USD normalized).
                 Contribution.objects.create(addon_id=self.app.pk,
+                                            user=self.user,
                                             amount=random.randint(0, 10),
                                             currency=expected['currency'],
                                             price_tier=price_tier)
