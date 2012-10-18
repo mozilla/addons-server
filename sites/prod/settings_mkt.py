@@ -94,10 +94,6 @@ WEBAPPS_RECEIPT_KEY = private_mkt.WEBAPPS_RECEIPT_KEY
 WEBAPPS_RECEIPT_URL = private_mkt.WEBAPPS_RECEIPT_URL
 
 APP_PREVIEW = True
-MIDDLEWARE_CLASSES += (
-    'amo.middleware.LoginRequiredMiddleware',
-    'amo.middleware.NoConsumerMiddleware',
-)
 MIDDLEWARE_CLASSES = tuple(m for m in MIDDLEWARE_CLASSES if m not in (csp,))
 
 WEBAPPS_UNIQUE_BY_DOMAIN = True
