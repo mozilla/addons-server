@@ -198,6 +198,7 @@ NO_CONSUMER_MODULES = (
 NO_LOGIN_REQUIRED_MODULES = (
     'csp.views.policy',
     'csp.views.report',
+    'mkt.account',  # For anon users to use the feedback form.
     'mkt.detail.views.manifest',
     'mkt.developers',
     'mkt.downloads',
