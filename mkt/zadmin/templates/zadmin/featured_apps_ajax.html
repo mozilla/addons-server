@@ -1,5 +1,5 @@
 {% block content %}
-{% for row, selected_regions, selected_carriers in apps_regions_carriers -%}
+{% for row, selected_regions, excluded_regions, selected_carriers in apps_regions_carriers -%}
 <tr>
   <td>
     <table class="featured-app" data-app-id="{{ row.pk }}" data-url="{{ url('zadmin.set_attrs_ajax') }}">
@@ -23,6 +23,7 @@
             {%- for locName, loc in regions -%}
               <option value="{{ loc.id }}"
                 {%- if loc.id in selected_regions %} selected{%- endif -%}
+                {%- if loc.id in excluded_regions %} disabled{%- endif -%}
                 >{{ loc.name }}</option>
             {%- endfor -%}
             {%- for carrier in carriers -%}

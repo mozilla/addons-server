@@ -13,7 +13,7 @@ from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from users.models import UserProfile
 
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
 
@@ -228,6 +228,17 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
             'region', flat=True)), [2, 3])
+
+    def test_no_set_excluded_region(self):
+        AddonExcludedRegion.objects.create(addon=self.a1, region=2)
+        f = FeaturedApp.objects.create(app=self.a1, category=None)
+        FeaturedAppRegion.objects.create(featured_app=f, region=1)
+        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
+                             data={'app': f.pk, 'region[]': (3, 2)})
+        eq_(r.status_code, 200)
+        eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
+            'region', flat=True)),
+            [3])
 
     def test_set_carrier(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)

@@ -73,8 +73,10 @@ def featured_apps_ajax(request):
     apps_regions_carriers = []
     for app in FeaturedApp.objects.filter(category__id=cat):
         regions = app.regions.values_list('region', flat=True)
+        excluded_regions = app.app.addonexcludedregion.values_list('region',
+                                                                   flat=True)
         carriers = app.carriers.values_list('carrier', flat=True)
-        apps_regions_carriers.append((app, regions, carriers))
+        apps_regions_carriers.append((app, regions, excluded_regions, carriers))
     return jingo.render(request, 'zadmin/featured_apps_ajax.html',
                         {'apps_regions_carriers': apps_regions_carriers,
                          'regions': mkt.regions.REGIONS_CHOICES,
@@ -98,7 +100,10 @@ def set_attrs_ajax(request):
         fa.regions.exclude(region__in=regions).delete()
         to_create = regions - set(fa.regions.filter(region__in=regions)
                                   .values_list('region', flat=True))
+        excluded_regions = [e.region for e in fa.app.addonexcludedregion.all()]
         for i in to_create:
+            if i in excluded_regions:
+                continue
             FeaturedAppRegion.objects.create(featured_app=fa, region=i)
 
         fa.carriers.exclude(carrier__in=carriers).delete()
