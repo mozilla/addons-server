@@ -599,6 +599,7 @@ class ESTestCase(TestCase):
         for key, index in settings.ES_INDEXES.items():
             if not index.startswith('test_'):
                 settings.ES_INDEXES[key] = 'test_%s' % index
+
         try:
             cls.es.cluster_health()
         except Exception, e:
@@ -607,7 +608,7 @@ class ESTestCase(TestCase):
                             % e.args[0]] + list(e.args[1:]))
             raise
 
-        for index in settings.ES_INDEXES.values():
+        for index in set(settings.ES_INDEXES.values()):
             try:
                 cls.es.delete_index(index)
             except pyes.IndexMissingException, exc:
