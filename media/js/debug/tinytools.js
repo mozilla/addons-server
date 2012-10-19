@@ -14,10 +14,19 @@
     }
     window.console.log = function() {
         append(arguments, 'log');
-        old.log.apply(window, arguments);
+        try {
+            old.log.apply(window, arguments);
+        } catch(e) {
+            old.log.call(old, arguments[0]);
+        }
     };
     window.console.error = function() {
         append(arguments, 'error');
+        try {
+            old.log.apply(window, arguments);
+        } catch(e) {
+            old.error.call(old, arguments[0]);
+        }
         old.error.apply(window, arguments);
     };
     window.console.clear = function() {
