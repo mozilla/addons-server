@@ -4,7 +4,6 @@ import json
 
 from django.conf import settings
 from django.core import mail
-from django.core.exceptions import SuspiciousOperation
 from django import http
 from django.core.cache import cache
 from django.contrib.auth.models import User
@@ -478,8 +477,7 @@ class TestLogin(UserViewBase):
                          'data:text/html,<script>window.alert("xss")</script>',
                          'mailto:test@example.com',
                          'file:///etc/passwd']:
-            with self.assertRaises(SuspiciousOperation):
-                self.client.get(urlparams(self.url, to=redirect), follow=True)
+            self.assertRedirects(r, '/en-US/firefox/')
 
     def test_login_link(self):
         r = self.client.get(self.url)
