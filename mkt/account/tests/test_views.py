@@ -24,6 +24,7 @@ import paypal
 from reviews.models import Review
 from stats.models import Contribution
 from users.models import UserNotification, UserProfile
+from versions.models import Version
 import users.notifications as email
 from mkt.webapps.models import Installed, Webapp
 
@@ -620,6 +621,8 @@ class PurchaseBase(amo.tests.TestCase):
             price = Price.objects.create(price=10 - x)
             app = Webapp.objects.create(name=name, guid=name)
             AddonPremium.objects.create(price=price, addon=app)
+            version = Version.objects.create(addon=app)
+            app.update(_current_version=version)
             con = Contribution.objects.create(user=self.user,
                 addon=app, amount='%s.00' % x, type=amo.CONTRIB_PURCHASE,
                 transaction_id='txn-%d' % x)

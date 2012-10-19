@@ -10,6 +10,7 @@ from hera.contrib.django_utils import flush_urls
 import amo
 from abuse.models import AbuseReport
 from addons.models import Addon
+from amo.decorators import set_task_user
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from devhub.models import ActivityLog, AppLog, LegacyAddonLog
@@ -17,7 +18,6 @@ from editors.models import EscalationQueue, EventLog
 from market.models import Refund
 from reviews.models import Review
 from stats.models import Contribution
-from users.utils import get_task_user
 
 
 log = commonware.log.getLogger('z.task')
@@ -126,8 +126,8 @@ def migrate_editor_eventlog(items, **kw):
 
 
 @task
+@set_task_user
 def find_abuse_escalations(addon_id, **kw):
-    amo.set_user(get_task_user())
     weekago = datetime.date.today() - datetime.timedelta(days=7)
 
     for abuse in AbuseReport.recent_high_abuse_reports(1, weekago, addon_id):
@@ -164,6 +164,7 @@ def find_abuse_escalations(addon_id, **kw):
 
 
 @task
+@set_task_user
 def find_refund_escalations(addon_id, **kw):
     try:
         addon = Addon.objects.get(pk=addon_id)
@@ -172,7 +173,6 @@ def find_refund_escalations(addon_id, **kw):
         return
 
     refund_threshold = 0.05
-    amo.set_user(get_task_user())
     weekago = datetime.date.today() - datetime.timedelta(days=7)
 
     ratio = Refund.recent_refund_ratio(addon.id, weekago)

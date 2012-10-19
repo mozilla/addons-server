@@ -12,6 +12,9 @@ from . import models as context
 from .urlresolvers import reverse
 from .utils import JSONEncoder
 
+from amo import get_user, set_user
+from users.utils import get_task_user
+
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -206,4 +209,18 @@ def allow_cross_site_request(f):
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
+    return wrapper
+
+
+def set_task_user(f):
+    """Sets the user to be the task user, then unsets it."""
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        old_user = get_user()
+        set_user(get_task_user())
+        try:
+            result = f(*args, **kw)
+        finally:
+            set_user(old_user)
+        return result
     return wrapper

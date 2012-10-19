@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django import http
+from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 import mock
@@ -8,7 +9,7 @@ from nose import SkipTest
 from nose.tools import eq_
 
 import amo.tests
-from amo import decorators
+from amo import decorators, get_user, set_user
 from amo.urlresolvers import reverse
 
 from users.models import UserProfile
@@ -77,6 +78,20 @@ def test_write(commit_on_success):
     assert not commit_on_success.called
     some_func()
     assert commit_on_success.called
+
+
+class TestTaskUser(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def test_set_task_user(self):
+        @decorators.set_task_user
+        def some_func():
+            return get_user()
+
+        set_user(UserProfile.objects.get(username='regularuser'))
+        eq_(get_user().pk, 999)
+        eq_(some_func().pk, int(settings.TASK_USER_ID))
+        eq_(get_user().pk, 999)
 
 
 class TestLoginRequired(object):
