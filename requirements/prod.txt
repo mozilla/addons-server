@@ -1,3 +1,5 @@
+anyjson==0.3.3
+argparse==1.2.1
 babel==0.9.6
 bleach==1.1.5
 cef==0.5
@@ -15,6 +17,7 @@ django-memcached-pool==0.2
 django-multidb-router==0.5
 django-mysql-pool==0.2
 django-nose==1.1
+django-picklefield==0.2.1
 django-quieter-formset==0.3
 django-statsd-mozilla==0.3.8
 django-tastypie==0.9.11
@@ -33,6 +36,7 @@ newrelic==1.5.0.103
 oauth2==1.5.211
 PyBrowserID==0.6
 PyMySQL==0.5
+python-dateutil==1.5
 raven==2.0.6
 receipts==0.2.4.1
 requests==0.14.0
