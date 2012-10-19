@@ -295,7 +295,8 @@ def _clean_next_url(request):
     parsed = urlparse(url)
     if ((parsed.scheme and parsed.scheme not in ['http', 'https'])
         or parsed.netloc):
-        raise SuspiciousOperation('Unsafe redirect to %s' % url)
+        log.info(u'Unsafe redirect to %s' % url)
+        url = settings.LOGIN_REDIRECT_URL
 
     domain = gets.get('domain', None)
     if domain in settings.VALID_LOGIN_REDIRECTS.keys():
