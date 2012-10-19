@@ -145,9 +145,9 @@ def _get_daily_jobs(date=None):
                 sum=Sum('count'))['sum']),
 
         # Marketplace stats
-        'apps_count_new': (Addon.objects.extra(**addon_extra)
+        'apps_count_new': (Addon.objects.extra(**extra)
                 .filter(type=amo.ADDON_WEBAPP).count),
-        'apps_count_installed': (Installed.objects.extra(**addon_extra)
+        'apps_count_installed': (Installed.objects.extra(**extra)
                 .filter(addon__type=amo.ADDON_WEBAPP).count),
 
         # Marketplace reviews
