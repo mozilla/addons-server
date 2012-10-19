@@ -185,6 +185,19 @@ ES_patchers = [mock.patch('elasticutils.get_es', spec=True),
                mock.patch('elasticutils.contrib.django', spec=True)]
 
 
+def start_es_mock():
+    for patch in ES_patchers:
+        patch.start()
+
+
+def stop_es_mock():
+    for patch in ES_patchers:
+        patch.stop()
+
+    if hasattr(elasticutils._local, 'es'):
+        delattr(elasticutils._local, 'es')
+
+
 def mock_es(f):
     """
     Test decorator for mocking elasticsearch calls in ESTestCase if we don't
@@ -192,11 +205,11 @@ def mock_es(f):
     """
     @wraps(f)
     def decorated(request, *args, **kwargs):
-        [p.start() for p in ES_patchers]
+        start_es_mock()
         try:
             return f(request, *args, **kwargs)
         finally:
-            [p.stop() for p in ES_patchers]
+            stop_es_mock()
     return decorated
 
 
@@ -216,9 +229,16 @@ class TestCase(RedisTest, test_utils.TestCase):
     @classmethod
     def setUpClass(cls):
         if cls.mock_es:
-            [p.start() for p in ES_patchers]
-        reset.send(None)  # Reset all the ES tasks on hold.
-        super(TestCase, cls).setUpClass()
+            start_es_mock()
+        try:
+            reset.send(None)  # Reset all the ES tasks on hold.
+            super(TestCase, cls).setUpClass()
+        except Exception:
+            # We need to unpatch here because tearDownClass will not be
+            # called.
+            if cls.mock_es:
+                stop_es_mock()
+            raise
 
     @classmethod
     def tearDownClass(cls):
@@ -226,7 +246,7 @@ class TestCase(RedisTest, test_utils.TestCase):
             super(TestCase, cls).tearDownClass()
         finally:
             if cls.mock_es:
-                [p.stop() for p in ES_patchers]
+                stop_es_mock()
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
