@@ -4,7 +4,6 @@ from urlparse import urlparse
 
 from django import http
 from django.conf import settings
-from django.core.exceptions import SuspiciousOperation
 from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
