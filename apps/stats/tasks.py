@@ -103,8 +103,6 @@ def _get_daily_jobs(date=None):
 
     date_str = date.strftime('%Y-%m-%d')
     extra = dict(where=['DATE(created)=%s'], params=[date_str])
-    # Where we need to specify the extra on some of the joins.
-    addon_extra = dict(where=['DATE(addons.created)=%s'], params=[date_str])
 
     # If you're editing these, note that you are returning a function!  This
     # cheesy hackery was done so that we could pass the queries to celery
@@ -145,21 +143,25 @@ def _get_daily_jobs(date=None):
                 sum=Sum('count'))['sum']),
 
         # Marketplace stats
-        'apps_count_new': (Addon.objects.extra(**extra)
-                .filter(type=amo.ADDON_WEBAPP).count),
-        'apps_count_installed': (Installed.objects.extra(**extra)
-                .filter(addon__type=amo.ADDON_WEBAPP).count),
+        'apps_count_new': (Addon.objects
+                .filter(created__range=(date, next_date),
+                        type=amo.ADDON_WEBAPP).count),
+        'apps_count_installed': (Installed.objects
+                .filter(created__range=(date, next_date),
+                        addon__type=amo.ADDON_WEBAPP).count),
 
         # Marketplace reviews
-        'apps_review_count_new': Review.objects.extra(**addon_extra)
-                .filter(editorreview=0, addon__type=amo.ADDON_WEBAPP).count,
+        'apps_review_count_new': Review.objects
+                .filter(created__range=(date, next_date),
+                        editorreview=0, addon__type=amo.ADDON_WEBAPP).count,
 
         # New users
         'mmo_user_count_total': UserProfile.objects.filter(
                 created__lt=next_date,
                 source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
         'mmo_user_count_new': UserProfile.objects.filter(
-                source=amo.LOGIN_SOURCE_MMO_BROWSERID).extra(**extra).count,
+                created__range=(date, next_date),
+                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do
