@@ -188,7 +188,7 @@ class TestIndexFinanceDaily(BaseTaskTest):
                          'revenue': 0, 'count': 5, 'refunds': 2}
         for x in range(self.expected['count']):
             c = Contribution.objects.create(addon_id=self.app.pk,
-                self.user=user,
+                user=self.user,
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
                 price_tier=self.price_tier)
