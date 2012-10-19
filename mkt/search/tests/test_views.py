@@ -137,14 +137,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def test_known_cat(self):
         self.check_cat_filter({'cat': self.cat.id})
 
-    @amo.tests.mock_es
-    def test_unknown_cat(self):
-        # `cat=999` should get removed from the querystring.
-        r = self.client.get(self.url, {'price': 'free', 'cat': '999'})
-        self.assertRedirects(r, urlparams(self.url, price='free'))
-        r = self.client.get(self.url, {'cat': '999'})
-        self.assertRedirects(r, self.url)
-
     def test_cat_from_unreviewed_app(self):
         # Create an unreviewed app and assign to a category.
         cat = Category.objects.create(name='Bad Cats', type=amo.ADDON_WEBAPP)
