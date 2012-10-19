@@ -542,6 +542,20 @@ class TestListing(ReviewTest):
         eq_(self.reply.rating, None)
         eq_(item.attr('data-rating'), '')
 
+    def test_version_in_byline_packaged(self):
+        self.webapp.update(is_packaged=True)
+        review = Review.objects.get(addon=self.webapp, user=self.regular)
+        review.update(version=self.webapp.current_version)
+
+        new_ver = amo.tests.version_factory(addon=self.webapp)
+        self.webapp.update(_current_version=new_ver)
+
+        res = self.client.get(self.listing)
+        eq_(res.status_code, 200)
+        byline = pq(res.content)('#review-%s span.byline' % review.id)
+        assert 'for previous version' in byline.text(), (
+            'Expected review for previous version note.')
+
     def test_empty_list(self):
         Review.objects.all().delete()
         eq_(Review.objects.count(), 0)

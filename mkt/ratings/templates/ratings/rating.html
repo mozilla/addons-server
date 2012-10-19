@@ -28,6 +28,9 @@
                user_name=review.user.name %}
         by <strong>{{ user_name }}</strong>
       {% endtrans %}
+      {% if product.is_packaged and review.version != product.current_version %}
+        {% trans version=review.version.version %} for previous version {{ version }}{% endtrans %}
+      {% endif %}
       {% if (perms.is_admin or perms.is_editor) and review.ip_address != '0.0.0.0' %}
         <span>[{{ review.ip_address }}]</span>
       {% endif %}
