@@ -112,11 +112,12 @@
 
 
     // dismiss the lighbox when we click outside it or on the close button.
-    $lightbox.click(_pd(function(e) {
+    $lightbox.click(function(e) {
         if ($(e.target).is('#lightbox')) {
             hideLightbox();
+            e.preventDefault();
         }
-    }));
+    });
     $lightbox.find('.close').click(_pd(function(e) {
         hideLightbox();
     }));
