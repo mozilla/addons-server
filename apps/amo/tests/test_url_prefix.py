@@ -265,9 +265,10 @@ def test_outgoing_url_query_params():
     fixed = urlresolvers.get_outgoing_url(url)
     assert fixed.endswith('%3A//xx.com%3Fq=1&v=2%22%20style=%22123%22'), fixed
 
+check = lambda x, y: eq_(urlresolvers.lang_from_accept_header(x), y)
+
 
 def test_parse_accept_language():
-    check = lambda x, y: eq_(urlresolvers.lang_from_accept_header(x), y)
     expected = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
     for lang in expected:
         assert lang in settings.AMO_LANGUAGES, lang
@@ -299,3 +300,11 @@ def test_parse_accept_language():
     )
     for x, y in d:
         yield check, x, y
+
+
+class TestShorter(amo.tests.TestCase):
+
+    def test_no_shorter_language(self):
+        check('zh', 'zh-CN')
+        with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
+            check('zh', 'en-US')
