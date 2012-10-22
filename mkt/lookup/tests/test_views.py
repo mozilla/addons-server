@@ -446,6 +446,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
                 'EUR',
                 locale=numbers.LC_NUMERIC)
         eq_(set(data['amounts']), set([six_bucks, three_euro]))
+        eq_(len(data['amounts']), 2)
 
     def assert_empty(self, data):
         eq_(data['total'], 0)
