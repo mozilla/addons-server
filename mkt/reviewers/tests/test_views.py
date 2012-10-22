@@ -1982,4 +1982,4 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
     def test_no_reviews(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        assert u'No reviews yet' in res.content
+        assert u'No review points awarded yet' in res.content
