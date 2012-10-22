@@ -46,7 +46,7 @@
     </header>
 
     <div class="filters-body">
-      <form action="{{ url('search.search') }}" method="get">
+      <form action="" method="get">
         <div>
           {% if show_paid %}
             <h2>{{ _('Filter by price') }}</h2>
@@ -64,8 +64,8 @@
             <input type="hidden" name="price" value="{{ query['price'] }}">
           {% endif %}
 
-          {% if browse %}
-          <input type="hidden" name="cat" value="{{ query['cat'] }}">
+          {% if not browse %}
+          <input type="hidden" name="q" value="{{ query['q'] }}">
           {% endif %}
 
           {# We're not iterating over all the sort options on purpose. #}

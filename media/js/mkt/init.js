@@ -124,8 +124,8 @@ z.page.on('fragmentloaded', function() {
             // Dismiss looks like back but actually just dismisses an overlay.
             $('#filters').removeClass('show');
         } else if ($this.hasClass('filter')) {
-            // Yea...
-            var sortoption = z.getVars(location.href);
+            // `getVars()` defaults to use location.search.
+            var sortoption = z.getVars();
 
             $('#filter-sort li a').removeClass('sel');
             switch(sortoption.sort) {
@@ -137,7 +137,12 @@ z.page.on('fragmentloaded', function() {
                     break;
                 case 'rating':
                     $('#filter-sort li.rating a').addClass('sel');
-
+                    break;
+                case '':
+                case undefined:
+                    // If there's nothing selected, the first one is always the
+                    // default.
+                    $('#filter-sort li:first-child a').addClass('sel');
             }
             $('#filters').addClass('show');
         } else if ($this.hasClass('search')) {
