@@ -686,6 +686,10 @@ a.extra {
     text-shadow: 0 -1px #e00;
 }
 
+.email_comment {
+    white-space: pre-wrap;
+}
+
 .modal p + .close,  /* Hide impala X buttons. */
 #modals {
     display: none;

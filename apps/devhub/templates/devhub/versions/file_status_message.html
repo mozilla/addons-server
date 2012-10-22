@@ -21,7 +21,8 @@
     <div class="version-comments">
       <div><strong>{{ fh }}</strong></div>
       {% if fh.action in actions %}
-        <div class="email_comment">{{ fh.details['comments'] }}</div>
+        {# <pre> rather than <div> so Firefox will preserve whitespace on copy. #}
+        <pre class="email_comment">{{ fh.details['comments'] }}</pre>
       {% endif %}
       <div class="light">
         {% trans user_name=fh.user|user_link, date=fh.modified|babel_datetime %}
