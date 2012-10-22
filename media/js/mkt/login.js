@@ -57,7 +57,13 @@ function finishLogin() {
     var to = z.getVars(window.location.search).to;
     $.Deferred().resolve();
     if (to && to[0] == '/') {
-        window.location = to;
+        // Browsers may helpfully add "http:" to URIs that begin with double
+        // slashes. This converts instances of double slashes to single to
+        // avoid other helpfullness. It's a bit of extra paranoia.
+        to = decodeURIComponent(to.replace(/\/*/, '/'));
+        // Convert a local URI to a fully qualified local URL.
+        window.location = window.location.protocol + '//'  +
+            window.location.host + to;
     } else {
         window.location.reload();
     }
