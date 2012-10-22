@@ -123,8 +123,11 @@
     }));
 
     function hideLightbox() {
+        var vid = $content.find('video');
         $lightbox.removeClass('show');
-        $content.find('video')[0].pause();
+        if (vid.length) {
+            vid[0].pause();
+        }
         // We can't trust transitionend to fire in all cases.
         setTimeout(function() {
             $lightbox.hide();
