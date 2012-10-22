@@ -59,7 +59,8 @@
         // clear out the existing content
         $content.empty();
 
-        // place in a pane for each image with a 'loading' placeholder and caption.
+        // place in a pane for each image/video with a 'loading' placeholder
+        // and caption.
         _.each(previews, function(p) {
             var $el = $('<li class="loading">');
             var $cap = $('<div class="caption">');
@@ -68,17 +69,28 @@
             $content.append($el);
 
             // let's fail elegantly when our images don't load.
-            var i = new Image();
-            i.onload = function() {
+            // videos on the other hand will always be injected.
+            if (p.type == 'video/webm') {
+                // we can check for `HTMLMediaElement.NETWORK_NO_SOURCE` on the
+                // video's `networkState` property at some point.
+                var v = $('<video src="' + p.fullUrl + '" controls></video>');
                 $el.removeClass('loading');
-                $el.append(i);
-            };
-            i.onerror = function() {
-                $el.removeClass('loading');
-                $el.append('<b class="err">&#x26A0;</b>');
-            };
-            // attempt to load the image.
-            i.src = p.fullUrl;
+                $el.append(v);
+            } else {
+                var i = new Image();
+
+                i.onload = function() {
+                    $el.removeClass('loading');
+                    $el.append(i);
+                };
+                i.onerror = function() {
+                    $el.removeClass('loading');
+                    $el.append('<b class="err">&#x26A0;</b>');
+                };
+
+                // attempt to load the image.
+                i.src = p.fullUrl;
+            }
         });
 
         // $section doesn't have its proper width until after a paint.
