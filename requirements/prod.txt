@@ -26,6 +26,7 @@ elasticutils==0.5
 fudge==1.0.3
 gunicorn==0.14.6
 hera==0.1.2
+importlib==1.0.2
 kombu==2.1.2
 metlog-py==0.9.8
 metlog-cef==0.2
