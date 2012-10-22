@@ -48,8 +48,15 @@ function gotVerifiedEmail(assertion, redirectTo, domContext) {
         return null;
     };
 }
+
 function initBrowserID(win, ctx) {
     // Initialize BrowserID login.
+    if ($('body').data('pers-handle')) {
+        return;
+    } else {
+        // call DIBS on persona event handling.
+        $('body').data('pers-handle', true);
+    }
     var toArg = win.location.href.split('?to=')[1],
         to = "/";
 
@@ -61,7 +68,6 @@ function initBrowserID(win, ctx) {
         // No 'to' and not a log in page; redirect to the current page
         to = win.location.href;
     }
-
     $(ctx || win).delegate('.browserid-login', 'click', function(e) {
         var $el = $(this),
             // If there's a data-event on the login button, fire that event
