@@ -70,7 +70,14 @@ function init_persona() {
     // quite ready.
     if(navigator.id) {
         if ($('body').data('pers-timeout')) {
-            clearTimeout($('body').data('pers-timeout'));
+            clearInterval($('body').data('pers-timeout'));
+        }
+        if ($('body').data('pers-handle')) {
+            /// there is another handler already installed.
+            return;
+        } else {
+            // call DIBS on persona event handling
+            $('body').data('pers-handle', true);
         }
         $('.browserid').css('cursor', 'pointer');
         var email = '';
