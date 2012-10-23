@@ -1,13 +1,14 @@
 from django.conf.urls import include, patterns, url
 
-from . import bluevia, views
+from . import webpay, views
 
 
 # These URLs are attached to /services
-bluevia_services_patterns = patterns('',
-    url('^postback$', bluevia.postback, name='bluevia.postback'),
-    url('^chargeback$', bluevia.chargeback, name='bluevia.chargeback'),
+webpay_services_patterns = patterns('',
+    url('^postback$', webpay.postback, name='webpay.postback'),
+    url('^chargeback$', webpay.chargeback, name='webpay.chargeback'),
 )
+
 
 # These URLs get attached to the app details URLs.
 app_purchase_patterns = patterns('',
@@ -16,13 +17,14 @@ app_purchase_patterns = patterns('',
         name='detail.purchase.preapproval'),
     url('^(?P<status>cancel|complete)$', views.purchase_done,
         name='purchase.done'),
-    url('^bluevia/prepare_pay$', bluevia.prepare_pay,
-        name='bluevia.prepare_pay'),
-    url('^prepare/prepare_refund/(?P<uuid>[^/]+)$', bluevia.prepare_refund,
-        name='bluevia.prepare_refund'),
-    url('^bluevia/pay_status/(?P<contrib_uuid>[^/]+)$', bluevia.pay_status,
-        name='bluevia.pay_status'),
+    url('^webpay/prepare_pay$', webpay.prepare_pay,
+        name='webpay.prepare_pay'),
+    url('^prepare/prepare_refund/(?P<uuid>[^/]+)$', webpay.prepare_refund,
+        name='webpay.prepare_refund'),
+    url('^webpay/pay_status/(?P<contrib_uuid>[^/]+)$', webpay.pay_status,
+        name='webpay.pay_status'),
 )
+
 
 urlpatterns = patterns('',
     # TODO: Port these views.

@@ -5,13 +5,11 @@ from urllib import urlencode
 import urlparse
 
 from django import http
+from django.conf import settings
 from django.db.transaction import commit_on_success
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jwt
-from moz_inapp_pay.verify import verify_claims, verify_keys
-import waffle
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
@@ -19,44 +17,43 @@ import amo
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from apps.market.models import PriceCurrency
-from lib.crypto.bluevia import (get_uuid, InvalidSender, parse_from_bluevia,
-                                sign_bluevia_jwt)
-from lib.pay_server import client
+from lib.crypto.webpay import (get_uuid, InvalidSender, parse_from_webpay,
+                                sign_webpay_jwt)
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
-from . import bluevia_tasks as tasks
+from . import webpay_tasks as tasks
 from .views import start_purchase
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
-def prepare_bluevia_pay(data):
+def prepare_webpay_pay(data):
     issued_at = calendar.timegm(time.gmtime())
-    return sign_bluevia_jwt({
-                'iss': 'marketplaceID',  # placeholder
-                'typ': 'tu.com/payments/inapp/v1',
-                'aud': 'tu.com',
-                'iat': issued_at,
-                'exp': issued_at + 3600,  # expires in 1 hour
-                'request': {
-                    'name': data['app_name'],
-                    'description': data['app_description'],
-                    'price': data['prices'],
-                    'defaultPrice': data['currency'],
-                    'postbackURL': data['postback_url'],
-                    'chargebackURL': data['chargeback_url'],
-                    'productData': data['product_data']
-                }
-            })
+    req = {
+        'iss': settings.APP_PURCHASE_KEY,
+        'typ': settings.APP_PURCHASE_TYP,
+        'aud': settings.APP_PURCHASE_AUD,
+        'iat': issued_at,
+        'exp': issued_at + 3600,  # expires in 1 hour
+        'request': {
+            'name': data['app_name'],
+            'description': data['app_description'],
+            'price': data['prices'],
+            'defaultPrice': data['currency'],
+            'postbackURL': data['postback_url'],
+            'chargebackURL': data['chargeback_url'],
+            'productData': data['product_data']
+        }
+    }
+    return sign_webpay_jwt(req)
 
 
-def prepare_bluevia_refund(data):
+def prepare_webpay_refund(data):
     issued_at = calendar.timegm(time.gmtime())
-    return sign_bluevia_jwt({
-                'iss': 'developerIdentifier',  # placeholder
+    return sign_webpay_jwt({
+                'iss': settings.APP_PURCHASE_KEY,
                 'typ': 'tu.com/payments/v1/refund',
                 'aud': 'tu.com',
                 'iat': issued_at,
@@ -87,15 +84,17 @@ def prepare_pay(request, addon):
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
 
-    prices = [{'currency': cur, 'amount': str(tier.price)}
+    prices = [{'currency': cur,
+               'country': 'XX',  # This is unused but required!
+               'amount': str(tier.price)}
               for cur, tier in addon.premium.price.currencies()]
 
     data = {'amount': str(amount),
             'prices': prices, 'currency': currency,
             'app_name': unicode(addon.name),
             'app_description': unicode(addon.description),
-            'postback_url': absolutify(reverse('bluevia.postback')),
-            'chargeback_url': absolutify(reverse('bluevia.chargeback')),
+            'postback_url': absolutify(reverse('webpay.postback')),
+            'chargeback_url': absolutify(reverse('webpay.chargeback')),
             'seller': addon.pk,
             'product_data': urlencode({'contrib_uuid': uuid_,
                                        'addon_id': addon.pk}),
@@ -103,8 +102,8 @@ def prepare_pay(request, addon):
             'aud': 'tu.com',
             'memo': contrib_for}
 
-    return {'blueviaJWT': prepare_bluevia_pay(data),
-            'contribStatusURL': reverse('bluevia.pay_status',
+    return {'webpayJWT': prepare_webpay_pay(data),
+            'contribStatusURL': reverse('webpay.pay_status',
                                         args=[addon.app_slug, uuid_])}
 
 
@@ -135,7 +134,7 @@ def postback(request):
     """Verify signature from BlueVia and set contribution to paid."""
     signed_jwt = request.raw_post_data
     try:
-        data = parse_from_bluevia(signed_jwt, request.META.get('REMOTE_ADDR'))
+        data = parse_from_webpay(signed_jwt, request.META.get('REMOTE_ADDR'))
     except InvalidSender:
         return http.HttpResponseBadRequest()
 
@@ -193,7 +192,7 @@ def prepare_refund(request, addon, uuid):
         return http.HttpResponseBadRequest()
 
     data = {'id': to_refund.bluevia_transaction_id}
-    return {'blueviaJWT': prepare_bluevia_refund(data)}
+    return {'webpayJWT': prepare_webpay_refund(data)}
 
 
 @csrf_exempt
@@ -207,7 +206,7 @@ def chargeback(request):
     signed_jwt = request.read()
     # Check the JWT we've got is valid.
     try:
-        data = parse_from_bluevia(signed_jwt, request.META.get('REMOTE_ADDR'))
+        data = parse_from_webpay(signed_jwt, request.META.get('REMOTE_ADDR'))
     except InvalidSender:
         return http.HttpResponseBadRequest()
 

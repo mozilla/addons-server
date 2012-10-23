@@ -8,7 +8,7 @@ from mkt.inapp_pay.models import InappConfig
 from mkt.inapp_pay.utils import send_pay_notice
 from stats.models import Contribution
 
-log = logging.getLogger('z.purchase.bluevia')
+log = logging.getLogger('z.purchase.webpay')
 notify_kw = dict(default_retry_delay=15,  # seconds
                  max_tries=5)
 
@@ -35,7 +35,7 @@ def _notify(signed_notice, contrib_id, notifier_task):
     contrib = Contribution.objects.get(pk=contrib_id)
     qs = InappConfig.objects.filter(addon=contrib.addon)
     if not qs.exists():
-        log.info('bluevia notice not sent. addon %s for contrib %s is not '
+        log.info('webpay notice not sent. addon %s for contrib %s is not '
                  'configured for notices' % (contrib.addon.pk,
                                              contrib.pk))
         return
@@ -50,5 +50,5 @@ def _notify(signed_notice, contrib_id, notifier_task):
     url, success, last_error = send_pay_notice(notice_type, signed_notice,
                                                config, contrib, notifier_task)
     if not success:
-        log.error('bluevia notice about contrib %s for app %s at %s failed %s'
+        log.error('webpay notice about contrib %s for app %s at %s failed %s'
                   % (contrib.pk, contrib.addon.pk, url, last_error))

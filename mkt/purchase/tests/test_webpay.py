@@ -6,13 +6,10 @@ import urlparse
 from django.conf import settings
 
 import fudge
-from fudge.inspector import arg
 import jwt
 import mock
-from mock import Mock
 from moz_inapp_pay.exc import RequestExpired
 from moz_inapp_pay.verify import verify_claims, verify_keys
-from nose.exc import SkipTest
 from nose.tools import eq_, raises
 
 import amo
@@ -29,7 +26,7 @@ class TestPurchase(PurchaseTest):
 
     def setUp(self):
         super(TestPurchase, self).setUp()
-        self.prepare_pay = reverse('bluevia.prepare_pay',
+        self.prepare_pay = reverse('webpay.prepare_pay',
                                    kwargs={'app_slug': self.addon.app_slug})
         self.create_flag(name='solitude-payments')
 
@@ -52,28 +49,35 @@ class TestPurchase(PurchaseTest):
             da = json.loads(da)
             # TODO(Kumar) fix this when we have default currencies (bug 777747)
             eq_(da['currency'], 'USD')
-            eq_(da['typ'], 'tu.com/payments/inapp/v1')
-            eq_(da['aud'], 'tu.com')
+            eq_(da['typ'], settings.APP_PURCHASE_TYP)
+            eq_(da['aud'], settings.APP_PURCHASE_AUD)
             eq_(da['amount'], str(self.price.price))
             eq_(da['app_name'], unicode(self.addon.name))
             eq_(da['app_description'], unicode(self.addon.description))
             eq_(da['postback_url'],
-                absolutify(reverse('bluevia.postback')))
+                absolutify(reverse('webpay.postback')))
             eq_(da['chargeback_url'],
-                absolutify(reverse('bluevia.chargeback')))
+                absolutify(reverse('webpay.chargeback')))
             pd = urlparse.parse_qs(da['product_data'])
             assert 'contrib_uuid' in pd, 'Unexpected: %s' % pd
             eq_(pd['addon_id'][0], str(self.addon.pk))
             return True
 
         # Sample of BlueVia JWT but not complete.
+        # webpay_jwt = {'typ': settings.APP_PURCHASE_TYP}
+        # api_post.expects_call()
+        #         .with_args(arg.any(), data=arg.passes_test(good_data),
+        #                    timeout=arg.any(), headers=arg.any())
+        #         .returns(Mock(text=json.dumps(webpay_jwt),
+        #                       status_code=200)))
         data = self.post(self.prepare_pay)
         cn = Contribution.objects.get()
         eq_(cn.type, amo.CONTRIB_PENDING)
         eq_(cn.user, self.user)
         eq_(cn.price_tier, self.price)
-        eq_(jwt.decode(data['blueviaJWT'].encode('ascii'),
-                       verify=False)['typ'], 'tu.com/payments/inapp/v1')
+        eq_(jwt.decode(data['webpayJWT'].encode('ascii'),
+                       verify=False)['typ'],
+            settings.APP_PURCHASE_TYP)
 
     def test_require_login(self):
         self.client.logout()
@@ -87,12 +91,12 @@ class TestPurchase(PurchaseTest):
                                          uuid=uuid_,
                                          type=amo.CONTRIB_PENDING,
                                          user=self.user)
-        data = self.get(reverse('bluevia.pay_status',
+        data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, uuid_]))
         eq_(data['status'], 'incomplete')
 
         cn.update(type=amo.CONTRIB_PURCHASE)
-        data = self.get(reverse('bluevia.pay_status',
+        data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, uuid_]))
         eq_(data['status'], 'complete')
 
@@ -106,12 +110,12 @@ class TestPurchase(PurchaseTest):
         self.client.logout()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        data = self.get(reverse('bluevia.pay_status',
+        data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, uuid_]))
         eq_(data['status'], 'incomplete')
 
     def test_pay_status_for_unknown_contrib(self):
-        data = self.get(reverse('bluevia.pay_status',
+        data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, '<garbage>']))
         eq_(data['status'], 'incomplete')
 
@@ -120,7 +124,7 @@ class TestPurchaseJWT(PurchaseTest):
 
     def setUp(self):
         super(TestPurchaseJWT, self).setUp()
-        self.prepare_pay = reverse('bluevia.prepare_pay',
+        self.prepare_pay = reverse('webpay.prepare_pay',
                                    kwargs={'app_slug': self.addon.app_slug})
         # This test relies on *not* setting the solitude-payments flag.
 
@@ -129,7 +133,7 @@ class TestPurchaseJWT(PurchaseTest):
             lang = 'en-US'
         resp = self.client.post(self.prepare_pay,
                                 HTTP_ACCEPT_LANGUAGE=lang)
-        return json.loads(resp.content)['blueviaJWT']
+        return json.loads(resp.content)['webpayJWT']
 
     def pay_jwt_dict(self, lang=None):
         return jwt.decode(str(self.pay_jwt(lang=lang)), verify=False)
@@ -157,10 +161,15 @@ class TestPurchaseJWT(PurchaseTest):
         prices = sorted(data['request']['price'],
                         key=lambda p: p['currency'])
 
-        eq_(prices[0], {'currency': 'BRL', 'amount': '0.50'})
-        eq_(prices[1], {'currency': 'CAD', 'amount': '3.01'})
-        eq_(prices[2], {'currency': 'EUR', 'amount': '5.01'})
-        eq_(prices[3], {'currency': 'USD', 'amount': '0.99'})
+        # TODO(Kumar) remove country when client code is fixed.
+        eq_(prices[0], {'currency': 'BRL', 'amount': '0.50',
+                        'country': 'XX'})
+        eq_(prices[1], {'currency': 'CAD', 'amount': '3.01',
+                        'country': 'XX'})
+        eq_(prices[2], {'currency': 'EUR', 'amount': '5.01',
+                        'country': 'XX'})
+        eq_(prices[3], {'currency': 'USD', 'amount': '0.99',
+                        'country': 'XX'})
         eq_(data['request']['defaultPrice'], 'USD')
 
     @mock.patch.object(settings, 'REGION_STORES', True)
@@ -175,7 +184,7 @@ class TestPurchaseJWT(PurchaseTest):
 
 
 @mock.patch.object(settings, 'SECLUSION_HOSTS', ['host'])
-@mock.patch('mkt.purchase.bluevia.tasks')
+@mock.patch('mkt.purchase.webpay.tasks')
 class TestPostback(PurchaseTest):
 
     def setUp(self):
@@ -187,13 +196,13 @@ class TestPostback(PurchaseTest):
                                         uuid='<some uuid>',
                                         type=amo.CONTRIB_PENDING,
                                         user=self.user)
-        self.bluevia_dev_id = '<stored in solitude>'
-        self.bluevia_dev_secret = '<stored in solitude>'
+        self.webpay_dev_id = '<stored in solitude>'
+        self.webpay_dev_secret = '<stored in solitude>'
 
     def post(self, req=None):
         if not req:
             req = self.jwt()
-        return self.client.post(reverse('bluevia.postback'),
+        return self.client.post(reverse('webpay.postback'),
                                 data=req, content_type='text/plain')
 
     def jwt_dict(self, expiry=3600, issued_at=None, contrib_uuid=None):
@@ -202,7 +211,7 @@ class TestPostback(PurchaseTest):
         if not contrib_uuid:
             contrib_uuid = self.contrib.uuid
         return {'iss': 'tu.com',
-                'aud': self.bluevia_dev_id,
+                'aud': self.webpay_dev_id,
                 'typ': 'tu.com/payments/inapp/v1',
                 'iat': issued_at,
                 'exp': issued_at + expiry,
@@ -222,9 +231,9 @@ class TestPostback(PurchaseTest):
     def jwt(self, req=None, **kw):
         if not req:
             req = self.jwt_dict(**kw)
-        return jwt.encode(req, self.bluevia_dev_secret)
+        return jwt.encode(req, self.webpay_dev_secret)
 
-    @fudge.patch('lib.crypto.bluevia.jwt.decode')
+    @fudge.patch('lib.crypto.webpay.jwt.decode')
     def test_valid(self, tasks, decode):
         jwt_dict = self.jwt_dict()
         jwt_encoded = self.jwt(req=jwt_dict)
@@ -246,14 +255,14 @@ class TestPostback(PurchaseTest):
         eq_(cn.type, amo.CONTRIB_PENDING)
 
     @raises(RequestExpired)
-    @fudge.patch('lib.crypto.bluevia.jwt.decode')
+    @fudge.patch('lib.crypto.webpay.jwt.decode')
     def test_invalid_claim(self, tasks, decode):
         iat = calendar.timegm(time.gmtime()) - 3601  # too old
         decode.expects_call().returns(self.jwt_dict(issued_at=iat))
         self.post()
 
     @raises(LookupError)
-    @fudge.patch('mkt.purchase.bluevia.parse_from_bluevia')
-    def test_unknown_contrib(self, tasks, parse_from_bluevia):
-        parse_from_bluevia.expects_call().returns(non_existant_pay)
+    @fudge.patch('mkt.purchase.webpay.parse_from_webpay')
+    def test_unknown_contrib(self, tasks, parse_from_webpay):
+        parse_from_webpay.expects_call().returns(non_existant_pay)
         self.post()

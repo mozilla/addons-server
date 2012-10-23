@@ -8,7 +8,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from lib.crypto.bluevia import sign_bluevia_jwt
+from lib.crypto.webpay import sign_webpay_jwt
 from mkt.purchase.tests.samples import refund
 from stats.models import Contribution
 from users.models import UserProfile
@@ -30,7 +30,7 @@ class TestRefund(SalesTest, amo.tests.TestCase):
 
     def setUp(self):
         super(TestRefund, self).setUp()
-        self.url = reverse('bluevia.prepare_refund',
+        self.url = reverse('webpay.prepare_refund',
                            args=[self.app.app_slug, '1'])
         self.client.login(username='regular@mozilla.com', password='password')
 
@@ -39,7 +39,7 @@ class TestRefund(SalesTest, amo.tests.TestCase):
         self.assertLoginRequired(self.client.post(self.url))
 
     def test_wrong_uid(self):
-        url = reverse('bluevia.prepare_refund',
+        url = reverse('webpay.prepare_refund',
                       args=[self.app.app_slug, '4'])
         eq_(self.client.post(url).status_code, 400)
 
@@ -59,7 +59,7 @@ class TestRefund(SalesTest, amo.tests.TestCase):
     def test_success(self):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
-        assert 'blueviaJWT' in json.loads(res.content)
+        assert 'webpayJWT' in json.loads(res.content)
 
 
 class TestPostback(SalesTest, amo.tests.TestCase):
@@ -67,22 +67,22 @@ class TestPostback(SalesTest, amo.tests.TestCase):
 
     def setUp(self):
         super(TestPostback, self).setUp()
-        self.url = reverse('bluevia.chargeback')
+        self.url = reverse('webpay.chargeback')
 
-    @mock.patch('lib.crypto.bluevia.verify_bluevia_jwt')
-    def test_not_valid(self, verify_bluevia_jwt):
-        verify_bluevia_jwt.return_value = {'valid': False}
+    @mock.patch('lib.crypto.webpay.verify_webpay_jwt')
+    def test_not_valid(self, verify_webpay_jwt):
+        verify_webpay_jwt.return_value = {'valid': False}
         eq_(self.client.post(self.url).status_code, 400)
 
-    @mock.patch('mkt.purchase.bluevia.parse_from_bluevia')
-    def test_wrong_uid(self, parse_from_bluevia):
-        parse_from_bluevia.return_value = {'response':
+    @mock.patch('mkt.purchase.webpay.parse_from_webpay')
+    def test_wrong_uid(self, parse_from_webpay):
+        parse_from_webpay.return_value = {'response':
                                             {'transactionID': '4'}}
         eq_(self.client.post(self.url).status_code, 400)
 
-    @mock.patch('mkt.purchase.bluevia.parse_from_bluevia')
-    def test_parsed(self, parse_from_bluevia):
-        parse_from_bluevia.return_value = {'response':
+    @mock.patch('mkt.purchase.webpay.parse_from_webpay')
+    def test_parsed(self, parse_from_webpay):
+        parse_from_webpay.return_value = {'response':
                                             {'transactionID': '1'}}
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
@@ -96,10 +96,10 @@ class TestPostback(SalesTest, amo.tests.TestCase):
         eq_(refund.bluevia_transaction_id, None)
         eq_(refund.related, self.sale)
 
-    @mock.patch('mkt.purchase.bluevia.parse_from_bluevia')
-    def test_purchased(self, parse_from_bluevia):
+    @mock.patch('mkt.purchase.webpay.parse_from_webpay')
+    def test_purchased(self, parse_from_webpay):
         # Just a double check that receipts will be invalid.
-        parse_from_bluevia.return_value = {'response':
+        parse_from_webpay.return_value = {'response':
                                             {'transactionID': '1'}}
 
         eq_(self.app.has_purchased(self.user), True)
@@ -109,14 +109,14 @@ class TestPostback(SalesTest, amo.tests.TestCase):
         eq_(self.app.is_refunded(self.user), True)
 
     def test_encode(self):
-        data = sign_bluevia_jwt(refund)
+        data = sign_webpay_jwt(refund)
         res = self.client.post(self.url, data, content_type='application/json')
         eq_(res.status_code, 200)
         eq_(self.sale.is_refunded(), True)
 
-    @mock.patch('mkt.purchase.bluevia_tasks._notify')
+    @mock.patch('mkt.purchase.webpay_tasks._notify')
     def test_notifies(self, _notify):
-        data = sign_bluevia_jwt(refund)
+        data = sign_webpay_jwt(refund)
         res = self.client.post(self.url, data, content_type='application/json')
         eq_(res.status_code, 200)
         assert _notify.called
