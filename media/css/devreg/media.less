@@ -20,7 +20,6 @@
     margin-bottom: 15px;
     min-height: 100px;
     max-height: 115px;
-    overflow: auto;
     padding-bottom: 15px;
     &:last-child {
         display: none;
@@ -58,6 +57,9 @@
 
 #file-list .preview .edit-previews-text {
     float: left;
+    &.error {
+        float: none;
+    }
 }
 
 .edit-previews-submit {
