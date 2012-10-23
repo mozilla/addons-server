@@ -91,7 +91,8 @@ class TestNav(HubTest):
         """Check that no add-ons are displayed for this user."""
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert_not_equal(doc('#navbar ul li.top a').eq(0).text(),
+        assert_not_equal(
+            doc('#navbar ul li.top a').eq(0).text(),
             'My Add-ons',
             'My Add-ons menu should not be visible if user has no add-ons.')
 
@@ -1268,7 +1269,8 @@ class TestRefunds(amo.tests.TestCase):
         for status in amo.REFUND_STATUSES.keys():
             for x in xrange(status + 1):
                 c = Contribution.objects.create(addon=self.addon,
-                    user=self.user, type=amo.CONTRIB_PURCHASE)
+                                                user=self.user,
+                                                type=amo.CONTRIB_PURCHASE)
                 r = Refund.objects.create(contribution=c, status=status,
                                           requested=datetime.now())
                 self.expected.setdefault(status, []).append(r)
@@ -1276,8 +1278,8 @@ class TestRefunds(amo.tests.TestCase):
     def test_anonymous(self):
         self.client.logout()
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r,
-            '%s?to=%s' % (reverse('users.login'), self.url))
+        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'),
+                                              self.url))
 
     def test_bad_owner(self):
         self.client.logout()
@@ -1384,7 +1386,7 @@ class TestDelete(amo.tests.TestCase):
     def test_post_not(self):
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(),
-                          'Password was incorrect. Add-on was not deleted.')
+            'Password was incorrect. Add-on was not deleted.')
 
     def test_post(self):
         r = self.client.post(self.url, dict(password='password'), follow=True)
@@ -1648,9 +1650,9 @@ class TestProfile(TestProfileBase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('label[for=the_reason] .req').length, (
-               'the_reason field should be required.')
+            'the_reason field should be required.')
         assert doc('label[for=the_future] .req').length, (
-               'the_future field should be required.')
+            'the_future field should be required.')
 
     def test_log(self):
         self.enable_addon_contributions()
@@ -1747,10 +1749,12 @@ class TestSubmitStep3(TestSubmitBase):
         self.url = reverse('devhub.submit.3', args=['a3615'])
         SubmitStep.objects.create(addon_id=3615, step=3)
 
-        AddonCategory.objects.filter(addon=self.get_addon(),
-                category=Category.objects.get(id=23)).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(),
-                category=Category.objects.get(id=24)).delete()
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=23)).delete()
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=24)).delete()
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
@@ -1782,7 +1786,7 @@ class TestSubmitStep3(TestSubmitBase):
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
         assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), (
-                "Creating a description needn't be logged.")
+            "Creating a description needn't be logged.")
 
     def test_submit_name_unique(self):
         # Make sure name is unique.
@@ -1816,7 +1820,8 @@ class TestSubmitStep3(TestSubmitBase):
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'slug', "Enter a valid 'slug' " +
-                    "consisting of letters, numbers, underscores or hyphens.")
+                             "consisting of letters, numbers, underscores or "
+                             "hyphens.")
 
     def test_submit_slug_required(self):
         # Make sure the slug is required.
@@ -1893,7 +1898,8 @@ class TestSubmitStep4(TestSubmitBase):
     def setUp(self):
         super(TestSubmitStep4, self).setUp()
         self.old_addon_icon_url = settings.ADDON_ICON_URL
-        settings.ADDON_ICON_URL = (settings.STATIC_URL +
+        settings.ADDON_ICON_URL = (
+            settings.STATIC_URL +
             '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
         SubmitStep.objects.create(addon_id=3615, step=4)
         self.url = reverse('devhub.submit.4', args=['a3615'])
@@ -2082,7 +2088,7 @@ class TestSubmitStep5(Step5TestBase):
         eq_(self.get_step().step, 6)
         log_items = ActivityLog.objects.for_addons(self.get_addon())
         assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id), (
-                "Initial license choice:6 needn't be logged.")
+            "Initial license choice:6 needn't be logged.")
 
     def test_license_error(self):
         r = self.client.post(self.url, {'builtin': 4})
@@ -2531,21 +2537,21 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('mobile-2.9.10-fx+fn.xpi', [])
 
     def test_mobile_excludes_desktop_platforms(self):
-        self.check_excluded_platforms('mobile-0.1-fn.xpi',
-            [str(p) for p in amo.DESKTOP_PLATFORMS])
+        self.check_excluded_platforms('mobile-0.1-fn.xpi', [
+            str(p) for p in amo.DESKTOP_PLATFORMS])
 
     def test_android_excludes_desktop_platforms(self):
         # Test native Fennec.
-        self.check_excluded_platforms('android-phone.xpi',
-            [str(p) for p in amo.DESKTOP_PLATFORMS])
+        self.check_excluded_platforms('android-phone.xpi', [
+            str(p) for p in amo.DESKTOP_PLATFORMS])
 
     def test_search_tool_excludes_all_platforms(self):
-        self.check_excluded_platforms('searchgeek-20090701.xml',
-            [str(p) for p in amo.SUPPORTED_PLATFORMS])
+        self.check_excluded_platforms('searchgeek-20090701.xml', [
+            str(p) for p in amo.SUPPORTED_PLATFORMS])
 
     def test_desktop_excludes_mobile(self):
-        self.check_excluded_platforms('desktop.xpi',
-            [str(p) for p in amo.MOBILE_PLATFORMS])
+        self.check_excluded_platforms('desktop.xpi', [
+            str(p) for p in amo.MOBILE_PLATFORMS])
 
     @mock.patch('devhub.tasks.run_validator')
     @mock.patch.object(waffle, 'flag_is_active')
@@ -2745,8 +2751,8 @@ class TestVersionAddFile(UploadTest):
     def test_platform_limits(self):
         r = self.post(platform=amo.PLATFORM_BSD)
         assert_json_error(r, 'platform',
-                               'Select a valid choice. That choice is not '
-                               'one of the available choices.')
+                          'Select a valid choice. That choice is not one of '
+                          'the available choices.')
 
     def test_platform_choices(self):
         r = self.client.get(self.edit_url)
@@ -2807,8 +2813,8 @@ class TestVersionAddFile(UploadTest):
         r = self.client.post(self.url, dict(upload='xxx',
                                             platform=amo.PLATFORM_MAC.id))
         assert_json_error(r, 'upload',
-                               'There was an error with your upload. '
-                               'Please try again.')
+                          'There was an error with your upload. Please try '
+                          'again.')
 
     @mock.patch('versions.models.Version.is_allowed_upload')
     def test_cant_upload(self, allowed):
@@ -2841,9 +2847,9 @@ class TestVersionAddFile(UploadTest):
         eq_(appr.find('.version-comments').length, 1)
 
         comment = appr.find('.version-comments').eq(0)
-        eq_(comment.find('strong a').text(), "Delicious Bookmarks Version 0.1")
-        eq_(comment.find('div.email_comment').length, 1)
-        eq_(comment.find('div').eq(1).text(), "yo")
+        eq_(comment.find('strong a').text(), 'Delicious Bookmarks Version 0.1')
+        eq_(comment.find('pre.email_comment').length, 1)
+        eq_(comment.find('pre.email_comment').text(), 'yo')
 
     def test_show_item_history_hide_message(self):
         """ Test to make sure comments not to the user aren't shown. """
@@ -2858,7 +2864,7 @@ class TestVersionAddFile(UploadTest):
         doc = pq(self.client.get(self.edit_url).content)
         comment = doc('#approval_status').find('.version-comments').eq(0)
 
-        eq_(comment.find('div.email_comment').length, 0)
+        eq_(comment.find('pre.email_comment').length, 0)
 
     def test_show_item_history_multiple(self):
         version = self.addon.current_version
@@ -2958,7 +2964,7 @@ class TestUploadErrors(UploadTest):
 class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-                   expected_status=200):
+             expected_status=200):
         d = dict(upload=self.upload.pk,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms])
@@ -2981,8 +2987,9 @@ class TestAddVersion(AddVersionTest):
     def test_success(self):
         r = self.post()
         version = self.addon.versions.get(version='0.1')
-        assert_json_field(r, 'url', reverse('devhub.versions.edit',
-                                        args=[self.addon.slug, version.id]))
+        assert_json_field(r, 'url',
+                          reverse('devhub.versions.edit',
+                                  args=[self.addon.slug, version.id]))
 
     def test_public(self):
         self.post()
@@ -3043,7 +3050,7 @@ class TestVersionXSS(UploadTest):
 
     def test_unique_version_num(self):
         self.version.update(
-                version='<script>alert("Happy XSS-Xmas");</script>')
+            version='<script>alert("Happy XSS-Xmas");</script>')
         r = self.client.get(reverse('devhub.addons'))
         eq_(r.status_code, 200)
         assert '<script>alert' not in r.content
