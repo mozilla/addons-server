@@ -42,8 +42,8 @@ logger = logging.getLogger('z.elasticsearch')
 DEFAULT_NUM_REPLICAS = 0
 DEFAULT_NUM_SHARDS = 3
 
-if hasattr(django_settings, 'ELASTIC_HOSTS'):
-    base_url = django_settings.ELASTIC_HOSTS[0]
+if hasattr(django_settings, 'ES_HOSTS'):
+    base_url = django_settings.ES_HOSTS[0]
 else:
     base_url = 'http://127.0.0.1:9200'
 
