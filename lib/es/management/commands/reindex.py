@@ -75,6 +75,10 @@ def call_es(path, *args, **kw):
     return res
 
 
+def log(msg):
+    print msg
+
+
 @task_with_callbacks
 def delete_indexes(indexes):
     """Removes the indexes.
@@ -83,6 +87,7 @@ def delete_indexes(indexes):
     """
     # now call the server - can we do this with a single call?
     for index in indexes:
+        log('Removing index %r' % index)
         call_es(index, method='DELETE')
 
 
@@ -99,6 +104,7 @@ def run_aliases_actions(actions):
         dump.append({action: {'index': index, 'alias': alias}})
 
     # now call the server
+    log('Rebuilding aliases')
     call_es('_aliases', json.dumps(dict(actions=dump)), method='POST')
 
 
@@ -112,6 +118,8 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
     - num_replicas: number of replicas in ES
     - num_shards: number of shards in ES
     """
+    log('Create the mapping for index %r, alias: %r' % (new_index, alias))
+
     if requests.head(url('/' + alias)).status_code == 200:
         res = call_es('%s/_settings' % (alias)).json
         idx_settings = res.get(alias, {}).get('settings', {})
@@ -151,6 +159,7 @@ def create_index(index, is_stats):
     - index: name of the index
     - is_stats: if True, we're indexing stats
     """
+    log('Running all indexes for %r' % index)
     indexers = is_stats and _INDEXES['stats'] or _INDEXES['apps']
     for indexer in indexers:
         indexer(index, aliased=False)
@@ -164,6 +173,7 @@ def database_flagged():
 @task_with_callbacks
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
+    log('Flagging the database to start the reindexation')
     return Reindexing.objects.create(new_index=new_index, old_index=old_index,
                                      alias=alias,
                                      start_date=datetime.datetime.now())
@@ -172,6 +182,7 @@ def flag_database(new_index, old_index, alias):
 @task_with_callbacks
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
+    log('Unflagging the database')
     Reindexing.objects.all().delete()
 
 
@@ -218,7 +229,7 @@ class Command(BaseCommand):
                                'bypass')
 
         prefix = kwargs.get('prefix', '')
-        logger.info('Starting the reindexation')
+        log('Starting the reindexation')
 
         if kwargs.get('wipe', False):
             confirm = raw_input("Are you sure you want to wipe all data from "
@@ -252,6 +263,7 @@ class Command(BaseCommand):
         all_aliases = all_aliases.items()
 
         # creating a task tree
+        log('Building the task tree')
         tree = TaskTree()
         last_action = None
 
