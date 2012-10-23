@@ -683,12 +683,15 @@ class TestFileFromUpload(UploadTest):
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
+        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
+            name = name + '.xpi'
+
         v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
         fname = nfd_str(self.xpi_path(name))
         if not storage.exists(fname):
             with storage.open(fname, 'w') as fs:
                 copyfileobj(open(fname), fs)
-        d = dict(path=fname, name='%s.xpi' % name,
+        d = dict(path=fname, name=name,
                  hash='sha256:%s' % name, validation=v)
         return FileUpload.objects.create(**d)
 
@@ -849,6 +852,26 @@ class TestFileFromUpload(UploadTest):
         data = parse_addon(upload.path)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.strict_compatibility, True)
+
+    def test_theme_extension(self):
+        upload = self.upload('theme.jar')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename.endswith('.xpi'), True)
+
+    def test_extension_extension(self):
+        upload = self.upload('extension.xpi')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename.endswith('.xpi'), True)
+
+    def test_langpack_extension(self):
+        upload = self.upload('langpack.xpi')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename.endswith('.xpi'), True)
+
+    def test_search_extension(self):
+        upload = self.upload('search.xml')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename.endswith('.xml'), True)
 
 
 class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):

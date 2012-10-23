@@ -155,7 +155,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         is_webapp = version.addon.is_webapp()
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
-        f.filename = f.generate_filename(os.path.splitext(upload.path)[1])
+        ext = os.path.splitext(upload.path)[1]
+        if ext == '.jar':
+            ext = '.xpi'
+        f.filename = f.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         f.size = storage.size(upload.path)
         data = cls.get_jetpack_metadata(upload.path)
