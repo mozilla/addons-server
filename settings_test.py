@@ -71,7 +71,6 @@ USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.locmem.CacheClass',
-        'LOCATION': 'zamboni'
     }
 }
 

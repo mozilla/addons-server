@@ -29,7 +29,13 @@ DATABASES = {
 SLAVE_DATABASES = ['slave']
 
 # Use IP:PORT pairs separated by semicolons.
-CACHE_BACKEND = 'django_pylibmc.memcached://localhost:11211;localhost:11212?timeout=500'
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.memcached.CacheClass',
+        'LOCATION': ['localhost:11211', 'localhost:11212'],
+        'TIMEOUT': 500,
+    }
+}
 
 # This is used to hash some things in Django.
 SECRET_KEY = 'replace me with something long'

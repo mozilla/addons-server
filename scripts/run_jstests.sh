@@ -68,7 +68,11 @@ DATABASES = {
     },
 }
 
-CACHE_BACKEND = 'caching.backends.locmem://'
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.locmem.CacheClass',
+    }
+}
 CELERY_ALWAYS_EAGER = True
 ADDONS_PATH = '/tmp/warez'
 

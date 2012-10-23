@@ -72,6 +72,11 @@ DATABASES['default']['ENGINE'] = 'mysql_pool'
 DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.locmem.CacheClass',
+    }
+}
 CELERY_ALWAYS_EAGER = True
 RUN_ES_TESTS = ${RUN_ES_TESTS}
 ADDONS_PATH = '/tmp/warez'

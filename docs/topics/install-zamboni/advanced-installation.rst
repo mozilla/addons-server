@@ -41,7 +41,13 @@ We slipped this in with the basic install.  The package was
 ``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Switch your
 ``settings_local.py`` to use ::
 
-    CACHE_BACKEND = 'caching.backends.memcached://localhost:11211?timeout=500'
+    CACHES = {
+        'default': {
+            'BACKEND': 'caching.backends.memcached.CacheClass',
+            'LOCATION': ['localhost:11211'],
+            'TIMEOUT': 500,
+        }
+    }
 
 -------------------
 RabbitMQ and Celery
