@@ -44,6 +44,8 @@ DEFAULT_NUM_SHARDS = 3
 
 if hasattr(django_settings, 'ES_HOSTS'):
     base_url = django_settings.ES_HOSTS[0]
+    # The configuration comes with no scheme.
+    base_url = 'http://%s' % base_url
 else:
     base_url = 'http://127.0.0.1:9200'
 
