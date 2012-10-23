@@ -42,13 +42,16 @@ def fileapp(environ, start_response):
 
 def main():
     p = optparse.OptionParser(usage="%prog\n\n" + __doc__)
+    p.add_option("--addr", help="Address to serve at. Default: localhost",
+                 default='')
     p.add_option("--port", help="Port to run server on.  Default: %default",
                  default=8090, type=int)
     (options, args) = p.parse_args()
     logging.basicConfig(level=logging.DEBUG,
                         format='[%(asctime)s] %(message)s')
-    log.info("starting webserver at http://localhost:%s/", options.port)
-    httpd = simple_server.WSGIServer(('', options.port),
+    log.info("starting webserver at http://%s:%s/"
+             % (options.addr or 'localhost', options.port))
+    httpd = simple_server.WSGIServer((options.addr, options.port),
                                      simple_server.WSGIRequestHandler)
     httpd.set_app(fileapp)
     httpd.serve_forever()
