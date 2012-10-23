@@ -435,6 +435,24 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(scores[1].score, amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
+        user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        self._give_points()
+        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(user=user2, status=amo.STATUS_NOMINATED)
+        leaders = ReviewerScore.get_leaderboards(self.user)
+        eq_(leaders['user_rank'], 1)
+        eq_(leaders['leader_near'], [])
+        eq_(leaders['leader_top'][0]['rank'], 1)
+        eq_(leaders['leader_top'][0]['user_id'], self.user.id)
+        eq_(leaders['leader_top'][0]['total'],
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+        eq_(leaders['leader_top'][1]['rank'], 2)
+        eq_(leaders['leader_top'][1]['user_id'], user2.id)
+        eq_(leaders['leader_top'][1]['total'],
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_LITE)
@@ -442,15 +460,10 @@ class TestReviewerScore(amo.tests.TestCase):
         leaders = ReviewerScore.get_leaderboards(self.user)
         eq_(leaders['user_rank'], 1)
         eq_(leaders['leader_near'], [])
-        eq_(leaders['leader_top'][0].rank, 1)
-        eq_(leaders['leader_top'][0].user, self.user)
-        eq_(leaders['leader_top'][0].total,
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
-        eq_(leaders['leader_top'][1].rank, 2)
-        eq_(leaders['leader_top'][1].user, user2)
-        eq_(leaders['leader_top'][1].total,
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        eq_(leaders['leader_top'][0]['user_id'], self.user.id)
+        eq_(len(leaders['leader_top']), 1)  # Only the editor is here.
+        assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
+            'Unexpected admin user found in leaderboards.')
 
     def test_get_breakdown(self):
         self._give_points()
@@ -461,7 +474,9 @@ class TestReviewerScore(amo.tests.TestCase):
             set([amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]))
 
     def test_get_leaderboards_last(self):
-        users = list(UserProfile.objects.all())
+        users = []
+        for i in range(6):
+            users.append(UserProfile.objects.create(username='user-%s' % i))
         last_user = users.pop(len(users) - 1)
         for u in users:
             self._give_points(user=u)
@@ -487,7 +502,7 @@ class TestReviewerScore(amo.tests.TestCase):
         with self.assertNumQueries(0):
             ReviewerScore.get_recent(self.user)
 
-        with self.assertNumQueries(2):
+        with self.assertNumQueries(1):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(0):
             ReviewerScore.get_leaderboards(self.user)
@@ -504,7 +519,7 @@ class TestReviewerScore(amo.tests.TestCase):
             ReviewerScore.get_total(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_recent(self.user)
-        with self.assertNumQueries(2):
+        with self.assertNumQueries(1):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_breakdown(self.user)

@@ -5,7 +5,7 @@ import waffle
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models
+from django.db import connection, models
 from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
@@ -528,27 +528,41 @@ class ReviewerScore(amo.models.ModelBase):
         # away.
         leader_top = []
         leader_near = []
-        in_leaderboard = (ReviewerScore.uncached.filter(created__gte=week_ago,
-                                                        user=user)
-                                                .exists())
 
-        sql = """SELECT *, SUM(`reviewer_scores`.`score`) AS `total`
-                 FROM `reviewer_scores`
-                 WHERE `created` >= %s
-                 GROUP BY `user_id`
-                 ORDER BY `total` DESC"""
+        sql = """
+            SELECT `u`.`id`, `u`.`display_name`, SUM(`rs`.`score`) AS `total`
+            FROM `reviewer_scores` AS `rs`
+            JOIN `users` AS `u` ON `rs`.`user_id`=`u`.`id`
+            WHERE `rs`.`created` >= %s AND `rs`.`user_id` NOT IN (
+                SELECT DISTINCT `user_id`
+                FROM `groups_users` AS `gu`
+                JOIN `groups` ON `gu`.`group_id`=`groups`.`id`
+                WHERE `groups`.`name` in ('Staff', 'Admins'))
+            GROUP BY `u`.`id`, `u`.`display_name`
+            ORDER BY `total` DESC
+        """
+        scores = []
 
-        rank = 0
+        cursor = connection.cursor()
+        cursor.execute(sql, [week_ago])
+
+        user_rank = 0
+        in_leaderboard = False
+        for rank, row in enumerate(cursor.fetchall(), 1):
+            user_id, name, total = row
+            scores.append({
+                'user_id': user_id,
+                'name': name,
+                'rank': rank,
+                'total': int(total),
+            })
+            if user_id == user.id:
+                user_rank = rank
+                in_leaderboard = True
+
         if not in_leaderboard:
-            sql += ' LIMIT 5'  # Top 5 if not in leaderboard.
-            leader_top = list(ReviewerScore.uncached.raw(sql, [week_ago]))
+            leader_top = scores[:5]
         else:
-            scores = list(ReviewerScore.uncached.raw(sql, [week_ago]))
-            for i, score in enumerate(scores, 1):
-                score.rank = i
-                if user.id == score.user_id:
-                    rank = i
-
             if rank <= 5:  # User is in top 5, show top 5.
                 leader_top = scores[:5]
             else:
@@ -562,7 +576,7 @@ class ReviewerScore(amo.models.ModelBase):
         val = {
             'leader_top': leader_top,
             'leader_near': leader_near,
-            'user_rank': rank,
+            'user_rank': user_rank,
         }
         cache.set(key, val, 0)
         return val

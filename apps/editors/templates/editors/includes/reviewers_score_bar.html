@@ -26,7 +26,7 @@
         {% for r in leader_top %}
           <tr{% if r.rank == user_rank %} class="you-are-here"{% endif %}>
             <td>{{ r.rank }}</td>
-            <td>{{ r.user.name }}</td>
+            <td>{{ r.name }}</td>
             <td class="number">{{ r.total|numberfmt }}</td>
           </tr>
         {% endfor %}
@@ -35,7 +35,7 @@
           {% for r in leader_near %}
             <tr{% if r.rank == user_rank %} class="you-are-here"{% endif %}>
               <td>{{ r.rank }}</td>
-              <td>{{ r.user.name }}</td>
+              <td>{{ r.name }}</td>
               <td class="number">{{ r.total|numberfmt }}</td>
             </tr>
           {% endfor %}
