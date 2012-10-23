@@ -9,6 +9,7 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
+from django.db.models import Q
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import smart_str
@@ -62,12 +63,15 @@ log = commonware.log.getLogger('z.zadmin')
 
 # This causes AMO problems if inapp gets imported. Then cache machine tries
 # to query it to see if it exists.
-if settings.MARKETPLACE and settings.IN_TEST_SUITE:
-    from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
-    from mkt.stats.search import setup_mkt_indexes
+if settings.MARKETPLACE:
+    from mkt.webapps.tasks import update_manifests
+    from mkt.webapps.models import Webapp
+    if settings.IN_TEST_SUITE:
+        from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
+        from mkt.stats.search import setup_mkt_indexes
 else:
     index_latest_mkt_stats, index_mkt_stats = None, None
-    setup_mkt_indexes = None
+    setup_mkt_indexes = update_manifests = Webapp = None
 
 
 @admin_required(reviewers=True)
@@ -850,3 +854,19 @@ def generate_error(request):
     if request.method == 'POST' and form.is_valid():
         form.explode()
     return jingo.render(request, 'zadmin/generate-error.html', {'form': form})
+
+
+@admin_required(reviewers=True)
+def manifest_revalidation(request):
+    if request.method == 'POST':
+        # collect the apps to revalidate
+        qs = Q(is_packaged=False, status=amo.STATUS_PUBLIC,
+               disabled_by_user=False)
+        webapp_pks = Webapp.objects.filter(qs).values_list('pk', flat=True)
+
+        for pks in chunked(webapp_pks, 100):
+            update_manifests.delay(list(pks), check_hash=False)
+
+        messages.success(request, "Manifest revalidation queued")
+
+    return jingo.render(request, 'zadmin/manifest.html')
