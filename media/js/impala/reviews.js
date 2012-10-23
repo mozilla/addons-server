@@ -80,7 +80,7 @@ $(document).ready(function() {
 
         $form.find('#id_title').val($review.find(title_selector).text());
         $form.find('.ratingwidget input:radio[value=' + rating + ']').click();
-        $form.find('#id_body').val($review.children('p.description').html().replace("<br>", "\n", "g"));
+        $form.find('#id_body').val($review.children('p.description').text());
         $review.hide();
         $form.show();
         $window.resize();
@@ -102,13 +102,18 @@ $(document).ready(function() {
                 url: edit_url,
                 data: $form.serialize(),
                 success: function(response, status) {
-                      clearErrors($form);
-                      $review.find(title_selector).text($form.find('#id_title').val());
-                      var rating = $form.find('.ratingwidget input:radio:checked').val();
-                      $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
-                      rating = $review.attr('data-rating', rating);
-                      $review.children('p.description').html($form.find('#id_body').val().replace("\n", "<br>", "g"));
-                      done_edit();
+                    clearErrors($form);
+                    $review.find(title_selector).text($form.find('#id_title').val());
+                    var rating = $form.find('.ratingwidget input:radio:checked').val();
+                    $('.stars', $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
+                    rating = $review.attr('data-rating', rating);
+                    $review.children('p.description').html(
+                        $form.find('#id_body').val()
+                             .replace(/&/g,'&amp;')
+                             .replace(/</g,'&lt;')
+                             .replace(/>/g,'&gt;')
+                             .replace("\n", "<br>", "g"));
+                    done_edit();
                 },
                 error: function(xhr) {
                     var errors = $.parseJSON(xhr.responseText);
