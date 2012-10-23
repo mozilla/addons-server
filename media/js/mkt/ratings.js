@@ -18,7 +18,11 @@
         // Get the inner *text* of the review body.
         body.find('.view-reply').remove();
         body.find('br').replaceWith('\n');
-        return body.text().trim();
+        // `.text()` returns the unescaped text content, so re-escape it.
+        return body.text().trim()
+                   .replace(/&/g,'&amp;')
+                   .replace(/</g,'&lt;')
+                   .replace(/>/g,'&gt;');
     }
 
     function handleReviewOverlay(overlay) {
