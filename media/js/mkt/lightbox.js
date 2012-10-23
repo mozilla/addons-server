@@ -95,6 +95,7 @@
 
         // $section doesn't have its proper width until after a paint.
         slider = Flipsnap($content[0]);
+        slider.element.addEventListener('fsmoveend', pauseVideos, false);
     }
 
     // we need to adjust the scroll distances on resize.
@@ -122,12 +123,15 @@
         hideLightbox();
     }));
 
+    function pauseVideos() {
+        $('video').each(function() {
+            this.pause();
+        });
+    }
+
     function hideLightbox() {
-        var vid = $content.find('video');
+        pauseVideos();
         $lightbox.removeClass('show');
-        if (vid.length) {
-            vid[0].pause();
-        }
         // We can't trust transitionend to fire in all cases.
         setTimeout(function() {
             $lightbox.hide();
