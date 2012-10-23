@@ -948,6 +948,14 @@ class TestPerformance(QueueTest):
         amo.set_user(UserProfile.objects.get(username='editor'))
         self.create_logs()
 
+    def setUpSeniorEditor(self):
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'ReviewerAdminTools:View')
+
+        self.login_as_editor()
+        amo.set_user(user)
+        self.create_logs()
+
     def setUpAdmin(self):
         self.login_as_admin()
         amo.set_user(UserProfile.objects.get(username='admin'))
@@ -980,12 +988,16 @@ class TestPerformance(QueueTest):
         self.setUpEditor()
         self._test_chart()
 
+    def test_performance_chart_as_senior_editor(self):
+        self.setUpSeniorEditor()
+        self._test_chart()
+
     def test_performance_chart_as_admin(self):
         self.setUpAdmin()
         self._test_chart()
 
-    def test_performance_other_user_as_admin(self):
-        self.setUpAdmin()
+    def _test_performance_other_user_as_admin(self):
+        userid = amo.get_user().pk
 
         r = self.client.get(self.get_url([10482]))
         doc = pq(r.content)
@@ -993,9 +1005,19 @@ class TestPerformance(QueueTest):
         eq_(doc('#select_user').length, 1)  # Let them choose editors.
         options = doc('#select_user option')
         eq_(options.length, 3)
-        eq_(options.eq(2).val(), '4043307')
+        eq_(options.eq(2).val(), str(userid))
 
         assert 'clouserw' in doc('#reviews_user').text()
+
+    def test_performance_other_user_as_admin(self):
+        self.setUpAdmin()
+
+        self._test_performance_other_user_as_admin()
+
+    def test_performance_other_user_as_senior_editor(self):
+        self.setUpSeniorEditor()
+
+        self._test_performance_other_user_as_admin()
 
     def test_performance_other_user_not_admin(self):
         self.setUpEditor()

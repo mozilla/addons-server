@@ -158,7 +158,8 @@ def performance(request, user_id=False):
     user = request.amo_user
     editors = _recent_editors()
 
-    is_admin = acl.action_allowed(request, 'Admin', '%')
+    is_admin = (acl.action_allowed(request, 'Admin', '%') or
+                acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
 
     if is_admin and user_id:
         try:
