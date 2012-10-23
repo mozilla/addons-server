@@ -5,7 +5,7 @@ from requests.exceptions import Timeout
 
 import amo
 from mkt.inapp_pay.models import InappConfig
-from mkt.purchase import bluevia_tasks as tasks
+from mkt.purchase import webpay_tasks as tasks
 from stats.models import Contribution
 
 from .test_views import PurchaseTest
@@ -51,7 +51,7 @@ class TestNotify(PurchaseTest):
         self.purchase_notify()
 
     @fudge.patch('mkt.inapp_pay.utils.requests')
-    @fudge.patch('mkt.purchase.bluevia_tasks.purchase_notify.retry')
+    @fudge.patch('mkt.purchase.webpay_tasks.purchase_notify.retry')
     def test_retry(self, fake_req, fake_retry):
         fake_req.expects('post').raises(Timeout())
         fake_retry.expects_call().with_args(self.signed_jwt,

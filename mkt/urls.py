@@ -12,7 +12,7 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
 from mkt.account.urls import (purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.developers.views import login
-from mkt.purchase.urls import bluevia_services_patterns
+from mkt.purchase.urls import webpay_services_patterns
 from mkt.ratings.urls import theme_review_patterns
 from mkt.stats.urls import app_site_patterns
 from mkt.themes.urls import theme_patterns
@@ -99,8 +99,8 @@ urlpatterns = patterns('',
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
-    # BlueVia / nav.pay() services.
-    ('^services/bluevia/', include(bluevia_services_patterns)),
+    # webpay / nav.pay() services.
+    ('^services/webpay/', include(webpay_services_patterns)),
 
     # Paypal, needed for IPNs only.
     ('^services/', include('paypal.urls')),

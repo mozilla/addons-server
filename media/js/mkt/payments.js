@@ -26,7 +26,7 @@
     var _giveUp;
     var _abortCheck = false;
 
-    function waitForPayment($def, product, blueviaJWT, contribStatusURL) {
+    function waitForPayment($def, product, webpayJWT, contribStatusURL) {
         if (_abortCheck) {
             return;
         }
@@ -74,10 +74,10 @@
         console.log('stubbed out navigator.mozPay()');
     }
 
-    function callNavPay($def, product, blueviaJWT, contribStatusURL) {
-        var request = navigator.mozPay([blueviaJWT]);
+    function callNavPay($def, product, webpayJWT, contribStatusURL) {
+        var request = navigator.mozPay([webpayJWT]);
         request.onsuccess = function() {
-            waitForPayment($def, product, blueviaJWT, contribStatusURL);
+            waitForPayment($def, product, webpayJWT, contribStatusURL);
         }
         request.onerror = function() {
             $def.reject(product, 'MKT_CANCELLED');
@@ -100,7 +100,7 @@
                     $def.reject(product, 'MKT_SERVER_ERROR');
                 })
                 .done(function(result) {
-                    callNavPay($def, product, result.blueviaJWT, result.contribStatusURL);
+                    callNavPay($def, product, result.webpayJWT, result.contribStatusURL);
                 });
             return $def.promise();
         }

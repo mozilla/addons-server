@@ -199,7 +199,7 @@ def market_tile(context, product, link=True, src=''):
         receipt_type = 'developer' if is_dev or is_reviewer else None
         product_dict = product_as_dict(request, product, purchased=purchased,
                                        receipt_type=receipt_type, src=src)
-        product_dict['prepareNavPay'] = reverse('bluevia.prepare_pay',
+        product_dict['prepareNavPay'] = reverse('webpay.prepare_pay',
                                                 args=[product.app_slug])
 
         data_attrs = {
