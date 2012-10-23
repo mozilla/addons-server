@@ -1,6 +1,7 @@
 import hashlib
-import urlparse
 import uuid
+
+from django.conf import settings
 
 import commonware.log
 from moz_inapp_pay.verify import verify_claims, verify_keys
@@ -9,7 +10,7 @@ import jwt
 
 
 log = commonware.log.getLogger('z.crypto')
-secret = 'marketplaceSecret'  # This is a placeholder.
+secret = settings.APP_PURCHASE_SECRET
 
 
 class InvalidSender(Exception):
@@ -43,10 +44,9 @@ def parse_from_bluevia(signed_jwt, ip):
         raise InvalidSender()
 
     verify_claims(data)
-    iss, aud, product_data, trans_id = verify_keys(data,
-                                            ('iss', 'aud',
-                                             'request.productData',
-                                             'response.transactionID'))
+    iss, aud, product_data, trans_id = verify_keys(
+        data,
+        ('iss', 'aud', 'request.productData', 'response.transactionID'))
     log.info('Received BlueVia postback JWT: iss:%s aud:%s '
              'trans_id:%s product_data:%s'
              % (iss, aud, trans_id, product_data))

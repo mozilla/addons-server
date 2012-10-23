@@ -389,3 +389,24 @@ HIDDEN_LANGUAGES = (
 
 # Update this each time there's a major update.
 DEV_AGREEMENT_LAST_UPDATED = datetime.date(2012, 2, 23)
+
+# This is the iss (issuer) for app purchase JWTs.
+# It must match that of the pay server that processes nav.mozPay().
+# In webpay this is the ISSUER setting.
+APP_PURCHASE_KEY = 'marketplace-dev.allizom.org'
+
+# This is the shared secret key for signing app purchase JWTs.
+# It must match that of the pay server that processes nav.mozPay().
+# In webpay this is the SECRET setting.
+APP_PURCHASE_SECRET = ''
+
+# This is the aud (audience) for app purchase JWTs.
+# It must match that of the pay server that processes nav.mozPay().
+# In webpay this is the DOMAIN setting and on B2G this must match
+# what's in the provider whitelist.
+APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
+
+# This is the typ for app purchase JWTs.
+# It must match that of the pay server that processes nav.mozPay().
+# On B2G this must match a provider in the whitelist.
+APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'

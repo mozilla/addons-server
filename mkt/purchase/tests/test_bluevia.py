@@ -6,13 +6,10 @@ import urlparse
 from django.conf import settings
 
 import fudge
-from fudge.inspector import arg
 import jwt
 import mock
-from mock import Mock
 from moz_inapp_pay.exc import RequestExpired
 from moz_inapp_pay.verify import verify_claims, verify_keys
-from nose.exc import SkipTest
 from nose.tools import eq_, raises
 
 import amo
@@ -52,8 +49,8 @@ class TestPurchase(PurchaseTest):
             da = json.loads(da)
             # TODO(Kumar) fix this when we have default currencies (bug 777747)
             eq_(da['currency'], 'USD')
-            eq_(da['typ'], 'tu.com/payments/inapp/v1')
-            eq_(da['aud'], 'tu.com')
+            eq_(da['typ'], settings.APP_PURCHASE_TYP)
+            eq_(da['aud'], settings.APP_PURCHASE_AUD)
             eq_(da['amount'], str(self.price.price))
             eq_(da['app_name'], unicode(self.addon.name))
             eq_(da['app_description'], unicode(self.addon.description))
@@ -67,13 +64,20 @@ class TestPurchase(PurchaseTest):
             return True
 
         # Sample of BlueVia JWT but not complete.
+        # bluevia_jwt = {'typ': settings.APP_PURCHASE_TYP}
+        # api_post.expects_call()
+        #         .with_args(arg.any(), data=arg.passes_test(good_data),
+        #                    timeout=arg.any(), headers=arg.any())
+        #         .returns(Mock(text=json.dumps(bluevia_jwt),
+        #                       status_code=200)))
         data = self.post(self.prepare_pay)
         cn = Contribution.objects.get()
         eq_(cn.type, amo.CONTRIB_PENDING)
         eq_(cn.user, self.user)
         eq_(cn.price_tier, self.price)
         eq_(jwt.decode(data['blueviaJWT'].encode('ascii'),
-                       verify=False)['typ'], 'tu.com/payments/inapp/v1')
+                       verify=False)['typ'],
+            settings.APP_PURCHASE_TYP)
 
     def test_require_login(self):
         self.client.logout()
@@ -157,10 +161,15 @@ class TestPurchaseJWT(PurchaseTest):
         prices = sorted(data['request']['price'],
                         key=lambda p: p['currency'])
 
-        eq_(prices[0], {'currency': 'BRL', 'amount': '0.50'})
-        eq_(prices[1], {'currency': 'CAD', 'amount': '3.01'})
-        eq_(prices[2], {'currency': 'EUR', 'amount': '5.01'})
-        eq_(prices[3], {'currency': 'USD', 'amount': '0.99'})
+        # TODO(Kumar) remove country when client code is fixed.
+        eq_(prices[0], {'currency': 'BRL', 'amount': '0.50',
+                        'country': 'XX'})
+        eq_(prices[1], {'currency': 'CAD', 'amount': '3.01',
+                        'country': 'XX'})
+        eq_(prices[2], {'currency': 'EUR', 'amount': '5.01',
+                        'country': 'XX'})
+        eq_(prices[3], {'currency': 'USD', 'amount': '0.99',
+                        'country': 'XX'})
         eq_(data['request']['defaultPrice'], 'USD')
 
     @mock.patch.object(settings, 'REGION_STORES', True)

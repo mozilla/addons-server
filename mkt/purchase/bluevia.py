@@ -5,13 +5,11 @@ from urllib import urlencode
 import urlparse
 
 from django import http
+from django.conf import settings
 from django.db.transaction import commit_on_success
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jwt
-from moz_inapp_pay.verify import verify_claims, verify_keys
-import waffle
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
@@ -19,10 +17,8 @@ import amo
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from apps.market.models import PriceCurrency
 from lib.crypto.bluevia import (get_uuid, InvalidSender, parse_from_bluevia,
                                 sign_bluevia_jwt)
-from lib.pay_server import client
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
@@ -35,28 +31,29 @@ addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 def prepare_bluevia_pay(data):
     issued_at = calendar.timegm(time.gmtime())
-    return sign_bluevia_jwt({
-                'iss': 'marketplaceID',  # placeholder
-                'typ': 'tu.com/payments/inapp/v1',
-                'aud': 'tu.com',
-                'iat': issued_at,
-                'exp': issued_at + 3600,  # expires in 1 hour
-                'request': {
-                    'name': data['app_name'],
-                    'description': data['app_description'],
-                    'price': data['prices'],
-                    'defaultPrice': data['currency'],
-                    'postbackURL': data['postback_url'],
-                    'chargebackURL': data['chargeback_url'],
-                    'productData': data['product_data']
-                }
-            })
+    req = {
+        'iss': settings.APP_PURCHASE_KEY,
+        'typ': settings.APP_PURCHASE_TYP,
+        'aud': settings.APP_PURCHASE_AUD,
+        'iat': issued_at,
+        'exp': issued_at + 3600,  # expires in 1 hour
+        'request': {
+            'name': data['app_name'],
+            'description': data['app_description'],
+            'price': data['prices'],
+            'defaultPrice': data['currency'],
+            'postbackURL': data['postback_url'],
+            'chargebackURL': data['chargeback_url'],
+            'productData': data['product_data']
+        }
+    }
+    return sign_bluevia_jwt(req)
 
 
 def prepare_bluevia_refund(data):
     issued_at = calendar.timegm(time.gmtime())
     return sign_bluevia_jwt({
-                'iss': 'developerIdentifier',  # placeholder
+                'iss': settings.APP_PURCHASE_KEY,
                 'typ': 'tu.com/payments/v1/refund',
                 'aud': 'tu.com',
                 'iat': issued_at,
@@ -87,7 +84,9 @@ def prepare_pay(request, addon):
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
 
-    prices = [{'currency': cur, 'amount': str(tier.price)}
+    prices = [{'currency': cur,
+               'country': 'XX',  # This is unused but required!
+               'amount': str(tier.price)}
               for cur, tier in addon.premium.price.currencies()]
 
     data = {'amount': str(amount),
