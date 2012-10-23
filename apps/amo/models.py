@@ -289,24 +289,26 @@ class SearchMixin(object):
         return indexes.get(cls._meta.db_table) or indexes['default']
 
     @classmethod
-    def index(cls, document, id=None, bulk=False, force_insert=False):
+    def index(cls, document, id=None, bulk=False, force_insert=False,
+              index=None):
         """Wrapper around pyes.ES.index."""
         elasticutils.get_es().index(
-            document, index=cls._get_index(), doc_type=cls._meta.db_table,
-            id=id, bulk=bulk, force_insert=force_insert)
+            document, index=index or cls._get_index(),
+            doc_type=cls._meta.db_table, id=id, bulk=bulk,
+            force_insert=force_insert)
 
     @classmethod
-    def unindex(cls, id):
+    def unindex(cls, id, index=None):
         es = elasticutils.get_es()
         try:
-            es.delete(cls._get_index(), cls._meta.db_table, id)
+            es.delete(index or cls._get_index(), cls._meta.db_table, id)
         except pyes.exceptions.NotFoundException:
             # Item wasn't found, whatevs.
             pass
 
     @classmethod
-    def search(cls):
-        return search.ES(cls, cls._get_index())
+    def search(cls, index=None):
+        return search.ES(cls, index or cls._get_index())
 
 
 class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):

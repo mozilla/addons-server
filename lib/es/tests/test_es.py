@@ -3,9 +3,8 @@ from nose.tools import eq_
 
 import amo.tests
 
-import context
-import decorators
-from hold import _locals, process, reset, add
+from es import context, decorators
+from es.hold import _locals, process, reset, add
 
 
 class ESHold(amo.tests.TestCase):

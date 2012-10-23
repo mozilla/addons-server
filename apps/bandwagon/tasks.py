@@ -12,6 +12,7 @@ import amo
 from amo.decorators import set_modified_on
 from amo.utils import attach_trans_dict, resize_image
 from tags.models import Tag
+from lib.es.utils import index_objects
 from . import search
 from .models import (Collection, CollectionAddon, CollectionVote,
                      CollectionWatcher)
@@ -103,12 +104,9 @@ def collection_watchers(*ids, **kw):
 
 @task
 def index_collections(ids, **kw):
-    es = elasticutils.get_es()
     log.debug('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
-    qs = Collection.uncached.filter(id__in=ids).transform(attach_translations)
-    for c in qs:
-        Collection.index(search.extract(c), bulk=True, id=c.id)
-    es.flush_bulk(forced=True)
+    index = kw.pop('index', None)
+    index_objects(ids, Collection, search, index, [attach_translations])
 
 
 def attach_translations(collections):

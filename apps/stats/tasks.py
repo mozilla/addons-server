@@ -15,6 +15,7 @@ from stats.models import Contribution
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
+from lib.es.utils import get_indices
 from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
                      DownloadCount, UpdateCount)
 
@@ -217,6 +218,9 @@ def _get_metrics_jobs(date=None):
 
 @task
 def index_update_counts(ids, **kw):
+    index = kw.pop('index', None)
+    indices = get_indices(index)
+
     es = elasticutils.get_es()
     qs = list(UpdateCount.objects.filter(id__in=ids))
     if qs:
@@ -224,16 +228,20 @@ def index_update_counts(ids, **kw):
     try:
         for update in qs:
             key = '%s-%s' % (update.addon_id, update.date)
-            UpdateCount.index(search.extract_update_count(update),
-                              bulk=True, id=key)
+            data = search.extract_update_count(update)
+            for index in indices:
+                UpdateCount.index(data, bulk=True, id=key, index=index)
         es.flush_bulk(forced=True)
     except Exception, exc:
-        index_update_counts.retry(args=[ids], exc=exc)
+        index_update_counts.retry(args=[ids], exc=exc, **kw)
         raise
 
 
 @task
 def index_download_counts(ids, **kw):
+    index = kw.pop('index', None)
+    indices = get_indices(index)
+
     es = elasticutils.get_es()
     qs = DownloadCount.objects.filter(id__in=ids)
     if qs:
@@ -241,8 +249,10 @@ def index_download_counts(ids, **kw):
     try:
         for dl in qs:
             key = '%s-%s' % (dl.addon_id, dl.date)
-            DownloadCount.index(search.extract_download_count(dl),
-                                bulk=True, id=key)
+            data = search.extract_download_count(dl)
+            for index in indices:
+                DownloadCount.index(data, bulk=True, id=key, index=index)
+
         es.flush_bulk(forced=True)
     except Exception, exc:
         index_download_counts.retry(args=[ids], exc=exc)
@@ -251,6 +261,9 @@ def index_download_counts(ids, **kw):
 
 @task
 def index_collection_counts(ids, **kw):
+    index = kw.pop('index', None)
+    indices = get_indices(index)
+
     es = elasticutils.get_es()
     qs = CollectionCount.objects.filter(collection__in=ids)
     if qs:
@@ -265,7 +278,8 @@ def index_collection_counts(ids, **kw):
             data = search.extract_addon_collection(collection_count,
                             AddonCollectionCount.objects.filter(**filters),
                             CollectionStats.objects.filter(**filters))
-            CollectionCount.index(data, bulk=True, id=key)
+            for index in indices:
+                CollectionCount.index(data, bulk=True, id=key, index=index)
         es.flush_bulk(forced=True)
     except Exception, exc:
         index_collection_counts.retry(args=[ids], exc=exc)

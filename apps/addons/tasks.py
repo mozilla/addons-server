@@ -14,6 +14,7 @@ from amo.decorators import set_modified_on, write
 from amo.utils import (attach_trans_dict, cache_ns_key, sorted_groupby,
                        ImageCheck)
 from lib.es.hold import add, process
+from lib.es.utils import index_objects
 from market.models import AddonPremium
 from tags.models import Tag
 from versions.models import Version
@@ -98,27 +99,24 @@ def delete_preview_files(id, **kw):
 
 @task
 def index_addons(ids, **kw):
-    # For the moment, only do this in the test suite.
-    if settings.IN_TEST_SUITE:
+    index = kw.pop('index', None)
+    async = kw.pop('async', False)
+
+    # The async mode will just add the callbacks in lib.es.hold._locals
+    # That means a lib.es.hold.process() call will be needed later on the
+    # road to perform the actual work.
+    if async:
         for pk in ids:
             add(index_addon_callback, pk)
     else:
-        # We don't do a lot of multiple calls on requests, so let's just call
-        # that normally.
-        index_addon_callback(ids)
+        index_addon_callback(ids, index)
 
 
-def index_addon_callback(ids):
-    es = elasticutils.get_es()
+def index_addon_callback(ids, index=None):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    qs = Addon.uncached.filter(id__in=ids)
     transforms = (attach_categories, attach_devices, attach_prices,
                   attach_tags, attach_translations)
-    for t in transforms:
-        qs = qs.transform(t)
-    for addon in qs:
-        Addon.index(search.extract(addon), bulk=True, id=addon.id)
-    es.flush_bulk(forced=True)
+    index_objects(ids, Addon, search, index, transforms)
 
 
 def attach_devices(addons):

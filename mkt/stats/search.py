@@ -183,7 +183,7 @@ def get_installed_daily(installed):
     }
 
 
-def setup_mkt_indexes():
+def setup_mkt_indexes(index=None, aliased=True):
     """
     Define explicit ES mappings for models. If a field is not explicitly
     defined and a field is inserted, ES will dynamically guess the type and
@@ -191,8 +191,8 @@ def setup_mkt_indexes():
     """
     es = elasticutils.get_es()
     for model in [Contribution, InappPayment]:
-        index = model._get_index()
-        create_es_index_if_missing(index)
+        index = index or model._get_index()
+        index = create_es_index_if_missing(index, aliased=aliased)
 
         mapping = {
             'properties': {
@@ -213,8 +213,7 @@ def setup_mkt_indexes():
             }
         }
 
-        es.put_mapping(model._meta.db_table, mapping,
-                       model._get_index())
+        es.put_mapping(model._meta.db_table, mapping, index)
 
 
 def cut(revenue):

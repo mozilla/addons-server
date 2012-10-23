@@ -13,6 +13,7 @@ from addons.models import Addon
 from search.utils import floor_version
 from stats.models import UpdateCount
 from versions.compare import version_int as vint
+from lib.es.utils import get_indices
 
 from .models import AppCompat, CompatReport, CompatTotals
 
@@ -20,8 +21,9 @@ log = logging.getLogger('z.compat')
 
 
 @cronjobs.register
-def compatibility_report():
+def compatibility_report(index=None, aliased=True):
     docs = defaultdict(dict)
+    indices = get_indices(index)
 
     # Gather all the data for the index.
     for app in amo.APP_USAGE:
@@ -122,5 +124,6 @@ def compatibility_report():
     # Send it all to the index.
     for chunk in amo.utils.chunked(docs.values(), 150):
         for doc in chunk:
-            AppCompat.index(doc, id=doc['id'], bulk=True)
+            for index in indices:
+                AppCompat.index(doc, id=doc['id'], bulk=True, index=index)
         elasticutils.get_es().flush_bulk(forced=True)

@@ -378,6 +378,7 @@ INSTALLED_APPS = (
     'jingo_minify',
     'market',
     'localizers',
+    'lib.es',
     'pages',
     'perf',
     'product_details',

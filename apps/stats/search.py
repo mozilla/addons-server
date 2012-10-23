@@ -117,11 +117,11 @@ def get_all_app_versions():
     return dict(rv)
 
 
-def setup_indexes():
+def setup_indexes(index=None, aliased=True):
     es = elasticutils.get_es()
     for model in CollectionCount, DownloadCount, UpdateCount:
-        index = model._get_index()
-        create_es_index_if_missing(index)
+        index = index or model._get_index()
+        index = create_es_index_if_missing(index, aliased=aliased)
 
         mapping = {
             'properties': {
@@ -137,5 +137,4 @@ def setup_indexes():
                          'type': 'date'}
             }
         }
-        es.put_mapping(model._meta.db_table, mapping,
-                       model._get_index())
+        es.put_mapping(model._meta.db_table, mapping, index)

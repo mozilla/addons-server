@@ -16,6 +16,7 @@ import unicodedata
 import urllib
 import urlparse
 import uuid
+import datetime
 
 import django.core.mail
 from django import http
@@ -937,8 +938,40 @@ def rm_local_tmp_file(path):
     return os.unlink(path)
 
 
-def create_es_index_if_missing(index, config=None):
+def timestamp_index(index):
+    """Returns index-YYYYMMDDHHMMSS with the current time."""
+    return '%s-%s' % (index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+
+
+def create_es_index_if_missing(index, config=None, aliased=False):
+    """Creates an index if it's not present.
+
+    Returns the index name. It may change if it was aliased.
+
+    Options:
+
+    - index: name of the index.
+    - config: if provided, used as the settings option for the
+      ES calls.
+    - aliased: If set to true, the index is suffixed with a timestamp
+      and an alias with the index name is created.
+    """
     es = elasticutils.get_es()
+
+    if aliased:
+        alias = index
+        try:
+            indices = es.get_alias(alias)
+            if len(indices) > 1:
+                raise ValueError("The %r alias should not point to "
+                                 "several indices" % index)
+            # we're good here - the alias and the index exist
+            return indices[0]
+        except pyes.IndexMissingException:
+            # no alias exists, so we want to
+            # create a fresh one and a fresh index
+            index = timestamp_index(index)
+
     if settings.IN_TEST_SUITE:
         if not config:
             config = {}
@@ -947,5 +980,12 @@ def create_es_index_if_missing(index, config=None):
                        'number_of_replicas': 0})
     try:
         es.create_index_if_missing(index, settings=config)
+        if aliased:
+            try:
+                es.add_alias(alias, [index])
+            except pyes.ElasticSearchException, exc:
+                 log.info('ES error creating alias: %s' % exc)
     except pyes.ElasticSearchException, exc:
         log.info('ES error creating index: %s' % exc)
+
+    return index
