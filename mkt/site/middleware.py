@@ -306,3 +306,10 @@ class HijackRedirectMiddleware(object):
             view = resolve(view_url)
             response = view.func(r, *view.args, **view.kwargs)
         return response
+
+
+class AlwaysMobile(object):
+    """Middleware for development that forces all responses into mobile mode."""
+
+    def process_request(self, request):
+        request.MOBILE = True
