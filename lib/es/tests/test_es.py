@@ -1,3 +1,4 @@
+from celeryutils import task
 import mock
 from nose.tools import eq_
 
@@ -54,4 +55,17 @@ class ESHold(amo.tests.TestCase):
         def foo():
             add(self.callback, 1)
         foo()
+        assert self.callback.called
+
+    def test_delayable(self):
+        @task
+        def foo(*args, **kwargs):
+            # Assert that when it's called, it's beind delayed.
+            assert kwargs['delivery_info']['is_eager']
+        add(foo, 1)
+        process()
+
+    def test_request_finished(self):
+        add(self.callback, 1)
+        self.client.get('/')
         assert self.callback.called

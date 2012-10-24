@@ -234,7 +234,7 @@ def _review(request, addon):
     return jingo.render(request, 'reviewers/review.html', ctx)
 
 
-#@commit_on_success
+@commit_on_success
 @permission_required('Apps', 'Review')
 @addon_view
 def app_review(request, addon):

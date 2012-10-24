@@ -1,5 +1,9 @@
 from threading import local
 
+from celery.task import Task
+
+from django.core.signals import request_finished
+
 import signals
 
 _locals = local()
@@ -40,6 +44,11 @@ def process(**kwargs):
         uniq[fun.__name__]['ids'].append(pk)
 
     for v in uniq.values():
+        if isinstance(v['func'], Task):
+            # If it's delayable, do so.
+            v['func'].delay(v['ids'])
+            continue
+
         v['func'](v['ids'])
 
     _locals.tasks.clear()
@@ -47,3 +56,4 @@ def process(**kwargs):
 
 signals.reset.connect(reset, dispatch_uid='reset_es_tasks')
 signals.process.connect(process, dispatch_uid='process_es_tasks')
+request_finished.connect(process, dispatch_uid='process_es_tasks_on_finish')

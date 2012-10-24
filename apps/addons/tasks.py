@@ -97,26 +97,19 @@ def delete_preview_files(id, **kw):
             log.error('Error deleting preview file (%s): %s' % (f, e))
 
 
+def index_addon_held(ids, **kw):
+    # Hold the indexes till the end of the request or until lib.es signal,
+    # process is called.
+    for pk in ids:
+        add(index_addons, pk)
+
+
 @task
 def index_addons(ids, **kw):
-    index = kw.pop('index', None)
-    async = kw.pop('async', False)
-
-    # The async mode will just add the callbacks in lib.es.hold._locals
-    # That means a lib.es.hold.process() call will be needed later on the
-    # road to perform the actual work.
-    if async:
-        for pk in ids:
-            add(index_addon_callback, pk)
-    else:
-        index_addon_callback(ids, index)
-
-
-def index_addon_callback(ids, index=None):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_categories, attach_devices, attach_prices,
                   attach_tags, attach_translations)
-    index_objects(ids, Addon, search, index, transforms)
+    index_objects(ids, Addon, search, kw.pop('index', None), transforms)
 
 
 def attach_devices(addons):

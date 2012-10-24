@@ -1428,7 +1428,7 @@ def update_search_index(sender, instance, **kw):
     from . import tasks
 
     if not kw.get('raw'):
-        tasks.index_addons.delay([instance.id])
+        tasks.index_addon_held([instance.id])
 
 
 @Addon.on_change
