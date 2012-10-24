@@ -239,7 +239,7 @@ def handle_kwargs(q, field, kwargs, join_field=None):
         del(kwargs[field])
 
     # We are using the join field to filter so get rid of the plain one.
-    if join_field:
+    if join_field and field in kwargs:
         del(kwargs[field])
 
     return q

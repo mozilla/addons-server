@@ -10,7 +10,7 @@ import amo
 import amo.tests
 from market.models import Refund, Price
 from mkt.stats import tasks
-from mkt.stats.search import cut
+from mkt.stats.search import cut, handle_kwargs
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from stats.models import Contribution
 from users.models import UserProfile
@@ -509,3 +509,11 @@ class TestCut(unittest.TestCase):
         eq_(cut(1), Decimal(str(.7)))
         eq_(cut(10), Decimal(str(7)))
         eq_(cut(33), Decimal(str(23.10)))
+
+    def test_remove_kwargs(self):
+        q = object()
+        field = 'field'
+        join_field = 'join'
+        kwargs = {'field': None}
+        res = handle_kwargs(q, field, kwargs, join_field)
+        self.assertEqual(res.children, [('field__in', ['', None])])
