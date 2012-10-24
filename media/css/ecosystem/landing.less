@@ -29,19 +29,19 @@
     p.intro {
         font-size: 25px;
         font-weight: 100;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
         text-align: center;
     }
 
     .button-wrapper {
-        padding: 30px 0 20px;
+        padding: 20px 10px;
+        width: 288px;
     }
 }
 
 #landing-page .half {
     float: left;
     margin: 8px 0;
-    padding: 10px 20px 0;
     position: relative;
     width: 920px;
 
@@ -52,11 +52,23 @@
     }
 
     &.initial-steps {
-        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat 15px 50%;
+        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat -8px 38%;
         margin-bottom: 40px;
+        padding-top: 0;
+    }
+
+    .button.prominent {
+        &.first {
+            background: #eb492d;
+        }
+
+        &.second {
+            background: #ff9600;
+        }
     }
 
     &.contact {
+        margin: 25px 0;
         text-align: center;
 
         .contact-info, .logo {
@@ -64,7 +76,7 @@
         }
 
         .logo {
-            padding: 15px 20px 15px 0;
+            padding: 15px 20px 5px 0;
             width: 142px;
 
             img {
@@ -101,24 +113,32 @@
 
     .panel {
         float: left;
-        width: 33.3%;
+        width: 306px;
 
         h2 {
+            margin-top: 10px;
             text-align: center;
+        }
+
+        p {
+            border-bottom: 2px solid transparent;
+            display: block;
+            height: 50px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding-top: 10px;
+            text-overflow: ellipsis;
+            width: 230px;
         }
 
         a p {
             color: @medium-gray;
         }
 
-        a:hover {
-            text-decoration: none;
-        }
-
         p {
             margin: 0 auto;
+            padding: 0 10px 10px 10px;
             text-align: center;
-            width: 200px;
         }
     }
 

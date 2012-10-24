@@ -16,52 +16,47 @@
     </p>
     <section class="half initial-steps">
       <div class="panel">
-        <a href="{{ url('ecosystem.documentation', page='principles') }}">
-          <h2>{{ _('Design') }}</h2>
-          <p>
-            {% trans %}
-              Learn how to design Web Apps that provide a user experience
-              optimized for Firefox OS &amp; Mobile
-            {% endtrans %}
-          </p>
-        </a>
-        <div class="button-wrapper">
+        <h2>{{ _('Design') }}</h2>
+        <p>
+          {% trans %}
+            Learn how to design Web Apps that provide a user experience
+            optimized for Firefox OS &amp; Mobile
+          {% endtrans %}
+        </p>
+        <div class="button-wrapper first">
           <a href="{{ url('ecosystem.documentation', page='principles') }}"
-             class="button prominent">
-            {{ _('View the Design Guide') }}
+             class="button prominent first">
+            {{ _('Design your App') }}
           </a>
         </div>
       </div>
       <div class="panel">
-        <a href="{{ url('ecosystem.documentation', page='html5') }}">
-          <h2>{{ _('Build') }}</h2>
-          <p>
-            {% trans %}
-              All the tools, docs and references you'll need for
-              development and testing of your App
-            {% endtrans %}
-          </p>
-        </a>
+        <h2>{{ _('Build') }}</h2>
+        <p>
+          {% trans %}
+            All the tools, docs and references you'll need for
+            development and testing of your App
+          {% endtrans %}
+        </p>
         <div class="button-wrapper">
           <a href="{{ url('ecosystem.documentation', page='tutorial_general') }}"
-             class="button prominent">
-            {{ _('Start the Tutorial') }}
+             class="button prominent second">
+            {{ _('Build your App') }}
           </a>
         </div>
       </div>
       <div class="panel">
-        <a href="{{ url('ecosystem.documentation', page='mkt_hosting') }}">
-          <h2>{{ _('Publish') }}</h2>
-          <p>
-            {% trans %}
-              Find out how to distribute your Apps on an open marketplace
-              that puts users and developers first
-            {% endtrans %}
-          </p>
-        </a>
-        <div class="button-wrapper">
-          <a href="{{ url('submit.app') }}" class="button prominent">
-            {{ _('Submit an App') }}</a>
+        <h2>{{ _('Publish') }}</h2>
+        <p>
+          {% trans %}
+            Find out how to distribute your Apps on an open marketplace
+            that puts users and developers first
+          {% endtrans %}
+        </p>
+        <div class="button-wrapper last">
+          <a href="{{ url('ecosystem.documentation', page='mkt_hosting') }}"
+             class="button prominent third">
+            {{ _('Publish your App') }}</a>
         </div>
       </div>
     </section>

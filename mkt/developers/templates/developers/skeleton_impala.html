@@ -57,6 +57,11 @@
             <nav id="aux-nav" role="navigation" class="menu-nav c">
               <ul>
                 {% if not settings.READ_ONLY %}
+                  <li class="nomenu">
+                    <a href="{{ url('submit.app') }}">
+                      {{ _('Submit an App') }}
+                    </a>
+                  </li>
                   {% if user.is_authenticated() %}
                     <li class="account">
                       <a href="{{ amo_user.get_url_path() }}" class="user"
