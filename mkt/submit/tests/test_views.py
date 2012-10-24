@@ -124,20 +124,16 @@ class TestTerms(TestSubmit):
         self._test_progress_display([], 'terms')
 
     def test_agree(self):
-        self.create_switch(name='allow-packaged-app-uploads')
-        r = self.client.post(self.url, {'read_dev_agreement': True})
-        self.assert3xx(r, reverse('submit.app.choose'))
+        self.client.post(self.url, {'read_dev_agreement': True})
         dt = self.get_user().read_dev_agreement
         assert close_to_now(dt), (
             'Expected date of agreement read to be close to now. Was %s' % dt)
         eq_(UserNotification.objects.count(), 0)
 
     def test_agree_and_sign_me_up(self):
-        self.create_switch(name='allow-packaged-app-uploads')
-        r = self.client.post(self.url, {'read_dev_agreement':
-                                        datetime.datetime.now(),
-                                        'newsletter': True})
-        self.assert3xx(r, reverse('submit.app.choose'))
+        self.client.post(self.url, {'read_dev_agreement':
+                                    datetime.datetime.now(),
+                                    'newsletter': True})
         dt = self.get_user().read_dev_agreement
         assert close_to_now(dt), (
             'Expected date of agreement read to be close to now. Was %s' % dt)
@@ -190,16 +186,12 @@ class TestManifest(TestSubmit):
         # So jump me to the Manifest step.
         r = self.client.get(reverse('submit.app'), follow=True)
         self.assert3xx(r, reverse('submit.app.manifest'))
-        # Now with waffles!
-        self.create_switch(name='allow-packaged-app-uploads')
-        r = self.client.get(reverse('submit.app'), follow=True)
-        self.assert3xx(r, reverse('submit.app.choose'))
 
     def test_page(self):
         self._step()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#submit-manifest').length, 1)
+        eq_(pq(r.content)('#upload-file').length, 1)
 
     def test_progress_display(self):
         self._step()
@@ -208,12 +200,11 @@ class TestManifest(TestSubmit):
 
 class UploadAddon(object):
 
-    def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
-             expect_errors=False):
-        d = dict(upload=self.upload.pk,
-                 desktop_platforms=[p.id for p in desktop_platforms],
-                 mobile_platforms=[p.id for p in mobile_platforms])
-        r = self.client.post(self.url, d, follow=True)
+    def post(self, expect_errors=False, data=None):
+        if data is None:
+            data = {'free': ['free-desktop']}
+        data.update(upload=self.upload.pk)
+        r = self.client.post(self.url, data, follow=True)
         eq_(r.status_code, 200)
         if not expect_errors:
             # Show any unexpected form errors.
@@ -238,9 +229,9 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.client.post(reverse('submit.app.terms'),
                          {'read_dev_agreement': True})
 
-    def post_addon(self):
+    def post_addon(self, data=None):
         eq_(Addon.objects.count(), 0)
-        self.post()
+        self.post(data=data)
         return Addon.objects.get()
 
 
@@ -320,6 +311,20 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(len(files), 1)
         eq_(files[0].status, amo.STATUS_PENDING)
 
+    def test_set_platform(self):
+        app = self.post_addon({'free': ['free-tablet', 'free-desktop']})
+        eq_(set(app.device_types),
+            set([amo.DEVICE_TABLET, amo.DEVICE_DESKTOP]))
+
+    def test_free(self):
+        app = self.post_addon({'free': ['free-os']})
+        eq_(app.premium_type, amo.ADDON_FREE)
+
+    def test_premium(self):
+        self.create_switch('allow-b2g-paid-submission')
+        app = self.post_addon({'paid': ['paid-os']})
+        eq_(app.premium_type, amo.ADDON_PREMIUM)
+
 
 class TestCreateWebAppFromManifest(BaseWebAppTest):
 
@@ -380,16 +385,16 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.package = self.packaged_app_path('mozball.zip')
         self.upload = self.get_upload(abspath=self.package)
         self.upload.update(name='mozball.zip', is_webapp=True)
-        self.url = reverse('submit.app.package')
+        self.url = reverse('submit.app.manifest')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         # Complete first step.
         self.client.post(reverse('submit.app.terms'),
                          {'read_dev_agreement': True})
 
-    def post_addon(self):
+    def post_addon(self, data=None):
         eq_(Addon.objects.count(), 1)
-        self.post()
+        self.post(data=data)
         return Addon.objects.order_by('-id')[0]
 
     def setup_files(self):
@@ -413,7 +418,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
             reverse('submit.app.details', args=[webapp.app_slug]))
 
     def test_app_from_uploaded_package(self):
-        addon = self.post_addon()
+        addon = self.post_addon(data={'packaged': True, 'free': ['free-os']})
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.current_version.version, '1.0')
         eq_(addon.is_packaged, True)
@@ -429,7 +434,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
 
     @mock.patch('mkt.submit.forms.verify_app_domain')
     def test_packaged_app_not_unique_by_domain(self, _verify):
-        self.post()
+        self.post(data={'packaged': True, 'free': ['free-os']})
         assert not _verify.called, ('`verify_app_domain` should not be called'
                                     ' for packaged apps.')
 

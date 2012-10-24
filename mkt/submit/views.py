@@ -37,8 +37,6 @@ def submit(request):
     # If dev has already agreed, continue to next step.
     user = UserProfile.objects.get(pk=request.user.id)
     if user.read_dev_agreement:
-        if waffle.switch_is_active('allow-packaged-app-uploads'):
-            return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
     else:
         return redirect('submit.app.terms')
@@ -66,8 +64,6 @@ def terms(request):
     # If dev has already agreed, continue to next step.
     if (getattr(request, 'amo_user', None) and
             request.amo_user.read_dev_agreement):
-        if waffle.switch_is_active('allow-packaged-app-uploads'):
-            return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
 
     agreement_form = forms.DevAgreementForm(
@@ -75,8 +71,6 @@ def terms(request):
         instance=request.amo_user)
     if request.POST and agreement_form.is_valid():
         agreement_form.save()
-        if waffle.switch_is_active('allow-packaged-app-uploads'):
-            return redirect('submit.app.choose')
         return redirect('submit.app.manifest')
     return jingo.render(request, 'submit/terms.html', {
         'step': 'terms',
@@ -87,24 +81,24 @@ def terms(request):
 @login_required
 @read_dev_agreement_required
 @submit_step('manifest')
-def choose(request):
-    if not waffle.switch_is_active('allow-packaged-app-uploads'):
-        return redirect('submit.app.manifest')
-    return jingo.render(request, 'submit/choose.html', {
-        'step': 'manifest',
-    })
-
-
-@login_required
-@read_dev_agreement_required
-@submit_step('manifest')
 @transaction.commit_on_success
 def manifest(request):
     form = forms.NewWebappForm(request.POST or None)
+
     if request.method == 'POST' and form.is_valid():
         addon = Addon.from_upload(
             form.cleaned_data['upload'],
-            [Platform.objects.get(id=amo.PLATFORM_ALL.id)])
+            [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
+            is_packaged=form.is_packaged())
+
+        # Set the device type.
+        for device in form.get_devices():
+            addon.addondevicetype_set.create(device_type=device.id)
+
+        # Set the premium type, only bother if it's not free.
+        premium = form.get_paid()
+        if premium:
+            addon.update(premium_type=premium)
 
         if addon.has_icon_in_manifest():
             # Fetch the icon, do polling.
@@ -123,37 +117,7 @@ def manifest(request):
 
     return jingo.render(request, 'submit/manifest.html', {
         'step': 'manifest',
-        'form': form,
-    })
-
-
-@login_required
-@read_dev_agreement_required
-@submit_step('manifest')
-def package(request):
-    form = forms.NewWebappForm(request.POST or None, is_packaged=True)
-    if request.method == 'POST' and form.is_valid():
-        addon = Addon.from_upload(
-            form.cleaned_data['upload'],
-            [Platform.objects.get(id=amo.PLATFORM_ALL.id)], is_packaged=True)
-
-        if addon.has_icon_in_manifest():
-            # Fetch the icon, do polling.
-            addon.update(icon_type='image/png')
-            tasks.fetch_icon.delay(addon)
-        else:
-            # In this case there is no need to do any polling.
-            addon.update(icon_type='')
-
-        AddonUser(addon=addon, user=request.amo_user).save()
-        AppSubmissionChecklist.objects.create(addon=addon, terms=True,
-                                              manifest=True)
-
-        return redirect('submit.app.details', addon.app_slug)
-
-    return jingo.render(request, 'submit/upload.html', {
-        'form': form,
-        'step': 'manifest',
+        'form': form
     })
 
 

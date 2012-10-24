@@ -4,6 +4,7 @@ from django import forms
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
+import waffle
 
 from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUpsell
@@ -38,31 +39,125 @@ class DevAgreementForm(happyforms.Form):
                 notification_id=app_surveys.id, update={'enabled': True})
 
 
+
+
+
 class NewWebappForm(happyforms.Form):
+    # The selections for free.
+    FREE = (
+        ('free-os', _lazy('Firefox OS')),
+        ('free-desktop', _lazy('Firefox')),
+        ('free-phone', _lazy('Firefox Mobile')),
+        ('free-tablet', _lazy('Firefox Tablet')),
+    )
+
+    # The selections for paid.
+    PAID = (
+        ('paid-os', _lazy('Firefox OS')),
+    )
+
+    # Extra information about those values for display in the page.
+    DEVICE_LOOKUP = {
+        'free-os': _lazy('Fully open mobile ecosystem'),
+        'free-desktop': _lazy('Windows, Mac and Linux'),
+        'free-phone': _lazy('Android smartphones'),
+        'free-tablet': _lazy('Android tablets'),
+        'paid-os': _lazy('Fully open mobile ecosystem'),
+    }
+
+    ERRORS = {'both': _lazy(u'Cannot be free and paid.'),
+              'none': _lazy(u'Please select a device.'),
+              'packaged': _lazy(u'Packaged apps are only valid '
+                                u'for Firefox OS.')}
+
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy(u'There was an error with your'
-                                                ' upload. Please try again.')})
+                                                u' upload. Please try'
+                                                u' again.')})
 
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon', None)
-        self.is_packaged = kw.pop('is_packaged', False)
-        super(NewWebappForm, self).__init__(*args, **kw)
+    packaged = forms.BooleanField(required=False)
+    free = forms.MultipleChoiceField(choices=FREE, required=False)
+    paid = forms.MultipleChoiceField(choices=PAID, required=False)
 
-    def clean_upload(self):
-        upload = self.cleaned_data['upload']
-        if self.is_packaged:
-            pkg = parse_addon(upload, self.addon)
+
+    def _add_error(self, msg):
+        self._errors['free'] = self._errors['paid'] = self.ERRORS[msg]
+
+
+    def _get_combined(self):
+        return set(self.cleaned_data.get('free', []) +
+                   self.cleaned_data.get('paid', []))
+
+    def clean(self):
+        data = self.cleaned_data
+
+        # Check that they didn't select both.
+        if data.get('free') and data.get('paid'):
+            self._add_error('both')
+            return
+
+        # Check that they selected one.
+        if not data.get('free') and not data.get('paid'):
+            self._add_error('none')
+            self._errors['free'] = self._errors['paid'] = self.ERRORS['none']
+            return
+
+        # Packaged apps are only valid for firefox os.
+        if self.is_packaged():
+            if not set(self._get_combined()).issubset(['paid-os', 'free-os']):
+                self._add_error('packaged')
+                return
+
+            # Now run the packaged app check, done in clean, because
+            # clean_packaged needs to be processed first.
+            try:
+                pkg = parse_addon(data['upload'], self.addon)
+            except forms.ValidationError, e:
+                self._errors['upload'] = self.error_class(e.messages)
+                return
+
             ver = pkg.get('version')
             if (ver and self.addon and
                 self.addon.versions.filter(version=ver).exists()):
-                raise forms.ValidationError(
-                    _(u'Version %s already exists') % ver)
+                self._errors['upload'] = _(u'Version %s already exists') % ver
+                return
         else:
             # Throw an error if this is a dupe.
             # (JS sets manifest as `upload.name`.)
-            verify_app_domain(upload.name)
-        return upload
+            try:
+                verify_app_domain(data['upload'].name)
+            except forms.ValidationError, e:
+                self._errors['upload'] = self.error_class(e.messages)
+                return
+
+        return data
+
+    def get_devices(self):
+        """Returns a device based on the requested free or paid."""
+        platforms = {'os': amo.DEVICE_MOBILE,
+                     'desktop': amo.DEVICE_DESKTOP,
+                     'phone': amo.DEVICE_MOBILE,
+                     'tablet': amo.DEVICE_TABLET}
+        return [platforms[t.split('-', 1)[1]] for t in self._get_combined()]
+
+    def get_paid(self):
+        """Returns the premium type."""
+        if self.cleaned_data.get('paid', False):
+            return amo.ADDON_PREMIUM
+        return amo.ADDON_FREE
+
+    def is_packaged(self):
+        return self.cleaned_data.get('packaged', False)
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon', None)
+        super(NewWebappForm, self).__init__(*args, **kw)
+        if not waffle.switch_is_active('allow-b2g-paid-submission'):
+            del self.fields['paid']
+
+        if not waffle.switch_is_active('allow-packaged-app-uploads'):
+            del self.fields['packaged']
 
 
 class PaypalSetupForm(happyforms.Form):
@@ -85,13 +180,6 @@ class PaypalSetupForm(happyforms.Form):
             self._errors['email'] = self.error_class([msg])
 
         return data
-
-
-class PremiumTypeForm(happyforms.Form):
-    premium_type = forms.TypedChoiceField(coerce=lambda x: int(x),
-                                choices=amo.ADDON_PREMIUM_TYPES.items(),
-                                widget=forms.RadioSelect(),
-                                label=_lazy(u'Will your app use payments?'))
 
 
 class UpsellForm(happyforms.Form):

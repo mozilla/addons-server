@@ -212,6 +212,8 @@
                     $upload_field.trigger('upload_success_results', [file, results]);
                 }};
 
+                $('#id_upload').val(results.upload);
+                $('#id_packaged').val(true);
                 upload_progress_inside.animate({'width': '100%'}, animateArgs);
             });
 
@@ -303,8 +305,10 @@
                     upload_progress_outside.attr('class', 'bar-success');
                     upload_progress_inside.fadeOut();
 
-                    $upload_field.trigger('reenable_uploader');
+                    $('footer.listing-footer').removeClass('hidden');
+                    $('button.upload-file-submit').removeAttr('disabled').focus();
 
+                    $upload_field.trigger('reenable_uploader');
                     upload_results.addClass('status-pass');
 
                     $('<strong>').text(message).appendTo(upload_results);

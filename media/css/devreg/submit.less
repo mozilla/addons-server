@@ -93,3 +93,47 @@ h2 .soon {
         }
     }
 }
+
+#submit-payment-type {
+    .wrapper {
+        display: inline-block;
+        width: 222px;
+        margin-right: 10px;
+        &:last-child {
+            margin-right: 0;
+            width: 221px;
+        }
+        a {
+            text-decoration: none;
+            text-align: center;
+            padding: 180px 10px 20px;
+            margin-bottom: 0;
+            &#free-os, &#paid-os {
+                background: url(../../img/developers/firefox_phone.png) no-repeat center 25px;
+            }
+            &#free-desktop {
+                background: url(../../img/developers/firefox_logo.png) no-repeat center 25px;
+            }
+            &#free-phone {
+                background: url(../../img/developers/firefox_android_phone.png) no-repeat center 25px;
+            }
+            &#free-tablet {
+                background: url(../../img/developers/firefox_android_tablet.png) no-repeat center 40px;
+            }
+            &#free-os, &#free-desktop, &#free-phone, &#free-tablet, &#paid-os {
+                &.selected {
+                    background-color: @notice-yellow;
+                }
+            }
+            div {
+                color: #484848;
+            }
+        }
+    }
+}
+
+#upload-file {
+    &.spacer {
+      margin-top: 60px;
+    }
+}

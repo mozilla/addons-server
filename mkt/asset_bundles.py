@@ -58,6 +58,7 @@ CSS = {
         'css/devreg/submit-details.less',
         'css/devreg/validation.less',
         'css/devreg/submit.less',
+        'css/devreg/tabs.less',
         'css/impala/personas.less',
         'css/impala/colorpicker.less',
 
@@ -206,6 +207,7 @@ JS = {
         # New stuff.
         'js/devreg/devhub.js',
         'js/devreg/submit.js',
+        'js/devreg/tabs.js',
         'js/devreg/edit.js',
         'js/impala/persona_creation.js',
         'js/lib/jquery.minicolors.js',
