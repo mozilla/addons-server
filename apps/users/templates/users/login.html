@@ -34,7 +34,7 @@
         and are not accepting any new registrations</strong>. To be notified of our progress, including any future tester openings,
         subscribe to our Apps newsletter in our <a href="https://developer.mozilla.org/en-US/apps">documentation area</a>. Thanks for your interest!</p>
       {% else %}
-        <p>If you'd like to try a demo of our app submission process, log in or register below with your <a href="https://browserid.org">BrowserID</a>
+        <p>If you'd like to try a demo of our app submission process, log in or register below with your <a href="https://login.persona.org">Persona</a>
           account. We're only accepting a limited number of registrations for this preview, but we encourage everyone interested in apps to
           <a href="https://developer.mozilla.org/en-US/apps">read our documentation</a>.</p>
       {% endif %}
@@ -45,7 +45,7 @@
     {% elif waffle.switch('browserid-login') %}
       <p>
         {# TODO: Localize! #}
-        {% with url='https://browserid.org/' %}
+        {% with url='https://login.persona.org/' %}
         The add-ons website is now using <a href="{{ url }}">BrowserID</a> for sign in. If you already have an account here, just use the
         same email when signing in to BrowserID.
         {% endwith %}

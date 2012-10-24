@@ -287,10 +287,10 @@ Run The Marketplace Server
 
 
 
-Browser ID
-----------
+Persona
+-------
 
-We use `Browser ID (Persona) <https://browserid.org/>`_ to log in and create accounts.
+We use `Persona <https://login.persona.org/>`_ to log in and create accounts.
 In order for this to work you need to set ``SITE_URL`` in your local
 settings file based on how you run your dev server. Here is an example::
 
