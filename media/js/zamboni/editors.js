@@ -9,7 +9,7 @@ $(function() {
         $me.hide();
         $me.next().show();
         $me.parents('tr').next().show();
-    }
+    };
 
     var hide_comments = function(e) {
         e.preventDefault();
@@ -17,7 +17,7 @@ $(function() {
         $me.hide();
         $me.prev().show();
         $me.parents('tr').next().hide();
-    }
+    };
 
 
     $('a.show').click(show_comments);
@@ -47,7 +47,7 @@ $(function() {
     if ($("#addon[data-id], #persona[data-id]").exists()) {
       $("#addon .icon").click(function() {
         window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
-      })
+      });
     }
 });
 
@@ -123,7 +123,7 @@ function initReviewActions() {
     $('.files .install').click(_pd(function(){
         var $this = $(this),
             installer = $this.is('[data-type="search-tools"]') ? z.installSearch : z.installAddon;
-        installer($this.text(), $this.attr('href'), "")
+        installer($this.text(), $this.attr('href'), "");
     }));
 
 
@@ -246,8 +246,8 @@ function initDailyMessage(doc) {
 function initQueue() {
     var url = $('#addon-queue').attr('data-url'),
         addon_ids = $.map($('.addon-row'), function(el) {
-        return $(el).attr('data-addon');
-    });
+            return $(el).attr('data-addon');
+        });
     if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
         (function checkCurrentlyViewing() {
             $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
@@ -286,7 +286,7 @@ function initQueue() {
                 }
             });
             return true;
-        }
+        };
 
     $('.addon-version-notes a').each(function(i, el) {
         $(pop).popup(el, { pointTo: el, callback: loadNotes, width: 500});
@@ -349,14 +349,14 @@ function initScrollingSidebar() {
 function initPerformanceStats() {
     var container = $('#monthly'),
         groups = {'usercount': $('#reviews_user').text(),
-                  'teamavg': gettext('Average Reviews')}
+                  'teamavg': gettext('Average Reviews')};
 
     /* View Other User Stats */
     $('#select_user').change(function(){
         var $this = $(this),
             user = $this.val();
 
-        if(user != "") {
+        if(user !== "") {
             window.location.href = $this.attr('data-url') + user;
         }
     });
