@@ -309,7 +309,15 @@ class Command(BaseCommand):
 
         # let's do it
         log('Running all indexation tasks')
-        tree.apply_and_join()
+
+        # The Async mode is currently buggy.
+        # Forcing the EAGER mode
+        saved = django_settings.CELERY_ALWAYS_EAGER
+        django_settings.CELERY_ALWAYS_EAGER = True
+        try:
+            tree.apply_and_join()
+        finally:
+            django_settings.CELERY_ALWAYS_EAGER = saved
 
         # let's return the /_aliases values
         aliases = call_es('_aliases').json
