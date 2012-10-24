@@ -308,7 +308,8 @@ class Command(BaseCommand):
         delete.add_task(delete_indexes, args=[to_remove])
 
         # let's do it
-        tree.apply_async()
+        log('Running all indexation tasks')
+        tree.apply_and_join()
 
         # let's return the /_aliases values
         aliases = call_es('_aliases').json
