@@ -36,6 +36,12 @@ function BrowserUtils() {
         }
     }
 
+    // Seamonkey looks like Firefox but Firefox doesn't look like Seamonkey.
+    // If both are true, set Firefox to false.
+    if (browser.firefox && browser.seamonkey) {
+        browser.firefox = false;
+    }
+
     var os = {},
         platform = "";
     for (i in osStrings) {
