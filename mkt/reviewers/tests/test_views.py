@@ -1377,8 +1377,10 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(doc('#log-listing tbody tr').eq(0).attr('data-addonid'),
-            str(self.apps[0].pk))
+        all_reviews = [d.attrib.get('data-addonid')
+                       for d in doc('#log-listing tbody tr')]
+        assert str(self.apps[0].pk) in all_reviews, (
+            'Soft deleted review did not show up in listing')
 
     def test_xss(self):
         a = self.apps[0]
