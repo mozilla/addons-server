@@ -265,13 +265,20 @@ def index_finance_total_inapp_by_src(addons, **kw):
                 try:
                     key = ord_word('srcinapp' + str(addon) + inapp_name +
                                    source.lower())
-                    data = search.get_finance_total_inapp(
-                        qs, addon, inapp_name, 'source', source=source)
-                    for index in get_indices(index):
-                        if not already_indexed(InappPayment, data, index):
-                            InappPayment.index(data, bulk=True, id=key,
-                                               index=index)
+                    try:
+                        data = search.get_finance_total_inapp(
+                            qs, addon, inapp_name, 'source', source=source)
+
+                        for index in get_indices(index):
+                            if not already_indexed(InappPayment, data, index):
+                                InappPayment.index(data, bulk=True, id=key,
+                                                   index=index)
+                    except Exception, e:
+                        # We ignore this error for now. See #805181
+                        pass
+
                     es.flush_bulk(forced=True)
+
                 except Exception, exc:
                     index_finance_total_by_src.retry(args=[addons],
                                                      exc=exc, **kw)
