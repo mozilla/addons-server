@@ -246,3 +246,63 @@ h1 {
 .paginator .rel a.button {
     line-height: 32px;
 }
+
+@media (max-width: 600px) {
+    #page {
+        h1 {
+            padding-left: 80px;
+            font-size: 140%;
+            line-height: 160%;
+        }
+    }
+    .island {
+        position: relative;
+        .column-a, .column-b, .column-c {
+            float: none;
+            width: auto;
+        }
+        .column-a {
+            padding: 0;
+            img {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                margin-right: 15px;
+                float: left;
+            }
+            li {
+                margin: 0;
+                a {
+                    display: block;
+                    padding: 1em 0;
+                }
+                width: 50%;
+                float: left;
+                text-align: center;
+            }
+        }
+        .column-b {
+            clear: both;
+        }
+        section {
+            padding: 0;
+            width: auto;
+        }
+    }
+    .lookup-search-form {
+        input {
+            width: auto;
+        }
+        #app-search {
+            margin-top: 15px;
+        }
+        .search-suggestions.visible {
+            left: 0;
+            width: 100%;
+            top: 65px;
+        }
+    }
+    #footer {
+        display: none;
+    }
+}
