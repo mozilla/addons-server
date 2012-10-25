@@ -246,8 +246,6 @@ JS = {
         'js/mkt/search.js',
         'js/mkt/apps.js',
         'js/mkt/typography.js',
-        'js/zamboni/outgoing_links.js',
-        'js/common/upload-image.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
@@ -263,7 +261,6 @@ JS = {
         # Detail page.
         'js/mkt/detail.js',
         'js/mkt/lightbox.js',
-        'js/mkt/reviewsparks.js',
         'js/mkt/previews.js',
 
         # Ratings.
