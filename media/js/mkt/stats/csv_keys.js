@@ -170,12 +170,12 @@ var csv_keys = {
             gettext('Reviews')
         ],
         'mmo_user_count_total': [
-            gettext('Totals Users'),
-            gettext('Totals Users')
+            gettext('Total users'),
+            gettext('Total users')
         ],
         'mmo_user_count_new': [
-            gettext('New Users'),
-            gettext('New Users')
+            gettext('New users'),
+            gettext('New users')
         ]
     },
     aggregateLabel: {
