@@ -8,6 +8,10 @@ class PluginAdmin(admin.ModelAdmin):
     form = forms.BlocklistPluginForm
 
 
+class AppAdmin(admin.ModelAdmin):
+    form = forms.BlocklistAppForm
+
+
 ms = models.BlocklistItem, models.BlocklistPlugin, models.BlocklistGfx
 inlines = [type(cls.__name__ + 'Inline', (admin.StackedInline,),
                 {'model': cls})
@@ -18,7 +22,7 @@ class DetailAdmin(admin.ModelAdmin):
     inlines = inlines
 
 
-admin.site.register(models.BlocklistApp)
+admin.site.register(models.BlocklistApp, AppAdmin)
 admin.site.register(models.BlocklistCA)
 admin.site.register(models.BlocklistItem)
 admin.site.register(models.BlocklistPlugin, PluginAdmin)

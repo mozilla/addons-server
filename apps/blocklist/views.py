@@ -95,7 +95,7 @@ def get_items(apiver, app, appver=None):
             rs = list(rs)
             rr.append(rs[0])
             rs[0].apps = [App(r.app_guid, r.app_min, r.app_max)
-                           for r in rs if r.app_guid]
+                          for r in rs if r.app_guid]
         os = [r.os for r in rr if r.os]
         items[guid] = BlItem(rr, os[0] if os else None, rows[0].modified,
                              rows[0].block_id)
@@ -107,14 +107,19 @@ def get_plugins(apiver, app, appver=None):
     # API versions < 3 ignore targetApplication entries for plugins so only
     # block the plugin if the appver is within the block range.
     plugins = (BlocklistPlugin.uncached.select_related('details')
-               .filter(Q(guid__isnull=True) | Q(guid=app)))
+               .filter(Q(app__isnull=True) | Q(app__guid=app) |
+                       Q(app__guid__isnull=True))
+               .extra(select={'app_guid': 'blapps.guid',
+                              'app_min': 'blapps.min',
+                              'app_max': 'blapps.max'}))
     if apiver < 3 and appver is not None:
         def between(ver, min, max):
             if not (min and max):
                 return True
             return version_int(min) < ver < version_int(max)
         app_version = version_int(appver)
-        plugins = [p for p in plugins if between(app_version, p.min, p.max)]
+        plugins = [p for p in plugins if between(app_version, p.app_min,
+                                                 p.app_max)]
     return list(plugins)
 
 
