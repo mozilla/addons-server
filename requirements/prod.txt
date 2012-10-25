@@ -7,7 +7,9 @@ celery==2.5.1
 celery-tasktree==0.3.2
 Django==1.4.2
 django_appcache==1.3
-django-browserid==0.6
+# Temporarily forked until
+# https://github.com/mozilla/django-browserid/pull/87
+#django-browserid==0.6
 django-cache-machine==0.6
 django-celery==2.2.4
 django-cronjobs==0.2.3
@@ -74,6 +76,10 @@ statsd==1.0.0
 -e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 -e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
 -e git://github.com/washort/django-waffle.git@19fe01f48008efc02e357554d49cc3b6e0b1c854#egg=django-waffle
+
+# Temporarily forked until
+# https://github.com/mozilla/django-browserid/pull/87
+-e git://github.com/kumar303/django-browserid.git@f47c15c3539f52adee458b40ebb409db195c1972#egg=django-browserid
 
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
