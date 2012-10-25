@@ -275,6 +275,7 @@ class BlocklistPluginTest(BlocklistViewTest):
         return d.getElementsByTagName('pluginItem')[0]
 
     def test_plugin_empty(self):
+        self.app.delete()
         eq_(self.dom().attributes.keys(), ['blockID'])
         eq_(self.dom().getElementsByTagName('match'), [])
         eq_(self.dom().getElementsByTagName('versionRange'), [])
@@ -350,13 +351,15 @@ class BlocklistPluginTest(BlocklistViewTest):
 
 
     def test_plugin_with_multiple_target_apps(self):
-        self.plugin.update(severity=1)
+        self.plugin.update(severity=1, min='5', max='6')
         self.app.update(guid=amo.FIREFOX.guid, min='1', max='2')
         tb_app = BlocklistApp.objects.create(guid=amo.THUNDERBIRD.guid,
                                              min='3', max='4',
                                              blplugin=self.plugin)
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
+        eq_(vr.getAttribute('minVersion'), '5')
+        eq_(vr.getAttribute('maxVersion'), '6')
         assert not vr.getAttribute('vulnerabilitystatus')
 
         app = vr.getElementsByTagName('targetApplication')[0]
@@ -368,14 +371,16 @@ class BlocklistPluginTest(BlocklistViewTest):
 
         vr = self.dom(self.tb4_url).getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
+        eq_(vr.getAttribute('minVersion'), '5')
+        eq_(vr.getAttribute('maxVersion'), '6')
         assert not vr.getAttribute('vulnerabilitystatus')
 
         app = vr.getElementsByTagName('targetApplication')[0]
-        eq_(app.getAttribute('id'), amo.FIREFOX.guid)
+        eq_(app.getAttribute('id'), amo.THUNDERBIRD.guid)
 
         vr = app.getElementsByTagName('versionRange')[0]
-        eq_(vr.getAttribute('minVersion'), '1')
-        eq_(vr.getAttribute('maxVersion'), '2')
+        eq_(vr.getAttribute('minVersion'), '3')
+        eq_(vr.getAttribute('maxVersion'), '4')
 
     def test_plugin_with_target_app_with_vulnerability(self):
         self.plugin.update(severity=0, vulnerability_status=2)
