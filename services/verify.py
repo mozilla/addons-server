@@ -214,7 +214,7 @@ def application(environ, start_response):
             start_response(status, verify.get_headers(len(output)))
         except:
             output = ''
-            log_exception()
+            log_exception('<none>')
             start_response('500 Internal Server Error', [])
 
     return [output]
