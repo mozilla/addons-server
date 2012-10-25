@@ -1,18 +1,17 @@
 import os
 import subprocess
 import sys
-import shutil
 import time
 
 from nose.tools import eq_
 
+from django.conf import settings
+from django.db import connection
+
+from addons.models import AddonCategory, Category
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-
-from addons.models import AddonCategory, Category
-from django.conf import settings
-
 from es.management.commands.reindex import (call_es, unflag_database,
                                             database_flagged)
 import elasticutils.contrib.django as elasticutils
@@ -69,15 +68,15 @@ class TestIndexCommand(amo.tests.ESTestCase):
         results = []
         for page_num in range(pager.paginator.num_pages):
             results.extend([item.pk for item
-                in pager.paginator.page(page_num + 1)])
+                            in pager.paginator.page(page_num + 1)])
         if sort:
             results = sorted(results)
         return results
 
     def _create_app(self, name='app', signal=True):
         webapp = Webapp.objects.create(status=amo.STATUS_PUBLIC,
-                                        name=name,
-                                        type=amo.ADDON_WEBAPP)
+                                       name=name,
+                                       type=amo.ADDON_WEBAPP)
         AddonCategory.objects.create(addon=webapp, category=self.cat)
         webapp.save(_signal=signal)
         return webapp
@@ -99,7 +98,6 @@ class TestIndexCommand(amo.tests.ESTestCase):
         # XXX is there a cleaner way ?
         # all I want is to have those webapp in the DB
         # so the reindex command sees them
-        from django.db import connection
         connection._commit()
         connection.clean_savepoints()
 
@@ -145,7 +143,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
 
             if count < 3:
                 raise AssertionError("Could not index enough objects for the "
-                                    "test to be meaningful.")
+                                     "test to be meaningful.")
         except Exception:
             indexer.terminate()
             raise
