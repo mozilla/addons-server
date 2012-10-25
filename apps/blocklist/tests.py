@@ -10,8 +10,8 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from blocklist.models import (BlocklistApp, BlocklistCA, BlocklistDetail,
-                              BlocklistGfx, BlocklistItem, BlocklistPlugin)
+from .models import (BlocklistApp, BlocklistCA, BlocklistDetail,
+                     BlocklistItem, BlocklistGfx, BlocklistPlugin)
 
 base_xml = """
 <?xml version="1.0"?>
@@ -20,24 +20,15 @@ base_xml = """
 """
 
 
-class BlocklistViewTest(amo.tests.TestCase):
+class BlocklistTest(amo.tests.TestCase):
 
     def setUp(self):
-        super(BlocklistViewTest, self).setUp()
+        super(BlocklistTest, self).setUp()
         self.fx4_url = reverse('blocklist', args=[3, amo.FIREFOX.guid, '4.0'])
         self.fx2_url = reverse('blocklist', args=[2, amo.FIREFOX.guid, '2.0'])
-        self.tb4_url = reverse('blocklist', args=[3, amo.THUNDERBIRD.guid,
-                                                  '4.0'])
         self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
         cache.clear()
         self.details = BlocklistDetail.objects.create()
-
-    def create_blplugin(self, app_guid=None, app_min=None, app_max=None,
-                        *args, **kw):
-        plugin = BlocklistPlugin.objects.create(*args, **kw)
-        app = BlocklistApp.objects.create(blplugin=plugin, guid=app_guid,
-                                          min=app_min, max=app_max)
-        return plugin, app
 
     def normalize(self, s):
         return '\n'.join(x.strip() for x in s.split())
@@ -50,7 +41,7 @@ class BlocklistViewTest(amo.tests.TestCase):
         return minidom.parseString(r.content)
 
 
-class BlocklistItemTest(BlocklistViewTest):
+class BlocklistItemTest(BlocklistTest):
 
     def setUp(self):
         super(BlocklistItemTest, self).setUp()
@@ -90,7 +81,7 @@ class BlocklistItemTest(BlocklistViewTest):
         self.item.save()
         eq(find_lastupdate(), self.item.modified)
 
-        plugin, app = self.create_blplugin(app_guid=amo.FIREFOX.guid)
+        plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid)
         eq(find_lastupdate(), plugin.created)
         plugin.save()
         eq(find_lastupdate(), plugin.modified)
@@ -255,15 +246,15 @@ class BlocklistItemTest(BlocklistViewTest):
         eq_(app[0].getElementsByTagName('versionRange'), [])
 
 
-class BlocklistPluginTest(BlocklistViewTest):
+class BlocklistPluginTest(BlocklistTest):
 
     def setUp(self):
         super(BlocklistPluginTest, self).setUp()
-        self.plugin, self.app = self.create_blplugin(app_guid=amo.FIREFOX.guid,
+        self.plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid,
                                                      details=self.details)
 
     def test_no_plugins(self):
-        dom = BlocklistViewTest.dom(self, self.mobile_url)
+        dom = BlocklistTest.dom(self, self.mobile_url)
         children = dom.getElementsByTagName('blocklist')[0].childNodes
         # There are only text nodes.
         assert all(e.nodeType == 3 for e in children)
@@ -325,8 +316,7 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(v.getAttribute('severity'), '0')
 
     def test_plugin_no_target_app(self):
-        self.plugin.update(severity=1, min='1', max='2')
-        self.app.delete()
+        self.plugin.update(guid=None, severity=1, min='1', max='2')
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getElementsByTagName('targetApplication'), [],
             'There should not be a <targetApplication> if there was no app')
@@ -335,38 +325,8 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(vr.getAttribute('maxVersion'), '2')
 
     def test_plugin_with_target_app(self):
-        self.plugin.update(severity=1)
-        self.app.update(guid=amo.FIREFOX.guid, min='1', max='2')
+        self.plugin.update(guid=amo.FIREFOX.guid, severity=1, min='1', max='2')
         vr = self.dom().getElementsByTagName('versionRange')[0]
-        eq_(vr.getAttribute('severity'), '1')
-        assert not vr.getAttribute('vulnerabilitystatus')
-
-        app = vr.getElementsByTagName('targetApplication')[0]
-        eq_(app.getAttribute('id'), amo.FIREFOX.guid)
-
-        vr = app.getElementsByTagName('versionRange')[0]
-        eq_(vr.getAttribute('minVersion'), '1')
-        eq_(vr.getAttribute('maxVersion'), '2')
-
-
-    def test_plugin_with_multiple_target_apps(self):
-        self.plugin.update(severity=1)
-        self.app.update(guid=amo.FIREFOX.guid, min='1', max='2')
-        tb_app = BlocklistApp.objects.create(guid=amo.THUNDERBIRD.guid,
-                                             min='3', max='4',
-                                             blplugin=self.plugin)
-        vr = self.dom().getElementsByTagName('versionRange')[0]
-        eq_(vr.getAttribute('severity'), '1')
-        assert not vr.getAttribute('vulnerabilitystatus')
-
-        app = vr.getElementsByTagName('targetApplication')[0]
-        eq_(app.getAttribute('id'), amo.FIREFOX.guid)
-
-        vr = app.getElementsByTagName('versionRange')[0]
-        eq_(vr.getAttribute('minVersion'), '1')
-        eq_(vr.getAttribute('maxVersion'), '2')
-
-        vr = self.dom(self.tb4_url).getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
         assert not vr.getAttribute('vulnerabilitystatus')
 
@@ -378,8 +338,8 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(vr.getAttribute('maxVersion'), '2')
 
     def test_plugin_with_target_app_with_vulnerability(self):
-        self.plugin.update(severity=0, vulnerability_status=2)
-        self.app.update(guid=amo.FIREFOX.guid, min='1', max='2')
+        self.plugin.update(guid=amo.FIREFOX.guid, severity=0, min='1', max='2',
+                           vulnerability_status=2)
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '0')
         eq_(vr.getAttribute('vulnerabilitystatus'), '2')
@@ -392,8 +352,7 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(vr.getAttribute('maxVersion'), '2')
 
     def test_plugin_with_severity_only(self):
-        self.plugin.update(severity=1)
-        self.app.delete()
+        self.plugin.update(guid=None, severity=1)
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
         assert not vr.getAttribute('vulnerabilitystatus')
@@ -404,8 +363,7 @@ class BlocklistPluginTest(BlocklistViewTest):
             'There should not be a <targetApplication> if there was no app')
 
     def test_plugin_without_severity_and_with_vulnerability(self):
-        self.plugin.update(severity=0, vulnerability_status=1)
-        self.app.delete()
+        self.plugin.update(guid=None, severity=0, vulnerability_status=1)
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '0')
         eq_(vr.getAttribute('vulnerabilitystatus'), '1')
@@ -413,9 +371,8 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(vr.getAttribute('maxVersion'), '')
 
     def test_plugin_without_severity_and_with_vulnerability_and_minmax(self):
-        self.plugin.update(severity=0, vulnerability_status=1, min='2.0',
-                           max='3.0')
-        self.app.delete()
+        self.plugin.update(guid=None, severity=0, vulnerability_status=1,
+                           min='2.0', max='3.0')
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '0')
         eq_(vr.getAttribute('vulnerabilitystatus'), '1')
@@ -430,17 +387,17 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(e.getElementsByTagName('targetApplication'), [])
 
         # The app version is not in range.
-        self.app.update(min='3.0', max='4.0')
+        self.plugin.update(min='3.0', max='4.0')
         self.assertRaises(IndexError, self.dom, self.fx2_url)
 
         # The app is back in range.
-        self.app.update(min='1.1')
+        self.plugin.update(min='1.1')
         e = self.dom(self.fx2_url).getElementsByTagName('versionRange')[0]
         eq_(e.getAttribute('severity'), '2')
         eq_(e.getElementsByTagName('targetApplication'), [])
 
 
-class BlocklistGfxTest(BlocklistViewTest):
+class BlocklistGfxTest(BlocklistTest):
 
     def setUp(self):
         super(BlocklistGfxTest, self).setUp()
@@ -497,7 +454,7 @@ class BlocklistGfxTest(BlocklistViewTest):
         eq_(item.getAttribute('blockID'), 'g' + str(self.details.id))
 
 
-class BlocklistCATest(BlocklistViewTest):
+class BlocklistCATest(BlocklistTest):
 
     def setUp(self):
         super(BlocklistCATest, self).setUp()
