@@ -9,6 +9,7 @@ from django.conf import settings
 
 import commonware.log
 import elasticutils.contrib.django as elasticutils
+import requests
 
 from amo.utils import memoize
 from applications.management.commands import dump_apps
@@ -165,8 +166,8 @@ def redis():
 
 # The signer check actually asks the signing server to sign something. Do this
 # once per nagios check, once per web head might be a bit much. The memoize
-# slows it down a bit, by caching the result once per minute.
-@memoize('monitors-signer', time=60 * 5)
+# slows it down a bit, by caching the result for five minutes.
+@memoize('monitors-signer', time=300)
 def signer():
     destination = getattr(settings, 'SIGNING_SERVER', None)
     if not destination:
@@ -187,16 +188,31 @@ def signer():
 
     try:
         result = receipt.sign(data)
-    except receipt.SigningError, err:
+    except receipt.SigningError as err:
         return False, 'Error on signing (%s): %s' % (destination, err)
 
     try:
         cert, rest = receipt.crack(result)
-    except Exception, err:
+    except Exception as err:
         return False, 'Error on cracking receipt (%s): %s' % (destination, err)
 
     # Check that the certs used to sign the receipts are not about to expire.
     limit = now + (60 * 60 * 24)  # One day.
     if cert['exp'] < limit:
         return False, 'Cert will expire soon (%s)' % destination
+
+    cert_err_msg = 'Error on checking public cert (%s): %s'
+    location = cert['iss']
+    try:
+        resp = requests.get(location, timeout=5, prefetch=True)
+    except Exception as err:
+        return False, cert_err_msg % (location, err)
+
+    if not resp.ok:
+        return False, cert_err_msg % (location, resp.reason)
+
+    cert_json = resp.json
+    if not cert_json or not 'jwk' in cert_json:
+        return False, cert_err_msg % (location, 'Not valid JSON/JWK')
+
     return True, 'Signer working and up to date'

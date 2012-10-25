@@ -13,6 +13,11 @@ from amo.monitors import signer
 class TestMonitor(amo.tests.TestCase):
     # Some rudimentary tests for the rest of the monitor would be nice.
 
+    def _make_receipt(self):
+        now = time.time()
+        return [
+            {'exp': now + (3600 * 36), 'iss': 'http://foo/cert.jwk'}, '']
+
     @patch('amo.monitors.receipt')
     def test_sign_fails(self, receipt):
         receipt.sign.side_effect = receipt.SigningError
@@ -26,11 +31,44 @@ class TestMonitor(amo.tests.TestCase):
     @patch('amo.monitors.receipt')
     def test_expire(self, receipt):
         now = time.time()
-        receipt.crack.return_value = [{'exp': now + (60 * 60 * 12)}, '']
+        receipt.crack.return_value = [{'exp': now + (3600 * 12)}, '']
         eq_(signer()[0], False)
 
+    @patch('requests.get')
     @patch('amo.monitors.receipt')
-    def test_good(self, receipt):
-        now = time.time()
-        receipt.crack.return_value = [{'exp': now + (60 * 60 * 36)}, '']
+    def test_good(self, receipt, cert_response):
+        receipt.crack.return_value = self._make_receipt()
+        cert_response.return_value.ok = True
+        cert_response.return_value.json = {'jwk': []}
         eq_(signer()[0], True)
+
+    @patch('requests.get')
+    @patch('amo.monitors.receipt')
+    def test_public_cert_connection_error(self, receipt, cert_response):
+        receipt.crack.return_value = self._make_receipt()
+        cert_response.side_effect = Exception
+        eq_(signer()[0], False)
+
+    @patch('requests.get')
+    @patch('amo.monitors.receipt')
+    def test_public_cert_not_found(self, receipt, cert_response):
+        receipt.crack.return_value = self._make_receipt()
+        cert_response.return_value.ok = False
+        cert_response.return_value.reason = 'Not Found'
+        eq_(signer()[0], False)
+
+    @patch('requests.get')
+    @patch('amo.monitors.receipt')
+    def test_public_cert_no_json(self, receipt, cert_response):
+        receipt.crack.return_value = self._make_receipt()
+        cert_response.return_value.ok = True
+        cert_response.return_value.json = None
+        eq_(signer()[0], False)
+
+    @patch('requests.get')
+    @patch('amo.monitors.receipt')
+    def test_public_cert_invalid_jwk(self, receipt, cert_response):
+        receipt.crack.return_value = self._make_receipt()
+        cert_response.return_value.ok = True
+        cert_response.return_value.json = {'foo': 1}
+        eq_(signer()[0], False)
