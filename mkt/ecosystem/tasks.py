@@ -96,9 +96,9 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Design_Principles?raw=1&macros=true'
     },
     {
-        'title': 'Purpose of your App',
+        'title': "Your App's Elevator Pitch",
         'name': 'purpose',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Purpose_of_your_app?raw=1&macros=true'
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Your_apps_elevator_pitch?raw=1&macros=true'
     },
     {
         'title': 'Design Patterns',
