@@ -79,7 +79,7 @@ statsd==1.0.0
 
 # Temporarily forked until
 # https://github.com/mozilla/django-browserid/pull/87
--e git://github.com/kumar303/django-browserid.git@f47c15c3539f52adee458b40ebb409db195c1972#egg=django-browserid
+-e git://github.com/kumar303/django-browserid.git@8ddb4f1fe606b707a8e53883a53751754f505999#egg=django-browserid
 
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
