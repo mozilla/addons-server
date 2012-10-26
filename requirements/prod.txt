@@ -6,7 +6,7 @@ bleach==1.1.5
 cef==0.5
 celery==2.5.1
 celery-tasktree==0.3.2
-certifi==0.8.0
+certifi==0.0.8
 chardet==1.0.1
 cssutils==0.9.7b3
 Django==1.4.2
@@ -48,6 +48,7 @@ moz_inapp_pay==1.0.2
 nose==1.2.1
 newrelic==1.5.0.103
 oauth2==1.5.211
+ordereddict==1.1
 PyBrowserID==0.6
 PyMySQL==0.5
 python-dateutil==1.5
