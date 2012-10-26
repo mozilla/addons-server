@@ -39,7 +39,7 @@ if (typeof diff_match_patch !== 'undefined') {
 
 var config = {
     diff_context: 2,
-    needreview_pattern: /\.(js|jsm|xul|xml|x?html?|manifest|sh|py)$/i
+    needreview_pattern: /\.(js|jsm|xul|xml|x?html?|manifest|webapp|sh|py)$/i
 };
 
 if (typeof SyntaxHighlighter !== 'undefined') {
@@ -312,7 +312,7 @@ function bind_viewer(nodes) {
                     var changes = [];
                     var flush = function($line, bottom) {
                         var height = (bottom - $start.offset().top) * 100 / $gutter.height(),
-                            style = { 'height': height + "%" };
+                            style = { 'height': Math.min(height, 100) + "%" };
 
                         if ($prev && !$prev.attr('class')) {
                             style['border-top-width'] = '1px';
@@ -486,7 +486,7 @@ function bind_viewer(nodes) {
                                        - Math.max(gr.top, 0));
 
                 changes.push([$viewport,
-                              { 'height': height / gh * 100 + '%',
+                              { 'height': Math.min(height / gh * 100, 100) + '%',
                                 'top': -Math.min(0, gr.top) / gh * 100 + '%' }]);
 
                 this.fix_vertically($diffbar, changes, resize);
@@ -620,7 +620,10 @@ function bind_viewer(nodes) {
                 storage.set('files/hide-known', hide ? 'true' : '');
 
             $('#file-viewer').toggleClass('hide-known-files', !!hide);
-            $('#toggle-known')[0].checked = !!hide;
+            var known = $('#toggle-known');
+            if (known.length) {
+                known[0].checked = !!hide;
+            }
         };
         this.next_changed = function(offset) {
             var $files = this.nodes.$files.find('a.file'),
@@ -628,21 +631,25 @@ function bind_viewer(nodes) {
                 isDiff = $('#diff').length,
                 filter = (isDiff ? '.diff' : '') + ':not(.known)';
 
-            var a = [], list = a;
+            var list = [];
             $files.each(function() {
                 var $file = $(this);
                 if (this == selected) {
                     list = [selected];
-                } else if (($file.is('.notice, .warning, .error') || config.needreview_pattern.test($file.attr('data-short')))
-                           && $file.is(filter)) {
+                } else if (($file.is('.notice, .warning, .error') ||
+                            config.needreview_pattern.test($file.attr('data-short'))) &&
+                           $file.is(filter)) {
                     list.push(this);
                 }
             });
 
-            list = list.concat(a).slice(offset);
+            list = list.slice(offset);
             if (list.length) {
                 this.select($(list[0]));
-                $("#top")[0].scrollIntoView(true);
+                var $top = $("#top");
+                if ($top.length) {
+                    $top[0].scrollIntoView(true);
+                }
             }
         };
         this.next_delta = function(forward) {

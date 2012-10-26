@@ -1,8 +1,10 @@
 import codecs
+import json
 import mimetypes
 import os
 import shutil
 import stat
+from functools import partial
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -60,14 +62,16 @@ def file_tree(files, selected):
     return jinja2.Markup('\n'.join(output))
 
 
-class FileViewer:
+class FileViewer(object):
     """
     Provide access to a storage-managed file by copying it locally and
-    extracting info from it. `src` is a storage-managed path and `dest` is a local temp path.
+    extracting info from it. `src` is a storage-managed path and `dest` is a
+    local temp path.
     """
 
-    def __init__(self, file_obj):
+    def __init__(self, file_obj, is_webapp=False):
         self.file = file_obj
+        self.is_webapp = is_webapp
         self.src = file_obj.file_path
         self.dest = os.path.join(settings.TMP_PATH, 'file_viewer',
                                  str(file_obj.pk))
@@ -126,14 +130,15 @@ class FileViewer:
             return True
 
         if os.path.exists(path) and not os.path.isdir(path):
-            bytes = tuple([ord(x) for x in open(path, 'r').read(4)])
-            if [x for x in blacklisted_magic_numbers if bytes[0:len(x)] == x]:
+            with storage.open(path, 'r') as rfile:
+                bytes = tuple(map(ord, rfile.read(4)))
+            if any(bytes[:len(x)] == x for x in blacklisted_magic_numbers):
                 return True
 
         if mimetype:
             major, minor = mimetype.split('/')
             if major == 'image':
-                return True
+                return 'image'  # Mark that the file is binary, but an image.
 
         return False
 
@@ -144,7 +149,14 @@ class FileViewer:
         a list of error messages.
         """
         try:
-            return self._read_file(allow_empty)
+            file_data = self._read_file(allow_empty)
+
+            # If this is a webapp manifest, we should try to pretty print it.
+            if (self.selected and
+                self.selected['filename'] == 'manifest.webapp'):
+                file_data = self._process_manifest(file_data)
+
+            return file_data
         except (IOError, OSError):
             self.selected['msg'] = _('That file no longer exists.')
             return ''
@@ -154,12 +166,13 @@ class FileViewer:
             return ''
         assert self.selected, 'Please select a file'
         if self.selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
-            msg = _('File size is over the limit of %s.'
-                    % (filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT)))
+            # L10n: {0} is the file size limit of the file viewer.
+            msg = _('File size is over the limit of {0}.').format(
+                    filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT))
             self.selected['msg'] = msg
             return ''
 
-        with open(self.selected['full'], 'r') as opened:
+        with storage.open(self.selected['full'], 'r') as opened:
             cont = opened.read()
             codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
             try:
@@ -167,19 +180,55 @@ class FileViewer:
             except UnicodeDecodeError:
                 cont = cont.decode(codec, 'ignore')
                 #L10n: {0} is the filename.
-                self.selected['msg'] = _('Problems decoding with: %s.') % codec
+                self.selected['msg'] = (
+                    _('Problems decoding {0}.').format(codec))
                 return cont
 
-    def select(self, file):
-        self.selected = self.get_files().get(file)
+    def _process_manifest(self, data):
+        """
+        If we're dealing with a webapp manifest, this will format it nicely for
+        maximum diff-ability.
+        """
+
+        # If this isn't a webapp, don't reformat it.
+        if not self.is_webapp:
+            return data
+
+        try:
+            json_data = json.loads(data)
+        except Exception:
+            # If there are any JSON decode problems, just return the raw file.
+            return data
+
+        def format_dict(data):
+            def do_format(value):
+                if isinstance(value, dict):
+                    return format_dict(value)
+                else:
+                    return value
+
+            # We want everything sorted, but we always want these few nodes
+            # right at the top.
+            prefix_nodes = ["name", "description", "version"]
+            prefix_nodes = [(k, data.pop(k)) for k in prefix_nodes if
+                            k in data]
+
+            processed_nodes = [(k, do_format(v)) for k, v in data.items()]
+            return SortedDict(prefix_nodes + sorted(processed_nodes))
+
+        return json.dumps(format_dict(json_data), indent=2)
+
+    def select(self, file_):
+        self.selected = self.get_files().get(file_)
 
     def is_binary(self):
         if self.selected:
-            if self.selected['binary']:
+            binary = self.selected['binary']
+            if binary and (binary != 'image' or not self.is_webapp):
                 self.selected['msg'] = _('This file is not viewable online. '
                                          'Please download the file to view '
                                          'the contents.')
-            return self.selected['binary']
+            return binary
 
     def is_directory(self):
         if self.selected:
@@ -192,7 +241,11 @@ class FileViewer:
         if self.is_search_engine() and not key:
             files = self.get_files()
             return files.keys()[0] if files else None
-        return key if key else 'install.rdf'
+
+        if key:
+            return key
+
+        return 'manifest.webapp' if self.is_webapp else 'install.rdf'
 
     def get_files(self):
         """
@@ -254,46 +307,60 @@ class FileViewer:
         all_files, res = [], SortedDict()
         # Not using os.path.walk so we get just the right order.
 
-        def iterate(node):
-            for filename in sorted(os.listdir(node)):
-                full = os.path.join(node, filename)
+        def iterate(path):
+            path_dirs, path_files = storage.listdir(path)
+            for dirname in sorted(path_dirs):
+                full = os.path.join(path, dirname)
                 all_files.append(full)
-                if os.path.isdir(full):
-                    iterate(full)
+                iterate(full)
+
+            for filename in sorted(path_files):
+                full = os.path.join(path, filename)
+                all_files.append(full)
+
         iterate(self.dest)
 
+        url_prefix = 'mkt.%s' if self.is_webapp else '%s'
         for path in all_files:
             filename = smart_unicode(os.path.basename(path), errors='replace')
             short = smart_unicode(path[len(self.dest) + 1:], errors='replace')
             mime, encoding = mimetypes.guess_type(filename)
+            if not mime and filename == 'manifest.webapp':
+                mime = 'application/x-web-app-manifest+json'
             directory = os.path.isdir(path)
-            res[short] = {'binary': self._is_binary(mime, path),
-                          'depth': short.count(os.sep),
-                          'directory': directory,
-                          'filename': filename,
-                          'full': path,
-                          'md5': get_md5(path) if not directory else '',
-                          'mimetype': mime or 'application/octet-stream',
-                          'syntax': self.get_syntax(filename),
-                          'modified': os.stat(path)[stat.ST_MTIME],
-                          'short': short,
-                          'size': os.stat(path)[stat.ST_SIZE],
-                          'truncated': self.truncate(filename),
-                          'url': reverse('files.list',
-                                         args=[self.file.id, 'file', short]),
-                          'url_serve': reverse('files.redirect',
-                                               args=[self.file.id, short]),
-                          'version': self.file.version.version}
+
+
+            res[short] = {
+                'binary': self._is_binary(mime, path),
+                'depth': short.count(os.sep),
+                'directory': directory,
+                'filename': filename,
+                'full': path,
+                'md5': get_md5(path) if not directory else '',
+                'mimetype': mime or 'application/octet-stream',
+                'syntax': self.get_syntax(filename),
+                'modified': os.stat(path)[stat.ST_MTIME],
+                'short': short,
+                'size': os.stat(path)[stat.ST_SIZE],
+                'truncated': self.truncate(filename),
+                'url': reverse(url_prefix % 'files.list',
+                               args=[self.file.id, 'file', short]),
+                'url_serve': reverse(url_prefix % 'files.redirect',
+                                     args=[self.file.id, short]),
+                'version': self.file.version.version,
+            }
 
         return res
 
 
-class DiffHelper:
+class DiffHelper(object):
 
-    def __init__(self, left, right):
-        self.left = FileViewer(left)
-        self.right = FileViewer(right)
+    def __init__(self, left, right, is_webapp=False):
+        self.left = FileViewer(left, is_webapp=is_webapp)
+        self.right = FileViewer(right, is_webapp=is_webapp)
         self.key = None
+
+        self.is_webapp = is_webapp
 
     def __str__(self):
         return '%s:%s' % (self.left, self.right)
@@ -308,10 +375,10 @@ class DiffHelper:
         return self.left.is_extracted() and self.right.is_extracted()
 
     def get_url(self, short):
-        return reverse('files.compare', args=[self.left.file.id,
-                                              self.right.file.id,
-                                              'file',
-                                              short])
+        url_name = 'mkt.files.compare' if self.is_webapp else 'files.compare'
+        return reverse(url_name,
+                       args=[self.left.file.id, self.right.file.id,
+                             'file', short])
 
     #@memoize(prefix='file-viewer-get-files', time=60 * 60)
     def get_files(self):

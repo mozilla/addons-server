@@ -129,11 +129,11 @@ body.file-viewer div.section {
 .syntaxhighlighter .line {
     display: block;
     white-space: pre;
-    max-width: 58em;
+    max-width: 54em;
 }
 
 .collapsed-files .syntaxhighlighter .line {
-    max-width: 80em;
+    max-width: 73em;
 }
 
 #validating {

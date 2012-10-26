@@ -77,6 +77,7 @@ CSS = {
         'css/mkt/reviewers.less',
         'css/mkt/themes_review.less',
         'css/mkt/paginator.less',
+        'css/mkt/files.less',
     ),
     'mkt/consumer': (
         'css/mkt/reset.less',

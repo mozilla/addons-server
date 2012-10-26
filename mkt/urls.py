@@ -41,6 +41,9 @@ urlpatterns = patterns('',
     ('^developers/', include('mkt.ecosystem.urls')),
     ('^ecosystem/', lambda r: redirect('ecosystem.landing', permanent=True)),
 
+    # Files
+    ('^files/', include('mkt.files.urls')),
+
     # Theme detail pages.
     ('^theme/%s/reviews/' % ADDON_ID, include(theme_review_patterns)),
     ('^theme/%s/' % ADDON_ID, include('mkt.themes.urls')),

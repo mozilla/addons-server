@@ -1,0 +1,815 @@
+#file-viewer, #files-wrapper, #file-viewer table tr td {
+    /* The file viewer currently completely falls apart in RTL mode.
+       The contents also tend to be formatted for LTR regardless of
+       locale. */
+    direction: ltr;
+    text-align: left;
+}
+.html-rtl #files,
+.html-rtl h4,
+.html-rtl #diff-wrapper + * {
+    direction: rtl;
+    text-align: right;
+}
+
+#file-viewer div.featured-inner {
+    padding: 1em;
+}
+
+#file-viewer-inner {
+    position: relative;
+    min-height: 40em;
+}
+
+#files {
+    display: block;
+    position: absolute;
+    width: 20em;
+    z-index: 2;
+
+    li a {
+        display: inline-block;
+        padding: 1px 1px 2px 20px;
+    }
+
+    ul.root {
+        white-space: nowrap;
+        overflow: visible;
+
+        ul {
+            padding-left: 20px;
+        }
+    }
+    a.notice, a.warning, a.error {
+        font-weight: bold;
+
+        > span:after {
+            display: inline-block;
+            background: url(../../img/zamboni/notifications.png) no-repeat;
+            width: 16px;
+            height: 18px;
+            margin-left: 4px;
+            vertical-align: middle;
+            content: "\00a0";
+        }
+    }
+
+    a.notice > span:after {
+        background-position: 0px -516px;
+        width: 18px;
+        margin-left: 8px;
+    }
+
+    a.warning > span:after {
+        background-position: 2px -304px;
+    }
+
+    a.error > span:after {
+        background-position: 2px -162px;
+    }
+}
+
+#content-wrapper {
+    hr {
+        border: 0;
+        border-top: 1px dotted #D7D2C3;
+        margin: 1em 0;
+    }
+
+    .island p {
+        line-height: 1.5em;
+    }
+}
+
+#files-inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#files-wrapper {
+    max-height: 100%;
+    overflow: auto;
+}
+
+#content-wrapper, #messages, #thinking {
+    padding-left: 23em;
+}
+
+#controls {
+    height: 0;
+}
+
+#controls-inner {
+    padding-bottom: .5em;
+}
+
+.collapsed-files {
+    #files {
+        width: 2em;
+    }
+
+    #content-wrapper, #messages, #thinking {
+        padding-left: 3em;
+    }
+
+    #files-wrapper {
+        height: 1.8em;
+        width: 1.8em;
+        overflow: visible;
+        background: url(../../img/developers/folder.png) no-repeat center center;
+
+        &:hover {
+            border-top: 1px solid #000;
+            margin-top: -1px;
+
+            > #files-tree {
+                display: block;
+                background: #fff;
+                position: absolute;
+                margin: -1px 0 0 1.8em;
+                max-height: 100%;
+                overflow-y: auto;
+                padding-left: 1em;
+                width: 20em;
+                border: 1px solid #000;
+                border-left: none;
+                border-radius: 0 1em 1em 0;
+            }
+        }
+    }
+
+    #files-tree {
+        display: none;
+    }
+
+    .command,
+    #toggle-known-container,
+    #jetpack-version,
+    #tab-stops-container {
+        display: none !important;
+    }
+
+    #files {
+        padding-bottom: 0 !important;
+    }
+
+}
+
+
+/* Hack to find the default font's em width. */
+#metadata {
+    width: 1em;
+}
+
+/* The following fixes the minimum width and makes
+   the pages wrap correctly on very large peices of text. */
+body.file-viewer div.section {
+    min-width: 90em;
+}
+
+.syntaxhighlighter .line {
+    display: block;
+    white-space: pre;
+    //max-width: 54em;
+}
+
+/*
+// This probably isn't needed anymore, particularly in Firefox.
+.collapsed-files .syntaxhighlighter .line {
+    max-width: 73em;
+}
+*/
+
+#validating {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+span.number {
+    width: 4em;
+    display: inline-block;
+    text-align: right;
+}
+
+.diff-bar-height {
+    min-height: 200px;
+    display: block;
+}
+
+div.code div.line:hover {
+    background-color: #ffffcc;
+}
+
+div.diff-bar .add, #diff td.code div.add, #diff td.code div.add .content {
+    background-color: #99ff99;
+}
+
+div.diff-bar .delete, #diff td.code div.delete, #diff td.code div.delete .content {
+    background-color: #ffd8d8;
+}
+
+#diff .string, #diff .string a, #diff .comments, #diff .comments a, #diff .color1, #diff .color1 a{
+    color: #444444;
+}
+
+.syntaxhighlighter, .syntaxhighlighter table {
+    margin: 0;
+}
+
+#diff-wrapper {
+    margin-bottom: 1em;
+
+    .img {
+        border: 1px dashed;
+        border-radius: 4px;
+        margin-bottom: 1em;
+        max-height: 50em;
+        overflow: auto;
+        padding: 1.5em;
+
+        &.img-after {
+            border-color: #33aa33;
+        }
+        &.img-before {
+            border-color: #da8484;
+        }
+    }
+}
+
+a.closed {
+    background: url('../../img/icons/plus.gif') 0 no-repeat;
+}
+
+a.open {
+    background: url('../../img/icons/minus.gif') 0 no-repeat;
+}
+
+#files a > span {
+    -moz-boder-radius: 4px;
+    border-radius: 4px;
+    padding: 0 3px;
+}
+
+a.diff > span {
+    background-color: #ffffcc;
+}
+
+a.known > span {
+    color: #bbb;
+}
+
+.hide-known-files .known {
+    display: none !important;
+}
+
+a.selected > span {
+    background-color: #3D6DB5;
+    color: white;
+}
+
+.gutter a.notice, .gutter a.warning, .gutter a.error {
+    margin: -1px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #000;
+    font-weight: bold;
+}
+.code .notice, .code .warning, .code .error {
+    margin: -1px;
+}
+
+.gutter a.notice, .diff-bar .notice {
+    background-color: #1A81FE;
+    color: white;
+}
+.code .notice {
+    border: 1px dotted #1A81FE;
+}
+
+.gutter a.warning, .diff-bar .warning {
+    background-color: #F0B500;
+    color: white;
+}
+.code .warning {
+    border: 1px dotted #F0B500;
+}
+
+.gutter a.error, .diff-bar .error {
+    background-color: #D81E00;
+    color: white;
+}
+.code .error {
+    border: 1px dotted #D81E00;
+}
+
+.waiting {
+    background-image: url(../../img/zamboni/loading-white.gif);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-left: 2em;
+}
+
+#commands th {
+    padding: 0 0 3px;
+}
+
+#commands code {
+    display: block;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    min-width: 1.1em;
+    padding: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+
+    background: rgb(250, 250, 250);
+    background: linear-gradient(top, rgb(210, 210, 210), rgb(255, 255, 255));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(210, 210, 210)), to(rgb(255, 255, 255)));
+    color: rgb(50, 50, 50);
+    text-shadow: 0 0 2px rgb(255, 255, 255);
+    box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+}
+
+#commands td {
+    padding: 0 0 0 .5em;
+}
+
+#diff, #content {
+    padding-left: 18px;
+}
+
+
+
+#diff-wrapper {
+    position: relative;
+}
+
+td.gutter, td.code {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.diff-bar {
+    background: #666;
+    border: 1px solid #444;
+    border-radius: 2px;
+    box-shadow: inset 1px 0 4px 1px #444;
+    width: 17px;
+    position: absolute;
+    height: 200px;
+
+    margin-left: -1px;
+
+    a {
+        display: block;
+        width: 100%;
+        border: 0px solid gray;
+        border-radius: 3px;
+        opacity: 0.75;
+        z-index: 3;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &.add, &.delete {
+            border-radius: 0;
+            box-shadow: inset 2px 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+    }
+    .add {
+        border-color: #33aa33;
+    }
+    .delete {
+        border-color: #da8484;
+    }
+
+    &.js-hidden + #diff, &.js-hidden + #content {
+        padding-left: 0;
+    }
+
+    .diff-bar-viewport {
+        position: absolute;
+        left: -1px;
+        right: -1px;
+        margin-top: -1px;
+        min-height: 2px;
+        background: #B08C79;
+        border: 1px solid #222 !important;
+        border-radius: 3px;
+        box-shadow: 1px 2px 3px 0 #444, inset 0 0 0 1px #C7A899, inset 0 -1px 5px 1px #805E4E;
+
+        transition: top;
+        -webkit-transition: top;
+        transition-duration: 0.5s;
+        -webkit-transition-duration: 0.5s;
+    }
+}
+
+#tooltip {
+    max-width: 100%;
+    & > span {
+        white-space: pre-wrap;
+        text-align: left;
+        max-width: 70ex;
+    }
+}
+
+.message {
+    display:none;
+
+    position: absolute;
+    padding-left: 10px;
+    top: -.2em;
+    left: 100%;
+
+    position: absolute;
+    z-index: 16385;
+    text-align: left;
+    font-size: 11px;
+
+    a {
+        color: white;
+        font-weight: bold;
+        text-decoration: underline !important;
+    }
+
+    p {
+        margin: 1em 0;
+    }
+}
+
+.diff-bar .message {
+    top: -.8em;
+    margin-top: -4px;
+}
+
+.message-inner {
+    position: relative;
+    padding: 0.5em 1em;
+
+    border: 1px solid #fff;
+    border-radius: .8em;
+    background: #2A4364;
+    color: white;
+    border-radius: .8em;
+    -moz-border-radius: .8em;
+    -webkit-border-radius: .8em;
+
+    & > div {
+        line-height: 1.2em;
+        width: 70ex;
+        white-space: pre-wrap;
+        & + div {
+            margin-top: 1em;
+        }
+    }
+
+    &:before {
+        content: "\00a0";
+        display: block; /* reduce the damage in FF3.0 */
+        position: absolute;
+        width: 0;
+        height: 0;
+        margin-top: -6px;
+        top: 1.1em;
+        left: -16px;
+        border: solid transparent;
+        border-width: 6px 9px;
+        border-right-color: #2A4364;
+        pointer-events: none;
+    }
+}
+
+.message-container {
+    position: relative;
+    overflow: visible !important;
+}
+
+.message-container:hover > .message {
+    display: block;
+}
+
+
+.number-combo {
+    display: inline-block;
+}
+
+.number-combo-button-up,
+.number-combo-button-down {
+    padding-left: .2em;
+
+    &:hover, &:focus, &:active {
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-shadow: #000 0 0 .01em;
+    }
+}
+
+#tab-stops-container {
+    display: none;
+    margin: .5em 0;
+}
+
+#toggle-known-container {
+    margin-top: .3em;
+}
+
+
+/**
+ * Derived from:
+ *
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * With some changes by Andy McKay, most notably removing all
+ * the !importants.
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ *
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+
+.syntaxhighlighter {
+  background: white;
+  width: 100%;
+  margin: 1em 0 1em 0;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 14px;
+  line-height: 16px;
+
+  code {
+    background: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: hidden;
+
+    &.unwrapped {
+      white-space: pre;
+      overflow-x: scroll;
+    }
+  }
+
+  &.source {
+    overflow: hidden;
+  }
+
+  .bold {font-weight: bold;}
+  .italic {font-weight: italic;}
+  .line {white-space: pre;}
+
+  table {
+    width: 100%;
+
+    caption {
+      color: black;
+      text-align: left;
+      padding: .5em 0 0.5em 1em;
+    }
+
+    td.code {
+      width: 100%;
+
+      .container {
+        position: relative;
+
+        textarea {
+          box-sizing: border-box;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+          background: white;
+          padding-left: 1em;
+          overflow: hidden;
+          white-space: pre;
+        }
+      }
+
+      .line {
+        padding: 0 1em;
+      }
+    }
+
+    td.gutter .line {
+      text-align: right;
+      padding: 0 0.5em 0 1em;
+
+      a {
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.printing {
+    .line {
+      &.highlighted {
+        .number, &.alt1 .content, &.alt2 .content {
+          background: none;
+        }
+      }
+
+      .number {
+        color: #bbbbbb;
+      }
+
+      .content {
+        color: black;
+      }
+
+      .toolbar {
+        display: none;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .plain, .plain a {
+      color: black;
+    }
+
+    .comments, .comments a {
+      color: #008200;
+    }
+
+    .string, .string a {
+      color: blue;
+    }
+
+    .keyword {
+      color: #006699;
+      font-weight: bold;
+    }
+
+    .preprocessor {
+      color: gray;
+    }
+
+    .variable {
+      color: #a70;
+    }
+
+    .value {
+      color: #090;
+    }
+
+    .functions {
+      color: #ff1493;
+    }
+
+    .constants {
+      color: #0066cc;
+    }
+
+    .script {
+      font-weight: bold;
+    }
+
+    .color1, .color1 a {
+      color: gray;
+    }
+
+    .color2, .color2 a {
+      color: #ff1493;
+    }
+
+    .color3, .color3 a {
+      color: red;
+    }
+
+    .break, .break a {
+      color: black;
+    }
+  }
+
+  .gutter {
+    color: #afafaf;
+
+    .line {
+      border-right: 1px solid gray;
+
+      &.highlighted {
+        background-color: #6ce26c;
+        color: white;
+      }
+
+      .content {
+        border: none;
+      }
+    }
+  }
+
+  &.collapsed {
+    overflow: visible;
+
+    .toolbar {
+      color: blue;
+      background: white;
+      border: 1px solid #6ce26c;
+
+      a {
+        color: blue;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .toolbar {
+    color: white;
+    background: #6ce26c;
+    border: none;
+
+    a {
+      color: white;
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+
+  .plain, .plain a {
+    color: #073642;
+  }
+
+  .comments, .comments a {
+    color: #aaa;
+  }
+
+  .string, .string a {
+    color: #dc322f;
+  }
+
+  .keyword {
+    color: #586e75;
+    font-weight: bold;
+  }
+
+  .preprocessor {
+    color: gray;
+  }
+
+  .variable {
+    color: #a70;
+  }
+
+  .value {
+    color: #090;
+  }
+
+  .functions {
+    color: #ff1493;
+  }
+
+  .constants {
+    color: #06c;
+  }
+
+  .script {
+    font-weight: bold;
+    color: #006699;
+    background-color: none;
+  }
+
+  .color1, .color1 a {
+    color: #859900;
+  }
+
+  .color2, .color2 a {
+    color: #ff1493;
+  }
+
+  .color3, .color3 a {
+    color: red;
+  }
+
+}
