@@ -48,7 +48,7 @@ from .forms import ContributionForm
 from .models import Addon, Persona, FrozenAddon
 from .decorators import (addon_view_factory, can_be_purchased, has_purchased,
                          has_not_purchased)
-from mkt.webapps.models import Webapp, Installed
+from mkt.webapps.models import Installed
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -517,18 +517,17 @@ def purchase(request, addon):
             pattern = 'apps.purchase.finished'
             slug = addon.app_slug
 
-        paykey, status = paypal.get_paykey(dict(
-                    amount=amount,
-                    chains=settings.PAYPAL_CHAINS,
-                    currency=currency,
-                    email=addon.paypal_id,
-                    ip=request.META.get('REMOTE_ADDR'),
-                    memo=contrib_for,
-                    pattern=pattern,
-                    preapproval=preapproval,
-                    qs={'realurl': request.POST.get('realurl')},
-                    slug=slug,
-                    uuid=uuid_))
+        paykey, status = paypal.get_paykey(
+            dict(amount=amount,
+                 chains=settings.PAYPAL_CHAINS,
+                 currency=currency,
+                 email=addon.paypal_id,
+                 ip=request.META.get('REMOTE_ADDR'),
+                 memo=contrib_for,
+                 pattern=pattern,
+                 preapproval=preapproval, qs={'realurl':
+                                              request.POST.get('realurl')},
+                 slug=slug, uuid=uuid_))
     except paypal.PaypalError as error:
         paypal.paypal_log_cef(request, addon, uuid_,
                               'PayKey Failure', 'PAYKEYFAIL',
@@ -607,14 +606,14 @@ def purchase_complete(request, addon, status):
         try:
             result = paypal.check_purchase(con.paykey)
             if result == 'ERROR':
-                paypal.paypal_log_cef(request, addon, uuid_,
-                              'Purchase Fail', 'PURCHASEFAIL',
-                              'Checking purchase state returned error')
+                paypal.paypal_log_cef(request, addon, uuid_, 'Purchase Fail',
+                                      'PURCHASEFAIL',
+                                      'Checking purchase state returned error')
                 raise
         except:
-            paypal.paypal_log_cef(request, addon, uuid_,
-                              'Purchase Fail', 'PURCHASEFAIL',
-                              'There was an error checking purchase state')
+            paypal.paypal_log_cef(request, addon, uuid_, 'Purchase Fail',
+                                  'PURCHASEFAIL',
+                                  'There was an error checking purchase state')
             log.error('Check purchase paypal addon: %s, user: %s, paykey: %s'
                       % (addon.pk, request.amo_user.pk, con.paykey[:10]),
                       exc_info=True)
@@ -651,8 +650,8 @@ def purchase_thanks(request, addon):
             'download': download}
 
     if addon.is_webapp():
-        installed, c = Installed.objects.safer_get_or_create(addon=addon,
-                                                    user=request.amo_user)
+        installed, c = Installed.objects.safer_get_or_create(
+            addon=addon, user=request.amo_user)
         data['receipt'] = installed.receipt
 
     return jingo.render(request, 'addons/paypal_thanks.html', data)
@@ -709,16 +708,15 @@ def contribute(request, addon):
 
     paykey, error, status = '', '', ''
     try:
-        paykey, status = paypal.get_paykey(dict(
-                            amount=amount,
-                            email=paypal_id,
-                            ip=request.META.get('REMOTE_ADDR'),
-                            memo=contrib_for,
-                            pattern='%s.paypal' %
-                                ('apps' if webapp else 'addons'),
-                            preapproval=preapproval,
-                            slug=addon.slug,
-                            uuid=contribution_uuid))
+        paykey, status = paypal.get_paykey(
+            dict(amount=amount,
+                 email=paypal_id,
+                 ip=request.META.get('REMOTE_ADDR'),
+                 memo=contrib_for,
+                 pattern='%s.paypal' % ('apps' if webapp else 'addons'),
+                 preapproval=preapproval,
+                 slug=addon.slug,
+                 uuid=contribution_uuid))
     except paypal.PaypalError as error:
         paypal.paypal_log_cef(request, addon, contribution_uuid,
                               'PayKey Failure', 'PAYKEYFAIL',
@@ -727,17 +725,14 @@ def contribute(request, addon):
                   % addon.pk, exc_info=True)
 
     if paykey:
-        contrib = Contribution(addon_id=addon.id,
-                           charity_id=addon.charity_id,
-                           amount=amount,
-                           source=source,
-                           source_locale=request.LANG,
-                           annoying=addon.annoying,
-                           uuid=str(contribution_uuid),
-                           is_suggested=is_suggested,
-                           suggested_amount=addon.suggested_amount,
-                           comment=comment,
-                           paykey=paykey)
+        contrib = Contribution(addon_id=addon.id, charity_id=addon.charity_id,
+                               amount=amount, source=source,
+                               source_locale=request.LANG,
+                               annoying=addon.annoying,
+                               uuid=str(contribution_uuid),
+                               is_suggested=is_suggested,
+                               suggested_amount=addon.suggested_amount,
+                               comment=comment, paykey=paykey)
         contrib.save()
 
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)

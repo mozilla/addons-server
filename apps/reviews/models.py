@@ -46,9 +46,11 @@ class Review(amo.models.ModelBase):
 
     # Denormalized fields for easy lookup queries.
     # TODO: index on addon, user, latest
-    is_latest = models.BooleanField(default=True, editable=False,
+    is_latest = models.BooleanField(
+        default=True, editable=False,
         help_text="Is this the user's latest review for the add-on?")
-    previous_count = models.PositiveIntegerField(default=0, editable=False,
+    previous_count = models.PositiveIntegerField(
+        default=0, editable=False,
         help_text="How many previous reviews by the user for this add-on?")
 
     objects = ReviewManager()
@@ -123,10 +125,11 @@ class ReviewFlag(amo.models.ModelBase):
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'
     OTHER = 'review_flag_reason_other'
-    FLAGS = ((SPAM, _(u'Spam or otherwise non-review content')),
-             (LANGUAGE, _(u'Inappropriate language/dialog')),
-             (SUPPORT, _(u'Misplaced bug report or support request')),
-             (OTHER, _(u'Other (please specify)')),
+    FLAGS = (
+        (SPAM, _(u'Spam or otherwise non-review content')),
+        (LANGUAGE, _(u'Inappropriate language/dialog')),
+        (SUPPORT, _(u'Misplaced bug report or support request')),
+        (OTHER, _(u'Other (please specify)')),
     )
 
     review = models.ForeignKey(Review)
@@ -134,7 +137,7 @@ class ReviewFlag(amo.models.ModelBase):
     flag = models.CharField(max_length=64, default=OTHER,
                             choices=FLAGS, db_column='flag_name')
     note = models.CharField(max_length=100, db_column='flag_notes', blank=True,
-                           default='')
+                            default='')
 
     class Meta:
         db_table = 'reviews_moderation_flags'
@@ -222,7 +225,7 @@ def check_spam(review_id, **kw):
         bleach.url_re.search(review.body.localized_string)):
         spam.add(review, 'urls')
     for other in others:
-        if ((review.title and review.title == other.title)
-            or review.body == other.body):
+        if ((review.title and review.title == other.title) or
+            review.body == other.body):
             spam.add(review, 'matches')
             break

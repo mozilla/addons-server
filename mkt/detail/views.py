@@ -88,7 +88,7 @@ def manifest(request, addon):
         log.info('Serving up blocklisted app for addon: %s' % addon)
 
     elif (not addon.is_packaged or addon.disabled_by_user or (
-              not is_public and not (is_reviewer or is_dev))):
+        not is_public and not (is_reviewer or is_dev))):
         raise http.Http404
 
     else:
@@ -97,7 +97,8 @@ def manifest(request, addon):
 
     @etag(lambda r, a: manifest_etag)
     def _inner_view(request, addon):
-        response = http.HttpResponse(manifest_content,
+        response = http.HttpResponse(
+            manifest_content,
             content_type='application/x-web-app-manifest+json')
         response['ETag'] = manifest_etag
         return response

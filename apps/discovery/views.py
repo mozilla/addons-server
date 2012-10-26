@@ -117,11 +117,11 @@ def get_modules(request, platform, version):
     lang = request.LANG
     qs = DiscoveryModule.objects.filter(app=request.APP.id)
     # Remove any modules without a registered backend or an ordering.
-    modules = [m for m in qs if m.module in module_registry
-                                and m.ordering is not None]
+    modules = [m for m in qs
+               if m.module in module_registry and m.ordering is not None]
     # Remove modules that specify a locales string we're not part of.
-    modules = [m for m in modules if not m.locales
-                                     or lang in m.locales.split()]
+    modules = [m for m in modules
+               if not m.locales or lang in m.locales.split()]
     modules = sorted(modules, key=lambda x: x.ordering)
     return [module_registry[m.module](request, platform, version)
             for m in modules]

@@ -58,8 +58,7 @@ def _landing(request, category=None):
     if category:
         featured = ''
         category = get_list_or_404(
-            Category.objects.filter(type=amo.ADDON_PERSONA,
-            slug=category))[0]
+            Category.objects.filter(type=amo.ADDON_PERSONA, slug=category))[0]
         popular = (Addon.objects.public()
                    .filter(type=amo.ADDON_PERSONA,
                            addoncategory__category__id=category.id)
