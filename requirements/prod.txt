@@ -28,7 +28,7 @@ django-quieter-formset==0.3
 django-statsd-mozilla==0.3.8
 django-storages==1.1.4
 django-tastypie==0.9.11
-django-uuidfield==0.1
+django-uuidfield==0.4
 easy-thumbnails==1.1
 elasticutils==0.5
 feedparser==5.0.1
