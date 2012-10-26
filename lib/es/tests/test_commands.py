@@ -45,10 +45,18 @@ class TestIndexCommand(amo.tests.ESTestCase):
             with open(self.target, 'w') as target:
                 target.write(f.read() % data)
 
+        # any index created during the test will be deleted
+        self.indices = call_es('_status').json['indices'].keys()
+
     def tearDown(self):
         for file_ in (self.target, self.target_pyc):
             if os.path.exists(file_):
                 os.remove(file_)
+
+        current_indices = call_es('_status').json['indices'].keys()
+        for index in current_indices:
+            if index not in self.indices:
+                call_es(index, method='DELETE')
 
     def check_results(self, params, expected, sorted=True):
         r = self.client.get(urlparams(self.url, **params), follow=True)
@@ -105,8 +113,10 @@ class TestIndexCommand(amo.tests.ESTestCase):
         # two indexes, and two aliases, let's check
         # we have two aliases
         aliases = call_es('_aliases').json
-        self.assertTrue(len(aliases), 2)
-        old_aliases = aliases.keys()
+        old_aliases = [(index, aliases['aliases'].keys()[0])
+                       for index, aliases in aliases.items()
+                       if len(aliases['aliases']) > 0 and
+                       index.startswith('test')]
         old_aliases.sort()
 
         # now doing a reindexation in a background process
@@ -133,7 +143,8 @@ class TestIndexCommand(amo.tests.ESTestCase):
                                     follow=True)
                 eq_(r.status_code, 200, str(r.content))
                 got = self.get_results(r)
-                self.assertEqual(len(got), len(wanted))
+                got.sort()
+                self.assertEqual(len(got), len(wanted), (got, wanted))
                 wanted.append(self._create_app('moar %d' % count).pk)
                 self.refresh()
                 connection._commit()
@@ -149,17 +160,46 @@ class TestIndexCommand(amo.tests.ESTestCase):
             raise
 
         stdout, stderr = indexer.communicate()
-        self.assertTrue('Reindexation done' in stdout, stderr)
+        self.assertTrue('Reindexation done' in stdout, stdout + '\n' + stderr)
 
         elasticutils.get_es().refresh()
         # the reindexation is done, let's double check we have all our docs
         self.check_results({'sort': 'popularity'}, wanted)
 
         # let's check the aliases as well, we should have 2
-        new_aliases = call_es('_aliases').json
-        self.assertTrue(len(new_aliases), 2)
-        new_aliases = new_aliases.keys()
+        aliases = call_es('_aliases').json
+        new_aliases = [(index, aliases['aliases'].keys()[0])
+                       for index, aliases in aliases.items()
+                       if len(aliases['aliases']) > 0 and
+                       index.startswith('test')]
         new_aliases.sort()
+        self.assertTrue(len(new_aliases), 2)
 
         # and they should be new aliases
         self.assertNotEqual(new_aliases, old_aliases)
+
+    def test_remove_index(self):
+        # Putting a test_amo index in the way.
+        es = elasticutils.get_es()
+
+        for index in es.get_indices().keys():
+            for prefix in ('test_amo', 'test_amo_stats'):
+                if index.startswith(prefix + '-'):
+                    es.delete_alias(prefix, [index])
+                    es.delete_index(index)
+                    es.create_index(prefix)
+
+        # reindexing the first app
+        self.webapp.save()
+        self.refresh()
+
+        # now doing a reindexation in a background process
+        args = [sys.executable, 'manage.py', 'reindex', '--prefix=test_',
+                '--settings=%s' % self.settings]
+
+        indexer = subprocess.Popen(args,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE,
+                                   cwd=settings.ROOT)
+        stdout, stderr = indexer.communicate()
+        self.assertTrue('Reindexation done' in stdout, stdout + '\n' + stderr)
