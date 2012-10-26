@@ -5,6 +5,7 @@ import jingo
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
@@ -12,13 +13,17 @@ import amo
 from access import acl
 from addons.models import Category
 from amo.decorators import any_permission_required, write
+from amo.utils import chunked
 from zadmin.decorators import admin_required
 
 import mkt
 from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
 from mkt.ecosystem.models import MdnCache
+from mkt.webapps.models import Webapp
+from mkt.webapps.tasks import update_manifests
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
+
 
 
 @transaction.commit_on_success
@@ -135,3 +140,19 @@ def featured_categories_ajax(request):
             'id': cat.pk,
             'count': FeaturedApp.objects.filter(category=cat).count()
         } for cat in cats]})
+
+
+@admin_required(reviewers=True)
+def manifest_revalidation(request):
+    if request.method == 'POST':
+        # collect the apps to revalidate
+        qs = Q(is_packaged=False, status=amo.STATUS_PUBLIC,
+               disabled_by_user=False)
+        webapp_pks = Webapp.objects.filter(qs).values_list('pk', flat=True)
+
+        for pks in chunked(webapp_pks, 100):
+            update_manifests.delay(list(pks), check_hash=False)
+
+        amo.messages.success(request, "Manifest revalidation queued")
+
+    return jingo.render(request, 'zadmin/manifest.html')

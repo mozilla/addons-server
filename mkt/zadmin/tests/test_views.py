@@ -11,6 +11,7 @@ import amo.tests
 from addons.models import Addon, AddonCategory, Category
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
+from editors.models import RereviewQueue
 from users.models import UserProfile
 
 from mkt.webapps.models import AddonExcludedRegion, Webapp
@@ -326,3 +327,41 @@ class TestAddonAdmin(amo.tests.TestCase):
         rows = doc('#result_list tbody tr')
         eq_(rows.length, 1)
         eq_(rows.find('a').attr('href'), '337141/')
+
+
+class TestManifestRevalidation(amo.tests.WebappTestCase):
+    fixtures = ['webapps/337141-steamcube', 'base/users']
+
+    def setUp(self):
+        self.url = reverse('zadmin.manifest_revalidation')
+
+    def tearDown(self):
+        self.client.logout()
+
+    def _test_revalidation(self):
+        current_count = RereviewQueue.objects.count()
+        response = self.client.post(self.url)
+        eq_(response.status_code, 200)
+        self.assertTrue('Manifest revalidation queued' in response.content)
+        eq_(RereviewQueue.objects.count(), current_count + 1)
+
+    def test_revalidation_by_reviewers(self):
+        # Sr Reviewers users should be able to use the feature.
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'ReviewerAdminTools:View')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
+        self._test_revalidation()
+
+    def test_revalidation_by_admin(self):
+        # Admin users should be able to use the feature.
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self._test_revalidation()
+
+    def test_unpriviliged_user(self):
+        # Unprivileged user should not be able to reach the feature.
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        eq_(self.client.post(self.url).status_code, 403)
