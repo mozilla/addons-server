@@ -1,3 +1,4 @@
+amqplib==1.0.2
 anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
@@ -5,6 +6,9 @@ bleach==1.1.5
 cef==0.5
 celery==2.5.1
 celery-tasktree==0.3.2
+certifi==0.8.0
+chardet==1.0.1
+cssutils==0.9.7b3
 Django==1.4.2
 django_appcache==1.3
 # Temporarily forked until
@@ -24,8 +28,10 @@ django-quieter-formset==0.3
 django-statsd-mozilla==0.3.8
 django-storages==1.1.4
 django-tastypie==0.9.11
+django-uuidfield==0.1
 easy-thumbnails==1.1
 elasticutils==0.5
+feedparser==5.0.1
 fudge==1.0.3
 gunicorn==0.15.0
 hera==0.1.2
@@ -50,7 +56,6 @@ receipts==0.2.4.1
 requests==0.14.0
 schematic==0.2
 statsd==1.0.0
-
 
 ## Not on pypi.
 -e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
