@@ -28,7 +28,6 @@ django-quieter-formset==0.3
 django-statsd-mozilla==0.3.8
 django-storages==1.1.4
 django-tastypie==0.9.11
-django-uuidfield==0.4
 easy-thumbnails==1.1
 elasticutils==0.5
 feedparser==5.0.1
@@ -82,6 +81,7 @@ statsd==1.0.0
 -e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 -e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
 -e git://github.com/washort/django-waffle.git@19fe01f48008efc02e357554d49cc3b6e0b1c854#egg=django-waffle
+-e git://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 
 # Temporarily forked until
 # https://github.com/mozilla/django-browserid/pull/87
