@@ -11,9 +11,6 @@ chardet==1.0.1
 cssutils==0.9.7b3
 Django==1.4.2
 django_appcache==1.3
-# Temporarily forked until
-# https://github.com/mozilla/django-browserid/pull/87
-#django-browserid==0.6
 django-cache-machine==0.6
 django-celery==2.2.4
 django-cronjobs==0.2.3
@@ -61,6 +58,7 @@ statsd==1.0.0
 -e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
 -e git://github.com/mozilla/amo-validator.git@484dc929e71004ea8492a16d028d098b5ff9bc2d#egg=amo-validator
 -e git://github.com/mozilla/app-validator.git@24a73e7db883bbb0df2309acb5dcf8cb4bd3c3e0#egg=app-validator
+-e git://github.com/mozilla/django-browserid.git@1c23655faad0cc5ad2c18aebc0472a0ea078cfa8#egg=django-browserid
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
@@ -82,10 +80,6 @@ statsd==1.0.0
 -e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
 -e git://github.com/washort/django-waffle.git@19fe01f48008efc02e357554d49cc3b6e0b1c854#egg=django-waffle
 -e git://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
-
-# Temporarily forked until
-# https://github.com/mozilla/django-browserid/pull/87
--e git://github.com/kumar303/django-browserid.git@8ddb4f1fe606b707a8e53883a53751754f505999#egg=django-browserid
 
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
