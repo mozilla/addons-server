@@ -59,7 +59,7 @@ class TestUpdateManifest(amo.tests.TestCase):
     fixtures = ('base/platforms',)
 
     def setUp(self):
-        UserProfile.objects.create(id=settings.TASK_USER_ID)
+        UserProfile.objects.get_or_create(id=settings.TASK_USER_ID)
 
         self.addon = amo.tests.app_factory()
         self.version = self.addon.versions.latest()
@@ -87,10 +87,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.urlopen_mock.return_value = self.response_mock
 
     @mock.patch('mkt.webapps.tasks._get_content_hash')
-    def _run(self, _get_content_hash):
+    def _run(self, _get_content_hash, **kw):
         # Will run the task and will act depending upon how you've set hash.
         _get_content_hash.return_value = self._hash
-        update_manifests(ids=(self.addon.pk,))
+        update_manifests(ids=(self.addon.pk,), **kw)
 
     def _data(self):
         return json.dumps(self.new)
@@ -210,3 +210,28 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Test we don't add app to re-review queue twice.
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_force_rereview(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        n = new.copy()
+        n['name'] = 'Mozilla Ball Ultimate Edition'
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(n)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        # We're setting the hash to the same value.
+        self.file.update(hash=nhash)
+
+        eq_(RereviewQueue.objects.count(), 0)
+        self._run(check_hash=False)
+
+        # We should still get a rereview since we bypassed the manifest check.
+        eq_(RereviewQueue.objects.count(), 1)
+
+        # 2 logs: 1 for manifest update, 1 for re-review trigger.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)

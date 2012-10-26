@@ -27,6 +27,7 @@ from bandwagon.models import FeaturedCollection, MonthlyPick
 from compat.cron import compatibility_report
 from compat.models import CompatReport
 from devhub.models import ActivityLog
+from editors.models import RereviewQueue
 from files.models import Approval, File
 from stats.models import UpdateCount
 from users.models import UserProfile
@@ -2079,3 +2080,43 @@ class TestPerms(amo.tests.TestCase):
         self.client.logout()
         self.assertRedirects(self.client.get(reverse('zadmin.index')),
                              reverse('users.login') + '?to=/en-US/admin/')
+
+
+class TestManifestRevalidation(amo.tests.WebappTestCase):
+    fixtures = ['webapps/337141-steamcube', 'base/users']
+
+    def setUp(self):
+        self.url = reverse('zadmin.manifest_revalidation')
+
+    def tearDown(self):
+        self.client.logout()
+
+    def _test_revalidation(self):
+        current_count = RereviewQueue.objects.count()
+        response = self.client.post(self.url)
+        eq_(response.status_code, 200)
+        self.assertTrue('Manifest revalidation queued' in response.content)
+        eq_(RereviewQueue.objects.count(), current_count + 1)
+
+    def test_revalidation_by_reviewers(self):
+        # Sr Reviewers users should be able to use the feature.
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        group = Group.objects.create(name='Sr Reviewer',
+                                     rules='ReviewerAdminTools:View')
+        GroupUser.objects.create(group=group, user=user)
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
+        self._test_revalidation()
+
+    def test_revalidation_by_admin(self):
+        # Admin users should be able to use the feature.
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self._test_revalidation()
+
+    def test_unpriviliged_user(self):
+        # Unprivileged user should not be able to reach the feature.
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        eq_(self.client.post(self.url).status_code, 403)

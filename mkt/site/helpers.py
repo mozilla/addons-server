@@ -385,6 +385,8 @@ def admin_site_links():
              reverse('zadmin.oauth-consumer-create')),
             ('Generate error', reverse('zadmin.generate-error')),
             ('Site Status', reverse('amo.monitor')),
+            ('Force Manifest Re-validation',
+             reverse('zadmin.manifest_revalidation'))
         ],
     }
 

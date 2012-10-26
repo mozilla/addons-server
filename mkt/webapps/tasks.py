@@ -60,16 +60,16 @@ def _open_manifest(webapp, file_):
 def update_manifests(ids, **kw):
     task_log.info('[%s@%s] Update manifests.' %
                   (len(ids), update_manifests.rate_limit))
-
+    check_hash = kw.pop('check_hash', True)
     # Since we'll be logging the updated manifest change to the users log,
     # we'll need to log in as user.
     amo.set_user(get_task_user())
 
     for id in ids:
-        _update_manifest(id)
+        _update_manifest(id, check_hash)
 
 
-def _update_manifest(id):
+def _update_manifest(id, check_hash=True):
     webapp = Webapp.objects.get(pk=id)
     file_ = webapp.get_latest_file()
 
@@ -89,12 +89,12 @@ def _update_manifest(id):
         return
 
     # Check hash.
-    hash_ = _get_content_hash(content)
-    if file_.hash == hash_:
-        _log(webapp, u'Manifest the same')
-        return
-
-    _log(webapp, u'Manifest different')
+    if check_hash:
+        hash_ = _get_content_hash(content)
+        if file_.hash == hash_:
+            _log(webapp, u'Manifest the same')
+            return
+        _log(webapp, u'Manifest different')
 
     # Validate the new manifest.
     upload = FileUpload.objects.create()
