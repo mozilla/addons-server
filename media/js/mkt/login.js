@@ -14,15 +14,19 @@ $("#login form").submit(function(e) {
         action = $this.attr('action') + format("?to={0}", window.location.pathname);
     $this.attr('action', action);
 });
-z.page.on('fragmentloaded', function() {
-    $(".logout").bind('click', function(e) {
-        // NOTE: Real logout operations happen on the action of the Logout
-        // link/button. This just tells Persona to clean up it's data.
-        if (navigator.id) {
-            navigator.id.logout();
-        }
-    });
-});
+(function() {
+    function logout() {
+        $(".logout").bind('click', function(e) {
+            // NOTE: Real logout operations happen on the action of the Logout
+            // link/button. This just tells Persona to clean up it's data.
+            if (navigator.id) {
+                navigator.id.logout();
+            }
+        });
+    }
+    $(logout);
+    z.page.on('fragmentloaded', logout);
+})();
 function gotVerifiedEmail(assertion) {
     if (assertion) {
         $.ajax({
