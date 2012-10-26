@@ -2,38 +2,54 @@ import json
 import logging
 from optparse import make_option
 import datetime
+import traceback
+import time
+import sys
 
 import requests
 from celery_tasktree import task_with_callbacks, TaskTree
 
 from django.conf import settings as django_settings
+from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
 from amo.utils import timestamp_index
 
 from addons.cron import reindex_addons, reindex_apps
 from apps.addons.search import setup_mapping as put_amo_mapping
+from apps.stats.models import UpdateCount
 from bandwagon.cron import reindex_collections
 from compat.cron import compatibility_report
-from stats.cron import index_latest_stats
 from stats.search import setup_indexes as put_stats_mapping
 from users.cron import reindex_users
 
 from lib.es.models import Reindexing
 
 if django_settings.MARKETPLACE:
-    from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
+    from mkt.stats.cron import index_mkt_stats
     from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
 
 
-_INDEXES = {'stats': [index_latest_stats],
+def index_stats(index=None, aliased=True):
+    """Indexes the previous 365 days."""
+    latest = UpdateCount.search(index).order_by('-date').values_dict()
+    if latest:
+        latest = latest[0]['date']
+    else:
+        latest = datetime.date.today() - datetime.timedelta(days=365)
+    fmt = lambda d: d.strftime('%Y-%m-%d')
+    date_range = '%s:%s' % (fmt(latest), fmt(datetime.date.today()))
+    call_command('index_stats', addons=None, date=date_range)
+
+
+_INDEXES = {'stats': [index_stats],
             'apps': [reindex_addons,
                      reindex_apps,
                      reindex_collections,
                      reindex_users]}
 
 if django_settings.MARKETPLACE:
-    _INDEXES['stats'].extend([index_mkt_stats, index_latest_mkt_stats])
+    _INDEXES['stats'].extend([index_mkt_stats])
 else:
     _INDEXES['apps'].append(compatibility_report)
 
@@ -110,7 +126,7 @@ def run_aliases_actions(actions):
 
 @task_with_callbacks
 def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
-                  num_shards=DEFAULT_NUM_SHARDS):
+                   num_shards=DEFAULT_NUM_SHARDS):
     """Creates a mapping for the new index.
 
     - new_index: new index name.
@@ -128,9 +144,9 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
 
     settings = {
         'number_of_replicas': idx_settings.get('number_of_replicas',
-                                                num_replicas),
+                                               num_replicas),
         'number_of_shards': idx_settings.get('number_of_shards',
-                                                num_shards)
+                                             num_shards)
     }
 
     # Create mapping.without aliases since we do it manually
@@ -161,8 +177,15 @@ def create_index(index, is_stats):
     """
     log('Running all indexes for %r' % index)
     indexers = is_stats and _INDEXES['stats'] or _INDEXES['apps']
+
     for indexer in indexers:
-        indexer(index, aliased=False)
+        log('Indexing %r' % indexer.__name__)
+        try:
+            indexer(index, aliased=False)
+        except Exception:
+            # We want to log this event but continue
+            log('Indexer %r failed' % indexer.__name__)
+            traceback.print_exc()
 
 
 def database_flagged():
@@ -209,10 +232,9 @@ class Command(BaseCommand):
                           'another indexation is ongoing'),
                     default=False),
         make_option('--wipe', action='store_true',
-                    help=('Wipe ES from any content first. This option '
+                    help=('Wipes ES from any content first. This option '
                           'will destroy anything that is in ES!'),
                     default=False),
-
     )
 
     def handle(self, *args, **kwargs):
@@ -271,6 +293,7 @@ class Command(BaseCommand):
 
         # for each index, we create a new time-stamped index
         for alias in indexes:
+            is_stats = 'stats' in alias
             old_index = None
 
             for aliased_index, alias_ in all_aliases:
@@ -289,8 +312,7 @@ class Command(BaseCommand):
             step1 = tree.add_task(flag_database, args=[new_index, old_index,
                                                        alias])
             step2 = step1.add_task(create_mapping, args=[new_index, alias])
-            step3 = step2.add_task(create_index, args=[new_index,
-                                                       'stats' in alias])
+            step3 = step2.add_task(create_index, args=[new_index, is_stats])
             last_action = step3
 
             # adding new index to the alias
@@ -309,15 +331,15 @@ class Command(BaseCommand):
 
         # let's do it
         log('Running all indexation tasks')
+        tree.apply_async()
 
-        # The Async mode is currently buggy.
-        # Forcing the EAGER mode
-        saved = django_settings.CELERY_ALWAYS_EAGER
-        django_settings.CELERY_ALWAYS_EAGER = True
-        try:
-            tree.apply_and_join()
-        finally:
-            django_settings.CELERY_ALWAYS_EAGER = saved
+        time.sleep(10)   # give celeryd some time to flag the DB
+        while database_flagged():
+            sys.stdout.write('.')
+            sys.stdout.flush()
+            time.sleep(5)
+
+        sys.stdout.write('\n')
 
         # let's return the /_aliases values
         aliases = call_es('_aliases').json
