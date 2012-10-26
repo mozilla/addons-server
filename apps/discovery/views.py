@@ -263,7 +263,7 @@ def get_addon_ids(guids):
 
 @addon_view
 def addon_detail(request, addon):
-    reviews = Review.objects.latest().filter(addon=addon)
+    reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
     return jingo.render(request, 'discovery/addons/detail.html',
                         {'addon': addon, 'reviews': reviews,

@@ -33,7 +33,7 @@ def detail(request, addon):
     else:
         category_themes = None
 
-    reviews = Review.objects.latest().filter(addon=addon)
+    reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
 
     data = {
         'product': addon,

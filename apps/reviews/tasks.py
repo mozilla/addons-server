@@ -40,19 +40,22 @@ def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews.' %
              (len(addons), addon_review_aggregates.rate_limit))
     using = kw.get('using')
-    stats = dict(Review.objects.latest().no_cache().filter(addon__in=addons)
-                 .using(using).values_list('addon').annotate(Count('addon')))
-    for addon in addons:
-        count = stats.get(addon, 0)
-        Addon.objects.filter(id=addon).update(total_reviews=count)
+    addon_objs = list(Addon.objects.filter(pk__in=addons))
+    stats = dict(Review.objects.valid().no_cache().using(using)
+                 .filter(addon__in=addons, is_latest=True)
+                 .values_list('addon')
+                 .annotate(Count('addon')))
+    for addon in addon_objs:
+        addon.update(total_reviews=stats.get(addon.id, 0))
 
     log.info('[%s@%s] Updating average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
-    stats = dict(Review.objects.valid().no_cache().filter(addon__in=addons)
-                 .using(using).values_list('addon').annotate(Avg('rating')))
-    for addon in addons:
-        avg = stats.get(addon, 0)
-        Addon.objects.filter(id=addon).update(average_rating=avg)
+    stats = dict(Review.objects.valid().no_cache().using(using)
+                 .filter(addon__in=addons)
+                 .values_list('addon')
+                 .annotate(Avg('rating')))
+    for addon in addon_objs:
+        addon.update(average_rating=stats.get(addon.id, 0))
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)

@@ -25,10 +25,6 @@ class ReviewManager(amo.models.ManagerBase):
         # Use extra because Django wants to do a LEFT OUTER JOIN.
         return self.extra(where=['reply_to IS NULL'])
 
-    def latest(self):
-        """Get all the latest valid reviews."""
-        return self.valid().filter(is_latest=True)
-
 
 class Review(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='_reviews')
@@ -175,8 +171,10 @@ class GroupedRating(object):
 
     @classmethod
     def set(cls, addon, using=None):
-        q = (Review.objects.latest().filter(addon=addon).using(using)
-             .values_list('rating').annotate(models.Count('rating')))
+        q = (Review.objects.valid().using(using)
+             .filter(addon=addon, is_latest=True)
+             .values_list('rating')
+             .annotate(models.Count('rating')))
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon), ratings)

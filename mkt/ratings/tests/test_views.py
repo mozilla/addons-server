@@ -220,7 +220,8 @@ class TestCreate(ReviewTest):
         eq_(ActivityLog.objects.count(), log_count + 1,
             'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
-        eq_(Review.objects.latest()[0].version, self.webapp.current_version)
+        eq_(Review.objects.valid().filter(is_latest=True)[0].version,
+            self.webapp.current_version)
 
     def test_review_success_dup(self):
         Review.objects.create(

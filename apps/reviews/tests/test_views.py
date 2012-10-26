@@ -311,12 +311,6 @@ class TestCreate(ReviewTest):
         old_cnt = self.qs.count()
         log_count = self.log_count()
         r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
-        eq_(r.status_code, 200)
-
-    def test_review_success(self):
-        old_cnt = self.qs.count()
-        log_count = self.log_count()
-        r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
         self.assertRedirects(r, shared_url('reviews.list', self.addon),
                              status_code=302)
         eq_(self.qs.count(), old_cnt + 1)
