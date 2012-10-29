@@ -8,8 +8,8 @@
             <li>
               <a href="{{ url('ecosystem.documentation', page='html5') }}"
                 {% if section == 'html5' %}class="selected"{% endif %}
-                title="{{ _('HTML5') }}">
-                {{ _('HTML5') }}
+                title="{{ _('Web app Foundations') }}">
+                {{ _('Web app Foundations') }}
               </a>
             </li>
             <li>
@@ -62,13 +62,8 @@
               </a>
             </li>
           </ol>
-          <h2>{{ _('Build') }}</h2>
+          <h2>{{ _('Tools &amp; Downloads') }}</h2>
           <ol>
-            <li>
-              <a href="{{ get_login_link(url('submit.app')) }}"
-                title="{{ _('Submit an App') }}">
-                {{ _('Submit an App') }}</a>
-            </li>
             <li>
               <a href="{{ url('ecosystem.documentation', page='devtools') }}"
                  {% if section == 'devtools' %}class="selected"{% endif %}
