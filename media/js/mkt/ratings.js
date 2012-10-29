@@ -61,14 +61,13 @@
 
         overlay.addClass('show');
 
-        overlay.on('submit', 'form', _pd(function(e) {
+        overlay.on('submit', 'form', function(e) {
             // Trigger validation.
-            if (validate(e)) {
-                $.post($form.attr('action'), $form.serialize(), function() {
-                    $(window).trigger('refreshfragment');
-                });
+            if (!validate(e)) {
+                e.preventDefault();
             }
-        })).on('click', '.cancel', _pd(function() {
+            // Form submission is handled by POST hijacking.
+        }).on('click', '.cancel', _pd(function() {
             overlay.removeClass('show');
         })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250));
     }
