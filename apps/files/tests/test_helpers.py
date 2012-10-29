@@ -157,7 +157,7 @@ class TestFileHelper(amo.tests.TestCase):
         cache.clear()
         files = self.viewer.get_files().keys()
         rt = files.index(u'chrome')
-        eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'chrome.manifest'])
+        eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'dictionaries'])
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
