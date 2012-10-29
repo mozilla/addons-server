@@ -13,7 +13,7 @@ SITE_URL = 'https://addons-dev.allizom.org'
 SERVICES_URL = SITE_URL
 STATIC_URL = 'https://addons-dev-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = LOCAL_MIRROR_URL
+MIRROR_URL = STATIC_URL + 'storage/public-staging'
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
