@@ -46,9 +46,9 @@ ALLOWED_ATTRIBUTES.update(dict((x, ['id', ]) for x in (
 
 tutorials = [
     {
-        'title': 'Parts of an HTML5 App',
+        'title': 'Foundations of an HTML5 Web app',
         'name': 'html5',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Parts_of_an_HTML5_app?raw=1&macros=true'
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Foundations_of_an_HTML5_Web_app?raw=1&macros=true'
     },
     {
         'title': 'Manifests',
