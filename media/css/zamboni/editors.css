@@ -840,8 +840,13 @@ div.editor-stats-table > div.editor-stats-dark {
 
 .history-comment {
     white-space: pre-wrap;
-    /* Override bottom margin for <pre> */
+}
+
+pre.history-comment {
+    /* Override unwanted <pre> styles */
     margin-bottom: 0;
+    color: inherit;
+    font: inherit;
 }
 
 .history-comment, .history-comment-version {
