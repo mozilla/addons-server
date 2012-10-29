@@ -153,7 +153,7 @@ class FileViewer(object):
 
             # If this is a webapp manifest, we should try to pretty print it.
             if (self.selected and
-                self.selected['filename'] == 'manifest.webapp'):
+                self.selected.get('filename') == 'manifest.webapp'):
                 file_data = self._process_manifest(file_data)
 
             return file_data
