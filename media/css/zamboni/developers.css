@@ -690,6 +690,13 @@ a.extra {
     white-space: pre-wrap;
 }
 
+pre.email_comment {
+    /* Override unwanted <pre> styles */
+    margin-bottom: 0;
+    color: inherit;
+    font: inherit;
+}
+
 .modal p + .close,  /* Hide impala X buttons. */
 #modals {
     display: none;
