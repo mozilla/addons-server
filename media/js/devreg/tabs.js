@@ -43,5 +43,7 @@
                 evt.preventDefault();
             });
         });
+
+        $this.trigger('tabs-setup');
     });
 })();

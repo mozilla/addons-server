@@ -78,10 +78,10 @@
     // Show packaged.
     function show_packaged() {
         var $target = $('#upload-file hgroup h2');
-        if ($target.length < 2) {
-            return;
-        }
-        if ($('#id_free option[value=free-os]:selected').length ||
+
+        // If only free-os or paid-os is selected, show packaged.
+        if (($('#id_free option[value=free-os]:selected').length &&
+             $('#id_free option:selected').length == 1)   ||
             $('#id_paid option[value=paid-os]:selected').length) {
             $target.eq(1).css({'display': 'inline'});
         } else {
@@ -96,8 +96,10 @@
         });
     });
 
-    // Hide the packaged tab, if needed.
-    show_packaged();
+    // Hide the packaged tab, if needed, once the tabs have been created.
+    $('.tabbable').bind('tabs-setup', function() {
+        show_packaged();
+    });
 
 })(typeof exports === 'undefined' ? (this.submit_details = {}) : exports);
 
