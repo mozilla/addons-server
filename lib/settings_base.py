@@ -1198,7 +1198,6 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
-                  "https://browserid.org",
                   "https://login.persona.org",
                   "https://www.paypalobjects.com",
                   "http://raw.github.com",
