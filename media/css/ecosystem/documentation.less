@@ -93,10 +93,9 @@
 
         li > h2 {
             border-bottom: 1px solid #d2d6d9;
-            color: @medium-gray;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 100;
-            line-height: 24px;
+            line-height: 1.5em;
             margin: 0;
             padding: 10px 0 3px;
             text-shadow: @text-indent-white;
@@ -110,12 +109,11 @@
         padding: 5px 0 0;
 
         li {
-            font-size: 12px;
-            line-height: 14px;
+            font-size: 13px;
+            line-height: 1.5em;
         }
 
         a {
-            color: @medium-gray;
             display: block;
             font-weight: @heavy;
             margin-bottom: 1px;
@@ -124,7 +122,7 @@
             text-overflow: ellipsis;
 
             &:hover, &.selected {
-                background-color: @bg-light-gray;
+                background-color: #fff;
                 color: @dark-gray;
             }
         }
@@ -136,9 +134,9 @@
     .box-shadow(@devhub-box-shadow);
     color: @dark-gray;
     float: left;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: @heavy;
-    line-height: 18px;
+    line-height: 1.5em;
     padding: 30px;
     width: 685px;
 
@@ -153,12 +151,12 @@
     }
 
     h2, h3 {
-        font-weight: 100;
+        font-size: 22px;
+        font-weight: 300;
     }
 
     h2, h3, dt {
-        color: @medium-gray;
-        margin: 30px 0 10px;
+        margin: 1em 0 0;
     }
 
     h3 {
@@ -173,10 +171,14 @@
         color: #6d598b;
     }
 
+    p {
+        margin: 0.75em 0;
+    }
+
     pre {
         background-color: @faint-gray;
         color: @dark-gray;
-        margin: 20px 0;
+        margin: 0.75em 0;
         overflow: auto;
         padding: 20px;
     }
