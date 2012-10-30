@@ -39,10 +39,52 @@ class DevAgreementForm(happyforms.Form):
                 notification_id=app_surveys.id, update={'enabled': True})
 
 
+class NewWebappVersionForm(happyforms.Form):
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+        queryset=FileUpload.objects.filter(valid=True),
+        error_messages={'invalid_choice': _lazy(u'There was an error with your'
+                                                u' upload. Please try'
+                                                u' again.')})
+
+    def clean(self):
+        data = self.cleaned_data
+
+        # Packaged apps are only valid for firefox os.
+        if self.is_packaged():
+            # Now run the packaged app check, done in clean, because
+            # clean_packaged needs to be processed first.
+            try:
+                pkg = parse_addon(data['upload'], self.addon)
+            except forms.ValidationError, e:
+                self._errors['upload'] = self.error_class(e.messages)
+                return
+
+            ver = pkg.get('version')
+            if (ver and self.addon and
+                self.addon.versions.filter(version=ver).exists()):
+                self._errors['upload'] = _(u'Version %s already exists') % ver
+                return
+        else:
+            # Throw an error if this is a dupe.
+            # (JS sets manifest as `upload.name`.)
+            try:
+                verify_app_domain(data['upload'].name)
+            except forms.ValidationError, e:
+                self._errors['upload'] = self.error_class(e.messages)
+                return
+
+        return data
+
+    def is_packaged(self):
+        return self._is_packaged
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon', None)
+        self._is_packaged = kw.pop('is_packaged', False)
+        super(NewWebappVersionForm, self).__init__(*args, **kw)
 
 
-
-class NewWebappForm(happyforms.Form):
+class NewWebappForm(NewWebappVersionForm):
     # The selections for free.
     FREE = (
         ('free-os', _lazy('Firefox OS')),
@@ -103,35 +145,12 @@ class NewWebappForm(happyforms.Form):
             self._errors['free'] = self._errors['paid'] = self.ERRORS['none']
             return
 
-        # Packaged apps are only valid for firefox os.
         if self.is_packaged():
             if not set(self._get_combined()).issubset(['paid-os', 'free-os']):
                 self._add_error('packaged')
                 return
 
-            # Now run the packaged app check, done in clean, because
-            # clean_packaged needs to be processed first.
-            try:
-                pkg = parse_addon(data['upload'], self.addon)
-            except forms.ValidationError, e:
-                self._errors['upload'] = self.error_class(e.messages)
-                return
-
-            ver = pkg.get('version')
-            if (ver and self.addon and
-                self.addon.versions.filter(version=ver).exists()):
-                self._errors['upload'] = _(u'Version %s already exists') % ver
-                return
-        else:
-            # Throw an error if this is a dupe.
-            # (JS sets manifest as `upload.name`.)
-            try:
-                verify_app_domain(data['upload'].name)
-            except forms.ValidationError, e:
-                self._errors['upload'] = self.error_class(e.messages)
-                return
-
-        return data
+        return super(NewWebappForm, self).clean()
 
     def get_devices(self):
         """Returns a device based on the requested free or paid."""
@@ -151,8 +170,6 @@ class NewWebappForm(happyforms.Form):
         return self._is_packaged or self.cleaned_data.get('packaged', False)
 
     def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon', None)
-        self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappForm, self).__init__(*args, **kw)
         if not waffle.switch_is_active('allow-b2g-paid-submission'):
             del self.fields['paid']

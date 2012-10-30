@@ -64,7 +64,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
 from mkt.developers.models import AddonBlueViaConfig, BlueViaConfig
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
-from mkt.submit.forms import NewWebappForm
+from mkt.submit.forms import NewWebappVersionForm
 from mkt.webapps.tasks import update_manifests, _update_manifest
 from mkt.webapps.models import Webapp
 
@@ -204,8 +204,8 @@ def publicise(request, addon_id, addon):
 @dev_required(webapp=True)
 def status(request, addon_id, addon, webapp=False):
     form = forms.AppAppealForm(request.POST, product=addon)
-    upload_form = NewWebappForm(request.POST or None, is_packaged=True,
-                                addon=addon)
+    upload_form = NewWebappVersionForm(request.POST or None, is_packaged=True,
+                                       addon=addon)
 
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and form.is_valid():
