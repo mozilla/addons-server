@@ -10,6 +10,7 @@ from django.db.models import Count
 import commonware.log
 import cronjobs
 from celery.task.sets import TaskSet
+from lib.es.utils import raise_if_reindex_in_progress
 
 import amo
 from amo.utils import chunked
@@ -23,6 +24,7 @@ log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def update_weekly_downloads():
     """Update the weekly "downloads" from the users_install table."""
+    raise_if_reindex_in_progress()
     interval = datetime.today() - timedelta(days=7)
     counts = (Installed.objects.values('addon')
                                .filter(created__gte=interval,

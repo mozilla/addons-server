@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 from optparse import make_option
+import os
 import re
 import sys
 import traceback
@@ -25,6 +26,7 @@ from stats.search import setup_indexes as put_stats_mapping
 from users.cron import reindex_users
 
 from lib.es.models import Reindexing
+from lib.es.utils import database_flagged
 
 if django_settings.MARKETPLACE:
     from mkt.stats.cron import index_mkt_stats
@@ -214,11 +216,6 @@ def create_index(index, is_stats):
             traceback.print_exc()
 
 
-def database_flagged():
-    """Returns True if the Database is being indexed"""
-    return Reindexing.objects.exists()
-
-
 @task_with_callbacks
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
@@ -363,13 +360,17 @@ class Command(BaseCommand):
 
         # let's do it
         log('Running all indexation tasks')
-        tree.apply_async()
 
-        time.sleep(10)   # give celeryd some time to flag the DB
-        while database_flagged():
-            sys.stdout.write('.')
-            sys.stdout.flush()
-            time.sleep(5)
+        os.environ['FORCE_INDEXING'] = '1'
+        try:
+            tree.apply_async()
+            time.sleep(10)   # give celeryd some time to flag the DB
+            while database_flagged():
+                sys.stdout.write('.')
+                sys.stdout.flush()
+                time.sleep(5)
+        finally:
+            del os.environ['FORCE_INDEXING']
 
         sys.stdout.write('\n')
 

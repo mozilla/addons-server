@@ -1,4 +1,7 @@
+import os
+
 from .models import Reindexing
+from django.core.management.base import CommandError
 import elasticutils.contrib.django as elasticutils
 
 
@@ -34,3 +37,19 @@ def index_objects(ids, model, search, index=None, transforms=None):
             model.index(data, bulk=True, id=ob.id, index=index)
 
     elasticutils.get_es().flush_bulk(forced=True)
+
+
+def database_flagged():
+    """Returns True if the Database is being indexed"""
+    return Reindexing.objects.exists()
+
+
+def raise_if_reindex_in_progress():
+    """Checks if the database indexation flag is on.
+
+    If it's one, and if no "FORCE_INDEXING" variable is present in the env,
+    raises a CommandError.
+    """
+    if database_flagged() and 'FORCE_INDEXING' not in os.environ:
+        raise CommandError("Indexation already occuring. Add a FORCE_INDEXING "
+                           "variable in the environ to force it")

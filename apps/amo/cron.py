@@ -16,6 +16,7 @@ from bandwagon.models import Collection
 from cake.models import Session
 from constants.base import VALID_STATUSES
 from devhub.models import ActivityLog, LegacyAddonLog
+from lib.es.utils import raise_if_reindex_in_progress
 from sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
 
@@ -244,6 +245,7 @@ def weekly_downloads():
     """
     Update 7-day add-on download counts.
     """
+    raise_if_reindex_in_progress()
     cursor = connection.cursor()
     cursor.execute("""
         SELECT addon_id, SUM(count) AS weekly_count

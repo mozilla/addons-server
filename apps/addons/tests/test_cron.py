@@ -1,3 +1,6 @@
+import os
+import datetime
+
 from nose.tools import eq_
 import mock
 
@@ -5,7 +8,10 @@ import amo
 import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
+from django.core.management.base import CommandError
 from files.models import File, Platform
+from lib.es.management.commands.reindex import flag_database, unflag_database
+from stats.models import UpdateCount
 from versions.models import Version
 
 
@@ -210,6 +216,35 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
         cron._update_addon_average_daily_users([(3615, 6000000)])
         addon = Addon.objects.get(pk=3615)
         eq_(addon.average_daily_users, addon.total_downloads)
+
+    def test_adu_flag(self):
+        addon = Addon.objects.get(pk=3615)
+
+        now = datetime.datetime.now()
+        counter = UpdateCount.objects.create(addon=addon, date=now,
+                                             count=1234)
+        counter.save()
+
+        self.assertTrue(
+            addon.average_daily_users > addon.total_downloads + 10000,
+            'Unexpected ADU count. ADU of %d not greater than %d' % (
+                addon.average_daily_users, addon.total_downloads + 10000))
+
+        adu = cron.update_addon_average_daily_users
+        flag_database('new', 'old', 'alias')
+        try:
+            # Should fail.
+            self.assertRaises(CommandError, adu)
+
+            # Should work with the environ flag.
+            os.environ['FORCE_INDEXING'] = '1'
+            adu()
+        finally:
+            unflag_database()
+            del os.environ['FORCE_INDEXING']
+
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.average_daily_users, 1234)
 
 
 class TestReindex(amo.tests.ESTestCase):

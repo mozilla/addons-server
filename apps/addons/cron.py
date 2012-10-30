@@ -24,6 +24,7 @@ from amo.utils import chunked
 from addons import search
 from addons.models import Addon, FrozenAddon, AppSupport
 from files.models import File
+from lib.es.utils import raise_if_reindex_in_progress
 from stats.models import UpdateCount
 
 log = logging.getLogger('z.cron')
@@ -94,6 +95,7 @@ def _update_addons_current_version(data, **kw):
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
+    raise_if_reindex_in_progress()
     cursor = connections[multidb.get_slave()].cursor()
     q = """SELECT
                addon_id, AVG(`count`)
