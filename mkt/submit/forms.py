@@ -148,10 +148,11 @@ class NewWebappForm(happyforms.Form):
         return amo.ADDON_FREE
 
     def is_packaged(self):
-        return self.cleaned_data.get('packaged', False)
+        return self._is_packaged or self.cleaned_data.get('packaged', False)
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
+        self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappForm, self).__init__(*args, **kw)
         if not waffle.switch_is_active('allow-b2g-paid-submission'):
             del self.fields['paid']
