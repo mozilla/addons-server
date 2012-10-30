@@ -325,6 +325,12 @@ class TestCreateWebApp(BaseWebAppTest):
         app = self.post_addon({'paid': ['paid-os']})
         eq_(app.premium_type, amo.ADDON_PREMIUM)
 
+    def test_unsupported_detail_locale(self):
+        self.manifest = self.manifest_path('unsupported-default-locale.webapp')
+        self.upload = self.get_upload(abspath=self.manifest)
+        addon = self.post_addon()
+        eq_(addon.default_locale, 'en-US')
+
 
 class TestCreateWebAppFromManifest(BaseWebAppTest):
 

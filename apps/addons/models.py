@@ -427,6 +427,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
+                         addon.default_locale in (
+                             settings.AMO_LANGUAGES +
+                             settings.HIDDEN_LANGUAGES) and
                          addon.default_locale != settings.LANGUAGE_CODE)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
