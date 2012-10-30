@@ -261,7 +261,7 @@ class ActivityLog(amo.models.ModelBase):
 
         try:
             # d is a structure:
-            # ``d = [{'addons.addon'=12}, {'addons.addon'=1}, ... ]``
+            # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             d = json.loads(self._arguments)
         except:
             log.debug('unserializing data from addon_log failed: %s' % self.id)
@@ -325,11 +325,10 @@ class ActivityLog(amo.models.ModelBase):
     def log(self):
         return amo.LOG_BY_ID[self.action]
 
-    # TODO(davedash): Support other types.
-    def to_string(self, type=None):
+    def to_string(self, type_=None):
         log_type = amo.LOG_BY_ID[self.action]
-        if type and hasattr(log_type, '%s_format' % type):
-            format = getattr(log_type, '%s_format' % type)
+        if type_ and hasattr(log_type, '%s_format' % type_):
+            format = getattr(log_type, '%s_format' % type_)
         else:
             format = log_type.format
 
@@ -352,12 +351,12 @@ class ActivityLog(amo.models.ModelBase):
                                 arg.get_url_path(), _('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
-                text = _('Version %s') % arg.version
+                text = _('Version {0}')
                 if settings.MARKETPLACE:
-                    version = self.f(text)
+                    version = self.f(text, arg.version)
                 else:
-                    version = self.f(u'<a href="{0}">{1}</a>',
-                                     arg.get_url_path(), text)
+                    version = self.f(u'<a href="{1}">%s</a>' % text,
+                                     arg.version, arg.get_url_path())
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = self.f(u'<a href="{0}">{1}</a>',

@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 import jingo
 from nose.tools import eq_
-from mock import Mock
+from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 import amo
@@ -123,6 +123,19 @@ class TestActivityLog(amo.tests.TestCase):
                 user=self.request.amo_user)
         entries = ActivityLog.objects.for_version(version)
         eq_(len(entries), 1)
+
+    @patch('django.conf.settings.MARKETPLACE', True)
+    @patch('users.helpers._user_link', lambda *args: 'xss bob link')
+    def test_version_xss(self):
+        addon = Addon.objects.get()
+        addon.update(type=amo.ADDON_WEBAPP)
+        version = addon.latest_version
+        version.update(version='<script></script>')
+        amo.log(amo.LOG.APPROVE_VERSION, addon, version)
+
+        log = ActivityLog.objects.get()
+        assert not '<script' in log.to_string(), (
+            'Unescaped html detected in log output.')
 
     def test_version_log_transformer(self):
         addon = Addon.objects.get()
