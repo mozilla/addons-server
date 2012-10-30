@@ -1,10 +1,11 @@
+import datetime
 import json
 import logging
 from optparse import make_option
-import datetime
+import re
+import sys
 import traceback
 import time
-import sys
 
 import requests
 from celery_tasktree import task_with_callbacks, TaskTree
@@ -87,7 +88,11 @@ def call_es(path, *args, **kw):
     res = method(url(path), *args, **kw)
 
     if res.status_code not in status:
-        raise CommandError(res.content)
+        error = CommandError('Call on %r failed.\n%s' % (path, res.content))
+        error.content = res.content
+        error.json = res.json
+        raise error
+
     return res
 
 
@@ -115,13 +120,34 @@ def run_aliases_actions(actions):
     """
     # we also want to rename or delete the current index in case we have one
     dump = []
+    aliases = []
 
     for action, index, alias in actions:
         dump.append({action: {'index': index, 'alias': alias}})
 
+        if action == 'add':
+            aliases.append(alias)
+
+    post_data = json.dumps({'actions': dump})
+
     # now call the server
     log('Rebuilding aliases')
-    call_es('_aliases', json.dumps(dict(actions=dump)), method='POST')
+    try:
+        call_es('_aliases', post_data, method='POST')
+    except CommandError, e:
+        # XXX Did not find a better way to extract the info
+        error = e.json['error']
+        res = re.search('(Invalid alias name \[)(?P<index>.*?)(\])', error)
+        if res is None:
+            raise
+
+        index = res.groupdict()['index']
+        log('Removing index %r' % index)
+        call_es(index, method='DELETE')
+
+        # Now trying again
+        log('Trying again to rebuild the aliases')
+        call_es('_aliases', post_data, method='POST')
 
 
 @task_with_callbacks
@@ -307,6 +333,12 @@ class Command(BaseCommand):
 
             # create a new index, using the alias name with a timestamp
             new_index = timestamp_index(alias)
+
+            # if old_index is None that could mean it's a full index
+            # In that case we want to continue index in it
+            future_alias = url('/%s' % alias)
+            if requests.head(future_alias).status_code == 200:
+                old_index = alias
 
             # flag the database
             step1 = tree.add_task(flag_database, args=[new_index, old_index,
