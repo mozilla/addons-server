@@ -1,5 +1,15 @@
 (function() {
-    // Tabbable
+    // Creates devhubby tabs on elements with class="tabbable".
+    /* The DOM structure expected is:
+       <node class="tabbable">
+         <node class="tab active">
+           <h2><a href="#">Tab A</a></h2>
+         </node>
+         <node class="tab">
+           <h2><a href="#">Tab B</a></h2>
+         </node>
+       </node>
+    */
     $('.tabbable').each(function() {
         var $this = $(this);
         $this.find('.active h2').addClass('active');
@@ -7,7 +17,7 @@
         var $headers = $this.find('.tab h2').detach(),
             numTabs = $headers.length;
 
-        if (numTabs === (0 || 1)) {
+        if (numTabs < 2) {
             return;
         }
 
