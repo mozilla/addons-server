@@ -58,7 +58,7 @@ function initValidator($doc) {
     }
 
     ResultsTier.prototype.summarize = function() {
-        var sm = resultSummary(this.counts.error, this.counts.warning),
+        var sm = resultSummary(this.counts.error, this.counts.warning, this.testsWereRun),
             resultClass, summaryMsg;
         $('.result-summary', this.$dom).css('visibility', 'visible')
                                        .empty().text(sm);
@@ -90,7 +90,7 @@ function initValidator($doc) {
     ResultsTier.prototype.topSummary = function() {
         var $top = $('[class~="test-tier"]' +
                      '[data-tier="' + this.tierId + '"]', this.$suite),
-            summaryMsg = resultSummary(this.counts.error, this.counts.warning);
+            summaryMsg = resultSummary(this.counts.error, this.counts.warning, this.testsWereRun);
 
         $('.tier-summary', $top).text(summaryMsg);
         $top.removeClass('ajax-loading', 'tests-failed', 'tests-passed',
@@ -358,7 +358,10 @@ function initValidator($doc) {
         }
     }
 
-    function resultSummary(numErrors, numWarnings) {
+    function resultSummary(numErrors, numWarnings, testsWereRun) {
+        if (!testsWereRun) {
+            return gettext('These tests were not run.');
+        }
         // e.g. '1 error, 3 warnings'
         var errors = format(ngettext('{0} error', '{0} errors', numErrors),
                             [numErrors]),
