@@ -512,6 +512,14 @@ class VIDEO_ERROR(_LOG):
     short = _(u'Video removed')
 
 
+class REREVIEW_DEVICES_ADDED(_LOG):
+    id = 75
+    format = _(u'{addon} re-review because of new device(s) added.')
+    short = _(u'Device(s) Added')
+    keep = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

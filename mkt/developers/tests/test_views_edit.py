@@ -24,6 +24,7 @@ from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
+from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
 from users.models import UserProfile
 
@@ -384,20 +385,24 @@ class TestEditBasic(TestEdit):
             DEVICE_TYPES[self.dtype].name)
 
     def test_edit_devices_add(self):
+        eq_(RereviewQueue.objects.count(), 0)
         new = DEVICE_TYPES.keys()[1]
         data = self.get_dict()
         data['device_types'] = [self.dtype, new]
         self.client.post(self.edit_url, data)
         devicetypes = self.get_webapp().device_types
         eq_([d.id for d in devicetypes], list(data['device_types']))
+        eq_(RereviewQueue.objects.count(), 1)
 
     def test_edit_devices_addandremove(self):
+        eq_(RereviewQueue.objects.count(), 0)
         new = DEVICE_TYPES.keys()[1]
         data = self.get_dict()
         data['device_types'] = [new]
         self.client.post(self.edit_url, data)
         devicetypes = self.get_webapp().device_types
         eq_([d.id for d in devicetypes], list(data['device_types']))
+        eq_(RereviewQueue.objects.count(), 1)
 
     def test_edit_devices_add_required(self):
         data = self.get_dict()

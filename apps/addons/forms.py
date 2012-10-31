@@ -24,6 +24,7 @@ from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
+from editors.models import RereviewQueue
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -224,14 +225,24 @@ class DeviceTypeForm(forms.Form):
     def save(self, addon):
         new_types = self.cleaned_data['device_types']
         old_types = [x.id for x in addon.device_types]
-        # Add new AddonDeviceTypes.
-        for d in set(new_types) - set(old_types):
-            AddonDeviceType(addon=addon, device_type=d).save()
 
-        # Remove old AddonDeviceTypes.
-        for d in set(old_types) - set(new_types):
+        added_devices = set(new_types) - set(old_types)
+        removed_devices = set(old_types) - set(new_types)
+
+        for d in added_devices:
+            AddonDeviceType(addon=addon, device_type=d).save()
+        for d in removed_devices:
             AddonDeviceType.objects.filter(
                 addon=addon, device_type=d).delete()
+
+        # Send app to re-review queue if public and new devices are added.
+        if added_devices and self.addon.status == amo.STATUS_PUBLIC:
+            msg = _(u'Device(s) changed: %s' % (
+                ', '.join([u'Added %s' % unicode(amo.DEVICE_TYPES[d].name)
+                           for d in added_devices] +
+                          [u'Removed %s' % unicode(amo.DEVICE_TYPES[d].name)
+                           for d in removed_devices])))
+            RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
 
 
 class CategoryForm(forms.Form):
