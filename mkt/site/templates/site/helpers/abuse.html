@@ -1,26 +1,5 @@
 {{ csrf() }}
 {{ form_field(abuse_form.text, req=False, label=None, tag='p') }}
-{% if abuse_form.has_recaptcha %}
-{% from 'includes/forms.html' import required %}
-  <div id="recap-container">
-    <label for="recaptcha_response_field">
-      {{ _('Are you human?') }}
-      <a href="#" id="recaptcha_help">{{ _("What's this?") }}</a>
-    </label>
-    <div class="recaptcha-container">
-      {% trans %}
-        <p>
-          Please enter <strong>both words</strong> below,
-          <strong>separated by a space</strong>.
-        </p>
-        <p>
-          If this is hard to read, you can
-          <a href="#" id="recaptcha_different">try different words</a> or
-          <a href="#" id="recaptcha_audio">listen to something</a> instead.
-        </p>
-      {% endtrans %}
-      <div id="recaptcha_div"></div>
-    </div>
-  </div>
-  {{ abuse_form.recaptcha.errors }}
-{% endif %}
+{% with form=abuse_form %}
+  {% include 'site/helpers/recaptcha.html' %}
+{% endwith %}

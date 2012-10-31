@@ -222,7 +222,7 @@ def account_settings(request):
 
 @anonymous_csrf
 def account_feedback(request):
-    form = forms.FeedbackForm(request.POST or None)
+    form = forms.FeedbackForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         feedback = form.cleaned_data['feedback']
         platform = form.cleaned_data['platform']

@@ -890,6 +890,7 @@ class TestFeedback(amo.tests.TestCase):
         assert 'test-agent' in msg.body
         assert '127.0.0.1' in msg.body
 
+    @mock.patch('django.conf.settings.RECAPTCHA_PRIVATE_KEY', '')
     def test_feedback_anon(self):
         """Check that anonymous feedback send OK emails."""
         res = self.client.post(self.url, data={'feedback': 'hawt'},
@@ -901,6 +902,13 @@ class TestFeedback(amo.tests.TestCase):
         assert 'hawt' in msg.body
         assert 'Anonymous' in msg.body
         assert '127.0.0.1' in msg.body
+
+    def test_feedback_anon_recaptcha(self):
+        """Check that anonymous feedback requires a captcha"""
+        res = self.client.post(self.url, data={'feedback': 'hawt'},
+                               HTTP_USER_AGENT='test-agent')
+        eq_(res.status_code, 200)
+        assert res.context['form'].errors['recaptcha']
 
     def test_feedback_empty(self):
         res = self.client.post(self.url, data={'feedback': ''})

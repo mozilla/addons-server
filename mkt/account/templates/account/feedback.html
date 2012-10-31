@@ -17,6 +17,8 @@
           {{ form.feedback }}
         </div>
 
+        {% include 'site/helpers/recaptcha.html' %}
+
         {{ form.platform }}
         {{ form.chromeless }}
 
