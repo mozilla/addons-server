@@ -12,6 +12,7 @@ SITE_URL = 'https://addons.mozilla.org'
 LOCAL_MIRROR_URL = '%s/_files' % SITE_URL
 SERVICES_URL = 'https://services.addons.mozilla.org'
 STATIC_URL = 'https://addons.cdn.mozilla.net/'
+MIRROR_URL = STATIC_URL + 'storage/public-staging'
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
