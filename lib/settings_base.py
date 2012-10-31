@@ -952,9 +952,9 @@ COLLECTION_ICON_URL = (STATIC_URL +
         '/img/uploads/collection_icons/%s/%s.png?m=%s')
 NEW_PERSONAS_IMAGE_URL = (STATIC_URL +
                           '/img/uploads/personas/%(id)d/%(file)s')
-PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
+PERSONAS_IMAGE_URL = ('http://getpersonas.cdn.mozilla.net/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_IMAGE_URL_SSL = ('https://www.getpersonas.com/static/'
+PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.cdn.mozilla.net/static/'
                           '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_USER_ROOT = 'http://www.getpersonas.com/gallery/designer/%s'
 PERSONAS_UPDATE_URL = 'https://www.getpersonas.com/update_check/%d'
