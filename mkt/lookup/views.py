@@ -16,6 +16,7 @@ from amo.utils import paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
+from elasticutils.contrib.django import S
 from market.models import AddonPaymentData, Refund
 from mkt.account.utils import purchase_list
 from mkt.webapps.models import Installed
@@ -47,8 +48,8 @@ def user_summary(request, user_id):
     user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
                               .order_by('-created'))
     user_addons = paginate(request, user_addons, per_page=15)
-    paypal_ids = set(user.addons.exclude(paypal_id='').values_list('paypal_id',
-                                                                   flat=True))
+    paypal_ids = set(user.addons.exclude(paypal_id='')
+                                .values_list('paypal_id', flat=True))
 
     payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
                     .values(*AddonPaymentData.address_fields())
@@ -135,17 +136,13 @@ def user_activity(request, user_id):
 
 def _expand_query(q, fields):
     query = {}
-    rules = {
-        'text': {
-            'query': q, 'boost': 4, 'type': 'phrase'},
-        'text': {
-            'query': q, 'boost': 3, 'analyzer': 'standard'},
-        'fuzzy': {
-            'value': q, 'boost': 2, 'prefix_length': 4},
-        'startswith': {
-            'value': q, 'boost': 1.5},
-    }
-    for k, v in rules.iteritems():
+    rules = [
+        ('text', {'query': q, 'boost': 4, 'type': 'phrase'}),
+        ('text', {'query': q, 'boost': 3, 'analyzer': 'standard'}),
+        ('fuzzy', {'value': q, 'boost': 2, 'prefix_length': 4}),
+        ('startswith', {'value': q, 'boost': 1.5}),
+    ]
+    for k, v in rules:
         for field in fields:
             query['%s__%s' % (field, k)] = v
     return query
@@ -189,9 +186,9 @@ def app_search(request):
         qs = (Addon.objects.filter(type=addon_type, guid=q)
                            .values(*non_es_fields))
         if not qs.count():
-            qs = (Addon.search().query(type=addon_type,
-                                       or_=_expand_query(q, fields))
-                                .values_dict(*fields))[:20]
+            qs = (S(Addon).query(type=addon_type,
+                                 or_=_expand_query(q, fields))
+                          .values_dict(*fields)[:20])
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.

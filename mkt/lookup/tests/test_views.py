@@ -267,6 +267,11 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         data = self.search(q='steamcube')
         self.verify_result(data)
 
+    def test_by_name_unreviewed(self):
+        # Just the same as the above test, but with an unreviewed app.
+        self.app.status = amo.STATUS_UNREVIEWED
+        self.test_by_name_part()
+
     def test_multiword(self):
         self.app.name = 'Firefox Marketplace'
         self.app.save()
