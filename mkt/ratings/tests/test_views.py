@@ -418,7 +418,7 @@ class TestCreate(ReviewTest):
         self.webapp.update(total_reviews=2)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('.average-rating').text(),
-            'Rated 4 out of 5 stars 2 reviews')
+            '2 reviews Rated 4 out of 5 stars')
 
     def test_review_link_singular(self):
         # We have one review.
@@ -426,7 +426,7 @@ class TestCreate(ReviewTest):
         self.webapp.update(total_reviews=1)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('.average-rating').text(),
-            'Rated 4 out of 5 stars 1 review')
+            '1 review Rated 4 out of 5 stars')
 
     def test_support_link(self):
         # Test no link if no support url or contribution.
