@@ -116,7 +116,7 @@ def reply(request, addon, review_id):
                          _('Your reply was successfully added.') if new else
                          _('Your reply was successfully updated.'))
 
-    return http.HttpResponse()
+    return redirect(addon.get_ratings_url('list'))
 
 
 @addon_view
