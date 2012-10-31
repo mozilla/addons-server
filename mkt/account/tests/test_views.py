@@ -907,7 +907,6 @@ class TestFeedback(amo.tests.TestCase):
         """Check that anonymous feedback requires a captcha"""
         res = self.client.post(self.url, data={'feedback': 'hawt'},
                                HTTP_USER_AGENT='test-agent')
-        eq_(res.status_code, 200)
         assert res.context['form'].errors['recaptcha']
 
     def test_feedback_empty(self):
