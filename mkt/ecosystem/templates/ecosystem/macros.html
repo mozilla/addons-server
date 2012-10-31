@@ -143,6 +143,14 @@
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation',
+                 page='packaged_apps') }}"
+                 {% if section == 'packaged_apps' %}class="selected"{% endif %}
+                 title="{{ _('Packaged Apps') }}">
+                {{ _('Packaged Apps') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
                  page='mkt_submission') }}"
                  {% if section == 'mkt_submission' %}
                    class="selected"{% endif %}

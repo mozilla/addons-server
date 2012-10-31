@@ -125,7 +125,12 @@ tutorials = [
     {
         'title': 'Custom Elements',
         'name': 'custom_elements',
-        'mdn': 'https://developer.mozilla.org/en-US/docs/Apps/Custom_Elements?raw=1&macros=true'
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Custom_Elements?raw=1&macros=true'
+    },
+    {
+        'title': 'Packaged Apps',
+        'name': 'packaged_apps',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Packaged_apps?raw=1&macros=true'
     }
 ]
 
