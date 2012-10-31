@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
 import time
 import urlparse
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
@@ -14,23 +14,23 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
-from amo.tests import app_factory, check_links, formset, initial
+import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
+from amo.tests import app_factory, check_links, formset, initial
+from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from applications.models import Application
 from devhub.models import ActivityLog
-from editors.models import EditorSubscription, EventLog
+from editors.models import EditorSubscription, EventLog, ReviewerScore
 from files.models import File
-import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
-from versions.models import Version, AppVersion, ApplicationsVersions
+from versions.models import ApplicationsVersions, AppVersion, Version
 from zadmin.models import get_config, set_config
 
-from . test_models import create_addon_file
+from .test_models import create_addon_file
 
 
 class EditorTest(amo.tests.TestCase):
@@ -868,6 +868,12 @@ class TestModeratedQueue(QueueTest):
         rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
         eq_(rows.length, 1)
 
+    def test_skip_score(self):
+        self.create_switch('reviewer-incentive-points')
+        self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
+        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_REVIEW).count(),
+            0)
+
     def get_logs(self, action):
         return ActivityLog.objects.filter(action=action.id)
 
@@ -888,6 +894,12 @@ class TestModeratedQueue(QueueTest):
         # Make sure it was actually deleted.
         eq_(Review.objects.filter(addon=1865).count(), 1)
 
+    def test_remove_score(self):
+        self.create_switch('reviewer-incentive-points')
+        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_REVIEW).count(),
+            1)
+
     def test_keep(self):
         """Make sure the editor tools can remove flags and keep a review."""
         self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
@@ -905,6 +917,12 @@ class TestModeratedQueue(QueueTest):
 
         # ...but it's no longer flagged.
         eq_(review.filter(editorreview=1).count(), 0)
+
+    def test_keep_score(self):
+        self.create_switch('reviewer-incentive-points')
+        self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
+        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_REVIEW).count(),
+            1)
 
     def test_queue_count(self):
         self._test_queue_count(4, 'Moderated Review', 1)

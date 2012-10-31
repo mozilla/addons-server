@@ -452,6 +452,19 @@ class ReviewerScore(amo.models.ModelBase):
                     score, user, amo.REVIEWED_CHOICES[event], addon.id))
 
     @classmethod
+    def award_moderation_points(cls, user, addon, review_id):
+        """Awards points to user based on moderated review."""
+        if not waffle.switch_is_active('reviewer-incentive-points'):
+            return
+        event = amo.REVIEWED_REVIEW
+        score = amo.REVIEWED_SCORES.get(event)
+        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
+        cls.get_key(invalidate=True)
+        user_log.info(
+            u'Awarding %s points to user %s for "%s" for review %s' % (
+                score, user, amo.REVIEWED_CHOICES[event], review_id))
+
+    @classmethod
     def get_total(cls, user):
         """Returns total points by user."""
         key = cls.get_key('get_total:%s' % user.id)

@@ -319,7 +319,8 @@ def queue_moderated(request):
     page = paginate(request, rf, per_page=20)
     flags = dict(ReviewFlag.FLAGS)
     reviews_formset = ReviewFlagFormSet(request.POST or None,
-                                        queryset=page.object_list)
+                                        queryset=page.object_list,
+                                        request=request)
 
     if reviews_formset.is_valid():
         reviews_formset.save()

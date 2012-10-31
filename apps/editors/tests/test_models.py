@@ -412,6 +412,12 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(ReviewerScore.objects.all()[0].score,
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
+    def test_award_moderation_points(self):
+        ReviewerScore.award_moderation_points(self.user, self.addon, 1)
+        score = ReviewerScore.objects.all()[0]
+        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_REVIEW))
+        eq_(score.note_key, amo.REVIEWED_REVIEW)
+
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()

@@ -1,5 +1,5 @@
-from urllib2 import unquote
 import re
+from urllib2 import unquote
 
 from django import forms
 from django.forms.models import modelformset_factory
@@ -10,9 +10,10 @@ from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
 import amo
-from amo.utils import raise_required
 import reviews
-from .models import ReviewFlag, Review
+from .models import Review, ReviewFlag
+from amo.utils import raise_required
+from editors.models import ReviewerScore
 
 
 class ReviewReplyForm(forms.Form):
@@ -69,6 +70,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
         self.form = ModerateReviewFlagForm
+        self.request = kwargs.pop('request', None)
         super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
 
     def save(self):
@@ -94,6 +96,9 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          addon_id=addon.id,
                                          addon_title=unicode(addon.name),
                                          is_flagged=is_flagged))
+                    if self.request:
+                        ReviewerScore.award_moderation_points(
+                            self.request.amo_user, addon, review_id)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
@@ -103,6 +108,9 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          addon_id=addon.id,
                                          addon_title=unicode(addon.name),
                                          is_flagged=is_flagged))
+                    if self.request:
+                        ReviewerScore.award_moderation_points(
+                            self.request.amo_user, addon, review.id)
 
 
 class ModerateReviewFlagForm(happyforms.ModelForm):
