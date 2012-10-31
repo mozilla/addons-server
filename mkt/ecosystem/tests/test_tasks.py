@@ -30,6 +30,8 @@ def fake_page(url):
                 <section id='pageText'>
                     <b>hi</b><script>alert('xss');</script>
                     <a href="/relative/url">some MDN link</a>
+                    <a href="http://www.youtube.com/1234"
+                       class="video-item">Some Youtube link</a>
                     <img src="/relative/url">
                 </section>"""
 
@@ -52,7 +54,7 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_get_page_content(self):
         content = _fetch_mdn_page(test_items[0]['url'])
-        eq_(469, len(content))
+        eq_(553, len(content))
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_refresh_mdn_cache(self):
@@ -91,6 +93,16 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
         content = _fetch_mdn_page(test_items[0]['url'])
         assert '<img src="/relative/url">' not in content
         assert('<img src="https://developer.mozilla.org/relative/url'
+                in content)
+
+    @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
+    def test_returns_embedded_video(self):
+        content = _fetch_mdn_page(test_items[0]['url'])
+        assert('<a href="http://www.youtube.com/1234" '
+                'class="video-embed">Some Youtube link</a>'
+                not in content)
+        assert('<iframe frameborder="0" width="640" height="360" '
+               'src="http://www.youtube.com/1234"'
                 in content)
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=raise_exception)

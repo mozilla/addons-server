@@ -43,6 +43,8 @@ ALLOWED_ATTRIBUTES.update(dict((x, ['id', ]) for x in (
     'progress', 'audio', 'video', 'details', 'datagrid', 'datalist', 'table',
     'address'
 )))
+VIDEO_HEIGHT = 360
+VIDEO_WIDTH = 640
 
 tutorials = [
     {
@@ -183,7 +185,10 @@ def _fetch_mdn_page(url):
 
     root = pq(data)
     anchors = root.find('a')
+    videos = root.find('.video-item')
     images = root.find('img')
+    video_frame = ('<iframe frameborder="0" width="%d" '
+                   'height="%d" src="%s"></iframe>')
 
     if anchors:
         # We only want anchors that have an href attribute available.
@@ -205,6 +210,13 @@ def _fetch_mdn_page(url):
         )
         image_links.each(lambda e: e.attr(
             'src', 'https://developer.mozilla.org%s' % e.attr('src'))
+        )
+
+    for video in videos:
+        video = pq(video)
+        video.replaceWith(pq(video_frame % (VIDEO_WIDTH,
+                                            VIDEO_HEIGHT,
+                                            video.attr('href')))
         )
 
     return str(root)
