@@ -1673,12 +1673,23 @@ class TestAddonFromUpload(UploadTest):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
                     open(self.manifest('mozball.webapp'))) as (tmp, mf):
             mf = json.load(mf)
+            mf['default_locale'] = 'es'
+            tmp.write(json.dumps(mf))
+            tmp.flush()
+            upload = self.get_upload(abspath=tmp.name)
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'es')
+
+    def test_webapp_default_locale_unsupported(self):
+        with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
+                    open(self.manifest('mozball.webapp'))) as (tmp, mf):
+            mf = json.load(mf)
             mf['default_locale'] = 'gb'
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
         addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.default_locale, 'gb')
+        eq_(addon.default_locale, 'en-US')
 
     def test_browsing_locale_does_not_override(self):
         translation.activate('gb')
