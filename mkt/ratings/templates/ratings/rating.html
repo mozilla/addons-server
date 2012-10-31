@@ -20,7 +20,7 @@
       </h3>
     {% endif %}
     {% if not is_reply %}
-      {{ review.rating|stars }}
+      {{ review.rating|stars(large=True) }}
     {% endif %}
     <span class="byline">
       {# TODO: Re-link user profile pages if desktop implements them. #}

@@ -20,7 +20,6 @@
         </ul>
         <div class="{{ 'split' if can_review else 'full' }}">
           <a class="fatbutton average-rating" href="{{ product.get_ratings_url() }}">
-            {{ product.average_rating|float|stars }}
             <span>
               {% trans cnt=product.total_reviews, num=product.total_reviews|numberfmt %}
                 {{ num }} review
@@ -28,6 +27,7 @@
                 {{ num }} reviews
               {% endtrans %}
             </span>
+            {{ product.average_rating|float|stars(large=True) }}
           </a>
         </div>
         {# TODO: Expose maybe sweet ratings breakdown later. #}
