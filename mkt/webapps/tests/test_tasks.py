@@ -1,4 +1,3 @@
-from collections import Counter
 import json
 import os
 
@@ -186,7 +185,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         retry.assert_called_with(
             args=([self.addon.pk,],),
             kwargs={'check_hash': True,
-                    'retries': Counter({self.addon.pk: 1})},
+                    'retries': {self.addon.pk: 1}},
             countdown=3600)
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')

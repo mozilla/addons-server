@@ -1,4 +1,3 @@
-import collections
 import hashlib
 import json
 import logging
@@ -62,7 +61,7 @@ def update_manifests(ids, **kw):
     task_log.info('[%s@%s] Update manifests.' %
                   (len(ids), update_manifests.rate_limit))
     check_hash = kw.pop('check_hash', True)
-    retries = collections.Counter(kw.pop('retries', {}))
+    retries = kw.pop('retries', {})
     # Since we'll be logging the updated manifest change to the users log,
     # we'll need to log in as user.
     amo.set_user(get_task_user())
@@ -93,7 +92,7 @@ def _update_manifest(id, check_hash, failed_fetches):
         msg = u'Failed to get manifest from %s. Error: %s' % (
             webapp.manifest_url, e.message)
         _log(webapp, msg, rereview=True, exc_info=True)
-        failed_fetches[id] += 1
+        failed_fetches[id] = failed_fetches.get(id, 0) + 1
         if failed_fetches[id] >= 3:
             _log(webapp, msg, rereview=True, exc_info=True)
             RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
