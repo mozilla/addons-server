@@ -438,6 +438,12 @@ def _check_firefox(ua):
     return need_firefox, need_upgrade
 
 
+@register.filter
+def mkt_paginator(pager):
+    t = env.get_template('site/paginator.html')
+    return jinja2.Markup(t.render(pager=pager))
+
+
 @register.function
 @jinja2.contextfunction
 def allow_installs(context):

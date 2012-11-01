@@ -114,7 +114,7 @@
       <ol class="listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
       </ol>
-      {{ pager|impala_paginator }}
+      {{ pager|mkt_paginator }}
     {% else %}
       {{ no_results() }}
     {% endif %}
