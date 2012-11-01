@@ -52,11 +52,6 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
             item['url'] = item['mdn'] % {'locale': 'en-US'}
 
     @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
-    def test_get_page_content(self):
-        content = _fetch_mdn_page(test_items[0]['url'])
-        eq_(588, len(content))
-
-    @mock.patch('mkt.ecosystem.tasks._get_page', new=fake_page)
     def test_refresh_mdn_cache(self):
         _update_mdn_items(test_items)
         eq_('test', MdnCache.objects.get(name=test_items[0]['name'],
