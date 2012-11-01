@@ -193,7 +193,7 @@ def _fetch_mdn_page(url):
     videos = root.find('.video-item')
     images = root.find('img')
     video_frame = ('<iframe frameborder="0" width="%d" '
-                   'height="%d" src="%s"></iframe>')
+                   'height="%d" src="%s">%s</iframe>')
 
     if anchors:
         # We only want anchors that have an href attribute available.
@@ -221,6 +221,7 @@ def _fetch_mdn_page(url):
         video = pq(video)
         video.replaceWith(pq(video_frame % (VIDEO_WIDTH,
                                             VIDEO_HEIGHT,
+                                            video.attr('href'),
                                             video.attr('href')))
         )
 
