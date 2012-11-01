@@ -2,6 +2,7 @@
 import datetime
 import json
 import os
+import tempfile
 from contextlib import contextmanager
 from decimal import Decimal
 
@@ -31,6 +32,7 @@ from devhub.models import UserLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
+from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
@@ -1420,6 +1422,31 @@ class TestUpload(BaseUploadTest):
         r = self.client.post(self.url, {'upload': data})
         # If this is broke, we'll get a traceback.
         eq_(r.status_code, 302)
+
+    @mock.patch('mkt.constants.MAX_PACKAGED_APP_SIZE', 1024)
+    @mock.patch('mkt.developers.tasks.validator')
+    def test_fileupload_too_big(self, validator):
+        with tempfile.NamedTemporaryFile(delete=False) as tf:
+            name = tf.name
+            tf.write('x' * (MAX_PACKAGED_APP_SIZE + 1))
+
+        with open(name) as tf:
+            r = self.client.post(self.url, {'upload': tf})
+
+        os.unlink(name)
+
+        assert not validator.called, 'Validator erroneously invoked'
+
+        # Test that we get back a validation failure for the upload.
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('mkt.developers.upload_detail',
+                                    args=[upload.uuid, 'json']))
+
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        assert 'validation' in data, data
+        assert 'success' in data['validation'], data
+        assert not data['validation']['success'], data['validation']
 
     @attr('validator')
     def test_fileupload_validation(self):

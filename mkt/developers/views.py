@@ -12,6 +12,7 @@ from django.core.exceptions import PermissionDenied
 from django.db import models, transaction
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404, redirect
+from django.template.defaultfilters import filesizeformat
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
 
@@ -54,7 +55,7 @@ from users.views import _login
 from versions.models import Version
 
 from mkt.api.models import Access, generate
-from mkt.constants import APP_IMAGE_SIZES, regions
+from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE, regions
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, CategoryForm,
@@ -856,7 +857,21 @@ def upload(request, addon_slug=None, is_standalone=False):
     if request.user.is_authenticated():
         fu.user = request.amo_user
         fu.save()
-    tasks.validator.delay(fu.pk)
+
+    if filedata.size > MAX_PACKAGED_APP_SIZE:
+        fu.validation = json.dumps(
+            {'errors': 1,
+             'success': False,
+             'messages': [{'type': 'error',
+                           'message': [
+                               'Packaged app too large for submission.',
+                               'Packages must be less than %s.' %
+                                   filesizeformat(MAX_PACKAGED_APP_SIZE)],
+                           'tier': 1}]})
+        fu.save()
+    else:
+        tasks.validator.delay(fu.pk)
+
     if addon_slug:
         return redirect('mkt.developers.upload_detail_for_addon',
                         addon_slug, fu.pk)

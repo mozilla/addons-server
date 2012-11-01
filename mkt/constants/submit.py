@@ -40,3 +40,5 @@ APP_PREVIEW_SIZES = [
     (180, 270, 'mobile'),
     (700, 1050, 'full'),  # Because it's proportional, that's why.
 ]
+
+MAX_PACKAGED_APP_SIZE = 50 * 1024 * 1024  # 50MB
