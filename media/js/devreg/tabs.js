@@ -14,12 +14,14 @@
         var $this = $(this);
         $this.find('.active h2').addClass('active');
 
-        var $headers = $this.find('.tab h2').detach(),
+        var $headers = $this.find('.tab h2'),
             numTabs = $headers.length;
 
         if (numTabs < 2) {
             return;
         }
+
+        $headers.detach();
 
         var w = Math.floor(100 / numTabs),
             $hgroup = $('<hgroup></hgroup>');
@@ -44,6 +46,6 @@
             });
         });
 
-        $this.trigger('tabs-setup');
+        $this.addClass('initialized').trigger('tabs-setup');
     });
 })();

@@ -3,7 +3,6 @@
 .tabbable {
     position: relative;
     margin-top: 52px;
-    .border-radius(0 0 5px 5px);
     hgroup {
         position: absolute;
         top: -44px;
@@ -47,5 +46,8 @@
         &.active {
             display: block;
         }
+    }
+    &.initialized {
+        .border-radius(0 0 5px 5px);
     }
 }
