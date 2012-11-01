@@ -1,6 +1,6 @@
 from lib.settings_base import *
 from mkt.settings import *
-from settings_local_base import *
+from settings_base import *
 
 from .. import splitstrip
 import private_mkt
