@@ -18,7 +18,7 @@ from amo.decorators import no_login_required, post_required, write
 from lib.pay_server import client
 from paypal import paypal_log_cef
 from stats.db import StatsDictField
-from stats.models import Contribution, ContributionError, SubscriptionEvent
+from stats.models import Contribution, ContributionError
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -177,12 +177,6 @@ def _paypal(request):
                "Failing." % paypal_response)
         _log_error_with_data(msg, post)
         return http.HttpResponseForbidden('Invalid confirmation')
-
-    # Cope with subscription events.
-    if post.get('txn_type', '').startswith('subscr_'):
-        SubscriptionEvent.objects.create(post_data=php.serialize(post))
-        paypal_log.info('Subscription created: %s' % post.get('txn_id', ''))
-        return http.HttpResponse('Success!')
 
     payment_status = post.get('payment_status', '').lower()
     if payment_status != 'completed':

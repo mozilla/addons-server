@@ -386,14 +386,6 @@ class Contribution(amo.models.ModelBase):
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
 
 
-class SubscriptionEvent(ModelBase):
-    """Save subscription info for future processing."""
-    post_data = StatsDictField()
-
-    class Meta:
-        db_table = 'subscription_events'
-
-
 class GlobalStat(caching.base.CachingMixin, models.Model):
     name = models.CharField(max_length=255)
     count = models.IntegerField()

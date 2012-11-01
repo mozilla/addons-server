@@ -15,7 +15,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from market.models import Price
-from stats.models import SubscriptionEvent, Contribution
+from stats.models import Contribution
 from users.models import UserProfile
 from paypal import views, PaypalError
 from paypal.decorators import handle_paypal_error
@@ -236,12 +236,6 @@ class TestPaypal(PaypalTest):
         urlopen.return_value = self.urlopener('VERIFIED')
         response = self.client.post(self.url)
         eq_(response.status_code, 200)
-
-    def test_subscription_event(self, urlopen):
-        urlopen.return_value = self.urlopener('VERIFIED')
-        response = self.client.post(self.url, {'txn_type': 'subscr_xxx'})
-        eq_(response.status_code, 200)
-        eq_(SubscriptionEvent.objects.count(), 1)
 
     def test_mail(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
