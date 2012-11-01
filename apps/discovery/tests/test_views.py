@@ -289,9 +289,6 @@ class TestPromos(amo.tests.TestCase):
         eq_(r_mac.status_code, 200)
         eq_(r_darwin.status_code, 200)
         eq_(r_mac.content, r_darwin.content)
-        panels = pq(r_mac.content)('.panel')
-        eq_(panels.length, 1)
-        eq_(panels.find('.ryff').length, 1)
 
     def test_win(self):
         r_win = self.client.get(self.get_home_url(),
@@ -300,9 +297,6 @@ class TestPromos(amo.tests.TestCase):
         eq_(r_win.status_code, 200)
         eq_(r_winnt.status_code, 200)
         eq_(r_win.content, r_winnt.content)
-        panels = pq(r_win.content)('.panel')
-        eq_(panels.length, 1)
-        eq_(panels.find('.ryff').length, 1)
 
     def test_hidden(self):
         DiscoveryModule.objects.all().delete()
@@ -538,7 +532,7 @@ class TestMonthlyPick(amo.tests.TestCase):
         mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
                                         image='http://mozilla.com')
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#monthly').length, 0)
+        eq_(r.content, '')
         mp.update(locale='')
 
         r = self.client.get(self.url)
@@ -575,7 +569,7 @@ class TestMonthlyPick(amo.tests.TestCase):
 
     def test_no_monthlypick(self):
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#monthly').length, 0)
+        eq_(r.content, '')
 
 
 class TestPaneMoreAddons(amo.tests.TestCase):
