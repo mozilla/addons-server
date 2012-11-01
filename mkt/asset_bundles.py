@@ -219,6 +219,7 @@ JS = {
     ),
     'mkt/consumer': (
         'js/lib/jquery-1.8.js',
+        'js/lib/jquery.cookie.js',
         'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/lib/format.js',

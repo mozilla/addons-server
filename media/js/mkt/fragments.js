@@ -175,6 +175,30 @@ function fragmentFilter(el) {
                 context: $('#page').data('context')
             });
 
+            // Do we have an instruction to clear a part of the fragment cache?
+            var bustCookie = $.cookie('fcbust');
+            if (bustCookie) {
+                // The `fcbust` is a JSON-encoded list of strings.
+                var decoded_prefixes = JSON.parse(bustCookie);
+
+                for (var i = 0; i < decoded_prefixes.length; i++) {
+                    var clear_prefix = decoded_prefixes[i];
+                    // Delete all the matching cache entries.
+                    _.each(fragmentCache, function(_, key) {
+                        // If the prefix doesn't match the cache entry, skip it.
+                        if (clear_prefix.length > key.length ||
+                            key.substr(0, clear_prefix.length) !== clear_prefix) {
+                            return;
+                        }
+
+                        delete fragmentCache[key];
+                    });
+                };
+
+                // Clear out the `fcbust` cookie.
+                $.cookie('fcbust', null);
+            }
+
             if (z.context.cache === 'cache') {
                 console.log('caching fragment');
                 fragmentCache[href] = content;
