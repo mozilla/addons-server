@@ -99,7 +99,7 @@ LOGGING['loggers'].update({
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
 REDIS_BACKENDS = {
-    'cache': private.REDIS_BACKEND,
+    'cache': REDIS_BACKEND,
     'cache_slave': private.REDIS_BACKENDS_CACHE_SLAVE,
     'master': private.REDIS_BACKENDS_MASTER,
     'slave': private.REDIS_BACKENDS_SLAVE,
