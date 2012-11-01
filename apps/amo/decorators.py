@@ -1,5 +1,6 @@
 import functools
 import json
+import types
 
 from django import http
 from django.conf import settings
@@ -224,3 +225,47 @@ def set_task_user(f):
             set_user(old_user)
         return result
     return wrapper
+
+
+def bust_fragments_on_post(url_prefix, bust_on_2xx=True, bust_on_3xx=True):
+    """
+    Set a cookie to bust the fragment cache for a specific URL prefix.
+
+    `url_prefix`
+        The URL prefix to set the cache-busting flag for. This can be a string
+        or a list of strings.
+    `bust_on_2xx`
+        If True (default), the cookie will be set when the page response is a
+        200.
+    `bust_on_3xx`
+        If True (default), the cookie will be set when the page response is a
+        300.
+    """
+
+    if isinstance(url_prefix, types.StringTypes):
+        url_prefix = [url_prefix]
+    prefix = json.dumps(url_prefix)
+
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(request, *args, **kwargs):
+            response = f(request, *args, **kwargs)
+
+            # This function only bust
+            if request.method != 'POST':
+                return response
+
+            status_code = response.status_code
+            status_code -= status_code % 100
+            # Ignore status codes that we don't plan on busting for.
+            if (status_code not in (200, 300, ) or
+                status_code == 200 and not bust_on_2xx or
+                status_code == 300 and not bust_on_3xx):
+                return response
+
+            # At this point, we know we're busting the fragment cache.
+            response.set_cookie('fcbust', prefix)
+
+            return response
+        return wrapper
+    return decorator
