@@ -47,7 +47,7 @@ def monitor(request, format=None):
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
             status, result = getattr(monitors, check)()
-        status_summary[check] = {'state': not status,
+        status_summary[check] = {'state': not status, # state is a string. If it is empty, that means everything is fine.
                                  'status': status}
         results['%s_results' % check] = result
         results['%s_timer' % check] = timer.ms
