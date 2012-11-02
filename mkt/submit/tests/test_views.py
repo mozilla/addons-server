@@ -546,6 +546,7 @@ class TestDetails(TestSubmit):
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'device_types': [self.dtype.id],
             'categories': [self.cat1.id],
+            'flash': 'checked',
         }
         # Add the required screenshot.
         data.update(self.preview_formset({
@@ -569,6 +570,7 @@ class TestDetails(TestSubmit):
             'summary': 'Hello!',
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
+            'uses_flash': 'True',
         }
         expected.update(expected)
 

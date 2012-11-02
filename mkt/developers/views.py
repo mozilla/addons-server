@@ -58,10 +58,10 @@ from mkt.api.models import Access, generate
 from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE, regions
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
-                                  AppFormSupport, CategoryForm,
-                                  ImageAssetFormSet, InappConfigForm,
-                                  PaypalSetupForm, PreviewFormSet, RegionForm,
-                                  trap_duplicate)
+                                  AppFormSupport, AppFormTechnical,
+                                  CategoryForm, ImageAssetFormSet,
+                                  InappConfigForm,PaypalSetupForm,
+                                  PreviewFormSet, RegionForm, trap_duplicate)
 from mkt.developers.models import AddonBlueViaConfig, BlueViaConfig
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
@@ -1061,7 +1061,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
               'media': AppFormMedia,
               'details': AppFormDetails,
               'support': AppFormSupport,
-              'technical': addon_forms.AddonFormTechnical,
+              'technical': AppFormTechnical,
               'admin': forms.AdminSettingsForm}
 
     if section not in models:

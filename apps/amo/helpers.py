@@ -423,7 +423,8 @@ def recaptcha(context, form):
 @register.filter
 def is_choice_field(value):
     try:
-        return isinstance(value.field.widget, CheckboxInput)
+        return (hasattr(value.field, 'choices') and
+                isinstance(value.field.widget, CheckboxInput))
     except AttributeError:
         pass
 

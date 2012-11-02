@@ -306,8 +306,20 @@ class AppDetailsBasicForm(AddonFormBasic):
         help_text=_lazy(u'The email address used by end users to contact you '
                          'with support issues and refund requests.'),
         widget=TransInput(attrs={'class': 'full'}))
+    flash = forms.BooleanField(required=False,
+        label=_lazy(u'Uses Flash:'),
+        help_text=_lazy(u'Whether or not this app should be excluded for '
+                        u'devices without Flash support.'))
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'description',
+        fields = ('flash', 'name', 'slug', 'summary', 'tags', 'description',
                   'privacy_policy', 'homepage', 'support_url', 'support_email')
+
+    def save(self, *args, **kw):
+        uses_flash = self.cleaned_data.get('flash')
+        af = self.instance.get_latest_file()
+        if af is not None:
+            af.update(uses_flash=bool(uses_flash))
+
+        return super(AppDetailsBasicForm, self).save(*args, **kw)

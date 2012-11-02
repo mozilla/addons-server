@@ -94,10 +94,11 @@ class TestEdit(amo.tests.TestCase):
         webapp = self.get_webapp()
         for k, v in data.iteritems():
             k = mapping.get(k, k)
-
             val = getattr(webapp, k, '')
             if callable(val):
                 val = val()
+            if val is None:
+                val = ''
 
             eq_(unicode(val), unicode(v))
 
@@ -1387,38 +1388,25 @@ class TestEditTechnical(TestEdit):
     def test_toggles(self):
         # Turn everything on.
         data = dict(developer_comments='Test comment!',
-                    external_software='on',
-                    site_specific='on',
-                    view_source='on')
-
+                    flash='checked')
         r = self.client.post(self.edit_url, formset(**data))
         self.assertNoFormErrors(r)
         expected = dict(developer_comments='Test comment!',
-                        external_software=True,
-                        site_specific=True,
-                        view_source=True)
+                        uses_flash=True)
         self.compare(expected)
 
         # And off.
         r = self.client.post(self.edit_url,
                              formset(developer_comments='Test comment!'))
-        expected.update(external_software=False,
-                        site_specific=False,
-                        view_source=False)
+        expected.update(uses_flash=False)
         self.compare(expected)
 
     def test_devcomment_optional(self):
-        data = dict(developer_comments='',
-                    external_software='on',
-                    site_specific='on',
-                    view_source='on')
+        data = dict(developer_comments='')
         r = self.client.post(self.edit_url, formset(**data))
         self.assertNoFormErrors(r)
 
-        expected = dict(developer_comments='',
-                        external_software=True,
-                        site_specific=True,
-                        view_source=True)
+        expected = dict(developer_comments='')
         self.compare(expected)
 
 
@@ -1583,42 +1571,6 @@ class TestAdminSettings(TestAdmin):
         eq_(txt,
             '%s - %s' % (RATINGS_BODIES[0].name,
                          RATINGS_BODIES[0].ratings[2].name))
-
-    def test_set_flash(self):
-        self.log_in_with('Apps:Configure')
-        r = self.client.post(self.edit_url,
-                         {'caption': 'x',
-                          'position': '1',
-                          'upload_hash': 'abcdef',
-                          'flash': 'checked'})
-        eq_(r.status_code, 200)
-        assert self.webapp.uses_flash
-
-    def test_unset_flash(self):
-        self.webapp.versions.latest().files.latest().update(uses_flash=True)
-        self.log_in_with('Apps:Configure')
-        r = self.client.post(self.edit_url,
-                         {'caption': 'x',
-                          'position': '1',
-                          'upload_hash': 'abcdef',
-                          'flash': ''})
-        eq_(r.status_code, 200)
-        assert not self.webapp.uses_flash
-
-    def test_flash_set_view(self):
-        self.log_in_with('Apps:ViewConfiguration')
-        self.webapp.versions.latest().files.latest().update(uses_flash=True)
-        r = self.client.get(self.url)
-        checkbox = pq(r.content)[0].xpath(
-            "//label[@for='flash']/../../td/input")[0]
-        eq_(checkbox.get('checked'), 'checked')
-
-    def test_flash_unset_view(self):
-        self.log_in_with('Apps:ViewConfiguration')
-        r = self.client.get(self.url)
-        checkbox = pq(r.content)[0].xpath(
-            "//label[@for='flash']/../../td/input")[0]
-        eq_(checkbox.get('checked'), None)
 
 
 class TestPromoUpload(TestAdmin):

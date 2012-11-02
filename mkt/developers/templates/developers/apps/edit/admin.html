@@ -102,28 +102,6 @@
             {% endif %}
           </td>
         </tr>
-        <tr>
-          <th>
-            <label for="flash">
-              {{ _('Uses Flash') }}
-              {{ tip(None,
-                     _('Whether or not this app should be excluded for devices without Flash support.')) }}
-            </label>
-          </th>
-          <td>
-            {% if editable and form %}
-              {{ form.flash }}
-              {{ form.flash.error }}
-            {% else %}
-            <input type="checkbox"
-                   {% if addon.uses_flash %}
-                   checked="checked"
-                   {% endif %}
-                   disabled="disabled">
-            {% endif %}
-          </td>
-        </tr>
-
       </tbody>
     </table>
     {% if editable %}

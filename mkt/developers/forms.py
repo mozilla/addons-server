@@ -333,7 +333,6 @@ class AdminSettingsForm(PreviewForm):
     app_ratings = forms.MultipleChoiceField(
         required=False,
         choices=RATINGS_BY_NAME)
-    flash = forms.BooleanField(required=False)
 
     class Meta:
         model = Preview
@@ -359,7 +358,6 @@ class AdminSettingsForm(PreviewForm):
                 rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
                 rs.append(ALL_RATINGS.index(rating))
             self.initial['app_ratings'] = rs
-            self.initial['flash'] = addon.uses_flash
 
     def clean_caption(self):
         return '__promo__'
@@ -983,3 +981,24 @@ class DevAgreementForm(happyforms.Form):
     def save(self):
         self.instance.read_dev_agreement = datetime.now()
         self.instance.save()
+
+
+class AppFormTechnical(addons.forms.AddonFormBase):
+    developer_comments = TransField(widget=TransTextarea, required=False)
+    flash = forms.BooleanField(required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('developer_comments',)
+
+    def __init__(self, *args, **kw):
+        super(AppFormTechnical, self).__init__(*args, **kw)
+        self.initial['flash'] = self.instance.uses_flash
+
+    def save(self, addon, commit=False):
+        uses_flash = self.cleaned_data.get('flash')
+        af = self.instance.get_latest_file()
+        if af is not None:
+            af.update(uses_flash=bool(uses_flash))
+
+        return super(AppFormTechnical, self).save(commit=True)
