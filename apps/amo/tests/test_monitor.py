@@ -47,7 +47,7 @@ class TestMonitor(amo.tests.TestCase):
     def test_public_cert_connection_error(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.side_effect = Exception
-        eq_(signer()[0][:25], 'Error on cracking receipt')
+        eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -55,7 +55,7 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = False
         cert_response.return_value.reason = 'Not Found'
-        eq_(signer()[0][:25], 'Error on cracking receipt')
+        eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -63,7 +63,7 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
         cert_response.return_value.json = None
-        eq_(signer()[0][:25], 'Error on cracking receipt')
+        eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -71,4 +71,4 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
         cert_response.return_value.json = {'foo': 1}
-        eq_(signer()[0][:25], 'Error on cracking receipt')
+        eq_(signer()[0][:29], 'Error on checking public cert')
