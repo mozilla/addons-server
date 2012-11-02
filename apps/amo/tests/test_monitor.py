@@ -21,18 +21,18 @@ class TestMonitor(amo.tests.TestCase):
     @patch('amo.monitors.receipt')
     def test_sign_fails(self, receipt):
         receipt.sign.side_effect = receipt.SigningError
-        eq_(signer()[0], False)
+        eq_(signer()[0][:16], 'Error on signing')
 
     @patch('amo.monitors.receipt')
     def test_crack_fails(self, receipt):
         receipt.crack.side_effect = ValueError
-        eq_(signer()[0], False)
+        eq_(signer()[0][:25], 'Error on cracking receipt')
 
     @patch('amo.monitors.receipt')
     def test_expire(self, receipt):
         now = time.time()
         receipt.crack.return_value = [{'exp': now + (3600 * 12)}, '']
-        eq_(signer()[0], False)
+        eq_(signer()[0][:21], 'Cert will expire soon')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -40,14 +40,14 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
         cert_response.return_value.json = {'jwk': []}
-        eq_(signer()[0], True)
+        eq_(signer()[0], '')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
     def test_public_cert_connection_error(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.side_effect = Exception
-        eq_(signer()[0], False)
+        eq_(signer()[0][:25], 'Error on cracking receipt')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -55,7 +55,7 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = False
         cert_response.return_value.reason = 'Not Found'
-        eq_(signer()[0], False)
+        eq_(signer()[0][:25], 'Error on cracking receipt')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -63,7 +63,7 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
         cert_response.return_value.json = None
-        eq_(signer()[0], False)
+        eq_(signer()[0][:25], 'Error on cracking receipt')
 
     @patch('requests.get')
     @patch('amo.monitors.receipt')
@@ -71,4 +71,4 @@ class TestMonitor(amo.tests.TestCase):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
         cert_response.return_value.json = {'foo': 1}
-        eq_(signer()[0], False)
+        eq_(signer()[0][:25], 'Error on cracking receipt')
