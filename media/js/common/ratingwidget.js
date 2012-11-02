@@ -28,10 +28,14 @@ $.fn.ratingwidget = function() {
         }
         $widget.click(function(evt) {
             var t = $(evt.target);
-            if (t.val()) {
-                showStars(t.val());
+            if (t.is('input[type=radio]')) {
+                showStars(rating = t.attr('value'));
+                if (!t.val()) {
+                    // If the user caused a radio button to become unchecked,
+                    // re-check it because that shouldn't happen.
+                    t.attr('checked', true);
+                }
             }
-            rating = t.val();
         }).mouseover(function(evt) {
             var t = $(evt.target);
             if (t.attr('data-stars')) {
