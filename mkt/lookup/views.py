@@ -215,8 +215,7 @@ def _app_downloads(app):
         _24_hr_ago = datetime.now() - timedelta(hours=24)
         stats['last_24_hours'] = (qs.filter(created__gte=_24_hr_ago)
                                     .count())
-        stats['last_7_days'] = (qs.filter(created__gte=_7_days_ago)
-                                  .count())
+        stats['last_7_days'] = app.weekly_downloads
         stats['alltime'] = qs.count()
     else:
         # Non-app add-ons.

@@ -16,6 +16,7 @@ from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
 from stats.models import Contribution, DownloadCount
 from users.cron import reindex_users
@@ -399,16 +400,20 @@ class TestAppDownloadSummary(DownloadSummaryTest, TestCase):
         self.addon = Addon.objects.get(pk=3615)
 
     def test_7_days(self):
+        self.app.update(weekly_downloads=0)
         for user in self.users:
             Installed.objects.create(addon=self.app, user=user)
+        update_weekly_downloads()
         res = self.summary()
         eq_(res.context['downloads']['last_7_days'], 2)
 
     def test_ignore_older_than_7_days(self):
         _8_days_ago = datetime.now() - timedelta(days=8)
+        self.app.update(weekly_downloads=0)
         for user in self.users:
             c = Installed.objects.create(addon=self.app, user=user)
             c.update(created=_8_days_ago)
+        update_weekly_downloads()
         res = self.summary()
         eq_(res.context['downloads']['last_7_days'], 0)
 
