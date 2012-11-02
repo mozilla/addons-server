@@ -45,6 +45,7 @@ from files.utils import find_jetpacks, JetpackUpgrader
 from stats.cron import index_latest_stats
 from stats.search import setup_indexes
 from users.cron import reindex_users
+from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
 from zadmin.forms import GenerateErrorForm, SiteEventForm
@@ -851,3 +852,23 @@ def generate_error(request):
     if request.method == 'POST' and form.is_valid():
         form.explode()
     return jingo.render(request, 'zadmin/generate-error.html', {'form': form})
+
+@any_permission_required([('Admin', '%'),
+                          ('MailingLists', 'View')])
+def export_email_addresses(request):
+    return jingo.render(request, 'zadmin/export_button.html', {})
+
+
+@any_permission_required([('Admin', '%'),
+                          ('MailingLists', 'View')])
+def email_addresses_file(request):
+    resp = http.HttpResponse()
+    resp['Content-Type'] = 'text/plain; charset=utf-8'
+    resp['Content-Disposition'] = ('attachment; '
+                                   'filename=amo_optin_emails.txt')
+    emails = (UserProfile.objects.filter(notifications__notification_id=13,
+                                         notifications__enabled=1)
+              .values_list('email', flat=True))
+    for e in emails:
+        resp.write(e + '\n')
+    return resp
