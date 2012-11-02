@@ -178,7 +178,7 @@ def redis():
 def signer():
     destination = getattr(settings, 'SIGNING_SERVER', None)
     if not destination:
-        return True, 'Signer is not configured.'
+        return '', 'Signer is not configured.'
 
     # Just send some test data into the signer.
     now = int(time.time())
