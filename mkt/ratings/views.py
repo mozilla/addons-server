@@ -14,6 +14,7 @@ from addons.decorators import addon_view_factory, has_purchased_or_refunded
 from addons.models import Addon
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
+from mkt.fragments.decorators import bust_fragments_on_post
 
 from reviews.forms import ReviewReplyForm
 from reviews.models import Review, ReviewFlag
@@ -87,6 +88,7 @@ def edit(request, addon, review_id):
     return http.HttpResponse()
 
 
+@bust_fragments_on_post('/app/{app_slug}')
 @addon_view
 @login_required
 @post_required
@@ -119,6 +121,7 @@ def reply(request, addon, review_id):
     return redirect(addon.get_ratings_url('list'))
 
 
+@bust_fragments_on_post('/app/{app_slug}')
 @addon_view
 @login_required
 @restricted_content

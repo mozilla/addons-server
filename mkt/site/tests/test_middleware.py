@@ -1,4 +1,3 @@
-import json
 import socket
 
 from django.conf import settings
@@ -6,7 +5,6 @@ from django.conf import settings
 import mock
 from nose.exc import SkipTest
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
@@ -456,38 +454,6 @@ class TestDeviceMiddleware(amo.tests.TestCase):
             rf.MOBILE = state
             DeviceDetectionMiddleware().process_request(rf)
             eq_(rf.MOBILE, state)
-
-
-class TestHijackRedirectMiddleware(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.url = reverse('account.settings')
-
-    def test_post_synchronous(self):
-        res = self.client.post(self.url, {'display_name': 'omg'})
-        self.assert3xx(res, self.url)
-
-    def test_unhijacked_ajax(self):
-        res = self.client.post_ajax(self.url, {'display_name': 'omg'})
-        self.assert3xx(res, self.url)
-
-    def test_post_ajax(self):
-        res = self.client.post_ajax(self.url, {'display_name': 'omg',
-                                               '_hijacked': 'true'})
-        eq_(res.status_code, 200)
-        eq_(json.loads(pq(res.content)('#page').attr('data-context'))['uri'],
-            self.url)
-
-    def test_post_ajax_carrier(self):
-        url = '/telefonica' + self.url
-        res = self.client.post_ajax(url, {'display_name': 'omg',
-                                          '_hijacked': 'true'})
-        eq_(res.status_code, 200)
-        eq_(json.loads(pq(res.content)('#page').attr('data-context'))['uri'],
-            url)
 
 
 def normal_view(request):

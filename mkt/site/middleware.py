@@ -1,4 +1,3 @@
-import copy
 from types import MethodType
 
 from django import http
@@ -15,7 +14,6 @@ from amo.utils import urlparams
 
 import mkt
 from lib.geoip import GeoIP
-from mkt.carriers import get_carrier
 
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
@@ -240,13 +238,6 @@ class RegionMiddleware(object):
         return response
 
 
-class VaryOnAJAXMiddleware(object):
-
-    def process_response(self, request, response):
-        patch_vary_headers(response, ['X-Requested-With'])
-        return response
-
-
 class DeviceDetectionMiddleware(object):
     """If the user has flagged that they are on a device. Store the device."""
     devices = ['mobile', 'gaia', 'tablet']
@@ -280,31 +271,6 @@ class DeviceDetectionMiddleware(object):
                 # Set the device if it's active and there's no cookie.
                 response.set_cookie(device, 'true')
 
-        return response
-
-
-class HijackRedirectMiddleware(object):
-    """
-    This lets us hijack redirects so we directly return fragment responses
-    instead of redirecting and doing lame synchronous page requests.
-    """
-
-    def process_response(self, request, response):
-        if (request.method == 'POST' and
-                request.POST.get('_hijacked', False) and
-                response.status_code in (301, 302)):
-            view_url = location = response['Location']
-            if get_carrier():
-                # Strip carrier from URL.
-                view_url = '/' + '/'.join(location.split('/')[2:])
-            r = copy.copy(request)
-            r.method = 'GET'
-            # We want only the fragment response.
-            r.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
-            # Pass back the URI so we can pushState it.
-            r.FRAGMENT_URI = location
-            view = resolve(view_url)
-            response = view.func(r, *view.args, **view.kwargs)
         return response
 
 

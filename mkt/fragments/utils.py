@@ -1,0 +1,38 @@
+import json
+import types
+
+
+def bust_fragments(response, prefix, *args, **kwargs):
+    """Bust the fragments cache where the URLs match `prefix`.
+
+    `response`
+        A Django response object.
+    `prefix`
+        A string or list of strings containing URL prefixes to bust.
+    `args`
+        A list of string-castable values which will be used for positional
+        formatting into each of the prefix strings.
+    `kwargs`
+        A dict of string-castable values which will be used for keyword
+        formatting into each of the prefix strings.
+    """
+
+    if isinstance(prefix, types.StringTypes):
+        prefix = [prefix]
+
+    def reformat_prefix(prefix):
+        # If the prefix needs no formatting, bail out.
+        if '{' not in prefix or '}' not in prefix:
+            return prefix
+
+        return prefix.format(*args, **kwargs)
+
+    if args or kwargs:
+        # Reformat each of the prefixes accordingly.
+        prefix = map(reformat_prefix, prefix)
+
+    # Encode the list of prefixes as JSON.
+    prefix = json.dumps(prefix)
+
+    # At this point, we know we're busting the fragment cache.
+    response.set_cookie('fcbust', prefix)

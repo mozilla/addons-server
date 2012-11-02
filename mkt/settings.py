@@ -122,9 +122,9 @@ if REGION_STORES:
         'mkt.site.middleware.RegionMiddleware',
     ]
 MIDDLEWARE_CLASSES += [
-    'mkt.site.middleware.VaryOnAJAXMiddleware',
+    'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
-    'mkt.site.middleware.HijackRedirectMiddleware',
+    'mkt.fragments.middleware.HijackRedirectMiddleware',
 
     # TODO: Remove this when we remove `request.can_view_consumer`.
     'amo.middleware.DefaultConsumerMiddleware',
