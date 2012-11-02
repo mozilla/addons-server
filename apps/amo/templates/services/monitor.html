@@ -3,7 +3,7 @@
 {% block title %}Mozilla Add-ons Site Status{% endblock title %}
 
 {% macro status(b) %}
-  {% if b %}info{% else %}error{% endif %}
+  {% if b.state %}info{% else %}error{% endif %}
 {% endmacro %}
 
 {% block main_content %}

@@ -21,7 +21,7 @@ monitor_log = commonware.log.getLogger('z.monitor')
 def memcache():
     memcache = getattr(settings, 'CACHES', {}).get('default')
     memcache_results = []
-    status = True
+    status = ''
     if memcache and 'memcached' in memcache['BACKEND']:
         hosts = memcache['LOCATION']
         if not isinstance(hosts, (tuple, list)):
@@ -33,9 +33,8 @@ def memcache():
                 s.connect((ip, int(port)))
             except Exception, e:
                 result = False
-                status = False
-                monitor_log.critical('Failed to connect to memcached (%s): %s'
-                                     % (host, e))
+                status = 'Failed to connect to memcached (%s): %s' % (host, e)
+                monitor_log.critical(status)
             else:
                 result = True
             finally:
@@ -43,12 +42,13 @@ def memcache():
 
             memcache_results.append((ip, port, result))
         if len(memcache_results) < 2:
-            status = False
-            monitor_log.warning('You should have 2+ memcache servers. '
-                                'You have %s.' % len(memcache_results))
+            status = ('2+ memcache servers are required.'
+                      '%s available') % len(memcache_results)
+            monitor_log.warning(status)
+
     if not memcache_results:
-        status = False
-        monitor_log.info('Memcache is not configured.')
+        status = 'Memcache is not configured'
+        monitor_log.info(status)
 
     return status, memcache_results
 
@@ -56,12 +56,11 @@ def memcache():
 def libraries():
     # Check Libraries and versions
     libraries_results = []
-    status = True
+    status = ''
     try:
         Image.new('RGB', (16, 16)).save(StringIO.StringIO(), 'JPEG')
         libraries_results.append(('PIL+JPEG', True, 'Got it!'))
     except Exception, e:
-        status = False
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
@@ -76,23 +75,25 @@ def libraries():
             libraries_results.append(('Spidermonkey is ready!', True, None))
             # TODO: see if it works?
         else:
-            status = False
-            msg = "You said it was at (%s)" % settings.SPIDERMONKEY
-            libraries_results.append(('Spidermonkey not found!', False, msg))
+            msg = "You said spidermonkey was at (%s)" % settings.SPIDERMONKEY
+            libraries_results.append(('Spidermonkey', False, msg))
     else:
-        status = False
         msg = "Please set SPIDERMONKEY in your settings file."
-        libraries_results.append(("Spidermonkey isn't set up.", False, msg))
+        libraries_results.append(('Spidermonkey', False, msg))
 
+    missing_libs = [l for l, s, m in libraries_results if not s]
+    if missing_libs:
+        status = 'missing libs: %s' % ",".join(missing_libs)
     return status, libraries_results
 
 
 def elastic():
     elastic_results = None
-    status = False
+    status = ''
     try:
         health = elasticutils.get_es().cluster_health()
-        status = health['status'] != 'red'
+        if health['status'] == 'red':
+            status = 'ES is red'
         elastic_results = health
     except Exception:
         elastic_results = traceback.format_exc()
@@ -140,6 +141,9 @@ def path():
                              key_exists, key_perms, 'We want read'))
 
     status = filepath_status
+    status = ''
+    if not filepath_status:
+        status = 'check main status page for broken perms'
 
     return status, filepath_results
 
@@ -147,8 +151,10 @@ def path():
 def redis():
     # Check Redis
     redis_results = [None, 'REDIS_BACKENDS is not set']
+    status = 'REDIS_BACKENDS is not set'
     if getattr(settings, 'REDIS_BACKENDS', False):
         import redisutils
+        status = []
 
         redis_results = {}
 
@@ -157,9 +163,10 @@ def redis():
                 redis_results[alias] = redis.info()
             except Exception, e:
                 redis_results[alias] = None
+                status.append('Failed to chat with redis:%s' % alias)
                 monitor_log.critical('Failed to chat with redis: (%s)' % e)
 
-    status = all(i for i in redis_results.values())
+        status = ','.join(status)
 
     return status, redis_results
 
@@ -184,35 +191,41 @@ def signer():
             'user': {'type': 'directed-identifier',
                      'value': u'something-not-valid'},
             'verify': not_valid
-    }
+            }
 
     try:
         result = receipt.sign(data)
     except receipt.SigningError as err:
-        return False, 'Error on signing (%s): %s' % (destination, err)
+        msg = 'Error on signing (%s): %s' % (destination, err)
+        return msg, msg
 
     try:
         cert, rest = receipt.crack(result)
     except Exception as err:
-        return False, 'Error on cracking receipt (%s): %s' % (destination, err)
+        msg = 'Error on cracking receipt (%s): %s' % (destination, err)
+        return msg, msg
 
     # Check that the certs used to sign the receipts are not about to expire.
     limit = now + (60 * 60 * 24)  # One day.
     if cert['exp'] < limit:
-        return False, 'Cert will expire soon (%s)' % destination
+        msg = 'Cert will expire soon (%s)' % destination
+        return msg, msg
 
     cert_err_msg = 'Error on checking public cert (%s): %s'
     location = cert['iss']
     try:
         resp = requests.get(location, timeout=5, prefetch=True)
     except Exception as err:
-        return False, cert_err_msg % (location, err)
+        msg = cert_err_msg % (location, err)
+        return msg, msg
 
     if not resp.ok:
-        return False, cert_err_msg % (location, resp.reason)
+        msg = cert_err_msg % (location, resp.reason)
+        return msg, msg
 
     cert_json = resp.json
     if not cert_json or not 'jwk' in cert_json:
-        return False, cert_err_msg % (location, 'Not valid JSON/JWK')
+        msg = cert_err_msg % (location, 'Not valid JSON/JWK')
+        return msg, msg
 
-    return True, 'Signer working and up to date'
+    return '', 'Signer working and up to date'

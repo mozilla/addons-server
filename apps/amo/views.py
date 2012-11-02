@@ -47,12 +47,14 @@ def monitor(request, format=None):
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
             status, result = getattr(monitors, check)()
-        status_summary[check] = status
+        status_summary[check] = {'state': not status,
+                                 'status': status}
         results['%s_results' % check] = result
         results['%s_timer' % check] = timer.ms
 
     # If anything broke, send HTTP 500.
-    status_code = 200 if all(status_summary.values()) else 500
+    status_code = 200 if all(a['state']
+                             for a in status_summary.values()) else 500
 
     if format == '.json':
         return http.HttpResponse(json.dumps(status_summary),
