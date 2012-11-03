@@ -14,6 +14,7 @@ import requests
 from amo.utils import memoize
 from applications.management.commands import dump_apps
 from lib.crypto import receipt
+from lib.crypto.receipt import SigningError
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -195,7 +196,7 @@ def signer():
 
     try:
         result = receipt.sign(data)
-    except receipt.SigningError as err:
+    except SigningError as err:
         msg = 'Error on signing (%s): %s' % (destination, err)
         return msg, msg
 
