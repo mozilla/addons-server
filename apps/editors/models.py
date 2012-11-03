@@ -328,10 +328,10 @@ class EditorSubscription(amo.models.ModelBase):
                       (self.user.email, self.addon.pk))
         context = Context({
             'name': self.addon.name,
-            'url': absolutify(reverse('addons.detail', args=[self.addon.pk])),
+            'url': absolutify(reverse('addons.detail', args=[self.addon.pk], add_prefix=False)),
             'number': version.version,
             'review': absolutify(reverse('editors.review',
-                                         args=[self.addon.pk])),
+                                         args=[self.addon.pk], add_prefix=False)),
             'SITE_URL': settings.SITE_URL,
         })
         # Not being localised because we don't know the editors locale.
