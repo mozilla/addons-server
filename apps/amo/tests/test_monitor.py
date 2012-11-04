@@ -20,7 +20,8 @@ class TestMonitor(amo.tests.TestCase):
 
     @patch('amo.monitors.receipt')
     def test_sign_fails(self, receipt):
-        receipt.sign.side_effect = receipt.SigningError
+        from lib.crypto.receipt import SigningError
+        receipt.sign.side_effect = SigningError
         eq_(signer()[0][:16], 'Error on signing')
 
     @patch('amo.monitors.receipt')
