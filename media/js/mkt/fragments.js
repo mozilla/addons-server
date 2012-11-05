@@ -135,7 +135,24 @@ function fragmentFilter(el) {
                 // has been resolved as fixed.
                 var fetch_href = href;
                 if (navigator.userAgent.indexOf('Chrome') > -1) {
-                    fetch_href += (href.indexOf("?") > -1 ? '&' : '?') + 'frag';
+                    var chr_flag = '';
+
+                    // If we have a locale/region, we want to include those in the request
+                    // so Chrome does a hard reload of those pages when they change.
+                    var lang = $.cookie('lang');
+                    if (lang) {
+                        chr_flag += lang;
+                    }
+                    var region = $.cookie('region');
+                    if (region) {
+                        chr_flag += region;
+                    }
+                    
+                    if(chr_flag) {
+                        chr_flag = '=' + encodeURIComponent(chr_flag);
+                    }
+
+                    fetch_href += (href.indexOf("?") > -1 ? '&' : '?') + 'frag' + chr_flag;
                 }
 
                 $.get(fetch_href, function(d, textStatus, xhr) {
