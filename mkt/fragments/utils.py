@@ -31,6 +31,10 @@ def bust_fragments(response, prefix, *args, **kwargs):
         # Reformat each of the prefixes accordingly.
         prefix = map(reformat_prefix, prefix)
 
+    # TODO: When we need it, we should be detecting existing `fcbust` cookies
+    # and including them in the new flag (removing duplicates/overridden URL
+    # prefixes).
+
     # Encode the list of prefixes as JSON.
     prefix = json.dumps(prefix)
 

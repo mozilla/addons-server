@@ -26,6 +26,7 @@ from devhub.views import _get_items
 from lib.pay_server import client
 from market.models import PreApprovalUser
 from mkt.account.forms import CurrencyForm
+from mkt.fragments.utils import bust_fragments
 from mkt.site import messages
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
@@ -213,7 +214,11 @@ def account_settings(request):
             form.save()
             messages.success(request, _('Profile Updated'))
             amo.log(amo.LOG.USER_EDITED)
-            return redirect('account.settings')
+            response = redirect('account.settings')
+            # TODO: Detect when we're changing the user's locale and region
+            # and bust on '/', bust on '/settings' for everything else.
+            bust_fragments(response, '/')
+            return response
         else:
             messages.form_errors(request)
     return jingo.render(request, 'account/settings.html',
