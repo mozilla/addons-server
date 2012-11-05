@@ -154,6 +154,11 @@ function fragmentFilter(el) {
 
         }
 
+        function synchronousLoad(href) {
+            // TODO(potch): Save the user's navigation stack.
+            window.location.href = href;
+        }
+
         // pump content into our page, clean up after ourselves.
         function updateContent(content, href, popped, opts) {
             opts = opts || {};
@@ -183,6 +188,14 @@ function fragmentFilter(el) {
 
                 for (var i = 0; i < decoded_prefixes.length; i++) {
                     var clear_prefix = decoded_prefixes[i];
+
+                    if (clear_prefix === '/') {
+                        // If the server is asking us to bust '/', we should just
+                        // perform a synchronous load of the page.
+                        synchronousLoad(z.context.uri);
+                        return;
+                    }
+
                     // Delete all the matching cache entries.
                     _.each(fragmentCache, function(_, key) {
                         // If the prefix doesn't match the cache entry, skip it.
