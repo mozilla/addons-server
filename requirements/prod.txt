@@ -25,6 +25,7 @@ django-quieter-formset==0.3
 django-statsd-mozilla==0.3.8
 django-storages==1.1.4
 django-tastypie==0.9.11
+docutils==0.7
 easy-thumbnails==1.1
 elasticutils==0.5
 feedparser==5.0.1
@@ -48,8 +49,11 @@ ordereddict==1.1
 PyBrowserID==0.6
 pyes==0.16.0
 PyMySQL==0.5
+pyquery==1.2.1
 python-dateutil==1.5
+pytz==2010e
 raven==2.0.7.1
+recaptcha-client==1.0.5
 receipts==0.2.4.1
 requests==0.14.0
 schematic==0.2
