@@ -8,6 +8,7 @@ celery==2.5.1
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==1.0.1
+cssselect==0.7.1
 cssutils==0.9.7b3
 Django==1.4.2
 django_appcache==1.3
