@@ -7,6 +7,7 @@ import cronjobs
 import pyes
 
 from stats.models import Contribution
+from lib.es.utils import raise_if_reindex_in_progress
 from mkt.webapps.models import Installed
 from . import tasks
 
@@ -15,6 +16,7 @@ cron_log = commonware.log.getLogger('mkt.cron')
 
 @cronjobs.register
 def index_latest_mkt_stats(index=None, aliased=True):
+    raise_if_reindex_in_progress()
     yesterday = datetime.date.today() - datetime.timedelta(days=1)
 
     try:

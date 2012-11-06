@@ -12,6 +12,7 @@ from addons.models import Addon
 from .models import (AddonCollectionCount, CollectionCount,
                      UpdateCount)
 from . import tasks
+from lib.es.utils import raise_if_reindex_in_progress
 
 task_log = commonware.log.getLogger('z.task')
 cron_log = commonware.log.getLogger('z.cron')
@@ -20,6 +21,7 @@ cron_log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def update_addons_collections_downloads():
     """Update addons+collections download totals."""
+    raise_if_reindex_in_progress()
 
     d = (AddonCollectionCount.objects.values('addon', 'collection')
          .annotate(sum=Sum('count')))
@@ -44,6 +46,7 @@ def update_collections_total():
 @cronjobs.register
 def update_global_totals(date=None):
     """Update global statistics totals."""
+    raise_if_reindex_in_progress()
 
     if date:
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
@@ -70,6 +73,7 @@ def addon_total_contributions():
 
 @cronjobs.register
 def index_latest_stats(index=None, aliased=True):
+    raise_if_reindex_in_progress()
     latest = UpdateCount.search(index).order_by('-date').values_dict()
     if latest:
         latest = latest[0]['date']
