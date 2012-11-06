@@ -7,6 +7,7 @@ from django.forms.models import modelformset_factory
 import happyforms
 from tower import ugettext_lazy as _lazy
 
+from bleach import TLDS
 from quieter_formset.formset import BaseModelFormSet
 
 import amo
@@ -37,7 +38,8 @@ class ReviewForm(ReviewReplyForm):
     # "example dot com".
     link_pattern = re.compile('((://)|'  # Protocols (e.g.: http://)
                               '((\d{1,3}\.){3}(\d{1,3}))|'
-                              '([0-9a-z\-%]+\.[0-9a-z\-]{2,10}))', flags)
+                              '([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
+                              flags)
 
     def _post_clean(self):
         # Unquote the body in case someone tries 'example%2ecom'.
