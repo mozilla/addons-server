@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+import json
 import os
 import socket
 
 from django import forms
 from django.conf import settings
 from django.forms.models import formset_factory, modelformset_factory
+from django.template.defaultfilters import filesizeformat
 
 import commonware
 import happyforms
@@ -21,8 +23,10 @@ from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            BlacklistedSlug, Category, Preview)
 from addons.widgets import CategoriesSelectMultiple
+from amo import get_user
 from amo.utils import raise_required, remove_icons
 from editors.models import RereviewQueue
+from files.models import FileUpload
 from lib.video import tasks as vtasks
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.fields import TransField
@@ -31,7 +35,7 @@ from translations.models import Translation
 from translations.widgets import TransInput, TransTextarea
 
 import mkt
-from mkt.constants import APP_IMAGE_SIZES
+from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE
 from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
                                          RATINGS_BODIES)
 from mkt.inapp_pay.models import InappConfig
@@ -466,6 +470,42 @@ class NewManifestForm(happyforms.Form):
         manifest = self.cleaned_data['manifest']
         verify_app_domain(manifest)
         return manifest
+
+
+class NewPackagedAppForm(happyforms.Form):
+    upload = forms.FileField()
+
+    def __init__(self, *args, **kwargs):
+        self.max_size = kwargs.pop('max_size', MAX_PACKAGED_APP_SIZE)
+        self.user = kwargs.pop('user', get_user())
+        self.file_upload = None
+        super(NewPackagedAppForm, self).__init__(*args, **kwargs)
+
+    def clean_upload(self):
+        upload = self.cleaned_data['upload']
+        if upload.size > self.max_size:
+            msg = 'Packaged app too large for submission.'
+            big = json.dumps({
+                'errors': 1,
+                'success': False,
+                'messages': [{
+                    'type': 'error',
+                    'message': [
+                        msg,
+                        'Packages must be less than %s.' %
+                        filesizeformat(self.max_size)],
+                    'tier': 1}]})
+            # Persist the error with this into FileUpload, but do not persist
+            # the file contents, which are too large.
+            self.file_upload = FileUpload.objects.create(is_webapp=True,
+                                                         user=self.user,
+                                                         validation=big)
+            # Raise an error so the form is invalid.
+            raise forms.ValidationError(msg)
+        else:
+            self.file_upload = FileUpload.from_post(upload, upload.name,
+                                                    upload.size,
+                                                    is_webapp=True)
 
 
 class PremiumForm(happyforms.Form):

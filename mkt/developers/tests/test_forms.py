@@ -1,8 +1,10 @@
+import json
 import os
 import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 import mock
 from nose.tools import eq_
@@ -237,3 +239,31 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.errors,
             {'__all__': ['You must select at least one region or '
                          '"Other and new regions."']})
+
+
+class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
+
+    def setUp(self):
+        path = self.packaged_app_path('mozball.zip')
+        self.files = {'upload': SimpleUploadedFile('mozball.zip',
+                                                   open(path).read())}
+
+    def test_not_there(self):
+        form = forms.NewPackagedAppForm({}, {})
+        eq_(form.is_valid(), False)
+        eq_(form.errors['upload'], [u'This field is required.'])
+        eq_(form.file_upload, None)
+
+    def test_right_size(self):
+        form = forms.NewPackagedAppForm({}, self.files)
+        eq_(form.is_valid(), True)
+        assert form.file_upload
+
+    def test_too_big(self):
+        form = forms.NewPackagedAppForm({}, self.files, max_size=5)
+        eq_(form.is_valid(), False)
+        validation = json.loads(form.file_upload.validation)
+        assert 'messages' in validation, 'No messages in validation.'
+        eq_(validation['messages'][0]['message'],
+            [u'Packaged app too large for submission.',
+             u'Packages must be less than 5 bytes.'])
