@@ -74,7 +74,7 @@ statsd==1.0.0
 -e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
 -e git://github.com/jbalogh/test-utils.git@3c2214d193d1b0c0d74c77b3731c8afb0173e669#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
--e git://github.com/nmaier/xpisign.py.git@f825b34ea83cf68ea66dcd9e47e0c7e5f38b6bd5#egg=xpisign
+-e git://github.com/briansmith/xpisign.py.git@08a799ebebd40405ccd205ee6c1b899faab43c2d#egg=xpisign
 
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2

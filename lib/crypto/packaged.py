@@ -39,7 +39,8 @@ def sign_app(src, dest):
     try:
         # Not sure this will work too well on S3.
         xpisign(storage.open(src, 'r'), settings.SIGNED_APPS_KEY,
-                storage.open(dest, 'w'))
+                storage.open(dest, 'w'), optimize_signatures=True,
+                omit_sf_entry_sections=True, omit_created_by=True)
     except:
         # TODO: figure out some likely errors that can occur.
         log.error('Signing failed', exc_info=True)
