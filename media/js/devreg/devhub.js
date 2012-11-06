@@ -1074,6 +1074,11 @@ var imageStatus = {
         this.icon.check = function() {
             var self = imageStatus,
                 node = $('.edit-media, .submit-media');
+
+            // If there are no icons to check, don't check for icons.
+            if (!node.length) {
+                return;
+            }
             $.getJSON(node.attr('data-checkurl'),
                 function(json) {
                     if (json !== null && json.icons) {

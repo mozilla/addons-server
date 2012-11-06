@@ -841,8 +841,10 @@ def profile(request, addon_id, addon, webapp=False):
 @login_required
 def validate_addon(request):
     return jingo.render(request, 'developers/validate_addon.html', {
-        'title': _('Validate Add-on'),
-        'upload_url': reverse('mkt.developers.standalone_upload'),
+        'upload_hosted_url':
+            reverse('mkt.developers.standalone_hosted_upload'),
+        'upload_packaged_url':
+            reverse('mkt.developers.standalone_packaged_upload'),
     })
 
 
@@ -859,7 +861,7 @@ def upload(request, addon_slug=None, is_standalone=False):
                         addon_slug, form.file_upload.pk)
     elif is_standalone:
         return redirect('mkt.developers.standalone_upload_detail',
-                        form.file_upload.pk)
+                        'packaged', form.file_upload.pk)
     else:
         return redirect('mkt.developers.upload_detail',
                         form.file_upload.pk, 'json')
@@ -875,7 +877,7 @@ def refresh_manifest(request, addon_id, addon, webapp=False):
 @login_required
 @post_required
 @json_view
-def upload_manifest(request):
+def upload_manifest(request, is_standalone=False):
     form = forms.NewManifestForm(request.POST)
     if waffle.switch_is_active('webapps-unique-by-domain'):
         # Helpful error if user already submitted the same manifest.
@@ -887,7 +889,11 @@ def upload_manifest(request):
     if form.is_valid():
         upload = FileUpload.objects.create()
         tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
-        return redirect('mkt.developers.upload_detail', upload.pk, 'json')
+        if is_standalone:
+            return redirect('mkt.developers.standalone_upload_detail',
+                            'hosted', upload.pk)
+        else:
+            return redirect('mkt.developers.upload_detail', upload.pk, 'json')
     else:
         error_text = _('There was an error with the submission.')
         if 'manifest' in form.errors:
@@ -898,17 +904,21 @@ def upload_manifest(request):
         return make_validation_result(dict(validation=v, error=error_text))
 
 
-@login_required
-@post_required
-def standalone_upload(request):
+def standalone_hosted_upload(request):
+    return upload_manifest(request, is_standalone=True)
+
+
+@waffle_switch('allow-packaged-app-uploads')
+def standalone_packaged_upload(request):
     return upload(request, is_standalone=True)
 
 
 @login_required
 @json_view
-def standalone_upload_detail(request, uuid):
+def standalone_upload_detail(request, type_, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
-    url = reverse('mkt.developers.standalone_upload_detail', args=[uuid])
+    url = reverse('mkt.developers.standalone_upload_detail',
+                  args=[type_, uuid])
     return upload_validation_context(request, upload, url=url)
 
 
@@ -1014,13 +1024,12 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
         else:
             url = reverse('mkt.developers.upload_detail',
                           args=[upload.uuid, 'json'])
-    full_report_url = reverse('mkt.developers.upload_detail',
-                              args=[upload.uuid])
+    report_url = reverse('mkt.developers.upload_detail', args=[upload.uuid])
 
     return make_validation_result(dict(upload=upload.uuid,
                                        validation=validation,
                                        error=upload.task_error, url=url,
-                                       full_report_url=full_report_url))
+                                       full_report_url=report_url))
 
 
 @login_required
@@ -1031,7 +1040,7 @@ def upload_detail(request, uuid, format='html'):
         return json_upload_detail(request, upload)
 
     validate_url = reverse('mkt.developers.standalone_upload_detail',
-                           args=[upload.uuid])
+                           args=['hosted', upload.uuid])
     return jingo.render(request, 'developers/validation.html',
                         dict(validate_url=validate_url, filename=upload.name,
                              timestamp=upload.created))

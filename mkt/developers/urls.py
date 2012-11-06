@@ -115,10 +115,9 @@ urlpatterns = decorate(write, patterns('',
     ('^apps/\d+/.*',
      lambda r: http.HttpResponseRedirect(r.path.replace('apps', 'app', 1))),
 
-    # There's no validator yet, but this is where it will go.
-    ## Standalone validator:
-    #url('^addon/validate/?$', views.validate_addon,
-    #    name='mkt.developers.validate_addon'),
+    # Standalone validator:
+    url('^validator/?$', views.validate_addon,
+        name='mkt.developers.validate_addon'),
 
     # Redirect to /addons/ at the base.
     url('^submissions$', use_apps(views.dashboard),
@@ -126,9 +125,12 @@ urlpatterns = decorate(write, patterns('',
     url('^upload$', views.upload, name='mkt.developers.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='mkt.developers.upload_detail'),
-    url('^standalone-upload$', views.standalone_upload,
-        name='mkt.developers.standalone_upload'),
-    url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
+    url('^standalone-hosted-upload$', views.standalone_hosted_upload,
+        name='mkt.developers.standalone_hosted_upload'),
+    url('^standalone-packaged-upload$', views.standalone_packaged_upload,
+        name='mkt.developers.standalone_packaged_upload'),
+    url('^standalone-(hosted|packaged)-upload/([^/]+)$',
+        views.standalone_upload_detail,
         name='mkt.developers.standalone_upload_detail'),
 
     url('^upload-manifest$', views.upload_manifest,

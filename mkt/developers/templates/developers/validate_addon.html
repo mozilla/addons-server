@@ -1,46 +1,64 @@
 {% extends "developers/base.html" %}
 
+{% set title = _('Validate an App') %}
+
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-<header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-  <h2>{{ title }}</h2>
-</header>
-<form method="post" id="create-addon" class="item" action="">
-  {{ csrf() }}
-  <p>
-  {% trans %}
-    Use the field below to upload your add-on package.
-  {% endtrans %}
-  </p>
-  {% if appversion_form %}
-    <p>
-    {% trans %}
-      After upload, a series of automated validation tests will
-      run to check compatibility with the following
-      application version:
-    {% endtrans %}
-    </p>
-    <section id="addon-compat-upload">
-      {% for elem in ('application', 'app_version') %}
-        <label id="label-{{ elem }}" for="id_{{ elem }}">
-          {{ appversion_form[elem].label }}</label>
-        <span id="elem-{{ elem }}">{{ appversion_form[elem] }}</span>
-      {% endfor %}
-    </section>
-  {% else %}
-    <p>
-    {% trans %}
-      After upload, a series of automated validation tests will be
-      run on your file.
-    {% endtrans %}
-    </p>
-  {% endif %}
-  <section id="upload-file" class="validate-addon">
+  {{ hub_breadcrumbs(items=[(None, _('Validate App'))]) }}
+  <header class="submit-header c">
+    <h1>{{ _('Validate an App') }}</h1>
+  </header>
 
-    <input type="file" id="upload-addon" data-upload-url="{{ upload_url }}">
+  <section id="upload-file" class="island tabbable {% if waffle.switch('allow-packaged-app-uploads') %}spacer{% endif %}">
+    <div class="hosted tab active">
+      {% if waffle.switch('allow-packaged-app-uploads') %}
+        <h2><a href="#">Hosted</a></h2>
+      {% endif %}
+      <h3>{{ _("Submit your app manifest URL") }}</h3>
+      <div class="upload-status">
+        <label>
+          <form id="validate-field">
+            {{ csrf() }}
+            <div class="vf-text">
+              <input type="text" id="upload-webapp-url" name="manifest" class="large"
+                     placeholder="http://" data-upload-url="{{ upload_hosted_url }}">
+            </div>
+            <div class="vf-button">
+              <button type="submit" class="disabled" id="validate_app">{{ _('Validate') }}</button>
+            </div>
+          </form>
+        </label>
+      </div>
+      <div class="upload-details">
+        <div id="validate-error-protocol" class="pretty-tooltip tl">
+          <span class="protocol">
+            {% trans http='http://', https='https://' %}
+              <strong>Don't forget a protocol!</strong>
+              Try adding either <a href="#">{{ http }}</a> or
+              <a href="#">{{ https }}</a>.
+            {% endtrans %}
+          </span>
+        </div>
+        <div class="hint">
+          {{ _('Manifest URLs must start with a protocol (for example, '
+               '<code>http://</code> or <code>https://</code>) and '
+                 'typically use the <code>.webapp</code> extension.')|safe }}
+        </div>
+      </div>
+    </div>
 
+    {% if waffle.switch('allow-packaged-app-uploads') %}
+    <div class="packaged tab">
+        <h2><a href="#">Packaged</a></h2>
+        <input type="file" id="upload-app" data-upload-url="{{ upload_packaged_url }}" />
+    </div>
+    {% endif %}
   </section>
-</form>
-{% endblock content %}
+
+  <p class="learn-mdn"><a href="{{ doc_url }}" target="_blank">
+    {% trans %}Learn more about <b>app manifests</b> on MDN.{% endtrans %}
+    </a>
+  </p>
+
+{% endblock %}

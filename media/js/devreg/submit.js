@@ -77,6 +77,9 @@
 
     // Show packaged.
     function show_packaged() {
+        if (!$('#id_free, #id_paid').length) {
+            return;
+        }
         var $target = $('#upload-file hgroup h2');
 
         // If only free-os or paid-os is selected, show packaged.
