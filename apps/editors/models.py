@@ -563,13 +563,13 @@ class ReviewerScore(amo.models.ModelBase):
         if not in_leaderboard:
             leader_top = scores[:5]
         else:
-            if rank <= 5:  # User is in top 5, show top 5.
+            if user_rank <= 5:  # User is in top 5, show top 5.
                 leader_top = scores[:5]
             else:
                 leader_top = scores[:3]
-                leader_near = [scores[rank - 2], scores[rank - 1]]
+                leader_near = [scores[user_rank - 2], scores[user_rank - 1]]
                 try:
-                    leader_near.append(scores[rank])
+                    leader_near.append(scores[user_rank])
                 except IndexError:
                     pass  # User is last on the leaderboard.
 
