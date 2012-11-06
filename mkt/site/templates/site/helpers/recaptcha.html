@@ -1,5 +1,11 @@
 {% if form.has_recaptcha %}
 {% from 'includes/forms.html' import required %}
+  {# Moved from media/js/mkt/recaptcha.js because it must
+  always be before the ReCaptcha fields.
+  https://developers.google.com/recaptcha/docs/customization#Custom_Theming #}
+  <script type="text/javascript">
+    var RecaptchaOptions = {theme: 'custom'};
+  </script>
   <div id="recap-container">
     <label for="recaptcha_response_field">
       {{ _('Are you human?') }}
@@ -12,12 +18,23 @@
           <strong>separated by a space</strong>.
         </p>
         <p>
-          If this is hard to read, you can
-          <a href="#" id="recaptcha_different">try different words</a> or
-          <a href="#" id="recaptcha_audio">listen to something</a> instead.
+          <div class="recaptcha_only_if_image">
+            If this is hard to read, you can
+            <a href="#" id="recaptcha_different_text">try different words</a> or
+            <a href="#" id="recaptcha_audio">listen to something</a> instead.
+          </div>
+          <div class="recaptcha_only_if_audio">
+            If audio is not clear or hard to understand, you can
+            <a href="#" id="recaptcha_different_audio">try different words</a> or
+            <a href="#" id="recaptcha_text">switch back to text</a>.
+          </div>
         </p>
       {% endtrans %}
-      <div id="recaptcha_div"></div>
+      <div id="recaptcha_image"></div>
+      <p>
+              <input type="text" name="recaptcha_response_field"
+                     id="recaptcha_response_field" size="30">
+      </p>
     </div>
   </div>
   {{ form.recaptcha.errors }}
