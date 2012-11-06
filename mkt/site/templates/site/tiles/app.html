@@ -30,11 +30,11 @@
           {{ product.average_rating|float|stars }}
           {% if product.total_reviews %}
             <span class="cnt">
-              {% trans num=product.total_reviews, cnt=product.total_reviews|numberfmt %}
+              {%- trans num=product.total_reviews, cnt=product.total_reviews|numberfmt -%}
                 {{ cnt }} Rating
-              {% pluralize %}
+              {%- pluralize -%}
                 {{ cnt }} Ratings
-              {% endtrans %}
+              {%- endtrans -%}
             </span>
          {% endif %}
        {% if tag != "a" %}</a>{% endif %}

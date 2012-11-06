@@ -102,10 +102,10 @@
         <nav class="footer-links c" role="navigation">
           <p>
             {% if logged %}
-              {% for link in tools_links %}
+              {% for link in tools_links -%}
                 <a href="{{ link.href }}" class="sync" rel="external"
-                   {{ ' target="%s"' % link.target if (request.MOBILE and link.target) }}>{{ link.text }}</a>
-              {% endfor %}
+                   {{- ' target="%s"' % link.target if (request.MOBILE and link.target) }}>{{ link.text }}</a>
+              {%- endfor %}
               {% if request.can_view_consumer %}
                 {# TODO: Coming soon with payments. #}
                 {#<a href="{{ url('account.purchases') }}">{{ _('Account History') }}</a>#}

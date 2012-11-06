@@ -135,12 +135,14 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
     if product.all_previews:
         previews = []
         for p in product.all_previews:
-            previews.append({
+            preview = {
                 'fullUrl': jinja2.escape(p.image_url),
                 'type': jinja2.escape(p.filetype),
-                'caption': jinja2.escape(p.caption),
                 'thumbUrl': jinja2.escape(p.thumbnail_url),
-            })
+            }
+            if p.caption:
+                preview.update(caption=jinja2.escape(p.caption))
+            previews.append(preview)
         ret.update({'previews': previews})
 
     if product.is_premium() and product.premium:
