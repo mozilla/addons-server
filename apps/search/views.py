@@ -317,7 +317,6 @@ class BaseAjaxSearch(object):
             'icon': 'icon_url'
         }
         self.fields = getattr(self, 'fields', default_fields)
-        self.items = self.build_list()
 
     def queryset(self):
         """Get items based on ID or search by name."""
@@ -360,6 +359,10 @@ class BaseAjaxSearch(object):
             results.append(d)
         return results
 
+    @property
+    def items(self):
+        return self.build_list()
+
 
 class SearchSuggestionsAjax(BaseAjaxSearch):
     src = 'mkt-ss' if settings.MARKETPLACE else 'ss'
@@ -381,8 +384,11 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
 
     def __init__(self, request, excluded_ids=(), category=None):
         self.category = category
-        self.gaia = request.GAIA
+        self.gaia = getattr(request, 'GAIA', False)
+        self.mobile = getattr(request, 'MOBILE', False)
         SearchSuggestionsAjax.__init__(self, request, excluded_ids)
+        if self.mobile:
+            self.limit = 3
 
     def queryset(self):
         res = SearchSuggestionsAjax.queryset(self)
@@ -402,7 +408,7 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
                     # Django ORM? Do an `exclude`.
                     res = res.exclude(id__in=excluded)
 
-        if getattr(self.request, 'MOBILE', False):
+        if self.mobile:
             res = res.filter(device=amo.DEVICE_MOBILE.id)
 
         return res
