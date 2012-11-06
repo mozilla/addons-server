@@ -47,11 +47,6 @@
         setButton($button, '<span class="spin"></span>',
                   'installing');
 
-        // Reset button if we've clicked outside of the doorhanger (albeit twice).
-        $(document.body).on('click', function() {
-            revertButton($button);
-        });
-
         // Reset button if it's been 30 seconds without user action.
         setTimeout(function() {
             if ($button.hasClass('installing')) {
