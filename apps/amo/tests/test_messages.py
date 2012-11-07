@@ -1,4 +1,12 @@
-from amo.messages import _make_message
+import django.contrib.messages as django_messages
+from django.contrib.messages.storage import default_storage
+from django.http import HttpRequest
+
+from nose.tools import eq_
+from tower import ugettext as _
+
+from amo.messages import _make_message, info
+
 
 def test_xss():
 
@@ -20,3 +28,29 @@ def test_xss():
     assert "&lt;script&gt;alert(1)&lt;/script&gt;" in r
     r = _make_message(None, message, title_safe=True)
     assert "&lt;script&gt;alert(2)&lt;/script&gt;" in r
+
+
+def test_no_dupes():
+    """Test that duplicate messages aren't saved."""
+    request = HttpRequest()
+    setattr(request, '_messages', default_storage(request))
+
+    info(request, 'Title', 'Body')
+    info(request, 'Title', 'Body')
+    info(request, 'Another Title', 'Another Body')
+
+    storage = django_messages.get_messages(request)
+    eq_(len(storage), 2, 'Too few or too many messages recorded.')
+
+
+def test_l10n_dups():
+    """Test that L10n values are preserved."""
+    request = HttpRequest()
+    setattr(request, '_messages', default_storage(request))
+
+    info(request, _('Title'), _('Body'))
+    info(request, _('Title'), _('Body'))
+    info(request, _('Another Title'), _('Another Body'))
+
+    storage = django_messages.get_messages(request)
+    eq_(len(storage), 2, 'Too few or too many messages recorded.')

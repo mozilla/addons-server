@@ -1,3 +1,5 @@
+from functools import partial
+
 from django.contrib import messages as django_messages
 
 import jinja2
@@ -18,27 +20,40 @@ def _make_message(title=None, message=None, title_safe=False,
     t = env.get_template('message_content.html').render(**c)
     return jinja2.Markup(t)
 
-def debug(request, title, message=None, extra_tags='', fail_silently=False,
-          title_safe=False, message_safe=False):
-    msg = _make_message(title, message, title_safe, message_safe)
-    django_messages.debug(request, msg, extra_tags, fail_silently)
 
-def info(request, title, message=None, extra_tags='', fail_silently=False,
-         title_safe=False, message_safe=False):
-    msg = _make_message(title, message, title_safe, message_safe)
-    django_messages.info(request, msg, extra_tags, fail_silently)
+def _is_dupe(msg, request):
+    """Returns whether a particular message is already cued for display."""
+    storage = django_messages.get_messages(request)
 
-def success(request, title, message=None, extra_tags='', fail_silently=False,
-            title_safe=False, message_safe=False):
-    msg = _make_message(title, message, title_safe, message_safe)
-    django_messages.success(request, msg, extra_tags, fail_silently)
+    # If there are no messages stored, Django doesn't give us a proper storage
+    # object, so just bail early.
+    if not storage:
+        return False
 
-def warning(request, title, message=None, extra_tags='', fail_silently=False,
-            title_safe=False, message_safe=False):
-    msg = _make_message(title, message, title_safe, message_safe)
-    django_messages.warning(request, msg, extra_tags, fail_silently)
+    smsg = str(msg)
+    is_dupe = False
+    for message in storage:
+        if str(message) == smsg:
+            # We can't return from here because we need to tell Django not to
+            # consume the messages.
+            is_dupe = True
+            break
 
-def error(request, title, message=None, extra_tags='', fail_silently=False,
-          title_safe=False, message_safe=False):
+    storage.used = False
+    return is_dupe
+
+
+def _file_message(type_, request, title, message=None, extra_tags='',
+                  fail_silently=False, title_safe=False, message_safe=False):
     msg = _make_message(title, message, title_safe, message_safe)
-    django_messages.error(request, msg, extra_tags, fail_silently)
+    # Don't save duplicates.
+    if _is_dupe(msg, request):
+        return
+    getattr(django_messages, type_)(request, msg, extra_tags, fail_silently)
+
+
+debug = partial(_file_message, 'debug')
+info = partial(_file_message, 'info')
+success = partial(_file_message, 'success')
+warning = partial(_file_message, 'warning')
+error = partial(_file_message, 'error')
