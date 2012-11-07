@@ -19,7 +19,6 @@ from amo.utils import timestamp_index
 
 from addons.cron import reindex_addons, reindex_apps
 from apps.addons.search import setup_mapping as put_amo_mapping
-from apps.stats.models import UpdateCount
 from bandwagon.cron import reindex_collections
 from compat.cron import compatibility_report
 from stats.search import setup_indexes as put_stats_mapping
@@ -35,14 +34,7 @@ if django_settings.MARKETPLACE:
 
 def index_stats(index=None, aliased=True):
     """Indexes the previous 365 days."""
-    latest = UpdateCount.search(index).order_by('-date').values_dict()
-    if latest:
-        latest = latest[0]['date']
-    else:
-        latest = datetime.date.today() - datetime.timedelta(days=365)
-    fmt = lambda d: d.strftime('%Y-%m-%d')
-    date_range = '%s:%s' % (fmt(latest), fmt(datetime.date.today()))
-    call_command('index_stats', addons=None, date=date_range)
+    call_command('index_stats', addons=None)
 
 
 _INDEXES = {'stats': [index_stats],
