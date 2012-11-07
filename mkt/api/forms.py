@@ -9,14 +9,24 @@ import happyforms
 from addons.models import Addon, Category
 import amo
 from files.models import FileUpload
+from mkt.developers.forms import NewPackagedAppForm
 from mkt.developers.utils import check_upload
 
 
 class UploadForm(happyforms.Form):
-    manifest = forms.CharField(max_length=32, min_length=32)
+    is_packaged = False
+    manifest = forms.CharField(max_length=32, min_length=32, required=False)
+    upload = forms.CharField(max_length=32, min_length=32, required=False)
 
-    def clean_manifest(self):
-        uuid = self.cleaned_data.get('manifest')
+    def clean(self):
+        uuid = self.cleaned_data.get('upload', '')
+        if uuid:
+            self.is_packaged = True
+        else:
+            uuid = self.cleaned_data.get('manifest', '')
+        if not uuid:
+            raise forms.ValidationError('No upload or manifest specified.')
+
         try:
             upload = FileUpload.objects.get(uuid=uuid)
         except FileUpload.DoesNotExist:
@@ -41,19 +51,47 @@ class JSONField(forms.Field):
         return value
 
 
+def parse(file_, require_name=False, require_type=None):
+    try:
+        if not set(['data', 'type']).issubset(set(file_.keys())):
+            raise forms.ValidationError('Type and data are required.')
+    except AttributeError:
+        raise forms.ValidationError('File must be a dictionary.')
+    try:
+        data = base64.b64decode(file_['data'])
+    except TypeError:
+        raise forms.ValidationError('File must be base64 encoded.')
+
+    result = StringIO.StringIO(data)
+    result.size = len(data)
+
+    if require_type and file_.get('type', '') != require_type:
+        raise forms.ValidationError('Type must be %s.' % require_type)
+    if require_name and not file_.get('name', ''):
+        raise forms.ValidationError('Name not specified.')
+
+    result.name = file_.get('name', '')
+    return result
+
+
+class NewPackagedForm(NewPackagedAppForm):
+    upload = JSONField()
+
+    def clean_upload(self):
+        self.cleaned_data['upload'] = parse(self.cleaned_data
+                                                .get('upload', {}),
+                                            require_name=True,
+                                            require_type='application/zip')
+        return super(NewPackagedForm, self).clean_upload()
+
+
 class PreviewJSONForm(happyforms.Form):
     file = JSONField(required=True)
     position = forms.IntegerField(required=True)
 
     def clean_file(self):
         file_ = self.cleaned_data.get('file', {})
-        try:
-            if not set(['data', 'type']).issubset(set(file_.keys())):
-                raise forms.ValidationError('Type and data are required.')
-        except AttributeError:
-            raise forms.ValidationError('File must be a dictionary.')
-
-        file_obj = StringIO.StringIO(base64.b64decode(file_['data']))
+        file_obj = parse(file_)
         errors, hash_ = check_upload(file_obj, 'preview', file_['type'])
         if errors:
             raise forms.ValidationError(errors)

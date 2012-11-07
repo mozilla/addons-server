@@ -76,6 +76,70 @@ class TestAddValidationHandler(ValidationHandler):
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
+class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
+
+    def setUp(self):
+        super(TestPackagedValidation, self).setUp()
+        name = 'mozball.zip'
+        path = self.packaged_app_path(name)
+        self.file =  base64.b64encode(open(path).read())
+        self.data = {'data': self.file, 'name': name,
+                     'type': 'application/zip'}
+
+    def create(self):
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': self.data}))
+        if res.status_code < 400:
+            self.get_url = ('api_dispatch_detail',
+                            {'resource_name': 'validation',
+                             'pk': json.loads(res.content)['id']})
+
+        return res
+
+    def test_good(self):
+        res = self.create()
+        eq_(res.status_code, 201)  # Note! This should be a 202.
+        content = json.loads(res.content)
+        eq_(content['processed'], True)
+        obj = FileUpload.objects.get(uuid=content['id'])
+        eq_(obj.user, self.user)
+
+    @patch('mkt.developers.forms.MAX_PACKAGED_APP_SIZE', 1)
+    def test_too_big(self):
+        res = self.create()
+        eq_(res.status_code, 400)
+        obj = FileUpload.objects.get()
+        messages = json.loads(obj.validation)['messages']
+        eq_(messages[0]['message'],
+            ["Packaged app too large for submission.",
+             "Packages must be less than 1 byte."])
+
+    def form_errors(self, data, errors):
+        self.data = data
+        res = self.create()
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['upload'], errors)
+
+    def test_missing(self):
+        self.form_errors({'data': self.file, 'name': 'mozball.zip'},
+                         [u'Type and data are required.'])
+
+    def test_missing_name(self):
+        self.form_errors({'data': self.file, 'type': 'application/zip'},
+                         [u'Name not specified.'])
+
+    def test_wrong(self):
+        self.form_errors({'data': self.file, 'name': 'mozball.zip',
+                          'type': 'application/foo'},
+                         [u'Type must be application/zip.'])
+
+    def test_invalid(self):
+        self.form_errors({'data': 'x', 'name': 'mozball.zip',
+                          'type': 'application/foo'},
+                         [u'File must be base64 encoded.'])
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestGetValidationHandler(ValidationHandler):
 
     def create(self):
@@ -186,7 +250,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest': obj.uuid}))
         eq_(res.status_code, 400)
-        eq_(self.get_error(res)['manifest'], ['Upload not valid.'])
+        eq_(self.get_error(res)['__all__'], ['Upload not valid.'])
         eq_(self.count(), 0)
 
     def test_not_there(self):
@@ -194,7 +258,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                                data=json.dumps({'manifest':
                                    'some-random-32-character-stringy'}))
         eq_(res.status_code, 400)
-        eq_(self.get_error(res)['manifest'], ['No upload found.'])
+        eq_(self.get_error(res)['__all__'], ['No upload found.'])
         eq_(self.count(), 0)
 
     def test_not_yours(self):
@@ -343,6 +407,43 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         url = ('api_dispatch_detail', {'resource_name': 'app', 'pk': 123})
         res = self.client.put(url, data='{}')
         eq_(res.status_code, 404)
+
+
+class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
+    fixtures = ['base/user_2519', 'base/users', 'base/platforms']
+
+    def setUp(self):
+        super(CreatePackagedHandler, self).setUp()
+        self.list_url = ('api_dispatch_list', {'resource_name': 'app'})
+        self.user = UserProfile.objects.get(pk=2519)
+        self.file = tempfile.NamedTemporaryFile('w', suffix='.zip').name
+        self.packaged_copy_over(self.file, 'mozball.zip')
+        self.categories = []
+        for x in range(0, 2):
+            self.categories.append(Category.objects.create(
+                name='cat-%s' % x,
+                type=amo.ADDON_WEBAPP))
+
+    def create(self):
+        return FileUpload.objects.create(user=self.user, path=self.file,
+                                         name=self.file, valid=True)
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestPackagedAppCreateHandler(CreatePackagedHandler):
+    fixtures = ['base/user_2519', 'base/users',
+                'base/platforms', 'base/apps', 'base/appversion']
+
+    def test_create(self):
+        obj = self.create()
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': obj.uuid}))
+        eq_(res.status_code, 201)
+        content = json.loads(res.content)
+        eq_(content['status'], 0)
+
+        # Note the packaged status is not returned in the result.
+        app = Webapp.objects.get(app_slug=content['slug'])
+        eq_(app.is_packaged, True)
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

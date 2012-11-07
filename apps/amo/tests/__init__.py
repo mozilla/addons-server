@@ -464,6 +464,10 @@ class AMOPaths(object):
         return os.path.join(
             settings.ROOT, 'mkt/submit/tests/packaged/%s' % name)
 
+    def packaged_copy_over(self, dest, name):
+        with storage.open(dest, 'wb') as f:
+            copyfileobj(open(self.packaged_app_path(name)), f)
+
 
 def close_to_now(dt):
     """

@@ -20,11 +20,11 @@ from files.models import FileUpload, Platform
 from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
-from mkt.api.forms import CategoryForm, UploadForm, StatusForm
+from mkt.api.forms import (CategoryForm, NewPackagedForm, UploadForm,
+                           PreviewJSONForm, StatusForm)
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm
 from mkt.developers.forms import PreviewForm
-from mkt.api.forms import PreviewJSONForm
 from mkt.webapps.models import Addon
 from mkt.submit.forms import AppDetailsBasicForm
 
@@ -49,13 +49,25 @@ class ValidationResource(MarketplaceResource):
     @write
     @transaction.commit_on_success
     def obj_create(self, bundle, request=None, **kwargs):
-        form = NewManifestForm(bundle.data)
+        packaged = 'upload' in bundle.data
+        form = (NewPackagedForm(bundle.data) if packaged
+                else NewManifestForm(bundle.data))
+
         if not form.is_valid():
             raise self.form_errors(form)
 
-        upload = FileUpload.objects.create(user=amo.get_user())
-        tasks.fetch_manifest(form.cleaned_data['manifest'], upload.pk)
-        bundle.obj = FileUpload.objects.get(pk=upload.pk)
+        if not packaged:
+            upload = FileUpload.objects.create(user=amo.get_user())
+            # The hosted app validator is pretty fast.
+            tasks.fetch_manifest(form.cleaned_data['manifest'], upload.pk)
+        else:
+            upload = form.file_upload
+            # The packaged app validator is much heavier.
+            tasks.validator.delay(upload.pk)
+
+        # This is a reget of the object, we do this to get the refreshed
+        # results if not celery delayed.
+        bundle.obj = FileUpload.uncached.get(pk=upload.pk)
         log.info('Validation created: %s' % bundle.obj.pk)
         return bundle
 
@@ -107,6 +119,7 @@ class AppResource(MarketplaceResource):
     @transaction.commit_on_success
     def obj_create(self, bundle, request, **kwargs):
         form = UploadForm(bundle.data)
+
         if not form.is_valid():
             raise self.form_errors(form)
 
@@ -117,7 +130,8 @@ class AppResource(MarketplaceResource):
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
         # Create app, user and fetch the icon.
-        bundle.obj = Addon.from_upload(form.obj, plats)
+        bundle.obj = Addon.from_upload(form.obj, plats,
+                                       is_packaged=form.is_packaged)
         AddonUser(addon=bundle.obj, user=request.amo_user).save()
 
         self._icons_and_images(bundle.obj)
