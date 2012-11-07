@@ -197,10 +197,18 @@ function fragmentFilter(el) {
                 context: $('#page').data('context')
             });
 
+            if (!href) {
+                href = z.context.uri;
+                console.log('whats the 411' + href);
+            }
+
             // Do we have an instruction to clear a part of the fragment cache?
             var bustCookie = $.cookie('fcbust');
             if (bustCookie) {
-                // The `fcbust` is a JSON-encoded list of strings.
+                // Clear out the `fcbust` cookie.
+                $.cookie('fcbust', null);
+
+                // The `fcbust` cookie is a JSON-encoded list of strings.
                 var decoded_prefixes = JSON.parse(bustCookie);
 
                 for (var i = 0; i < decoded_prefixes.length; i++) {
@@ -209,7 +217,7 @@ function fragmentFilter(el) {
                     if (clear_prefix === '/') {
                         // If the server is asking us to bust '/', we should just
                         // perform a synchronous load of the page.
-                        synchronousLoad(z.context.uri);
+                        synchronousLoad(href);
                         return;
                     }
 
@@ -224,9 +232,6 @@ function fragmentFilter(el) {
                         delete fragmentCache[key];
                     });
                 };
-
-                // Clear out the `fcbust` cookie.
-                $.cookie('fcbust', null);
             }
 
             if (z.context.cache === 'cache') {
@@ -239,11 +244,6 @@ function fragmentFilter(el) {
                 reloadOnNext = true;
                 container.trigger('fragmentpendingsync');
                 console.log('performing synchronous load next navigation');
-            }
-
-            if (!href) {
-                href = z.context.uri;
-                console.log('whats the 411' + href);
             }
 
             // Clear jQuery's data attribute cache for body.
