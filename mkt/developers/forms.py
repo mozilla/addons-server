@@ -506,6 +506,8 @@ class NewPackagedAppForm(happyforms.Form):
             self.file_upload = FileUpload.from_post(upload, upload.name,
                                                     upload.size,
                                                     is_webapp=True)
+            self.file_upload.user = self.user
+            self.file_upload.save()
 
 
 class PremiumForm(happyforms.Form):

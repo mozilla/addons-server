@@ -9,6 +9,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from nose import SkipTest
 import mock
@@ -1418,8 +1419,8 @@ class TestUpload(BaseUploadTest):
     def test_fileupload_ascii_post(self):
         path = 'apps/files/fixtures/files/jétpack.xpi'
         data = open(os.path.join(settings.ROOT, path))
-
-        r = self.client.post(self.url, {'upload': data})
+        r = self.client.post(self.url, {'upload':
+                                        SimpleUploadedFile(path, data.read())})
         # If this is broke, we'll get a traceback.
         eq_(r.status_code, 302)
 
