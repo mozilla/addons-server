@@ -1561,3 +1561,7 @@ ALLOW_SELF_REVIEWS = False
 # (Android has since changed its user agent).
 MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
                       'iphone|opera (?:mini|mobi)')
+
+#Credentials for accessing WebTrends stats.
+WEBTRENDS_USERNAME = ''
+WEBTRENDS_PASSWORD = ''

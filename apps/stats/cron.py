@@ -63,6 +63,25 @@ def update_global_totals(date=None):
     TaskSet(ts).apply_async()
 
 
+WEBTRENDS_URLS = [
+    'https://ws.webtrends.com/v3/Reporting/profiles/46543/'
+    'reports/VCjJhvO2mL5/?totals=all&period_type=agg&measures=7']
+
+@cronjobs.register
+def update_webtrends(date=None, urlbases=WEBTRENDS_URLS):
+    """
+    Update stats from Webtrends.
+    """
+    if date:
+        date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+    else:
+        date = datetime.date.today()
+    datestr = date.strftime('%Ym%md%d')
+    urls = ['%s&start_period=%s&end_period=%s&format=json'
+            % (u, datestr, datestr) for u in urlbases]
+    TaskSet([tasks.update_webtrend.subtask(kwargs={'date': date, 'url': u})
+             for u in urls]).apply_async()
+
 @cronjobs.register
 def addon_total_contributions():
     addons = Addon.objects.values_list('id', flat=True)

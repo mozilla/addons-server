@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.core.management import call_command
 
 import mock
@@ -72,6 +73,27 @@ class TestGlobalStats(amo.tests.TestCase):
         UserProfile.objects.create(username='foo',
                                    source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 1)
+
+
+class TestWebtrends(amo.tests.TestCase):
+
+    @mock.patch.object(settings, 'WEBTRENDS_USERNAME', 'username')
+    @mock.patch.object(settings, 'WEBTRENDS_PASSWORD', 'passwd')
+    @mock.patch('requests.get')
+    def test_url(self, get):
+        class FakeResponse:
+            status_code = 200
+            json = {u'data': [{u'measures': {u'DailyVisitors': 1581}}]}
+        get.return_value = FakeResponse()
+        cron.update_webtrends('2012-1-1', ['http://example.com/webtrends'])
+        get.assert_called_with(
+            'http://example.com/webtrends&start_period=2012m01d01'
+            '&end_period=2012m01d01&format=json',
+            auth=('username', 'passwd'))
+
+        eq_(GlobalStat.objects.get(name='webtrends_DailyVisitors',
+                                   date=datetime.date(2012, 1, 1)).count,
+            1581)
 
 
 class TestTotalContributions(amo.tests.TestCase):

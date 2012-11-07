@@ -1,8 +1,11 @@
 import datetime
+import json
 
+from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import Sum, Max
 
+import requests
 import commonware.log
 import elasticutils.contrib.django as elasticutils
 from celeryutils import task
@@ -55,6 +58,29 @@ def update_collections_total(data, **kw):
     for var in data:
         (Collection.objects.filter(pk=var['collection_id'])
          .update(downloads=var['sum']))
+
+@task
+def update_webtrend(url, date, **kw):
+    resp = requests.get(url, auth=(settings.WEBTRENDS_USERNAME,
+                                   settings.WEBTRENDS_PASSWORD))
+    if resp.status_code != 200:
+        log.critical('Failed to fetch webtrends stats. url: %s status_code: %s'
+                     % (url, resp.status_code))
+        return
+    else:
+        data = resp.json
+    key, val = data['data'][0]['measures'].items()[0]
+    p = ['webtrends_' + key, val, date]
+    try:
+        cursor = connection.cursor()
+        cursor.execute('REPLACE INTO global_stats (name, count, date) '
+                       'values (%s, %s, %s)', p)
+        transaction.commit_unless_managed()
+    except Exception, e:
+        log.critical('Failed to update global stats: (%s): %s' % (p, e))
+
+    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
+              % tuple(p))
 
 
 @task
