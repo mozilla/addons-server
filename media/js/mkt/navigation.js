@@ -6,6 +6,8 @@ var nav = (function() {
             type: 'root'
         }
     ];
+    // Ask potch.
+    var path_a = document.createElement('a');
 
     z.page.on('fragmentloaded', function(event, href, popped, state) {
 
@@ -16,6 +18,10 @@ var nav = (function() {
                 break;
             }
         }
+        // <ask potch>
+        path_a.href = state.path;
+        state.path = path_a.pathname;
+        // </ask>
 
         // Are we home? clear any history.
         if (state.type == 'root') {
@@ -30,6 +36,24 @@ var nav = (function() {
                 stack.shift();
             } else {
                 stack.unshift(state);
+            }
+
+            // Does the page have a parent? If so, handle the parent logic.
+            if (z.context.parent) {
+                var parent = _.indexOf(_.pluck(stack, 'path'), z.context.parent);
+
+                if (parent > 1) {
+                    // The parent is in the stack and it's not immediately
+                    // behind the current page in the stack.
+                    stack.splice(1, parent - 1);
+                    console.log('Closing navigation loop to parent (1 to ' + (parent - 1) + ')');
+                } else if (parent == -1) {
+                    // The parent isn't in the stack. Splice it in just below
+                    // where the value we just pushed in is.
+                    stack.splice(1, 0, {path: z.context.parent});
+                    console.log('Injecting parent into nav stack at 1');
+                }
+                console.log('New stack size: ' + stack.length);
             }
         }
 

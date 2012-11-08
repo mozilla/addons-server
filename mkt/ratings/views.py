@@ -252,4 +252,5 @@ def add(request, addon):
                         {'product': addon, 'form': form,
                          'support_url': support_url,
                          'has_review': has_review,
-                         'support_email': support_email})
+                         'support_email': support_email,
+                         'page_parent': addon.get_detail_url()})

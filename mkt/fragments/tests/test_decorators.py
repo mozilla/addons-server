@@ -27,13 +27,13 @@ class TestBustFragmentCacheDecorator(BustFragmentCacheCase):
     def test_post(self):
         """Assert that bust_fragments_on_post only applies on POST."""
         self.meth_str_prefix(self.req)
-        self.assert_cookie_set('["/foo/bar"]')
+        self.assert_header_set('["/foo/bar"]')
 
     def test_not_post(self):
         """Assert that bust_fragments_on_post only applies on POST."""
         self.req.method = 'GET'
         self.meth_str_prefix(self.req)
-        self.assert_cookie_not_set()
+        self.assert_header_not_set()
 
     def test_not_weird_status_code(self):
         """
@@ -41,36 +41,36 @@ class TestBustFragmentCacheDecorator(BustFragmentCacheCase):
         """
         self.resp.status_code = 404
         self.meth_str_prefix(self.req)
-        self.assert_cookie_not_set()
+        self.assert_header_not_set()
 
     def test_list_post(self):
         """Test that a list is correctly encoded for busting."""
         self.meth_list_prefix(self.req)
-        self.assert_cookie_set('["/foo/bar", "/zip/zap"]')
+        self.assert_header_set('["/foo/bar", "/zip/zap"]')
 
     def test_only_2xx(self):
         self.meth_2xx_prefix(self.req)
-        self.assert_cookie_set('["/foo/bar"]')
+        self.assert_header_set('["/foo/bar"]')
 
     def test_only_3xx(self):
         self.resp.status_code = 301
         self.meth_3xx_prefix(self.req)
-        self.assert_cookie_set('["/foo/bar"]')
+        self.assert_header_set('["/foo/bar"]')
 
     def test_not_2xx(self):
         self.resp.status_code = 301
         self.meth_2xx_prefix(self.req)
-        self.assert_cookie_not_set()
+        self.assert_header_not_set()
 
     def test_not_3xx(self):
         self.meth_3xx_prefix(self.req)
-        self.assert_cookie_not_set()
+        self.assert_header_not_set()
 
     meth_formatted_prefix = static_bfop(url_prefix='/foo/{1}/{asdf}')
 
     def test_formatted_prefix(self):
         self.meth_formatted_prefix(self.req, 'first', 'second', asdf='kw')
-        self.assert_cookie_set('["/foo/second/kw"]')
+        self.assert_header_set('["/foo/second/kw"]')
 
     @raises(AssertionError)
     def test_decorator_order(self):

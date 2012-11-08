@@ -39,4 +39,4 @@ def bust_fragments(response, prefix, *args, **kwargs):
     prefix = json.dumps(prefix)
 
     # At this point, we know we're busting the fragment cache.
-    response.set_cookie('fcbust', prefix)
+    response['x-frag-bust'] = prefix

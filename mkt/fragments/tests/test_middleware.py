@@ -18,6 +18,8 @@ class TestHijackRedirectMiddleware(amo.tests.TestCase):
     def test_post_synchronous(self):
         res = self.client.post(self.url, {'display_name': 'omg'})
         self.assert3xx(res, self.url)
+        assert res['Location']
+        assert 'X-URI' not in res
 
     def test_unhijacked_ajax(self):
         res = self.client.post_ajax(self.url, {'display_name': 'omg'})
@@ -29,6 +31,8 @@ class TestHijackRedirectMiddleware(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(json.loads(pq(res.content)('#page').attr('data-context'))['uri'],
             self.url)
+        assert 'Location' not in res
+        assert res['X-URI']
 
     def test_post_ajax_carrier(self):
         url = '/telefonica' + self.url
