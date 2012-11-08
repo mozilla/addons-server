@@ -1418,7 +1418,7 @@ class TestUpload(BaseUploadTest):
 
     def test_fileupload_ascii_post(self):
         path = u'apps/files/fixtures/files/jétpack.xpi'
-        data = open(os.path.join(settings.ROOT, path))
+        data = storage.open(os.path.join(settings.ROOT, path))
         r = self.client.post(self.url, {'upload':
                                         SimpleUploadedFile(path, data.read())})
         # If this is broke, we'll get a traceback.
