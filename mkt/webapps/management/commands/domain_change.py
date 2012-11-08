@@ -49,7 +49,7 @@ class Command(BaseCommand):
 
         apps = (Addon.objects
                 .filter(status__in=[amo.STATUS_PUBLIC, amo.STATUS_PENDING],
-                        type=amo.ADDON_WEBAPP)
+                        type=amo.ADDON_WEBAPP, is_packaged=False)
                 .no_transforms())
         # Not chunking because I know there are very few of these apps at
         # this time.
