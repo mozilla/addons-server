@@ -65,6 +65,7 @@
             // Trigger validation.
             if (!validate(e)) {
                 e.preventDefault();
+                return false;
             }
             // Form submission is handled by POST hijacking.
         }).on('click', '.cancel', _pd(function() {
