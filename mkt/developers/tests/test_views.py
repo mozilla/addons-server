@@ -1417,7 +1417,7 @@ class TestUpload(BaseUploadTest):
         eq_(FileUpload.objects.get().user, user)
 
     def test_fileupload_ascii_post(self):
-        path = 'apps/files/fixtures/files/jétpack.xpi'
+        path = 'apps/files/fixtures/files/jétpack.xpi'
         data = open(os.path.join(settings.ROOT, path))
         r = self.client.post(self.url, {'upload':
                                         SimpleUploadedFile(path, data.read())})
@@ -1574,7 +1574,7 @@ class TestUploadDetail(BaseUploadTest):
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('mkt.developers.standalone_upload_detail',
-                    args=[upload.uuid]))
+                    args=['hosted', upload.uuid]))
         eq_(suite('#suite-results-tier-2').length, 1)
 
 
