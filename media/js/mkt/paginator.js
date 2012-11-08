@@ -13,5 +13,6 @@ z.page.on('click', '.loadmore button', function(e) {
         // Swap the container with the new content.
         swapEl.replaceWith($(d).find('.listing').html());
         z.page.trigger('updatecache');
+        z.page.trigger('fragmentloaded');
     });
 });
