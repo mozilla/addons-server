@@ -124,13 +124,21 @@ Validate
 
 This API requires authentication.
 
-To validate an app::
+To validate a hosted app::
 
         POST /api/apps/validation/
-
-Body data should contain the manifest in JSON::
-
         {"manifest": "http://test.app.com/manifest"}
+
+To validate a packaged app, send the appropriate file data in the upload field.
+File data is a dictionary of name, type (content type) and the base 64 encoded
+data. For example::
+
+        POST /api/apps/validation/
+        {"upload": {"type": "application/foo",
+                    "data": "UEsDBAo...gAAAAA=",
+                    "name": "mozball.zip"}}
+
+Then you get the result::
 
         GET /api/apps/validation/123/
 
@@ -172,14 +180,18 @@ Create
 ======
 
 This API requires authentication and a successfully validated manifest. To
-create an app with your validated manifest::
+create an app with your validated manifest. Body data should contain the
+manifest id from the validate call and other data in JSON::
+
 
         POST /api/apps/app/
-
-Body data should contain the manifest id from the validate call and other data
-in JSON::
-
         {"manifest": "123"}
+
+If you'd like to create a successfully validation packaged app, use upload
+instead of manifest::
+
+        POST /api/apps/app/
+        {"upload": "123"}
 
 If the creation succeeded you'll get a 201 status back. This will return the id
 of the app on the marketplace as a slug. The marketplace will complete some of
