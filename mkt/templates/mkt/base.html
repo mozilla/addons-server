@@ -71,11 +71,12 @@
       <div id="page" role="main"
            data-context="{{
              {'type': pagetype or 'leaf',
-              'title': titletag,
               'cache': cache_fragment,
               'hash': get_media_hash(),
+              'title': titletag,
               'headertitle': headertitle,
               'bodyclass': bodyclass or '',
+              'parent': page_parent or '',
               'category': category.name ~ '' if category else ''}|json }}">
         {# `outer_content` is for stuff you want above `content` on every page. #}
         {% block outer_content %}

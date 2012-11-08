@@ -4,6 +4,7 @@
 {% set pagetitle = _('Reviews for {0}')|f(product.name) %}
 {% set headertitle = _('Reviews') %}
 {% set bodyclass = 'reviews-listing' %}
+{% set page_parent = product.get_detail_url() %}
 
 {% block extrahead %}
   {{ super() }}

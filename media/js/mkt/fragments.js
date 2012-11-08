@@ -40,6 +40,39 @@ function fragmentFilter(el) {
             // Not GET or POST? Not interested.
         });
 
+        z.page.ajaxSuccess(function(e, xhr, response) {
+            // Do we have an instruction to clear a part of the fragment cache?
+            var bust_flag = xhr.getResponseHeader('x-frag-bust');
+            if (bust_flag) {
+
+                // The `fcbust` header is a JSON-encoded list of strings.
+                var decoded_prefixes = JSON.parse(bust_flag);
+
+                for (var i = 0; i < decoded_prefixes.length; i++) {
+                    var clear_prefix = decoded_prefixes[i];
+
+                    // Delete all the matching cache entries.
+                    _.each(fragmentCache, function(_, key) {
+                        // If the prefix doesn't match the cache entry, skip it.
+                        if (clear_prefix.length > key.length ||
+                            key.substr(0, clear_prefix.length) !== clear_prefix) {
+                            return;
+                        }
+
+                        delete fragmentCache[key];
+                    });
+                };
+                console.log('fragment cache busted');
+            }
+        });
+
+        function handleFragmentResponse(xhr, href) {
+            var bust_flag = xhr.getResponseHeader('x-frag-bust');
+            if (bust_flag && _.contains(JSON.parse(bust_flag), '/')) {
+                synchronousLoad(xhr.getResponseHeader('x-uri') || href);
+            }
+        }
+
         function hijackGET(form) {
             var action = form.attr('action');
             //strip existing queryparams off the action.
@@ -59,12 +92,14 @@ function fragmentFilter(el) {
             } else {
                 data = '_hijacked=true';
             }
+            var href = action || window.location;
             $.ajax({
                 type: 'POST',
-                url: action || window.location,
-                data: form.serialize()
-            }).done(function(response) {
+                url: href,
+                data: data
+            }).done(function(response, textStatus, xhr) {
                 // load up the response fragment!
+                handleFragmentResponse(xhr, href);
                 updateContent(response);
             }).fail(function(response) {
                 form.trigger('notify', {
@@ -125,10 +160,10 @@ function fragmentFilter(el) {
 
             //caching!
             if (fragmentCache[href]) {
-                console.log(format('cached {0} at {1}', href, state.scrollTop));
+                console.log(format('cached {0} at {1}', href, state.scrollTop || '0'));
                 updateContent(fragmentCache[href], href, popped, {scrollTop: state.scrollTop});
             } else {
-                console.log(format('fetching {0} at {1}', href, state.scrollTop));
+                console.log(format('fetching {0} at {1}', href, state.scrollTop || '0'));
 
                 // Chrome doesn't obey the Vary header, so we need to keep the fragments
                 // from getting cached with the page itself. Remove once Chrome bug #94369
@@ -147,7 +182,7 @@ function fragmentFilter(el) {
                     if (region) {
                         chr_flag += region;
                     }
-                    
+
                     if(chr_flag) {
                         chr_flag = '=' + encodeURIComponent(chr_flag);
                     }
@@ -162,6 +197,7 @@ function fragmentFilter(el) {
                         return;
                     }
                     console.log('caching fragment');
+                    handleFragmentResponse(xhr, href);
                     updateContent(d, href, popped, {scrollTop: state.scrollTop});
                 }).error(function(e) {
                     console.log('fetch error!');
@@ -200,38 +236,6 @@ function fragmentFilter(el) {
             if (!href) {
                 href = z.context.uri;
                 console.log('whats the 411' + href);
-            }
-
-            // Do we have an instruction to clear a part of the fragment cache?
-            var bustCookie = $.cookie('fcbust');
-            if (bustCookie) {
-                // Clear out the `fcbust` cookie.
-                $.cookie('fcbust', null);
-
-                // The `fcbust` cookie is a JSON-encoded list of strings.
-                var decoded_prefixes = JSON.parse(bustCookie);
-
-                for (var i = 0; i < decoded_prefixes.length; i++) {
-                    var clear_prefix = decoded_prefixes[i];
-
-                    if (clear_prefix === '/') {
-                        // If the server is asking us to bust '/', we should just
-                        // perform a synchronous load of the page.
-                        synchronousLoad(href);
-                        return;
-                    }
-
-                    // Delete all the matching cache entries.
-                    _.each(fragmentCache, function(_, key) {
-                        // If the prefix doesn't match the cache entry, skip it.
-                        if (clear_prefix.length > key.length ||
-                            key.substr(0, clear_prefix.length) !== clear_prefix) {
-                            return;
-                        }
-
-                        delete fragmentCache[key];
-                    });
-                };
             }
 
             if (z.context.cache === 'cache') {
