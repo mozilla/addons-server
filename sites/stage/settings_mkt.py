@@ -96,14 +96,17 @@ APP_PREVIEW = True
 WEBAPPS_UNIQUE_BY_DOMAIN = True
 
 WAFFLE_SUFFIX = WAFFLE_TABLE_SUFFIX = 'mkt'
- 
+
 SENTRY_DSN = private_mkt.SENTRY_DSN
- 
+
 METRICS_SERVER = 'https://data.mozilla.com/'
-VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org', 
+VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org']
 
 SECLUSION_HOSTS = ('https://payments.allizom.org',)
 
 GEOIP_NOOP = 0
+
+WEBTRENDS_USERNAME = settings.WEBTRENDS_USERNAME
+WEBTRENDS_PASSWORD = settings.WEBTRENDS_PASSWORD

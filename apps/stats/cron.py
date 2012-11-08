@@ -75,7 +75,8 @@ def update_webtrends(date=None, urlbases=WEBTRENDS_URLS):
     if date:
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
     else:
-        date = datetime.date.today()
+        # Assume that we want to populate yesterdays stats by default.
+        date = datetime.date.today() - datetime.timedelta(days=1)
     datestr = date.strftime('%Ym%md%d')
     urls = ['%s&start_period=%s&end_period=%s&format=json'
             % (u, datestr, datestr) for u in urlbases]

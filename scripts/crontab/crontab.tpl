@@ -58,6 +58,9 @@ HOME=/tmp
 45 23 * * * %(django)s dump_apps
 55 23 * * * %(z_cron)s clean_out_addonpremium
 
+# Once per day, populate yesterdays totals from webtrends
+50 2 * * * %(z_cron)s update_webtrends --settings=settings_local_mkt
+
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * %(z_cron)s update_addon_download_totals
 40 21 * * * %(z_cron)s weekly_downloads
