@@ -136,5 +136,5 @@ METLOG_CONF['logger'] = 'addons-marketplace-dev'
 METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
 METLOG = client_from_dict_config(METLOG_CONF)
 
-WEBTRENDS_USERNAME = settings.WEBTRENDS_USERNAME
-WEBTRENDS_PASSWORD = settings.WEBTRENDS_PASSWORD
+WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
+WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
