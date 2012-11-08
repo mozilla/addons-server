@@ -1417,10 +1417,12 @@ class TestUpload(BaseUploadTest):
         eq_(FileUpload.objects.get().user, user)
 
     def test_fileupload_ascii_post(self):
-        path = u'apps/files/fixtures/files/jétpack.xpi'
+        path = u'apps/files/fixtures/files/jetpack.xpi'
         data = storage.open(os.path.join(settings.ROOT, path))
+        replaced = path.replace('e', u'é')
         r = self.client.post(self.url, {'upload':
-                                        SimpleUploadedFile(path, data.read())})
+                                        SimpleUploadedFile(replaced,
+                                                           data.read())})
         # If this is broke, we'll get a traceback.
         eq_(r.status_code, 302)
 
