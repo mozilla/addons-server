@@ -30,6 +30,7 @@ easy-thumbnails==1.1
 elasticutils==0.5
 feedparser==5.0.1
 fudge==1.0.3
+GitPython==0.1.7
 gunicorn==0.15.0
 hera==0.1.2
 html5lib==0.90

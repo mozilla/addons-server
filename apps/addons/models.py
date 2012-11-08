@@ -438,6 +438,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             if not is_packaged:
                 addon.manifest_url = upload.name
                 addon.app_domain = addon.domain_from_url(addon.manifest_url)
+        import pdb; pdb.set_trace()
         addon.save()
         Version.from_upload(upload, addon, platforms)
         amo.log(amo.LOG.CREATE_ADDON, addon)
