@@ -233,7 +233,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     def test_verbs(self):
         self.create()
-        self._allowed_verbs(self.list_url, ['post'])
+        self._allowed_verbs(self.list_url, ['get', 'post'])
         self.create_app()
         self._allowed_verbs(self.get_url, ['get', 'put'])
 
@@ -444,6 +444,42 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
         # Note the packaged status is not returned in the result.
         app = Webapp.objects.get(app_slug=content['slug'])
         eq_(app.is_packaged, True)
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestListHandler(CreateHandler, AMOPaths):
+
+    fixtures = ['base/user_2519', 'base/users',
+                'base/platforms', 'base/appversion']
+
+    def create(self, users):
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        for user in users:
+            AddonUser.objects.create(user=user, addon=app)
+        return app
+
+    def create_apps(self, *all_owners):
+        apps = []
+        for owners in all_owners:
+            owners = [UserProfile.objects.get(pk=pk) for pk in owners]
+            apps.append(self.create(owners))
+
+        return apps
+
+    def test_create(self):
+        apps = self.create_apps([2519], [999])
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], str(apps[0].pk))
+
+    def test_multiple(self):
+        apps = self.create_apps([2519], [999, 2519])
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 2)
+        pks = set([data['objects'][0]['id'], data['objects'][1]['id']])
+        eq_(pks, set([str(app.pk) for app in apps]))
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')

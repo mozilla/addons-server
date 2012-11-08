@@ -259,6 +259,36 @@ Example body data::
 
 Previews will be list of URLs pointing to the screenshot API.
 
+List
+====
+
+To get a list of the apps you have available::
+
+        GET /api/apps/app/
+
+This will return a list of all the apps the user is allowed to access::
+
+        {"meta": {"limit": 20,
+                  "next": null,
+                  "offset": 0,
+                  "previous": null,
+                  "total_count": 2},
+         "objects": [{"categories": [1L], "resource_uri": "/api/apps/app/4/"
+                      ...and the rest of the object]}
+
+Get
+===
+
+To get an individual app, use the `resource_uri` from the list::
+
+        GET /api/apps/app/4/
+
+This will return::
+
+        {"resource_uri": "/api/apps/app/4/", "slug": "mozillaball",
+         "summary": "Exciting Open Web development action!",
+         ...and the rest of the object}
+
 Status
 ======
 

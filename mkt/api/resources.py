@@ -1,5 +1,6 @@
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 
 from celery_tasktree import TaskTree
@@ -107,7 +108,7 @@ class AppResource(MarketplaceResource):
                   'homepage', 'privacy_policy',
                   'status', 'summary', 'support_email', 'support_url',
                   'categories']
-        list_allowed_methods = ['post']
+        list_allowed_methods = ['get', 'post']
         allowed_methods = ['get', 'put']
         always_return_data = True
         authentication = MarketplaceAuthentication()
@@ -146,10 +147,7 @@ class AppResource(MarketplaceResource):
         pipeline.apply_async()
 
     def obj_get(self, request=None, **kwargs):
-        obj = super(AppResource, self).obj_get(request=request, **kwargs)
-        if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
-
+        obj = self.get_and_check_ownership(request, **kwargs)
         log.info('App retreived: %s' % obj.pk)
         return obj
 
@@ -167,17 +165,25 @@ class AppResource(MarketplaceResource):
                 'form-MAX_NUM_FORMS': '',
                 'form-0-categories': cats}
 
+    def get_and_check_ownership(self, request, **kwargs):
+        try:
+            # Use queryset, not get_object_list to ensure a distinction
+            # between a 404 and a 403.
+            obj = self._meta.queryset.get(**kwargs)
+        except Addon.DoesNotExist:
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+
+        # Now do the final check to see if you are allowed to see it and
+        # return a 403 if you can't.
+        if not AppOwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+        return obj
+
     @write
     @transaction.commit_on_success
     def obj_update(self, bundle, request, **kwargs):
         data = bundle.data
-        try:
-            obj = self.get_object_list(bundle.request).get(**kwargs)
-        except Addon.DoesNotExist:
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
-
-        if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+        obj = self.get_and_check_ownership(request, **kwargs)
 
         data['slug'] = data.get('slug', obj.app_slug)
         data.update(self.formset(data))
@@ -208,6 +214,9 @@ class AppResource(MarketplaceResource):
             bundle.data['device_types'] = [str(n.name).lower()
                                            for n in obj.device_types]
         return bundle
+
+    def get_object_list(self, request):
+        return self._meta.queryset.filter(authors=request.amo_user)
 
 
 class StatusResource(MarketplaceResource):
