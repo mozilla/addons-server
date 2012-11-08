@@ -253,4 +253,5 @@ def add(request, addon):
                          'support_url': support_url,
                          'has_review': has_review,
                          'support_email': support_email,
-                         'page_parent': addon.get_detail_url()})
+                         'page_parent': addon.get_detail_url() if
+                                        not existing_review else ''})
