@@ -20,6 +20,7 @@ function fragmentFilter(el) {
         fragmentCache = {},
         cacheHash = '',
         reloadOnNext = false;
+
     if (z.capabilities.replaceState) {
         var $loading = $('<div>', {'class': 'loading-fragment overlay',
                                    'html': '<em></em>'})
@@ -153,7 +154,6 @@ function fragmentFilter(el) {
 
         // handle link clicking and state popping.
         function fetchFragment(state, popped) {
-            console.log('fetchFragment');
             var href = state.path;
             startLoading();
             markScrollTop();
@@ -284,6 +284,16 @@ function fragmentFilter(el) {
             fetchFragment({path: path});
         });
 
+        $(window).on('updatecache', function() {
+            console.log('event');
+            updateCache();
+        });
+
+        function updateCache() {
+            console.log('caching fragment');
+            fragmentCache[window.location.pathname] = container.html();
+        }
+
         $(function() {
             // Don't forget to update updateContent too, bro.
             var path = window.location.pathname + window.location.search + window.location.hash;
@@ -296,8 +306,7 @@ function fragmentFilter(el) {
             history.replaceState(state, false, path);
 
             if (z.context.cache === 'cache') {
-                console.log('caching fragment');
-                fragmentCache[path] = container.html();
+                updateCache();
             }
             container.trigger('fragmentloaded', [path, false, state]);
         });

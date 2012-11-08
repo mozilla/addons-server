@@ -255,6 +255,8 @@ JS = {
         'js/impala/suggestions.js',
         'js/mkt/mkt_suggestions.js',
 
+        'js/mkt/paginator.js',
+
         # Account settings.
         'js/mkt/account.js',
 
