@@ -81,6 +81,9 @@ loggers = {
         'level': 'ERROR',
         'propagate': True,
     },
+    'caching': {
+        'level': 'ERROR',
+    },
 }
 
 cfg = {
