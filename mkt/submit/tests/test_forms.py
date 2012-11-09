@@ -41,18 +41,17 @@ class TestNewWebappForm(amo.tests.TestCase):
     def test_platform(self):
         self.create_switch('allow-b2g-paid-submission')
         for data, res in (
-                ({'free': ['free-os']}, [amo.DEVICE_MOBILE]),
-                ({'paid': ['paid-os']}, [amo.DEVICE_MOBILE]),
-                ({'free': ['free-os',
-                           'free-phone']}, [amo.DEVICE_MOBILE]),
-                ({'free': ['free-phone',
-                           'free-tablet']},
-                           [amo.DEVICE_MOBILE, amo.DEVICE_TABLET]),
+                ({'free': ['free-os']}, [amo.DEVICE_GAIA]),
+                ({'paid': ['paid-os']}, [amo.DEVICE_GAIA]),
+                ({'free': ['free-os', 'free-phone']},
+                 [amo.DEVICE_GAIA, amo.DEVICE_MOBILE]),
+                ({'free': ['free-phone', 'free-tablet']},
+                 [amo.DEVICE_MOBILE, amo.DEVICE_TABLET]),
             ):
             data['upload'] = self.file.uuid
             form = forms.NewWebappForm(data)
             assert form.is_valid(), form.errors
-            assert set(res) == set(form.get_devices())
+            self.assertSetEqual(res, form.get_devices())
 
     def test_both(self):
         self.create_switch('allow-b2g-paid-submission')
