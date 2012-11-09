@@ -1505,6 +1505,14 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
             'Reviewer escalation')
 
+    def test_no_double_encode(self):
+        version = self.apps[0].current_version
+        version.update(version='<foo>')
+        self.make_an_approval(amo.LOG.ESCALATE_MANUAL)
+        r = self.client.get(self.url)
+        assert '<foo>' in pq(r.content)('#log-listing tr td').eq(1).text(), (
+            'Double-encoded string was found in reviewer log.')
+
 
 class TestMotd(AppReviewerTest, AccessMixin):
 
@@ -1897,6 +1905,9 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_reviewer(self):
+        if not settings.XSENDFILE:
+            raise SkipTest()
+
         self.setup_files()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)

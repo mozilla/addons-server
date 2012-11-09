@@ -28,7 +28,7 @@
                 {% if item.arguments.0 %}
                   {{ item.arguments.0|link }}
                   {% if item.arguments|count >= 2 %}
-                    {{ item.arguments[1] }}
+                    {{ item.arguments[1].version }}
                     <a href="{{ url('reviewers.apps.review', item.arguments[0].app_slug) }}">
                       {{ ACTION_DICT.get(item.action).short }}
                     </a>
