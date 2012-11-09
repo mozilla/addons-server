@@ -549,7 +549,10 @@ class Webapp(Addon):
         if carrier:
             qs = qs.filter(carriers__carrier=carrier)
 
-        if mobile:
+        if gaia:
+            qs = qs.filter(
+                app__addondevicetype__device_type=amo.DEVICE_GAIA.id)
+        elif mobile:
             qs = qs.filter(
                 app__addondevicetype__device_type=amo.DEVICE_MOBILE.id)
 

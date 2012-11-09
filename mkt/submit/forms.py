@@ -154,7 +154,7 @@ class NewWebappForm(NewWebappVersionForm):
 
     def get_devices(self):
         """Returns a device based on the requested free or paid."""
-        platforms = {'os': amo.DEVICE_MOBILE,
+        platforms = {'os': amo.DEVICE_GAIA,
                      'desktop': amo.DEVICE_DESKTOP,
                      'phone': amo.DEVICE_MOBILE,
                      'tablet': amo.DEVICE_TABLET}

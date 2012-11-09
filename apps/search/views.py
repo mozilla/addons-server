@@ -408,8 +408,10 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
                     # Django ORM? Do an `exclude`.
                     res = res.exclude(id__in=excluded)
 
-        if self.mobile:
-            res = res.filter(device=amo.DEVICE_MOBILE.id)
+        if self.gaia:
+            res = res.filter(device=amo.DEVICE_GAIA.id, uses_flash=False)
+        elif self.mobile:
+            res = res.filter(device=amo.DEVICE_MOBILE.id, uses_flash=False)
 
         return res
 

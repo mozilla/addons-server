@@ -1410,6 +1410,7 @@ class AddonDeviceType(amo.models.ModelBase):
 
     class Meta:
         db_table = 'addons_devicetypes'
+        unique_together = ('addon', 'device_type')
 
     def __unicode__(self):
         return u'%s: %s' % (self.addon.name, self.device.name)

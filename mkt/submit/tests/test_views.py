@@ -313,16 +313,18 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_set_platform(self):
         app = self.post_addon({'free': ['free-tablet', 'free-desktop']})
-        eq_(set(app.device_types),
-            set([amo.DEVICE_TABLET, amo.DEVICE_DESKTOP]))
+        self.assertSetEqual(app.device_types,
+                            [amo.DEVICE_TABLET, amo.DEVICE_DESKTOP])
 
     def test_free(self):
         app = self.post_addon({'free': ['free-os']})
+        self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_FREE)
 
     def test_premium(self):
         self.create_switch('allow-b2g-paid-submission')
         app = self.post_addon({'paid': ['paid-os']})
+        self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_PREMIUM)
 
     def test_unsupported_detail_locale(self):

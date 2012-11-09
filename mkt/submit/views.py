@@ -93,7 +93,7 @@ def manifest(request):
 
         # Set the device type.
         for device in form.get_devices():
-            addon.addondevicetype_set.create(device_type=device.id)
+            addon.addondevicetype_set.get_or_create(device_type=device.id)
 
         # Set the premium type, only bother if it's not free.
         premium = form.get_paid()

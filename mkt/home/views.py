@@ -1,14 +1,15 @@
 import jingo
 
 import mkt
-from constants.applications import DEVICE_MOBILE
+from constants.applications import DEVICE_GAIA, DEVICE_MOBILE
 from mkt.webapps.models import Webapp
 
 
 def _add_mobile_filter(request, qs):
-    if request.MOBILE:
-        qs = qs.filter(device=DEVICE_MOBILE.id,
-                       uses_flash=False)
+    if request.GAIA:
+        qs = qs.filter(device=DEVICE_GAIA.id, uses_flash=False)
+    elif request.MOBILE:
+        qs = qs.filter(device=DEVICE_MOBILE.id, uses_flash=False)
     return qs
 
 

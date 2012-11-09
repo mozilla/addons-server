@@ -154,20 +154,27 @@ class DEVICE_DESKTOP(object):
 
 class DEVICE_MOBILE(object):
     id = 2
-    name = _(u'Mobile')
-    class_name = 'mobile'
+    name = _(u'Firefox Mobile')
+    class_name = 'android-mobile'
 
 
 class DEVICE_TABLET(object):
     id = 3
-    name = _(u'Tablet')
-    class_name = 'tablet'
+    name = _(u'Firefox Tablet')
+    class_name = 'android-tablet'
+
+
+class DEVICE_GAIA(object):
+    id = 4
+    name = _(u'Firefox OS')
+    class_name = 'firefoxos'
 
 
 DEVICE_TYPES = {
     DEVICE_DESKTOP.id: DEVICE_DESKTOP,
     DEVICE_MOBILE.id: DEVICE_MOBILE,
     DEVICE_TABLET.id: DEVICE_TABLET,
+    DEVICE_GAIA.id: DEVICE_GAIA
 }
 
 
