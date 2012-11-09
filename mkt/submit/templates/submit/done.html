@@ -4,7 +4,7 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
-{% set payments = waffle.switch('enabled-paypal') or waffle.switch('bluevia') %}
+{% set payments = waffle.switch('allow-b2g-paid-submission') %}
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
