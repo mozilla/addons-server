@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import django.contrib.messages as django_messages
 from django.contrib.messages.storage import default_storage
 from django.http import HttpRequest
@@ -54,3 +55,17 @@ def test_l10n_dups():
 
     storage = django_messages.get_messages(request)
     eq_(len(storage), 2, 'Too few or too many messages recorded.')
+
+
+def test_unicode_dups():
+    """Test that unicode values are preserved."""
+    request = HttpRequest()
+    setattr(request, '_messages', default_storage(request))
+
+    info(request, u'Titlé', u'Body')
+    info(request, u'Titlé', u'Body')
+    info(request, u'Another Titlé', u'Another Body')
+
+    storage = django_messages.get_messages(request)
+    eq_(len(storage), 2, 'Too few or too many messages recorded.')
+

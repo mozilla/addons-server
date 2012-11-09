@@ -30,14 +30,17 @@ def _is_dupe(msg, request):
     if not storage:
         return False
 
-    smsg = str(msg)
-    is_dupe = False
-    for message in storage:
-        if str(message) == smsg:
-            # We can't return from here because we need to tell Django not to
-            # consume the messages.
-            is_dupe = True
-            break
+    try:
+        smsg = unicode(msg)
+        is_dupe = False
+        for message in storage:
+            if unicode(message) == smsg:
+                # We can't return from here because we need to tell Django not
+                # to consume the messages.
+                is_dupe = True
+                break
+    except (UnicodeDecodeError, UnicodeEncodeError):
+        return False
 
     storage.used = False
     return is_dupe
