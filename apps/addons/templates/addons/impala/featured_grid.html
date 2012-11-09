@@ -1,5 +1,4 @@
 {% from "addons/macros.html" import vital %}
-{% cache addons %}
 <ul class="listing-grid c featured {{ columns }}">
 {% for page in pages %}
   {% set first_page = loop.first %}
@@ -38,4 +37,3 @@
   </section>
 {% endfor %}
 </ul>
-{% endcache %}
