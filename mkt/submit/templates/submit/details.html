@@ -126,8 +126,6 @@
 
       {{ form_field(form_basic.flash, hint=True) }}
 
-      {{ form_field(form_devices.device_types) }}
-
       <div>
         <label>
           {% if waffle.switch('video-upload') %}

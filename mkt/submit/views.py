@@ -11,7 +11,6 @@ from waffle.decorators import waffle_switch
 import amo
 from amo.decorators import login_required
 from amo.urlresolvers import reverse
-from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from files.models import Platform
 from users.models import UserProfile
@@ -130,7 +129,6 @@ def details(request, addon_id, addon):
                                      request=request)
     form_cats = CategoryForm(request.POST or None, product=addon,
                              request=request)
-    form_devices = DeviceTypeForm(request.POST or None, addon=addon)
     form_icon = AppFormMedia(request.POST or None, request.FILES or None,
                              instance=addon, request=request)
     form_previews = PreviewFormSet(request.POST or None, prefix='files',
@@ -151,7 +149,6 @@ def details(request, addon_id, addon):
                 request.POST[othername] = value
     forms = {
         'form_basic': form_basic,
-        'form_devices': form_devices,
         'form_cats': form_cats,
         'form_icon': form_icon,
         'form_previews': form_previews,
@@ -159,11 +156,16 @@ def details(request, addon_id, addon):
 
     if request.POST and all(f.is_valid() for f in forms.itervalues()):
         addon = form_basic.save(addon)
-        form_devices.save(addon)
         form_cats.save()
         form_icon.save(addon)
         for preview in form_previews.forms:
             preview.save(addon)
+
+        # If this is an incomplete app from the legacy submission flow, it may
+        # not have device types set yet - so assume it works everywhere.
+        if not addon.device_types:
+            for device in amo.DEVICE_TYPES:
+                addon.addondevicetype_set.create(device_type=device)
 
         tasks.generate_image_assets.delay(addon)
 

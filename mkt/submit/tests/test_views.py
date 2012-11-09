@@ -491,6 +491,7 @@ class TestDetails(TestSubmit):
         self.dtype = DEVICE_TYPES.values()[0]
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype.id)
+        self.device_types = [self.dtype]
 
         # Associate category with app.
         self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
@@ -546,7 +547,6 @@ class TestDetails(TestSubmit):
             'homepage': 'http://www.goodreads.com/user/show/7595895-krupa',
             'support_url': 'http://www.goodreads.com/user_challenges/351558',
             'support_email': 'krupa+to+the+rescue@goodreads.com',
-            'device_types': [self.dtype.id],
             'categories': [self.cat1.id],
             'flash': 'checked',
         }
@@ -580,10 +580,28 @@ class TestDetails(TestSubmit):
             got = unicode(getattr(addon, field))
             eq_(got, expected,
                 'Expected %r for %r. Got %r.' % (expected, field, got))
-        eq_(list(addon.device_types), [self.dtype])
+        self.assertSetEqual(addon.device_types, self.device_types)
 
     def test_success(self):
         self._step()
+        data = self.get_dict()
+        r = self.client.post(self.url, data)
+        self.assertNoFormErrors(r)
+        self.check_dict(data=data)
+        self.webapp = self.get_webapp()
+        self.assert3xx(r, self.get_url('done'))
+
+    def test_success_prefill_device_types_if_empty(self):
+        """
+        The new submission flow asks for device types at step one.
+        This ensures that existing incomplete apps still have device
+        compatibility.
+        """
+        self._step()
+
+        AddonDeviceType.objects.all().delete()
+        self.device_types = amo.DEVICE_TYPES.values()
+
         data = self.get_dict()
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
@@ -801,39 +819,6 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, self.get_dict(support_email='xxx'))
         self.assertFormError(r, 'form_basic', 'support_email',
                              'Enter a valid e-mail address.')
-
-    def test_device_types_required(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(device_types=None))
-        self.assertFormError(r, 'form_devices', 'device_types',
-                             'This field is required.')
-
-    def test_device_types_invalid(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(device_types='999'))
-        self.assertFormError(r, 'form_devices', 'device_types',
-            'Select a valid choice. 999 is not one of the available choices.')
-
-    def test_device_types_default(self):
-        self._step()
-        # Add the rest of the device types. We already add [0] in _step().
-        for d_id in DEVICE_TYPES.keys()[1:]:
-            AddonDeviceType.objects.create(addon=self.webapp,
-                                           device_type=d_id)
-
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        checkboxes = pq(r.content)('input[name=device_types]')
-        eq_(checkboxes.filter(':checked').length, checkboxes.length,
-            'All device types should be checked by default.')
-
-    def test_device_types_default_on_post(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(device_types=None))
-        eq_(r.status_code, 200)
-        checkboxes = pq(r.content)('input[name=device_types]')
-        eq_(checkboxes.filter(':checked').length, 0,
-            'POSTed values should not get replaced by the defaults.')
 
     def test_categories_required(self):
         self._step()

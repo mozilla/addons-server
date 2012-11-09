@@ -109,8 +109,8 @@ class NewWebappForm(NewWebappVersionForm):
 
     ERRORS = {'both': _lazy(u'Cannot be free and paid.'),
               'none': _lazy(u'Please select a device.'),
-              'packaged': _lazy(u'Packaged apps are only valid '
-                                u'for Firefox OS.')}
+              'packaged': _lazy(u'Packaged apps are valid '
+                                u'for only Firefox OS.')}
 
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
@@ -122,10 +122,8 @@ class NewWebappForm(NewWebappVersionForm):
     free = forms.MultipleChoiceField(choices=FREE, required=False)
     paid = forms.MultipleChoiceField(choices=PAID, required=False)
 
-
     def _add_error(self, msg):
         self._errors['free'] = self._errors['paid'] = self.ERRORS[msg]
-
 
     def _get_combined(self):
         return set(self.cleaned_data.get('free', []) +
