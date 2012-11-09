@@ -674,7 +674,7 @@ class TestListing(ReviewTest):
 
             r2 = self.client.get(self.listing, data={'region': region})
             eq_(r2.status_code, 200)
-            listing_reviews = pq(r2.content)('#review-list > li')
+            listing_reviews = pq(r2.content)('#review-list > li.rating')
             if region == 'us':
                 eq_(listing_reviews.length, 1)
                 eq_(detail_reviews.length, 1)
