@@ -41,7 +41,7 @@ for key in keys:
 # do the SQL query. These means that Marketplace is using the same backend as
 # AMO to actually produce the statistics.
 keys += ['apps_count_new', 'apps_count_installed', 'apps_review_count_new',
-         'mmo_user_count_new', 'mmo_user_count_total']
+         'mmo_user_count_new', 'mmo_user_count_total', 'mmo_total_visitors']
 for key in keys:
     urls.append(url(global_series[key], views.site_series,
                     kwargs={'field': key}))

@@ -176,6 +176,10 @@ var csv_keys = {
         'mmo_user_count_new': [
             gettext('New users'),
             gettext('New users')
+        ],
+        'mmo_total_visitors': [
+            gettext('Total visitors'),
+            gettext('Total visitors')
         ]
     },
     aggregateLabel: {
