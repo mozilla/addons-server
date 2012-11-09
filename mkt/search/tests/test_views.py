@@ -381,6 +381,7 @@ class TestSuggestions(TestAjaxSearch):
         eq_(len(data), len(addons))
         for got, expected in zip(data, addons):
             eq_(got['name'], unicode(expected.name))
+            eq_(int(got['id']), expected.id)
 
     def test_webapp_search(self):
         self.check_suggestions(

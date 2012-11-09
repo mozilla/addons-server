@@ -380,7 +380,7 @@ class PersonaSuggestionsAjax(SearchSuggestionsAjax):
 
 class WebappSuggestionsAjax(SearchSuggestionsAjax):
     types = [amo.ADDON_WEBAPP]
-    fields = {'url': 'get_url_path', 'name': 'name'}
+    fields = {'url': 'get_url_path', 'name': 'name', 'id': 'id'}
 
     def __init__(self, request, excluded_ids=(), category=None):
         self.category = category
