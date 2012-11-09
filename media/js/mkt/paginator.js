@@ -8,10 +8,11 @@ z.page.on('click', '.loadmore button', function(e) {
     swapEl.append('<div class="throbber">');
     // Grab the url to fetch the data from.
     var url = button.data('more-url');
+    var selector = swapEl.attr('data-sel');
     // Fetch the new content.
     $.get(url, function(d) {
         // Swap the container with the new content.
-        swapEl.replaceWith($(d).find('.listing').html());
+        swapEl.replaceWith($(d).find(selector).html());
         z.page.trigger('updatecache');
         z.page.trigger('fragmentloaded');
     });

@@ -42,8 +42,10 @@
             {% include 'ratings/rating.html' %}
           {% endwith %}
         {% endif %}
+        <li class="loadmore" data-sel="#review-list">
+          {{ ratings|more_button }}
+        </li>
       </ul>
-      {{ ratings|more_button }}
     {% elif not reply %}
       {% if product.can_review(amo_user) %}
         <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">

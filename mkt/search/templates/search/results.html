@@ -113,7 +113,7 @@
     {% if pager.object_list %}
       <ol class="listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
-        <li class="loadmore">
+        <li class="loadmore" data-sel=".listing">
           {{ pager|more_button }}
         </li>
       </ol>
