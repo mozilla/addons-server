@@ -1031,7 +1031,7 @@ class AppFormTechnical(addons.forms.AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('developer_comments',)
+        fields = ('developer_comments', 'public_stats')
 
     def __init__(self, *args, **kw):
         super(AppFormTechnical, self).__init__(*args, **kw)

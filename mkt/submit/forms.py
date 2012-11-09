@@ -304,10 +304,15 @@ class AppDetailsBasicForm(AddonFormBasic):
         help_text=_lazy(u'The email address used by end users to contact you '
                          'with support issues and refund requests.'),
         widget=TransInput(attrs={'class': 'full'}))
-    flash = forms.BooleanField(required=False,
-        label=_lazy(u'Uses Flash:'),
-        help_text=_lazy(u'Whether or not this app should be excluded for '
-                        u'devices without Flash support.'))
+    flash = forms.TypedChoiceField(required=False,
+        coerce=lambda x: bool(int(x)),
+        label=_lazy(u'Does your app require Flash support?'),
+        initial=0,
+        choices=(
+            (1, _lazy(u'Yes')),
+            (0, _lazy(u'No')),
+        ),
+        widget=forms.RadioSelect)
 
     class Meta:
         model = Addon

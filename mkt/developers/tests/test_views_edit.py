@@ -1409,6 +1409,19 @@ class TestEditTechnical(TestEdit):
         expected = dict(developer_comments='')
         self.compare(expected)
 
+    def test_public_stats(self):
+        self.create_switch('app-stats')
+
+        eq_(self.webapp.public_stats, False)
+        assert not self.webapp.public_stats, (
+            'Unexpectedly found public stats for app. Says Basta.')
+
+        data = dict(public_stats=True)
+        r = self.client.post(self.edit_url, formset(**data))
+        self.assertNoFormErrors(r)
+
+        self.compare(dict(public_stats=True))
+
 
 class TestAdmin(TestEdit):
 

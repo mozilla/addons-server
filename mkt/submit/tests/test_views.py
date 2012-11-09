@@ -548,7 +548,7 @@ class TestDetails(TestSubmit):
             'support_url': 'http://www.goodreads.com/user_challenges/351558',
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1.id],
-            'flash': 'checked',
+            'flash': '1',
         }
         # Add the required screenshot.
         data.update(self.preview_formset({

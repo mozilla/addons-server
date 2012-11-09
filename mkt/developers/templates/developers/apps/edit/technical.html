@@ -44,7 +44,7 @@
             <label for="flash">
               {{ _('Uses Flash') }}
               {{ tip(None,
-                     _('Whether or not this app should be excluded for devices without Flash support.')) }}
+                     _('If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support.')) }}
             </label>
           </th>
           <td>
@@ -52,11 +52,7 @@
               {{ form.flash }}
               {{ form.flash.error }}
             {% else %}
-            <input type="checkbox"
-                   {% if addon.uses_flash %}
-                   checked="checked"
-                   {% endif %}
-                   disabled="disabled">
+              <input type="checkbox" disabled{{ ' checked' if addon.uses_flash }}>
             {% endif %}
           </td>
         </tr>
