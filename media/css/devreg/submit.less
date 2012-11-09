@@ -128,20 +128,19 @@ h2 .soon {
             &.selected,
             &.selected:hover {
                 background-color: @notice-yellow;
-                border-color: darken(gold, 5%);
-                .listing-footer {
-                    background: rgba(0,0,0,.1);
-                    border-color: lighten(gold, 5%);
-                }
             }
             &:hover {
                 background-color: lighten(@notice-yellow, 10%);
-                border-color: darken(gold, 5%);
             }
             &:hover,
             &:active,
             &.selected {
+                border-color: darken(gold, 5%);
                 opacity: 1;
+                .listing-footer {
+                    background: rgba(0,0,0,.1);
+                    border-color: lighten(gold, 5%);
+                }
             }
             div {
                 color: #484848;
