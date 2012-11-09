@@ -120,7 +120,7 @@ function fragmentFilter(el) {
                 return;
             }
             e.preventDefault();
-            fetchFragment({path: href});
+            navigate({path: href});
         });
 
         // preserve scrollTop like a real boy
@@ -153,7 +153,7 @@ function fragmentFilter(el) {
         }
 
         // handle link clicking and state popping.
-        function fetchFragment(state, popped) {
+        function navigate(state, popped) {
             var href = state.path;
             startLoading();
             markScrollTop();
@@ -165,32 +165,7 @@ function fragmentFilter(el) {
             } else {
                 console.log(format('fetching {0} at {1}', href, state.scrollTop || '0'));
 
-                // Chrome doesn't obey the Vary header, so we need to keep the fragments
-                // from getting cached with the page itself. Remove once Chrome bug #94369
-                // has been resolved as fixed.
-                var fetch_href = href;
-                if (navigator.userAgent.indexOf('Chrome') > -1) {
-                    var chr_flag = '';
-
-                    // If we have a locale/region, we want to include those in the request
-                    // so Chrome does a hard reload of those pages when they change.
-                    var lang = $.cookie('lang');
-                    if (lang) {
-                        chr_flag += lang;
-                    }
-                    var region = $.cookie('region');
-                    if (region) {
-                        chr_flag += region;
-                    }
-
-                    if(chr_flag) {
-                        chr_flag = '=' + encodeURIComponent(chr_flag);
-                    }
-
-                    fetch_href += (href.indexOf("?") > -1 ? '&' : '?') + 'frag' + chr_flag;
-                }
-
-                $.get(fetch_href, function(d, textStatus, xhr) {
+                fetchFragment(href).done(function(d, textStatus, xhr) {
                     // Bail if this is not HTML.
                     if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
                         window.location = href;
@@ -199,12 +174,41 @@ function fragmentFilter(el) {
                     console.log('caching fragment');
                     handleFragmentResponse(xhr, href);
                     updateContent(d, href, popped, {scrollTop: state.scrollTop});
-                }).error(function(e) {
+                }).fail(function(e) {
                     console.log('fetch error!');
                     window.location = href;
                 });
             }
 
+        }
+
+        function fetchFragment(href) {
+            // Chrome doesn't obey the Vary header, so we need to keep the fragments
+            // from getting cached with the page itself. Remove once Chrome bug #94369
+            // has been resolved as fixed.
+            var fetch_href = href;
+            if (navigator.userAgent.indexOf('Chrome') > -1) {
+                var chr_flag = '';
+
+                // If we have a locale/region, we want to include those in the request
+                // so Chrome does a hard reload of those pages when they change.
+                var lang = $.cookie('lang');
+                if (lang) {
+                    chr_flag += lang;
+                }
+                var region = $.cookie('region');
+                if (region) {
+                    chr_flag += region;
+                }
+
+                if(chr_flag) {
+                    chr_flag = '=' + encodeURIComponent(chr_flag);
+                }
+
+                fetch_href += (href.indexOf("?") > -1 ? '&' : '?') + 'frag' + chr_flag;
+            }
+
+            return $.get(fetch_href);
         }
 
         function synchronousLoad(href) {
@@ -272,16 +276,16 @@ function fragmentFilter(el) {
         $(window).on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
-                fetchFragment(state, true);
+                navigate(state, true);
             }
         }).on('loadfragment', function(e, href) {
-            if (href) fetchFragment({path: href});
+            if (href) navigate({path: href});
         }).on('refreshfragment', function(e) {
             var path = window.location.pathname + window.location.search + window.location.hash;
             if (fragmentCache[path]) {
                 delete fragmentCache[path];
             }
-            fetchFragment({path: path});
+            navigate({path: path});
         });
 
         $(window).on('updatecache', function() {
