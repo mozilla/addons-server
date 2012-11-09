@@ -95,45 +95,77 @@ h2 .soon {
 }
 
 #submit-payment-type {
-    .wrapper {
-        display: inline-block;
-        width: 222px;
-        margin-right: 10px;
-        &:last-child {
-            margin-right: 0;
-            width: 221px;
+    padding: 15px 0 15px 15px;
+    .error {
+        margin-bottom: 15px;
+        + .wrapper {
+            margin-left: -15px;
         }
+    }
+    .wrapper {
+        .border-box;
+        display: inline-block;
+        padding-left: 15px;
+        width: 25%;
         a {
             text-decoration: none;
             text-align: center;
             padding: 180px 10px 20px;
             margin-bottom: 0;
-            &#free-os, &#paid-os {
-                background: url(../../img/developers/firefox_phone.png) no-repeat center 25px;
+            opacity: .9;
+            &[data-value="free-os"], &[data-value="paid-os"] {
+                background: url(../../img/developers/firefox_phone.png) no-repeat 50% 25px;
             }
-            &#free-desktop {
-                background: url(../../img/developers/firefox_logo.png) no-repeat center 25px;
+            &[data-value="free-desktop"] {
+                background: url(../../img/developers/firefox_logo.png) no-repeat 50% 25px;
             }
-            &#free-phone {
-                background: url(../../img/developers/firefox_android_phone.png) no-repeat center 25px;
+            &[data-value="free-phone"] {
+                background: url(../../img/developers/firefox_android_phone.png) no-repeat 50% 25px;
             }
-            &#free-tablet {
-                background: url(../../img/developers/firefox_android_tablet.png) no-repeat center 40px;
+            &[data-value="free-tablet"] {
+                background: url(../../img/developers/firefox_android_tablet.png) no-repeat 50% 40px;
             }
-            &#free-os, &#free-desktop, &#free-phone, &#free-tablet, &#paid-os {
-                &.selected {
-                    background-color: @notice-yellow;
-                }
+            &.selected,
+            &.selected:hover {
+                background-color: @notice-yellow;
+                border-color: darken(gold, 10%);
+            }
+            &:hover {
+                background-color: lighten(@notice-yellow, 10%);
+                border-color: darken(gold, 5%);
+            }
+            &:hover,
+            &:active,
+            &.selected {
+                opacity: 1;
             }
             div {
                 color: #484848;
             }
         }
     }
-}
-
-#upload-file {
-    &.spacer {
-      margin-top: 60px;
+    .listing-footer {
+        margin: 15px -10px -20px;
+        padding: 0 10px 10px;
+        text-align: center;
+    }
+    input {
+        margin-top: 15px;
+        pointer-events: none;
     }
 }
+
+#upload-file.spacer {
+    margin-top: 60px;
+}
+
+/*
+.whats-next {
+    clear: both;
+    margin: 30px 0 15px;
+    text-align: right;
+    button {
+        margin-left: 15px;
+    }
+}
+*/

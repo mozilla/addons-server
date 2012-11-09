@@ -6,15 +6,16 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
-{% macro button(form, item) %}
+{%- macro button(form, item) -%}
   <div class="wrapper">
-    <a href="#" class="island choice{{ ' selected' if form.data[item[0]] == 'on' else '' }}"
+    <a href="#" class="island choice{{ ' selected' if form.data[item[0]] == 'on' }}"
        id="{{ item[0] }}" data-value="{{ item[0] }}">
-       <h3>{{ item[1] }}</h3>
-       <div>{{ form.DEVICE_LOOKUP[item[0]] }}</div>
+      <h3>{{ item[1] }}</h3>
+      <div>{{ form.DEVICE_LOOKUP[item[0]] }}</div>
+      <div class="listing-footer"><input type="checkbox"></div>
     </a>
   </div>
-{% endmacro %}
+{%- endmacro %}
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
@@ -32,18 +33,18 @@
         <h2>{{ _('Device Type') }}</h2>
       {% endif %}
       <div class="error">{{ form.errors.free }}</div>
-      {% for item in form.fields['free'].choices %}
+      {%- for item in form.fields['free'].choices -%}
         {{ button(form, item) }}
-      {% endfor %}
+      {%- endfor %}
     </div>
 
     {% if waffle.switch('allow-b2g-paid-submission') %}
       <div class="paid tab">
         <h2 id="paid-tab-header"><a href="#">{{ _('Paid') }}</a></h2>
         <div class="error">{{ form.errors.paid }}</div>
-        {% for item in form.fields['paid'].choices %}
+        {%- for item in form.fields['paid'].choices -%}
           {{ button(form, item) }}
-        {% endfor %}
+        {%- endfor %}
       </div>
     {% endif %}
   </section>
@@ -80,7 +81,7 @@
         <div class="hint">
           {{ _('Manifest URLs must start with a protocol (for example, '
                '<code>http://</code> or <code>https://</code>) and '
-                 'typically use the <code>.webapp</code> extension.')|safe }}
+               'typically use the <code>.webapp</code> extension.')|safe }}
         </div>
       </div>
     </div>

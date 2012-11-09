@@ -1,14 +1,6 @@
 (function(exports) {
     "use strict";
 
-    function _pd(func) {
-        // Prevent-default function wrapper.
-        return function(e) {
-            e.preventDefault();
-            func.apply(this, arguments);
-        };
-    }
-
     exports.houdini = function() {
         // Initialize magic labels.
         $(document).delegate('.houdini.ready .edit', 'click', _pd(function(e) {
@@ -47,15 +39,15 @@
 
     // Reset selected device buttons and values.
     $('#submit-payment-type h2 a').click(function(e) {
-        $('#submit-payment-type a.choice').removeClass('selected');
-        $('#id_free').val([]);
-        $('#id_paid').val([]);
+        $('#submit-payment-type a.choice').removeClass('selected')
+                                          .find('input').removeAttr('checked');
+        $('#id_free, #id_paid').val([]);
     });
 
 
     // When a big device button is clicked, update the form.
     $('#submit-payment-type a.choice').on('click',
-        function(event) {
+        _pd(function() {
             var $this = $(this),
                 $input = $('#id_' + this.id.split('-')[0]),
                 old = $input.val() || [],
@@ -64,15 +56,15 @@
             if (old.indexOf(val) === -1) {
                 $this.addClass('selected');
                 old.push(val);
-                $input.val(old);
+                $this.find('input').attr('checked', true);
             } else {
                 $this.removeClass('selected');
                 delete old[old.indexOf(val)];
-                $input.val(old);
+                $this.find('input').removeAttr('checked');
             }
+            $input.val(old);
             show_packaged();
-            event.preventDefault();
-        }
+        })
     );
 
     // Show packaged.
@@ -86,9 +78,9 @@
         if (($('#id_free option[value=free-os]:selected').length &&
              $('#id_free option:selected').length == 1)   ||
             $('#id_paid option[value=paid-os]:selected').length) {
-            $target.eq(1).css({'display': 'inline'});
+            $target.eq(1).css('display', 'inline');
         } else {
-            $target.eq(1).css({'display': 'none'});
+            $target.eq(1).css('display', 'none');
         }
     }
 
