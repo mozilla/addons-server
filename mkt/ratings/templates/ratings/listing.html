@@ -43,7 +43,7 @@
           {% endwith %}
         {% endif %}
       </ul>
-      {{ ratings|impala_paginator }}
+      {{ ratings|more_button }}
     {% elif not reply %}
       {% if product.can_review(amo_user) %}
         <p id="add-first-review"><a href="{{ product.get_ratings_url('add') }}">

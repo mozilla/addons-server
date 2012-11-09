@@ -114,7 +114,7 @@
                 $btnContainer.find('.errorlist').remove();
                 $btnContainer.append($errList);
             } else {
-                $btnContainer.trigger('notify', {
+                $button.trigger('notify', {
                     title: gettext('Error'),
                     msg: errSummary
                 });

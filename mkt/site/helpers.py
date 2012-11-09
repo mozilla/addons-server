@@ -441,7 +441,7 @@ def _check_firefox(ua):
 
 
 @register.filter
-def mkt_paginator(pager):
+def more_button(pager):
     t = env.get_template('site/paginator.html')
     return jinja2.Markup(t.render(pager=pager))
 

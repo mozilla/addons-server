@@ -114,11 +114,7 @@
       <ol class="listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
         <li class="loadmore">
-          {% if pager.has_next() %}
-            <button data-more-url="{{ pager.url|urlparams(page=pager.next_page_number()) }}">
-              {{ _('More') }}
-            </button>
-          {% endif %}
+          {{ pager|more_button }}
         </li>
       </ol>
     {% else %}
