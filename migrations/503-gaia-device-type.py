@@ -2,6 +2,7 @@
 
 from celeryutils import task
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
 import amo
@@ -13,7 +14,7 @@ from amo.utils import chunked
 @task
 @write
 def _task(**kw):
-    # Remove any dupes. `UNIQUE` constraint introduced in migration 503.
+    # Remove any dupes. `UNIQUE` constraint introduced in migration 504.
     dupes = (ADT.objects.values_list('addon', 'device_type')
                         .annotate(c=Count('id')).filter(c__gt=1))
     for addon, device_type, total in dupes:
@@ -21,6 +22,15 @@ def _task(**kw):
         for d in devices[:total - 1]:
             d.delete()
             print u'Deleted dupe %s for app: %s' % (d, d.addon)
+
+    # Remove stale device types.
+    devices = ADT.objects.all()
+    for chunk in chunked(devices, 50):
+        for device in chunk:
+            try:
+                device.addon
+            except ObjectDoesNotExist:
+                device.delete()
 
     # `DEVICE_MOBILE` -> `DEVICE_MOBILE` and `DEVICE_GAIA`.
     devices = ADT.objects.filter(device_type=amo.DEVICE_MOBILE.id)
