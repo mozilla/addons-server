@@ -5,25 +5,17 @@ $('#admin-login').click(function() {
 
 
 // Recaptcha
-function reloadReCaptchaOnClick(e) {
-    e.preventDefault();
-    Recaptcha.reload();
-}
-
-function reCaptchaSwitchClosure(type) {
-    return function (e) {
-        e.preventDefault();
-        Recaptcha.switch_type(type);
-    }
-}
-
 var RecaptchaOptions = { theme : 'custom' };
 
-$('#recaptcha_different_text').click(reloadReCaptchaOnClick);
-$('#recaptcha_different_audio').click(reloadReCaptchaOnClick);
+$('#recaptcha_different').click(function(e) {
+    e.preventDefault();
+    Recaptcha.reload();
+});
 
-$('#recaptcha_audio').click(reCaptchaSwitchClosure('audio'));
-$('#recaptcha_text').click(reCaptchaSwitchClosure('image'));
+$('#recaptcha_audio').click(function(e) {
+    e.preventDefault();
+    Recaptcha.switch_type('audio');
+});
 
 $('#recaptcha_help').click(function(e) {
     e.preventDefault();
