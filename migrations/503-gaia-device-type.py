@@ -21,7 +21,6 @@ def _task(**kw):
         devices = ADT.objects.filter(addon_id=addon, device_type=device_type)
         for d in devices[:total - 1]:
             d.delete()
-            print u'Deleted dupe %s for app: %s' % (d, d.addon)
 
     # Remove stale device types.
     devices = ADT.objects.all()
@@ -43,8 +42,6 @@ def _task(**kw):
             device.device_type = amo.DEVICE_GAIA.id
             device.save()
             device.addon.save()
-            print (u'Marked mobile app also compatible for '
-                    'Firefox OS: %s' % device.addon)
 
 
 def run():
