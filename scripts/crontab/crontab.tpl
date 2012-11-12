@@ -30,7 +30,8 @@ HOME=/tmp
 40 */4 * * * %(django)s clean_redis
 
 #twice per day
-25 1,13 * * * %(remora)s; %(python)s import-personas.py
+# Use system python to use an older version of sqlalchemy than what is in our venv
+25 1,13 * * * %(remora)s; /usr/bin/python import-personas.py
 # Add slugs after we get all the new personas.
 25 2,14 * * * %(z_cron)s addons_add_slugs
 45 2,14 * * * %(z_cron)s give_personas_versions
