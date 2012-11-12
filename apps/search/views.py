@@ -435,6 +435,10 @@ def ajax_search_suggestions(request):
 
         cat = request.GET.get('cat', 'all')
 
+        # Don't let Marketplace query any other types.
+        if settings.MARKETPLACE:
+            cat = 'apps'
+
         if cat != 'apps':
             # Applications.
             for a in amo.APP_USAGE:
