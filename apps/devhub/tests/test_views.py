@@ -2425,14 +2425,6 @@ class TestUpload(BaseUploadTest):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(FileUpload.objects.get().user, user)
 
-    def test_fileupload_ascii_post(self):
-        path = 'apps/files/fixtures/files/jétpack.xpi'
-        data = open(os.path.join(settings.ROOT, path))
-
-        r = self.client.post(self.url, {'upload': data})
-        # If this is broke, we'll get a traceback.
-        eq_(r.status_code, 302)
-
     @attr('validator')
     def test_fileupload_validation(self):
         self.post()
