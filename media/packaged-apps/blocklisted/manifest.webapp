@@ -8,7 +8,7 @@
     "description": "This app has been blocked for your protection.",
     "launch_path": "/index.html",
     "developer": {
-        "url": "https://marketplace.mozilla.org",
+        "url": "https://marketplace.firefox.com",
         "name": "Firefox Marketplace Staff"
     },
     "fullscreen": "true"

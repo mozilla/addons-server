@@ -346,7 +346,7 @@ def APPCACHE_MEDIA_DEBUG():
         yield path
 
 # Allowed `installs_allowed_from` values for manifest validator.
-VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org']
+VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com']
 
 # All JS vendor libraries in this list will be excluded from mozmarket.js.
 # For example, if receiptverifier is broken and you need to disable it, add

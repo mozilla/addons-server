@@ -48,7 +48,7 @@ response_mock.read.return_value = '''
         "icons": {
             "128": "/ballin/icon.png"
         },
-        "installs_allowed_from": [ "https://marketplace.mozilla.org" ]
+        "installs_allowed_from": [ "https://marketplace.firefox.com" ]
     }
 '''
 response_mock.headers = {'Content-Type':

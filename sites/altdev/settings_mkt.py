@@ -119,7 +119,7 @@ MIDDLEWARE_CLASSES += (
     'amo.middleware.LoginRequiredMiddleware',
 )
 
-VALIDATOR_IAF_URLS = ['https://marketplace.mozilla.org',
+VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org',
                       'https://marketplace-altdev.allizom.org']

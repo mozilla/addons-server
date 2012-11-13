@@ -2,7 +2,7 @@
 #    {{ title }}
 {% else %}
 {% if settings.MARKETPLACE %}
-#    marketplace.mozilla.org Statistics for app {{ addon.name }}
+#    marketplace.firefox.com Statistics for app {{ addon.name }}
 {% else %}
 #    addons.mozilla.org Statistics for add-on {{ addon.name }}
 {% endif %}

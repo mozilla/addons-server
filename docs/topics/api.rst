@@ -42,13 +42,13 @@ occasionally purged, causing the deletion of apps and tokens.
 Production server
 +++++++++++++++++
 
-The production server is at https://marketplace.mozilla.org.
+The production server is at https://marketplace.firefox.com.
 
 1. Login to the production server using Persona:
-   https://marketplace.mozilla.org
+   https://marketplace.firefox.com
 
 2. Once logged in, read and accept the terms of service for the Marketplace
-   at: https://marketplace.mozilla.org/developers/terms
+   at: https://marketplace.firefox.com/developers/terms
 
 3. You cannot generate your own tokens. Please contact a `Marketplace
    representative`_.
