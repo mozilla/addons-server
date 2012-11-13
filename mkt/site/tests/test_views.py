@@ -162,6 +162,20 @@ class TestRobots(amo.tests.TestCase):
         self.assertContains(rs, 'Disallow: /')
 
 
+class TestHeader(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def test_auth(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        res = self.client.get(reverse('home'))
+        eq_(pq(res.content)('head meta[name="DCS.dcsaut"]').attr('content'),
+            'yes')
+
+    def test_not(self):
+        res = self.client.get(reverse('home'))
+        eq_(len(pq(res.content)('head meta[name="DCS.dcsaut"]')), 0)
+
+
 class TestFooter(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
