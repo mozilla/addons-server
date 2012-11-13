@@ -1,14 +1,18 @@
 # This is to be used with https://github.com/davedash/mysql-anonymous.
-# Last updated 2011-10-05; Migration 253
+# Last updated 2012-11-13; Migration 504
 database:
     truncate:
         - abuse_reports
+        - access_whitelist
         - addonlogs
+        - addon_bluevia
         - addon_purchase
         - addon_inapp
         - addon_inapp_log
         - addon_inapp_notice
         - addon_inapp_payment
+        - addon_payment_data
+        - api_access
         - api_auth_tokens
         - approvals
         - auth_group
@@ -18,7 +22,9 @@ database:
         - auth_user_groups
         - auth_user_user_permissions
         - auth_user
+        - bluevia
         - cake_sessions
+        - client_data
         - django_admin_log
         - django_session
         - django_site
@@ -26,18 +32,29 @@ database:
         - editor_subscriptions
         - email_preview
         - eventlog
+        - fake_email
         - favorites
         - global_stats
         - groups_users
         - hubrsskeys
         - log_activity
+        - log_activity_mkt
         - log_activity_addon
+        - log_activity_app
+        - log_activity_app_mkt
         - log_activity_comment
+        - log_activity_comment_mkt
         - log_activity_user
+        - log_activity_user_mkt
         - log_activity_version
+        - log_activity_version_mkt
+        - paypal_checkstatus
         - piston_consumer
         - piston_nonce
         - piston_token
+        - refunds
+        - ratings_moderation_flags
+        - reviewer_scores
         - reviews_moderation_flags
         - stats_addons_collections_counts
         - stats_collections
@@ -47,14 +64,20 @@ database:
         - stats_contributions
         - stats_share_counts
         - stats_share_counts_totals
-        - subscription_events
+        - theme_locks
         - update_counts
+        - users_install
         - users_history
+        - users_preapproval
         - users_versioncomments
         - versioncomments
+        - zadmin_reindexing
+        - zadmin_siteevent
+        - zadmin_siteevent_mkt
     tables:
         addons:
             nullify: [nominationmessage, paypal_id, charity_id]
+            random_email: mozilla_contact
             random_int:
                 - average_daily_downloads
                 - average_daily_users
@@ -93,6 +116,7 @@ database:
                 - last_login_attempt
                 - last_login_attempt_ip
                 - failed_login_attempts
+                - read_dev_agreement
             random_username: [username, nickname]
         users_history:
             random_email: email
