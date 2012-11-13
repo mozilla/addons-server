@@ -411,6 +411,15 @@ table.data-grid .addon-version-notes a {
         }
         &.selected {
             z-index: 2;
+            a {
+                .box-shadow(0 -2px 0 fadeOut(@taupe, 80%) inset,
+                            0 0 1px rgba(0, 0, 0, 0.1));
+                background-color: @white;
+                border-color: @taupe;
+            }
+            a, a:hover {
+                color: @dark-gray;
+            }
         }
     }
 }
@@ -427,16 +436,6 @@ table.data-grid .addon-version-notes a {
     display: inline-block;
     padding: 10px 15px 20px;
     text-decoration: none;
-    li.selected a {
-        .box-shadow(0 -2px 0 fadeOut(@taupe, 80%) inset,
-                    0 0 1px rgba(0, 0, 0, 0.1));
-        background-color: @white;
-        border-color: @taupe;
-        color: @dark-gray;
-        &:hover {
-            color: @dark-gray;
-        }
-    }
 }
 
 /* Home */
@@ -702,43 +701,63 @@ div.editor-stats-table > div.editor-stats-dark {
     }
 }
 
-.queue-outer #queue-search table {
-    margin: 0;
-    padding: 0;
-}
-.queue-outer #queue-search,
-.date_range {
+#queue-search {
     padding: 1em;
+    margin-bottom: 1em;
+    #clear-queue-search {
+        text-transform: lowercase;
+    }
+    .date_range {
+        padding: 1em;
+    }
+    label[for="id_text_query"] {
+        margin-right: .5em;
+    }
+    button {
+        margin: 0 .5em;
+    }
 }
 #advanced-search {
-    display: none;
-    margin-top: 1em;
-    .column1 {
-        float: left;
-        width: 375px;
+    margin-top: 1.5em;
+    &.hidden {
+        display: none;
     }
-    .column1 label {
-        display: block;
-        float: left;
-        width: 13em;
+    label {
+        margin-bottom: .5em;
+    }
+    ul label {
+        font-weight: normal;
     }
     .form-elem {
         margin-bottom: 0.5em;
-    }
-    .column2,
-    .column3 {
-        float: left;
-        width: 250px;
-    }
-    .column2 label,
-    .column3 label {
-        display: block;
     }
     .form-row {
         clear: both;
         padding-bottom: 1em;
     }
-    .column3:after {
+    .inline-dropdown {
+        float: left;
+        position: relative;
+        top: 8px;
+        width: 375px;
+        select, input {
+            position: relative;
+            bottom: .5em;
+        }
+        label {
+            display: block;
+            float: left;
+            width: 13em;
+        }
+    }
+    .block-dropdown, {
+        float: left;
+        width: 250px;
+        label {
+            display: block;
+        }
+    }
+    .premium-type-select:after {
         content: ".";
         display: block;
         clear: both;
@@ -748,7 +767,7 @@ div.editor-stats-table > div.editor-stats-dark {
 }
 #id_text_query {
     width: 25em;
-    height: 1.5em;
+    height: 2em;
 }
 
 /* Add-on Review Log */

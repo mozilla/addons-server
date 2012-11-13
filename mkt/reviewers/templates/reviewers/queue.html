@@ -76,6 +76,43 @@
         </form>
       </div>
     {% else %}
+      {% if search_form %}
+        <div id="queue-search">
+          <form>
+            <label for="{{ search_form.text_query.auto_id }}">{{ search_form.text_query.label }}</label>
+            {{ search_form.text_query }}
+            <button class="button" type="submit">{{ _('Search') }}</button>
+            <a id="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
+            {% if searching %}
+              (<a id="clear-queue-search" href="{{ url('reviewers.apps.queue_%s' % tab) }}">{{ _('Clear Search') }}</a>)
+            {% endif %}
+
+            <div id="advanced-search"{% if not adv_searching %} class="hidden"{% endif %}>
+              {% macro form_element(search_form, elems) -%}
+                <div class="form-row">
+                  {% for elem in elems %}
+                    {{ search_form[elem].label_tag() }}
+                    <div class="form-elem">{{ search_form[elem] }}</div>
+                  {% endfor %}
+                </div>
+              {%- endmacro %}
+
+              <div class="inline-dropdown">
+                {{ form_element(search_form, ('admin_review', 'has_editor_comment',
+                                              'has_info_request', 'waiting_time_days')) }}
+              </div>
+              <div class="device-type-select block-dropdown">
+                {{ form_element(search_form, ('device_type_ids',)) }}
+              </div>
+              <div class="premium-type-select block-dropdown">
+                {{ form_element(search_form, ('premium_type_ids',)) }}
+              </div>
+            </div>
+
+          </form>
+        </div>
+      {% endif %}
+
       <table id="addon-queue" class="data-grid items"
              data-url="{{ url('editors.queue_viewing') }}">
         <thead>

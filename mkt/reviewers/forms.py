@@ -87,6 +87,33 @@ class ReviewAppLogForm(ReviewLogForm):
             'size': 30}
 
 
+class AppQueueSearchForm(happyforms.Form):
+    text_query = forms.CharField(required=False,
+                                 label=_lazy(u'Search by app name or author'
+                                             ' email'))
+    admin_review = forms.BooleanField(required=False,
+                                      label=_lazy(u'Admin Flag'))
+    has_editor_comment = forms.BooleanField(required=False,
+                                            label=_lazy(u'Has Editor Comment'))
+    has_info_request = forms.BooleanField(required=False,
+        label=_lazy(u'Information Requested'))
+    waiting_time_days = forms.TypedChoiceField(required=False, coerce=int,
+        label=_lazy(u'Days Since Submission'),
+        choices=([('', '')] + [(i, i) for i in range(1, 10)] + [(10, '10+')]))
+    device_type_ids = forms.MultipleChoiceField(required=False,
+            widget=forms.CheckboxSelectMultiple,
+            label=_lazy(u'Device Type'),
+            choices=[(d.id, d.name) for d in amo.DEVICE_TYPES.values()])
+
+    # Changes wording from "I'll use my own system..." to fit context of queue.
+    premium_types = dict(amo.ADDON_PREMIUM_TYPES)
+    premium_types[amo.ADDON_OTHER_INAPP] = _(u'Other system')
+    premium_type_ids = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        required=False, label=_lazy(u'Premium Type'),
+        choices=premium_types.items())
+
+
 class ThemeReviewForm(happyforms.Form):
     theme = forms.ModelChoiceField(queryset=Persona.objects.all(),
                                    widget=forms.HiddenInput())

@@ -80,7 +80,7 @@ def queue_counts():
                          .exclude(id__in=excluded_ids)
                          .filter(type=amo.ADDON_WEBAPP,
                                  disabled_by_user=False,
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                                 status=amo.STATUS_PENDING)
                          .count(),
         'rereview': RereviewQueue.uncached
                                  .exclude(addon__in=excluded_ids)
@@ -126,7 +126,7 @@ def _progress():
     days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     qs = (Webapp.uncached.exclude(id__in=excluded_ids)
-                         .filter(status=amo.WEBAPPS_UNREVIEWED_STATUS,
+                         .filter(status=amo.STATUS_PENDING,
                                  disabled_by_user=False))
     progress = {
         'new': qs.filter(created__gt=days_ago(5)).count(),
@@ -268,15 +268,39 @@ def app_review(request, addon):
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 
 
-def _queue(request, apps, tab, pager_processor=None):
+def _queue(request, apps, tab, search_form=None, pager_processor=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
+
+    searching, adv_searching = _check_if_searching(search_form)
 
     return jingo.render(request, 'reviewers/queue.html', context(**{
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
+        'search_form': search_form,
+        'searching': searching,
+        'adv_searching': adv_searching,
     }))
+
+
+def _check_if_searching(search_form):
+    """
+    Presentation logic for showing 'clear search' and the adv. form.
+    Needed to check that the form fields have non-empty value and to say
+    that searching on 'text_query' only should not show adv. form.
+    """
+    searching = False
+    adv_searching = False
+    for field in search_form:
+        if field.data:
+            # If filtering, show 'clear search' button.
+            searching = True
+            if field.name != 'text_query':
+                # If filtering by adv fields, don't hide the adv field form.
+                adv_searching = True
+                break
+    return searching, adv_searching
 
 
 @permission_required('Apps', 'Review')
@@ -284,25 +308,33 @@ def queue_apps(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     qs = (Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
                                  disabled_by_user=False,
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                                 status=amo.STATUS_PENDING)
                          .exclude(id__in=excluded_ids)
                          .order_by('created'))
+
+    qs, search_form = _get_search_form(request, qs)
+
     apps = [QueuedApp(app, app.created) for app in qs]
 
-    return _queue(request, apps, 'pending')
+    return _queue(request, apps, 'pending', search_form)
 
 
 @permission_required('Apps', 'Review')
 def queue_rereview(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    qs = (RereviewQueue.uncached
-                       .filter(addon__type=amo.ADDON_WEBAPP,
-                               addon__disabled_by_user=False)
-                       .exclude(addon__in=excluded_ids)
-                       .order_by('created'))
-    apps = [QueuedApp(rq.addon, rq.created) for rq in qs]
+    addon_ids = (RereviewQueue.uncached
+                              .filter(addon__type=amo.ADDON_WEBAPP,
+                                      addon__disabled_by_user=False)
+                              .exclude(addon__in=excluded_ids)
+                              .order_by('created')
+                              .values_list('addon', flat=True))
+    qs = Webapp.objects.filter(id__in=addon_ids)
 
-    return _queue(request, apps, 'rereview')
+    qs, search_form = _get_search_form(request, qs)
+
+    apps = [QueuedApp(app, app.created) for app in qs]
+
+    return _queue(request, apps, 'rereview', search_form)
 
 
 @permission_required('Apps', 'Review')
@@ -314,31 +346,40 @@ def queue_updates(request):
                                      version__addon__type=amo.ADDON_WEBAPP,
                                      version__addon__disabled_by_user=False)
                              .values_list('version__addon_id', flat=True))
+
     qs = (Webapp.uncached.exclude(id__in=excluded_ids)
                          .filter(id__in=addon_ids))
+    qs, search_form = _get_search_form(request, qs)
+
     apps = Webapp.version_and_file_transformer(qs)
+
     apps = [QueuedApp(app, app.all_versions[0].all_files[0].created)
             for app in qs]
     apps = sorted(apps, key=lambda a: a.created)
-    return _queue(request, apps, 'updates')
+    return _queue(request, apps, 'updates', search_form)
 
 
 @permission_required('Apps', 'ReviewEscalated')
 def queue_escalated(request):
-    qs = (EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
-                                          addon__disabled_by_user=False)
-                         .order_by('created'))
-    apps = [QueuedApp(eq.addon, eq.created) for eq in qs]
-    return _queue(request, apps, 'escalated')
+    addon_ids = (EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+                                                 addon__disabled_by_user=False)
+                                .order_by('created')
+                                .values_list('addon', flat=True))
+    qs = Webapp.objects.filter(id__in=addon_ids)
+
+    qs, search_form = _get_search_form(request, qs)
+
+    apps = [QueuedApp(app, app.created) for app in qs]
+    return _queue(request, apps, 'escalated', search_form)
 
 
 @permission_required('Apps', 'Review')
 def queue_moderated(request):
     rf = (Review.uncached.exclude(Q(addon__isnull=True) |
                                   Q(reviewflag__isnull=True))
-                         .filter(addon__type=amo.ADDON_WEBAPP,
-                                 editorreview=True)
-                         .order_by('reviewflag__created'))
+                .filter(addon__type=amo.ADDON_WEBAPP,
+                        editorreview=True)
+                .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
     flags = dict(ReviewFlag.FLAGS)
@@ -353,6 +394,45 @@ def queue_moderated(request):
     return jingo.render(request, 'reviewers/queue.html',
                         context(reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags))
+
+
+def _get_search_form(request, qs):
+    if request.GET:
+        search_form = forms.AppQueueSearchForm(request.GET)
+        if search_form.is_valid():
+            qs = _filter(qs, search_form.cleaned_data)
+        return qs, search_form
+    else:
+        return qs, forms.AppQueueSearchForm(request.GET)
+
+
+def _filter(qs, data):
+    """Handle search filters and queries for app queues."""
+    # Turn the form filters into ORM queries and narrow the queryset.
+    if data.get('text_query'):
+        # icontains match on app name or author username/email.
+        text = data['text_query']
+        qs = qs.filter(Q(name__localized_string__icontains=text) |
+                       Q(authors__username__icontains=text) |
+                       Q(authors__email__icontains=text))
+    if data.get('admin_review'):
+        qs = qs.filter(admin_review=data['admin_review'])
+    if data.get('has_editor_comment'):
+        qs = qs.filter(_current_version__has_editor_comment=
+                       data['has_editor_comment'])
+    if data.get('has_info_request'):
+        qs = qs.filter(_current_version__has_info_request=
+                       data['has_info_request'])
+    if data.get('waiting_time_days'):
+        dt = (datetime.datetime.today() -
+              datetime.timedelta(data['waiting_time_days']))
+        qs = qs.filter(created__lte=dt)
+    if data.get('device_type_ids', []):
+        qs = qs.filter(addondevicetype__device_type__in=
+                       data['device_type_ids'])
+    if data.get('premium_type_ids', []):
+        qs = qs.filter(premium_type__in=data['premium_type_ids'])
+    return qs
 
 
 @permission_required('Apps', 'Review')
@@ -654,8 +734,8 @@ def themes_single(request, slug):
         'theme_reviews': paginate(request, ActivityLog.objects.filter(
             action=amo.LOG.THEME_REVIEW.id,
             _arguments__contains=theme.addon.id)),
-        'max_locks': 0,  # Setting this to 0 makes sure more Themes aren't
-                         # loaded from more().
+        # Setting this to 0 makes sure more themes aren't loaded from more().
+        'max_locks': 0,
         'actions': get_actions_json(),
         'theme_count': 1,
         'reviewable': reviewable,

@@ -32,6 +32,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
+from mkt.reviewers.views import _filter
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews
@@ -94,17 +95,17 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         super(TestReviewersHome, self).setUp()
         self.url = reverse('reviewers.home')
         self.apps = [app_factory(name='Antelope',
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                                 status=amo.STATUS_PENDING),
                      app_factory(name='Bear',
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                                 status=amo.STATUS_PENDING),
                      app_factory(name='Cougar',
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)]
+                                 status=amo.STATUS_PENDING)]
         # Add a disabled app for good measure.
         app_factory(name='Dungeness Crab', disabled_by_user=True,
-                    status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                    status=amo.STATUS_PENDING)
         # Escalate one app to make sure it doesn't affect stats.
         escalated = app_factory(name='Eyelash Pit Viper',
-                                status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                                status=amo.STATUS_PENDING)
         EscalationQueue.objects.create(addon=escalated)
 
     def test_stats_waiting(self):
@@ -204,9 +205,9 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
 
     def setUp(self):
         self.apps = [app_factory(name='XXX',
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                                 status=amo.STATUS_PENDING),
                      app_factory(name='YYY',
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                                 status=amo.STATUS_PENDING),
                      app_factory(name='ZZZ')]
         self.apps[0].update(created=self.days_ago(2))
         self.apps[1].update(created=self.days_ago(1))
@@ -1325,7 +1326,7 @@ class TestCannedResponses(AppReviewerTest):
         super(TestCannedResponses, self).setUp()
         self.login_as_editor()
         self.app = app_factory(name='XXX',
-                               status=amo.WEBAPPS_UNREVIEWED_STATUS)
+                               status=amo.STATUS_PENDING)
         self.cr_addon = CannedResponse.objects.create(
             name=u'addon reason', response=u'addon reason body',
             sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
@@ -1357,9 +1358,9 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         # Note: if `created` is not specified, `addon_factory`/`app_factory`
         # uses a randomly generated timestamp.
         self.apps = [app_factory(name='XXX', created=days_ago(3),
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS),
+                                 status=amo.STATUS_PENDING),
                      app_factory(name='YYY', created=days_ago(2),
-                                 status=amo.WEBAPPS_UNREVIEWED_STATUS)]
+                                 status=amo.STATUS_PENDING)]
         self.url = reverse('reviewers.apps.logs')
 
         self.task_user = UserProfile.objects.get(email='admin@mozilla.com')
@@ -2026,3 +2027,104 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert u'No review points awarded yet' in res.content
+
+
+class TestQueueSearch(AppReviewerTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        """Create and set up apps for some filtering fun."""
+        self.login_as_senior_reviewer()
+        self.apps = [app_factory(name='Lillard',
+                                 status=amo.STATUS_PENDING,
+                                 is_packaged=True,
+                                 version_kw={'version': '1.0'},
+                                 admin_review=True,
+                                 premium_type=amo.ADDON_FREE),
+                     app_factory(name='Batum',
+                                 status=amo.STATUS_PENDING,
+                                 is_packaged=True,
+                                 version_kw={'version': '1.0',
+                                             'has_editor_comment': True,
+                                             'has_info_request': True},
+                                 admin_review=False,
+                                 premium_type=amo.ADDON_PREMIUM)]
+
+        # Set up app attributes.
+        self.apps[0].update(created=self.days_ago(2))
+        self.apps[1].update(created=self.days_ago(5))
+        self.apps[0].addonuser_set.create(
+            user=UserProfile.objects.create(username='XXX', email='XXX'))
+        self.apps[1].addonuser_set.create(
+            user=UserProfile.objects.create(username='illmatic',
+                                            email='brandon@roy.com'))
+        self.apps[0].addondevicetype_set.create(
+            device_type=amo.DEVICE_DESKTOP.id)
+        self.apps[1].addondevicetype_set.create(
+            device_type=amo.DEVICE_MOBILE.id)
+
+    def test_filter(self):
+        """For each field in the form, run it through view and check results.
+        """
+        both_apps = (self.apps[0].id, self.apps[1].id)
+        app0 = (self.apps[0].id,)
+        app1 = (self.apps[1].id,)
+
+        self.do_filter(app1, text_query='roy')
+        self.do_filter(both_apps, expected_length=2, text_query='ill')
+
+        self.do_filter(both_apps, admin_review=False)
+        self.do_filter(app0, admin_review=True)
+
+        self.do_filter(both_apps, has_editor_comment=False)
+        self.do_filter(app1, has_editor_comment=True)
+
+        self.do_filter(both_apps, has_info_request=False)
+        self.do_filter(app1, has_info_request=True)
+
+        self.do_filter(both_apps, waiting_time_days=1)
+        self.do_filter(app1, waiting_time_days=4)
+
+        self.do_filter(both_apps, device_type_ids=[amo.DEVICE_MOBILE.id,
+                                                   amo.DEVICE_DESKTOP.id])
+        self.do_filter(app0, device_type_ids=[amo.DEVICE_DESKTOP.id])
+        self.do_filter(app1, device_type_ids=[amo.DEVICE_MOBILE.id])
+
+        self.do_filter(both_apps, premium_type_ids=[amo.ADDON_FREE,
+                                                    amo.ADDON_PREMIUM])
+        self.do_filter(app0, premium_type_ids=[amo.ADDON_FREE])
+        self.do_filter(app1, premium_type_ids=[amo.ADDON_PREMIUM])
+
+    def do_filter(self, expected_ids, **kw):
+        """Checks that filter returns the expected ids
+
+        expected_ids -- list of app ids expected in the result.
+        """
+        qs = _filter(Webapp.objects.all(), kw)
+
+        self.assertSetEqual(list(qs.values_list('id', flat=True)),
+                            expected_ids)
+
+    def test_check_if_searching(self):
+        """
+        Test that advanced search form shown when searching fields other
+        than text_query and that clear search button shown when searching.
+        """
+        url = reverse('reviewers.apps.queue_pending')
+
+        r = self.client.get(url, {'text_query': '',
+                                  'waiting_time_days': ''})
+        p = pq(r.content)
+        eq_(p('#advanced-search').attr('class'), 'hidden')
+        eq_(p('#clear-queue-search').length, 0)
+
+        r = self.client.get(url, {'text_query': 'abcd',
+                                  'waiting_time_days': ''})
+        p = pq(r.content)
+        eq_(p('#advanced-search').attr('class'), 'hidden')
+        eq_(p('#clear-queue-search').length, 1)
+
+        r = self.client.get(url, {'has_info_request': '0'})
+        p = pq(r.content)
+        eq_(p('#advanced-search').attr('class'), None)
+        eq_(p('#clear-queue-search').length, 1)
