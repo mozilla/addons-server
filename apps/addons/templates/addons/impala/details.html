@@ -12,6 +12,10 @@
   {% for preview in addon.all_previews %}
     <link rel="prefetch" href="{{ preview.image_url }}">
   {% endfor %}
+  <meta property="og:title" content="{{ addon.name }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ addon.get_icon_url(64)|absolutify }}">
+  <meta property="og:url" content="{{ addon.get_detail_url()|absolutify }}">
 {% endblock %}
 
 {% block content %}

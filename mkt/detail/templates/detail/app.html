@@ -16,6 +16,10 @@
   {% for preview in product.all_previews %}
     <link rel="prefetch" href="{{ preview.image_url }}">
   {% endfor %}
+  <meta property="og:title" content="{{ pagetitle }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ product.get_icon_url(64)|absolutify }}">
+  <meta property="og:url" content="{{ product.get_detail_url()|absolutify }}">
 {% endblock %}
 
 {# Breadcrumbs show just one category for now. #}
