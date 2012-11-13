@@ -1567,4 +1567,4 @@ WEBTRENDS_USERNAME = ''
 WEBTRENDS_PASSWORD = ''
 
 # Domain to allow cross-frame requests from for privacy policy and TOS.
-BROWSERID_DOMAIN= "*.persona.org"
+BROWSERID_DOMAIN= "login.persona.org"
