@@ -2426,7 +2426,7 @@ class TestUpload(BaseUploadTest):
         eq_(FileUpload.objects.get().user, user)
 
     def test_fileupload_ascii_post(self):
-        path = 'apps/files/fixtures/files/jétpack.xpi'
+        path = 'apps/files/fixtures/files/jétpack.xpi'
         data = open(os.path.join(settings.ROOT, path))
 
         r = self.client.post(self.url, {'upload': data})
@@ -2450,7 +2450,7 @@ class TestUpload(BaseUploadTest):
         assert 'uid' in msg, "Unexpected: %r" % msg
         eq_(msg['type'], u'error')
         eq_(msg['message'], u'The package is not of a recognized type.')
-        eq_(msg['description'], u'')
+        assert not msg['description'], 'Found unexpected description.'
 
     def test_redirect(self):
         r = self.post()
