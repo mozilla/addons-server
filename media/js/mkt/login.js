@@ -2,8 +2,8 @@ $(window).bind('login', function() {
     $('#login').addClass('show');
 }).on('click', '.browserid', function(e) {
     $(this).addClass('loading-submit');
-    navigator.id.request({termsOfService: '/tos.html',
-                          privacyPolicy: '/privacy.html'});
+    navigator.id.request({termsOfService: '/terms-of-use',
+                          privacyPolicy: '/privacy-policy'});
     e.preventDefault();
 
 });

@@ -1565,3 +1565,6 @@ MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
 #Credentials for accessing WebTrends stats.
 WEBTRENDS_USERNAME = ''
 WEBTRENDS_PASSWORD = ''
+
+# Domain to allow cross-frame requests from for privacy policy and TOS.
+BROWSERID_DOMAIN= "*.persona.org"
