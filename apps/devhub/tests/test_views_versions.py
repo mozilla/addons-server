@@ -295,6 +295,19 @@ class TestVersion(amo.tests.TestCase):
         buttons = doc('.version-status-actions form button').text()
         eq_(buttons, 'Request Preliminary Review Request Full Review')
 
+    def test_incomplete_request_review(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        doc = pq(self.client.get(self.url).content)
+        buttons = doc('.version-status-actions form button').text()
+        eq_(buttons, 'Request Preliminary Review Request Full Review')
+
+    def test_rejected_request_review(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.latest_version.files.update(status=amo.STATUS_DISABLED)
+        doc = pq(self.client.get(self.url).content)
+        buttons = doc('.version-status-actions form button').text()
+        eq_(buttons, None)
+
     def test_days_until_full_nomination(self):
         f = File.objects.create(status=amo.STATUS_LITE, version=self.version)
         f.update(datestatuschanged=datetime.now() - timedelta(days=4))

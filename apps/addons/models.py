@@ -980,9 +980,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Return the statuses an add-on can request."""
         if not File.objects.filter(version__addon=self):
             return ()
-        if self.is_disabled or self.status in (amo.STATUS_PUBLIC,
-                                               amo.STATUS_LITE_AND_NOMINATED,
-                                               amo.STATUS_DELETED):
+        if (self.is_disabled or
+            self.status in (amo.STATUS_PUBLIC,
+                            amo.STATUS_LITE_AND_NOMINATED,
+                            amo.STATUS_DELETED) or
+            not self.latest_version or
+            not self.latest_version.files.exclude(status=amo.STATUS_DISABLED)):
             return ()
         elif self.status == amo.STATUS_NOMINATED:
             return (amo.STATUS_LITE,)
