@@ -303,6 +303,10 @@ APPCACHE_NET_PATHS = [
     '*'
 ]
 
+APPCACHE_FALLBACK_PATHS = {
+    '/': '/offline/home',
+}
+
 # This callable yields paths relative to MEDIA_ROOT that you want to explicitly
 # cache. The browser will load *all* of these URLs when your app first loads
 # so be mindful to only list essential media files. The actual URL of the path
