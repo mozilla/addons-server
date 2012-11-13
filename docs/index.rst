@@ -3,7 +3,7 @@ Welcome to Zamboni's documentation!
 ===================================
 
 Zamboni is the codebase for https://addons.mozilla.org/ and
-https://marketplace.mozilla.org/ ; the source lives at https://github.com/mozilla/zamboni
+https://marketplace.firefox.com/ ; the source lives at https://github.com/mozilla/zamboni
 
 If you want to build a completely different site with all the same Django
 optimizations for security, scalability, L10n, and ease of use, check out
