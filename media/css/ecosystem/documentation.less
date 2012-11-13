@@ -3,6 +3,11 @@
 @devhub-box-shadow: #bbb 0 2px 3px;
 @text-indent-white: #fff 0 1px 1px;
 
+a[rel="external"]:after {
+    content: url(../../img/ecosystem/link-external.png);
+    padding-right: 16px;
+}
+
 .doc-wrapper, .upper-header {
     margin: 0 auto;
     width: 960px;
@@ -119,6 +124,7 @@
             margin-bottom: 1px;
             overflow: hidden;
             padding: 4px 3px;
+            position: relative;
             text-overflow: ellipsis;
 
             &:hover, &.selected {
