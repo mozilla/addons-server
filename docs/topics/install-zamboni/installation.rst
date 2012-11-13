@@ -69,8 +69,7 @@ Grab zamboni from github with::
     cd zamboni
     svn co http://svn.mozilla.org/addons/trunk/site/app/locale locale
 
-``zamboni.git`` is all the source code.  ``zamboni-lib.git`` is all of our
-pure-Python dependencies.  :ref:`updating` is detailed later on.
+``zamboni.git`` is all the source code.  :ref:`updating` is detailed later on.
 
 ``locale`` contains all of the localizations of the site.  Unless you are
 specifically working with locales, you probably don't need to touch this again
@@ -143,13 +142,9 @@ To get back into the zamboni environment later, type::
 Finish the install
 ~~~~~~~~~~~~~~~~~~
 
-From inside your activated virtualenv, run::
+From inside your activated virtualenv, install the required python packages::
 
     pip install --no-deps -r requirements/dev.txt
-
-pip installs a few packages into our new virtualenv that we can't distribute in
-``zamboni-lib``.  These require a C compiler.
-
 
 .. _example-settings:
 
