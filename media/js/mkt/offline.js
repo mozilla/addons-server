@@ -46,8 +46,7 @@ if ('applicationCache' in window) {
             manny.online = true;
         });
         cache.addEventListener('progress', function(e) {
-            var p = ~~(e.loaded / e.total * 100);
-            log.log('downloading resources (' + p + '%)');
+            log.log('downloading resources (' + e.loaded + '/' + e.total + ')');
         });
         cache.addEventListener('error', function() {
             log.log('an error occurred.');
