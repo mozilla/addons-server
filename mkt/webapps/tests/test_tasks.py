@@ -225,7 +225,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         open_manifest.return_value = original
         # Mock new manifest with name change.
         n = new.copy()
-        n['locale'] = 'en-US'
+        n['locales'] = 'en-US'
         response_mock = mock.Mock()
         response_mock.read.return_value = json.dumps(n)
         response_mock.headers = {
