@@ -6,10 +6,43 @@ var nav = (function() {
             type: 'root'
         }
     ];
-    // Ask potch.
-    var path_a = document.createElement('a');
+    var param_whitelist = ['q', 'sort', 'cat'];
+
+    function extract_nav_url(url) {
+        // This function returns the URL that we should use for navigation.
+        // It filters and orders the parameters to make sure that they pass
+        // equality tests down the road.
+
+        // If there's no URL params, return the original URL.
+        if (url.indexOf('?') < 0) {
+            return url;
+        }
+
+        var url_parts = url.split('?');
+        // If there's nothing after the `?`, return the original URL.
+        if (!url_parts[1]) {
+            return url;
+        }
+
+        var used_params = _.pick(z.getVars(url_parts[1]), param_whitelist);
+        var param_pairs = _.sortBy(_.pairs(used_params), function(x) {return x[0];});
+        return url_parts[0] + '?' + _.map(
+            param_pairs,
+            function(pair) {
+                if (typeof pair[1] === 'undefined')
+                    return encodeURIComponent(pair[1]);
+                else
+                    return encodeURIComponent(pair[0]) + '=' +
+                           encodeURIComponent(pair[1]);
+            }
+        ).join('&');
+    }
 
     z.page.on('fragmentloaded', function(event, href, popped, state) {
+
+        // Clean the path's parameters.
+        // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
+        state.path = extract_nav_url(state.path);
 
         // Truncate any closed navigational loops.
         for (var i=0; i<stack.length; i++) {
@@ -18,10 +51,6 @@ var nav = (function() {
                 break;
             }
         }
-        // <ask potch>
-        path_a.href = state.path;
-        state.path = path_a.pathname;
-        // </ask>
 
         // Are we home? clear any history.
         if (state.type == 'root') {

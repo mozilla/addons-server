@@ -9,7 +9,7 @@ function autofillPlatform(context) {
         }
 
         // Populate search form with browser version and OS.
-        var gv = z.getVars(location.search),
+        var gv = z.getVars(),
             appver = '',
             platform = '',
             appver_defined = typeof gv.appver !== 'undefined',
@@ -73,7 +73,7 @@ $(function() {
 
 function rebuildLink(url, urlparams, qs) {
     var params = JSON.parseNonNull(urlparams),
-        newVars = $.extend(z.getVars(qs), params);
+        newVars = $.extend(z.getVars(qs, true), params);
     return url.split('?')[0] + '?' + $.param(newVars);
 }
 

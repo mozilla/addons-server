@@ -1,19 +1,18 @@
-z.getVars = function(qs) {
+z.getVars = function(qs, excl_undefined) {
     if (typeof qs === 'undefined') {
         qs = location.search;
     }
-    var vars = {};
-    if (qs.length > 1) {
-        var items = qs.substr(1).split('&'),
-            item;
-        for (var i = 0; i < items.length; i++) {
-            item = items[i].split('=');
-            if (item[0] !== '' && typeof item[1] !== 'undefined') {
-                vars[escape_(unescape(item[0]))] = escape_(unescape(item[1]));
-            }
-        }
+    if (qs[0] == '?') {
+        qs = qs.substr(1);  // Filter off the leading ? if it's there.
     }
-    return vars;
+
+    var pairs = _.chain(qs.split('&'))  // ['a=b', 'c=d']
+                 .map(function(c) {return _.map(c.split('='), escape_);}); //  [['a', 'b'], ['c', 'd']]
+    if (excl_undefined) {
+        // [['a', 'b'], ['c', undefined]] -> [['a', 'b']]
+        pairs = pairs.filter(function(p) {return !_.isUndefined(p[1]);})
+    }
+    return pairs.object().value();  // {'a': 'b', 'c': 'd'}
 };
 
 

@@ -2,22 +2,24 @@ module('Serializers');
 
 
 test('getVars', function() {
-    function check(s, expected) {
-        tests.equalObjects(z.getVars(s), expected);
+    function check(s, excl, expected) {
+        tests.equalObjects(z.getVars(s, excl), expected);
     }
     check('', {});
     check('?', {});
-    check('?a', {});
-    check('?==a', {});
-    check('?a=apple&a=apricot', {'a': 'apricot'});
-    check('?a=apple&b=banana&c=carrot',
+    check('?a', true, {});
+    check('?a', false, {'a': undefined});
+    check('?==a', true, {});
+    check('?==a', false, {});
+    check('?a=apple&a=apricot', false, {'a': 'apricot'});
+    check('?a=apple&b=banana&c=carrot', false,
           {'a': 'apple', 'b': 'banana', 'c': 'carrot'});
-    check('?a?a=apple', {'a?a': 'apple'});
-    check('?a=apple&b?c=banana', {'a': 'apple', 'b?c': 'banana'});
-    check('?a=b=c&d=e', {'a': 'b', 'd': 'e'});
-    check('?<script>alert("xss")</script>="a"',
+    check('?a?a=apple', false, {'a?a': 'apple'});
+    check('?a=apple&b?c=banana', false, {'a': 'apple', 'b?c': 'banana'});
+    check('?a=b=c&d=e', false, {'a': 'b', 'd': 'e'});
+    check('?<script>alert("xss")</script>="a"', false,
           {'&lt;script&gt;alert(&#34;xss&#34;)&lt;/script&gt;': '&#34;a&#34;'});
-    check('?"a"=<script>alert("xss")</script>',
+    check('?"a"=<script>alert("xss")</script>', false,
           {'&#34;a&#34;': '&lt;script&gt;alert(&#34;xss&#34;)&lt;/script&gt;'});
 });
 

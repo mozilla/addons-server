@@ -60,7 +60,7 @@ function gotVerifiedEmail(assertion) {
 }
 
 function finishLogin() {
-    var to = z.getVars(window.location.search).to;
+    var to = z.getVars().to;
     $.Deferred().resolve();
     if (to && to[0] == '/') {
         // Browsers may helpfully add "http:" to URIs that begin with double
