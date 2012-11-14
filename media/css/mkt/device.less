@@ -19,10 +19,12 @@
         text-indent: -99999px;
         width: 26px;
         background: url(../../img/mkt/icons/device_icons.png) no-repeat 0 0;
-        &.mobile.unavailable {
-            background-position: 0 -23px;
+        &.android-mobile, &.firefoxos {
+            &.unavailable {
+                background-position: 0 -23px;
+            }
         }
-        &.tablet {
+        &.android-tablet {
             background-position: 0 -46px;
             &.unavailable {
                 background-position: 0 -69px;
