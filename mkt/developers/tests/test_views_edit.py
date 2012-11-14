@@ -208,7 +208,10 @@ class TestEditBasic(TestEdit):
         eq_(webapp.slug, self.webapp.slug)
         eq_(webapp.app_slug, self.webapp.app_slug)
 
-    def test_view_manifest_url_default(self):
+    @mock.patch('devhub.tasks.urllib2.urlopen')
+    def test_view_manifest_url_default(self, mock_urlopen):
+        mock_urlopen.return_value = response_mock
+
         # Should be able to see manifest URL listed.
         r = self.client.get(self.url)
         eq_(pq(r.content)('#manifest-url a').attr('href'),
