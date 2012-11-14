@@ -71,6 +71,7 @@ function finishLogin() {
         window.location = window.location.protocol + '//'  +
             window.location.host + to;
     } else {
+        console.log('finished login');
         window.location.reload();
     }
 }
