@@ -16,7 +16,7 @@
     </p>
     <section class="half initial-steps">
       <div class="panel">
-        <h2>{{ _('Design') }}</h2>
+        <h2 class="section-design">{{ _('Design') }}</h2>
         <p>
           {% trans %}
             Learn how to design Web Apps that provide a user experience
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="panel">
-        <h2>{{ _('Build') }}</h2>
+        <h2 class="section-build">{{ _('Build') }}</h2>
         <p>
           {% trans %}
             All the tools, docs and references you'll need for
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="panel">
-        <h2>{{ _('Publish') }}</h2>
+        <h2 class="section-publish">{{ _('Publish') }}</h2>
         <p>
           {% trans %}
             Find out how to distribute your Apps on an open marketplace
@@ -60,6 +60,41 @@
         </div>
       </div>
     </section>
+
+    <section id="partnership">
+      <div class="partner-title">
+        <h2>{{ _('Join the community') }}</h2>
+        <p>{{ _("Look who's already here") }}</p>
+      </div>
+      <div class="partner-logos">
+        <ul>
+          <li><img src="{{ media('img/ecosystem/partner-facebook.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-twitter.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-cuttherope.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-evernote.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-box.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-ea.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-soundcloud.png') }}"></li>
+          <li><img src="{{ media('img/ecosystem/partner-lanyrd.png') }}"></li>
+        </ul>
+        <h3>
+          {% trans %}
+            Are you a Web Company, Third-Party Service, or OEM looking to partner
+            with Mozilla?
+          {% endtrans %}
+        </h3>
+        <p>
+          {{ _('Drop us a line and tell us about it:') }}
+          {{ emaillink('marketplace-partners@mozilla.com') }}
+        </p>
+      </div>
+      <div class="submit-app">
+        <a href="{{ url('submit.app') }}">
+          {{ _('Submit your App') }}
+        </a>
+      </div>
+    </section>
+
     <section id="platform" class="half">
       <div class="platform-copy">
         <h2>{{ _('The Mozilla Apps platform') }}</h2>
@@ -141,25 +176,6 @@
               {{ _('Target tech savvy consumers with your App.') }}
             </li>
           </ul>
-        </p>
-      </div>
-    </section>
-    <section class="half contact">
-      <div class="logo">
-        <img src="{{ media('img/ecosystem/mozilla-wordmark.png') }}"
-             alt="{{ _('Mozilla') }}">
-        <h3>{{ _('Partnerships') }}</h3>
-      </div>
-      <div class="contact-info" id="partners">
-        <h3>
-          {% trans %}
-            Are you a Web Company, Third-Party Service, or OEM looking to
-            partner with Mozilla?
-          {% endtrans %}
-        </h3>
-        <p>
-          {{ _('Drop us a line and tell us about it:') }}
-          {{ emaillink('marketplace-partners@mozilla.com') }}
         </p>
       </div>
     </section>
