@@ -297,7 +297,6 @@ USE_APPCACHE = False
 # These paths will be added as-is to the cache section.
 APPCACHE_TO_CACHE = [
     'https://login.persona.org/include.js',
-    '/',
 ]
 
 APPCACHE_NET_PATHS = [
