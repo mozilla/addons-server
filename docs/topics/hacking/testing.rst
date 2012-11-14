@@ -8,6 +8,7 @@ We're using a mix of `Django's Unit Testing`_, :mod:`nose <nose>`, and
 :mod:`Selenium <selenium>` for our automated testing. This gives us a lot of
 power and flexibility to test all aspects of the site.
 
+Selenium tests are maintained in a seperate `Selenium repository`_.
 
 Configuration
 -------------
@@ -17,12 +18,6 @@ thing you'll need to ensure is that the database credentials in your
 ``settings_local.py`` has full permissions to modify a database with ``test-``
 prepended to it.  For example, if my database name were ``zamboni`` this
 database would be ``test-zamboni``.
-
-If you want to run the Selenium tests you'll need a `Selenium RC server`_
-running and accepting jobs.  Change the ``SELENIUM_CONFIG`` variable
-in ``settings_local.py`` to point to your server and the tests will run
-automatically.  If you don't have Selenium set up, the tests will be skipped.
-
 
 Running Tests
 -------------
@@ -41,7 +36,6 @@ for the full set, but some common ones are:
   console during test runs.  This can be useful for debugging, but it's not that
   great most of the time.  See the docs for more stuff you can do with
   :mod:`nose and logging <nose.plugins.logcapture>`.
-* ``-a \!selenium`` tired of running selenium tests?  Add this.
 
 Our continuous integration server adds some additional flags for other features
 (for example, coverage statistics).  To see what those commands are check out
@@ -70,14 +64,14 @@ Most tests are in this category.  Our test classes extend
 :class:`test_utils.TestCase` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
-Selenium Tests
+External calls
 ~~~~~~~~~~~~~~
-Selenium tests should go under ``tests/selenium/`` in your apps' directory.
-These tests extend :class:`test_utils.SeleniumTestCase` which handles all the
-connection steps for you and puts the selenium object in ``self.selenium``.
-Full Selenium documentation is available:
-http://release.seleniumhq.org/selenium-core/1.0/reference.html
+Connecting to remote services in tests is not recommended, developers should
+mock_ out those calls instead.
 
+To enforce this we run Jenkins with the `nose-blockage`_ plugin, that
+will raise errors if you have an HTTP calls in your tests apart from calls to
+the whitelisted domains of `127.0.0.1` and `localhost`.
 
 Why Tests Fail
 --------------
@@ -145,7 +139,9 @@ additional tips:
   errors, and timeouts.
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
-.. _`Selenium RC Server`: http://seleniumhq.org/projects/remote-control/
+.. _`Selenium repository`: https://github.com/mozilla/Addon-Tests/
 .. _`the docs`: http://docs.djangoproject.com/en/dev/topics/testing#id1
 .. _Qunit: http://docs.jquery.com/Qunit
 .. _`$.mockjax`: http://enterprisejquery.com/2010/07/mock-your-ajax-requests-with-mockjax-for-rapid-development/
+.. _mock: http://pypi.python.org/pypi/mock
+.. _`nose-blockage`: https://github.com/andymckay/nose-blockage

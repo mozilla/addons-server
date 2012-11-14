@@ -429,13 +429,6 @@ NOSE_ARGS = [
     '--exclude=mkt/*',
 ]
 
-# If you want to run Selenium tests, you'll need to have a server running.
-# Then give this a dictionary of settings.  Something like:
-#    'HOST': 'localhost',
-#    'PORT': 4444,
-#    'BROWSER': '*firefox', # Alternative: *safari
-SELENIUM_CONFIG = {}
-
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
 DOMAIN_METHODS = {
