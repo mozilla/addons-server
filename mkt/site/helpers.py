@@ -245,8 +245,9 @@ def market_tile(context, product, link=True, src=''):
 
         if need_firefox:
             if request.MOBILE:
-                url = ('https://www.mozilla.org/en-US/mobile/android-download'
-                       '.html')
+                url = 'http://www.mozilla.org/en-US/mobile/aurora/'
+                #url = ('https://www.mozilla.org/en-US/mobile/android-download'
+                #       '.html')
                 # We can't have nested anchors, so deal with this hack.
                 notices.append(_('To use this app, '
                                  '<b data-href="{url}">download and install '
@@ -258,7 +259,9 @@ def market_tile(context, product, link=True, src=''):
             #                     'download and install '
             #                     'Firefox</b>.').format(url=url))
         elif need_upgrade:
-            notices.append(_('To use this app, upgrade Firefox.'))
+            url = 'http://www.mozilla.org/en-US/firefox/aurora/'
+            notices.append(_('To use this app, <b data-href="{url}">upgrade '
+                             'Firefox</b>.').format(url=url))
 
         if notices:
             classes += ['bad', 'disabled']

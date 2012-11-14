@@ -139,7 +139,7 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Unexpected: %r' % cls
-        eq_(doc('.bad-app').text(), 'To use this app, upgrade Firefox.')
+        eq_(doc('.bad-app').text(), 'To use this app, upgrade Firefox .')
 
     def test_is_premium_android_disabled(self):
         self.make_premium(self.webapp)
