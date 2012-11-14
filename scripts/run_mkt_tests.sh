@@ -97,7 +97,7 @@ run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers"
 if [[ $3 = '--with-coverage' ]]; then
     exec $run_tests --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml
 else
-    exec $run_tests --with-xunit
+    exec $run_tests --with-xunit --with-blockage
 fi
 rv=$?
 
