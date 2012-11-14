@@ -197,7 +197,7 @@ function initValidator($doc) {
         msgDiv.attr('id', 'v-msg-' + msg.uid);
         msgDiv.addClass('msg-' + effectiveType);
         $('h5', msgDiv).html(msg.message);
-        if (typeof(msg.description) === 'undefined' || msg.description === '') {
+        if (!msg.description) {
             msg.description = [];
         } else if (typeof(msg.description) === 'string') {
             // Currently it can be either of these:
