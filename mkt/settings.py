@@ -297,6 +297,7 @@ USE_APPCACHE = False
 # These paths will be added as-is to the cache section.
 APPCACHE_TO_CACHE = [
     'https://login.persona.org/include.js',
+    '/',
 ]
 
 APPCACHE_NET_PATHS = [
@@ -304,7 +305,8 @@ APPCACHE_NET_PATHS = [
 ]
 
 APPCACHE_FALLBACK_PATHS = {
-    '/': '/offline/home',
+    '/app/': '/offline/home',
+    '/settings/': '/offline/home',
 }
 
 # This callable yields paths relative to MEDIA_ROOT that you want to explicitly
