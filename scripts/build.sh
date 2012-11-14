@@ -91,7 +91,7 @@ if [[ $3 = 'with-coverage' ]]; then
     coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
     coverage xml $(find apps lib -name '*.py')
 else
-    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
+    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit --with-blockage
 fi
 
 
