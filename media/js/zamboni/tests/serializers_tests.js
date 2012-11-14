@@ -5,8 +5,8 @@ test('getVars', function() {
     function check(s, excl, expected) {
         tests.equalObjects(z.getVars(s, excl), expected);
     }
-    check('', {});
-    check('?', {});
+    check('', false, {});
+    check('?', false, {});
     check('?a', true, {});
     check('?a', false, {'a': undefined});
     check('?==a', true, {});

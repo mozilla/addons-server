@@ -2,17 +2,17 @@ z.getVars = function(qs, excl_undefined) {
     if (typeof qs === 'undefined') {
         qs = location.search;
     }
-    if (qs[0] == '?') {
+    if (qs && qs[0] == '?') {
         qs = qs.substr(1);  // Filter off the leading ? if it's there.
     }
+    if (!qs) return {};
 
-    var pairs = _.chain(qs.split('&'))  // ['a=b', 'c=d']
-                 .map(function(c) {return _.map(c.split('='), escape_);}); //  [['a', 'b'], ['c', 'd']]
-    if (excl_undefined) {
-        // [['a', 'b'], ['c', undefined]] -> [['a', 'b']]
-        pairs = pairs.filter(function(p) {return !_.isUndefined(p[1]);})
-    }
-    return pairs.object().value();  // {'a': 'b', 'c': 'd'}
+    return _.chain(qs.split('&'))  // ['a=b', 'c=d']
+            .map(function(c) {return _.map(c.split('='), escape_);}) //  [['a', 'b'], ['c', 'd']]
+            .filter(function(p) {  // [['a', 'b'], ['c', undefined]] -> [['a', 'b']]
+                return !!p[0] && (!excl_undefined || !_.isUndefined(p[1]));
+            }).object()  // {'a': 'b', 'c': 'd'}
+            .value();
 };
 
 
