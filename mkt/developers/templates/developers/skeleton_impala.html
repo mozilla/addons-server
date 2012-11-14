@@ -249,7 +249,7 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
-      <script async defer src="https://login.persona.org/include.js"></script>
+      <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {% if not logged %}
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}

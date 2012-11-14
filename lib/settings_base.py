@@ -1561,3 +1561,7 @@ WEBTRENDS_PASSWORD = ''
 
 # Domain to allow cross-frame requests from for privacy policy and TOS.
 BROWSERID_DOMAIN= "login.persona.org"
+
+# Adjust these settings to use a custom verifier.
+BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
+BROWSERID_JS_URL = 'https://login.persona.org/include.js'

@@ -89,7 +89,7 @@
         <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
       {% endif %}
       {% if waffle.switch('browserid-login') %}
-        <script async defer src="https://login.persona.org/include.js"></script>
+        <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {% endif %}
       {{ js('zamboni/mobile') }}
     {% endblock %}
