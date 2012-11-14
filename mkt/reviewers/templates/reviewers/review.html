@@ -57,7 +57,6 @@
 </section>
 
   <div id="history" class="island c">
-    {# TODO: List all versions of manifest (bug 763668). #}
     <div id="review-files-header">
       <h3>
         {{ _('App History') }}
@@ -186,16 +185,21 @@
       <div class="review-actions-section review-actions-tested data-toggle"
            data-value="{{ actions_minimal|join("|") }}">
         <strong>{{ _('Tested with:') }}</strong>
-        <label for="{{ form.operating_systems.auto_id }}">
+        <label for="{{ form.device_types.auto_id }}">
           {{ _('Device Types:') }}
         </label>
-        {{ form.operating_systems }}
-        <label for="{{ form.applications.auto_id }}">
+        {{ form.device_types }}
+        <label for="{{ form.browsers.auto_id }}">
           {{ _('Browsers:') }}
         </label>
-        {{ form.applications }}
-        {{ form.operating_systems.errors }}
-        {{ form.applications.errors }}
+        {{ form.browsers }}
+        {{ form.device_types.errors }}
+        {{ form.browsers.errors }}
+      </div>
+      <div class="review-actions-section review-actions-device-override">
+        <strong>{{ _('Device Override:') }}</strong>
+        {{ form.device_override }}
+        {{ form.device_override.errors}}
       </div>
       <div class="review-actions-section">
         {{ form.notify }}
@@ -204,15 +208,6 @@
         </label>
         {{ form.notify.errors }}
       </div>
-      {% if product.admin_review and is_admin %}
-      <div class="review-actions-section">
-        {{ form.adminflag }}
-        <label for="{{ form.adminflag.auto_id }}">
-          {{ form.adminflag.label }}
-        </label>
-        {{ form.adminflag.errors }}
-      </div>
-      {% endif %}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}

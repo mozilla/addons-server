@@ -174,26 +174,31 @@ def _review(request, addon):
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
+        if (set(map(lambda o: o.id, addon.device_types)) !=
+            set(form.cleaned_data.get('device_override'))):
+
+            # The reviewer overrode the device types. We need to not publish
+            # this app immediately.
+            if addon.make_public == amo.PUBLIC_IMMEDIATELY:
+                addon.update(make_public=amo.PUBLIC_WAIT)
+
         form.helper.process()
+
         if form.cleaned_data.get('notify'):
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
-        if form.cleaned_data.get('adminflag') and is_admin:
-            addon.update(admin_review=False)
+
         messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 
     canned = AppCannedResponse.objects.all()
     actions = form.helper.actions.items()
 
-    statuses = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
-                amo.STATUS_LITE_AND_NOMINATED]
-
     try:
         show_diff = (addon.versions.exclude(id=version.id)
                                    .filter(files__isnull=False,
                                            created__lt=version.created,
-                                           files__status__in=statuses)
+                                           files__status=amo.STATUS_PUBLIC)
                                    .latest())
     except Version.DoesNotExist:
         show_diff = None
@@ -205,7 +210,6 @@ def _review(request, addon):
     allow_unchecking_files = form.helper.review_type == "pending"
 
     versions = (Version.objects.filter(addon=addon)
-                               .exclude(files__status=amo.STATUS_BETA)
                                .order_by('-created')
                                .transform(Version.transformer_activity)
                                .transform(Version.transformer))

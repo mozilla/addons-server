@@ -1,10 +1,10 @@
 from datetime import timedelta
 
 from django import forms
-from django.forms import widgets
-from django.db.models import Q
-from django.utils.translation import get_language
 from django.core.validators import ValidationError
+from django.db.models import Q
+from django.forms import widgets
+from django.utils.translation import get_language
 
 import happyforms
 import jinja2
@@ -13,11 +13,9 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
-
-
+from editors.helpers import (file_review_status, ReviewAddon, ReviewFiles,
+                             ReviewHelper)
 from editors.models import CannedResponse
-from editors.helpers import (ReviewHelper, ReviewAddon, ReviewFiles,
-                             file_review_status)
 from files.models import File
 
 

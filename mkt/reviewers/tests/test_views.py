@@ -717,7 +717,6 @@ class TestReviewTransaction(amo.tests.TestCase):
         self.version = self.app.current_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
 
-        files = list(self.version.files.values_list('id', flat=True))
         eq_(self.get_app().status, amo.STATUS_PENDING)
         transaction.commit()
 
@@ -726,8 +725,7 @@ class TestReviewTransaction(amo.tests.TestCase):
                               password='password')
             self.client.post(
                 reverse('reviewers.apps.review', args=[self.app.app_slug]),
-                {'action': 'public', 'comments': 'something',
-                 'addon_files': files})
+                {'action': 'public', 'comments': 'something'})
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
 
@@ -830,15 +828,35 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         assert '<script>alert' not in res.content
         assert '&lt;script&gt;alert' in res.content
 
-    def test_pending_to_public(self):
-        self.create_switch(name='reviewer-incentive-points')
-        files = list(self.version.files.values_list('id', flat=True))
+    def test_pending_to_public_w_device_overrides(self):
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=amo.DEVICE_DESKTOP.id)
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=amo.DEVICE_TABLET.id)
+        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
         self.post({
             'action': 'public',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
+            'device_override': [amo.DEVICE_DESKTOP.id],
+        })
+        app = self.get_app()
+        eq_(app.make_public, amo.PUBLIC_WAIT)
+        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'App Approved but waiting')
+        self._check_email_body(msg)
+
+    def test_pending_to_public(self):
+        self.create_switch(name='reviewer-incentive-points')
+        self.post({
+            'action': 'public',
+            'device_types': '',
+            'browsers': '',
+            'comments': 'something',
         })
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
@@ -853,24 +871,20 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_signs(self, sign):
-        files = list(self.version.files.values_list('id', flat=True))
         self.get_app().update(is_packaged=True)
-        self.post({'action': 'public', 'comments': 'something',
-                   'addon_files': files})
+        self.post({'action': 'public', 'comments': 'something'})
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_public_no_mozilla_contact(self):
         self.create_switch(name='reviewer-incentive-points')
-        files = list(self.version.files.values_list('id', flat=True))
         self.app.update(mozilla_contact='')
         self.post({
             'action': 'public',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         })
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
@@ -885,14 +899,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
 
     def test_pending_to_public_waiting(self):
         self.create_switch(name='reviewer-incentive-points')
-        files = list(self.version.files.values_list('id', flat=True))
         self.get_app().update(make_public=amo.PUBLIC_WAIT)
         self.post({
             'action': 'public',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         })
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
@@ -908,10 +920,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign):
-        files = list(self.version.files.values_list('id', flat=True))
         self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
-        self.post({'action': 'public', 'comments': 'something',
-                   'addon_files': files})
+        self.post({'action': 'public', 'comments': 'something'})
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
@@ -936,13 +946,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
-        files = list(new_version.files.values_list('id', flat=True))
         self.post({
             'action': 'reject',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         })
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
@@ -960,13 +968,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
-        files = list(new_version.files.values_list('id', flat=True))
         self.post({
             'action': 'reject',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         })
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
@@ -1014,13 +1020,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
     def test_escalation_to_public(self):
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, amo.STATUS_PENDING)
-        files = list(self.version.files.values_list('id', flat=True))
         self.post({
             'action': 'public',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         }, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
@@ -1040,10 +1044,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         files = list(self.version.files.values_list('id', flat=True))
         self.post({
             'action': 'reject',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         }, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
@@ -1098,13 +1101,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self.create_switch(name='reviewer-incentive-points')
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
-        files = list(self.version.files.values_list('id', flat=True))
         self.post({
             'action': 'reject',
-            'operating_systems': '',
-            'applications': '',
+            'device_types': '',
+            'browsers': '',
             'comments': 'something',
-            'addon_files': files,
         }, queue='rereview')
         eq_(self.get_app().status, amo.STATUS_REJECTED)
         self._check_log(amo.LOG.REJECT_VERSION)

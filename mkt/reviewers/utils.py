@@ -77,13 +77,13 @@ class ReviewBase(object):
         data = self.data.copy()
         data.update(self.get_context_data())
         data['tested'] = ''
-        os, app = data.get('operating_systems'), data.get('applications')
-        if os and app:
-            data['tested'] = 'Tested on %s with %s' % (os, app)
-        elif os and not app:
-            data['tested'] = 'Tested on %s' % os
-        elif not os and app:
-            data['tested'] = 'Tested with %s' % app
+        dt, br = data.get('device_types'), data.get('browsers')
+        if dt and br:
+            data['tested'] = 'Tested on %s with %s' % (dt, br)
+        elif dt and not br:
+            data['tested'] = 'Tested on %s' % dt
+        elif not dt and br:
+            data['tested'] = 'Tested with %s' % br
         send_mail(subject % self.addon.name,
                   'reviewers/emails/decisions/%s.txt' % template, data,
                   emails, perm_setting='app_reviewed', cc=cc_email)

@@ -5,24 +5,71 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import raise_required
-from addons.models import Persona
-from editors.forms import ReviewAddonForm, ReviewLogForm
+from addons.models import AddonDeviceType, Persona
+from editors.forms import NonValidatingChoiceField, ReviewLogForm
+from editors.models import CannedResponse
 from mkt.reviewers.utils import ReviewHelper
 import mkt.constants.reviewers as rvw
 from .models import ThemeLock
 from .tasks import send_mail
 
 
-class ReviewAppForm(ReviewAddonForm):
+class ReviewAppForm(happyforms.Form):
+
+    comments = forms.CharField(required=True, widget=forms.Textarea(),
+                               label=_lazy(u'Comments:'))
+    canned_response = NonValidatingChoiceField(required=False)
+    action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    device_types = forms.CharField(required=False,
+                                   label=_lazy(u'Device Types:'))
+    browsers = forms.CharField(required=False,
+                               label=_lazy(u'Browsers:'))
+    device_override = forms.TypedMultipleChoiceField(
+        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
+        coerce=int, label=_lazy(u'Device Type Override:'),
+        widget=forms.CheckboxSelectMultiple, required=False)
+    notify = forms.BooleanField(
+        required=False, label=_lazy(u'Notify me the next time the manifest is'
+                                    u'updated. (Subsequent updates will not '
+                                    u'generate an email)'))
 
     def __init__(self, *args, **kw):
-        kw.update(type=amo.CANNED_RESPONSE_APP)
+        self.helper = kw.pop('helper')
+        self.type = kw.pop('type', amo.CANNED_RESPONSE_APP)
         super(ReviewAppForm, self).__init__(*args, **kw)
-        # We don't want to disable any app files:
-        self.addon_files_disabled = tuple([])
-        self.fields['notify'].label = _lazy(
-            u'Notify me the next time the manifest is updated. (Subsequent '
-             'updates will not generate an email.)')
+
+        # We're starting with an empty one, which will be hidden via CSS.
+        canned_choices = [['', [('', _('Choose a canned response...'))]]]
+
+        responses = CannedResponse.objects.filter(type=self.type)
+
+        # Loop through the actions.
+        for k, action in self.helper.actions.iteritems():
+            action_choices = [[c.response, c.name] for c in responses
+                              if c.sort_group and k in c.sort_group.split(',')]
+
+            # Add the group of responses to the canned_choices array.
+            if action_choices:
+                canned_choices.append([action['label'], action_choices])
+
+        # Now, add everything not in a group.
+        for r in responses:
+            if not r.sort_group:
+                canned_choices.append([r.response, r.name])
+
+        self.fields['canned_response'].choices = canned_choices
+        self.fields['action'].choices = [(k, v['label']) for k, v
+                                         in self.helper.actions.items()]
+        device_types = AddonDeviceType.objects.filter(
+            addon=self.helper.addon).values_list('device_type', flat=True)
+        if device_types:
+            self.initial['device_override'] = device_types
+
+    def is_valid(self):
+        result = super(ReviewAppForm, self).is_valid()
+        if result:
+            self.helper.set_data(self.cleaned_data)
+        return result
 
 
 def get_review_form(data, request=None, addon=None, version=None):
@@ -68,7 +115,7 @@ class ThemeReviewForm(happyforms.Form):
     def clean_reject_reason(self):
         reject_reason = self.cleaned_data.get('reject_reason', None)
         if (self.cleaned_data.get('action') == rvw.ACTION_REJECT
-            and reject_reason == None):
+            and reject_reason is None):
             raise_required()
         return reject_reason
 
