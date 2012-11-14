@@ -97,6 +97,7 @@ function init_persona() {
         if ($('body').data('user')) {
             email = $('body').data('user').email;
         }
+        console.log('detected user ' + email);
         navigator.id.watch({
             loggedInUser: email,
             onlogin: function(assert) {
