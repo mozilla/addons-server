@@ -52,7 +52,9 @@
                         headers = '';
 
                     _.each(manifestContents.content.split('\n'), function(v, k) {
-                        contents += format('<li>{0}</li>', v);
+                        if (v) {
+                            contents += format('<li>{0}</li>', v);
+                        }
                     });
                     $('<ol></ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
 
