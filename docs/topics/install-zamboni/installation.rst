@@ -239,7 +239,7 @@ We now run multiple sites off the zamboni code base. The current sites are:
 
 - *default* the Add-ons site at https://addons.mozilla.org/
 
-- *mkt* the Mozilla Marketplace at https://marketplace.mozilla.org/
+- *mkt* the Mozilla Marketplace at https://marketplace.firefox.com/
 
 There are modules in zamboni for each of these base settings to make minor
 modifications to settings, url, templates and so on. Start by copying the

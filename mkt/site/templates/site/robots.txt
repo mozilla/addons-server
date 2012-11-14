@@ -1,4 +1,4 @@
-# robots.txt file for Mozilla Marketplace, marketplace.mozilla.org
+# robots.txt file for Mozilla Marketplace, marketplace.firefox.com
 User-agent: *
 {% if not settings.ENGAGE_ROBOTS %}
 Disallow: /
