@@ -198,7 +198,11 @@ def _fetch_mdn_page(url):
     if anchors:
         # We only want anchors that have an href attribute available.
         external_links = anchors.filter(lambda i: pq(this).attr('href'))
-        external_links.each(lambda e: e.attr('target', '_blank'))
+        for link in external_links:
+            link = pq(link)
+            if link.hasClass('external') or link.attr('rel') == 'external':
+                link.attr('target', '_blank')
+                link.attr('rel', 'external')
         # PyQuery doesn't like the idea of filtering like
         # external_links.filter('a[href^="/"'), so we'll just do as they
         # suggest for now.
