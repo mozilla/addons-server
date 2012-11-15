@@ -8,8 +8,8 @@ import private_mkt
 SERVER_EMAIL = 'zmarketplaceprod@addons.mozilla.org'
 SECRET_KEY = private_mkt.SECRET_KEY
 
-DOMAIN = "marketplace.mozilla.org"
-SITE_URL = 'https://marketplace.mozilla.org'
+DOMAIN = 'marketplace.firefox.com'
+SITE_URL = 'https://marketplace.firefox.com'
 SERVICES_URL = SITE_URL
 STATIC_URL = 'https://marketplace.cdn.mozilla.net/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
