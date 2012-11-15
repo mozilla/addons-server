@@ -44,6 +44,8 @@ var nav = (function() {
 
     z.page.on('fragmentloaded', function(event, href, popped, state) {
 
+        if (!state) return;
+
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
         state.path = extract_nav_url(state.path);

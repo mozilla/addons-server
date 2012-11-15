@@ -13,7 +13,7 @@ z.page.on('click', '.loadmore button', function(e) {
     $.get(url, function(d) {
         // Swap the container with the new content.
         swapEl.replaceWith($(d).find(selector).html());
-        z.page.trigger('updatecache');
         z.page.trigger('fragmentloaded');
+        z.page.trigger('updatecache');
     });
 });
