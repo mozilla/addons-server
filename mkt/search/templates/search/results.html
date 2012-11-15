@@ -22,8 +22,7 @@
   {% set title = _('Search Results') %}
 {% endif %}
 
-{% set show_paid = True if (prices and not waffle.switch('disabled-payments')
-                            and request.GAIA) else False %}
+{% set show_paid = prices and request.GAIA and waffle.switch('allow-b2g-paid-submission') %}
 
 {% set pagetitle = title %}
 {% set pagetype = 'search' %}
