@@ -1,61 +1,64 @@
 {% block content %}
-{% for row, selected_regions, excluded_regions, selected_carriers in apps_regions_carriers -%}
-<tr>
-  <td>
-    <table class="featured-app" data-app-id="{{ row.pk }}" data-url="{{ url('zadmin.set_attrs_ajax') }}">
-      <tr>
-        <td><img src="{{ row.app.icon_url }}"></td>
-        <td>{{ row.app.name }}</td>
-        <td>{% for dt in row.app.device_types %}
-          {{ dt.name }}{% if not loop.last %}, {% endif%}
-          {% endfor %}</td>
-      </tr>
-      <tr>
-        <td>{% if row.app.promo %}
-          <a href="{{ row.app.get_dev_url() }}">Manage featured graphics</a>
-          {% else %}
-          <a href="{{ row.app.get_dev_url() }}">No featured graphics</a>
-          {% endif %}
-        </td>
-        <td>{% if row.is_sponsor %}Sponsored{% else %}Not sponsored{% endif %}</td>
-        <td>
-          <select class="localepicker" multiple>
+  {% for row, selected_regions, excluded_regions, selected_carriers in apps_regions_carriers -%}
+    <div class="app-container c">
+      <ul class="featured-app" data-app-id="{{ row.pk }}"
+          data-url="{{ url('zadmin.set_attrs_ajax') }}">
+        <li class="app-intro">
+          <img src="{{ row.app.icon_url }}" class="logo">
+          <h2>{{ row.app.name }}</h2>
+          <div class="dashboard">
+            <a href="{{ row.app.get_dev_url() }}">
+              <img alt="{{ _('Manage featured graphics') }}"
+                   title="{{ _('Manage featured graphics') }}"
+                   src="{{ MEDIA_URL }}img/mkt/icons/settings.png">
+            </a>
+            {% if not row.app.promo %}
+              <em class="icon warning"
+                  title="{{ _('No featured graphics found.') }}"></em>
+            {% endif %}
+            {% if row.is_sponsor %}
+              <em class="icon sponsored" title="{{ _('Sponsored') }}"></em>
+            {% endif %}
+          </div>
+        </li>
+        <li class="dates">
+          <label>
+            {{ _('Start date') }}
+            <input type="date" class="date-range-start"
+                   value="{{ row.start_date }}">
+          </label>
+          <label>
+            {{ _('End date') }}
+            <input type="date" class="date-range-end" value="{{ row.end_date }}">
+          </label>
+        </li>
+      </ul>
+      <a class="remove" data-id="{{ row.app.id }}">&times;</a>
+      <div class="side">
+        <ul class="devicelist">
+          {%- for dt in row.app.device_types -%}
+            <li>{{ dt.name }}</li>
+          {%- endfor -%}
+        </ul>
+        <p>
+          <label for="localepicker">{{ _('Locale') }}</label>
+          <select class="localepicker" multiple id="localepicker">
             {%- for locName, loc in regions -%}
               <option value="{{ loc.id }}"
-                {%- if loc.id in selected_regions %} selected{%- endif -%}
-                {%- if loc.id in excluded_regions %} disabled{%- endif -%}
-                >{{ loc.name }}</option>
+                {{- " selected" if loc.id in selected_regions -}}
+                {{- " disabled" if loc.id in excluded_regions -}}>
+                {{ loc.name }}
+              </option>
             {%- endfor -%}
             {%- for carrier in carriers -%}
               <option value="carrier.{{ carrier }}"
-                {%- if carrier in selected_carriers %} selected{%- endif -%}
-                >{{ carrier }}</option>
+                {{- " selected" if carrier in selected_carriers -}}>
+                {{ carrier }}
+              </option>
             {%- endfor -%}
           </select>
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ _('Start date') }}
-        </td>
-        <td>
-          <input type="date" class="date-range-start" value="{{ row.start_date }}">
-          <div class="start-date-picker"></div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ _('End date') }}
-        </td>
-        <td>
-          <input type="date" class="date-range-end" value="{{ row.end_date }}">
-          <div class="end-date-picker"></div>
-        </td>
-      </tr>
-    </table>
-  </td>
-  <td><input type="hidden"><a class="remove" data-id="{{ row.app.id }}">×</a></td>
-</tr>
-{% endfor %}
+        </p>
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}

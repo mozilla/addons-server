@@ -20,7 +20,7 @@
 </script>
 {% endblock %}
 
-{% set title = 'Feature Manager' %}
+{% set title = _('Feature Manager') %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
@@ -28,28 +28,21 @@
 
 <form method="post">
   {{ csrf() }}
-  <h3>Featured Apps</h3>
-  Section: <select id="categories"
-                   data-src="{{ url('zadmin.featured_categories_ajax') }}"
-                   ></select>
-  <table>
-    <thead>
-      <th>App</th>
-      <th>Delete</th>
-    </thead>
-    <tbody id="featured-webapps"
-           data-src="{{ url('zadmin.featured_apps_ajax') }}">
-    </tbody>
-    <tfoot class="hidden">
-      <tr><td>
-        <div class="current-webapp js-hidden" style="display: block;"></div>
-        <input placeholder="{{ _('Enter the name of the webapp to include') }}"
-               class="placeholder addon-ac large"
-               data-src="{{ url('search.apps_ajax') }}">
-        <input type="hidden"><a class="remove">×</a>
-      </td></tr>
-    </tfoot>
-  </table>
-  <p><a href="#" id="featured-add">Add an app</a></p>
+  <h3>{{ _('Featured Apps') }}</h3>
+  {{ _('Section') }}:
+  <select id="categories"
+          data-src="{{ url('zadmin.featured_categories_ajax') }}">
+  </select>
+  <div id="featured-webapps" data-src="{{ url('zadmin.featured_apps_ajax') }}">
+  </div>
+  <div class="hidden">
+    <div class="current-webapp js-hidden"></div>
+    <input placeholder="{{ _('Enter the name of the webapp to include') }}"
+           class="placeholder addon-ac large"
+           data-src="{{ url('search.apps_ajax') }}">
+    <a class="remove">×</a>
+  </div>
+
+  <p><a href="#" id="featured-add">{{ _('Add an app') }}</a></p>
 </form>
 {% endblock %}

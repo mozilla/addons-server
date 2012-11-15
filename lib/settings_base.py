@@ -592,7 +592,9 @@ MINIFY_BUNDLES = {
         'zamboni/admin': (
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
-            'css/zamboni/admin_features.css'
+            'css/zamboni/admin_features.css',
+            # Datepicker styles and jQuery UI core.
+            'css/zamboni/jquery-ui/custom-1.7.2.css',
         ),
     },
     'js': {
