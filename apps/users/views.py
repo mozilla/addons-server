@@ -18,7 +18,7 @@ from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
 
-from django_browserid.auth import BrowserIDBackend
+from django_browserid import get_audience, verify
 from waffle.decorators import waffle_flag, waffle_switch
 
 import commonware.log
@@ -309,33 +309,59 @@ def _clean_next_url(request):
 def browserid_authenticate(request, assertion):
     """
     Verify a BrowserID login attempt. If the BrowserID assertion is
-    good, but no account exists on AMO, create one.
+    good, but no account exists, create one.
 
-    Request is only needed for logging. :(
     """
-    backend = BrowserIDBackend()
-    result = backend.verify(assertion, settings.SITE_URL)
+    issuer = None
+    # If this call is for the B2G U-A, then set the appropriate issuer
+    # for potentially unverified emails.
+    if request.POST.get('native'):
+        issuer = getattr(settings, 'UNVERIFIED_ISSUER', None)
+    extra_params = {'issuer': issuer, 'allowUnverified': issuer is not None}
+    log.debug('Verifying Persona assertion: %s, audience: %s, issuer: %s, '
+              'extra_params: %s')
+    result = verify(assertion, get_audience(request),
+                    extra_params=extra_params)
     if not result:
-        return (None, "BrowserID authentication failure.")
-    email = result['email']
-    users = UserProfile.objects.filter(email=email)
-    if len(users) == 1:
-        users[0].user.backend = 'django_browserid.auth.BrowserIDBackend'
-        return (users[0], None)
+        return None, _('Persona authentication failure.')
+
+    if 'unverified-email' in result:
+        email = result['unverified-email']
+        verified = False
+    else:
+        email = result['email']
+        verified = True
+
+    try:
+        profile = UserProfile.objects.filter(email=email)[0]
+    except IndexError:
+        profile = None
+
+    if profile:
+        if profile.is_verified and not verified:
+            # An attempt to log in to a verified address with an unverified
+            # assertion is a very bad thing. Don't let that happen.
+            log.debug('Verified user %s attempted to log in with an '
+                      'unverified assertion!' % profile)
+            return None, _('Please use the verified email for this account.')
+        profile.is_verified = verified
+        profile.save()
+        profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
+        profile.user.save()
+        return profile, None
+
     username = autocreate_username(email.partition('@')[0])
     source = (amo.LOGIN_SOURCE_MMO_BROWSERID if settings.MARKETPLACE else
               amo.LOGIN_SOURCE_AMO_BROWSERID)
     profile = UserProfile.objects.create(username=username, email=email,
-                                         source=source, display_name=username)
-
-    profile.create_django_user()
-    profile.user.backend = 'django_browserid.auth.BrowserIDBackend'
-    profile.user.save()
-    profile.save()
+                                         source=source, display_name=username,
+                                         is_verified=verified)
+    profile.create_django_user(
+        backend='django_browserid.auth.BrowserIDBackend')
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
-            msg='User created a new account (from BrowserID)')
-    return (profile, None)
+            msg='User created a new account (from Persona)')
+    return profile, None
 
 
 @csrf_exempt

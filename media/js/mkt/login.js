@@ -9,6 +9,8 @@ define('login', ['notification'], function(notification) {
         $this.addClass('loading-submit');
         requestedLogin = true;
         navigator.id.request({
+            issuer: z.body.data('persona-unverified-issuer'),
+            allowUnverified: true,
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
@@ -26,13 +28,17 @@ define('login', ['notification'], function(notification) {
     });
     function gotVerifiedEmail(assertion) {
         if (assertion) {
+            var data = {assertion: assertion};
+            // TODO(Kumar): Change to z.capabilities.b2g.
+            if (z.capabilities.gaia) {
+                data.native = '1';
+            }
             $.ajax({
                 url: $('body').data('login-url'),
                 type: 'POST',
-                data: {'assertion': assertion},
+                data: data,
                 success: finishLogin,
                 error: function(jqXHR, textStatus, error) {
-                    // ask for additional credential info.
                     var err = {msg: jqXHR.responseText};
                     if (!err.msg) {
                         err.msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
@@ -40,7 +46,7 @@ define('login', ['notification'], function(notification) {
                     z.page.trigger('notify', {msg: $(err.msg).text()});
                     $.Deferred().reject(err);
                 }
-            })
+            });
         } else {
             $('.loading-submit').removeClass('loading-submit');
         }

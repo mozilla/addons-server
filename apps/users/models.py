@@ -133,6 +133,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     source = models.PositiveIntegerField(default=amo.LOGIN_SOURCE_UNKNOWN,
                                          editable=False, db_index=True)
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
+    is_verified = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'users'
@@ -354,7 +355,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         self.save()
 
-    def create_django_user(self):
+    def create_django_user(self, **kw):
         """Make a django.contrib.auth.User for this UserProfile."""
         # Reusing the id will make our life easier, because we can use the
         # OneToOneField as pk for Profile linked back to the auth.user
@@ -366,6 +367,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.user.email = self.email
         self.user.password = self.password
         self.user.date_joined = self.created
+
+        for k, v in kw.iteritems():
+            setattr(self.user, k, v)
 
         if self.groups.filter(rules='*:*').count():
             self.user.is_superuser = self.user.is_staff = True

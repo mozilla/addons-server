@@ -391,3 +391,6 @@ APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
 
 # Allow /developers/?refresh to refresh all MDN content for Developer Hub.
 MDN_LAZY_REFRESH = False
+
+# The issuer for unverified Persona email addresses.
+UNVERIFIED_ISSUER = 'fxos.login.persona.org'

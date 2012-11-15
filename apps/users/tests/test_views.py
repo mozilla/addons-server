@@ -4,7 +4,6 @@ import json
 
 from django.conf import settings
 from django.core import mail
-from django import http
 from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
@@ -14,9 +13,9 @@ from django.utils.http import int_to_base36
 from mock import Mock, patch
 from nose.tools import eq_
 from nose import SkipTest
-import waffle
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers
+import waffle
 
 import amo
 import amo.tests
@@ -365,6 +364,7 @@ class TestEditAdmin(UserViewBase):
 
 FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
 
+
 class TestPasswordAdmin(UserViewBase):
     fixtures = ['base/users']
 
@@ -579,6 +579,15 @@ class TestLogin(UserViewBase):
         self.client.post(self.url, data={'username': self.data['username']})
         eq_(user.get().failed_login_attempts, 4)
 
+
+class TestPersonaLogin(UserViewBase):
+    fixtures = ('users/test_backends',)
+
+    def setUp(self):
+        super(TestPersonaLogin, self).setUp()
+        self.url = reverse('users.browserid_login')
+        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
+
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     def test_browserid_login_success(self, http_request):
@@ -597,13 +606,37 @@ class TestLogin(UserViewBase):
         eq_(self.client.post(url).status_code, 200)
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('requests.post')
+    def test_browserid_unverified_login_success(self, http_request):
+        """A success response from BrowserID results in a successful login."""
+
+        # Preverified addresses should not be able to log in as unverified.
+        http_request.return_value = FakeResponse(200, json.dumps(
+            {'status': 'okay', 'unverified-email': 'jbalogh@mozilla.com'}))
+        res = self.client.post(self.url, {'assertion': 'fake-assertion',
+                                          'audience': 'fakeamo.org'})
+        eq_(res.status_code, 401)
+        eq_(self.user_profile.reload().is_verified, True)
+
+        # A completely unverified address should be able to log in.
+        self.user_profile.update(is_verified=False)
+        http_request.return_value = FakeResponse(200, json.dumps(
+            {'status': 'okay', 'unverified-email': 'unverified@example.org'}))
+        res = self.client.post(self.url, {'assertion': 'fake-assertion',
+                                          'audience': 'fakeamo.org'})
+        eq_(res.status_code, 200)
+        eq_(self.user_profile.reload().is_verified, False)
+
+        # If the user is already logged in, then we return fast.
+        eq_(self.client.post(self.url).status_code, 200)
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('users.models.UserProfile.log_login_attempt')
     @patch('requests.post')
     def test_browserid_login_logged(self, http_request, log_login_attempt):
         url = reverse('users.browserid_login')
         http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+            {'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
         self.client.post(url, data=dict(assertion='fake-assertion',
                                         audience='fakeamo.org'))
         log_login_attempt.assert_called_once_with(True)
@@ -674,7 +707,7 @@ class TestLogin(UserViewBase):
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
-        assert 'BrowserID authentication failure' in res.content
+        assert 'Persona authentication failure' in res.content
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
