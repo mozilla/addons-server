@@ -1,4 +1,3 @@
-
 var nav = (function() {
     var stack = [
         {
@@ -25,6 +24,11 @@ var nav = (function() {
         }
 
         var used_params = _.pick(z.getVars(url_parts[1]), param_whitelist);
+        // If there are no query params after we filter, just return the path.
+        if (!_.keys(used_params).length) {  // If there are no elements in the object...
+            return url_parts[0];  // ...just return the path.
+        }
+
         var param_pairs = _.sortBy(_.pairs(used_params), function(x) {return x[0];});
         return url_parts[0] + '?' + _.map(
             param_pairs,
