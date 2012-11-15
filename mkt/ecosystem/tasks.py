@@ -142,7 +142,7 @@ locales = ['en-US']
 
 
 @task
-def refresh_mdn_cache(refresh=True, **kw):
+def refresh_mdn_cache(**kw):
     log.info('Refreshing MDN Cache')
     try:
         _update_mdn_items(tutorials)

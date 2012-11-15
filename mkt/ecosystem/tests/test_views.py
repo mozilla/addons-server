@@ -38,19 +38,19 @@ class TestLanding(amo.tests.TestCase):
     @mock.patch('mkt.ecosystem.views.refresh_mdn_cache')
     def test_tutorials_refresh(self, mock_):
         r = self.client.get(self.url)
-        assert not mock_.delay.called
+        assert not mock_.called
 
         r = self.client.get(self.url, {'refresh': '1'})
-        assert mock_.delay.called
+        assert mock_.called
 
     @mock.patch.object(settings, 'MDN_LAZY_REFRESH', False)
     @mock.patch('mkt.ecosystem.views.refresh_mdn_cache')
     def test_tutorials_refresh_disabled(self, mock_):
         r = self.client.get(self.url)
-        assert not mock_.delay.called
+        assert not mock_.called
 
         r = self.client.get(self.url, {'refresh': '1'})
-        assert not mock_.delay.called
+        assert not mock_.called
 
 
 class TestDevHub(amo.tests.TestCase):
