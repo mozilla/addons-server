@@ -97,18 +97,6 @@ def run():
                 print 'Version log [%s] version id updated: %s => %s' % (
                     lav_id, old_version.id, version.id)
 
-            # There are stale activity logs without the _mkt suffix that we
-            # need to deal with to avoid integrity errors when we delete
-            # the version.
-            cursor.execute('''
-                SELECT id, activity_log_id FROM log_activity_version
-                WHERE version_id=%s''', (old_version.id,))
-            for row in cursor.fetchall():
-                cursor.execute(
-                    'DELETE FROM log_activity_version WHERE id=%s' % (row[0],))
-                cursor.execute(
-                    'DELETE FROM log_activity WHERE id=%s' % (row[1],))
-
             # Copy over important fields if not set on current version.
             if not version.releasenotes and old_version.releasenotes:
                 version.releasenotes = old_version.releasenotes
@@ -145,8 +133,7 @@ def run():
             cursor.execute('''
                 DELETE FROM files
                 WHERE version_id=%s''', (old_version.id,))
-            print 'Deleted files records attached to version [%s]' % (
-                old_version.id,)
+            print 'Deleted files attached to version [%s]' % old_version.id
 
             # Delete the version itself.
             cursor.execute('''
