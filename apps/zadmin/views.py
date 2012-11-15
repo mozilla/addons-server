@@ -870,5 +870,6 @@ def email_addresses_file(request):
                                          notifications__enabled=1)
               .values_list('email', flat=True))
     for e in emails:
-        resp.write(e + '\n')
+        if e is not None:
+            resp.write(e + '\n')
     return resp
