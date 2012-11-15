@@ -49,7 +49,8 @@ function gotVerifiedEmail(assertion) {
                     if(!err.msg) {
                         err.msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
                     }
-                    alert(err.msg);
+                    var el = $(err.msg);
+                    z.page.trigger('notify', {msg: el.text()});
                 }
                 $.Deferred().reject(err);
             }
