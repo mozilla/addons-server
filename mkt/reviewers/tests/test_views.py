@@ -844,7 +844,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_WAIT)
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
-        eq_(map(lambda o: o.id, app.device_types), [amo.DEVICE_DESKTOP.id])
+        eq_([o.id for o in app.device_types], [amo.DEVICE_DESKTOP.id])
+        self._check_log(amo.LOG.REVIEW_DEVICE_OVERRIDE)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
@@ -868,7 +869,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
         eq_(app.status, amo.STATUS_REJECTED)
-        eq_(set(map(lambda o: o.id, app.device_types)),
+        eq_(set([o.id for o in app.device_types]),
             set([amo.DEVICE_DESKTOP.id, amo.DEVICE_TABLET.id]))
 
         eq_(len(mail.outbox), 1)

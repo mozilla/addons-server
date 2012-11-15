@@ -174,9 +174,12 @@ def _review(request, addon):
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
+
+        old_types = set(o.id for o in addon.device_types)
+        new_types = set(form.cleaned_data.get('device_override'))
+
         if (form.cleaned_data.get('action') == 'public' and
-            set(map(lambda o: o.id, addon.device_types)) !=
-            set(form.cleaned_data.get('device_override'))):
+            old_types != new_types):
 
             # The reviewer overrode the device types. We need to not publish
             # this app immediately.
@@ -187,6 +190,17 @@ def _review(request, addon):
             AddonDeviceType.objects.filter(addon=addon).delete()
             for device in form.cleaned_data.get('device_override'):
                 addon.addondevicetype_set.create(device_type=device)
+
+            # Log that the reviewer changed the device types.
+            added_devices = new_types - old_types
+            removed_devices = old_types - new_types
+            msg = _(u'Device(s) changed by reviewer: {0}').format(', '.join(
+                [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                 for d in added_devices] +
+                [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                 for d in removed_devices]))
+            amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
+                    addon.current_version, details={'comments': msg})
 
         form.helper.process()
 

@@ -237,11 +237,11 @@ class DeviceTypeForm(forms.Form):
 
         # Send app to re-review queue if public and new devices are added.
         if added_devices and self.addon.status == amo.STATUS_PUBLIC:
-            msg = _(u'Device(s) changed: %s' % (
-                ', '.join([u'Added %s' % unicode(amo.DEVICE_TYPES[d].name)
-                           for d in added_devices] +
-                          [u'Removed %s' % unicode(amo.DEVICE_TYPES[d].name)
-                           for d in removed_devices])))
+            msg = _(u'Device(s) changed: {0}').format(', '.join(
+                [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                 for d in added_devices] +
+                [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                 for d in removed_devices]))
             RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
 
 

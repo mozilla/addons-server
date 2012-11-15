@@ -520,6 +520,14 @@ class REREVIEW_DEVICES_ADDED(_LOG):
     review_queue = True
 
 
+class REVIEW_DEVICE_OVERRIDE(_LOG):
+    id = 76
+    format = _(u'{addon} device support manually changed by reviewer.')
+    short = _(u'Device(s) Changed by Reviewer')
+    keep = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'
