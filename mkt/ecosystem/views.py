@@ -16,7 +16,8 @@ log = commonware.log.getLogger('z.ecosystem')
 
 def _refresh_mdn(request):
     if settings.MDN_LAZY_REFRESH and 'refresh' in request.GET:
-        refresh_mdn_cache.delay()
+        # So I guess arguments are required for celery tasks. Sheesh.
+        refresh_mdn_cache.delay(True)
         messages.success(request,
             'Pulling new content from MDN. Please check back in a few minutes.'
             ' Thanks for all your awesome work! Devs appreciate it!')

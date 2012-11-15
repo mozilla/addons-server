@@ -8,7 +8,6 @@ from celeryutils import task
 import commonware.log
 from pyquery import PyQuery as pq
 
-from amo.decorators import write
 from models import MdnCache
 
 
@@ -143,8 +142,7 @@ locales = ['en-US']
 
 
 @task
-@write
-def refresh_mdn_cache(*args, **kw):
+def refresh_mdn_cache(refresh=True, **kw):
     log.info('Refreshing MDN Cache')
     try:
         _update_mdn_items(tutorials)
