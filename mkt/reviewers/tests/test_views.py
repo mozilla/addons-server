@@ -851,6 +851,31 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
 
+    def test_pending_to_reject_w_device_overrides(self):
+        # This shouldn't be possible unless there's form hacking.
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=amo.DEVICE_DESKTOP.id)
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=amo.DEVICE_TABLET.id)
+        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+        self.post({
+            'action': 'reject',
+            'device_types': '',
+            'browsers': '',
+            'comments': 'something',
+            'device_override': [amo.DEVICE_DESKTOP.id],
+        })
+        app = self.get_app()
+        eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(set(map(lambda o: o.id, app.device_types)),
+            set([amo.DEVICE_DESKTOP.id, amo.DEVICE_TABLET.id]))
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
+        self._check_email_body(msg)
+
     def test_pending_to_public(self):
         self.create_switch(name='reviewer-incentive-points')
         self.post({

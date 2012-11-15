@@ -174,7 +174,8 @@ def _review(request, addon):
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
-        if (set(map(lambda o: o.id, addon.device_types)) !=
+        if (form.cleaned_data.get('action') == 'public' and
+            set(map(lambda o: o.id, addon.device_types)) !=
             set(form.cleaned_data.get('device_override'))):
 
             # The reviewer overrode the device types. We need to not publish
