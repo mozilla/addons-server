@@ -22,7 +22,7 @@ import amo
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
-from addons.models import Persona, Version
+from addons.models import AddonDeviceType, Persona, Version
 from amo import messages
 from amo.decorators import json_view, permission_required, post_required
 from amo.helpers import absolutify
@@ -181,6 +181,11 @@ def _review(request, addon):
             # this app immediately.
             if addon.make_public == amo.PUBLIC_IMMEDIATELY:
                 addon.update(make_public=amo.PUBLIC_WAIT)
+
+            # And update the device types to what the reviewer set.
+            AddonDeviceType.objects.filter(addon=addon).delete()
+            for device in form.cleaned_data.get('device_override'):
+                addon.addondevicetype_set.create(device_type=device)
 
         form.helper.process()
 

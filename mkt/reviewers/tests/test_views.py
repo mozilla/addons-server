@@ -844,6 +844,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_WAIT)
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+        eq_(map(lambda o: o.id, app.device_types), [amo.DEVICE_DESKTOP.id])
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
