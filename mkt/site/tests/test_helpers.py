@@ -128,9 +128,9 @@ class TestMarketButton(amo.tests.TestCase):
             'Mozilla/5.0 (Linux; U; Android 2.3.3; en-au; GT-I9100 Build)')
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disabled' in cls, 'Unexpected: %r' % cls
-        eq_(doc('.bad-app').text(),
-            'To use this app, download and install Firefox for Android .')
+        assert 'disabled' in cls, 'Could not find %r class' % cls
+        assert 'incompatible' in cls, 'Could not find %r class' % cls
+        eq_(doc('.bad-app').length, 0)
 
     def test_needs_firefox_for_android_upgrade(self):
         # Only Firefox for Android 17.0+ has support for `navigator.mozApps`.
@@ -138,8 +138,9 @@ class TestMarketButton(amo.tests.TestCase):
             'Mozilla/5.0 (Mobile; rv:16.0) Gecko/16.0 Firefox/16.0')
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disabled' in cls, 'Unexpected: %r' % cls
-        eq_(doc('.bad-app').text(), 'To use this app, upgrade Firefox .')
+        assert 'disabled' in cls, 'Could not find %r class' % cls
+        assert 'incompatible' in cls, 'Could not find %r class' % cls
+        eq_(doc('.bad-app').length, 0)
 
     def test_is_premium_android_disabled(self):
         self.make_premium(self.webapp)

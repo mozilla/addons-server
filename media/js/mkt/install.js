@@ -2,7 +2,7 @@
 
 (function() {
     z.page.on('click', '.product.launch', launchHandler);
-    z.page.on('click', '.button.product:not(.launch)', installHandler);
+    z.page.on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
 
     function launchHandler(e) {
         e.preventDefault();

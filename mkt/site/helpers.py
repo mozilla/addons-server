@@ -245,24 +245,11 @@ def market_tile(context, product, link=True, src=''):
 
         if need_firefox:
             if request.MOBILE:
-                url = 'http://www.mozilla.org/mobile/aurora/'
-                #url = 'https://www.mozilla.org/mobile/android-download.html'
-                # We can't have nested anchors, so deal with this hack.
-                notices.append(_('To use this app, '
-                                 '<b data-href="{url}">download and install '
-                                 'Firefox for Android</b>.').format(url=url))
-            # TODO: Comment out when we disable installs on desktop again!
-            # else:
-            #    url = 'https://www.mozilla.org/firefox/'
-            #    notices.append(_('To use this app, <b data-href="{url}">'
-            #                     'download and install '
-            #                     'Firefox</b>.').format(url=url))
+                classes += ['incompatible']
         elif need_upgrade:
-            url = 'http://www.mozilla.org/firefox/aurora/'
-            notices.append(_('To use this app, <b data-href="{url}">upgrade '
-                             'Firefox</b>.').format(url=url))
+            classes += ['incompatible']
 
-        if notices:
+        if notices or 'incompatible' in classes:
             classes += ['bad', 'disabled']
 
         c = dict(request=request, product=product, data_attrs=data_attrs,

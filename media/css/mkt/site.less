@@ -113,6 +113,59 @@ body .loading-fragment {
     }
 }
 
+.incompatible-browser {
+    .box-shadow(0 -1px 0 #000 inset, 0 1px 0 rgba(0,0,0,.35));
+    .transition(~'.2s opacity, .2s visibility, .2s top');
+    background: #333 url(../../img/mkt/icons/aurora.png) 12px 50% no-repeat;
+    background-size: auto 30px;
+    margin: 0 auto -55px;
+    max-width: 600px;
+    opacity: 0;
+    padding: 0;
+    position: relative;
+    top: -55px;
+    visibility: hidden;
+    z-index: 1;
+    &.active {
+        margin-bottom: 0;
+        opacity: 1;
+        top: 50px;
+        visibility: visible;
+    }
+    a {
+        display: block;
+        text-decoration: none;
+    }
+    .download {
+        color: #ccc;
+        line-height: 1.3;
+        min-height: 55px;
+        padding: 12px 10px 10px 50px;
+        b {
+            color: @link-bright;
+        }
+        &:hover {
+            color: #fff;
+            b {
+                color: lighten(@link-bright, 10%);
+                text-decoration: underline;
+            }
+        }
+    }
+    .close {
+        background: #666;
+        color: #333;
+        float: right;
+        font-size: 22px;
+        margin: 11px 10px 0 15px;
+        padding: 3px 12px;
+        &:hover {
+            background: #ccc;
+            color: #000;
+        }
+    }
+}
+
 #site-header, #page {
     min-width: 320px;
     > section {
