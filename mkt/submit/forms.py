@@ -316,6 +316,14 @@ class AppDetailsBasicForm(AddonFormBasic):
             (0, _lazy(u'No')),
         ),
         widget=forms.RadioSelect)
+    publish = forms.BooleanField(required=False, initial=1,
+        label=_lazy(u"Publish my app in the Firefox Marketplace as soon as "
+                     "it's reviewed."),
+        help_text=_lazy(u"If selected your app will be published immediately "
+                         "following its approval by reviewers.  If you don't "
+                         "select this option you will be notified via email "
+                         "about your app's approval and you will need to log "
+                         "in and manually publish it."))
 
     class Meta:
         model = Addon

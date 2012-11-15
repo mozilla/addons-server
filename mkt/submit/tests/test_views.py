@@ -563,6 +563,7 @@ class TestDetails(TestSubmit):
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1.id],
             'flash': '1',
+            'publish': '1'
         }
         # Add the required screenshot.
         data.update(self.preview_formset({
@@ -580,20 +581,24 @@ class TestDetails(TestSubmit):
         addon = self.get_webapp()
 
         # Build a dictionary of expected results.
-        expected = {
+        expected_data = {
             'name': 'Test name',
             'app_slug': 'testname',
             'summary': 'Hello!',
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
-            'uses_flash': 'True',
+            'uses_flash': True,
+            'make_public': amo.PUBLIC_IMMEDIATELY
         }
-        expected.update(expected)
+        if expected:
+            expected_data.update(expected)
 
-        for field, expected in expected.iteritems():
+        for field, expected in expected_data.iteritems():
             got = unicode(getattr(addon, field))
+            expected = unicode(expected)
             eq_(got, expected,
                 'Expected %r for %r. Got %r.' % (expected, field, got))
+
         self.assertSetEqual(addon.device_types, self.device_types)
 
     def test_success(self):
@@ -620,6 +625,19 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
         self.check_dict(data=data)
+        self.webapp = self.get_webapp()
+        self.assert3xx(r, self.get_url('done'))
+
+    def test_success_for_public_waiting(self):
+        self._step()
+
+        data = self.get_dict()
+        del data['publish']
+
+        r = self.client.post(self.url, data)
+        self.assertNoFormErrors(r)
+
+        self.check_dict(data=data, expected={'make_public': amo.PUBLIC_WAIT})
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 

@@ -170,7 +170,13 @@ def details(request, addon_id, addon):
         tasks.generate_image_assets.delay(addon)
 
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
-        addon.mark_done()
+
+        # The developer doesn't want the app published immediately upon review.
+        addon.update(status=amo.STATUS_PENDING,
+                     make_public=amo.PUBLIC_IMMEDIATELY
+                                 if form_basic.cleaned_data.get('publish')
+                                 else amo.PUBLIC_WAIT)
+
         return redirect('submit.app.done', addon.app_slug)
 
     ctx = {

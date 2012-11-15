@@ -15,9 +15,21 @@
   <section id="submit-done" class="primary{{ ' payments' if payments }}">
     <h2>{{ _('Success! What happens now?') }}</h2>
     <div class="island devhub-form c">
-      <p>{{ _("We've got your app saved and ready to go! Your app is currently
-               awaiting review, and will show up on listing pages and in search once it is reviewed.
-               Until then, feel free to tweak your app's details and settings.") }}</p>
+      {% if addon.make_public == amo.PUBLIC_WAIT %}
+        <p>
+          {% trans url=addon.get_dev_url('versions') %}
+            We've got your app saved and ready to go! Your app is currently
+            awaiting review, and once it is reviewed you will need to be manually
+            enable your app from the <a href="{{ url }}">Manage Status page</a>
+            for it to show up on listing pages and in search. Until then, feel
+            free to tweak your app's details and settings.
+          {% endtrans %}
+        </p>
+      {% else %}
+        <p>{{ _("We've got your app saved and ready to go! Your app is currently
+                 awaiting review, and will show up on listing pages and in search once it is reviewed.
+                 Until then, feel free to tweak your app's details and settings.") }}</p>
+      {% endif %}
       <footer class="listing-footer button-wrapper">
         {% if payments %}
           <a href="{{ addon.get_dev_url('payments') }}" class="button prominent">

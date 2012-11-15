@@ -1,21 +1,19 @@
 {% from 'includes/forms.html' import required, optional, tip %}
 {% from 'developers/includes/macros.html' import some_html_tip %}
 
-{% macro simple_label(field, label, opt, req, tooltip, hint) %}
+{% macro simple_label(field, label, opt, req, hint) %}
   <label class="{{ 'choice' if choice }}" for="{{ field.auto_id }}">
     {{ label }}
   </label>
 
   {% if field.field.required and req != False %}{{ required() -}}{% endif %}
   {% if opt %}{{ optional() -}}{% endif %}
-
 {% endmacro %}
 
 {% if tag %}
   <{{ tag }} class="brform simple-field c {{ cls }}{{ ' error' if field.errors }}">
 {% endif %}
 {% set choice = field|is_choice_field %}
-  {% if not tooltip %}{% set tooltip = field.help_text %}{% endif %}
 
   {% if grid %}
     <div class="form-label">
@@ -23,7 +21,8 @@
     {% if choice %}{{ field.as_widget() }}{% endif %}
   {% endif %}
 
-  {{ simple_label(field, label, opt, req, tooltip, hint) }}
+  {{ simple_label(field, label, opt, req, hint) }}
+  {% if tooltip %}{{ tip(None, field.help_text) }}{% endif %}
 
   {% if grid %}
     </div>
@@ -38,7 +37,7 @@
     {{ field.as_widget(attrs=attrs) }}
   {% endif %}
 
-  {% if hint and tooltip %}
+  {% if hint %}
     <span class="hint">{{ field.help_text }}</span>
   {% endif %}
 
