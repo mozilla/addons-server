@@ -411,3 +411,6 @@ APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
 # It must match that of the pay server that processes nav.mozPay().
 # On B2G this must match a provider in the whitelist.
 APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
+
+# Allow /developers/?refresh to refresh all MDN content for Developer Hub.
+MDN_LAZY_REFRESH = False

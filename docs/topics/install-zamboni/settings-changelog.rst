@@ -2,6 +2,16 @@ Settings Changelog
 ==================
 
 
+2012-11-14
+----------
+
+* Added ``MDN_LAZY_REFRESH`` which allows you to append `?refresh` to
+https://marketplace-dev.allizom.org/developers/ and
+https://marketplace-dev.allizom.org/developers/docs/ to refresh all content
+from MDN for the Developer Hub. In production this should always remain
+``False``.
+
+
 2012-09-27
 ----------
 
