@@ -89,7 +89,7 @@ if (!localStorage.seen_aurora_pitch) {
 }
 
 // Clicking cancel should dismiss notification boxes.
-z.page.on('click', '.notification-box .close', function() {
+z.body.on('click', '.notification-box .close', function() {
     if (z.capabilities.localStorage) {
         localStorage.seen_aurora_pitch = '1';
     }
