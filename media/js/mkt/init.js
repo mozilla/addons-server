@@ -84,11 +84,9 @@ z.page.on('click', 'a.external, a[rel=external]', function() {
     }
 });
 
-
-if (z.capabilities.localStorage && !localStorage.seen_aurora_pitch) {
+if (!localStorage.seen_aurora_pitch) {
     $('.incompatible-browser').addClass('active');
 }
-
 
 // Clicking cancel should dismiss notification boxes.
 z.page.on('click', '.notification-box .close', function() {
