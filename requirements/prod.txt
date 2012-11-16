@@ -67,7 +67,7 @@ suds==0.3.9
 tower==0.3.4
 
 ## Not on pypi.
--e git://github.com/mattbasta/addon-packager.git@8e7b8e80e6ab57e2cafaa06e2430a68a6b74f5e2#egg=addon-packager
+-e git://github.com/mattbasta/addon-packager.git@830d6fd120ede0fe6792e25b3fb3b1bf264b1ba0#egg=addon-packager
 -e git://github.com/mozilla/amo-validator.git@48bd89c2f594915c5d98733487146ebcef7ebaa0#egg=amo-validator
 -e git://github.com/mozilla/app-validator.git@f01f87dae396593e0fc0b6bb8eee6f96ff5dcfc2#egg=app-validator
 -e git://github.com/mozilla/django-browserid.git@1c23655faad0cc5ad2c18aebc0472a0ea078cfa8#egg=django-browserid
