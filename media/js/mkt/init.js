@@ -89,11 +89,11 @@ if (!localStorage.seen_aurora_pitch) {
 }
 
 // Clicking cancel should dismiss notification boxes.
-z.body.on('click', '.notification-box .close', function() {
+z.body.on('click', '.incompatible-browser .close', function() {
     if (z.capabilities.localStorage) {
         localStorage.seen_aurora_pitch = '1';
     }
-    $(this).closest('.notification-box').removeClass('active');
+    $(this).closest('.incompatible-browser').removeClass('active');
 }).on('click', '.incompatible.button', _pd(function(e) {
     if (z.capabilities.localStorage) {
         delete localStorage.seen_aurora_pitch;
