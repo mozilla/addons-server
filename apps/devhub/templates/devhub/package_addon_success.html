@@ -27,6 +27,16 @@
     </noscript>
   </div>
   <h3>{{ _('What do I do next?') }}</h3>
+  {% trans %}
+  <ol>
+    <li>
+      Follow the instructions in the packaged source code to create your
+      own preferences and make your own customizations.
+    </li>
+    <li>Remove any source code that you don't eventually use.</li>
+    <li>Read the documentation and ask for help when you need it!</li>
+  </ol>
+  {% endtrans %}
   <p>
   {% trans gs_url=url('devhub.docs', 'getting-started'),
            ht_url=url('devhub.docs', 'how-to') %}
