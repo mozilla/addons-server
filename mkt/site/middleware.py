@@ -276,6 +276,8 @@ class DeviceDetectionMiddleware(object):
 
 class AlwaysMobile(object):
     """Middleware for development that forces all responses into mobile mode."""
+    # TODO(Kumar) remove this when bug 812224 is fixed.
 
     def process_request(self, request):
         request.MOBILE = True
+        request.GAIA = True
