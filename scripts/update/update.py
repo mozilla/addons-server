@@ -9,13 +9,14 @@ import commander_settings as settings
 
 
 _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
+VIRTUALENV = os.path.join(os.path.dirname(settings.SRC_DIR), 'venv')
 
 
 @task
 def create_virtualenv(ctx):
-    venv = settings.VIRTUAL_ENV
+    venv = VIRTUALENV
     if not venv.startswith('/data'):
-        raise Exception('venv must start with /data')
+        raise Exception('venv must start with /data') # this is just to avoid rm'ing /
 
     ctx.local('rm -rf %s' % venv)
     ctx.local('virtualenv --distribute --never-download %s' % venv)
@@ -58,7 +59,7 @@ def compress_assets(ctx, arg=''):
 def schematic(ctx):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("%s %s/bin/schematic migrations" %
-                  (settings.PYTHON, settings.VIRTUAL_ENV))
+                  (settings.PYTHON, VIRTUALENV))
 
 
 @task

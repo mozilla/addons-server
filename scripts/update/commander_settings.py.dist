@@ -32,7 +32,6 @@ GUNICORN = [
 
 CRON_NAME = "addons-dev"
 
-VIRTUAL_ENV = '/data/www/addons-dev.allizom.org/venv'
 PYPI_MIRROR = 'https://mrepo.mozilla.org/pypi/simple/'
 
 PYTHON = '/usr/bin/python2.6'
