@@ -4,6 +4,7 @@ import os
 
 from django import http
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.shortcuts import redirect
 from django.views.decorators.http import etag
 
@@ -75,8 +76,8 @@ def manifest(request, addon):
         package_name = 'packaged-apps/blocklisted.zip'
         data = {
             'name': addon.name,
-            'size': os.stat(os.path.join(settings.MEDIA_ROOT,
-                                         package_name)).st_size,
+            'size': storage.size(os.path.join(settings.MEDIA_ROOT,
+                                              package_name)),
             'release_notes':
                 _(u'This app has been blocked for your protection.'),
             'package_path': absolutify(os.path.join(settings.MEDIA_URL,
