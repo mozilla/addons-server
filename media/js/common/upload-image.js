@@ -42,7 +42,7 @@ $.fn.objectUrl = function(offset) {
     if (z.capabilities.fileAPI && files.length) {
         offset = offset || 0;
         var f = files[offset];
-        if (typeof window.URL == 'object') {
+        if (typeof window.URL !== 'undefined') {
             url = window.URL.createObjectURL(f);
         } else if (typeof window.webkitURL == 'function') {
             url = window.webkitURL.createObjectURL(f);
