@@ -4,9 +4,13 @@ import shutil
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
+from base64 import b64decode
 from celeryutils import task
 import commonware.log
 from django_statsd.clients import statsd
+import json
+from signing_clients.apps import JarExtractor
+import requests
 from xpisign import xpisign
 
 import amo
@@ -20,9 +24,61 @@ class SigningError(Exception):
 
 
 def sign_app(src, dest):
+    """
+    Generate a manifest and signature andend signature to signing server to be
+    signed.
+    """
     if settings.SIGNED_APPS_SERVER_ACTIVE:
-        # At some point this will be implemented, but not now.
-        raise NotImplementedError
+        # If no API endpoint is set. Just ignore this request.
+        if not settings.SIGNED_APPS_SERVER:
+            return ValueError('Invalid config. SIGNED_APPS_SERVER empty.')
+
+        endpoint = settings.SIGNED_APPS_SERVER + '/1.0/sign_app'
+        timeout = settings.SIGNED_APPS_SERVER_TIMEOUT
+
+        # Extract necessary info from the archive
+        try:
+            jar = JarExtractor(storage.open(src), storage.open(dest))
+        except:
+            log.error("Archive extraction failed. Bad archive?", exc_info=True)
+            raise SigningError("Archive extraction failed. Bad archive?")
+
+        if settings.SIGNED_APPS_OMIT_PER_FILE_SIGS:
+            signatures = jar.signature
+        else:
+            signatures = jar.signatures
+        log.info('App signature contents: %s' % signatures)
+
+        log.info('Calling service: %s' % endpoint)
+        try:
+            with statsd.timer('services.sign.app'):
+                response = requests.post(endpoint, timeout=timeout,
+                                         files={'file': ('zigbert.sf',
+                                                         str(signatures))})
+        except requests.exceptions.HTTPError, error:
+            # Will occur when a 3xx or greater code is returned.
+            log.error('Posting to app signing failed: %s, %s'
+                      % (error.response.status, error))
+            raise SigningError
+        except:
+            # Will occur when some other error occurs.
+            log.error('Posting to app signing failed', exc_info=True)
+            raise SigningError('Posting to app signing failed')
+
+        if response.status != 200:
+            log.error('Posting to app signing failed: %s'
+                      % response.reason)
+            raise SigningError('Posting to app signing failed: %s'
+                               % response.reason)
+
+        pkcs7 = b64decode(json.loads(response.read())['zigbert.rsa'])
+        try:
+            jar.make_signed(pkcs7)
+        except:
+            log.error("App signing failed", exc_info=True)
+            raise SigningError("App signing failed")
+
+        return
 
     if not os.path.exists(settings.SIGNED_APPS_KEY):
         # TODO: blocked on bug 793876
@@ -44,7 +100,7 @@ def sign_app(src, dest):
     except:
         # TODO: figure out some likely errors that can occur.
         log.error('Signing failed', exc_info=True)
-        raise
+        raise SigningError('Signing failed')
 
 
 @task
@@ -75,6 +131,11 @@ def sign(version_id, reviewer=False):
 
     # When we know how to sign, we will sign. For the moment, let's copy.
     with statsd.timer('services.sign.app'):
-        sign_app(file_obj.file_path, path)
+        try:
+            sign_app(file_obj.file_path, path)
+        except SigningError:
+            if storage.exists(path):
+                storage.delete(path)
+            raise
     log.info('Signing complete.')
     return path

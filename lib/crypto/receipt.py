@@ -22,12 +22,11 @@ def sign(receipt):
 
     This could possibly be made async via celery.
     """
-    destination = settings.SIGNING_SERVER
     # If no destination is set. Just ignore this request.
-    if not destination:
-        return
+    if not settings.SIGNING_SERVER:
+        return ValueError('Invalid config. SIGNING_SERVER empty.')
 
-    destination += '/1.0/sign'
+    destination = settings.SIGNING_SERVER + '/1.0/sign'
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
     receipt_json = json.dumps(receipt)
@@ -42,18 +41,20 @@ def sign(receipt):
             response = urllib2.urlopen(request, timeout=timeout)
     except urllib2.HTTPError, error:
         # Will occur when a 3xx or greater code is returned
-        log.error('Posting to signing failed: %s, %s'
+        log.error('Posting to receipt signing failed: %s, %s'
                   % (error.code, error.read().strip()))
-        raise SigningError
+        raise SigningError('Posting to receipt signing failed: %s, %s'
+                           % (error.code, error.read().strip()))
     except:
         # Will occur when some other error occurs.
-        log.error('Posting to signing failed', exc_info=True)
-        raise SigningError
+        log.error('Posting to receipt signing failed', exc_info=True)
+        raise SigningError('Posting receipt signing failed')
 
     if response.getcode() != 200:
         log.error('Posting to signing failed: %s'
                   % (response.getcode()))
-        raise SigningError
+        raise SigningError('Posting to signing failed: %s'
+                           % (response.getcode()))
 
     return json.loads(response.read())['receipt']
 

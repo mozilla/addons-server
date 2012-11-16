@@ -235,6 +235,12 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
 SIGNED_APPS_KEY = ''
 # A seperate signing server for signing packaged apps.
 SIGNED_APPS_SERVER_ACTIVE = False
+# This is the signing REST server for signing apps.
+SIGNED_APPS_SERVER = ''
+# And how long we'll give the server to respond.
+SIGNED_APPS_SERVER_TIMEOUT = 10
+# Send the more terse manifest signatures to the app signing server.
+SIGNED_APPS_OMIT_PER_FILE_SIGS = True
 
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
