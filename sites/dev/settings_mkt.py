@@ -134,6 +134,7 @@ SIGNING_SERVER_ACTIVE = True
 #Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = False
+SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
 
 METLOG_CONF['logger'] = 'addons-marketplace-dev'
 METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
