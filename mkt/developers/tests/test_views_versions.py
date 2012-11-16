@@ -5,7 +5,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue
 from files.models import File
 from users.models import UserProfile
@@ -108,7 +108,10 @@ class TestVersion(amo.tests.TestCase):
             'Reapplied apps should get marked as pending')
         eq_(webapp.versions.latest().all_files[0].status, amo.STATUS_PENDING,
             'Files for reapplied apps should get marked as pending')
-        eq_(unicode(webapp.versions.all()[0].approvalnotes), my_reply)
+        action = amo.LOG.WEBAPP_RESUBMIT
+        assert AppLog.objects.filter(
+            addon=webapp, activity_log__action=action.id).exists(), (
+                "Didn't find `%s` action in logs." % action.short)
 
     def test_rejected_packaged(self):
         self.webapp.update(is_packaged=True)
