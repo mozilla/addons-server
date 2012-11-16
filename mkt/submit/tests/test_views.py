@@ -27,6 +27,7 @@ from translations.models import Translation
 from users.models import UserProfile
 
 import mkt
+from mkt.submit.forms import NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
@@ -253,6 +254,19 @@ class TestCreateWebApp(BaseWebAppTest):
             'Unexpected helpful error (trap_duplicate)')
         assert 'already exists' not in r.content, (
             'Unexpected validation error (verify_app_domain)')
+
+
+    def test_no_upload(self):
+        data = {'free': ['free-desktop']}
+        res = self.client.post(self.url, data, follow=True)
+        eq_(res.context['form'].errors,
+            {'upload': NewWebappVersionForm.upload_error})
+
+    def test_bad_upload(self):
+        data = {'free': ['free-desktop'], 'upload': 'foo'}
+        res = self.client.post(self.url, data, follow=True)
+        eq_(res.context['form'].errors,
+            {'upload': NewWebappVersionForm.upload_error})
 
     def test_hint_for_same_manifest(self):
         self.create_switch(name='webapps-unique-by-domain')

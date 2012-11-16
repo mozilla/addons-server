@@ -40,14 +40,17 @@ class DevAgreementForm(happyforms.Form):
 
 
 class NewWebappVersionForm(happyforms.Form):
+    upload_error = _lazy(u'There was an error with your upload. '
+                         u'Please try again.')
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy(u'There was an error with your'
-                                                u' upload. Please try'
-                                                u' again.')})
+        error_messages={'invalid_choice': upload_error})
 
     def clean(self):
         data = self.cleaned_data
+        if 'upload' not in self.cleaned_data:
+            self._errors['upload'] = self.upload_error
+            return
 
         # Packaged apps are only valid for firefox os.
         if self.is_packaged():
