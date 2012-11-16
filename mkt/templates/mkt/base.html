@@ -70,32 +70,31 @@
       {% endwith %}
     {% endblock %}
 
-    <div id="container">
-
-      {% if not allow_installs() %}
-        {% if request.MOBILE %}
-          <div class="notification-box incompatible-browser incompatible-mobile">
-            <a href="#" class="close">&times;</a>
-            <a href="http://www.mozilla.org/mobile/aurora/" class="download" target="_blank">
-              {% trans %}
-                You must use Firefox Aurora on your Android phone to install Firefox apps.
-                <b>Learn more</b>
-              {% endtrans %}
-            </a>
-          </div>
-        {% else %}
-          <div class="notification-box incompatible-browser incompatible-desktop">
-            <a href="#" class="close">&times;</a>
-            <a href="http://www.mozilla.org/firefox/aurora/" class="download" target="_blank">
-              {% trans %}
-                You must use Firefox Aurora to install Firefox apps.
-                <b>Learn more</b>
-              {% endtrans %}
-            </a>
-          </div>
-        {% endif %}
+    {% if not allow_installs() %}
+      {% if request.MOBILE %}
+        <div class="notification-box incompatible-browser incompatible-mobile">
+          <a href="#" class="close">&times;</a>
+          <a href="http://www.mozilla.org/mobile/aurora/" class="download" target="_blank">
+            {% trans %}
+              You must use Firefox Aurora on your Android phone to install Firefox apps.
+              <b>Learn more</b>
+            {% endtrans %}
+          </a>
+        </div>
+      {% else %}
+        <div class="notification-box incompatible-browser incompatible-desktop">
+          <a href="#" class="close">&times;</a>
+          <a href="http://www.mozilla.org/firefox/aurora/" class="download" target="_blank">
+            {% trans %}
+              You must use Firefox Aurora to install Firefox apps.
+              <b>Learn more</b>
+            {% endtrans %}
+          </a>
+        </div>
       {% endif %}
+    {% endif %}
 
+    <div id="container">
       <div id="page" role="main"
            data-context="{{
              {'type': pagetype or 'leaf',
