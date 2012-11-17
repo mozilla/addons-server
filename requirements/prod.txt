@@ -60,7 +60,7 @@ recaptcha-client==1.0.5
 receipts==0.2.4.1
 requests==0.14.0
 schematic==0.2
-signing_clients==0.1.1
+signing_clients==0.1.2
 Sphinx==0.6.3
 SQLAlchemy==0.7.5
 statsd==1.0.0
