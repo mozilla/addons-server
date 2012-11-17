@@ -38,7 +38,7 @@ def sign_app(src, dest):
 
         # Extract necessary info from the archive
         try:
-            jar = JarExtractor(storage.open(src), storage.open(dest))
+            jar = JarExtractor(storage.open(src, 'r'), storage.open(dest, 'w'))
         except:
             log.error("Archive extraction failed. Bad archive?", exc_info=True)
             raise SigningError("Archive extraction failed. Bad archive?")
