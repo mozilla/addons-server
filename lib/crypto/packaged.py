@@ -31,7 +31,7 @@ def sign_app(src, dest):
     if settings.SIGNED_APPS_SERVER_ACTIVE:
         # If no API endpoint is set. Just ignore this request.
         if not settings.SIGNED_APPS_SERVER:
-            return ValueError('Invalid config. SIGNED_APPS_SERVER empty.')
+            raise ValueError('Invalid config. SIGNED_APPS_SERVER empty.')
 
         endpoint = settings.SIGNED_APPS_SERVER + '/1.0/sign_app'
         timeout = settings.SIGNED_APPS_SERVER_TIMEOUT

@@ -133,7 +133,8 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         storage.open(self.file.signed_file_path, 'w')
         assert packaged.sign(self.version.pk)
 
-    @raises(NotImplementedError)
+    # TODO rtilder: some tests here...
+    @raises(ValueError)
     def test_server_active(self):
         with self.settings(SIGNED_APPS_SERVER_ACTIVE=True):
             packaged.sign(self.version.pk)
@@ -161,7 +162,7 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
             self.is_signed(packaged.sign(self.version.pk, True))
 
     @mock.patch('lib.crypto.packaged.xpisign')
-    @raises(ValueError)
+    @raises(packaged.SigningError)
     def test_raises(self, xpisign):
         xpisign.side_effect = ValueError
         with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
