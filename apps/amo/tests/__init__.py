@@ -23,6 +23,7 @@ import test_utils
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from redisutils import mock_redis, reset_redis
+from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
 import addons.search
@@ -385,17 +386,19 @@ class TestCase(RedisTest, test_utils.TestCase):
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price)
 
-    def create_sample(self, name=None, **kw):
+    def create_sample(self, name=None, db=False, **kw):
         if name is not None:
             kw['name'] = name
         kw.setdefault('percent', 100)
-        Sample.objects.create(**kw)
+        sample = Sample(**kw)
+        sample.save() if db else cache_sample(instance=sample)
 
-    def create_switch(self, name=None, **kw):
+    def create_switch(self, name=None, db=False, **kw):
+        kw.setdefault('active', True)
         if name is not None:
             kw['name'] = name
-        kw.setdefault('active', True)
-        Switch.objects.create(**kw)
+        switch = Switch(**kw)
+        switch.save() if db else cache_switch(instance=switch)
 
     def create_flag(self, name=None, **kw):
         if name is not None:
