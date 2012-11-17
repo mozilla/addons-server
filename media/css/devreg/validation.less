@@ -320,17 +320,16 @@ section.payments li.status-pass {
     .result .result-header {
         padding-bottom: 10px;
     }
-    .result .tests-passed {
-        color: @green;
-    }
-    .result .tests-failed {
-        color: @red;
-    }
     .result:last-child .tier-results {
         .border-radius(0 0 5px 5px);
     }
-    .result .msg-error {
+    .result .msg {
         padding-bottom: 10px;
+
+        &.msg-error h5 {color: @red;}
+        &.msg-warning h5 {color: @orange;}
+        &.msg-notice h5 {color: @dark-gray;}
+
         p, h5 {
             line-height: 22px;
         }
@@ -340,6 +339,54 @@ section.payments li.status-pass {
             border-bottom: 1px dotted @border-gray;
             padding-bottom: 5px;
             margin-bottom: 4px;
+        }
+        .context {
+            margin: 0.5em 0 0 1em;
+            padding: 0.4em;
+            color: #868686;
+            border: 1px solid #f3f3f3;
+            background-color: #f9f9f9;
+            font-family: "Courier New", Courier, monospace;
+
+            .file {
+                font-size: 105%;
+                margin-bottom: 0.3em;
+            }
+            .code {
+                font-size: 95%;
+                background-color: #f3f3f3;
+
+                .lines {
+                    float: left;
+                    background-color: #f9f9f9;
+
+                    div {
+                        margin-right: 0.3em;
+                    }
+                }
+                .inner-code {
+                    float: left;
+                    padding-left: 0.2em;
+
+                    div {
+                        max-width: 45em;
+                        height: 1.65em;
+                        overflow: hidden;
+                    }
+                }
+                .lines div,
+                .inner-code div {
+                    padding: 0.1em;
+                }
+
+                &:last-child:after {
+                    content: ".";
+                    display: block;
+                    clear: both;
+                    height: 0;
+                    visibility: hidden;
+                }
+            }
         }
         &:last-child {
             padding-bottom: 0;
