@@ -184,12 +184,15 @@
     padding-top: 10px;
     .fatbutton {
         margin-top: 10px;
+        &:first-child {
+            width: 100%;
+        }
     }
 }
 
 @media (min-width: @7col) {
     .feedback-links {
-        .fatbutton {
+        .fatbutton + .fatbutton {
             float: left;
             width: 48%;
             + .fatbutton {
