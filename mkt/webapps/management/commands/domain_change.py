@@ -14,19 +14,18 @@ subj = "Important information regarding your app on the Firefox Marketplace"
 msg = """Hello,
 
 On November 15 Mozilla changed the name of the Mozilla Marketplace to
-Firefox Marketplace. We are changing the name so that we can more quickly build
+Firefox Marketplace. We changed the name so we can more quickly build
 a Marketplace audience by using the highly recognizable and trusted Firefox
 brand.
 
-You're receiving this email because one or more of your apps on the
+You're receiving this email because one or more of your apps in the
 Firefox Marketplace include "marketplace.mozilla.org" in the
-installs_allowed directive in the manifest.  When we complete the
+installs_allowed_from directive in the manifest.  With the
 transition to the new domain your apps will no longer install from the
 marketplace until you change the domain in your manifest.
 
-You should change your app's manifest by adding an additional domain
-"marketplace.firefox.com" to the installs_allowed directive.  Adding this as an
-additional domain will ensure a smooth transition to the new site.  You do not
+You should change your app's manifest by replacing "marketplace.mozilla.org" with
+"marketplace.firefox.com" in the installs_allowed_from directive.  You do not
 need to resubmit your manifest to the Firefox Marketplace after making this
 change.
 
