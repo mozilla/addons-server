@@ -1206,6 +1206,7 @@ span.currently_viewing_warning {
 
 #manifest-headers,
 #manifest-contents {
+    .border-box;
     color: @dark-gray;
     clear: both;
     font: 12px/14px @mono-stack;
@@ -1213,6 +1214,7 @@ span.currently_viewing_warning {
     margin: 15px 0;
     overflow-x: auto;
     white-space: pre;
+    width: 100%;
 }
 
 #manifest-headers {
@@ -1243,6 +1245,10 @@ span.currently_viewing_warning {
             background: lighten(#def, 4%);
         }
     }
+}
+
+iframe#manifest-contents {
+    min-height: 250px;
 }
 
 @media (max-width: @landscape-max) {

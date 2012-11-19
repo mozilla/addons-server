@@ -43,26 +43,32 @@
 
             // Show manifest.
             $viewManifest.click(_pd(function() {
-                var $this = $(this),
+                var $this = $viewManifest,
                     $manifest = $('#manifest-headers, #manifest-contents');
                 if ($manifest.length) {
                     $manifest.toggle();
                 } else {
-                    var contents = '',
-                        headers = '';
+                    if (!manifestContents.success) {
+                        // If requests couldn't fetch the manifest, let Firefox render it.
+                        $('<iframe>', {'id': 'manifest-contents',
+                                       'src': 'view-source:' + $this.data('manifest')}).insertAfter($this);
+                    } else {
+                        var contents = '',
+                            headers = '';
 
-                    _.each(manifestContents.content.split('\n'), function(v, k) {
-                        if (v) {
-                            contents += format('<li>{0}</li>', v);
-                        }
-                    });
-                    $('<ol></ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
-
-                    if (manifestContents.headers) {
-                        _.each(manifestContents.headers, function(v, k) {
-                            headers += format('<li><b>{0}:</b> {1}</li>', k, v);
+                        _.each(manifestContents.content.split('\n'), function(v, k) {
+                            if (v) {
+                                contents += format('<li>{0}</li>', v);
+                            }
                         });
-                        $('<ol></ol>', {'id': 'manifest-headers', 'html': headers}).insertAfter($this);
+                        $('<ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
+
+                        if (manifestContents.headers) {
+                            _.each(manifestContents.headers, function(v, k) {
+                                headers += format('<li><b>{0}:</b> {1}</li>', k, v);
+                            });
+                            $('<ol>', {'id': 'manifest-headers', 'html': headers}).insertAfter($this);
+                        }
                     }
                 }
             }));

@@ -14,8 +14,8 @@
     </dd>
     <dt>{{ _('Manifest URL') }}</dt>
     <dd>
-      <a href="#" data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}"
-         id="view-manifest">
+      <a href="#" id="view-manifest" data-manifest="{{ product.manifest_url }}"
+         data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
         {{ product.manifest_url }} <b>{{ _('View') }}</b></a>
     </dd>
     <dt>{{ _('Default Locale') }}</dt>

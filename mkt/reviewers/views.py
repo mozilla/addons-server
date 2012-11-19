@@ -408,14 +408,15 @@ def app_view_manifest(request, addon):
         version = addon.versions.latest()
         content = json.dumps(json.loads(_mini_manifest(addon, version.id)),
                              indent=4)
-        return escape_all({'content': content, 'headers': ''})
+        return escape_all({'content': content, 'headers': '', 'success': True})
 
     else:  # Show the hosted manifest_url.
-        content, headers = u'', {}
+        content, headers, success = u'', {}, False
         if addon.manifest_url:
             try:
                 req = requests.get(addon.manifest_url, verify=False)
                 content, headers = req.content, req.headers
+                success = True
             except Exception:
                 content = u''.join(traceback.format_exception(*sys.exc_info()))
 
@@ -426,7 +427,8 @@ def app_view_manifest(request, addon):
                 # If it's not valid JSON, just return the content as is.
                 pass
         return escape_all({'content': smart_decode(content),
-                           'headers': headers})
+                           'headers': headers,
+                           'success': success})
 
 
 @permission_required('Apps', 'Review')
