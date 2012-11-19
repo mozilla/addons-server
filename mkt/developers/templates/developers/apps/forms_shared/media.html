@@ -221,8 +221,9 @@
                 <input type="file" class="screenshot_upload" name="uploads" multiple
                        data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
                        data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
-                <p>{{ _('Screenshots must be at least 320px by 480px. '
-                        'Screenshots proportional to 320px by 480px are optimal.') }}</p>
+                <p>{{ _('Screenshots and videos must be at least 320px by 480px. '
+                        'Media proportional to 320px by 480px is optimal. '
+                        'Video must be encoded as WebM.') }}</p>
               </div>
             {% endif %}
           {% else %}
