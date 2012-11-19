@@ -70,28 +70,31 @@
       {% endwith %}
     {% endblock %}
 
-    {% if not allow_installs() %}
-      {% if request.MOBILE %}
-        <div class="incompatible-browser incompatible-mobile">
-          <a href="#" class="close">&times;</a>
+    {% if not allow_installs() and not request.GAIA %}
+      <div class="incompatible-browser incompatible-mobile">
+        <div>
           <a href="http://www.mozilla.org/mobile/aurora/" class="download" target="_blank">
             {% trans %}
               You must use Firefox Aurora on your Android phone to install Firefox apps.
               <b>Learn more</b>
             {% endtrans %}
           </a>
-        </div>
-      {% else %}
-        <div class="incompatible-browser incompatible-desktop">
           <a href="#" class="close">&times;</a>
-          <a href="http://www.mozilla.org/firefox/aurora/" class="download" target="_blank">
-            {% trans %}
-              You must use Firefox Aurora to install Firefox apps.
-              <b>Learn more</b>
-            {% endtrans %}
-          </a>
         </div>
-      {% endif %}
+      </div>
+      {# TODO: Uncomment when we bring back desktop app installation.
+        <div class="incompatible-browser incompatible-desktop">
+          <div>
+            <a href="http://www.mozilla.org/firefox/aurora/" class="download" target="_blank">
+              {% trans %}
+                You must use Firefox Aurora to install Firefox apps.
+                <b>Learn more</b>
+              {% endtrans %}
+            </a>
+            <a href="#" class="close">&times;</a>
+          </div>
+        </div>
+      #}
     {% endif %}
 
     <div id="container">

@@ -119,9 +119,9 @@ class TestMarketButton(amo.tests.TestCase):
             'Firefox/18.0')
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disabled' in cls, 'Unexpected: %r' % cls
-        eq_(doc('.bad-app').text(),
-            'Desktop support is temporarily disabled ( learn more ).')
+        assert 'disabled' in cls, 'Could not find %r class' % cls
+        assert 'incompatible' in cls, 'Could not find %r class' % cls
+        eq_(doc('.bad-app').length, 0)
 
     def test_needs_firefox_for_android(self):
         self.context['request'].META['HTTP_USER_AGENT'] = (

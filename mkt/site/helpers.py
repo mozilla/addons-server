@@ -229,25 +229,28 @@ def market_tile(context, product, link=True, src=''):
         if not request.MOBILE and product.device_types:
             url = reverse('ecosystem.installation')
             if product.device_types == [amo.DEVICE_DESKTOP]:
-                notices.append(
-                    _('Desktop support is temporarily disabled ('
-                      '<b data-href="{url}">learn more</b>).').format(url=url))
+                classes.append('incompatible')
+                # notices.append(
+                #     _('Desktop support is temporarily disabled ('
+                #       '<b data-href="{url}">learn more</b>).').format(url=url))
             elif amo.DEVICE_DESKTOP in product.device_types:
-                notices.append(
-                    _('Desktop support is temporarily disabled '
-                      '(<b data-href="{url}">learn more</b>). '
-                      'Please try this app in Firefox Mobile on your Android '
-                      'phone.').format(url=url))
+                classes.append('incompatible')
+                # notices.append(
+                #     _('Desktop support is temporarily disabled '
+                #       '(<b data-href="{url}">learn more</b>). '
+                #       'Please try this app in Firefox Mobile on your Android '
+                #       'phone.').format(url=url))
             else:
-                notices.append(_('This is a mobile-only app. Please try this '
-                                 'app in Firefox Mobile on your Android '
-                                 'phone.'))
+                classes.append('incompatible')
+                # notices.append(_('This is a mobile-only app. Please try this '
+                #                  'app in Firefox Mobile on your Android '
+                #                  'phone.'))
 
         if need_firefox:
             if request.MOBILE:
-                classes += ['incompatible']
+                classes.append('incompatible')
         elif need_upgrade:
-            classes += ['incompatible']
+            classes.append('incompatible')
 
         if notices or 'incompatible' in classes:
             classes += ['bad', 'disabled']
