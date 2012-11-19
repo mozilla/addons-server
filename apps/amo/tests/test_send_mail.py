@@ -22,6 +22,11 @@ class TestSendMail(test.TestCase):
     def tearDown(self):
         settings.EMAIL_BLACKLIST = self._email_blacklist
 
+    def test_send_string(self):
+        to = 'f@f.com'
+        with self.assertRaises(ValueError):
+            send_mail('subj', 'body', recipient_list=to)
+
     def test_blacklist(self):
         to = 'nobody@mozilla.org'
         settings.EMAIL_BLACKLIST = (to,)

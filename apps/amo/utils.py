@@ -156,6 +156,9 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not recipient_list:
         return True
 
+    if isinstance(recipient_list, basestring):
+        raise ValueError('recipient_list should be a list, not a string.')
+
     connection = get_email_backend(real_email)
 
     if not from_email:
