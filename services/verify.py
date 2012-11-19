@@ -1,10 +1,9 @@
 import calendar
 from datetime import datetime
-from email.Utils import formatdate
 import json
-import re
-from time import gmtime, time
+from time import gmtime
 from urlparse import parse_qsl
+from wsgiref.handlers import format_date_time
 
 from django.core.management import setup_environ
 
@@ -27,6 +26,12 @@ from lib.cef_loggers import receipt_cef
 import receipts  # used for patching in the tests
 from receipts import certs
 from django_statsd.clients import statsd
+
+status_codes = {
+    200: '200 OK',
+    405: '405 Method Not Allowed',
+    500: '500 Internal Server Error',
+}
 
 
 class VerificationError(Exception):
@@ -129,17 +134,6 @@ class Verify:
                 log_info('Valid receipt, but invalid contribution')
                 return self.invalid()
 
-    def format_date(self, secs):
-        return '%s GMT' % formatdate(time() + secs)[:25]
-
-    def get_headers(self, length):
-        return [('Access-Control-Allow-Origin', '*'),
-                ('Access-Control-Allow-Methods', 'POST'),
-                ('Content-Type', 'application/json'),
-                ('Content-Length', str(length)),
-                ('Cache-Control', 'no-cache'),
-                ('Last-Modified', self.format_date(0))]
-
     def invalid(self):
         return json.dumps({'status': 'invalid'})
 
@@ -177,6 +171,15 @@ class Verify:
         return json.dumps({'status': 'expired'})
 
 
+def get_headers(length):
+    return [('Access-Control-Allow-Origin', '*'),
+            ('Access-Control-Allow-Methods', 'POST'),
+            ('Content-Type', 'application/json'),
+            ('Content-Length', str(length)),
+            ('Cache-Control', 'no-cache'),
+            ('Last-Modified', format_date_time(gmtime()))]
+
+
 def decode_receipt(receipt):
     """
     Cracks the receipt using the private key. This will probably change
@@ -199,22 +202,44 @@ def decode_receipt(receipt):
     return raw
 
 
-# For consistency with the rest of amo, we'll include addon id in the
-# URL and pull it out using this regex.
-id_re = re.compile('/verify/(?P<addon_id>\d+)$')
+def status_check(environ):
+    output = ''
+    # Check we can read from the users_install table, should be nice and
+    # fast. Anything that fails here, connecting to db, accessing table
+    # will be an error we need to know about.
+    try:
+        conn = mypool.connect()
+        cursor = conn.cursor()
+        cursor.execute('SELECT id FROM users_install ORDER BY id DESC LIMIT 1')
+    except Exception, err:
+        return 500, str(err)
+
+    return 200, output
 
 
-def application(environ, start_response):
-    status = '200 OK'
+def receipt_check(environ):
+    output = ''
     with statsd.timer('services.verify'):
         data = environ['wsgi.input'].read()
         try:
             verify = Verify(data, environ)
-            output = verify()
-            start_response(status, verify.get_headers(len(output)))
+            return 200, verify()
         except:
-            output = ''
             log_exception('<none>')
-            start_response('500 Internal Server Error', [])
+            return 500, ''
+    return output
 
-    return [output]
+
+def application(environ, start_response):
+    body = ''
+    path = environ.get('PATH_INFO', '')
+    if path == '/services/status/':
+        status, body = status_check(environ)
+    else:
+        # Only allow POST through as per spec.
+        if environ.get('REQUEST_METHOD') != 'POST':
+            status = 405
+        else:
+            status, body = receipt_check(environ)
+    start_response(status_codes[status], get_headers(len(body)))
+    return [body]
