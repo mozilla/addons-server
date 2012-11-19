@@ -71,7 +71,7 @@ def sign_app(src, dest):
             raise SigningError('Posting to app signing failed: %s'
                                % response.reason)
 
-        pkcs7 = b64decode(json.loads(response.read())['zigbert.rsa'])
+        pkcs7 = b64decode(json.loads(response.content)['zigbert.rsa'])
         try:
             jar.make_signed(pkcs7)
         except:
