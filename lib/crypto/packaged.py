@@ -65,7 +65,7 @@ def sign_app(src, dest):
             log.error('Posting to app signing failed', exc_info=True)
             raise SigningError('Posting to app signing failed')
 
-        if response.status != 200:
+        if response.status_code != 200:
             log.error('Posting to app signing failed: %s'
                       % response.reason)
             raise SigningError('Posting to app signing failed: %s'
