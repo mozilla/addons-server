@@ -101,6 +101,23 @@ class TestAbuseEscalationTask(amo.tests.TestCase):
         eq_(report.addon, self.app)
         _mock.delay.assert_called_with(self.app.id)
 
+    def test_already_escalated_for_other_still_logs(self):
+        # Add app to queue for high refunds.
+        EscalationQueue.objects.create(addon=self.app)
+        amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, self.app,
+                self.app.current_version, details={'comments': 'hi refunds'})
+
+        # Set up abuses.
+        for x in range(2):
+            AbuseReport.objects.create(addon=self.app)
+        find_abuse_escalations(self.app.id)
+
+        # Verify it logged the high abuse reports.
+        action = amo.LOG.ESCALATED_HIGH_ABUSE
+        assert AppLog.objects.filter(
+            addon=self.app, activity_log__action=action.id).exists(), (
+                u'Expected high abuse to be logged')
+
 
 class TestRefundsEscalationTask(amo.tests.TestCase):
     fixtures = ['base/users']
@@ -200,3 +217,21 @@ class TestRefundsEscalationTask(amo.tests.TestCase):
         self._purchase(self.user3)
         self._refund(self.user3)
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 1)
+
+    def test_already_escalated_for_other_still_logs(self):
+        # Add app to queue for abuse reports.
+        EscalationQueue.objects.create(addon=self.app)
+        amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, self.app,
+                self.app.current_version, details={'comments': 'abuse'})
+        # Set up purchases.
+        stamp = datetime.datetime.now() - datetime.timedelta(days=2)
+        self._purchase(self.user1, stamp)
+        self._purchase(self.user2, stamp)
+        # Triggers 33% for refund / purchase ratio.
+        self._refund(self.user1, stamp)
+
+        # Verify it logged the high refunds.
+        action = amo.LOG.ESCALATED_HIGH_REFUNDS
+        assert AppLog.objects.filter(
+            addon=self.app, activity_log__action=action.id).exists(), (
+                u'Expected high refunds to be logged')
