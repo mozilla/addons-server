@@ -13,7 +13,7 @@ subj = "Important information regarding your app on the Firefox Marketplace"
 
 msg = """Hello,
 
-On November 15 Mozilla will be changing the name of the Mozilla Marketplace to
+On November 15 Mozilla changed the name of the Mozilla Marketplace to
 Firefox Marketplace. We are changing the name so that we can more quickly build
 a Marketplace audience by using the highly recognizable and trusted Firefox
 brand.
@@ -76,7 +76,9 @@ class Command(BaseCommand):
         print 'Found %d emails' % len(emails)
         for email in emails:
             if actually_mail:
-                send_mail(subj, msg, settings.NOBODY_EMAIL, email)
+                send_mail(subj, msg,
+                          from_email=settings.NOBODY_EMAIL,
+                          recipient_list=[email])
                 continue
 
             print 'Email not sent to: %s' % email
