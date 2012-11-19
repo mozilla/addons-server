@@ -423,6 +423,13 @@ class Webapp(Addon):
         return self.status == amo.STATUS_PENDING
 
     def is_visible(self, request):
+        """Returns whether the app has a visible search result listing. Its
+        detail page will always be there.
+
+        This does not consider whether an app is excluded in the current region
+        by the developer.
+        """
+
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
         # See if it's a game without a content rating.

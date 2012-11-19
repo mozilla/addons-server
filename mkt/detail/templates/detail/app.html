@@ -148,11 +148,11 @@
           {% endif %}
         </ul>
         {% if not waffle.switch('disabled-payments') %}
-          {% set upsell = product.upsell %}
           {# no payments for now #}
+          {% set upsell = product.upsell %}
           {% if upsell %}
             {% set prm = upsell.premium_addon %}
-            {% if prm %}
+            {% if prm and prm.listed_in(region=request.REGION) %}
               <a id="upsell" class="fatbutton"
                  href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
                  <span class="avail">{{ _('Premium version available') }}</span>

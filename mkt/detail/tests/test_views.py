@@ -27,7 +27,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 import mkt
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
 def get_clean(selection):
@@ -243,6 +243,17 @@ class TestDetail(DetailBase):
         eq_(upsell.length, 1)
         eq_(upsell.find('.name').text(), unicode(premie.name))
         eq_(upsell.find('.icon').attr('src'), premie.get_icon_url(32))
+
+    def test_upsell_hidden(self):
+        """Test that the upsell is hidden if it is not visible to the user."""
+        eq_(self.get_pq()('#upsell').length, 0)
+        premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
+        AddonExcludedRegion.objects.create(addon=premie,
+                                           region=mkt.regions.CA.id)
+        AddonUpsell.objects.create(free=self.app, premium=premie)
+
+        eq_(self.get_pq(region=mkt.regions.CA.slug)('#upsell').length, 0)
+        eq_(self.get_pq(region=mkt.regions.US.slug)('#upsell').length, 1)
 
     def test_no_summary_no_description(self):
         self.app.summary = self.app.description = ''
