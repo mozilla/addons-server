@@ -216,6 +216,13 @@ li.ui-menu-item .ui-corner-all.ui-state-hover {
 ul.ui-autocomplete {
     border-radius: 5px;
 }
+.app-intro h2 {
+    white-space: nowrap;
+    max-width: 390px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
 #ui-datepicker-div {
     display: none;
 }
