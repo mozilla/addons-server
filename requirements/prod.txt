@@ -98,4 +98,4 @@ moz-redis-py==2.4.8
 moz-test-utils==0.3
 moz-xpisign==2.0.2
 
---e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
+-e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
