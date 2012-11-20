@@ -38,28 +38,28 @@ def sign_app(src, dest):
 
         # Extract necessary info from the archive
         try:
-            jar = JarExtractor(storage.open(src, 'r'), storage.open(dest, 'w'))
+            jar = JarExtractor(storage.open(src, 'r'), storage.open(dest, 'w'),
+                               omit_signature_sections=
+                                   settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
         except:
             log.error("Archive extraction failed. Bad archive?", exc_info=True)
             raise SigningError("Archive extraction failed. Bad archive?")
 
-        if settings.SIGNED_APPS_OMIT_PER_FILE_SIGS:
-            signatures = jar.signature
-        else:
-            signatures = jar.signatures
-        log.info('App signature contents: %s' % signatures)
+        log.info('App signature contents: %s' % jar.signatures)
 
         log.info('Calling service: %s' % endpoint)
         try:
             with statsd.timer('services.sign.app'):
                 response = requests.post(endpoint, timeout=timeout,
                                          files={'file': ('zigbert.sf',
-                                                         str(signatures))})
+                                                         str(jar.signatures))})
         except requests.exceptions.HTTPError, error:
             # Will occur when a 3xx or greater code is returned.
             log.error('Posting to app signing failed: %s, %s'
                       % (error.response.status, error))
-            raise SigningError
+            raise SigningError('Posting to app signing failed: %s, %s'
+                               % (error.response.status, error))
+
         except:
             # Will occur when some other error occurs.
             log.error('Posting to app signing failed', exc_info=True)
