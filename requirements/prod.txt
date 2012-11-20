@@ -75,7 +75,6 @@ tower==0.3.4
 moz-addon-packager==1.0
 moz-amo-validator==1.0
 moz-app-validator==1.0
-moz-commonware==0.2.4
 moz-django-browserid==0.6
 moz-django-mobility==0.1
 moz-django-mozilla-product-details==0.5
@@ -98,3 +97,5 @@ moz-pyjwt==0.1.4
 moz-redis-py==2.4.8
 moz-test-utils==0.3
 moz-xpisign==2.0.2
+
+--e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
