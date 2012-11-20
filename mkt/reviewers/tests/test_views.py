@@ -1232,7 +1232,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         expected = {
             'content': 'the manifest contents &lt;script&gt;',
             'headers': {'content-type':
-                        'application/x-web-app-manifest+json &lt;script&gt;'}
+                        'application/x-web-app-manifest+json &lt;script&gt;'},
+            'success': True
         }
 
         r = self.client.get(reverse('reviewers.apps.review.manifest',
@@ -1251,7 +1252,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'content': u'كك some foreign ish',
-                                    'headers': {}})
+                                    'headers': {}, 'success': True})
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_encoding(self, mock_get):
@@ -1277,7 +1278,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         r = self.client.get(reverse('reviewers.apps.review.manifest',
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)
-        eq_(json.loads(r.content), {'content': u'', 'headers': {}})
+        eq_(json.loads(r.content), {'content': u'', 'headers': {},
+                                    'success': True})
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_traceback_in_response(self, mock_get):
