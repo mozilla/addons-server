@@ -288,7 +288,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch.object(verify, 'decode_receipt')
     def get_headers(self, decode_receipt):
         decode_receipt.return_value = ''
-        return verify.Verify('', mock.Mock()).get_headers(1)
+        return verify.get_headers(verify.Verify('', mock.Mock()))
 
     def test_cross_domain(self):
         hdrs = self.get_headers()

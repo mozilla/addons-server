@@ -1,7 +1,7 @@
 import calendar
 from datetime import datetime
 import json
-from time import gmtime
+from time import gmtime, time
 from urlparse import parse_qsl
 from wsgiref.handlers import format_date_time
 
@@ -177,7 +177,7 @@ def get_headers(length):
             ('Content-Type', 'application/json'),
             ('Content-Length', str(length)),
             ('Cache-Control', 'no-cache'),
-            ('Last-Modified', format_date_time(gmtime()))]
+            ('Last-Modified', format_date_time(time()))]
 
 
 def decode_receipt(receipt):
