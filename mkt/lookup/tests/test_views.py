@@ -383,6 +383,15 @@ class TestAppSummary(AppSummaryTest):
     def test_permissions(self):
         raise SkipTest('we do not support permissions yet')
 
+    def test_version_history_non_packaged(self):
+        res = self.summary()
+        eq_(pq(res.content)('section.version-history').length, 0)
+
+    def test_version_history_packaged(self):
+        self.app.update(is_packaged=True)
+        res = self.summary()
+        eq_(pq(res.content)('section.version-history').length, 1)
+
 
 class DownloadSummaryTest(AppSummaryTest):
 
@@ -449,12 +458,10 @@ class TestAppSummaryPurchases(AppSummaryTest):
 
     def assert_totals(self, data):
         eq_(data['total'], 6)
-        six_bucks = numbers.format_currency(6,
-                'USD',
-                locale=numbers.LC_NUMERIC)
-        three_euro = numbers.format_currency(3,
-                'EUR',
-                locale=numbers.LC_NUMERIC)
+        six_bucks = numbers.format_currency(6, 'USD',
+                                            locale=numbers.LC_NUMERIC)
+        three_euro = numbers.format_currency(3, 'EUR',
+                                             locale=numbers.LC_NUMERIC)
         eq_(set(data['amounts']), set([six_bucks, three_euro]))
         eq_(len(data['amounts']), 2)
 

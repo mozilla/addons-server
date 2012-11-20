@@ -88,5 +88,33 @@
         </dd>
       </dl>
     </section>
+
+    {% if app.is_packaged %}
+      <section class="version-history">
+        <h2>{{ _('Version History') }}</h2>
+        <table class="data-grid">
+          <thead>
+            <tr>
+              <th>{{ _('Date') }}</th>
+              <th>{{ _('Version (ID)') }}</th>
+              <th>{{ _('Filename (ID, Size)') }}</th>
+              <th>{{ _('Status') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for v in app.versions.all().order_by('-created') %}
+            <tr>
+              <td>{{ v.created|datetime }}</td>
+              <td>{{ v.version }} ({{ v.id }})</td>
+              {% with file = v.files.latest() %}
+                <td>{{ file.filename }} ({{ file.id }}, {{ file.size|filesizeformat }})</td>
+                <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
+              {% endwith %}
+            </tr>
+          {% endfor %}
+        </table>
+      </section>
+    {% endif %}
+
   </section>
 {% endblock %}
