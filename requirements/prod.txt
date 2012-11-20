@@ -1,3 +1,5 @@
+-f https://pyrepo.addons.mozilla.org/
+
 amqplib==1.0.2
 anyjson==0.3.3
 argparse==1.2.1
@@ -67,35 +69,32 @@ statsd==1.0.0
 suds==0.3.9
 tower==0.3.4
 
-## Not on pypi.
--e git://github.com/mattbasta/addon-packager.git@830d6fd120ede0fe6792e25b3fb3b1bf264b1ba0#egg=addon-packager
--e git://github.com/mozilla/amo-validator.git@90d5c8be6555f97444b1b8e58ea6c79193ba0abc#egg=amo-validator
--e git://github.com/mozilla/app-validator.git@35d0d1e5a797b3927d1ccf6317d5a3f6a529f57c#egg=app-validator
--e git://github.com/mozilla/django-browserid.git@1c23655faad0cc5ad2c18aebc0472a0ea078cfa8#egg=django-browserid
--e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
--e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
--e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
--e git://github.com/andymckay/django-radagast@4ea83aa714787a0cc352d39aaed27473139fc9db#egg=django-radagast
--e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
--e git://github.com/mattbasta/fastchardet.git@ec642492f47b5121c71f0cea5fa6b6b543092d4c#egg=fastchardet
--e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
-# Temporary fork.
--e git://github.com/jsocol/jingo-minify.git@d1b668ad7c0423fe8cc639df36d433da5c168cac#egg=jingo-minify
--e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
--e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
--e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
--e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
--e git://github.com/briansmith/xpisign.py.git@08a799ebebd40405ccd205ee6c1b899faab43c2d#egg=xpisign
 
-## Forked.
--e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
--e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
--e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
--e git://github.com/washort/django-waffle.git@19fe01f48008efc02e357554d49cc3b6e0b1c854#egg=django-waffle
--e git://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
+#only on mozilla's pyrepo
 
-## Out of date or not sure on pypi.
--e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
--e git://github.com/jbalogh/jingo.git@b4ecca1066bcd1eac87358b4c82902442d4eedc4#egg=jingo
--e git://github.com/jsocol/django-ratelimit@a148254a1fb4248a34cf753d594af1e73bec455c#egg=django-ratelimit
--e git://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
+moz-addon-packager==1.0
+moz-amo-validator==1.0
+moz-app-validator==1.0
+moz-commonware==0.2.4
+moz-django-browserid==0.6
+moz-django-mobility==0.1
+moz-django-mozilla-product-details==0.5
+moz-django-mysql-pymysql==0.1
+moz-django-piston-oauth2==0.3dev
+moz-django-queryset-transform==0.0.1
+moz-django-qunit==0.1.1
+moz-django-radagast==0.3
+moz-django-ratelimit==0.1
+moz-django-recaptcha==0.0.1
+moz-django-tables==0.3.dev
+moz-django-uuidfield==0.4.0
+moz-django-waffle==0.8.1
+moz-fastchardet==0.1.2
+moz-happyforms==0.0.1
+moz-jingo==0.3
+moz-jingo-minify==0.5
+moz-nuggets==0.1
+moz-pyjwt==0.1.4
+moz-redis-py==2.4.8
+moz-test-utils==0.3
+moz-xpisign==2.0.2
