@@ -41,9 +41,25 @@
         {{ _('Manage Payments') }}</a>
     </li>
   {% endif %}
-  {% if waffle.switch('disabled-payments') %}
+
+  {% set manage_urls = [(addon.get_dev_url('versions'), _('Manage Status'))] %}
+  {% if waffle.switch('allow-refund') and addon.needs_paypal() and
+        check_addon_ownership(request, addon, support=True) %}
+    {% do manage_urls.insert(1,
+      (addon.get_dev_url('refunds'), _('Manage Refunds'))
+    ) %}
+  {% endif %}
+  {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
+        and waffle.switch('in-app-payments') %}
+    {% do manage_urls.insert(1,
+      (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
+    ) %}
+  {% endif %}
+
+  {% if waffle.switch('disabled-payments') or manage_urls|length == 1 %}
     <li>
-      <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">{% if addon.is_packaged %}{{ _('Manage Status &amp; Versions') }}{% else %}{{ _('Manage Status') }}{% endif %}</a>
+      <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">
+        {{ _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status') }}</a>
     </li>
   {% endif %}
   {% if request.can_view_consumer %}
@@ -56,23 +72,10 @@
       <a class="action-link stats-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
     </li>
   {% endif %}
-  {% if not waffle.switch('disabled-payments') %}
+  {% if not waffle.switch('disabled-payments') and manage_urls|length > 1 %}
     <li>
       <a href="#" class="more-actions">{{ _('More') }}</a>
       <div class="more-actions-popup popup hidden">
-        {% set manage_urls = [(addon.get_dev_url('versions'), _('Manage Status'))] %}
-        {% if waffle.switch('allow-refund') and addon.needs_paypal() and
-              check_addon_ownership(request, addon, support=True) %}
-          {% do manage_urls.insert(1,
-            (addon.get_dev_url('refunds'), _('Manage Refunds'))
-          ) %}
-        {% endif %}
-        {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
-              and waffle.switch('in-app-payments') %}
-          {% do manage_urls.insert(1,
-            (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
-          ) %}
-        {% endif %}
         <ul>
           {% for url, title in manage_urls %}
             <li><a href="{{ url }}">{{ title }}</a></li>

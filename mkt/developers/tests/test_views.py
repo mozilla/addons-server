@@ -168,10 +168,8 @@ class TestAppDashboard(AppHubTest):
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
-        expected = [
-            ('Manage Status', app.get_dev_url('versions')),
-        ]
-        amo.tests.check_links(expected, doc('.more-actions-popup a'))
+        eq_(doc('.status-link').length, 1)
+        eq_(doc('.more-actions-popup').length, 0)
 
     def test_incomplete_app(self):
         app = self.get_app()
@@ -215,6 +213,7 @@ class TestAppDashboard(AppHubTest):
             ('Edit Listing', app.get_dev_url()),
             ('Manage Authors', app.get_dev_url('owner')),
             ('Manage Payments', app.get_dev_url('payments')),
+            ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
@@ -232,6 +231,7 @@ class TestAppDashboard(AppHubTest):
             ('Add New Version', app.get_dev_url('versions')),
             ('Manage Authors', app.get_dev_url('owner')),
             ('Manage Payments', app.get_dev_url('payments')),
+            ('Manage Status & Versions', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
