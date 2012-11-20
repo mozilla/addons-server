@@ -94,10 +94,11 @@ class TestFlagged(amo.tests.TestCase):
     def setUp(self):
         super(TestFlagged, self).setUp()
         self.client.login(username='admin@mozilla.com', password='password')
+        self.url = reverse('zadmin.flagged')
 
+    @mock.patch.object(settings, 'MARKETPLACE', False)
     def test_get(self):
-        url = reverse('zadmin.flagged')
-        response = self.client.get(url, follow=True)
+        response = self.client.get(self.url, follow=True)
 
         addons = dict((a.id, a) for a in response.context['addons'])
         eq_(len(addons), 3)
@@ -124,20 +125,31 @@ class TestFlagged(amo.tests.TestCase):
             Approval.objects.filter(addon=addon).latest().id)
         eq_(addons[3].version, None)
 
+    @mock.patch.object(settings, 'MARKETPLACE', False)
     def test_post(self):
-        # Do a get first so the query is cached.
-        url = reverse('zadmin.flagged')
-        self.client.get(url, follow=True)
+        response = self.client.post(self.url, {'addon_id': ['1', '2']},
+                                    follow=True)
+        self.assertRedirects(response, self.url)
 
-        response = self.client.post(url, {'addon_id': ['1', '2']}, follow=True)
-        self.assertRedirects(response, url)
-
-        assert not Addon.objects.get(id=1).admin_review
-        assert not Addon.objects.get(id=2).admin_review
+        assert not Addon.uncached.get(id=1).admin_review
+        assert not Addon.uncached.get(id=2).admin_review
 
         addons = response.context['addons']
         eq_(len(addons), 1)
         eq_(addons[0], Addon.objects.get(id=3))
+
+    @mock.patch.object(settings, 'MARKETPLACE', False)
+    def test_empty(self):
+        Addon.objects.update(admin_review=False)
+        res = self.client.get(self.url)
+        eq_(set(res.context['addons']), set([]))
+
+    @mock.patch.object(settings, 'MARKETPLACE', False)
+    def test_addons_only(self):
+        Addon.objects.get(id=2).update(type=amo.ADDON_WEBAPP)
+        res = self.client.get(self.url)
+        eq_(set([r.pk for r in res.context['addons']]),
+            set([1, 3]))
 
 
 class BulkValidationTest(amo.tests.TestCase):

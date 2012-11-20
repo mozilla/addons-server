@@ -74,16 +74,21 @@ else:
 
 @admin_required(reviewers=True)
 def flagged(request):
-    addons = Addon.objects.filter(admin_review=True).order_by('-created')
+    types = (amo.MARKETPLACE_TYPES if settings.MARKETPLACE
+             else list(set(amo.ADDON_TYPES.keys()) -
+                       set(amo.MARKETPLACE_TYPES)))
+    addons = (Addon.uncached.filter(admin_review=True, type__in=types)
+                            .no_transforms().order_by('-created'))
 
     if request.method == 'POST':
         ids = map(int, request.POST.getlist('addon_id'))
-        addons = list(addons)
-        Addon.objects.filter(id__in=ids).update(admin_review=False)
-        # The sql update doesn't invalidate anything, do it manually.
-        invalid = [addon for addon in addons if addon.pk in ids]
-        Addon.objects.invalidate(*invalid)
+        for addon in addons.filter(id__in=ids):
+            addon.update(admin_review=False)
         return redirect('zadmin.flagged')
+
+    if not addons:
+        return jingo.render(request, 'zadmin/flagged_addon_list.html',
+                            {'addons': addons})
 
     sql = """SELECT {t}.* FROM {t} JOIN (
                 SELECT addon_id, MAX(created) AS created
@@ -852,6 +857,7 @@ def generate_error(request):
     if request.method == 'POST' and form.is_valid():
         form.explode()
     return jingo.render(request, 'zadmin/generate-error.html', {'form': form})
+
 
 @any_permission_required([('Admin', '%'),
                           ('MailingLists', 'View')])
