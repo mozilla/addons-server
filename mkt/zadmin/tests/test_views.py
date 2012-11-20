@@ -172,14 +172,13 @@ class TestFeaturedApps(amo.tests.TestCase):
         r = self.client.get(urlparams(self.url, category=self.c1.id))
         doc = pq(r.content)
         eq_(len(doc), 1)
-        eq_(doc('table td').eq(1).text(), 'awesome app 1')
-        eq_(doc('table td').eq(4).text(), 'Not sponsored')
+        eq_(doc('h2').text(), 'awesome app 1')
 
         r = self.client.get(urlparams(self.url, category=self.c2.id))
         doc = pq(r.content)
         eq_(len(doc), 1)
-        eq_(doc('table td').eq(1).text(), 'splendid app 1')
-        eq_(doc('table td').eq(4).text(), 'Sponsored')
+        eq_(doc('h2').text(), 'splendid app 1')
+        eq_(doc('em.sponsored').attr('title'), 'Sponsored')
 
     def test_get_categories(self):
         url = reverse('zadmin.featured_categories_ajax')

@@ -1,5 +1,5 @@
 {% block content %}
-  {% for row, selected_regions, excluded_regions, selected_carriers in apps_regions_carriers -%}
+  {%- for row, selected_regions, excluded_regions, selected_carriers in apps_regions_carriers -%}
     <div class="app-container c">
       <ul class="featured-app" data-app-id="{{ row.pk }}"
           data-url="{{ url('zadmin.set_attrs_ajax') }}">
