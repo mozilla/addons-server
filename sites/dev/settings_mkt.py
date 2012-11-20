@@ -121,9 +121,19 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org']
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+# Override the limited marketplace ones with these ones from AMO. Because
+# the base gets overridden in the mkt.settings file, we'll set them back again.
+AMO_LANGUAGES = (
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
+    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'zh-CN', 'zh-TW', 'dbg'  # Note the addition of dbg there.
+)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
+HIDDEN_LANGUAGES = (
+    'cy', 'sr', 'sr-Latn', 'tr',
+)
 
 BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
