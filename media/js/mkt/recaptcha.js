@@ -4,8 +4,7 @@ z.page.on('fragmentloaded', function() {
         if (recaptcha) {
             Recaptcha.create(recaptcha, 'recaptcha_div', {
                 tabindex: 1,
-                theme: 'red',
-                callback: Recaptcha.focus_response_field
+                theme: 'red'
             });
             var RecaptchaOptions = {theme: 'custom'};
             z.page.on('click', '#recaptcha_different', _pd(function() {
