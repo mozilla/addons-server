@@ -223,7 +223,6 @@ JS = {
 
         # slider lib
         'js/lib/flipsnap.js',
-        'js/mkt/offline.js',
         'js/common/tracking.js',
         'js/mkt/utils.js',
         'js/lib/csrf.js',
@@ -246,6 +245,8 @@ JS = {
         'js/mkt/search.js',
         'js/mkt/apps.js',
         'js/mkt/typography.js',
+
+        'js/mkt/offline.js',
 
         # Search suggestions.
         'js/impala/ajaxcache.js',

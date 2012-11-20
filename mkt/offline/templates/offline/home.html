@@ -1,6 +1,6 @@
 {% extends 'mkt/base.html' %}
 
-{% set pagetype = 'root' %}
+{% set pagetype = 'offline' %}
 
 {% block content %}
   <section class="infobox" data-offline="true">
@@ -9,6 +9,7 @@
     </p>
     <p class="offline">
       {{ _('Sorry, you need to be online to access the Marketplace.') }}
+      <button>Try Again</button>
     </p>
   </section>
 {% endblock %}

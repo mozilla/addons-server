@@ -157,29 +157,39 @@ function fragmentFilter(el) {
             var href = state.path;
             startLoading();
             markScrollTop();
+            getFragment(href).done(function(content) {
+                updateContent(content, href, popped, {scrollTop: state.scrollTop});
+            }).fail(function() {
+                console.log('fetch error!');
+                $(window).trigger('notify', {
+                    title: gettext('Error'),
+                    msg: gettext('There was an error loading the requested page.')});
+            }).always(endLoading);
+        }
 
+        function getFragment(href) {
+            var $def = $.Deferred();
             //caching!
             if (fragmentCache[href]) {
-                console.log(format('cached {0} at {1}', href, state.scrollTop || '0'));
-                updateContent(fragmentCache[href], href, popped, {scrollTop: state.scrollTop});
+                console.log(format('cached {0}', href));
+                $def.resolve(fragmentCache[href]);
             } else {
-                console.log(format('fetching {0} at {1}', href, state.scrollTop || '0'));
-
+                console.log(format('fetching {0}', href));
                 fetchFragment(href).done(function(d, textStatus, xhr) {
                     // Bail if this is not HTML.
                     if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
-                        window.location = href;
+                        $def.reject();
                         return;
                     }
+                    console.log('header is ' + xhr.getResponseHeader('date'));
                     console.log('caching fragment');
                     handleFragmentResponse(xhr, href);
-                    updateContent(d, href, popped, {scrollTop: state.scrollTop});
+                    $def.resolve(d);
                 }).fail(function(e) {
-                    console.log('fetch error!');
-                    window.location = href;
+                    $def.reject();
                 });
             }
-
+            return $def.promise();
         }
 
         function fetchFragment(href) {
@@ -221,6 +231,13 @@ function fragmentFilter(el) {
             opts = opts || {};
             endLoading();
 
+            if (content.indexOf('<!-- </fragment> -->') === -1) {
+                console.log('warning, fragment not properly served!');
+                contentEl = $(content).find('#page');
+                contentEl.wrap('<div>').parent().html();
+                return;
+            }
+
             container.html(content);
             var page = container.find('#page');
             if (!page.length) {
@@ -236,6 +253,11 @@ function fragmentFilter(el) {
                 page: $('#container'),
                 context: $('#page').data('context')
             });
+
+            if (z.context.type === 'offline') {
+                console.log('oh no!');
+                return;
+            }
 
             if (!href) {
                 href = z.context.uri;

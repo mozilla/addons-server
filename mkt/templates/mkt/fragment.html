@@ -4,8 +4,8 @@
         'uri': request.FRAGMENT_URI or '',
         'cache': cache_fragment,
         'hash': get_media_hash(),
-        'title': titletag,
-        'headertitle': headertitle,
+        'title': titletag or '',
+        'headertitle': headertitle or '',
         'bodyclass': bodyclass or '',
         'parent': page_parent or '',
         'category': category.name ~ '' if category else ''}|json }}">
@@ -16,3 +16,5 @@
   {% block content %}
   {% endblock %}
 </div>
+{# do not remove the following line. See fragments.js for why. #}
+<!-- </fragment> -->

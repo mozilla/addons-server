@@ -5,7 +5,7 @@
 {% set headertitle = headertitle or pagetitle %}
 {% set cache_fragment = cache_fragment or 'cache' %}
 
-{% if request.is_ajax() and not SKIP_FRAGMENT %}
+{% if (request.is_ajax() or FORCE_FRAGMENT) and not SKIP_FRAGMENT %}
   {% extends 'mkt/fragment.html' %}
 {% endif %}
 

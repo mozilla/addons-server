@@ -307,6 +307,9 @@ APPCACHE_FALLBACK_PATHS = {
     '/app/': '/offline/home',
     '/settings/': '/offline/home',
 }
+for url in CARRIER_URLS:
+    APPCACHE_FALLBACK_PATHS['/%s' % url] = '/offline/home';
+
 
 # This callable yields paths relative to MEDIA_ROOT that you want to explicitly
 # cache. The browser will load *all* of these URLs when your app first loads
