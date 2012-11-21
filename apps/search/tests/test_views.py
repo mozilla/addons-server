@@ -8,6 +8,7 @@ from jingo.helpers import datetime as datetime_filter
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+from test_utils import RequestFactory
 from tower import strip_whitespace
 
 import amo
@@ -16,8 +17,9 @@ from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
 from search import views
+from search.forms import ESSearchForm
 from search.utils import floor_version
-from search.views import DEFAULT_NUM_PERSONAS
+from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
 from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 from versions.models import ApplicationsVersions
@@ -310,59 +312,83 @@ class TestESSearch(SearchBase):
                 expected.append((platform.name, True))
             self.check_platform_filters(str(idx), expected)
 
-    def check_appver_filters(self, appver='', expected=''):
-        if not expected:
-            expected = appver
-        r = self.client.get(self.url, dict(appver=appver))
-        eq_(r.status_code, 200)
+    def check_appver_filters(self, appver, expected):
+        request = RequestFactory()
+        request.APP = amo.FIREFOX
 
-        vs = list(ApplicationsVersions.objects.values_list(
-            'max__version', flat=True).distinct())
-        try:
-            if expected not in vs and float(floor_version(expected)):
-                vs.append(expected)
-        except ValueError:
-            pass
-        vs = [float(floor_version(v)) for v in vs]
+        facets = {
+            u'platforms': [{u'count': 58, u'term': 1}],
+            u'appversions': [{u'count': 58, u'term': 5000000200100}],
+            u'categories': [{u'count': 55, u'term': 1}],
+            u'tags': []
+        }
 
-        ul = pq(r.content)('#search-facets ul.facet-group').eq(1)
+        versions = version_sidebar(request,
+            {'appver': floor_version(appver)}, facets)
 
-        app = unicode(r.context['request'].APP.pretty)
-        eq_(r.context['query']['appver'], expected)
-        all_ = r.context['versions'].pop(0)
-        eq_(all_.text, 'Any %s' % app)
+        all_ = versions.pop(0)
+        eq_(all_.text, 'Any %s' % unicode(request.APP.pretty))
         eq_(all_.selected, not expected)
-        eq_(json.loads(ul.find('a:first').attr('data-params')),
-            dict(appver='', page=None))
 
-        for label, av in zip(r.context['versions'], sorted(vs, reverse=True)):
-            av = str(av)
-            eq_(label.text, '%s %s' % (app, av))
-            eq_(label.selected, expected == av)
-            a = ul.find('a').filter(lambda x: pq(this).text() == label.text)
-            eq_(json.loads(a.attr('data-params')), dict(appver=av, page=None))
+        return [v.__dict__ for v in versions]
 
     def test_appver_default(self):
-        self.check_appver_filters()
+        eq_(self.check_appver_filters('', ''),
+            [{'text': u'Firefox 5.0',
+              'selected': False,
+              'urlparams': {'appver': '5.0'},
+              'children': []}])
 
     def test_appver_known(self):
-        self.check_appver_filters('5.0')
+        eq_(self.check_appver_filters('5.0', '5.0'),
+            [{'text': u'Firefox 5.0',
+              'selected': True,
+              'urlparams': {'appver': '5.0'},
+              'children': []}])
 
     def test_appver_oddballs(self):
-        self.check_appver_filters('3.6.22', '3.6')
+        eq_(self.check_appver_filters('3.6.22', '3.6'),
+            [{'text': u'Firefox 5.0',
+              'selected': False,
+              'urlparams': {'appver': '5.0'},
+              'children': []},
+             {'text': u'Firefox 3.6',
+              'selected': True,
+              'urlparams': {'appver': '3.6'},
+              'children': []}])
 
     def test_appver_long(self):
         too_big = vnum(vint(MAXVERSION + 1))
         just_right = vnum(vint(MAXVERSION))
-        self.check_appver_filters(too_big, floor_version(just_right))
-        self.check_appver_filters('9999999', '9999999.0')
-        self.check_appver_filters('99999999', '99999999.0')
+
+        assert self.check_appver_filters(too_big, floor_version(just_right)), (
+            'All I ask is do not crash')
+
+        eq_(self.check_appver_filters('9999999', '9999999.0'),
+            [{'text': u'Firefox 9999999.0',
+              'selected': True,
+              'urlparams': {'appver': '9999999.0'},
+              'children': []},
+             {'text': u'Firefox 5.0',
+              'selected': False,
+              'urlparams': {'appver': '5.0'},
+              'children': []}])
+
+        eq_(self.check_appver_filters('99999999', '99999999.0'),
+            [{'text': u'Firefox 99999999.0',
+              'selected': True,
+              'urlparams': {'appver': '99999999.0'},
+              'children': []},
+             {'text': u'Firefox 5.0',
+              'selected': False,
+              'urlparams': {'appver': '5.0'},
+              'children': []}])
 
     def test_appver_bad(self):
-        self.check_appver_filters('.')
-        self.check_appver_filters('_')
-        self.check_appver_filters('y.y')
-        self.check_appver_filters('*')
+        assert self.check_appver_filters('.', '.')
+        assert self.check_appver_filters('_', '_')
+        assert self.check_appver_filters('y.y', 'y.y')
+        assert self.check_appver_filters('*', '*')
 
     def test_non_pjax_results(self):
         r = self.client.get(self.url)
