@@ -165,6 +165,11 @@ def do_collapsing():
                     print 'Copied info_request flag from old version [%s].' % (
                         old_version.id,)
 
+                # Always take the oldest created stamp since we want to keep
+                # the first version's values.
+                if old_version.created < version.created:
+                    version.created = old_version.created
+
                 # Delete this version's files and on-disk files.
                 old_files = File.objects.filter(version_id=old_version.id)
                 for f in old_files:
