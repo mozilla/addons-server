@@ -741,10 +741,13 @@ def version_sidebar(request, query, facets):
 
     # Insert the filtered app version even if it's not a facet.
     av_dict = version_dict(appver)
+
     if av_dict and av_dict not in vs and av_dict['major']:
         vs.append(av_dict)
 
-    vs = set((v['major'], v['minor1'] if v['minor1'] != 99 else 0) for v in vs)
+    # Valid versions must be in the form of `major.minor`.
+    vs = set((v['major'], v['minor1'] if v['minor1'] not in (None, 99) else 0)
+             for v in vs)
     versions = ['%s.%s' % v for v in sorted(vs, reverse=True)]
 
     for version, floated in zip(versions, map(float, versions)):

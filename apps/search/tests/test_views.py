@@ -362,6 +362,7 @@ class TestESSearch(SearchBase):
         self.check_appver_filters('.')
         self.check_appver_filters('_')
         self.check_appver_filters('y.y')
+        self.check_appver_filters('*')
 
     def test_non_pjax_results(self):
         r = self.client.get(self.url)
