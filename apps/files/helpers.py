@@ -291,7 +291,8 @@ class FileViewer(object):
         """
         if filename:
             short = os.path.splitext(filename)[1][1:]
-            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js', 'json': 'js'}
+            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js', 'json': 'js',
+                          'webapp': 'js'}
             short = syntax_map.get(short, short)
             if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
                          'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
