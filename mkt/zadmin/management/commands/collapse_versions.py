@@ -21,9 +21,11 @@ def do_collapsing():
     vkey = unicode(Version._meta)
     fkey = 'files'
 
-    for app in Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
-                                      disabled_by_user=False,
-                                      is_packaged=False).no_transforms():
+    for app in (Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
+                                       disabled_by_user=False,
+                                       is_packaged=False)
+                               .exclude(status=amo.STATUS_DELETED)
+                               .no_transforms()):
 
         with transaction.commit_on_success():
 
