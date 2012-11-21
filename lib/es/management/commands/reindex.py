@@ -27,9 +27,8 @@ from users.cron import reindex_users
 from lib.es.models import Reindexing
 from lib.es.utils import database_flagged
 
-if django_settings.MARKETPLACE:
-    from mkt.stats.cron import index_mkt_stats
-    from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
+from mkt.stats.cron import index_mkt_stats
+from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
 
 
 def index_stats(index=None, aliased=True):
@@ -37,17 +36,12 @@ def index_stats(index=None, aliased=True):
     call_command('index_stats', addons=None)
 
 
-_INDEXES = {'stats': [index_stats],
+_INDEXES = {'stats': [index_stats, index_mkt_stats],
             'apps': [reindex_addons,
                      reindex_apps,
                      reindex_collections,
-                     reindex_users]}
-
-if django_settings.MARKETPLACE:
-    _INDEXES['stats'].extend([index_mkt_stats])
-else:
-    _INDEXES['apps'].append(compatibility_report)
-
+                     reindex_users,
+                     compatibility_report]}
 
 logger = logging.getLogger('z.elasticsearch')
 DEFAULT_NUM_REPLICAS = 0
@@ -174,8 +168,7 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
         put_amo_mapping(new_index, aliased=False)
     else:
         put_stats_mapping(new_index, aliased=False)
-        if django_settings.MARKETPLACE:
-            put_mkt_stats_mapping(new_index, aliased=False)
+        put_mkt_stats_mapping(new_index, aliased=False)
 
     # Create new index
     index_url = url('/%s' % new_index)
