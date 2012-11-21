@@ -2,9 +2,11 @@
 import hashlib
 import json
 import os
+import zipfile
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 from django.utils.html import strip_tags
 
 import mock
@@ -900,7 +902,30 @@ class TestPackagedManifest(DetailBase):
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)
+        # Create a fake package to go along with the app.
+        latest_file = self.app.get_latest_file()
+        with storage.open(latest_file.file_path,
+                          mode='w') as package:
+            test_package = zipfile.ZipFile(package, 'w')
+            test_package.writestr('manifest.webapp', 'foobar')
+            test_package.close()
+            latest_file.update(hash=latest_file.generate_hash())
+
         self.url = self.app.get_detail_url('manifest')
+
+    def tearDown(self):
+        storage.delete(self.app.get_latest_file().file_path)
+
+    def get_digest_from_manifest(self, manifest=None):
+        if manifest is None:
+            manifest = self._mocked_json()
+        elif not isinstance(manifest, (str, unicode)):
+            manifest = json.dumps(manifest)
+
+        hash_ = hashlib.md5()
+        hash_.update(manifest)
+        hash_.update(self.app.get_latest_file().hash)
+        return hash_.hexdigest()
 
     def _mocked_json(self):
         data = {
@@ -939,12 +964,41 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
-        eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
+        eq_(res['ETag'], self.get_digest_from_manifest())
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_app_public(self, _mock):
+        _mock.return_value = self._mocked_json()
+
+        # Get the minifest with the first simulated package.
+        res = self.client.get(self.url)
+        eq_(res.content, self._mocked_json())
+        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+
+        first_etag = res['ETag']
+
+        # Write a new value to the packaged app.
+        latest_file = self.app.get_latest_file()
+        with storage.open(latest_file.file_path,
+                          mode='w') as package:
+            test_package = zipfile.ZipFile(package, 'w')
+            test_package.writestr('manifest.webapp', 'poop')
+            test_package.close()
+            latest_file.update(hash=latest_file.generate_hash())
+
+        # Get the minifest with the second simulated package.
+        res = self.client.get(self.url)
+        eq_(res.content, self._mocked_json())
+        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+
+        second_etag = res['ETag']
+
+        self.assertNotEqual(first_etag, second_etag)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_conditional_get(self, _mock):
         _mock.return_value = self._mocked_json()
-        etag = hashlib.md5(self._mocked_json()).hexdigest()
+        etag = self.get_digest_from_manifest()
         self.client.defaults['HTTP_IF_NONE_MATCH'] = '"%s"' % etag
         res = self.client.get(self.url)
         eq_(res.content, '')
@@ -963,7 +1017,7 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
-        eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
+        eq_(res['ETag'], self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_pending_author(self, _mock):
@@ -973,7 +1027,7 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
-        eq_(res['ETag'], hashlib.md5(self._mocked_json()).hexdigest())
+        eq_(res['ETag'], self.get_digest_from_manifest())
 
     @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
     def test_blocked_app(self):

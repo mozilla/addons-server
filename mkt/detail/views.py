@@ -60,41 +60,57 @@ def detail(request, addon):
 
 @addon_all_view
 def manifest(request, addon):
-    """
-    Returns the "mini" manifest for packaged apps.
+    """Returns the "mini" manifest for packaged apps.
 
     If not a packaged app, returns an empty JSON doc.
 
     """
+
     is_reviewer = acl.check_reviewer(request)
     is_dev = addon.has_author(request.amo_user)
     is_public = addon.status == amo.STATUS_PUBLIC
+
+    package_etag = hashlib.md5()
 
     # If webapp is blocklisted, show the blocklisted manifest.
     if addon.status == amo.STATUS_BLOCKED:
         # TODO: Consider caching the os.stat call to avoid FS hits.
         package_name = 'packaged-apps/blocklisted.zip'
+        package_path = os.path.join(settings.MEDIA_ROOT, package_name)
         data = {
             'name': addon.name,
-            'size': storage.size(os.path.join(settings.MEDIA_ROOT,
-                                              package_name)),
+            'size': storage.size(package_path),
             'release_notes':
                 _(u'This app has been blocked for your protection.'),
             'package_path': absolutify(os.path.join(settings.MEDIA_URL,
                                                     package_name)),
         }
+
+        # Generate the minifest and add it to the hash.
         manifest_content = json.dumps(data, cls=JSONEncoder)
-        manifest_etag = hashlib.md5(manifest_content).hexdigest()
+        package_etag.update(manifest_content)
+
+        # We don't need to add the blocklisted checksum here because
+        # we're never going to have multiple blocklisted application
+        # versions.
 
         log.info('Serving up blocklisted app for addon: %s' % addon)
 
-    elif (not addon.is_packaged or addon.disabled_by_user or (
-        not is_public and not (is_reviewer or is_dev))):
+    elif (not addon.is_packaged or addon.disabled_by_user or
+          not (is_public or is_reviewer or is_dev)):
         raise http.Http404
 
     else:
         manifest_content = addon.get_cached_manifest()
-        manifest_etag = hashlib.md5(manifest_content).hexdigest()
+        package_etag.update(manifest_content)
+
+        if addon.is_packaged:
+            # Update the hash with the content of the package itself.
+            package_file = addon.get_latest_file()
+            if package_file:
+                package_etag.update(package_file.hash)
+
+    manifest_etag = package_etag.hexdigest()
 
     @etag(lambda r, a: manifest_etag)
     def _inner_view(request, addon):
