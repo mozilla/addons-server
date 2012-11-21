@@ -69,9 +69,6 @@ CSS = {
         # Footer.
         'css/devreg/footer.less',
     ),
-    'mkt/devreg-legacy': (
-        'css/devreg-legacy/developers.less',  # Legacy galore.
-    ),
     'mkt/reviewers': (
         'css/mkt/buttons.less',
         'css/mkt/ratings.less',
