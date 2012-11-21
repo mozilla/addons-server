@@ -139,9 +139,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
                 'fullUrl': jinja2.escape(p.image_url),
                 'type': jinja2.escape(p.filetype),
                 'thumbUrl': jinja2.escape(p.thumbnail_url),
+                'caption': jinja2.escape(p.caption) if p.caption else ''
             }
-            if p.caption:
-                preview.update(caption=jinja2.escape(p.caption))
             previews.append(preview)
         ret.update({'previews': previews})
 
