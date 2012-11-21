@@ -45,6 +45,10 @@
               </li>
             {% endif %}
           {% endif %}
+          <li class="item-devices">
+            {{ device_list(addon) }}
+            <a href="{{ addon.get_dev_url('edit') }}#edit-app-basic">{{ _('Change Devices') }}</a>
+          </li>
         </ul>
       {% endif %}
       <div class="item-actions">

@@ -234,6 +234,33 @@
         color: @link;
     }
 }
+
+.item-devices {
+    position: relative;
+    .device-list {
+        margin: 6px 1px;
+        li {
+            vertical-align: middle;
+            &.android-mobile {
+                margin-left: 2px;
+            }
+            &.android-tablet {
+                height: 17px;
+                margin-left: 4px;
+            }
+        }
+    }
+    a {
+        display: block;
+        font-size: 11px;
+        padding: 4px 0 0 125px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40%;
+    }
+}
+
 .item-actions {
     color: #aaa;
     float: right;
