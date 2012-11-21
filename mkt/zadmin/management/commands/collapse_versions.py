@@ -48,6 +48,12 @@ def do_collapsing():
                 print 'No older versions found.'
                 continue
 
+            # Clear the current_version. It gets re-set when we're done.
+            cursor.execute('''
+                UPDATE addons SET current_version=NULL
+                WHERE id=%s''', (app.id,))
+            print 'Cleared current_version for app [%s]' % app.id
+
             for old_version in old_versions:
 
                 # Hosted app reviews' version column is always NULL.
@@ -185,7 +191,6 @@ def do_collapsing():
                 file_.update(reviewed=version.reviewed)
 
             # Call `update_version` to set the current_version properly.
-            app.update(_current_version=None)
             updated = app.update_version()
 
             # Call app.save to invalidate and re-index, etc.
