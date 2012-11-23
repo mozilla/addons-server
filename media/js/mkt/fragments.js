@@ -181,6 +181,10 @@ function fragmentFilter(el) {
                         $def.reject();
                         return;
                     }
+                    if (d.indexOf('<!-- </fragment> -->') === -1) {
+                        console.log('warning, fragment not properly served!');
+                        return;
+                    }
                     console.log('header is ' + xhr.getResponseHeader('date'));
                     console.log('caching fragment');
                     handleFragmentResponse(xhr, href);
@@ -230,13 +234,6 @@ function fragmentFilter(el) {
         function updateContent(content, href, popped, opts) {
             opts = opts || {};
             endLoading();
-
-            if (content.indexOf('<!-- </fragment> -->') === -1) {
-                console.log('warning, fragment not properly served!');
-                contentEl = $(content).find('#page');
-                contentEl.wrap('<div>').parent().html();
-                return;
-            }
 
             container.html(content);
             var page = container.find('#page');
