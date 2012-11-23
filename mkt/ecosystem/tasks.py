@@ -68,21 +68,6 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Mozilla/Boot_to_Gecko?raw=1&macros=true'
     },
     {
-        'title': 'General',
-        'name': 'tutorial_general',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General?raw=1&macros=true'
-    },
-    {
-        'title': 'App Templates Tutorial',
-        'name': 'tutorial_weather',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/Weather_app_tutorial?raw=1&macros=true'
-    },
-    {
-        'title': 'Serpent Game',
-        'name': 'tutorial_serpent',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/Games/Serpent_game?raw=1&macros=true'
-    },
-    {
         'title': 'Marketplace Submission',
         'name': 'mkt_submission',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Submitting_an_app?raw=1&macros=true'

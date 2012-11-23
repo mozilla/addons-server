@@ -3,6 +3,8 @@
     var videoItems = videos.find('.video-item');
     var videoObjects = videos.find('video');
     var videoThumbs = videos.find('.video-thumbs');
+    var appScreenshots = $('#screenshots');
+    var currentScreenshot = $('.current-screenshot');
 
     // Video functions taken from https://github.com/mozilla/bedrock/blob/master/media/js/marketplace/partners.js
     var getNewObject = function(vidObject)
@@ -59,5 +61,11 @@
         videoItems.hide();
         stopVideos();
         videos.find('#' + self.data('name')).show();
+    });
+
+    appScreenshots.on('click', 'img', function() {
+        var self = $(this);
+
+        currentScreenshot.attr('src', self.attr('src'));
     });
 })();

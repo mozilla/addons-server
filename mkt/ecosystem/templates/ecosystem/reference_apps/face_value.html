@@ -1,0 +1,120 @@
+{% extends 'ecosystem/reference_apps/app.html' %}
+{% from "ecosystem/macros.html" import navigation,
+        third_party_lib, web_api with context %}
+
+{% block title %}
+  {{ hub_page_title() }} | {{ _('Face Value') }}
+{% endblock %}
+
+{% block reference_title %}{{ _('Face Value') }}{% endblock %}
+
+{% block screenshots %}
+  <img class="current-screenshot"
+       src="{{ media('img/ecosystem/reference-apps/face-value1.jpg') }}">
+  <ul id="screenshots">
+    <li>
+      <img src="{{ media('img/ecosystem/reference-apps/face-value1.jpg') }}"
+           title="{{ _('Euros to Canadian Dollars') }}"
+           alt="{{ _('Euros to Canadian Dollars') }}">
+    </li>
+    <li>
+      <img src="{{ media('img/ecosystem/reference-apps/face-value2.jpg') }}"
+           title="{{ _('Canadian Dollars to Euros') }}"
+           alt="{{ _('Canadian Dollars to Euros') }}">
+    </li>
+    <li>
+      <img src="{{ media('img/ecosystem/reference-apps/face-value3.jpg') }}"
+           title="{{ _('Conversion Selector') }}"
+           alt="{{ _('Conversion Selector') }}">
+    </li>
+  </ul>
+{% endblock %}
+
+{% block app_description %}
+  <section>
+    {% trans %}
+      Face Value is a currency conversion app that does things differently:
+      instead of converting arbitrary amounts it shows you the actual
+      denominations in the country you're visiting. It lets you think in
+      your home currency even with a foreign currency in your pocket.
+    {% endtrans %}
+  </section>
+{% endblock %}
+
+{% block app_web_apis %}
+  <section>
+    <h2>{{ _('Web API Usage') }}</h2>
+    <ul>
+      <li>
+        {{ web_api('localstorage') }}
+        <p>
+          {% trans %}
+            Remembers user preferences and saves exchange rates for
+            offline use.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ web_api('appcache') }}
+        <p>
+          {% trans %}
+            Works great offline, only requires online connection when
+            updated exchange rates are desired.
+          {% endtrans %}
+        </p>
+      </li>
+    </ul>
+  </section>
+{% endblock %}
+
+{% block app_third_party %}
+  <section>
+    <h2>{{ _('Third-party Libraries') }}</h2>
+    <ul>
+      <li>
+        {{ third_party_lib('node') }}
+        <p>
+          {% trans %}
+            Both server and client code are written in JavaScript.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ third_party_lib('zepto') }}
+        <p>
+          {% trans %}
+            The lightweight jQuery-like library simplifies common
+            tasks such as DOM manipulation.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ third_party_lib('backbone') }}
+        <p>
+          {% trans %}
+            By using backbone's data bindings, Face Value ensures that
+            changes to the backend (such as exchange rate updates)
+            are automatically reflected on the frontend.
+          {% endtrans %}
+        </p>
+      </li>
+    </ul>
+  </section>
+{% endblock %}
+
+{% block app_code %}
+  <a href="https://github.com/tofumatt/face-value/"
+     class="app-source button">{{ _('View Source') }}</a>
+{% endblock %}
+
+{% block app_summary %}
+  <div class="summary">
+    <h4>{{ _('Difficulty') }}: <span>{{ _('Medium') }}</span></h4>
+  </div>
+  <div class="summary">
+    <h4>{{ _('Code Breakdown') }}:</h4>
+    <ol>
+      <li>{{ _('100% JavaScript') }}</li>
+    </ol>
+  </div>
+{% endblock %}

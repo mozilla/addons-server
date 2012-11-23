@@ -65,6 +65,12 @@ class TestDevHub(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/installation.html')
 
+    def test_reference_app(self):
+        r = self.client.get(reverse('ecosystem.apps_documentation',
+                            args=['face_value']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/reference_apps/face_value.html')
+
 
 class TestMdnDocumentation(amo.tests.TestCase):
     fixtures = ['ecosystem/mdncache-item']

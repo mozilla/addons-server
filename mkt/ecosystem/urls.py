@@ -10,4 +10,6 @@ urlpatterns = patterns('',
     url('^support$', views.support, name='ecosystem.support'),
     url('^docs/(?P<page>\w+)?$', views.documentation,
         name='ecosystem.documentation'),
+    url('^docs/apps/(?P<page>\w+)?$', views.apps_documentation,
+        name='ecosystem.apps_documentation'),
 )
