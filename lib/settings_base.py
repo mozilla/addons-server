@@ -1331,6 +1331,10 @@ MODIFIED_DELAY = 3
 # previous: the major version before :main.
 COMPAT = (
     # Firefox.
+    dict(app=1, main='17.0', versions=('17.0', '17.0a2', '17.0a1'),
+         previous='16.0'),
+    dict(app=1, main='16.0', versions=('16.0', '16.0a2', '16.0a1'),
+         previous='15.0'),
     dict(app=1, main='15.0', versions=('15.0', '15.0a2', '15.0a1'),
          previous='14.0'),
     dict(app=1, main='14.0', versions=('14.0', '14.0a2', '14.0a1'),
@@ -1356,6 +1360,10 @@ COMPAT = (
     dict(app=1, main='4.0', versions=('4.0', '4.0a1', '3.7a'),
          previous='3.6'),
     # Thunderbird.
+    dict(app=18, main='17.0', versions=('17.0', '17.0a2', '17.0a1'),
+         previous='16.0'),
+    dict(app=18, main='16.0', versions=('16.0', '16.0a2', '16.0a1'),
+         previous='15.0'),
     dict(app=18, main='15.0', versions=('15.0', '15.0a2', '15.0a1'),
          previous='14.0'),
     dict(app=18, main='14.0', versions=('14.0', '14.0a2', '14.0a1'),
