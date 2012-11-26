@@ -191,6 +191,7 @@ class TestActivity(HubTest):
         key = RssKey.objects.get()
         r = self.get_response(privaterss=key.key)
         eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
+        assert '<title>Recent Changes for My Add-ons</title>' in r.content
 
     def test_rss_single(self):
         self.log_creates(5)
@@ -202,6 +203,7 @@ class TestActivity(HubTest):
         r = self.get_response(privaterss=key.key)
         eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
         eq_(len(pq(r.content)('item')), 5)
+        assert '<title>Recent Changes for %s</title>' % self.addon in r.content
 
     def test_rss_ignores_apps(self):
         self.addon.update(type=amo.ADDON_WEBAPP)

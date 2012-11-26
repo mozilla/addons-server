@@ -2,6 +2,8 @@ from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed as RSS
 
+from tower import ugettext as _
+
 import amo
 from amo.helpers import absolutify, url, strip_html
 from devhub.models import ActivityLog, RssKey
@@ -26,6 +28,13 @@ class ActivityFeedRSS(Feed):
 
     def item_title(self, item):
         return strip_html(item.to_string())
+
+    def title(self, key):
+        """Title for the feed as a whole"""
+        if key.addon:
+            return _(u'Recent Changes for %s') % key.addon
+        else:
+            return _(u'Recent Changes for My Add-ons')
 
     def link(self):
         """Link for the feed as a whole"""
