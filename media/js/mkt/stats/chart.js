@@ -76,13 +76,20 @@
     var chart;
 
     // Determine unit used for a given metric.
+    // Missing keys here is the source of `TypeError: b is not a function`.
     var metricTypes = {
-        "revenue"            : "currency",
-        "sales"              : "sales",
-        "refunds"            : "refunds",
-        "installs"           : "installs",
-        "usage"              : "users",
-        "reviews_created"    : "reviews"
+        'revenue'               : 'currency',
+        'sales'                 : 'sales',
+        'refunds'               : 'refunds',
+        'installs'              : 'installs',
+        'usage'                 : 'users',
+        'reviews_created'       : 'reviews',
+        'mmo_total_visitors'    : 'users',
+        'mmo_user_count_total'  : 'users',
+        'mmo_user_count_new'    : 'users',
+        'apps_review_count_new' : 'reviews',
+        'apps_count_installed'  : 'installs',
+        'apps_count_new'        : 'apps'
     };
 
     var acceptedGroups = {
@@ -197,7 +204,8 @@
         }
 
         // Transform xAxis based on time grouping (day, week, month) and range.
-        var pointInterval = dayMsecs = 1 * 24 * 3600 * 1000;
+        var dayMsecs = 1 * 24 * 3600 * 1000;
+        var pointInterval = dayMsecs;
         var dateRangeDays = (end - start) / dayMsecs;
         baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
         baseConfig.xAxis.max = end;
@@ -233,7 +241,7 @@
 
         // Set minimum max value for yAxis to prevent duplicate yAxis values.
         var max = 0;
-        for (var key in data) {
+        for (key in data) {
             if (data[key].count > max) {
                 max = data[key].count;
             }
@@ -279,6 +287,7 @@
             function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
             function installsFormatter(n) { return format(gettext('{0} installs'), Highcharts.numberFormat(n, 0)); }
             function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
+            function appsFormatter(n) { return format(gettext('{0} apps'), Highcharts.numberFormat(n, 0)); }
             function reviewsFormatter(n) { return format(gettext('{0} reviews'), Highcharts.numberFormat(n, 0)); }
             function addEventData(s, date) {
                 var e = events[date];
@@ -302,27 +311,31 @@
 
             // Determine y-axis formatter.
             switch (metricTypes[metric]) {
-                case "currency": case "revenue":
+                case 'currency': case 'revenue':
                     baseConfig.yAxis.title.text = gettext('Amount Earned');
                     yFormatter = currencyFormatter;
                     break;
-                case "sales":
+                case 'sales':
                     baseConfig.yAxis.title.text = gettext('Units Sold');
                     yFormatter = salesFormatter;
                     break;
-                case "refunds":
+                case 'refunds':
                     baseConfig.yAxis.title.text = gettext('Units Refunded');
                     yFormatter = refundsFormatter;
                     break;
-                case "installs":
+                case 'installs':
                     baseConfig.yAxis.title.text = gettext('Installs');
                     yFormatter = installsFormatter;
                     break;
-                case "users":
+                case 'users':
                     baseConfig.yAxis.title.text = gettext('Users');
                     yFormatter = userFormatter;
                     break;
-                case "reviews":
+                case 'apps':
+                    baseConfig.yAxis.title.text = gettext('Apps');
+                    yFormatter = appsFormatter;
+                    break;
+                case 'reviews':
                     yFormatter = reviewsFormatter;
                     break;
             }

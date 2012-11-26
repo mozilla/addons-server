@@ -32,6 +32,24 @@ var csv_keys = {
     source_refunds: {
         'count': gettext('Units Refunded')
     },
+    apps_count_new: {
+        'count': gettext('Apps Added')
+    },
+    apps_count_installed: {
+        'count': gettext('Apps Installed')
+    },
+    apps_review_count_new: {
+        'count': gettext('Reviews')
+    },
+    mmo_user_count_new: {
+        'count': gettext('New Users')
+    },
+    mmo_user_count_total: {
+        'count': gettext('Total Users')
+    },
+    mmo_total_visitors: {
+        'count': gettext('Total Visitors')
+    },
     sources: {
         'null'                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
