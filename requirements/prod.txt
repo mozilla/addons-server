@@ -22,6 +22,7 @@ django-mysql-pool==0.2
 django-nose==1.1
 django-picklefield==0.2.1
 django-quieter-formset==0.3
+django-radagast==0.3
 django-session-csrf==0.5
 django-statsd-mozilla==0.3.8
 django-storages==1.1.4
@@ -75,7 +76,6 @@ tower==0.3.4
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
--e git://github.com/andymckay/django-radagast@4ea83aa714787a0cc352d39aaed27473139fc9db#egg=django-radagast
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git://github.com/mattbasta/fastchardet.git@ec642492f47b5121c71f0cea5fa6b6b543092d4c#egg=fastchardet
 -e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
