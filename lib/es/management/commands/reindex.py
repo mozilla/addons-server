@@ -27,21 +27,29 @@ from users.cron import reindex_users
 from lib.es.models import Reindexing
 from lib.es.utils import database_flagged
 
-from mkt.stats.cron import index_mkt_stats
-from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
 
+_INDEXES = {}
 
 def index_stats(index=None, aliased=True):
     """Indexes the previous 365 days."""
     call_command('index_stats', addons=None)
 
 
-_INDEXES = {'stats': [index_stats, index_mkt_stats],
-            'apps': [reindex_addons,
-                     reindex_apps,
-                     reindex_collections,
-                     reindex_users,
-                     compatibility_report]}
+if django_settings.MARKETPLACE:
+    # This imports marketplace stats, which then adds in the marketplace
+    # inapp table. When you do that and delete an addon, the marketplace
+    # then tries to delete from the non-existant table.
+    #
+    # This really only affects tests where the table does not exist.
+    from mkt.stats.cron import index_mkt_stats
+    from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
+
+    _INDEXES = {'stats': [index_stats, index_mkt_stats],
+                'apps': [reindex_addons,
+                         reindex_apps,
+                         reindex_collections,
+                         reindex_users,
+                         compatibility_report]}
 
 logger = logging.getLogger('z.elasticsearch')
 DEFAULT_NUM_REPLICAS = 0
@@ -252,6 +260,11 @@ class Command(BaseCommand):
         over the old ones so the search feature
         works while the indexation occurs
         """
+        if not django_settings.MARKETPLACE:
+            raise CommandError('This command affects both the marketplace and '
+                               'AMO ES storage. But the command can only be '
+                               'run from the Marketplace.')
+
         force = kwargs.get('force', False)
 
         if database_flagged() and not force:
