@@ -13,7 +13,16 @@
                 nonDateMetrics = z.StatsManager.nonDateMetrics,
                 currentPage;
 
-            $(document).ready(init);
+            $(document).ready(function() {
+                // My apps and multi-line charts won't get a table for now.
+                if (metric != 'my_apps') {
+                    init();
+                    $('.tabular.csv-table footer').show();
+                } else {
+                    $('.tabular.csv-table footer').hide();
+                }
+            });
+
             function init() {
                 gotoPage(0);
                 $paginator.delegate('.next', 'click', _pd(function() {
@@ -30,7 +39,7 @@
                 if (page < 0) {
                     page = 0;
                 }
-                $paginator.find('.prev').toggleClass('disabled', page == 0);
+                $paginator.find('.prev').toggleClass('disabled', page === 0);
                 if (pages[page]) {
                     showPage(page);
                 } else {

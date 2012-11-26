@@ -50,6 +50,9 @@ var csv_keys = {
     mmo_total_visitors: {
         'count': gettext('Total Visitors')
     },
+    my_apps: {
+        'count': gettext('App Installs')
+    },
     sources: {
         'null'                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
@@ -198,6 +201,10 @@ var csv_keys = {
         'mmo_total_visitors': [
             gettext('Total visitors'),
             gettext('Total visitors')
+        ],
+        'my_apps': [
+            gettext('Total Installs'),
+            gettext('Total Installs')
         ]
     },
     aggregateLabel: {

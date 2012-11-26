@@ -72,11 +72,11 @@
                 }
             }
         };
-    Highcharts.setOptions({ lang: { resetZoom: '' } });
+    Highcharts.setOptions({'lang': {'resetZoom': ''}});
     var chart;
 
     // Determine unit used for a given metric.
-    // Missing keys here is the source of `TypeError: b is not a function`.
+    // Missing keys here are the source of `TypeError: b is not a function`.
     var metricTypes = {
         'revenue'               : 'currency',
         'sales'                 : 'sales',
@@ -89,7 +89,8 @@
         'mmo_user_count_new'    : 'users',
         'apps_review_count_new' : 'reviews',
         'apps_count_installed'  : 'installs',
-        'apps_count_new'        : 'apps'
+        'apps_count_new'        : 'apps',
+        'my_apps'               : 'installs'
     };
 
     var acceptedGroups = {
@@ -104,13 +105,13 @@
         if (chart && chart.destroy) chart.destroy();
     }
 
-    $win.bind("changeview", function() {
+    $win.bind('changeview', function() {
         $chart.parent().removeClass('nodata');
         $chart.addClass('loading');
         $btnZoom.addClass('inactive').click(_pd);
     });
 
-    $win.bind("dataready", function(e, obj) {
+    $win.bind('dataready', function(e, obj) {
         var view    = obj.view,
             metric  = view.metric,
             group   = view.group,
@@ -124,7 +125,8 @@
             events  = obj.events,
             chartRange = {},
             t, row, i, field, val,
-            is_overview = metric == 'overview' || metric == 'app_overview';
+            is_overview = metric == 'overview' || metric == 'app_overview',
+            apps_chart = metric == 'my_apps';
 
         // Allows reuse of non-in-app code.
         metric = metric.replace('_inapp', '');
@@ -163,7 +165,7 @@
         }
 
         // Initialize the empty series object.
-        _.each(fields, function(f) { series[f] = []; });
+        _.each(fields, function(f) {series[f] = [];});
 
         // Transmute the data into something Highcharts understands.
         start = Date.iso(data.firstIndex);
@@ -172,25 +174,39 @@
             point,
             dataSum = 0;
 
-        forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
-            for (i = 0; i < fields.length; i++) {
-                field = fields[i];
-                val = parseFloat(z.StatsManager.getField(row, field));
-                if (val != val) val = null;
-                series[field].push(val);
-                if (val) dataSum += val;
+        if (apps_chart) {
+            series = [];
+            for (i = 0; i < data.stats.length; i++) {
+                series.push([]);
+                forEachISODate({start: start, end: end}, '1 '+group, data.stats[i], function(row, d) {
+                    val = parseFloat(z.StatsManager.getField(row, 'count'));
+                    if (val != val) val = null;
+                    series[i].push(val);
+                    if (val) dataSum += val;
+                }, this);
             }
-        }, this);
+        } else {
+            forEachISODate({start: start, end: end}, '1 '+group, data, function(row, d) {
+                for (i = 0; i < fields.length; i++) {
+                    field = fields[i];
+                    val = parseFloat(z.StatsManager.getField(row, field));
+                    if (val != val) val = null;
+                    series[field].push(val);
+                    if (val) dataSum += val;
+                }
+            }, this);
+        }
 
         // Display marker if only one data point.
         baseConfig.plotOptions.line.marker.radius = 3;
         var count = 0,
             dateRegex = /\d{4}-\d{2}-\d{2}/;
+
         for (var key in data) {
             if (dateRegex.exec(key) && data.hasOwnProperty(key)) {
                 count++;
             }
-            if (count > 1) {
+            if (count > 1 || apps_chart) {
                 baseConfig.plotOptions.line.marker.radius = 0;
                 break;
             }
@@ -247,7 +263,7 @@
             }
         }
         // Chart has minimum 5 ticks so set max to 5 to avoid pigeonholing.
-        if (max < 5) {
+        if (max < 5 && !apps_chart) {
             baseConfig.yAxis.max = 5;
         }
 
@@ -259,24 +275,39 @@
 
         // Populate the chart config object.
         var chartData = [], id;
-        for (i = 0; i < fields.length; i++) {
-            field = fields[i];
-            id = field.split("|").slice(-1)[0];
-            chartData.push({
-                'type'  : 'line',
-                'name'  : z.StatsManager.getPrettyName(view.metric, id),
-                'id'    : id,
-                'pointInterval' : pointInterval,
-                // Add offset to line up points and ticks on day grouping.
-                'pointStart' : start,
-                'data'  : series[field],
-                'visible' : !(metric == 'contributions' && id !='total')
-            });
+        if (apps_chart) {
+            for (i = 0; i < data.stats.length; i++) {
+                chartData.push({
+                    'type'  : 'line',
+                    'name'  : data.stats[i].name,
+                    'id'    : 'count' + i,
+                    'pointInterval' : pointInterval,
+                    // Add offset to line up points and ticks on day grouping.
+                    'pointStart' : start,
+                    'data'  : series[i],
+                    'visible' : true
+                });
+            }
+        } else {
+            for (i = 0; i < fields.length; i++) {
+                field = fields[i];
+                id = field.split("|").slice(-1)[0];
+                chartData.push({
+                    'type'  : 'line',
+                    'name'  : z.StatsManager.getPrettyName(view.metric, id),
+                    'id'    : id,
+                    'pointInterval' : pointInterval,
+                    // Add offset to line up points and ticks on day grouping.
+                    'pointStart' : start,
+                    'data'  : series[field],
+                    'visible' : !(metric == 'contributions' && id !='total')
+                });
+            }
         }
 
         // Generate the tooltip function for this chart.
         // both x and y axis can be displayed differently.
-        var tooltipFormatter = (function(){
+        var tooltipFormatter = (function() {
             var xFormatter,
                 yFormatter;
             function dayFormatter(d) { return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d)); }
@@ -327,6 +358,10 @@
                     baseConfig.yAxis.title.text = gettext('Installs');
                     yFormatter = installsFormatter;
                     break;
+                case 'my_apps':
+                    baseConfig.yAxis.title.text = gettext('Installs');
+                    yFormatter = installsFormatter;
+                    break;
                 case 'users':
                     baseConfig.yAxis.title.text = gettext('Users');
                     yFormatter = userFormatter;
@@ -348,8 +383,23 @@
         })();
 
         // Set up the new chart's configuration.
-        var newConfig = $.extend(baseConfig, { series: chartData });
+        var newConfig = $.extend(baseConfig, {'series': chartData});
         newConfig.tooltip.formatter = tooltipFormatter;
+
+        /* A vertical legend might be a good idea at some point.
+        if (apps_chart && newConfig.series.length) {
+            _.extend(newConfig, {
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -10,
+                    y: 100,
+                    borderWidth: 0
+                }
+            });
+        }
+        */
 
         function makeSiteEventHandler(e) {
             return function() {
@@ -383,7 +433,7 @@
         newConfig.xAxis.plotLines = pl;
 
 
-        if (fields.length == 1) {
+        if (fields.length == 1 && !apps_chart) {
             newConfig.legend.enabled = false;
         }
 

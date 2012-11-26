@@ -142,8 +142,8 @@ z.StatsManager = (function() {
         }
 
         // Fetch the data from the server or storage, and notify other components.
-        $.when( getDataRange(currentView), getSiteEvents(currentView) )
-         .then( function(data, events) {
+        $.when(getDataRange(currentView), getSiteEvents(currentView))
+         .then(function(data, events) {
             setTimeout(function() {
                 $(window).trigger('dataready', {
                     'view'  : currentView,
@@ -256,44 +256,80 @@ z.StatsManager = (function() {
             metric = view.metric,
             ds = dataStore[metric],
             reqs = [],
+            isAppsChart = metric == 'my_apps',
             $def = $.Deferred();
 
         function finished() {
             var ds = dataStore[metric],
                 ret = {}, row, firstIndex;
 
+            // Temporary array to process multi-line charts.
+            var mret = [];
+
             // Return if metric isn't datetime-based.
             if (metric in nonDateMetrics) {
-                if (ds.length == 0) {
+                if (ds.length === 0) {
                     ds.empty = true;
                 }
                 $def.resolve(ds);
             } else if (ds) {
-                forEachISODate(range, '1 day', ds, function(row, date) {
-                    var d = date.iso();
-                    if (row) {
-                        if (!firstIndex) {
-                            firstIndex = range.start;
-                        }
-                        if (metric == 'apps') {
-                            row = collapseVersions(row, PRECISION);
-                        }
-                        if (metric == 'sources') {
-                            row = collapseSources(row);
-                        }
-                        ret[d] = row;
+                if (isAppsChart) { //send this as a different type of object
+                    var myData;
+                    for (var i = 0; i < ds.length; i++) {
+                        (function(myApp) {
+                            ret = {};
+                            myData = myApp.data;
+                            ret['name'] = myApp.name;
+                            forEachISODate(range, '1 day', myData, function(row, date) {
+                                var d = date.iso();
+                                if (row) {
+                                    if (!firstIndex) {
+                                        firstIndex = range.start;
+                                    }
+                                    ret[d] = row;
+                                }
+                            }, this);
+                            mret.push(ret);
+                        })(ds[i]);
                     }
-                }, this);
+                } else {
+                    forEachISODate(range, '1 day', ds, function(row, date) {
+                        var d = date.iso();
+                        if (row) {
+                            if (!firstIndex) {
+                                firstIndex = range.start;
+                            }
+                            if (metric == 'apps') {
+                                row = collapseVersions(row, PRECISION);
+                            }
+                            if (metric == 'sources') {
+                                row = collapseSources(row);
+                            }
+                            ret[d] = row;
+                        }
+                    }, this);
+                }
                 if (_.isEmpty(ret)) {
                     ret.empty = true;
                 } else {
-                    ret.firstIndex = firstIndex;
-                    ret = groupData(ret, view);
-                    ret.metric = metric;
+                    if (isAppsChart) {
+                        ret = {
+                            'firstIndex': firstIndex
+                        };
+                        for (var i = 0; i < mret.length; i++) {
+                            mret[i] = groupData(mret[i], view);
+                        }
+                        ret.stats = mret;
+                        ret.metric = metric;
+                    } else {
+                        ret.firstIndex = firstIndex;
+                        ret = groupData(ret, view);
+                        ret.metric = metric;
+                    }
                 }
                 $def.resolve(ret);
             } else {
-                $def.fail({ empty : true });
+                $def.fail({empty: true});
             }
         }
 
@@ -464,13 +500,44 @@ z.StatsManager = (function() {
                 }
 
                 var ds = dataStore[metric],
+                    innerData = {},
                     data = JSON.parse(raw_data);
 
-                if (metric in nonDateMetrics) {
+                // Uncomment the raw_data below to have some testing data
+                // when working on the front-end.
+                // USE EITHER THIS OR THE SEGMENT BELOW. NOT BOTH.
+                //raw_data = [{"date": "2012-11-28", "count": 69, "data": {}}, {"date": "2012-11-27", "count": 69, "data": {}}, {"date": "2012-11-26", "count": 65, "data": {}}, {"date": "2012-11-25", "count": 65, "data": {}}, {"date": "2012-11-24", "count": 64, "data": {}}, {"date": "2012-11-23", "count": 64, "data": {}}, {"date": "2012-11-22", "count": 63, "data": {}}, {"date": "2012-11-21", "count": 63, "data": {}}, {"date": "2012-11-20", "count": 61, "data": {}}, {"date": "2012-11-19", "count": 55, "data": {}}, {"date": "2012-11-18", "count": 50, "data": {}}, {"date": "2012-11-17", "count": 47, "data": {}}, {"date": "2012-11-16", "count": 43, "data": {}}, {"date": "2012-11-15", "count": 39, "data": {}}, {"date": "2012-11-05", "count": 30, "data": {}}, {"date": "2012-11-04", "count": 29, "data": {}}, {"date": "2012-11-03", "count": 29, "data": {}}, {"date": "2012-11-02", "count": 29, "data": {}}, {"date": "2012-11-01", "count": 29, "data": {}}];
+
+                // Set to `true` for testing chart data on a multi-line graph.
+                if (false) {
+                    raw_data = [];
+                    raw_data.push({'name': 'cute app', 'data': [{"date": "2012-11-25", "count": 65, "data": {}}, {"date": "2012-11-24", "count": 64.0, "data": {}}, {"date": "2012-11-23", "count": 64, "data": {}}, {"date": "2012-11-22", "count": 63, "data": {}}, {"date": "2012-11-21", "count": 63, "data": {}}, {"date": "2012-11-20", "count": 61, "data": {}}, {"date": "2012-11-19", "count": 55, "data": {}}, {"date": "2012-11-18", "count": 50, "data": {}}, {"date": "2012-11-17", "count": 47, "data": {}}, {"date": "2012-11-16", "count": 43, "data": {}}, {"date": "2012-11-15", "count": 39, "data": {}}, {"date": "2012-11-05", "count": 30, "data": {}}, {"date": "2012-11-04", "count": 29, "data": {}}, {"date": "2012-11-03", "count": 29, "data": {}}, {"date": "2012-11-02", "count": 29, "data": {}}, {"date": "2012-11-01", "count": 29, "data": {}}, {"date": "2012-10-29", "count": 20, "data": {}}]});
+                    raw_data.push({'name': 'sexy app', 'data': [{"date": "2012-11-25", "count": 77, "data": {}}, {"date": "2012-11-24", "count": 77, "data": {}}, {"date": "2012-11-23", "count": 77, "data": {}}, {"date": "2012-11-22", "count": 77, "data": {}}, {"date": "2012-11-21", "count": 77, "data": {}}, {"date": "2012-11-20", "count": 77, "data": {}}, {"date": "2012-11-19", "count": 77, "data": {}}, {"date": "2012-11-18", "count": 77, "data": {}}, {"date": "2012-11-17", "count": 77, "data": {}}, {"date": "2012-11-16", "count": 33, "data": {}}, {"date": "2012-11-15", "count": 44, "data": {}}, {"date": "2012-11-05", "count": 36, "data": {}}, {"date": "2012-11-04", "count": 33, "data": {}}, {"date": "2012-11-03", "count": 19, "data": {}}, {"date": "2012-11-02", "count": 49, "data": {}}, {"date": "2012-11-01", "count": 19, "data": {}}, {"date": "2012-10-29", "count": 30, "data": {}}]});
+                    data = raw_data;
+                }
+
+                // Some charts like multi-line won't be stored by a `datekey`.
+                if (metric in nonDateMetrics || metric == 'my_apps') {
                     dataStore[metric] = data;
+                    ds = dataStore[metric];
+                    if (metric == 'my_apps') {
+                        var i = 0, j = 0, datekey;
+                        for (i = 0; i < data.length; i++) {
+                            innerData = {};
+                            for (j = 0; j < data[i].data.length; j++) {
+                                datekey = data[i].data[j].date;
+                                maxdate = String.max(datekey, maxdate);
+                                mindate = String.min(datekey, mindate);
+                                innerData[datekey] = data[i].data[j];
+                            }
+                            ds[i].data = innerData;
+                            ds[i].maxdate = String.max(maxdate, ds[i].maxdate || maxdate);
+                            ds[i].mindate = String.min(mindate, ds[i].mindate || mindate);
+                        }
+                    }
                 } else {
                     var i, datekey;
-                    for (i=0; i<data.length; i++) {
+                    for (i = 0; i < data.length; i++) {
                         datekey = data[i].date;
                         maxdate = String.max(datekey, maxdate);
                         mindate = String.min(datekey, mindate);
@@ -479,6 +546,7 @@ z.StatsManager = (function() {
                     ds.maxdate = String.max(maxdate, ds.maxdate);
                     ds.mindate = String.min(mindate, ds.mindate);
                 }
+
                 clearTimeout(writeInterval);
                 writeInterval = setTimeout(writeLocalStorage, 1000);
                 $def.resolve();
@@ -557,7 +625,9 @@ z.StatsManager = (function() {
             val     = row;
 
         // give up if the row is falsy.
-        if (!val) return null;
+        if (!val) {
+            return null;
+        }
         // drill into the row object for a nested key.
         // `data|api` means row['data']['api']
         for (var i = 0; i < parts.length; i++) {

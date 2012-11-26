@@ -44,7 +44,7 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'apps_review_count_new', 'collections_created',
                  'mmo_user_count_total', 'mmo_user_count_new',
                  'mmo_total_visitors', 'reviews_created', 'addons_created',
-                 'users_created')
+                 'users_created', 'my_apps')
 
 
 def dashboard(request):
@@ -478,7 +478,8 @@ def _site_query(period, start, end):
         'version_count_new': 'addons_updated',
         'user_count_new': 'users_created',
         'review_count_new': 'reviews_created',
-        'collection_count_new': 'collections_created'
+        'collection_count_new': 'collections_created',
+        'my_apps': 'my_apps' # Is this needed?
     }
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the
