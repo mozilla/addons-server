@@ -31,6 +31,17 @@
         </div>
       {% endif %}
       </div>
+      {% if is_admin %}
+      <div class="admin-settings">
+        <label>{{ _('Administrative overrides') }}</label>
+        <div>
+          <label for="{{ new_file_form.admin_override_validation.auto_id }}" class="addon-upload-failure-dependant">
+            {{ new_file_form.admin_override_validation }}
+            {{ new_file_form.admin_override_validation.label }}
+          </label>
+        </div>
+      </div>
+      {% endif %}
     </div>
 
     <div class="upload-status-button-add">

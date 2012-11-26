@@ -20,6 +20,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 import waffle
 
+from access import acl
 import amo
 import addons.forms
 import paypal
@@ -468,20 +469,38 @@ def verify_app_domain(manifest_url):
 class NewWebappForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy(u'There was an error with your'
-                                                ' upload. Please try again.')})
+        error_messages={'invalid_choice': _lazy(u'There was an error with your '
+                                                u'upload. Please try again.')})
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request', None)
+        super(AddonUploadForm, self).__init__(*args, **kw)
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
         verify_app_domain(upload.name)  # JS puts manifest URL here
         return upload
 
-
-class NewAddonForm(happyforms.Form):
+class AddonUploadForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy(u'There was an error with your'
-                                                ' upload. Please try again.')})
+        queryset=FileUpload.objects,
+        error_messages={'invalid_choice': _lazy(u'There was an error with your '
+                                                u'upload. Please try again.')})
+    admin_override_validation = forms.BooleanField(
+        required=False, label=_lazy(u'Override failed validation'))
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonUploadForm, self).__init__(*args, **kw)
+
+    def _clean_upload(self):
+        if not (self.cleaned_data['upload'].valid or
+                self.cleaned_data['admin_override_validation'] and
+                acl.action_allowed(self.request, 'ReviewerAdminTools', 'View')):
+            raise forms.ValidationError(_(u'There was an error with your '
+                                          u'upload. Please try again.'))
+
+class NewAddonForm(AddonUploadForm):
     desktop_platforms = forms.ModelMultipleChoiceField(
             queryset=Platform.objects,
             widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -498,6 +517,7 @@ class NewAddonForm(happyforms.Form):
 
     def clean(self):
         if not self.errors:
+            self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'])
             addons.forms.clean_name(xpi['name'])
             self._clean_all_platforms()
@@ -517,6 +537,7 @@ class NewVersionForm(NewAddonForm):
 
     def clean(self):
         if not self.errors:
+            self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'], self.addon)
             if self.addon.versions.filter(version=xpi['version']):
                 raise forms.ValidationError(
@@ -525,11 +546,7 @@ class NewVersionForm(NewAddonForm):
         return self.cleaned_data
 
 
-class NewFileForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy(u'There was an error with your'
-                                                ' upload. Please try again.')})
+class NewFileForm(AddonUploadForm):
     platform = File._meta.get_field('platform').formfield(empty_label=None,
                     widget=forms.RadioSelect(attrs={'class': 'platform'}))
     platform.choices = sorted((p.id, p.name)

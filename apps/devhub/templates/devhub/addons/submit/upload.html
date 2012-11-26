@@ -36,6 +36,17 @@
         </div>
         {{ new_addon_form.upload }}
       </div>
+      {% if is_admin %}
+      <div class="admin-settings">
+        <label>{{ _('Administrative overrides') }}</label>
+        <div>
+          <label for="{{ new_addon_form.admin_override_validation.auto_id }}" class="addon-upload-failure-dependant">
+            {{ new_addon_form.admin_override_validation }}
+            {{ new_addon_form.admin_override_validation.label }}
+          </label>
+        </div>
+      </div>
+      {% endif %}
       <div class="submission-buttons addon-submission-field">
         <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
           {{ _('Continue') }}

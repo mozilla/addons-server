@@ -107,6 +107,8 @@
 
                 /* Don't allow submitting */
                 $('.addon-upload-dependant').attr('disabled', true);
+                $('.addon-upload-failure-dependant').attr({'disabled': true,
+                                                           'checked': false});
 
                 /* Create elements */
                 upload_title = $('<strong>', {'id': 'upload-status-text'});
@@ -155,6 +157,11 @@
             $upload_field.bind("upload_errors", function(e, file, errors, results){
                 var all_errors = $.extend([], errors);  // be nice to other handlers
                 upload_progress_inside.stop().css({'width': '100%'});
+
+                if ($('input#id_upload').val()) {
+                    $('.addon-upload-failure-dependant').attr({'disabled': false,
+                                                               'checked': false});
+                }
 
                 $upload_field.val("").attr('disabled', false);
                 $upload_field.trigger("reenable_uploader");
@@ -227,10 +234,14 @@
                     errors = errOb.errors;
                     json = errOb.json;
 
+                    if (json && json.upload && (
+                          !json.validation ||
+                          !_.some(_.pluck(json.validation.messages, 'fatal')))) {
+                        $form.find('input#id_upload').val(json.upload);
+                    }
                     if(errors.length > 0) {
                         $upload_field.trigger("upload_errors", [file, errors, json]);
                     } else {
-                        $form.find('input#id_upload').val(json.upload);
                         $upload_field.trigger("upload_success", [file, json]);
                         $upload_field.trigger("upload_progress", [file, 100]);
                     }
@@ -284,6 +295,8 @@
 
                     /* Allow submitting */
                     $('.addon-upload-dependant').attr('disabled', false);
+                    $('.addon-upload-failure-dependant').attr({'disabled': true,
+                                                               'checked': false});
 
                     upload_title.html(format(gettext('Finished validating {0}'), [escape_(file.name)]));
 

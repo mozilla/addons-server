@@ -2555,8 +2555,8 @@ class TestUploadDetail(BaseUploadTest):
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         data = json.loads(r.content)
-        eq_(list(m['message'] for m in data['validation']['messages']),
-            [u'Could not parse install.rdf.'])
+        eq_(list((m['message'], m.get('fatal', False)) for m in data['validation']['messages']),
+            [(u'Could not parse install.rdf.', False)])
 
 
 def assert_json_error(request, field, msg):
@@ -2956,10 +2956,11 @@ class TestUploadErrors(UploadTest):
 class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-             expected_status=200):
+             override_validation=False, expected_status=200):
         d = dict(upload=self.upload.pk,
                  desktop_platforms=[p.id for p in desktop_platforms],
-                 mobile_platforms=[p.id for p in mobile_platforms])
+                 mobile_platforms=[p.id for p in mobile_platforms],
+                 admin_override_validation=override_validation)
         r = self.client.post(self.url, d)
         eq_(r.status_code, expected_status)
         return r
@@ -3036,6 +3037,55 @@ class TestAddBetaVersion(AddVersionTest):
         # Make sure that the additional files are beta
         fle = File.objects.all().order_by('-id')[0]
         eq_(fle.status, amo.STATUS_BETA)
+
+
+class TestAddVersionValidation(AddVersionTest):
+
+    def login_as_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def do_upload_non_fatal(self):
+        validation = {
+            'errors': 1,
+            'detected_type': 'extension',
+            'success': False,
+            'warnings': 0,
+            'notices': 0,
+            'message_tree': {},
+            'ending_tier': 5,
+            'messages': [
+                {'description': 'The subpackage could not be opened due to '
+                                'issues with corruption. Ensure that the file '
+                                'is valid.',
+                 'type': 'error',
+                 'id': [],
+                 'file': 'unopenable.jar',
+                 'tier': 2,
+                 'message': 'Subpackage corrupt.',
+                 'uid': '8a3d5854cf0d42e892b3122259e99445',
+                 'compatibility_type': None}],
+            'metadata': {}}
+
+        self.upload = self.get_upload(
+            'validation-error.xpi',
+            validation=json.dumps(validation))
+
+        assert not self.upload.valid
+
+    def test_non_admin_validation_override_fails(self):
+        self.do_upload_non_fatal()
+        self.post(override_validation=True, expected_status=400)
+
+    def test_admin_validation_override(self):
+        self.login_as_admin()
+        self.do_upload_non_fatal()
+        self.post(override_validation=True, expected_status=200)
+
+    def test_admin_validation_sans_override(self):
+        self.login_as_admin()
+        self.do_upload_non_fatal()
+        self.post(override_validation=False, expected_status=400)
 
 
 class TestVersionXSS(UploadTest):

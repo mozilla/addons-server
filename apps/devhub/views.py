@@ -959,31 +959,32 @@ def json_upload_detail(request, upload, addon_slug=None):
     result = upload_validation_context(request, upload, addon=addon)
     plat_exclude = []
     if result['validation']:
-        if result['validation']['errors'] == 0:
-            try:
-                pkg = parse_addon(upload, addon=addon)
-                app_ids = set([a.id for a in pkg.get('apps', [])])
-                supported_platforms = []
-                for app in (amo.MOBILE, amo.ANDROID):
-                    if app.id in app_ids:
-                        supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
-                        app_ids.remove(app.id)
-                if len(app_ids):
-                    # Targets any other non-mobile app:
-                    supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
-                s = amo.SUPPORTED_PLATFORMS.keys()
-                plat_exclude = set(s) - set(supported_platforms)
-                plat_exclude = [str(p) for p in plat_exclude]
-            except django_forms.ValidationError, exc:
-                m = []
-                for msg in exc.messages:
-                    # Simulate a validation error so the UI displays
-                    # it as such
-                    m.append({'type': 'error',
-                              'message': msg, 'tier': 1})
-                v = make_validation_result(
-                        dict(error='', validation=dict(messages=m)))
-                return json_view.error(v)
+        try:
+            pkg = parse_addon(upload, addon=addon)
+        except django_forms.ValidationError, exc:
+            # FIXME: This doesn't guard against client-side
+            # tinkering.
+            for i, msg in enumerate(exc.messages):
+                # Simulate a validation error so the UI displays
+                # it as such
+                result['validation']['messages'].insert(
+                    i, {'type': 'error',
+                        'message': msg, 'tier': 1,
+                        'fatal': True})
+                result['validation']['errors'] += 1
+        else:
+            app_ids = set([a.id for a in pkg.get('apps', [])])
+            supported_platforms = []
+            for app in (amo.MOBILE, amo.ANDROID):
+                if app.id in app_ids:
+                    supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
+                    app_ids.remove(app.id)
+            if len(app_ids):
+                # Targets any other non-mobile app:
+                supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
+            s = amo.SUPPORTED_PLATFORMS.keys()
+            plat_exclude = set(s) - set(supported_platforms)
+            plat_exclude = [str(p) for p in plat_exclude]
 
     result['platforms_to_exclude'] = plat_exclude
     return result
@@ -1243,13 +1244,16 @@ def version_edit(request, addon_id, addon, version_id):
     version_form = forms.VersionForm(request.POST or None, instance=version)
 
     new_file_form = forms.NewFileForm(request.POST or None,
-                                      addon=addon, version=version)
+                                      addon=addon, version=version,
+                                      request=request)
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
     file_history = _get_file_history(version)
 
     data = {'version_form': version_form, 'file_form': file_form}
+
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     if addon.accepts_compatible_apps():
         # We should be in no-caching land but this one stays cached for some
@@ -1280,7 +1284,7 @@ def version_edit(request, addon_id, addon, version_id):
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version, new_file_form=new_file_form,
-                file_history=file_history)
+                file_history=file_history, is_admin=is_admin)
     return jingo.render(request, 'devhub/versions/edit.html', data)
 
 
@@ -1323,7 +1327,7 @@ def version_delete(request, addon_id, addon):
 @dev_required
 @post_required
 def version_add(request, addon_id, addon):
-    form = forms.NewVersionForm(request.POST, addon=addon)
+    form = forms.NewVersionForm(request.POST, addon=addon, request=request)
     if form.is_valid():
         pl = (list(form.cleaned_data['desktop_platforms']) +
               list(form.cleaned_data['mobile_platforms']))
@@ -1341,7 +1345,8 @@ def version_add(request, addon_id, addon):
 @post_required
 def version_add_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = forms.NewFileForm(request.POST, addon=addon, version=version)
+    form = forms.NewFileForm(request.POST, addon=addon, version=version,
+                             request=request)
     if not form.is_valid():
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
@@ -1358,14 +1363,16 @@ def version_add_file(request, addon_id, addon, version_id):
 def version_list(request, addon_id, addon, webapp=False):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
-    new_file_form = forms.NewVersionForm(None, addon=addon)
+    new_file_form = forms.NewVersionForm(None, addon=addon, request=request)
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     data = {'addon': addon,
             'webapp': webapp,
             'versions': versions,
             'new_file_form': new_file_form,
             'position': get_position(addon),
-            'timestamp': int(time.time())}
+            'timestamp': int(time.time()),
+            'is_admin': is_admin}
     return jingo.render(request, 'devhub/versions/list.html', data)
 
 
@@ -1537,7 +1544,7 @@ def submit_addon(request, step, webapp=False):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
         return redirect(_step_url(1, webapp))
     NewItem = forms.NewWebappForm if webapp else forms.NewAddonForm
-    form = NewItem(request.POST or None)
+    form = NewItem(request.POST or None, request=request)
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
@@ -1555,8 +1562,10 @@ def submit_addon(request, step, webapp=False):
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3, webapp), addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
     return jingo.render(request, 'devhub/addons/submit/%s' % template,
-            {'step': step, 'webapp': webapp, 'new_addon_form': form})
+            {'step': step, 'webapp': webapp, 'new_addon_form': form,
+             'is_admin': is_admin})
 
 
 @dev_required(webapp=True)

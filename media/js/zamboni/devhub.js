@@ -59,6 +59,23 @@ $(document).ready(function() {
             };
         }
         $('#upload-addon').addonUploader(opt);
+        $('#id_admin_override_validation').addClass('addon-upload-failure-dependant')
+            .change(function () {
+                if ($(this).attr('checked')) {
+                    // TODO: Disable these when unchecked, or bounce
+                    // between upload_errors and upload_success
+                    // handlers? I think the latter would mostly be a
+                    // bad idea, since failed validation might give us
+                    // the wrong results, and admins overriding
+                    // validation might need some additional leeway.
+                    $('.platform:hidden').show();
+                    $('.platform label').removeClass('platform-disabled');
+                    $('.addon-upload-dependant').attr('disabled', false);
+                } else {
+                    $('.addon-upload-dependant').attr('disabled', true);
+                }
+            });
+        $('.addon-upload-failure-dependant').attr('disabled', true);
     }
 
     if ($(".version-upload").length) {
