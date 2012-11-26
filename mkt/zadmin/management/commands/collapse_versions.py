@@ -50,12 +50,15 @@ def do_collapsing():
                 print 'No older versions found.'
                 continue
 
-            # Clear the current_version. It gets re-set when we're done.
+            # Set the current_version to the one we're collapsing to. This
+            # avoids integrity errors as we delete versions below.
             if app._current_version.id != version.id:
                 cursor.execute('''
-                    UPDATE addons SET current_version=NULL
-                    WHERE id=%s''', (app.id,))
-                print 'Cleared current_version for app [%s]' % app.id
+                    UPDATE addons SET current_version=%s
+                    WHERE id=%s''', (version.id, app.id,))
+                app._current_version = version
+                print 'Set current_version for app [%s] to [%s]' % (
+                    app.id, version.id)
 
             for old_version in old_versions:
 
@@ -174,20 +177,22 @@ def do_collapsing():
                     version.created = old_version.created
 
                 # Delete this version's files and on-disk files.
-                old_files = File.objects.filter(version_id=old_version.id)
-                for f in old_files:
-                    print 'Please remove file from file system: %s' % f.file_path
-
                 cursor.execute('''
                     DELETE FROM files
                     WHERE version_id=%s''', (old_version.id,))
                 print 'Deleted files records attached to version [%s]' % (
                     old_version.id,)
 
+                old_files = File.objects.filter(version_id=old_version.id)
+                for f in old_files:
+                    print 'Please remove file from file system: %s' % f.file_path
+                    File.objects.invalidate(f)
+
                 # Delete the version itself.
                 cursor.execute('''
                     DELETE FROM versions
                     WHERE id=%s''', (old_version.id,))
+                Version.objects.invalidate(old_version)
                 print 'Deleted version [%s]' % old_version.id
 
             # Save version to update any fields that were copied above.
@@ -198,9 +203,6 @@ def do_collapsing():
                 file_.reviewed != version.reviewed):
                 file_.update(reviewed=version.reviewed)
 
-            # Call `update_version` to set the current_version properly.
-            updated = app.update_version()
-
             # Call app.save to invalidate and re-index, etc.
-            if file_ and updated:
+            if file_:
                 app.save()
