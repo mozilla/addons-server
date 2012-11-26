@@ -144,3 +144,11 @@ $('html').ajaxSuccess(function(event, xhr, ajaxSettings) {
 $('form.go').change(function() {
     this.submit();
 });
+
+
+// If we're inside the Marketplace app, open external links in the Browser.
+$(document).on('click', 'a.external, a[rel=external]', function() {
+    if (z.capabilities.chromeless) {
+        $(this).attr('target', '_blank');
+    }
+});

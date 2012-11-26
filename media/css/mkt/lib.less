@@ -23,9 +23,13 @@
 @3col: 400px;
 @4col: 600px;
 @7col: 672px;
+@10col: 1024px;
+
+@tablet: 600px;
+@not-tablet: @4col - 1;
+
 @desktop: 672px;
 @not-desktop: @desktop - 1;
-@10col: 1024px;
 
 
 // Colors
@@ -230,6 +234,15 @@
     animation: @animation;
 }
 
+.gradient(@gradient) {
+    background-image: -webkit-gradient(@gradient);
+    background-image: -webkit-linear-gradient(@gradient);
+    background-image:    -moz-linear-gradient(@gradient);
+    background-image:     -ms-linear-gradient(@gradient);
+    background-image:      -o-linear-gradient(@gradient);
+    background-image:         linear-gradient(@gradient);
+}
+
 .gradient-two-color(@color1, @color2) {
     background-color: @color2;
     background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
@@ -239,7 +252,6 @@
     background-image:      -o-linear-gradient(@color1, @color2);
     background-image:         linear-gradient(@color1, @color2);
 }
-
 
 .gradient-two-color-with-image(@color1, @color2, @image) {
     background: @color2;
@@ -336,4 +348,16 @@
         color: @text;
         text-decoration: none;
     }
+}
+
+.header-hover() {
+    background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+    background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+    background-image: linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
+}
+
+.header-active() {
+    background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
+    background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
+    background-image: linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
 }

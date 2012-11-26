@@ -73,28 +73,23 @@
     {% if not allow_installs() and not request.GAIA %}
       <div class="incompatible-browser incompatible-mobile">
         <div>
-          <a href="http://www.mozilla.org/mobile/aurora/" class="download" target="_blank">
-            {% trans %}
-              You must use Firefox Aurora on your Android phone to install Firefox apps.
-              <b>Learn more</b>
-            {% endtrans %}
+          <a href="{{ 'https://market.android.com/details?id=org.mozilla.firefox_beta' if request.MOBILE else 'https://www.mozilla.org/en-US/mobile/beta/' }}" class="download" target="_blank">
+            <span class="helper"></span>
+            <span>
+              {% if request.MOBILE %}
+                {% trans %}
+                  You must use Firefox Beta to install Firefox apps. <b>Download</b>
+                {% endtrans %}
+              {% else %}
+                {% trans %}
+                  You must use Firefox Beta on your Android phone to install Firefox apps. <b>Learn more</b>
+                {% endtrans %}
+              {% endif %}
+            </span>
           </a>
-          <a href="#" class="close">&times;</a>
+          <a href="#" class="close" title="{{ _('Close') }}">{{ _('Close') }}</a>
         </div>
       </div>
-      {# TODO: Uncomment when we bring back desktop app installation.
-        <div class="incompatible-browser incompatible-desktop">
-          <div>
-            <a href="http://www.mozilla.org/firefox/aurora/" class="download" target="_blank">
-              {% trans %}
-                You must use Firefox Aurora to install Firefox apps.
-                <b>Learn more</b>
-              {% endtrans %}
-            </a>
-            <a href="#" class="close">&times;</a>
-          </div>
-        </div>
-      #}
     {% endif %}
 
     <div id="container">

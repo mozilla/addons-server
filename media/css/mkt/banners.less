@@ -1,0 +1,134 @@
+@import 'lib';
+
+.incompatible-browser {
+    .box-shadow(0 -1px 0 @dark-gray inset);
+    .transition(~'.2s opacity, .2s visibility, .2s top');
+    background: #292f33;
+    margin: 0 auto -95px;
+    opacity: 0;
+    position: relative;
+    top: -95px;
+    visibility: hidden;
+    z-index: 1;
+    &.active {
+        margin-bottom: 0;
+        opacity: 1;
+        top: 50px;
+        visibility: visible;
+    }
+    div {
+        background: url(../../img/mkt/icons/firefox-beta.png) 8px 66% no-repeat;
+        background-size: auto 75px;
+        height: 95px;
+        margin: 0 auto;
+        max-width: 600px;
+        position: relative;
+        width: 100%;
+    }
+    a {
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 75%;
+    }
+    .helper {
+        // This lets us vertically center them inline-blocks.
+        height: 100%;
+        width: 0;
+    }
+    .download {
+        color: #c3d0d9;
+        line-height: 1.3;
+        padding: 0 10px 0 90px;
+        b {
+            color: #33c2ff;
+            display: block;
+            font-weight: normal;
+        }
+        &:hover {
+            color: lighten(#c3d0d9, 10%);
+            b {
+                color: lighten(#33c2ff, 10%);
+                text-decoration: underline;
+            }
+        }
+    }
+    .close {
+        .hidetext;
+        right: 0;
+        width: 32px;
+        z-index: 4;
+        &:before {
+            .gradient(~'top, rgba(11,12,13,0), rgba(117, 127, 133, 0.35) 35%, rgba(117, 127, 133, 0.35) 65%, rgba(11,12,13,0) 100%');
+            content: "";
+            display: block;
+            height: 100%;
+            width: 1px;
+            z-index: 3;
+            position: absolute;
+            right: 31px;
+        }
+        &:after {
+            content: "";
+            background: url(../../img/mkt/icons/close-2x.png) 50% 50% no-repeat;
+            background-size: auto 16px;
+            display: block;
+            margin: -18px auto 0;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            position: absolute;
+        }
+        &:hover {
+            .header-hover;
+        }
+        &:active {
+            .header-active;
+        }
+    }
+}
+
+@media (min-width: @tablet) {
+    .incompatible-browser {
+        div {
+            background-position: 15px 66%;
+        }
+        .download {
+            font-size: 120%;
+            padding-left: 98px;
+            .span {
+                max-width: 350px;
+            }
+        }
+        .close {
+            width: 50px;
+            &:before {
+                right: 49px;
+            }
+            &:after {
+                background-size: auto 21px;
+            }
+        }
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min--moz-device-pixel-ratio: 1.5),
+       screen and (min--moz-device-pixel-ratio: 1.5)
+       screen and (min-device-pixel-ratio: 1.5) {
+    .incompatible-browser {
+        div {
+            background-image: url(../../img/mkt/icons/firefox-beta-2x.png);
+        }
+        .close:after {
+            background-image: url(../../img/mkt/icons/close-2x.png);
+        }
+    }
+}

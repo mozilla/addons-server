@@ -77,31 +77,6 @@ $(document).ready(function() {
 });
 
 
-// If we're inside the Marketplace app, open external links in the Browser.
-z.page.on('click', 'a.external, a[rel=external]', function() {
-    if (z.capabilities.chromeless) {
-        $(this).attr('target', '_blank');
-    }
-});
-
-if (!localStorage.seen_aurora_pitch) {
-    $('.incompatible-browser').addClass('active');
-}
-
-// Clicking cancel should dismiss notification boxes.
-z.body.on('click', '.incompatible-browser .close', function() {
-    if (z.capabilities.localStorage) {
-        localStorage.seen_aurora_pitch = '1';
-    }
-    $(this).closest('.incompatible-browser').removeClass('active');
-}).on('click', '.incompatible.button', _pd(function(e) {
-    if (z.capabilities.localStorage) {
-        delete localStorage.seen_aurora_pitch;
-    }
-    $('.incompatible-browser').addClass('active');
-}));
-
-
 z.page.on('fragmentloaded', function() {
     z.apps = {};
     if (z.capabilities.webApps) {
