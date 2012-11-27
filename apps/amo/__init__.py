@@ -98,7 +98,7 @@ MOBILE.latest_version = FIREFOX.latest_version
 COMPAT = {FIREFOX.id: (), THUNDERBIRD.id: (), SEAMONKEY.id: ()}
 
 for app in (FIREFOX, THUNDERBIRD):
-    for v in range(int(float(app.latest_version)), 5, -1):
+    for v in range(int(float(floor_version(app.latest_version))), 5, -1):
         v_str = floor_version(str(v))
         COMPAT[app.id] += ({
             'app': app.id,
