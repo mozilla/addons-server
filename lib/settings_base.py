@@ -46,7 +46,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 REMOTE_JS_DEBUG = False
 
 # LESS CSS OPTIONS (Debug only)
-LESS_PREPROCESS = False  # Compile LESS with Node, rather than client-side JS?
+LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = 'lessc'
 
