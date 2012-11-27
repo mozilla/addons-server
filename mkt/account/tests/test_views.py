@@ -930,6 +930,10 @@ class TestFeedback(amo.tests.TestCase):
         """Check that anonymous users get the correct feedback page."""
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+        eq_(pq(res.content)('footer .feedback').attr('href'), self.url)
+
+        res = self.client.get(self.url, {'mobile': 'true'})
+        eq_(res.status_code, 200)
         doc = pq(res.content)
         assert not doc('.toggles')
         eq_(doc('.header-button.settings').attr('href'), self.url)
