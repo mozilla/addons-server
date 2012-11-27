@@ -45,6 +45,14 @@
                 {{ _('Face Value') }}
               </a>
             </li>
+            <li>
+              <a href="{{ url('ecosystem.apps_documentation',
+                 page='roller') }}"
+                 {% if section == 'roller' %}class="selected"{% endif %}
+                 title="{{ _('Roller') }}">
+                {{ _('Roller') }}
+              </a>
+            </li>
           </ol>
           <h2>{{ _('Tools &amp; Downloads') }}</h2>
           <ol>
