@@ -1,7 +1,5 @@
 import json
 
-from django.conf import settings
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -33,7 +31,7 @@ class TestIndex(amo.tests.TestCase):
     def test_no_version_redirect(self):
         res = self.client.get(reverse('compat.index'))
         self.assert3xx(res, reverse('compat.index',
-                                    args=[settings.COMPAT[0]['main']]))
+                                    args=[amo.COMPAT[0]['main']]))
 
 
 class TestIncoming(amo.tests.TestCase):
@@ -173,7 +171,7 @@ class TestReporterDetail(amo.tests.TestCase):
     def test_firefox_empty(self):
         self._generate()
         appver = '%s-%s' % (amo.FIREFOX.id,
-                            settings.COMPAT[0]['main'])  # Firefox 11.
+                            amo.COMPAT[0]['main'])  # Firefox 11.
         self.check_table(data={'appver': appver}, good=0, bad=0, appver=appver,
                          report_pks=[])
 

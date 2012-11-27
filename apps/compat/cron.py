@@ -1,7 +1,6 @@
 import logging
 from collections import defaultdict
 
-from django.conf import settings
 from django.db.models import Count, Max
 
 import cronjobs
@@ -27,7 +26,7 @@ def compatibility_report(index=None, aliased=True):
 
     # Gather all the data for the index.
     for app in amo.APP_USAGE:
-        versions = [c for c in settings.COMPAT if c['app'] == app.id]
+        versions = [c for c in amo.COMPAT if c['app'] == app.id]
 
         log.info(u'Making compat report for %s.' % app.pretty)
         latest = UpdateCount.objects.aggregate(d=Max('date'))['d']
@@ -106,7 +105,7 @@ def compatibility_report(index=None, aliased=True):
 
     # Mark the top 95% of add-ons compatible with the previous version for each
     # app + version combo.
-    for compat in settings.COMPAT:
+    for compat in amo.COMPAT:
         app, ver = compat['app'], vint(compat['previous'])
         # Find all the docs that have a max_version compatible with ver.
         supported = [doc for doc in docs.values()

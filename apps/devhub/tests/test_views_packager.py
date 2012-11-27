@@ -8,6 +8,7 @@ from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import amo
 import amo.tests
 from amo.tests import assert_required, formset, initial
 from amo.urlresolvers import reverse
@@ -195,7 +196,7 @@ class TestPackager(amo.tests.TestCase):
         eq_(r.context['compat_forms'].errors[0]['__all__'][0],
             'Min version must be less than Max version.')
 
-    @patch.object(settings, 'DEFAULT_MINVER', '3.6')
+    @patch.object(amo, 'DEFAULT_MINVER', '3.6')
     def test_default_firefox_minver(self):
         eq_(len(AppVersion.objects.filter(application__id=amo.FIREFOX.id,
                                           version='3.6')), 1)
@@ -204,7 +205,7 @@ class TestPackager(amo.tests.TestCase):
         s = pq(r.content)('select#id_form-0-min_ver option[selected]').text()
         eq_(s, '3.6')
 
-    @patch.object(settings, 'DEFAULT_MINVER', '999.0')
+    @patch.object(amo, 'DEFAULT_MINVER', '999.0')
     def test_no_default_firefox_minver(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -212,7 +213,7 @@ class TestPackager(amo.tests.TestCase):
         assert s != '3.6', (
             'The Firefox minVer default should not be set on POST.')
 
-    @patch.object(settings, 'DEFAULT_MINVER', '3.6')
+    @patch.object(amo, 'DEFAULT_MINVER', '3.6')
     def test_no_default_firefox_minver_on_post(self):
         self.compat_form['min_ver'] = '114'
         r = self.client.post(self.url, self._form_data())

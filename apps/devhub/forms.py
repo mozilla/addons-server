@@ -824,7 +824,7 @@ class PackagerCompatForm(forms.Form):
         if self.app in (amo.FIREFOX, amo.MOBILE, amo.THUNDERBIRD):
             try:
                 self.fields['min_ver'].initial = qs.filter(
-                    version=settings.DEFAULT_MINVER)[0]
+                    version=amo.DEFAULT_MINVER)[0]
             except (IndexError, AttributeError):
                 pass
 

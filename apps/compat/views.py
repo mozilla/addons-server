@@ -2,7 +2,6 @@ import json
 import re
 
 from django import http
-from django.conf import settings
 from django.db.models import Count
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -10,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 import jingo
 from tower import ugettext as _
 
+import amo
 import amo.utils
 from amo.decorators import post_required
 from amo.utils import urlparams
@@ -23,7 +23,7 @@ from .forms import AppVerForm, CompatForm
 
 def index(request, version=None):
     template = 'compat/index.html'
-    COMPAT = [v for v in settings.COMPAT if v['app'] == request.APP.id]
+    COMPAT = [v for v in amo.COMPAT if v['app'] == request.APP.id]
     compat_dict = dict((v['main'], v) for v in COMPAT)
     if not COMPAT:
         return jingo.render(request, template, {'results': False})

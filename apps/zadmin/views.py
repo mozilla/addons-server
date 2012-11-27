@@ -443,7 +443,7 @@ def jetpack_resend(request, file_id):
 @admin_required
 def compat(request):
     APP = amo.FIREFOX
-    VER = settings.COMPAT[0]['main']  # Default: latest Firefox version.
+    VER = amo.COMPAT[0]['main']  # Default: latest Firefox version.
     minimum = 10
     ratio = .8
     binary = None

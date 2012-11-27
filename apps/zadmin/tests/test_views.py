@@ -1647,7 +1647,7 @@ class TestCompat(amo.tests.ESTestCase):
         self.url = reverse('zadmin.compat')
         self.client.login(username='admin@mozilla.com', password='password')
         self.app = amo.FIREFOX
-        self.app_version = settings.COMPAT[0]['main']
+        self.app_version = amo.COMPAT[0]['main']
         self.addon = self.populate(guid='xxx')
         self.generate_reports(self.addon, good=0, bad=0, app=self.app,
                               app_version=self.app_version)
@@ -1772,7 +1772,7 @@ class TestCompat(amo.tests.ESTestCase):
         eq_(tr.find('form input[name=addon]').length, 0)
 
     def test_non_default_version(self):
-        app_version = settings.COMPAT[2]['main']
+        app_version = amo.COMPAT[2]['main']
         addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=self.app,
                               app_version=app_version)

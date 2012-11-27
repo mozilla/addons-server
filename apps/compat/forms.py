@@ -1,5 +1,4 @@
 from django import forms
-from django.conf import settings
 from django.forms.widgets import RadioSelect
 
 from tower import ugettext_lazy as _
@@ -7,7 +6,7 @@ from tower import ugettext_lazy as _
 import amo
 
 
-appvers = [(amo.APP_IDS[d['app']], d['main']) for d in settings.COMPAT]
+appvers = [(amo.APP_IDS[d['app']], d['main']) for d in amo.COMPAT]
 APPVER_CHOICES = [
     ('%s-%s' % (app.id, ver), '%s %s' % (unicode(app.pretty), ver))
     for app, ver in appvers
