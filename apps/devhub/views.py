@@ -47,6 +47,7 @@ from devhub import perf
 from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
+from lib.pay_server import client
 from market.models import AddonPremium, Refund
 from paypal.check import Check
 import paypal
@@ -437,7 +438,18 @@ def _premium(request, addon_id, addon, webapp=False):
 
 
 def _voluntary(request, addon_id, addon, webapp):
+    solitude = waffle.flag_is_active(request, 'solitude-payments')
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
+
+    if solitude:
+        # If the data is in solitude, alter the objects before we pass
+        # them to the forms.
+        paypal_data = client.get_seller_paypal_if_exists(addon)
+        if paypal_data:
+            addon.paypal_id = paypal_data.get('paypal_id')
+            if charity:
+                charity.paypal = addon.paypal_id
+
     charity_form = forms.CharityForm(request.POST or None, instance=charity,
                                      prefix='charity')
     contrib_form = forms.ContribForm(request.POST or None, instance=addon,
@@ -454,6 +466,15 @@ def _voluntary(request, addon_id, addon, webapp):
                 if valid:
                     profile_form.save()
             if valid:
+                if solitude:
+                    # Write the data to solitude. At the moment this is also
+                    # saving the value locally, just in case.
+                    paypal_id = (addon.charity.paypal if addon.charity else
+                                 addon.paypal_id)
+                    obj = client.create_seller_paypal(addon)
+                    client.patch_seller_paypal(pk=obj['resource_pk'],
+                                           data={'paypal_id': paypal_id})
+
                 addon.save()
                 messages.success(request, _('Changes successfully saved.'))
                 amo.log(amo.LOG.EDIT_CONTRIBUTIONS, addon)
