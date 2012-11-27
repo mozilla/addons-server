@@ -39,6 +39,14 @@
           <ol>
             <li>
               <a href="{{ url('ecosystem.apps_documentation',
+                 page='chrono') }}"
+                 {% if section == 'chrono' %}class="selected"{% endif %}
+                 title="{{ _('Chrono') }}">
+                {{ _('Chrono') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.apps_documentation',
                  page='face_value') }}"
                  {% if section == 'face_value' %}class="selected"{% endif %}
                  title="{{ _('Face Value') }}">
@@ -219,5 +227,12 @@
   <h3>
     <a href="{{ web_api_libs[name].link }}">
       {{ web_api_libs[name].title }}</a>
+  </h3>
+{% endmacro -%}
+
+{% macro custom_elements(name) -%}
+  <h3>
+    <a href="{{ custom_elements_libs[name].link }}">
+      {{ custom_elements_libs[name].title }}</a>
   </h3>
 {% endmacro -%}

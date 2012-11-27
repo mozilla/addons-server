@@ -120,6 +120,18 @@ def apps_documentation(request, page=None):
         'redis': {
             'link': 'http://redis.io',
             'title': _('redis')
+        },
+        'volo': {
+            'link': 'http://volojs.org/',
+            'title': 'volo.js'
+        },
+        'jquery': {
+            'link': 'http://jquery.com/',
+            'title': 'jQuery'
+        },
+        'requirejs': {
+            'link': 'http://requirejs.org/',
+            'title': 'RequireJS'
         }
     }
 
@@ -131,6 +143,17 @@ def apps_documentation(request, page=None):
         'appcache': {
             'link': '//developer.mozilla.org/docs/HTML/Using_the_application_cache',
             'title': _('appcache')
+        },
+        'open_web_apps': {
+            'link': '//developer.mozilla.org/docs/Apps/Apps_JavaScript_API',
+            'title': _('Open Web Apps')
+        }
+    }
+
+    custom_elements_libs = {
+        'gaia': {
+            'link': 'https://wiki.mozilla.org/Gaia/Design/BuildingBlocks',
+            'title': _('Gaia Building Blocks')
         }
     }
 
@@ -138,7 +161,8 @@ def apps_documentation(request, page=None):
         'page': page,
         'category': 'build',
         'third_party_libs': third_party_libs,
-        'web_api_libs': web_api_libs
+        'web_api_libs': web_api_libs,
+        'custom_elements_libs': custom_elements_libs
     }
 
     return jingo.render(request, ('ecosystem/reference_apps/%s.html' % page),
