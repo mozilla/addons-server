@@ -110,7 +110,7 @@ INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
 WEBAPP_MANIFEST_NAME = 'Mozilla Marketplace (Dev)'
 
-SECLUSION_HOSTS = ('https://payments-dev.allizom.org',)
+SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 
 PAYPAL_LIMIT_PREAPPROVAL = False
 

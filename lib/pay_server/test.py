@@ -16,7 +16,7 @@ from lib.pay_server import (client, filter_encoder, model_to_uid,
 from lib.pay_server.errors import codes, lookup
 
 
-@patch.object(settings, 'SECLUSION_HOSTS', ('http://localhost'))
+@patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))
 @patch.object(settings, 'DOMAIN', 'testy')
 class TestUtils(test_utils.TestCase):
 
@@ -124,7 +124,7 @@ class TestUtils(test_utils.TestCase):
         eq_(kwargs['data']['paypal_id'], 'foo')
 
 
-@patch.object(settings, 'SECLUSION_HOSTS', ('http://localhost'))
+@patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))
 @patch.object(settings, 'DOMAIN', 'testy')
 class TestPay(test_utils.TestCase):
 

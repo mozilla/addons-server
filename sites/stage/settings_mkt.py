@@ -104,7 +104,7 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org']
 
-SECLUSION_HOSTS = ('https://payments.allizom.org',)
+SOLITUDE_HOSTS = ('https://payments.allizom.org',)
 
 GEOIP_NOOP = 0
 

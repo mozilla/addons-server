@@ -1467,16 +1467,15 @@ IN_TEST_SUITE = False
 # Flip this on in your local settings to experience the joy of ES tests.
 RUN_ES_TESTS = False
 
-# The configuration for seclusion the client that speaks to solitude.
-# A tuple of the solitude hosts that seclusion will speak to.
-SECLUSION_HOSTS = ('',)
+# The configuration for the client that speaks to solitude.
+# A tuple of the solitude hosts.
+SOLITUDE_HOSTS = ('',)
 
 # The oAuth key and secret that solitude needs.
-SECLUSION_KEY = ''
-SECLUSION_SECRET = ''
-# The timeout we'll give seclusion. Since this often involves calling Paypal or
-# other servers, we are including that in this.
-SECLUSION_TIMEOUT = 10
+SOLITUDE_KEY = ''
+SOLITUDE_SECRET = ''
+# The timeout we'll give solitude.
+SOLITUDE_TIMEOUT = 10
 
 # Temporary flag to work with navigator.mozPay() on devices that don't
 # support it natively.

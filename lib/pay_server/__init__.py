@@ -160,15 +160,15 @@ class ZamboniClient(Client):
 
 
 def get_client():
-    # If you haven't specified a seclusion host, we can't do anything.
-    if settings.SECLUSION_HOSTS:
+    # If you haven't specified a solitude host, we can't do anything.
+    if settings.SOLITUDE_HOSTS:
         config = {
             # TODO: when seclusion can cope with multiple hosts, we'll pass
             # them all through and let seclusion do its magic.
-            'server': settings.SECLUSION_HOSTS[0],
-            'key': settings.SECLUSION_KEY,
-            'secret': settings.SECLUSION_SECRET,
-            'timeout': settings.SECLUSION_TIMEOUT
+            'server': settings.SOLITUDE_HOSTS[0],
+            'key': settings.SOLITUDE_KEY,
+            'secret': settings.SOLITUDE_SECRET,
+            'timeout': settings.SOLITUDE_TIMEOUT
         }
         client = ZamboniClient(config)
         client.encoder = ZamboniEncoder
