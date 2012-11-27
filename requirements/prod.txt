@@ -70,8 +70,8 @@ tower==0.3.4
 
 ## Not on pypi.
 -e git://github.com/mattbasta/addon-packager.git@830d6fd120ede0fe6792e25b3fb3b1bf264b1ba0#egg=addon-packager
--e git://github.com/mozilla/amo-validator.git@bc9d058abda787b93ab49baae1444f9e8fcf5192#egg=amo-validator
--e git://github.com/mozilla/app-validator.git@35d0d1e5a797b3927d1ccf6317d5a3f6a529f57c#egg=app-validator
+-e git://github.com/mozilla/amo-validator.git@6b6edc7a20113660bcba8b847647f5c07d967c1d#egg=amo-validator
+-e git://github.com/mozilla/app-validator.git@e474775bfce7ef2ce55b3e1bd3bcacf74f587a30#egg=app-validator
 -e git://github.com/mozilla/django-browserid.git@1c23655faad0cc5ad2c18aebc0472a0ea078cfa8#egg=django-browserid
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/clelland/django-mysql-pymysql.git@acd2b46a885537ab9aa8e777e86a1fe86775f9ea#egg=django-mysql-pymysql
