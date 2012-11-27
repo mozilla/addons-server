@@ -398,9 +398,8 @@ class TestDeveloperPages(amo.tests.TestCase):
         r = self.client.get(url + '?src=dp-btn-primary')
         button = pq(r.content)('.install-button a.button').attr('href')
         eq_(button.endswith('?src=dp-btn-primary'), True)
-
-        contribute = pq(r.content)('#contribute-button').attr('href')
-        eq_(contribute.endswith('?src=roadblock'), True)
+        eq_(pq(r.content)('#contribute-box input[name=source]').val(),
+            'roadblock')
 
     def test_contribute_multiple_devs(self):
         a = Addon.objects.get(pk=592)
