@@ -116,6 +116,10 @@ def apps_documentation(request, page=None):
         'backbone': {
             'link': 'http://backbonejs.org/',
             'title': _('backbone.js')
+        },
+        'redis': {
+            'link': 'http://redis.io',
+            'title': _('redis')
         }
     }
 
