@@ -95,6 +95,7 @@ class Review(amo.models.ModelBase):
         instance.refresh(update_denorm=True)
 
     def refresh(self, update_denorm=False):
+        from addons.models import update_search_index
         from . import tasks
 
         if update_denorm:
@@ -103,10 +104,9 @@ class Review(amo.models.ModelBase):
             # to avoid slave lag.
             tasks.update_denorm(pair, using='default')
 
-        # Review counts have changed, so (1) run task,
-        # (2) reload Addon instance, and (3) trigger a reindex.
+        # Review counts have changed, so run the task and trigger a reindex.
         tasks.addon_review_aggregates.delay(self.addon_id, using='default')
-        self.addon.reload().save()
+        update_search_index(self.addon.__class__, self.addon)
 
     @staticmethod
     def transformer(reviews):
