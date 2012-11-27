@@ -38,6 +38,7 @@ from django.utils.encoding import smart_str, smart_unicode
 
 import bleach
 from cef import log_cef as _log_cef
+from django_statsd.clients import statsd
 import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
@@ -992,3 +993,32 @@ def create_es_index_if_missing(index, config=None, aliased=False):
         log.info('ES error creating index: %s' % exc)
 
     return index
+
+
+def timer(*func, **kwargs):
+    """
+    Outputs statsd timings for the decorated method, ignored if not
+    in test suite. It will give us a name that's based on the module name.
+
+    It will work without params. Or with the params:
+    key: a key to override the calculated one
+    test_only: only time while in test suite (default is True)
+    """
+    key = kwargs.get('key', None)
+    test_only = kwargs.get('test_only', True)
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            if test_only and not settings.IN_TEST_SUITE:
+                return func(*args, **kw)
+            else:
+                name = (key if key else
+                        '%s.%s' % (func.__module__, func.__name__))
+                with statsd.timer('timer.%s' % name):
+                    return func(*args, **kw)
+        return wrapper
+
+    if func:
+        return decorator(func[0])
+    return decorator

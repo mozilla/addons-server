@@ -31,7 +31,7 @@ from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
 from amo.utils import (cache_ns_key, chunked, JSONEncoder, send_mail, slugify,
-                       sorted_groupby, to_language, urlparams)
+                       sorted_groupby, to_language, urlparams, timer)
 from amo.urlresolvers import get_outgoing_url, reverse
 from compat.models import CompatReport
 from files.models import File
@@ -847,6 +847,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 logit('no reviewed files')
 
     @staticmethod
+    @timer
     def transformer(addons):
         if not addons:
             return
