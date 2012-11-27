@@ -21,7 +21,7 @@ from .test_views import PurchaseTest
 from .samples import non_existant_pay
 
 
-@mock.patch.object(settings, 'SECLUSION_HOSTS', ['host'])
+@mock.patch.object(settings, 'SOLITUDE_HOSTS', ['host'])
 class TestPurchase(PurchaseTest):
 
     def setUp(self):
@@ -183,7 +183,7 @@ class TestPurchaseJWT(PurchaseTest):
         eq_(data['request']['defaultPrice'], 'USD')
 
 
-@mock.patch.object(settings, 'SECLUSION_HOSTS', ['host'])
+@mock.patch.object(settings, 'SOLITUDE_HOSTS', ['host'])
 @mock.patch('mkt.purchase.webpay.tasks')
 class TestPostback(PurchaseTest):
 
