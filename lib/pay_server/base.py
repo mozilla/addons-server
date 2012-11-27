@@ -5,6 +5,8 @@ import json
 import logging
 import urllib
 
+
+from django_statsd.clients import statsd
 import requests
 
 from tower import ugettext as _
@@ -93,15 +95,16 @@ class Client(object):
         }
         return config
 
-    def call(self, url, method, data=None):
+    def call(self, url, method_name, data=None):
         data = (json.dumps(data, cls=self.encoder or Encoder)
                 if data else json.dumps({}))
-        method = getattr(requests, method)
+        method = getattr(requests, method_name)
 
         try:
-            result = method(url, data=data,
-                            headers={'content-type': 'application/json'},
-                            timeout=self.config.get('timeout', 10))
+            with statsd.timer('solitude.call.%s' % method_name):
+                result = method(url, data=data,
+                                headers={'content-type': 'application/json'},
+                                timeout=self.config.get('timeout', 10))
         except requests.ConnectionError:
             log.error('Solitude not accessible')
             raise SolitudeOffline(general_error)
