@@ -66,6 +66,11 @@ class Test404(amo.tests.TestCase):
                                  password='password')
         self._test_404('/xxx')
 
+    def test_404_api(self):
+        res = self.client.get('/api/this-should-never-work/')
+        eq_(res.status_code, 404)
+        eq_(res.content, '')
+
 
 class TestManifest(amo.tests.TestCase):
 

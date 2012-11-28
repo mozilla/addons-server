@@ -5,7 +5,8 @@ import subprocess
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
+from django.http import (HttpResponse, HttpResponseNotFound,
+                         HttpResponseServerError)
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
@@ -21,7 +22,6 @@ from amo.context_processors import get_collect_timings
 from amo.decorators import post_required, no_login_required
 from amo.helpers import media
 from amo.urlresolvers import reverse
-import api.views
 
 
 log = logging.getLogger('z.mkt.site')
@@ -43,7 +43,7 @@ def handler403(request):
 def handler404(request):
     if request.path_info.startswith('/api/'):
         # Pass over to API handler404 view if API was targeted.
-        return api.views.handler404(request)
+        return HttpResponseNotFound()
     else:
         return jingo.render(request, 'site/404.html', status=404)
 
@@ -51,7 +51,7 @@ def handler404(request):
 def handler500(request):
     if request.path_info.startswith('/api/'):
         # Pass over to API handler500 view if API was targeted.
-        return api.views.handler500(request)
+        return HttpResponseServerError()
     else:
         return jingo.render(request, 'site/500.html', status=500)
 
