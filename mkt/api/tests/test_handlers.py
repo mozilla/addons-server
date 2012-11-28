@@ -378,15 +378,15 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 400)
         eq_(self.get_error(res)['device_types'], ['This field is required.'])
 
-    def test_put_desktop_worked(self):
+    def test_put_devices_worked(self):
         app = self.create_app()
         data = self.base_data()
-        data['device_types'] = amo.DEVICE_TYPES.keys()[:2]
+        data['device_types'] = [a.api_name for a in amo.DEVICE_TYPES.values()]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(set(d for d in app.device_types),
-            set(amo.DEVICE_TYPES[d] for d in amo.DEVICE_TYPES.keys()[:2]))
+            set(amo.DEVICE_TYPES[d] for d in amo.DEVICE_TYPES.keys()))
 
     def test_put_desktop_error_nice(self):
         self.create_app()

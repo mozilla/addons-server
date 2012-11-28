@@ -150,24 +150,28 @@ class DEVICE_DESKTOP(object):
     id = 1
     name = _(u'Desktop')
     class_name = 'desktop'
+    api_name = 'desktop'
 
 
 class DEVICE_MOBILE(object):
     id = 2
     name = _(u'Firefox Mobile')
     class_name = 'android-mobile'
+    api_name = 'mobile'
 
 
 class DEVICE_TABLET(object):
     id = 3
     name = _(u'Firefox Tablet')
     class_name = 'android-tablet'
+    api_name = 'tablet'
 
 
 class DEVICE_GAIA(object):
     id = 4
     name = _(u'Firefox OS')
     class_name = 'firefoxos'
+    api_name = 'firefoxos'
 
 
 DEVICE_TYPES = {

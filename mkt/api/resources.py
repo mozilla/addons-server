@@ -153,7 +153,7 @@ class AppResource(MarketplaceResource):
 
     def devices(self, data):
         with no_translation():
-            names = dict([(n.class_name, n.id)
+            names = dict([(n.api_name, n.id)
                           for n in DEVICE_TYPES.values()])
         filtered = [names.get(n, n) for n in data.get('device_types', [])]
         return {'device_types': filtered}
