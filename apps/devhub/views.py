@@ -983,6 +983,7 @@ def json_upload_detail(request, upload, addon_slug=None):
         try:
             pkg = parse_addon(upload, addon=addon)
         except django_forms.ValidationError, exc:
+            errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
             # tinkering.
             for i, msg in enumerate(exc.messages):
@@ -993,7 +994,9 @@ def json_upload_detail(request, upload, addon_slug=None):
                         'message': msg, 'tier': 1,
                         'fatal': True})
                 result['validation']['errors'] += 1
-            return json_view.error(make_validation_result(result))
+
+            if not errors_before:
+                return json_view.error(make_validation_result(result))
         else:
             app_ids = set([a.id for a in pkg.get('apps', [])])
             supported_platforms = []

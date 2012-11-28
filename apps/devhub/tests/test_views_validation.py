@@ -44,21 +44,21 @@ class TestUploadValidation(BaseUploadTest):
 
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        msg = data['validation']['messages'][0]
+        resp = self.client.get(reverse('devhub.upload_detail',
+                                       args=[upload.uuid, 'json']))
+        eq_(resp.status_code, 200)
+        data = json.loads(resp.content)
+        msg = data['validation']['messages'][1]
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
         eq_(sorted(msg['context']),
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
 
     def test_date_on_upload(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid]))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
+        resp = self.client.get(reverse('devhub.upload_detail',
+                                       args=[upload.uuid]))
+        eq_(resp.status_code, 200)
+        doc = pq(resp.content)
         eq_(doc('td').text(), 'December  6, 2010')
 
 
