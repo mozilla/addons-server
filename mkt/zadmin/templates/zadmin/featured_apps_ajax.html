@@ -1,8 +1,8 @@
 {% block content %}
-  {%- for row, selected_regions, excluded_regions, selected_carriers in apps_regions_carriers -%}
+  {%- for row, selected_regions, excluded_regions, selected_carriers, unsaved in apps_regions_carriers -%}
     <div class="app-container c">
-      <ul class="featured-app" data-app-id="{{ row.pk }}"
-          data-url="{{ url('zadmin.set_attrs_ajax') }}">
+      <ul class="featured-app" data-app-id="{{ row.app.pk }}"
+          data-url="{{ url('zadmin.featured_apps_ajax') }}">
         <li class="app-intro">
           <img src="{{ row.app.icon_url }}" class="logo">
           <h2><a href="{{ row.app.get_detail_url() }}">{{ row.app.name }}</a></h2>
@@ -42,7 +42,7 @@
         </ul>
         <p>
           <label for="localepicker">{{ _('Regions / Carriers') }}</label>
-          <select class="localepicker" multiple id="localepicker">
+          <select class="localepicker" multiple>
             {%- for locName, loc in regions -%}
               <option value="{{ loc.id }}"
                 {{- " selected" if loc.id in selected_regions -}}
@@ -59,6 +59,11 @@
           </select>
         </p>
       </div>
+      {%- if unsaved -%}
+        <input type="hidden" name="unsaved" value="t">
+      {%- endif -%}
+        <button name="saveit" {{'disabled' if not unsaved}}>Save</button>
+
     </div>
   {% endfor %}
 {% endblock %}

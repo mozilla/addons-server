@@ -137,7 +137,6 @@ class TestFeaturedApps(amo.tests.TestCase):
             'zadmin.featured_apps': ['GET', 'POST'],
             'zadmin.featured_apps_ajax': ['GET'],
             'zadmin.featured_categories_ajax': ['GET', 'POST'],
-            'zadmin.set_attrs_ajax': []
         }
 
     def test_write_access(self):
@@ -190,18 +189,40 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(set(pq(x).text() for x in doc[0]),
             set(['Home Page (1)', 'groovy (0)', 'awesome (2)']))
 
-    def test_add_featured_app(self):
+    def test_save_featured_app(self):
         self.client.post(self.url,
                          {'category': '',
-                          'add': self.a1.id})
-        assert FeaturedApp.objects.filter(app=self.a1.id,
-                                          category=None).exists()
+                          'save': json.dumps({
+                              'id': self.a1.id,
+                              'regions': (3, 2),
+                              'carriers': ('carrier1', 'carrier2')})})
+        qs = FeaturedApp.objects.filter(app=self.a1.id, category=None)
+        assert qs.exists()
+        fa = qs[0]
+        eq_(list(fa.regions.values_list('region', flat=True)), [2, 3])
 
-        self.client.post(self.url,
-                         {'category': self.c1.id,
-                          'add': self.a1.id})
-        assert FeaturedApp.objects.filter(app=self.a1,
-                                          category=self.c1).exists()
+        eq_(list(fa.carriers.values_list('carrier', flat=True)),
+            ['carrier1', 'carrier2'])
+
+    def test_add_unsaved_app(self):
+        r = self.client.get(self.url,
+                            {'category': '',
+                             'extras': json.dumps(
+                                 [{
+                                     "id": self.s1.pk,
+                                     "startdate": None,
+                                     "enddate": None,
+                                     "regions": [2, 3],
+                                     "carriers": ["telefonica"]
+                                 }])})
+        doc = pq(r.content)
+        eq_([x.get('value')
+             for x in doc('select.localepicker option[selected]')],
+            ['2', '3', 'carrier.telefonica'])
+        eq_([x.get('value')
+             for x in doc('input[type=date]')],
+            ['', ''])
+        eq_(doc('h2').text(), 'splendid app 1')
 
     def test_delete_featured_app(self):
         FeaturedApp.objects.create(app=self.a1, category=None)
@@ -220,73 +241,48 @@ class TestFeaturedApps(amo.tests.TestCase):
         assert not FeaturedApp.objects.filter(app=self.a1,
                                               category=self.c1).exists()
 
-    def test_set_region(self):
-        f = FeaturedApp.objects.create(app=self.a1, category=None)
-        FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk, 'region[]': (3, 2)})
-        eq_(r.status_code, 200)
-        eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
-            'region', flat=True)), [2, 3])
-
     def test_no_set_excluded_region(self):
         AddonExcludedRegion.objects.create(addon=self.a1, region=2)
-        f = FeaturedApp.objects.create(app=self.a1, category=None)
-        FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk, 'region[]': (3, 2)})
+        r = self.client.post(self.url,
+                             {'category': '',
+                              'save': json.dumps({'id': self.a1.id,
+                                                  'regions': (3, 2)})})
         eq_(r.status_code, 200)
-        eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
-            'region', flat=True)),
-            [3])
+        fa = FeaturedApp.objects.get(app=self.a1, category=None)
+        eq_(list(fa.regions.values_list('region', flat=True)),[3])
 
-    def test_set_carrier(self):
-        f = FeaturedApp.objects.create(app=self.a1, category=None)
-        FeaturedAppCarrier.objects.create(featured_app=f,
-                                          carrier='telerizon-mobile')
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk,
-                                   'carrier[]': 'telerizon-mobile'})
-        eq_(r.status_code, 200)
-        eq_(list(FeaturedApp.objects.get(pk=f.pk).carriers.values_list(
-            'carrier', flat=True)), ['telerizon-mobile'])
 
-    def test_set_startdate(self):
-        f = FeaturedApp.objects.create(app=self.a1, category=None)
-        FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk, 'startdate': '2012-08-01'})
-        eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).start_date, date(2012, 8, 1))
+    def test_set_date(self):
+        self.client.post(self.url, {
+            'category': '',
+            'save': json.dumps({
+                'id': self.a1.id,
+                'regions': (1,),
+                'startdate': '2012-08-01',
+                'enddate': '2012-08-31',
+            })})
 
-    def test_set_enddate(self):
-        f = FeaturedApp.objects.create(app=self.a1, category=None)
-        FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk, 'enddate': '2012-08-31'})
-        eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).end_date, date(2012, 8, 31))
+        f = FeaturedApp.objects.get(app=self.a1, category=None)
+        eq_(f.start_date, date(2012, 8, 1))
+        eq_(f.end_date, date(2012, 8, 31))
 
-    def test_remove_startdate(self):
+    def test_remove_date(self):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
         f.start_date = date(2012, 8, 1)
         f.save()
         FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk})
-        eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).start_date, None)
+        self.client.post(self.url,
+                         {'category': '',
+                          'save': json.dumps({
+                              'id': self.a1.id,
+                              'regions': (1,),
+                              'startdate': None,
+                              'enddate': None,
+                          })})
 
-    def test_remove_enddate(self):
-        f = FeaturedApp.objects.create(app=self.a1, category=None)
-        FeaturedAppRegion.objects.create(featured_app=f, region=1)
-        f.end_date = date(2012, 8, 1)
-        f.save()
-        r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk, 'startdate': '2012-07-01',
-                                   'enddate': ''})
-        eq_(r.status_code, 200)
-        eq_(FeaturedApp.objects.get(pk=f.pk).end_date, None)
+        f = FeaturedApp.objects.get(app=self.a1, category=None)
+        eq_(f.start_date, None)
+        eq_(f.end_date, None)
 
 
 class TestAddonSearch(amo.tests.ESTestCase):

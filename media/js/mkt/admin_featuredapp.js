@@ -32,40 +32,10 @@
 
     function registerDatepickers() {
         $('#featured-webapps input[type=date]').each(function(i, elm) {
-            var $this = $(elm);
-            var $app = $this.closest('.featured-app');
-            var $siblingDate = $this.siblings('input[type=date]');
-            var url = $app.data('url');
-            var appid = $app.data('app-id');
-            var isStartDate = $siblingDate.hasClass('date-range-start');
-            $this.datepicker({
-                dateFormat: 'yy-mm-dd',
-                onSelect: function(dateText) {
-                    if (isStartDate) {
-                        saveFeaturedDate(url, appid, dateText, $siblingDate.val());
-                    } else {
-                        saveFeaturedDate(url, appid, $siblingDate.val(), dateText);
-                    }
-                }
-            });
-            $this.change(function(e) {
-                if (isStartDate) {
-                    saveFeaturedDate($app.data('url'), $app.data('app-id'),
-                                     $this.val(), $siblingDate.val());
-                } else {
-                    saveFeaturedDate($app.data('url'), $app.data('app-id'),
-                                     $siblingDate.val(), $this.val());
-                }
+            $(elm).datepicker({
+                dateFormat: 'yy-mm-dd'
             });
         });
-    }
-
-    function saveFeaturedDate(url, appid, start, end) {
-        var data = {};
-        data.startdate = start;
-        data.enddate = end;
-        data.app = appid;
-        $.ajax({'type': 'POST', 'url': url, 'data': data});
     }
 
     function newAddonSlot(id) {
@@ -80,71 +50,88 @@
 
     function showAppsList(cat) {
         return appslistXHR('GET', {
-            'category': cat.val()
+            category: cat.val()
+        }).then(function(data) {
+            $featured.html(data);
         });
     }
 
-    function updateAppsList(cat, newItem) {
-        return appslistXHR('POST', {
-            'category': cat.val(),
-            'add': newItem
-        });
+    function carrierName(v) {
+        var x = v.split('.');
+        if (x[0] == 'carrier') {
+            return x[1];
+        } else {
+            return null;
+        }
     }
+    function collectForm(f) {
+        var $choices = $('select.localepicker option', f);
+        var regions = $choices.filter(function(i, opt) {
+                return opt.selected && !carrierName(opt.value);
+            }).map(function(i, sopt) {return sopt.value;}).get();
+        var carriers = $choices.map(function(i, opt) {
+                if (opt.selected) {
+                    return carrierName(opt.value);
+                }
+            }).get();
+        return {
+            id: $('.featured-app', f).data('app-id'),
+            startdate: $('input.date-range-start', f).val(),
+            enddate: $('input.date-range-end', f).val(),
+            regions: regions,
+            carriers: carriers
+        };
+    }
+    function collectUnsaved(newItem) {
+        var $unsaved = $('input[name="unsaved"]').parent();
+        var extras = $unsaved.map(function() {return collectForm(this);}).get();
+        if (newItem) {
+            extras.push({id: newItem, startdate: null, enddate: null,
+                         regions: [], carriers: []});
+        };
+        return extras;
+    };
+
+    function updateAppsList(cat, newItem) {
+        var extras = collectUnsaved(newItem);
+        return appslistXHR('GET', {
+            category: cat.val(),
+            extras: JSON.stringify(extras)
+        }).then(function(data) {
+            $featured.html(data);
+        });
+    };
 
     function deleteFromAppsList(cat, oldItem) {
         return appslistXHR('POST', {
             'category': cat.val(),
             'delete': oldItem
         });
-    }
+    };
 
     function appslistXHR(verb, data) {
-        var appslist = $featured;
-        var q = $.ajax({'type': verb, 'url': appslist.data('src'), 'data': data});
-        q.then(function(data) {
-            appslist.html(data);
-        });
-        return q;
-    }
+        return $.ajax({type: verb, url: $featured.data('src'), data: data});
+    };
 
-    var region_carrier_update = _pd(function(e) {
-        var $choices = $(e.target);
-        var $appParent = $('.featured-app');
-        function carrierName(v) {
-            var x = v.split('.');
-            if (x[0] == 'carrier') {
-                return x[1];
-            } else {
-                return null;
-            }
-        }
+    $featured.delegate('input, select', 'keyup change', _pd(function () {
+        $('button[name="saveit"]', $(this).parents('.app-container')).attr('disabled', false);
+    }));
 
-        var regions = $choices.children('option').filter(function(i, opt) {
-            return opt.selected && !carrierName(opt.value);
-        }).map(function(i, sopt) {return sopt.value;});
-
-        var carriers = $choices.children('option').map(function(i, opt) {
-            if (opt.selected) {
-                return carrierName(opt.value);
-            }
-        });
-
-        $.ajax({
-            'type': 'POST',
-            'url': $appParent.data('url'),
-            'data': {
-                'region': $.makeArray(regions),
-                'carrier': $.makeArray(carriers),
-                'app': $appParent.data('app-id')
-            }
-        });
-    });
-
-
+    $featured.delegate('button[name="saveit"]', 'click', _pd(function() {
+        var $button = $(this);
+        var $parent = $button.parents('.app-container');
+        $parent.children('input[name="unsaved"]').remove();
+        appslistXHR('POST', {
+                        category: $('#categories').val(),
+                        extras: JSON.stringify(collectUnsaved()),
+                        save: JSON.stringify(collectForm($parent))
+                    }).then(function() {$button.attr('disabled', true);});
+    }));
     $featured.delegate('.remove', 'click', _pd(function() {
-        deleteFromAppsList($('#categories'), $(this).data('id'));
-    })).delegate('select.localepicker', 'change', region_carrier_update)
-       .delegate('select.carrierpicker', 'change', region_carrier_update);
+        var $parent = $(this).parents('.app-container');
+        deleteFromAppsList($('#categories'), $(this).data('id')).then(
+            function() { $parent.remove();});
+    }));
 
     var categories = $('#categories');
     var p = $.ajax({'type': 'GET', 'url': categories.data('src')});
