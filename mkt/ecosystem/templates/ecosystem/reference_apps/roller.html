@@ -60,7 +60,24 @@
         {{ third_party_lib('redis') }}
         <p>
           {% trans %}
-            An advanced key-value store.
+            A key-value store that contains all the post data for Roller.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ third_party_lib('jquery') }}
+        <p>
+          {% trans %}
+            Uses jQuery to simplify common tasks such as DOM manipulation.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ third_party_lib('requirejs') }}
+        <p>
+          {% trans %}
+            Uses RequireJS to split JavaScript code into more easily
+            maintainable modules.
           {% endtrans %}
         </p>
       </li>
