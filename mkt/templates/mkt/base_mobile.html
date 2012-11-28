@@ -236,7 +236,9 @@
     </div>
 
     {% block offline_pixel %}
-      <iframe id="offline-pixel" src="{{ url('offline.stub') }}"></iframe>
+      {% if settings.USE_APPCACHE %}
+        <iframe id="offline-pixel" src="{{ url('offline.stub') }}"></iframe>
+      {% endif %}
     {% endblock %}
 
     {% block dbgoverlay %}{% endblock %}
