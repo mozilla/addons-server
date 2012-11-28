@@ -41,7 +41,7 @@
           {%- endfor -%}
         </ul>
         <p>
-          <label for="localepicker">{{ _('Locale') }}</label>
+          <label for="localepicker">{{ _('Regions / Carriers') }}</label>
           <select class="localepicker" multiple id="localepicker">
             {%- for locName, loc in regions -%}
               <option value="{{ loc.id }}"

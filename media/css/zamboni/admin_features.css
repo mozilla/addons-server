@@ -229,3 +229,7 @@ ul.ui-autocomplete {
 .ui-datepicker .ui-datepicker-header {
     height: 25px;
 }
+
+.localepicker {
+    height: 150px;
+}
