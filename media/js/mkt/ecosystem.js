@@ -5,6 +5,9 @@
     var videoThumbs = videos.find('.video-thumbs');
     var appScreenshots = $('#screenshots');
     var currentScreenshot = $('.current-screenshot');
+    var appGeneratorPreviews = $('.app-generator-preview');
+    var appGeneratorDetail = $('.app-generator-detail');
+    var appGeneratorItems = appGeneratorDetail.find('> li');
 
     // Video functions taken from https://github.com/mozilla/bedrock/blob/master/media/js/marketplace/partners.js
     var getNewObject = function(vidObject)
@@ -67,5 +70,13 @@
         var self = $(this);
 
         currentScreenshot.attr('src', self.attr('src'));
+    });
+
+    appGeneratorPreviews.on('click', 'a', function(ev) {
+        ev.preventDefault();
+        var self = $(this);
+
+        appGeneratorItems.removeClass('on');
+        appGeneratorDetail.find('#' + self.data('generator')).addClass('on');
     });
 })();

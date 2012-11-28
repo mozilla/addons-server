@@ -219,6 +219,76 @@ a[rel="external"]:after, a.external:after {
             margin-bottom: 5px;
         }
     }
+
+    .app-generator-detail > li {
+        clear: both;
+        display: none;
+        float: left;
+
+        &.on {
+            display: block;
+        }
+    }
+
+    .app-generator-preview, .app-generator-detail {
+        clear: both;
+        float: left;
+        list-style-type: none;
+        margin: 0;
+    }
+
+    .app-generator-detail {
+        min-height: 300px;
+        width: 645px;
+
+        > li {
+            width: 100%;
+        }
+    }
+
+    .app-generator-preview > li {
+        float: left;
+        margin: 10px 40px 0;
+        text-align: center;
+        width: 125px;
+    }
+
+    .app-generator-preview > li > a {
+        background: url(../../img/ecosystem/app-generator-layout-icons.png) no-repeat;
+        display: block;
+        height: 53px;
+        margin: 0 auto;
+        outline: none;
+        padding-top: 70px;
+        width: 100px;
+
+        &.generator-app-stub {
+            background-position: -23px -31px;
+        }
+
+        &.generator-list-detail-view {
+            background-position: -169px -31px;
+        }
+
+        &.generator-game-stub {
+            background-position: -315px -31px;
+        }
+    }
+
+    .layout-preview {
+        float: left;
+        padding-top: 20px;
+        width: 200px;
+    }
+
+    .layout-detail {
+        float: right;
+        width: 400px;
+    }
+
+    .features {
+        margin-bottom: 40px;
+    }
 }
 
 #site-map-footer {
@@ -346,25 +416,25 @@ a[rel="external"]:after, a.external:after {
         width: 100%;
     }
 
-    a.app-source {
-        .gradient-two-color(#00a33b, #008739);
-        clear: both;
-        color: @white;
-        display: block;
-        font-size: 18px;
-        line-height: 22px;
-        margin: 0 auto;
-        width: 200px;
-
-        &:visited {
-            color: @white;
-        }
-    }
-
     .walkthrough {
         display: block;
         margin-top: 10px;
         text-align: center;
+    }
+}
+
+a.app-source, .app-generator-detail #download-link {
+    .gradient-two-color(#00a33b, #008739);
+    clear: both;
+    color: @white;
+    display: block;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 auto;
+    width: 200px;
+
+    &:visited {
+        color: @white;
     }
 }
 

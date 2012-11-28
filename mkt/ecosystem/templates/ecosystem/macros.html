@@ -65,6 +65,13 @@
           <h2>{{ _('Tools &amp; Downloads') }}</h2>
           <ol>
             <li>
+              <a href="{{ url('ecosystem.app_generator_documentation') }}"
+                 {% if section == 'app_generator' %}class="selected"{% endif %}
+                 title="{{ _('App Generator') }}">
+                {{ _('App Generator') }}
+              </a>
+            </li>
+            <li>
               <a href="{{ url('ecosystem.documentation', page='devtools') }}"
                  {% if section == 'devtools' %}class="selected"{% endif %}
                  title="{{ _('Dev Tools') }}">
