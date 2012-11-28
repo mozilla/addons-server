@@ -201,7 +201,7 @@ class WebAppParser(object):
             ex[loc] = data.get(key, default)
         return ex
 
-    def parse(self, fileorpath, addon=None):
+    def get_json_data(self, fileorpath):
         path = get_filepath(fileorpath)
         if zipfile.is_zipfile(path):
             zf = SafeUnzip(path)
@@ -227,6 +227,10 @@ class WebAppParser(object):
                              exc.__class__.__name__, exc))
             raise forms.ValidationError(
                             _('Could not parse webapp manifest file.'))
+        return data
+
+    def parse(self, fileorpath):
+        data = self.get_json_data(fileorpath)
         loc = data.get('default_locale', translation.get_language())
         default_locale = self.trans_locale(loc)
         if type(data.get('locales')) == list:
@@ -459,7 +463,7 @@ def parse_addon(pkg, addon=None):
     name = getattr(pkg, 'name', pkg)
     if (getattr(pkg, 'is_webapp', False) or
         name.endswith(('.webapp', '.json', '.zip'))):
-        parsed = WebAppParser().parse(pkg, addon)
+        parsed = WebAppParser().parse(pkg)
     elif name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:

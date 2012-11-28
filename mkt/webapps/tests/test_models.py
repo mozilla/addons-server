@@ -19,6 +19,7 @@ from amo.tests import app_factory, version_factory
 from constants.applications import DEVICE_TYPES
 from editors.models import RereviewQueue
 from files.models import File
+from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from market.models import Price
@@ -432,6 +433,12 @@ class TestPackagedManifest(BasePackagedAppTest):
         res = self.client.get(file.get_url_path('manifest'))
         eq_(res.status_code, 200)
         eq_(res['content-type'], 'application/zip')
+
+    def test_packaged_with_BOM(self):
+        # Exercise separate code paths to loading the packaged app manifest.
+        self.setup_files('mozBOM.zip')
+        assert WebAppParser().parse(self.file.file_path)
+        self.assertTrue(self.app.has_icon_in_manifest())
 
 
 class TestDomainFromURL(unittest.TestCase):

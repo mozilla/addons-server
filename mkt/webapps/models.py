@@ -5,7 +5,6 @@ import os
 import time
 import urlparse
 import uuid
-import zipfile
 
 from django.conf import settings
 from django.core.cache import cache
@@ -34,7 +33,7 @@ from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str
-from files.utils import parse_addon
+from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
 from versions.models import Version
 
@@ -296,23 +295,7 @@ class Webapp(Addon):
         file_ = file_obj or self.get_latest_file()
         if not file_:
             return
-
-        file_path = file_.file_path
-        try:
-            if zipfile.is_zipfile(file_path):
-                zf = zipfile.ZipFile(file_path)
-                data = zf.open('manifest.webapp').read()
-                zf.close()
-                return json.loads(data)
-            else:
-                file = storage.open(file_path, 'r')
-                data = file.read()
-                return json.loads(data)
-
-        except Exception, e:
-            log.error(u'[Webapp:%s] Failed to open saved file %r, %s.'
-                      % (self, file_path, e))
-            raise
+        return WebAppParser().get_json_data(file_.file_path)
 
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])

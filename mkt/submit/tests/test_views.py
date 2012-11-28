@@ -255,7 +255,6 @@ class TestCreateWebApp(BaseWebAppTest):
         assert 'already exists' not in r.content, (
             'Unexpected validation error (verify_app_domain)')
 
-
     def test_no_upload(self):
         data = {'free': ['free-desktop']}
         res = self.client.post(self.url, data, follow=True)
@@ -419,7 +418,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.post(data=data)
         return Addon.objects.order_by('-id')[0]
 
-    def setup_files(self):
+    def setup_files(self, filename='mozball.zip'):
         # Make sure the source file is there.
         if not storage.exists(self.file.file_path):
             try:
@@ -427,7 +426,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                 os.makedirs(os.path.dirname(self.file.file_path))
             except OSError:
                 pass
-            shutil.copyfile(self.packaged_app_path('mozball.zip'),
+            shutil.copyfile(self.packaged_app_path(filename),
                             self.file.file_path)
 
 
