@@ -993,6 +993,7 @@ def json_upload_detail(request, upload, addon_slug=None):
                         'message': msg, 'tier': 1,
                         'fatal': True})
                 result['validation']['errors'] += 1
+            return json_view.error(make_validation_result(result))
         else:
             app_ids = set([a.id for a in pkg.get('apps', [])])
             supported_platforms = []

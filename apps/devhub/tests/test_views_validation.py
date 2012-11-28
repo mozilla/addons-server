@@ -80,11 +80,11 @@ class TestUploadErrors(BaseUploadTest):
         dupe_xpi = self.get_upload('extension.xpi')
         res = self.client.get(reverse('devhub.upload_detail',
                                       args=[dupe_xpi.uuid, 'json']))
-        eq_(res.status_code, 400)
+        eq_(res.status_code, 400, res.content)
         data = json.loads(res.content)
         eq_(data['validation']['messages'],
             [{'tier': 1, 'message': 'Duplicate UUID found.',
-              'type': 'error'}])
+              'type': 'error', 'fatal': True}])
         eq_(data['validation']['ending_tier'], 1)
 
 

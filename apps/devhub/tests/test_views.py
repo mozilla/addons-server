@@ -2593,8 +2593,9 @@ class TestUploadDetail(BaseUploadTest):
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         data = json.loads(r.content)
-        eq_(list((m['message'], m.get('fatal', False)) for m in data['validation']['messages']),
-            [(u'Could not parse install.rdf.', False)])
+        eq_([(m['message'], m.get('fatal', False))
+             for m in data['validation']['messages']],
+            [(u'Could not parse install.rdf.', True)])
 
 
 def assert_json_error(request, field, msg):
