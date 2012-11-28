@@ -149,6 +149,9 @@ CSS.update({
 
 JS = {
     'mkt/devreg': (
+        # tiny module loader
+        'js/lib/amd.js',
+
         'js/lib/jquery-1.7.1.js',
         'js/lib/webtrends.js',
         'js/lib/underscore.js',
