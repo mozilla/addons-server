@@ -631,3 +631,56 @@
         }
     }
 }
+
+#promos
+#promos > div,
+#promos li > div {
+    .border-radius(6px);
+}
+
+#holiday {
+    background: url(../../img/zamboni/discovery_pane/promos/holiday-bg.jpg) 50% 50% no-repeat;
+    h2 {
+        color: #296584;
+    }
+    hgroup h3 {
+        color: #3a3a3a;
+        margin: 2px 0 -2px;
+        text-shadow: 0 1px 1px #fff;
+    }
+    .addons p.desc {
+        text-align: center;
+    }
+    .icon {
+        background: 50% 70% no-repeat;
+        margin: -6px auto 0;
+        height: 46px;
+        width: 80px;
+    }
+    .amazon {
+        background-image: url(../../img/zamboni/discovery_pane/promos/holiday-amazon.png);
+    }
+    .ebay {
+        background-image: url(../../img/zamboni/discovery_pane/promos/holiday-ebay.png);
+    }
+    .shoppingbag {
+        background-image: url(../../img/zamboni/discovery_pane/promos/holiday-shoppingbag.png);
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min--moz-device-pixel-ratio: 1.5),
+       screen and (min--moz-device-pixel-ratio: 1.5)
+       screen and (min-device-pixel-ratio: 1.5) {
+    #holiday {
+        .amazon, .ebay {
+            background-size: auto 50%;
+        }
+        .amazon {
+            background-image: url(../../img/zamboni/discovery_pane/promos/holiday-amazon-2x.png);
+        }
+        .ebay {
+            background-image: url(../../img/zamboni/discovery_pane/promos/holiday-ebay-2x.png);
+        }
+    }
+}

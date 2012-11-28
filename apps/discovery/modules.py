@@ -283,3 +283,13 @@ class ContestWinners(TemplatePromo):
         # Hide on discovery pane.
         if module_context == 'home':
             return super(ContestWinners, self).render()
+
+
+class Holiday(TemplatePromo):
+    slug = 'Holiday'
+    template = 'discovery/modules/holiday.html'
+
+    def render(self, module_context='discovery'):
+        # Hide on discovery pane.
+        if module_context == 'home':
+            return super(Holiday, self).render()
