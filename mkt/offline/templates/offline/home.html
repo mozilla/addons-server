@@ -10,6 +10,7 @@
     <p class="offline">
       {{ _('Sorry, you need to be online to access the Marketplace.') }}
       <button>Try Again</button>
+      <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
     </p>
   </section>
 {% endblock %}
