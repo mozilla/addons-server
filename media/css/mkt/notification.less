@@ -1,0 +1,22 @@
+@import 'lib';
+
+#notification {
+    background: #ccc;
+    bottom: 0;
+    height: 32px;
+    left: 50%;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    text-align: right;
+    max-width: 600px;
+    line-height: 14px;
+
+    .transform(~'translate(-50%,110%)');
+    .transition-property(~'transform, -moz-transform, -webkit-transform, -ms-transform, -o-transform');
+    .transition-duration(~'.3s, .3s, .3s, .3s, .3s');
+
+    &.show {
+        .transform(~'translate(-50%,0%)');
+    }
+}

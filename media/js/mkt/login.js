@@ -62,7 +62,6 @@ function gotVerifiedEmail(assertion) {
 
 function finishLogin() {
     var to = z.getVars().to;
-    $.Deferred().resolve();
     if (to && to[0] == '/') {
         // Browsers may helpfully add "http:" to URIs that begin with double
         // slashes. This converts instances of double slashes to single to
