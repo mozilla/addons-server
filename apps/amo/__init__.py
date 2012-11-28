@@ -132,7 +132,9 @@ if FIREFOX.latest_version:
     DEFAULT_MINVER = COMPAT[4]['main']
 else:
     # Why don't you have `product_details` like the rest of us?
-    # Run `python manage.py update_product_details`.
+    logger_log.warning('You are missing `product_details`. '
+                       'Run `python manage.py update_product_details` now.')
+
     COMPAT = {}
     NIGHTLY_VERSION = '17.0'
     DEFAULT_MINVER = '13.0'
