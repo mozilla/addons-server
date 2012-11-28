@@ -95,41 +95,47 @@ MOBILE.latest_version = FIREFOX.latest_version
 # versions: version numbers to show in comparisons.
 # previous: the major version before :main.
 
-COMPAT = {FIREFOX.id: (), THUNDERBIRD.id: (), SEAMONKEY.id: ()}
+if FIREFOX.latest_version:
+    COMPAT = {FIREFOX.id: (), THUNDERBIRD.id: (), SEAMONKEY.id: ()}
 
-for app in (FIREFOX, THUNDERBIRD):
-    for v in range(int(float(floor_version(app.latest_version))), 5, -1):
-        v_str = floor_version(str(v))
-        COMPAT[app.id] += ({
-            'app': app.id,
-            'main': v_str,
-            'versions': (v_str, v_str + 'a2', v_str + 'a1'),
-            'previous': floor_version(str(v - 1))
-        },)
+    for app in (FIREFOX, THUNDERBIRD):
+        for v in range(int(float(floor_version(app.latest_version))), 5, -1):
+            v_str = floor_version(str(v))
+            COMPAT[app.id] += ({
+                'app': app.id,
+                'main': v_str,
+                'versions': (v_str, v_str + 'a2', v_str + 'a1'),
+                'previous': floor_version(str(v - 1))
+            },)
 
-# This is because the oldest Thunderbird version is 6.0, and
-# we need to include these older Firefox versions.
-COMPAT[FIREFOX.id] += (
-    {'app': FIREFOX.id, 'main': '5.0', 'versions': ('5.0', '5.0a2', '5.0a1'),
-     'previous': '4.0'},
-    {'app': FIREFOX.id, 'main': '4.0', 'versions': ('4.0', '4.0a1', '3.7a'),
-     'previous': '3.6'},
-)
+    # This is because the oldest Thunderbird version is 6.0, and
+    # we need to include these older Firefox versions.
+    COMPAT[FIREFOX.id] += (
+        {'app': FIREFOX.id, 'main': '5.0', 'versions': ('5.0', '5.0a2', '5.0a1'),
+         'previous': '4.0'},
+        {'app': FIREFOX.id, 'main': '4.0', 'versions': ('4.0', '4.0a1', '3.7a'),
+         'previous': '3.6'},
+    )
 
-COMPAT[SEAMONKEY.id] = ({
-    'app': SEAMONKEY.id,
-    'main': '2.3',
-    'versions': ('2.3', '2.3b', '2.3a'),
-    'previous': '2.2'
-},)
+    COMPAT[SEAMONKEY.id] = ({
+        'app': SEAMONKEY.id,
+        'main': '2.3',
+        'versions': ('2.3', '2.3b', '2.3a'),
+        'previous': '2.2'
+    },)
 
-COMPAT = COMPAT[FIREFOX.id] + COMPAT[THUNDERBIRD.id] + COMPAT[SEAMONKEY.id]
+    COMPAT = COMPAT[FIREFOX.id] + COMPAT[THUNDERBIRD.id] + COMPAT[SEAMONKEY.id]
+    # Latest nightly version of Firefox.
+    NIGHTLY_VERSION = COMPAT[0]['main']
 
-# Latest nightly version of Firefox.
-NIGHTLY_VERSION = COMPAT[0]['main']
-
-# Default minimum version of Firefox/Thunderbird for Add-on Packager.
-DEFAULT_MINVER = COMPAT[4]['main']
+    # Default minimum version of Firefox/Thunderbird for Add-on Packager.
+    DEFAULT_MINVER = COMPAT[4]['main']
+else:
+    # Why don't you have `product_details` like the rest of us?
+    # Run `python manage.py update_product_details`.
+    COMPAT = {}
+    NIGHTLY_VERSION = '17.0'
+    DEFAULT_MINVER = '13.0'
 
 
 def get_addon_search_types():
