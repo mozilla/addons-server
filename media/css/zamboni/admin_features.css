@@ -128,11 +128,17 @@ th {
 .featured-app .dashboard a:hover {
     text-decoration: none;
 }
+.featured-app .homepage {
+    float: right;
+}
 .featured-app h2 {
     font-size: 16px;
     display: inline-block;
     line-height: 32px;
     margin: 0 15px 0 10px;
+}
+.featured-app h2 a {
+    color: #c63717;
 }
 .featured-app li {
     vertical-align: middle;

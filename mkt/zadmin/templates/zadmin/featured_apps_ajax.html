@@ -5,7 +5,7 @@
           data-url="{{ url('zadmin.set_attrs_ajax') }}">
         <li class="app-intro">
           <img src="{{ row.app.icon_url }}" class="logo">
-          <h2>{{ row.app.name }}</h2>
+          <h2><a href="{{ row.app.get_detail_url() }}">{{ row.app.name }}</a></h2>
           <div class="dashboard">
             <a href="{{ row.app.get_dev_url() }}">
               <img alt="{{ _('Manage featured graphics') }}"
