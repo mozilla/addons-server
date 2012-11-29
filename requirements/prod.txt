@@ -22,6 +22,7 @@ django-mysql-pool==0.2
 django-nose==1.1
 django-picklefield==0.2.1
 django-quieter-formset==0.3
+django-raven-metlog==0.1
 django-radagast==0.3
 django-session-csrf==0.5
 django-statsd-mozilla==0.3.8
