@@ -177,7 +177,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         if ($sel.length && $sel.eq(0).attr('href') != '#') {
             e.stopPropagation();
             e.preventDefault();
-            $sel.eq(0).click();
+            $sel[0].click();
         }
         clearCurrentSuggestions(e);
     });
