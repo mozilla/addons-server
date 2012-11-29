@@ -77,11 +77,13 @@ CSS = {
         'css/mkt/paginator.less',
         'css/mkt/files.less',
     ),
+    'mkt/splash': (
+        'css/mkt/splash.less',
+    ),
     'mkt/consumer': (
         'css/mkt/reset.less',
         'css/mkt/typography.less',
         'css/mkt/site.less',
-        'css/mkt/splash.less',
         'css/mkt/banners.less',
         'css/common/invisible-upload.less',
         'css/common/forms.less',
