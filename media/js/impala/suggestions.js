@@ -77,11 +77,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     }
 
     function dismissHandler() {
-        if ($results.hasClass('locked')) {
-            return;
-        }
         $results.removeClass('visible sel');
-        $results.find('.sel').removeClass('sel');
         if (searchType == 'MKT') {
             $('#site-header').removeClass('suggestions');
         }
@@ -169,19 +165,20 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
                                            _.throttle(inputHandler, 250))
     }
 
-    $self.blur(function() {
+    function clearCurrentSuggestions(e) {
         clearInterval(pollVal);
-        _.delay(dismissHandler, 250);
-    });
+        dismissHandler();
+        $self.trigger('dismissed');
+    }
+
+    $self.blur(clearCurrentSuggestions);
+    $form.submit(clearCurrentSuggestions);
 
     $results.delegate('li, p', 'hover', function() {
         $results.find('.sel').removeClass('sel');
         $results.addClass('sel');
         $(this).find('a').addClass('sel');
-    }).delegate('a', 'click', _pd(function() {
-        $results.addClass('locked');
-        $form.submit();
-    }));
+    }).delegate('a', 'click', clearCurrentSuggestions);
 
     $results.bind('highlight', function(e, val) {
         // If an item starts with `val`, wrap the matched text with boldness.
@@ -192,19 +189,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         }
     });
 
-    $results.bind('dismiss', dismissHandler);
-
-    $form.submit(function(e) {
-        clearInterval(pollVal);
-        var $sel = $results.find('.sel');
-        if ($sel.length && $sel.eq(0).attr('href') != '#') {
-            e.stopPropagation();
-            e.preventDefault();
-            window.location = $sel.get(0).href;
-        }
-        $results.removeClass('locked');
-        dismissHandler();
-    });
+    $results.bind('dismiss', clearCurrentSuggestions);
 
     $(document).keyup(function(e) {
         if (fieldFocused(e)) {

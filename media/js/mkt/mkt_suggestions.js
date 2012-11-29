@@ -2,9 +2,12 @@
 (function() {
     // MKT search init.
     // Disable suggestions on Gaia for now.
+    var suggestions;
     if (!z.capabilities.gaia || z.enableSearchSuggestions) {
-        $('#search #search-q').searchSuggestions($('#site-search-suggestions'),
-                                                 processResults, 'MKT');
+        suggestions = $('#search #search-q').searchSuggestions(
+            $('#site-search-suggestions'), processResults, 'MKT');
+
+        suggestions.on('dismissed', abortRequest);
     }
 
     var previous_request = null;
@@ -53,7 +56,7 @@
     }
 
     function abortRequest() {
-        if (previous_request !== null) {
+        if (previous_request) {
             previous_request.abort();
             previous_request = null;
         }
