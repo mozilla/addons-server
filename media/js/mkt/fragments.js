@@ -133,8 +133,8 @@ function fragmentFilter(el) {
 
         // start the loading indicator
         function startLoading() {
+            container.trigger('startfragmentload');
             timeout = setTimeout(function() {
-                container.trigger('startfragmentload');
                 $loading.addClass('show');
             }, threshold);
             loadTimer = new Date().getTime();
