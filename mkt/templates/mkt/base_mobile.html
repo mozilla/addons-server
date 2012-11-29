@@ -75,19 +75,19 @@
       {% endwith %}
     {% endblock %}
 
-    {% if not allow_installs() and not request.GAIA %}
+    {% if not request.MOBILE or not allow_installs() and not request.GAIA %}
       <div class="incompatible-browser incompatible-mobile">
         <div>
-          <a href="{{ 'https://market.android.com/details?id=org.mozilla.firefox_beta' if request.MOBILE else 'https://www.mozilla.org/en-US/mobile/beta/' }}" class="download" target="_blank">
+          <a href="https://market.android.com/details?id=org.mozilla.firefox_beta" class="download" target="_blank">
             <span class="helper"></span>
             <span>
               {% if request.MOBILE %}
                 {% trans %}
-                  You must use Firefox Beta to install Firefox apps. <b>Download</b>
+                  You must use Firefox Beta to install Firefox apps. <b>Install</b>
                 {% endtrans %}
               {% else %}
                 {% trans %}
-                  You must use Firefox Beta on your Android phone to install Firefox apps. <b>Learn more</b>
+                  You must use Firefox Beta on your Android phone to install Firefox apps. <b>Install</b>
                 {% endtrans %}
               {% endif %}
             </span>
