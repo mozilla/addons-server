@@ -409,17 +409,15 @@ section.payments li.status-pass {
     }
 }
 
-// Packaged apps.
-#submit-upload .upload-status {
-    margin: 20px 0;
-    #upload-status-results strong {
-        display: block;
-        ~ ul {
-            margin-bottom: 10px;
+// Packaged apps ("Manage Status & Versions" page).
+.manage #upload-file {
+    .submission-buttons {
+        margin-top: 0;
+    }
+    .upload-file-submit {
+        &[disabled] {
+            display: none;
         }
-        ~ a {
-            display: block;
-            margin-top: 5px;
-        }
+        margin-top: 20px;
     }
 }
