@@ -172,7 +172,15 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     }
 
     $self.blur(clearCurrentSuggestions);
-    $form.submit(clearCurrentSuggestions);
+    $form.submit(function(e) {
+        var $sel = $results.find('.sel');
+        if ($sel.length && $sel.eq(0).attr('href') != '#') {
+            e.stopPropagation();
+            e.preventDefault();
+            $sel.eq(0).click();
+        }
+        clearCurrentSuggestions(e);
+    });
 
     $results.delegate('li, p', 'hover', function() {
         $results.find('.sel').removeClass('sel');
