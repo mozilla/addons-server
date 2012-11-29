@@ -339,12 +339,7 @@ def _fetch_content(url):
         raise Exception(_('%s responded with %s (%s).') % (url, e.code, e.msg))
     except urllib2.URLError, e:
         # Unpack the URLError to try and find a useful message.
-        if isinstance(e.reason, socket.timeout):
-            raise Exception(_('Connection to "%s" timed out.') % url)
-        elif isinstance(e.reason, socket.gaierror):
-            raise Exception(_('Could not contact host at "%s".') % url)
-        else:
-            raise Exception(str(e.reason))
+        raise Exception(_('The file could not be retrieved.'))
 
 
 class ResponseTooLargeException(Exception):
