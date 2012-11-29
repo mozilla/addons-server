@@ -67,6 +67,11 @@
         {% if not logged %}data-recaptcha="{{ settings.RECAPTCHA_PUBLIC_KEY }}"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
+
+    {% block splash %}
+      <div id="splash-overlay"><div class="throbber"></div></div>
+    {% endblock %}
+
     {% block siteheader %}
       {% with headertitle = headertitle,
               titletag = titletag,

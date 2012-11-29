@@ -81,6 +81,7 @@ CSS = {
         'css/mkt/reset.less',
         'css/mkt/typography.less',
         'css/mkt/site.less',
+        'css/mkt/splash.less',
         'css/mkt/banners.less',
         'css/common/invisible-upload.less',
         'css/common/forms.less',
@@ -288,6 +289,9 @@ JS = {
 
         # Stick.
         'js/lib/stick.js',
+
+        # Module initialization.
+        'js/mkt/app_init.js',
     ),
     'mkt/reviewers': (
         'js/mkt/utils.js',
