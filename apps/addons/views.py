@@ -81,8 +81,10 @@ def addon_detail(request, addon):
     if addon.is_disabled:
         return jingo.render(request, 'addons/impala/disabled.html',
                             {'addon': addon}, status=404)
+    if addon.is_webapp():
+        # Apps don't deserve AMO detail pages.
+        raise http.Http404
 
-    """Add-ons details page dispatcher."""
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
         if addon.type == amo.ADDON_PERSONA:
