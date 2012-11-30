@@ -273,7 +273,7 @@ z.StatsManager = (function() {
                 }
                 $def.resolve(ds);
             } else if (ds) {
-                if (isAppsChart) { //send this as a different type of object
+                if (isAppsChart) {
                     var myData;
                     for (var i = 0; i < ds.length; i++) {
                         (function(myApp) {
@@ -281,12 +281,11 @@ z.StatsManager = (function() {
                             myData = myApp.data;
                             ret['name'] = myApp.name;
                             forEachISODate(range, '1 day', myData, function(row, date) {
-                                var d = date.iso();
                                 if (row) {
                                     if (!firstIndex) {
                                         firstIndex = range.start;
                                     }
-                                    ret[d] = row;
+                                    ret[date.iso()] = row;
                                 }
                             }, this);
                             mret.push(ret);
@@ -313,10 +312,8 @@ z.StatsManager = (function() {
                     ret.empty = true;
                 } else {
                     if (isAppsChart) {
-                        ret = {
-                            'firstIndex': firstIndex
-                        };
-                        for (var i = 0; i < mret.length; i++) {
+                        ret = {firstIndex: firstIndex};
+                        for (i = 0; i < mret.length; i++) {
                             mret[i] = groupData(mret[i], view);
                         }
                         ret.stats = mret;

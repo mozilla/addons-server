@@ -179,28 +179,28 @@ var csv_keys = {
             gettext('Total Units Refunded by Source')
         ],
         'apps_count_new': [
-            gettext('Apps added'),
-            gettext('Apps added')
+            gettext('Apps Added'),
+            gettext('Apps Added')
         ],
         'apps_count_installed': [
-            gettext('Apps installed'),
-            gettext('Apps installed')
+            gettext('Apps Installed'),
+            gettext('Apps Installed')
         ],
         'apps_review_count_new': [
             gettext('Reviews'),
             gettext('Reviews')
         ],
         'mmo_user_count_total': [
-            gettext('Total users'),
-            gettext('Total users')
+            gettext('Total Users'),
+            gettext('Total Users')
         ],
         'mmo_user_count_new': [
-            gettext('New users'),
-            gettext('New users')
+            gettext('New Users'),
+            gettext('New Users')
         ],
         'mmo_total_visitors': [
-            gettext('Total visitors'),
-            gettext('Total visitors')
+            gettext('Total Visitors'),
+            gettext('Total Visitors')
         ],
         'my_apps': [
             gettext('Total Installs'),

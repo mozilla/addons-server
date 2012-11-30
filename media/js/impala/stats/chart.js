@@ -296,7 +296,6 @@
                 return function() {
                     var ret = "<b>" + xFormatter(this.x) + "</b>",
                         p;
-                    console.log('this date: ', this.x);
                     for (var i=0; i < this.points.length; i++) {
                         p = this.points[i];
                         ret += '<br>' + p.series.name + ': ';

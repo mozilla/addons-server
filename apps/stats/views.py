@@ -479,7 +479,6 @@ def _site_query(period, start, end):
         'user_count_new': 'users_created',
         'review_count_new': 'reviews_created',
         'collection_count_new': 'collections_created',
-        'my_apps': 'my_apps' # Is this needed?
     }
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the

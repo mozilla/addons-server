@@ -134,8 +134,7 @@ app_site_patterns = patterns('',
 )
 
 keys = ['apps_count_new', 'apps_count_installed', 'apps_review_count_new',
-        'mmo_user_count_total', 'mmo_user_count_new', 'mmo_total_visitors',
-        'my_apps']
+        'mmo_user_count_total', 'mmo_user_count_new', 'mmo_total_visitors']
 
 urls = []
 for key in keys:

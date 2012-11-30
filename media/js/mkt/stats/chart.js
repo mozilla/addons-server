@@ -180,9 +180,11 @@
                 series.push([]);
                 forEachISODate({start: start, end: end}, '1 '+group, data.stats[i], function(row, d) {
                     val = parseFloat(z.StatsManager.getField(row, 'count'));
-                    if (val != val) val = null;
+                    val = isNaN(val) ? null : val;
                     series[i].push(val);
-                    if (val) dataSum += val;
+                    if (val) {
+                        dataSum += val;
+                    }
                 }, this);
             }
         } else {
@@ -190,12 +192,16 @@
                 for (i = 0; i < fields.length; i++) {
                     field = fields[i];
                     val = parseFloat(z.StatsManager.getField(row, field));
-                    if (val != val) val = null;
+                    val = isNaN(val) ? null : val;
                     series[field].push(val);
-                    if (val) dataSum += val;
+                    if (val) {
+                        dataSum += val;
+                    }
                 }
             }, this);
         }
+
+        console.log('series is', series);
 
         // Display marker if only one data point.
         baseConfig.plotOptions.line.marker.radius = 3;
@@ -291,7 +297,7 @@
         } else {
             for (i = 0; i < fields.length; i++) {
                 field = fields[i];
-                id = field.split("|").slice(-1)[0];
+                id = field.split('|').slice(-1)[0];
                 chartData.push({
                     'type'  : 'line',
                     'name'  : z.StatsManager.getPrettyName(view.metric, id),
@@ -329,10 +335,10 @@
             }
 
             // Determine x-axis formatter.
-            if (group == "week") {
+            if (group == 'week') {
                 baseConfig.xAxis.title.text = gettext('Week');
                 xFormatter = weekFormatter;
-            } else if (group == "month") {
+            } else if (group == 'month') {
                 baseConfig.xAxis.title.text = gettext('Month');
                 xFormatter = monthFormatter;
             } else {
@@ -354,11 +360,7 @@
                     baseConfig.yAxis.title.text = gettext('Units Refunded');
                     yFormatter = refundsFormatter;
                     break;
-                case 'installs':
-                    baseConfig.yAxis.title.text = gettext('Installs');
-                    yFormatter = installsFormatter;
-                    break;
-                case 'my_apps':
+                case 'installs': case 'my_apps':
                     baseConfig.yAxis.title.text = gettext('Installs');
                     yFormatter = installsFormatter;
                     break;
@@ -375,8 +377,8 @@
                     break;
             }
             return function() {
-                var ret = "<b>" + this.series.name + "</b><br>" +
-                          xFormatter(this.x) + "<br>" +
+                var ret = '<b>' + this.series.name + '</b><br>' +
+                          xFormatter(this.x) + '<br>' +
                           yFormatter(this.y);
                 return addEventData(ret, this.x);
             };
@@ -385,21 +387,6 @@
         // Set up the new chart's configuration.
         var newConfig = $.extend(baseConfig, {'series': chartData});
         newConfig.tooltip.formatter = tooltipFormatter;
-
-        /* A vertical legend might be a good idea at some point.
-        if (apps_chart && newConfig.series.length) {
-            _.extend(newConfig, {
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
-                    x: -10,
-                    y: 100,
-                    borderWidth: 0
-                }
-            });
-        }
-        */
 
         function makeSiteEventHandler(e) {
             return function() {
