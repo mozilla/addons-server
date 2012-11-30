@@ -412,7 +412,8 @@ def _filter(qs, data):
     if data.get('text_query'):
         # Dynamically compose an OR query that does icontains match on
         # app name or author username/email, on multiple keywords.
-        qs = qs.filter(reduce(_or_query, data['text_query'].split(), Q()))
+        qs = (qs.filter(reduce(_or_query, data['text_query'].split(), Q()))
+                .distinct())
     if data.get('admin_review'):
         qs = qs.filter(admin_review=data['admin_review'])
     if data.get('has_editor_comment'):
