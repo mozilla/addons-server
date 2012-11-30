@@ -410,11 +410,9 @@ def _filter(qs, data):
     """Handle search filters and queries for app queues."""
     # Turn the form filters into ORM queries and narrow the queryset.
     if data.get('text_query'):
-        # icontains match on app name or author username/email.
-        text = data['text_query']
-        qs = qs.filter(Q(name__localized_string__icontains=text) |
-                       Q(authors__username__icontains=text) |
-                       Q(authors__email__icontains=text))
+        # Dynamically compose an OR query that does icontains match on
+        # app name or author username/email, on multiple keywords.
+        qs = qs.filter(reduce(_or_query, data['text_query'].split(), Q()))
     if data.get('admin_review'):
         qs = qs.filter(admin_review=data['admin_review'])
     if data.get('has_editor_comment'):
@@ -435,6 +433,14 @@ def _filter(qs, data):
     if data.get('premium_type_ids', []):
         qs = qs.filter(premium_type__in=data['premium_type_ids'])
     return qs
+
+
+def _or_query(query, text):
+    """Helper function for the reduce statement in _filter."""
+    query |= (Q(name__localized_string__icontains=text) |
+              Q(authors__username__icontains=text) |
+              Q(authors__email__icontains=text))
+    return query
 
 
 @permission_required('Apps', 'Review')

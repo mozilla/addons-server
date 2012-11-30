@@ -2071,7 +2071,8 @@ class TestQueueSearch(AppReviewerTest):
         app1 = (self.apps[1].id,)
 
         self.do_filter(app1, text_query='roy')
-        self.do_filter(both_apps, expected_length=2, text_query='ill')
+        self.do_filter(both_apps, text_query='illa atu')
+        self.do_filter(both_apps, text_query='ill')
 
         self.do_filter(both_apps, admin_review=False)
         self.do_filter(app0, admin_review=True)
