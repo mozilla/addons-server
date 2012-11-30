@@ -65,10 +65,13 @@ input:-moz-placeholder {
 
 input[placeholder] {
     // Because bug 673873 is stupidface.
+    // Yes, the order matters. Firefox 18 (and below) is clownshoes.
     &:-moz-placeholder:focus {
         color: transparent !important;
     }
-    // Yes, the order matters. WebKit is clownshoes.
+    &:focus::-moz-placeholder {
+        color: transparent !important;
+    }
     &:focus::-webkit-input-placeholder {
         color: transparent !important;
     }

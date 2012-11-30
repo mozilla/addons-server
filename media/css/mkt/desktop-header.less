@@ -1,0 +1,167 @@
+@import 'lib';
+
+@media (min-width: @desktop) {
+    #site-header {
+        height: 110px;
+        #search,
+        #search-q {
+            width: 175px;
+        }
+        #search-q {
+            .border-radius(3px);
+            .box-shadow(0 1px 0 rgba(255,255,255,.1),
+                        0 1px 0 rgba(0,0,0,.5) inset,
+                        0 1px 1px rgba(0,0,0,.5) inset);
+            font-size: 14px;
+            font-weight: 300;
+            margin-top: -15px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            &:-moz-placeholder {
+                color: lighten(#48535d, 15%);
+            }
+            &::-moz-placeholder {
+                color: lighten(#48535d, 15%);
+            }
+            &::-webkit-input-placeholder {
+                color: lighten(#48535d, 15%);
+            }
+
+        }
+    }
+    #page {
+        padding-top: 110px;
+    }
+    .incompatible-browser.active {
+        top: 110px;
+    }
+
+    // TODO: These are temporary styles. Davor, remove this with bug 811356.
+    .search {
+        #page {
+            &:before {
+                background: @grain-src #566773;
+                background-size: 100px 100px;
+                border-bottom: 1px solid rgba(0,0,0,.2);
+                content: "";
+                display: block;
+                position: fixed;
+                top: 110px;
+                height: 40px;
+                width: 100%;
+                z-index: 3;
+            }
+        }
+        .incompatible-browser.active {
+            top: 151px;
+        }
+    }
+
+    // The logo is permanent in the header.
+    #site-header h1.title {
+        display: none;
+    }
+
+    .force-mobile #site-header > section,
+    #site-header nav,
+    #search {
+        height: 100%;
+    }
+
+    #search {
+        display: block;
+        position: absolute;
+        right: 70px;
+    }
+
+    #site-header, .classic-header {
+        .box-shadow(~'0 -1px 0 rgba(0,0,0,.15) inset, 0 1px 0 rgba(255,255,255,.1) inset');
+        background: darken(#3f4f5b, 5%) @grain-src;
+        background-size: 100px 100px;
+    }
+
+    body, .home {
+        #site-header h1.site {
+            background: url(../../img/mkt/logos/large.png) 0 50% no-repeat;
+            text-indent: -9999px;
+            height: 100%;
+            left: 0;
+            max-width: 280px;
+            top: 0;
+            width: 280px;
+            a {
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+    .header-button {
+        float: none;
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        right: 0;
+        width: 50px;
+        &:after,
+        &.back,
+        &.home {
+            display: none !important;
+        }
+
+        // TODO: These are temporary styles. Davor, remove this with bug 811356.
+        &.filter,
+        &.expand {
+            margin-top: 50px;
+        }
+        &.filter {
+            color: @black;
+        }
+        &.expand {
+            margin-right: 50px;
+        }
+
+        &.settings {
+            display: block;
+        }
+        &.browserid {
+            .transition(.2s background);
+            background-position: 50% 0;
+            display: block;
+            height: 100%;
+            line-height: 110px;
+            margin: 0;
+            top: 0;
+            width: 60px;
+            &.loading-submit {
+                -webkit-animation-duration: 1.5s;
+                -webkit-animation-name: spin;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-timing-function: linear;
+                background: url(../../img/mkt/loading-16.png) center no-repeat;
+                text-indent: -9999px;
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+    // TODO: These are temporary styles. Davor, remove this with bug 811356.
+    #search-results {
+        padding-top: 45px;
+        .listing {
+            border-top: 1px solid @light-gray;
+        }
+    }
+}
+
+@media screen and (min-width: @desktop),
+       @retina {
+    body, .home {
+        #site-header h1.site {
+            background-image: url(../../img/mkt/logos/large-2x.png);
+            background-size: 280px auto;
+        }
+    }
+}
