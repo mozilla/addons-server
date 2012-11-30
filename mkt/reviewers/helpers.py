@@ -8,6 +8,7 @@ from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
 from mkt.developers.helpers import mkt_page_title
+from mkt.reviewers.utils import clean_sort_param, create_sort_link
 
 
 @register.function
@@ -120,3 +121,24 @@ def logs_tabnav(context):
         waffle.switch_is_active('mkt-themes')):
         rv.append(('reviewers.themes.logs', _('Themes')))
     return rv
+
+
+@register.function
+@jinja2.contextfunction
+def sort_link(context, pretty_name, sort_field):
+    """Get table header sort links.
+
+    pretty_name -- name displayed on table header
+    sort_field -- name of get parameter, referenced to in views
+    """
+    request = context['request']
+    sort, order = clean_sort_param(request)
+
+    get_params = []
+    # Copy current search/filter GET parameters back to url.
+    for param in request.GET.items():
+        if param[0] not in ('sort', 'order'):
+            get_params.append((param[0], param[1]))
+
+    return create_sort_link(pretty_name, sort_field, get_params,
+                            sort, order)

@@ -120,9 +120,9 @@
         <thead>
           <tr class="listing-header">
             <th>&nbsp;</th>
-            <th>{{ _('App') }}</th>
+            <th>{{ sort_link(_('App'), 'name')|safe }}</th>
             <th>{{ _('Flags') }}</th>
-            <th>{{ _('Waiting Time') }}</th>
+            <th>{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
             <th>{{ _('Devices') }}</th>
             <th>{{ _('Payments') }}</th>
             <th>{{ _('Abuse Reports') }}</th>

@@ -33,6 +33,7 @@ from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
 from mkt.reviewers.views import _filter
+from mkt.reviewers.utils import create_sort_link
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews
@@ -325,13 +326,6 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
         eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
-
-    # TODO(robhudson): Add sorting back in.
-    #def test_sort(self):
-    #    r = self.client.get(self.url, {'sort': '-name'})
-    #    eq_(r.status_code, 200)
-    #    eq_(pq(r.content)('#addon-queue tbody tr').eq(0).attr('data-addon'),
-    #        str(self.apps[1].id))
 
 
 class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
@@ -2029,7 +2023,7 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
         assert u'No review points awarded yet' in res.content
 
 
-class TestQueueSearch(AppReviewerTest):
+class TestQueueSearchSort(AppReviewerTest):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -2062,6 +2056,8 @@ class TestQueueSearch(AppReviewerTest):
             device_type=amo.DEVICE_DESKTOP.id)
         self.apps[1].addondevicetype_set.create(
             device_type=amo.DEVICE_MOBILE.id)
+
+        self.url = reverse('reviewers.apps.queue_pending')
 
     def test_filter(self):
         """For each field in the form, run it through view and check results.
@@ -2128,21 +2124,72 @@ class TestQueueSearch(AppReviewerTest):
         Test that advanced search form shown when searching fields other
         than text_query and that clear search button shown when searching.
         """
-        url = reverse('reviewers.apps.queue_pending')
-
-        r = self.client.get(url, {'text_query': '',
-                                  'waiting_time_days': ''})
+        r = self.client.get(self.url, {'text_query': '',
+                                       'waiting_time_days': ''})
         p = pq(r.content)
         eq_(p('#advanced-search').attr('class'), 'hidden')
         eq_(p('#clear-queue-search').length, 0)
 
-        r = self.client.get(url, {'text_query': 'abcd',
-                                  'waiting_time_days': ''})
+        r = self.client.get(self.url, {'text_query': 'abcd',
+                                       'waiting_time_days': ''})
         p = pq(r.content)
         eq_(p('#advanced-search').attr('class'), 'hidden')
         eq_(p('#clear-queue-search').length, 1)
 
-        r = self.client.get(url, {'has_info_request': '0'})
+        r = self.client.get(self.url, {'has_info_request': '0'})
         p = pq(r.content)
         eq_(p('#advanced-search').attr('class'), None)
         eq_(p('#clear-queue-search').length, 1)
+
+    def test_create_sort_link(self):
+        """
+        Test that the sortable table headers' have URLs created correctly.
+        """
+        # Test that name's link sorts by asc if already sorting by created.
+        link = create_sort_link('Name', 'name', [('text_query', 'irrel')],
+                                'created', 'desc')
+        assert('sort=name' in link)
+        assert('order=asc' in link)
+        assert('text_query=irrel' in link)
+
+        # Test that created's link inverts order if already sorting by created.
+        link = create_sort_link('Waiting Time', 'created',
+                                [('text_query', 'guybrush')], 'created',
+                                'asc')
+        assert('sort=created' in link)
+        assert('order=desc' in link)
+        assert('text_query=guybrush' in link)
+        link = create_sort_link('Waiting Time', 'created', [], 'created',
+                                'desc')
+        assert('order=asc' in link)
+
+    def test_sort(self):
+        """
+        Test that apps are sorted in order specified in GET params
+        """
+        app0 = str(self.apps[0].id)
+        app1 = str(self.apps[1].id)
+
+        # Test apps are sorted by created/asc by default.
+        r = self.client.get(self.url, {'sort': 'invalidsort',
+                                       'order': 'dontcare'})
+        p = pq(r.content)
+        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app1)
+        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app0)
+
+        # Test sorting by created, descending.
+        r = self.client.get(self.url, {'sort': 'created', 'order': 'desc'})
+        p = pq(r.content)
+        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app0)
+        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app1)
+
+        # Test sorting by app name.
+        r = self.client.get(self.url, {'sort': 'name', 'order': 'asc'})
+        p = pq(r.content)
+        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app1)
+        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app0)
+
+        r = self.client.get(self.url, {'sort': 'name', 'order': 'desc'})
+        p = pq(r.content)
+        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app0)
+        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app1)

@@ -1,3 +1,4 @@
+import urllib
 from datetime import datetime
 
 from django.conf import settings
@@ -395,3 +396,45 @@ class ReviewHelper(object):
         if not action:
             raise NotImplementedError
         return self.actions[action]['method']()
+
+
+def clean_sort_param(request):
+    """
+    Handles empty and invalid values for sort and sort order
+    'created' by ascending is the default ordering.
+    """
+    sort = request.GET.get('sort', 'created')
+    order = request.GET.get('order', 'asc')
+
+    if sort not in ('created', 'name'):
+        sort = 'created'
+    if order not in ('desc', 'asc'):
+        order = 'asc'
+    return sort, order
+
+
+def create_sort_link(pretty_name, sort_field, get_params, sort, order):
+    """Generate table header sort links.
+
+    pretty_name -- name displayed on table header
+    sort_field -- name of the sort_type GET parameter for the column
+    get_params -- additional get_params to include in the sort_link
+    sort -- the current sort type
+    order -- the current sort order
+    """
+    get_params.append(('sort', sort_field))
+
+    if sort == sort_field and order == 'asc':
+        # Have link reverse sort order to desc if already sorting by desc.
+        get_params.append(('order', 'desc'))
+    else:
+        # Default to ascending.
+        get_params.append(('order', 'asc'))
+
+    # Show little sorting sprite if sorting by this field.
+    url_class = ''
+    if sort == sort_field:
+        url_class = ' class="sort-icon ed-sprite-sort-%s"' % order
+
+    return u'<a href="?%s"%s>%s</a>' % (urllib.urlencode(get_params),
+                                        url_class, pretty_name)

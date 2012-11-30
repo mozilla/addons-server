@@ -37,11 +37,13 @@ from editors.views import reviewer_required
 from files.models import File
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
+from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 import mkt.constants.reviewers as rvw
 from mkt.developers.models import ActivityLog
+from mkt.reviewers.utils import clean_sort_param
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
 
@@ -293,6 +295,9 @@ def _check_if_searching(search_form):
     """
     searching = False
     adv_searching = False
+    if not search_form:
+        return searching, adv_searching
+
     for field in search_form:
         if field.data:
             # If filtering, show 'clear search' button.
@@ -304,16 +309,30 @@ def _check_if_searching(search_form):
     return searching, adv_searching
 
 
+def _do_sort(request, qs):
+    """Returns an order_by string based on request GET parameters"""
+    sort, order = clean_sort_param(request)
+
+    if order == 'asc':
+        order_by = sort
+    else:
+        order_by = '-%s' % sort
+
+    if sort == 'name':
+        return order_by_translation(qs, order_by)
+    else:
+        return qs.order_by(order_by)
+
+
 @permission_required('Apps', 'Review')
 def queue_apps(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     qs = (Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
                                  disabled_by_user=False,
                                  status=amo.STATUS_PENDING)
-                         .exclude(id__in=excluded_ids)
-                         .order_by('created'))
+                         .exclude(id__in=excluded_ids))
 
-    qs, search_form = _get_search_form(request, qs)
+    qs, search_form = _get_search_form(request, _do_sort(request, qs))
 
     apps = [QueuedApp(app, app.created) for app in qs]
 
@@ -331,7 +350,7 @@ def queue_rereview(request):
                               .values_list('addon', flat=True))
     qs = Webapp.objects.filter(id__in=addon_ids)
 
-    qs, search_form = _get_search_form(request, qs)
+    qs, search_form = _get_search_form(request, _do_sort(request, qs))
 
     apps = [QueuedApp(app, app.created) for app in qs]
 
@@ -347,10 +366,10 @@ def queue_updates(request):
                                      version__addon__type=amo.ADDON_WEBAPP,
                                      version__addon__disabled_by_user=False)
                              .values_list('version__addon_id', flat=True))
-
     qs = (Webapp.uncached.exclude(id__in=excluded_ids)
                          .filter(id__in=addon_ids))
-    qs, search_form = _get_search_form(request, qs)
+
+    qs, search_form = _get_search_form(request, _do_sort(request, qs))
 
     apps = Webapp.version_and_file_transformer(qs)
 
@@ -364,11 +383,10 @@ def queue_updates(request):
 def queue_escalated(request):
     addon_ids = (EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
                                                  addon__disabled_by_user=False)
-                                .order_by('created')
                                 .values_list('addon', flat=True))
     qs = Webapp.objects.filter(id__in=addon_ids)
 
-    qs, search_form = _get_search_form(request, qs)
+    qs, search_form = _get_search_form(request, _do_sort(request, qs))
 
     apps = [QueuedApp(app, app.created) for app in qs]
     return _queue(request, apps, 'escalated', search_form)
@@ -376,6 +394,7 @@ def queue_escalated(request):
 
 @permission_required('Apps', 'Review')
 def queue_moderated(request):
+    """Queue for reviewing app reviews."""
     rf = (Review.uncached.exclude(Q(addon__isnull=True) |
                                   Q(reviewflag__isnull=True))
                 .filter(addon__type=amo.ADDON_WEBAPP,
