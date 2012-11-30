@@ -97,14 +97,16 @@
                 </div>
               {%- endmacro %}
 
-              <div class="inline-dropdown">
-                {{ form_element(search_form, ('admin_review', 'has_editor_comment',
-                                              'has_info_request', 'waiting_time_days')) }}
+              <div class="basic-filters">
+                {{ form_element(search_form,
+                                ('admin_review', 'has_editor_comment',
+                                 'has_info_request', 'waiting_time_days',
+                                 'app_type')) }}
               </div>
-              <div class="device-type-select block-dropdown">
+              <div class="device-type-select">
                 {{ form_element(search_form, ('device_type_ids',)) }}
               </div>
-              <div class="premium-type-select block-dropdown">
+              <div class="premium-type-select">
                 {{ form_element(search_form, ('premium_type_ids',)) }}
               </div>
             </div>

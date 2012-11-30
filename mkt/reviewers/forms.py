@@ -101,9 +101,12 @@ class AppQueueSearchForm(happyforms.Form):
         label=_lazy(u'Days Since Submission'),
         choices=([('', '')] + [(i, i) for i in range(1, 10)] + [(10, '10+')]))
     device_type_ids = forms.MultipleChoiceField(required=False,
-            widget=forms.CheckboxSelectMultiple,
-            label=_lazy(u'Device Type'),
-            choices=[(d.id, d.name) for d in amo.DEVICE_TYPES.values()])
+        widget=forms.CheckboxSelectMultiple,
+        label=_lazy(u'Device Type'),
+        choices=[(d.id, d.name) for d in amo.DEVICE_TYPES.values()])
+    app_type = forms.TypedChoiceField(required=False, coerce=int,
+        label=_lazy(u'App Type'),
+        choices=[('', '')] + rvw.APP_TYPES.items())
 
     # Changes wording from "I'll use my own system..." to fit context of queue.
     premium_types = dict(amo.ADDON_PREMIUM_TYPES)

@@ -2037,7 +2037,7 @@ class TestQueueSearch(AppReviewerTest):
         self.login_as_senior_reviewer()
         self.apps = [app_factory(name='Lillard',
                                  status=amo.STATUS_PENDING,
-                                 is_packaged=True,
+                                 is_packaged=False,
                                  version_kw={'version': '1.0'},
                                  admin_review=True,
                                  premium_type=amo.ADDON_FREE),
@@ -2084,6 +2084,9 @@ class TestQueueSearch(AppReviewerTest):
 
         self.do_filter(both_apps, waiting_time_days=1)
         self.do_filter(app1, waiting_time_days=4)
+
+        self.do_filter(app0, app_type=rvw.APP_TYPE_HOSTED)
+        self.do_filter(app1, app_type=rvw.APP_TYPE_PACKAGED)
 
         self.do_filter(both_apps, device_type_ids=[amo.DEVICE_MOBILE.id,
                                                    amo.DEVICE_DESKTOP.id])
