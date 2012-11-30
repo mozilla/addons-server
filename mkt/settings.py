@@ -296,17 +296,13 @@ USE_APPCACHE = False
 # These are absolute paths to add to the cache. Wildcards are not allowed here.
 # These paths will be added as-is to the cache section.
 APPCACHE_TO_CACHE = [
-    'https://login.persona.org/include.js',
 ]
 
 APPCACHE_NET_PATHS = [
     '*'
 ]
 
-APPCACHE_FALLBACK_PATHS = {
-    '/app/': '/offline/home',
-    '/settings/': '/offline/home',
-}
+APPCACHE_FALLBACK_PATHS = {}
 for url in CARRIER_URLS:
     APPCACHE_FALLBACK_PATHS['/%s' % url] = '/offline/home';
 
@@ -321,14 +317,10 @@ for url in CARRIER_URLS:
 
 def APPCACHE_MEDIA_TO_CACHE():
     from jingo_minify import helpers
-    bundle = 'mkt/consumer'
+    bundle = 'mkt/offline'
 
     # TODO(Kumar) refactor jingo-minify so we don't have to copy/paste this
     # logic.
-    js_build_id = helpers.BUILD_ID_JS
-    bundle_full = "js:%s" % bundle
-    if bundle_full in helpers.BUNDLE_HASHES:
-        js_build_id = helpers.BUNDLE_HASHES[bundle_full]
 
     css_build_id = helpers.BUILD_ID_CSS
     bundle_full = "css:%s" % bundle
@@ -336,7 +328,6 @@ def APPCACHE_MEDIA_TO_CACHE():
         css_build_id = helpers.BUNDLE_HASHES[bundle_full]
 
     return (
-        'js/%s-min.js?build=%s' % (bundle, js_build_id),
         'css/%s-min.css?build=%s' % (bundle, css_build_id),
     )
 
@@ -345,13 +336,11 @@ def APPCACHE_MEDIA_TO_CACHE():
 # APPCACHE_MEDIA_TO_CACHE = APPCACHE_MEDIA_DEBUG
 
 def APPCACHE_MEDIA_DEBUG():
-    for f in list(asset_bundles.CSS['mkt/consumer']):
+    for f in list(asset_bundles.CSS['mkt/offline']):
         if f.endswith('.less'):
             yield f + '.css'
         else:
             yield f
-    for path in asset_bundles.JS['mkt/consumer']:
-        yield path
 
 # Allowed `installs_allowed_from` values for manifest validator.
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com']

@@ -116,6 +116,14 @@ CSS = {
         'css/mkt/browse.less',
         'css/mkt/filters.less',
     ),
+    'mkt/offline': (
+        'css/mkt/reset.less',
+        'css/mkt/typography.less',
+        'css/mkt/site.less',
+        'css/mkt/header.less',
+        'css/mkt/buttons.less',
+        'css/mkt/offline.less',
+    ),
     'mkt/ecosystem': (
         'css/mkt/reset.less',
         'css/mkt/typography.less',

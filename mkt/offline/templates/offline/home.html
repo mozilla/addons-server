@@ -1,18 +1,52 @@
-{% extends 'mkt/base.html' %}
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>{{ _('Firefox Marketplace') }}</title>
 
-{% set pagetype = 'offline' %}
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/mkt/aurora_fav.ico">
 
-{% block content %}
-  <section class="infobox" data-offline="true">
-    <p class="online">
-      {{ _('Loading the Firefox Marketplace...') }}
-    </p>
-    <p class="offline">
-      {{ _('Sorry, you need to be online to access the Marketplace.') }}
-      <button>Try Again</button>
-      <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
-    </p>
-  </section>
-{% endblock %}
+    {{ css('mkt/offline') }}
 
-{% block offline_pixel %}{% endblock %}
+  </head>
+  <body class="html-{{ DIR }} {{ CARRIER }} force-mobile offline">
+
+    <header id="site-header" class="c{{ ' no-consumer' if not request.can_view_consumer }}">
+      <section>
+        <h1>{{ _('Firefox Marketplace') }}</h1>
+      </section>
+    </header>
+
+    <div id="container">
+      <div id="page" role="main"
+           data-context="{{
+             {'type': 'offline',
+              'cache': 'no',
+              'hash': 'offline',
+              'title': _('Firefox Marketplace'),
+              'headertitle': _('Firefox Marketplace'),
+              'bodyclass': 'offline',
+              'parent': '',
+              'category': ''}|json }}">
+        {% block content %}
+          <section class="infobox">
+            <h3>
+              {{ _('Sorry, you need to be online to access the Marketplace.') }}
+            </h3>
+            <div>
+              <button onclick="window.location.reload()">Try Again</button>
+            </div>
+          </section>
+        {% endblock %}
+      </div>
+    </div>
+
+    {% block dbgoverlay %}{% endblock %}
+  </body>
+</html>
+
