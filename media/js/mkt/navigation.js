@@ -117,12 +117,13 @@ var nav = (function() {
 
     function setTitle() {
         // Something something title joke.
-        var $h1 = $('#site-header h1');
+        var $h1 = $('#site-header h1.page');
         var title = $('#page').data('context').headertitle || '';
         $h1.text(title);
     }
 
     function back() {
+        // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
             $(window).trigger('loadfragment', stack[0].path);
