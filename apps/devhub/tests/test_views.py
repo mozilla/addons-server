@@ -3119,7 +3119,11 @@ class TestAddVersionValidation(AddVersionTest):
     def test_admin_validation_override(self):
         self.login_as_admin()
         self.do_upload_non_fatal()
+
+        assert not self.addon.admin_review
         self.post(override_validation=True, expected_status=200)
+
+        eq_(self.addon.reload().admin_review, True)
 
     def test_admin_validation_sans_override(self):
         self.login_as_admin()

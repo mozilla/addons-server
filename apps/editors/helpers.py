@@ -738,10 +738,6 @@ class ReviewFiles(ReviewBase):
         """Give an addon super review when preliminary."""
         self.addon.update(admin_review=True)
 
-        if any(f.status for f in self.data['addon_files'] if f.status
-               in (amo.STATUS_PENDING, amo.STATUS_UNREVIEWED)):
-            self.log_action(amo.LOG.ESCALATE_VERSION)
-
         self.notify_email('author_super_review',
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
 

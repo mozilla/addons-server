@@ -44,7 +44,7 @@ from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from devhub import perf
-from editors.helpers import get_position
+from editors.helpers import ReviewHelper, get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from lib.pay_server import client
@@ -1348,6 +1348,17 @@ def version_delete(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
+def check_validation_override(request, form, addon, version):
+    if version and form.cleaned_data.get('admin_override_validation'):
+        helper = ReviewHelper(request=request, addon=addon, version=version)
+        helper.set_data(
+            dict(operating_systems='', applications='',
+                 comments=_(u'This upload has failed validation, and may '
+                            u'lack complete validation results. Please '
+                            u'take due care when reviewing it.')))
+        helper.actions['super']['method']()
+
+
 @json_view
 @dev_required
 @post_required
@@ -1359,6 +1370,7 @@ def version_add(request, addon_id, addon):
         v = Version.from_upload(form.cleaned_data['upload'], addon, pl)
         log.info('Version created: %s for: %s' %
                  (v.pk, form.cleaned_data['upload']))
+        check_validation_override(request, form, addon, v)
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:
@@ -1378,6 +1390,7 @@ def version_add_file(request, addon_id, addon, version_id):
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
                                 parse_addon(upload, addon))
     storage.delete(upload.path)
+    check_validation_override(request, form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
     return jingo.render(request, 'devhub/includes/version_file.html',
@@ -1585,6 +1598,7 @@ def submit_addon(request, step, webapp=False):
                 tasks.fetch_icon.delay(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
+            check_validation_override(request, form, addon, addon.current_version)
             return redirect(_step_url(3, webapp), addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')

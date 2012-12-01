@@ -646,7 +646,6 @@ class TestReviewHelper(amo.tests.TestCase):
                 ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
                  'Admin Review'))
 
-            eq_(self.check_log_count(amo.LOG.ESCALATE_VERSION.id), 1)
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_pending_to_public(self):
