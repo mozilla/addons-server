@@ -30,7 +30,6 @@ log = logging.getLogger(__name__)
 
 
 def index(environ, start_response):
-    assert False
     start_response('200 OK', [('Content-Type', 'text/html')])
     return ['<a href="/manifest.webapp">/manifest.webapp</a><br>'
             '<a href="/package.zip">/package.zip</a>']
