@@ -24,27 +24,36 @@ from zipfile import ZipFile, ZIP_DEFLATED
 DEFAULT_ADDR = '0.0.0.0'
 DEFAULT_PORT = '8888'
 ROOT = os.getcwd()
+NAME = os.path.basename(ROOT)
 
 
 log = logging.getLogger(__name__)
 
 
+def _absolutify(path):
+    base_url = os.environ.get('BASE_URL', 'http://%s:%s/' % (DEFAULT_ADDR,
+                                                             DEFAULT_PORT))
+    return '%s%s/%s' % (base_url, NAME, path.rsplit('/', 1)[0])
+
+
 def index(environ, start_response):
+    context = {
+        'manifest': _absolutify('manifest.webapp'),
+        'package': _absolutify('package.zip'),
+    }
     start_response('200 OK', [('Content-Type', 'text/html')])
-    return ['<a href="/manifest.webapp">/manifest.webapp</a><br>'
-            '<a href="/package.zip">/package.zip</a>']
+    return ['<a href="%(manifest)s">%(manifest)s</a><br>'
+            '<a href="%(package)s">%(package)s</a>' % context]
 
 
 def manifest(environ, start_response):
-    start_response('200 OK', [('Content-Type', 'application/json')])
-    base_url = os.environ.get('BASE_URL', 'http://%s:%s/' % (DEFAULT_ADDR,
-                                                             DEFAULT_PORT))
     data = {
         'name': u'My app',
         'version': 1,
         'size': 1000,  # TODO
-        'package_path': '%spackage.zip' % base_url,
+        'package_path': _absolutify('package.zip'),
     }
+    start_response('200 OK', [('Content-Type', 'application/json')])
     return [json.dumps(data)]
 
 
@@ -63,8 +72,8 @@ def zip_file(environ, start_response):
                 zip_path = full_path[len(ROOT) + 1:]  # +1 for the slash.
                 _add_file(outfile, zip_path, full_path)
 
-    start_response('200 OK', [('Content-Type', 'application/zip')])
     sio.seek(0)
+    start_response('200 OK', [('Content-Type', 'application/zip')])
     return sio.getvalue()
 
 
