@@ -29,7 +29,8 @@
     <div class="form-col">
       {% if choice %}
         {{ field.as_widget() }}
-        {{ simple_label(field, label, opt, req, tooltip, hint) }}
+        {{ simple_label(field, label, opt, req, hint) }}
+        {% if tooltip %}{{ tip(None, field.help_text) }}{% endif %}
       {% endif %}
   {% endif %}
 
