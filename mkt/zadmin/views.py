@@ -64,19 +64,19 @@ def featured_apps_ajax(request):
             cat = int(cat)
         deleteid = request.POST.get('delete', None)
         if deleteid:
-            FeaturedApp.objects.filter(category__id=cat,
+            FeaturedApp.uncached.filter(category__id=cat,
                                        app__id=int(deleteid)).delete()
         appid = request.POST.get('add', None)
         if appid:
-            app, created = FeaturedApp.objects.get_or_create(category_id=cat,
-                                                             app_id=int(appid))
+            app, created = FeaturedApp.uncached.get_or_create(category_id=cat,
+                                                              app_id=int(appid))
             if created:
                 FeaturedAppRegion.objects.create(
                     featured_app=app, region=mkt.regions.WORLDWIDE.id)
     else:
         cat = None
     apps_regions_carriers = []
-    for app in FeaturedApp.objects.filter(category__id=cat):
+    for app in FeaturedApp.uncached.filter(category__id=cat):
         regions = app.regions.values_list('region', flat=True)
         excluded_regions = app.app.addonexcludedregion.values_list('region',
                                                                    flat=True)
@@ -99,7 +99,7 @@ def set_attrs_ajax(request):
     app = request.POST.get('app', None)
     if not app:
         return HttpResponse()
-    fa = FeaturedApp.objects.get(pk=app)
+    fa = FeaturedApp.uncached.get(pk=app)
     if regions or carriers:
         regions = set(int(r) for r in regions)
         fa.regions.exclude(region__in=regions).delete()
@@ -134,11 +134,11 @@ def set_attrs_ajax(request):
 def featured_categories_ajax(request):
     cats = Category.objects.filter(type=amo.ADDON_WEBAPP)
     return jingo.render(request, 'zadmin/featured_categories_ajax.html', {
-        'homecount': FeaturedApp.objects.filter(category=None).count(),
+        'homecount': FeaturedApp.uncached.filter(category=None).count(),
         'categories': [{
             'name': cat.name,
             'id': cat.pk,
-            'count': FeaturedApp.objects.filter(category=cat).count()
+            'count': FeaturedApp.uncached.filter(category=cat).count()
         } for cat in cats]})
 
 
