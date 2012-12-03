@@ -222,28 +222,24 @@ def market_tile(context, product, link=True, src=''):
                 notices.append(_('This app is available for purchase on '
                                  'only Firefox OS.'))
 
-        if product.is_packaged and not request.GAIA:
-            notices.append(_('This app is available on only Firefox OS.'))
-
-        if not request.MOBILE and product.device_types:
-            url = reverse('ecosystem.installation')
-            if product.device_types == [amo.DEVICE_DESKTOP]:
-                classes.append('incompatible')
-                # notices.append(
-                #     _('Desktop support is temporarily disabled ('
-                #       '<b data-href="{url}">learn more</b>).').format(url=url))
-            elif amo.DEVICE_DESKTOP in product.device_types:
-                classes.append('incompatible')
-                # notices.append(
-                #     _('Desktop support is temporarily disabled '
-                #       '(<b data-href="{url}">learn more</b>). '
-                #       'Please try this app in Firefox Mobile on your Android '
-                #       'phone.').format(url=url))
-            else:
-                classes.append('incompatible')
-                # notices.append(_('This is a mobile-only app. Please try this '
-                #                  'app in Firefox Mobile on your Android '
-                #                  'phone.'))
+        sumo_url = ('https://support.mozilla.org/en-US/kb/'
+                    'how-access-firefox-marketplace')
+        if not request.MOBILE and product.device_types == [amo.DEVICE_MOBILE]:
+            notices.append(_('This is a mobile-only app. Please try this '
+                             'app in Firefox Mobile on your Android '
+                             'phone. <b data-href="%s">learn more</b>')
+                           % sumo_url)
+        elif not request.TABLET and product.device_types == [amo.DEVICE_TABLET]:
+            notices.append(_('This is a tablet-only app. Please try this '
+                             'app in Firefox Mobile on your Android '
+                             'tablet. <b data-href="%s">learn more</b>')
+                           % sumo_url)
+        elif not request.GAIA and product.device_types == [amo.DEVICE_GAIA]:
+            # This includes packaged apps.
+            notices.append(_('This is a Firefox OS-only app. Please try this '
+                             'app on your Firefox OS phone. '
+                             '<b data-href="%s">learn more</b>')
+                           % sumo_url)
 
         if need_firefox:
             if request.MOBILE:

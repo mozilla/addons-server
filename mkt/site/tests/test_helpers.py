@@ -110,7 +110,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').text(),
             'This app is temporarily unavailable for purchase.')
 
-    def test_is_desktop_disabled(self):
+    def test_is_desktop_enabled(self):
         self.webapp.addondevicetype_set.create(
             device_type=amo.DEVICE_DESKTOP.id)
         self.context['request'].MOBILE = False
@@ -119,8 +119,8 @@ class TestMarketButton(amo.tests.TestCase):
             'Firefox/18.0')
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disabled' in cls, 'Could not find %r class' % cls
-        assert 'incompatible' in cls, 'Could not find %r class' % cls
+        assert 'disabled' not in cls, 'Found %r class' % cls
+        assert 'incompatible' not in cls, 'Found %r class' % cls
         eq_(doc('.bad-app').length, 0)
 
     def test_needs_firefox_for_android(self):
@@ -162,6 +162,62 @@ class TestMarketButton(amo.tests.TestCase):
         cls = doc('button').attr('class')
         assert 'disabled' not in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').length, 0)
+
+    def test_can_install_mobile(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+        self.context['request'].MOBILE = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
+
+    def test_cannot_install_mobile_only(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+        self.context['request'].MOBILE = False
+        self.context['request'].DESKTOP = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Expected: %r' % cls
+        eq_(doc('.bad-app').length, 1)
+
+    def test_can_install_tablet(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_TABLET.id)
+        self.context['request'].MOBILE = False
+        self.context['request'].TABLET = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
+
+    def test_cannot_install_tablet_only(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_TABLET.id)
+        self.context['request'].MOBILE = False
+        self.context['request'].TABLET = False
+        self.context['request'].DESKTOP = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Expected: %r' % cls
+        eq_(doc('.bad-app').length, 1)
+
+    def test_can_install_firefoxos(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.context['request'].MOBILE = False
+        self.context['request'].TABLET = False
+        self.context['request'].GAIA = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
+
+    def test_cannot_install_firefox_only(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.context['request'].MOBILE = False
+        self.context['request'].TABLET = False
+        self.context['request'].DESKTOP = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Expected: %r' % cls
+        eq_(doc('.bad-app').length, 1)
 
     def test_xss(self):
         nasty = '<script>'
