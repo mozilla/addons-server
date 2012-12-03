@@ -14,6 +14,7 @@ import logging
 import optparse
 import os
 import re
+import socket
 from StringIO import StringIO
 from sys import exc_info
 from traceback import format_tb
@@ -31,9 +32,16 @@ log = logging.getLogger(__name__)
 
 
 def _absolutify(path):
-    base_url = os.environ.get('BASE_URL', 'http://%s:%s/' % (DEFAULT_ADDR,
-                                                             DEFAULT_PORT))
-    return '%s%s/%s' % (base_url, NAME, path.rsplit('/', 1)[0])
+    return '%s%s/%s' % (os.environ['BASE_URL'], NAME, path.rsplit('/', 1)[0])
+
+
+def _get_local_ip():
+    """A hack way to find the local IP without using any Python libraries."""
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('google.com', 80))
+    ip = s.getsockname()[0]
+    s.close()
+    return ip
 
 
 def index(environ, start_response):
@@ -143,7 +151,8 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG,
                         format='[%(asctime)s] %(message)s')
 
-    base_url = 'http://%s:%s/' % (options.addr, options.port)
+    ip = _get_local_ip() if options.addr == DEFAULT_ADDR else options.addr
+    base_url = 'http://%s:%s/' % (ip, options.port)
     log.info('Serving at %s' % base_url)
     os.environ['BASE_URL'] = base_url
 
