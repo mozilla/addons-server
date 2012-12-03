@@ -51,37 +51,12 @@ $.fn.promoPager = function() {
 };
 
 (function() {
-    $('#caroline').click(function() {
+    $(document).delegate('#holiday .addons a', 'click', _pd(function() {
         dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
-                      'DCS.dcsuri', '/en-US/firefox/',
-                      'WT.ti', 'Link: Firebug',
+                      'DCS.dcsuri', location.pathname,
+                      'WT.ti', 'Link: ' + $('h3', this).text(),
                       'WT.dl', 99,
-                      'WT.z_convert', 'FavoriteAdd-ons'
+                      'WT.z_convert', 'HolidayShopping'
         );
-    });
-    $('#jason').click(function() {
-        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
-                      'DCS.dcsuri', '/en-US/firefox/',
-                      'WT.ti', 'Link: DownThemAll!',
-                      'WT.dl', 99,
-                      'WT.z_convert', 'FavoriteAdd-ons'
-        );
-    });
-    $('#josh').click(function() {
-        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
-                      'DCS.dcsuri', '/en-US/firefox/',
-                      'WT.ti', 'Link: LastPass',
-                      'WT.dl', 99,
-                      'WT.z_convert', 'FavoriteAdd-ons'
-        );
-    });
-
-    $('#olympics .view-button a').click(function() {
-        dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
-                      'DCS.dcsuri', '/en-US/firefox/',
-                      'WT.ti', 'Link: Flags 2012 Collection',
-                      'WT.dl', 99,
-                      'WT.z_convert', 'Olympics'
-        );
-    });
+    }));
 })();
