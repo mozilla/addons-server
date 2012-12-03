@@ -1,0 +1,10 @@
+[
+    {
+        "pk": 10,
+        "model": "access.groupuser",
+        "fields": {
+            "group": 1,
+            "user": 4043307
+        }
+    }
+]

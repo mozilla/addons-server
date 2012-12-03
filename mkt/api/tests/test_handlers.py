@@ -14,13 +14,13 @@ from amo.tests import AMOPaths
 from files.models import FileUpload
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.constants import APP_IMAGE_SIZES
-from mkt.developers import tasks
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import ImageAsset, Webapp
 from users.models import UserProfile
 
 
 class ValidationHandler(BaseOAuth):
-    fixtures = ['base/user_2519', 'base/users']
+    fixtures = fixture('user_2519', 'user_admin')
 
     def setUp(self):
         super(ValidationHandler, self).setUp()
@@ -197,7 +197,7 @@ class TestGetValidationHandler(ValidationHandler):
 
 
 class CreateHandler(BaseOAuth):
-    fixtures = ['base/user_2519', 'base/users', 'base/platforms']
+    fixtures = fixture('user_2519', 'platform_all')
 
     def setUp(self):
         super(CreateHandler, self).setUp()
@@ -224,9 +224,8 @@ def _mock_fetch_content(url):
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppCreateHandler(CreateHandler, AMOPaths):
-
-    fixtures = ['base/user_2519', 'base/users',
-                'base/platforms', 'base/apps', 'base/appversion']
+    fixtures = fixture('app_firefox', 'platform_all', 'user_admin',
+                       'user_2519',)
 
     def count(self):
         return Addon.objects.count()
@@ -410,7 +409,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
 
 class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
-    fixtures = ['base/user_2519', 'base/users', 'base/platforms']
+    fixtures = fixture('user_2519', 'platform_all')
 
     def setUp(self):
         super(CreatePackagedHandler, self).setUp()
@@ -430,8 +429,7 @@ class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPackagedAppCreateHandler(CreatePackagedHandler):
-    fixtures = ['base/user_2519', 'base/users',
-                'base/platforms', 'base/apps', 'base/appversion']
+    fixtures = fixture('user_2519', 'platform_all')
 
     def test_create(self):
         obj = self.create()
@@ -448,9 +446,7 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestListHandler(CreateHandler, AMOPaths):
-
-    fixtures = ['base/user_2519', 'base/users',
-                'base/platforms', 'base/appversion']
+    fixtures = fixture('user_2519', 'user_999', 'platform_all')
 
     def create(self, users):
         app = Addon.objects.create(type=amo.ADDON_WEBAPP)
@@ -484,9 +480,7 @@ class TestListHandler(CreateHandler, AMOPaths):
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppStatusHandler(CreateHandler, AMOPaths):
-
-    fixtures = ['base/user_2519', 'base/users',
-                'base/platforms', 'base/appversion']
+    fixtures = fixture('user_2519', 'platform_all')
 
     def setUp(self):
         super(TestAppStatusHandler, self).setUp()
@@ -609,7 +603,7 @@ class TestCategoryHandler(BaseOAuth):
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPreviewHandler(BaseOAuth, AMOPaths):
-    fixtures = ['base/users', 'base/user_2519', 'webapps/337141-steamcube']
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         super(TestPreviewHandler, self).setUp()
