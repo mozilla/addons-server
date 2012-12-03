@@ -2,11 +2,13 @@ from django.db import models
 
 from addons.models import Category
 
+import amo
+
 import mkt
 from mkt.webapps.models import Webapp
 
 
-class FeaturedApp(models.Model):
+class FeaturedApp(amo.models.ModelBase):
     app = models.ForeignKey(Webapp, null=False)
     category = models.ForeignKey(Category, null=True)
     is_sponsor = models.BooleanField(default=False)
@@ -17,14 +19,14 @@ class FeaturedApp(models.Model):
         db_table = 'zadmin_featuredapp'
 
 
-class FeaturedAppRegion(models.Model):
+class FeaturedAppRegion(amo.models.ModelBase):
     featured_app = models.ForeignKey(FeaturedApp, null=False,
                                      related_name='regions')
     region = models.PositiveIntegerField(default=mkt.regions.WORLDWIDE.id,
                                          db_index=True)
 
 
-class FeaturedAppCarrier(models.Model):
+class FeaturedAppCarrier(amo.models.ModelBase):
     featured_app = models.ForeignKey(FeaturedApp, null=False,
                                      related_name='carriers')
     carrier = models.CharField(max_length=255, db_index=True, null=False)
