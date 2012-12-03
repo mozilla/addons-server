@@ -109,7 +109,7 @@
 
     var region_carrier_update = _pd(function(e) {
         var $choices = $(e.target);
-        var $appParent = $choices.closest('ul');
+        var $appParent = $('.featured-app');
         function carrierName(v) {
             var x = v.split('.');
             if (x[0] == 'carrier') {
