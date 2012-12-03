@@ -45,13 +45,39 @@ def _get_local_ip():
 
 
 def index(environ, start_response):
+    template = '''
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>{name} - Packaged App Server</title>
+            <style>
+                button {{
+                  font-size: 18px;
+                  padding: 5px;
+                  width: 100%;
+                }}
+            </style>
+        </head>
+        <body>
+            <p><a href="{manifest}">{manifest}</a>: The mini-manifest is what
+            is provided to the <code>installPackage</code> API and provides
+            information about your app to Firefox OS.</p>
+            <p><a href="{package}">{package}</a>: The zipped-on-the-fly path to
+            your packaged app. The mini-manifest points to this URL inside the
+            mini-manifest.</p>
+            <button onclick="{install}('{manifest}');">Install</button>
+        </body>
+        </html>
+    '''
+
     context = {
+        'name': NAME,
+        'install': 'navigator.mozApps.installPackage',
         'manifest': _absolutify('manifest.webapp'),
         'package': _absolutify('package.zip'),
     }
     start_response('200 OK', [('Content-Type', 'text/html')])
-    return ['<a href="%(manifest)s">%(manifest)s</a><br>'
-            '<a href="%(package)s">%(package)s</a>' % context]
+    return [template.format(**context)]
 
 
 def manifest(environ, start_response):
