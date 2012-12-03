@@ -2,7 +2,7 @@
 
 (function() {
     z.page.on('click', '.product.launch', launchHandler);
-    z.page.on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
+    z.page.on('click', '.button.product:not(.launch)', installHandler);
 
     function launchHandler(e) {
         e.preventDefault();
@@ -13,7 +13,6 @@
 
     function installHandler(e) {
         e.preventDefault();
-        e.stopPropagation();
         var product = $(this).closest('[data-product]').data('product');
         startInstall(product);
     }
