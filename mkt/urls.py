@@ -122,6 +122,7 @@ urlpatterns = patterns('',
     url('^logout$', logout, name='users.logout'),
 
     url('^api/', include('mkt.api.urls')),
+    url('^api/', include('mkt.webpay.urls')),
 
     url('^appcache/', include('django_appcache.urls')),
 

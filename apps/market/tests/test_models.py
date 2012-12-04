@@ -148,6 +148,12 @@ class TestPrice(amo.tests.TestCase):
         eq_(currencies[0][0], 'USD')
         eq_(currencies[1][1].currency, 'CAD')
 
+    def test_prices(self):
+        currencies = Price.objects.get(pk=1).prices()
+        eq_(len(currencies), 3)
+        eq_(currencies[0]['currency'], 'USD')
+        eq_(currencies[1], {'currency': 'CAD', 'amount': Decimal('3.01')})
+
 
 class ContributionMixin(object):
 

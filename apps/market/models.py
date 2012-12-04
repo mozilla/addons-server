@@ -98,6 +98,11 @@ class Price(amo.models.ModelBase):
                            if c.tier_id == self.pk])
         return currencies
 
+    def prices(self):
+        """A list of dicts of all the currencies and prices for this tier."""
+        return [({'currency': o.currency, 'amount': o.price})
+                for c, o in self.currencies()]
+
 
 class PriceCurrency(amo.models.ModelBase):
     currency = models.CharField(max_length=10,
