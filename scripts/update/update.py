@@ -21,8 +21,16 @@ def create_virtualenv(ctx):
     ctx.local('rm -rf %s' % venv)
     ctx.local('virtualenv --distribute --never-download %s' % venv)
 
-    ctx.local("%s/bin/pip install --exists-action=w --no-deps --no-index --download-cache=/tmp/pip-cache -f %s -r %s/requirements/prod.txt" %
-                (venv, settings.PYREPO, settings.SRC_DIR))
+    ctx.local('%s/bin/pip install --exists-action=w --no-deps --no-index '
+              '--download-cache=/tmp/pip-cache -f %s '
+              '-r %s/requirements/prod.txt' %
+              (venv, settings.PYREPO, settings.SRC_DIR))
+
+    if getattr(settings, 'LOAD_TESTING', False):
+        ctx.local('%s/bin/pip install --exists-action=w --no-deps --no-index '
+                  '--download-cache=/tmp/pip-cache -f %s '
+                  '-r %s/requirements/load.txt' %
+                  (venv, settings.PYREPO, settings.SRC_DIR))
 
     # make sure this always runs
     ctx.local("rm -f %s/lib/python2.6/no-global-site-packages.txt" % venv)
