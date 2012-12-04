@@ -29,8 +29,7 @@ z.page.on('fragmentloaded', webtrendsAsyncInit);
 
 (function() {
     _.extend(z, {
-        nav: BrowserUtils(),
-        canInstallApps: z.body.data('allow-installs')
+        nav: BrowserUtils()
     });
 
     function trigger() {
@@ -89,10 +88,6 @@ z.page.on('fragmentloaded', function() {
                                   [val, {'manifest_url': val.manifestURL}, false]);
             });
         };
-    }
-
-    if (!z.canInstallApps) {
-        $(window).trigger('app_install_disabled');
     }
 
     // Navigation toggle.

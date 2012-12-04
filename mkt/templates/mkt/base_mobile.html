@@ -56,7 +56,6 @@
   </head>
   <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }} {{ bodyclass }}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
-        data-allow-installs="{{ allow_installs()|json }}"
         data-user="{{ user_data(request.amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
@@ -81,15 +80,29 @@
       {% endwith %}
     {% endblock %}
 
-    {% if not allow_installs() and not request.GAIA %}
+    {% set firefox_compat = check_firefox() %}
+    {% if (firefox_compat.need_firefox or firefox_compat.need_upgrade) and
+          not request.GAIA %}
       <div class="incompatible-browser incompatible-mobile">
         <div>
-          <a href="https://market.android.com/details?id=org.mozilla.firefox_beta" class="download" target="_blank">
+          <a href="{{ 'https://market.android.com/details?id=org.mozilla.firefox_beta' if request.MOBILE else 'https://www.mozilla.org/firefox' }}" class="download" target="_blank">
             <span class="helper"></span>
             <span>
-              {% trans %}
-                You must use Firefox Beta to install Firefox apps. <b>Install</b>
-              {% endtrans %}
+              {% if request.MOBILE %}
+                {% trans %}
+                  You must use Firefox Beta to install Firefox apps. <b>Install</b>
+                {% endtrans %}
+              {% else %}
+                {% if firefox_compat.need_firefox %}
+                  {% trans %}
+                    You must use Firefox to install Firefox apps to your desktop. <b>Download</b>
+                  {% endtrans %}
+                {% elif firefox_compat.need_upgrade %}
+                  {% trans %}
+                    You must use a more recent version of Firefox to install Firefox apps to your desktop. <b>Download</b>
+                  {% endtrans %}
+                {% endif %}
+              {% endif %}
             </span>
           </a>
           <a href="#" class="close" title="{{ _('Close') }}">{{ _('Close') }}</a>
