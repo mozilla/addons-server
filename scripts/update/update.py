@@ -110,8 +110,12 @@ def install_cron(ctx):
 
 
 @hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
-def deploy_app(ctx):
+def sync_code(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
+
+
+@hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
+def restart_workers(ctx):
     if getattr(settings, 'GUNICORN', False):
         for gservice in settings.GUNICORN:
             ctx.remote("/sbin/service %s graceful" % gservice)
@@ -120,6 +124,12 @@ def deploy_app(ctx):
         ctx.remote("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
         ctx.remote("/bin/touch %s/services/wsgi/verify.wsgi" % settings.REMOTE_APP)
         ctx.remote("/bin/touch %s/services/wsgi/application.wsgi" % settings.REMOTE_APP)
+
+
+@task
+def deploy_app(ctx):
+    sync_code()
+    restart_workers()
 
 
 @hostgroups(settings.CELERY_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
