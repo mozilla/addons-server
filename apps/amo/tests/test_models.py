@@ -50,10 +50,20 @@ class TestModelBase(TestCase):
         self.saved_cb = amo.models._on_change_callbacks.copy()
         amo.models._on_change_callbacks.clear()
         self.cb = Mock()
+        self.cb.__name__ = 'testing_mock_callback'
         Addon.on_change(self.cb)
 
     def tearDown(self):
         amo.models._on_change_callbacks = self.saved_cb
+
+    def test_multiple_ignored(self):
+        cb = Mock()
+        cb.__name__ = 'something'
+        old = len(amo.models._on_change_callbacks[Addon])
+        Addon.on_change(cb)
+        eq_(len(amo.models._on_change_callbacks[Addon]), old + 1)
+        Addon.on_change(cb)
+        eq_(len(amo.models._on_change_callbacks[Addon]), old + 1)
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):
