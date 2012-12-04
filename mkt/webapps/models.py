@@ -110,6 +110,7 @@ class Webapp(Addon):
         # Make sure we have the right type.
         self.type = amo.ADDON_WEBAPP
         self.clean_slug(slug_field='app_slug')
+        self.assign_uuid()
         creating = not self.id
         super(Addon, self).save(**kw)
         if creating:
@@ -667,6 +668,22 @@ class Webapp(Addon):
         if not self.is_packaged:
             return
         return packaged.sign(version_pk, reviewer=reviewer)
+
+    def assign_uuid(self):
+        """Generates a UUID if self.guid is not already set."""
+        if not self.guid:
+            max_tries = 10
+            tried = 1
+            guid = str(uuid.uuid4())
+            while tried <= max_tries:
+                if not Webapp.objects.filter(guid=guid).exists():
+                    self.guid = guid
+                    break
+                else:
+                    guid = str(uuid.uuid4())
+                    tried += 1
+            else:
+                raise Exception('Could not auto-generate a unique UUID')
 
 
 # Pull all translated_fields from Addon over to Webapp.

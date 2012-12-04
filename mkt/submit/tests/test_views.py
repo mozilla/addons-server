@@ -297,7 +297,8 @@ class TestCreateWebApp(BaseWebAppTest):
         addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.is_packaged, False)
-        eq_(addon.guid, None)
+        assert addon.guid is not None, (
+            'Expected app to have a UUID assigned to guid')
         eq_(unicode(addon.name), u'MozillaBall ょ')
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'mozillaball-ょ')
@@ -443,7 +444,8 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.current_version.version, '1.0')
         eq_(addon.is_packaged, True)
-        eq_(addon.guid, None)
+        assert addon.guid is not None, (
+            'Expected app to have a UUID assigned to guid')
         eq_(unicode(addon.name), u'Packaged MozillaBall ょ')
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'packaged-mozillaball-ょ')

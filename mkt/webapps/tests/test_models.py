@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import json
 import unittest
+import uuid
 import zipfile
 
 from django.conf import settings
@@ -266,6 +267,22 @@ class TestWebapp(amo.tests.TestCase):
     def test_package_no_version(self):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
         eq_(webapp.is_packaged, False)
+
+    def test_assign_uuid(self):
+        app = Webapp()
+        eq_(app.guid, None)
+        app.save()
+        assert app.guid is not None, (
+            'Expected app to have a UUID assigned to guid')
+
+    @mock.patch.object(uuid, 'uuid4', 'abcdef')
+    def test_assign_uuid_max_tries(self):
+        # Create another webapp with and set the guid.
+        Webapp.objects.create(guid='abcdef')
+        # Now `assign_uuid()` should fail.
+        app = Webapp()
+        with self.assertRaises(Exception):
+            app.assign_uuid()
 
 
 class TestWebappVersion(amo.tests.TestCase):
