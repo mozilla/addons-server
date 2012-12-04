@@ -238,6 +238,7 @@ def market_tile(context, product, link=True, src=''):
                              'app on your Firefox OS phone. '
                              '(<b data-href="%s">Learn more</b>)')
                            % sumo_url)
+            classes.append('firefoxos')
 
         firefox_compat = check_firefox(
             ua=request.META.get('HTTP_USER_AGENT', ''))

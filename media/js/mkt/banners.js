@@ -9,7 +9,7 @@
             localStorage.seen_beta_pitch = '1';
         }
         $('.incompatible-browser').removeClass('active');
-    }).on('click', '.incompatible.button', _pd(function(e) {
+    }).on('click', '.incompatible.button:not(.firefoxos)', _pd(function(e) {
         if (z.capabilities.localStorage) {
             delete localStorage.seen_beta_pitch;
         }
