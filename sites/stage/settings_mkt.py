@@ -110,3 +110,11 @@ GEOIP_NOOP = 0
 
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
+
+if getattr(private_mkt, 'LOAD_TESTING', False):
+    AUTHENTICATION_BACKENDS = ('django_fakeauth.FakeAuthBackend',)\
+                              + AUTHENTICATION_BACKENDS
+    MIDDLEWARE_CLASSES.insert(
+            MIDDLEWARE_CLASSES.index('access.middleware.ACLMiddleware'),
+            'django_fakeauth.FakeAuthMiddleware')
+    FAKEAUTH_TOKEN = private_mkt.FAKEAUTH_TOKEN
