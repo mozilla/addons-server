@@ -224,19 +224,19 @@ def market_tile(context, product, link=True, src=''):
         if not request.MOBILE and product.device_types == [amo.DEVICE_MOBILE]:
             notices.append(_('This is a mobile-only app. Please try this '
                              'app in Firefox Mobile on your Android '
-                             'phone. <b data-href="%s">learn more</b>')
+                             'phone. (<b data-href="%s">Learn more</b>)')
                            % sumo_url)
         elif not request.TABLET and product.device_types == [amo.DEVICE_TABLET]:
             notices.append(_('This is a tablet-only app. Please try this '
                              'app in Firefox Mobile on your Android '
-                             'tablet. <b data-href="%s">learn more</b>')
+                             'tablet. (<b data-href="%s">Learn more</b>)')
                            % sumo_url)
         if (not request.GAIA and
             (product.device_types == [amo.DEVICE_GAIA] or product.is_packaged)):
             # This includes packaged apps.
             notices.append(_('This is a Firefox OS-only app. Please try this '
                              'app on your Firefox OS phone. '
-                             '<b data-href="%s">learn more</b>')
+                             '(<b data-href="%s">Learn more</b>)')
                            % sumo_url)
 
         firefox_compat = check_firefox(
