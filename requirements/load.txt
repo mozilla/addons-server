@@ -1,0 +1,3 @@
+-r prod.txt
+
+django-fakeauth==0.1
