@@ -43,13 +43,6 @@ DATABASES = {
     },
 }
 
-DATABASE_POOL_ARGS = {
-    'backend': 'mysql_pymysql.base',
-    'max_overflow': 10,
-    'pool_size':10,
-    'recycle': 30
-}
-
 SERVICES_DATABASE = {
     'NAME': private.SERVICES_DATABASE_NAME,
     'USER': private.SERVICES_DATABASE_USER,
