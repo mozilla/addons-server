@@ -1,4 +1,5 @@
 from datetime import datetime
+from functools import partial
 import json
 import urllib
 import urlparse
@@ -19,9 +20,9 @@ from files.models import FileUpload
 from mkt.api.authentication import errors
 
 
-def get_absolute_url(url):
+def get_absolute_url(url, api_name='apps'):
     # TODO (andym): make this more standard.
-    url[1]['api_name'] = 'apps'
+    url[1]['api_name'] = api_name
     rev = reverse(url[0], kwargs=url[1])
     res = 'http://%s%s' % ('api', rev)
     if len(url) > 2:
@@ -37,9 +38,11 @@ class OAuthClient(Client):
     """
     signature_method = oauth.SignatureMethod_HMAC_SHA1()
 
-    def __init__(self, access):
+    def __init__(self, access, api_name='apps'):
         super(OAuthClient, self).__init__(self)
         self.access = access
+        self.get_absolute_url = partial(get_absolute_url,
+                                        api_name=api_name)
 
     def header(self, method, url):
         if not self.access:
@@ -57,34 +60,34 @@ class OAuthClient(Client):
         return req.to_header()['Authorization']
 
     def get(self, url, **kw):
-        url = get_absolute_url(url)
+        url = self.get_absolute_url(url)
         return super(OAuthClient, self).get(url,
                      HTTP_HOST='api',
                      HTTP_AUTHORIZATION=self.header('GET', url),
                      **kw)
 
     def delete(self, url):
-        url = get_absolute_url(url)
+        url = self.get_absolute_url(url)
         return super(OAuthClient, self).delete(url,
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('DELETE', url))
 
     def post(self, url, data=''):
-        url = get_absolute_url(url)
+        url = self.get_absolute_url(url)
         return super(OAuthClient, self).post(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('POST', url))
 
     def put(self, url, data=''):
-        url = get_absolute_url(url)
+        url = self.get_absolute_url(url)
         return super(OAuthClient, self).put(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
                         HTTP_AUTHORIZATION=self.header('PUT', url))
 
     def patch(self, url, data=''):
-        url = get_absolute_url(url)
+        url = self.get_absolute_url(url)
         parsed = urlparse.urlparse(url)
         r = {
             'CONTENT_LENGTH': len(data),
@@ -102,14 +105,14 @@ class OAuthClient(Client):
 class BaseOAuth(TestCase):
     fixtures = ['base/user_2519', 'base/users']
 
-    def setUp(self):
+    def setUp(self, api_name='apps'):
         self.user = User.objects.get(pk=2519)
         self.profile = self.user.get_profile()
         self.profile.update(read_dev_agreement=datetime.now())
 
         self.access = Access.objects.create(key='foo', secret=generate(),
                                             user=self.user)
-        self.client = OAuthClient(self.access)
+        self.client = OAuthClient(self.access, api_name=api_name)
 
     def _allowed_verbs(self, url, allowed):
         """
