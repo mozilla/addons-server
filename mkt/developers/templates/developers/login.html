@@ -17,23 +17,3 @@
     </div>
   </section>
 {% endblock %}
-
-{% block sitefooter %}
-  <footer id="site-footer">
-    <div>
-      <p id="access-devhub">
-        <b>Have an app to submit?</b>
-        The Marketplace Developers site is now open.
-        <a href="{{ url('ecosystem.landing') }}">Upload your app &raquo;</a>
-      </p>
-      <div>
-        <nav class="footer-links" role="navigation">
-          <a href="{{ url('site.privacy') }}">
-            {{ _('Privacy Policy') }}</a>
-          <a href="{{ url('site.terms') }}">
-            {{ _('Terms of Use') }}</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-{% endblock %}
