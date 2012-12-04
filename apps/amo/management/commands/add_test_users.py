@@ -1,10 +1,12 @@
 from django.core.management.base import BaseCommand
+from django.db import transaction
 
 import amo
 from access.models import GroupUser, Group
 from apps.users.models import UserProfile
 
 
+@transaction.commit_on_success
 def create_user(email, group_name):
     """Create an user if he doesn't exist already, and assign him to a group.
     """
