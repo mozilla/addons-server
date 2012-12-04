@@ -231,7 +231,8 @@ def market_tile(context, product, link=True, src=''):
                              'app in Firefox Mobile on your Android '
                              'tablet. <b data-href="%s">learn more</b>')
                            % sumo_url)
-        elif not request.GAIA and product.device_types == [amo.DEVICE_GAIA]:
+        if (not request.GAIA and
+            (product.device_types == [amo.DEVICE_GAIA] or product.is_packaged)):
             # This includes packaged apps.
             notices.append(_('This is a Firefox OS-only app. Please try this '
                              'app on your Firefox OS phone. '
