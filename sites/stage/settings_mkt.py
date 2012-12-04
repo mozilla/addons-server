@@ -118,3 +118,4 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
             MIDDLEWARE_CLASSES.index('access.middleware.ACLMiddleware'),
             'django_fakeauth.FakeAuthMiddleware')
     FAKEAUTH_TOKEN = private_mkt.FAKEAUTH_TOKEN
+    ES_HOSTS = ['127.0.0.1:9202']
