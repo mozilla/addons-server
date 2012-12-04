@@ -40,3 +40,5 @@ MARTEAU = '/usr/bin/marteau'
 MARTEAU_USER = None
 MARTEAU_SECRET = None
 MARTEAU_SERVER = None
+
+LOAD_TESTING = False
