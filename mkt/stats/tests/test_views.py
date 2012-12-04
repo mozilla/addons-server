@@ -14,6 +14,7 @@ from apps.stats.models import GlobalStat
 from market.models import Price
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from mkt.webapps.models import Installed
+from mkt.site.fixtures import fixture
 from mkt.stats import search, tasks, views
 from mkt.stats.search import cut
 from mkt.stats.views import (FINANCE_SERIES, get_series_column,
@@ -23,14 +24,13 @@ from users.models import UserProfile
 
 
 class StatsTest(amo.tests.ESTestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         super(StatsTest, self).setUp()
         self.user = UserProfile.objects.get(username='regularuser')
+        self.create_switch(name='app-stats')
 
-        # set up apps
-        waffle.models.Switch.objects.create(name='app-stats', active=True)
         self.public_app = amo.tests.app_factory(name='public',
             app_slug='pub', type=1, status=4, public_stats=True)
         self.private_app = amo.tests.app_factory(name='private',
@@ -192,7 +192,7 @@ class TestStatsPermissions(StatsTest):
 
 class TestInstalled(amo.tests.ESTestCase):
     es = True
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
         self.today = datetime.date.today()
@@ -229,8 +229,7 @@ class TestInstalled(amo.tests.ESTestCase):
 
 
 class TestGetSeriesLine(amo.tests.ESTestCase):
-
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         # Create apps and contributions to index.
@@ -289,8 +288,7 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
 
 
 class TestGetSeriesColumn(amo.tests.ESTestCase):
-
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         super(TestGetSeriesColumn, self).setUp()
