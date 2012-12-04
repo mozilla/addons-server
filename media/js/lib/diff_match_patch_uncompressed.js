@@ -17,6 +17,10 @@
  * limitations under the License.
  */
 
+// Undefine `require()` because we don't use it in the file viewer and
+// it wonks up the syntaxhighlighter commonjs stuff.
+window.require = undefined;
+
 /**
  * @fileoverview Computes the difference between two texts to create a patch.
  * Applies the patch onto another text, allowing for errors.
