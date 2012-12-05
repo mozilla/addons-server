@@ -6,9 +6,15 @@
     }));
 
     // Add 'sel' class to active filter and set hidden input value.
-    z.page.on('click', '#filters .toggles a', function() {
-        selectMe($(this));
-        return false;
+    z.page.on('click', '#filters .toggles a, .filters-bar a', function() {
+        var $this = $(this);
+        selectMe($this);
+
+        // On mobile the apply button will submit our form.
+        // On desktop we'll follow the href.
+        if ($this.closest('.toggles').length) {
+            return false;
+        }
     });
 
     // Clear search field on 'cancel' search suggestions.
@@ -26,7 +32,6 @@
             return;
         }
         $myUL.find('a').removeClass('sel');
-
 
         if ($myUL[0].id == 'filter-prices') {
             val = vars.price || '';
@@ -47,8 +52,6 @@
     z.page.on('click', '#filters .apply', _pd(function() {
         $('#filters form').submit();
     }));
-
-
 
     // If we're on desktop, show graphical results - unless specified by user.
     var expandListings;
@@ -75,7 +78,7 @@
     function initExpanded() {
         var storedExpand = localStorage.getItem('expand-listings');
         if (storedExpand === undefined) {
-            expandListings = z.capabilities.desktop
+            expandListings = z.capabilities.desktop;
         } else {
             expandListings = storedExpand === 'true';
         }

@@ -1,4 +1,5 @@
 {% extends 'mkt/base.html' %}
+{% set mobile = request.MOBILE %}
 
 {% if category %}
   {% set src = 'mkt-category' %}
@@ -38,13 +39,15 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}
-  <section id="filters" class="overlay{% if show_paid %} alt{% endif %}">
-    <header class="classic-header">
-      <a href="#" class="header-button icon back left dismiss"><b></b></a>
-      <h1>{{ _('Filter') }}</h1>
-    </header>
+  <section id="filters" class="{{ 'overlay' if mobile }}{{ ' alt' if show_paid }}">
+    {% if mobile %}
+      <header class="classic-header">
+        <a href="#" class="header-button icon back left dismiss"><b></b></a>
+        <h1>{{ _('Filter') }}</h1>
+      </header>
+    {% endif %}
 
-    <div class="filters-body">
+    <div class="{{ 'filters-body' if mobile else 'filters-bar' }}">
       <form action="" method="get">
         <div>
           {% if show_paid %}
@@ -68,8 +71,8 @@
           {% endif %}
 
           {# We're not iterating over all the sort options on purpose. #}
-          <h2>{{ _('Sort by') }}</h2>
-          <ul class="toggles two-col c" id="filter-sort">
+          {% if mobile %}<h2>{{ _('Sort by') }}</h2>{% endif %}
+          <ul class="{{ 'toggles two-col ' if mobile }}c" id="filter-sort">
             {% if active_cat %}
               <li class="popularity">
                 <a href="{{ search_url|urlparams(page=None,
@@ -84,15 +87,18 @@
               </li>
             {% endif %}
             <li class="rating">
-              <a href="{{ search_url|urlparams(page=None, sort='rating') }}"
-                 class="sel">{{ _('Rating') }}</a>
+              <a href="{{ search_url|urlparams(page=None, sort='rating') }}">
+                {{ _('Rating') }}
+              </a>
             </li>
           </ul>
           <input type="hidden" name="sort" value="{{ query['sort'] }}">
 
+          {% if mobile %}
           <div class="footer-action">
             <a href="#" class="apply">{{ _('Apply') }}</a>
           </div>
+          {% endif %}
         </div>
       </form>
     </div>
@@ -109,6 +115,9 @@
     {% endif %}
   </section>
   <section id="search-results" class="full c">
+    {% if not mobile and not browse and query.q %}
+      <h1>{{ _('Search:') }} {{ query.q }}</h1>
+    {% endif %}
     {% if pager.object_list %}
       <ol class="listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
