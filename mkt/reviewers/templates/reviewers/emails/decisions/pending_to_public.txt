@@ -1,6 +1,6 @@
 {% extends 'reviewers/emails/base.txt' %}
 {% block content %}
-Congratulations! Your App has been approved for the Mozilla Marketplace and will be available for download in the coming weeks. Follow Mozilla Hacks (http://hacks.mozilla.org, http://twitter.com/mozhacks) to stay updated on when we plan to open for consumer testing and App installation.
+Congratulations! Your App has been approved for the Firefox Marketplace and will be available for download in the coming weeks. Follow Mozilla Hacks (http://hacks.mozilla.org, http://twitter.com/mozhacks) to stay updated on when we plan to open for consumer testing and App installation.
 
 {% include 'reviewers/emails/decisions/includes/details.txt' %}
 
