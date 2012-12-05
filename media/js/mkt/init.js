@@ -18,7 +18,6 @@ var z = {
     canInstallApps: true,
     allowAnonInstalls: !!$('body').data('allow-anon-installs'),
     enableSearchSuggestions: !!$('body').data('enable-search-suggestions'),
-    // if ($('#myDialog li').length > z.confirmBreakNum) add class 'two-col'.
     confirmBreakNum: 6
 };
 
@@ -110,6 +109,33 @@ z.page.on('fragmentloaded', function() {
         $('a[rel=external]').attr('target', '_blank');
     }
 
+    // Initialize selected class for currently active search filter (if any).
+    function initSelectedFilter() {
+        var sortoption = z.getVars();
+
+        $('#filter-sort li a').removeClass('sel');
+        switch (sortoption.sort) {
+            case 'None':
+                $('#filter-sort li.relevancy a').addClass('sel');
+                break;
+            case 'popularity':
+                $('#filter-sort li.popularity a').addClass('sel');
+                break;
+            case 'rating':
+                $('#filter-sort li.rating a').addClass('sel');
+                break;
+            case '':
+            case undefined:
+                // If there's nothing selected, the first one is always the
+                // default.
+                $('#filter-sort li:first-child a').addClass('sel');
+        }
+    }
+
+    if (z.capabilities.desktop) {
+        initSelectedFilter();
+    }
+
     // Header controls.
     $('header').on('click', '.header-button', function(e) {
         var $this = $(this),
@@ -120,25 +146,7 @@ z.page.on('fragmentloaded', function() {
             $('#filters').removeClass('show');
         } else if ($this.hasClass('filter')) {
             // `getVars()` defaults to use location.search.
-            var sortoption = z.getVars();
-
-            $('#filter-sort li a').removeClass('sel');
-            switch(sortoption.sort) {
-                case 'None':
-                    $('#filter-sort li.relevancy a').addClass('sel');
-                    break;
-                case 'popularity':
-                    $('#filter-sort li.popularity a').addClass('sel');
-                    break;
-                case 'rating':
-                    $('#filter-sort li.rating a').addClass('sel');
-                    break;
-                case '':
-                case undefined:
-                    // If there's nothing selected, the first one is always the
-                    // default.
-                    $('#filter-sort li:first-child a').addClass('sel');
-            }
+            initSelectedFilter();
             $('#filters').addClass('show');
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');
