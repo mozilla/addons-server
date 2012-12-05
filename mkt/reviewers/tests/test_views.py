@@ -2099,6 +2099,20 @@ class TestQueueSearch(AppReviewerTest):
         self.do_filter(app0, premium_type_ids=[amo.ADDON_FREE])
         self.do_filter(app1, premium_type_ids=[amo.ADDON_PREMIUM])
 
+    def test_no_duplicate_locale(self):
+        """
+        Test that filter results don't return multiple results on app
+        name from different locales.
+        """
+        app = self.apps[0]
+        app.name = {'en-us': 'butter', 'fr': 'butterete', 'de': 'buttern'}
+        app.save()
+        ids = (_filter(Webapp.objects.all(), {'text_query': 'but'})
+               .values_list('id', flat=True))
+
+        eq_(len(ids), 1)
+        assert(app.id in ids)
+
     def do_filter(self, expected_ids, **kw):
         """Checks that filter returns the expected ids
 

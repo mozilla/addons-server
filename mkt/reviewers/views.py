@@ -10,6 +10,7 @@ from django.forms.formsets import formset_factory
 from django.db.models import Q
 from django.db.transaction import commit_on_success
 from django.shortcuts import get_object_or_404, redirect
+from django.utils import translation
 from django.utils.datastructures import MultiValueDictKeyError
 
 import commonware.log
@@ -412,8 +413,7 @@ def _filter(qs, data):
     if data.get('text_query'):
         # Dynamically compose an OR query that does icontains match on
         # app name or author username/email, on multiple keywords.
-        qs = (qs.filter(reduce(_or_query, data['text_query'].split(), Q()))
-                .distinct())
+        qs = qs.filter(reduce(_or_query, data['text_query'].split(), Q()))
     if data.get('admin_review'):
         qs = qs.filter(admin_review=data['admin_review'])
     if data.get('has_editor_comment'):
@@ -438,7 +438,8 @@ def _filter(qs, data):
 
 def _or_query(query, text):
     """Helper function for the reduce statement in _filter."""
-    query |= (Q(name__localized_string__icontains=text) |
+    query |= (Q(name__localized_string__icontains=text,
+                name__locale=translation.get_language()) |
               Q(authors__username__icontains=text) |
               Q(authors__email__icontains=text))
     return query
