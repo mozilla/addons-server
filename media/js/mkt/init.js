@@ -28,6 +28,8 @@ z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 z.page.on('fragmentloaded', webtrendsAsyncInit);
 
 (function() {
+    require('prefetch');
+
     _.extend(z, {
         nav: BrowserUtils()
     });

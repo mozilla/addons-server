@@ -240,6 +240,7 @@ JS = {
         # tiny module loader
         'js/lib/amd.js',
 
+        'js/mkt/prefetch.js',
         'js/lib/jquery-1.8.js',
         'js/lib/jquery.cookie.js',
         'js/lib/webtrends.js',
