@@ -4,7 +4,7 @@ from nose.tools import eq_
 from django.http import Http404
 
 import amo.tests
-from mkt.ecosystem.models import MdnCache
+from gelato.models.mkt.ecosystem import MdnCache
 from mkt.ecosystem.tasks import _fetch_mdn_page, _update_mdn_items, locales
 
 

@@ -73,6 +73,7 @@ suds==0.3.9
 tower==0.3.4
 
 ## Not on pypi.
+-e git://github.com/washort/gelato.models.git@6297036871419651032f7724b6b536c19a228ec6#egg=gelato.models
 -e git://github.com/mattbasta/addon-packager.git@576517360b6a9aadbfe77752ca0dbda5b0187474#egg=addon-packager
 -e git://github.com/mozilla/amo-validator.git@7f1195f7d13a9fd64395e52bb8145700601a9030#egg=amo-validator
 -e git://github.com/mozilla/app-validator.git@d791218125062f08538722fb99fe50967ace99a3#egg=app-validator
