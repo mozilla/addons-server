@@ -10,6 +10,7 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from amo.utils import chunked
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
@@ -21,8 +22,8 @@ task_log = logging.getLogger('z.task')
 
 @task(rate_limit='15/m')
 def webapp_update_weekly_downloads(data, **kw):
-    task_log.info('[%s@%s] Update weekly downloads.' %
-                   (len(data), webapp_update_weekly_downloads.rate_limit))
+    task_log.info('[%s@%s] Update weekly downloads.' % (
+        len(data), webapp_update_weekly_downloads.rate_limit))
 
     for line in data:
         webapp = Webapp.objects.get(pk=line['addon'])
@@ -164,3 +165,13 @@ def update_cached_manifests(id, **kw):
     # Rebuilds the packaged app mini manifest and stores it in cache.
     webapp.get_cached_manifest(force=True)
     _log(webapp, u'Updated cached mini manifest')
+
+
+@task
+@write
+def add_uuids(ids, **kw):
+    for chunk in chunked(ids, 50):
+        for app in Webapp.objects.filter(id__in=chunk):
+            # Save triggers the creation of a guid if the app doesn't currently
+            # have one.
+            app.save()

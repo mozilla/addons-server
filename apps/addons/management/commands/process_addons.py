@@ -8,7 +8,7 @@ from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
-from mkt.webapps.tasks import update_manifests
+from mkt.webapps.tasks import add_uuids, update_manifests
 
 tasks = {
     # binary-components depend on having a chrome manifest.
@@ -32,6 +32,9 @@ tasks = {
                          'qs': [Q(type=amo.ADDON_WEBAPP, is_packaged=False,
                                   status=amo.STATUS_PUBLIC,
                                   disabled_by_user=False)]},
+    'add_uuids': {'method': add_uuids,
+                  'qs': [Q(type=amo.ADDON_WEBAPP, guid=None),
+                         ~Q(status=amo.STATUS_DELETED)]},
 }
 
 
