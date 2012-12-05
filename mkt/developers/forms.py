@@ -17,18 +17,15 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
 import addons.forms
-import paypal
 from access import acl
 from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
-from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
-                           BlacklistedSlug, Category, Preview)
+from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
+                           Category, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
 from amo.utils import raise_required, remove_icons
-from editors.models import RereviewQueue
 from files.models import FileUpload
 from lib.video import tasks as vtasks
-from market.models import AddonPremium, Price, PriceCurrency
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -38,15 +35,13 @@ import mkt
 from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE
 from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
                                          RATINGS_BODIES)
-from mkt.inapp_pay.models import InappConfig
-from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
 
+from .forms_payments import *  # Payment-related forms
 from . import tasks
 
 log = commonware.log.getLogger('mkt.developers')
-paypal_log = commonware.log.getLogger('mkt.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -121,39 +116,6 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(_('Password incorrect.'))
 
 
-class InappConfigForm(happyforms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(InappConfigForm, self).__init__(*args, **kwargs)
-        if settings.INAPP_REQUIRE_HTTPS:
-            self.fields['is_https'].widget.attrs['disabled'] = 'disabled'
-            self.initial['is_https'] = True
-
-    def clean_is_https(self):
-        if settings.INAPP_REQUIRE_HTTPS:
-            return True  # cannot override it with form values
-        else:
-            return self.cleaned_data['is_https']
-
-    def clean_postback_url(self):
-        return self._clean_relative_url(self.cleaned_data['postback_url'])
-
-    def clean_chargeback_url(self):
-        return self._clean_relative_url(self.cleaned_data['chargeback_url'])
-
-    def _clean_relative_url(self, url):
-        url = url.strip()
-        if not url.startswith('/'):
-            raise forms.ValidationError(_('This URL is relative to your app '
-                                          'domain so it must start with a '
-                                          'slash.'))
-        return url
-
-    class Meta:
-        model = InappConfig
-        fields = ('postback_url', 'chargeback_url', 'is_https')
-
-
 def ProfileForm(*args, **kw):
     # If the add-on takes contributions, then both fields are required.
     addon = kw['instance']
@@ -179,18 +141,6 @@ def ProfileForm(*args, **kw):
             fields = ('the_reason', 'the_future')
 
     return _Form(*args, **kw)
-
-
-def check_paypal_id(paypal_id):
-    if not paypal_id:
-        raise forms.ValidationError(
-            _('PayPal ID required to accept contributions.'))
-    try:
-        valid, msg = paypal.check_paypal_id(paypal_id)
-        if not valid:
-            raise forms.ValidationError(msg)
-    except socket.error:
-        raise forms.ValidationError(_('Could not validate PayPal id.'))
 
 
 def trap_duplicate(request, manifest_url):
@@ -503,130 +453,10 @@ class NewPackagedAppForm(happyforms.Form):
             # Raise an error so the form is invalid.
             raise forms.ValidationError(msg)
         else:
-            self.file_upload = FileUpload.from_post(upload, upload.name,
-                                                    upload.size,
-                                                    is_webapp=True)
+            self.file_upload = FileUpload.from_post(
+                upload, upload.name, upload.size, is_webapp=True)
             self.file_upload.user = self.user
             self.file_upload.save()
-
-
-class PremiumForm(happyforms.Form):
-    """
-    The premium details for an addon, which is unfortunately
-    distributed across a few models.
-    """
-    premium_type = forms.TypedChoiceField(label=_lazy(u'Premium Type'),
-        coerce=lambda x: int(x), choices=amo.ADDON_PREMIUM_TYPES.items(),
-        widget=forms.RadioSelect())
-    price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_lazy(u'App Price'),
-                                   empty_label=None,
-                                   required=False)
-    free = AddonChoiceField(queryset=Addon.objects.none(), required=False,
-                            label=_lazy(u'This is a paid upgrade of'),
-                            empty_label=_lazy(u'Not an upgrade'))
-    currencies = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        required=False, label=_lazy(u'Supported Non-USD Currencies'))
-
-    def __init__(self, *args, **kw):
-        self.extra = kw.pop('extra')
-        self.request = kw.pop('request')
-        self.addon = self.extra['addon']
-        kw['initial'] = {
-            'premium_type': self.addon.premium_type,
-        }
-        if self.addon.premium:
-            kw['initial']['price'] = self.addon.premium.price
-
-        upsell = self.addon.upsold
-        if upsell:
-            kw['initial']['free'] = upsell.free
-
-        if self.addon.premium and waffle.switch_is_active('currencies'):
-            kw['initial']['currencies'] = self.addon.premium.currencies
-
-        super(PremiumForm, self).__init__(*args, **kw)
-
-        if waffle.switch_is_active('currencies'):
-            choices = (PriceCurrency.objects.values_list('currency', flat=True)
-                       .distinct())
-            self.fields['currencies'].choices = [(k, k)
-                                                 for k in choices if k]
-
-        if self.addon.is_webapp():
-            self.fields['premium_type'].label = _lazy(u'Will your app '
-                                                       'use payments?')
-            self.fields['price'].label = _(u'App Price')
-
-        self.fields['free'].queryset = (self.extra['amo_user'].addons
-            .exclude(pk=self.addon.pk)
-            .filter(premium_type__in=amo.ADDON_FREES,
-                    status__in=amo.VALID_STATUSES,
-                    type=self.addon.type))
-        if (not self.initial.get('price') and
-            len(list(self.fields['price'].choices)) > 1):
-            # Tier 0 (Free) should not be the default selection.
-            self.initial['price'] = (Price.objects.active()
-                                     .exclude(price='0.00')[0])
-
-        # For the wizard, we need to remove some fields.
-        for field in self.extra.get('exclude', []):
-            del self.fields[field]
-
-    def clean_price(self):
-        if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
-            and not self.cleaned_data['price']):
-            raise_required()
-        return self.cleaned_data['price']
-
-    def clean_free(self):
-        return self.cleaned_data['free']
-
-    def save(self):
-        if 'price' in self.cleaned_data:
-            premium = self.addon.premium
-            if not premium:
-                premium = AddonPremium()
-                premium.addon = self.addon
-            premium.price = self.cleaned_data['price']
-            premium.save()
-
-        upsell = self.addon.upsold
-        if self.cleaned_data['free']:
-
-            # Check if this app was already a premium version for another app.
-            if upsell and upsell.free != self.cleaned_data['free']:
-                upsell.delete()
-
-            if not upsell:
-                upsell = AddonUpsell(premium=self.addon)
-            upsell.free = self.cleaned_data['free']
-            upsell.save()
-        elif not self.cleaned_data['free'] and upsell:
-            upsell.delete()
-
-        # Check for free -> paid for already public apps.
-        premium_type = self.cleaned_data['premium_type']
-        if (self.addon.status == amo.STATUS_PUBLIC and
-            self.addon.is_premium_type_upgrade(premium_type)):
-            log.info(u'[Webapp:%s] (Re-review) Public app, premium type '
-                     u'upgraded.' % self.addon)
-            RereviewQueue.flag(self.addon,
-                               amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
-
-        self.addon.premium_type = premium_type
-
-        if self.addon.premium and waffle.switch_is_active('currencies'):
-            currencies = self.cleaned_data['currencies']
-            self.addon.premium.update(currencies=currencies)
-
-        self.addon.save()
-
-        # If they checked later in the wizard and then decided they want
-        # to keep it free, push to pending.
-        if not self.addon.needs_paypal() and self.addon.is_incomplete():
-            self.addon.mark_done()
 
 
 class AppFormBasic(addons.forms.AddonFormBase):
@@ -700,33 +530,6 @@ class AppFormBasic(addons.forms.AddonFormBase):
         addonform.save()
 
         return addonform
-
-
-class PaypalSetupForm(happyforms.Form):
-    email = forms.EmailField(required=False,
-                             label=_lazy(u'PayPal email address'))
-
-    def clean(self):
-        data = self.cleaned_data
-        if not data.get('email'):
-            msg = _(u'The PayPal email is required.')
-            self._errors['email'] = self.error_class([msg])
-
-        return data
-
-
-class PaypalPaymentData(happyforms.Form):
-    first_name = forms.CharField(max_length=255, required=False)
-    last_name = forms.CharField(max_length=255, required=False)
-    full_name = forms.CharField(max_length=255, required=False)
-    business_name = forms.CharField(max_length=255, required=False)
-    country = forms.CharField(max_length=64)
-    address_one = forms.CharField(max_length=255)
-    address_two = forms.CharField(max_length=255,  required=False)
-    post_code = forms.CharField(max_length=128, required=False)
-    city = forms.CharField(max_length=128, required=False)
-    state = forms.CharField(max_length=64, required=False)
-    phone = forms.CharField(max_length=32, required=False)
 
 
 class AppFormDetails(addons.forms.AddonFormBase):

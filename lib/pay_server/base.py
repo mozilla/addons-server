@@ -5,11 +5,10 @@ import json
 import logging
 import urllib
 
-
 from django_statsd.clients import statsd
 import requests
 
-from tower import ugettext as _
+from tower import ugettext_lazy as _
 
 from .errors import lookup
 
@@ -37,6 +36,7 @@ mapping = {
     'seller': ['generic', 'seller', ['get', 'post']],
     'seller_paypal': ['paypal', 'seller', ['get', 'post', 'patch']],
     'seller_bluevia': ['bluevia', 'seller', ['get', 'post', 'patch']],
+    'product': ['generic', 'product', ['get', 'post']],
     # PayPal APIs
     'account_check': ['paypal', 'account-check', ['post']],
     'ipn': ['paypal', 'ipn', ['post']],
@@ -48,6 +48,12 @@ mapping = {
     'personal_basic': ['paypal', 'personal-basic', ['post']],
     'personal_advanced': ['paypal', 'personal-advanced', ['post']],
     'refund': ['paypal', 'refund', ['post']],
+    # Bango APIs
+    'package': ['bango', 'package', ['get', 'post']],
+    'bank_details': ['bango', 'bank', ['post']],
+    'product_bango': ['bango', 'product', ['get', 'post']],
+    'make_premium': ['bango', 'premium', ['post']],
+    'update_rating': ['bango', 'rating', ['post']],
 }
 
 
@@ -56,18 +62,18 @@ class Encoder(json.JSONEncoder):
     date_format = '%Y-%m-%d'
     time_format = '%H:%M:%S'
 
+    ENCODINGS = {
+        datetime.datetime:
+            lambda v: v.strftime('%s %s' % (date_format, time_format)),
+        datetime.date: lambda v: v.strftime(date_format),
+        datetime.time: lambda v: v.strftime(time_format),
+        decimal.Decimal: str,
+    }
+
     def default(self, v):
         """Encode some of our basic types in ways solitude understands."""
-        if isinstance(v, datetime.datetime):
-            return v.strftime("%s %s" % (self.date_format, self.time_format))
-        elif isinstance(v, datetime.date):
-            return v.strftime(self.date_format)
-        elif isinstance(v, datetime.time):
-            return v.strftime(self.time_format)
-        elif isinstance(v, decimal.Decimal):
-            return str(v)
-        else:
-            return super(Encoder, self).default(v)
+        return self.ENCODINGS.get(type(v), super(Encoder, self).default)(v)
+
 
 general_error = _('Oops, we had an error processing that.')
 
@@ -123,6 +129,19 @@ class Client(object):
             code = res.get('error_code', 0)
             raise SolitudeError(lookup(code, res.get('error_data', {})),
                                 code=code)
+
+    def upsert(self, method, params, lookup_by):
+        """Shortcut function for calling get_<method> and subsequently calling
+        post_<method> if there are no results. The values passed to the data
+        param of get_<method> are the keys defined in the sequence `lookup_by`.
+
+        """
+        lookup_data = dict((k, v) for k, v in params.items() if k in lookup_by)
+        existing = self.__getattr__('get_%s' % method)(data=lookup_data)
+        if existing['meta']['total_count']:
+            return existing['objects'][0]
+
+        return self.__getattr__('post_%s' % method)(data=params)
 
     def __getattr__(self, attr):
         try:

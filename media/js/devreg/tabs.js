@@ -31,19 +31,20 @@
         $this.prepend($hgroup);
 
         $hgroup.find('a').each(function(i, e) {
-            $(this).on('click.switchtab', function(evt) {
-                var $myParent = $(evt.target).parent();
-                if ($myParent.hasClass('active')) {
-                    evt.preventDefault();
+            var $tab_label = $(this);
+            var $tab = $tab_label.parent();
+            $tab_label.on('click.switchtab', _pd(function(evt) {
+                if ($tab.hasClass('active') || $tab_label.hasClass('disabled')) {
                     return;
                 } else {
                     $hgroup.find('h2').removeClass('active');
-                    $myParent.addClass('active');
+                    $tab.addClass('active');
                 }
                 $this.find('.tab').removeClass('active');
                 $this.find('.tab:eq(' + i + ')').addClass('active');
-                evt.preventDefault();
-            });
+
+                $this.trigger('tabs-changed', $tab[0]);
+            }));
         });
 
         $this.addClass('initialized').trigger('tabs-setup');

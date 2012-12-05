@@ -27,52 +27,31 @@ class TestPayments(amo.tests.TestCase):
         return Addon.objects.get(pk=337141)
 
     def test_free(self):
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
+        res = self.client.post(self.url, {'toggle-paid': 'free'})
         eq_(res.status_code, 302)
-        eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
-
-    def test_premium_fails(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_PREMIUM})
-        eq_(res.status_code, 200)
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
 
     def test_premium_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url,
-                {'premium_type': amo.ADDON_PREMIUM,
-                 'price': self.price.pk})
+        res = self.client.post(self.url, {'toggle-paid': 'paid'})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url,
-                {'premium_type': amo.ADDON_PREMIUM_INAPP,
-                 'price': self.price.pk})
+        res = self.client.post(self.url, {'toggle-paid': 'paid'})
         eq_(res.status_code, 302)
-        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
-
-    def test_free_in_app_passes(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url,
-                {'premium_type': amo.ADDON_PREMIUM_INAPP,
-                 'price': self.price.pk})
+        res = self.client.post(self.url, {'allow_inapp': True,
+                                          'price': self.price.pk})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
     def test_later_then_free(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
-                           status=amo.STATUS_NULL)
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_PENDING)
-
-    def test_later_then_free_with_paypal_id(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            status=amo.STATUS_NULL,
-                           paypal_id='a@a.com')
-        res = self.client.post(self.url, {'premium_type': amo.ADDON_FREE})
+                           highest_status=amo.STATUS_PENDING)
+        res = self.client.post(self.url, {'toggle-paid': 'free',
+                                          'price': self.price.pk})
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
@@ -85,8 +64,11 @@ class TestPayments(amo.tests.TestCase):
 
     def test_premium_price_initial_use_default(self):
         Price.objects.create(price='10.00')  # Make one more tier.
-        r = self.client.get(self.url, {'poop': True})
-        eq_(pq(r.content)('select[name=price] option[selected]').attr('value'),
+
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.post(self.url, {'toggle-paid': 'paid'}, follow=True)
+        pqr = pq(res.content)
+        eq_(pqr('select[name=price] option[selected]').attr('value'),
             str(Price.objects.get(price='0.99').id))
 
 
@@ -122,7 +104,7 @@ class TestPaypal(amo.tests.TestCase):
         eq_('paypal_url' in res, True)
         eq_(len(res['message']), 0)
 
-    @mock.patch('mkt.developers.views.client')
+    @mock.patch('mkt.developers.views_paypal.client')
     def test_bounce_solitude(self, client):
         self.create_flag(name='solitude-payments')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@.com')
@@ -192,14 +174,14 @@ class TestPaypalResponse(amo.tests.TestCase):
             self.assertFormError(res, 'form', field,
                                  [u'This field is required.'])
 
-    @mock.patch('mkt.developers.views.client')
+    @mock.patch('mkt.developers.views_paypal.client')
     def test_payment_reads_solitude(self, client):
         self.create_flag(name='solitude-payments')
         client.get_seller_paypal_if_exists.return_value = {'country': 'fr'}
         res = self.client.get(self.url)
         eq_(res.context['form'].data['country'], 'fr')
 
-    @mock.patch('mkt.developers.views.client')
+    @mock.patch('mkt.developers.views_paypal.client')
     def test_payment_reads_solitude_but_empty(self, client):
         AddonPaymentData.objects.create(addon=self.webapp, country='ca',
                                         address_one='123 bob st.')
@@ -208,7 +190,7 @@ class TestPaypalResponse(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.context['form'].data['country'], 'ca')
 
-    @mock.patch('mkt.developers.views.client')
+    @mock.patch('mkt.developers.views_paypal.client')
     def test_payment_confirm_solitude(self, client):
         self.create_flag(name='solitude-payments')
         client.create_seller_for_pay.return_value = 1

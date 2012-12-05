@@ -88,9 +88,7 @@
                 text-align: center;
                 width: 16px;
             }
-        }
-        .check-icon.inactive {
-            &:before {
+            &.inactive:before {
                 background-color: @light-gray !important;
             }
         }
@@ -201,8 +199,9 @@
         font-size: 18px;
         font-weight: 400;
     }
-    .brform, input {
+    .brform, input, select {
         margin-top: 10px;
+        padding: 5px;
     }
     form {
         margin: 0;
@@ -265,4 +264,71 @@ section.add-bluevia-iframe {
         margin-top: 13px;
         width: 100%;
     }
+}
+
+.overlay section.add-bango-account {
+    height: 80%;
+
+    max-width: 650px;
+    min-width: 650px;
+
+    #bango-account-errors {
+        > div {
+            margin: 0.25em 0;
+        }
+        span, ul.errorlist {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    p label {
+        display: inline-block;
+        text-align: right;
+        width: 30%;
+    }
+
+    // Wide controls
+    #id_address1,
+    #id_address2,
+    #id_bankAddress1,
+    #id_bankAddress2, {
+        width: 400px;
+    }
+
+    // Smallish controls
+    #id_addressState,
+    #id_bankAddressState, {
+        width: 120px;
+    }
+
+    // Skinny controls
+    #id_addressZipCode,
+    #id_bankAddressZipCode, {
+        width: 100px;
+    }
+
+    label[for=id_account_name]:before {
+        background: #666;
+        clear: both;
+        content: '';
+        display: block;
+        height: 1px;
+        margin: 1em 0 1.5em;
+        width: 600px;
+    }
+}
+
+#submit-payment-type {
+    .update-payment-type {
+        padding: 1em;
+    }
+}
+#bango-payment-accounts label {
+    display: none;
+}
+
+.island.warning {
+    background: orangered;
+    color: white;
 }

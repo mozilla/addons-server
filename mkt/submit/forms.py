@@ -17,6 +17,7 @@ from market.models import AddonPremium, Price
 from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 
+from mkt.constants import DEVICE_LOOKUP, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.developers.forms import verify_app_domain
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 
@@ -88,28 +89,6 @@ class NewWebappVersionForm(happyforms.Form):
 
 
 class NewWebappForm(NewWebappVersionForm):
-    # The selections for free.
-    FREE = (
-        ('free-os', _lazy('Firefox OS')),
-        ('free-desktop', _lazy('Firefox')),
-        ('free-phone', _lazy('Firefox Mobile')),
-        ('free-tablet', _lazy('Firefox Tablet')),
-    )
-
-    # The selections for paid.
-    PAID = (
-        ('paid-os', _lazy('Firefox OS')),
-    )
-
-    # Extra information about those values for display in the page.
-    DEVICE_LOOKUP = {
-        'free-os': _lazy('Fully open mobile ecosystem'),
-        'free-desktop': _lazy('Windows, Mac and Linux'),
-        'free-phone': _lazy('Android smartphones'),
-        'free-tablet': _lazy('Android tablets'),
-        'paid-os': _lazy('Fully open mobile ecosystem'),
-    }
-
     ERRORS = {'both': _lazy(u'Cannot be free and paid.'),
               'none': _lazy(u'Please select a device.'),
               'packaged': _lazy(u'Packaged apps are valid '
@@ -122,8 +101,8 @@ class NewWebappForm(NewWebappVersionForm):
                                                 u' again.')})
 
     packaged = forms.BooleanField(required=False)
-    free = forms.MultipleChoiceField(choices=FREE, required=False)
-    paid = forms.MultipleChoiceField(choices=PAID, required=False)
+    free = forms.MultipleChoiceField(choices=FREE_PLATFORMS, required=False)
+    paid = forms.MultipleChoiceField(choices=PAID_PLATFORMS, required=False)
 
     def _add_error(self, msg):
         self._errors['free'] = self._errors['paid'] = self.ERRORS[msg]

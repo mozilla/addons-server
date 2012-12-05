@@ -83,12 +83,3 @@ class TestBlueVia(amo.tests.WebappTestCase):
         res = self.client.post(url)
         data = json.loads(res.content)
         eq_(data['error'], True)
-
-    def test_bluevia_payments_page(self):
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#bluevia').length, 0)
-
-        self.create_bluevia_configs()
-
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#bluevia').length, 1)

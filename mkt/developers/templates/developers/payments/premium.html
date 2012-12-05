@@ -1,13 +1,24 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import required %}
 
-{% set title = _('Manage Payments') %}
+{% set title = _('Compatibility & Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% set can_edit = check_addon_ownership(request, addon) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
+
+{%- macro button(form, item) -%}
+  <div class="wrapper">
+    <span href="#" id="{{ item[0] }}" data-value="{{ item[0] }}"
+          class="island unclickable choice{{ ' selected' if form.device_data[item[0]] }}"
+          title="{{ DEVICE_LOOKUP[item[0]] }}">
+      <h3>{{ item[1] }}</h3>
+      {# <div class="listing-footer"><input type="checkbox"></div> #}
+    </a>
+  </div>
+{%- endmacro %}
 
 {% block content %}
   <header>
@@ -16,39 +27,91 @@
     <h1>{{ title }}</h1>
   </header>
   {{ disabled_payments_notice() }}
-  <section class="primary payments island devhub-form" role="main">
-    <form method="post" action="{{ addon.get_dev_url('payments') }}">
+  <section class="primary payments devhub-form" role="main">
+    <form action="{{ addon.get_dev_url('payments') }}" method="post">
       {{ csrf() }}
-      <div class="brform" id="premium-type">
-        <label for="id_premium_type">
-          {{ form.premium_type.label }} {{ required() }}
-        </label>
-        {{ form.premium_type.errors }}
-        <div class="choice">{{ form.premium_type }}</div>
-        <p>
-          {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
-                   receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
-           Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.
-           Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
-          {% endtrans %}
-        </p>
-      </div>
-      <div class="divider"></div>
-      <div id="premium-detail" class="premium-detail">
-        {% include 'developers/payments/includes/tier.html' %}
-        {% if waffle.switch('currencies') %}
+      <input type="hidden" name="toggle-paid" value="" />
+
+      <section id="submit-payment-type" class="island tabbable hasappendix">
+        <div class="free tab {{ 'active' if not is_paid }}">
+          {% if waffle.switch('allow-b2g-paid-submission') %}
+            <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
+          {% else %}
+            <h2>{{ _('App Compatibility') }}</h2>
+          {% endif %}
+          <div class="error">{{ form.errors.free }}</div>
+          {%- for item in form.fields['free_platforms'].choices -%}
+            {{ button(form, item) }}
+          {%- endfor %}
+          {% if is_paid %}
+            <div id="free-tab-save" class="update-payment-type">
+              <button data-type="free">{{ _('Change to Free') }}</button>
+              {{ _('Changing to Free will put your app back into review.') }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="paid tab {{ 'active' if is_paid }}">
+          <h2 id="paid-tab-header">
+            {%- if no_paid -%}
+              <a href="#" class="tooltip disabled"
+                 title="{{ _('Paid mode requires that your app only supports Firefox OS.') }}">
+                 {{- _('Paid/In-app') -}}
+              </a>
+            {%- else -%}
+              <a href="#">{{ _('Paid/In-app') }}</a>
+            {%- endif -%}
+          </h2>
+          <div class="error">{{ form.errors.paid }}</div>
+          {%- for item in form.fields['paid_platforms'].choices -%}
+            {{ button(form, item) }}
+          {%- endfor %}
+          {% if not is_paid %}
+            <div id="paid-tab-save" class="update-payment-type">
+              <button data-type="paid">{{ _('Change to Paid') }}</button>
+              {{ _('Changing to Paid will put your app back into review.') }}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+      {% if is_paid %}
+        {% if is_incomplete %}
+          <div class="island warning">
+            {% trans %}
+              Your app is currently incomplete. Select a payment account and
+              price tier to restore it.
+            {% endtrans %}
+          </div>
+        {% endif %}
+        <section id="paid-island" class="island payments">
+          <h3>{{ _('Sell your app on the Marketplace') }}</h3>
+          {{ form.price.errors }}
+          {{ form.price }}
+          {{ form.allow_inapp }}
+          {{ form.allow_inapp.label }}
           {% include 'developers/payments/includes/currencies.html' %}
-        {% endif  %}
-        {% include 'developers/payments/includes/payment_account.html' %}
-        {% include 'developers/payments/includes/upsell.html' %}
-      </div>
-      <footer class="listing-footer">
-        <button type="submit">{{ _('Save Changes') }}</button>
-      </footer>
+          {% include 'developers/payments/includes/payment_account.html' %}
+          <p class="note">
+            {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
+                     receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
+             Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.
+             Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
+            {% endtrans %}
+          </p>
+          <button>{{ _('Save Changes') }}</button>
+        </section>
+
+        <section id="paid-upsell-island" class="island">
+          <h3>{{ _('This is a paid upgrade of...') }}</h3>
+          {% with form = upsell_form %}
+            {% include 'developers/payments/includes/upsell.html' %}
+          {% endwith %}
+          <button>{{ _('Save Upsell') }}</button>
+        </section>
+      {% endif %}
     </form>
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}
-  {% include 'developers/payments/includes/add_payment_account_choose.html' %}
-  {% include 'developers/payments/includes/add_payment_account_paypal.html' %}
-  {% include 'developers/payments/includes/add_payment_account_bluevia.html' %}
+  {% include 'developers/payments/includes/add_payment_account_bango.html' %}
 {% endblock %}

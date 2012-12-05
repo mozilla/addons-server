@@ -15,6 +15,7 @@ from addons.models import Addon, AddonUser
 from files.models import Platform
 from users.models import UserProfile
 
+from mkt.constants import DEVICE_LOOKUP
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
@@ -116,7 +117,8 @@ def manifest(request):
 
     return jingo.render(request, 'submit/manifest.html', {
         'step': 'manifest',
-        'form': form
+        'form': form,
+        'DEVICE_LOOKUP': DEVICE_LOOKUP
     })
 
 
@@ -204,11 +206,6 @@ def resume(request, addon_id, addon):
         step = addon.appsubmissionchecklist.get_next()
     except ObjectDoesNotExist:
         step = None
-
-    # If there is not a Free app and there's no PayPal id, they
-    # clicked "later" in the submission flow.
-    if not step and addon.premium_type != amo.ADDON_FREE:
-        return redirect(addon.get_dev_url('paypal_setup'))
 
     return _resume(addon, step)
 

@@ -1,0 +1,27 @@
+<script type="text/template" id="add-bango-account-template">
+  <section class="add-bango-account">
+    <h2>{{ _('Add Bango Account') }}</h2>
+    <a class="close">{{ _('close') }}</a>
+    <form action="{{ url('mkt.developers.bango.add_payment_account') }}" method="post">
+      {{ csrf() }}
+      <div id="bango-account-errors"></div>
+      {{ bango_account_form.as_p() }}
+      <div class="listing-footer">
+        <button type="submit" class="continue prominent">
+          {{ _('Register Account') }}
+        </button>
+      </div>
+    </form>
+  </section>
+</script>
+
+<script type="text/template" id="bango-waiting-template">
+  <section class="bango-waiting">
+    <h2>{{ _('Processing Request...') }}</h2>
+    <p>
+      {% trans %}
+        Please wait while we contact the payment server.
+      {% endtrans %}
+    </p>
+  </section>
+</script>

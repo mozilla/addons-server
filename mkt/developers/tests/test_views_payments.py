@@ -11,6 +11,7 @@ import amo
 import amo.tests
 from addons.models import Addon
 from mkt.inapp_pay.models import InappConfig
+from mkt.site.fixtures import fixture
 
 
 def create_inapp_config(public_key='pub-key', private_key='priv-key',
@@ -222,3 +223,63 @@ class TestInappConfigReset(InappTest):
         url = self.get_url(9999)
         res = self.client.post(url)
         eq_(res.status_code, 404)
+
+
+# Testing the payments page.
+class TestPayments(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
+                'market/prices']
+
+    def setUp(self):
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url('payments')
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.price = Price.objects.filter()[0]
+
+    def get_webapp(self):
+        return Addon.objects.get(pk=337141)
+
+    def test_free(self):
+        res = self.client.post(self.url, {'toggle-paid': 'free'})
+        self.assert3xx(res, self.url)
+        eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
+
+    def test_premium_passes(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.post(self.url, {'toggle-paid': 'paid'})
+        self.assert3xx(res, self.url)
+        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
+
+    def test_premium_in_app_passes(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.post(self.url, {'toggle-paid': 'paid'})
+        self.assert3xx(res, self.url)
+        res = self.client.post(self.url, {'allow_inapp': True,
+                                          'price': self.price.pk})
+        self.assert3xx(res, self.url)
+        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
+
+    def test_later_then_free(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
+                           status=amo.STATUS_NULL,
+                           highest_status=amo.STATUS_PENDING)
+        res = self.client.post(self.url, {'toggle-paid': 'free',
+                                          'price': self.price.pk})
+        self.assert3xx(res, self.url)
+        eq_(self.get_webapp().status, amo.STATUS_PENDING)
+
+    def test_premium_price_initial_already_set(self):
+        Price.objects.create(price='0.00')  # Make a free tier for measure.
+        self.make_premium(self.webapp)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('select[name=price] option[selected]').attr('value'),
+            str(self.webapp.premium.price.id))
+
+    def test_premium_price_initial_use_default(self):
+        Price.objects.create(price='10.00')  # Make one more tier.
+
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.post(self.url, {'toggle-paid': 'paid'}, follow=True)
+        pqr = pq(res.content)
+        eq_(pqr('select[name=price] option[selected]').attr('value'),
+            str(Price.objects.get(price='0.99').id))

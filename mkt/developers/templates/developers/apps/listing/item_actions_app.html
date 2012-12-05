@@ -38,7 +38,7 @@
   {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
     <li>
       <a class="action-link{{ ' alert' if waffle.switch('disabled-payments') and addon.is_premium() }}" href="{{ addon.get_dev_url('payments') }}">
-        {{ _('Manage Payments') }}</a>
+        {{ _('Compatibility & Payments') }}</a>
     </li>
   {% endif %}
 

@@ -1,12 +1,12 @@
 {% from 'developers/includes/macros.html' import required %}
 <div class="brform" id="payments-payment-account">
-  <label id="payment-label" for="id_payment_account">{{ _('Use Payment Account') }} {{ required() }}</label>
+  <h4>{{ _('Use Payment Account') }}</h4>
 
-  {% if waffle.switch('enabled-bluevia') or waffle.switch('enabled-paypal') %}
-    <div class="extra">
-      <a href="#" class="payment-account-actions" data-action="add">{{ _('Add Account') }}</a>
-    </div>
-  {% endif %}
+  <div class="extra">
+    <a href="#" class="payment-account-actions button" data-action="add">
+      {{- _('Add Account') -}}
+    </a>
+  </div>
 
   {% if addon.paypal_id %}
     <div id="paypal" class="indent payment-option">
@@ -59,9 +59,12 @@
     {% include 'developers/payments/includes/bluevia.html' %}
   {% endif %}
 
-  <p id="no-payment-providers" {% if addon.paypal_id or bluevia %}class="js-hidden"{% endif %}>
-    {{ _('You have not yet set up any payment providers. You will not be able to
-       receive payments until you do so.') }}
-  </p>
+  {{ bango_account_list_form.errors }}
+  <div id="bango-payment-accounts" class="indent payment-option">
+    <label for="bango-account">{{ _('Payment Account') }}</label>
+    <div id="bango-account-list">
+      {% include 'developers/payments/includes/bango_accounts.html' %}
+    </div>
+  </div>
 
 </div>

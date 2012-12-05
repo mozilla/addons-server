@@ -181,6 +181,13 @@ DEVICE_TYPES = {
     DEVICE_GAIA.id: DEVICE_GAIA
 }
 
+REVERSE_DEVICE_LOOKUP = {
+    DEVICE_DESKTOP.id: 'desktop',
+    DEVICE_MOBILE.id: 'phone',
+    DEVICE_TABLET.id: 'tablet',
+    DEVICE_GAIA.id: 'os',
+}
+
 
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)

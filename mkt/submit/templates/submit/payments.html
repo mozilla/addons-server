@@ -16,6 +16,8 @@
     <form method="post" class="devhub-form">
       <div class="brform island swagger c">
         {{ csrf() }}
+        {# FIXME: This is broken and needs to be updated to
+           use the new "Compat & Payments" stuff, if it ever happens. #}
         {{ form_field(form.premium_type) }}
         <p>
           {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',

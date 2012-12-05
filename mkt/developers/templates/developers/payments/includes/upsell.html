@@ -1,9 +1,7 @@
-{% from 'developers/includes/macros.html' import some_html_tip %}
 <div class="brform c" id="payments-upsell">
-  {% if form.fields['free'].queryset.count() %}
-    {{ form.free.errors }}
-    <label for="{{ form.free.auto_id }}">{{ form.free.label }} {{ required() }}</label>
-    {{ form.free }}
+  {% if form.fields['upsell_of'].queryset.count() %}
+    {{ form.upsell_of.errors }}
+    {{ form.upsell_of }}
     <p class="note">
       {% trans %}
         Linking this app will promote your premium app next to the free

@@ -3,7 +3,8 @@
   (addon.get_dev_url('owner'), _('Manage Authors')),
 ] %}
 {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
-  {% do urls.append((addon.get_dev_url('payments'), _('Manage Payments'))) %}
+  {% do urls.append((addon.get_dev_url('payments'),
+                     _('Compatibility & Payments'))) %}
 {% endif %}
 {% if not waffle.switch('disabled-payments') %}
   {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
@@ -11,10 +12,6 @@
     {% do urls.insert(4,
       (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
     ) %}
-  {% endif %}
-  {% if waffle.switch('allow-refund') and addon.needs_paypal() and
-        check_addon_ownership(request, addon, support=True) %}
-    {% do urls.insert(4, (addon.get_dev_url('refunds'), _('Manage Refunds'))) %}
   {% endif %}
 {% endif %}
 {% if addon.is_packaged %}
@@ -38,9 +35,7 @@
     <ul class="refinements">
       {% for url, title in urls %}
         {# Hook up PayPal urls under payment urls #}
-        <li{% if request.path.startswith(url)
-              or (request.path.startswith(addon.get_dev_url('paypal_setup'))
-                  and url == addon.get_dev_url('payments')) %} class="selected"{% endif %}>
+        <li{% if request.path.startswith(url) %} class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
     </ul>

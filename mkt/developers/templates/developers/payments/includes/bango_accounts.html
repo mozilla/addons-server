@@ -1,0 +1,5 @@
+{% if bango_account_list_form.fields['accounts'].queryset.exists() %}
+  {{ bango_account_list_form.accounts }}
+{% else %}
+  {{ _("You don't have any payment accounts set up.") }}
+{% endif %}

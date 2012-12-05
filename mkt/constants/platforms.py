@@ -1,5 +1,7 @@
 import re
 
+from tower import ugettext_lazy as _
+
 from versions.compare import version_int as vint
 
 
@@ -22,3 +24,23 @@ APP_PLATFORMS = [
         vint('17.0')
     )
 ]
+
+FREE_PLATFORMS = (
+    ('free-os', _('Firefox OS')),
+    ('free-desktop', _('Firefox')),
+    ('free-phone', _('Firefox Mobile')),
+    ('free-tablet', _('Firefox Tablet')),
+)
+
+PAID_PLATFORMS = (
+    ('paid-os', _('Firefox OS')),
+)
+
+# Extra information about those values for display in the page.
+DEVICE_LOOKUP = {
+    'free-os': _('Fully open mobile ecosystem'),
+    'free-desktop': _('Windows, Mac and Linux'),
+    'free-phone': _('Android smartphones'),
+    'free-tablet': _('Android tablets'),
+    'paid-os': _('Fully open mobile ecosystem'),
+}

@@ -29,8 +29,45 @@ exports.email_setup = function() {
 // This is the setup payments form.
 exports.payment_setup = function() {
 
+    var getOverlay = function(name) {
+        $('.overlay').remove();
+        var overlay = makeOrGetOverlay(name);
+        overlay.html($('#' + name + '-template').html());
+        handlePaymentOverlay(overlay);
+        return overlay;
+    };
+
     // Set up account modal.
-    var newPaymentAccount = function(e) {
+    var newBangoPaymentAccount = function(e) {
+        var $overlay = getOverlay('add-bango-account');
+
+        function setupBangoForm($overlay) {
+            $overlay.on('submit', 'form', _pd(function(e) {
+                var $form = $(this);
+                var $waiting_overlay;
+                var $old_overlay = $overlay.find('section.add-bango-account');
+                $old_overlay.detach();
+
+                $.post(
+                    $form.attr('action'), $form.serialize(),
+                    function(data) {
+                        $('.overlay').remove();
+                        $('#bango-account-list').html(data);
+                        $('#no-payment-providers').addClass('js-hidden');
+                    }
+                ).error(function(error_data) {
+                    // If there's an error, revert to the form and reset the buttons.
+                    $waiting_overlay.empty().append($old_overlay);
+                    $old_overlay.find('#bango-account-errors').html(error_data.responseText);
+                    setupBangoForm($waiting_overlay);
+                });
+                $waiting_overlay = getOverlay('bango-waiting');
+            }));
+        }
+        setupBangoForm($overlay);
+    };
+
+    var oldNewPaymentAccount = function(e) {
         var overlay = makeOrGetOverlay('choose-payment-account');
         overlay.html($('#choose-payment-account-template').html());
         handlePaymentOverlay(overlay);
@@ -176,7 +213,6 @@ exports.payment_setup = function() {
                 $link.attr('href', $link.data('url'));
             });
 
-            $('.payment-account-actions').on('click', _pd(newPaymentAccount));
             $('.paypal-actions #remove-account').on('click', _pd(function(e) {
                 removeAccount('paypal', 'PayPal');
             }));
@@ -185,6 +221,7 @@ exports.payment_setup = function() {
             }));
         });
     };
+    $('.payment-account-actions').on('click', _pd(newBangoPaymentAccount));
 
     // Hide or show upsell form.
     var $freeSelect = $('#id_free');
@@ -197,12 +234,9 @@ exports.payment_setup = function() {
         }
     }).trigger('change');
 
-    if ($('section.payments input[name=premium_type]').length) {
-        update_forms($('section.payments input[name=premium_type]:checked').val());
-        $('section.payments input[name=premium_type]').click(function(e) {
-            update_forms($(this).val());
-        });
-    }
+    // `1` is the magic number from amo.ADDON_PREMIUM.
+    // `3` is the magic number from amo.ADDON_FREE_INAPP.
+    update_forms($('.update-payment-type button').data('type') == 'paid' ? 1 : 3);
 
     function handlePaymentOverlay(overlay) {
         overlay.addClass('show').on('click', '.close', _pd(function() {
@@ -247,6 +281,15 @@ exports.check_with_paypal = function() {
         );
     }
 };
+
+$('.update-payment-type button').click(function(e) {
+    $('input[name=toggle-paid]').val($(this).data('type'));
+});
+
+var $paid_island = $('#paid-island, #paid-upsell-island');
+$('#submit-payment-type.hasappendix').on('tabs-changed', function(e, tab) {
+    $paid_island.toggle(tab.id == 'paid-tab-header');
+})
 
 
 })(typeof exports === 'undefined' ? (this.dev_paypal = {}) : exports);
