@@ -182,6 +182,7 @@ JS = {
         'js/mkt/utils.js',
         'js/mkt/browserid.js',
         'js/mkt/login.js',
+        'js/mkt/notification.js',
 
         # jQuery UI.
         'js/lib/jquery-ui/jquery.ui.core.js',
@@ -231,6 +232,9 @@ JS = {
         'js/devreg/payments.js',
         'js/zamboni/validator.js',
         'js/mkt/overlay.js',
+
+        # Module initialization.
+        'js/mkt/devreg_init.js',
     ),
     'mkt/consumer': (
         # tiny module loader
@@ -303,7 +307,7 @@ JS = {
         'js/lib/stick.js',
 
         # Module initialization.
-        'js/mkt/app_init.js',
+        'js/mkt/consumer_init.js',
     ),
     'mkt/reviewers': (
         'js/mkt/utils.js',
