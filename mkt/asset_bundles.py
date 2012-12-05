@@ -234,7 +234,7 @@ JS = {
         'js/mkt/overlay.js',
 
         # Module initialization.
-        'js/mkt/devreg_init.js',
+        'js/devreg/devreg_init.js',
     ),
     'mkt/consumer': (
         # tiny module loader
