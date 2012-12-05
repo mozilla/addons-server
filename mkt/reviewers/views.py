@@ -426,7 +426,7 @@ def _filter(qs, data):
         dt = (datetime.datetime.today() -
               datetime.timedelta(data['waiting_time_days']))
         qs = qs.filter(created__lte=dt)
-    if data.get('app_type', '') != '':
+    if data.get('app_type') is not None:
         qs = qs.filter(is_packaged=data['app_type'])
     if data.get('device_type_ids', []):
         qs = qs.filter(addondevicetype__device_type__in=
