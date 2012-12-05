@@ -2,5 +2,5 @@
 
 
 --
-Mozilla Marketplace
+Firefox Marketplace
 {{ SITE_URL }}
