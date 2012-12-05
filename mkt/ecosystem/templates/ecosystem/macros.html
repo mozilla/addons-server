@@ -69,6 +69,10 @@
                  {% if section == 'app_generator' %}class="selected"{% endif %}
                  title="{{ _('App Generator') }}">
                 {{ _('App Generator') }}
+              <a href="{{ url('ecosystem.firefox_os_simulator') }}"
+                 {% if section == 'firefox_os_simulator' %}class="selected"{% endif %}
+                 title="{{ _('Firefox OS Simulator') }}">
+                {{ _('Firefox OS Simulator') }}
               </a>
             </li>
             <li>

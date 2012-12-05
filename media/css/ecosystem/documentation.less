@@ -197,7 +197,7 @@ a[rel="external"]:after, a.external:after {
         margin: 0.75em 0;
 
         .button-mdn {
-            color: #fff;
+            color: @white;
         }
     }
 
@@ -207,6 +207,12 @@ a[rel="external"]:after, a.external:after {
         margin: 0.75em 0;
         overflow: auto;
         padding: 20px;
+    }
+
+    .button {
+        &:visited {
+            color: @white;
+        }
     }
 
     .video-embed-list ul {
@@ -288,6 +294,24 @@ a[rel="external"]:after, a.external:after {
 
     .features {
         margin-bottom: 40px;
+    }
+}
+
+.firefox-simulator > article {
+    #app-preview {
+        float: left;
+        width: 280px;
+    }
+
+    #app-details {
+        float: right;
+        width: 390px;
+
+        .button {
+            font-size: 18px;
+            margin: 20px 10px 0 0;
+            padding: 5px 20px;
+        }
     }
 }
 

@@ -244,3 +244,14 @@ def apps_documentation(request, page=None):
 
     return jingo.render(request, ('ecosystem/reference_apps/%s.html' % page),
            ctx)
+
+
+def firefox_os_simulator(request):
+    """Landing page for Firefox OS Simulator."""
+
+    ctx = {
+        'page': 'firefox_os_simulator',
+        'category': 'build'
+    }
+
+    return jingo.render(request, ('ecosystem/firefox_os_simulator.html'), ctx)

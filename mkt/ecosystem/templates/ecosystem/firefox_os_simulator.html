@@ -1,0 +1,99 @@
+{% extends 'ecosystem/base.html' %}
+{% from 'ecosystem/macros.html' import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title() }} | {{ title }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper firefox-simulator">
+    {{ navigation(page) }}
+
+    <article>
+      <h1>{{ _('Firefox OS Simulator') }}</h1>
+
+      <div id="app-preview">
+        <img src="{{ media('img/ecosystem/firefox-os-screenshot.png') }}">
+      </div>
+
+      <div id="app-details">
+        <h2>{{ _('Develop for Firefox OS without a phone') }}</h2>
+        <p>
+          {% trans %}
+            Firefox OS Simulator is the easiest way to try out
+            apps and verify how they’ll look on Firefox OS before
+            submitting to the Marketplace.
+          {% endtrans %}
+        </p>
+        <ul>
+          <li>
+            {% trans %}
+              Easy to install: just a couple of clicks, no need to
+              fire up a command line
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans %}
+              Updates automatically: update check is run every day,
+              as with any Firefox add-on
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans %}
+              Easy to install apps: quickly get apps into the Simulator
+              from your local drive or any URL
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans %}
+              Comes with APIs that aren't available on Firefox Desktop,
+              like Contacts and Settings
+            {% endtrans %}
+          </li>
+        </ul>
+        <h2>{{ _('Download') }}</h2>
+        <a href="https://addons.mozilla.org/firefox/downloads/file/180652/firefox_os_simulator-1.0-fx-windows.xpi"
+           class="button">{{ _('Windows') }}</a>
+        <a href="https://addons.mozilla.org/firefox/downloads/file/180650/firefox_os_simulator-1.0-fx-mac.xpi"
+           class="button">{{ _('Mac OSX') }}</a>
+        <a href="https://addons.mozilla.org/firefox/downloads/file/180646/firefox_os_simulator-1.0-fx-linux.xpi"
+           class="button">{{ _('Linux') }}</a>
+        <h2>{{ _('Get Support') }}</h2>
+        <ul>
+          <li>
+            {% trans intro_link='https://hacks.mozilla.org/2012/11/announcing-the-prototype-firefox-os-simulator' %}
+              <a href="{{ intro_link }}">Introduction blog post</a>
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans report_link='https://github.com/mozilla/r2d2b2g/issues?state=open' %}
+              <a href="{{ report_link }}">Report problems on GitHub</a>
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans report_link='https://developer.mozilla.org/en-US/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client' %}
+              <a href="{{ report_link }}">
+                Mozilla Developers Network: Using the B2G desktop client
+              </a>
+            {% endtrans %}
+          </li>
+          <li>
+            {% trans report_link='https://developer.mozilla.org/en-US/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators' %}
+              <a href="{{ report_link }}">
+                Mozilla Developers Network: Using the B2G emulators
+              </a>
+            {% endtrans %}
+          </li>
+        </ul>
+      </div>
+
+      <div id="view-code">
+        {% block app_code %}{% endblock %}
+      </div>
+    </article>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ js('mkt/ecosystem') }}
+{% endblock %}
