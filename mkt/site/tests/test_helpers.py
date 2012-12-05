@@ -166,6 +166,7 @@ class TestMarketButton(amo.tests.TestCase):
     def test_can_install_mobile(self):
         self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
         self.context['request'].MOBILE = True
+        self.context['request'].TABLET = False
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' not in cls, 'Unexpected: %r' % cls
@@ -186,8 +187,8 @@ class TestMarketButton(amo.tests.TestCase):
         self.context['request'].TABLET = True
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disabled' not in cls, 'Unexpected: %r' % cls
-        eq_(doc('.bad-app').length, 0)
+        assert 'disabled' in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 1)
 
     def test_cannot_install_tablet_only(self):
         self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_TABLET.id)
