@@ -3,7 +3,9 @@
 // これのほうがいいです
 @media(min-width: @desktop) {
     #filters {
-        top: -11px;
+        h2, #filter-prices {
+            display: none;
+        }
         position: relative;
         height: 40px;
         background: none;
@@ -39,6 +41,7 @@
                     &.sel {
                         border-top: 1px solid #00b2ff;
                         color: #00b2ff;
+                        text-decoration: none;
                     }
                 }
             }
@@ -49,7 +52,7 @@
     }
     .search {
         #page {
-            padding-top: 91px;
+            padding-top: 80px;
             &:before {
                 .gradient-two-color(#2b343b, #2e383f);
                 border-bottom: 1px solid rgba(0,0,0,.2);
@@ -64,14 +67,18 @@
             }
         }
         .incompatible-browser.active {
-            top: 91px;
+            top: 80px;
+        }
+    }
+    .incompatible {
+        .header-button.expand {
+            margin-top: 130px;
         }
     }
     #search-results {
         h1 {
             margin-bottom: 10px;
         }
-        padding-top: 35px;
         .listing {
             border-top: 1px solid @light-gray;
         }
