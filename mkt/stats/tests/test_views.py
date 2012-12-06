@@ -1,8 +1,12 @@
+import csv
 import datetime
 import json
 import random
 
+from django.contrib.auth.models import AnonymousUser
+
 from nose.tools import eq_
+from test_utils import RequestFactory
 import waffle
 
 from access.models import Group, GroupUser
@@ -190,6 +194,23 @@ class TestStatsPermissions(StatsTest):
         eq_(response.status_code, 200)
 
 
+class TestMyApps(StatsTest):
+
+    def setUp(self):
+        super(TestMyApps, self).setUp()
+        self.req = RequestFactory().get('/')
+        self.req.amo_user = self.user
+        AddonUser.objects.create(addon=self.public_app, user=self.user)
+        Installed.objects.create(addon=self.public_app, user=self.user)
+
+    def test_anonymous(self):
+        del self.req.amo_user
+        eq_(views._my_apps(self.req), [])
+
+    def test_some(self):
+        eq_(views._my_apps(self.req), [self.public_app])
+
+
 class TestInstalled(amo.tests.ESTestCase):
     es = True
     fixtures = fixture('user_999', 'webapp_337141')
@@ -211,6 +232,12 @@ class TestInstalled(amo.tests.ESTestCase):
                              start.strftime('%Y%m%d'),
                              end.strftime('%Y%m%d'), fmt])
 
+    def get_multiple_url(self, start, end, fmt='json'):
+        return reverse('mkt.stats.my_apps_series',
+                       args=['day',
+                             start.strftime('%Y%m%d'),
+                             end.strftime('%Y%m%d'), fmt])
+
     def test_installed(self):
         res = self.client.get(self.get_url(self.today, self.today))
         data = json.loads(res.content)
@@ -226,6 +253,27 @@ class TestInstalled(amo.tests.ESTestCase):
         self.webapp.update(public_stats=True)
         res = self.client.get(self.get_url(self.today, self.today))
         eq_(res.status_code, 200)
+
+    def setup_multiple(self):
+        self.client.login(username=self.user.email, password='password')
+        AddonUser.objects.create(addon=self.webapp, user=self.user)
+
+    def test_multiple_json(self):
+        self.setup_multiple()
+        res = self.client.get(self.get_multiple_url(self.today, self.today))
+        eq_(json.loads(res.content)[0]['name'], self.webapp.name)
+
+    def test_multiple_csv(self):
+        self.setup_multiple()
+        res = self.client.get(self.get_multiple_url(self.today, self.today,
+                                                    fmt='csv'))
+        rows = list(csv.reader(res.content.split('\n')))
+        eq_(rows[5][0], str(self.webapp.name))
+
+    def test_anonymous(self):
+        self.client.logout()
+        res = self.client.get(reverse('mkt.stats.my_apps_overview'))
+        self.assertLoginRequired(res)
 
 
 class TestGetSeriesLine(amo.tests.ESTestCase):

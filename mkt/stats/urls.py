@@ -142,3 +142,15 @@ for key in keys:
                 name='mkt.stats.%s' % key, kwargs={'report': key}))
 
 app_site_patterns += patterns('', *urls)
+
+all_apps_stats_patterns = patterns('',
+    # Landing pages.
+    url('^$', views.my_apps_report, name='mkt.stats.my_apps_overview',
+        kwargs={'report': 'installs'}),
+    url('^installs/$', views.my_apps_report, name='mkt.stats.my_apps_installs',
+        kwargs={'report': 'installs'}),
+
+    # Data URL.
+    url(series['my_apps'], views.my_apps_series,
+        name='mkt.stats.my_apps_series'),
+)

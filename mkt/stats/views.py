@@ -6,11 +6,11 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
 import jingo
+from waffle.decorators import waffle_switch
 
 from access import acl
-from addons.models import Addon
 import amo
-from amo.decorators import json_view
+from amo.decorators import json_view, login_required
 from amo.urlresolvers import reverse
 from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.decorators import app_view, app_view_factory
@@ -28,7 +28,7 @@ FINANCE_SERIES = (
     'currency_refunds_inapp', 'source_revenue_inapp',
     'source_sales_inapp', 'source_refunds_inapp'
 )
-SERIES = FINANCE_SERIES + ('installs', 'usage')
+SERIES = FINANCE_SERIES + ('installs', 'usage', 'my_apps')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')
 SERIES_FORMATS = ('json', 'csv')
@@ -80,8 +80,22 @@ def stats_report(request, addon, report, inapp=None, category_field=None):
     })
 
 
+@login_required
+@waffle_switch('developer-stats')
+def my_apps_report(request, report):
+    """
+    A report for a developer, showing multiple apps.
+    """
+    view = get_report_view(request)
+    template_name = 'devstats/reports/%s.html' % report
+    return jingo.render(request, template_name, {
+        'view': view,
+        'report': 'my_apps',
+    })
+
+
 def get_series_line(model, group, primary_field=None, extra_fields=None,
-                    **filters):
+                    extra_values=None, **filters):
     """
     Get a generator of dicts for the stats model given by the filters, made
     to fit into Highchart's datetime line graph.
@@ -89,9 +103,11 @@ def get_series_line(model, group, primary_field=None, extra_fields=None,
     primary_field takes a field name that can be referenced by the key 'count'
     extra_fields takes a list of fields that can be found in the index
     on top of date and count and can be seen in the output
+    extra_values is a list of constant values added to each line
     """
     if not extra_fields:
         extra_fields = []
+    extra_values = extra_values or {}
 
     # Pull data out of ES
     data = list((model.search().order_by('-date').filter(**filters)
@@ -119,6 +135,7 @@ def get_series_line(model, group, primary_field=None, extra_fields=None,
             rv = dict(count=val['count'], date=date_, end=date_)
         for extra_field in extra_fields:
             rv[extra_field] = val[extra_field]
+        rv.update(extra_values)
         yield rv
 
 
@@ -222,6 +239,49 @@ def installs_series(request, addon, group, start, end, format):
         return render_csv(request, addon, series, ['date', 'count'])
     elif format == 'json':
         return render_json(request, addon, series)
+
+
+def _my_apps(request):
+    """
+    Find the apps you are allowed to see stats for, by getting all apps
+    and then filtering down.
+    """
+    filtered = []
+    if not getattr(request, 'amo_user', None):
+        return filtered
+
+    addon_users = (request.amo_user.addonuser_set
+                          .filter(addon__type=amo.ADDON_WEBAPP))
+    for addon_user in addon_users:
+        if check_stats_permission(request, addon_user.addon, no_raise=True):
+            filtered.append(addon_user.addon)
+    return filtered
+
+
+def my_apps_series(request, group, start, end, format):
+    """
+    Install counts for multiple apps. This is a temporary hack that will
+    probably live forever.
+    """
+    date_range = check_series_params_or_404(group, start, end, format)
+    apps = _my_apps(request)
+    series = []
+    for app in apps:
+        # The app name is going to appended in slightly different ways
+        # depending upon data format.
+        if format == 'csv':
+            series = get_series_line(Installed, group, addon=app.id,
+                                     date__range=date_range,
+                                     extra_values={'name': (app.name)})
+        elif format == 'json':
+            data = get_series_line(Installed, group, addon=app.id,
+                                   date__range=date_range)
+            series.append({'name': str(app.name), 'data': list(data)})
+
+    if format == 'csv':
+        return render_csv(request, apps, series, ['name', 'date', 'count'])
+    elif format == 'json':
+        return render_json(request, apps, series)
 
 
 #TODO: real data

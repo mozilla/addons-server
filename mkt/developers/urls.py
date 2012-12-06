@@ -6,6 +6,8 @@ from lib.misc.urlconf_decorator import decorate
 import amo
 from amo.decorators import write
 from mkt.developers.decorators import use_apps
+from mkt.stats.urls import all_apps_stats_patterns
+
 from . import views
 
 
@@ -148,4 +150,6 @@ urlpatterns = decorate(write, patterns('',
         views.docs, name='mkt.developers.docs'),
     url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
         views.docs, name='mkt.developers.docs'),
+
+    url('^statistics/', include(all_apps_stats_patterns)),
 ))
