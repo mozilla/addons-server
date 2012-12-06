@@ -346,7 +346,6 @@ def queue_rereview(request):
                               .filter(addon__type=amo.ADDON_WEBAPP,
                                       addon__disabled_by_user=False)
                               .exclude(addon__in=excluded_ids)
-                              .order_by('created')
                               .values_list('addon', flat=True))
     qs = Webapp.objects.filter(id__in=addon_ids)
 

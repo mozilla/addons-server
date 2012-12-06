@@ -336,12 +336,12 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
-        rq1 = RereviewQueue.objects.create(addon=self.apps[0])
-        rq1.update(created=self.days_ago(5))
-        rq2 = RereviewQueue.objects.create(addon=self.apps[1])
-        rq2.update(created=self.days_ago(3))
-        rq3 = RereviewQueue.objects.create(addon=self.apps[2])
-        rq3.update(created=self.days_ago(1))
+        RereviewQueue.objects.create(addon=self.apps[0])
+        self.apps[0].update(created=self.days_ago(5))
+        RereviewQueue.objects.create(addon=self.apps[1])
+        self.apps[1].update(created=self.days_ago(3))
+        RereviewQueue.objects.create(addon=self.apps[2])
+        self.apps[2].update(created=self.days_ago(1))
 
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_rereview')
@@ -354,7 +354,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
         apps = [rq.addon for rq in
-                RereviewQueue.objects.all().order_by('created')]
+                RereviewQueue.objects.all().order_by('addon__created')]
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
             (unicode(apps[1].name), self.review_url(apps[1])),
@@ -435,7 +435,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         res = self.client.get(self.url)
-        eq_([a.app for a in res.context['addons']], self.apps[1:])
+        self.assertSetEqual([a.app for a in res.context['addons']],
+                            self.apps[1:])
 
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
@@ -599,12 +600,12 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
-        eq1 = EscalationQueue.objects.create(addon=self.apps[0])
-        eq1.update(created=self.days_ago(5))
-        eq2 = EscalationQueue.objects.create(addon=self.apps[1])
-        eq2.update(created=self.days_ago(3))
-        eq3 = EscalationQueue.objects.create(addon=self.apps[2])
-        eq3.update(created=self.days_ago(1))
+        EscalationQueue.objects.create(addon=self.apps[0])
+        self.apps[0].update(created=self.days_ago(5))
+        EscalationQueue.objects.create(addon=self.apps[1])
+        self.apps[1].update(created=self.days_ago(3))
+        EscalationQueue.objects.create(addon=self.apps[2])
+        self.apps[2].update(created=self.days_ago(1))
 
         self.login_as_senior_reviewer()
         self.url = reverse('reviewers.apps.queue_escalated')
@@ -635,7 +636,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
         apps = [rq.addon for rq in
-                EscalationQueue.objects.all().order_by('created')]
+                EscalationQueue.objects.all().order_by('addon__created')]
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
             (unicode(apps[1].name), self.review_url(apps[1])),
