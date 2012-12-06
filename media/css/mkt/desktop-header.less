@@ -40,22 +40,22 @@
     // TODO: These are temporary styles. Davor, remove this with bug 811356.
     .search {
         #page {
-            padding-top: 91px;
+            padding-top: 121px;
             &:before {
                 background: @grain-src #566773;
                 background-size: 100px 100px;
                 border-bottom: 1px solid rgba(0,0,0,.2);
                 content: "";
                 display: block;
-                position: absolute;
-                top: 80px;
+                position: fixed;
+                top: 110px;
                 height: 40px;
                 width: 100%;
                 z-index: 3;
             }
         }
         .incompatible-browser.active {
-            top: 91px;
+            top: 121px;
         }
     }
 
@@ -116,7 +116,7 @@
         // TODO: These are temporary styles. Davor, remove this with bug 811356.
         &.filter,
         &.expand {
-            margin-top: 37px;
+            margin-top: 50px;
         }
         &.filter {
             color: @black;
