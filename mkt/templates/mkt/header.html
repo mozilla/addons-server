@@ -1,26 +1,13 @@
 <header id="site-header" class="c{{ ' no-consumer' if not request.can_view_consumer }}">
   <section>
-    {% if request.MOBILE %}
-      <h1 class="page">{{ headertitle }}</h1>
-    {% else %}
-      <h1 class="site"><a href="{{ url('home') }}">Firefox Marketplace</a></h1>
-    {% endif %}
+    <h1>{{ headertitle }}</h1>
     {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="{{ url('home') }}" class="header-button icon home left" title="{{ _('Home') }}"></a>
-      {% if request.MOBILE %}
-        <a href="{{ url('account.settings') if
-                    request.user.is_authenticated() else
-                    url('account.feedback') }}"
-           class="header-button icon settings left" title="{{ _('Settings') }}"></a>
-      {% else %}
-        {% if logged %}
-          <a href="{{ url('account.settings') }}"
-             class="header-button icon settings left" title="{{ _('Settings') }}"></a>
-        {% else %}
-          <a href="#" class="header-button browserid right">{{ _('Sign In') }}</a>
-        {% endif %}
-      {% endif %}
+      <a href="{{ url('account.settings') if
+                  request.user.is_authenticated() else
+                  url('account.feedback') }}"
+         class="header-button icon settings left" title="{{ _('Settings') }}"></a>
       <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
       <a href="#" class="header-button icon search right" title="{{ _('Search') }}"></a>
       <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>
@@ -34,7 +21,7 @@
           <input id="search-q" type="search" name="q" autocomplete="off" title=""
                  placeholder="{{ category.name if category else _('Search') }}"
                  data-placeholder-default="{{ _('Search') }}"
-                 {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
+                 value="{{ search_form.q.value() }}">
           {% if search_form.cat.value() %}
             {{ search_form.cat }}
           {% endif %}

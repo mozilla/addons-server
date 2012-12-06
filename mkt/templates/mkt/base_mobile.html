@@ -70,9 +70,7 @@
     {% block siteheader %}
       {% with headertitle = headertitle,
               titletag = titletag,
-              pagetitle = pagetitle,
-              category = category,
-              logged = logged %}
+              pagetitle = pagetitle %}
         {% include 'mkt/header.html' %}
       {% endwith %}
     {% endblock %}

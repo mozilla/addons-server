@@ -6,9 +6,6 @@
 }
 
 @media (min-width: @desktop) {
-    body, h1, h2, h3, h4 {
-        font-weight: 300;
-    }
     body {
         background: @white;
     }
@@ -62,9 +59,7 @@
         }
     }
 
-    #footer,
-    #directory-footer {
-        display: block;
+    footer {
         padding: 30px 0;
         .pad {
             margin: 0 auto;
@@ -74,6 +69,11 @@
         ul {
             list-style: none;
         }
+    }
+
+    #footer,
+    #directory-footer {
+        display: block;
     }
 
     #footer {

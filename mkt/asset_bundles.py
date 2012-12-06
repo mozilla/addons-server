@@ -156,7 +156,6 @@ CSS.update({
         # TODO: Split components into individual, appropriate stylesheets.
         'css/devreg/footer.less',
         'css/mkt/desktop.less',
-        'css/mkt/desktop-header.less',
     ),
 })
 
