@@ -33,7 +33,6 @@
     function registerDatepickers() {
         $('#featured-webapps input[type=date]').each(function(i, elm) {
             $(elm).datepicker({
-                minDate: 0,
                 dateFormat: 'yy-mm-dd'
             });
         });
