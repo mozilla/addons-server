@@ -49,7 +49,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }} {{ bodyclass }}"
+  <body class="html-{{ DIR }} {{ CARRIER }} {{ FORCE_MOBILE }} {{ bodyclass }}{{ ' logged' if logged }}"
         {% if waffle.switch('anonymous-free-installs') %}data-allow-anon-installs="true"{% endif %}
         data-user="{{ user_data(request.amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
