@@ -112,10 +112,16 @@ WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 
 if getattr(private_mkt, 'LOAD_TESTING', False):
+    # mock the authentication and use django_fakeauth for this
     AUTHENTICATION_BACKENDS = ('django_fakeauth.FakeAuthBackend',)\
                               + AUTHENTICATION_BACKENDS
     MIDDLEWARE_CLASSES.insert(
             MIDDLEWARE_CLASSES.index('access.middleware.ACLMiddleware'),
             'django_fakeauth.FakeAuthMiddleware')
     FAKEAUTH_TOKEN = private_mkt.FAKEAUTH_TOKEN
+
+    # we are also creating access tokens for OAuth, here are the keys and
+    # secrets used for them
+    API_SALT = getattr(private_mkt, 'API_SALT', FAKEAUTH_TOKEN)
+
     ES_HOSTS = ['127.0.0.1:9202']
