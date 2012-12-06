@@ -154,7 +154,6 @@ CSS = {
 CSS.update({
     'mkt/consumer-desktop': CSS['mkt/consumer'] + (
         # TODO: Split components into individual, appropriate stylesheets.
-        'css/devreg/footer.less',
         'css/mkt/desktop.less',
     ),
 })

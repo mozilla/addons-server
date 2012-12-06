@@ -1,34 +1,26 @@
 @import 'lib';
 
-#footzilla {
-    background: url(../../img/mkt/logos/footzilla.png) 0 5px no-repeat;
-    float: left;
-    text-indent: -9999px;
-    width: 100px;
-    a {
-        display: block;
-    }
-}
-
-#footzilla,
-#footzilla a {
-    height: 26px;
-    width: 100px;
-}
-
 #footer {
     .border-box;
     border-top: 1px solid @faint-gray;
     color: @note-gray;
-    overflow: hidden;
-    padding: 30px 0;
+    padding-top: 2em;
     width: 100%;
+    #footzilla {
+        background: url(../../img/hub/footzilla.png) no-repeat;
+        float: left;
+        height: 50px;
+        margin-top: 5px;
+        opacity: .5;
+        text-indent: -9999px;
+        width: 100px;
+    }
     p, ul {
         .border-box;
-        border-left: 1px dotted @light-gray;
-        font-size: 11px;
+        border-left: 1px dotted @faint-gray;
+        font-size: 12px;
         line-height: 1.3;
-        margin: 0;
+        margin-bottom: 1.5em;
         padding-left: 1em;
     }
     p {
@@ -37,27 +29,10 @@
     }
     ul {
         float: right;
-        line-height: 1.2;
+        line-height: 1.1;
         width: 20%;
-        a {
-            display: block;
+        li + li {
+            margin-top: 2px;
         }
-    }
-    li + li {
-        margin-top: 2px;
-    }
-    a {
-        color: lighten(#2189d9, 10%);
-        &:hover {
-            color: #2189d9;
-            text-decoration: underline;
-        }
-    }
-}
-
-@media @retina {
-    #footzilla {
-        background-image: url(../../img/mkt/logos/footzilla-2x.png);
-        background-size: 81px auto;
     }
 }

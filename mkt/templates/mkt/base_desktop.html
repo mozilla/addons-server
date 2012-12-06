@@ -6,28 +6,3 @@
 {% block site_css %}
   {{ css('mkt/consumer-desktop') }}
 {% endblock %}
-
-{% block sitefooter %}
-  <footer id="directory-footer" class="c">
-    <div class="pad">
-      <div class="group">
-        <a class="devhub" href="{{ url('ecosystem.landing') }}">
-          <h1>{{ _('Develop apps for the Marketplace!') }}</h1>
-          <b>{{ _('Visit the Developer Hub') }}</b>
-        </a>
-      </div>
-      {% if logged and tools_links %}
-        <div class="group">
-          {% for link in tools_links[1:] -%}
-            <a href="{{ link.href }}"{{ ' target="%s"' % link.target if link.target }}>{{ link.text }}</a>
-          {%- endfor %}
-        </div>
-      {% endif %}
-      <div class="group">
-        <a href="{{ url('ecosystem.landing') }}">{{ _('Developer Hub') }}</a>
-        <a href="{{ url('account.feedback') }}">{{ _('Feedback') }}</a>
-      </div>
-    </div>
-  </footer>
-  {% include 'mkt/footer.html' %}
-{% endblock %}

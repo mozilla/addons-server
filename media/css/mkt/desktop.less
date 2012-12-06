@@ -1,18 +1,6 @@
 @import 'lib';
 
-#footer,
-#directory-footer {
-    display: none;
-}
-
 @media (min-width: @desktop) {
-    body {
-        background: @white;
-    }
-    #page {
-        background: @grain-src @bg;
-    }
-
     #featured-home {
         border-bottom: 1px solid @white;
     }
@@ -56,100 +44,6 @@
             &:active {
                 .depressed;
             }
-        }
-    }
-
-    footer {
-        padding: 30px 0;
-        .pad {
-            margin: 0 auto;
-            padding: 0;
-            width: 600px;  // TODO: Change this to 768px when we increase page width.
-        }
-        ul {
-            list-style: none;
-        }
-    }
-
-    #footer,
-    #directory-footer {
-        display: block;
-    }
-
-    #footer {
-        background: @white;
-        border-top-color: rgba(0,0,0,.08);
-    }
-
-    #directory-footer {
-        .box-shadow(0 1px 0 rgba(3,16,26,.15) inset);
-        background: #d5d9dc @grain-src;
-        //min-height: 100px;
-        .devhub {
-            background: url(../../img/mkt/icons/rocket.png) 0 35px no-repeat;
-            margin: -30px -20px -30px;
-            padding: 30px 20px 30px 60px;
-            h1 {
-                color: @dark-gray;
-                font-size: 20px;
-                text-shadow: 0 1px 1px rgba(245,247,250,.75);
-            }
-            b {
-                font-size: 14px;
-                font-weight: 400;
-            }
-            &:hover {
-                text-decoration: none;
-                h1 {
-                    color: @black;
-                }
-                b {
-                    text-decoration: underline;
-                }
-            }
-        }
-        .group {
-            float: left;
-            min-height: 71px;
-            padding: 0 20px;  // TODO: Change this to 40px when we increase page width.
-            width: 25%;
-            position: relative;
-            &:after,
-            + .group:before {
-                content: "";
-                display: block;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                width: 1px;
-            }
-            &:after {
-                .gradient(~'top, rgba(185,190,195,0), rgba(185,190,195,.75) 25%, rgba(185,190,195,.75) 75%, rgba(185,190,195,0) 100%');
-                right: 0;
-            }
-            + .group:before {
-                .gradient(~'top, rgba(226,228,231,0), rgba(226,228,231,.75) 25%, rgba(226,228,231,.75) 75%, rgba(226,228,231,0) 100%');
-                left: 0;
-            }
-            &:first-child {
-                width: 50%;
-            }
-            &:last-child:after {
-                display: none;
-            }
-            a {
-                display: block;
-            }
-        }
-    }
-}
-
-@media screen and (min-width: @desktop),
-       @retina {
-    #directory-footer {
-        .devhub {
-            background-image: url(../../img/mkt/icons/rocket-2x.png);
-            background-size: 47px auto;
         }
     }
 }

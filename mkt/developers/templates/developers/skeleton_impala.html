@@ -175,7 +175,29 @@
       <span></span>
     </div>
     {% block site_nav_footer %}{% endblock %}
-    {% include 'mkt/footer.html' %}
+    <footer id="footer" class="c">
+      <div class="pad">
+        <h1 id="footzilla">mozilla</h1>
+        <p>
+          {% trans %}
+            Except where otherwise
+            <a href="http://mozilla.com/about/legal.html#site">noted</a>,
+            content on this site is licensed under the <br />
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/">
+              Creative Commons Attribution Share-Alike License v3.0
+            </a> or any later version.
+          {% endtrans %}
+        </p>
+        <ul>
+          <li><a href="{{ url('site.privacy') }}">
+            {{ _('Privacy Policy') }}</a></li>
+          <li><a href="{{ url('site.terms') }}">
+            {{ _('Terms of Use') }}</a></li>
+          <li><a href="http://mozilla.com/legal/fraud-report/index.html">
+            {{ _('Report Trademark Abuse') }}</a></li>
+        </ul>
+      </div>
+    </footer>
 
     {% if not logged %}
       <div id="login" class="overlay">
