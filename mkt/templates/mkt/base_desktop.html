@@ -19,7 +19,7 @@
       {% if logged and tools_links %}
         <div class="group">
           {% for link in tools_links[1:] -%}
-            <a href="{{ link.href }}" class="sync"{{ ' target="%s"' % link.target if link.target }}>{{ link.text }}</a>
+            <a href="{{ link.href }}"{{ ' target="%s"' % link.target if link.target }}>{{ link.text }}</a>
           {%- endfor %}
         </div>
       {% endif %}
