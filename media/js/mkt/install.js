@@ -13,6 +13,7 @@
 
     function installHandler(e) {
         e.preventDefault();
+        e.stopPropagation();
         var product = $(this).closest('[data-product]').data('product');
         startInstall(product);
     }
