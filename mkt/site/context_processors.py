@@ -15,13 +15,13 @@ def global_settings(request):
     """Store global Marketplace-wide info. used in the header."""
     account_links = []
     tools_links = []
-    footer_links = []
     context = {}
 
     tools_title = _('Tools')
 
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
+        account_links = []
         context['is_reviewer'] = acl.check_reviewer(request)
         if getattr(request, 'can_view_consumer', True):
             account_links = [
@@ -43,19 +43,17 @@ def global_settings(request):
                 tools_links.append({'text': _('My Submissions'),
                                     'href': reverse('mkt.developers.apps')})
         if '/reviewers/' not in request.path and context['is_reviewer']:
-            footer_links.append({'text': _('Reviewer Tools'),
+            tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('reviewers.home')})
         if acl.action_allowed(request, 'Localizers', '%'):
-            footer_links.append({'text': _('Localizer Tools'),
+            tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
         if acl.action_allowed(request, 'AccountLookup', '%'):
-            footer_links.append({'text': _('Lookup Tool'),
+            tools_links.append({'text': _('Lookup Tool'),
                                 'href': reverse('lookup.home')})
         if acl.action_allowed(request, 'Admin', '%'):
-            footer_links.append({'text': _('Admin Tools'),
+            tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
-
-        tools_links += footer_links
 
         context['amo_user'] = amo_user
     else:
@@ -70,7 +68,6 @@ def global_settings(request):
                    APP=amo.FIREFOX,
                    tools_links=tools_links,
                    tools_title=tools_title,
-                   footer_links=footer_links,
                    ADMIN_MESSAGE=get_config('site_notice'),
                    collect_timings_percent=get_collect_timings(),
                    is_admin=acl.action_allowed(request, 'Addons', 'Edit'),

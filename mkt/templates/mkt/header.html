@@ -1,9 +1,10 @@
 <header id="site-header" class="c{{ ' no-consumer' if not request.can_view_consumer }}">
   <section>
-    {% if not request.MOBILE %}
+    {% if request.MOBILE %}
+      <h1 class="page">{{ headertitle }}</h1>
+    {% else %}
       <h1 class="site"><a href="{{ url('home') }}">Firefox Marketplace</a></h1>
     {% endif %}
-    <h1 class="page">{{ headertitle }}</h1>
     {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="{{ url('home') }}" class="header-button icon home left" title="{{ _('Home') }}"></a>
@@ -14,20 +15,10 @@
            class="header-button icon settings left" title="{{ _('Settings') }}"></a>
       {% else %}
         {% if logged %}
-          <div class="account-links">
-            <a href="{{ url('account.settings') }}" class="header-button icon settings sticky" title="{{ _('Settings') }}"></a>
-            <ul>
-              <li class="user"><a href="{{ url('account.settings') }}">{{ request.amo_user.email }}</a></li>
-              <li><a href="{{ url('account.purchases') }}">{{ _('My Apps') }}</a></li>
-              {% if amo_user.is_app_developer %}
-                <li><a href="{{ url('mkt.developers.apps') }}">{{ _('My Submissions') }}</a></li>
-              {% endif %}
-              <li><a href="{{ url('account.feedback') }}">{{ _('Feedback') }}</a></li>
-              <li><a href="{{ url('users.logout') }}" class="sync logout">{{ _('Sign Out') }}</a></li>
-            </ul>
-          </div>
+          <a href="{{ url('account.settings') }}"
+             class="header-button icon settings left" title="{{ _('Settings') }}"></a>
         {% else %}
-          <a href="#" class="header-button browserid">{{ _('Sign In') }}</a>
+          <a href="#" class="header-button browserid right">{{ _('Sign In') }}</a>
         {% endif %}
       {% endif %}
       <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
