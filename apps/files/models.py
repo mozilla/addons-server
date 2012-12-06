@@ -454,9 +454,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             os.makedirs(directory)
 
         shutil.copyfile(self.file_path, dest)
-        outzip = SafeUnzip(dest, mode='w')
+        outzip = SafeUnzip(dest, mode='a')
         outzip.is_valid()
         outzip.zip.writestr('install.rdf', str(data))
+        outzip.close()
 
     def watermark(self, user):
         """
