@@ -90,7 +90,9 @@ class Version(amo.models.ModelBase):
             platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
-            File.from_upload(upload, v, platform, parse_data=data)
+            f = File.from_upload(upload, v, platform, parse_data=data)
+            if addon.type == amo.ADDON_WEBAPP and addon.is_packaged:
+                f.inject_ids()
 
         v.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
