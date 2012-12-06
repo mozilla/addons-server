@@ -157,7 +157,6 @@ CSS.update({
         'css/devreg/footer.less',
         'css/mkt/desktop.less',
         'css/mkt/desktop-header.less',
-        'css/mkt/desktop-filters.less',
     ),
 })
 

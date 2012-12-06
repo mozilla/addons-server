@@ -37,6 +37,28 @@
         top: 80px;
     }
 
+    // TODO: These are temporary styles. Davor, remove this with bug 811356.
+    .search {
+        #page {
+            padding-top: 91px;
+            &:before {
+                background: @grain-src #566773;
+                background-size: 100px 100px;
+                border-bottom: 1px solid rgba(0,0,0,.2);
+                content: "";
+                display: block;
+                position: absolute;
+                top: 80px;
+                height: 40px;
+                width: 100%;
+                z-index: 3;
+            }
+        }
+        .incompatible-browser.active {
+            top: 91px;
+        }
+    }
+
     // The logo is permanent in the header.
     #site-header h1.page {
         display: none;
@@ -90,6 +112,19 @@
         &.home {
             display: none !important;
         }
+
+        // TODO: These are temporary styles. Davor, remove this with bug 811356.
+        &.filter,
+        &.expand {
+            margin-top: 37px;
+        }
+        &.filter {
+            color: @black;
+        }
+        &.expand {
+            margin-right: 50px;
+        }
+
         &.settings {
             background-position: 100% 50%;
             display: block;
@@ -113,6 +148,13 @@
                     display: none;
                 }
             }
+        }
+    }
+    // TODO: These are temporary styles. Davor, remove this with bug 811356.
+    #search-results {
+        padding-top: 45px;
+        .listing {
+            border-top: 1px solid @light-gray;
         }
     }
 }
