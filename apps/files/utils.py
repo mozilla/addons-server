@@ -349,6 +349,9 @@ class SafeUnzip(object):
         for info in self.info:
             self.extract_info_to_dest(info, dest)
 
+    def close(self):
+        self.zip.close()
+
 
 def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""
