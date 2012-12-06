@@ -16,9 +16,9 @@
           <b>{{ _('Visit the Developer Hub') }}</b>
         </a>
       </div>
-      {% if logged and tools_links|length > 1 %}
+      {% if logged and footer_links %}
         <div class="group">
-          {% for link in tools_links[1:] -%}
+          {% for link in footer_links -%}
             <a href="{{ link.href }}" class="sync">{{ link.text }}</a>
           {%- endfor %}
         </div>
