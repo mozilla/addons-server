@@ -38,12 +38,10 @@ def global_settings(request):
         ]
         if '/developers/' not in request.path:
             tools_links.append({'text': _('Developer Hub'),
-                                'href': reverse('ecosystem.landing'),
-                                'target': '_blank'})
+                                'href': reverse('ecosystem.landing')})
             if amo_user.is_app_developer:
                 tools_links.append({'text': _('My Submissions'),
-                                    'href': reverse('mkt.developers.apps'),
-                                    'target': '_blank'})
+                                    'href': reverse('mkt.developers.apps')})
         if '/reviewers/' not in request.path and context['is_reviewer']:
             tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('reviewers.home')})
