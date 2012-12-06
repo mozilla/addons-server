@@ -608,13 +608,12 @@ class PremiumForm(happyforms.Form):
 
         # Check for free -> paid for already public apps.
         premium_type = self.cleaned_data['premium_type']
-        if (self.addon.premium_type == amo.ADDON_FREE and
-            premium_type in amo.ADDON_PREMIUMS and
-            self.addon.status == amo.STATUS_PUBLIC):
-            # Free -> paid for public apps trigger re-review.
-            log.info(u'[Webapp:%s] (Re-review) Public app, free -> paid.' % (
-                self.addon))
-            RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_FREE_TO_PAID)
+        if (self.addon.status == amo.STATUS_PUBLIC and
+            self.addon.is_premium_type_upgrade(premium_type)):
+            log.info(u'[Webapp:%s] (Re-review) Public app, premium type '
+                     u'upgraded.' % self.addon)
+            RereviewQueue.flag(self.addon,
+                               amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
         self.addon.premium_type = premium_type
 

@@ -286,6 +286,28 @@ class TestWebapp(amo.tests.TestCase):
         with self.assertRaises(ValueError):
             app.save()
 
+    def test_is_premium_type_upgrade_check(self):
+        app = Webapp()
+        ALL = set(amo.ADDON_FREES + amo.ADDON_PREMIUMS)
+        free_upgrade = ALL - set([amo.ADDON_FREE])
+        free_inapp_upgrade = ALL - set([amo.ADDON_FREE, amo.ADDON_FREE_INAPP])
+
+        # Checking ADDON_FREE changes.
+        app.premium_type = amo.ADDON_FREE
+        for pt in ALL:
+            eq_(app.is_premium_type_upgrade(pt), pt in free_upgrade)
+
+        # Checking ADDON_FREE_INAPP changes.
+        app.premium_type = amo.ADDON_FREE_INAPP
+        for pt in ALL:
+            eq_(app.is_premium_type_upgrade(pt), pt in free_inapp_upgrade)
+
+        # All else is false.
+        for pt_old in ALL - set([amo.ADDON_FREE, amo.ADDON_FREE_INAPP]):
+            app.premium_type = pt_old
+            for pt_new in ALL:
+                eq_(app.is_premium_type_upgrade(pt_new), False)
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']

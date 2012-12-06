@@ -685,6 +685,23 @@ class Webapp(Addon):
             else:
                 raise ValueError('Could not auto-generate a unique UUID')
 
+    def is_premium_type_upgrade(self, premium_type):
+        """
+        Returns True if changing self.premium_type from current value to passed
+        in value is considered an upgrade that should trigger a re-review.
+        """
+        ALL = set(amo.ADDON_FREES + amo.ADDON_PREMIUMS)
+        free_upgrade = ALL - set([amo.ADDON_FREE])
+        free_inapp_upgrade = ALL - set([amo.ADDON_FREE, amo.ADDON_FREE_INAPP])
+
+        if (self.premium_type == amo.ADDON_FREE and
+            premium_type in free_upgrade):
+            return True
+        if (self.premium_type == amo.ADDON_FREE_INAPP and
+            premium_type in free_inapp_upgrade):
+            return True
+        return False
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

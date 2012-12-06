@@ -479,11 +479,10 @@ class REREVIEW_MANIFEST_CHANGE(_LOG):
     review_queue = True
 
 
-class REREVIEW_FREE_TO_PAID(_LOG):
+class REREVIEW_PREMIUM_TYPE_UPGRADE(_LOG):
     id = 71
-    format = _(u'{addon} re-reviewed because app was previously free and is '
-               u'now premium.')
-    short = _(u'Free app became premium')
+    format = _(u'{addon} re-reviewed because app upgraded premium type.')
+    short = _(u'Premium Type Upgrade')
     keep = True
     review_queue = True
 
