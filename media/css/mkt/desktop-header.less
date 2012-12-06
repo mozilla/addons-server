@@ -20,13 +20,12 @@
         z-index: 12;
         ul {
             .border-radius(3px 0 3px 3px);
-            .transition(~'.2s opacity, .2s visibility, .2s top');
             background: rgb(43,54,63);
             line-height: 15px;
             opacity: 0;
             padding: 6px 4px;
             position: absolute;
-            top: 0;
+            top: 48px;
             right: 0;
             visibility: hidden;
         }
@@ -72,7 +71,6 @@
             width: 210px;
             ul {
                 opacity: 1;
-                top: 48px; // 67px;  // 48px
                 visibility: visible;
             }
             .settings {
@@ -80,7 +78,7 @@
                     .gradient(~'bottom, rgba(43,54,63,1) 0%, rgba(43,54,63,0.07) 85%, rgba(252,252,253,0) 100%');
                     content: "";
                     display: block;
-                    height: 39px; //58px;  // 39px
+                    height: 39px;
                     position: relative;
                     float: right;
                     width: 40px;
