@@ -221,13 +221,13 @@ def market_tile(context, product, link=True, src=''):
 
         sumo_url = ('https://support.mozilla.org/en-US/kb/'
                     'how-access-firefox-marketplace')
-        if (not request.MOBILE and amo.DEVICE_DESKTOP not in product.device_types
-            and amo.DEVICE_GAIA not in product.device_types):
+        if (not (request.MOBILE or request.TABLET or request.GAIA) and
+            amo.DEVICE_DESKTOP not in product.device_types):
             notices.append(_('This is a mobile-only app. Please try this '
                              'app in Firefox Mobile on your Android '
                              'phone. (<b data-href="%s">Learn more</b>)')
                            % sumo_url)
-        elif not request.TABLET and product.device_types == [amo.DEVICE_TABLET]:
+        if not request.TABLET and product.device_types == [amo.DEVICE_TABLET]:
             notices.append(_('This is a tablet-only app. Please try this '
                              'app in Firefox Mobile on your Android '
                              'tablet. (<b data-href="%s">Learn more</b>)')

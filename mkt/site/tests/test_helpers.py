@@ -25,7 +25,7 @@ class TestMarketButton(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
     def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.webapp = Webapp.objects.filter(pk=337141).no_transforms()[0]
         self.user = UserProfile.objects.get(pk=999)
         request = mock.Mock()
         request.amo_user = self.user
@@ -35,6 +35,7 @@ class TestMarketButton(amo.tests.TestCase):
         request.groups = ()
         request.GAIA = False
         request.MOBILE = True
+        request.TABLET = False
         request.META = {'HTTP_USER_AGENT': 'Mozilla/5.0 (Mobile; rv:17.0) '
                                            'Gecko/17.0 Firefox/17.0'}
         self.context = {'request': request}
@@ -56,7 +57,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['preapprovalUrl'], reverse('detail.purchase.preapproval',
                                             args=[self.webapp.app_slug]))
         eq_(data['id'], str(self.webapp.pk))
-        eq_(data['name'], self.webapp.name)
+        eq_(data['name'], str(self.webapp.name))
         eq_(data['src'], 'foo')
 
     def test_is_premium_webapp(self):
@@ -111,8 +112,7 @@ class TestMarketButton(amo.tests.TestCase):
             'This app is temporarily unavailable for purchase.')
 
     def test_is_desktop_enabled(self):
-        self.webapp.addondevicetype_set.create(
-            device_type=amo.DEVICE_DESKTOP.id)
+        self.webapp._device_types = [amo.DEVICE_DESKTOP]
         self.context['request'].MOBILE = False
         self.context['request'].META['HTTP_USER_AGENT'] = (
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:18.0) Gecko/18.0 '
@@ -164,7 +164,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').length, 0)
 
     def test_can_install_mobile(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+        self.webapp._device_types = [amo.DEVICE_MOBILE]
         self.context['request'].MOBILE = True
         self.context['request'].TABLET = False
         doc = pq(market_tile(self.context, self.webapp))
@@ -173,7 +173,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').length, 0)
 
     def test_cannot_install_mobile_only(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+        self.webapp._device_types = [amo.DEVICE_MOBILE]
         self.context['request'].MOBILE = False
         self.context['request'].DESKTOP = True
         doc = pq(market_tile(self.context, self.webapp))
@@ -182,27 +182,26 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').length, 1)
 
     def test_can_install_tablet(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_TABLET.id)
+        self.webapp._device_types = [amo.DEVICE_TABLET]
         self.context['request'].MOBILE = False
         self.context['request'].TABLET = True
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
-        assert 'disabled' in cls, 'Unexpected: %r' % cls
-        eq_(doc('.bad-app').length, 1)
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        eq_(doc('.bad-app').length, 0)
 
     def test_cannot_install_tablet_only(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_TABLET.id)
+        self.webapp._device_types = [amo.DEVICE_TABLET]
         self.context['request'].MOBILE = False
         self.context['request'].TABLET = False
-        self.context['request'].DESKTOP = True
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' in cls, 'Expected: %r' % cls
         eq_(doc('.bad-app').length, 1)
 
     def test_can_install_firefoxos(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
-        self.context['request'].MOBILE = False
+        self.webapp._device_types = [amo.DEVICE_GAIA]
+        self.context['request'].MOBILE = True
         self.context['request'].TABLET = False
         self.context['request'].GAIA = True
         doc = pq(market_tile(self.context, self.webapp))
@@ -211,7 +210,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').length, 0)
 
     def test_cannot_install_firefox_only(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.webapp._device_types = [amo.DEVICE_GAIA]
         self.context['request'].MOBILE = False
         self.context['request'].TABLET = False
         self.context['request'].DESKTOP = True
