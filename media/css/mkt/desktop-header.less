@@ -93,33 +93,35 @@
 
     #site-header {
         height: 80px;
-        #search,
         #search-q {
-            width: 175px;
-        }
-        #search-q {
+            .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/search.png), ~'8px 8px', no-repeat);
             .border-radius(3px);
             .box-shadow(0 1px 0 rgba(255,255,255,.1),
                         0 1px 0 rgba(0,0,0,.5) inset,
                         0 1px 1px rgba(0,0,0,.5) inset);
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 300;
+            height: 26px;
             margin-top: -15px;
+            padding: 1px 5px 0 25px;
             position: absolute;
             top: 50%;
             right: 0;
             z-index: 13;
             &:-moz-placeholder {
-                color: lighten(#48535d, 15%);
+                color: lighten(#48535d, 25%);
             }
             &::-moz-placeholder {
-                color: lighten(#48535d, 15%);
+                color: lighten(#48535d, 25%);
             }
             &::-webkit-input-placeholder {
-                color: lighten(#48535d, 15%);
+                color: lighten(#48535d, 25%);
             }
-
         }
+    }
+    #search,
+    #search-q {
+        width: 175px;
     }
     #page {
         padding-top: 80px;
@@ -232,5 +234,9 @@
             background-image: url(../../img/mkt/icons/settings-2x.png);
             background-size: 23px auto;
         }
+    }
+    #site-header #search-q {
+        .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/search-2x.png), ~'8px 8px', no-repeat);
+        background-size: 12px auto;
     }
 }
