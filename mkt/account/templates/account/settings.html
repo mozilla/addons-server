@@ -10,11 +10,15 @@
 
     {% include 'account/includes/nav.html' %}
 
+    {% if not request.MOBILE %}
+      <h2>{{ pagetitle }}</h2>
+    {% endif %}
+
     <form class="form-grid" enctype="multipart/form-data" method="post">
       {{ csrf() }}
 
       <div class="simple-field c">
-        <div class="form-label">
+        <div class="form-label label">
           {{ _('Email') }}
         </div>
         <div class="form-col">
@@ -26,7 +30,7 @@
 
       <div class="simple-field c">
         <div class="form-label">
-          <label for="language">{{ _('Language') }}:</label>
+          <label for="language">{{ _('Language') }}</label>
         </div>
         <div class="form-col">
           <select id="language" name="lang" dir="ltr">
@@ -42,7 +46,7 @@
       {% if settings.REGION_STORES %}
         <div class="simple-field c">
           <div class="form-label">
-            <label for="region">{{ _('Region') }}:</label>
+            <label for="region">{{ _('Region') }}</label>
           </div>
           <div class="form-col">
             <select id="region" name="region">
@@ -66,11 +70,13 @@
 
       <footer class="form-footer">
         <button type="submit">{{ _('Save Changes') }}</button>
-        <div class="extras">
-          <a href="{{ url('users.logout') }}" class="sync post logout">
-            {{ _('Log out') }}
-          </a>
-        </div>
+        {% if request.MOBILE %}
+          <div class="extras">
+            <a href="{{ url('users.logout') }}" class="sync post logout">
+              {{ _('Log out') }}
+            </a>
+          </div>
+        {% endif %}
         {# TODO: This will have to come back for desktop. #}
         {# if 'admin_log' in form.fields %}
           <a href="{{ url('admin:users_userprofile_delete', amouser.id) }}"

@@ -17,7 +17,11 @@
           <div class="account-links">
             <a href="{{ url('account.settings') }}" class="header-button icon settings sticky" title="{{ _('Settings') }}"></a>
             <ul>
-              <li class="user"><a href="{{ url('account.settings') }}">{{ request.amo_user.email }}</a></li>
+              <li>
+                <a href="{{ url('account.settings') }}">
+                  <em>{{ request.amo_user.email }}</em>
+                  {{ _('Edit Account Settings') }}</a>
+              </li>
               <li><a href="{{ url('account.purchases') }}">{{ _('My Apps') }}</a></li>
               {% if amo_user.is_app_developer %}
                 <li><a href="{{ url('mkt.developers.apps') }}">{{ _('My Submissions') }}</a></li>

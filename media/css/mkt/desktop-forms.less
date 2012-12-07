@@ -1,0 +1,35 @@
+@import 'lib';
+
+.account h2 {
+    display: none;
+}
+
+@media (min-width: @desktop) {
+    .account h2 {
+        display: block;
+        margin-top: 15px;
+    }
+    #page > section:only-child {
+        padding: 15px 0 30px;
+    }
+    .toggles {
+        display: none;
+    }
+    .form-grid {
+        background-color: rgba(0,0,0,.03);
+        border: 1px solid rgba(0,0,0,.04);
+        float: left;
+        padding: 25px;
+        width: 100%;
+        .form-footer {
+            button {
+                height: auto;
+                line-height: 26px;
+                padding: 0 12px;
+            }
+        }
+    }
+    .simple-field select {
+        margin-top: 5px;
+    }
+}

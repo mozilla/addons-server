@@ -180,6 +180,8 @@ z.page.on('fragmentloaded', function() {
         $('.account-links').removeClass('active');
     }).on('click', '.account-links a', function() {
         $('.account-links').removeClass('active');
+    }).on('fragmentloaded', function() {
+        $('.account-links.active').removeClass('active');
     });
 
 });

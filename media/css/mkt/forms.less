@@ -78,11 +78,12 @@ input[placeholder] {
 }
 
 input[type=text], input[type=password], input[type=email], input[type=search], select, textarea {
-    .box-shadow(0 1px 0 fadeOut(@white, 40%),
-                0 1px 1px rgba(0,0,0,.1) inset,
-                0 1px 0 @white inset);
-    .slick;
-    border: 1px solid @bg-gray;
+    .box-shadow(~'0 1px 0 rgba(255,255,255,.6),'
+                ~'0 1px 1px rgba(0,0,0,.1) inset,'
+                ~'0 1px 0 #fff inset');
+    .border-radius(2px);
+    background: rgba(255,255,255,.8);
+    border: 1px solid @light-gray;
     color: @dark-gray;
     padding: 5px;
     &:focus {
@@ -140,6 +141,7 @@ option {
 
 label, .label {
     font-weight: bold;
+    text-shadow: .5px .5px @white;
 }
 
 .choice label,
@@ -190,10 +192,9 @@ p.req {
 }
 
 .simple-field {
-    label {
+    label, .label {
         color: @dark-gray;
         display: inline-block;
-        font-weight: 400;
         margin-bottom: 5px;
     }
     .errorlist {
@@ -239,22 +240,21 @@ form {
     .simple-field {
         padding: 5px 0;
         width: 100%;
-        label {
+        label, .label {
             margin: 0;
         }
     }
     .form-label,
     .form-col {
         float: left;
-        color: @text;
     }
     .form-label {
         padding: 5px 0;
-        font-weight: 400;
         min-height: 1px;
         width: 25%;
     }
     .form-col {
+        color: @text;
         width: 75%;
         p,
         .errorlist {

@@ -319,17 +319,12 @@
     .gradient-two-color(rgba(176,186,192,.33), rgba(187,195,199,.33));
 }
 
-.slick() {
-    .border-box;
-    .border-radius(4px);
-    background: rgba(255,255,255,.8);
-    color: @text;
-}
-
 .highlight() {
+    .border-radius(5px);
     .box-shadow(0 1px 0 fadeOut(@white, 40%),
                 0 1px 0 @white inset);
-    .slick();
+    background: rgba(255,255,255,.8);
+    color: @text;
     border: 1px solid @light-gray;
     &:active {
         .depressed;
