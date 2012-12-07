@@ -10,6 +10,8 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon
+from market.models import Price
+
 from mkt.inapp_pay.models import InappConfig
 from mkt.site.fixtures import fixture
 

@@ -62,8 +62,6 @@ from mkt.webapps.models import Webapp
 from . import forms, tasks
 
 from .views_payments import *
-from .views_paypal import *
-from .views_bluevia import *
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -389,13 +387,6 @@ def refunds(request, addon_id, addon, webapp=False):
     for status, refunds in queues.iteritems():
         ctx[status] = amo.utils.paginate(request, refunds, per_page=50)
     return jingo.render(request, 'developers/payments/refunds.html', ctx)
-
-
-@dev_required
-@post_required
-def disable_payments(request, addon_id, addon):
-    addon.update(wants_contributions=False)
-    return redirect(addon.get_dev_url('payments'))
 
 
 @dev_required(webapp=True)
@@ -795,59 +786,6 @@ def ajax_upload_media(request, upload_type):
 @dev_required
 def upload_media(request, addon_id, addon, upload_type):
     return ajax_upload_media(request, upload_type)
-
-
-@dev_required(webapp=True)
-@can_become_premium
-def marketplace_pricing(request, addon_id, addon, webapp=False):
-    form = forms.PremiumForm(
-        request.POST or None, request=request,
-        extra={'addon': addon, 'amo_user': request.amo_user, 'dest': 'wizard',
-               'exclude': ['paypal_id', 'support_email']})
-    if form.is_valid():
-        form.save()
-        if not (form.fields['free'].queryset.count()):
-            return redirect(addon.get_dev_url('market.4'))
-        return redirect(addon.get_dev_url('market.3'))
-    return jingo.render(request, 'developers/payments/tier.html',
-                        {'form': form, 'addon': addon, 'webapp': webapp,
-                         'premium': addon.premium})
-
-
-@dev_required(webapp=True)
-@can_become_premium
-def marketplace_upsell(request, addon_id, addon, webapp=False):
-    form = forms.PremiumForm(
-        request.POST or None, request=request,
-        extra={'addon': addon, 'amo_user': request.amo_user, 'dest': 'wizard',
-               'exclude': ['price', 'paypal_id', 'support_email']})
-    if form.is_valid():
-        form.save()
-        return redirect(addon.get_dev_url('market.4'))
-    return jingo.render(request, 'developers/payments/upsell.html',
-                        {'form': form, 'addon': addon, 'webapp': webapp,
-                         'premium': addon.premium})
-
-
-@dev_required(webapp=True)
-@can_become_premium
-def marketplace_confirm(request, addon_id, addon, webapp=False):
-    if request.method == 'POST':
-        if (addon.premium and addon.premium.is_complete()
-            and addon.premium.has_permissions_token()):
-            if addon.status == amo.STATUS_UNREVIEWED:
-                addon.status = amo.STATUS_NOMINATED
-            addon.premium_type = amo.ADDON_PREMIUM
-            addon.save()
-            amo.log(amo.LOG.MAKE_PREMIUM, addon)
-            return redirect(addon.get_dev_url('payments'))
-
-        messages.error(request, 'Some required details are missing.')
-        return redirect(addon.get_dev_url('market.1'))
-
-    return jingo.render(request, 'developers/payments/second-confirm.html',
-                        {'addon': addon, 'webapp': webapp,
-                         'upsell': addon.upsold, 'premium': addon.premium})
 
 
 @dev_required

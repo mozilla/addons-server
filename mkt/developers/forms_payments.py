@@ -242,45 +242,6 @@ class InappConfigForm(happyforms.ModelForm):
         fields = ('postback_url', 'chargeback_url', 'is_https')
 
 
-class PaypalSetupForm(happyforms.Form):
-    email = forms.EmailField(required=False,
-                             label=_lazy(u'PayPal email address'))
-
-    def clean(self):
-        data = self.cleaned_data
-        if not data.get('email'):
-            msg = _(u'The PayPal email is required.')
-            self._errors['email'] = self.error_class([msg])
-
-        return data
-
-
-class PaypalPaymentData(happyforms.Form):
-    first_name = forms.CharField(max_length=255, required=False)
-    last_name = forms.CharField(max_length=255, required=False)
-    full_name = forms.CharField(max_length=255, required=False)
-    business_name = forms.CharField(max_length=255, required=False)
-    country = forms.CharField(max_length=64)
-    address_one = forms.CharField(max_length=255)
-    address_two = forms.CharField(max_length=255,  required=False)
-    post_code = forms.CharField(max_length=128, required=False)
-    city = forms.CharField(max_length=128, required=False)
-    state = forms.CharField(max_length=64, required=False)
-    phone = forms.CharField(max_length=32, required=False)
-
-
-def check_paypal_id(paypal_id):
-    if not paypal_id:
-        raise forms.ValidationError(
-            _('PayPal ID required to accept contributions.'))
-    try:
-        valid, msg = paypal.check_paypal_id(paypal_id)
-        if not valid:
-            raise forms.ValidationError(msg)
-    except socket.error:
-        raise forms.ValidationError(_('Could not validate PayPal id.'))
-
-
 # TODO: Figure out either a.) where to pull these from and implement that
 # or b.) which constants file to move it to.
 # TODO: Add more of these?

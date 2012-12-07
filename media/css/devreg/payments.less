@@ -4,22 +4,6 @@
     text-align: center;
 }
 
-.inactive {
-    color: @light-gray;
-    cursor: default;
-    &:hover {
-        color: @light-gray;
-        cursor: default;
-        text-decoration: none;
-    }
-    .item-actions ul li a {
-        color: @light-gray;
-    }
-    span.req, #payments-payment-account p, .status-fail {
-        color: @light-gray !important;
-    }
-}
-
 .payment-account-actions {
     display: block;
     float: right;
@@ -114,33 +98,6 @@
                 cursor: pointer;
             }
         }
-        #paypal-errors {
-            display: none;
-            p {
-                display: inline;
-                font-style: normal;
-            }
-            li.status-fail {
-                font-style: italic;
-                line-height: 1.1;
-                strong {
-                    color: lighten(#D81916, 5%);
-                    font-weight: normal;
-                }
-            }
-        }
-        .payment-option {
-            .transition(~'.3s all');
-            &.deleting {
-                background: fade(@red, 40%);
-            }
-            &.deleted {
-                border: 0;
-                height: 0;
-                overflow: hidden;
-                padding: 0;
-            }
-        }
     }
     #payments-upsell {
         .note {
@@ -165,25 +122,6 @@
     margin: 10px 0 0;
 }
 
-/* paypal-setup */
-.paypal-inline, .bluevia-inline {
-    &.brform {
-        p, li label {
-            margin: 0;
-        }
-    }
-    li {
-        display: inline-block;
-        margin-right: 10px;
-        label {
-            /* For radios. */
-            &[for=id_business_account_0],
-            &[for=id_business_account_1] {
-                font-weight: normal;
-            }
-        }
-    }
-}
 
 /* overlays */
 .overlay {
@@ -215,57 +153,6 @@
         margin: 15px -10px -10px;
     }
 }
-section.choose-payment-account {
-    text-align: center;
-    div {
-        display: inline-block;
-        padding: 10px;
-        button {
-            margin: 0;
-        }
-    }
-    .or {
-        color: @note-gray;
-        font: italic 24px/75px Georgia, serif;
-        margin: 0 1em;
-        vertical-align: top;
-    }
-}
-section.add-paypal-email {
-    max-width: 400px;
-    .email {
-        width: 250px;
-    }
-    input.error {
-        margin-bottom: 10px;
-        .box-shadow(0 1px 1px 2px @red inset);
-    }
-    .email-error {
-        color: @red;
-        display: none;
-    }
-    .redirect-info {
-        margin-top: 10px;
-        font-style: italic;
-    }
-}
-section.add-bluevia {
-    max-width: 400px;
-    .redirect-info {
-        margin-top: 13px;
-    }
-}
-section.add-bluevia-iframe {
-    height: 80%;
-    overflow: hidden;
-    width: 80%;
-    iframe {
-        height: 90%;
-        margin-top: 13px;
-        width: 100%;
-    }
-}
-
 .overlay section.add-bango-account {
     height: 80%;
 

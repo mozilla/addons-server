@@ -21,7 +21,6 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-import paypal
 from addons.models import Addon, AddonUpsell, AddonUser
 from amo.helpers import babel_datetime, timesince
 from amo.tests import assert_no_validation_errors
@@ -38,8 +37,6 @@ from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import Webapp
-from paypal import PaypalError
-from paypal.check import Check
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
@@ -97,27 +94,6 @@ class TestHome(amo.tests.TestCase):
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'developers/apps/dashboard.html')
-
-
-class TestPayPalJS(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.url = reverse('mkt.developers.apps')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-
-    def test_no_paypal_js(self):
-        self.create_switch('enabled-paypal', active=False)
-        resp = self.client.get(self.url)
-        assert not settings.PAYPAL_JS_URL in resp.content, (
-            'When paypal is disabled, its JS lib should not load')
-
-    def test_load_paypal_js(self):
-        self.create_switch('enabled-paypal')
-        resp = self.client.get(self.url)
-        assert settings.PAYPAL_JS_URL in resp.content, (
-            'When paypal is enabled, its JS lib should load')
 
 
 class TestAppBreadcrumbs(AppHubTest):
@@ -257,7 +233,6 @@ class TestAppDashboard(AppHubTest):
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_action_links_with_payments(self):
-        self.create_switch('allow-refund')
         self.create_switch('in-app-payments')
         app = self.get_app()
         for status in [amo.ADDON_PREMIUM_INAPP, amo.ADDON_FREE_INAPP]:
@@ -267,13 +242,11 @@ class TestAppDashboard(AppHubTest):
             expected = [
                 ('Manage Status', app.get_dev_url('versions')),
                 ('Manage In-App Payments', app.get_dev_url('in_app_config')),
-                ('Manage Refunds', app.get_dev_url('refunds')),
             ]
             eq_(doc('.status-link').length, 0)
             amo.tests.check_links(expected, doc('.more-actions-popup a'))
 
     def test_disabled_payments_action_links_with_payments(self):
-        self.create_switch('allow-refund')
         self.create_switch('in-app-payments')
         self.create_switch('disabled-payments')
         app = self.get_app()
@@ -285,45 +258,6 @@ class TestAppDashboard(AppHubTest):
             eq_(status_link.length, 1)
             eq_(status_link.attr('href'), app.get_dev_url('versions'))
             eq_(doc('.more-actions-popup').length, 0)
-
-
-class TestManageLinks(AppHubTest):
-
-    def setUp(self):
-        super(TestManageLinks, self).setUp()
-        waffle.models.Switch.objects.create(name='allow-refund', active=True)
-
-    def test_refunds_link_support(self):
-        app = self.get_app()
-        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
-                       amo.ADDON_FREE_INAPP]:
-            app.update(premium_type=status)
-
-            AddonUser.objects.update(role=amo.AUTHOR_ROLE_SUPPORT)
-            assert self.client.login(username=self.user.email,
-                                     password='password')
-
-            for url in [self.url, app.get_dev_url()]:
-                r = self.client.get(self.url)
-                eq_(r.status_code, 200)
-                assert 'Manage Refunds' in r.content, (
-                    'Expected "Manage Refunds" link')
-
-    def test_refunds_link_viewer(self):
-        app = self.get_app()
-        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
-                       amo.ADDON_FREE_INAPP]:
-            app.update(premium_type=status)
-
-            AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
-            assert self.client.login(username=self.user.email,
-                                     password='password')
-
-            for url in [self.url, app.get_dev_url()]:
-                r = self.client.get(self.url)
-                eq_(r.status_code, 200)
-                assert 'Manage Refunds' not in r.content, (
-                    '"Manage Refunds" link should be hidden')
 
 
 class TestAppDashboardSorting(AppHubTest):
@@ -407,54 +341,6 @@ class TestDevRequired(AppHubTest):
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
 
 
-class TestPaymentsProfile(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=337141)
-        AddonUser.objects.create(addon=self.addon,
-                                 user=UserProfile.objects.get(pk=999))
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.url = self.addon.get_dev_url('paypal_setup_check')
-
-    def test_checker_no_paypal_id(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        result = json.loads(res.content)
-        eq_(result['valid'], False)
-
-    @mock.patch.object(Check, 'all')
-    def test_checker_pass(self, all_):
-        self.addon.update(paypal_id='a@a.com')
-        Check.passed = True
-
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        result = json.loads(res.content)
-        eq_(result['valid'], True)
-
-    @mock.patch.object(Check, 'all')
-    def test_checker_error(self, all_):
-        self.addon.update(paypal_id='a@a.com')
-        Check.passed = False
-
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        result = json.loads(res.content)
-        eq_(result[u'valid'], False)
-
-    @mock.patch('mkt.developers.views_paypal.client')
-    def test_checker_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        client.post_account_check.return_value = {'passed': True,
-                                                  'errors': []}
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        result = json.loads(res.content)
-        eq_(result['valid'], True)
-
-
 class MarketplaceMixin(object):
 
     def setUp(self):
@@ -477,16 +363,9 @@ class MarketplaceMixin(object):
         AddonUser.objects.create(addon=self.other_addon,
                                  user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM,
-                          paypal_id='a@a.com')
-
-        session = self.client.session
-        session['unconfirmed_paypal_id'] = self.addon.paypal_id
-        session.save()
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
 
 
-# Mock out verifying the paypal id has refund permissions with paypal and
-# that the account exists on paypal.
 @mock.patch('mkt.developers.forms.PremiumForm.clean',
             new=lambda x: x.cleaned_data)
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
@@ -568,508 +447,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         upsell = self.addon._upsell_to.all()
         eq_(len(upsell), 1)
         eq_(upsell[0].free, new)
-
-    def test_no_free(self):
-        self.setup_premium()
-        self.other_addon.authors.clear()
-        res = self.client.get(self.url)
-        assert not pq(res.content)('#id_free')
-
-    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
-    @mock.patch('paypal.get_personal_data', lambda x: {'email': 'a@a.com'})
-    def test_permissions_token(self):
-
-        self.setup_premium()
-        eq_(self.addon.premium.paypal_permissions_token, '')
-        url = self.addon.get_dev_url('acquire_refund_permission')
-        self.client.get(urlparams(url, request_token='foo',
-                                  verification_code='bar'))
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.premium.paypal_permissions_token.lower(), 'foo')
-
-    @mock.patch('paypal.get_permissions_token', lambda x, y: x.upper())
-    @mock.patch('paypal.get_personal_data', lambda x: {})
-    def test_permissions_token_different_email(self):
-        # With different email, the new token overwrites the old one, and the
-        # paypal_id stays the same.
-        self.setup_premium()
-        url = self.addon.get_dev_url('acquire_refund_permission')
-        self.client.get(urlparams(url, request_token='foo',
-                                  verification_code='bar'))
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.premium.paypal_permissions_token.lower(), 'foo')
-
-    @mock.patch('mkt.developers.views_paypal.client')
-    def test_permissions_token_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        self.setup_premium()
-        url = self.addon.get_dev_url('acquire_refund_permission')
-        client.post_personal_basic.return_value = {'email': 'a@a.com'}
-        res = self.client.get(urlparams(url, request_token='foo',
-                                        verification_code='bar'))
-        self.assertRedirects(res,
-                             self.addon.get_dev_url('paypal_setup_confirm'))
-
-    @mock.patch('mkt.developers.views_paypal.client')
-    def test_personal_differs_solitude(self, client):
-        self.create_flag(name='solitude-payments')
-        self.setup_premium()
-        url = self.addon.get_dev_url('acquire_refund_permission')
-        client.post_personal_basic.side_effect = client.Error
-        res = self.client.get(urlparams(url, request_token='foo',
-                                        verification_code='bar'))
-        self.assertRedirects(res,
-                             self.addon.get_dev_url('payments'))
-
-
-@mock.patch.object(settings, 'TASK_USER_ID', 4043307)
-class TestIssueRefund(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def logged(self, user, status):
-        return (UserLog.objects.filter(user=user,
-                                       activity_log__action=status.id)).count()
-
-    def setUp(self):
-        self.create_switch('allow-refund')
-        #self.create_flag('solitude-payments')
-        self.addon = Addon.objects.no_cache().get(id=337141)
-        self.transaction_id = u'fake-txn-id'
-        self.paykey = u'fake-paykey'
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        self.owner = UserProfile.objects.get(email='steamcube@mozilla.com')
-        self.user = UserProfile.objects.get(username='clouserw')
-        self.url = self.addon.get_dev_url('issue_refund')
-
-    def make_purchase(self, uuid='123456', type=amo.CONTRIB_PURCHASE):
-        return Contribution.objects.create(uuid=uuid, addon=self.addon,
-                                           transaction_id=self.transaction_id,
-                                           user=self.user, paykey=self.paykey,
-                                           amount=Decimal('10'), type=type)
-
-    def test_viewer_lacks_access(self):
-        AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        c = self.make_purchase()
-        data = {'transaction_id': c.transaction_id}
-        eq_(self.client.get(self.url, data).status_code, 403)
-        eq_(self.client.post(self.url, data).status_code, 403)
-
-    def _test_has_access(self, role):
-        AddonUser.objects.update(role=role)
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        c = self.make_purchase()
-        data = {'transaction_id': c.transaction_id}
-        eq_(self.client.get(self.url, data).status_code, 200)
-        eq_(self.client.post(self.url, data).status_code, 302)
-
-    def test_support_has_access(self):
-        self._test_has_access(amo.AUTHOR_ROLE_SUPPORT)
-
-    def test_dev_has_access(self):
-        self._test_has_access(amo.AUTHOR_ROLE_DEV)
-
-    def test_request_issue(self):
-        c = self.make_purchase()
-        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('#issue-refund button').length, 2)
-        eq_(doc('#issue-refund input[name=transaction_id]').val(),
-            self.transaction_id)
-
-    def test_request_issue_inapp(self):
-        c = self.make_purchase()
-        c.update(type=amo.CONTRIB_INAPP)
-        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
-        eq_(r.status_code, 200)
-
-    def test_nonexistent_txn(self):
-        r = self.client.get(self.url, {'transaction_id': 'none'})
-        eq_(r.status_code, 404)
-
-    def test_nonexistent_txn_no_really(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 404)
-
-    def _test_issue(self, refund, enqueue_refund):
-        refund.return_value = []
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'})
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-        refund.assert_called_with(self.paykey)
-        eq_(len(mail.outbox), 1)
-        assert 'approved' in mail.outbox[0].subject
-        # There should be one approved refund added.
-        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_APPROVED,))
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_issue(self, refund, enqueue_refund):
-        self._test_issue(refund, enqueue_refund)
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_issue_logs(self, refund, enqueue_refund):
-        self._test_issue(refund, enqueue_refund)
-        eq_(self.logged(user=self.owner, status=amo.LOG.REFUND_GRANTED), 1)
-        eq_(self.logged(user=self.user, status=amo.LOG.REFUND_GRANTED), 1)
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_issue_error(self, refund, enqueue_refund):
-        refund.side_effect = PaypalError
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'}, follow=True)
-        eq_(len(pq(r.content)('.notification-box')), 1)
-
-    def _test_issue_solitude(self, client, enqueue_refund):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-        client.post_refund.return_value = {'response': []}
-
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'})
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-        eq_(client.post_refund.call_args[1]['data']['uuid'], 'fake-txn-id')
-        eq_(len(mail.outbox), 1)
-        assert 'approved' in mail.outbox[0].subject
-        # There should be one approved refund added.
-        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_APPROVED,))
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('mkt.developers.views_paypal.client')
-    def test_apps_issue_solitude(self, client, enqueue_refund):
-        self._test_issue_solitude(client, enqueue_refund)
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('mkt.developers.views_paypal.client')
-    def test_apps_issue_solitude_error(self, client, enqueue_refund):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-
-        client.post_refund.side_effect = client.Error
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'}, follow=True)
-        eq_(len(pq(r.content)('.notification-box')), 1)
-
-    def test_fresh_refund(self):
-        c = self.make_purchase()
-        Refund.objects.create(contribution=c)
-        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('.no-results').length, 0)
-        eq_(doc('input[name=transaction_id]').val(), c.transaction_id)
-
-    def test_stale_refund(self):
-        c = self.make_purchase()
-        ref = Refund.objects.create(contribution=c)
-        # Any other status means we've already taken action.
-        for status in sorted(amo.REFUND_STATUSES.keys())[1:3]:
-            ref.update(status=status)
-            r = self.client.get(self.url, {'transaction_id': c.transaction_id})
-            eq_(r.status_code, 200)
-            doc = pq(r.content)
-            eq_(doc('.no-results').length, 1,
-                'Expected no results for refund of status %r' % status)
-            eq_(doc('input[name=transaction_id]').length, 0,
-                'Expected form fields for refund of status %r' % status)
-
-    @mock.patch('amo.messages.error')
-    @mock.patch('paypal.refund')
-    def test_only_one_issue(self, refund, error):
-        refund.return_value = []
-        c = self.make_purchase()
-        self.client.post(self.url,
-                         {'transaction_id': c.transaction_id,
-                          'issue': '1'})
-        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
-        assert 'Decline Refund' not in r.content
-        assert 'Refund already processed' in error.call_args[0][1]
-
-        self.client.post(self.url,
-                         {'transaction_id': c.transaction_id,
-                          'issue': '1'})
-        eq_(Refund.objects.count(), 1)
-
-    @mock.patch('amo.messages.error')
-    @mock.patch('paypal.refund')
-    def test_no_issue_after_decline(self, refund, error):
-        refund.return_value = []
-        c = self.make_purchase()
-        self.client.post(self.url,
-                         {'transaction_id': c.transaction_id,
-                          'decline': ''})
-        del self.client.cookies['messages']
-        r = self.client.get(self.url, {'transaction_id': c.transaction_id})
-        eq_(pq(r.content)('#issue-refund button').length, 0)
-        assert 'Refund already processed' in error.call_args[0][1]
-
-        self.client.post(self.url,
-                         {'transaction_id': c.transaction_id,
-                          'issue': '1'})
-        eq_(Refund.objects.count(), 1)
-        eq_(Refund.objects.get(contribution=c).status, amo.REFUND_DECLINED)
-
-    def _test_decline(self, refund, enqueue_refund):
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'decline': ''})
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-        assert not refund.called
-        eq_(len(mail.outbox), 1)
-        assert 'declined' in mail.outbox[0].subject
-        # There should be one declined refund added.
-        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_DECLINED,))
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_decline(self, refund, enqueue_refund):
-        self._test_decline(refund, enqueue_refund)
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_apps_decline_logs(self, refund, enqueue_refund):
-        self._test_decline(refund, enqueue_refund)
-        eq_(self.logged(user=self.owner, status=amo.LOG.REFUND_DECLINED), 1)
-        eq_(self.logged(user=self.user, status=amo.LOG.REFUND_DECLINED), 1)
-
-    @mock.patch('stats.models.Contribution.enqueue_refund')
-    @mock.patch('paypal.refund')
-    def test_non_refundable_txn(self, refund, enqueue_refund):
-        c = self.make_purchase('56789', amo.CONTRIB_VOLUNTARY)
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': ''})
-        eq_(r.status_code, 404)
-        assert not refund.called, '`paypal.refund` should not have been called'
-        assert not enqueue_refund.called, (
-            '`Contribution.enqueue_refund` should not have been called')
-
-    @mock.patch('paypal.refund')
-    def test_already_refunded(self, refund):
-        refund.return_value = [{'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
-                                'receiver.email': self.user.email}]
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'})
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-        eq_(len(mail.outbox), 0)
-        assert 'previously issued' in r.cookies['messages'].value
-
-    @mock.patch('mkt.developers.views_paypal.client')
-    def test_already_refunded_solitude(self, client):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-
-        client.post_refund.return_value = {'response': [{
-            'refundStatus': 'ALREADY_REVERSED_OR_REFUNDED',
-            'receiver.email': self.user.email}]}
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'})
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-        eq_(len(mail.outbox), 0)
-        assert 'previously issued' in r.cookies['messages'].value
-
-    @mock.patch('paypal.refund')
-    def test_no_api_key(self, refund):
-        refund.return_value = [{'refundStatus': 'NO_API_ACCESS_TO_RECEIVER',
-                                'receiver.email': self.user.email}]
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'})
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-        eq_(len(mail.outbox), 0)
-        assert 'try again later' in r.cookies['messages'].value
-
-    @mock.patch('stats.models.Contribution.record_failed_refund')
-    @mock.patch('paypal.refund')
-    def test_refund_failed(self, refund, record):
-        err = paypal.PaypalError('transaction died in a fire')
-
-        def fail(*args, **kwargs):
-            raise err
-
-        refund.side_effect = fail
-        c = self.make_purchase()
-        r = self.client.post(self.url, {'transaction_id': c.transaction_id,
-                                        'issue': '1'})
-        record.assert_called_once_with(err)
-        self.assertRedirects(r, self.addon.get_dev_url('refunds'), 302)
-
-
-@mock.patch.object(settings, 'TASK_USER_ID', 4043307)
-class TestRefunds(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        waffle.models.Switch.objects.create(name='allow-refund', active=True)
-        self.webapp = Addon.objects.get(id=337141)
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        self.user = UserProfile.objects.get(username='31337')
-        self.client.login(username=self.user.email, password='password')
-        self.url = self.webapp.get_dev_url('refunds')
-        self.queues = {
-            'pending': amo.REFUND_PENDING,
-            'approved': amo.REFUND_APPROVED,
-            'instant': amo.REFUND_APPROVED_INSTANT,
-            'declined': amo.REFUND_DECLINED,
-        }
-
-    def generate_refunds(self):
-        days_ago = lambda days: (datetime.datetime.today() -
-                                 datetime.timedelta(days=days))
-        self.expected = {}
-        for status in amo.REFUND_STATUSES.keys():
-            for x in xrange(status + 2):
-                c = Contribution.objects.create(addon=self.webapp,
-                                                user=self.user,
-                                                type=amo.CONTRIB_PURCHASE)
-                r = Refund.objects.create(contribution=c, status=status,
-                                          requested=days_ago(x))
-                self.expected.setdefault(status, []).append(r)
-
-    def test_anonymous(self):
-        self.client.logout()
-        r = self.client.get(self.url, follow=True)
-        self.assertLoginRedirects(r, self.url)
-
-    def test_viewer(self):
-        AddonUser.objects.update(role=amo.AUTHOR_ROLE_VIEWER)
-        assert self.client.login(username=self.user.email, password='password')
-        eq_(self.client.get(self.url).status_code, 403)
-
-    def test_support(self):
-        AddonUser.objects.update(role=amo.AUTHOR_ROLE_SUPPORT)
-        assert self.client.login(username=self.user.email, password='password')
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_bad_owner(self):
-        self.client.logout()
-        self.client.login(username='regular@mozilla.com', password='password')
-        eq_(self.client.get(self.url).status_code, 403)
-
-    def test_owner(self):
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_admin(self):
-        self.client.logout()
-        self.client.login(username='admin@mozilla.com', password='password')
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_not_premium(self):
-        for status in [amo.ADDON_FREE, amo.ADDON_OTHER_INAPP]:
-            self.webapp.update(premium_type=status)
-            r = self.client.get(self.url)
-            eq_(r.status_code, 200)
-            eq_(pq(r.content)('#enable-payments').length, 1)
-
-    def test_is_premium(self):
-        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
-                       amo.ADDON_FREE_INAPP]:
-            self.webapp.update(premium_type=status)
-            r = self.client.get(self.url)
-            eq_(r.status_code, 200)
-            eq_(pq(r.content)('#enable-payments').length, 0)
-
-    def test_empty_queues(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        for key, status in self.queues.iteritems():
-            eq_(list(r.context[key]), [])
-
-    def test_queues(self):
-        self.generate_refunds()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        for key, status in self.queues.iteritems():
-            eq_(set(r.context[key]), set(self.expected[status]))
-
-    def test_empty_tables(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        for key in self.queues.keys():
-            eq_(doc('.no-results#queue-%s' % key).length, 1)
-
-    def test_tables(self):
-        self.generate_refunds()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('#enable-payments').length, 0)
-        for key in self.queues.keys():
-            table = doc('#queue-%s' % key)
-            eq_(table.length, 1)
-
-    def test_timestamps(self):
-        self.generate_refunds()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-
-        # Pending timestamps should be relative.
-        table = doc('#queue-pending')
-        for refund in self.expected[amo.REFUND_PENDING]:
-            tr = table.find('.refund[data-refundid=%s]' % refund.id)
-            purchased = tr.find('.purchased-date')
-            requested = tr.find('.requested-date')
-            eq_(purchased.text(),
-                timesince(refund.contribution.created).strip())
-            eq_(requested.text(),
-                timesince(refund.requested).strip())
-            eq_(purchased.attr('title'),
-                babel_datetime(refund.contribution.created).strip())
-            eq_(requested.attr('title'),
-                babel_datetime(refund.requested).strip())
-
-        # Remove pending table.
-        table.remove()
-
-        # All other timestamps should be absolute.
-        table = doc('table')
-        others = Refund.objects.exclude(status__in=(amo.REFUND_PENDING,
-                                                    amo.REFUND_FAILED))
-        for refund in others:
-            tr = table.find('.refund[data-refundid=%s]' % refund.id)
-            eq_(tr.find('.purchased-date').text(),
-                babel_datetime(refund.contribution.created).strip())
-            eq_(tr.find('.requested-date').text(),
-                babel_datetime(refund.requested).strip())
-
-    def test_refunds_sorting(self):
-        self.generate_refunds()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-
-        for queue in self.queues.keys():
-            prev_dt = None
-            for req in doc('#queue-%s .requested-date' % queue):
-                req = pq(req)
-                if queue == 'pending':
-                    # Pending queue is sorted by requested ascending.
-                    req_dt = parse_dt(req.attr('title'))
-                    if prev_dt:
-                        assert req_dt > prev_dt, (
-                            'Requested date should be sorted ascending for the'
-                            ' pending refund queue')
-                else:
-                    # The other tables are sorted by requested descending.
-                    req_dt = parse_dt(req.text())
-                    if prev_dt:
-                        assert req_dt < prev_dt, (
-                            'Requested date should be sorted descending for '
-                            'all queues except for pending refunds.')
-                prev_dt = req_dt
 
 
 class TestPublicise(amo.tests.TestCase):

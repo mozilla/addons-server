@@ -16,21 +16,6 @@ from mkt.developers import forms, models
 from mkt.site.fixtures import fixture
 
 
-class TestPaypalSetupForm(amo.tests.TestCase):
-
-    def test_email_required(self):
-        data = {'email': ''}
-        assert not forms.PaypalSetupForm(data=data).is_valid()
-
-    def test_email_gotten(self):
-        data = {'email': 'foo@bar.com'}
-        assert forms.PaypalSetupForm(data=data).is_valid()
-
-    def test_email_malformed(self):
-        data = {'email': 'foo'}
-        assert not forms.PaypalSetupForm(data=data).is_valid()
-
-
 class TestFreeToPremium(amo.tests.TestCase):
     # None of the tests in this TC should initiate Solitude calls.
     fixtures = fixture('webapp_337141')

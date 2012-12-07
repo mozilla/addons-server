@@ -11,26 +11,6 @@ from mkt.stats.urls import all_apps_stats_patterns
 from . import views
 
 
-def paypal_patterns(prefix):
-    return patterns('',
-        url('^$', views.paypal_setup,
-            name='mkt.developers.%s.paypal_setup' % prefix),
-        url('^bounce$', views.paypal_setup_confirm,
-            name='mkt.developers.%s.paypal_setup_bounce' % prefix,
-            kwargs={'source': 'paypal'}),
-        url('^confirm$', views.paypal_setup_confirm,
-            name='mkt.developers.%s.paypal_setup_confirm' % prefix,
-            kwargs={'source': 'paypal'}),
-        url('^details$', views.paypal_setup_confirm,
-            name='mkt.developers.%s.paypal_setup_details' % prefix,
-            kwargs={'source': 'developers'}),
-        url('^check$', views.paypal_setup_check,
-            name='mkt.developers.%s.paypal_setup_check' % prefix),
-        url('^remove$', views.paypal_remove,
-            name='mkt.developers.%s.paypal_remove' % prefix),
-    )
-
-
 def bango_patterns(prefix):
     return patterns('',
         url('^accounts$', views.payments_accounts,
@@ -65,18 +45,8 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.versions.delete'),
 
     url('^payments/$', views.payments, name='mkt.developers.apps.payments'),
-
-    # PayPal-specific stuff.
-    url('^paypal/', include(paypal_patterns('apps'))),
-
-    # Bluevia-specific stuff.
-    url('^bluevia$', views.get_bluevia_url,
-        name='mkt.developers.apps.get_bluevia_url'),
-    url('^bluevia/callback$', views.bluevia_callback,
-        name='mkt.developers.apps.bluevia_callback'),
-    url('^bluevia/remove$', views.bluevia_remove,
-        name='mkt.developers.apps.bluevia_remove'),
-
+    url('^payments/disable$', views.disable_payments,
+        name='mkt.developers.apps.payments.disable'),
     # in-app payments.
     url('^in-app-config$', views.in_app_config,
         name='mkt.developers.apps.in_app_config'),
@@ -85,11 +55,6 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.reset_in_app_config'),
     url('^in-app-secret$', views.in_app_secret,
         name='mkt.developers.apps.in_app_secret'),
-    # Response from paypal.
-    url('^payments/disable$', views.disable_payments,
-        name='mkt.developers.apps.payments.disable'),
-    url('^payments/permission/refund$', views.acquire_refund_permission,
-        name='mkt.developers.apps.acquire_refund_permission'),
     # Old stuff.
 
     url('^upload_preview$', views.upload_media, {'upload_type': 'preview'},
@@ -102,9 +67,6 @@ app_detail_patterns = patterns('',
     url('^profile$', views.profile, name='mkt.developers.apps.profile'),
     url('^profile/remove$', views.remove_profile,
         name='mkt.developers.apps.profile.remove'),
-    url('^issue_refund$', views.issue_refund,
-        name='mkt.developers.apps.issue_refund'),
-    url('^refunds$', views.refunds, name='mkt.developers.apps.refunds'),
     url('^rmlocale$', views.remove_locale,
         name='mkt.developers.apps.remove-locale'),
 

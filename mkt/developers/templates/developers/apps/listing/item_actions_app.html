@@ -43,12 +43,6 @@
   {% endif %}
 
   {% set manage_urls = [(addon.get_dev_url('versions'), _('Manage Status'))] %}
-  {% if waffle.switch('allow-refund') and addon.needs_paypal() and
-        check_addon_ownership(request, addon, support=True) %}
-    {% do manage_urls.insert(1,
-      (addon.get_dev_url('refunds'), _('Manage Refunds'))
-    ) %}
-  {% endif %}
   {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
         and waffle.switch('in-app-payments') %}
     {% do manage_urls.insert(1,
