@@ -7,12 +7,8 @@
 
 {% block content %}
   <section id="account-settings" class="account">
-
     {% include 'account/includes/nav.html' %}
-
-    {% if not request.MOBILE %}
-      <h2>{{ pagetitle }}</h2>
-    {% endif %}
+    <h2>{{ pagetitle }}</h2>
 
     <form class="form-grid" enctype="multipart/form-data" method="post">
       {{ csrf() }}
