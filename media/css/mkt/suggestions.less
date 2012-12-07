@@ -90,23 +90,24 @@
 // This works between and desktop over 600px.
 // TODO: more responsive for < 600px widths.
 @media(min-width: 600px) {
+    #site-search-suggestions,
+    #site-search-suggestions .wrap,
+    #site-search-suggestions ul,
+    #site-search-suggestions li:only-child a {
+        .border-radius(3px);
+    }
     #site-search-suggestions {
+        .box-shadow(0 0 1px);
         height: auto;
         position: static;
         float: right;
         width: 175px;
         margin: -24px 47px 0 0;
-        .border-radius(5px);
-        .box-shadow(0 0 1px);
         z-index: 11;
         .wrap {
             position: relative;
             height: auto;
-            .border-radius(5px);
             top: 0;
-            ul {
-                .border-radius(5px);
-            }
             a {
                 font-size: 12px;
                 line-height: 30px;
@@ -115,20 +116,16 @@
                     .ellipsis();
                 }
             }
-            li:first-child a {
-                .border-radius(5px 5px 0 0);
-            }
-            li:last-child a {
-                .border-radius(0 0 5px 5px);
-                border-bottom: 0;
-            }
-            li:only-child a {
-                .border-radius(5px);
-                border-bottom: 0;
-            }
         }
-        &.visible {
-            bottom: inherit;
+        li:first-child a {
+            .border-radius(3px 3px 0 0);
+        }
+        li:last-child a {
+            .border-radius(0 0 3px 3px);
+            border-bottom: 0;
+        }
+        li:only-child a {
+            border-bottom: 0;
         }
     }
     #site-header.suggestions {
