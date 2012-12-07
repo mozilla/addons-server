@@ -64,6 +64,8 @@ def global_settings(request):
     is_walled = ('amo.middleware.LoginRequiredMiddleware' in
                  settings.MIDDLEWARE_CLASSES)
 
+    DESKTOP = not (request.MOBILE or request.GAIA or request.TABLET)
+
     context.update(account_links=account_links,
                    settings=settings,
                    amo=amo, mkt=mkt,
@@ -74,5 +76,6 @@ def global_settings(request):
                    ADMIN_MESSAGE=get_config('site_notice'),
                    collect_timings_percent=get_collect_timings(),
                    is_admin=acl.action_allowed(request, 'Addons', 'Edit'),
-                   is_walled=is_walled)
+                   is_walled=is_walled,
+                   DESKTOP=DESKTOP)
     return context
