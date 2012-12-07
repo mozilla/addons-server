@@ -7,7 +7,9 @@
 {% block content %}
   <section class="account full">
     {% include 'account/includes/nav.html' %}
-    <h2>{{ pagetitle }}</h2>
+    {% if not request.MOBILE %}
+      <h2>{{ pagetitle }}</h2>
+    {% endif %}
 
     {% if pager.object_list %}
       <ol class="listing" start="{{ pager.start_index() }}">
