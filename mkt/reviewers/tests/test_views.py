@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+from django.test.client import RequestFactory
 
 import mock
 from nose import SkipTest
@@ -32,8 +33,8 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views import _filter
-from mkt.reviewers.utils import create_sort_link
+from mkt.reviewers.views import (_do_sort, _filter, _check_if_searching,
+                                 _get_search_form)
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews
@@ -2029,6 +2030,8 @@ class TestQueueSearchSort(AppReviewerTest):
 
     def setUp(self):
         """Create and set up apps for some filtering fun."""
+        self.rf = RequestFactory()
+
         self.login_as_senior_reviewer()
         self.apps = [app_factory(name='Lillard',
                                  status=amo.STATUS_PENDING,
@@ -2096,6 +2099,16 @@ class TestQueueSearchSort(AppReviewerTest):
         self.do_filter(app0, premium_type_ids=[amo.ADDON_FREE])
         self.do_filter(app1, premium_type_ids=[amo.ADDON_PREMIUM])
 
+    def do_filter(self, expected_ids, **kw):
+        """Checks that filter returns the expected ids
+
+        expected_ids -- list of app ids expected in the result.
+        """
+        qs = _filter(Webapp.objects.all(), kw)
+
+        self.assertSetEqual(list(qs.values_list('id', flat=True)),
+                            expected_ids)
+
     def test_no_duplicate_locale(self):
         """
         Test that filter results don't return multiple results on app
@@ -2108,89 +2121,53 @@ class TestQueueSearchSort(AppReviewerTest):
                .values_list('id', flat=True))
 
         eq_(len(ids), 1)
-        assert(app.id in ids)
-
-    def do_filter(self, expected_ids, **kw):
-        """Checks that filter returns the expected ids
-
-        expected_ids -- list of app ids expected in the result.
-        """
-        qs = _filter(Webapp.objects.all(), kw)
-
-        self.assertSetEqual(list(qs.values_list('id', flat=True)),
-                            expected_ids)
+        assert app.id in ids
 
     def test_check_if_searching(self):
         """
         Test that advanced search form shown when searching fields other
         than text_query and that clear search button shown when searching.
         """
-        r = self.client.get(self.url, {'text_query': '',
-                                       'waiting_time_days': ''})
-        p = pq(r.content)
-        eq_(p('#advanced-search').attr('class'), 'hidden')
-        eq_(p('#clear-queue-search').length, 0)
+        qs = Webapp.objects.all()
 
-        r = self.client.get(self.url, {'text_query': 'abcd',
-                                       'waiting_time_days': ''})
-        p = pq(r.content)
-        eq_(p('#advanced-search').attr('class'), 'hidden')
-        eq_(p('#clear-queue-search').length, 1)
+        # Not searching.
+        r = self.rf.get(self.url, {'text_query': '',
+                                   'waiting_time_days': ''})
+        qs, search_form = _get_search_form(r, qs)
+        eq_(_check_if_searching(search_form), (False, False))
 
-        r = self.client.get(self.url, {'has_info_request': '0'})
-        p = pq(r.content)
-        eq_(p('#advanced-search').attr('class'), None)
-        eq_(p('#clear-queue-search').length, 1)
+        # Regular searching.
+        r = self.rf.get(self.url, {'text_query': 'abcd',
+                                   'waiting_time_days': ''})
+        qs, search_form = _get_search_form(r, qs)
+        eq_(_check_if_searching(search_form), (True, False))
 
-    def test_create_sort_link(self):
-        """
-        Test that the sortable table headers' have URLs created correctly.
-        """
-        # Test that name's link sorts by asc if already sorting by created.
-        link = create_sort_link('Name', 'name', [('text_query', 'irrel')],
-                                'created', 'desc')
-        assert('sort=name' in link)
-        assert('order=asc' in link)
-        assert('text_query=irrel' in link)
+        # Advanced searching.
+        r = self.rf.get(self.url, {'has_info_request': '1'})
+        qs, search_form = _get_search_form(r, qs)
+        eq_(_check_if_searching(search_form), (True, True))
 
-        # Test that created's link inverts order if already sorting by created.
-        link = create_sort_link('Waiting Time', 'created',
-                                [('text_query', 'guybrush')], 'created',
-                                'asc')
-        assert('sort=created' in link)
-        assert('order=desc' in link)
-        assert('text_query=guybrush' in link)
-        link = create_sort_link('Waiting Time', 'created', [], 'created',
-                                'desc')
-        assert('order=asc' in link)
-
-    def test_sort(self):
+    def test_do_sort(self):
         """
         Test that apps are sorted in order specified in GET params
         """
-        app0 = str(self.apps[0].id)
-        app1 = str(self.apps[1].id)
+        qs = Webapp.objects.all()
 
         # Test apps are sorted by created/asc by default.
-        r = self.client.get(self.url, {'sort': 'invalidsort',
-                                       'order': 'dontcare'})
-        p = pq(r.content)
-        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app1)
-        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app0)
+        r = self.rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
         # Test sorting by created, descending.
-        r = self.client.get(self.url, {'sort': 'created', 'order': 'desc'})
-        p = pq(r.content)
-        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app0)
-        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app1)
+        r = self.rf.get(self.url, {'sort': 'created', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
         # Test sorting by app name.
-        r = self.client.get(self.url, {'sort': 'name', 'order': 'asc'})
-        p = pq(r.content)
-        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app1)
-        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app0)
+        r = self.rf.get(self.url, {'sort': 'name', 'order': 'asc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
-        r = self.client.get(self.url, {'sort': 'name', 'order': 'desc'})
-        p = pq(r.content)
-        eq_(p('tr.addon-row:nth-child(1)').attr('data-addon'), app0)
-        eq_(p('tr.addon-row:nth-child(2)').attr('data-addon'), app1)
+        r = self.rf.get(self.url, {'sort': 'name', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])

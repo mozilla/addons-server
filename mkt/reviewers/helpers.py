@@ -134,11 +134,9 @@ def sort_link(context, pretty_name, sort_field):
     request = context['request']
     sort, order = clean_sort_param(request)
 
-    get_params = []
-    # Copy current search/filter GET parameters back to url.
-    for param in request.GET.items():
-        if param[0] not in ('sort', 'order'):
-            get_params.append((param[0], param[1]))
+    # Copy search/filter GET parameters.
+    get_params = [(k, v) for k, v in request.GET.items()
+                  if k not in ('sort', 'order')]
 
     return create_sort_link(pretty_name, sort_field, get_params,
                             sort, order)
