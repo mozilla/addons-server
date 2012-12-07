@@ -42,9 +42,11 @@
             {% include 'ratings/rating.html' %}
           {% endwith %}
         {% endif %}
-        <li class="loadmore" data-sel="#review-list">
-          {{ ratings|more_button }}
-        </li>
+        {% if ratings.has_other_pages() %}
+          <li class="loadmore" data-sel="#review-list">
+            {{ ratings|more_button }}
+          </li>
+        {% endif %}
       </ul>
     {% elif not reply %}
       {% if product.can_review(amo_user) %}

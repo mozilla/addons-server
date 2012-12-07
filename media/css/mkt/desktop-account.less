@@ -26,15 +26,14 @@
         li {
             border: 0;
             position: relative;
-            + li {
+            &.item + li.item {
                 &:before,
                 &:after {
                     content: "";
                     display: block;
-                    height: 100%;
+                    height: 1px;
                     position: absolute;
                     top: 0;
-                    height: 1px;
                     width: 100%;
                 }
                 &:before {
@@ -43,6 +42,7 @@
                 &:after {
                     .gradient(~'left, rgba(235,238,239,0), rgba(255,255,255,.75) 25%, rgba(255,255,255,.75) 75%, rgba(235,238,239,0) 100%');
                     top: 1px;
+                    visibility: visible;
                 }
             }
             .mkt-tile {

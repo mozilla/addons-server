@@ -121,9 +121,11 @@
     {% if pager.object_list %}
       <ol class="listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
-        <li class="loadmore" data-sel=".listing">
-          {{ pager|more_button }}
-        </li>
+        {% if pager.has_other_pages() %}
+          <li class="loadmore" data-sel=".listing">
+            {{ pager|more_button }}
+          </li>
+        {% endif %}
       </ol>
     {% else %}
       {{ no_results() }}
