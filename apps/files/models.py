@@ -516,12 +516,15 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         zf.is_valid()
 
         # Check if there's already a META-INF/ids.json.
-        if filename in [zi.filename for zi in zf.zip.filelist]:
-            zf.zip.close()
+        try:
+            zf.zip.getinfo(filename)
+            zf.close()
             return
+        except KeyError:
+            pass  # Not found, we need to add it.
 
-        zf.zip.writestr('META-INF/ids.json', json.dumps(ids))
-        zf.zip.close()
+        zf.zip.writestr(filename, json.dumps(ids))
+        zf.close()
 
 
 @receiver(models.signals.post_save, sender=File,

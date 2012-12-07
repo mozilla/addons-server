@@ -202,7 +202,7 @@ class TestAddVersion(BasePackagedAppTest):
         file_ = self.app.versions.latest().files.latest()
         filename = 'META-INF/ids.json'
         zf = zipfile.ZipFile(file_.file_path)
-        assert filename in [zi.filename for zi in zf.filelist], (
+        assert zf.getinfo(filename), (
             'Expected %s in zip archive but not found.' % filename)
         ids = json.loads(zf.read(filename))
         eq_(ids['app_id'], self.app.guid)
