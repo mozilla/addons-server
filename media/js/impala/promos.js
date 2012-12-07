@@ -51,12 +51,12 @@ $.fn.promoPager = function() {
 };
 
 (function() {
-    $(document).delegate('#holiday .addons a', 'click', _pd(function() {
+    $(document).delegate('#holiday .addons a', 'click', function() {
         dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
                       'DCS.dcsuri', location.pathname,
                       'WT.ti', 'Link: ' + $('h3', this).text(),
                       'WT.dl', 99,
                       'WT.z_convert', 'HolidayShopping'
         );
-    }));
+    });
 })();
