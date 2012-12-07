@@ -92,14 +92,12 @@
 @media(min-width: 600px) {
     #site-search-suggestions {
         height: auto;
-        top: 58px;
-        left: 50%;
-        bottom: inherit;
-        right: inherit;
-        width: 275px;
-        margin-left: -23px;
+        position: static;
+        float: right;
+        width: 175px;
+        margin: -24px 47px 0 0;
         .border-radius(5px);
-        .box-shadow(0 0 3px 3px);
+        .box-shadow(0 0 1px);
         z-index: 11;
         .wrap {
             position: relative;
@@ -110,8 +108,8 @@
                 .border-radius(5px);
             }
             a {
-                font-size: 16px;
-                line-height: 35px;
+                font-size: 12px;
+                line-height: 30px;
                 span {
                     width: 275px;
                     .ellipsis();
@@ -133,7 +131,12 @@
             bottom: inherit;
         }
     }
-    #site-header.suggestions h1 {
-        display: inline-block;
+    #site-header.suggestions {
+        #search, #search-q {
+            width: 175px;
+        }
+        h1 {
+            display: inline-block;
+        }
     }
 }
