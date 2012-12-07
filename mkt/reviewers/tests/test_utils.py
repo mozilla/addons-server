@@ -24,7 +24,7 @@ class TestCreateSortLink(amo.tests.TestCase):
                                 [('text_query', 'guybrush')], 'created',
                                 'asc')
         assert 'sort=created' in link
-        assert'order=desc' in link
+        assert 'order=desc' in link
         assert 'text_query=guybrush' in link
         link = create_sort_link('Waiting Time', 'created', [], 'created',
                                 'desc')
