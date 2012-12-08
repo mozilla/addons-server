@@ -1,90 +1,87 @@
 @import 'lib';
 
-// これのほうがいいです
-@media(min-width: @desktop) {
-    #filters {
-        h2, #filter-prices {
-            display: none;
-        }
-        position: relative;
-        height: 40px;
-        background: none;
-        z-index: 9;
-        form {
-            margin: 0;
-            > div {
-                margin: 0;
-                padding: 0;
-            }
-        }
-        #filter-sort {
+#filters {
+    h2, #filter-prices {
+        display: none;
+    }
+    position: relative;
+    height: 40px;
+    background: none;
+    z-index: 9;
+    form {
+        margin: 0;
+        > div {
             margin: 0;
             padding: 0;
-            list-style-type: none;
-            li {
-                float: left;
-                margin-right: 13px;
-                background: url(../../img/mkt/divider.png) no-repeat 0 2px;
-                padding-left: 13px;
-                &:first-child {
-                    background-image: none;
-                    padding-left: 0;
-                }
-                a {
-                    display: block;
-                    outline: 0;
-                    color: @white;
-                    text-shadow: 0 1px 1px rgba(0,0,0,0.6);
-                    line-height: 40px;
-                    font-size: 14px;
-                    border-top: 1px solid transparent; // Preserve spacing.
-                    &.sel {
-                        border-top: 1px solid #00b2ff;
-                        color: #00b2ff;
-                        text-decoration: none;
-                    }
-                }
-            }
         }
     }
-    nav .header-button.expand {
-        margin: 35px 0 0;
-    }
-    .search {
-        #page {
-            padding-top: 80px;
-            &:before {
-                .gradient-two-color(#2b343b, #2e383f);
-                border-bottom: 1px solid rgba(0,0,0,.2);
-                border-top: 1px solid #262f34;
-                content: "";
+    #filter-sort {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        li {
+            float: left;
+            margin-right: 13px;
+            background: url(../../img/mkt/divider.png) no-repeat 0 2px;
+            padding-left: 13px;
+            &:first-child {
+                background-image: none;
+                padding-left: 0;
+            }
+            a {
                 display: block;
-                position: absolute;
-                top: 80px;
-                height: 38px;
-                width: 100%;
-                z-index: 3;
+                outline: 0;
+                color: @white;
+                text-shadow: 0 1px 1px rgba(0,0,0,0.6);
+                line-height: 40px;
+                font-size: 14px;
+                border-top: 1px solid transparent; // Preserve spacing.
+                &.sel {
+                    border-top: 1px solid #00b2ff;
+                    color: #00b2ff;
+                    text-decoration: none;
+                }
             }
         }
-        .incompatible-browser.active {
+    }
+}
+nav .header-button.expand {
+    margin: 35px 0 0;
+}
+.search {
+    #page {
+        padding-top: 80px;
+        &:before {
+            .gradient-two-color(#2b343b, #2e383f);
+            border-bottom: 1px solid rgba(0,0,0,.2);
+            border-top: 1px solid #262f34;
+            content: "";
+            display: block;
+            position: absolute;
             top: 80px;
+            height: 38px;
+            width: 100%;
+            z-index: 3;
         }
     }
-    .incompatible {
-        .header-button.expand {
-            margin-top: 130px;
-        }
+    .incompatible-browser.active {
+        top: 80px;
     }
-    #search-results {
-        padding: 30px 0;
-        h1 {
-            margin-bottom: 10px;
-        }
-        .listing {
-            border-top: 1px solid @light-gray;
-        }
+}
+.incompatible {
+    .header-button.expand {
+        margin-top: 130px;
     }
-    .header-button.expand.icon:before {
-        left: 24px;
+}
+#search-results {
+    padding: 30px 0;
+    h1 {
+        margin-bottom: 10px;
     }
+    .listing {
+        border-top: 1px solid @light-gray;
+    }
+}
+.header-button.expand.icon:before {
+    left: 24px;
 }

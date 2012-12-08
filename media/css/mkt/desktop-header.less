@@ -1,234 +1,224 @@
 @import 'lib';
 
-#site-header h1.site,
+//.overlay.dropdown {
+//    background: transparent;
+//}
 .account-links {
-    display: none;
-}
-
-@media (min-width: @desktop) {
-    //.overlay.dropdown {
-    //    background: transparent;
-    //}
-    .account-links {
-        cursor: pointer;
-        display: block;
-        float: right;
+    cursor: pointer;
+    float: right;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 39px;
+    z-index: 12;
+    ul {
+        .border-radius(3px 0 3px 3px);
+        background: rgb(43,54,63);
+        line-height: 15px;
+        opacity: 0;
+        padding: 6px 4px;
         position: absolute;
+        top: 48px;
         right: 0;
-        height: 100%;
-        width: 39px;
-        z-index: 12;
-        ul {
-            .border-radius(3px 0 3px 3px);
-            background: rgb(43,54,63);
-            line-height: 15px;
-            opacity: 0;
-            padding: 6px 4px;
-            position: absolute;
-            top: 48px;
-            right: 0;
-            visibility: hidden;
-        }
-        li {
-            position: relative;
-            + li {
-                &:before,
-                &:after {
-                    content: "";
-                    display: block;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    height: 1px;
-                    width: 100%;
-                }
-                &:before {
-                    .gradient(~'left, rgba(33,40,46,0), rgba(33,40,46,.75) 25%, rgba(33,40,46,.75) 75%, rgba(33,40,46,0) 100%');
-                }
-                &:after {
-                    .gradient(~'left, rgba(59,71,80,0), rgba(59,71,80,.95) 25%, rgba(59,71,80,.95) 75%, rgba(59,71,80,0) 100%');
-                    top: 1px;
-                }
-            }
-            a {
-                color: @white;
-                display: block;
-                text-decoration: none;
-                text-shadow: 0 .5px 0 @black;
-                padding: 10px 15px;
-                &:hover {
-                    //.gradient(~'bottom, rgba(43,54,63,1) 0%, rgba(43,54,63,0.07) 85%, rgba(252,252,253,0) 100%');
-                    .gradient(~'top, rgba(36,45,51,1) 0%, rgba(36,45,51,0.57) 18%, rgba(36,45,51,0) 42%)');
-                    color: rgb(26,149,252);
-                }
-            }
-        }
-        a em {
-            color: @note-gray;
-            display: block;
-            font-style: italic;
-            margin-bottom: 6px;
-        }
-        a:hover em {
-            color: @light-gray;
-        }
-        &.inactive {
-            display: none;
-        }
-        &.active {
-            width: 210px;
-            ul {
-                opacity: 1;
-                visibility: visible;
-            }
-            .settings {
-                &:after {
-                    .gradient(~'bottom, rgba(43,54,63,1) 0%, rgba(43,54,63,0.07) 85%, rgba(252,252,253,0) 100%');
-                    content: "";
-                    display: block;
-                    height: 39px;
-                    position: relative;
-                    float: right;
-                    width: 40px;
-                    z-index: 2;
-                }
-                &:before {
-                    background-position: 0 -24px;
-                }
-            }
-        }
+        visibility: hidden;
     }
-
-    #site-header {
-        height: 80px;
-        #search-q {
-            .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/search.png), ~'8px 8px', no-repeat);
-            font-size: 12px;
-            font-weight: 300;
-            height: 26px;
-            margin-top: -14px;
-            line-height: 23px;
-            padding: 1px 5px 0 25px;
-            position: absolute;
-            top: 50%;
-            right: 0;
-            z-index: 13;
-            &:-moz-placeholder {
-                color: lighten(#48535d, 25%);
-            }
-            &::-moz-placeholder {
-                color: lighten(#48535d, 25%);
-            }
-            &::-webkit-input-placeholder {
-                color: lighten(#48535d, 25%);
-            }
-        }
-    }
-    #search,
-    #search-q {
-        width: 175px;
-    }
-    #page {
-        padding-top: 80px;
-    }
-    .incompatible-browser.active {
-        top: 80px;
-    }
-
-    // Hide page titles. Show just the logo. Everywhere.
-    #site-header h1.page {
-        display: none !important;
-    }
-
-    .force-mobile #site-header > section,
-    #site-header nav,
-    #search {
-        height: 100%;
-    }
-
-    #search {
-        display: block;
-        position: absolute;
-        right: 50px;
-    }
-
-    .logged #search {
-        right: 35px;
-    }
-
-    #site-header, .classic-header {
-        .box-shadow(~'0 -1px 0 rgba(0,0,0,.5) inset, 0 1px 0 rgba(255,255,255,.1) inset');
-        background: darken(#3f4f5b, 5%) @grain-src;
-        background-size: 100px 100px;
-        position: absolute;
-    }
-
-    body, .home {
-        #site-header h1.site {
-            //background: url(../../img/mkt/logos/large.png) 0 50% no-repeat;
-            background: url(../../img/mkt/logos/mp_aurora_wordmark_200x30.png) 0 50% no-repeat;
-            display: block;
-            text-indent: -9999px;
-            height: 100%;
-            left: 0;
-            max-width: 280px;
-            top: 0;
-            width: 280px;
-            a {
+    li {
+        position: relative;
+        + li {
+            &:before,
+            &:after {
+                content: "";
                 display: block;
                 height: 100%;
+                position: absolute;
+                top: 0;
+                height: 1px;
                 width: 100%;
+            }
+            &:before {
+                .gradient(~'left, rgba(33,40,46,0), rgba(33,40,46,.75) 25%, rgba(33,40,46,.75) 75%, rgba(33,40,46,0) 100%');
+            }
+            &:after {
+                .gradient(~'left, rgba(59,71,80,0), rgba(59,71,80,.95) 25%, rgba(59,71,80,.95) 75%, rgba(59,71,80,0) 100%');
+                top: 1px;
+            }
+        }
+        a {
+            color: @white;
+            display: block;
+            text-decoration: none;
+            text-shadow: 0 .5px 0 @black;
+            padding: 10px 15px;
+            &:hover {
+                //.gradient(~'bottom, rgba(43,54,63,1) 0%, rgba(43,54,63,0.07) 85%, rgba(252,252,253,0) 100%');
+                .gradient(~'top, rgba(36,45,51,1) 0%, rgba(36,45,51,0.57) 18%, rgba(36,45,51,0) 42%)');
+                color: rgb(26,149,252);
             }
         }
     }
-    .header-button {
-        float: none;
-        position: absolute;
-        top: 50%;
-        margin-top: -25px;
-        right: 0;
-        width: 50px;
-        &.back,
-        &.home {
-            display: none !important;
+    a em {
+        color: @note-gray;
+        display: block;
+        font-style: italic;
+        margin-bottom: 6px;
+    }
+    a:hover em {
+        color: @light-gray;
+    }
+    &.inactive {
+        display: none;
+    }
+    &.active {
+        width: 210px;
+        ul {
+            opacity: 1;
+            visibility: visible;
         }
-        &:after {
-            display: none;
-        }
-        &.settings {
-            display: block;
-            &:before {
-                background-image: url(../../img/mkt/icons/settings.png);
-                left: 19px;
-                z-index: 3;
+        .settings {
+            &:after {
+                .gradient(~'bottom, rgba(43,54,63,1) 0%, rgba(43,54,63,0.07) 85%, rgba(252,252,253,0) 100%');
+                content: "";
+                display: block;
+                height: 39px;
+                position: relative;
+                float: right;
+                width: 40px;
+                z-index: 2;
             }
-        }
-        &.browserid {
-            display: block;
-            height: 100%;
-            line-height: 80px;
-            margin: 0;
-            text-align: right;
-            position: absolute;
-            top: 0;
-            width: 60px;
-            &.loading-submit {
-                .hidetext;
-                -webkit-animation-duration: 1.5s;
-                -webkit-animation-name: spin;
-                -webkit-animation-iteration-count: infinite;
-                -webkit-animation-timing-function: linear;
-                background: url(../../img/mkt/loading-16.png) center no-repeat;
-                &:after {
-                    display: none;
-                }
+            &:before {
+                background-position: 0 -24px;
             }
         }
     }
 }
 
-@media screen and (min-width: @desktop),
-       @retina {
+#site-header {
+    height: 80px;
+    #search-q {
+        .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/search.png), ~'8px 8px', no-repeat);
+        font-size: 12px;
+        font-weight: 300;
+        height: 26px;
+        margin-top: -14px;
+        line-height: 23px;
+        padding: 1px 5px 0 25px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 13;
+        &:-moz-placeholder {
+            color: lighten(#48535d, 25%);
+        }
+        &::-moz-placeholder {
+            color: lighten(#48535d, 25%);
+        }
+        &::-webkit-input-placeholder {
+            color: lighten(#48535d, 25%);
+        }
+    }
+}
+#search,
+#search-q {
+    width: 175px;
+}
+#page {
+    padding-top: 80px;
+}
+.incompatible-browser.active {
+    top: 80px;
+}
+
+// Hide page titles. Show just the logo. Everywhere.
+#site-header h1.page {
+    display: none !important;
+}
+
+.force-mobile #site-header > section,
+#site-header nav,
+#search {
+    height: 100%;
+}
+
+#search {
+    display: block;
+    position: absolute;
+    right: 50px;
+}
+
+.logged #search {
+    right: 35px;
+}
+
+#site-header, .classic-header {
+    .box-shadow(~'0 -1px 0 rgba(0,0,0,.5) inset, 0 1px 0 rgba(255,255,255,.1) inset');
+    background: darken(#3f4f5b, 5%) @grain-src;
+    background-size: 100px 100px;
+    position: absolute;
+}
+
+body, .home {
+    #site-header h1.site {
+        //background: url(../../img/mkt/logos/large.png) 0 50% no-repeat;
+        background: url(../../img/mkt/logos/mp_aurora_wordmark_200x30.png) 0 50% no-repeat;
+        text-indent: -9999px;
+        height: 100%;
+        left: 0;
+        max-width: 280px;
+        top: 0;
+        width: 280px;
+        a {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+.header-button {
+    float: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    right: 0;
+    width: 50px;
+    &.back,
+    &.home {
+        display: none !important;
+    }
+    &:after {
+        display: none;
+    }
+    &.settings {
+        display: block;
+        &:before {
+            background-image: url(../../img/mkt/icons/settings.png);
+            left: 19px;
+            z-index: 3;
+        }
+    }
+    &.browserid {
+        display: block;
+        height: 100%;
+        line-height: 80px;
+        margin: 0;
+        text-align: right;
+        position: absolute;
+        top: 0;
+        width: 60px;
+        &.loading-submit {
+            .hidetext;
+            -webkit-animation-duration: 1.5s;
+            -webkit-animation-name: spin;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            background: url(../../img/mkt/loading-16.png) center no-repeat;
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+@media @retina {
     body, .home {
         #site-header h1.site {
             //background-image: url(../../img/mkt/logos/large-2x.png);

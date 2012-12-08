@@ -1,76 +1,53 @@
 @import 'lib';
 
 .account h2 {
+    margin-bottom: 15px;
+}
+
+#page > section:only-child {
+    padding: 30px 0;
+}
+
+.toggles {
     display: none;
 }
 
-@media (min-width: @desktop) {
-    .account h2 {
-        display: block;
-        margin-bottom: 15px;
-    }
-    #page > section:only-child {
-        padding: 30px 0;
-    }
-    .toggles {
-        display: none;
-    }
-    .listing,
-    .form-grid {
-        background-color: rgba(0,0,0,.03);
-        border: 1px solid rgba(0,0,0,.04);
-    }
-    // TODO: Surely, we can abstract this.
-    // Let's do that when I think of a good name for the stylesheet.
-    .listing {
-        li {
-            border: 0;
-            position: relative;
-            &.item + li.item {
-                &:before,
-                &:after {
-                    content: "";
-                    display: block;
-                    height: 1px;
-                    position: absolute;
-                    top: 0;
-                    width: 100%;
-                }
-                &:before {
-                    .gradient(~'left, rgba(199,199,203,0), rgba(199,199,203,.75) 25%, rgba(199,199,203,.75) 75%, rgba(199,199,203,0) 100%');
-                }
-                &:after {
-                    .gradient(~'left, rgba(235,238,239,0), rgba(255,255,255,.75) 25%, rgba(255,255,255,.75) 75%, rgba(235,238,239,0) 100%');
-                    top: 1px;
-                    visibility: visible;
-                }
-            }
-            .mkt-tile {
-                background: none;
-                padding: 20px 20px 20px 98px;
-                .icon {
-                    left: 20px;
-                }
-            }
-            a {
-                position: static;
-            }
+.listing,
+.form-grid {
+    background-color: rgba(0,0,0,.03);
+    border: 1px solid rgba(0,0,0,.04);
+}
+
+.form-grid {
+    float: left;
+    margin: 0;
+    padding: 25px;
+    width: 100%;
+    .form-footer {
+        button {
+            height: auto;
+            line-height: 26px;
+            padding: 0 12px;
         }
     }
-    .form-grid {
+}
+
+.simple-field select {
+    margin-top: 5px;
+}
+
+.feedback-links {
+    .fatbutton + .fatbutton {
         float: left;
-        margin: 0;
-        padding: 25px;
-        width: 100%;
-        .form-footer {
-            button {
-                height: auto;
-                line-height: 26px;
-                padding: 0 12px;
-            }
+        width: 49%;
+        + .fatbutton {
+            float: right;
         }
     }
-    .simple-field select {
-        margin-top: 5px;
+}
+
+#account-settings {
+    select {
+        width: 50%;
     }
 }

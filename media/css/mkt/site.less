@@ -253,38 +253,6 @@ body[data-page-type=notice], body[data-page-type=alpha] {
     }
 }
 
-@media (min-width: @7col) {
-    #site-footer {
-        display: block;
-    }
-    body:not(.force-mobile) {
-        .account.anonymous,
-        .account.anonymous + .footer-links {
-            text-align: center;
-        }
-        .account.anonymous + .footer-links {
-            margin-top: 10px;
-        }
-        .footer-links {
-            p {
-                margin: 0;
-                + p {
-                    margin-top: 5px;
-                }
-            }
-            a:first-child {
-                padding-right: 5px;
-            }
-            a + a {
-                border-left: 1px solid @light-gray;
-                padding-left: 10px;
-                padding-right: 5px;
-                line-height: 15px;
-            }
-        }
-    }
-}
-
 .force-mobile {
     .account, .footer-links a {
         padding: 4px;

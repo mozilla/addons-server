@@ -1,151 +1,154 @@
 @import 'lib';
 
+html, body, #site-header, .classtic-header {
+    min-width: @desktop;
+    overflow-x: inherit;
+}
+
+body, h1, h2, h3, h4 {
+    font-weight: 300;
+}
+
+body {
+    background: @white;
+}
+
+#page {
+    background: @grain-src @bg;
+}
+
+#featured-home {
+    border-bottom: 1px solid @white;
+}
+
+.categories {
+    padding: 50px 0 25px;
+    h2 {
+        .light-text-shadow;
+        color: @dark-gray;
+        display: block;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .grid li {
+        border-color: transparent;
+        &:nth-child(3n + 1) {
+            // Leftmost tile.
+            border-left: 0;
+        }
+        &:nth-child(3n) {
+            // Rightmost tile.
+            border-right: 0;
+        }
+    }
+}
+
 #footer,
 #directory-footer {
-    display: none;
+    padding: 30px 0;
+    .pad {
+        margin: 0 auto;
+        padding: 0;
+        width: 600px;  // TODO: Change this to 768px when we increase page width.
+    }
+    ul {
+        list-style: none;
+    }
 }
 
-@media (min-width: @desktop) {
-    body, h1, h2, h3, h4 {
-        font-weight: 300;
-    }
-    body {
-        background: @white;
-    }
-    #page {
-        background: @grain-src @bg;
-    }
+#footer {
+    background: @white;
+    border-top-color: rgba(0,0,0,.08);
+}
 
-    #featured-home {
-        border-bottom: 1px solid @white;
-    }
-
-    .categories {
-        padding: 50px 0 25px;
-        h2 {
-            .light-text-shadow;
+#directory-footer {
+    .box-shadow(0 1px 0 rgba(3,16,26,.15) inset);
+    background: #d5d9dc @grain-src;
+    //min-height: 100px;
+    .devhub {
+        background: url(../../img/mkt/icons/rocket.png) 0 35px no-repeat;
+        margin: -30px -20px -30px;
+        padding: 30px 20px 30px 60px;
+        h1 {
             color: @dark-gray;
-            display: block;
-            font-size: 22px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            text-shadow: 0 1px 1px rgba(245,247,250,.75);
         }
-        .grid li {
-            border-color: transparent;
-            &:nth-child(3n + 1) {
-                // Leftmost tile.
-                border-left: 0;
-            }
-            &:nth-child(3n) {
-                // Rightmost tile.
-                border-right: 0;
-            }
+        b {
+            font-size: 14px;
+            font-weight: 400;
         }
-    }
-
-    .grid .mkt-tile {
-        &.category {
-            background-color: #d6d9de;
-            h3 {
-                .light-text-shadow;
-                color: @medium-gray;
-                font-weight: 400;
-            }
-            &:hover, &:active {
-                background-color: rgba(255,255,255,.6);
-                h3 {
-                    color: @dark-gray;
-                }
-            }
-            &:active {
-                .depressed;
-            }
-        }
-    }
-
-    #footer,
-    #directory-footer {
-        display: block;
-        padding: 30px 0;
-        .pad {
-            margin: 0 auto;
-            padding: 0;
-            width: 600px;  // TODO: Change this to 768px when we increase page width.
-        }
-        ul {
-            list-style: none;
-        }
-    }
-
-    #footer {
-        background: @white;
-        border-top-color: rgba(0,0,0,.08);
-    }
-
-    #directory-footer {
-        .box-shadow(0 1px 0 rgba(3,16,26,.15) inset);
-        background: #d5d9dc @grain-src;
-        //min-height: 100px;
-        .devhub {
-            background: url(../../img/mkt/icons/rocket.png) 0 35px no-repeat;
-            margin: -30px -20px -30px;
-            padding: 30px 20px 30px 60px;
+        &:hover {
+            text-decoration: none;
             h1 {
-                color: @dark-gray;
-                font-size: 20px;
-                text-shadow: 0 1px 1px rgba(245,247,250,.75);
+                color: @black;
             }
             b {
-                font-size: 14px;
-                font-weight: 400;
-            }
-            &:hover {
-                text-decoration: none;
-                h1 {
-                    color: @black;
-                }
-                b {
-                    text-decoration: underline;
-                }
+                text-decoration: underline;
             }
         }
-        .group {
-            float: left;
-            min-height: 71px;
-            padding: 0 20px;  // TODO: Change this to 40px when we increase page width.
-            width: 25%;
-            position: relative;
-            &:after,
-            + .group:before {
-                content: "";
-                display: block;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                width: 1px;
-            }
-            &:after {
-                .gradient(~'top, rgba(185,190,195,0), rgba(185,190,195,.75) 25%, rgba(185,190,195,.75) 75%, rgba(185,190,195,0) 100%');
-                right: 0;
-            }
-            + .group:before {
-                .gradient(~'top, rgba(226,228,231,0), rgba(226,228,231,.75) 25%, rgba(226,228,231,.75) 75%, rgba(226,228,231,0) 100%');
-                left: 0;
-            }
-            &:first-child {
-                width: 50%;
-            }
-            &:last-child:after {
-                display: none;
-            }
-            a {
-                display: block;
-            }
+    }
+    .group {
+        float: left;
+        min-height: 71px;
+        padding: 0 20px;  // TODO: Change this to 40px when we increase page width.
+        width: 25%;
+        position: relative;
+        &:after,
+        + .group:before {
+            content: "";
+            display: block;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 1px;
+        }
+        &:after {
+            .gradient(~'top, rgba(185,190,195,0), rgba(185,190,195,.75) 25%, rgba(185,190,195,.75) 75%, rgba(185,190,195,0) 100%');
+            right: 0;
+        }
+        + .group:before {
+            .gradient(~'top, rgba(226,228,231,0), rgba(226,228,231,.75) 25%, rgba(226,228,231,.75) 75%, rgba(226,228,231,0) 100%');
+            left: 0;
+        }
+        &:first-child {
+            width: 50%;
+        }
+        &:last-child:after {
+            display: none;
+        }
+        a {
+            display: block;
         }
     }
 }
 
-@media screen and (min-width: @desktop),
-       @retina {
+// TODO: Move this out of here. This is not your diaper.
+
+// detail
+// At desktop width, let's float the content ratings.
+// TODO: Remove non-force-mobile selector when desktop lands.
+body:not(.force-mobile) .content-rating {
+    float: left;
+    padding: 0 5px 0 0;
+    width: 50%;
+    &:nth-child(2n+1) {
+        padding: 0 0 0 5px;
+    }
+}
+
+// ratings
+.split {
+    float: left;
+    padding: 0 5px 15px 0;
+    width: 50%;
+    + .split {
+        margin-top: 0;
+        padding: 0 0 15px 5px;
+    }
+}
+
+@media @retina {
     #directory-footer {
         .devhub {
             background-image: url(../../img/mkt/icons/rocket-2x.png);

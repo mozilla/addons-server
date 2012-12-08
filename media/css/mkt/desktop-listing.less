@@ -1,0 +1,57 @@
+@import 'lib';
+
+.listing {
+    li {
+        border: 0;
+        position: relative;
+        &.item + li.item {
+            &:before,
+            &:after {
+                content: "";
+                display: block;
+                height: 1px;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+            &:before {
+                .gradient(~'left, rgba(199,199,203,0), rgba(199,199,203,.75) 25%, rgba(199,199,203,.75) 75%, rgba(199,199,203,0) 100%');
+            }
+            &:after {
+                .gradient(~'left, rgba(235,238,239,0), rgba(255,255,255,.75) 25%, rgba(255,255,255,.75) 75%, rgba(235,238,239,0) 100%');
+                top: 1px;
+                visibility: visible;
+            }
+        }
+        .mkt-tile {
+            background: none;
+            padding: 20px 20px 20px 98px;
+            .icon {
+                left: 20px;
+            }
+        }
+        a {
+            position: static;
+        }
+    }
+}
+
+.grid .mkt-tile {
+    &.category {
+        background-color: #d6d9de;
+        h3 {
+            .light-text-shadow;
+            color: @medium-gray;
+            font-weight: 400;
+        }
+        &:hover, &:active {
+            background-color: rgba(255,255,255,.6);
+            h3 {
+                color: @dark-gray;
+            }
+        }
+        &:active {
+            .depressed;
+        }
+    }
+}

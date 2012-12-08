@@ -129,19 +129,6 @@
     }
 }
 
-// At desktop width, let's float the content ratings.
-@media (min-width: @7col) {
-    // TODO: Remove non-force-mobile selector when desktop lands.
-    body:not(.force-mobile) .content-rating {
-        float: left;
-        padding: 0 5px 0 0;
-        width: 50%;
-        &:nth-child(2n+1) {
-            padding: 0 0 0 5px;
-        }
-    }
-}
-
 .checkmark {
     display: block;
     color: @black;

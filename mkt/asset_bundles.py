@@ -159,6 +159,7 @@ CSS.update({
         'css/mkt/desktop-header.less',
         'css/mkt/desktop-filters.less',
         'css/mkt/desktop-account.less',
+        'css/mkt/desktop-listing.less',
     ),
 })
 
