@@ -34,7 +34,7 @@
       </li>
       {% if is_admin %}
       <li>
-        <a href="{{ app.get_dev_url() }}">
+        <a href="{{ app.get_dev_url() if app.is_webapp() else '' }}">
           {{ _('Edit Listing') }}
         </a>
       </li>
