@@ -34,7 +34,7 @@ from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
 from mkt.reviewers.views import (_do_sort, _filter, _check_if_searching,
-                                 _get_search_form)
+                                 _get_search_form, _get_themes)
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews
@@ -1709,15 +1709,10 @@ class TestThemeReviewQueue(amo.tests.TestCase):
 
     def setUp(self):
         self.reviewer_count = 0
-        # Make number of checked-out themes not evenly divide into total
-        # number of themes.
-        self.theme_count = rvw.THEME_INITIAL_LOCKS * 2 + 2
-        for x in range(self.theme_count):
-            addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
         self.create_switch(name='mkt-themes')
 
     def create_and_become_reviewer(self):
-        # Create new reviewer with unique username and return it.
+        """Login as new reviewer with unique username."""
         username = 'reviewer%s' % self.reviewer_count
         email = username + '@mozilla.com'
         reviewer = User.objects.create(username=email, email=email,
@@ -1732,79 +1727,100 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         self.reviewer_count += 1
         return user
 
-    def get_themes(self):
-        return (self.client.get(reverse('reviewers.themes.queue_themes'))
-                .content)
-
-    def get_and_check_themes(self, reviewer, expected_queue_length):
-        doc = pq(self.get_themes())
-        eq_(doc('div.theme').length, expected_queue_length)
-        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
-            expected_queue_length)
-
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
     def test_basic_queue(self):
-        # Have reviewers take themes from the pool and into the queue.
-        self.free_themes = self.theme_count
-        expected_list = [rvw.THEME_INITIAL_LOCKS, rvw.THEME_INITIAL_LOCKS,
-                         2, 0]
-
-        for expected in expected_list:
-            reviewer = self.create_and_become_reviewer()
-            self.get_and_check_themes(reviewer, expected)
-
-    def test_top_off(self):
-        # If reviewer has fewer than max locks, try to get more from pool.
-        reviewer = self.create_and_become_reviewer()
-
-        doc = pq(self.get_themes())
-        eq_(doc('div.theme').length, rvw.THEME_INITIAL_LOCKS)
-        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
-            rvw.THEME_INITIAL_LOCKS)
-
-        for theme_lock in ThemeLock.objects.filter(reviewer=reviewer)[:2]:
-            theme_lock.delete()
-
-        # Add to the pool.
-        for i in range(4):
+        """
+        Have reviewers take themes from the pool,
+        check their queue sizes.
+        """
+        for x in range(rvw.THEME_INITIAL_LOCKS + 1):
             addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
 
+        themes = Persona.objects.all()
+        expected_themes = [
+            [themes[0], themes[1]],
+            [themes[2]],
+            []
+        ]
+
+        for expected in expected_themes:
+            reviewer = self.create_and_become_reviewer()
+            eq_(_get_themes(reviewer, initial=False), expected)
+            eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
+                len(expected))
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_more(self):
+        """
+        Test number of themes checked out when asking for more
+        asynchronously.
+        """
+        for x in range(rvw.THEME_INITIAL_LOCKS + 1):
+            addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+
+        themes = Persona.objects.all()
+        expected_themes = [
+            [themes[0], themes[1]],
+            [themes[2]],
+            []
+        ]
+
+        reviewer = self.create_and_become_reviewer()
+        for expected in expected_themes:
+            eq_(_get_themes(reviewer, initial=False), expected)
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_top_off(self):
+        """If reviewer has fewer than max locks, get more from pool."""
+        for x in range(2):
+            addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        reviewer = self.create_and_become_reviewer()
+        _get_themes(reviewer, initial=True)
+        ThemeLock.objects.filter(reviewer=reviewer)[0].delete()
+        _get_themes(reviewer, initial=True)
+
         # Check reviewer checked out the themes.
-        doc = pq(self.get_themes())
-        eq_(doc('div.theme').length, rvw.THEME_INITIAL_LOCKS)
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
             rvw.THEME_INITIAL_LOCKS)
 
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
     def test_expiry(self):
-        # Test that reviewers who want themes from an empty pool can steal
-        # checked-out themes from other reviewers whose locks have expired.
-        for i in range(3):
-            reviewer = self.create_and_become_reviewer()
-            self.get_themes()
+        """
+        Test that reviewers who want themes from an empty pool can steal
+        checked-out themes from other reviewers whose locks have expired.
+        """
+        for x in range(2):
+            addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        reviewer = self.create_and_become_reviewer()
+        _get_themes(reviewer, initial=True)
 
         # Reviewer wants themes, but empty pool.
         reviewer = self.create_and_become_reviewer()
-        self.get_themes()
+        _get_themes(reviewer, initial=True)
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
 
         # Manually expire a lock and see if it's reassigned.
         expired_theme_lock = ThemeLock.objects.all()[0]
         expired_theme_lock.expiry = datetime.datetime.now()
         expired_theme_lock.save()
-        self.get_themes()
+        _get_themes(reviewer, initial=True)
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 1)
 
     def test_expiry_update(self):
-        # Test expiry is updated when reviewer reloads his queue.
+        """Test expiry is updated when reviewer reloads his queue."""
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
         reviewer = self.create_and_become_reviewer()
-        self.get_themes()
+        _get_themes(reviewer, initial=True)
+
         earlier = datetime.datetime.now() - datetime.timedelta(minutes=10)
         ThemeLock.objects.filter(reviewer=reviewer).update(expiry=earlier)
-        self.get_themes()
+        _get_themes(reviewer, initial=True)
         eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry > earlier,
             True)
 
     def test_permissions_reviewer(self):
-        slug = Persona.objects.all()[1].addon.slug
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        slug = Persona.objects.all()[0].addon.slug
 
         res = self.client.get(reverse('reviewers.themes.queue_themes'))
         self.assert3xx(res, reverse('users.login') + '?to=' +
@@ -1831,6 +1847,9 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         eq_(self.client.get(reverse('reviewers.themes.more')).status_code, 200)
 
     def test_commit(self):
+        for x in range(5):
+            addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+
         count = Persona.objects.count()
         form_data = amo.tests.formset(initial_count=count,
                                       total_count=count + 1)
@@ -1881,6 +1900,8 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         eq_(ActivityLog.objects.count(), 5)
 
     def test_user_review_history(self):
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+
         reviewer = self.create_and_become_reviewer()
 
         res = self.client.get(reverse('reviewers.themes.history'))
@@ -1905,6 +1926,8 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         eq_(doc('tbody tr').length, 3 * 2)  # Double for comment rows.
 
     def test_single_basic(self):
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+
         self.create_and_become_reviewer()
         res = self.client.get(reverse('reviewers.themes.single',
                               args=[Persona.objects.all()[0].addon.slug]))

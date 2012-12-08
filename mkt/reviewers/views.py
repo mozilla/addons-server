@@ -584,19 +584,7 @@ def app_abuse(request, addon):
 @waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_queue(request):
-    reviewer = request.amo_user
-    theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
-    theme_locks_count = theme_locks.count()
-
-    if theme_locks_count < rvw.THEME_INITIAL_LOCKS:
-        themes = get_themes(
-            reviewer, rvw.THEME_INITIAL_LOCKS - theme_locks_count)
-    else:
-        # Update the expiry on currently checked-out themes.
-        theme_locks.update(expiry=get_updated_expiry())
-    # Combine currently checked-out themes with newly checked-out ones by
-    # re-evaluating theme_locks.
-    themes = [theme_lock.theme for theme_lock in theme_locks]
+    themes = _get_themes(request.amo_user, initial=True)
 
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(
@@ -620,14 +608,41 @@ def themes_queue(request):
     }))
 
 
-def get_themes(reviewer, num):
-    # Check out themes from the pool if none or not enough checked out.
-    themes = Persona.objects.no_cache().filter(
-        addon__status=amo.STATUS_PENDING, themelock=None)[:num]
+def _get_themes(reviewer, initial=True):
+    """Check out themes.
+
+    Keyword arguments:
+    initial -- True if checking out synchronously, False otherwise.
+               Changes whether we return all of reviewer's themes or just
+               newly checked out ones.
+
+    """
+    theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
+    theme_locks_count = theme_locks.count()
+
+    # Calculate number of themes to check out.
+    if initial:
+        if theme_locks_count < rvw.THEME_INITIAL_LOCKS:
+            # Check out themes from the pool if none or not enough checked out.
+            wanted_locks = rvw.THEME_INITIAL_LOCKS - theme_locks_count
+        else:
+            # Update the expiry on currently checked-out themes.
+            theme_locks.update(expiry=get_updated_expiry())
+            return [theme_lock.theme for theme_lock in theme_locks]
+    else:
+        # Logic to not take over than the max number of locks.
+        if theme_locks_count > rvw.THEME_MAX_LOCKS - rvw.THEME_INITIAL_LOCKS:
+            # Take the max.
+            wanted_locks = rvw.THEME_MAX_LOCKS - theme_locks_count
+        else:
+            wanted_locks = rvw.THEME_INITIAL_LOCKS
+
+    themes = list(Persona.objects.no_cache().filter(
+        addon__status=amo.STATUS_PENDING, themelock=None)[:wanted_locks])
 
     # Set a lock on the checked-out themes
     expiry = get_updated_expiry()
-    for theme in list(themes):
+    for theme in themes:
         ThemeLock.objects.create(theme=theme, reviewer=reviewer,
                                  expiry=expiry)
 
@@ -642,7 +657,11 @@ def get_themes(reviewer, num):
             theme_lock.save()
             themes = [theme_lock.theme for theme_lock
                       in expired_locks]
-    return themes
+
+    if initial:
+        return [lock.theme for lock in theme_locks]
+    else:
+        return themes
 
 
 @waffle_switch('mkt-themes')
@@ -685,14 +704,7 @@ def themes_more(request):
                          'review at once. Please commit your outstanding '
                          'reviews.')}
 
-    # Logic to not take over than the max number of locks. If the next checkout
-    # round would cause the reviewer to go over the max, ask for fewer themes
-    # from get_themes.
-    if theme_locks_count > rvw.THEME_MAX_LOCKS - rvw.THEME_INITIAL_LOCKS:
-        wanted_locks = rvw.THEME_MAX_LOCKS - theme_locks_count
-    else:
-        wanted_locks = rvw.THEME_INITIAL_LOCKS
-    themes = get_themes(reviewer, wanted_locks)
+    themes = _get_themes(reviewer, initial=False)
 
     # Create forms, which will need to be manipulated to fit with the currently
     # existing forms.
