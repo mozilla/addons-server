@@ -5,7 +5,7 @@ from django.http import Http404
 
 import amo.tests
 from mkt.ecosystem.models import MdnCache
-from mkt.ecosystem.tasks import _fetch_mdn_page, _update_mdn_items
+from mkt.ecosystem.tasks import _fetch_mdn_page, _update_mdn_items, locales
 
 
 test_items = [
@@ -64,7 +64,7 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
         _update_mdn_items(test_items)
         eq_('test', MdnCache.objects.get(name=test_items[0]['name'],
                                          locale='en-US').name)
-        eq_(1, MdnCache.objects.count())
+        self.assertSetEqual(list(MdnCache.objects.values_list('locale', flat=True)), locales)
 
         with self.assertRaises(MdnCache.DoesNotExist):
             MdnCache.objects.get(name='old', locale='en-US')

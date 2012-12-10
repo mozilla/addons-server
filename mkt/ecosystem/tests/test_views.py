@@ -99,6 +99,11 @@ class TestMdnDocumentation(amo.tests.TestCase):
         eq_(r.status_code, 404)
         self.assertTemplateUsed(r, 'site/404.html')
 
+    def test_mdn_article_with_missing_locale(self):
+        r = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('html').attr('lang'), 'pt-BR')
+
     def test_mdn_content_content(self):
         a = MdnCache.objects.filter(name='html5', locale='en-US')[0]
         a.content = '<strong>pizza</strong>'

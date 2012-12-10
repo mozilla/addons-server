@@ -78,7 +78,10 @@ def documentation(request, page=None):
     if request.LANG in locales:
         locale = request.LANG
 
-    data = get_object_or_404(MdnCache, name=page, locale=locale)
+    try:
+        data = MdnCache.objects.get(name=page, locale=locale)
+    except MdnCache.DoesNotExist:
+        data = get_object_or_404(MdnCache, name=page, locale='en-US')
 
     if page in ('html5', 'manifests', 'manifest_faq', 'firefox_os',
                 'devtools', 'templates'):
