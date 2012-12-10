@@ -145,19 +145,6 @@ class ZamboniClient(Client):
         data['use_preapproval'] = False
         return self.post_pay(data=data)
 
-    def prepare_bluevia_pay(self, data):
-        """
-        Return a JWT for BlueVia's navigator.pay() to purchase an app on B2G.
-        """
-        return self.post_prepare_bluevia_pay(data=data)
-
-    def verify_bluevia_jwt(self, bluevia_jwt):
-        """
-        Verify signature of BlueVia JWT for developer ID (via JWT aud)
-        """
-        # Use Solitude for verification. bug 777936
-        return self.post_verify_bluevia_jwt(data={'bluevia_jwt': bluevia_jwt})
-
 
 def get_client():
     # If you haven't specified a solitude host, we can't do anything.
