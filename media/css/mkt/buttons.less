@@ -46,6 +46,9 @@ a.arrow, .img.arrow {
 
     &.delete, &.manage, &.cancel, &.product.error {
         .gradient-two-color(#e45d56, #de4332);
+        &:hover {
+            .gradient-two-color(darken(#e45d56, 10%), darken(#de4332, 10%));
+        }
     }
 
     &.product.error {
@@ -80,6 +83,9 @@ a.arrow, .img.arrow {
 
     &.good {
         .gradient-two-color(darken(#A2E456, 20%), darken(#86DE32, 20%));
+        &:hover {
+            .gradient-two-color(darken(#A2E456, 25%), darken(#86DE32, 25%));
+        }
     }
 
     &.arrow {
