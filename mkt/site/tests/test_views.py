@@ -74,6 +74,10 @@ class Test404(amo.tests.TestCase):
 
 class TestManifest(amo.tests.TestCase):
 
+    def setUp(self):
+        super(TestManifest, self).setUp()
+        self.url = reverse('manifest.webapp')
+
     @mock.patch.object(settings, 'CARRIER_URLS', ['boop'])
     def test_manifest(self):
         response = self.client.get(reverse('manifest.webapp'))
@@ -88,21 +92,21 @@ class TestManifest(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'CARRIER_URLS', [])
     def test_manifest_no_carrier(self):
-        response = self.client.get(reverse('manifest.webapp'))
+        response = self.client.get(self.url)
         eq_(response.status_code, 200)
         content = json.loads(response.content)
         assert 'launch_path' not in content
 
     @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Mozilla Fruitstand')
     def test_manifest_name(self):
-        response = self.client.get(reverse('manifest.webapp'))
+        response = self.client.get(self.url)
         eq_(response.status_code, 200)
         content = json.loads(response.content)
         eq_(content['name'], 'Mozilla Fruitstand')
 
     @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Mozilla Fruitstand')
     def test_manifest_appcache(self):
-        response = self.client.get(reverse('manifest.webapp'))
+        response = self.client.get(self.url)
         eq_(response.status_code, 200)
         content = json.loads(response.content)
         eq_(content['appcache_path'], reverse('django_appcache.manifest'))
@@ -112,6 +116,23 @@ class TestManifest(amo.tests.TestCase):
         eq_(response.status_code, 200)
         content = json.loads(response.content)
         assert 'appcache_path' not in content
+
+    def test_manifest_etag(self):
+        resp = self.client.get(self.url)
+        etag = resp.get('Etag')
+
+        # Trigger a change to the manifest by changing the name.
+        with self.settings(WEBAPP_MANIFEST_NAME='Mozilla Fruitstand'):
+            resp = self.client.get(self.url)
+            self.assertNotEqual(etag, resp.get('Etag'))
+
+    def test_conditional_get_manifest(self):
+        resp = self.client.get(self.url)
+        etag = resp.get('Etag')
+
+        resp = self.client.get(self.url, HTTP_IF_NONE_MATCH='%s' % etag)
+        eq_(resp.content, '')
+        eq_(resp.status_code, 304)
 
 
 class TestMozmarketJS(amo.tests.TestCase):

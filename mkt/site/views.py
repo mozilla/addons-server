@@ -1,3 +1,4 @@
+import hashlib
 import json
 import logging
 import os
@@ -10,6 +11,7 @@ from django.http import (HttpResponse, HttpResponseNotFound,
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
+from django.views.decorators.http import etag
 
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
@@ -86,8 +88,17 @@ def manifest(request):
         data['appcache_path'] = reverse('django_appcache.manifest')
     if settings.CARRIER_URLS:
         data['launch_path'] = '/%s/' % settings.CARRIER_URLS[0]
-    return HttpResponse(json.dumps(data),
-                        mimetype='application/x-web-app-manifest+json')
+
+    manifest_content = json.dumps(data)
+    manifest_etag = hashlib.md5(manifest_content).hexdigest()
+
+    @etag(lambda r: manifest_etag)
+    def _inner_view(request):
+        response = HttpResponse(manifest_content,
+                                mimetype='application/x-web-app-manifest+json')
+        return response
+
+    return _inner_view(request)
 
 
 def robots(request):

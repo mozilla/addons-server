@@ -967,7 +967,7 @@ class TestPackagedManifest(DetailBase):
         eq_(res['ETag'], self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
-    def test_app_public(self, _mock):
+    def test_etag_updates(self, _mock):
         _mock.return_value = self._mocked_json()
 
         # Get the minifest with the first simulated package.
