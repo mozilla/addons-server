@@ -51,7 +51,7 @@ def do_collapsing():
 
             # Set the current_version to the one we're collapsing to. This
             # avoids integrity errors as we delete versions below.
-            if app._current_version.id != version.id:
+            if app._current_version and app._current_version.id != version.id:
                 cursor.execute('''
                     UPDATE addons SET current_version=%s
                     WHERE id=%s''', (version.id, app.id,))
