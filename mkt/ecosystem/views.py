@@ -73,12 +73,10 @@ def documentation(request, page=None):
     if not page:
         page = 'html5'
 
-    if request.LANG:
-        locale = request.LANG.split('-')[0]
-        if not locale in locales:
-            locale = 'en-US'
-    else:
-        locale = 'en-US'
+    locale = 'en-US'
+
+    if request.LANG in locales:
+        locale = request.LANG
 
     data = get_object_or_404(MdnCache, name=page, locale=locale)
 

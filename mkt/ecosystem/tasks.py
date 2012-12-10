@@ -123,7 +123,7 @@ tutorials = [
 # locale, we are going to try each locale in this array for each tutorial
 # page entry.  We may get some 404s, but that's ok if some translations
 # are not finished yet.  We grab the ones that are completed.
-locales = ['en-US']
+locales = ['en-US', 'es', 'pt-BR']
 
 
 @task
