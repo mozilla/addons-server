@@ -16,8 +16,12 @@
       {% for product in pager.object_list %}
         <li>{{ market_tile(product) }}</li>
       {% endfor %}
+      {% if pager.has_other_pages() %}
+        <li class="loadmore" data-sel=".listing">
+          {{ pager|more_button }}
+        </li>
+      {% endif %}
       </ol>
-      {{ pager|impala_paginator }}
     {% else %}
       {{ no_results() }}
     {% endif %}
