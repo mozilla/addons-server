@@ -117,7 +117,6 @@ def manifest(request, addon):
         response = http.HttpResponse(
             manifest_content,
             content_type='application/x-web-app-manifest+json')
-        response['ETag'] = manifest_etag
         return response
 
     return _inner_view(request, addon)

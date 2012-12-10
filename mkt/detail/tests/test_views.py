@@ -964,7 +964,7 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
-        eq_(res['ETag'], self.get_digest_from_manifest())
+        eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_etag_updates(self, _mock):
@@ -999,8 +999,7 @@ class TestPackagedManifest(DetailBase):
     def test_conditional_get(self, _mock):
         _mock.return_value = self._mocked_json()
         etag = self.get_digest_from_manifest()
-        self.client.defaults['HTTP_IF_NONE_MATCH'] = '"%s"' % etag
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, HTTP_IF_NONE_MATCH='%s' % etag)
         eq_(res.content, '')
         eq_(res.status_code, 304)
 
@@ -1017,7 +1016,7 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
-        eq_(res['ETag'], self.get_digest_from_manifest())
+        eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_pending_author(self, _mock):
@@ -1027,7 +1026,7 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
-        eq_(res['ETag'], self.get_digest_from_manifest())
+        eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
     @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
     def test_blocked_app(self):
