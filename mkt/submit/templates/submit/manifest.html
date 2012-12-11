@@ -52,7 +52,7 @@
   <section id="upload-file" class="island tabbable {% if waffle.switch('allow-packaged-app-uploads') %}spacer{% endif %}">
     <div class="hosted tab active">
       {% if waffle.switch('allow-packaged-app-uploads') %}
-        <h2 id="hosted-tab-header"><a href="#">Hosted</a></h2>
+        <h2 id="hosted-tab-header"><a href="#">{{ _('Hosted') }}</a></h2>
       {% endif %}
       <h3>{{ _("Submit your app manifest URL") }}</h3>
       <div class="upload-status">

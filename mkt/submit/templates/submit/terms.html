@@ -11,16 +11,20 @@
     {{ progress(request, addon=None, step=step) }}
   </header>
   <section id="submit-terms" class="primary">
-    <h2>Marketplace Developer Program</h2>
+    <h2>{{ _('Marketplace Developer Program') }}</h2>
     <p>
-      We're excited you've built an app using web technologies, and
-      submitting it to the Firefox Marketplace is the best way for users
-      to discover and enjoy it across their devices. First, you'll need to
-      join the Marketplace Developer Program below.
+      {% trans %}
+        We're excited you've built an app using web technologies, and
+        submitting it to the Firefox Marketplace is the best way for users
+        to discover and enjoy it across their devices. First, you'll need to
+        join the Marketplace Developer Program below.
+      {% endtrans %}
     </p>
     <p>
-      To begin, please read and accept our <strong>Developer
-      Agreement</strong>:
+      {% trans %}
+        To begin, please read and accept our <strong>Developer
+        Agreement</strong>:
+      {% endtrans %}
     </p>
     <div id="agreement-container">
       <div id="dev-agreement">
