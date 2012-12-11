@@ -206,7 +206,10 @@ function initValidator($doc) {
             msg.description = [msg.description];
         }
         $.each(msg.description, function(i, val) {
-            msgDiv.append(format('<p>{0}: {1}</p>', [prefix, val]));
+            msgDiv.append(
+                i == 0 ? format('<p>{0}: {1}</p>', [prefix, val]) :
+                         format('<p>{0}</p>', [val])
+            );
         });
         if (msg.description.length == 0) {
             msgDiv.append('<p>&nbsp;</p>');
