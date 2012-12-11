@@ -209,8 +209,27 @@ header.product {
         font-weight: 400;
     }
     .req,
-    label[for=id_rating] {
+    label[for=id_body], label[for=id_rating] {
         display: none;
+    }
+    .charlimit {
+        font-size: 12px;
+        margin: -9px 0 15px;
+        text-align: right;
+        line-height: 12px;
+    }
+    .submit-review {
+        button, .button {
+            padding: 0 16px;
+            font-size: 14px;
+            width: auto;
+            line-height: 48px;
+            float: right;
+            margin: 0;
+        }
+        .button {
+            float: left;
+        }
     }
 }
 // 180x18, 120x12, 90x9, 332x32
@@ -481,10 +500,6 @@ header.product {
         bottom: 15px;
         right: 10px;
     }
-}
-
-.submit-review {
-    float: left;
 }
 p.support-link {
     float: right;

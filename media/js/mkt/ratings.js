@@ -126,7 +126,7 @@
         }, 500);
     }
 
-    function editReview(reviewEl, action) {
+    function editReview(reviewEl) {
         var overlay = makeOrGetOverlay('edit-review'),
             rating = reviewEl.data('rating'),
             action = reviewEl.closest('[data-edit-url]').data('edit-url'),
@@ -171,6 +171,9 @@
     z.page.on('click', '.grouped-ratings-listing', _pd(function() {
         $('.grouped-ratings').hide();
     }));
+
+    // Cancel rating button.
+    z.page.on('click', '.submit-review .alt', _pd(nav.back));
 
     z.page.on('click', '.review .actions a', _pd(function(e) {
         var $this = $(this),

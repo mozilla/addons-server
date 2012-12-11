@@ -21,8 +21,9 @@
       {{ form_field(form.body, label=_('Your review'), hint=True,
                     cc_for=form.body.auto_id,
                     cc_maxlength=form.body.field.max_length, tag='div') }}
-      {{ required_note() }}
+      <p class="charlimit">{{ _('Max 150 characters') }}</p>
       <p class="form-footer submit-review">
+        <a href="#" class="button fat alt">{{ _('Cancel') }}</a>
         <button type="submit" class="fat">
           {{ _('Submit review') }}
         </button>
