@@ -64,9 +64,8 @@ log = commonware.log.getLogger('z.zadmin')
 # This causes AMO problems if inapp gets imported. Then cache machine tries
 # to query it to see if it exists.
 if settings.MARKETPLACE:
-    if settings.IN_TEST_SUITE:
-        from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
-        from mkt.stats.search import setup_mkt_indexes
+    from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
+    from mkt.stats.search import setup_mkt_indexes
 else:
     index_latest_mkt_stats = index_mkt_stats = None
     setup_mkt_indexes = None
