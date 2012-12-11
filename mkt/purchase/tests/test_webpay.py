@@ -43,41 +43,30 @@ class TestPurchase(PurchaseTest):
     def post(self, url, **kw):
         return self._req('post', url, **kw)
 
-    def test_prepare_pay(self):#, api_post, create_seller):
-
-        def good_data(da):
-            da = json.loads(da)
-            # TODO(Kumar) fix this when we have default currencies (bug 777747)
-            eq_(da['currency'], 'USD')
-            eq_(da['typ'], settings.APP_PURCHASE_TYP)
-            eq_(da['aud'], settings.APP_PURCHASE_AUD)
-            eq_(da['amount'], str(self.price.price))
-            eq_(da['app_name'], unicode(self.addon.name))
-            eq_(da['app_description'], unicode(self.addon.description))
-            eq_(da['postback_url'],
-                absolutify(reverse('webpay.postback')))
-            eq_(da['chargeback_url'],
-                absolutify(reverse('webpay.chargeback')))
-            pd = urlparse.parse_qs(da['product_data'])
-            assert 'contrib_uuid' in pd, 'Unexpected: %s' % pd
-            eq_(pd['addon_id'][0], str(self.addon.pk))
-            return True
-
-        # Sample of BlueVia JWT but not complete.
-        # webpay_jwt = {'typ': settings.APP_PURCHASE_TYP}
-        # api_post.expects_call()
-        #         .with_args(arg.any(), data=arg.passes_test(good_data),
-        #                    timeout=arg.any(), headers=arg.any())
-        #         .returns(Mock(text=json.dumps(webpay_jwt),
-        #                       status_code=200)))
+    def test_prepare_pay(self):
         data = self.post(self.prepare_pay)
         cn = Contribution.objects.get()
         eq_(cn.type, amo.CONTRIB_PENDING)
         eq_(cn.user, self.user)
         eq_(cn.price_tier, self.price)
-        eq_(jwt.decode(data['webpayJWT'].encode('ascii'),
-                       verify=False)['typ'],
-            settings.APP_PURCHASE_TYP)
+
+        data = jwt.decode(data['webpayJWT'].encode('ascii'), verify=False)
+        eq_(data['typ'], settings.APP_PURCHASE_TYP)
+        eq_(data['aud'], settings.APP_PURCHASE_AUD)
+        req = data['request']
+        # TODO(Kumar) fix this when we have default currencies (bug 777747)
+        eq_(req['price'][0]['currency'], 'USD')
+        eq_(req['price'][0]['amount'], str(self.price.price))
+        eq_(req['id'], 'marketplace:%s' % self.addon.pk)
+        eq_(req['name'], unicode(self.addon.name))
+        eq_(req['description'], unicode(self.addon.description))
+        eq_(req['postbackURL'],
+            absolutify(reverse('webpay.postback')))
+        eq_(req['chargebackURL'],
+            absolutify(reverse('webpay.chargeback')))
+        pd = urlparse.parse_qs(req['productData'])
+        assert 'contrib_uuid' in pd, 'Unexpected: %s' % pd
+        eq_(pd['addon_id'][0], str(self.addon.pk))
 
     def test_require_login(self):
         self.client.logout()

@@ -41,6 +41,7 @@ def prepare_webpay_pay(data):
             'name': data['app_name'],
             'description': data['app_description'],
             'price': data['prices'],
+            'id': 'marketplace:%s' % data['id'],
             'defaultPrice': data['currency'],
             'postbackURL': data['postback_url'],
             'chargebackURL': data['chargeback_url'],
@@ -91,6 +92,7 @@ def prepare_pay(request, addon):
 
     data = {'amount': str(amount),
             'prices': prices, 'currency': currency,
+            'id': addon.pk,
             'app_name': unicode(addon.name),
             'app_description': unicode(addon.description),
             'postback_url': absolutify(reverse('webpay.postback')),
