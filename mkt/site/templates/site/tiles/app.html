@@ -6,44 +6,45 @@
 {% set hue = product.get_image_asset_hue('mobile_tile') %}
 {% set tag = 'a' if link else 'div' %}
 <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
-  {% if link %}href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
-  {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
+  {%- if link %} href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
+  {%- for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
   <div class="icon featured_tile" style="background-image:url({{ product.get_image_asset_url('featured_tile', 32) }})"></div>
   <img class="icon mobile_tile" alt="{{ _('icon') }}"
        src="{{ product.get_image_asset_url('mobile_tile') }}"
        data-hue="{{ hue }}">
-  <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}" />
+  <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}">
   <div class="info">
     <h3>{{ product.name }}</h3>
     {# `current_version` won't show versions with invalid statuses #}
-    {% if product.current_version %}
+    {% if product.current_version -%}
       {{ market_button(product, classes=classes) }}
-    {% endif %}
-    {% if product.listed_authors %}
+    {%- endif %}
+    {% if product.listed_authors -%}
       <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
-    {% endif %}
+    {%- endif %}
     <div class="price vital">{{ product.get_price() }}</div>
-    {% if waffle.switch('ratings') %}
+    {% if waffle.switch('ratings') -%}
       <div class="rating vital{{ ' unrated' if not product.total_reviews }}">
-        {% if tag != "a" %}<a href="{{ product.get_ratings_url() }}"
-                              class="rating_link">{% endif %}
-          {{ product.average_rating|float|stars }}
-          {% if product.total_reviews %}
-            <span class="cnt">
-              {%- trans num=product.total_reviews, cnt=product.total_reviews|numberfmt -%}
-                {{ cnt }} Rating
-              {%- pluralize -%}
-                {{ cnt }} Ratings
-              {%- endtrans -%}
-            </span>
-         {% endif %}
+        {%- if tag != "a" -%}
+          <a href="{{ product.get_ratings_url() }}" class="rating_link">
+        {%- endif %}
+        {{ product.average_rating|float|stars }}
+        {% if product.total_reviews -%}
+          <span class="cnt">
+            {%- trans num=product.total_reviews, cnt=product.total_reviews|numberfmt -%}
+              {{ cnt }} Rating
+            {%- pluralize -%}
+              {{ cnt }} Ratings
+            {%- endtrans -%}
+          </span>
+       {%- endif %}
        {% if tag != "a" %}</a>{% endif %}
       </div>
-    {% endif %}
+    {%- endif %}
   </div>
-  {% for notice in notices %}
+  {% for notice in notices -%}
     <div class="bad-app">{{ notice|safe }}</div>
-  {% endfor %}
+  {%- endfor %}
 </{{ tag }}>
 <div class="tray previews full">
 </div>
