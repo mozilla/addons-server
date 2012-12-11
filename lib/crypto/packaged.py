@@ -11,7 +11,6 @@ from django_statsd.clients import statsd
 import json
 from signing_clients.apps import JarExtractor
 import requests
-from xpisign import xpisign
 
 import amo
 from versions.models import Version
@@ -80,27 +79,15 @@ def sign_app(src, dest):
 
         return
 
-    if not os.path.exists(settings.SIGNED_APPS_KEY):
-        # TODO: blocked on bug 793876
-        # This is a temporary copy that will be unsigned and ignores storage
-        # etc.
-        # raise ValueError('The signed apps key cannot be found.')
+    else:
+        # If this is a local development instance, just copy the file around
+        # so that everything seems to work locally.
+        log.info('Not signing the app, no signing server is active.')
         dest_dir = os.path.dirname(dest)
         if not os.path.exists(dest_dir):
             os.makedirs(dest_dir)
         shutil.copy(src, dest)
         return
-
-    # TODO: stop doing this and use the signing server.
-    try:
-        # Not sure this will work too well on S3.
-        xpisign(storage.open(src, 'r'), settings.SIGNED_APPS_KEY,
-                storage.open(dest, 'w'), optimize_signatures=True,
-                omit_sf_entry_sections=True, omit_created_by=True)
-    except:
-        # TODO: figure out some likely errors that can occur.
-        log.error('Signing failed', exc_info=True)
-        raise SigningError('Signing failed')
 
 
 @task

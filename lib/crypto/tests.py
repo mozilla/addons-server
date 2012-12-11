@@ -138,32 +138,3 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
     def test_server_active(self):
         with self.settings(SIGNED_APPS_SERVER_ACTIVE=True):
             packaged.sign(self.version.pk)
-
-    @raises(ValueError)
-    def test_no_key(self):
-        raise SkipTest('Keys ignored')
-        key = self.sample_packaged_key() + '.nope'
-        with self.settings(SIGNED_APPS_KEY=key):
-            packaged.sign(self.version.pk)
-
-    def is_signed(self, path):
-        unz = SafeUnzip(path)
-        assert unz.is_valid()
-        assert unz.is_signed()
-
-    def test_good(self):
-        with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
-            self.is_signed(packaged.sign(self.version.pk))
-
-    def test_reviewer(self):
-        # For the moment there is no real difference between reviewers
-        # and users.
-        with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
-            self.is_signed(packaged.sign(self.version.pk, True))
-
-    @mock.patch('lib.crypto.packaged.xpisign')
-    @raises(packaged.SigningError)
-    def test_raises(self, xpisign):
-        xpisign.side_effect = ValueError
-        with self.settings(SIGNED_APPS_KEY=self.sample_packaged_key()):
-            self.is_signed(packaged.sign(self.version.pk))

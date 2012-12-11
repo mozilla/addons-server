@@ -230,10 +230,8 @@ WATERMARKED_ADDONS_PATH = NETAPP_STORAGE + '/watermarked-addons'
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
 # Special reviewer signed ones for special people.
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
-# The path to the key used for signed apps receipt key if the signing server
-# is not active.
-SIGNED_APPS_KEY = ''
-# A seperate signing server for signing packaged apps.
+# A seperate signing server for signing packaged apps. If not set, for example
+# on local dev instances, the file will just be copied over unsigned.
 SIGNED_APPS_SERVER_ACTIVE = False
 # This is the signing REST server for signing apps.
 SIGNED_APPS_SERVER = ''
