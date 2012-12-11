@@ -20,24 +20,24 @@ clients who would like to create multiple apps on the app store from an end
 point.
 
 When you are first developing your API to communicate with the Marketplace, you
-should use the staging server to test your API. When it's complete, you can
+should use the development server to test your API. When it's complete, you can
 request a production token.
 
-Staging server
-++++++++++++++
+Development server
+++++++++++++++++++
 
-The staging server is at https://marketplace.allizom.org.
+The development server is at https://marketplace-dev.allizom.org.
 
-We make no guarantees on the uptime of the staging server. Also data may be
-occasionally purged, causing the deletion of apps and tokens.
+We make no guarantees on the uptime of the development server. Data is
+regularly purged, causing the deletion of apps and tokens.
 
-1. Login to the staging server using Persona:
-   https://marketplace.allizom.org/login
+1. Login to the development server using Persona:
+   https://marketplace-dev.allizom.org/login
 
 2. Once logged in, read and accept the terms of service for the Marketplace
-   at: https://marketplace.allizom.org/developers/terms
+   at: https://marketplace-dev.allizom.org/developers/terms
 
-3. Generate a new key at: https://marketplace.allizom.org/developers/api
+3. Generate a new key at: https://marketplace-dev.allizom.org/developers/api
 
 Production server
 +++++++++++++++++
