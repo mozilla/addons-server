@@ -4,7 +4,6 @@
       <h1 class="site"><a href="{{ url('home') }}">Firefox Marketplace</a></h1>
     {% endif %}
     <h1 class="page">{{ headertitle }}</h1>
-    {% if request.can_view_consumer %}
     <nav role="navigation">
       <a href="{{ url('home') }}" class="header-button icon home left" title="{{ _('Home') }}"></a>
       {% if request.MOBILE %}
@@ -56,7 +55,6 @@
         </form>
       {% endblock %}
     </nav>
-    {% endif %}
     <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
   </section>
 </header>
