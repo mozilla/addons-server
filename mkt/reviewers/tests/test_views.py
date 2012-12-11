@@ -8,7 +8,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.test import TransactionTestCase
 from django.test.client import RequestFactory
 
 import mock
@@ -695,7 +694,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestReviewTransaction(TransactionTestCase):
+class TestReviewTransaction(amo.tests.test_utils.TransactionTestCase):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def get_app(self):
