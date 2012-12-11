@@ -73,6 +73,7 @@ $(document).ready(function() {
                 }
 
                 $submit_footer.filter(':visible').addClass('hidden');
+                $('.upload-details .hint:hidden').show();
 
                 // Show the button if valid.
                 $validate_button.toggleClass('disabled', !match).removeClass('hovered');
@@ -131,6 +132,7 @@ $(document).ready(function() {
 
             // Show footer to "Continue" only if there was a success.
             $submit_footer.toggleClass('hidden', !success);
+            $('.upload-details .hint').hide();
         })
         .bind('upload_errors', function(e, r) {
             var v = r.validation,
