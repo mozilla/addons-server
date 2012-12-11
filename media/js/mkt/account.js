@@ -16,6 +16,13 @@
         return;
     }
 
+    // For stylized <select>s.
+    $('.styled.select select').focus(function() {
+        $(this).closest('.select').addClass('active');
+    }).blur(function() {
+        $(this).closest('.select').removeClass('active');
+    });
+
     // Avatar handling.
     var $photo = $('#profile-photo'),
         $avatar = $photo.find('.avatar'),
