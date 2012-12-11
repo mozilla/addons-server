@@ -7,8 +7,8 @@ import traceback
 from django import http
 from django.conf import settings
 from django.forms.formsets import formset_factory
+from django.db import transaction
 from django.db.models import Q
-from django.db.transaction import commit_on_success
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import translation
 from django.utils.datastructures import MultiValueDictKeyError
@@ -35,6 +35,7 @@ from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from editors.views import reviewer_required
 from files.models import File
+from lib.crypto.packaged import SigningError
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from translations.query import order_by_translation
@@ -261,11 +262,21 @@ def _review(request, addon):
     return jingo.render(request, 'reviewers/review.html', ctx)
 
 
-@commit_on_success
+@transaction.commit_manually
 @permission_required('Apps', 'Review')
 @addon_view
 def app_review(request, addon):
-    return _review(request, addon)
+    try:
+        resp = _review(request, addon)
+    except SigningError, exc:
+        transaction.rollback()
+        messages.error(request, 'Signing Error: %s' % exc.message)
+        transaction.commit()
+        return redirect(
+            reverse('reviewers.apps.review', args=[addon.app_slug]))
+    else:
+        transaction.commit()
+        return resp
 
 
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')

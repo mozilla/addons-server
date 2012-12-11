@@ -151,10 +151,11 @@ class ReviewApp(ReviewBase):
             self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
                            highest_status=amo.STATUS_PUBLIC_WAITING)
 
+        self.addon.sign_if_packaged(self.version.pk)
+
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
                           u'App Approved but waiting: %s')
-        self.addon.sign_if_packaged(self.version.pk)
 
         log.info(u'Making %s public but pending' % self.addon)
         log.info(u'Sending email for %s' % self.addon)

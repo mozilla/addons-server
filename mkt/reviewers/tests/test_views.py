@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
+from django.test import TransactionTestCase
 from django.test.client import RequestFactory
 
 import mock
@@ -695,35 +695,49 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestReviewTransaction(amo.tests.TestCase):
+class TestReviewTransaction(TransactionTestCase):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def get_app(self):
         return Webapp.uncached.get(id=337141)
 
-    @mock.patch('lib.crypto.packaged.sign')
-    def test_public_sign_failure(self, sign):
-        raise SkipTest
-        # This test will fail because test-utils disables all transaction
-        # changes by using disable_transaction_methods. We'll need to fix that
-        # before continuing with this test.
-        sign.side_effect = ValueError
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_public_sign(self, sign):
 
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
         self.version = self.app.current_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
+        eq_(self.get_app().status, amo.STATUS_PENDING)
+
+        sign.return_value = None  # Didn't fail.
+        self.client.login(username='editor@mozilla.com',
+                          password='password')
+        resp = self.client.post(
+            reverse('reviewers.apps.review', args=[self.app.app_slug]),
+            {'action': 'public', 'comments': 'something'})
+
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(resp.status_code, 302)
+
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_public_sign_failure(self, sign):
+
+        self.app = self.get_app()
+        self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
+        self.version = self.app.current_version
+        self.version.files.all().update(status=amo.STATUS_PENDING)
+        eq_(self.get_app().status, amo.STATUS_PENDING)
+
+        sign.side_effect = packaged.SigningError('Bad things happened.')
+        self.client.login(username='editor@mozilla.com',
+                          password='password')
+        resp = self.client.post(
+            reverse('reviewers.apps.review', args=[self.app.app_slug]),
+            {'action': 'public', 'comments': 'something'})
 
         eq_(self.get_app().status, amo.STATUS_PENDING)
-        transaction.commit()
-
-        with self.assertRaises(ValueError):
-            self.client.login(username='editor@mozilla.com',
-                              password='password')
-            self.client.post(
-                reverse('reviewers.apps.review', args=[self.app.app_slug]),
-                {'action': 'public', 'comments': 'something'})
-        eq_(self.get_app().status, amo.STATUS_PENDING)
+        eq_(resp.status_code, 302)
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
