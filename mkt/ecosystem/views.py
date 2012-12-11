@@ -254,4 +254,4 @@ def firefox_os_simulator(request):
         'category': 'build'
     }
 
-    return jingo.render(request, ('ecosystem/firefox_os_simulator.html'), ctx)
+    return jingo.render(request, 'ecosystem/firefox_os_simulator.html', ctx)
