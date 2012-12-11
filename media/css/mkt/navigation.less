@@ -15,7 +15,11 @@ body {
         }
         #search, #search-q {
             display: block;
-            width: 144px;
+            width: 118px;
+        }
+        #search {
+            float: left;
+            margin-left: 10px;
         }
     }
     &[data-page-type='leaf'], &[data-page-type='alpha'] {
@@ -44,15 +48,12 @@ body {
         #site-header h1 {
             display: none;
         }
+        #search,
+        #search-q {
+            width: 204px;
+        }
         #search {
             display: block;
-            width: 235px;
-            max-width: 235px;
-            margin: 0 12px 0 0;
-        }
-        #search-q {
-            width: 198px;
-            margin-right: 12px;
         }
         .header-button {
             &.right, &.settings {
@@ -74,6 +75,12 @@ body {
             &.search {
                 display: none;
             }
+        }
+    }
+    body[data-page-type='search'] {
+        #search {
+            float: right;
+            margin: 0 32px 0 0;
         }
     }
 }

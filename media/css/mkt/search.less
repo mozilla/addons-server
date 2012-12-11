@@ -1,11 +1,9 @@
 @import 'lib';
 
 #search {
+    float: left;
+    margin-left: 12px;
     position: relative;
-    width: 235px;
-    max-width: 235px;
-    margin: 0 12px 0 0;
-    float: right;
     label {
         position: absolute;
         left: -99999px;
@@ -36,8 +34,7 @@
     outline: none;
     padding: 0 5px 0 30px;
     z-index: 2;
-    width: 235px;
-    margin-top: 10px;
+    width: 118px;
     &:focus {
         .box-shadow(0 1px 1px rgba(0, 0, 0, 0.06) inset,
                     0 0 8px rgba(80, 160, 220, 0.6));
@@ -70,6 +67,13 @@ b[data-href] {
 
 // たぶんちさいです
 @media(min-width: 500px) {
+    #search {
+        float: right;
+        margin: 0 12px 0 0;
+    }
+    #search-q {
+        margin-top: 10px;
+    }
     body[data-page-type='search'] #site-header h1.page {
         display: inline-block;
         margin-left: 10px;
