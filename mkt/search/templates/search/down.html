@@ -1,7 +1,10 @@
 {% extends "mkt/base.html" %}
 
 {% set pagetitle = _('Search Unavailable') %}
-{% set pagetype = 'notice' %}
+
+{% if request.MOBILE %}
+  {% set pagetype = 'notice' %}
+{% endif %}
 
 {% block content %}
 <section id="search-down" class="primary">

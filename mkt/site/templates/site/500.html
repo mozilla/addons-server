@@ -3,7 +3,10 @@
             'developers/base_impala.html') %}
 
 {% set pagetitle = _('Server Error') %}
-{% set pagetype = 'notice' %}
+
+{% if request.MOBILE %}
+  {% set pagetype = 'notice' %}
+{% endif %}
 
 {# TODO(apps): Finalize copy. #}
 

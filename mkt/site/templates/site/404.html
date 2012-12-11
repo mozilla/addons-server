@@ -4,7 +4,9 @@
 
 {% set pagetitle = _('Page Not Found') %}
 
-{% set pagetype = 'notice' %}
+{% if request.MOBILE %}
+  {% set pagetype = 'notice' %}
+{% endif %}
 
 {# TODO(apps): Finalize copy. #}
 

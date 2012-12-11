@@ -3,7 +3,9 @@
 {% set headertitle = _('Firefox Marketplace') %}
 {% set bodyclass = 'home login' %}
 
-{% set pagetype = 'notice' %}
+{% if request.MOBILE %}
+  {% set pagetype = 'notice' %}
+{% endif %}
 
 {% block content %}
   <section id="welcome" class="primary">

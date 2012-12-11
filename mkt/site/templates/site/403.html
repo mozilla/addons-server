@@ -4,7 +4,9 @@
 
 {% set pagetitle = _('Not Allowed') %}
 
-{% set pagetype = 'notice' %}
+{% if request.MOBILE %}
+  {% set pagetype = 'notice' %}
+{% endif %}
 
 {% block content %}
   <section class="primary">
