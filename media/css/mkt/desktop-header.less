@@ -117,13 +117,22 @@
         }
     }
 }
+
 #search,
-#search-q {
+#search-q,
+body[data-page-type='search'] #search,
+body[data-page-type='search'] #search-q {
     width: 175px;
 }
+
+body[data-page-type='search'] #search {
+    margin-right: 12px;
+}
+
 #page {
     padding-top: 80px;
 }
+
 .incompatible-browser.active {
     top: 80px;
 }
