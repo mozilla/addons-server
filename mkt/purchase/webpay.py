@@ -99,6 +99,9 @@ def prepare_pay(request, addon):
             'chargeback_url': absolutify(reverse('webpay.chargeback')),
             'seller': addon.pk,
             'product_data': urlencode({'contrib_uuid': uuid_,
+                                       # TODO(Kumar) Replace this with a real
+                                       # Solitude seller_uuid. See bug 821031.
+                                       'seller_uuid': 'app:%s' % addon.pk,
                                        'addon_id': addon.pk}),
             'typ': 'tu.com/payments/inapp/v1',
             'aud': 'tu.com',
