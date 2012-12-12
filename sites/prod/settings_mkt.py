@@ -114,4 +114,4 @@ CARRIER_URLS = splitstrip(private_mkt.CARRIER_URLS)
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 
-SENTRY_CLIENT = 'djangometlog.raven.MetlogDjangoClient'
+SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'

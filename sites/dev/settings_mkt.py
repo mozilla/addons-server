@@ -156,5 +156,4 @@ WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 # Allow /developers/?refresh to refresh all MDN content for Developer Hub.
 MDN_LAZY_REFRESH = True
 
-# Bug 792436
-SENTRY_CLIENT = 'djangometlog.raven.MetlogDjangoClient'
+SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
