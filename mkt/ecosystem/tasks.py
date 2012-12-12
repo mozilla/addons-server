@@ -116,6 +116,11 @@ tutorials = [
         'title': 'Packaged Apps',
         'name': 'packaged_apps',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Packaged_apps?raw=1&macros=true'
+    },
+    {
+        'title': 'Using Firefox OS Simulator',
+        'name': 'using_firefox_os_simulator',
+        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Mozilla/Boot_to_Gecko/Using_Firefox_OS_simulator?raw=1&macros=true'
     }
 ]
 

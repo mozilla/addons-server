@@ -62,6 +62,19 @@
               </a>
             </li>
           </ol>
+          <h2>{{ _('Docs &amp; APIs') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='using_firefox_os_simulator') }}"
+                 {% if section == 'using_firefox_os_simulator' -%}
+                 class="selected"
+                 {% endif -%}
+                 title="{{ _('Using Firefox OS Simulator') }}">
+                {{ _('Using Firefox OS Simulator') }}
+              </a>
+            </li>
+          </ol>
           <h2>{{ _('Tools &amp; Downloads') }}</h2>
           <ol>
             <li>

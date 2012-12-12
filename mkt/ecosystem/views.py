@@ -84,7 +84,7 @@ def documentation(request, page=None):
         data = get_object_or_404(MdnCache, name=page, locale='en-US')
 
     if page in ('html5', 'manifests', 'manifest_faq', 'firefox_os',
-                'devtools', 'templates'):
+                'devtools', 'templates', 'using_firefox_os_simulator'):
         category = 'build'
     elif page in ('principles', 'purpose', 'patterns', 'references',
                   'custom_elements'):
