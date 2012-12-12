@@ -838,7 +838,6 @@ def profile(request, addon_id, addon, webapp=False):
                              profile_form=profile_form))
 
 
-@login_required
 def validate_addon(request):
     return jingo.render(request, 'developers/validate_addon.html', {
         'upload_hosted_url':
@@ -913,7 +912,6 @@ def standalone_packaged_upload(request):
     return upload(request, is_standalone=True)
 
 
-@login_required
 @json_view
 def standalone_upload_detail(request, type_, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
