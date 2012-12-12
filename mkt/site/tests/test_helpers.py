@@ -300,11 +300,10 @@ class TestMarketButton(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_is_packaged(self):
-        manifest_url = ('http://omg.org/yes' +
-                        self.webapp.get_detail_url('manifest'))
 
         self.webapp.is_packaged = True
 
+        manifest_url = self.webapp.get_manifest_url()
         doc = pq(market_tile(self.context, self.webapp))
         # NOTE: PyQuery won't parse attributes with underscores
         # or uppercase letters.

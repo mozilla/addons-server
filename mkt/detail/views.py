@@ -5,7 +5,7 @@ import os
 from django import http
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import etag
 
 import commonware.log
@@ -58,13 +58,13 @@ def detail(request, addon):
     return jingo.render(request, 'detail/app.html', ctx)
 
 
-@addon_all_view
-def manifest(request, addon):
+def manifest(request, uuid):
     """Returns the "mini" manifest for packaged apps.
 
     If not a packaged app, returns an empty JSON doc.
 
     """
+    addon = get_object_or_404(Webapp, guid=uuid, is_packaged=True)
 
     is_reviewer = acl.check_reviewer(request)
     is_dev = addon.has_author(request.amo_user)

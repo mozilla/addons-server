@@ -279,7 +279,7 @@ class Webapp(Addon):
         """
         if self.is_packaged:
             if self.current_version:
-                return absolutify(self.get_detail_url('manifest'))
+                return absolutify(reverse('detail.manifest', args=[self.guid]))
             else:
                 # Invalid statuses don't have `current_version`.
                 # TODO: Ask Rob about reviewers being able to install

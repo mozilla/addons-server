@@ -11,6 +11,7 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
 from mkt.account.urls import (purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
+from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.ratings.urls import theme_review_patterns
@@ -25,6 +26,7 @@ handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
+ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 
 
 urlpatterns = patterns('',
@@ -33,6 +35,8 @@ urlpatterns = patterns('',
 
     # App Detail pages.
     ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
+    url('^app/%s/manifest.webapp$' % ADDON_UUID, mini_manifest,
+        name='detail.manifest'),
 
     # Browse pages.
     ('^apps/', include('mkt.browse.urls')),

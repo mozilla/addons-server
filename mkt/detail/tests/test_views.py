@@ -911,7 +911,7 @@ class TestPackagedManifest(DetailBase):
             test_package.close()
             latest_file.update(hash=latest_file.generate_hash())
 
-        self.url = self.app.get_detail_url('manifest')
+        self.url = self.app.get_manifest_url()
 
     def tearDown(self):
         storage.delete(self.app.get_latest_file().file_path)
