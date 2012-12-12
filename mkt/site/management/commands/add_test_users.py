@@ -75,3 +75,4 @@ class Command(BaseCommand):
                     **options)
         create_user('admin@mozilla.com', group_name='Admins', **options)
         create_user('developer@mozilla.com', **options)
+        create_user('enduser@mozilla.com', **options)
