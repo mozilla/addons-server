@@ -30,8 +30,11 @@
 
 #aux-nav {
     float: right;
-    a {
+    a, .user {
         color: #fff;
+    }
+    .user {
+        cursor: pointer;
     }
     ul ul {
         z-index: 999;
@@ -77,7 +80,6 @@
             position: relative;
             > a {
                 position: relative;
-                font-weight: bold;
                 z-index: 2;
                 border-style: solid;
                 .border-radius(3px 3px 0 0);
@@ -183,7 +185,7 @@
         > li {
             margin-left: 1px;
             z-index: 3;
-            > a {
+            > a, .user {
                 .border-radius(0);
                 display: block;
                 line-height: 32px;

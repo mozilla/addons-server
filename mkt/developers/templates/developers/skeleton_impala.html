@@ -64,9 +64,7 @@
                   </li>
                   {% if user.is_authenticated() %}
                     <li class="account">
-                      <a href="{{ amo_user.get_url_path() }}" class="user"
-                         title="{{ amo_user.email }}">
-                        {{ amo_user.welcome_name }}</a>
+                      <span class="user">{{ amo_user.welcome_name }}</span>
                       <ul>
                         {% if account_links %}
                           <li>
