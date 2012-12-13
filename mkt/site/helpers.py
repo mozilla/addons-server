@@ -224,9 +224,8 @@ def market_tile(context, product, link=True, src=''):
         if (not request.GAIA and
             (product.device_types == [amo.DEVICE_GAIA] or product.is_packaged)):
             # This includes packaged apps.
-            notices.append(_('This app is available on only Firefox OS. '
-                             '(<b data-href="%s">Learn more</b>)')
-                           % sumo_url)
+            notices.append(_('This app is available on only Firefox OS.'))
+            # TODO: Add a link when we have one.
             classes.append('firefoxos')
         if (not (request.MOBILE or request.TABLET or request.GAIA) and
             amo.DEVICE_DESKTOP not in product.device_types):
