@@ -77,13 +77,13 @@ def manifest(request, uuid):
         # TODO: Consider caching the os.stat call to avoid FS hits.
         package_name = 'packaged-apps/blocklisted.zip'
         package_path = os.path.join(settings.MEDIA_ROOT, package_name)
+        package_url = os.path.join(settings.MEDIA_URL, package_name)
         data = {
             'name': addon.name,
             'size': storage.size(package_path),
             'release_notes':
                 _(u'This app has been blocked for your protection.'),
-            'package_path': absolutify(os.path.join(settings.MEDIA_URL,
-                                                    package_name)),
+            'package_path': absolutify(package_url),
         }
 
         # Generate the minifest and add it to the hash.

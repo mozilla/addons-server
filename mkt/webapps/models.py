@@ -646,13 +646,16 @@ class Webapp(Addon):
         else:
             file = version.all_files[0]
             manifest = self.get_manifest_json()
+            package_path = absolutify(
+                os.path.join(reverse('downloads.file', args=[file.id]),
+                             file.filename))
 
             data = {
                 'name': self.name,
                 'version': version.version,
                 'size': file.size,
                 'release_notes': version.releasenotes,
-                'package_path': file.get_url_path('manifest'),
+                'package_path': package_path,
             }
             if 'icons' in manifest:
                 data['icons'] = manifest['icons']
