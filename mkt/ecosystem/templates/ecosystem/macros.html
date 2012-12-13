@@ -57,7 +57,7 @@
                  class="selected"
                  {% endif -%}
                  title="{{ _('Using Firefox OS Simulator') }}">
-                {{ _('Using Firefox OS Simulator') }}
+                {{ _('Using Firefox OS Simulator') -}}
               </a>
             </li>
             <li>
@@ -88,25 +88,34 @@
               <a href="{{ url('ecosystem.app_generator_documentation') }}"
                  {% if section == 'app_generator' %}class="selected"{% endif %}
                  title="{{ _('App Generator') }}">
-                {{ _('App Generator') }}
+                {{ _('App Generator') -}}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('mkt.developers.validate_addon') }}"
+                 title="{{ _('App Validator') }}">
+                {{ _('App Validator') -}}
+              </a>
+            </li>
+            <li>
               <a href="{{ url('ecosystem.firefox_os_simulator') }}"
                  {% if section == 'firefox_os_simulator' %}class="selected"{% endif %}
                  title="{{ _('Firefox OS Simulator') }}">
-                {{ _('Firefox OS Simulator') }}
+                {{ _('Firefox OS Simulator') -}}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.documentation', page='devtools') }}"
                  {% if section == 'devtools' %}class="selected"{% endif %}
                  title="{{ _('Dev Tools') }}">
-                {{ _('Dev Tools') }}
+                {{ _('Dev Tools') -}}
               </a>
             </li>
             <li>
               <a href="{{ url('ecosystem.support') }}"
                  {% if section == 'support' %}class="selected"{% endif %}
                  title="{{ _('Support') }}">
-                {{ _('Support') }}
+                {{ _('Support') -}}
               </a>
             </li>
           </ol>
