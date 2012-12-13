@@ -278,7 +278,8 @@ def app_review(request, addon):
     else:
         transaction.commit()
         # Temp. reindex the addon now it's been committed.
-        index_addons.delay([addon.pk])
+        if not settings.IN_TEST_SUITE:
+            index_addons.delay([addon.pk])
         return resp
 
 
