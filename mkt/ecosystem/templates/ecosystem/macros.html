@@ -74,6 +74,13 @@
                 {{ _('Using Firefox OS Simulator') }}
               </a>
             </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='templates') }}"
+                 {% if section == 'templates' %}class="selected"{% endif %}
+                 title="{{ _('App Templates') }}">
+                {{ _('App Templates') }}
+              </a>
+            </li>
           </ol>
           <h2>{{ _('Tools &amp; Downloads') }}</h2>
           <ol>
@@ -93,13 +100,6 @@
                  {% if section == 'devtools' %}class="selected"{% endif %}
                  title="{{ _('Dev Tools') }}">
                 {{ _('Dev Tools') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation', page='templates') }}"
-                 {% if section == 'templates' %}class="selected"{% endif %}
-                 title="{{ _('App Templates') }}">
-                {{ _('App Templates') }}
               </a>
             </li>
             <li>
