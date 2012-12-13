@@ -6,33 +6,46 @@
 {% block content %}
   <h1>{{ title }}</h1>
   <section id="submit-api" class="primary">
-    <div class="island">
+    <div class="island devhub-form">
       {% trans terms=url('mkt.developers.apps.terms') %}
         <p>This API key provides you access to the Marketplace API. Use of the
         API requires you to accept the <a href="{{ terms }}">terms of service</a>.
         </p>
       {% endtrans %}
+      {% trans %}
+        <p>Please read the <a href="http://zamboni.readthedocs.org/en/latest/topics/api.html">documentation</a> on how to use
+        the Marketplace API. Any testing should occur on the
+        development server and not the production server.</p>
+      {% endtrans %}
       {% if not consumer %}
-        <p>{{ _('You currently do not have an API key.') }}</p>
+      <p><strong>{{ _('You currently do not have an API key.') }}</strong></p>
         {% if not roles %}
           <form method="POST">
             {{ csrf() }}
-            <button>{{ _('Create') }}</button>
+            <div class="listing-footer">
+              <button>{{ _('Create') }}</button>
+            </div>
           </form>
         {% endif %}
       {% else %}
-        <p>
-          <dl>
-            <dt>{{ _('Key') }}</dt><dd>{{ consumer.key }}</dd>
-            <dt>{{ _('Secret') }}</dt><dd>{{ consumer.secret }}</dd>
-          </dl>
-        </p>
-        <form method="POST">
-          {{ csrf() }}
-          <button name="regenerate" value="regenerate">{{ _('Re-generate') }}</button>
-          {{ _('or') }}
-          <button name="delete" class="cancel" value="delete">{{ _('Delete') }}</button>
-        </form>
+      <table>
+        <tbody>
+          <tr>
+            <th><strong>{{ _('Key') }}</strong></th><td>{{ consumer.key }}</td>
+          </tr>
+          <tr>
+            <th><strong>{{ _('Secret') }}</strong></th><td><textarea readonly>{{ consumer.secret }}</textarea></td>
+          </tr>
+        </tbody>
+        </table>
+        <div class="listing-footer">
+          <form method="POST">
+            {{ csrf() }}
+            <button name="regenerate" value="regenerate">{{ _('Re-generate') }}</button>
+            {{ _('or') }}
+            <button name="delete" class="cancel" value="delete">{{ _('Delete') }}</button>
+          </form>
+        </div>
        {% endif %}
      </div>
   </section>
