@@ -209,7 +209,30 @@ class TestMarketButton(amo.tests.TestCase):
         assert 'disabled' not in cls, 'Unexpected: %r' % cls
         eq_(doc('.bad-app').length, 0)
 
-    def test_cannot_install_firefox_only(self):
+    def test_cannot_install_firefoxos_only(self):
+        self.webapp._device_types = [amo.DEVICE_GAIA]
+        self.context['request'].MOBILE = False
+        self.context['request'].TABLET = False
+        self.context['request'].DESKTOP = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' in cls, 'Expected: %r' % cls
+        eq_(doc('.bad-app').length, 1)
+
+    def test_can_install_packaged(self):
+        self.webapp.is_packaged = True
+        self.webapp._device_types = [amo.DEVICE_GAIA]
+        self.context['request'].MOBILE = True
+        self.context['request'].TABLET = False
+        self.context['request'].GAIA = True
+        doc = pq(market_tile(self.context, self.webapp))
+        cls = doc('button').attr('class')
+        assert 'disabled' not in cls, 'Unexpected: %r' % cls
+        print doc('.bad-app').text()
+        eq_(doc('.bad-app').length, 0)
+
+    def test_cannot_install_packaged(self):
+        self.webapp.is_packaged = True
         self.webapp._device_types = [amo.DEVICE_GAIA]
         self.context['request'].MOBILE = False
         self.context['request'].TABLET = False
@@ -280,7 +303,7 @@ class TestMarketButton(amo.tests.TestCase):
         manifest_url = ('http://omg.org/yes' +
                         self.webapp.get_detail_url('manifest'))
 
-        self.webapp.update(is_packaged=True)
+        self.webapp.is_packaged = True
 
         doc = pq(market_tile(self.context, self.webapp))
         # NOTE: PyQuery won't parse attributes with underscores
@@ -302,7 +325,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['manifest_url'], manifest_url)
 
     def test_packaged_no_valid_status(self):
-        self.webapp.update(is_packaged=True)
+        self.webapp.is_packaged = True
         version = self.webapp.versions.latest()
         version.all_files[0].update(status=amo.STATUS_REJECTED)
         self.webapp.update_version()  # Reset cached `_current_version`.

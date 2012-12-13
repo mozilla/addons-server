@@ -221,6 +221,13 @@ def market_tile(context, product, link=True, src=''):
 
         sumo_url = ('https://support.mozilla.org/en-US/kb/'
                     'how-access-firefox-marketplace')
+        if (not request.GAIA and
+            (product.device_types == [amo.DEVICE_GAIA] or product.is_packaged)):
+            # This includes packaged apps.
+            notices.append(_('This app is available on only Firefox OS. '
+                             '(<b data-href="%s">Learn more</b>)')
+                           % sumo_url)
+            classes.append('firefoxos')
         if (not (request.MOBILE or request.TABLET or request.GAIA) and
             amo.DEVICE_DESKTOP not in product.device_types):
             notices.append(_('This is a mobile-only app. Please try this '
@@ -232,14 +239,6 @@ def market_tile(context, product, link=True, src=''):
                              'app in Firefox Mobile on your Android '
                              'tablet. (<b data-href="%s">Learn more</b>)')
                            % sumo_url)
-        if (not request.GAIA and
-            (product.device_types == [amo.DEVICE_GAIA] or product.is_packaged)):
-            # This includes packaged apps.
-            notices.append(_('This is a Firefox OS-only app. Please try this '
-                             'app on your Firefox OS phone. '
-                             '(<b data-href="%s">Learn more</b>)')
-                           % sumo_url)
-            classes.append('firefoxos')
 
         firefox_compat = check_firefox(
             ua=request.META.get('HTTP_USER_AGENT', ''))
