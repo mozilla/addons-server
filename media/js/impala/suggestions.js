@@ -151,18 +151,18 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     if (z.capabilities.touch) {
         $self.focus(function() {
             // If we've already got a timer, clear it.
-            if (pollVal != 0) {
+            if (pollVal !== 0) {
                 clearInterval(pollVal);
             }
             pollVal = setInterval(function() {
                 gestureHandler($self);
                 inputHandler($self);
                 return;
-            }, 350);
+            }, 150);
         });
     } else {
         $self.keydown(gestureHandler).bind('keyup paste',
-                                           _.throttle(inputHandler, 250))
+                                           _.throttle(inputHandler, 250));
     }
 
     function clearCurrentSuggestions(e) {
