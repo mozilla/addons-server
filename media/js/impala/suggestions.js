@@ -175,7 +175,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     $form.submit(function(e) {
         var $sel = $results.find('.sel');
         if ($sel.length && $sel.eq(0).attr('href') != '#') {
-            $results.find('ul').empty();
             e.stopPropagation();
             e.preventDefault();
             $sel[0].click();
