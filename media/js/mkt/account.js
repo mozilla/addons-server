@@ -12,10 +12,6 @@
 })();
 
 (function() {
-    if (!$('#account-settings').length) {
-        return;
-    }
-
     // For stylized <select>s.
     $('.styled.select select').focus(function() {
         $(this).closest('.select').addClass('active');
