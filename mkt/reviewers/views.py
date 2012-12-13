@@ -24,6 +24,7 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Persona, Version
+from addons.tasks import index_addons
 from amo import messages
 from amo.decorators import json_view, permission_required, post_required
 from amo.helpers import absolutify
@@ -276,6 +277,8 @@ def app_review(request, addon):
             reverse('reviewers.apps.review', args=[addon.app_slug]))
     else:
         transaction.commit()
+        # Temp. reindex the addon now it's been committed.
+        index_addons.delay([addon.pk])
         return resp
 
 
