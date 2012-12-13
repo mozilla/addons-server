@@ -23,7 +23,7 @@
             {{ csrf() }}
             <div class="vf-text">
               <input type="text" id="upload-webapp-url" name="manifest" class="large"
-                     placeholder="http://" data-upload-url="{{ upload_hosted_url }}">
+                     placeholder="http://" data-upload-url="{{ upload_hosted_url }}" autofocus>
             </div>
             <div class="vf-button">
               <button type="submit" class="disabled" id="validate_app">{{ _('Validate') }}</button>
