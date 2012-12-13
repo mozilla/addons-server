@@ -7,10 +7,9 @@
           <img src="{{ row.app.icon_url }}" class="logo">
           <h2><a href="{{ row.app.get_detail_url() }}">{{ row.app.name }}</a></h2>
           <div class="dashboard">
-            <a href="{{ row.app.get_dev_url() }}">
-              <img alt="{{ _('Manage featured graphics') }}"
-                   title="{{ _('Manage featured graphics') }}"
-                   src="{{ MEDIA_URL }}img/mkt/icons/settings.png">
+            <a href="{{ row.app.get_dev_url() }}"
+               title="Manage featured graphics" class="manage-link">
+              manage
             </a>
             {% if not row.app.promo %}
               <em class="icon warning"
@@ -42,7 +41,7 @@
         </ul>
         <p>
           <label for="localepicker">{{ _('Regions / Carriers') }}</label>
-          <select class="localepicker" multiple id="localepicker">
+          <select class="localepicker" multiple>
             {%- for locName, loc in regions -%}
               <option value="{{ loc.id }}"
                 {{- " selected" if loc.id in selected_regions -}}

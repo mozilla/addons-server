@@ -121,10 +121,6 @@ th {
     margin-left: 4px;
     vertical-align: middle;
 }
-.featured-app .dashboard a {
-    position: relative;
-    top: 3px;
-}
 .featured-app .dashboard a:hover {
     text-decoration: none;
 }
@@ -235,7 +231,13 @@ ul.ui-autocomplete {
 .ui-datepicker .ui-datepicker-header {
     height: 25px;
 }
-
+.featured-app .manage-link {
+    text-indent: -9999px;
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    background: url(../../img/mkt/icons/settings.png) no-repeat 0 -24px;
+}
 .localepicker {
     height: 150px;
 }
