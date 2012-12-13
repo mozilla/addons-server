@@ -38,6 +38,7 @@ def featured_apps_admin(request):
 def ecosystem(request):
     if request.method == 'POST':
         refresh_mdn_cache()
+        amo.messages.success(request, 'Refreshed MDN ecosystem pages.')
         return redirect(request.path)
 
     pages = MdnCache.objects.all()
