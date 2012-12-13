@@ -22,6 +22,7 @@ from lib.metrics import send_request
 from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
 import mkt
+from mkt.constants import apps
 from mkt.webapps.models import Installed, Webapp
 from services.verify import Verify
 from stats.models import ClientData
@@ -73,8 +74,11 @@ def _record(request, addon):
             raise PermissionDenied
 
         # Log the install.
+        install_type = (apps.INSTALL_TYPE_REVIEWER if is_reviewer
+                        else apps.INSTALL_TYPE_DEVELOPER if is_dev
+                        else apps.INSTALL_TYPE_USER)
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
-            user=request.amo_user)
+            user=request.amo_user, install_type=install_type)
 
         # Get download source from GET if it exists, if so get the download
         # source object if it exists. Then grab a client data object to hook up
@@ -174,10 +178,12 @@ def issue(request, addon):
     if not (review or developer):
         raise PermissionDenied
 
+    install, flavour = ((apps.INSTALL_TYPE_REVIEWER, 'reviewer') if review
+                        else (apps.INSTALL_TYPE_DEVELOPER, 'developer'))
     installed, c = Installed.objects.safer_get_or_create(addon=addon,
-                                                         user=request.amo_user)
+        user=request.amo_user, install_type=install)
+
     error = ''
-    flavour = 'reviewer' if review else 'developer'
     receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
     try:
         receipt = create_receipt(installed.pk, flavour=flavour)

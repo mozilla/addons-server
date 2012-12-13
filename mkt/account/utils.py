@@ -6,6 +6,7 @@ from addons.views import BaseFilter
 import amo
 from amo.models import manual_order
 from amo.utils import paginate
+from mkt.constants import apps
 from mkt.webapps.models import Webapp
 from stats.models import Contribution
 from translations.query import order_by_translation
@@ -50,6 +51,7 @@ def purchase_list(request, user, product_id):
     # Otherwise, we'll show all apps that have a contribution or are free.
     if not product_id:
         product_ids = list(user.installed_set
+                           .filter(install_type=apps.INSTALL_TYPE_USER)
                            .exclude(addon__in=ids)
                            .values_list('addon_id', flat=True))
 

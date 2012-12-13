@@ -38,6 +38,7 @@ from lib.crypto import packaged
 from versions.models import Version
 
 import mkt
+from mkt.constants import apps
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.carriers import get_carrier
 
@@ -770,6 +771,9 @@ class Installed(amo.models.ModelBase):
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
         null=True, default=None, choices=amo.ADDON_PREMIUM_TYPES.items())
+    install_type = models.PositiveIntegerField(
+        db_index=True, default=apps.INSTALL_TYPE_USER,
+        choices=apps.INSTALL_TYPES.items())
 
     class Meta:
         db_table = 'users_install'

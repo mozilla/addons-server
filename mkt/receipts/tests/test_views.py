@@ -12,6 +12,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
+from mkt.constants import apps
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from zadmin.models import DownloadSource
@@ -84,12 +85,16 @@ class TestInstall(amo.tests.TestCase):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         eq_(self.client.post(self.url).status_code, 200)
+        eq_(self.addon.installed.all()[0].install_type,
+            apps.INSTALL_TYPE_REVIEWER)
 
     def test_pending_paid_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.user)
         self.addon.update(status=amo.STATUS_PENDING,
                           premium_type=amo.ADDON_PREMIUM)
         eq_(self.client.post(self.url).status_code, 200)
+        eq_(self.user.installed_set.all()[0].install_type,
+            apps.INSTALL_TYPE_DEVELOPER)
 
     def test_pending_paid_for_anonymous(self):
         self.addon.update(status=amo.STATUS_PENDING,
@@ -170,7 +175,9 @@ class TestInstall(amo.tests.TestCase):
     def test_record_install(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
-        eq_(self.user.installed_set.count(), 1)
+        installed = self.user.installed_set.all()
+        eq_(len(installed), 1)
+        eq_(installed[0].install_type, apps.INSTALL_TYPE_USER)
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_multiple_installs(self, cef):
@@ -302,6 +309,8 @@ class TestReceiptIssue(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'reviewer')
+        eq_(self.reviewer.installed_set.all()[0].install_type,
+            apps.INSTALL_TYPE_REVIEWER)
 
     def test_get(self):
         self.client.login(username=self.reviewer.email, password='password')
@@ -325,6 +334,8 @@ class TestReceiptIssue(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'developer')
+        eq_(self.user.installed_set.all()[0].install_type,
+            apps.INSTALL_TYPE_DEVELOPER)
 
     @mock.patch('mkt.receipts.views.create_receipt')
     def test_unicode_name(self, create_receipt):
