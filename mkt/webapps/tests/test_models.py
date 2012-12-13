@@ -1,8 +1,9 @@
-from datetime import datetime, timedelta
 import json
+import os
 import unittest
 import uuid
 import zipfile
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db.models.signals import post_delete, post_save
@@ -16,7 +17,9 @@ import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
                            BlacklistedSlug, Category, Preview, version_changed)
 from addons.signals import version_changed as version_changed_signal
+from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
+from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
 from editors.models import RereviewQueue
 from files.models import File
@@ -462,7 +465,9 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(data['version'], webapp.current_version.version)
         eq_(data['size'], file.size)
         eq_(data['release_notes'], version.releasenotes)
-        eq_(data['package_path'], file.get_url_path('manifest'))
+        eq_(data['package_path'], absolutify(
+            os.path.join(reverse('downloads.file', args=[file.id]),
+                         file.filename)))
         eq_(data['icons'], manifest['icons'])
         eq_(data['locales'], manifest['locales'])
 
