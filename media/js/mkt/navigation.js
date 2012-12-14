@@ -94,6 +94,7 @@ var nav = (function() {
 
         setClass();
         setTitle();
+        setCSRF();
         setType();
     });
 
