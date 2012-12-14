@@ -243,7 +243,7 @@ We now run multiple sites off the zamboni code base. The current sites are:
 
 There are modules in zamboni for each of these base settings to make minor
 modifications to settings, url, templates and so on. Start by copying the
-template from ``settings/settings_local.dev.py`` into a custom file.
+template from ``docs/settings/settings_local.dev.py`` into a custom file.
 
 To run the Add-ons site, make a ``settings_local_amo.py`` file with this import
 header::
