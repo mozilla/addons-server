@@ -75,9 +75,10 @@ def user_can_delete_review(request, review):
     is_author = review.addon.has_author(request.user)
     return (
         review.user_id == request.user.id or
-        (is_editor and not is_author) or
-        acl.action_allowed(request, 'Users', 'Edit') or
-        acl.action_allowed(request, 'Addons', 'Edit'))
+        not is_author and (
+            is_editor or
+            acl.action_allowed(request, 'Users', 'Edit') or
+            acl.action_allowed(request, 'Addons', 'Edit')))
 
 
 @jingo.register.function

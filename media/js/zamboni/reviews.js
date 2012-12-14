@@ -106,4 +106,6 @@ $(document).ready(function() {
     });
 
     $("select[name='rating']").ratingwidget();
+
+    $('.review-flagged.disabled input').attr('disabled', true);
 });

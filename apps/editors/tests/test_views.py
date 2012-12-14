@@ -894,6 +894,29 @@ class TestModeratedQueue(QueueTest):
         # Make sure it was actually deleted.
         eq_(Review.objects.filter(addon=1865).count(), 1)
 
+    def test_remove_fails_for_own_addon(self):
+        """
+        Make sure the editor tools can't delete a review for an
+        add-on owned by the user.
+        """
+        a = Addon.objects.get(pk=1865)
+        u = UserProfile.objects.get(email='editor@mozilla.com')
+        AddonUser(addon=a, user=u).save()
+
+        # Make sure the initial count is as expected
+        eq_(Review.objects.filter(addon=1865).count(), 2)
+
+        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+        logs = self.get_logs(amo.LOG.DELETE_REVIEW)
+        eq_(logs.count(), 0)
+
+        # Make sure it's not removed from the queue.
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#reviews-flagged .no-results').length, 0)
+
+        # Make sure it was not actually deleted.
+        eq_(Review.objects.filter(addon=1865).count(), 2)
+
     def test_remove_score(self):
         self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_DELETE)

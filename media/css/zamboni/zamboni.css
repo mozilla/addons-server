@@ -132,6 +132,13 @@ ul.errorlist {
     color: #ccc;
 }
 
+.disabled,
+.disabled a[href],
+.disabled label,
+.disabled h3 {
+    color: #888 !important;
+}
+
 /************************************/
 /*             GRADIENTS            */
 /************************************/
