@@ -177,6 +177,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         if ($sel.length && $sel.eq(0).attr('href') != '#') {
             e.stopPropagation();
             e.preventDefault();
+            $self.val('');
             $sel[0].click();
         }
         $self.blur();
@@ -187,7 +188,10 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         $results.find('.sel').removeClass('sel');
         $results.addClass('sel');
         $(this).find('a').addClass('sel');
-    }).delegate('a', 'click', clearCurrentSuggestions);
+    }).delegate('a', 'click', function() {
+        clearCurrentSuggestions();
+        $self.val('');
+    });
 
     $results.bind('highlight', function(e, val) {
         // If an item starts with `val`, wrap the matched text with boldness.
