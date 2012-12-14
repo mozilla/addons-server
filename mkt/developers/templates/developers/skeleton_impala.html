@@ -6,6 +6,7 @@
     {% if not settings.ENGAGE_ROBOTS %}
       <meta name="robots" content="noindex">
     {% endif %}
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ _('Firefox Marketplace') }}{% endblock %}</title>
 
