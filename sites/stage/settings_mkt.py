@@ -124,4 +124,5 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # secrets used for them
     API_SALT = getattr(private_mkt, 'API_SALT', FAKEAUTH_TOKEN)
 
-    ES_HOSTS = ['127.0.0.1:9202']
+    if getattr(private_mkt, 'VAURIEN', False):
+        ES_HOSTS = ['127.0.0.1:9202']
