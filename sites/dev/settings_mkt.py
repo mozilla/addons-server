@@ -20,7 +20,8 @@ CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 
-ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
+ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (
+    STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
 ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
@@ -77,9 +78,10 @@ PAYPAL_EMBEDDED_AUTH = {
     'SIGNATURE': private_mkt.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
 }
 
-PAYPAL_CGI_AUTH = { 'USER': private_mkt.PAYPAL_CGI_AUTH_USER,
-                    'PASSWORD': private_mkt.PAYPAL_CGI_AUTH_PASSWORD,
-                    'SIGNATURE': private_mkt.PAYPAL_CGI_AUTH_SIGNATURE,
+PAYPAL_CGI_AUTH = {
+    'USER': private_mkt.PAYPAL_CGI_AUTH_USER,
+    'PASSWORD': private_mkt.PAYPAL_CGI_AUTH_PASSWORD,
+    'SIGNATURE': private_mkt.PAYPAL_CGI_AUTH_SIGNATURE,
 }
 
 PAYPAL_CHAINS = (
@@ -145,9 +147,12 @@ SIGNING_SERVER_ACTIVE = True
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = True
 SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
+SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
+SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 METLOG_CONF['logger'] = 'addons-marketplace-dev'
-METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
+METLOG_CONF['plugins']['raven'] = (
+    'metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
 METLOG = client_from_dict_config(METLOG_CONF)
 
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME

@@ -22,72 +22,87 @@ class SigningError(Exception):
     pass
 
 
-def sign_app(src, dest):
+def sign_app(src, dest, reviewer=False):
     """
-    Generate a manifest and signature andend signature to signing server to be
-    signed.
+    Generate a manifest and signature and send signature to signing server to
+    be signed.
     """
-    if settings.SIGNED_APPS_SERVER_ACTIVE:
-        # If no API endpoint is set. Just ignore this request.
-        if not settings.SIGNED_APPS_SERVER:
-            raise ValueError('Invalid config. SIGNED_APPS_SERVER empty.')
+    active_endpoint = _get_endpoint(reviewer)
+    timeout = settings.SIGNED_APPS_SERVER_TIMEOUT
 
-        endpoint = settings.SIGNED_APPS_SERVER + '/1.0/sign_app'
-        timeout = settings.SIGNED_APPS_SERVER_TIMEOUT
-
-        # Extract necessary info from the archive
-        try:
-            jar = JarExtractor(storage.open(src, 'r'), storage.open(dest, 'w'),
-                               omit_signature_sections=
-                                   settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
-        except:
-            log.error("Archive extraction failed. Bad archive?", exc_info=True)
-            raise SigningError("Archive extraction failed. Bad archive?")
-
-        log.info('App signature contents: %s' % jar.signatures)
-
-        log.info('Calling service: %s' % endpoint)
-        try:
-            with statsd.timer('services.sign.app'):
-                response = requests.post(endpoint, timeout=timeout,
-                                         files={'file': ('zigbert.sf',
-                                                         str(jar.signatures))})
-        except requests.exceptions.HTTPError, error:
-            # Will occur when a 3xx or greater code is returned.
-            log.error('Posting to app signing failed: %s, %s'
-                      % (error.response.status, error))
-            raise SigningError('Posting to app signing failed: %s, %s'
-                               % (error.response.status, error))
-
-        except:
-            # Will occur when some other error occurs.
-            log.error('Posting to app signing failed', exc_info=True)
-            raise SigningError('Posting to app signing failed')
-
-        if response.status_code != 200:
-            log.error('Posting to app signing failed: %s'
-                      % response.reason)
-            raise SigningError('Posting to app signing failed: %s'
-                               % response.reason)
-
-        pkcs7 = b64decode(json.loads(response.content)['zigbert.rsa'])
-        try:
-            jar.make_signed(pkcs7)
-        except:
-            log.error("App signing failed", exc_info=True)
-            raise SigningError("App signing failed")
-
+    if not active_endpoint:
+        _no_sign(src, dest)
         return
 
-    else:
-        # If this is a local development instance, just copy the file around
-        # so that everything seems to work locally.
-        log.info('Not signing the app, no signing server is active.')
-        dest_dir = os.path.dirname(dest)
-        if not os.path.exists(dest_dir):
-            os.makedirs(dest_dir)
-        shutil.copy(src, dest)
-        return
+    # Extract necessary info from the archive
+    try:
+        jar = JarExtractor(
+            storage.open(src, 'r'), storage.open(dest, 'w'),
+            omit_signature_sections=settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
+    except:
+        log.error('Archive extraction failed. Bad archive?', exc_info=True)
+        raise SigningError('Archive extraction failed. Bad archive?')
+
+    log.info('App signature contents: %s' % jar.signatures)
+
+    log.info('Calling service: %s' % active_endpoint)
+    try:
+        with statsd.timer('services.sign.app'):
+            response = requests.post(active_endpoint, timeout=timeout,
+                                     files={'file': ('zigbert.sf',
+                                                     str(jar.signatures))})
+    except requests.exceptions.HTTPError, error:
+        # Will occur when a 3xx or greater code is returned.
+        log.error('Posting to app signing failed: %s, %s' % (
+            error.response.status, error))
+        raise SigningError('Posting to app signing failed: %s, %s' % (
+            error.response.status, error))
+
+    except:
+        # Will occur when some other error occurs.
+        log.error('Posting to app signing failed', exc_info=True)
+        raise SigningError('Posting to app signing failed')
+
+    if response.status_code != 200:
+        log.error('Posting to app signing failed: %s' % response.reason)
+        raise SigningError('Posting to app signing failed: %s'
+                           % response.reason)
+
+    pkcs7 = b64decode(json.loads(response.content)['zigbert.rsa'])
+    try:
+        jar.make_signed(pkcs7)
+    except:
+        log.error('App signing failed', exc_info=True)
+        raise SigningError('App signing failed')
+
+
+def _get_endpoint(reviewer=False):
+    """
+    Returns the proper API endpoint depending whether we are signing for
+    reviewer or for public consumption.
+    """
+    active = (settings.SIGNED_APPS_REVIEWER_SERVER_ACTIVE if reviewer else
+              settings.SIGNED_APPS_SERVER_ACTIVE)
+    server = (settings.SIGNED_APPS_REVIEWER_SERVER if reviewer else
+              settings.SIGNED_APPS_SERVER)
+
+    if active:
+        if not server:
+            # If no API endpoint is set. Just ignore this request.
+            raise ValueError(
+                'Invalid config. The %sserver setting is empty.' % (
+                    'reviewer ' if reviewer else ''))
+        return server + '/1.0/sign_app'
+
+
+def _no_sign(src, dest):
+    # If this is a local development instance, just copy the file around
+    # so that everything seems to work locally.
+    log.info('Not signing the app, no signing server is active.')
+    dest_dir = os.path.dirname(dest)
+    if not os.path.exists(dest_dir):
+        os.makedirs(dest_dir)
+    shutil.copy(src, dest)
 
 
 @task
@@ -116,10 +131,9 @@ def sign(version_id, reviewer=False):
         log.info('Already signed app exists.')
         return path
 
-    # When we know how to sign, we will sign. For the moment, let's copy.
     with statsd.timer('services.sign.app'):
         try:
-            sign_app(file_obj.file_path, path)
+            sign_app(file_obj.file_path, path, reviewer)
         except SigningError:
             if storage.exists(path):
                 storage.delete(path)

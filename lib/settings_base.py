@@ -233,8 +233,12 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
 # A seperate signing server for signing packaged apps. If not set, for example
 # on local dev instances, the file will just be copied over unsigned.
 SIGNED_APPS_SERVER_ACTIVE = False
+# The reviewers equivalent to the above.
+SIGNED_APPS_REVIEWER_SERVER_ACTIVE = False
 # This is the signing REST server for signing apps.
 SIGNED_APPS_SERVER = ''
+# This is the signing REST server for signing apps with the reviewers cert.
+SIGNED_APPS_REVIEWER_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNED_APPS_SERVER_TIMEOUT = 10
 # Send the more terse manifest signatures to the app signing server.

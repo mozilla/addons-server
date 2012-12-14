@@ -8,11 +8,9 @@ from django.core.files.storage import default_storage as storage
 
 import jwt
 import mock
-from nose import SkipTest
 from nose.tools import eq_, raises
 
 import amo.tests
-from files.utils import SafeUnzip
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
 from mkt.webapps.models import Webapp
@@ -133,8 +131,40 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         storage.open(self.file.signed_file_path, 'w')
         assert packaged.sign(self.version.pk)
 
-    # TODO rtilder: some tests here...
     @raises(ValueError)
     def test_server_active(self):
         with self.settings(SIGNED_APPS_SERVER_ACTIVE=True):
             packaged.sign(self.version.pk)
+
+    @raises(ValueError)
+    def test_reviewer_server_active(self):
+        with self.settings(SIGNED_APPS_REVIEWER_SERVER_ACTIVE=True):
+            packaged.sign(self.version.pk, reviewer=True)
+
+    @mock.patch('lib.crypto.packaged._no_sign')
+    def test_server_inactive(self, _no_sign):
+        with self.settings(SIGNED_APPS_SERVER_ACTIVE=False):
+            packaged.sign(self.version.pk)
+        assert _no_sign.called
+
+    @mock.patch('lib.crypto.packaged._no_sign')
+    def test_reviewer_server_inactive(self, _no_sign):
+        with self.settings(SIGNED_APPS_REVIEWER_SERVER_ACTIVE=False):
+            packaged.sign(self.version.pk, reviewer=True)
+        assert _no_sign.called
+
+    def test_server_endpoint(self):
+        with self.settings(SIGNED_APPS_SERVER_ACTIVE=True,
+                           SIGNED_APPS_SERVER='http://sign.me',
+                           SIGNED_APPS_REVIEWER_SERVER='http://review.me'):
+            endpoint = packaged._get_endpoint()
+        assert endpoint.startswith('http://sign.me'), (
+            'Unexpected endpoint returned.')
+
+    def test_server_reviewer_endpoint(self):
+        with self.settings(SIGNED_APPS_REVIEWER_SERVER_ACTIVE=True,
+                           SIGNED_APPS_SERVER='http://sign.me',
+                           SIGNED_APPS_REVIEWER_SERVER='http://review.me'):
+            endpoint = packaged._get_endpoint(reviewer=True)
+        assert endpoint.startswith('http://review.me'), (
+            'Unexpected endpoint returned.')
