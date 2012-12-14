@@ -117,7 +117,8 @@
               'headertitle': headertitle,
               'bodyclass': bodyclass or '',
               'parent': page_parent or '',
-              'category': category.name ~ '' if category else ''}|json }}">
+              'category': category.name ~ '' if category else '',
+              'csrf': csrf_token if logged else ''}|json }}">
         {# `outer_content` is for stuff you want above `content` on every page. #}
         {% block outer_content %}
           {% include 'site/messages/display.html' %}

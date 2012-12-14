@@ -122,6 +122,14 @@ var nav = (function() {
         $h1.text(title);
     }
 
+    function setCSRF() {
+        // We CSRFing USA.
+        var csrf = $('#page').data('context').csrf;
+        if (csrf) {
+            $('meta[name=csrf]').val(csrf);
+        }
+    }
+
     function back() {
         // Something something back joke.
         if (stack.length > 1) {

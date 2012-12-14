@@ -13,6 +13,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
@@ -345,7 +346,7 @@ def browserid_authenticate(request, assertion):
     return (profile, None)
 
 
-@anonymous_csrf_exempt
+@csrf_exempt
 @post_required
 @no_login_required
 @transaction.commit_on_success
@@ -353,6 +354,7 @@ def browserid_authenticate(request, assertion):
 def browserid_login(request):
     if waffle.switch_is_active('browserid-login'):
         if request.user.is_authenticated():
+            # If username is different, maybe sign in as new user?
             return http.HttpResponse(status=200)
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
