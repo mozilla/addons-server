@@ -1,3 +1,4 @@
+import functools
 import json
 import os
 import unittest
@@ -31,8 +32,9 @@ from users.models import UserProfile
 from versions.models import update_status, Version
 
 import mkt
+from mkt.constants import apps
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import AddonExcludedRegion, Installed, Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
@@ -1049,3 +1051,17 @@ class TestUpdateStatus(amo.tests.TestCase):
         app.current_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_BLOCKED)
+
+
+class TestInstalled(amo.tests.TestCase):
+
+    def setUp(self):
+        user = UserProfile.objects.create(email='f@f.com')
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        self.m = functools.partial(Installed.objects.safer_get_or_create,
+                                   user=user, addon=app)
+
+    def test_install_type(self):
+        assert self.m(install_type=apps.INSTALL_TYPE_USER)[1]
+        assert not self.m(install_type=apps.INSTALL_TYPE_USER)[1]
+        assert self.m(install_type=apps.INSTALL_TYPE_REVIEWER)[1]

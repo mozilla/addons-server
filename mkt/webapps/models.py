@@ -780,7 +780,7 @@ class Installed(amo.models.ModelBase):
 
     class Meta:
         db_table = 'users_install'
-        unique_together = ('addon', 'user', 'client_data')
+        unique_together = ('addon', 'user', 'install_type', 'client_data')
 
 
 @receiver(models.signals.post_save, sender=Installed)
