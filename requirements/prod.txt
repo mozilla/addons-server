@@ -25,6 +25,7 @@ django-picklefield==0.2.1
 django-quieter-formset==0.3
 django-raven-metlog==0.1
 django-radagast==0.3
+django-recaptcha-mozilla=0.0.1
 django-session-csrf==0.5
 django-statsd-mozilla==0.3.8
 django-storages==1.1.4
@@ -90,7 +91,6 @@ tower==0.3.4
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
 -e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
--e git://github.com/mozilla/django-recaptcha.git@bbe6a921e95e4961b028b7eb5ea197d3fb54aa9a#egg=django-recaptcha
 -e git://github.com/washort/django-waffle.git@c8da885613dfddf2262e11adde6b6027906536ed#egg=django-waffle
 -e git://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 
