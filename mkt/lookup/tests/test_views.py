@@ -239,6 +239,47 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
 
+class TestTransactionSearch(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.tx_id = 45
+        self.url = reverse('lookup.transaction_search')
+        self.client.login(username='support-staff@mozilla.com',
+                          password='password')
+
+    def test_redirect(self):
+        r = self.client.get(self.url, {'q': self.tx_id})
+        self.assertRedirects(r, reverse('lookup.transaction_summary',
+                                        args=[self.tx_id]))
+
+    def test_no_perm(self):
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        r = self.client.get(self.url, {'q': self.tx_id})
+        eq_(r.status_code, 403)
+
+
+class TestTransactionSummary(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.tx_id = 45
+        self.url = reverse('lookup.transaction_summary', args=[self.tx_id])
+        self.client.login(username='support-staff@mozilla.com',
+                          password='password')
+
+    def test_200(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_no_perm(self):
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 403)
+
+
 class TestAppSearch(ESTestCase, SearchTestMixin):
     fixtures = ['base/users', 'webapps/337141-steamcube',
                 'base/addon_3615']

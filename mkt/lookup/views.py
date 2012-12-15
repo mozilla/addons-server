@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from django.db import connection
 from django.db.models import Sum, Count, Q
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 import jingo
 from babel import numbers
@@ -19,6 +19,7 @@ from devhub.models import ActivityLog
 from elasticutils.contrib.django import S
 from market.models import AddonPaymentData, Refund
 from mkt.account.utils import purchase_list
+from mkt.lookup.forms import TransactionSearchForm
 from mkt.webapps.models import Installed
 from stats.models import DownloadCount, Contribution
 from users.models import UserProfile
@@ -27,7 +28,9 @@ from users.models import UserProfile
 @login_required
 @permission_required('AccountLookup', 'View')
 def home(request):
-    return jingo.render(request, 'lookup/home.html', {})
+    tx_form = TransactionSearchForm()
+
+    return jingo.render(request, 'lookup/home.html', {'tx_form': tx_form})
 
 
 @login_required
@@ -63,6 +66,27 @@ def user_summary(request, user_id):
                          'user_addons': user_addons,
                          'payment_data': payment_data,
                          'paypal_ids': paypal_ids})
+
+
+@login_required
+@permission_required('Transaction', 'View')
+def transaction_summary(request, tx_id):
+    tx_form = TransactionSearchForm()
+
+    return jingo.render(request, 'lookup/transaction_summary.html',
+                        {'tx_id': tx_id, 'tx_form': tx_form,
+                         'tx': _transaction_summary(tx_id)})
+
+
+def _transaction_summary(tx_id):
+    """Get transaction details from Solitude API."""
+    # TODO: Get transaction details from Solitude API.
+    return {
+        'id': '',
+        'date': '',
+        'purchaser': None,
+        'developer': None,
+        'amount': 0}
 
 
 @login_required
@@ -167,6 +191,17 @@ def user_search(request):
         user['name'] = user['username']
         results.append(user)
     return {'results': results}
+
+
+@login_required
+@permission_required('Transaction', 'View')
+def transaction_search(request):
+    tx_form = TransactionSearchForm(request.GET)
+    if tx_form.is_valid():
+        return redirect(reverse('lookup.transaction_summary',
+                                args=[tx_form.cleaned_data['q']]))
+    else:
+        return jingo.render(request, 'lookup/home.html', {'tx_form': tx_form})
 
 
 @login_required

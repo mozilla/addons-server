@@ -362,7 +362,7 @@
         "pk": 50059,
         "model": "access.group",
         "fields": {
-            "rules": "AccountLookup:View",
+            "rules": "AccountLookup:View,Apps:Configure,Transaction:View",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
             "name": "Support Staff",

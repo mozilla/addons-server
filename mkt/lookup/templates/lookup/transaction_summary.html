@@ -1,0 +1,39 @@
+{% extends 'lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  {% include 'lookup/includes/transaction_search.html' %}
+
+  <section class="island c">
+    <h1>
+      {% trans tx_url = url('lookup.transaction_summary', tx_id) %}
+        Transaction Lookup results for <a href="{{ tx_url }}">Transaction {{ tx_id }}</a>
+      {% endtrans %}
+    </h1>
+
+    {% if tx %}
+      <section id="prose">
+        <dl>
+          <dt>{{ _('Transaction ID') }}</dt>
+          <dd>{{ tx.id }}</dd>
+          <dt>{{ _('Date') }}</dt>
+          <dd>{{ tx.date }}</dd>
+          {% if tx.purchaser %}
+            <dt>{{ _('Purchaser') }}</dt>
+            <dd>{{ emaillink(tx.purchaser.email, title=tx.purchaser.username) }}</dd>
+          {% endif %}
+          {% if tx.developer %}
+            <dt>{{ _('Developer') }}</dt>
+            <dd>{{ emaillink(tx.developer.email, title=tx.developer.username) }}</dd>
+          {% endif %}
+          <dt>{{ _('Amount') }}</dt>
+          <dd>{{ tx.amount|numberfmt }}</dd>
+        </dl>
+      </section>
+    {% else %}
+      {{ no_results() }}
+    {% endif %}
+
+{% endblock %}

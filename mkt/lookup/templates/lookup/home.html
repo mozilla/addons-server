@@ -5,5 +5,8 @@
 
 {% block content %}
   {% include 'lookup/includes/user_search.html' %}
+  {% if action_allowed('Transaction', 'View') %}
+    {% include 'lookup/includes/transaction_search.html' %}
+  {% endif %}
   {% include 'lookup/includes/app_search.html' %}
 {% endblock %}

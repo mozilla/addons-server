@@ -18,12 +18,22 @@ app_patterns = patterns('',
 )
 
 
+# These views all start with transaction ID.
+transaction_patterns = patterns('',
+    url(r'^summary$', views.transaction_summary,
+        name='lookup.transaction_summary'),
+)
+
+
 urlpatterns = patterns('',
     url(r'^$', views.home, name='lookup.home'),
     url(r'^user_search\.json$', views.user_search,
         name='lookup.user_search'),
+    url(r'^transaction_search$', views.transaction_search,
+        name='lookup.transaction_search'),
     url(r'^app_search\.json$', views.app_search,
         name='lookup.app_search'),
     (r'^app/(?P<addon_id>[^/]+)/', include(app_patterns)),
+    (r'^transaction/(?P<tx_id>[^/]+)/', include(transaction_patterns)),
     (r'^user/(?P<user_id>[^/]+)/', include(user_patterns)),
 )
