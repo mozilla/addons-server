@@ -25,6 +25,7 @@ django-picklefield==0.2.1
 django-quieter-formset==0.3
 django-raven-metlog==0.1
 django-radagast==0.3
+django-ratelimit==0.1
 django-recaptcha-mozilla==0.0.1
 django-session-csrf==0.5
 django-statsd-mozilla==0.3.8
@@ -97,5 +98,4 @@ tower==0.3.4
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 -e git://github.com/jbalogh/jingo.git@b4ecca1066bcd1eac87358b4c82902442d4eedc4#egg=jingo
--e git://github.com/jsocol/django-ratelimit@a148254a1fb4248a34cf753d594af1e73bec455c#egg=django-ratelimit
 -e git://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
