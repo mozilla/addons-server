@@ -453,7 +453,7 @@ def refresh_manifest(request, addon_id, addon, webapp=False):
 def upload_manifest(*args, **kwargs):
     """Wrapper function for `_upload_manifest` so we can keep the
     standalone validator separate from the manifest upload stuff.
-    
+
     """
     return _upload_manifest(*args, **kwargs)
 
@@ -461,7 +461,7 @@ def upload_manifest(*args, **kwargs):
 @post_required
 @json_view
 def _upload_manifest(request, is_standalone=False):
-    form = forms.NewManifestForm(request.POST)
+    form = forms.NewManifestForm(request.POST, is_standalone=is_standalone)
     if waffle.switch_is_active('webapps-unique-by-domain'):
         # Helpful error if user already submitted the same manifest.
         dup_msg = trap_duplicate(request, request.POST.get('manifest'))

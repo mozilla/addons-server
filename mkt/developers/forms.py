@@ -416,9 +416,15 @@ ImageAssetFormSet = formset_factory(form=ImageAssetForm,
 class NewManifestForm(happyforms.Form):
     manifest = forms.URLField(verify_exists=False)
 
+    def __init__(self, *args, **kwargs):
+        self.is_standalone = kwargs.pop('is_standalone', False)
+        super(NewManifestForm, self).__init__(*args, **kwargs)
+
     def clean_manifest(self):
         manifest = self.cleaned_data['manifest']
-        verify_app_domain(manifest)
+        # Skip checking the domain for the standalone validator.
+        if not self.is_standalone:
+            verify_app_domain(manifest)
         return manifest
 
 

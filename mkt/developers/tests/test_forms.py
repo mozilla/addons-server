@@ -18,7 +18,8 @@ from files.helpers import copyfileobj
 
 import mkt
 from mkt.developers import forms
-from mkt.webapps.models import AddonExcludedRegion
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -123,6 +124,22 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.errors,
             {'__all__': ['You must select at least one region or '
                          '"Other and new regions."']})
+
+class TestNewManifestForm(amo.tests.TestCase):
+
+    @mock.patch('mkt.developers.forms.verify_app_domain')
+    def test_normal_validator(self, _verify_app_domain):
+        form = forms.NewManifestForm({'manifest': 'http://omg.org/yes.webapp'},
+            is_standalone=False)
+        assert form.is_valid()
+        assert _verify_app_domain.called
+
+    @mock.patch('mkt.developers.forms.verify_app_domain')
+    def test_standalone_validator(self, _verify_app_domain):
+        form = forms.NewManifestForm({'manifest': 'http://omg.org/yes.webapp'},
+            is_standalone=True)
+        assert form.is_valid()
+        assert not _verify_app_domain.called
 
 
 class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
