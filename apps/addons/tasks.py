@@ -6,19 +6,20 @@ from django.core.files.storage import default_storage as storage
 from django.db import connection, transaction
 
 from celeryutils import task
-import elasticutils.contrib.django as elasticutils
 from PIL import Image
 
 import amo
 from amo.decorators import set_modified_on, write
 from amo.utils import (attach_trans_dict, cache_ns_key, sorted_groupby,
                        ImageCheck)
-from lib.es.hold import add, process
+from lib.es.hold import add
 from lib.es.utils import index_objects
 from market.models import AddonPremium
 from tags.models import Tag
 from versions.models import Version
-from . import cron, search  # Pull in tasks from cron.
+
+# pulling tasks from cron
+from . import cron, search  # NOQA
 from .models import (Addon, AddonDeviceType, Category, CompatOverride,
                      IncompatibleVersions, Preview)
 
@@ -34,9 +35,16 @@ def version_changed(addon_id, **kw):
 
 
 def update_last_updated(addon_id):
-    log.info('[1@None] Updating last updated for %s.' % addon_id)
     queries = Addon._last_updated_queries()
-    addon = Addon.objects.get(pk=addon_id)
+    try:
+        addon = Addon.objects.get(pk=addon_id)
+    except Addon.DoesNotExist:
+        log.info('[1@None] Updating last updated for %s failed, no addon found'
+                 % addon_id)
+        return
+
+    log.info('[1@None] Updating last updated for %s.' % addon_id)
+
     if addon.is_persona():
         q = 'personas'
     elif addon.is_webapp():
