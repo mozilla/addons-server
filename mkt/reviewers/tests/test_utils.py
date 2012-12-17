@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import amo.tests
 
 from mkt.reviewers.utils import create_sort_link
@@ -35,3 +36,10 @@ class TestCreateSortLink(amo.tests.TestCase):
                                 [('script', '<script>alert("BIB");</script>')],
                                 'created', 'asc')
         assert '<script>' not in link
+
+    def test_unicode(self):
+        link = create_sort_link('Name', 'name', [('text_query', 'Feliz Año')],
+                                'created', 'desc')
+        assert 'sort=name' in link
+        assert 'order=asc' in link
+        assert 'text_query=Feliz+A%C3%B1o' in link

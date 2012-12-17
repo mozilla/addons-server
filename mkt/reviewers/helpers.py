@@ -1,7 +1,9 @@
 import jinja2
+import waffle
+from django.utils.encoding import smart_str
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
-import waffle
+
 
 from access import acl
 from amo.helpers import impala_breadcrumbs
@@ -135,7 +137,7 @@ def sort_link(context, pretty_name, sort_field):
     sort, order = clean_sort_param(request)
 
     # Copy search/filter GET parameters.
-    get_params = [(k, v) for k, v in request.GET.items()
+    get_params = [(k, smart_str(v)) for k, v in request.GET.items()
                   if k not in ('sort', 'order')]
 
     return create_sort_link(pretty_name, sort_field, get_params,
