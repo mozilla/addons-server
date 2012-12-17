@@ -595,6 +595,7 @@ def register(request):
         messages.error(request,
                        loc('Registrations must be through browserid.'))
         form = None
+        raise http.Http404()
 
     elif (settings.REGISTER_USER_LIMIT and
           UserProfile.objects.count() > settings.REGISTER_USER_LIMIT

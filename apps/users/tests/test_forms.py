@@ -584,8 +584,7 @@ class TestUserRegisterForm(UserFormBase):
         waffle.models.Switch.objects.create(name='browserid-login',
                                             active=True)
         res = self.client.post(reverse('users.register'), self.good_data())
-        eq_(res.status_code, 200)
-        eq_(len(pq(res.content)('div.error')), 1)
+        eq_(res.status_code, 404)
 
 
 class TestBlacklistedUsernameAdminAddForm(UserFormBase):
