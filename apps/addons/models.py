@@ -364,6 +364,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @transaction.commit_on_success
     def delete(self, msg=''):
         id = self.id
+        previews = list(Preview.objects.filter(addon__id=id)
+                        .values_list('id', flat=True))
         if self.highest_status or self.status:
             if self.guid:
                 log.debug('Adding guid to blacklist: %s' % self.guid)
@@ -415,7 +417,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             super(Addon, self).delete()
         from . import tasks
-        tasks.delete_preview_files.delay(id)
+        for preview in previews:
+            tasks.delete_preview_files.delay(preview)
         tasks.unindex_addons.delay([id])
         return True
 
