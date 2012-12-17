@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import base64
-from datetime import date
 import json
 import logging
 import os
@@ -14,7 +13,6 @@ import uuid
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
-from django.utils.http import urlencode
 
 from celeryutils import task
 from django_statsd.clients import statsd
@@ -22,7 +20,8 @@ from tower import ugettext as _
 
 import amo
 from amo.decorators import write, set_modified_on
-from amo.utils import guard, resize_image, remove_icons
+from amo.utils import (guard, remove_icons, resize_image,
+                       send_html_mail_jinja)
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
@@ -436,3 +435,19 @@ def start_perf_test_for_file(file_id, os_name, app_name, **kw):
     file_ = File.objects.get(pk=file_id)
     # TODO(Kumar) store token to retrieve results later?
     perf.start_perf_test(file_, os_name, app_name)
+
+
+@task
+def send_welcome_email(addon_pk, emails, context, **kw):
+    log.info(u'[1@None] Sending welcome email for %s to %s.' %
+             (addon_pk, emails))
+    app = context.get('app', unicode(amo.FIREFOX.pretty))
+    subject = u'Mozilla Add-ons: Thanks for submitting a %s Add-on!' % app
+    html_template = 'devhub/email/submission.html'
+    text_template = 'devhub/email/submission.txt'
+    return send_html_mail_jinja(subject, html_template, text_template,
+                                context, recipient_list=emails,
+                                from_email=settings.NOBODY_EMAIL,
+                                use_blacklist=False,
+                                perm_setting='individual_contact',
+                                headers={'Reply-To': settings.EDITORS_EMAIL})

@@ -4,7 +4,7 @@ import shutil
 import tempfile
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
+from django.core import mail
 
 import mock
 from nose.tools import eq_
@@ -147,3 +147,18 @@ class TestFlagBinary(amo.tests.TestCase):
         _mock.side_effect = RuntimeError()
         tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+
+
+@mock.patch('devhub.tasks.send_html_mail_jinja')
+def test_send_welcome_email(send_html_mail_jinja_mock):
+    tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
+    send_html_mail_jinja_mock.assert_called_with(
+        'Mozilla Add-ons: Thanks for submitting a Firefox Add-on!',
+        'devhub/email/submission.html',
+        'devhub/email/submission.txt',
+        {'omg': 'yes'},
+        recipient_list=['del@icio.us'],
+        from_email=settings.NOBODY_EMAIL,
+        use_blacklist=False,
+        perm_setting='individual_contact',
+        headers={'Reply-To': settings.EDITORS_EMAIL})

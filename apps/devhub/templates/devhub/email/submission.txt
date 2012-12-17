@@ -1,0 +1,32 @@
+{% if full_review %}
+Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the Full Review queue.
+{% else %}
+Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the Preliminary Review queue.
+{% endif %}
+
+We will contact you if we need more information. After it is reviewed, you will receive an email notification and your add-on will appear in categories and search results. While awaiting review, your add-on can still be accessed and installed directly from its detail page:
+
+{{ detail_url }}
+
+What's Next?
+
+For some light-reading, we recommend the Add-ons Policies ({{ url('devhub.docs', doc_name='policies') }}) page, which has information on the review process, how to get in touch with us, and how to get your add-on featured on AMO. You can also:
+
+* Check your status ({{ version_url }}): See where you are in line
+* Check wait times (https://blog.mozilla.org/addons/tag/add-on-reviews/): Find out how long you should expect to wait
+* Edit your listing ({{ edit_url }}): Add details and tell people why they need your add-on
+* Get the latest (https://blog.mozilla.org/addons/): Follow our blog to get the latest news straight from the AMO team
+* Introduce yourself (https://forums.mozilla.org/addons/): Join the conversation in our forums
+
+Get Ahead in the Review Queue!
+
+Are you an experienced add-on developer? Become an add-ons reviewer today and get your add-ons reviewed faster. As a key member of the Mozilla community, reviewers also enjoy these privileges and perks:
+
+* Invitations to events (https://wiki.mozilla.org/Marketplace/Reviewers): Top reviewers may be invited to Mozilla events worldwide
+* Contests & prizes (https://wiki.mozilla.org/Marketplace/Reviewers): Win prizes such as tablets and laptops in reviewers-only contests
+* Get gear (https://wiki.mozilla.org/Marketplace/Reviewers/Points_and_Incentives): Collect points as you contribute and get cool gear!
+
+Learn more and apply today! https://wiki.mozilla.org/Marketplace/Reviewers
+
+Sincerely,
+The Add-ons Team

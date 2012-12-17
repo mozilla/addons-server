@@ -1,0 +1,16 @@
+{{ message }}
+
+<p>
+===================================================================<br>
+You received this email because you're subscribed to:
+</p>
+<ul>
+   <li>email me when {{ perm_setting }}</li>
+</ul>
+
+{% if mandatory %}
+<p>You can't unsubscribe from this type of email.</p>
+<p><a href="{{ manage_url }}">Manage email notifications</a></p>
+{% else %}
+<p><a href="{{ unsubscribe_url }}">Unsubscribe</a></p>
+{% endif %}

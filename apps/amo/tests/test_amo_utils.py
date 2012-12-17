@@ -16,7 +16,6 @@ from amo.utils import (cache_ns_key, escape_all, LocalFileStorage,
                        slug_validator, slugify, to_language)
 from product_details import product_details
 
-
 u = u'Ελληνικά'
 
 

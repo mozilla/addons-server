@@ -2217,6 +2217,30 @@ class TestSubmitStep7(TestSubmitBase):
         super(TestSubmitStep7, self).setUp()
         self.url = reverse('devhub.submit.7', args=[self.addon.slug])
 
+    @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
+    @mock.patch('devhub.tasks.send_welcome_email.delay')
+    def test_welcome_email_for_newbies(self, send_welcome_email_mock):
+        self.client.get(self.url)
+        context = {
+            'app': unicode(amo.FIREFOX.pretty),
+            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
+            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
+            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
+            'full_review': False,
+        }
+        send_welcome_email_mock.assert_called_with(self.addon.id,
+            ['del@icio.us'], context)
+
+    @mock.patch('devhub.tasks.send_welcome_email.delay')
+    def test_no_welcome_email(self, send_welcome_email_mock):
+        """You already submitted an add-on? We won't spam again."""
+        new_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                         status=amo.STATUS_NOMINATED)
+        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
+        self.client.get(self.url)
+        assert not send_welcome_email_mock.called
+
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_addon(self):
         eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
@@ -2237,6 +2261,7 @@ class TestSubmitStep7(TestSubmitBase):
         # edit your developer profile...
         eq_(next_steps.eq(1).attr('href'), self.addon.get_dev_url('profile'))
 
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
@@ -2255,6 +2280,7 @@ class TestSubmitStep7(TestSubmitBase):
         # edit listing of freshly submitted add-on...
         eq_(next_steps.eq(1).attr('href'), addon.get_dev_url())
 
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_addon_for_prelim_review(self):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
 
@@ -2264,6 +2290,7 @@ class TestSubmitStep7(TestSubmitBase):
         intro = doc('.addon-submission-process p').text().strip()
         assert 'Preliminary Review' in intro, ('Unexpected intro: %s' % intro)
 
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_addon_for_full_review(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
 
@@ -2273,18 +2300,21 @@ class TestSubmitStep7(TestSubmitBase):
         intro = doc('.addon-submission-process p').text().strip()
         assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
 
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_incomplete_addon_no_versions(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
         r = self.client.get(self.url, follow=True)
         self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
 
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_link_to_activityfeed(self):
         r = self.client.get(self.url, follow=True)
         doc = pq(r.content)
         eq_(doc('.done-next-steps a').eq(2).attr('href'),
             reverse('devhub.feed', args=[self.addon.slug]))
 
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_display_non_ascii_url(self):
         u = 'フォクすけといっしょ'
         self.addon.update(slug=u)
@@ -2295,10 +2325,6 @@ class TestSubmitStep7(TestSubmitBase):
         eq_(doc('#submitted-addon-url').text(),
             u'%s/en-US/firefox/addon/%s/' % (
                 settings.SITE_URL, u.decode('utf8')))
-
-    def test_addon_editor_pitch(self):
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#editor-pitch').length, 1)
 
 
 class TestResumeStep(TestSubmitBase):

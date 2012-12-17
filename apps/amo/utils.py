@@ -27,7 +27,7 @@ from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.forms.fields import Field
 from django.http import HttpRequest
 from django.template import Context, loader
@@ -143,9 +143,10 @@ def paginate(request, queryset, per_page=20, count=None):
     return paginated
 
 
-def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_blacklist=True, perm_setting=None,
-              manage_url=None, headers=None, cc=None, real_email=False):
+def send_mail(subject, message, html_message=None, from_email=None,
+              recipient_list=None, fail_silently=False, use_blacklist=True,
+              perm_setting=None, manage_url=None, headers=None, cc=None,
+              real_email=False):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -161,8 +162,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     connection = get_email_backend(real_email)
 
-    if not from_email:
-        from_email = settings.DEFAULT_FROM_EMAIL
 
     # Check against user notification settings
     if perm_setting:
@@ -188,52 +187,82 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     else:
         white_list = recipient_list
 
-    try:
-        if white_list:
-            if perm_setting:
-                template = loader.get_template('amo/emails/unsubscribe.ltxt')
-                if not manage_url:
-                    manage_url = urlparams(absolutify(
-                        reverse('users.edit', add_prefix=False)),
-                        'acct-notify')
-                for recipient in white_list:
-                    # Add unsubscribe link to footer.
-                    token, hash = UnsubscribeCode.create(recipient)
-                    unsubscribe_url = absolutify(reverse('users.unsubscribe',
-                            args=[token, hash, perm_setting.short],
-                            add_prefix=False))
+    if not from_email:
+        from_email = settings.DEFAULT_FROM_EMAIL
+    cc = cc and [cc] or None
+    if not headers:
+        headers = {}
 
-                    context = {'message': message,
-                               'manage_url': manage_url,
-                               'unsubscribe_url': unsubscribe_url,
-                               'perm_setting': perm_setting.label,
-                               'SITE_URL': settings.SITE_URL,
-                               'mandatory': perm_setting.mandatory}
-                    # Render this template in the default locale until
-                    # bug 635840 is fixed.
+    def text_mail(message, recipient):
+        try:
+            return EmailMessage(subject, message, from_email, recipient, cc=cc,
+                                connection=connection, headers=headers
+                               ).send(fail_silently=False)
+        except Exception as e:
+            log.error('send_mail failed with error: %s' % e)
+            if not fail_silently:
+                raise
+            return False
+
+    def html_mail(message, html_message, recipient):
+        try:
+            result = EmailMultiAlternatives(subject, message,
+                from_email, recipient, cc=cc, connection=connection,
+                headers=headers)
+            result.attach_alternative(html_message, 'text/html')
+            result.send(fail_silently=False)
+            return result
+        except Exception as e:
+            log.error('send_mail failed with error: %s' % e)
+            if not fail_silently:
+                raise
+            return False
+
+    if white_list:
+        if perm_setting:
+            html_template = loader.get_template('amo/emails/unsubscribe.html')
+            text_template = loader.get_template('amo/emails/unsubscribe.ltxt')
+            if not manage_url:
+                manage_url = urlparams(absolutify(
+                    reverse('users.edit', add_prefix=False)),
+                    'acct-notify')
+            for recipient in white_list:
+                # Add unsubscribe link to footer.
+                token, hash = UnsubscribeCode.create(recipient)
+                unsubscribe_url = absolutify(reverse('users.unsubscribe',
+                    args=[token, hash, perm_setting.short],
+                    add_prefix=False))
+
+                context = {
+                    'message': message,
+                    'manage_url': manage_url,
+                    'unsubscribe_url': unsubscribe_url,
+                    'perm_setting': perm_setting.label,
+                    'SITE_URL': settings.SITE_URL,
+                    'mandatory': perm_setting.mandatory
+                }
+                # Render this template in the default locale until
+                # bug 635840 is fixed.
+                with no_translation():
+                    message_with_unsubscribe = text_template.render(
+                        Context(context, autoescape=False))
+
+                if html_message:
+                    context['message'] = html_message
                     with no_translation():
-                        send_message = template.render(
+                        html_message_with_unsubscribe = html_template.render(
                             Context(context, autoescape=False))
-
-                        result = EmailMessage(subject, send_message,
-                                              from_email, [recipient],
-                                              cc=cc and [cc] or None,
-                                              connection=connection,
-                                              headers=headers or {},
-                                              ).send(fail_silently=False)
-            else:
-                result = EmailMessage(subject, message, from_email,
-                                      white_list, cc=cc and [cc] or None,
-                                      connection=connection,
-                                      headers=headers or {},
-                                      ).send(fail_silently=False)
+                        result = html_mail(message_with_unsubscribe,
+                            html_message_with_unsubscribe, [recipient])
+                else:
+                    result = text_mail(message_with_unsubscribe, [recipient])
         else:
-            result = True
-    except Exception as e:
-        result = False
-        log.error('send_mail failed with error: %s' % e)
-        if not fail_silently:
-            raise
+            if html_message:
+                result = html_mail(message, html_message, from_email)
+            else:
+                result = text_mail(message, from_email)
+    else:
+        result = True
 
     return result
 
@@ -248,8 +277,27 @@ def send_mail_jinja(subject, template, context, *args, **kwargs):
     autoescape_orig = env.autoescape
     env.autoescape = False
     template = env.get_template(template)
-    send_mail(subject, template.render(**context), *args, **kwargs)
+    msg = send_mail(subject, template.render(**context), *args, **kwargs)
     env.autoescape = autoescape_orig
+    return msg
+
+
+def send_html_mail_jinja(subject, html_template, text_template, context,
+                         *args, **kwargs):
+    """Sends HTML mail using a Jinja template with autoescaping turned off."""
+    autoescape_orig = env.autoescape
+    env.autoescape = False
+
+    html_template = env.get_template(html_template)
+    text_template = env.get_template(text_template)
+
+    msg = send_mail(subject, message=text_template.render(**context),
+                    html_message=html_template.render(**context), *args,
+                    **kwargs)
+
+    env.autoescape = autoescape_orig
+
+    return msg
 
 
 class JSONEncoder(json.DjangoJSONEncoder):

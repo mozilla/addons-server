@@ -32,7 +32,7 @@ import amo
 import amo.utils
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import loc, urlparams
+from amo.helpers import absolutify, loc, urlparams
 from amo.utils import escape_all, HttpResponseSendFile, MenuItem
 from amo.urlresolvers import reverse
 from access import acl
@@ -1715,6 +1715,28 @@ def submit_done(request, addon_id, addon, step, webapp=False):
         return redirect(addon.get_dev_url('versions'))
     sp = addon.current_version.supported_platforms
     is_platform_specific = sp != [amo.PLATFORM_ALL]
+
+    try:
+        author = addon.authors.all()[0]
+    except IndexError:
+        # This should never happen.
+        author = None
+
+    if author:
+        submitted_addons = (author.addons
+                            .exclude(type=amo.ADDON_WEBAPP)
+                            .exclude(status=amo.STATUS_NULL).count())
+        if submitted_addons == 1:
+            # We can use locale-prefixed URLs because the submitter probably
+            # speaks the same language by the time he/she reads the email.
+            context = {
+                'app': unicode(request.APP.pretty),
+                'detail_url': absolutify(addon.get_url_path()),
+                'version_url': absolutify(addon.get_dev_url('versions')),
+                'edit_url': absolutify(addon.get_dev_url('edit')),
+                'full_review': addon.status == amo.STATUS_NOMINATED
+            }
+            tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon, 'step': step,

@@ -1,0 +1,38 @@
+{% if full_review %}
+<p>Thanks for submitting your {{ app }} Add-on to <a href="https://addons.mozilla.org">addons.mozilla.org</a> (AMO)! Your add-on has been added to the Full Review queue.</p>
+{% else %}
+<p>Thanks for submitting your {{ app }} Add-on to <a href="https://addons.mozilla.org">addons.mozilla.org</a> (AMO)! Your add-on has been added to the Preliminary Review queue.</p>
+{% endif %}
+
+<p>We will contact you if we need more information. After it is reviewed, you will receive an email notification and your add-on will appear in categories and search results. While awaiting review, your add-on can still be accessed and installed directly from its detail page:</p>
+
+<p style="font-size: 18px; font-weight: bold; text-align: center"><a href="{{ detail_url }}">{{ detail_url }}</a></p>
+
+<p><b>What's Next?</b></p>
+
+<p>For some light-reading, we recommend the <a href="{{ url('devhub.docs', doc_name='policies') }}">Add-ons Policies</a> page, which has information on the review process, how to get in touch with us, and how to get your add-on featured on AMO. You can also:</p>
+
+<ul>
+<li><a href="{{ version_url }}">Check your status:</a> See where you are in line</li>
+<li><a href="https://blog.mozilla.org/addons/tag/add-on-reviews/">Check wait times:</a> Find out how long you should expect to wait</li>
+<li><a href="{{ edit_url }}">Edit your listing:</a> Add details and tell people why they need your add-on
+<li><a href="https://blog.mozilla.org/addons/">Get the latest:</a> Follow our blog to get the latest news straight from the AMO team
+<li><a href="https://forums.mozilla.org/addons/">Introduce yourself:</a> Join the conversation in our forums
+</ul>
+
+<p><b>Get Ahead in the Review Queue!</b></p>
+
+<p>Are you an experienced add-on developer? Become an add-ons reviewer today and get your add-ons reviewed faster. As a key member of the Mozilla community, reviewers also enjoy these privileges and perks:</p>
+
+<ul>
+<li><a href="https://wiki.mozilla.org/Marketplace/Reviewers">Invitations to events:</a> Top reviewers may be invited to Mozilla events worldwide</li>
+<li><a href="https://wiki.mozilla.org/Marketplace/Reviewers">Contests &amp; prizes:</a> Win prizes such as tablets and laptops in reviewers-only contests</li>
+<li><a href="https://wiki.mozilla.org/Marketplace/Reviewers/Points_and_Incentives">Get gear:</a> Collect points as you contribute and get cool gear!</li>
+</ul>
+
+<p><b><a href="https://wiki.mozilla.org/Marketplace/Reviewers">Learn more and apply today!</a></b></p>
+
+<p>
+Sincerely,<br>
+The Add-ons Team
+</p>

@@ -8,7 +8,7 @@ import mock
 from nose.tools import eq_
 
 from amo.models import FakeEmail
-from amo.utils import send_mail
+from amo.utils import send_mail, send_html_mail_jinja
 from users.models import UserProfile, UserNotification
 import users.notifications
 
@@ -154,3 +154,41 @@ class TestSendMail(test.TestCase):
         send_mail('test subject', 'test body', perm_setting='reply',
                              recipient_list=[to], fail_silently=False)
         eq_(perm_setting[0], u'an add-on developer replies to my review')
+
+    def test_send_html_mail_jinja():
+        emails = ['omg@org.yes']
+        subject = u'Mozilla Add-ons: Thank you for your submission!'
+        html_template = 'devhub/email/submission.html'
+        text_template = 'devhub/email/submission.txt'
+        send_html_mail_jinja(subject, html_template, text_template,
+                             context={}, recipient_list=emails,
+                             from_email=settings.NOBODY_EMAIL,
+                             use_blacklist=False,
+                             perm_setting='individual_contact',
+                             headers={'Reply-To': settings.EDITORS_EMAIL})
+
+        msg = mail.outbox[0]
+        message = msg.message()
+
+        eq_(msg.to, emails)
+        eq_(msg.subject, subject)
+        eq_(msg.from_email, settings.NOBODY_EMAIL)
+        eq_(msg.extra_headers['Reply-To'], settings.EDITORS_EMAIL)
+
+        eq_(message.is_multipart(), True)
+        eq_(message.get_content_type(), 'multipart/alternative')
+        eq_(message.get_default_type(), 'text/plain')
+
+        payload = message.get_payload()
+        eq_(payload[0].get_content_type(), 'text/plain')
+        eq_(payload[1].get_content_type(), 'text/html')
+
+        message1 = payload[0].as_string()
+        message2 = payload[1].as_string()
+
+        assert '<a href' not in message1, 'text-only email contained HTML!'
+        assert '<a href' in message2, 'HTML email did not contain HTML!'
+
+        unsubscribe_msg = unicode(users.notifications.individual_contact.label)
+        assert unsubscribe_msg in message1
+        assert unsubscribe_msg in message2
