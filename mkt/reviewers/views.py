@@ -578,10 +578,9 @@ def _mini_manifest(addon, version_id):
         'package_path': absolutify(
             reverse('reviewers.signed', args=[addon.app_slug, version.id]))
     }
-    if 'icons' in manifest:
-        data['icons'] = manifest['icons']
-    if 'locales' in manifest:
-        data['locales'] = manifest['locales']
+    for key in ['developer', 'icons', 'locales']:
+        if key in manifest:
+            data[key] = manifest[key]
 
     return json.dumps(data, cls=JSONEncoder)
 

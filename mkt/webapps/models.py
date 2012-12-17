@@ -657,10 +657,9 @@ class Webapp(Addon):
                 'release_notes': version.releasenotes,
                 'package_path': package_path,
             }
-            if 'icons' in manifest:
-                data['icons'] = manifest['icons']
-            if 'locales' in manifest:
-                data['locales'] = manifest['locales']
+            for key in ['developer', 'icons', 'locales']:
+                if key in manifest:
+                    data[key] = manifest[key]
 
         data = json.dumps(data, cls=JSONEncoder)
 

@@ -470,6 +470,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(data['package_path'], absolutify(
             os.path.join(reverse('downloads.file', args=[file.id]),
                          file.filename)))
+        eq_(data['developer'], manifest['developer'])
         eq_(data['icons'], manifest['icons'])
         eq_(data['locales'], manifest['locales'])
 

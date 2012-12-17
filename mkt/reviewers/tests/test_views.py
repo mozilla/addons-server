@@ -2027,6 +2027,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(res['Content-type'], 'application/x-web-app-manifest+json')
         data = json.loads(res.content)
         eq_(data['name'], self.app.name)
+        eq_(data['developer']['name'], 'Mozilla Labs')
         eq_(data['package_path'], reverse('reviewers.signed',
                                           args=[self.app.app_slug,
                                                 self.version.id]))
