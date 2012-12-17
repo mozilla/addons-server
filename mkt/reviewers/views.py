@@ -241,7 +241,7 @@ def _review(request, addon):
 
     product_attrs = {
         'product': json.dumps(
-            product_as_dict(request, addon, False, 'developer'),
+            product_as_dict(request, addon, False, 'reviewer'),
             cls=JSONEncoder),
         'manifest_url': addon.manifest_url,
     }
@@ -267,6 +267,7 @@ def _review(request, addon):
 @permission_required('Apps', 'Review')
 @addon_view
 def app_review(request, addon):
+    resp = None
     try:
         resp = _review(request, addon)
     except SigningError, exc:
@@ -278,9 +279,11 @@ def app_review(request, addon):
     else:
         transaction.commit()
         # Temp. reindex the addon now it's been committed.
-        if not settings.IN_TEST_SUITE:
+        if not settings.IN_TEST_SUITE and request.method == 'POST':
             index_addons.delay([addon.pk])
-        return resp
+        if resp:
+            return resp
+        raise
 
 
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
@@ -555,8 +558,8 @@ def app_view_manifest(request, addon):
 
 
 @permission_required('Apps', 'Review')
-@addon_view
-def mini_manifest(request, addon, version_id):
+def mini_manifest(request, addon_id, version_id):
+    addon = get_object_or_404(Webapp, pk=addon_id)
     return http.HttpResponse(
         _mini_manifest(addon, version_id),
         content_type='application/x-web-app-manifest+json')

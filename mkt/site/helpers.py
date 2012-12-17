@@ -72,7 +72,8 @@ def market_button(context, product, receipt_type=None, classes=None):
     if product.is_webapp():
         purchased = False
         classes = (classes or []) + ['button', 'product']
-        data_attrs = {'manifest_url': product.get_manifest_url(),
+        reviewer = receipt_type == 'reviewer'
+        data_attrs = {'manifest_url': product.get_manifest_url(reviewer),
                       'is_packaged': json.dumps(product.is_packaged)}
 
         # Handle premium apps.
@@ -114,13 +115,14 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
     url = (reverse('receipt.issue', args=[product.app_slug])
            if receipt_type else product.get_detail_url('record'))
     src = src or request.GET.get('src', '')
+    reviewer = receipt_type == 'reviewer'
 
     ret = {
         'id': product.id,
         'name': product.name,
         'categories': [unicode(cat.name) for cat in
                        product.categories.all()],
-        'manifest_url': product.get_manifest_url(),
+        'manifest_url': product.get_manifest_url(reviewer),
         'preapprovalUrl': reverse('detail.purchase.preapproval',
                                   args=[product.app_slug]),
         'recordUrl': urlparams(url, src=src),

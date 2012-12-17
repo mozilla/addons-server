@@ -1998,7 +1998,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         self.version = self.app.versions.latest()
         self.file = self.version.all_files[0]
         self.file.update(filename='mozball.zip')
-        self.url = reverse('reviewers.mini_manifest', args=[self.app.app_slug,
+        self.url = reverse('reviewers.mini_manifest', args=[self.app.id,
                                                             self.version.pk])
         self.client.login(username='editor@mozilla.com', password='password')
 
@@ -2017,7 +2017,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(res.status_code, 404)
 
     def test_wrong_version(self):
-        url = reverse('reviewers.mini_manifest', args=[self.app.app_slug, 0])
+        url = reverse('reviewers.mini_manifest', args=[self.app.id, 0])
         res = self.client.get(url)
         eq_(res.status_code, 404)
 

@@ -273,19 +273,23 @@ class Webapp(Addon):
         parsed = urlparse.urlparse(self.get_manifest_url())
         return '%s://%s' % (parsed.scheme, parsed.netloc)
 
-    def get_manifest_url(self):
+    def get_manifest_url(self, reviewer=False):
         """
         Hosted apps: a URI to an external manifest.
-        Packaged apps: a URI to a mini manifest on m.m.o.
+        Packaged apps: a URI to a mini manifest on m.m.o. If reviewer, the
+        mini-manifest behind reviewer auth pointing to the reviewer-signed
+        package.
         """
         if self.is_packaged:
-            if self.current_version:
+            if reviewer:
+                # Get latest version and return reviewer manifest URL.
+                version = self.versions.latest()
+                return absolutify(reverse('reviewers.mini_manifest',
+                                          args=[self.id, version.id]))
+            elif self.current_version:
                 return absolutify(reverse('detail.manifest', args=[self.guid]))
             else:
-                # Invalid statuses don't have `current_version`.
-                # TODO: Ask Rob about reviewers being able to install
-                # disabled apps?
-                return ''
+                return ''  # No valid version.
         else:
             return self.manifest_url
 

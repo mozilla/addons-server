@@ -43,7 +43,7 @@ urlpatterns = (
     url(r'^themes/logs$', views.themes_logs, name='reviewers.themes.logs'),
 
     url(r'^receipt/', include(receipt_patterns)),
-    url(r'^%s/(?P<version_id>\d+)/mini-manifest$' % amo.APP_SLUG,
+    url(r'^(?P<addon_id>\d+)/(?P<version_id>\d+)/mini-manifest$',
         views.mini_manifest, name='reviewers.mini_manifest'),
     url(r'^signed/%s/(?P<version_id>\d+)$' % amo.APP_SLUG,
         views.get_signed_packaged, name='reviewers.signed'),
