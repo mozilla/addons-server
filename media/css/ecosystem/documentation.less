@@ -311,8 +311,9 @@ a[rel="external"]:after, a.external:after {
 }
 
 #site-map-footer {
-    background-color: #f8f8f8;
-    border-top: 1px solid #fff;
+    .box-shadow(0 1px 0 #e6e9eb inset);
+    background: #d5d9dc @grain-src;
+    border-top: 1px solid #c7c9cc;
     float: left;
     padding: 10px 0;
     width: 100%;
@@ -336,7 +337,7 @@ a[rel="external"]:after, a.external:after {
         }
 
         h2 {
-            border-bottom: 1px solid @faint-gray;
+            .box-shadow(0 -1px 0 rgba(0,0,0,.1) inset);
             color: @medium-gray;
             font-size: 20px;
             line-height: 25px;

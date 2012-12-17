@@ -58,20 +58,23 @@ body {
 
 #footer {
     background: @white;
-    border-top-color: rgba(0,0,0,.08);
+    border-top-color: #bdc3c6;
 }
 
 #directory-footer {
-    .box-shadow(0 1px 0 rgba(3,16,26,.15) inset);
+    .box-shadow(0 1px 0 #e6e9eb inset);
+    border-top: 1px solid #c7c9cc;
     background: #d5d9dc @grain-src;
-    //min-height: 100px;
     .devhub {
         background: url(../../img/mkt/icons/rocket.png) 0 35px no-repeat;
         margin: -30px -20px -30px;
         padding: 30px 20px 30px 60px;
+        h1, b {
+            line-height: 30px;
+        }
         h1 {
             color: @dark-gray;
-            font-size: 20px;
+            font-size: 22px;
             text-shadow: 0 1px 1px rgba(245,247,250,.75);
         }
         b {
@@ -84,7 +87,7 @@ body {
                 color: @black;
             }
             b {
-                text-decoration: underline;
+                color: @link-dark;
             }
         }
     }
