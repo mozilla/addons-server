@@ -196,9 +196,15 @@
     }
 }
 
-#upload-status-results strong {
+#upload-status-results strong, .post-validation-errors {
     background: url(../../img/zamboni/icons/checks.png) no-repeat;
     padding: 2px 0 2px 24px;
+}
+
+.post-validation-errors {
+    margin: 10px 0;
+    color: #D81916;
+    background-position: 0 -119px;
 }
 
 #upload-status-results.status-fail strong,
