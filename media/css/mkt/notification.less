@@ -12,11 +12,25 @@
     max-width: 600px;
     line-height: 14px;
 
+    .border-radius(4px 4px 0 0);
+
+    z-index: 9999;
+
+    color: @text;
+    font-weight: bold;
+
     .transform(~'translate(-50%,110%)');
     .transition-property(~'transform, -moz-transform, -webkit-transform, -ms-transform, -o-transform');
     .transition-duration(~'.3s, .3s, .3s, .3s, .3s');
 
     &.show {
         .transform(~'translate(-50%,0%)');
+    }
+}
+
+@media (max-width: 600px) {
+    #notification {
+        width: 100%;
+        max-width: 100%;
     }
 }
