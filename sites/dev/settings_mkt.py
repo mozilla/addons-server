@@ -148,7 +148,7 @@ SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 METLOG_CONF['logger'] = 'addons-marketplace-dev'
 METLOG_CONF['plugins']['raven'] = (
-    'metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
+    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN})
 METLOG = client_from_dict_config(METLOG_CONF)
 
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
@@ -161,3 +161,7 @@ MDN_LAZY_REFRESH = True
 # to defer instantiation until METLOG_CONF has been fully configured
 
 #SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
+
+# Pass through the DSN to the Raven client and force signal
+# registration so that exceptions are passed through to sentry
+RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
