@@ -88,7 +88,7 @@ $(function() {
         } else {
             $managed = $(document.body);
         }
-        $strip.delegate("a", "click", function(e) {
+        $strip.delegate('a[href^="#"]', 'click', function(e) {
             e.preventDefault();
             var $tgt = $(this),
                 href = $tgt.attr("href"),
