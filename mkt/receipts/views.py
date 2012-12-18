@@ -185,6 +185,7 @@ def issue(request, addon):
 
     error = ''
     receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
+    receipt = None
     try:
         receipt = create_receipt(installed.pk, flavour=flavour)
     except SigningError:
