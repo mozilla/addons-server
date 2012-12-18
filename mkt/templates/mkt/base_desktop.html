@@ -12,7 +12,12 @@
     <div class="pad">
       <div class="group">
         <a class="devhub" href="{{ url('ecosystem.landing') }}">
-          <h1>{{ _('Develop apps for the Marketplace!') }}</h1>
+          <h1>
+            {% trans %}
+              Develop apps for<br>
+              the Marketplace!
+            {% endtrans %}
+          </h1>
           <b>{{ _('Visit the Developer Hub') }}</b>
         </a>
       </div>
