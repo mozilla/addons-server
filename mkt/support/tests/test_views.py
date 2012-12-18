@@ -2,9 +2,10 @@ from django.core import mail
 from django.conf import settings
 
 import mock
+import waffle
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -124,6 +125,7 @@ class TestRequestSupport(PurchaseBase):
         self.assertRedirects(res, self.get_support_url('request'))
 
     def test_request(self):
+        raise SkipTest('No refunds at the moment.')
         self.client.post(self.get_support_url('request'), {'remove': 1})
         res = self.client.post(self.get_support_url('reason'),
                                {'text': 'something'})
@@ -152,6 +154,7 @@ class TestRequestSupport(PurchaseBase):
 
     @mock.patch('stats.models.Contribution.is_instant_refund')
     def test_request_mails(self, is_instant_refund):
+        raise SkipTest('No refunds at the moment.')
         is_instant_refund.return_value = False
         self.app.support_email = 'a@a.com'
         self.app.save()
