@@ -57,10 +57,10 @@ mapping = {
 }
 
 
-class Encoder(json.JSONEncoder):
+date_format = '%Y-%m-%d'
+time_format = '%H:%M:%S'
 
-    date_format = '%Y-%m-%d'
-    time_format = '%H:%M:%S'
+class Encoder(json.JSONEncoder):
 
     ENCODINGS = {
         datetime.datetime:
