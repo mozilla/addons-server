@@ -6,6 +6,7 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
+from test_utils import RequestFactory
 
 import amo
 import amo.tests
@@ -18,6 +19,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.search.views import _app_search
 from mkt.webapps.tests.test_views import PaidAppMixin
 from mkt.webapps.models import AddonExcludedRegion as AER, Installed, Webapp
 
@@ -557,6 +559,48 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
                                             status=amo.STATUS_PUBLIC)
         self.make_premium(self.webapp)
         self.reindex(Webapp)
+
+    @mock.patch('mkt.search.views._filter_search')
+    def test_packaged_visible_on_gaia(self, filter_search_mock):
+        self.webapp.update(is_packaged=True)
+        self.refresh()
+        request = RequestFactory().get(reverse('search.search'))
+        request.GAIA = True
+        request.MOBILE = True
+        request.TABLET = False
+
+        _app_search(request)
+        args = filter_search_mock.call_args[0]
+        eq_(list(args[0]), [self.webapp])
+        eq_(args[1]['device'], 'gaia')
+
+    @mock.patch('mkt.search.views._filter_search')
+    def test_packaged_visible_on_desktop(self, filter_search_mock):
+        self.webapp.update(is_packaged=True)
+        self.refresh()
+        request = RequestFactory().get(reverse('search.search'))
+        request.GAIA = False
+        request.MOBILE = False
+        request.TABLET = False
+
+        _app_search(request)
+        args = filter_search_mock.call_args[0]
+        eq_(list(args[0]), [])
+        eq_(args[1]['device'], None)
+
+    @mock.patch('mkt.search.views._filter_search')
+    def test_packaged_hidden_on_android(self, filter_search_mock):
+        self.webapp.update(is_packaged=True)
+        self.refresh()
+        request = RequestFactory().get(reverse('search.search'))
+        request.GAIA = False
+        request.MOBILE = True
+        request.TABLET = False
+
+        _app_search(request)
+        args = filter_search_mock.call_args[0]
+        eq_(list(args[0]), [])
+        eq_(args[1]['device'], None)
 
     @nottest
     def test_url(self, url, app_is_premium=True, device_is_gaia=False):

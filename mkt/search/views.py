@@ -131,7 +131,7 @@ def _get_query(region, gaia):
 
 
 def _app_search(request, category=None, browse=None):
-    form = forms.AppSearchForm(request.GET)
+    form = forms.AppSearchForm(request.GET, request=request)
     form.is_valid()  # Let the form try to clean data.
     query = form.cleaned_data
 
@@ -144,25 +144,20 @@ def _app_search(request, category=None, browse=None):
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
     qs = _get_query(region, request.GAIA)
-    # On mobile, always only show mobile apps. Bug 767620
+
     if request.MOBILE:
         qs = qs.filter(uses_flash=False)
-        query['device'] = 'mobile'
 
-    if request.TABLET:
-        query['device'] = 'tablet'
-
-    # Only show premium apps on gaia for now.
-    # TODO: remove this once we allow app purchases on desktop/android.
     if not request.GAIA:
+        # Only show premium apps on gaia for now.
+        # TODO: remove this once we allow app purchases on desktop/android.
         qs = qs.filter(premium_type__in=amo.ADDON_FREES)
 
-    qs = _filter_search(qs, query, region=region)
+        # Don't show packaged apps on Firefox for Android.
+        if request.MOBILE or request.TABLET:
+            qs = qs.filter(is_packaged=False)
 
-    # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
-    # Mobile")
-    if request.MOBILE:
-        del query['device']
+    qs = _filter_search(qs, query, region=region)
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facet_counts()

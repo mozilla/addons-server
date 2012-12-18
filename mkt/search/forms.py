@@ -33,9 +33,10 @@ DEVICE_CHOICES = [
 
 # TODO: Forgo the `DeviceType` model in favor of constants (see bug 727235).
 DEVICE_CHOICES_IDS = {
-    'desktop': 1,
-    'mobile': 2,
-    'tablet': 3,
+    'desktop': amo.DEVICE_DESKTOP.id,
+    'mobile': amo.DEVICE_MOBILE.id,
+    'tablet': amo.DEVICE_TABLET.id,
+    'gaia': amo.DEVICE_GAIA.id,
 }
 
 # "Relevance" doesn't make sense for Category listing pages.
@@ -66,12 +67,24 @@ class AppSearchForm(forms.Form):
     price = forms.ChoiceField(required=False, choices=PRICE_CHOICES)
     device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES)
 
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request', None)
+        super(AppSearchForm, self).__init__(*args, **kw)
+
     def clean_cat(self):
         cat = self.cleaned_data.get('cat')
         try:
             return int(cat)
         except ValueError:
             return None
+
+    def clean_device(self):
+        device = self.cleaned_data.get('device') or None
+        if self.request.MOBILE or self.request.TABLET:
+            device = None
+        if self.request.GAIA:
+            device = 'gaia'
+        return device
 
     def full_clean(self):
         """
