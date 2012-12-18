@@ -127,13 +127,13 @@
           {% endif %}
           {% if product.support_url %}
             <li class="support-url">
-              <a {{ product.support_url|external_href }}>
+              <a rel="external" {{ product.support_url|external_href }}>
                 {{ _('Support Site') }}</a>
             </li>
           {% endif %}
           {% if product.homepage %}
             <li class="homepage">
-              <a {{ product.homepage|external_href }}>{{ _('Homepage') }}</a>
+              <a rel="external" {{ product.homepage|external_href }}>{{ _('Homepage') }}</a>
             </li>
           {% endif %}
           {% if product.is_public() or is_reviewer %}
@@ -142,7 +142,7 @@
                 {{ _('Privacy Policy') }}</a></li>
             {% endif %}
             {% if waffle.switch('app-stats') and product.public_stats %}
-              <li><a target="_blank" href="{{ url('mkt.stats.overview', product.app_slug) }}">
+              <li><a rel="external" href="{{ url('mkt.stats.overview', product.app_slug) }}">
                 {{ _('Statistics') }}</a></li>
             {% endif %}
           {% endif %}
@@ -193,12 +193,11 @@
       <section class="actions infobox">
         <div>
           {% if is_dev %}
-            <p><a href="{{ product.get_dev_url() }}" class="button manage"
-                  target="_blank">{{ _('Manage') }}</a></p>
+            <p><a href="{{ product.get_dev_url() }}" class="button manage" rel="external">{{ _('Manage') }}</a></p>
           {% endif %}
           {% if is_reviewer %}
             <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
-                  class="button good reviewer" target="_blank">
+                  class="button good reviewer" rel="external">
               {% if product.is_pending() %}{{ _('Approve / Reject') }}{% else %}{{ _('Review History') }}{% endif %}</a></p>
           {% endif %}
         </div>

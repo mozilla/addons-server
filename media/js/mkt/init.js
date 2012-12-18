@@ -104,8 +104,8 @@ z.page.on('fragmentloaded', function() {
        $nav.removeClass('active');
     });
 
-    // Hijack external links if we're on mobile.
-    if (z.capabilities.touch) {
+    // Hijack external links if we're within the app.
+    if (z.capabilities.chromeless) {
         $('a[rel=external]').attr('target', '_blank');
     }
 
