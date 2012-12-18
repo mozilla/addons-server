@@ -291,6 +291,9 @@ class GenerateErrorForm(happyforms.Form):
     def explode(self):
         error = self.cleaned_data.get('error')
 
+        from metlog.config import client_from_dict_config
+        new_metlog = client_from_dict_config(settings.METLOG_CONF)
+
         if error == 'zerodivisionerror':
             1 / 0
         elif error == 'iorequesterror':
@@ -308,15 +311,17 @@ class GenerateErrorForm(happyforms.Form):
                            'cef.product': 'zamboni',
                            'cef': True}
 
-            settings.METLOG.cef('xx\nx|xx\rx', 5, environ, config,
+            new_metlog.cef('xx\nx|xx\rx', 5, environ, config,
                     username='me', ext1='ok=ok', ext2='ok\\ok')
         elif error == 'metlog_statsd':
-            settings.METLOG.incr(name=LOGGER_NAME)
+            new_metlog.incr(name=LOGGER_NAME)
         elif error == 'metlog_json':
-            settings.METLOG.metlog(type="metlog_json",
+            new_metlog.metlog(type="metlog_json",
                     fields={'foo': 'bar', 'secret': 42})
         elif error == 'metlog_sentry':
+            # If this works, we have some kind of import ordering
+            # problem
             try:
                 1 / 0
             except:
-                settings.METLOG.raven('metlog_sentry error triggered')
+                new_metlog.raven('metlog_sentry error triggered')
