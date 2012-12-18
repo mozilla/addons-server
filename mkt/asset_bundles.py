@@ -118,7 +118,6 @@ CSS = {
     ),
     'mkt/offline': (
         'css/mkt/reset.less',
-        'css/mkt/typography.less',
         'css/mkt/site.less',
         'css/mkt/header.less',
         'css/mkt/buttons.less',
