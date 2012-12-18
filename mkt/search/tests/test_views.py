@@ -561,7 +561,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         self.reindex(Webapp)
 
     @mock.patch('mkt.search.views._filter_search')
-    def test_packaged_visible_on_gaia(self, filter_search_mock):
+    def test_packaged_visible_on_gaia(self, _filter_search_mock):
         self.webapp.update(is_packaged=True)
         self.refresh()
         request = RequestFactory().get(reverse('search.search'))
@@ -570,12 +570,12 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         request.TABLET = False
 
         _app_search(request)
-        args = filter_search_mock.call_args[0]
-        eq_(list(args[0]), [self.webapp])
-        eq_(args[1]['device'], 'gaia')
+        qs, query = _filter_search_mock.call_args[0]
+        eq_(list(qs), [self.webapp])
+        eq_(query['device'], 'gaia')
 
     @mock.patch('mkt.search.views._filter_search')
-    def test_packaged_visible_on_desktop(self, filter_search_mock):
+    def test_packaged_visible_on_desktop(self, _filter_search_mock):
         self.webapp.update(is_packaged=True)
         self.refresh()
         request = RequestFactory().get(reverse('search.search'))
@@ -584,12 +584,12 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         request.TABLET = False
 
         _app_search(request)
-        args = filter_search_mock.call_args[0]
-        eq_(list(args[0]), [])
-        eq_(args[1]['device'], None)
+        qs, query = _filter_search_mock.call_args[0]
+        eq_(list(qs), [])
+        eq_(query['device'], None)
 
     @mock.patch('mkt.search.views._filter_search')
-    def test_packaged_hidden_on_android(self, filter_search_mock):
+    def test_packaged_hidden_on_android(self, _filter_search_mock):
         self.webapp.update(is_packaged=True)
         self.refresh()
         request = RequestFactory().get(reverse('search.search'))
@@ -598,9 +598,9 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         request.TABLET = False
 
         _app_search(request)
-        args = filter_search_mock.call_args[0]
-        eq_(list(args[0]), [])
-        eq_(args[1]['device'], None)
+        qs, query = _filter_search_mock.call_args[0]
+        eq_(list(qs), [])
+        eq_(query['device'], 'mobile')
 
     @nottest
     def test_url(self, url, app_is_premium=True, device_is_gaia=False):

@@ -157,7 +157,12 @@ def _app_search(request, category=None, browse=None):
         if request.MOBILE or request.TABLET:
             qs = qs.filter(is_packaged=False)
 
-    qs = _filter_search(qs, query, region=region)
+    qs = _filter_search(qs, dict(query), region=region)
+
+    # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
+    # Mobile")
+    if request.MOBILE:
+        del query['device']
 
     pager = amo.utils.paginate(request, qs)
     facets = pager.object_list.facet_counts()

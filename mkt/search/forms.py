@@ -79,9 +79,12 @@ class AppSearchForm(forms.Form):
             return None
 
     def clean_device(self):
+        """Ignore the user. Respect the User-Agent."""
         device = self.cleaned_data.get('device') or None
-        if self.request.MOBILE or self.request.TABLET:
-            device = None
+        if self.request.MOBILE:
+            device = 'mobile'
+        if self.request.TABLET:
+            device = 'tablet'
         if self.request.GAIA:
             device = 'gaia'
         return device
