@@ -173,7 +173,7 @@ JS = {
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
-        'js/common/tracking.js',
+        'js/mkt/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
         'js/mkt/capabilities.js',
         'js/lib/format.js',
@@ -252,7 +252,7 @@ JS = {
         # slider lib
         'js/lib/flipsnap.js',
 
-        'js/common/tracking.js',
+        'js/mkt/tracking.js',
         'js/mkt/utils.js',
         'js/lib/csrf.js',
         'js/zamboni/browser.js',

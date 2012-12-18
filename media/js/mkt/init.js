@@ -23,9 +23,6 @@ var z = {
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
-// Initialize webtrends tracking.
-z.page.on('fragmentloaded', webtrendsAsyncInit);
-
 (function() {
     _.extend(z, {
         nav: BrowserUtils()
