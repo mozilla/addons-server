@@ -3,10 +3,13 @@
 import logging
 import os
 
+import dj_database_url
+
 from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING
 
 from .. import splitstrip
 import private_base as private
+
 
 ENGAGE_ROBOTS = False
 
@@ -21,43 +24,23 @@ REDIRECT_SECRET_KEY = private.REDIRECT_SECRET_KEY
 
 ADMINS = ()
 
-DATABASES = {
-    'default': {
-        'NAME': private.DATABASES_DEFAULT_NAME,
-        #'ENGINE': 'mysql_pool.base.db_pool',
-        'ENGINE': 'mysql_pool',
-        'HOST': private.DATABASES_DEFAULT_HOST,
-        'PORT': private.DATABASES_DEFAULT_PORT,
-        'USER': private.DATABASES_DEFAULT_USER,
-        'PASSWORD': private.DATABASES_DEFAULT_PASSWORD,
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-        'sa_pool_key': 'master',
-    },
-    'slave': {
-        'NAME': private.DATABASES_SLAVE_NAME,
-        #'ENGINE': 'mysql_pool.base.db_pool',
-        'ENGINE': 'mysql_pool',
-        'HOST': private.DATABASES_SLAVE_HOST,
-        'PORT': private.DATABASES_SLAVE_PORT,
-        'USER': private.DATABASES_SLAVE_USER,
-        'PASSWORD': private.DATABASES_SLAVE_PASSWORD,
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-        'sa_pool_key': 'slave',
-    },
-}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.parse(private.DATABASES_DEFAULT_URL)
+DATABASES['default']['ENGINE'] = 'mysql_pool'
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+
+DATABASES['slave'] = dj_database_url.parse(private.DATABASES_SLAVE_URL)
+DATABASES['slave']['ENGINE'] = 'mysql_pool'
+DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['slave']['sa_pool_key'] = 'slave'
 
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,
-    'pool_size':5,
+    'pool_size': 5,
     'recycle': 30
 }
 
-SERVICES_DATABASE = {
-    'NAME': private.DATABASES_SLAVE_NAME,
-    'USER': private.DATABASES_DEFAULT_USER,
-    'PASSWORD': private.DATABASES_DEFAULT_PASSWORD,
-    'HOST': private.DATABASES_SLAVE_HOST}
-
+SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
 
 SLAVE_DATABASES = ['slave']
 
@@ -67,8 +50,6 @@ SPHINX_PORT = private.SPHINX_PORT
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.CacheClass',
-#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#        'BACKEND': 'memcachepool.cache.UMemcacheCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
@@ -108,10 +89,10 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 HERA = []
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.hera': {'level': logging.INFO},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
@@ -207,7 +188,7 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
 LESS_PREPROCESS = True
 
-XSENDFILE_HEADER  = 'X-Accel-Redirect'
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 GEOIP_NOOP = 0
 
