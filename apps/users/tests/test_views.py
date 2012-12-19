@@ -650,7 +650,7 @@ class TestLogin(UserViewBase):
         email = 'admin@mozilla.com'
         self._make_admin_user(email)
         res = self._browserid_login(email, http_request)
-        eq_(res.status_code, 400)
+        eq_(res.status_code, 200)
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')

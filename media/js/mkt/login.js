@@ -13,10 +13,10 @@ define('login', ['notification'], function(notification) {
 
     });
     // Hijack the login form to send us to the right place
-    $("#login form").submit(function(e) {
+    $('#login form').submit(function(e) {
         e.stopPropagation();
         var $this = $(this),
-            action = $this.attr('action') + format("?to={0}", window.location.pathname);
+            action = $this.attr('action') + format('?to={0}', window.location.pathname);
         $this.attr('action', action);
     });
     (function() {
@@ -41,22 +41,11 @@ define('login', ['notification'], function(notification) {
                 success: finishLogin,
                 error: function(jqXHR, textStatus, error) {
                     // ask for additional credential info.
-                    var err = {};
-                    if (jqXHR.status == 400) {
-                        $.post('/csrf', function(r) {
-                            $('#login form').append($('<input>',
-                                            {type:'hidden', value:r.csrf,
-                                             name:'csrfmiddlewaretoken'}));
-                         });
-                         $('#login').addClass('show old');
-                    } else {
-                        err.msg = jqXHR.responseText;
-                        if(!err.msg) {
-                            err.msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
-                        }
-                        var el = $(err.msg);
-                        z.page.trigger('notify', {msg: el.text()});
+                    var err = {msg: jqXHR.responseText};
+                    if (!err.msg) {
+                        err.msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
                     }
+                    z.page.trigger('notify', {msg: $(err.msg).text()});
                     $.Deferred().reject(err);
                 }
             })
@@ -94,7 +83,7 @@ define('login', ['notification'], function(notification) {
         // This can cause the .watch function to not be set.
         // If the attribute isn't present, indicate to the user that things aren't
         // quite ready.
-        if(navigator.id) {
+        if (navigator.id) {
             if ($('body').data('pers-timeout')) {
                 clearInterval($('body').data('pers-timeout'));
             }

@@ -361,8 +361,6 @@ def browserid_login(request):
                 request,
                 assertion=request.POST['assertion'])
         if profile is not None:
-            if profile.needs_tougher_password:
-                return http.HttpResponse("", status=400)
             auth.login(request, profile.user)
             profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
