@@ -49,7 +49,7 @@ body {
     .pad {
         margin: 0 auto;
         padding: 0;
-        width: @desktop-content;
+        width: @desktop-ftr;
     }
     ul {
         list-style: none;
@@ -59,9 +59,6 @@ body {
 #footer {
     background: @white;
     border-top-color: #bdc3c6;
-    .pad {
-        width: @desktop-ftr;
-    }
 }
 
 #directory-footer {
@@ -69,9 +66,9 @@ body {
     border-top: 1px solid #c7c9cc;
     background: #d5d9dc @grain-src;
     .devhub {
-        background: url(../../img/mkt/icons/rocket.png) 0 35px no-repeat;  // TODO: 33px 35px
+        background: url(../../img/mkt/icons/rocket.png) 33px 35px no-repeat;
         margin: -30px -20px -30px;
-        padding: 30px 20px 30px 82px;  // TODO: 30px 20px 30px 112px
+        padding: 30px 20px 30px 112px;
         h1, b {
             line-height: 30px;
         }
@@ -97,7 +94,7 @@ body {
     .group {
         float: left;
         min-height: 71px;
-        padding: 0 20px;  // TODO: Change this to 40px when we increase page width.
+        padding: 0 40px;
         width: 25%;
         position: relative;
         &:after,
