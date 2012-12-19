@@ -1,5 +1,5 @@
 <header id="site-header" class="c{{ ' no-consumer' if not request.can_view_consumer }}">
-  <section>
+  <section class="main">
     {% if not request.MOBILE %}
       <h1 class="site"><a href="{{ url('home') }}">Firefox Marketplace</a></h1>
     {% endif %}

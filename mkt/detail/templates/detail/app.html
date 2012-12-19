@@ -44,13 +44,13 @@
     {{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
   {% else %}
 
-    <section class="product-details listing expanded c">
+    <section class="main product-details listing expanded c">
       {{ market_tile(product, link=False, src=request.GET.get('src', 'mkt-detail')) }}
     </section>
 
     {{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
 
-    <section id="installed">
+    <section class="main" id="installed">
       <div>
         <p>
           {{ _('Installed!') }}
@@ -80,7 +80,7 @@
     {% set descr_len = product.description.__unicode__()|length if product.description else 0 %}
     {% set comments_len = product.developer_comments.__unicode__()|length if product.developer_comments else 0 %}
     {% set super_long = (summary_len + descr_len + comments_len) > 700 %}
-    <section class="blurbs infobox">
+    <section class="main blurbs infobox">
       <div>
         <p class="summary">
           {{ product.summary|nl2br }}
@@ -116,7 +116,7 @@
       {% include "detail/includes/ratings.html" %}
     {% endwith %}
 
-    <section id="support" class="infobox support c">
+    <section id="support" class="main infobox support c">
       <div>
         <ul class="c">
           {% if product.support_email %}
@@ -170,7 +170,7 @@
     </section>
 
     {% if content_ratings %}
-      <div class="content-ratings infobox c">
+      <div class="main content-ratings infobox c">
         <div>
           <h3>
             {% trans DEJUS=mkt.ratingsbodies.DJCTQ.full_name,
@@ -190,7 +190,7 @@
     {% endif %}
 
     {% if is_dev or is_reviewer %}
-      <section class="actions infobox">
+      <section class="main actions infobox">
         <div>
           {% if is_dev %}
             <p><a href="{{ product.get_dev_url() }}" class="button manage" rel="external">{{ _('Manage') }}</a></p>

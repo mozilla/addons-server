@@ -116,7 +116,7 @@ body .loading-fragment {
 
 #site-header, #page {
     min-width: 320px;
-    > section {
+    section.main {
         margin-left: auto;
         margin-right: auto;
         &:after {
@@ -136,7 +136,7 @@ body .loading-fragment {
 
 #page {
     position: relative;
-    > section {
+    section.main {
         &:only-child {
             padding-top: 24px;
             padding-bottom: 12px;
@@ -186,8 +186,8 @@ body .loading-fragment {
 }
 
 .force-mobile {
-    #site-header > section,
-    #page > section,
+    #site-header section.main,
+    #page section.main,
     #site-footer {
         margin: 0 auto;
     }

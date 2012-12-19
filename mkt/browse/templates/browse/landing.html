@@ -19,7 +19,7 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs, cls='dark') }}
-  <section id="browse-featured" class="featured full">
+  <section id="browse-featured" class="main featured full">
     <div>
       {% if not category %}
         <h1 class="hidden">{{ _('Apps') }}</h1>
@@ -27,11 +27,11 @@
       <h2 class="sticky">{{ title if category else _('Featured') }}</h2>
     </div>
   </section>
-  <section class="featured full slider">
+  <section class="main featured full slider">
     {{ featured|promo_slider(feature=True, src='mkt-category-featured') }}
   </section>
   {% if popular %}
-    <section class="popular subheading full">
+    <section class="main popular subheading full">
       <div>
         <h2 class="see-all c">
           <a href="{{ request.path|urlparams(category=category.slug or None,
@@ -40,7 +40,7 @@
         </h2>
       </div>
     </section>
-    <section class="popular grid full">
+    <section class="main popular grid full">
       {{ popular|promo_grid(src='mkt-category') }}
     </section>
   {% else %}

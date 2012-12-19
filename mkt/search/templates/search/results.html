@@ -39,7 +39,7 @@
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}
-  <section id="filters" class="{{ 'overlay' if mobile }}{{ ' alt' if show_paid }}">
+  <section id="filters" class="main{{ ' overlay' if mobile }}{{ ' alt' if show_paid }}">
     {% if mobile %}
       <header class="classic-header">
         <a href="#" class="header-button icon back left dismiss"><b></b></a>
@@ -103,7 +103,7 @@
       </form>
     </div>
   </section>
-  <section id="featured" class="creatured full c">
+  <section id="featured" class="main creatured full c">
     {% if featured %}
       <ol class="grid c">
         {% for app in featured %}
@@ -114,7 +114,7 @@
       </ol>
     {% endif %}
   </section>
-  <section id="search-results" class="full c">
+  <section id="search-results" class="main full c">
     {% if not mobile and not browse and query.q %}
       <h1>{{ _('Search:') }} {{ query.q }}</h1>
     {% endif %}

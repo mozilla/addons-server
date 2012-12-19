@@ -4,7 +4,7 @@
 {% set page_parent = '/' %}
 
 {% block content %}
-    <section class="account">
+    <section class="main account">
 
       {% if request.user.is_authenticated() %}
         {% include 'account/includes/nav.html' %}
