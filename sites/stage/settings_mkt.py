@@ -106,8 +106,6 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 
 SOLITUDE_HOSTS = ('https://payments.allizom.org',)
 
-GEOIP_NOOP = 0
-
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 
