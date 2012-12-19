@@ -22,7 +22,7 @@
     // Dim all desktop-only results.
     $('.data-grid .addon-row').each(function() {
         var $this = $(this),
-            $devices = $this.find('.device-list li');
+            $devices = $this.find('.device-list li:not(.unavailable)');
         // If desktop is the only device supported, fade out this row.
         if ($devices.length == 1 && $devices.filter('.desktop').length) {
             $this.addClass('desktop-only');

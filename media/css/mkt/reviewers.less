@@ -1256,6 +1256,15 @@ iframe#manifest-contents {
 }
 
 @media (max-width: @landscape-max) {
+    #id_text_query {
+        display: block;
+        font-size: 18px;
+        margin-top: .5em;
+        width: 100%;
+    }
+    #queue-search button {
+        margin: .5em .5em 0 0;
+    }
     html, body {
         background: @bg-gray @grain-src;
     }
@@ -1266,9 +1275,11 @@ iframe#manifest-contents {
     #footer {
         display: none;
     }
+    #reviewers-score-bar {
+        margin-bottom: 15px;
+    }
     #site-header h1 {
-
-            .border-box;
+        .border-box;
         border-top: 1px solid @light-gray;
         margin: 0;
         max-width: 100%;
@@ -1399,11 +1410,20 @@ iframe#manifest-contents {
             text-align: left;
         }
         .desktop-only {
-            opacity: .25;
+            display: none;
+        }
+        .abuse-reports {
+            display: none;
+        }
+        .waiting-time {
+            display: none;
         }
     }
     .device-list {
-        margin: 0;
+        margin: 0 auto;
+        .firefoxos {
+            width: 20px;
+        }
     }
     #page h1 {
         font-size: 18px;
@@ -1447,23 +1467,14 @@ iframe#manifest-contents {
     dt {
         min-width: 30%;
     }
+    .app-name a {
+        font-weight: 600;
+    }
 }
 
 @media (max-width: @mobile-max) {
-    .device-list {
-        ul {
-            width: 100%;
-        }
-        li {
-            display: block;
-            margin: -5px auto 0;
-            + li {
-                margin-top: 3px;
-            }
-            &:first-child + li {
-                margin-top: 6px;
-            }
-        }
+    #reviewers-score-bar {
+        display: none;
     }
     dt {
         float: none;
