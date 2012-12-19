@@ -4,7 +4,6 @@ import logging
 import os
 
 # get the right settings module
-import imp
 settingmodule = os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local')
 if settingmodule.startswith(('zamboni',  # typical git clone destination
                        'workspace',  # Jenkins
@@ -12,8 +11,6 @@ if settingmodule.startswith(('zamboni',  # typical git clone destination
                        'freddo')):
     settingmodule = settingmodule.split('.', 1)[1]
 
-res = imp.find_module(settingmodule)
-settings = imp.load_module(settingmodule, *res)
 
 import posixpath
 import re
@@ -25,6 +22,9 @@ import sqlalchemy.pool as pool
 
 from django.core.management import setup_environ
 import commonware.log
+
+from django.utils import importlib
+settings = importlib.import_module(settingmodule)
 
 # Pyflakes will complain about these, but they are required for setup.
 setup_environ(settings)
