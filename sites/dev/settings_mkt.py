@@ -55,7 +55,7 @@ SYSLOG_CSP = "http_app_addons_marketplacedev_csp"
 STATSD_PREFIX = 'addons-marketplacedev'
 
 ## Celery
-BROKER_URL = private.BROKER_URL
+BROKER_URL = private_mkt.BROKER_URL
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
