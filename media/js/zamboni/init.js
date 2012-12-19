@@ -1,6 +1,21 @@
 /* Global initialization script */
 var z = {};
 
+// Google Analytics initialization.
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-36116321-6']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
+// End of GA initialization.
+
 $(document).ready(function(){
     // Initialize install buttons.
     $('.install').installButton();
@@ -92,7 +107,7 @@ jQuery.fn.placeholder = function(new_value) {
         var $this = $(this),
             text = $this.attr('placeholder');
 
-        if ($this.val() == '') {
+        if ($this.val() === '') {
             $this.val(text).addClass('placeholder');
         }
     }).each(function(){
@@ -109,7 +124,7 @@ jQuery.fn.placeholder = function(new_value) {
 
 jQuery.fn.hasattr = function(name) {
     return this.attr(name) !== undefined;
-}
+};
 
 
 var escape_ = function(s){
@@ -138,7 +153,7 @@ z.app = document.body.getAttribute('data-app');
 z.appName = document.body.getAttribute('data-appname');
 z.appMatchesUserAgent = z.browser[z.app];
 
-z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'))
+z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'));
 
 z.media_url = document.body.getAttribute('data-media-url');
 
