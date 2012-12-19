@@ -8,7 +8,7 @@ from django import http
 from django.conf import settings
 from django.forms.formsets import formset_factory
 from django.db import transaction
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import translation
 from django.utils.datastructures import MultiValueDictKeyError
@@ -328,9 +328,8 @@ def _check_if_searching(search_form):
 
 
 def _do_sort(request, qs):
-    """Returns an order_by string based on request GET parameters"""
+    """Column sorting logic based on request GET parameters."""
     sort, order = clean_sort_param(request)
-
     if order == 'asc':
         order_by = sort
     else:
@@ -338,6 +337,9 @@ def _do_sort(request, qs):
 
     if sort == 'name':
         return order_by_translation(qs, order_by)
+    elif sort == 'num_abuse_reports':
+        return (qs.annotate(num_abuse_reports=Count('abuse_reports'))
+                .order_by(order_by))
     else:
         return qs.order_by(order_by)
 

@@ -126,7 +126,9 @@
               <th class="waiting-time">{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
               <th>{{ _('Devices') }}</th>
               <th>{{ _('Payments') }}</th>
-              <th class="abuse-reports">{{ _('Abuse Reports') }}</th>
+              {% if tab == 'escalated' %}
+                <th>{{ sort_link(_('Abuse Reports'), 'num_abuse_reports')|safe }}</th>
+              {% endif %}
             </tr>
           </thead>
           <tbody>
@@ -154,7 +156,9 @@
                 <td class="waiting-time">{{ qa.created|timelabel }}</td>
                 <td>{{ device_list(qa.app) }}</td>
                 <td>{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
-                <td class="abuse-reports">{{ qa.app.abuse_reports.count() }}</td>
+                {% if tab == 'escalated' %}
+                  <td class="abuse-reports">{{ qa.app.abuse_reports.count() }}</td>
+                {% endif %}
               </tr>
             {% endfor %}
           </tbody>

@@ -281,13 +281,6 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
         eq_(tds.eq(0).text(), amo.ADDON_PREMIUM_TYPES[amo.ADDON_PREMIUM])
         eq_(tds.eq(1).text(), amo.ADDON_PREMIUM_TYPES[amo.ADDON_FREE_INAPP])
 
-    def test_abuse(self):
-        AbuseReport.objects.create(addon=self.apps[0], message='!@#$')
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(7)')
-        eq_(tds.eq(0).text(), '1')
-
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
         eq_(r.status_code, 200)
@@ -686,6 +679,13 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
         eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (3)')
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
+
+    def test_abuse(self):
+        AbuseReport.objects.create(addon=self.apps[0], message='!@#$')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(7)')
+        eq_(tds.eq(0).text(), '1')
 
     def test_addon_deleted(self):
         self.create_switch(name='soft_delete')
@@ -2188,7 +2188,7 @@ class TestQueueSearchSort(AppReviewerTest):
         """
         Test that apps are sorted in order specified in GET params
         """
-        qs = Webapp.objects.all()
+        qs = Webapp.uncached.all()
 
         # Test apps are sorted by created/asc by default.
         r = self.rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
@@ -2206,5 +2206,16 @@ class TestQueueSearchSort(AppReviewerTest):
         eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
         r = self.rf.get(self.url, {'sort': 'name', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
+
+        # By abuse reports.
+        AbuseReport.objects.create(addon=self.apps[1])
+        r = self.rf.get(self.url, {'sort': 'num_abuse_reports',
+                                   'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
+        r = self.rf.get(self.url, {'sort': 'num_abuse_reports',
+                                   'order': 'asc'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])

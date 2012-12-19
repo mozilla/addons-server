@@ -407,7 +407,7 @@ def clean_sort_param(request):
     sort = request.GET.get('sort', 'created')
     order = request.GET.get('order', 'asc')
 
-    if sort not in ('created', 'name'):
+    if sort not in ('name', 'created', 'num_abuse_reports'):
         sort = 'created'
     if order not in ('desc', 'asc'):
         order = 'asc'
@@ -437,5 +437,5 @@ def create_sort_link(pretty_name, sort_field, get_params, sort, order):
     if sort == sort_field:
         url_class = ' class="sort-icon ed-sprite-sort-%s"' % order
 
-    return u'<a href="?%s"%s>%s</a>' % (urllib.urlencode(get_params),
+    return u'<a href="?%s"%s>%s</a>' % (urllib.urlencode(get_params, True),
                                         url_class, pretty_name)
