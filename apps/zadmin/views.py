@@ -1,6 +1,7 @@
 import csv
-import json
 from decimal import Decimal
+import json
+import re
 from urlparse import urlparse
 
 from django import http
@@ -87,7 +88,7 @@ def flagged(request):
 
     if not addons:
         return jingo.render(request, 'zadmin/flagged_addon_list.html',
-                            {'addons': addons})
+                            {'addons': addons, 'reverse': reverse})
 
     sql = """SELECT {t}.* FROM {t} JOIN (
                 SELECT addon_id, MAX(created) AS created
@@ -116,6 +117,28 @@ def flagged(request):
 
     return jingo.render(request, 'zadmin/flagged_addon_list.html',
                         {'addons': addons})
+
+
+@admin_required(reviewers=True)
+def langpacks(request):
+    if request.method == 'POST':
+        try:
+            tasks.fetch_langpacks.delay(request.POST['path'])
+        except ValueError, e:
+            messages.error(request, "Invalid language pack sub-path provided.")
+
+        return redirect('zadmin.langpacks')
+
+    addons = (Addon.uncached
+                   .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
+                           type=amo.ADDON_LPAPP)
+                   .order_by('name'))
+
+    data = {'addons': addons, 'base_url': settings.LANGPACK_DOWNLOAD_BASE,
+            'default_path': settings.LANGPACK_PATH_DEFAULT % (
+                'firefox', amo.FIREFOX.latest_version)}
+
+    return jingo.render(request, 'zadmin/langpack_update.html', data)
 
 
 @admin.site.admin_view

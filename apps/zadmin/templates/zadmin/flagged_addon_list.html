@@ -27,8 +27,7 @@
         </td>
         <td>
           {% if addon.version %}
-            {# TODO(jbalogh): use reverse #}
-            <a href="/editors/review/{{ addon.version.id }}">{{ addon.version }}</a>
+            <a href="{{ url('editors.review', addon.slug) }}">{{ addon.version }}</a>
           {% endif %}
         </td>
         {% if addon.approval %}

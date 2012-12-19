@@ -13,7 +13,7 @@ import zipfile
 from datetime import datetime
 from itertools import groupby
 from xml.dom import minidom
-from zipfile import BadZipfile
+from zipfile import BadZipfile, ZipFile
 
 from django import forms
 from django.conf import settings
@@ -64,6 +64,17 @@ def get_file(fileorpath):
     if hasattr(fileorpath, 'name'):
         return fileorpath
     return storage.open(fileorpath)
+
+
+def make_xpi(files):
+    from cStringIO import StringIO
+    f = StringIO()
+    z = ZipFile(f, 'w')
+    for path, data in files.items():
+        z.writestr(path, data)
+    z.close()
+    f.seek(0)
+    return f
 
 
 class Extractor(object):

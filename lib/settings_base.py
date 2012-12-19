@@ -930,6 +930,7 @@ PERSONAS_PATH = UPLOADS_PATH + '/personas'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
+CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
 
 PREVIEW_THUMBNAIL_PATH = (PREVIEWS_PATH + '/thumbs/%s/%d.png')
 PREVIEW_FULL_PATH = (PREVIEWS_PATH + '/full/%s/%d.%s')
@@ -1520,3 +1521,10 @@ LEGAL_XFRAME_ALLOW_FROM = [
     UNVERIFIED_ISSUER,
     'fxos.login.persona.org',
 ]
+
+# Language pack fetcher settings
+LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
+LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
+LANGPACK_LIST_BASE = 'ftp://ftp.mozilla.org/pub/mozilla.org/'
+LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
+LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough

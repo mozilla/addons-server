@@ -3,25 +3,35 @@ from datetime import datetime
 import json
 import logging
 import os
+import re
 import sys
 import textwrap
 import traceback
+import urllib2
+import urlparse
 
+from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.template import Context, Template
+from django.utils.translation import trans_real as translation
 
 from celeryutils import task
+import requests
 
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 import amo
+import files.utils
 from amo import set_user
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail
 from devhub.tasks import run_validator
+from files.models import FileUpload, Platform
+from files.utils import parse_addon
+from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import Version
 from zadmin.models import (EmailPreviewTopic, ValidationResult, ValidationJob,
@@ -322,3 +332,138 @@ def notify_failed(file_pks, job_pk, data, **kw):
                 details={'version': version.version,
                          'file': file.filename,
                          'target': job.target_version.version})
+
+
+@task
+def fetch_langpacks(path, **kw):
+    log.info('[@None] Fetching language pack updates %s' % path)
+
+    PLATFORMS = amo.PLATFORM_ALL,
+    PLATFORMS = [Platform.objects.get(pk=p.id) for p in PLATFORMS]
+
+    owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
+    orig_lang = translation.get_language()
+
+    # Treat `path` as relative even if it begins with a leading /
+    list_url = urlparse.urljoin(settings.LANGPACK_LIST_BASE, './' + path + '/')
+    base_url = urlparse.urljoin(settings.LANGPACK_DOWNLOAD_BASE, './' + path + '/')
+
+    if not list_url.startswith(settings.LANGPACK_LIST_BASE):
+        log.error('[@None] Not fetching language packs from invalid URL '
+                  'path: %s' % path)
+        raise ValueError('Invalid path')
+
+    try:
+        # urllib2 rather than requests since this is an FTP URL.
+        req = urllib2.urlopen(list_url)
+    except Exception, e:
+        log.error('[@None] Error fetching language pack list %s: %s'
+                  % (path, e))
+        return
+
+    xpi_list = [line[-1] for line in map(str.split, req.readlines())]
+
+    allowed = re.compile(r'^[A-Za-z-]+\.xpi$')
+    for xpi in xpi_list:
+        if not allowed.match(xpi):
+            continue
+
+        lang = os.path.splitext(xpi)[0]
+
+        try:
+            req = requests.get(base_url + xpi,
+                               verify=settings.CA_CERT_BUNDLE_PATH)
+
+            if ('content-length' not in req.headers or
+                int(req.headers['content-length']) >
+                    settings.LANGPACK_MAX_SIZE):
+                log.error('[@None] Language pack "%s" too large: %d > %d'
+                          % (xpi, req.headers['content-large'],
+                             settings.LANGPACK_MAX_SIZE))
+                continue
+
+            chunks = []
+            size = 0
+            for chunk in req.iter_content(settings.LANGPACK_MAX_SIZE):
+                size += len(chunk)
+                # `requests` doesn't respect the Content-Length header
+                # so we need to check twice.
+                if size > settings.LANGPACK_MAX_SIZE:
+                    raise Exception('Response to big')
+                chunks.append(chunk)
+        except Exception, e:
+            log.error('[@None] Error fetching "%s" language pack: %s'
+                      % (xpi, e))
+            continue
+
+        upload = FileUpload()
+        upload.add_file(chunks, xpi, size)
+
+        # Activate the correct locale for the language pack so it
+        # will be used as the add-on's default locale if available.
+        translation.activate(lang)
+
+        guid = 'langpack-%s@firefox.mozilla.org' % lang
+
+        try:
+            addon = Addon.objects.get(guid=guid)
+        except Addon.DoesNotExist:
+            addon = None
+
+        try:
+            data = parse_addon(upload, addon)
+            if data['guid'] != guid:
+                raise forms.ValidationError('Unexpected GUID')
+        except Exception, e:
+            log.error('[@None] Error parsing "%s" language pack: %s'
+                      % (xpi, e))
+            continue
+
+        if addon:
+            if addon.versions.filter(version=data['version']).exists():
+                log.info('[@None] Version %s of "%s" language pack exists'
+                         % (data['version'], xpi))
+                continue
+            if not (addon.addonuser_set
+                         .filter(user__email=settings.LANGPACK_OWNER_EMAIL)
+                         .exists()):
+                log.info('[@None] Skipping language pack "%s": '
+                         'not owned by %s' % (xpi,
+                                              settings.LANGPACK_OWNER_EMAIL))
+                continue
+
+            version = Version.from_upload(upload, addon, PLATFORMS)
+            log.info('[@None] Updating language pack "%s" to version %s'
+                     % (xpi, data['version']))
+        else:
+            if amo.VERSION_BETA.search(data['version']):
+                log.error('[@None] Not creating beta version %s for new "%s" '
+                          'language pack' % (data['version'], xpi))
+                continue
+
+            addon = Addon.from_upload(upload, PLATFORMS)
+            AddonUser(addon=addon, user=owner).save()
+            version = addon.latest_version
+
+            addon.status = amo.STATUS_PUBLIC
+            if addon.default_locale.lower() == lang.lower():
+                addon.target_locale = addon.default_locale
+
+            addon.save()
+
+            log.info('[@None] Creating new "%s" language pack, version %s'
+                     % (xpi, data['version']))
+
+        # Version.from_upload will do this automatically, but only
+        # if the add-on is already public, which it may not be in
+        # the case of new add-ons
+        status = amo.STATUS_PUBLIC
+        if amo.VERSION_BETA.search(version.version):
+            status = amo.STATUS_BETA
+
+        file = version.files.all()[0]
+        file.update(status=status)
+
+        addon.update_version()
+
+    translation.activate(orig_lang)
