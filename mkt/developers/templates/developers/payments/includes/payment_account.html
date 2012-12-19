@@ -8,57 +8,6 @@
     </a>
   </div>
 
-  {% if addon.paypal_id %}
-    <div id="paypal" class="indent payment-option">
-      <label for="paypal-account">PayPal</label>
-      <span id="paypal-id">{{ addon.paypal_id }}</span>
-      <div id="paypal-id-verify" data-url="{{ addon.get_dev_url('paypal_setup_check') }}">
-        <p class="loading-submit"></p>
-        <div class="paypal-pass js-hidden">
-          <span id="check-passed" class="check-icon"></span>
-        </div>
-        <div class="paypal-fail js-hidden">
-          <span id="check-failed" class="check-icon"></span>
-        </div>
-
-        <div class="item-actions paypal-actions">
-          <ul>
-            <li>
-              <a id="remove-account"
-                 data-remove-url="{{ addon.get_dev_url('paypal_remove') }}">
-                {{ _('Remove Account') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ addon.get_dev_url('paypal_setup_details')}}"
-                 data-url="{{ addon.get_dev_url('paypal_setup_details') }}">
-                {{ _('Edit Contact Details') }}
-              </a>
-            </li>
-            <li class="setup-bounce">
-              <a id="setup-bounce-link"
-                 data-paypal-url="{{ addon.get_dev_url('paypal_setup') }}">
-                {{ _('Set Up Permissions') }}
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div id="paypal-errors">
-          <p><strong>
-            {{ _('We found errors on your PayPal account') }}:
-          </strong></p>
-          <ul></ul>
-        </div>
-
-      </div>
-    </div>
-  {% endif %}
-
-  {% if bluevia %}
-    {% include 'developers/payments/includes/bluevia.html' %}
-  {% endif %}
-
   {{ bango_account_list_form.errors }}
   <div id="bango-payment-accounts" class="indent payment-option">
     <label for="bango-account">{{ _('Payment Account') }}</label>
