@@ -11,6 +11,7 @@ function fragmentFilter(el) {
             href.indexOf('/statistics/') !== -1 ||
             href.indexOf('?modified=') !== -1 ||
             el.getAttribute('target') === '_blank' ||
+            el.getAttribute('rel') === 'external' ||
             $el.hasClass('post') || $el.hasClass('sync');
 }
 
