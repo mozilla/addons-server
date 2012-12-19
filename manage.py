@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import imp
 import logging
 import os
 import site
@@ -64,8 +63,8 @@ if setting in ('settings', ''):
     setting = 'settings_local'
 
 # Finally load the settings file that was specified.
-res = imp.find_module(setting)
-settings = imp.load_module(setting, *res)
+from django.utils import importlib
+settings = importlib.import_module(setting)
 os.environ['DJANGO_SETTINGS_MODULE'] = setting
 
 if not settings.DEBUG:
