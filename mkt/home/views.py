@@ -24,12 +24,22 @@ def home(request):
     featured_cnt = len(featured)
 
     # Show featured apps in multiples of three.
-    if featured_cnt >= 9:
-        featured = featured[:9]
-    elif featured_cnt >= 6:
-        featured = featured[:6]
-    elif featured_cnt >= 3:
-        featured = featured[:3]
+    if request.MOBILE:
+        if featured_cnt >= 9:
+            featured = featured[:9]
+        elif featured_cnt >= 6:
+            featured = featured[:6]
+        elif featured_cnt >= 3:
+            featured = featured[:3]
+    else:
+        if featured_cnt >= 12:
+            featured = featured[:12]
+        elif featured_cnt >= 8:
+            featured = featured[:8]
+        elif featured_cnt >= 4:
+            # Once we allow for the giant featured app we'll require at least
+            # 5 featured apps on desktop.
+            featured = featured[:4]
 
     return jingo.render(request, 'home/home.html', {
         'featured': featured,
