@@ -123,6 +123,3 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # we are also creating access tokens for OAuth, here are the keys and
     # secrets used for them
     API_SALT = getattr(private_mkt, 'API_SALT', FAKEAUTH_TOKEN)
-
-    if getattr(private_mkt, 'VAURIEN', False):
-        ES_HOSTS = ['127.0.0.1:9202']
