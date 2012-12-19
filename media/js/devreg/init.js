@@ -10,7 +10,7 @@ var z = {
         if (!z.prefix) return property;
         return '-' + z.prefix + '-' + property;
     },
-    canInstallApps: true,
+    canInstallApps: true
 };
 
 var data_user = $('body').data('user');
@@ -35,9 +35,6 @@ $(document).ready(function() {
         var em = $this.text().split('').reverse().join('');
         $this.prev('a').attr('href', 'mailto:' + em);
     });
-
-    // Initialize webtrends tracking.
-    webtrendsAsyncInit();
 
     // Fake placeholders if we need to.
     $('input[placeholder]').placeholder();
@@ -99,7 +96,7 @@ jQuery.fn.placeholder = function(new_value) {
         var $this = $(this),
             text = $this.attr('placeholder');
 
-        if ($this.val() == '') {
+        if ($this.val() === '') {
             $this.val(text).addClass('placeholder');
         }
     }).each(function(){
