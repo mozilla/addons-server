@@ -21,4 +21,16 @@
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();
     }));
+
+    z.page.on('fragmentloaded', function() {
+        var reviews = $('.detail .reviews li');
+        if (reviews.length < 3) return;
+
+        for (var i=0; i<reviews.length-2; i+=2) {
+            var hgt = Math.max(reviews.eq(i).height(),
+                               reviews.eq(i+1).height());
+            reviews.eq(i).height(hgt);
+            reviews.eq(i+1).height(hgt);
+        }
+    });
 })();
