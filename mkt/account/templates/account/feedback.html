@@ -13,7 +13,7 @@
         <h2>{{ pagetitle }}</h2>
       {% endif %}
 
-      <form class="form-grid" method="post" id="feedback-form" action="{{ url('account.feedback') }}">
+      <form class="container form-grid" method="post" id="feedback-form" action="{{ url('account.feedback') }}">
         {{ csrf() }}
 
         <div class="simple-field c{{ ' error' if form.feedback.errors }}">

@@ -3,31 +3,17 @@
 .detail {
     #page {
         padding: 120px 0 40px;
-
-        > section {
+        section.main {
             background-color: fade(#fff, 30%);
         }
-
     }
     #reviews {
         margin: 20px;
     }
     .listing {
         border: 0;
-
-        .mkt-tile {
-            h3 {
-                font-weight: 600;
-            }
-            .author {
-                color: @text;
-                text-shadow: 0 0;
-            }
-            + .tray {
-                background: transparent;
-                border-bottom: 0;
-                border-bottom: 1px solid rgba(3, 16, 26, 0.13);
-            }
+        .mkt-tile h3 {
+            font-weight: 600;
         }
     }
     #reviews-detail {

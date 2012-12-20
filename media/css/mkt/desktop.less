@@ -138,6 +138,33 @@ body {
     }
 }
 
+.container,
+.listing,
+.form-grid {
+    background-color: rgba(0,0,0,.03);
+    border: 1px solid rgba(0,0,0,.04);
+}
+
+.container {
+    &.product-details,
+    &.results,
+    &.prose {
+        margin: 50px 0;
+    }
+    &.prose,
+    &.form-grid {
+        padding: 25px;
+    }
+}
+
+body[data-page-type="notice"],
+body[data-page-type="alpha"] {
+    section.primary {
+        overflow: hidden;
+        padding: 0;
+    }
+}
+
 // TODO: Move this out of here. This is not your diaper.
 
 // detail

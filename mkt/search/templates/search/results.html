@@ -119,7 +119,7 @@
       <h1>{{ _('Search:') }} {{ query.q }}</h1>
     {% endif %}
     {% if pager.object_list %}
-      <ol class="listing c" start="{{ pager.start_index() }}">
+      <ol class="container listing c" start="{{ pager.start_index() }}">
         {{ search_results(pager.object_list, field=query.sort, src=src) }}
         {% if pager.has_other_pages() %}
           <li class="loadmore" data-sel=".listing">

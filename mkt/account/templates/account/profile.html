@@ -79,7 +79,7 @@
       </section>
     {% endif %}
     {% if submissions.object_list %}
-      <div id="my-submissions" class="listing c">
+      <div id="my-submissions" class="container listing c">
         <h2>{{ _('My Submissions') }}</h2>
         <ol class="items" start="{{ submissions.start_index() }}">
           {{ search_results(submissions.object_list, src='mkt-user-profile') }}

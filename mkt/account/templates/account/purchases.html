@@ -12,7 +12,7 @@
     {% endif %}
 
     {% if pager.object_list %}
-      <ol class="listing" start="{{ pager.start_index() }}">
+      <ol class="container listing" start="{{ pager.start_index() }}">
       {% for product in pager.object_list %}
         <li class="item c">{{ market_tile(product) }}</li>
       {% endfor %}

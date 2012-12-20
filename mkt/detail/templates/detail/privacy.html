@@ -8,7 +8,7 @@
   {# QUESTION: Is this a question or todo below? #}
   {# TODO: Is this still really used? We just show an empty page with a title #}
   {% if not product.is_visible(request) %}
-    <section class="main infobox">
+    <section class="container main infobox">
       <div>
         <h2>{{ product.name }}</h2>
       </div>
@@ -16,7 +16,7 @@
     {{ notification(product, amo, mkt, is_dev) }}
   {% else %}
     {{ notification(product, amo, mkt, is_dev) }}
-    <section class="main infobox">
+    <section class="container main infobox">
       {% if DESKTOP %}
         <h1>{{ pagetitle }}</h1>
       {% endif %}
