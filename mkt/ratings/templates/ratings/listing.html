@@ -15,7 +15,7 @@
 {% block content %}
   {% block review_header %}
     {% if product.can_review(amo_user) %}
-    <section id="review-listing">
+    <section class="main" id="review-listing">
       <p id="add-review">
         <a href="{{ product.get_ratings_url('add') }}" class="button fat">
           {{ _('Write a review') if not has_review else _('Edit your review') }}
@@ -25,7 +25,7 @@
     {% endif %}
   {% endblock %}
 
-  <section class="{{ 'replies' if reply }} c" id="reviews">
+  <section class="main{{ ' replies' if reply }} c" id="reviews">
     {% if ratings.object_list or reply %}
       {{ rating_flag() }}
       <ul id="review-list"

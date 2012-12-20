@@ -13,7 +13,7 @@
 {% set bodyclass = 'review-add' %}
 
 {% block content %}
-  <section id="submit-review" class="friendly">
+  <section id="submit-review" class="main friendly">
     <form method="post">
       {{ csrf() }}
       {{ form_field(form.rating, label=_('How would you rate this?'),
