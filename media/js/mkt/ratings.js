@@ -132,7 +132,7 @@
             action = reviewEl.closest('[data-edit-url]').data('edit-url'),
             body = getBody(reviewEl.find('.body'));
         overlay.html(format($('#edit-review-template').html(),
-                            {action: action, body: body}));
+                            {title: 'Edit Review', action: action, body: body}));
         if (reviewEl.hasClass('reply')) {
             overlay.find('select[name="rating"]').remove();
         } else {
