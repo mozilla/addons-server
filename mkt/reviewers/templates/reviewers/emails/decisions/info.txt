@@ -8,4 +8,7 @@ URL: {{ detail_url }}
 {{ reviewer }} wrote:
 
 {{ comments }}
+
+Please reply to this email to supply the information requested.
+
 {% endblock %}
