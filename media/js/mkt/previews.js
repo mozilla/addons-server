@@ -30,7 +30,10 @@
             previewsHTML += previewTemplate(p);
         });
 
-        var dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
+        var dotHTML = '';
+        if (product.previews.length > 1) {
+            dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
+        }
         $tray.html(sliderTemplate({previews: previewsHTML, dots: dotHTML}));
 
         var numPreviews = $tray.find('li').length;
