@@ -20,7 +20,7 @@
                           product.listed_in(category='games') and
                           not product.content_ratings_in(mkt.regions.BR, 'games') %}
   {% if unrated_brazil_game or needs_a_rating %}
-    <section id="product-rating-status" class="full notification-box">
+    <section id="product-rating-status" class="main full notification-box">
       <div>
         {% if needs_a_rating %}
           <p class="toggle">
@@ -65,7 +65,7 @@
     </section>
   {% endif %}
   {% if not product.is_public() %}
-    <section id="product-status" class="full notification-box">
+    <section id="product-status" class="main full notification-box">
       <div>
         {% if is_dev or is_admin %}
           {% if product.status in (amo.STATUS_NULL, amo.STATUS_REJECTED) or
