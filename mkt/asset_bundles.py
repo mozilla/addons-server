@@ -161,6 +161,7 @@ CSS.update({
         'css/mkt/desktop-forms.less',
         'css/mkt/desktop-account.less',
         'css/mkt/desktop-listing.less',
+        'css/mkt/desktop-details.less',
     ),
 })
 

@@ -5,7 +5,7 @@
   <section class="main reviews c">
     <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
       {% if reviews %}
-        <ul data-edit-url="{{ product.get_ratings_url('add') }}">
+        <ul class="c" data-edit-url="{{ product.get_ratings_url('add') }}">
           {% for review in reviews %}
             {% include 'ratings/rating.html' %}
           {% endfor %}

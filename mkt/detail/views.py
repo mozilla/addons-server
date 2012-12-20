@@ -46,7 +46,7 @@ def detail(request, addon):
         reviewed_filter['version'] = addon.current_version
     ctx = {
         'product': addon,
-        'reviews': reviews[:2],
+        'reviews': reviews[:6],
         'flags': get_flags(request, reviews),
         'has_review': request.user.is_authenticated() and
                       reviews.filter(**reviewed_filter).exists(),

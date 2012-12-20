@@ -1,0 +1,49 @@
+@import 'lib';
+
+.detail #page {
+    background-color: #ccd2d6;
+    padding: 120px 0 40px;
+
+    > section {
+        background: fade(#fff, 20%);
+    }
+    .review {
+        float: left;
+        width: 50%;
+        padding: 0 5px;
+    }
+    .listing {
+        border: 0;
+
+        .mkt-tile {
+            background: transparent;
+            padding: 20px 20px 20px 108px;
+
+            h3 {
+                font-weight: 600;
+            }
+            .author {
+                color: @text;
+                text-shadow: 0 0;
+            }
+            .icon {
+                left: 20px;
+            }
+            + .tray {
+                background: transparent;
+                border-bottom: 0;
+                border-bottom: 1px solid rgba(3, 16, 26, 0.13);
+            }
+        }
+    }
+    .infobox {
+        ul.c {
+            margin: 0 -5px;
+            li {
+                margin: 0;
+                width: 25%;
+                padding: 0 5px;
+            }
+        }
+    }
+}
