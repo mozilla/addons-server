@@ -5,8 +5,11 @@
 {% set headertitle = _('Report Abuse') %}
 
 {% block content %}
-  <section id="abuse" class="friendly">
+  <section id="abuse" class="main friendly">
     <div>
+      {% if DESKTOP %}
+        <h1>{{ pagetitle }}</h1>
+      {% endif %}
       <p class="intro">
         <label id="recap-label" for="{{ abuse_form.text.auto_id }}">
           {% trans policies_url='https://developer.mozilla.org/en-US/docs/Apps/'
