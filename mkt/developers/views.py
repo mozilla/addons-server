@@ -462,7 +462,7 @@ def upload_manifest(*args, **kwargs):
 @json_view
 def _upload_manifest(request, is_standalone=False):
     form = forms.NewManifestForm(request.POST, is_standalone=is_standalone)
-    if waffle.switch_is_active('webapps-unique-by-domain'):
+    if not is_standalone and waffle.switch_is_active('webapps-unique-by-domain'):
         # Helpful error if user already submitted the same manifest.
         dup_msg = trap_duplicate(request, request.POST.get('manifest'))
         if dup_msg:

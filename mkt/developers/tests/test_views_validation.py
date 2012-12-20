@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import codecs
+import collections
 import json
 import os
 import tempfile
@@ -7,7 +8,7 @@ import tempfile
 from django import forms
 from django.core.files.storage import default_storage as storage
 
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -19,6 +20,8 @@ from files.helpers import copyfileobj
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
+
+from mkt.developers.views import _upload_manifest, standalone_hosted_upload
 
 
 class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -127,6 +130,17 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
                         encoding='shift-jis')
         wp = WebAppParser().parse(self.webapp(contents=wm))
         eq_(wp['name'], {'en-US': u'まつもとゆきひろ'})
+
+    @patch('mkt.developers.views.trap_duplicate')
+    def test_trap_duplicate_skipped_on_standalone(self, trap_duplicate_mock):
+        self.create_switch('webapps-unique-by-domain')
+        request = Mock()
+        request.method = 'POST'
+        request.POST = {'manifest': ''}
+        request.return_value = collections.namedtuple('FakeResponse',
+                                                      'status_code content')
+        standalone_hosted_upload(request)
+        assert not trap_duplicate_mock.called
 
 
 class TestStandaloneValidation(BaseUploadTest):
