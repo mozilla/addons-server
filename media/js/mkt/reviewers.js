@@ -24,8 +24,18 @@
         var $this = $(this),
             $devices = $this.find('.device-list li:not(.unavailable)');
         // If desktop is the only device supported, fade out this row.
-        if ($devices.length == 1 && $devices.filter('.desktop').length) {
-            $this.addClass('desktop-only');
+        if (z.capabilities.mobile && $devices.length == 1 && $devices.filter('.desktop').length) {
+            $this.addClass('unsupported');
+        }
+        if (z.capabilities.gaia) {
+            if (!$devices.filter('.firefoxos').length) {
+                $this.addClass('unsupported');
+            }
+        } else {
+            if ((z.capabilities.mobile && !$devices.filter('.android-mobile').length) ||
+                (z.capabilities.tablet && !$devices.filter('.android-tablet').length)) {
+                $this.addClass('unsupported');
+            }
         }
     });
 
