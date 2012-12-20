@@ -44,9 +44,10 @@ def detail(request, addon):
     reviewed_filter = dict(user=request.user.id)
     if addon.is_packaged:
         reviewed_filter['version'] = addon.current_version
+    num_reviews = 2 if request.MOBILE else 6
     ctx = {
         'product': addon,
-        'reviews': reviews[:6],
+        'reviews': reviews[:num_reviews],
         'flags': get_flags(request, reviews),
         'has_review': request.user.is_authenticated() and
                       reviews.filter(**reviewed_filter).exists(),
