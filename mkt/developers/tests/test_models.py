@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 import fudge
+from fudge.inspector import arg
 from nose.tools import eq_
 from mock import Mock, patch
 
@@ -88,13 +89,17 @@ class TestPaymentAccount(amo.tests.TestCase):
     @patch('mkt.developers.models.SolitudeSeller.create')
     def test_create_bango(self, solselc, client):
         solselc.return_value = Mock(resource_uri='selluri')
-        client.post_package.return_value = {'resource_uri': 'zipzap'}
+        client.post_package.return_value = {
+            'resource_uri': 'zipzap',
+            'package_id': 123,
+        }
 
         res = PaymentAccount.create_bango(
             self.user, {'account_name': 'Test Account'})
         eq_(res.name, 'Test Account')
         eq_(res.user, self.user)
         eq_(res.seller_uri, 'selluri')
+        eq_(res.bango_package_id, 123)
         eq_(res.uri, 'zipzap')
 
         client.post_package.assert_called_with(
@@ -151,6 +156,7 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
                 .with_args(method='product_bango',
                            params={'seller_bango': 'acuri',
                                    'seller_product': 'gpuri',
+                                   'packageId': arg.any(),
                                    'name': self.app.name, 'categoryId': 1,
                                    'secret': 'poop'},
                            lookup_by=['seller_product'])

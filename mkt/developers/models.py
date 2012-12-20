@@ -46,6 +46,7 @@ class PaymentAccount(amo.models.ModelBase):
     uri = models.CharField(max_length=255, unique=True)
     # A soft-delete so we can talk to Solitude asynchronously.
     inactive = models.BooleanField(default=False)
+    bango_package_id = models.IntegerField(blank=True, null=True)
 
     BANGO_PACKAGE_VALUES = (
         'adminEmailAddress', 'supportEmailAddress', 'financeEmailAddress',
@@ -91,6 +92,7 @@ class PaymentAccount(amo.models.ModelBase):
 
         obj = cls.objects.create(user=user, uri=uri,
                                  seller_uri=user_seller.resource_uri,
+                                 bango_package_id=res['package_id'],
                                  name=form_data['account_name'])
 
         log.info('[User:%s] Created Bango payment account (uri: %s)' %
@@ -176,12 +178,17 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
     @classmethod
     def _create_bango(cls, product_uri, addon, payment_account, secret):
+        if not payment_account.bango_package_id:
+            raise NotImplementedError('Currently we only support Bango '
+                                      'so the associated account must '
+                                      'have a bango_package_id')
         # Create the Bango product via Solitude.
         res = client.upsert(
             method='product_bango',
             params={'seller_bango': payment_account.uri,
                     'seller_product': product_uri,
                     'name': addon.name,
+                    'packageId': payment_account.bango_package_id,
                     'categoryId': 1,
                     'secret': secret},
             lookup_by=['seller_product'])
