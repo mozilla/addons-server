@@ -7,7 +7,9 @@ from django.db import transaction
 
 import MySQLdb as mysql
 
+from addons import cron
 from addons.models import Persona, AddonUser
+import amo
 from bandwagon.models import CollectionAddon
 from users.models import UserProfile
 
@@ -149,6 +151,7 @@ class Command(BaseCommand):
             if options.get('commit') == 'yes':
                 self.log('Committing changes.')
                 transaction.commit()
+                cron.reindex_addons(addon_type=amo.ADDON_PERSONA)
             else:
                 self.log('Not committing changes, this is a dry run.')
                 transaction.rollback()

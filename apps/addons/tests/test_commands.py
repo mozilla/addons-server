@@ -1,7 +1,10 @@
 from nose.tools import eq_
+import mock
 
 from addons.management.commands.import_personas import Command
 from addons.models import Addon, AddonUser, Persona
+from addons.tasks import index_addons
+from versions.models import Version
 import amo
 import amo.tests
 from users.models import UserProfile
@@ -72,3 +75,13 @@ class TestCommand(amo.tests.TestCase):
         assert 'Not found persona 4 for user some_username' in self.cmd.logs
         user = UserProfile.objects.get(email='foo@bar.com')
         eq_([user], list(addon.listed_authors))
+
+    @mock.patch("addons.tasks.index_addons.subtask", wraps=index_addons.subtask)
+    def test_reindex(self, reindex):
+        addon = Addon.objects.create(type=amo.ADDON_PERSONA,
+                                     status=amo.STATUS_PUBLIC)
+        v1 = Version.objects.create(addon=addon, version='1.0')
+        addon.update(_current_version=v1)
+        Persona.objects.create(persona_id=3, addon=addon)
+        self.cmd.handle(commit='yes')
+        assert reindex.called

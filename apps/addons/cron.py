@@ -444,7 +444,7 @@ def give_personas_versions():
 
 
 @cronjobs.register
-def reindex_addons(index=None, aliased=True):
+def reindex_addons(index=None, aliased=True, addon_type=None):
     from . import tasks
     # Make sure our mapping is up to date.
     search.setup_mapping(index, aliased)
@@ -452,6 +452,8 @@ def reindex_addons(index=None, aliased=True):
            .filter(_current_version__isnull=False,
                    status__in=amo.VALID_STATUSES,
                    disabled_by_user=False))
+    if addon_type:
+        ids = ids.filter(type=addon_type)
     ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
           for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(ts).apply_async()
