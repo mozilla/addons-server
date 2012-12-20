@@ -76,7 +76,8 @@ class TestPaidRereview(amo.tests.TestCase):
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
 
         self.account = models.PaymentAccount.objects.create(
-            user=self.user, uri='asdf', name='test', inactive=False)
+            user=self.user, uri='asdf', name='test', inactive=False,
+            bango_package_id=123)
 
         self.kwargs = {
             'addon': self.addon,
