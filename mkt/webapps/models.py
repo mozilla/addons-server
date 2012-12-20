@@ -32,7 +32,7 @@ from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path
 from constants.applications import DEVICE_TYPES
-from files.models import File, nfd_str
+from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
 from versions.models import Version
@@ -708,6 +708,32 @@ class Webapp(Addon):
             premium_type in free_inapp_upgrade):
             return True
         return False
+
+    def create_blocklisted_version(self):
+        """
+        Creates a new version who's file is the blocklisted app found in /media
+        and sets status to STATUS_BLOCKLISTED.
+
+        """
+        blocklisted_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
+                                        'blocklisted.zip')
+        last_version = self.current_version.version
+        v = Version.objects.create(
+            addon=self, version='blocklisted-%s' % last_version)
+        f = File(version=v, status=amo.STATUS_BLOCKED,
+                 platform=Platform.objects.get(id=amo.PLATFORM_ALL.id))
+        f.filename = f.generate_filename()
+        copy_stored_file(blocklisted_path, f.file_path)
+        log.info('[Webapp:%s] Copied blocklisted app from %s to %s' % (
+            self, blocklisted_path, f.file_path))
+        f.size = storage.size(f.file_path)
+        f.hash = f.generate_hash(f.file_path)
+        f.save()
+        f.inject_ids()
+        self.sign_if_packaged(v.pk)
+        self.status = amo.STATUS_BLOCKED
+        self._current_version = v
+        self.save()
 
 
 # Pull all translated_fields from Addon over to Webapp.

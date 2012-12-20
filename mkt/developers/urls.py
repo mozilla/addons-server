@@ -37,6 +37,7 @@ app_detail_patterns = patterns('',
     url('^disable$', views.disable, name='mkt.developers.apps.disable'),
     url('^publicise$', views.publicise, name='mkt.developers.apps.publicise'),
     url('^status$', views.status, name='mkt.developers.apps.versions'),
+    url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
     # TODO: '^versions/$'
     url('^versions/(?P<version_id>\d+)$', views.version_edit,

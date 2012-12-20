@@ -6,7 +6,6 @@ import uuid
 import zipfile
 from datetime import datetime, timedelta
 
-from django.conf import settings
 from django.db.models.signals import post_delete, post_save
 
 import mock
@@ -404,6 +403,25 @@ class TestManifest(BaseWebAppTest):
         with open(self.manifest, 'r') as mf:
             manifest_json = json.load(mf)
             eq_(webapp.get_manifest_json(), manifest_json)
+
+
+class TestPackagedModel(amo.tests.TestCase):
+
+    def test_create_blocklisted_version(self):
+        app = app_factory(app_slug='test', is_packaged=True,
+                          version_kw={'version': '1.0', 'created': None})
+        app.create_blocklisted_version()
+        app = app.reload()
+        v = app.versions.latest()
+        f = v.files.latest()
+
+        eq_(app.status, amo.STATUS_BLOCKED)
+        eq_(app.versions.count(), 2)
+        eq_(v.version, 'blocklisted-1.0')
+
+        eq_(app._current_version, v)
+        assert 'blocklisted-1.0' in f.filename
+        eq_(f.status, amo.STATUS_BLOCKED)
 
 
 class TestPackagedManifest(BasePackagedAppTest):

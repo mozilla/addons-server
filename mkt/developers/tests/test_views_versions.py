@@ -14,11 +14,13 @@ from files.models import File
 from users.models import UserProfile
 from versions.models import Version
 
+from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 
 
 class TestVersion(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('group_admin', 'user_999', 'user_admin',
+                       'user_admin_group', 'webapp_337141')
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
@@ -86,7 +88,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_rejected(self):
         comments = "oh no you di'nt!!"
-        amo.set_user(UserProfile.objects.get(username='editor'))
+        amo.set_user(UserProfile.objects.get(username='admin'))
         amo.log(amo.LOG.REJECT_VERSION, self.webapp,
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
@@ -119,7 +121,7 @@ class TestVersion(amo.tests.TestCase):
     def test_rejected_packaged(self):
         self.webapp.update(is_packaged=True)
         comments = "oh no you di'nt!!"
-        amo.set_user(UserProfile.objects.get(username='editor'))
+        amo.set_user(UserProfile.objects.get(username='admin'))
         amo.log(amo.LOG.REJECT_VERSION, self.webapp,
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
@@ -210,7 +212,7 @@ class TestAddVersion(BasePackagedAppTest):
 
 
 class TestEditVersion(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         self.app = amo.tests.app_factory(is_packaged=True,
@@ -235,7 +237,7 @@ class TestEditVersion(amo.tests.TestCase):
 
 
 class TestVersionPackaged(amo.tests.WebappTestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestVersionPackaged, self).setUp()
@@ -331,3 +333,29 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
                 mock_version.reset_mock()
             else:
                 eq_(res.status_code, 403)
+
+    def test_cannot_delete_blocked(self):
+        v = self.app.versions.latest()
+        f = v.all_files[0]
+        f.update(status=amo.STATUS_BLOCKED)
+        res = self.client.post(self.delete_url, dict(version_id=v.pk))
+        eq_(res.status_code, 403)
+
+    def test_dev_cannot_blocklist(self):
+        url = self.app.get_dev_url('blocklist')
+        res = self.client.post(url)
+        eq_(res.status_code, 403)
+
+    def test_admin_can_blocklist(self):
+        self.grant_permission(UserProfile.objects.get(username='regularuser'),
+                              'Apps:Configure')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        v_count = self.app.versions.count()
+        url = self.app.get_dev_url('blocklist')
+        res = self.client.post(url)
+        self.assert3xx(res, self.app.get_dev_url('versions'))
+        app = self.app.reload()
+        eq_(app.versions.count(), v_count + 1)
+        eq_(app.status, amo.STATUS_BLOCKED)
+        eq_(app.versions.latest().files.latest().status, amo.STATUS_BLOCKED)

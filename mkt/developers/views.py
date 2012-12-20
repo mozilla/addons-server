@@ -7,8 +7,7 @@ from django import http
 from django import forms as django_forms
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.db import models, transaction
-from django.forms.models import model_to_dict
+from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_view_exempt
@@ -24,13 +23,13 @@ import amo
 import amo.utils
 from access import acl
 from addons import forms as addon_forms
-from addons.decorators import can_become_premium
+from addons.decorators import addon_view
 from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from amo import messages
-from amo.decorators import json_view, login_required, post_required, write
-from amo.helpers import absolutify, urlparams
+from amo.decorators import (any_permission_required, json_view, login_required,
+                            post_required)
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
 from devhub.forms import VersionForm
@@ -255,6 +254,8 @@ def version_edit(request, addon_id, addon, version_id):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
+    if version.all_files[0].status == amo.STATUS_BLOCKED:
+        raise PermissionDenied
     version.delete()
     messages.success(request,
                      _('Version "{0}" deleted.').format(version.version))
@@ -864,3 +865,20 @@ def api(request):
     return jingo.render(request, 'developers/api.html',
                         {'consumer': access, 'profile': profile,
                          'roles': roles})
+
+
+@addon_view
+@post_required
+@any_permission_required([('Admin', '%'),
+                          ('Apps', 'Configure')])
+def blocklist(request, addon):
+    """
+    Blocklists the app by creating a new version/file.
+    """
+    if addon.status != amo.STATUS_BLOCKED:
+        addon.create_blocklisted_version()
+        messages.success(request, _('Created blocklisted version.'))
+    else:
+        messages.info(request, _('App already blocklisted.'))
+
+    return redirect(addon.get_dev_url('versions'))
