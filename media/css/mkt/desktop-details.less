@@ -1,15 +1,16 @@
 @import 'lib';
 
-.detail #page {
-    padding: 120px 0 40px;
+.detail {
+    #page {
+        padding: 120px 0 40px;
 
-    > section {
-        background-color: fade(#fff, 30%);
+        > section {
+            background-color: fade(#fff, 30%);
+        }
+
     }
-    .review {
-        float: left;
-        width: 50%;
-        padding: 0 5px;
+    #reviews {
+        margin: 20px;
     }
     .listing {
         border: 0;
@@ -33,6 +34,11 @@
         padding: 20px;
         ul {
             margin: 0 -5px;
+            .review {
+                float: left;
+                width: 50%;
+                padding: 0 5px;
+            }
         }
     }
     .infobox {
@@ -40,11 +46,11 @@
             padding: 20px;
         }
         ul.c {
-            margin: 0 -5px;
+            margin: -5px;
             li {
                 margin: 0;
                 width: 25%;
-                padding: 0 5px;
+                padding: 5px;
             }
         }
     }
