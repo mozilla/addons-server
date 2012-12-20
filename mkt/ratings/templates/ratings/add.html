@@ -24,26 +24,26 @@
       {% if request.MOBILE %}
         <p class="charlimit">{{ _('Max 150 characters') }}</p>
       {% endif %}
-      <p class="form-footer submit-review">
+      <p class="form-footer submit-review c">
         <a href="#" class="button fat alt">{{ _('Cancel') }}</a>
         <button type="submit" class="fat">
           {{ _('Submit review') }}
         </button>
       </p>
-        {% if support_url %}
-          <p class="support-link c">
-          {% trans %}
-            Visit <a href="{{ support_url }}" target="_blank">support</a>
-            for assistance with this app.
-          {% endtrans %}
-          </p>
-        {% elif support_email %}
-          <p class="support-link c">
-          {% trans support_email = emaillink(support_email) %}
-            Contact {{ support_email }} for assistance with this app.
-          {% endtrans %}
-          </p>
-        {% endif %}
+      {% if support_url %}
+        <p class="support-link">
+        {% trans %}
+          Visit <a href="{{ support_url }}" target="_blank">support</a>
+          for assistance with this app.
+        {% endtrans %}
+        </p>
+      {% elif support_email %}
+        <p class="support-link">
+        {% trans support_email = emaillink(support_email) %}
+          Contact {{ support_email }} for assistance with this app.
+        {% endtrans %}
+        </p>
+      {% endif %}
     </form>
   </section>
 {% endblock %}
