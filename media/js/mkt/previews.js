@@ -3,6 +3,10 @@
     var sliderTemplate = getTemplate($('#preview-tray'));
     var previewTemplate = getTemplate($('#single-preview'));
 
+    // magic numbers!
+    var THUMB_WIDTH = 180;
+    var THUMB_PADDED = 195;
+
     if (!sliderTemplate || !previewTemplate) {
         return;
     }
@@ -29,17 +33,23 @@
         var dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
         $tray.html(sliderTemplate({previews: previewsHTML, dots: dotHTML}));
 
-        var width = $tray.find('li').length * 195 - 15;
+        var numPreviews = $tray.find('li').length;
+
+        var width = numPreviews * THUMB_PADDED - 15;
 
         $tray.find('.content').css({
             'width': width + 'px',
-            'margin': '0 ' + ($tray.width() - 180) / 2 + 'px'
+            'margin': '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
         });
 
         var slider = Flipsnap($tray.find('.content')[0], {distance: 195});
         var $pointer = $tray.find('.dots .dot');
-        setActiveDot();
+
         slider.element.addEventListener('fsmoveend', setActiveDot, false);
+
+        // Show as many thumbs as possible to start. Using MATH!
+        slider.moveToPoint(~~($tray.width() / THUMB_PADDED / 2));
+
         function setActiveDot() {
             $pointer.filter('.current').removeClass('current');
             $pointer.eq(slider.currentPoint).addClass('current');
