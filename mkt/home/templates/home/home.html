@@ -15,5 +15,5 @@
       {% endfor %}
     </ul>
   </section>
-  {% category_slider(rand=True, limit=9 if request.MOBILE else 12) %}
+  {{ category_slider(rand=True, limit=9 if request.MOBILE else 12) }}
 {% endblock %}
