@@ -5,10 +5,16 @@ define('login', ['notification'], function(notification) {
     $(window).bind('login', function() {
         $('#login').addClass('show');
     }).on('click', '.browserid', function(e) {
-        $(this).addClass('loading-submit');
+        var $this = $(this);
+        $this.addClass('loading-submit');
         requestedLogin = true;
-        navigator.id.request({termsOfService: '/terms-of-use',
-                              privacyPolicy: '/privacy-policy'});
+        navigator.id.request({
+            termsOfService: '/terms-of-use',
+            privacyPolicy: '/privacy-policy',
+            oncancel: function() {
+                $this.removeClass('loading-submit').blur();
+            }
+        });
         e.preventDefault();
 
     });
