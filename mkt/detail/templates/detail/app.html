@@ -38,8 +38,6 @@
     {{ disabled_payments_notice(addon=product) }}
   {% endif %}
   {% include 'purchase/error.html' %}
-  {{ mkt_breadcrumbs(items=[(url('browse.apps'), _('Apps')),
-                            (None, product.name)]) }}
   {% if not product.is_visible(request) %}
     {{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
   {% else %}
