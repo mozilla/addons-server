@@ -15,8 +15,7 @@
   {%- if link %} href="{{ product.get_url_path()|urlparams(src=data_attrs.src) }}"{% endif %}
   {%- for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
   <div class="icon featured_tile" style="background-image:url({{ product.get_image_asset_url('featured_tile', 32) }})"></div>
-  <img class="icon mobile_tile" alt="{{ _('icon') }}"
-       src="{{ src }}"
+  <img class="icon asset-tile" alt="{{ _('icon') }}" src="{{ src }}"
        data-hue="{{ hue }}">
   <img class="icon" alt="{{ _('icon') }}" src="{{ product.get_icon_url(64) }}">
   <div class="info">
