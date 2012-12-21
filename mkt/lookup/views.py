@@ -84,8 +84,8 @@ def _transaction_summary(tx_id):
     return {
         'id': '',
         'date': '',
-        'purchaser': None,
-        'developer': None,
+        'buyer': None,
+        'seller': None,
         'amount': 0}
 
 

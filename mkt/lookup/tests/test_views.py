@@ -16,6 +16,7 @@ from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
 from stats.models import Contribution, DownloadCount
@@ -240,7 +241,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
 
 
 class TestTransactionSearch(TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_support_staff', 'user_999')
 
     def setUp(self):
         self.tx_id = 45
@@ -250,8 +251,8 @@ class TestTransactionSearch(TestCase):
 
     def test_redirect(self):
         r = self.client.get(self.url, {'q': self.tx_id})
-        self.assertRedirects(r, reverse('lookup.transaction_summary',
-                                        args=[self.tx_id]))
+        self.assert3xx(r, reverse('lookup.transaction_summary',
+                                  args=[self.tx_id]))
 
     def test_no_perm(self):
         self.client.login(username='regular@mozilla.com',
@@ -261,7 +262,7 @@ class TestTransactionSearch(TestCase):
 
 
 class TestTransactionSummary(TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_support_staff', 'user_999')
 
     def setUp(self):
         self.tx_id = 45

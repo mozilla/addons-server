@@ -6,21 +6,16 @@ from mkt.lookup.forms import TransactionSearchForm
 
 class TestTransactionSearchForm(amo.tests.TestCase):
 
-    def setUp(self):
-        self.data = {'q': 12345}
-
     def test_basic(self):
         """Test the form doesn't crap out."""
-        self.check_valid(True)
+        self.check_valid({'q': 12345}, True)
 
     def test_str_number(self):
-        self.data['q'] = '12345'
-        self.check_valid(True)
+        self.check_valid({'q': '12345'})
 
     def test_not_number(self):
-        self.data['q'] = 'ekong'
-        self.check_valid(False)
+        self.check_valid({'q': 'ekong'}, valid=False)
 
-    def check_valid(self, valid):
-        form = TransactionSearchForm(self.data)
+    def check_valid(self, data, valid=True):
+        form = TransactionSearchForm(data)
         eq_(form.is_valid(), valid)
