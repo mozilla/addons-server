@@ -29,6 +29,16 @@ log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
+def make_ext_id(addon_pk):
+    """
+    Generates a webpay/solitude external ID for this addon's primary key.
+    """
+    # This namespace is currently necessary because app products
+    # are mixed into an application's own in-app products.
+    # Maybe we can fix that.
+    return 'marketplace:%s' % addon_pk
+
+
 def prepare_webpay_pay(data):
     issued_at = calendar.timegm(time.gmtime())
     req = {
@@ -41,7 +51,7 @@ def prepare_webpay_pay(data):
             'name': data['app_name'],
             'description': data['app_description'],
             'pricePoint': data['price_point'],
-            'id': 'marketplace:%s' % data['id'],
+            'id': make_ext_id(data['id']),
             'postbackURL': data['postback_url'],
             'chargebackURL': data['chargeback_url'],
             'productData': data['product_data']

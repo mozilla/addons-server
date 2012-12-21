@@ -155,26 +155,16 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
     @patch('uuid.uuid4', Mock(return_value='lol'))
     @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
     @patch('mkt.developers.models.client')
-    @fudge.with_fakes
     def test_create(self, client):
-        client.upsert = (
-            fudge.Fake()
-                .expects_call()
-                .with_args(method='product',
-                           params={'seller': 'selluri', 'secret': 'poop',
-                                   'external_id': self.app.pk},
-                           lookup_by=['external_id'])
-                .returns({'resource_uri': 'gpuri'})
-                .next_call()
-                .with_args(method='product_bango',
-                           params={'seller_bango': 'acuri',
-                                   'seller_product': 'gpuri',
-                                   'packageId': arg.any(),
-                                   'name': self.app.name, 'categoryId': 1,
-                                   'secret': 'poop'},
-                           lookup_by=['seller_product'])
-                .returns({'resource_uri': 'bpruri', 'bango_id': 'bango#',
-                          'seller': 'selluri'}))
+        client.get_product.return_value = {
+             'objects': [{'resource_uri': 'gpuri'}],
+             'meta': {'total_count': 1}
+        }
+        client.get_product_bango.return_value = {
+            'meta': {'total_count': 1},
+            'objects': [{'resource_uri': 'bpruri', 'bango_id': 'bango#',
+                         'seller': 'selluri'}]
+        }
 
         apa = AddonPaymentAccount.create(
             'bango', addon=self.app, payment_account=self.account)

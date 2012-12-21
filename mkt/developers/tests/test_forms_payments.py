@@ -95,6 +95,7 @@ class TestPaidRereview(amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        amo.set_user(self.user)
         seller = models.SolitudeSeller.objects.create(
             resource_uri='/path/to/sel', user=self.user)
 
@@ -111,8 +112,9 @@ class TestPaidRereview(amo.tests.TestCase):
     def test_rereview(self, client):
         client.get_product.return_value = {'meta': {'total_count': 0}}
         client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
         client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango': 'bango#'}
+            'resource_uri': 'bpruri', 'bango_id': 123}
 
         form = forms.BangoAccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
@@ -128,8 +130,9 @@ class TestPaidRereview(amo.tests.TestCase):
     def test_norereview(self, client):
         client.get_product.return_value = {'meta': {'total_count': 0}}
         client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
         client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango': 'bango#'}
+            'resource_uri': 'bpruri', 'bango_id': 123}
 
         self.addon.update(highest_status=amo.STATUS_PENDING)
         form = forms.BangoAccountListForm(
