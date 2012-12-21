@@ -54,9 +54,7 @@ class TestPurchase(PurchaseTest):
         eq_(data['typ'], settings.APP_PURCHASE_TYP)
         eq_(data['aud'], settings.APP_PURCHASE_AUD)
         req = data['request']
-        # TODO(Kumar) fix this when we have default currencies (bug 777747)
-        eq_(req['price'][0]['currency'], 'USD')
-        eq_(req['price'][0]['amount'], str(self.price.price))
+        eq_(req['pricePoint'], self.price.pk)
         eq_(req['id'], 'marketplace:%s' % self.addon.pk)
         eq_(req['name'], unicode(self.addon.name))
         eq_(req['description'], unicode(self.addon.description))
@@ -139,37 +137,10 @@ class TestPurchaseJWT(PurchaseTest):
                      'exp',
                      'request.name',
                      'request.description',
-                     'request.price',
-                     'request.defaultPrice',
+                     'request.pricePoint',
                      'request.postbackURL',
                      'request.chargebackURL',
                      'request.productData'))
-
-    def test_prices(self):
-        data = self.pay_jwt_dict()
-        prices = sorted(data['request']['price'],
-                        key=lambda p: p['currency'])
-
-        # TODO(Kumar) remove country when client code is fixed.
-        eq_(prices[0], {'currency': 'BRL', 'amount': '0.50',
-                        'country': 'XX'})
-        eq_(prices[1], {'currency': 'CAD', 'amount': '3.01',
-                        'country': 'XX'})
-        eq_(prices[2], {'currency': 'EUR', 'amount': '5.01',
-                        'country': 'XX'})
-        eq_(prices[3], {'currency': 'USD', 'amount': '0.99',
-                        'country': 'XX'})
-        eq_(data['request']['defaultPrice'], 'USD')
-
-    @mock.patch.object(settings, 'REGION_STORES', True)
-    def test_brl_for_brazil(self):
-        data = self.pay_jwt_dict(lang='pt-BR')
-        eq_(data['request']['defaultPrice'], 'BRL')
-
-    @mock.patch.object(settings, 'REGION_STORES', True)
-    def test_usd_for_usa(self):
-        data = self.pay_jwt_dict(lang='en-US')
-        eq_(data['request']['defaultPrice'], 'USD')
 
 
 @mock.patch.object(settings, 'SOLITUDE_HOSTS', ['host'])

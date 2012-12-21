@@ -40,9 +40,8 @@ def prepare_webpay_pay(data):
         'request': {
             'name': data['app_name'],
             'description': data['app_description'],
-            'price': data['prices'],
+            'pricePoint': data['price_point'],
             'id': 'marketplace:%s' % data['id'],
-            'defaultPrice': data['currency'],
             'postbackURL': data['postback_url'],
             'chargebackURL': data['chargeback_url'],
             'productData': data['product_data']
@@ -85,13 +84,8 @@ def prepare_pay(request, addon):
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
 
-    prices = [{'currency': cur,
-               'country': 'XX',  # This is unused but required!
-               'amount': str(tier.price)}
-              for cur, tier in addon.premium.price.currencies()]
-
     data = {'amount': str(amount),
-            'prices': prices, 'currency': currency,
+            'price_point': addon.premium.price.pk,
             'id': addon.pk,
             'app_name': unicode(addon.name),
             'app_description': unicode(addon.description),
