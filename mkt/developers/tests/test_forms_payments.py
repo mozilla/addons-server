@@ -16,7 +16,7 @@ from mkt.developers import forms, models
 from mkt.site.fixtures import fixture
 
 
-class TestFreeToPremium(amo.tests.TestCase):
+class TestPremiumForm(amo.tests.TestCase):
     # None of the tests in this TC should initiate Solitude calls.
     fixtures = fixture('webapp_337141')
 
@@ -62,6 +62,27 @@ class TestFreeToPremium(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         eq_(self.addon.premium_type, amo.ADDON_FREE)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
+
+    def test_update(self):
+        self.make_premium(self.addon)
+        self.request.POST = {'toggle-paid': 'paid'}
+        price = Price.objects.create(price='9.99')
+        form = forms.PremiumForm(data={'price': price.pk}, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(self.addon.premium.price.pk, price.pk)
+
+    def test_update_new_with_acct(self):
+        # This was the situation for a new app that was
+        # getting linked to an existing bank account.
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.request.POST = {'toggle-paid': 'paid'}
+        data = {'price': self.price.pk}
+        form = forms.PremiumForm(data=data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        addon = Addon.objects.get(pk=self.addon.pk)
+        assert addon.premium
 
 
 class TestPaidRereview(amo.tests.TestCase):

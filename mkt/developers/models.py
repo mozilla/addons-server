@@ -200,7 +200,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         bango_number = res['bango_id']
 
         cls._push_bango_premium(
-            bango_number, product_uri, float(addon.premium.price.price))
+            bango_number, product_uri, float(addon.addonpremium.price.price))
 
         return product_uri
 
