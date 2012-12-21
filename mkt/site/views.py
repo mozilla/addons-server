@@ -107,18 +107,6 @@ def robots(request):
     return HttpResponse(template, mimetype="text/plain")
 
 
-@anonymous_csrf
-@anonymous_csrf_exempt
-@post_required
-def csrf(request):
-    """A CSRF for anonymous users only."""
-    if not request.amo_user:
-        data = json.dumps({'csrf': RequestContext(request)['csrf_token']})
-        return HttpResponse(data, content_type='application/json')
-
-    raise PermissionDenied
-
-
 @csrf_exempt
 @post_required
 def record(request):

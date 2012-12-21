@@ -250,14 +250,3 @@ class TestFooter(amo.tests.TestCase):
         doc = pq(r.content)('#lang-form')
         eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')
         eq_(doc('input[type=hidden][name=y]').attr('value'), 'yyy')
-
-
-class TestCSRF(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def test_csrf(self):
-        assert json.loads(self.client.post(reverse('csrf')).content)['csrf']
-
-    def test_not_csrf(self):
-        self.client.login(username='admin@mozilla.com', password='password')
-        eq_(self.client.post(reverse('csrf')).status_code, 403)
