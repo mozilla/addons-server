@@ -29,6 +29,7 @@ class TestPurchase(PurchaseTest):
         self.prepare_pay = reverse('webpay.prepare_pay',
                                    kwargs={'app_slug': self.addon.app_slug})
         self.create_flag(name='solitude-payments')
+        self.setup_package()
 
     def _req(self, method, url):
         req = getattr(self.client, method)
@@ -63,7 +64,8 @@ class TestPurchase(PurchaseTest):
         eq_(req['chargebackURL'],
             absolutify(reverse('webpay.chargeback')))
         pd = urlparse.parse_qs(req['productData'])
-        assert 'contrib_uuid' in pd, 'Unexpected: %s' % pd
+        eq_(pd['contrib_uuid'][0], cn.uuid)
+        eq_(pd['seller_uuid'][0], self.seller.uuid)
         eq_(pd['addon_id'][0], str(self.addon.pk))
 
     def test_require_login(self):
@@ -126,9 +128,11 @@ class TestPurchaseJWT(PurchaseTest):
         return jwt.decode(str(self.pay_jwt(lang=lang)), verify=False)
 
     def test_claims(self):
+        self.setup_package()
         verify_claims(self.pay_jwt_dict())
 
     def test_keys(self):
+        self.setup_package()
         verify_keys(self.pay_jwt_dict(),
                     ('iss',
                      'typ',

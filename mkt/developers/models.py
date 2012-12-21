@@ -6,7 +6,7 @@ import commonware.log
 from tower import ugettext_lazy as _lazy
 
 import amo
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog  # used by reviewers.views, etc!
 from lib.crypto import generate_key
 from lib.pay_server import client
 from users.models import UserForeignKey
@@ -40,6 +40,7 @@ class SolitudeSeller(amo.models.ModelBase):
 class PaymentAccount(amo.models.ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
+    solitude_seller = models.ForeignKey(SolitudeSeller)
 
     # These two fields can go away when we're not 1:1 with SolitudeSellers.
     seller_uri = models.CharField(max_length=255, unique=True)
@@ -91,6 +92,7 @@ class PaymentAccount(amo.models.ModelBase):
         client.post_bank_details(data=bank_details_values)
 
         obj = cls.objects.create(user=user, uri=uri,
+                                 solitude_seller=user_seller,
                                  seller_uri=user_seller.resource_uri,
                                  bango_package_id=res['package_id'],
                                  name=form_data['account_name'])
@@ -131,6 +133,7 @@ class PaymentAccount(amo.models.ModelBase):
 class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.OneToOneField(
         'addons.Addon', related_name='app_payment_account')
+    payment_account = models.ForeignKey(PaymentAccount)
     provider = models.CharField(
         max_length=8, choices=[('bango', _lazy('Bango'))])
     account_uri = models.CharField(max_length=255)
@@ -172,6 +175,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
             uri = ''
 
         return cls.objects.create(addon=addon, provider=provider,
+                                  payment_account=payment_account,
                                   set_price=addon.premium.price.price,
                                   account_uri=payment_account.uri,
                                   product_uri=uri)

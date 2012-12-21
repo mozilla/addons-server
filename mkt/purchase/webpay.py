@@ -84,6 +84,8 @@ def prepare_pay(request, addon):
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
 
+    acct = addon.app_payment_account.payment_account
+    seller_uuid = acct.solitude_seller.uuid
     data = {'amount': str(amount),
             'price_point': addon.premium.price.pk,
             'id': addon.pk,
@@ -93,9 +95,7 @@ def prepare_pay(request, addon):
             'chargeback_url': absolutify(reverse('webpay.chargeback')),
             'seller': addon.pk,
             'product_data': urlencode({'contrib_uuid': uuid_,
-                                       # TODO(Kumar) Replace this with a real
-                                       # Solitude seller_uuid. See bug 821031.
-                                       'seller_uuid': 'app:%s' % addon.pk,
+                                       'seller_uuid': seller_uuid,
                                        'addon_id': addon.pk}),
             'typ': 'tu.com/payments/inapp/v1',
             'aud': 'tu.com',

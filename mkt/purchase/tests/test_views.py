@@ -16,6 +16,8 @@ from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from market.models import (AddonPremium, AddonPurchase, PreApprovalUser,
                            Price, PriceCurrency)
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.webapps.models import Webapp
 from paypal import get_preapproval_url, PaypalError, PaypalDataError
 from stats.models import Contribution
@@ -40,6 +42,18 @@ class PurchaseTest(amo.tests.TestCase):
         self.brl = PriceCurrency.objects.create(currency='BRL',
                                                 price=Decimal('0.5'),
                                                 tier_id=1)
+
+    def setup_package(self):
+        self.seller = SolitudeSeller.objects.create(resource_uri='/path/to/sel',
+                                                    uuid='seller-id',
+                                                    user=self.user)
+        self.account = PaymentAccount.objects.create(
+            user=self.user, uri='asdf', name='test', inactive=False,
+            solitude_seller=self.seller, bango_package_id=123)
+        AddonPaymentAccount.objects.create(
+            addon=self.addon, provider='bango', account_uri='foo',
+            payment_account=self.account, product_uri='bpruri',
+            set_price=12345)
 
 
 class TestPurchaseEmbedded(PurchaseTest):

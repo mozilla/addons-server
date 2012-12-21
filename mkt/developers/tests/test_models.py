@@ -12,7 +12,7 @@ from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
-                                   PaymentAccount)
+                                   PaymentAccount, SolitudeSeller)
 from mkt.site.fixtures import fixture
 
 
@@ -88,7 +88,10 @@ class TestPaymentAccount(amo.tests.TestCase):
     @patch('mkt.developers.models.client')
     @patch('mkt.developers.models.SolitudeSeller.create')
     def test_create_bango(self, solselc, client):
-        solselc.return_value = Mock(resource_uri='selluri')
+        # Return a seller object without hitting Bango.
+        solselc.return_value = SolitudeSeller.objects.create(
+            resource_uri='selluri', user=self.user
+        )
         client.post_package.return_value = {
             'resource_uri': 'zipzap',
             'package_id': 123,
@@ -111,13 +114,17 @@ class TestPaymentAccount(amo.tests.TestCase):
             data={'seller_bango': 'zipzap'})
 
     def test_cancel(self):
+        seller = SolitudeSeller.objects.create(
+            resource_uri='sellerres', user=self.user
+        )
         res = PaymentAccount.objects.create(
-            name='asdf', user=self.user, uri='foo')
+            name='asdf', user=self.user, uri='foo',
+            solitude_seller=seller)
 
         addon = Addon.objects.get()
         apa = AddonPaymentAccount.objects.create(
             addon=addon, provider='bango', account_uri='foo',
-            product_uri='bpruri', set_price=12345)
+            payment_account=res, product_uri='bpruri', set_price=12345)
 
         res.cancel()
         assert res.inactive
@@ -135,9 +142,15 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
 
         AddonPremium.objects.create(addon=self.app, price=self.price)
-        self.seller = Mock(resource_uri='sellerres', user=self.user)
-        self.account = Mock(user=self.user, name='paname', uri='acuri',
-                            inactive=False, seller_uri='selluri')
+        self.seller = SolitudeSeller.objects.create(
+            resource_uri='sellerres', user=self.user
+        )
+        self.account = PaymentAccount.objects.create(
+            solitude_seller=self.seller,
+            user=self.user, name='paname', uri='acuri',
+            inactive=False, seller_uri='selluri',
+            bango_package_id=123
+        )
 
     @patch('uuid.uuid4', Mock(return_value='lol'))
     @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
@@ -184,10 +197,12 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         client.get_product_bango.return_value = {'bango': 'bango#'}
 
         payment_account = PaymentAccount.objects.create(
-            user=self.user, name='paname', uri='acuri')
+            user=self.user, name='paname', uri='/path/to/object',
+            solitude_seller=self.seller)
 
         apa = AddonPaymentAccount.objects.create(
             addon=self.app, provider='bango', account_uri='acuri',
+            payment_account=payment_account,
             product_uri='bpruri', set_price=12345)
 
         apa.update_price(new_price)

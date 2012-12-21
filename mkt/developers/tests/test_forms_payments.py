@@ -74,10 +74,12 @@ class TestPaidRereview(amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        seller = models.SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', user=self.user)
 
         self.account = models.PaymentAccount.objects.create(
             user=self.user, uri='asdf', name='test', inactive=False,
-            bango_package_id=123)
+            solitude_seller=seller, bango_package_id=123)
 
         self.kwargs = {
             'addon': self.addon,
