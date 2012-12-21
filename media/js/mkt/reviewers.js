@@ -19,26 +19,6 @@
         }
     });
 
-    // Dim all desktop-only results.
-    $('.data-grid .addon-row').each(function() {
-        var $this = $(this),
-            $devices = $this.find('.device-list li:not(.unavailable)');
-        // If desktop is the only device supported, fade out this row.
-        if (z.capabilities.mobile && $devices.length == 1 && $devices.filter('.desktop').length) {
-            $this.addClass('unsupported');
-        }
-        if (z.capabilities.gaia) {
-            if (!$devices.filter('.firefoxos').length) {
-                $this.addClass('unsupported');
-            }
-        } else {
-            if ((z.capabilities.mobile && !$devices.filter('.android-mobile').length) ||
-                (z.capabilities.tablet && !$devices.filter('.android-tablet').length)) {
-                $this.addClass('unsupported');
-            }
-        }
-    });
-
     var $viewManifest = $('#view-manifest'),
         $manifest = $('#manifest-contents');
     if (!$viewManifest.length) {
