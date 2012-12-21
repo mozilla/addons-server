@@ -39,7 +39,7 @@
               {{ _('Sorry, you need to be online to access the Marketplace.') }}
             </h3>
             <div>
-              <button onclick="window.location.reload()">Try Again</button>
+              <button id="reload">{{ _('Try Again') }}</button>
             </div>
           </section>
         {% endblock %}
@@ -47,6 +47,18 @@
     </div>
 
     {% block dbgoverlay %}{% endblock %}
+
+    <script>
+      function reload() {
+        if (navigator.onLine && 'from' in localStorage) {
+          window.location = localStorage.from;
+          delete localStorage.from;
+        } else {
+          window.location.reload();
+        }
+      }
+      document.getElementById('reload').addEventListener('click', reload, false);
+    </script>
   </body>
 </html>
 

@@ -75,6 +75,12 @@ function fragmentFilter(el) {
             }
         }
 
+        function handleOffline() {
+            console.log('user is offline');
+            localStorage.from = window.location.href;
+            window.location = '/offline/home';
+        }
+
         function hijackGET(form) {
             var action = form.attr('action');
             //strip existing queryparams off the action.
@@ -104,6 +110,10 @@ function fragmentFilter(el) {
                 handleFragmentResponse(xhr, href);
                 updateContent(response);
             }).fail(function(response) {
+                if (navigator.onLine === false) {
+                    handleOffline();
+                    return;
+                }
                 form.trigger('notify', {
                     title: gettext('Error'),
                     msg: gettext('A server error has occurred.')
@@ -162,6 +172,10 @@ function fragmentFilter(el) {
                 updateContent(content, href, popped, {scrollTop: state.scrollTop});
             }).fail(function() {
                 console.log('fetch error!');
+                if (navigator.onLine === false) {
+                    handleOffline();
+                    return;
+                }
                 $(window).trigger('notify', {
                     title: gettext('Error'),
                     msg: gettext('There was an error loading the requested page.')});
