@@ -44,7 +44,7 @@ html5lib==0.90
 httplib2==0.7.6
 importlib==1.0.2
 kombu==2.1.2
-metlog-py==0.9.8
+metlog-py==0.9.9
 metlog-cef==0.2
 metlog-raven==0.3
 mimeparse==0.1.3

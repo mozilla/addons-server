@@ -294,6 +294,14 @@ class GenerateErrorForm(happyforms.Form):
         from metlog.config import client_from_dict_config
         new_metlog = client_from_dict_config(settings.METLOG_CONF)
 
+        # The next two variables are captured by the raven client as local variables
+        # which are passed into the sentry server.
+        # They are needed to verify that the active metlog
+        # configuration is not the actual expected metlog
+        # configuration.
+        metlog_conf = settings.METLOG_CONF
+        active_metlog_conf = settings.METLOG._config
+
         if error == 'zerodivisionerror':
             1 / 0
         elif error == 'iorequesterror':
