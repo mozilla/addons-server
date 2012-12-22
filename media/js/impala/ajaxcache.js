@@ -28,7 +28,7 @@ $.ajaxCache = function(o) {
         cacheSuccess: $.noop,     // Callback upon success of items fetched
                                   // in cache.
         ajaxSuccess: $.noop,      // Callback upon success of Ajax request.
-        ajaxFailure: $.noop,      // Callback upon failure of Ajax request.
+        ajaxFailure: $.noop       // Callback upon failure of Ajax request.
     }, o);
 
     if (!z.capabilities.JSON || parseFloat(jQuery.fn.jquery) < 1.5) {
@@ -75,16 +75,7 @@ $.ajaxCache = function(o) {
                 }
                 o.newItems(data, items);
                 o.ajaxSuccess(data, items);
-            });
 
-            // Optional failure callback.
-            if (o.failure) {
-                request.fail(function(data) {
-                    o.ajaxFailure(data);
-                });
-            }
-
-            request.always(function(data) {
                 // Store items returned from this request.
                 cache.items[args] = data;
 
@@ -93,6 +84,12 @@ $.ajaxCache = function(o) {
                 cache.previous.args = args;
             });
 
+            // Optional failure callback.
+            if (o.failure) {
+                request.fail(function(data) {
+                    o.ajaxFailure(data);
+                });
+            }
         }
     }
     return request;
