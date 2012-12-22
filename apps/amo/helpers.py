@@ -333,9 +333,7 @@ def absolutify(url, site=None):
     if url.startswith('http'):
         return url
     else:
-        if site:
-            return site + url
-        return settings.SITE_URL + url
+        return (site or settings.SITE_URL) + url
 
 
 @register.filter
