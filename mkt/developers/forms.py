@@ -370,12 +370,8 @@ class BasePreviewFormSet(BaseModelFormSet):
                 form.cleaned_data.get('upload_hash') is not None):
                 at_least_one = True
         if not at_least_one:
-            if waffle.switch_is_active('video-upload'):
-                raise forms.ValidationError(_('You must upload at least one '
-                                              'screenshot or video.'))
-            else:
-                raise forms.ValidationError(_('You must upload at least one '
-                                              'screenshot.'))
+            raise forms.ValidationError(
+                _('You must upload at least one screenshot or video.'))
 
 
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,

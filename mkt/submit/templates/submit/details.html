@@ -128,11 +128,7 @@
 
       <div>
         <label>
-          {% if waffle.switch('video-upload') %}
-            {{ _('Screenshot or video of your app:') }}
-          {% else %}
-            {{ _('Screenshot of your app:') }}
-          {% endif %}
+          {{ _('Screenshot or video of your app:') }}
         </label>
         {{ required() }}
         <span class="hint-inline">{{ _('You must provide at least one.') }}</span>
@@ -173,20 +169,16 @@
           {% endfor %}
         </div>
         <div class="invisible-upload">
-          <a class="button" href="#">{% if waffle.switch('video-upload') -%}
-            {{ _('Add a Screenshot or Video...') }}{% else %}
-            {{ _('Add a Screenshot...') }}{%- endif %}</a>
+          <a class="button" href="#">{{ _('Add a Screenshot or Video...') }}</a>
           <input type="file" class="screenshot_upload" name="uploads" multiple
-                 data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
+                 data-allowed-types="image/jpeg|image/png|video/webm"
                  data-upload-url="{{ screenshot_upload_url }}">
         </div>
         <div>
           <span class="hint">
             {{ _('PNG and JPG supported. Screenshots must be at least 320px by 480px. '
-                 'Screenshots proportional to 320px by 480px are optimal.') }}
-            {% if waffle.switch('video-upload') %}
-              {{ _('WebM supported for video.') }}
-            {% endif %}
+                 'Screenshots proportional to 320px by 480px are optimal. '
+                 'WebM supported for video.') }}
           </span>
         </div>
       </div>

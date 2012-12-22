@@ -7,7 +7,6 @@ from django.template.defaultfilters import filesizeformat
 
 from PIL import Image
 from tower import ugettext as _
-import waffle
 
 import amo
 from mkt.constants import APP_PREVIEW_MINIMUMS
@@ -20,8 +19,7 @@ def check_upload(file_obj, upload_type, content_type):
     is_icon = upload_type == 'icon'
     is_image_asset = upload_type == 'image'
     is_preview = upload_type == 'preview'
-    is_video = (content_type in amo.VIDEO_TYPES and
-                waffle.switch_is_active('video-upload'))
+    is_video = content_type in amo.VIDEO_TYPES
 
     if not any([is_icon, is_image_asset, is_preview, is_video]):
         raise ValueError('Unknown upload type.')

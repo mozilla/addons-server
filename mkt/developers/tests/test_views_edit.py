@@ -688,18 +688,11 @@ class TestEditMedia(TestEdit):
 
         eq_(Image.open(storage.open(dest)).size, (64, 64))
 
-    def test_no_video_types(self):
+    def test_media_types(self):
         res = self.client.get(self.get_url('media', edit=True))
         doc = pq(res.content)
-        eq_(doc('.screenshot_upload').attr('data-allowed-types'),
-            'image/jpeg|image/png')
         eq_(doc('#id_icon_upload').attr('data-allowed-types'),
             'image/jpeg|image/png')
-
-    def test_video_types(self):
-        Switch.objects.create(name='video-upload', active=True)
-        res = self.client.get(self.get_url('media', edit=True))
-        doc = pq(res.content)
         eq_(doc('.screenshot_upload').attr('data-allowed-types'),
             'image/jpeg|image/png|video/webm')
 
@@ -720,8 +713,6 @@ class TestEditMedia(TestEdit):
     @mock.patch.object(amo, 'VIDEO_TYPES', ['application/javascript'])
     def test_edit_video_wrong_type(self):
         raise SkipTest
-        # TODO(andym): fix this.
-        Switch.objects.create(name='video-upload', active=True)
         self.check_image_type(self.preview_upload, 'Videos must be in WebM.')
 
     def test_edit_icon_wrong_type(self):
@@ -855,15 +846,9 @@ class TestEditMedia(TestEdit):
 
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_add_hash(self):
-        Switch.objects.create(name='video-upload', active=True)
         res = self.add_json(open(video_files['good'], 'rb'))
         assert not res['errors'], res['errors']
         assert res['upload_hash'].endswith('.video-webm'), res['upload_hash']
-
-    @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
-    def test_edit_preview_video_add_hash_switch_off(self):
-        res = self.add_json(open(video_files['good'], 'rb'))
-        eq_(res['errors'], [u'Images must be either PNG or JPG.'])
 
     def test_edit_preview_add_hash(self):
         res = self.add_json(open(get_image_path('preview.jpg'), 'rb'))
@@ -877,7 +862,6 @@ class TestEditMedia(TestEdit):
     @mock.patch.object(settings, 'MAX_VIDEO_UPLOAD_SIZE', 1)
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_size(self):
-        Switch.objects.create(name='video-upload', active=True)
         res = self.add_json(open(video_files['good'], 'rb'))
         assert any(e.startswith('Please use') for e in res['errors']), (
                 res['errors'])
@@ -885,12 +869,8 @@ class TestEditMedia(TestEdit):
     @mock.patch('lib.video.tasks.resize_video')
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_add(self, resize_video):
-        Switch.objects.create(name='video-upload', active=True)
         self.preview_video_add()
         eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
-
-    def test_edit_preview_video_add_switch_off(self):
-        self.assertRaises(AssertionError, self.preview_video_add)
 
     def test_edit_preview_add(self):
         self.preview_add()
@@ -1004,13 +984,7 @@ class TestEditMedia(TestEdit):
         self.preview_add(2)
         eq_(self.get_webapp().previews.count(), 2)
 
-    def test_screenshot_required(self):
-        r = self.client.post(self.edit_url, self.formset_media())
-        eq_(r.context['preview_form'].non_form_errors(),
-            ['You must upload at least one screenshot.'])
-
     def test_screenshot_video_required(self):
-        Switch.objects.create(name='video-upload', active=True)
         r = self.client.post(self.edit_url, self.formset_media())
         eq_(r.context['preview_form'].non_form_errors(),
             ['You must upload at least one screenshot or video.'])

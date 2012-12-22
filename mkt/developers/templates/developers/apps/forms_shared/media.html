@@ -152,28 +152,14 @@
       <tr>
         {% if context == 'edit' %}
         <th>
-          {% if waffle.switch('video-upload') %}
-            <label>{{ _('Screenshots or Videos') }}</label>
-          {% else %}
-            <label>{{ _('Screenshots') }}</label>
-          {% endif %}
+          <label>{{ _('Screenshots or Videos') }}</label>
           {{ required() if editable }}
         </th>
         {% endif %}
         <td class="edit-previews-readonly">
           {% if context == 'submit' %}
           <label>
-            {% if webapp %}
-              {% if waffle.switch('video-upload') %}
-                {{ _('Please provide at least one screenshot or video of your app:') }}
-              {% else %}
-                {{ _('Please provide at least one screenshot of your app:') }}
-              {% endif %}
-            {% else %}
-              {% trans %}
-                Please provide at least one screen shot of your add-on:
-              {% endtrans %}
-            {% endif %}
+            {{ _('Please provide at least one screenshot or video of your app:') }}
           </label>
           {% endif %}
 
@@ -214,12 +200,9 @@
                 {% endfor %}
               </div>
               <div class="invisible-upload">
-                <a class="button" href="#">{% if waffle.switch('video-upload') -%}
-                  {{ _('Add a Screenshot or Video...') }}{% else %}
-                  {{ _('Add a Screenshot') }}{%- endif %}</a>
-
+                <a class="button" href="#">{{ _('Add a Screenshot or Video...') }}</a>
                 <input type="file" class="screenshot_upload" name="uploads" multiple
-                       data-allowed-types="image/jpeg|image/png{% if waffle.switch('video-upload') %}|video/webm{% endif %}"
+                       data-allowed-types="image/jpeg|image/png|video/webm"
                        data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
                 <p>{{ _('Screenshots and videos must be at least 320px by 480px. '
                         'Media proportional to 320px by 480px is optimal. '

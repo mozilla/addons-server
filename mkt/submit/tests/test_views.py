@@ -664,7 +664,6 @@ class TestDetails(TestSubmit):
             'image/jpeg|image/png')
 
     def test_video_types(self):
-        self.create_switch(name='video-upload')
         self._step()
         res = self.client.get(self.url)
         doc = pq(res.content)
@@ -743,7 +742,6 @@ class TestDetails(TestSubmit):
             ['You must upload at least one screenshot.'])
 
     def test_screenshot_or_video_required(self):
-        self.create_switch(name='video-upload')
         self._step()
         data = self.get_dict()
         for k in data:
