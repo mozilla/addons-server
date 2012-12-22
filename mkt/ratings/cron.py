@@ -4,7 +4,6 @@ from django.conf import settings
 
 import commonware.log
 import cronjobs
-import waffle
 
 import amo
 from amo.utils import send_mail_jinja
@@ -19,9 +18,6 @@ def email_daily_ratings():
     Does email for yesterday's ratings (right after the day has passed).
     Sends an email containing all reviews for that day for certain app.
     """
-    if not waffle.switch_is_active('ratings'):
-        return
-
     dt = datetime.datetime.today() - datetime.timedelta(1)
     yesterday = datetime.datetime(dt.year, dt.month, dt.day, 0, 0, 0)
     today = yesterday + datetime.timedelta(1)

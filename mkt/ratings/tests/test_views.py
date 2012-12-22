@@ -52,9 +52,6 @@ class ReviewTest(amo.tests.TestCase):
     def log_in_regular(self):
         self.client.login(username=self.regular.email, password='password')
 
-    def enable_waffle(self):
-        self.create_switch(name='ratings')
-
 
 class TestCreate(ReviewTest):
 
@@ -279,7 +276,6 @@ class TestCreate(ReviewTest):
     def test_add_link_visitor(self):
         # Ensure non-logged user can see Add Review links on detail page
         # but not on Reviews listing page.
-        self.enable_waffle()
         self.client.logout()
         r = self.client.get(self.detail)
         submit_button = pq(r.content)('#add-first-review')
@@ -287,7 +283,6 @@ class TestCreate(ReviewTest):
         eq_(submit_button.text(), 'Write a Review')
 
     def test_edit_link_packaged(self):
-        self.enable_waffle()
         self.webapp.update(is_packaged=True)
         Review.objects.all().update(version=self.webapp.current_version)
         res = self.client.get(self.detail)
@@ -299,7 +294,6 @@ class TestCreate(ReviewTest):
         self.webapp.update(is_packaged=True)
         amo.tests.version_factory(addon=self.webapp)
         self.webapp.update(_current_version=self.webapp.versions.latest())
-        self.enable_waffle()
         res = self.client.get(self.detail)
         submit_button = pq(res.content)('#add-first-review')
         eq_(submit_button.length, 1)
@@ -307,28 +301,24 @@ class TestCreate(ReviewTest):
 
     def test_add_link_logged(self):
         # Ensure logged user can see Add Review links.
-        self.enable_waffle()
         r = self.client.get(self.detail)
         doc = pq(r.content)('#review')
         eq_(doc('#add-first-review').length, 0)
 
     def test_add_link_dev(self):
         # Ensure developer cannot see Add Review links.
-        self.enable_waffle()
         self.log_in_dev()
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_no_add_review_link_visitor(self):
         # Check for no review link for premium apps for non-logged user.
-        self.enable_waffle()
         self.client.logout()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_no_add_review_link_logged(self):
-        self.enable_waffle()
         # Check for no review link for premium apps for logged users.
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
@@ -336,7 +326,6 @@ class TestCreate(ReviewTest):
 
     def test_premium_add_review_link_dev(self):
         # Check for no review link for premium apps for app owners.
-        self.enable_waffle()
         self.log_in_dev()
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
@@ -345,14 +334,12 @@ class TestCreate(ReviewTest):
 
     def test_premium_no_add_review_link(self):
         # Check for review link for non-purchased premium apps.
-        self.enable_waffle()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('#add-first-review').length, 0)
 
     def test_premium_add_review_link(self):
         # Check for review link for owners of purchased premium apps.
-        self.enable_waffle()
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
@@ -360,7 +347,6 @@ class TestCreate(ReviewTest):
 
     def test_no_reviews_premium_no_add_review_link(self):
         # Ensure no 'Review this App' link for non-purchased premium apps.
-        self.enable_waffle()
         Review.objects.all().delete()
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         r = self.client.get(self.detail)
@@ -368,7 +354,6 @@ class TestCreate(ReviewTest):
 
     def test_reviews_premium_add_review_link(self):
         # Ensure 'Review this App' link exists for purchased premium apps.
-        self.enable_waffle()
         Review.objects.all().delete()
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
@@ -377,7 +362,6 @@ class TestCreate(ReviewTest):
 
     def test_reviews_premium_edit_review_link(self):
         # Ensure 'Review this App' link exists for purchased premium apps.
-        self.enable_waffle()
         Review.objects.create(
             rating=4,
             body={'ru': 'I \u042f so hard.'},
@@ -394,7 +378,6 @@ class TestCreate(ReviewTest):
 
     def test_reviews_premium_refunded(self):
         # Ensure 'Review this App' link exists for refunded premium apps.
-        self.enable_waffle()
         Review.objects.all().delete()
         self.webapp.addonpurchase_set.create(user=self.user,
                                              type=amo.CONTRIB_REFUND)
@@ -404,7 +387,6 @@ class TestCreate(ReviewTest):
 
     def test_add_review_premium_refunded(self):
         # Ensure able to add review for refunded premium apps.
-        self.enable_waffle()
         Review.objects.all().delete()
         self.webapp.addonpurchase_set.create(user=self.user,
                                              type=amo.CONTRIB_REFUND)
@@ -414,7 +396,6 @@ class TestCreate(ReviewTest):
 
     def test_review_link_plural(self):
         # We have reviews.
-        self.enable_waffle()
         self.webapp.update(total_reviews=2)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('.average-rating').text(),
@@ -422,7 +403,6 @@ class TestCreate(ReviewTest):
 
     def test_review_link_singular(self):
         # We have one review.
-        self.enable_waffle()
         self.webapp.update(total_reviews=1)
         r = self.client.get(self.detail)
         eq_(pq(r.content)('.average-rating').text(),
@@ -430,7 +410,6 @@ class TestCreate(ReviewTest):
 
     def test_support_link(self):
         # Test no link if no support url or contribution.
-        self.enable_waffle()
         r = self.client.get(self.add)
         eq_(pq(r.content)('.support-link').length, 0)
 
@@ -459,7 +438,6 @@ class TestCreate(ReviewTest):
 
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.
-        self.enable_waffle()
         Review.objects.all().delete()
         self.log_in_dev()
         r = self.client.get(self.detail)
@@ -471,7 +449,6 @@ class TestCreate(ReviewTest):
         self.assertLoginRedirects(r, self.add, 302)
 
     def test_add_client_data(self):
-        self.enable_waffle()
         client_data = ClientData.objects.create(
             download_source=DownloadSource.objects.create(name='mkt-test'),
             device_type='tablet', user_agent='test-agent', is_chromeless=False,
@@ -493,7 +470,6 @@ class TestCreate(ReviewTest):
         eq_(Review.objects.order_by('-created')[0].client_data, client_data)
 
     def test_add_client_data_no_user_agent_match(self):
-        self.enable_waffle()
         client_data = ClientData.objects.create(
             download_source=DownloadSource.objects.create(name='mkt-test'),
             device_type='tablet', user_agent='test-agent-1',
@@ -638,7 +614,6 @@ class TestListing(ReviewTest):
 
     @mock.patch.object(mkt.regions.US, 'adolescent', False)
     def test_detail_local_reviews_only(self):
-        self.enable_waffle()
         client_data1 = ClientData.objects.create(
             download_source=DownloadSource.objects.create(name='mkt-test'),
             device_type='tablet', user_agent='test-agent', is_chromeless=False,

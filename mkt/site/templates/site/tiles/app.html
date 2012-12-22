@@ -28,24 +28,22 @@
       <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
     {%- endif %}
     <div class="price vital">{{ product.get_price() }}</div>
-    {% if waffle.switch('ratings') -%}
-      <div class="rating vital{{ ' unrated' if not product.total_reviews }}">
-        {%- if tag != "a" -%}
-          <a href="{{ product.get_ratings_url() }}" class="rating_link">
-        {%- endif %}
-        {{ product.average_rating|float|stars }}
-        {% if product.total_reviews -%}
-          <span class="cnt">
-            {%- trans num=product.total_reviews, cnt=product.total_reviews|numberfmt -%}
-              {{ cnt }} Rating
-            {%- pluralize -%}
-              {{ cnt }} Ratings
-            {%- endtrans -%}
-          </span>
-       {%- endif %}
-       {% if tag != "a" %}</a>{% endif %}
-      </div>
-    {%- endif %}
+    <div class="rating vital{{ ' unrated' if not product.total_reviews }}">
+      {%- if tag != "a" -%}
+        <a href="{{ product.get_ratings_url() }}" class="rating_link">
+      {%- endif %}
+      {{ product.average_rating|float|stars }}
+      {% if product.total_reviews -%}
+        <span class="cnt">
+          {%- trans num=product.total_reviews, cnt=product.total_reviews|numberfmt -%}
+            {{ cnt }} Rating
+          {%- pluralize -%}
+            {{ cnt }} Ratings
+          {%- endtrans -%}
+        </span>
+     {%- endif %}
+     {% if tag != "a" %}</a>{% endif %}
+    </div>
   </div>
   {% for notice in notices -%}
     <div class="bad-app">{{ notice|safe }}</div>

@@ -176,7 +176,6 @@ class TestDetail(DetailBase):
 
     def test_tile_ratings_link(self):
         # Assert that we have the link to the ratings page in the header tile.
-        self.create_switch(name='ratings')
         eq_(self.get_pq()('.mkt-tile .rating_link').attr('href'),
             self.app.get_ratings_url())
 

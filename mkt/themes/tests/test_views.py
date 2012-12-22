@@ -91,7 +91,6 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         assert pq(r.content)('h2.authors').text().startswith('regularuser')
 
     def test_reviews(self):
-        self.create_switch('ratings')
         r = self.client.get(self.url)
         eq_(pq(r.content)('li.review').length, 1)
 

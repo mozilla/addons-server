@@ -20,8 +20,6 @@ class TestEmailDailyRatings(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.create_switch(name='ratings')
-
         self.app = amo.tests.app_factory(name='test')
         self.app2 = amo.tests.app_factory(name='test2')
 
